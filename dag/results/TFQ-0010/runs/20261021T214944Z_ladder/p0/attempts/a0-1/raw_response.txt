@@ -1,0 +1,48 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "gen_hadron_cochain_curvature",
+      "inputs": [
+        "HadronTopology"
+      ],
+      "output": "Nat",
+      "arity": 1,
+      "carrier": "Nat",
+      "ref": {
+        "path": "lean4/NonAbelianGaugeSigns.lean",
+        "decl": "NonAbelianGaugeSigns.hadronCochainCurvature",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_adjoint_flux_curvature_vanishes",
+      "statement": "fluxTubeCurvature N_c Adjoint = 0 for all N_c",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/NonAbelianGaugeSigns.lean",
+        "decl": "NonAbelianGaugeSigns.adjoint_flux_tube_curvature_vanishes",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "rel_fundamental_flux_curvature_nonzero",
+      "statement": "fluxTubeCurvature N_c Fundamental > 0 for N_c ≥ 2",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/NonAbelianGaugeSigns.lean",
+        "decl": "NonAbelianGaugeSigns.fundamental_flux_tube_curvature_nonzero",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Target finite QED constructions (charged transport, vertices, Ward shadows) not yet instantiated."
+  ]
+}

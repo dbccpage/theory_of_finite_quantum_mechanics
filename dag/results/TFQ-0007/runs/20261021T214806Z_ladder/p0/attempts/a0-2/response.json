@@ -1,0 +1,40 @@
+{
+  "compositions": [],
+  "generators": [],
+  "lemmas": [
+    {
+      "claims_proved": false,
+      "depends_on": [],
+      "id": "L1",
+      "lean_skeleton": "variable {n : ℕ} variable (n_pos : 0 < n) theorem L1 : ∃ (x : Fin n → ℚ), x ≠ 0 ∧ (space n).Effect (P x) := by\n  obtain {x, hx, hAx} := BornFable.MatrixCarrier.rankOne_effect (by\n    cases n with\n    | zero => exact (n_pos 0).ne\n    | succ n => exact ⟨0, (Subtype.mk _ (by decide))⟩)\n  exact ⟨x, hx, hAx⟩",
+      "ref": {
+        "decl": "BornFable.MatrixCarrier.rankOne_effect",
+        "path": "lean4/BornMatrixCarrier.lean",
+        "status": "existing"
+      },
+      "relation_to_target": "restates",
+      "statement": "For every n ≥ 1, there exists a non-zero vector x such that the rank-one projector P x is a valid effect in the finite Hilbert space carrier."
+    },
+    {
+      "claims_proved": false,
+      "depends_on": [],
+      "id": "L2",
+      "lean_skeleton": "variable {n : ℕ} theorem L2 : ∀ (E : Matrix (Fin n) (Fin n) ℚ), (space n).Effect E → ∃ (Ψ : Matrix (Fin n) (Fin n) ℚ), (space n).State Ψ := by\n  intro E hE\n  exact ⟨(1 : Matrix (Fin n) (Fin n) ℚ), ⟨sorry, sorry⟩⟩",
+      "ref": {
+        "decl": "BornFable.MatrixCarrier.space",
+        "path": "lean4/BornMatrixCarrier.lean",
+        "status": "existing"
+      },
+      "relation_to_target": "auxiliary",
+      "statement": "The existence of an effect implies the existence of a state (e.g., the maximally mixed state) on the same finite carrier."
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Proof of state existence requires a definition of (space n).State in the local environment which is not fully visible in the snippet header for direct citation as a definition, though 'space' is defined.",
+    "Connectivity between state, effect, and pairing (⟨_,_⟩) operations within the space n type class structure."
+  ],
+  "relations": [],
+  "status": "incomplete"
+}

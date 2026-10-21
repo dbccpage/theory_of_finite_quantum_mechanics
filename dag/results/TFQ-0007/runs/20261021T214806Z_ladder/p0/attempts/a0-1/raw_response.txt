@@ -1,0 +1,34 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "carrier_def",
+      "inputs": [],
+      "output": "Carrier",
+      "arity": 0,
+      "carrier": "Carrier",
+      "ref": {
+        "path": "lean4/BornMatrixCarrier.lean",
+        "decl": "BornFable.MatrixCarrier.space",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "effect_characterisation",
+      "statement": "(E : Matrix (Fin n) (Fin n) ℚ) → (space n).Effect E ↔ PsdQ E ∧ PsdQ (1 - E)",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/BornMatrixCarrier.lean",
+        "decl": "BornFable.MatrixCarrier.effect_iff",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": []
+}

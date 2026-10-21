@@ -1,0 +1,315 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0011",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "fcf1ade1e7acbad5eede15cc3572ac33071b027d8b96924b6eaf50720b814a1c",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0011 stage=P0 attempt=a0-1 in=fcf1ade1 guided=yes\n@TARGET [OPEN] Finite QCD here means a finite non-abelian gauge datum, a Wilson loop on a finite complex, a beta0-style finite control, and an explicit gap where confinement in a continuum theory is not identified with that control. Lattice Dirac doubling is an obstruction to record, not a nuisance to hide. Python, Rust, and Lean 4 must separate an exact rational certificate from a float benchmark. A float benchmark cannot authorize the finite statement. Continuum QCD remains an open interface on F002.\n@BOTTLENECK Carry a finite color, Wilson, and beta0 control without calling it continuum confinement.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.su2_action_gap_forces_weight_inequality | theorem | theorem su2_action_gap_forces_weight_inequality (w0 delta_S : Nat) (h_gap : delta_S > 0) : w0 ≠ w0 + delta_S\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.baryon_cochain_is_open | theorem | theorem baryon_cochain_is_open : hadronCochainCurvature HadronTopology.Baryon > 0\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.polyakov_deconfinement_action_gap | theorem | theorem polyakov_deconfinement_action_gap (h P : Nat) (h_field : h > 0) (h_ord : P > 0) : 18 * h * P > 0\n code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py | test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement | def [test] | def test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement() -> None: r = evaluate_qm221_qcd_beta0_wilson_confinement() assert r.lattice_3x\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.Su2FluxSector | inductive | inductive Su2FluxSector : Type | Sector0 : Su2FluxSector | Sector1 : Su2FluxSector deriving DecidableEq, Repr\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.su2_sign | def | def su2_sign : Su2FluxSector → Int | Su2FluxSector.Sector0 => 1 | Su2FluxSector.Sector1 => -1\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.su2_disjoint_weights_nonzero_residual | theorem | theorem su2_disjoint_weights_nonzero_residual (w0 delta_S : Nat) (h_gap : delta_S > 0) : (w0 : Int) * su2_sign Su2FluxSector.Sector0 + ((w0 + delta_S \n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.HadronTopology | inductive | inductive HadronTopology : Type | Meson : HadronTopology | Baryon : HadronTopology deriving DecidableEq, Repr\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.hadronCochainCurvature | def\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.meson_cochain_is_closed | theorem\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.PolyakovCenterSector | inductive\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.polyakov_sector_weights_distinct | theorem\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.ColorRepresentation | inductive\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.n_ality | def\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.fluxTubeCurvature | def\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.adjoint_matter_zero_n_ality | theorem\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.adjoint_flux_tube_curvature_vanishes | theorem\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.fundamental_flux_tube_curvature_nonzero | theorem\n code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py | test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio | def [test]\n code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py | test_part_e_lean4_part4_and_fable_receipt_parity | def [test]\n lean4/H076LatticeGaugeManybodyBenchmark.lean | FableHilbertWalk20260819.H076.ContinuumScalingObligation | inductive\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:gen_hadron_cochain_curvature (HadronTopology)->Nat src=lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.hadronCochainCurvature\n r:rel_adjoint_flux_curvature_vanishes fluxTubeCurvature N_c Adjoint = 0 for all N_c src=lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.adjoint_flux_tube_curvature_vanishes\n r:rel_fundamental_flux_curvature_nonzero fluxTubeCurvature N_c Fundamental > 0 for N_c >= 2 src=lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.fundamental_flux_tube_curvature_nonzero\n@KNOWN- (host-refused earlier; do not repeat)\n [composition_type_mismatch] gen_holonomy . slot 0 <- gen_connection via rel_holonomy_consistency -- Do not compose operations whose colours do not match.\n [composition_type_mismatch] gen_curvature . slot 0 <- gen_connection via rel_curvature_def -- Do not compose operations whose colours do not match.\n [composition_type_mismatch] gen_connection . slot 0 <- gen_connection via rel_holonomy_consistency -- Do not compose operations whose colours do not match.\n [wrong_source_location] NonAbelianGaugeSigns.connection -- Do not cite NonAbelianGaugeSigns.connection at that path; see the evidence for where it lives.\n [nonexistent_declaration] NonAbelianGaugeSigns.holonomy_consistency -- Do not cite NonAbelianGaugeSigns.holonomy_consistency as an existing declaration.\n [wrong_signature] NonAbelianGaugeSigns.fluxTubeCurvature -- Do not state that arity/signature for NonAbelianGaugeSigns.fluxTubeCurvature.\n [wrong_signature] test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement -- Do not state that arity/signature for test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement.\n [statement_drift] test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio -- Do not restate the source with numerals it does not contain.\n [wrong_signature] test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement -- Do not state that arity/signature for test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement.\n [wrong_signature] test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio -- Do not state that arity/signature for test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 21,
+    "known_neg_injected": 10,
+    "known_pos_injected": 3,
+    "neighbours": [
+      "TFQ-0009"
+    ],
+    "feedback": true,
+    "index_position": 187,
+    "neg_entry_ids": [
+      "NEG-23A1EB81B15F",
+      "NEG-C2B8FF394629",
+      "NEG-408F893D6930",
+      "NEG-DBEFE62D5FF4",
+      "NEG-E0D3D4B93537",
+      "NEG-5F75AA85F5F9",
+      "NEG-27D4BAF8F111",
+      "NEG-58BD0CB3DD3F",
+      "NEG-8E416CE4E670",
+      "NEG-98A8D15D74CA"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

@@ -1,0 +1,304 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "ac64a8b2d5bbcd5076605872c85751673b1f5ac73b2d37524acd4f791db5db3c",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=FQ-OPERATIONAL-LOCAL-TOMOGRAPHY stage=P0 attempt=a0-1 in=ac64a8b2 guided=yes\n@TARGET [IMPORTED_ASSUMPTION] Under calibration, a nonzero observation and descent of an admitted operation family, irreducibility of that family on the global state space forces injectivity of the observation (Schur-type; tomography_of_irreducible, calibrated_tomography). The existence of such a family is equivalent to local tomography, so this re-expresses rather than derives local tomography. Converse (OperationalFilterFamily): for a calibrated observation, irreducibility of the lifted coordinate (product-test) resets, and descent of all visibly normalized global resets, are each equivalent to local tomography (product_resets_irreducible_iff, global_reset_descent_iff_tomography). Under explicit closure rules (sequential admission, generating cone, preparability of all normalized states, bounded globally separating admitted effects) test-then-prepare resets are constructed as a positive, subnormalized, irreducible family (normalized_reset_family); this construction does not discharge the descent premise non-circularly. With the same-family dimension law K(d,n) = n + d binom(n,2), d > 0, local tomography selects d = 2 (OperationalFieldSelection.selected_parameter). The classical doubled-pair control satisfies calibration, factorization and descent yet violates irreducibility and tomography. Narrowest claim of the filter-family run: Under explicit closure rules (sequential admission, generating cone, preparability of all normalized states, bounded globally separating admitted effects), test-then-prepare resets form a positive, subnormalized, irreducible family. For a calibrated observation, irreducibility of the lifted coordinate resets, and descent of all visibly normalized global resets, are each equivalent to local tomography. So resets cannot non-circularly discharge the descent-plus-irreducibility premise of OperationalTomography.\n@BOTTLENECK Under calibration, a nonzero observation and descent of an admitted operation family, irreducibility of that family on the global state space forces injectivity (Schur-type). The existence of such a family is equivalent to local tomography, so this re-expresses rather than derives local tomography. A noncircular operational principle excluding hidden sectors is open; general tensor-cone uniqueness and operational classification remain open (FQ-GAP-TENSOR-UNIQUENESS). Does not support: A derivation of local tomography from primitive difference or from weaker operational premises; a noncircular principle excluding hidden sectors; tensor-cone uniqueness; physical availability of the constructed resets in any particular operational theory.\n@ASSUME local tomography (equivalent to the existence of an irreducible operation family that descends through the observation); field-linear state and effect spaces (not derived from primitive difference); independent dual product-frame calibration and factorization; same-family dimension law and positive parameter (for the selection bridge)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/OperationalFieldSelection.lean | OperationalFieldSelection.selected_parameter | theorem | theorem selected_parameter (d : ℕ) (hd : 0 < d) (D : Calibrated K V (Fin (ComplexFieldSelection.K d 2) × Fin (ComplexFieldSelection.K d 2) → K)) (dime\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.reset | def | def reset (p : V) (e : V →ₗ[K] K) : V →ₗ[K] V\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.preparation | def | def preparation (p : V) : K →ₗ[K] V\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.SequentialAdmission | structure | structure SequentialAdmission (K V : Type*) [Field K] [AddCommGroup V] [Module K V]\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.OrderedModel | structure | structure OrderedModel (V : Type*) [AddCommGroup V] [Module ℚ V]\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.normalized_reset_family | theorem | theorem normalized_reset_family {W E : Type*} [AddCommGroup W] [Module ℚ W] (O : OrderedModel W) (A : SequentialAdmission ℚ W) (generating : Submodule\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.global_reset_descent_iff_tomography | theorem | theorem global_reset_descent_iff_tomography (D : Calibrated K V C) (p : V) (q : C →ₗ[K] K) (visible : q (D.observe p) = 1) (e : J → V →ₗ[K] K) (separa\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.lift | def | def lift (D : Calibrated K V C) (L : C →ₗ[K] C) : V →ₗ[K] V\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.product_resets_irreducible_iff | theorem\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.product_test_pullback | theorem\n lean4/OperationalTomography.lean | OperationalTomography.Calibrated | structure\n lean4/OperationalTomography.lean | OperationalTomography.Invariant | def\n lean4/OperationalTomography.lean | OperationalTomography.Irreducible | def\n lean4/OperationalTomography.lean | OperationalTomography.tomography_of_irreducible | theorem\n lean4/OperationalTomography.lean | OperationalTomography.calibrated_tomography | theorem\n code/rust/src/finite_probability/operational_tomography.rs | doubled_normalized_states_and_protected_question | fn\n code/rust/src/finite_probability/operational_tomography.rs | zero_observation_shows_nonzero_premise_is_needed | fn\n code/rust/src/finite_probability/operational_filters.rs | exact_reset_construction_and_orthogonal_rank_witnesses | fn\n code/rust/src/finite_probability/operational_tomography.rs | filters_positive_and_subnormalized_but_not_all_trace_preserving | fn\n code/rust/src/finite_probability/operational_tomography.rs | product_filters_are_actual_local_tensor_products | fn\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.reset_descent_iff_effect_factor | theorem\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.doubled_protected_reset_no_descent | theorem\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.reset_is_sequential | theorem\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.reset_admitted | theorem\n lean4/OperationalFilterFamily.lean | OperationalFilterFamily.resets_irreducible | theorem\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "FQ-DECLARED-QUANTUM-INTERFACE"
+    ],
+    "feedback": true,
+    "index_position": 180,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}
