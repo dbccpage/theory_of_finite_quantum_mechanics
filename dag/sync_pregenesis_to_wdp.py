@@ -1,12 +1,22 @@
-"""Synchronize the pre-genesis to WDP fragment into papers, the DAG and two master indices.
+"""Synchronize the pre-genesis to WDP fragment into papers, derivation_dag.json and the derivation index.
 
 The fragment dag/fragments/pregenesis_to_wdp.json owns records TFQ-0417 upward:
-their papers, their JSONL lines (spliced before the application-branch block),
-their DAG nodes and routes (spliced before the application-branch block), the five
-stage sections of dag/derivations/README.md and dag/theory_of_finite_qm.md that
-list them, and the appended child bullets in section 4 of unpinned parent papers.
-Custody-pinned papers (dag/operads/*.yaml paper_source_pins) are never written.
---check detects stale generated data without writing.
+their papers, their records in derivation_dag.json (source_slice pregenesis_to_wdp,
+spliced before the application-branch block), their DAG nodes and routes (spliced
+before the application-branch block), the five stage sections of
+dag/derivations/README.md that list them, and the appended child bullets in section 4
+of unpinned parent papers. Custody-pinned papers (dag/operads/*.yaml paper_source_pins)
+are never written.
+
+derivation_dag.json (schema derivation_dag.v2) is the single source of the derivation
+graph. The read-only views theory_of_finite_qm.jsonl and theory_of_finite_qm.md are
+rendered from it by dag/render_dag_views.py, which this script calls; the renderer lists
+every non-application record of the five stages PREGENESIS, GENESIS, AUTHORIZATION,
+MSSN_SN and WDP in the plain layout of their Markdown sections.
+
+Run order: sync_pfp_results.py, sync_unified_dag.py, sync_application_branches.py, this
+script; --check on all four is then clean. --check detects stale generated data without
+writing.
 AuthorityEffect: None. Synchronization does not establish a mathematical claim.
 """
 from __future__ import annotations
@@ -15,11 +25,15 @@ import argparse
 import json
 import posixpath
 import re
+import sys
 import uuid
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
+if str(HERE) not in sys.path:
+    sys.path.insert(0, str(HERE))
+import render_dag_views as views  # noqa: E402
 FRAGMENT = HERE / 'fragments/pregenesis_to_wdp.json'
 SLICE = 'pregenesis_to_wdp'
 TAG = 'pregenesis-to-wdp'
@@ -71,8 +85,7 @@ CONTEXT = ('In accordance with strict constructive principles:\n'
            'assumed prior to their explicit constructive descent.\n')
 
 
-def json_text(value):
-    return json.dumps(value, ensure_ascii=False, indent=2) + '\n'
+json_text = views.json_text
 
 
 def load_manifest(root: Path = ROOT):
@@ -97,9 +110,9 @@ def pinned_papers(root: Path) -> set[str]:
     return pinned
 
 
-def read_jsonl(root: Path):
-    lines = (root / 'dag/theory_of_finite_qm.jsonl').read_bytes().decode('utf-8').splitlines(keepends=True)
-    return lines, [json.loads(line) for line in lines]
+def read_records(root: Path) -> list[dict]:
+    """The TFQ records of derivation_dag.json, in order."""
+    return views.load_dag(root)['records']
 
 
 def paper_paths(root: Path) -> dict[str, str]:
@@ -428,19 +441,6 @@ def readme_section(stage, records, all_paths):
             '| ID | Name | Status | Parent |\n|---|---|---|---|\n' + '\n'.join(rows) + '\n')
 
 
-def master_section(stage, records):
-    blocks = []
-    for r in records:
-        head = [f'### {r["id"]} {r["name"]}', '', f'- UUID: `{r["uuid"]}`',
-                f'- Parent: `{r["parent_id"] or "root"}`', f'- Status: `{r["record_status"]}`']
-        if r['coda_atlas_ids']:
-            head.append('- Coda atlas: ' + ', '.join(f'`{x}`' for x in r['coda_atlas_ids']))
-        if r['coda_atlas_paths']:
-            head += ['- Atlas paths:', *[f'  - `{x}`' for x in r['coda_atlas_paths']]]
-        blocks.append('\n'.join(head) + '\n\n' + r['summary'] + '\n\nObligation: ' + r['obligation'] + '\n')
-    return f'## {stage}\n\n' + '\n'.join(blocks)
-
-
 ROUTE_STAGES = ('PREGENESIS', 'GENESIS', 'FINITE_OBSTRUCTION', 'AUTHORIZATION', 'MSSN_SN', 'WDP')
 ROUTE_FILE = 'dag/derivations/PREGENESIS_TO_WDP_ROUTE.md'
 
@@ -496,7 +496,8 @@ def generated_files(root: Path = ROOT):
     manifest = load_manifest(root)
     recs = manifest['records']
     by_id = {r['id']: r for r in recs}
-    old_lines, old_records = read_jsonl(root)
+    dag = views.load_dag(root)
+    old_records = dag['records']
     records_by_id = {r['id']: r for r in old_records}
     pinned = pinned_papers(root)
     disk_paths = paper_paths(root)
@@ -512,7 +513,6 @@ def generated_files(root: Path = ROOT):
     for r in recs:
         children.setdefault(r['parent_id'], []).append(r['id'])
 
-    dag = json.loads((root / 'dag/derivation_dag.json').read_text(encoding='utf-8'))
     old_node_ids = {n['id'] for n in dag['nodes'] if TAG not in n.get('tags', [])}
     new_ids = {node_id(r) for r in recs if r.get('dag') and 'reuse' not in r['dag']}
     if old_node_ids & new_ids:
@@ -522,14 +522,12 @@ def generated_files(root: Path = ROOT):
         if r.get('dag') and 'reuse' in r['dag'] and r['dag']['reuse'] not in old_node_ids:
             raise ValueError(f'{r["id"]}: reused node {r["dag"]["reuse"]} is not in the DAG')
 
-    # JSONL: drop this slice, splice its block before the application block.
+    # Records: drop this slice, splice its block before the application block.
     new_records = [render_jsonl_record(r, manifest, by_id, records_by_id, node_ids) for r in recs]
-    newline = '\r\n' if old_lines and old_lines[0].endswith('\r\n') else '\n'
-    kept = [(line, r) for line, r in zip(old_lines, old_records) if r.get('source_slice') != SLICE]
-    at = next((i for i, (_, r) in enumerate(kept) if r.get('source_slice') == 'application_branches'), len(kept))
-    block = [json.dumps(r, ensure_ascii=False, sort_keys=True) + newline for r in new_records]
-    jsonl_lines = [line for line, _ in kept[:at]] + block + [line for line, _ in kept[at:]]
-    all_records = [r for _, r in kept[:at]] + new_records + [r for _, r in kept[at:]]
+    kept = [r for r in old_records if r.get('source_slice') != SLICE]
+    at = next((i for i, r in enumerate(kept) if r.get('source_slice') == 'application_branches'), len(kept))
+    all_records = kept[:at] + new_records + kept[at:]
+    dag['records'] = [views.canonical_record(r) for r in all_records]
 
     # DAG: drop this fragment's nodes and routes, splice new blocks before the application blocks.
     nodes = [n for n in dag['nodes'] if TAG not in n.get('tags', [])]
@@ -603,30 +601,20 @@ def generated_files(root: Path = ROOT):
         head += '\n' + PINNED_END + '\n'
     readme = head + ('\n' + marker + tail if marker else '')
 
-    # theory_of_finite_qm.md: owned stage sections, stage counts and the node count.
-    master = (root / 'dag/theory_of_finite_qm.md').read_text(encoding='utf-8')
-    for stage in OWNED_STAGES:
-        stage_records = [r for r in all_records if r['stage'] == stage and r.get('source_slice') != 'application_branches']
-        nxt = order[order.index(stage) + 1]
-        i = master.index(f'\n## {stage}\n') + 1
-        j = master.index(f'\n## {nxt}\n', i) + 1
-        master = master[:i] + master_section(stage, stage_records) + '\n' + master[j:]
-        master = re.sub(r'^\| `' + stage + r'` \| \d+ \|$', f'| `{stage}` | {len(stage_records)} |', master,
-                        count=1, flags=re.M)
-    master = re.sub(r'Nodes: \d+\.', f'Nodes: {len(all_records)}.', master, count=1)
+    # theory_of_finite_qm.md: the renderer lists the owned stages (views.PLAIN_STAGES) in the plain layout.
+    if tuple(OWNED_STAGES) != views.PLAIN_STAGES:
+        raise ValueError('render_dag_views.PLAIN_STAGES must be the stages this sync owns')
 
     outputs[root / ROUTE_FILE] = route_index(all_records, all_paths, owned).encode('utf-8')
-    outputs[root / 'dag/theory_of_finite_qm.jsonl'] = ''.join(jsonl_lines).encode('utf-8')
-    outputs[root / 'dag/derivation_dag.json'] = json_text(dag).encode('utf-8')
+    outputs.update(views.outputs(dag, root))  # derivation_dag.json and the two views rendered from it
     outputs[root / 'dag/derivations/README.md'] = readme.encode('utf-8')
-    outputs[root / 'dag/theory_of_finite_qm.md'] = master.encode('utf-8')
     return outputs
 
 
 def lint(parts: list[Path], root: Path = ROOT) -> list[str]:
     """Validate partial batches together with the manifest's records, without writing."""
     manifest = load_manifest(root)
-    _, old_records = read_jsonl(root)
+    old_records = read_records(root)
     records = list(manifest['records'])
     for part in parts:
         records += json.loads(part.read_text(encoding='utf-8'))['records']

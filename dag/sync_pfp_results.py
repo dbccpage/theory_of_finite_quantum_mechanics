@@ -1,4 +1,4 @@
-"""Incorporate the reviewed PFP result folders into derivation_dag.json and the TFQ JSONL.
+"""Incorporate the reviewed PFP result folders into derivation_dag.json (its nodes and its records).
 
 Every folder dag/results/<NODE-ID>/reviews/*/ holds the review of one DAG node. The curated
 decisions in dag/fragments/pfp_review_decisions.json say, for each reviewed node, which review file
@@ -10,15 +10,19 @@ bottleneck override. This script owns three things:
   statement and bottleneck, and the later runs that supersede the review;
 - the decision overrides, applied idempotently from the prior values kept in that object. A status is
   never raised. A route into a lowered node is lowered with it (the old route status is kept);
-- pfp_review_refs on every base row of theory_of_finite_qm.jsonl that names a reviewed node.
+- pfp_review_refs on every base record (records of derivation_dag.json) that names a reviewed node.
 
 A next_test that is one of the boilerplate strings of the decisions file is replaced by the node's own
 does_not_support obligation. Review text copied into the DAG replaces the words universal, proves and
 impossible, which the DAG file forbids; the review files themselves are never changed.
 
+derivation_dag.json (schema derivation_dag.v2) is the single source of the derivation graph. This
+script reads and writes the nodes and records inside it and then calls dag/render_dag_views.py, which
+renders the read-only views theory_of_finite_qm.jsonl and theory_of_finite_qm.md from it.
+
 Run order: this script, then sync_unified_dag.py, sync_application_branches.py and
 sync_pregenesis_to_wdp.py; --check on all four is then clean. --check detects stale generated data
-without writing; --report lists the decisions.
+(derivation_dag.json and the two views) without writing; --report lists the decisions.
 AuthorityEffect: None. Synchronization does not establish a mathematical claim, and no status is raised.
 """
 from __future__ import annotations
@@ -27,10 +31,14 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
+if str(HERE) not in sys.path:
+    sys.path.insert(0, str(HERE))
+import render_dag_views as views  # noqa: E402
 DECISIONS = 'dag/fragments/pfp_review_decisions.json'
 GENERATED_SLICES = ('unified_dag', 'pregenesis_to_wdp', 'application_branches')
 SCOPE_EFFECTS = ('consistent', 'caveat_added', 'statement_narrowed', 'status_lowered')
@@ -51,12 +59,7 @@ WORDS = [(r'\buniversal\b', 'general'), (r'\buniversally\b', 'generally'), (r'\b
          (r'\bimpossible\b', 'not possible')]
 
 
-def json_text(value):
-    return json.dumps(value, ensure_ascii=False, indent=2) + '\n'
-
-
-def record_line(record, newline):
-    return json.dumps(record, ensure_ascii=False, sort_keys=True) + newline
+json_text = views.json_text
 
 
 def sanitize(text: str) -> str:
@@ -186,17 +189,14 @@ def reviewed_refs(dag: dict) -> dict[str, list[str]]:
 def generated_files(root: Path = ROOT):
     folder = root / 'dag'
     decisions = load_decisions(root)
-    dag = json.loads((folder / 'derivation_dag.json').read_text(encoding='utf-8'))
+    dag = views.load_dag(root)
     errors = apply_decisions(root, dag, decisions)
     if errors:
         raise ValueError('pfp review decisions invalid:\n  ' + '\n  '.join(errors))
     refs_of = reviewed_refs(dag)
     aliases = json.loads((folder / 'fragments/unified_dag.json').read_text(encoding='utf-8'))['row_aliases']
-    lines = (folder / 'theory_of_finite_qm.jsonl').read_bytes().decode('utf-8').splitlines(keepends=True)
-    newline = '\r\n' if lines and lines[0].endswith('\r\n') else '\n'
     out = []
-    for line in lines:
-        record = json.loads(line)
+    for record in dag['records']:
         if record.get('source_slice') not in GENERATED_SLICES:
             ids = set(record['existing_derivation_dag_ids']) | set(aliases.get(record['id'], []))
             refs = sorted({ref for i in ids for ref in refs_of.get(i, [])})
@@ -204,11 +204,10 @@ def generated_files(root: Path = ROOT):
                 record = dict(record, pfp_review_refs=refs)
             else:
                 record = {k: v for k, v in record.items() if k != 'pfp_review_refs'}
-            if record != json.loads(line):
-                line = record_line(record, newline)
-        out.append(line)
-    return {folder / 'derivation_dag.json': json_text(dag).encode('utf-8'),
-            folder / 'theory_of_finite_qm.jsonl': ''.join(out).encode('utf-8')}
+        out.append(views.canonical_record(record))
+    dag['records'] = out
+    # derivation_dag.json, then the two views rendered from it.
+    return views.outputs(dag, root)
 
 
 def report(root: Path = ROOT) -> str:
