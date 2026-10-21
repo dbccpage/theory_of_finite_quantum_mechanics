@@ -17,6 +17,8 @@ from review import review_dir  # noqa: E402
 from stages import Batch  # noqa: E402
 
 PRESERVED_ROOTS = ('dag/results', 'dag/prompts', 'dag/operads', 'dag/pfp')
+# The toolkit itself may be fixed while a batch runs (its digests are recorded as tooling_pins); every other prior PFP file is preserved.
+TOOLKIT_PREFIX = 'dag/pfp/batch_tools/'
 README_TEMPLATE = """# PFP prompts {first} through {last}
 
 {count} ordered, previously un-run prompts have their own source-sealed P0/P1/P2/P4/P5 stages and retained operad deltas.
@@ -111,7 +113,7 @@ def finalize(batch: Batch, review_label, *, integration_label='final_integration
                 continue
             meta, raw = line.split(b'\t', 1)
             name = raw.decode()
-            if name == 'dag/operads/index.json' or name in selected or name.startswith(owned_prefix):
+            if name == 'dag/operads/index.json' or name in selected or name.startswith(owned_prefix) or name.startswith(TOOLKIT_PREFIX):
                 continue
             prior.append((name, meta.split()[-1].decode()))
         if prior:

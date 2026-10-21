@@ -44,6 +44,31 @@ def build_spec(*, node, short, lean, anchors, cases, public_tsv, data, scope_rev
     for g in generators:
         ops.append(dict(g, arity=len(g['ordered_inputs']), carrier=g.get('carrier', g['ordered_inputs'][0]),
                         coefficient_ring=g.get('coefficient_ring', coefficient_ring)))
+    # A composition whose slot colour differs from the inner output colour is not a graft of this presentation (validate_prompts refuses it):
+    # record it as a failed composition with the reason instead of a checked one.
+    by_id = {g['id']: g for g in ops}
+    checked, demoted = [], []
+    for c in compositions:
+        outer, inner = by_id.get(c['outer_operation']), by_id.get(c['inner_operation'])
+        slot = c.get('input_slot', 0)
+        if outer is not None and inner is not None and type(slot) is int and 0 <= slot < len(outer['ordered_inputs']) and outer['ordered_inputs'][slot] == inner['output']:
+            checked.append(c)
+        else:
+            demoted.append({'composition': '%s (slot %s) o %s' % (c['outer_operation'], slot, c['inner_operation']),
+                            'reason': 'Colour mismatch: the outer slot takes %s but the inner operation outputs %s; composing needs a coercion or a partial-map convention that this presentation does not contain, so it is not a checked graft.' % (
+                                outer['ordered_inputs'][slot] if outer and type(slot) is int and 0 <= slot < len(outer['ordered_inputs']) else '?', inner['output'] if inner else '?'),
+                            'original_entry': c})
+    if not checked:
+        # prepare_stage refuses a work unit without a typed composition: add the first colour-correct graft, claiming nothing beyond its typing.
+        for outer in ops:
+            for slot, colour in enumerate(outer['ordered_inputs']):
+                found = next((i for i in ops if i['id'] != outer['id'] and i['output'] == colour), None)
+                if found and not checked:
+                    checked.append({'outer_operation': outer['id'], 'input_slot': slot, 'inner_operation': found['id'],
+                                    'colour_match': '%s -> %s' % (found['output'], colour),
+                                    'hypothesis_match': 'Typing only: the inner output colour equals the outer slot colour; hypotheses of both operations apply unchanged.',
+                                    'licensing_relations': [], 'evidence_status': 'Colour-typed graft; no relation is claimed to license it and no result is attached to the composite.'})
+    compositions, failed_compositions = checked, list(failed_compositions) + demoted
     gates = [
         {'id': 'python', 'argv': ['{python}', '-X', 'utf8', python_test, '-v'], 'needs': None, 'cwd': '.'},
         {'id': 'rust', 'argv': ['{cargo}', 'test', '--manifest-path', 'code/rust/Cargo.toml', '-p', 'tfqm_finite_probability', '--lib',

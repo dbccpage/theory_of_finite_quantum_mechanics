@@ -116,6 +116,7 @@ def build_tree(root: Path):
     write(root / 'src/addition.py', ADDITION)
     write(root / 'tests/test_dummy.py', TEST)
     write(root / 'tests/replay.py', REPLAY)
+    write(root / 'dag/pfp/batch_tools/toolkit_marker.py', 'VERSION = 1\n')
     code = gen.run(root, False, True, list(STATEMENT), False, out=open(os.devnull, 'w'))
     assert code == 0
     git(root, 'init', '-q')
@@ -235,7 +236,10 @@ class EndToEnd(Dummy):
                                                                    'cwd': '.', 'needs': None, 'optimizable': True, 'count': stages.PYTHON_TESTS}]))
         integration = integrate.integrate(batch, modes=('normal', 'optimized'))
         self.assertEqual(integration['test_counts'], {'dummy_tests': 1, 'dummy_tests_optimized': 1})
+        # the toolkit may be fixed while a batch runs: that must not break the preservation proof
+        write(self.root / 'dag/pfp/batch_tools/toolkit_marker.py', 'VERSION = 2\n')
         sealed = finalize.finalize(batch, 'audit')
+        write(self.root / 'dag/pfp/batch_tools/toolkit_marker.py', 'VERSION = 1\n')
         self.assertEqual(sealed['counts']['semantic_mutants'], 1)
         self.assertGreater(sealed['sealed_files'], 30)
         git_status = subprocess.run(['git', 'status', '--porcelain'], cwd=self.root, capture_output=True, text=True).stdout
@@ -434,7 +438,7 @@ class SpecBuilderAndPreflight(Dummy):
     def test_build_spec_declares_the_four_standard_gates_and_validates(self):
         boundary = {'supports': 's', 'does_not_support': 'general case of the thing',
                     'narrowest_claim': 'n', 'next_test': 'Prove the unnormalized statement for three sectors with a unitary mix.'}
-        gen = {'id': 'op', 'ordered_inputs': ['A'], 'output': 'B', 'semantic_predicate': 'p', 'hypotheses': ['h']}
+        gen = {'id': 'op', 'ordered_inputs': ['A'], 'output': 'A', 'semantic_predicate': 'p', 'hypotheses': ['h']}
         spec = spec_builder.build_spec(
             node='X', short='x', lean='XMod', anchors=['XMod.t'], cases=[[1]], public_tsv='x\t1\n', data={'records': []}, scope_review='scope',
             predicates=['q'], boundary=boundary, generators=[gen], relations=[{'id': 'r', 'equation_or_predicate': 'e'}],
@@ -447,6 +451,16 @@ class SpecBuilderAndPreflight(Dummy):
         self.assertIn('lean4/XMod.lean', spec['profile']['production_sources'])
         stages.validate_spec(spec['profile'], spec['operad_delta'])
         self.assertEqual(spec['operad_delta']['add_or_refine_generators'][0]['arity'], 1)
+        mismatched = spec_builder.build_spec(
+            node='X', short='x', lean='XMod', anchors=['XMod.t'], cases=[[1]], public_tsv='x\t1\n', data={}, scope_review='scope', predicates=['q'], boundary=boundary,
+            generators=[dict(gen, output='B'), dict(gen, id='op2', ordered_inputs=['B'], output='C')], relations=[{'id': 'r', 'equation_or_predicate': 'e'}],
+            compositions=[{'outer_operation': 'op', 'input_slot': 0, 'inner_operation': 'op2'}], open_obligations=['o'])
+        self.assertEqual(len(mismatched['operad_delta']['failed_compositions']), 1)
+        self.assertIn('Colour mismatch', mismatched['operad_delta']['failed_compositions'][0]['reason'])
+        self.assertEqual([(c['outer_operation'], c['inner_operation']) for c in mismatched['operad_delta']['checked_compositions']], [('op2', 'op')])
+        bad = dict(spec['operad_delta'], add_or_refine_generators=[dict(gen, output='B', arity=1)])
+        with self.assertRaisesRegex(ValueError, 'Graft colour mismatch'):
+            stages.validate_spec(spec['profile'], bad)
 
     def test_preflight_runs_every_mutant_and_catches_a_lazy_checker(self):
         spec = spec_for('DUMMY-ADD')
