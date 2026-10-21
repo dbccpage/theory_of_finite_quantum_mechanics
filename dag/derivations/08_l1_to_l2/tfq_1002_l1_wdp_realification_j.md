@@ -13,7 +13,7 @@
 R(A) = [[P,-Q],[Q,P]] is an injective real-linear multiplicative representation of complex matrices with J^2 = -I and Tr_R R(A) = 2 Re Tr_C A (Thm 1). A real matrix is in the image iff it commutes with J (Thm 2). States are sigma = R(rho)/2. J is declared.
 
 ### Governing Obligation
-Selection of J is not derived (see L1-U1-SELECTOR-OTHER-SEGMENT). Lean for Thm 1/2 not looked for.
+Selection of J not derived (see L1-U1-SELECTOR-OTHER-SEGMENT). Lean for Thm 1/2 now exists (RealificationJ.lean). Positivity, states sigma = R(rho)/2 and the pair-model vs Mathlib complex-matrix identification are unpaid.
 
 ### Source Status
 genesis_qm_realification_bridge: 'declarations of complex structure, not a theorem that an unstructured real carrier selects J'

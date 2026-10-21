@@ -1176,6 +1176,119 @@
       "review": "dag/results/PG-MSS0-ONLY-DIAMOND/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
       "scope_effect": "consistent",
       "reason": "Definition node; the review confirms the declared eligibility controls and the structural-only authority ceiling."
+    },
+    {
+      "node_id": "L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE",
+      "review": "dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "statement_narrowed",
+      "statement": "Over Z[i] with the unnormalized two-sector Hadamard readout (|a+b|^2, |a-b|^2): for any nonzero Gaussian amplitudes a, b no function of the phase-blind weights (|a|^2, |b|^2) determines the readout on the product of the weight fibers (rotation by i or by -1 suffices); mixing doubles the total weight and the readout difference is 4 Re(a conj b); a zero first or zero second sector makes the readout descend. The source witnesses (1,1)/(1,-1) are instances. Complex Hilbert amplitudes, normalized or projective states, more than two sectors, other mixes and the link to the Vec GaussInt Bool declarations (H008/H010) are not covered.",
+      "bottleneck": "Z[i] -> C embedding and the identification with the source H008/H010 declarations are not formalised; normalized/projective readout with n>=3 sectors and non-Hadamard unitary mixes are open.",
+      "reason": "Kernel and checker establish non-descent for every pair of nonzero Gaussian-integer amplitudes under the unnormalized two-sector Hadamard readout, not for normalized/projective complex states; the source cited only the (1,1)/(1,-1) witnesses.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
+      "review": "dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "status_lowered",
+      "status": "CONDITIONAL",
+      "statement": "On the n-cycle with the unweighted L1 form and equal edge masses: the residual class is the holonomy S, Phi1 = |S|, the minimizers are the scaled simplex of sign-definite cochains, so for n >= 2, S != 0 and two nonempty sectors the sector weights (block L1 masses) are not determined by (Phi1, Gamma2 modelled as the holonomy); any selector, including the cyclic average S/n (integral iff n divides S), is extra input. The weighted-mass window form declared in the source is not treated in the kernel (native rows show a unique minimizer on a unique minimal-mass edge), and the sum-of-squares reading of Gamma2 is not treated.",
+      "bottleneck": "Weighted L1 form with declared masses not proved in the kernel; Gamma2 modelled as holonomy, not as sum of squares of the weights; sector/weight modelling identification with the source declarations not formalised.",
+      "reason": "The cited Lean theorems are fixed C4 instances and a list-sum bound; the new kernel result is non-derivability of the sector weights on the unweighted n-cycle only, and the weighted form of the source is not treated (a unique minimal-mass edge gives a unique minimizer).",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "L1-U1-SELECTOR-OTHER-SEGMENT",
+      "review": "dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "status_lowered",
+      "status": "OPEN",
+      "statement": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.",
+      "bottleneck": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.",
+      "reason": "The node is a pointer to QM_028/QM_062; its cited Lean witnesses are fixed small instances and a Boolean flag. The only general fact established here is the torsion of the unit Gaussian rationals (mu_4), which does not select C or U(1).",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "L1-WDP-REALIFICATION-J",
+      "review": "dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "caveat_added",
+      "bottleneck": "Selection of J not derived (see L1-U1-SELECTOR-OTHER-SEGMENT). Lean for Thm 1/2 now exists (RealificationJ.lean). Positivity, states sigma = R(rho)/2 and the pair-model vs Mathlib complex-matrix identification are unpaid.",
+      "reason": "Statement supported and now kernel-checked for the declared pair model of complex matrices (Theorems 1 and 2); J, states sigma = R(rho)/2, positivity and the identification with Mathlib complex matrices are not covered.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "PG-OBLIGATION-MONOID",
+      "review": "dag/results/PG-OBLIGATION-MONOID/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "statement_narrowed",
+      "statement": "Obligation counter vectors Fin k -> Nat under pointwise sum form the free commutative monoid on k obligation ids (cancellative, not a group for k >= 1); with a count bound the checked combine is associative with equal definedness on both bracketings; a re-declared copy of the source four-event, three-counter trace is a monoid homomorphism from event lists, and in an unbounded k-id ledger model every successful generate/discharge run from the empty ledger ends valid. That Genesis events or S(n) maps carry generated/discharged vectors as monoid morphisms (TFQ-0342) is not established.",
+      "bottleneck": "Genesis events and S(n) maps carrying context-independent generated/discharged vectors (PG-GAP-EVENT-OBLIGATION, TFQ-0342); Ev/evOb is a copy of the source table, not derived, and is unlinked by any theorem to PrimGenEvent/eventObligation; the Lean abstract-k ledger is unlinked to the three-id u64 Python/Rust ledger.",
+      "reason": "Kernel results concern the counter monoid, a re-declared copy of the source event table and an abstract ledger; the source declare_then_assert floor is a counter inequality, not an ordering, and Genesis events being monoid morphisms stays unproved.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "PG-SN-CARRIER",
+      "review": "dag/results/PG-SN-CARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "statement_narrowed",
+      "statement": "For a Lean restatement of the pinned restricted S(n) model over any glyph alphabet G, the section lift of base presentations is injective with the retraction as left inverse at every stage (old-image law), and its image has 1 + g + 3 g^2 points; the unrestricted lift of SnCarrierDischarge is not injective, admits no recovery and sends the refusal token to the ground presentation, which is the interface to which the WDP-P001-019 defects belong; the advertised carrierCard table is a declaration that is not derived from the model and differs from the stage-independent base total at stages 0, 2, 3 for every g (and at stage 1 unless g = 0); the index-zero carrier is empty by declaration.",
+      "bottleneck": "A corrected cardinality theorem deriving Carrier n from the lift image or the stage-n shape set (the stage of the directed cut must be settled by the source), off-image refusal completeness (PG-SN-OFF-IMAGE-REFUSAL), and identification of the restatement with the pinned types at G = Glyph; the source old_image_base still reports Classical.choice.",
+      "reason": "Kernel results are about a Lean restatement of the pinned restricted S(n) model: the old-image law and injectivity hold, the unrestricted lift of the discharge file is not injective, and the advertised carrier cardinalities are a declaration not derived from the model; the WDP-P001-019 conflict concerns the unrestricted interface and a separate type.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "PG-ADMISSION-FLOOR",
+      "review": "dag/results/PG-ADMISSION-FLOOR/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "consistent",
+      "reason": "The statement is supported and generalized (cut exists iff two distinct points; exact converse for law targets); no result changes its scope. The law is still not derived from <> or Real_0.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "PG-CHAIN-RETRACTION",
+      "review": "dag/results/PG-CHAIN-RETRACTION/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "caveat_added",
+      "bottleneck": "The bridge from declared inclusions to the Genesis/WDP growth statement (WDP-CH04-N02) on an actual Genesis/WDP complex pair; full-complex formalisation of the two named cases; non-linear retractions.",
+      "reason": "Injectivity under a chain retraction is kernel-checked over any ring; the two named non-examples are modelled as degree fragments and the source impossibility theorems take their key facts as hypotheses; the bridge to WDP-CH04-N02 on an actual Genesis complex pair is open.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "PG-COLLAPSE-BARRIER",
+      "review": "dag/results/PG-COLLAPSE-BARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "caveat_added",
+      "bottleneck": "Choice and existence of the added tag for the actual inscription strings <a>, <ab>, <aa> of the Pre-Genesis paper under the supplied decoder; the empty-alphabet case (empty X) and Z empty are native conventions, not kernel theorems.",
+      "reason": "The barrier is kernel-checked and nearly tautological; the converse needs an inhabited task codomain; the DAG-cited aggregate theorem is a bundle of fixed instances and is not the barrier.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "PG-DEMAND-ACCOUNTING",
+      "review": "dag/results/PG-DEMAND-ACCOUNTING/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "statement_narrowed",
+      "statement": "For finite sets, |(W minus D) union B| = |W| - |D| + |B| (integer arithmetic) holds when D is a subset of W and the births B avoid the survivors W minus D (births may coincide with discharged elements); in general the identity holds iff |D minus W| = |(W minus D) cap B|, so exactly one violated hypothesis always breaks it and both violated hypotheses can cancel; natural-number truncation can mask a violated subset hypothesis; the identity imposes no constraint on a sequence of counts (the displayed survivor sequence is a chosen ledger example). Proved for Finsets; the list-register readings of Paper.lean and Paper001.lean are not re-proved beyond the filter-based length and Nodup statements.",
+      "bottleneck": "The engine wrapper over preservation.demand_step is not connected; the identification of the active count with the cumulative history is not addressed.",
+      "reason": "The identity is exact for finite sets under the two hypotheses; dropping exactly one never permits it, both dropped can cancel, natural-number truncation masks a violated subset hypothesis, and the identity imposes no constraint on a count sequence.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "PG-FREE-MONOID-NONISO",
+      "review": "dag/results/PG-FREE-MONOID-NONISO/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "statement_narrowed",
+      "statement": "Free monoids on alphabets of different finite sizes are not isomorphic (a monoid isomorphism induces a bijection of alphabets via atoms; in general FreeMonoid a is isomorphic to FreeMonoid b iff a and b are in bijection), and discrete categories with different finite object counts are not equivalent. The underlying sets of nonempty free monoids are in bijection, so a numeral/alphabet re-presentation can be a set bijection but cannot be an isomorphism of the free-monoid multiplication or an equivalence of discrete categories; other structures are not addressed.",
+      "bottleneck": "The obstruction is multiplicativity via atoms, not cardinality; Classical.choice is used for the isomorphism-to-alphabet-bijection direction; structures other than free-monoid multiplication and discrete categories are unaddressed.",
+      "reason": "Non-isomorphism is of the free-monoid multiplication and non-equivalence of discrete categories; a bare set bijection between the underlying sets exists, so the obstruction is multiplicativity via atoms, not cardinality.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "PG-HISTORY-REPORT-CRITERION",
+      "review": "dag/results/PG-HISTORY-REPORT-CRITERION/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "statement_narrowed",
+      "statement": "A question over histories factors through the report image iff it is constant on report fibers, and the factorization is unique on the image (the extension to all reports is unique iff the report is surjective or the answer set is trivial). The direction constancy => factoring is proved from a selector of fiber representatives without any axiom, and with Classical.choice for an arbitrary report; a choice-free version for explicitly listed histories is PG-PREGEN-CONSTRUCTIVE-SUMMARY; necessity of choice for arbitrary history types is not decided.",
+      "bottleneck": "Whether Classical.choice is necessary for constancy => factoring on arbitrary history types is undecided.",
+      "reason": "The criterion is kernel-checked; constancy implies factoring is proved from a selector of fiber representatives and with Classical.choice; a choice-free listed-history version exists (PG-PREGEN-CONSTRUCTIVE-SUMMARY); necessity of choice is undecided.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
+    },
+    {
+      "node_id": "PG-INERT-DIAMOND",
+      "review": "dag/results/PG-INERT-DIAMOND/reviews/20261021_batch01a_audit/delivery_review_result.json",
+      "scope_effect": "caveat_added",
+      "bottleneck": "The identification '<> = Real_0 = Difference join Structure' remains without derivation; the model covers three of six events and its correspondence to admission.rs is by reading.",
+      "reason": "Definition node: only consistency and independence of the inert-inscription reading are shown in a stipulated three-event model (supply is the identity by rule); the identification with Real_0 is not modelled.",
+      "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
     }
   ]
 }
