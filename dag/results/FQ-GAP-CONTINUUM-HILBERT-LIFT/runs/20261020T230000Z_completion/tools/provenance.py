@@ -1,0 +1,11 @@
+"""Record the prior evidence this run builds on, with exact digests; nothing is modified."""
+from pathlib import Path
+import hashlib,json
+B=Path(__file__).resolve().parents[1]
+ROOT=next(p for p in B.parents if (p/'lean4/lakefile.lean').is_file())
+PRIOR=['dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261019T145000Z_staged/README.md','dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261019T145000Z_staged/p0/candidate.json','dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261019T145000Z_staged/p1/candidate.json','dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/README.md','dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/scope_review.json','dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json','dag/operads/fq_gap_continuum_hilbert_lift.yaml','dag/derivations/19_finite_qg/tfq_0086_fq_gap_continuum_hilbert_lift_stays_unpaid_no_continuum_hilbert_space_is_admitted_at_the_root.md','dag/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md','dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T162715Z_jordan_classical_qubit/tools/replay.py','lean4/H056ContinuumLiftBoundary.lean','lean4/H072TowerTopologicalCompletion.lean','lean4/lean-toolchain','lean4/lake-manifest.json']
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+if __name__=='__main__':
+    entries=[{'path':p,'bytes':(ROOT/p).stat().st_size,'sha256':sha(ROOT/p)} for p in PRIOR]
+    (B/'provenance.json').write_text(json.dumps({'authority_effect':'None','prior_evidence':entries,'relation_to_prior':'The staged run and the scope audit recorded that no completion had been constructed and asked for one with a specified topology, carrier and embedding; this run constructs it. H056 and H072 are label-level boundary modules and are not imported.','replay_tool':'tools/replay.py is byte-identical to the one of dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T162715Z_jordan_classical_qubit.','unchanged':'Prior sealed bundles, canonical operad collections and monographs are not modified by this run.'},indent=2)+'\n',encoding='utf-8')
+    print(json.dumps({'prior_entries':len(entries)}))

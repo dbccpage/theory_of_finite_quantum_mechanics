@@ -1,0 +1,34 @@
+{
+  "authority_effect": "None",
+  "lean": {
+    "compiler": "Lean 4.33.1 (pinned toolchain leanprover/lean4:v4.33.1)",
+    "mathlib": "0df444a360eaa60ab8c11dca51a86af692955474 (lean4/lake-manifest.json; existing olean cache of lean4/.lake reused, not rebuilt)",
+    "sources": ["HilbertLiftFiniteTower.lean", "HilbertLiftRationalUniformity.lean", "HilbertLiftCompletion.lean", "HilbertLiftComplexCarrier.lean"],
+    "receipts": {"tower_01": 29, "uniformity_01": 28, "completion_01": 38, "complex_01": 17, "total": 112},
+    "axioms": "every printed receipt within [propext, Classical.choice, Quot.sound]; no sorry, axiom, opaque or unsafe in any accepted source; no warning or error line in any accepted compile output",
+    "imports": "targeted Mathlib imports only (no import Mathlib); the completion module imports Mathlib.Analysis.InnerProductSpace.Completion",
+    "install": "the four sources are byte-identical copies under lean4/ and registered in lean4/lakefile.lean after CofiberBanachQuotient"
+  },
+  "python": {
+    "command": "cd code/python && python -m pytest tests/test_hilbert_lift_completion.py -q",
+    "tests": 16,
+    "result": "16 passed"
+  },
+  "rust": {
+    "command": "cd code/rust && cargo test --lib hilbert_lift_completion",
+    "tests": 14,
+    "result": "14 passed; 0 failed",
+    "note": "the debug target directory (10.1 GiB) was removed with cargo clean after the run because the machine's disk was at 98 percent"
+  },
+  "dag": {
+    "command_structural": "python dag/validate_derivation_dag.py --repo-root . --no-files",
+    "structural": "nodes=197 routes=192 failures=0 (before and after the node update)",
+    "command_files": "python dag/validate_derivation_dag.py --repo-root .",
+    "file_resolution": "2062 failures before and after the node update, all pre-existing references to omega_engine_atlas/, omega_engine/ or lean4/quantum_mechanics/ paths outside this checkout; no failure mentions a file or symbol of this run",
+    "node": "FQ-GAP-CONTINUUM-HILBERT-LIFT: status CONDITIONAL unchanged; source_status, lean (16 references), rust (6 references), imported_structure and bottleneck rewritten by tools/dag_update.py; the diff touches 29 lines of dag/derivation_dag.json only"
+  },
+  "operational_notes": [
+    "Windows MAX_PATH: the first replay attempt failed for the second module because the snapshot path exceeded 260 characters inside verification/<label>/; the run directory was renamed from 20261020T230000Z_controlled_completion_lean to 20261020T230000Z_completion and the labels shortened before the accepted replays; Lean reports the condition as 'no such file or directory' on an existing file.",
+    "The DAG rewrite preserves the file's LF line endings by writing bytes; a first attempt through text mode had re-encoded every line."
+  ]
+}

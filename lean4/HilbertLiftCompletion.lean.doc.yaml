@@ -1,0 +1,20 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/HilbertLiftCompletion.lean
+source_sha256: 2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106
+authority_effect: None
+purpose: 'The controlled completion: the Hausdorff completion of the pre-Hilbert carrier N ->0 k (k =
+  R or C) is a complete inner product space; the explicit embedding of the exact carrier is inner-product
+  preserving, injective and padding-compatible; Cauchy-ness in the lift is the rational l2 Cauchy condition;
+  every such sequence converges; over R the exact carrier is dense, continuous maps are determined on
+  exact vectors, and the lift is strictly larger.'
+design:
+  profile: Exact rational arithmetic or kernel-checked Lean on the declared carrier; no floating point.
+  frozen_sources: Run snapshots under verification/ are immutable custody assets.
+boundaries:
+- The scalar field (hence Q -> R) and the l2 uniformity are supplied hypotheses; nothing selects them.
+- Density is proved for k = R with the rational real carrier; for k = C the real rational carrier is isometric
+  but not dense (Gaussian-rational carrier not treated).
+- No operator, dynamics, Born rule, tensor structure or physical interpretation is constructed; instances
+  are declared on the abbreviation N ->0 k.
+evidence:
+- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md
