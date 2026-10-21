@@ -20,14 +20,20 @@ that theory is re-derived here.  What is new:
 * the composite fixed `TM0` machine `M0 = TM1to0.tr (TM2to1.tr PartrecToTM2.tr)` and an explicit
   family of initial configurations `initCfg0 x`, with
   `halts_iff_eval_dom : Halts M0 (initCfg0 (pair (encode c) n)) ↔ (Code.eval c n).Dom`;
-* `reach_halting_not_computable`  composing with `TMEncoding.halts_iff` and
-  `ComputablePred.halting_problem`: the predicate "the rewriting regime `Rules M0` reaches an
-  irreducible word from the represented start word" is not a computable predicate of `c`.
+* `reach_irreducible_not_computable`, `nfReach_not_computable`  composing with
+  `TMEncoding.halts_iff` and `ComputablePred.halting_problem`: the predicate "the rewriting
+  regime `Rules M0` reaches an irreducible word from the represented start word of the input" is
+  not a computable predicate of the input (of the code `c`, or of `x : ℕ`);
+* `used_state_marks_finite`, `used_marks_finite`, `card_G1`: only finitely many marks occur in
+  any word reachable from a start word (1250 tape marks, the two end markers, and the state marks
+  in the finite set `S0` supplied by Mathlib's `tr_supports` chain).
 
-What is NOT proved: that the map from a code to its start word is itself computable
-(`startWord_computable`, listed OPEN), so the statement is about the family of start words, and
-the many-one reduction from the halting problem to a single decision problem over encoded
-rewriting instances is CONDITIONAL on that lemma.
+What is NOT proved: that the map from an input to its start word is itself computable
+(`startWord_computable`, listed OPEN; it needs a `Primcodable` structure on the mark type).  The
+two undecidability statements above are about the explicit family of start words.  The reduction
+of the halting problem to a single decision problem over encoded rewriting instances is
+`reach_problem_not_computable`, which is CONDITIONAL on that lemma.  The size of `S0` is not
+computed: it depends on the code `univCode`, chosen by `Classical.choose`.
 -/
 
 open Turing
@@ -136,6 +142,15 @@ noncomputable def initCfg0 (x : ℕ) : TM0.Cfg G1 (TM1to0.Λ' M1) :=
 
 theorem tr21 (x : ℕ) : TM2to1.TrCfg (init2 x) (init1 x) :=
   trCfg_init_gen _ _ _
+
+/-- **C6, TM2 output form** (Mathlib `tr_eval` composed with the universal code).  The fixed
+TM2 machine `PartrecToTM2.tr`, started on the paired input, halts in the configuration holding
+`Code.eval c n` exactly when that value is defined. -/
+theorem tm2_computes_eval (c : Code) (n : ℕ) :
+    StateTransition.eval (TM2.step PartrecToTM2.tr) (init2 (Nat.pair (Encodable.encode c) n)) =
+      PartrecToTM2.halt <$> (pure <$> Nat.Partrec.Code.eval c n) := by
+  unfold init2
+  rw [PartrecToTM2.tr_eval, univCode_eval, univFun_apply]
 
 /-- The three halting predicates agree: the fixed TM0 machine halts from `initCfg0 x` exactly
 when the universal function is defined at `x`. -/
@@ -367,6 +382,7 @@ end GenesisComputation
 #print axioms GenesisComputation.Universal.univCode_eval
 #print axioms GenesisComputation.Universal.trCfg_init_gen
 #print axioms GenesisComputation.Universal.dom_chain
+#print axioms GenesisComputation.Universal.tm2_computes_eval
 #print axioms GenesisComputation.Universal.halts_iff_dom
 #print axioms GenesisComputation.Universal.halts_iff_eval_dom
 #print axioms GenesisComputation.Universal.halting_not_computable

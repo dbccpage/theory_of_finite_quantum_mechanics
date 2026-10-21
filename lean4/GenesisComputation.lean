@@ -18,7 +18,7 @@ This module is the algebraic core of the chain from the inert mark `<>` toward
 a universal machine.  It states, and kernel-checks, the following steps.
 
 * C1  A finite alphabet is a set of admitted, pairwise separated marks.  The
-  Genesis event semantics `stepE` is copied byte for byte (custody note below),
+  Genesis event semantics `stepE` is copied unchanged from a staged source (custody note below),
   the minimal regime with two separated marks is replayed, and the identity
   convention (PGW-IDENTITY-CONVENTION-UNDECIDABLE) is carried as an explicit
   declared input, never derived.
@@ -28,16 +28,25 @@ a universal machine.  It states, and kernel-checks, the following steps.
   `Reach` (the analogue of Genesis `Step.rename` and `Reach.rename`).  The
   Genesis notion of context (TFQ-0433, slot tuple with holes, a datum plugged
   into every hole) is mirrored by `GCtx` and related to one-hole word contexts
-  by `oneHole_iff_split` and `plug1_split`.  Genesis `Step3` is a different,
-  state-graph relation: it is NOT proved to be a word rewriting step here.
+  by `oneHole_iff_split` and `plug1_ofSplit`.  Genesis `Step3` (staged source
+  `dag/results/PG-GEN-REWRITING-COMMUTATION/.../Second/Rename.lean`) is a different relation, on
+  states `(T, A, a, b)` of a finite term set, a finite assertion set and two named terms, with
+  three moves: add a fresh term, add an assertion, identify two terms (a merge, which is not
+  injective).  It has no order on terms and no user-supplied rule list.  It is therefore narrower
+  and different from a semi-Thue step, and NO embedding of `Step3` into word rewriting is proved
+  here; what is proved is the same commutation law for letter renaming (`Step.map`,
+  `Reach.map`, `Reach.of_map`).
 * C3  Bounded regimes: with finitely many marks and a declared word-length
   bound `L`, the reachability relation `ReachB` is decidable by an explicit
-  procedure (`reachB_iff_decide`), and the three-valued `verdict` is sound for
-  the unbounded relation.  This is the bounded half of TFQ-0497 for rewriting.
+  procedure (`decideReachB_iff`), and the three-valued `verdict` is sound for
+  the unbounded relation.  This decides rewriting steps and bounded reachability; the
+  decision procedure over all Genesis contexts asked by TFQ-0497 is NOT built (only the unary
+  hole-only mirror `UnarySep` is decidable).
 * C4  Unbounded supply is an explicit import.  Genesis `stepE` has no cap on
   `admitDatum` (`replay_admitDatum_replicate`), so unbounded admission is
   PERMITTED by the event semantics, but every such event is host supplied
-  (TFQ-0451, TFQ-0504); `UnboundedSupplyImport` records that as a hypothesis.
+  (TFQ-0451, TFQ-0504); `UnboundedSupply` states the property that a regime reaches
+  arbitrarily long words, which is the declared form of the import.
 * C8  Binary coding of any finite alphabet and its decoder.
 
 Nothing here derives the identity convention, the existence of more than two
@@ -115,9 +124,36 @@ def UnarySep (r : Regime) (i j : Nat) : Prop :=
   ∃ f, f < r.forms.length ∧ r.forms.getD f 0 = 1 ∧
     ((f, [i]) ∈ r.insts ∧ (f, [j]) ∉ r.insts ∨ (f, [j]) ∈ r.insts ∧ (f, [i]) ∉ r.insts)
 
+theorem unarySep_iff (r : Regime) (i j : Nat) :
+    UnarySep r i j ↔ ∃ f ∈ List.range r.forms.length, r.forms.getD f 0 = 1 ∧
+      ((f, [i]) ∈ r.insts ∧ (f, [j]) ∉ r.insts ∨ (f, [j]) ∈ r.insts ∧ (f, [i]) ∉ r.insts) := by
+  simp [UnarySep]
+
+/-- The unary separation test is decidable by a bounded search over the admitted forms. -/
+instance (r : Regime) (i j : Nat) : Decidable (UnarySep r i j) :=
+  decidable_of_iff _ (unarySep_iff r i j).symm
+
+/-- Collapse (neither direction told apart) is decidable on a finite regime. -/
+def Collapsed (r : Regime) (i j : Nat) : Prop :=
+  ¬ UnarySep r i j ∧ ¬ UnarySep r j i
+
+instance (r : Regime) (i j : Nat) : Decidable (Collapsed r i j) := by
+  unfold Collapsed; infer_instance
+
 /-- Every two distinct admitted marks of the regime are told apart. -/
 def PairwiseSeparated (r : Regime) : Prop :=
   ∀ i j, i < r.data → j < r.data → i ≠ j → UnarySep r i j
+
+theorem pairwiseSeparated_iff (r : Regime) :
+    PairwiseSeparated r ↔ ∀ i ∈ List.range r.data, ∀ j ∈ List.range r.data, i ≠ j → UnarySep r i j := by
+  simp only [PairwiseSeparated, List.mem_range]
+  constructor
+  · intro h i hi j hj hij; exact h i j hi hj hij
+  · intro h i j hi hj hij; exact h i hi j hj hij
+
+/-- Pairwise separation of a finite regime is decidable. -/
+instance (r : Regime) : Decidable (PairwiseSeparated r) :=
+  decidable_of_iff _ (pairwiseSeparated_iff r).symm
 
 /-- The Genesis history that admits two marks, one unary form and one instance on mark 0,
 and demands the pair `(0,1)`: the cost-two shape of the first separation (one form, one
@@ -192,7 +228,16 @@ theorem canonicalRegime_pairwise (n : Nat) : PairwiseSeparated (canonicalRegime 
     obtain ⟨f, hf1, hf2, hf3⟩ := key j i hj' hi' hj1 (Ne.symm hij)
     exact ⟨f, hf1, hf2, hf3.symm⟩
 
-/-- The three identity conventions are not derived: this is the declared input of C1
+/-- Decided by the bounded search: the canonical regime on four marks is pairwise separated. -/
+theorem canonicalRegime_four_pairwise_decide : PairwiseSeparated (canonicalRegime 4) := by
+  decide
+
+/-- Decided by the bounded search: two admitted marks with no form at all are collapsed
+(here the opaque identity convention leaves `<>` and its successor unseparated). -/
+theorem two_marks_without_forms_collapsed : Collapsed ⟨2, [], [], [], []⟩ 0 1 := by
+  decide
+
+/-- The identity conventions are not derived: this is the declared input of C1
 (PGW-IDENTITY-CONVENTION-UNDECIDABLE).  The opaque convention identifies marks the regime
 cannot tell apart; the exact-inscription convention keeps every distinct inscription. -/
 inductive IdentityConvention | opaqueConv | exactInscription
@@ -202,9 +247,6 @@ inductive IdentityConvention | opaqueConv | exactInscription
 both conventions give the same set of marks on a separated alphabet.  Blank and state
 marks must therefore be admitted as separated marks as well, or the convention must be
 declared. -/
-def Collapsed (r : Regime) (i j : Nat) : Prop :=
-  ¬ UnarySep r i j ∧ ¬ UnarySep r j i
-
 theorem separated_marks_not_collapsed {r : Regime} (h : PairwiseSeparated r) {i j : Nat}
     (hi : i < r.data) (hj : j < r.data) (hij : i ≠ j) : ¬ Collapsed r i j :=
   fun hc => hc.1 (h i j hi hj hij)
@@ -1032,6 +1074,10 @@ end GenesisComputation
 #print axioms GenesisComputation.canonicalRegime_pairwise
 #print axioms GenesisComputation.Mark2.toDatum_bijective
 #print axioms GenesisComputation.separated_marks_not_collapsed
+#print axioms GenesisComputation.unarySep_iff
+#print axioms GenesisComputation.pairwiseSeparated_iff
+#print axioms GenesisComputation.canonicalRegime_four_pairwise_decide
+#print axioms GenesisComputation.two_marks_without_forms_collapsed
 #print axioms GenesisComputation.Step.context
 #print axioms GenesisComputation.Reach.context
 #print axioms GenesisComputation.Reach.map
