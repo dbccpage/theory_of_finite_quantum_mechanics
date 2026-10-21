@@ -1,0 +1,44 @@
+{
+  "authority_effect": "None",
+  "canonical_dag_modified": false,
+  "proposal_only": true,
+  "base_dag_sha256": "dc6d3485d5b3c8f38ef641defea4a52b88b1558138e6fd1b0e42a08b92b8182b",
+  "updates": [
+    {
+      "id": "L1-IMP-COMPLEX-FIELD",
+      "status": "CONDITIONAL",
+      "statement": "Under the imported R/C/H matrix-carrier restriction and supplied same-family composite dimension multiplicativity from independent products and local tomography, d=2 is selected; exact stand-in Q(i).",
+      "imported_structure": [
+        "matrix carrier restriction, including extra spin-factor/exceptional/direct-sum exclusion",
+        "same-family n*m composites",
+        "independent product preparations and factorized nondegenerate tests",
+        "local tomography",
+        "real/complex completeness"
+      ],
+      "bottleneck": "Operational tomography and the carrier restriction are not derived from primitive difference; no continuum completion is supplied.",
+      "lean": [
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.dimension_selection",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.gaussian_product_span",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.rho_states",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.rho_same_product_statistics",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.quaternion_refuted",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.conditional_discharge"
+      ],
+      "next_test": "Derive field-neutral independent product preparations, factorized tests and state separation from operational primitives, or exclude additional spin-factor alternatives."
+    },
+    {
+      "id": "GP-IMPORT-COMPLEX-FIELD",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status_append": "Conditional selection of d=2 among supplied same-family matrix carriers is established by ComplexFieldSelection; the original complete-field claim remains imported because completeness is not derived.",
+      "see_also_add": [
+        "L1-IMP-COMPLEX-FIELD"
+      ]
+    }
+  ],
+  "unchanged_nodes": [
+    "L1-IMP-SQRT-FIELD",
+    "FQ-GAP-REAL-EMBEDDING-CHOICE",
+    "FQ-GAP-CONTINUUM-HILBERT-LIFT",
+    "FQ-GAP-TENSOR-UNIQUENESS"
+  ]
+}

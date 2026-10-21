@@ -1,0 +1,156 @@
+The next hardest open derivation is the selection of the complex field: nodes L1-IMP-COMPLEX-FIELD and GP-IMPORT-COMPLEX-FIELD, both still IMPORTED_ASSUMPTION.
+
+It is the import every other frontier leans on:
+
+- Tensor uniqueness: #131 proved it from supplied local complex QM plus local tomography (TENSOR-TOMOGRAPHIC-COORDINATES, FQ-GAP-TENSOR-UNIQUENESS).
+- The continuum Hilbert lift: after #117/#122 it is CONDITIONAL only on selecting the scalar field (ℝ or ℂ).
+- Born, U(1) and Stone: all run on a complex carrier.
+
+Nothing in the repo derives ℂ; it is declared, with Q(i)/Z[i] as stand-ins. The question has a sharp, exactly checkable finite core: local tomography forces ℂ among ℝ, ℂ and ℍ. The prompt below is self-contained for Codex Astra.
+
+# Task: derive the selection of the complex scalar field (PFP follow-up for L1-IMP-COMPLEX-FIELD)
+
+You are a mathematical research engineer working in the repository
+`theory_of_finite_quantum_mechanics`, following its PFP staged protocol (`dag/pfp/README.md`,
+`dag/pfp/workflow.yaml`, `dag/pfp/stage_contracts.yaml`). AuthorityEffect: None.
+
+## Setup
+- Base your branch on `lean-v4-35` (draft PR #137). It has the unified derivation DAG and every
+  Lean package on `leanprover/lean4:v4.35.0` with Mathlib `v4.35.0`
+  (`56a005855ea17e0b0958f73ec801ae140b0a1679`). Create a new branch `complex-field-selection`.
+- On Windows, keep paths short. Use a short `CARGO_TARGET_DIR` and junction `lean4/.lake` to a
+  short path if `lake exe cache get` hits MAX_PATH.
+- Never edit sealed files: `dag/pfp/prompt_audit.json`, `dag/pfp/filename_custody.json`,
+  `dag/pfp/custody.py`, anything under `dag/results/batches/`, and existing `dag/results/*/runs/*`.
+  Do not edit `dag/derivation_dag.json`. Put a proposed node delta in your results folder instead,
+  and the host will integrate it.
+- Results root: `dag/results/L1-IMP-COMPLEX-FIELD/runs/<UTC>_complex_selection/`. Keep `p0/`, `p1/`,
+  `p2/`, `p4/` and `p5/` records, plus `claim_status.json`, `operad_delta.json` and `next_steps.md`, in
+  the layout used by `dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/2026102*`.
+
+## Read first
+- DAG nodes in `dag/derivation_dag.json`:
+  - L1-IMP-COMPLEX-FIELD
+  - GP-IMPORT-COMPLEX-FIELD
+  - L1-IMP-SQRT-FIELD
+  - FQ-GAP-REAL-EMBEDDING-CHOICE
+  - TENSOR-TOMOGRAPHIC-COORDINATES
+  - FQ-GAP-TENSOR-UNIQUENESS
+  - FQ-GAP-CONTINUUM-HILBERT-LIFT
+  - GP-DROP-ONE-CENSUS
+  - FQ-TENSOR-LU-RIVAL-EXCLUSION
+  - routes L1-R-COMPLEX-GAP and X-R-IMPORTS-TO-DECLARED-INTERFACE
+- The prompt and operad: `dag/prompts/l1_to_l2_l1_imp_complex_field_imported_assumption.yaml`,
+  `dag/operads/l1_imp_complex_field.yaml`.
+- The earlier review: `dag/results/L1-IMP-COMPLEX-FIELD/reviews/*`.
+- Lean: `lean4/TensorTomography.lean`, `lean4/TensorCoordinates.lean`, `lean4/TensorComposition.lean`,
+  and the Gaussian-rational Hermitian carrier used by the Born effect-valuation chain
+  (`lean4/*Effect*`, `lean4/*Hermitian*`).
+
+## Mathematical target
+Work in finite dimension throughout, with exact arithmetic only.
+
+**Carrier family (the declared import).** For K ∈ {ℝ, ℂ, ℍ}, the state/effect space of an n-level
+system is the real vector space Herm_n(K) of K-self-adjoint n×n matrices, with
+dim_ℝ Herm_n(K) = n + d·n(n−1)/2 for d = 1, 2, 4.
+
+Record the restriction to these three carriers as an IMPORT: Jordan–von Neumann–Wigner /
+Koecher–Vinberg, plus the exclusion of spin factors and the exceptional algebra. Do not derive it.
+Use exact stand-ins: ℚ for ℝ, ℚ(i) for ℂ, the rational Hamilton quaternions for ℍ. Real completeness
+stays an import.
+
+**Operational premise (supplied, not derived).** This is the local tomography already used by
+TENSOR-TOMOGRAPHIC-COORDINATES. A composite of systems A and B in the same family has a joint space
+spanned by products. Equivalently, the real dimension is multiplicative:
+
+  K_d(nm) = K_d(n) · K_d(m)   for all n, m ≥ 2.
+
+**T1 (dimension selection).** Prove in Lean, over ℕ, with d a parameter, that K_d(nm) = K_d(n)·K_d(m)
+for all n, m ≥ 2 if and only if d = 2. Give the explicit failing pairs:
+- d = 1, n = m = 2: 3·3 = 9 ≠ 10;
+- d = 4, n = m = 2: 6·6 = 36 ≠ 28.
+
+Also prove the one-directional version: a single failing pair suffices to refute d.
+
+**T2 (real QM fails local tomography, exact witness).** Over ℚ, give an explicit symmetric operator
+on ℚ²⊗ℚ² that is orthogonal, in the trace pairing, to every product of real symmetric matrices.
+This is Y⊗Y with Y = [[0,−1],[1,0]]: it is real and symmetric, while each factor is antisymmetric.
+Exhibit two distinct joint real states with identical statistics on every local product test.
+Kernel-check the orthogonality and the state distinction.
+
+The valid control is the Gaussian-rational case, where products of ℚ(i)-Hermitian matrices span
+Herm_4(ℚ(i)). Reuse `TensorTomography.product_span` if it applies; otherwise prove the n = m = 2
+instance.
+
+**T3 (quaternionic composite obstruction).** Show exactly why the same-family quaternionic composite
+fails. Either the K_4 count fails (T1), or the product map Herm_2(ℍ) × Herm_2(ℍ) → Herm_4(ℍ) is not
+well-defined or bilinear over ℝ in the required sense. State precisely which, and over the rational
+quaternions. If it fails only under one composite definition, record both definitions.
+
+**T4 (conditional discharge).** Package T1–T3 into the statement:
+
+  "Under the declared carrier classification (import) and local tomography for same-family composites
+  (supplied operational premise), the scalar field of the carrier is ℂ (finite stand-in ℚ(i))."
+
+State exactly which imports remain. Write the node delta for L1-IMP-COMPLEX-FIELD: proposed status
+CONDITIONAL, never PROVED_LEAN, because the classification and local tomography are supplied.
+
+**T5 (near misses for P4, mandatory semantic mutants).**
+- Real QM with an added complex structure J, i.e. Stueckelberg's real formulation: show that it
+  restores local tomography only by reintroducing ℂ, and say what the checker sees.
+- Spin-factor carriers V_k: give the dimension count and why the import excludes them. If you cannot
+  exclude them, record that as OPEN, not hidden.
+- A mutant that drops the n, m ≥ 2 quantifier to n = 1, where every d passes.
+- A mutant that claims d = 2 from one passing pair, e.g. a single instance check presented as the
+  iff.
+
+## Fences
+- Do not claim to derive ℂ from primitive difference, `<>`, or the WDP window. The classification and
+  local tomography are supplied. This result moves the import boundary; it does not remove it.
+- Completeness of ℝ/ℂ, the continuum, and the renamed physical "why ℂ" debates are out of scope.
+  The Renou et al. network experiments are literature context only, not evidence here.
+- A finite instance is never a general theorem. T1 is general over n and m; T2 and T3 may be
+  instances. Say so.
+
+## Deliverables
+1. **Lean.** Write `lean4/ComplexFieldSelection.lean`, added as a lakefile root. It holds T1 (general
+   iff), T2 (the ℚ instance and the Gaussian control) and T3. Axioms must be limited to `propext`,
+   `Classical.choice` and `Quot.sound`, with no `sorry`, `admit` or `native_decide`. Print
+   `#print axioms` for each headline theorem and save the output in `p2/`.
+2. **Rust.** Add an exact checker in `code/rust/src/finite_probability/complex_selection.rs`
+   (register it in the crate). It covers the dimension census for d ∈ {1, 2, 4}, n, m ≤ 6; exact
+   span-rank computation of products for the real, Gaussian-rational and rational-quaternion 2⊗2
+   cases; and the T2 witness. Include tests, run with
+   `cargo test --manifest-path code/rust/Cargo.toml --offline -p tfqm_finite_probability --lib complex_selection`.
+3. **Python.** Write an independent exact checker, `code/python/src/qm/complex_selection.py`, plus
+   tests that re-derive T1–T3 from the candidate bytes using fractions and explicit
+   ℚ(i)/quaternion classes.
+4. **Companions.** Generate `*.doc.yaml` and `*.contract.score.yaml` with `scripts/contract_scores.py`,
+   and make sure `scripts/contract_scores.py check` passes.
+5. **PFP records.**
+   - P0: the operad delta. Colours are carrier, composite, product map, span, trace pairing and
+     dimension count. Relations are T1 and the product spanning. Record failed compositions.
+   - P1: the candidate.
+   - P2: host verification logs.
+   - P4: coordinate mutants plus the T5 semantic mutants, all rejected, with the controls accepted.
+   - P5: the record, `claim_status.json`, a node-specific `next_test`, and the proposed node delta.
+6. **Checks to run and report with exact output:**
+   - `lake build ComplexFieldSelection`;
+   - the cargo test above;
+   - pytest on your tests;
+   - `python -I -X utf8 dag/validate_derivation_dag.py --no-files`;
+   - the three DAG sync `--check` commands (`dag/sync_unified_dag.py`,
+     `dag/sync_application_branches.py`, `dag/sync_pregenesis_to_wdp.py`). These must stay clean,
+     since you do not edit the DAG.
+7. Commit on `complex-field-selection` and open a draft PR against `lean-v4-35`.
+
+## Report
+End with these items:
+- **Supported:** exactly which theorems are kernel-checked, and over what.
+- **Not supported.**
+- **Narrowest defensible claim.**
+- **Remaining imports:** the classification, local tomography, and completeness.
+- **Next test:** e.g. derive local tomography from the repo's operational premises, or exclude spin
+  factors.
+
+Also give the proposed DAG node delta, and every command run with its result.
