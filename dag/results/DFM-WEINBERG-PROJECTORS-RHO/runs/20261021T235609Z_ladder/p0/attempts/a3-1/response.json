@@ -1,0 +1,186 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_sin2",
+      "inputs": [
+        "Rat",
+        "Rat"
+      ],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.weinbergSin2",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_cos2",
+      "inputs": [
+        "Rat",
+        "Rat"
+      ],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.weinbergCos2",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_PiGamma",
+      "inputs": [
+        "Rat",
+        "Rat"
+      ],
+      "output": "Mat2Rat",
+      "arity": 2,
+      "carrier": "Mat2Rat",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.weinbergPiGamma",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_PiZ",
+      "inputs": [
+        "Rat",
+        "Rat"
+      ],
+      "output": "Mat2Rat",
+      "arity": 2,
+      "carrier": "Mat2Rat",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.weinbergPiZ",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_MNeutral",
+      "inputs": [
+        "Rat",
+        "Rat",
+        "Rat"
+      ],
+      "output": "Mat2Rat",
+      "arity": 3,
+      "carrier": "Mat2Rat",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.ewNeutralMassSqMat",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_MW2",
+      "inputs": [
+        "Rat",
+        "Rat"
+      ],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.ewMW2",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_MZ2",
+      "inputs": [
+        "Rat",
+        "Rat",
+        "Rat"
+      ],
+      "output": "Rat",
+      "arity": 3,
+      "carrier": "Rat",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.ewMZ2",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_projectors",
+      "statement": "P_gamma+P_Z=I, P_gamma P_Z=P_Z P_gamma=0, both idempotent",
+      "hypotheses": "g^2+g'^2 != 0",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.weinberg_projectors_complete_orthogonal_idempotent",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_rho",
+      "statement": "M_W^2/(M_Z^2 cos^2 theta_W)=1",
+      "hypotheses": "g != 0, v != 0, g^2+g'^2 != 0",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.ew_custodial_rho_eq_one",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_projectors",
+      "statement": "Projector completeness, orthogonality, idempotence for rational g,g' with g^2+g'^2 != 0",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_projectors"
+      ],
+      "lean_skeleton": "example (g gp : Rat) (h : g^2+gp^2 ≠ 0) : True := by trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.weinberg_projectors_complete_orthogonal_idempotent",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "L_rho",
+      "statement": "rho = 1 for g != 0, v != 0",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_rho"
+      ],
+      "lean_skeleton": "example (g gp v : Rat) (h : g^2+gp^2 ≠ 0) (hg : g ≠ 0) (hv : v ≠ 0) : True := by trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.ew_custodial_rho_eq_one",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_g0",
+      "claim": "rho=1 holds with g=0",
+      "rejecting_invariant": "M_W^2 = 0 and division by M_Z^2 cos^2 degenerate; needs g != 0 and v != 0"
+    },
+    {
+      "id": "NM_degenerate",
+      "claim": "Projectors defined when g=g'=0",
+      "rejecting_invariant": "Denominator g^2+g'^2 = 0 so projectors undefined"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Exact statements of cited theorems not shown; hypotheses assumed from target",
+    "M_Z^2 as eigenvalue and tree-level rho are file definitions, not derived",
+    "No compositions grounded: no licensing relation for plugging operations",
+    "sin^2+cos^2=1 and M^2 P_gamma=0 have no cited declaration"
+  ]
+}

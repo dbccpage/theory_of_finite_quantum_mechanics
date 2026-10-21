@@ -1,0 +1,229 @@
+{
+  "task_id": "MUB6-QUADRATIC-LIFT-386",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "7cd5d090f0c6275beb6d0c70ef294c729d9b5863a4b9671bb1f87a50efa9bbb7",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "R_narrow_iff",
+          "equation_or_predicate": "A quartet exists iff some x satisfies TableSolution x and NarrowCodedBox x",
+          "typing_conditions": "none declared",
+          "source_pins": [
+            {
+              "path": "lean4/MubQuadraticLiftNarrowBox.lean",
+              "declaration": "MUB.QuadraticLiftNarrowBox.exists_quartet_iff_narrow_table",
+              "line": 96
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/MubQuadraticLiftNarrowBox.lean",
+            "decl": "MUB.QuadraticLiftNarrowBox.exists_quartet_iff_narrow_table",
+            "kind": "theorem",
+            "line": 96,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "R_table_iff",
+          "equation_or_predicate": "A quartet exists iff the quadratic lift table has a solution",
+          "typing_conditions": "none declared",
+          "source_pins": [
+            {
+              "path": "lean4/MubQuadraticLiftTable.lean",
+              "declaration": "MUB.QuadraticLiftTable.exists_quartet_iff_table",
+              "line": 794
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/MubQuadraticLiftTable.lean",
+            "decl": "MUB.QuadraticLiftTable.exists_quartet_iff_table",
+            "kind": "theorem",
+            "line": 794,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "R_rows_match",
+          "equation_or_predicate": "The concatenated rows list matches the exported table",
+          "typing_conditions": "none declared",
+          "source_pins": [
+            {
+              "path": "lean4/MubQuadraticLiftTable.lean",
+              "declaration": "MUB.QuadraticLiftTable.rows_match",
+              "line": 776
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/MubQuadraticLiftTable.lean",
+            "decl": "MUB.QuadraticLiftTable.rows_match",
+            "kind": "theorem",
+            "line": 776,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No generators grounded: the table rows are data, not typed operations",
+        "The wide-box equivalence [-1,1]^170 x [-3,3]^216 is not in the cited declarations; the table iff may not include the box",
+        "The 648-row count and the 386-coordinate count are not checked in Lean from the cited declarations",
+        "JSON parsing and hashing of the exported table are outside the kernel",
+        "Infeasibility of the box is open",
+        "lemma L_narrow_restates unverified: Lean elaboration disabled",
+        "near_miss NM_infeasible unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R_narrow_iff",
+        "equation_or_predicate": "A quartet exists iff some x satisfies TableSolution x and NarrowCodedBox x",
+        "typing_conditions": "none declared",
+        "source_pins": [
+          {
+            "path": "lean4/MubQuadraticLiftNarrowBox.lean",
+            "declaration": "MUB.QuadraticLiftNarrowBox.exists_quartet_iff_narrow_table",
+            "line": 96
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubQuadraticLiftNarrowBox.lean",
+          "decl": "MUB.QuadraticLiftNarrowBox.exists_quartet_iff_narrow_table",
+          "kind": "theorem",
+          "line": 96,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_table_iff",
+        "equation_or_predicate": "A quartet exists iff the quadratic lift table has a solution",
+        "typing_conditions": "none declared",
+        "source_pins": [
+          {
+            "path": "lean4/MubQuadraticLiftTable.lean",
+            "declaration": "MUB.QuadraticLiftTable.exists_quartet_iff_table",
+            "line": 794
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubQuadraticLiftTable.lean",
+          "decl": "MUB.QuadraticLiftTable.exists_quartet_iff_table",
+          "kind": "theorem",
+          "line": 794,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_rows_match",
+        "equation_or_predicate": "The concatenated rows list matches the exported table",
+        "typing_conditions": "none declared",
+        "source_pins": [
+          {
+            "path": "lean4/MubQuadraticLiftTable.lean",
+            "declaration": "MUB.QuadraticLiftTable.rows_match",
+            "line": 776
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubQuadraticLiftTable.lean",
+          "decl": "MUB.QuadraticLiftTable.rows_match",
+          "kind": "theorem",
+          "line": 776,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No generators grounded: the table rows are data, not typed operations",
+      "The wide-box equivalence [-1,1]^170 x [-3,3]^216 is not in the cited declarations; the table iff may not include the box",
+      "The 648-row count and the 386-coordinate count are not checked in Lean from the cited declarations",
+      "JSON parsing and hashing of the exported table are outside the kernel",
+      "Infeasibility of the box is open",
+      "lemma L_narrow_restates unverified: Lean elaboration disabled",
+      "near_miss NM_infeasible unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

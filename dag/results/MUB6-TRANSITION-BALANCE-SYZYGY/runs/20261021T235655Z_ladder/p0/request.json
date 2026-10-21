@@ -1,0 +1,304 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "MUB6-TRANSITION-BALANCE-SYZYGY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c85579a67ad886f512a7780d5eae8848934b3086e5ec9d17451db4d52f692b84",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=MUB6-TRANSITION-BALANCE-SYZYGY stage=P0 attempt=a3-1 in=c85579a6 guided=yes\n@TARGET [PROVED_LEAN] For 6x6 matrices A, B over a commutative star ring with W = A* B, sum_k W_jk - 6 equals an explicit combination of the row-Gram residuals of B and the first-row gauge residuals of A and B, with a conjugate column identity; on solutions all row and column sums of W are six.\n@BOTTLENECK An ideal-membership redundancy only; it gives no Jacobian rank or nonextension result.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/MubGaugeSyzygy.lean | MUB.GaugeSyzygy.Mat6 | abbrev | abbrev Mat6 (R : Type*)\n lean4/MubGaugeSyzygy.lean | MUB.GaugeSyzygy.gaugeResidual | def | def gaugeResidual (A : Mat6 R) (j : Fin 6) : R\n lean4/MubGaugeSyzygy.lean | MUB.GaugeSyzygy.rowGramResidual | def | def rowGramResidual (B : Mat6 R) (m : Fin 6) : R\n lean4/MubGaugeSyzygy.lean | MUB.GaugeSyzygy.balanceResidual | def | def balanceResidual (A B : Mat6 R) (j : Fin 6) : R\n lean4/MubGaugeSyzygy.lean | MUB.GaugeSyzygy.columnBalanceResidual | def | def columnBalanceResidual (A B : Mat6 R) (k : Fin 6) : R\n lean4/MubGaugeSyzygy.lean | MUB.GaugeSyzygy.row_balance_syzygy | theorem | theorem row_balance_syzygy (A B : Mat6 R) (j : Fin 6) : balanceResidual A B j = (∑ m, star (A m j) * rowGramResidual B m) - (∑ m, ∑ k, star (A m j) * \n lean4/MubGaugeSyzygy.lean | MUB.GaugeSyzygy.balanceResidual_zero | theorem | theorem balanceResidual_zero (A B : Mat6 R) (j : Fin 6) (hrow : ∀ m, rowGramResidual B m = 0) (hB : ∀ k, gaugeResidual B k = 0) (hA : gaugeResidual A \n lean4/MubGaugeSyzygy.lean | MUB.GaugeSyzygy.column_balance_syzygy | theorem | theorem column_balance_syzygy (A B : Mat6 R) (k : Fin 6) : columnBalanceResidual A B k = (∑ m, star (rowGramResidual A m) * B m k) - (∑ m, ∑ j, gaugeR\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.firstRowPhase | def\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.firstRowDephase | def\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.firstRowPhase_unit | theorem\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.firstRowDephase_row | theorem\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.rawCandidates_firstRowDephase | theorem\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.FirstRowGauge | def\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.gaugeSolution_firstRow | theorem\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.firstRowGauge_coordinate | theorem\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.gauge_box_firstRow | theorem\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.columnRephase_gram | theorem\n code/rust/src/mub/omega_native/mub6_column_gauge_verifier.rs | ColumnGaugeReceipt | struct\n code/rust/src/mub/omega_native/mub6_column_gauge_verifier.rs | verify_column_gauge | fn\n code/rust/src/mub/omega_native/mub6_column_gauge_verifier.rs | test_column_gauge_verification | fn [test]\n code/rust/src/mub/src/omega_native/mub6_column_gauge_verifier.rs | ColumnGaugeReceipt | struct\n code/rust/src/mub/src/omega_native/mub6_column_gauge_verifier.rs | verify_column_gauge | fn\n code/rust/src/mub/src/omega_native/mub6_column_gauge_verifier.rs | test_column_gauge_verification | fn [test]\n lean4/SzollosiColumnGauge.lean | MUB.SzollosiColumnGauge.columnRephase | def\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:action (Mat,Perm,Perm,Phase,Phase)->Mat src=lean4/MubMonomialTransport.lean | MUB.MonomialTransport.action\n r:R_monomial_invariance If H and K are monomial equivalent then HasRawQuartet H iff HasRawQuartet K. src=lean4/MubMonomialTransport.lean | MUB.MonomialTransport.hasRawQuartet_iff_of_monomialEquivalent\n r:R_quartet_raw_iff A quartet of MUBs in Fin 6 exists iff some H has a raw quartet. src=lean4/MubQuartetTransportBridge.lean | MUB.MonomialTransport.exists_quartet_iff_exists_rawQuartet\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 3,
+    "neighbours": [
+      "MUB6-QUARTET-RAW-HADAMARD-TRANSPORT"
+    ],
+    "feedback": true,
+    "index_position": 687,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

@@ -1,0 +1,52 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [],
+  "relations": [
+    {
+      "id": "r_accounting",
+      "statement": "s (n+1) = s n - d n + b n with d n <= s n",
+      "hypotheses": "hd: forall n, d n <= s n; hs: forall n, s (n+1) = s n - d n + b n",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_supply_growth",
+      "statement": "Under hd, hs and hb (d n < b n for all n), s 0 + n <= s n for all n; births b are an input, not derived.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_accounting"
+      ],
+      "lean_skeleton": "theorem supply_growth (s d b : ℕ → ℕ) (hd : ∀ n, d n ≤ s n) (hs : ∀ n, s (n + 1) = s n - d n + b n) (hb : ∀ n, d n < b n) : ∀ n, s 0 + n ≤ s n := by\n  intro n\n  induction n with\n  | zero => simp\n  | succ k ih =>\n    have h1 := hs k\n    have h2 := hd k\n    have h3 := hb k\n    omega",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.supply_growth",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_nonstrict",
+      "claim": "If only d n <= b n, then s 0 + n <= s n",
+      "rejecting_invariant": "Constant supply with d n = b n gives s n = s 0, so growth by n fails for n > 0."
+    },
+    {
+      "id": "nm_no_discharge_bound",
+      "claim": "Strict births exceeding discharges gives growth without hypothesis d n <= s n",
+      "rejecting_invariant": "Natural subtraction truncates at 0, so s n - d n is not s n minus d n when d n > s n; the accounting identity is not preserved."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Births b are a host input; Genesis does not derive them.",
+    "Lean skeleton is not verified by me; claims_proved set false though the existing cited theorem is the proof.",
+    "No generators grounded: none of the KNOWN+ operations is the supply update step."
+  ]
+}

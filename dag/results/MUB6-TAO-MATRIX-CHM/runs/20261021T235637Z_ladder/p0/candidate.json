@@ -1,0 +1,175 @@
+{
+  "task_id": "MUB6-TAO-MATRIX-CHM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "dc218e8bba11ad66c521e10e220f4b3850c3b5a61e56b646030951d2318b0175",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_tao_omega",
+          "inputs": [],
+          "output": "Complex",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_taoMatrix",
+          "inputs": [],
+          "output": "Mat6C",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Confirm that IsCH6 unfolds to unit-modulus entries plus S S* = 6I.",
+        "Confirm that the entries of taoMatrix lie in {1,w,w^2}; no existing lemma is cited for this.",
+        "Isolation of S6 and disconnectedness of CHM(6) are not formalized.",
+        "near_miss nm_isolated unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_tao_omega",
+        "ordered_inputs": [],
+        "output": "Complex",
+        "arity": 0,
+        "carrier": "ℂ",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/MasterClassification.lean",
+            "declaration": "MUB.MasterClassification.tao_omega",
+            "line": 130
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/MasterClassification.lean",
+          "decl": "MUB.MasterClassification.tao_omega",
+          "kind": "def",
+          "line": 130,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_taoMatrix",
+        "ordered_inputs": [],
+        "output": "Mat6C",
+        "arity": 0,
+        "carrier": "Matrix (Fin 6) (Fin 6) ℂ",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/MasterClassification.lean",
+            "declaration": "MUB.MasterClassification.taoMatrix",
+            "line": 133
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/MasterClassification.lean",
+          "decl": "MUB.MasterClassification.taoMatrix",
+          "kind": "def",
+          "line": 133,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-D8358410C5E9",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "r_tao_isCH6: taoMatrix satisfies IsCH6, i.e. it is a complex Hadamard matrix of order 6 (unit-modulus entries and S S* = 6I, per the definition of IsCH6 which the host should check) [MUB.MasterClassification.taoMatrix_isCH6]",
+        "evidence": "numerals 6 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": "MUB.MasterClassification.taoMatrix_isCH6",
+        "confidence": "heuristic",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-TAO-MATRIX-CHM"
+      },
+      {
+        "id": "NEG-073AF31496BA",
+        "class": "statement_drift",
+        "claim_kind": "lemma",
+        "claim": "l_tao_target: taoMatrix has unit-modulus entries in {1,w,w^2} with w = tao_omega, and taoMatrix * conjTranspose taoMatrix = 6 • 1",
+        "evidence": "numerals 6 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": null,
+        "confidence": "heuristic",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-TAO-MATRIX-CHM"
+      }
+    ],
+    "open_obligations": [
+      "Confirm that IsCH6 unfolds to unit-modulus entries plus S S* = 6I.",
+      "Confirm that the entries of taoMatrix lie in {1,w,w^2}; no existing lemma is cited for this.",
+      "Isolation of S6 and disconnectedness of CHM(6) are not formalized.",
+      "near_miss nm_isolated unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_order",
+        "expr": "6*1",
+        "value": "6",
+        "host_evidence": {
+          "recomputed": "6"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,161 @@
+{
+  "task_id": "MUB6-FOURIER-DITA-FAMILY-CHM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "8414d5ea2bc2c2b700e5e4b997fba94ca91baad04ecda6f5f0adf94f3173b7ea",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_kron_2_3",
+          "inputs": [
+            "Mat2",
+            "Mat3"
+          ],
+          "output": "Mat6",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Defect value 4 of F_6 is cited, not formalized",
+        "Equivalence F_6 ~ F_2 tensor F_3 not formalized",
+        "Jaming et al. nonextension theorem for this family is not formalized",
+        "Exhaustion of the Fourier orbit by the displayed matrices is open",
+        "Composition of g_kron_2_3 into g_fourierDitaMatrix has no licensing relation, so no compositions are listed",
+        "Exact form of FourierDitaParam and FourierDitaDomain was not inspected",
+        "lemma l_target unverified: Lean elaboration disabled",
+        "near_miss nm_third_basis unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_kron_2_3",
+        "ordered_inputs": [
+          "Mat2",
+          "Mat3"
+        ],
+        "output": "Mat6",
+        "arity": 2,
+        "carrier": "Complex matrices",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/python/src/mub/conj2_tensor_product_proof.py",
+            "declaration": "build_tensor",
+            "line": 54
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/python/src/mub/conj2_tensor_product_proof.py",
+          "decl": "build_tensor",
+          "kind": "def",
+          "line": 54,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-2FC8E446EFD1",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_fourierDitaMatrix: (Phase, Phase, Phase) -> Mat6 [MUB.MasterClassification.fourierDitaMatrix]",
+        "evidence": "lean def fourierDitaMatrix has 1 explicit binders (1 with conclusion arrows); the claim says 3 (heuristic count)",
+        "decl_key": "MUB.MasterClassification.fourierDitaMatrix",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-FOURIER-DITA-FAMILY-CHM"
+      },
+      {
+        "id": "NEG-3BA3536D0B3F",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "r_isCH6: fourierDitaMatrix(a,b,c) is a complex Hadamard matrix of order 6: unit-modulus entries and H H* = 6I [MUB.MasterClassification.fourierDitaMatrix_isCH6]",
+        "evidence": "numerals 6 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": "MUB.MasterClassification.fourierDitaMatrix_isCH6",
+        "confidence": "heuristic",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-FOURIER-DITA-FAMILY-CHM"
+      }
+    ],
+    "open_obligations": [
+      "Defect value 4 of F_6 is cited, not formalized",
+      "Equivalence F_6 ~ F_2 tensor F_3 not formalized",
+      "Jaming et al. nonextension theorem for this family is not formalized",
+      "Exhaustion of the Fourier orbit by the displayed matrices is open",
+      "Composition of g_kron_2_3 into g_fourierDitaMatrix has no licensing relation, so no compositions are listed",
+      "Exact form of FourierDitaParam and FourierDitaDomain was not inspected",
+      "lemma l_target unverified: Lean elaboration disabled",
+      "near_miss nm_third_basis unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_scale",
+        "expr": "6*1",
+        "value": "6",
+        "host_evidence": {
+          "recomputed": "6"
+        }
+      },
+      {
+        "id": "n_dim",
+        "expr": "2*3",
+        "value": "6",
+        "host_evidence": {
+          "recomputed": "6"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

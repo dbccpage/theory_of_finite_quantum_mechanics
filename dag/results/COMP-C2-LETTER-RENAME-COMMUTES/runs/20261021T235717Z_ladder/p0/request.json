@@ -1,0 +1,309 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "COMP-C2-LETTER-RENAME-COMMUTES",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "3f581a74c119709bd91997d2e30f7111486b6fa034a640993fb48511f1ad01fe",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=COMP-C2-LETTER-RENAME-COMMUTES stage=P0 attempt=a3-1 in=3f581a74 guided=yes\n@TARGET [PROVED_LEAN] For every letter map f, a step or reach on words gives a step or reach of the f-image rule predicate on the f-image words; for an injective f a reach of the image comes from a reach of the original (Reach.of_map).\n@BOTTLENECK This is the word-side analogue of Genesis Step.rename and Reach.rename, not an instance of them.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/GenesisComputation.lean | GenesisComputation.Step | def | def Step (R : List α → List α → Prop) (w w' : List α) : Prop\n lean4/GenesisComputation.lean | GenesisComputation.Reach | def | def Reach (R : List α → List α → Prop) : List α → List α → Prop\n lean4/GenesisComputation.lean | GenesisComputation.mapRule | def | def mapRule (f : α → β) (R : List α → List α → Prop) : List β → List β → Prop\n lean4/GenesisComputation.lean | GenesisComputation.Step.map | theorem | theorem Step.map (f : α → β) {R : List α → List α → Prop} {w w' : List α} (h : Step R w w') : Step (mapRule f R) (w.map f) (w'.map f)\n lean4/GenesisComputation.lean | GenesisComputation.Reach.map | theorem | theorem Reach.map (f : α → β) {R : List α → List α → Prop} {w w' : List α} (h : Reach R w w') : Reach (mapRule f R) (w.map f) (w'.map f)\n lean4/GenesisComputation.lean | GenesisComputation.Step.exists_of_map | theorem | theorem Step.exists_of_map {f : α → β} (hf : Function.Injective f) {R : List α → List α → Prop} {w : List α} {z : List β} (h : Step (mapRule f R) (w.m\n lean4/GenesisComputation.lean | GenesisComputation.Reach.exists_of_map | theorem | theorem Reach.exists_of_map {f : α → β} (hf : Function.Injective f) {R : List α → List α → Prop} {w : List α} {y : List β} (h : Reach (mapRule f R) (w\n lean4/GenesisComputation.lean | GenesisComputation.Reach.of_map | theorem | theorem Reach.of_map {f : α → β} (hf : Function.Injective f) {R : List α → List α → Prop} {w w' : List α} (h : Reach (mapRule f R) (w.map f) (w'.map f\n code/rust/src/finite_probability/pfp_old_image_injective.rs | pfp_old_image_injective_law_forces_injective_and_counts_match_closed_form | fn\n code/rust/src/finite_probability/pfp_old_image_injective.rs | pfp_old_image_injective_off_image_rejection_is_not_implied | fn\n code/rust/src/finite_probability/pfp_old_image_injective.rs | pfp_old_image_injective_observations_and_obstructions_unconstrained | fn\n code/rust/src/finite_probability/pfp_old_image_injective.rs | pfp_old_image_injective_degenerate_cases_and_replay | fn\n lean4/OldImageInjective.lean | OldImageInjective.OldImageLaw | def\n lean4/OldImageInjective.lean | OldImageInjective.old_image_injective | theorem\n lean4/OldImageInjective.lean | OldImageInjective.law_card_le | theorem\n lean4/OldImageInjective.lean | OldImageInjective.law_freedom_off_image | theorem\n lean4/OldImageInjective.lean | OldImageInjective.injective_iff_exists_law | theorem\n lean4/OldImageInjective.lean | OldImageInjective.off_image_not_implied_general | theorem\n lean4/OldImageInjective.lean | OldImageInjective.off_image_not_implied_instance | theorem\n lean4/OldImageInjective.lean | OldImageInjective.ObsPreserved | def\n lean4/OldImageInjective.lean | OldImageInjective.observation_not_implied_general | theorem\n lean4/OldImageInjective.lean | OldImageInjective.observation_preserved_possible | theorem\n lean4/OldImageInjective.lean | OldImageInjective.observation_not_implied_instance | theorem\n lean4/OldImageInjective.lean | OldImageInjective.repair_not_implied_general | theorem\n lean4/OldImageInjective.lean | OldImageInjective.repair_not_implied_instance | theorem\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] wordEncodingExistsOrNot: Either there is an encoding enc of Step3 states into words such that addTerm, addAsse -- Do not present a sorry/axiom/tautology as a proof.\n [wrong_signature] OldImageInjective.OldImageLaw -- Do not state that arity/signature for OldImageInjective.OldImageLaw.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 2,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "COMP-C2-STEP3-NOT-WORD-STEP",
+      "COMP-C2-WORD-REWRITING",
+      "PG-GEN-REWRITING-COMMUTATION"
+    ],
+    "feedback": true,
+    "index_position": 703,
+    "neg_entry_ids": [
+      "NEG-A4FEDD2F81FF",
+      "NEG-33E7BFCB9D7B"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

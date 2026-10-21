@@ -1,0 +1,90 @@
+{
+  "task_id": "DFM-JARLSKOG-QUARTET-INVARIANCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b625f6e9b6c6715b4e959fefd43a8c3ee5b85c9c80073a7c057be22e10f1dfd7",
+  "candidate_sha256": "72319d762de017a240d91eab335506353c2c23e906338e8802ded387fc09e4ca",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 1,
+    "failure_rate": 0.5,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:56:22Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R1",
+        "equation_or_predicate": "Jarlskog quartet Q(vij,vkl,vil,vkj) is unchanged under rephasing by unit-norm Gaussian rationals ui, dj (dressing invariance) when normSq ui = 1 and normSq dj = 1",
+        "typing_conditions": "ui dj : GaussRat with GaussRat.normSq ui = 1 and GaussRat.normSq dj = 1",
+        "source_pins": [
+          {
+            "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+            "declaration": "RaveraDfmFiniteToContinuum.jarlskog_quartet_rephasing_dressing_invariance",
+            "line": 178
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+          "decl": "RaveraDfmFiniteToContinuum.jarlskog_quartet_rephasing_dressing_invariance",
+          "kind": "theorem",
+          "line": 178,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-008D78E77A7E",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L1: Quartet Q is invariant under rephasing of its two row-i entries by ui, with normSq ui = 1 (and column phase dj with normSq dj = 1), as in the existing theorem.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "DFM-JARLSKOG-QUARTET-INVARIANCE"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Generators not grounded: only GaussRat structure and the quartet theorem are in SRC, no typed operations listed.",
+      "Full U(1)^Ng x U(1)^Ng rephasing by composing single-vertex steps is not in Lean.",
+      "Row-rephasing of v_ij conj(v_il) and column-rephasing of v_ij conj(v_kj) have no cited declarations.",
+      "Lemma skeleton L1 is a placeholder, not the real statement; the exact theorem signature was truncated in SRC.",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

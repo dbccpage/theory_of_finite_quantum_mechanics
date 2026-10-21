@@ -1,0 +1,114 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "g_boost2",
+      "inputs": [
+        "Rat"
+      ],
+      "output": "Mat2Rat",
+      "arity": 1,
+      "carrier": "2x2 rational matrices",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.lorentzBoost2",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_dressed_metric",
+      "inputs": [
+        "Mat2Rat"
+      ],
+      "output": "Mat2Rat",
+      "arity": 1,
+      "carrier": "2x2 rational matrices",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.dressedSimplicialMetric2",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_eta2",
+      "inputs": [],
+      "output": "Mat2Rat",
+      "arity": 0,
+      "carrier": "2x2 rational matrices",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.minkowskiEta2",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_boost_invariance",
+      "statement": "det Lambda(beta)=1, Lambda(beta)Lambda(-beta)=I, Lambda^T eta Lambda = eta",
+      "hypotheses": "beta rational, 1 - beta^2 != 0",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.lorentz_boost_preserves_minkowski_and_det_one",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_dressed_invariance",
+      "statement": "dressed metric of Lambda(-beta) e equals dressed metric of e",
+      "hypotheses": "e a 2x2 rational frame, beta rational, 1 - beta^2 != 0",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.cartan_regge_tetrad_dressed_metric_invariance",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "g_dressed_metric",
+      "slot": 0,
+      "inner": "g_boost2",
+      "licensing_relation": "none: g_boost2 outputs Mat2Rat via matrix multiplication with a frame e, but multiplication is not a listed generator, so no valid composition is claimed"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "l_target",
+      "statement": "For rational beta with 1-beta^2!=0: det Lambda=1, Lambda(beta)Lambda(-beta)=I, Lambda^T eta Lambda=eta, and e^T eta e is unchanged under e -> Lambda(-beta) e",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_boost_invariance",
+        "r_dressed_invariance"
+      ],
+      "lean_skeleton": "theorem target (e : Mat2Rat) (beta : Rat) (hd : 1 - beta ^ 2 ≠ 0) : True := by\n  have h1 := RaveraDfmFiniteToContinuum.lorentz_boost_preserves_minkowski_and_det_one beta hd\n  have h2 := RaveraDfmFiniteToContinuum.cartan_regge_tetrad_dressed_metric_invariance e beta hd\n  trivial",
+      "claims_proved": true,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_no_hyp",
+      "claim": "Lambda(beta) is defined and invertible for every rational beta including beta=+-1",
+      "rejecting_invariant": "1 - beta^2 = 0 makes the gamma factor undefined and det/inverse identities fail"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_det_beta_half",
+      "expr": "(1/(1-1/4))*(1 - 1/4)",
+      "value": "1"
+    }
+  ],
+  "open_obligations": [
+    "4x4 statements not in Lean",
+    "velocity-addition group law not in Lean",
+    "general SO+(1,3;Q) frames not in Lean",
+    "need to confirm the exact Lean statement of the cited theorems before relying on the skeleton",
+    "composition of dressed metric with boost needs a matrix-multiplication generator, which is not in SRC"
+  ]
+}

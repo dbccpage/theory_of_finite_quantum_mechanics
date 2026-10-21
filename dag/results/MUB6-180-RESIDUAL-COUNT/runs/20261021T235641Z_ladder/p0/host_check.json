@@ -1,0 +1,82 @@
+{
+  "task_id": "MUB6-180-RESIDUAL-COUNT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b02ac5d4516c2a126d08b2c850a3061548c392974b698d0e96e03892cfe8a8cb",
+  "candidate_sha256": "087a1dfebaacf66c7f59af8fe243ea0a27bc4c6c9864f54ec20500d7485f2c32",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 5,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:56:50Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "The unitarity part of EquationIndex (72 real and imaginary components of U*U - I) has no cited lemma, so the 108 + 72 split is not grounded in Lean.",
+      "The Lean definition of EquationIndex was not given, so the equality of its cardinality with 180 is cited but not unfolded here.",
+      "No generators or relations are grounded in the source, so none are listed.",
+      "lemma L_total_equation_count unverified: Lean elaboration disabled",
+      "lemma L_coordinate_count unverified: Lean elaboration disabled",
+      "lemma L_mu_count unverified: Lean elaboration disabled",
+      "near_miss NM_source_split unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_rank unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_total",
+        "expr": "108 + 72",
+        "value": "180",
+        "host_evidence": {
+          "recomputed": "180"
+        }
+      },
+      {
+        "id": "N_mu",
+        "expr": "3*6*6",
+        "value": "108",
+        "host_evidence": {
+          "recomputed": "108"
+        }
+      },
+      {
+        "id": "N_per_basis",
+        "expr": "108/3",
+        "value": "36",
+        "host_evidence": {
+          "recomputed": "36"
+        }
+      },
+      {
+        "id": "N_unitarity",
+        "expr": "2*6*6",
+        "value": "72",
+        "host_evidence": {
+          "recomputed": "72"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 4 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

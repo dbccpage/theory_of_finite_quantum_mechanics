@@ -1,0 +1,125 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "g_map_step",
+      "inputs": [
+        "Step R w w'"
+      ],
+      "output": "Step (mapRule f R) (w.map f) (w'.map f)",
+      "arity": 1,
+      "carrier": "List α words, letter map f : α → β",
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.Step.map",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_map_reach",
+      "inputs": [
+        "Reach R w w'"
+      ],
+      "output": "Reach (mapRule f R) (w.map f) (w'.map f)",
+      "arity": 1,
+      "carrier": "List α words, letter map f : α → β",
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.Reach.map",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_of_map_reach",
+      "inputs": [
+        "Reach (mapRule f R) (w.map f) (w'.map f)"
+      ],
+      "output": "Reach R w w'",
+      "arity": 1,
+      "carrier": "List α words, injective f",
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.Reach.of_map",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_injective",
+      "statement": "f is injective, so map f on words is injective and a mapped step lifts to a source step",
+      "hypotheses": "Function.Injective f",
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.Step.exists_of_map",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_reach_lift",
+      "statement": "For injective f, a reach of the image rule from w.map f lifts to a reach in R from w to a word whose image is the endpoint",
+      "hypotheses": "Function.Injective f",
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.Reach.exists_of_map",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_step_map",
+      "statement": "For every letter map f, Step R w w' implies Step (mapRule f R) (w.map f) (w'.map f)",
+      "relation_to_target": "implies",
+      "depends_on": [],
+      "lean_skeleton": "example {α β : Type*} (f : α → β) {R : List α → List α → Prop} {w w' : List α} (h : GenesisComputation.Step R w w') : GenesisComputation.Step (GenesisComputation.mapRule f R) (w.map f) (w'.map f) := GenesisComputation.Step.map f h",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.Step.map",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "l_reach_map",
+      "statement": "For every letter map f, Reach R w w' implies Reach (mapRule f R) (w.map f) (w'.map f)",
+      "relation_to_target": "implies",
+      "depends_on": [],
+      "lean_skeleton": "example {α β : Type*} (f : α → β) {R : List α → List α → Prop} {w w' : List α} (h : GenesisComputation.Reach R w w') : GenesisComputation.Reach (GenesisComputation.mapRule f R) (w.map f) (w'.map f) := GenesisComputation.Reach.map f h",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.Reach.map",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "l_of_map",
+      "statement": "For injective f, Reach (mapRule f R) (w.map f) (w'.map f) implies Reach R w w'",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "l_reach_map"
+      ],
+      "lean_skeleton": "example {α β : Type*} {f : α → β} (hf : Function.Injective f) {R : List α → List α → Prop} {w w' : List α} (h : GenesisComputation.Reach (GenesisComputation.mapRule f R) (w.map f) (w'.map f)) : GenesisComputation.Reach R w w' := GenesisComputation.Reach.of_map hf h",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.Reach.of_map",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_noninjective",
+      "claim": "For non-injective f, a reach of the image rule between mapped words lifts to a reach of R",
+      "rejecting_invariant": "Two distinct letters identified by f can make the image rule step where R has none, so injectivity is needed"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Host must elaborate skeletons and confirm implicit-argument forms of the cited theorems",
+    "No Genesis Step.rename or Reach.rename citation was given in SRC, so the word-side versus rename distinction is not grounded"
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "COMP-C3-BOUNDED-REACH-DECIDABLE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "6216e04861e12cd7897bdb84e5fb3617e2333e400be448b8bef28fdc9fbc0fe7",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=COMP-C3-BOUNDED-REACH-DECIDABLE stage=P0 attempt=a3-1 in=6216e048 guided=yes\n@TARGET [PROVED_LEAN] For k marks, a finite rule list and a length bound L, ReachB is decided by an explicit closure of at most card(wordsLE L) rounds (decideReachB_iff); the configuration space has exactly 1 + k + ... + k^L words (card_wordsLE); Step on a finite rule list is decidable (mem_succList).\n@BOTTLENECK This decides rewriting reachability in a declared bound; the decision procedure over all Genesis contexts of the sealed regime asked by TFQ-0497 is not built (COMP-C3c).\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/GenesisComputation.lean | GenesisComputation.Step | def | def Step (R : List α → List α → Prop) (w w' : List α) : Prop\n lean4/GenesisComputation.lean | GenesisComputation.reachN | def | def reachN (s : β → Finset β) : ℕ → β → Finset β | 0, a =>\n lean4/GenesisComputation.lean | GenesisComputation.rtg_iff_mem_reachN_card | theorem | theorem rtg_iff_mem_reachN_card (s : β → Finset β) (U : Finset β) (hU : ∀ x ∈ U, s x ⊆ U) {a : β} (ha : a ∈ U) (b : β) : Relation.ReflTransGen (fun x \n lean4/GenesisComputation.lean | GenesisComputation.wordsLE | def | def wordsLE (α : Type*) [Fintype α] [DecidableEq α] : ℕ → Finset (List α) | 0 =>\n lean4/GenesisComputation.lean | GenesisComputation.card_wordsLE | theorem | theorem card_wordsLE (n : ℕ) : (wordsLE α n).card = ∑ i ∈ Finset.range (n + 1), Fintype.card α ^ i\n lean4/GenesisComputation.lean | GenesisComputation.RuleList | abbrev | abbrev RuleList (α : Type*)\n lean4/GenesisComputation.lean | GenesisComputation.inRules | def | def inRules (RL : RuleList α) : List α → List α → Prop\n lean4/GenesisComputation.lean | GenesisComputation.succList | def | def succList (RL : RuleList α) (w : List α) : List (List α)\n lean4/GenesisComputation.lean | GenesisComputation.mem_succList | theorem\n lean4/GenesisComputation.lean | GenesisComputation.sB | def\n lean4/GenesisComputation.lean | GenesisComputation.StepB | def\n lean4/GenesisComputation.lean | GenesisComputation.ReachB | def\n lean4/GenesisComputation.lean | GenesisComputation.reachSet | def\n lean4/GenesisComputation.lean | GenesisComputation.reachB_iff | theorem\n lean4/GenesisComputation.lean | GenesisComputation.decideReachB | def\n lean4/GenesisComputation.lean | GenesisComputation.decideReachB_iff | theorem\n lean4/GenesisComputation.lean | GenesisComputation.reachSet_card_le | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:R1 UnarySep r i j holds iff some unary hole-only form f in range of forms length has arity 1 and instances distin src=lean4/GenesisComputation.lean | GenesisComputation.unarySep_iff\n r:R2 PairwiseSeparated r iff for all distinct i j in range r.data, UnarySep r i j src=lean4/GenesisComputation.lean | GenesisComputation.pairwiseSeparated_iff\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] L-bounded-scope: Every FORCED verdict in Challenge 4 other than the element count, irreversibility and two-nes -- Do not present a sorry/axiom/tautology as a proof.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 17,
+    "known_neg_injected": 1,
+    "known_pos_injected": 2,
+    "neighbours": [
+      "COMP-C2-WORD-REWRITING",
+      "COMP-C3-CONTEXT-DECISION-PARTIAL",
+      "COMP-C3-VERDICT-SOUND",
+      "PGW-RUNS-PAST-DECLARED-BOUNDS"
+    ],
+    "feedback": true,
+    "index_position": 705,
+    "neg_entry_ids": [
+      "NEG-4FAE1D31CD91"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

@@ -1,0 +1,325 @@
+{
+  "task_id": "MUB6-RECTANGULAR-KRAWCZYK-SOUNDNESS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c20cbe944777e7337db0fb95a1366418afc87e98f4acddff7e8d9a06367b9a8b",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_listGradient",
+          "inputs": [
+            "BoxMap",
+            "CodedTermList",
+            "Nat"
+          ],
+          "output": "Bounds",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_secant",
+          "equation_or_predicate": "Coded list value at x equals value at centre plus derivative-weighted secant term, for quadratic shaped rows",
+          "typing_conditions": "each term has length at most 2 and indices below n",
+          "source_pins": [
+            {
+              "path": "lean4/RectangularQuadraticExclusion.lean",
+              "declaration": "MUB.RectangularQuadraticExclusion.list_secant_identity",
+              "line": 133
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/RectangularQuadraticExclusion.lean",
+            "decl": "MUB.RectangularQuadraticExclusion.list_secant_identity",
+            "kind": "theorem",
+            "line": 133,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_root_in_image",
+          "equation_or_predicate": "every zero in the box lies in the Krawczyk image",
+          "typing_conditions": "box contains rational centre, any rational preconditioner, quadratic coded rows",
+          "source_pins": [
+            {
+              "path": "lean4/RectangularQuadraticExclusion.lean",
+              "declaration": "MUB.RectangularQuadraticExclusion.root_in_image",
+              "line": 198
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/RectangularQuadraticExclusion.lean",
+            "decl": "MUB.RectangularQuadraticExclusion.root_in_image",
+            "kind": "theorem",
+            "line": 198,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_excl_sound",
+          "equation_or_predicate": "successful strict exclusionCheck implies no zero in the box",
+          "typing_conditions": "same as root_in_image plus exclusionCheck = true",
+          "source_pins": [
+            {
+              "path": "lean4/RectangularQuadraticExclusion.lean",
+              "declaration": "MUB.RectangularQuadraticExclusion.exclusion_sound",
+              "line": 239
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/RectangularQuadraticExclusion.lean",
+            "decl": "MUB.RectangularQuadraticExclusion.exclusion_sound",
+            "kind": "theorem",
+            "line": 239,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Exact statements and signatures of image, root_in_image, exclusion_sound are truncated; confirm hypotheses before the host elaborates",
+        "No Lean proofs written here; skeletons are placeholders and must be replaced by the cited theorem statements",
+        "Compositions not grounded since typed licensing relations are unverified",
+        "No successful check on a quartet domain supplied",
+        "near_miss nm_inclusion_root unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_listGradient",
+        "ordered_inputs": [
+          "BoxMap",
+          "CodedTermList",
+          "Nat"
+        ],
+        "output": "Bounds",
+        "arity": 3,
+        "carrier": "interval gradient bounds of coded term list",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/RectangularQuadraticExclusion.lean",
+            "declaration": "MUB.RectangularQuadraticExclusion.listGradient",
+            "line": 111
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/RectangularQuadraticExclusion.lean",
+          "decl": "MUB.RectangularQuadraticExclusion.listGradient",
+          "kind": "def",
+          "line": 111,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_secant",
+        "equation_or_predicate": "Coded list value at x equals value at centre plus derivative-weighted secant term, for quadratic shaped rows",
+        "typing_conditions": "each term has length at most 2 and indices below n",
+        "source_pins": [
+          {
+            "path": "lean4/RectangularQuadraticExclusion.lean",
+            "declaration": "MUB.RectangularQuadraticExclusion.list_secant_identity",
+            "line": 133
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/RectangularQuadraticExclusion.lean",
+          "decl": "MUB.RectangularQuadraticExclusion.list_secant_identity",
+          "kind": "theorem",
+          "line": 133,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_root_in_image",
+        "equation_or_predicate": "every zero in the box lies in the Krawczyk image",
+        "typing_conditions": "box contains rational centre, any rational preconditioner, quadratic coded rows",
+        "source_pins": [
+          {
+            "path": "lean4/RectangularQuadraticExclusion.lean",
+            "declaration": "MUB.RectangularQuadraticExclusion.root_in_image",
+            "line": 198
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/RectangularQuadraticExclusion.lean",
+          "decl": "MUB.RectangularQuadraticExclusion.root_in_image",
+          "kind": "theorem",
+          "line": 198,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_excl_sound",
+        "equation_or_predicate": "successful strict exclusionCheck implies no zero in the box",
+        "typing_conditions": "same as root_in_image plus exclusionCheck = true",
+        "source_pins": [
+          {
+            "path": "lean4/RectangularQuadraticExclusion.lean",
+            "declaration": "MUB.RectangularQuadraticExclusion.exclusion_sound",
+            "line": 239
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/RectangularQuadraticExclusion.lean",
+          "decl": "MUB.RectangularQuadraticExclusion.exclusion_sound",
+          "kind": "theorem",
+          "line": 239,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-A268A547685E",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_root_in_image: Every zero in the box lies in the rectangular Krawczyk image",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-RECTANGULAR-KRAWCZYK-SOUNDNESS"
+      },
+      {
+        "id": "NEG-C1B18F1C1526",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_exclusion_sound: A successful strict coordinate-separation check excludes all zeros in the box",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-RECTANGULAR-KRAWCZYK-SOUNDNESS"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-574640FF4FF7",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_midpoint: (Rat, Rat) -> Real [MUB.RectangularQuadraticExclusion.midpoint]",
+        "evidence": "lean def midpoint has 3 explicit binders (3 with conclusion arrows); the claim says 2 (heuristic count)",
+        "decl_key": "MUB.RectangularQuadraticExclusion.midpoint",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-RECTANGULAR-KRAWCZYK-SOUNDNESS"
+      },
+      {
+        "id": "NEG-5D30C3E762A1",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_image: (Box, Centre, Preconditioner, Rows) -> KrawczykImage [MUB.RectangularQuadraticExclusion.image]",
+        "evidence": "lean def image has 7 explicit binders (7 with conclusion arrows); the claim says 4 (heuristic count)",
+        "decl_key": "MUB.RectangularQuadraticExclusion.image",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-RECTANGULAR-KRAWCZYK-SOUNDNESS"
+      }
+    ],
+    "open_obligations": [
+      "Exact statements and signatures of image, root_in_image, exclusion_sound are truncated; confirm hypotheses before the host elaborates",
+      "No Lean proofs written here; skeletons are placeholders and must be replaced by the cited theorem statements",
+      "Compositions not grounded since typed licensing relations are unverified",
+      "No successful check on a quartet domain supplied",
+      "near_miss nm_inclusion_root unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

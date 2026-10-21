@@ -1,0 +1,153 @@
+{
+  "task_id": "COMP-C2-ONE-HOLE-CONTEXTS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "cf2ff0537b749c8ebbc82574982a7303218901df4a523769dc14b2b767ea7200",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_ofSplit\",\"inputs\":[\"LetterList\",\"LetterList\"],\"output\":\"GCtx\",\"arity\":2,\"carrier\":\"GCtx α\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.ofSplit\",\"status\":\"existing\"}},{\"id\":\"g_plug1\",\"inputs\":[\"Letter\",\"GCtx\"],\"output\":\"LetterList\",\"arity\":2,\"carrier\":\"List α\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.plug1\",\"status\":\"existing\"}},{\"id\":\"g_holes\",\"inputs\":[\"GCtx\"],\"output\":\"Nat\",\"arity\":1,\"carrier\":\"ℕ\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.holes\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"R_plug1_ofSplit\",\"statement\":\"plug1 d (ofSplit u v) = u ++ d :: v\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.plug1_ofSplit\",\"status\":\"existing\"}},{\"id\":\"R_oneHole_iff_split\",\"statement\":\"holes c = 1 iff exists u v, c = ofSplit u v\",\"hypotheses\":\"none; exact statement not listed in SRC, only the name\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.oneHole_iff_split\",\"status\":\"existing\"}},{\"id\":\"R_ofSplit_injective\",\"statement\":\"ofSplit u v = ofSplit u' v' implies u = u' and v = v' (uniqueness of the pair)\",\"hypotheses\":\"none; exact form not listed in SRC\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.ofSplit_injective\",\"status\":\"existing\"}}],\"compositions\":[{\"outer\":\"g_plug1\",\"slot\":1,\"inner\":\"g_ofSplit\",\"licensing_relation\":\"R_plug1_ofSplit\"}],\"lemmas\":[{\"id\":\"L_plug_ofSplit\",\"statement\":\"plug1 d (ofSplit u v) = u ++ d :: v\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R_plug1_ofSplit\"],\"lean_skeleton\":\"example {α : Type*} (d : α) (u v : List α) : GenesisComputation.plug1 d (GenesisComputation.ofSplit u v) = u ++ d :: v := GenesisComputation.plug1_ofSplit d u v\",\"claims_proved\":true,\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.plug1_ofSplit\",\"status\":\"existing\"}},{\"id\":\"L_arity_count\",\"statement\":\"one-hole contexts of arity a correspond to pairs (u,v) of word contexts with |u|+|v| = a-1\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R_oneHole_iff_split\",\"R_ofSplit_injective\"],\"lean_skeleton\":\"theorem oneHole_arity (a : ℕ) : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM_all_holes\",\"claim\":\"Genesis plug1 equals word-rule plugging for contexts with several holes\",\"rejecting_invariant\":\"plug1 puts the same datum in every hole, so output length is |slots| minus holes plus holes, and it is not a single-hole word substitution; only holes = 1 matches Ctx.plug\"}],\"numeric_claims\":[{\"id\":\"N_onehole\",\"expr\":\"3*2^2\",\"value\":\"12\"},{\"id\":\"N_all\",\"expr\":\"3^3 - 2^3\",\"value\":\"19\"}],\"open_obligations\":[\"Exact Lean statements of holes_ofSplit, oneHole_iff_split, ofSplit_injective are not shown; confirm forms.\",\"Formalize the |u|+|v| = a-1 arity count; not grounded.\",\"Sealed regime contexts with forms and rules not modelled.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_ofSplit",
+        "inputs": [
+          "LetterList",
+          "LetterList"
+        ],
+        "output": "GCtx",
+        "arity": 2,
+        "carrier": "GCtx α",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.ofSplit",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_plug1",
+        "inputs": [
+          "Letter",
+          "GCtx"
+        ],
+        "output": "LetterList",
+        "arity": 2,
+        "carrier": "List α",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.plug1",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_holes",
+        "inputs": [
+          "GCtx"
+        ],
+        "output": "Nat",
+        "arity": 1,
+        "carrier": "ℕ",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.holes",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R_plug1_ofSplit",
+        "statement": "plug1 d (ofSplit u v) = u ++ d :: v",
+        "hypotheses": "none",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.plug1_ofSplit",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_oneHole_iff_split",
+        "statement": "holes c = 1 iff exists u v, c = ofSplit u v",
+        "hypotheses": "none; exact statement not listed in SRC, only the name",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.oneHole_iff_split",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_ofSplit_injective",
+        "statement": "ofSplit u v = ofSplit u' v' implies u = u' and v = v' (uniqueness of the pair)",
+        "hypotheses": "none; exact form not listed in SRC",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.ofSplit_injective",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "g_plug1",
+        "slot": 1,
+        "inner": "g_ofSplit",
+        "licensing_relation": "R_plug1_ofSplit"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "L_plug_ofSplit",
+        "statement": "plug1 d (ofSplit u v) = u ++ d :: v",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R_plug1_ofSplit"
+        ],
+        "lean_skeleton": "example {α : Type*} (d : α) (u v : List α) : GenesisComputation.plug1 d (GenesisComputation.ofSplit u v) = u ++ d :: v := GenesisComputation.plug1_ofSplit d u v",
+        "claims_proved": true,
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.plug1_ofSplit",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "L_arity_count",
+        "statement": "one-hole contexts of arity a correspond to pairs (u,v) of word contexts with |u|+|v| = a-1",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R_oneHole_iff_split",
+          "R_ofSplit_injective"
+        ],
+        "lean_skeleton": "theorem oneHole_arity (a : ℕ) : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_all_holes",
+        "claim": "Genesis plug1 equals word-rule plugging for contexts with several holes",
+        "rejecting_invariant": "plug1 puts the same datum in every hole, so output length is |slots| minus holes plus holes, and it is not a single-hole word substitution; only holes = 1 matches Ctx.plug"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "N_onehole",
+        "expr": "3*2^2",
+        "value": "12"
+      },
+      {
+        "id": "N_all",
+        "expr": "3^3 - 2^3",
+        "value": "19"
+      }
+    ],
+    "open_obligations": [
+      "Exact Lean statements of holes_ofSplit, oneHole_iff_split, ofSplit_injective are not shown; confirm forms.",
+      "Formalize the |u|+|v| = a-1 arity count; not grounded.",
+      "Sealed regime contexts with forms and rules not modelled."
+    ]
+  }
+}

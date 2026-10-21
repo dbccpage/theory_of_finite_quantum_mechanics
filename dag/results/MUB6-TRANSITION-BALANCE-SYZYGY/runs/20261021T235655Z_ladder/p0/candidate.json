@@ -1,0 +1,280 @@
+{
+  "task_id": "MUB6-TRANSITION-BALANCE-SYZYGY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c85579a67ad886f512a7780d5eae8848934b3086e5ec9d17451db4d52f692b84",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "rel_row_syzygy",
+          "equation_or_predicate": "balanceResidual A B j equals sum_m star(A m j)*rowGramResidual B m minus a combination of gauge residuals (full form truncated in source listing)",
+          "typing_conditions": "A B : Mat6 R over commutative star ring, j : Fin 6",
+          "source_pins": [
+            {
+              "path": "lean4/MubGaugeSyzygy.lean",
+              "declaration": "MUB.GaugeSyzygy.row_balance_syzygy",
+              "line": 33
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/MubGaugeSyzygy.lean",
+            "decl": "MUB.GaugeSyzygy.row_balance_syzygy",
+            "kind": "theorem",
+            "line": 33,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "rel_col_syzygy",
+          "equation_or_predicate": "columnBalanceResidual A B k equals sum_m star(rowGramResidual A m)*B m k minus a combination of gauge residuals (full form truncated in source listing)",
+          "typing_conditions": "A B : Mat6 R, k : Fin 6",
+          "source_pins": [
+            {
+              "path": "lean4/MubGaugeSyzygy.lean",
+              "declaration": "MUB.GaugeSyzygy.column_balance_syzygy",
+              "line": 82
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/MubGaugeSyzygy.lean",
+            "decl": "MUB.GaugeSyzygy.column_balance_syzygy",
+            "kind": "theorem",
+            "line": 82,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "rel_balance_zero",
+          "equation_or_predicate": "If all row Gram residuals of B vanish and gauge residuals of A and B vanish then balanceResidual A B j = 0",
+          "typing_conditions": "hrow: forall m, rowGramResidual B m = 0; hB: forall k, gaugeResidual B k = 0; hA: gaugeResidual A ... = 0 (truncated)",
+          "source_pins": [
+            {
+              "path": "lean4/MubGaugeSyzygy.lean",
+              "declaration": "MUB.GaugeSyzygy.balanceResidual_zero",
+              "line": 70
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/MubGaugeSyzygy.lean",
+            "decl": "MUB.GaugeSyzygy.balanceResidual_zero",
+            "kind": "theorem",
+            "line": 70,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Full statements of the syzygy theorems are truncated in the listing; the exact forms need host confirmation",
+        "No explicit composition licensed; the rules need a typed colour match",
+        "Column sums of W equal six on solutions: the final corollary is not directly listed",
+        "lemma L_row_syzygy unverified: Lean elaboration disabled",
+        "lemma L_col_syzygy unverified: Lean elaboration disabled",
+        "near_miss nm_no_rank unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_row_syzygy",
+        "equation_or_predicate": "balanceResidual A B j equals sum_m star(A m j)*rowGramResidual B m minus a combination of gauge residuals (full form truncated in source listing)",
+        "typing_conditions": "A B : Mat6 R over commutative star ring, j : Fin 6",
+        "source_pins": [
+          {
+            "path": "lean4/MubGaugeSyzygy.lean",
+            "declaration": "MUB.GaugeSyzygy.row_balance_syzygy",
+            "line": 33
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubGaugeSyzygy.lean",
+          "decl": "MUB.GaugeSyzygy.row_balance_syzygy",
+          "kind": "theorem",
+          "line": 33,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "rel_col_syzygy",
+        "equation_or_predicate": "columnBalanceResidual A B k equals sum_m star(rowGramResidual A m)*B m k minus a combination of gauge residuals (full form truncated in source listing)",
+        "typing_conditions": "A B : Mat6 R, k : Fin 6",
+        "source_pins": [
+          {
+            "path": "lean4/MubGaugeSyzygy.lean",
+            "declaration": "MUB.GaugeSyzygy.column_balance_syzygy",
+            "line": 82
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubGaugeSyzygy.lean",
+          "decl": "MUB.GaugeSyzygy.column_balance_syzygy",
+          "kind": "theorem",
+          "line": 82,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "rel_balance_zero",
+        "equation_or_predicate": "If all row Gram residuals of B vanish and gauge residuals of A and B vanish then balanceResidual A B j = 0",
+        "typing_conditions": "hrow: forall m, rowGramResidual B m = 0; hB: forall k, gaugeResidual B k = 0; hA: gaugeResidual A ... = 0 (truncated)",
+        "source_pins": [
+          {
+            "path": "lean4/MubGaugeSyzygy.lean",
+            "declaration": "MUB.GaugeSyzygy.balanceResidual_zero",
+            "line": 70
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubGaugeSyzygy.lean",
+          "decl": "MUB.GaugeSyzygy.balanceResidual_zero",
+          "kind": "theorem",
+          "line": 70,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-DC0B2A2C82EF",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_gaugeResidual: (Mat6) -> Ring [MUB.GaugeSyzygy.gaugeResidual]",
+        "evidence": "lean def gaugeResidual has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "MUB.GaugeSyzygy.gaugeResidual",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-TRANSITION-BALANCE-SYZYGY"
+      },
+      {
+        "id": "NEG-D9016B8DBA66",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_rowGramResidual: (Mat6) -> Ring [MUB.GaugeSyzygy.rowGramResidual]",
+        "evidence": "lean def rowGramResidual has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "MUB.GaugeSyzygy.rowGramResidual",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-TRANSITION-BALANCE-SYZYGY"
+      },
+      {
+        "id": "NEG-B7854765A3E2",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_balanceResidual: (Mat6, Mat6) -> Ring [MUB.GaugeSyzygy.balanceResidual]",
+        "evidence": "lean def balanceResidual has 3 explicit binders (3 with conclusion arrows); the claim says 2 (heuristic count)",
+        "decl_key": "MUB.GaugeSyzygy.balanceResidual",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-TRANSITION-BALANCE-SYZYGY"
+      },
+      {
+        "id": "NEG-2DEE0A0BBCF1",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_columnBalanceResidual: (Mat6, Mat6) -> Ring [MUB.GaugeSyzygy.columnBalanceResidual]",
+        "evidence": "lean def columnBalanceResidual has 3 explicit binders (3 with conclusion arrows); the claim says 2 (heuristic count)",
+        "decl_key": "MUB.GaugeSyzygy.columnBalanceResidual",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-TRANSITION-BALANCE-SYZYGY"
+      }
+    ],
+    "open_obligations": [
+      "Full statements of the syzygy theorems are truncated in the listing; the exact forms need host confirmation",
+      "No explicit composition licensed; the rules need a typed colour match",
+      "Column sums of W equal six on solutions: the final corollary is not directly listed",
+      "lemma L_row_syzygy unverified: Lean elaboration disabled",
+      "lemma L_col_syzygy unverified: Lean elaboration disabled",
+      "near_miss nm_no_rank unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,47 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "Two-generation orthogonality of rows: v11*conj(v21) + v12*conj(v22) = 0 implies the quartet v11*v22*conj(v12)*conj(v21) has imaginary part 0 and real part -|v12|^2*|v22|^2",
+      "hypotheses": "v11 v12 v21 v22 are GaussRat; horth: add (mul v11 (conj v21)) (mul v12 (conj v22)) = 0",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.two_gen_cabibbo_artificial_cp_phase_zero",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "For Gaussian rationals with v11 conj(v21) + v12 conj(v22) = 0, the quartet v11 v22 conj(v12) conj(v21) has imaginary part 0 and real part -|v12|^2 |v22|^2.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R1"
+      ],
+      "lean_skeleton": "-- cited existing theorem RaveraDfmFiniteToContinuum.two_gen_cabibbo_artificial_cp_phase_zero; no new proof needed",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.two_gen_cabibbo_artificial_cp_phase_zero",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "N1",
+      "claim": "Quartet imaginary part is zero without the orthogonality hypothesis v11 conj(v21) + v12 conj(v22) = 0",
+      "rejecting_invariant": "Orthogonality is required; for arbitrary GaussRat entries the quartet can have nonzero imaginary part, so the claim is not hypothesis-free."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No generators grounded: SRC lists only a structure and a theorem, no operation declarations.",
+    "Physical reading needs full unitary 2x2 hypothesis set and rephasing quotient, not in SRC.",
+    "Exact signature tail of the cited theorem is truncated; host should confirm the conclusion form."
+  ]
+}

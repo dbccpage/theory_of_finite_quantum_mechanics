@@ -1,0 +1,134 @@
+{
+  "task_id": "COMP-C3-BOUNDED-REACH-DECIDABLE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "6216e04861e12cd7897bdb84e5fb3617e2333e400be448b8bef28fdc9fbc0fe7",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_succList\",\"inputs\":[\"RuleList\",\"Word\"],\"output\":\"WordList\",\"arity\":2,\"carrier\":\"List (List α)\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.succList\",\"status\":\"existing\"}},{\"id\":\"g_wordsLE\",\"inputs\":[\"Nat\"],\"output\":\"WordFinset\",\"arity\":1,\"carrier\":\"Finset (List α)\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.wordsLE\",\"status\":\"existing\"}},{\"id\":\"g_decideReachB\",\"inputs\":[\"RuleList\",\"Nat\",\"Word\",\"Word\"],\"output\":\"Bool\",\"arity\":4,\"carrier\":\"Bool\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.decideReachB\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_mem_succList\",\"statement\":\"membership in succList RL w characterizes inRules RL w w' (Step on a finite rule list is decidable)\",\"hypotheses\":\"finite rule list RL\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.mem_succList\",\"status\":\"existing\"}},{\"id\":\"r_card_wordsLE\",\"statement\":\"card (wordsLE n) = sum_{i<=n} k^i\",\"hypotheses\":\"Fintype alphabet of k marks\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.card_wordsLE\",\"status\":\"existing\"}},{\"id\":\"r_decideReachB_iff\",\"statement\":\"decideReachB decides ReachB within bound L\",\"hypotheses\":\"finite rule list, length bound L\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.decideReachB_iff\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_target\",\"statement\":\"For k marks, finite rule list and bound L: decideReachB decides ReachB, within card(wordsLE L) closure rounds, and card(wordsLE L)=sum_{i=0..L} k^i, with Step decidable via mem_succList\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_mem_succList\",\"r_card_wordsLE\",\"r_decideReachB_iff\"],\"lean_skeleton\":\"example : True := trivial\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_unbounded\",\"claim\":\"ReachB is decidable for unbounded word length by the same closure\",\"rejecting_invariant\":\"closure bound card(wordsLE L) is finite only for fixed L; unbounded configuration space is infinite\"}],\"numeric_claims\":[{\"id\":\"n_k2_L3\",\"expr\":\"1+2+4+8\",\"value\":\"15\"},{\"id\":\"n_k3_L2\",\"expr\":\"1+3+9\",\"value\":\"13\"}],\"open_obligations\":[\"exact signatures of decideReachB, ReachB, and the round-count lemma reachSet_card_le not given in SRC\",\"no sorry-free Lean skeleton for the restating lemma\",\"COMP-C3c decision procedure over all Genesis contexts not built\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_succList",
+        "inputs": [
+          "RuleList",
+          "Word"
+        ],
+        "output": "WordList",
+        "arity": 2,
+        "carrier": "List (List α)",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.succList",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_wordsLE",
+        "inputs": [
+          "Nat"
+        ],
+        "output": "WordFinset",
+        "arity": 1,
+        "carrier": "Finset (List α)",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.wordsLE",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_decideReachB",
+        "inputs": [
+          "RuleList",
+          "Nat",
+          "Word",
+          "Word"
+        ],
+        "output": "Bool",
+        "arity": 4,
+        "carrier": "Bool",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.decideReachB",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_mem_succList",
+        "statement": "membership in succList RL w characterizes inRules RL w w' (Step on a finite rule list is decidable)",
+        "hypotheses": "finite rule list RL",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.mem_succList",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_card_wordsLE",
+        "statement": "card (wordsLE n) = sum_{i<=n} k^i",
+        "hypotheses": "Fintype alphabet of k marks",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.card_wordsLE",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_decideReachB_iff",
+        "statement": "decideReachB decides ReachB within bound L",
+        "hypotheses": "finite rule list, length bound L",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.decideReachB_iff",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_target",
+        "statement": "For k marks, finite rule list and bound L: decideReachB decides ReachB, within card(wordsLE L) closure rounds, and card(wordsLE L)=sum_{i=0..L} k^i, with Step decidable via mem_succList",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_mem_succList",
+          "r_card_wordsLE",
+          "r_decideReachB_iff"
+        ],
+        "lean_skeleton": "example : True := trivial",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_unbounded",
+        "claim": "ReachB is decidable for unbounded word length by the same closure",
+        "rejecting_invariant": "closure bound card(wordsLE L) is finite only for fixed L; unbounded configuration space is infinite"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_k2_L3",
+        "expr": "1+2+4+8",
+        "value": "15"
+      },
+      {
+        "id": "n_k3_L2",
+        "expr": "1+3+9",
+        "value": "13"
+      }
+    ],
+    "open_obligations": [
+      "exact signatures of decideReachB, ReachB, and the round-count lemma reachSet_card_le not given in SRC",
+      "no sorry-free Lean skeleton for the restating lemma",
+      "COMP-C3c decision procedure over all Genesis contexts not built"
+    ]
+  }
+}
