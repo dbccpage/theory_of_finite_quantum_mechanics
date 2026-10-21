@@ -1,339 +1,340 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/qm/rungs.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/qm/rungs.py",
       "sha256": "bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:qm:rungs:v1",
-    "role": "library",
-    "purpose": "Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
-    "operations": {
-      "RungFrameError": "A rational frame or a rational cocycle failed an exact check.",
-      "primitive_difference": "Float helper. The certificate is exact_cocycle_defect.",
-      "exact_primitive_difference": "D(x, y) = y - x over the rationals.",
-      "exact_cocycle_defect": "(y - x) + (z - y) minus the direct step (z - x).",
-      "is_same": "Sameness is equality of the rational values. `tol` is not consulted.",
-      "check_difference_cocycle": "Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.",
-      "check_difference_antisymmetry": "Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.",
-      "triangle_boundary_rank": "Rank of the triangle coboundary over Fraction, by Gaussian elimination.",
-      "CochainPacket": "Finite cochain packet over a declared 2-complex.",
-      "build_triangle_packet": "Builds standard oriented 3-cycle triangle packet.",
-      "weights_to_probabilities": "Rung 3: L^1 normalization of positive residual weights into probabilities.",
-      "verify_ray_invariance": "Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.",
-      "amplitudes_to_probabilities": "Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.",
-      "born_normalization": "Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.",
-      "verify_born_normalization_redundancy": "Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.",
-      "weights_to_born_density": "Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.",
-      "compute_cycle_holonomy": "Rung 4: Computes U(1) holonomy phase around a directed closed cycle.",
-      "two_path_interference": "Rung 4: Evaluates two-path interference via canonical interference crate.",
-      "sorkin_3slit_parameter": "Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.",
-      "superposition_quotient_fiber": "Rung 4: Analyzes superposition as the quotient fiber over classical probability.",
-      "superposition_interference_test": "Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.",
-      "schmidt_decomposition": "Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.",
-      "is_entangled_pure_state": "Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).",
-      "verify_mermin_peres_contextuality": "Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.",
-      "partial_trace": "Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.",
-      "bipartite_linear_entropy": "Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.",
-      "bipartite_von_neumann_entropy": "Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).",
-      "bell_state": "Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).",
-      "verify_non_signaling": "Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).",
-      "is_unitary": "Rung 6: Verifies U^dagger U = I.",
-      "discrete_unitary_step": "Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.",
-      "continuous_generator_branch_count": "Rung 6: Exhibits the continuous-time generator obstruction.",
-      "is_valid_povm": "Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).",
-      "povm_probabilities": "Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.",
-      "non_selective_measurement_decoherence": "Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).",
-      "verify_cptp_contractivity": "Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.",
-      "BoundaryDefense": "Rung 8: Exact defended statement of where the finite presentation stops.",
-      "get_boundary_defense": "Rung 8: Constructs the boundary defense object for a given carrier dimension.",
-      "is_orthonormal_frame": "Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.",
-      "evaluate_frame_function": "Evaluates the sum of a candidate frame function f over an orthonormal frame.",
-      "density_matrix_frame_function": "Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.",
-      "verify_gleason_frame_additivity": "Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.",
-      "gleason_dimension_2_counterexample": "Exhibits the failure of Gleason's Theorem in dimension d = 2.",
-      "discrete_gleason_triads_d3": "Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.",
-      "rational_pythagorean_frames_d2": "Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/src/qm/rungs.py",
+        "sha256": "bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1",
+    "subject": "code/python/src/qm/rungs.py"
   },
-  "current_contract": "b70992ae73baedbf09d385cdd5289f6226edd79a780889e928159d7e90e01453",
-  "current_scoring": "d9445ab75470e19ce93998b5f817f46b22727a0145022f7be461fb107e536078",
   "contract_history": [
     {
-      "sha256": "5cb0a338c10d822bc6bd336815445c57cc40353ef4a3c179c3cd98e12cf40180",
       "bytes": 6581,
+      "original_paths": [
+        "code/python/src/qm/rungs.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"26661ccd2f7c4d2027e77d1ac3f7e00f983e3c6461c80ee2d09e2eae536a25b5\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:rungs:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"RungFrameError\": \"A rational frame or a rational cocycle failed an exact check.\",\n    \"primitive_difference\": \"Float helper. The certificate is exact_cocycle_defect.\",\n    \"exact_primitive_difference\": \"D(x, y) = y - x over the rationals.\",\n    \"exact_cocycle_defect\": \"(y - x) + (z - y) minus the direct step (z - x).\",\n    \"is_same\": \"Sameness is equality of the rational values. `tol` is not consulted.\",\n    \"check_difference_cocycle\": \"Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.\",\n    \"check_difference_antisymmetry\": \"Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.\",\n    \"triangle_boundary_rank\": \"Rank of the triangle coboundary over Fraction, by Gaussian elimination.\",\n    \"CochainPacket\": \"Finite cochain packet over a declared 2-complex.\",\n    \"build_triangle_packet\": \"Builds standard oriented 3-cycle triangle packet.\",\n    \"weights_to_probabilities\": \"Rung 3: L^1 normalization of positive residual weights into probabilities.\",\n    \"verify_ray_invariance\": \"Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.\",\n    \"amplitudes_to_probabilities\": \"Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.\",\n    \"born_normalization\": \"Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.\",\n    \"verify_born_normalization_redundancy\": \"Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.\",\n    \"weights_to_born_density\": \"Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.\",\n    \"compute_cycle_holonomy\": \"Rung 4: Computes U(1) holonomy phase around a directed closed cycle.\",\n    \"two_path_interference\": \"Rung 4: Evaluates two-path interference via canonical interference crate.\",\n    \"sorkin_3slit_parameter\": \"Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.\",\n    \"superposition_quotient_fiber\": \"Rung 4: Analyzes superposition as the quotient fiber over classical probability.\",\n    \"superposition_interference_test\": \"Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.\",\n    \"schmidt_decomposition\": \"Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.\",\n    \"is_entangled_pure_state\": \"Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).\",\n    \"verify_mermin_peres_contextuality\": \"Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.\",\n    \"partial_trace\": \"Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.\",\n    \"bipartite_linear_entropy\": \"Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.\",\n    \"bipartite_von_neumann_entropy\": \"Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).\",\n    \"bell_state\": \"Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).\",\n    \"verify_non_signaling\": \"Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).\",\n    \"is_unitary\": \"Rung 6: Verifies U^dagger U = I.\",\n    \"discrete_unitary_step\": \"Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.\",\n    \"continuous_generator_branch_count\": \"Rung 6: Exhibits the continuous-time generator obstruction.\",\n    \"is_valid_povm\": \"Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).\",\n    \"povm_probabilities\": \"Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.\",\n    \"non_selective_measurement_decoherence\": \"Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).\",\n    \"verify_cptp_contractivity\": \"Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.\",\n    \"BoundaryDefense\": \"Rung 8: Exact defended statement of where the finite presentation stops.\",\n    \"get_boundary_defense\": \"Rung 8: Constructs the boundary defense object for a given carrier dimension.\",\n    \"is_orthonormal_frame\": \"Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.\",\n    \"evaluate_frame_function\": \"Evaluates the sum of a candidate frame function f over an orthonormal frame.\",\n    \"density_matrix_frame_function\": \"Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.\",\n    \"verify_gleason_frame_additivity\": \"Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.\",\n    \"gleason_dimension_2_counterexample\": \"Exhibits the failure of Gleason's Theorem in dimension d = 2.\",\n    \"discrete_gleason_triads_d3\": \"Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.\",\n    \"rational_pythagorean_frames_d2\": \"Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/rungs.py",
           "sha256": "26661ccd2f7c4d2027e77d1ac3f7e00f983e3c6461c80ee2d09e2eae536a25b5"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:campaigns:rungs:v1",
-        "role": "library",
-        "purpose": "Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
-        "operations": {
-          "RungFrameError": "A rational frame or a rational cocycle failed an exact check.",
-          "primitive_difference": "Float helper. The certificate is exact_cocycle_defect.",
-          "exact_primitive_difference": "D(x, y) = y - x over the rationals.",
-          "exact_cocycle_defect": "(y - x) + (z - y) minus the direct step (z - x).",
-          "is_same": "Sameness is equality of the rational values. `tol` is not consulted.",
-          "check_difference_cocycle": "Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.",
-          "check_difference_antisymmetry": "Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.",
-          "triangle_boundary_rank": "Rank of the triangle coboundary over Fraction, by Gaussian elimination.",
-          "CochainPacket": "Finite cochain packet over a declared 2-complex.",
-          "build_triangle_packet": "Builds standard oriented 3-cycle triangle packet.",
-          "weights_to_probabilities": "Rung 3: L^1 normalization of positive residual weights into probabilities.",
-          "verify_ray_invariance": "Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.",
-          "amplitudes_to_probabilities": "Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.",
-          "born_normalization": "Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.",
-          "verify_born_normalization_redundancy": "Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.",
-          "weights_to_born_density": "Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.",
-          "compute_cycle_holonomy": "Rung 4: Computes U(1) holonomy phase around a directed closed cycle.",
-          "two_path_interference": "Rung 4: Evaluates two-path interference via canonical interference crate.",
-          "sorkin_3slit_parameter": "Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.",
-          "superposition_quotient_fiber": "Rung 4: Analyzes superposition as the quotient fiber over classical probability.",
-          "superposition_interference_test": "Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.",
-          "schmidt_decomposition": "Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.",
-          "is_entangled_pure_state": "Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).",
-          "verify_mermin_peres_contextuality": "Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.",
-          "partial_trace": "Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.",
-          "bipartite_linear_entropy": "Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.",
-          "bipartite_von_neumann_entropy": "Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).",
-          "bell_state": "Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).",
-          "verify_non_signaling": "Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).",
-          "is_unitary": "Rung 6: Verifies U^dagger U = I.",
-          "discrete_unitary_step": "Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.",
-          "continuous_generator_branch_count": "Rung 6: Exhibits the continuous-time generator obstruction.",
-          "is_valid_povm": "Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).",
-          "povm_probabilities": "Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.",
-          "non_selective_measurement_decoherence": "Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).",
-          "verify_cptp_contractivity": "Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.",
-          "BoundaryDefense": "Rung 8: Exact defended statement of where the finite presentation stops.",
-          "get_boundary_defense": "Rung 8: Constructs the boundary defense object for a given carrier dimension.",
-          "is_orthonormal_frame": "Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.",
-          "evaluate_frame_function": "Evaluates the sum of a candidate frame function f over an orthonormal frame.",
-          "density_matrix_frame_function": "Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.",
-          "verify_gleason_frame_additivity": "Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.",
-          "gleason_dimension_2_counterexample": "Exhibits the failure of Gleason's Theorem in dimension d = 2.",
-          "discrete_gleason_triads_d3": "Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.",
-          "rational_pythagorean_frames_d2": "Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "BoundaryDefense": "Rung 8: Exact defended statement of where the finite presentation stops.",
+          "CochainPacket": "Finite cochain packet over a declared 2-complex.",
+          "RungFrameError": "A rational frame or a rational cocycle failed an exact check.",
+          "amplitudes_to_probabilities": "Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.",
+          "bell_state": "Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).",
+          "bipartite_linear_entropy": "Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.",
+          "bipartite_von_neumann_entropy": "Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).",
+          "born_normalization": "Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.",
+          "build_triangle_packet": "Builds standard oriented 3-cycle triangle packet.",
+          "check_difference_antisymmetry": "Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.",
+          "check_difference_cocycle": "Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.",
+          "compute_cycle_holonomy": "Rung 4: Computes U(1) holonomy phase around a directed closed cycle.",
+          "continuous_generator_branch_count": "Rung 6: Exhibits the continuous-time generator obstruction.",
+          "density_matrix_frame_function": "Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.",
+          "discrete_gleason_triads_d3": "Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.",
+          "discrete_unitary_step": "Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.",
+          "evaluate_frame_function": "Evaluates the sum of a candidate frame function f over an orthonormal frame.",
+          "exact_cocycle_defect": "(y - x) + (z - y) minus the direct step (z - x).",
+          "exact_primitive_difference": "D(x, y) = y - x over the rationals.",
+          "get_boundary_defense": "Rung 8: Constructs the boundary defense object for a given carrier dimension.",
+          "gleason_dimension_2_counterexample": "Exhibits the failure of Gleason's Theorem in dimension d = 2.",
+          "is_entangled_pure_state": "Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).",
+          "is_orthonormal_frame": "Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.",
+          "is_same": "Sameness is equality of the rational values. `tol` is not consulted.",
+          "is_unitary": "Rung 6: Verifies U^dagger U = I.",
+          "is_valid_povm": "Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).",
+          "non_selective_measurement_decoherence": "Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).",
+          "partial_trace": "Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.",
+          "povm_probabilities": "Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.",
+          "primitive_difference": "Float helper. The certificate is exact_cocycle_defect.",
+          "rational_pythagorean_frames_d2": "Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples.",
+          "schmidt_decomposition": "Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.",
+          "sorkin_3slit_parameter": "Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.",
+          "superposition_interference_test": "Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.",
+          "superposition_quotient_fiber": "Rung 4: Analyzes superposition as the quotient fiber over classical probability.",
+          "triangle_boundary_rank": "Rank of the triangle coboundary over Fraction, by Gaussian elimination.",
+          "two_path_interference": "Rung 4: Evaluates two-path interference via canonical interference crate.",
+          "verify_born_normalization_redundancy": "Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.",
+          "verify_cptp_contractivity": "Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.",
+          "verify_gleason_frame_additivity": "Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.",
+          "verify_mermin_peres_contextuality": "Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.",
+          "verify_non_signaling": "Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).",
+          "verify_ray_invariance": "Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.",
+          "weights_to_born_density": "Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.",
+          "weights_to_probabilities": "Rung 3: L^1 normalization of positive residual weights into probabilities."
+        },
+        "profile": "Exact",
+        "purpose": "Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"26661ccd2f7c4d2027e77d1ac3f7e00f983e3c6461c80ee2d09e2eae536a25b5\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:rungs:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"RungFrameError\": \"A rational frame or a rational cocycle failed an exact check.\",\n    \"primitive_difference\": \"Float helper. The certificate is exact_cocycle_defect.\",\n    \"exact_primitive_difference\": \"D(x, y) = y - x over the rationals.\",\n    \"exact_cocycle_defect\": \"(y - x) + (z - y) minus the direct step (z - x).\",\n    \"is_same\": \"Sameness is equality of the rational values. `tol` is not consulted.\",\n    \"check_difference_cocycle\": \"Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.\",\n    \"check_difference_antisymmetry\": \"Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.\",\n    \"triangle_boundary_rank\": \"Rank of the triangle coboundary over Fraction, by Gaussian elimination.\",\n    \"CochainPacket\": \"Finite cochain packet over a declared 2-complex.\",\n    \"build_triangle_packet\": \"Builds standard oriented 3-cycle triangle packet.\",\n    \"weights_to_probabilities\": \"Rung 3: L^1 normalization of positive residual weights into probabilities.\",\n    \"verify_ray_invariance\": \"Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.\",\n    \"amplitudes_to_probabilities\": \"Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.\",\n    \"born_normalization\": \"Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.\",\n    \"verify_born_normalization_redundancy\": \"Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.\",\n    \"weights_to_born_density\": \"Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.\",\n    \"compute_cycle_holonomy\": \"Rung 4: Computes U(1) holonomy phase around a directed closed cycle.\",\n    \"two_path_interference\": \"Rung 4: Evaluates two-path interference via canonical interference crate.\",\n    \"sorkin_3slit_parameter\": \"Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.\",\n    \"superposition_quotient_fiber\": \"Rung 4: Analyzes superposition as the quotient fiber over classical probability.\",\n    \"superposition_interference_test\": \"Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.\",\n    \"schmidt_decomposition\": \"Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.\",\n    \"is_entangled_pure_state\": \"Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).\",\n    \"verify_mermin_peres_contextuality\": \"Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.\",\n    \"partial_trace\": \"Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.\",\n    \"bipartite_linear_entropy\": \"Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.\",\n    \"bipartite_von_neumann_entropy\": \"Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).\",\n    \"bell_state\": \"Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).\",\n    \"verify_non_signaling\": \"Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).\",\n    \"is_unitary\": \"Rung 6: Verifies U^dagger U = I.\",\n    \"discrete_unitary_step\": \"Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.\",\n    \"continuous_generator_branch_count\": \"Rung 6: Exhibits the continuous-time generator obstruction.\",\n    \"is_valid_povm\": \"Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).\",\n    \"povm_probabilities\": \"Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.\",\n    \"non_selective_measurement_decoherence\": \"Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).\",\n    \"verify_cptp_contractivity\": \"Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.\",\n    \"BoundaryDefense\": \"Rung 8: Exact defended statement of where the finite presentation stops.\",\n    \"get_boundary_defense\": \"Rung 8: Constructs the boundary defense object for a given carrier dimension.\",\n    \"is_orthonormal_frame\": \"Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.\",\n    \"evaluate_frame_function\": \"Evaluates the sum of a candidate frame function f over an orthonormal frame.\",\n    \"density_matrix_frame_function\": \"Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.\",\n    \"verify_gleason_frame_additivity\": \"Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.\",\n    \"gleason_dimension_2_counterexample\": \"Exhibits the failure of Gleason's Theorem in dimension d = 2.\",\n    \"discrete_gleason_triads_d3\": \"Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.\",\n    \"rational_pythagorean_frames_d2\": \"Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/rungs.contract.score.yaml#contract"
-      ]
+      "sha256": "5cb0a338c10d822bc6bd336815445c57cc40353ef4a3c179c3cd98e12cf40180"
     },
     {
-      "sha256": "b2581daec7e90edf65a7bb62651c4a04935acc7009db8c4ef80b411b5e17eb8f",
       "bytes": 6574,
+      "original_paths": [
+        "code/python/src/qm/rungs.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"dbbc8550c72b9fc60b377f3c359411510ec8199e906f735e176d1453007ca0ed\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:rungs:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"RungFrameError\": \"A rational frame or a rational cocycle failed an exact check.\",\n    \"primitive_difference\": \"Float helper. The certificate is exact_cocycle_defect.\",\n    \"exact_primitive_difference\": \"D(x, y) = y - x over the rationals.\",\n    \"exact_cocycle_defect\": \"(y - x) + (z - y) minus the direct step (z - x).\",\n    \"is_same\": \"Sameness is equality of the rational values. `tol` is not consulted.\",\n    \"check_difference_cocycle\": \"Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.\",\n    \"check_difference_antisymmetry\": \"Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.\",\n    \"triangle_boundary_rank\": \"Rank of the triangle coboundary over Fraction, by Gaussian elimination.\",\n    \"CochainPacket\": \"Finite cochain packet over a declared 2-complex.\",\n    \"build_triangle_packet\": \"Builds standard oriented 3-cycle triangle packet.\",\n    \"weights_to_probabilities\": \"Rung 3: L^1 normalization of positive residual weights into probabilities.\",\n    \"verify_ray_invariance\": \"Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.\",\n    \"amplitudes_to_probabilities\": \"Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.\",\n    \"born_normalization\": \"Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.\",\n    \"verify_born_normalization_redundancy\": \"Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.\",\n    \"weights_to_born_density\": \"Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.\",\n    \"compute_cycle_holonomy\": \"Rung 4: Computes U(1) holonomy phase around a directed closed cycle.\",\n    \"two_path_interference\": \"Rung 4: Evaluates two-path interference via canonical interference crate.\",\n    \"sorkin_3slit_parameter\": \"Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.\",\n    \"superposition_quotient_fiber\": \"Rung 4: Analyzes superposition as the quotient fiber over classical probability.\",\n    \"superposition_interference_test\": \"Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.\",\n    \"schmidt_decomposition\": \"Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.\",\n    \"is_entangled_pure_state\": \"Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).\",\n    \"verify_mermin_peres_contextuality\": \"Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.\",\n    \"partial_trace\": \"Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.\",\n    \"bipartite_linear_entropy\": \"Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.\",\n    \"bipartite_von_neumann_entropy\": \"Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).\",\n    \"bell_state\": \"Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).\",\n    \"verify_non_signaling\": \"Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).\",\n    \"is_unitary\": \"Rung 6: Verifies U^dagger U = I.\",\n    \"discrete_unitary_step\": \"Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.\",\n    \"continuous_generator_branch_count\": \"Rung 6: Exhibits the continuous-time generator obstruction.\",\n    \"is_valid_povm\": \"Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).\",\n    \"povm_probabilities\": \"Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.\",\n    \"non_selective_measurement_decoherence\": \"Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).\",\n    \"verify_cptp_contractivity\": \"Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.\",\n    \"BoundaryDefense\": \"Rung 8: Exact defended statement of where the finite presentation stops.\",\n    \"get_boundary_defense\": \"Rung 8: Constructs the boundary defense object for a given carrier dimension.\",\n    \"is_orthonormal_frame\": \"Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.\",\n    \"evaluate_frame_function\": \"Evaluates the sum of a candidate frame function f over an orthonormal frame.\",\n    \"density_matrix_frame_function\": \"Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.\",\n    \"verify_gleason_frame_additivity\": \"Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.\",\n    \"gleason_dimension_2_counterexample\": \"Exhibits the failure of Gleason's Theorem in dimension d = 2.\",\n    \"discrete_gleason_triads_d3\": \"Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.\",\n    \"rational_pythagorean_frames_d2\": \"Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/rungs.py",
           "sha256": "dbbc8550c72b9fc60b377f3c359411510ec8199e906f735e176d1453007ca0ed"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:qm:rungs:v1",
-        "role": "library",
-        "purpose": "Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
-        "operations": {
-          "RungFrameError": "A rational frame or a rational cocycle failed an exact check.",
-          "primitive_difference": "Float helper. The certificate is exact_cocycle_defect.",
-          "exact_primitive_difference": "D(x, y) = y - x over the rationals.",
-          "exact_cocycle_defect": "(y - x) + (z - y) minus the direct step (z - x).",
-          "is_same": "Sameness is equality of the rational values. `tol` is not consulted.",
-          "check_difference_cocycle": "Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.",
-          "check_difference_antisymmetry": "Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.",
-          "triangle_boundary_rank": "Rank of the triangle coboundary over Fraction, by Gaussian elimination.",
-          "CochainPacket": "Finite cochain packet over a declared 2-complex.",
-          "build_triangle_packet": "Builds standard oriented 3-cycle triangle packet.",
-          "weights_to_probabilities": "Rung 3: L^1 normalization of positive residual weights into probabilities.",
-          "verify_ray_invariance": "Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.",
-          "amplitudes_to_probabilities": "Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.",
-          "born_normalization": "Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.",
-          "verify_born_normalization_redundancy": "Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.",
-          "weights_to_born_density": "Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.",
-          "compute_cycle_holonomy": "Rung 4: Computes U(1) holonomy phase around a directed closed cycle.",
-          "two_path_interference": "Rung 4: Evaluates two-path interference via canonical interference crate.",
-          "sorkin_3slit_parameter": "Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.",
-          "superposition_quotient_fiber": "Rung 4: Analyzes superposition as the quotient fiber over classical probability.",
-          "superposition_interference_test": "Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.",
-          "schmidt_decomposition": "Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.",
-          "is_entangled_pure_state": "Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).",
-          "verify_mermin_peres_contextuality": "Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.",
-          "partial_trace": "Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.",
-          "bipartite_linear_entropy": "Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.",
-          "bipartite_von_neumann_entropy": "Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).",
-          "bell_state": "Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).",
-          "verify_non_signaling": "Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).",
-          "is_unitary": "Rung 6: Verifies U^dagger U = I.",
-          "discrete_unitary_step": "Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.",
-          "continuous_generator_branch_count": "Rung 6: Exhibits the continuous-time generator obstruction.",
-          "is_valid_povm": "Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).",
-          "povm_probabilities": "Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.",
-          "non_selective_measurement_decoherence": "Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).",
-          "verify_cptp_contractivity": "Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.",
-          "BoundaryDefense": "Rung 8: Exact defended statement of where the finite presentation stops.",
-          "get_boundary_defense": "Rung 8: Constructs the boundary defense object for a given carrier dimension.",
-          "is_orthonormal_frame": "Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.",
-          "evaluate_frame_function": "Evaluates the sum of a candidate frame function f over an orthonormal frame.",
-          "density_matrix_frame_function": "Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.",
-          "verify_gleason_frame_additivity": "Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.",
-          "gleason_dimension_2_counterexample": "Exhibits the failure of Gleason's Theorem in dimension d = 2.",
-          "discrete_gleason_triads_d3": "Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.",
-          "rational_pythagorean_frames_d2": "Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "BoundaryDefense": "Rung 8: Exact defended statement of where the finite presentation stops.",
+          "CochainPacket": "Finite cochain packet over a declared 2-complex.",
+          "RungFrameError": "A rational frame or a rational cocycle failed an exact check.",
+          "amplitudes_to_probabilities": "Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.",
+          "bell_state": "Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).",
+          "bipartite_linear_entropy": "Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.",
+          "bipartite_von_neumann_entropy": "Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).",
+          "born_normalization": "Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.",
+          "build_triangle_packet": "Builds standard oriented 3-cycle triangle packet.",
+          "check_difference_antisymmetry": "Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.",
+          "check_difference_cocycle": "Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.",
+          "compute_cycle_holonomy": "Rung 4: Computes U(1) holonomy phase around a directed closed cycle.",
+          "continuous_generator_branch_count": "Rung 6: Exhibits the continuous-time generator obstruction.",
+          "density_matrix_frame_function": "Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.",
+          "discrete_gleason_triads_d3": "Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.",
+          "discrete_unitary_step": "Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.",
+          "evaluate_frame_function": "Evaluates the sum of a candidate frame function f over an orthonormal frame.",
+          "exact_cocycle_defect": "(y - x) + (z - y) minus the direct step (z - x).",
+          "exact_primitive_difference": "D(x, y) = y - x over the rationals.",
+          "get_boundary_defense": "Rung 8: Constructs the boundary defense object for a given carrier dimension.",
+          "gleason_dimension_2_counterexample": "Exhibits the failure of Gleason's Theorem in dimension d = 2.",
+          "is_entangled_pure_state": "Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).",
+          "is_orthonormal_frame": "Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.",
+          "is_same": "Sameness is equality of the rational values. `tol` is not consulted.",
+          "is_unitary": "Rung 6: Verifies U^dagger U = I.",
+          "is_valid_povm": "Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).",
+          "non_selective_measurement_decoherence": "Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).",
+          "partial_trace": "Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.",
+          "povm_probabilities": "Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.",
+          "primitive_difference": "Float helper. The certificate is exact_cocycle_defect.",
+          "rational_pythagorean_frames_d2": "Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples.",
+          "schmidt_decomposition": "Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.",
+          "sorkin_3slit_parameter": "Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.",
+          "superposition_interference_test": "Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.",
+          "superposition_quotient_fiber": "Rung 4: Analyzes superposition as the quotient fiber over classical probability.",
+          "triangle_boundary_rank": "Rank of the triangle coboundary over Fraction, by Gaussian elimination.",
+          "two_path_interference": "Rung 4: Evaluates two-path interference via canonical interference crate.",
+          "verify_born_normalization_redundancy": "Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.",
+          "verify_cptp_contractivity": "Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.",
+          "verify_gleason_frame_additivity": "Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.",
+          "verify_mermin_peres_contextuality": "Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.",
+          "verify_non_signaling": "Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).",
+          "verify_ray_invariance": "Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.",
+          "weights_to_born_density": "Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.",
+          "weights_to_probabilities": "Rung 3: L^1 normalization of positive residual weights into probabilities."
+        },
+        "profile": "Exact",
+        "purpose": "Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"dbbc8550c72b9fc60b377f3c359411510ec8199e906f735e176d1453007ca0ed\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:rungs:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"RungFrameError\": \"A rational frame or a rational cocycle failed an exact check.\",\n    \"primitive_difference\": \"Float helper. The certificate is exact_cocycle_defect.\",\n    \"exact_primitive_difference\": \"D(x, y) = y - x over the rationals.\",\n    \"exact_cocycle_defect\": \"(y - x) + (z - y) minus the direct step (z - x).\",\n    \"is_same\": \"Sameness is equality of the rational values. `tol` is not consulted.\",\n    \"check_difference_cocycle\": \"Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.\",\n    \"check_difference_antisymmetry\": \"Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.\",\n    \"triangle_boundary_rank\": \"Rank of the triangle coboundary over Fraction, by Gaussian elimination.\",\n    \"CochainPacket\": \"Finite cochain packet over a declared 2-complex.\",\n    \"build_triangle_packet\": \"Builds standard oriented 3-cycle triangle packet.\",\n    \"weights_to_probabilities\": \"Rung 3: L^1 normalization of positive residual weights into probabilities.\",\n    \"verify_ray_invariance\": \"Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.\",\n    \"amplitudes_to_probabilities\": \"Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.\",\n    \"born_normalization\": \"Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.\",\n    \"verify_born_normalization_redundancy\": \"Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.\",\n    \"weights_to_born_density\": \"Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.\",\n    \"compute_cycle_holonomy\": \"Rung 4: Computes U(1) holonomy phase around a directed closed cycle.\",\n    \"two_path_interference\": \"Rung 4: Evaluates two-path interference via canonical interference crate.\",\n    \"sorkin_3slit_parameter\": \"Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.\",\n    \"superposition_quotient_fiber\": \"Rung 4: Analyzes superposition as the quotient fiber over classical probability.\",\n    \"superposition_interference_test\": \"Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.\",\n    \"schmidt_decomposition\": \"Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.\",\n    \"is_entangled_pure_state\": \"Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).\",\n    \"verify_mermin_peres_contextuality\": \"Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.\",\n    \"partial_trace\": \"Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.\",\n    \"bipartite_linear_entropy\": \"Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.\",\n    \"bipartite_von_neumann_entropy\": \"Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).\",\n    \"bell_state\": \"Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).\",\n    \"verify_non_signaling\": \"Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).\",\n    \"is_unitary\": \"Rung 6: Verifies U^dagger U = I.\",\n    \"discrete_unitary_step\": \"Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.\",\n    \"continuous_generator_branch_count\": \"Rung 6: Exhibits the continuous-time generator obstruction.\",\n    \"is_valid_povm\": \"Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).\",\n    \"povm_probabilities\": \"Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.\",\n    \"non_selective_measurement_decoherence\": \"Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).\",\n    \"verify_cptp_contractivity\": \"Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.\",\n    \"BoundaryDefense\": \"Rung 8: Exact defended statement of where the finite presentation stops.\",\n    \"get_boundary_defense\": \"Rung 8: Constructs the boundary defense object for a given carrier dimension.\",\n    \"is_orthonormal_frame\": \"Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.\",\n    \"evaluate_frame_function\": \"Evaluates the sum of a candidate frame function f over an orthonormal frame.\",\n    \"density_matrix_frame_function\": \"Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.\",\n    \"verify_gleason_frame_additivity\": \"Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.\",\n    \"gleason_dimension_2_counterexample\": \"Exhibits the failure of Gleason's Theorem in dimension d = 2.\",\n    \"discrete_gleason_triads_d3\": \"Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.\",\n    \"rational_pythagorean_frames_d2\": \"Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/rungs.contract.score.yaml#contract"
-      ]
+      "sha256": "b2581daec7e90edf65a7bb62651c4a04935acc7009db8c4ef80b411b5e17eb8f"
     },
     {
-      "sha256": "b70992ae73baedbf09d385cdd5289f6226edd79a780889e928159d7e90e01453",
       "bytes": 6574,
+      "original_paths": [
+        "code/python/src/qm/rungs.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:rungs:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"RungFrameError\": \"A rational frame or a rational cocycle failed an exact check.\",\n    \"primitive_difference\": \"Float helper. The certificate is exact_cocycle_defect.\",\n    \"exact_primitive_difference\": \"D(x, y) = y - x over the rationals.\",\n    \"exact_cocycle_defect\": \"(y - x) + (z - y) minus the direct step (z - x).\",\n    \"is_same\": \"Sameness is equality of the rational values. `tol` is not consulted.\",\n    \"check_difference_cocycle\": \"Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.\",\n    \"check_difference_antisymmetry\": \"Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.\",\n    \"triangle_boundary_rank\": \"Rank of the triangle coboundary over Fraction, by Gaussian elimination.\",\n    \"CochainPacket\": \"Finite cochain packet over a declared 2-complex.\",\n    \"build_triangle_packet\": \"Builds standard oriented 3-cycle triangle packet.\",\n    \"weights_to_probabilities\": \"Rung 3: L^1 normalization of positive residual weights into probabilities.\",\n    \"verify_ray_invariance\": \"Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.\",\n    \"amplitudes_to_probabilities\": \"Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.\",\n    \"born_normalization\": \"Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.\",\n    \"verify_born_normalization_redundancy\": \"Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.\",\n    \"weights_to_born_density\": \"Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.\",\n    \"compute_cycle_holonomy\": \"Rung 4: Computes U(1) holonomy phase around a directed closed cycle.\",\n    \"two_path_interference\": \"Rung 4: Evaluates two-path interference via canonical interference crate.\",\n    \"sorkin_3slit_parameter\": \"Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.\",\n    \"superposition_quotient_fiber\": \"Rung 4: Analyzes superposition as the quotient fiber over classical probability.\",\n    \"superposition_interference_test\": \"Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.\",\n    \"schmidt_decomposition\": \"Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.\",\n    \"is_entangled_pure_state\": \"Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).\",\n    \"verify_mermin_peres_contextuality\": \"Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.\",\n    \"partial_trace\": \"Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.\",\n    \"bipartite_linear_entropy\": \"Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.\",\n    \"bipartite_von_neumann_entropy\": \"Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).\",\n    \"bell_state\": \"Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).\",\n    \"verify_non_signaling\": \"Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).\",\n    \"is_unitary\": \"Rung 6: Verifies U^dagger U = I.\",\n    \"discrete_unitary_step\": \"Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.\",\n    \"continuous_generator_branch_count\": \"Rung 6: Exhibits the continuous-time generator obstruction.\",\n    \"is_valid_povm\": \"Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).\",\n    \"povm_probabilities\": \"Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.\",\n    \"non_selective_measurement_decoherence\": \"Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).\",\n    \"verify_cptp_contractivity\": \"Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.\",\n    \"BoundaryDefense\": \"Rung 8: Exact defended statement of where the finite presentation stops.\",\n    \"get_boundary_defense\": \"Rung 8: Constructs the boundary defense object for a given carrier dimension.\",\n    \"is_orthonormal_frame\": \"Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.\",\n    \"evaluate_frame_function\": \"Evaluates the sum of a candidate frame function f over an orthonormal frame.\",\n    \"density_matrix_frame_function\": \"Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.\",\n    \"verify_gleason_frame_additivity\": \"Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.\",\n    \"gleason_dimension_2_counterexample\": \"Exhibits the failure of Gleason's Theorem in dimension d = 2.\",\n    \"discrete_gleason_triads_d3\": \"Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.\",\n    \"rational_pythagorean_frames_d2\": \"Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/rungs.py",
           "sha256": "bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:qm:rungs:v1",
-        "role": "library",
-        "purpose": "Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
-        "operations": {
-          "RungFrameError": "A rational frame or a rational cocycle failed an exact check.",
-          "primitive_difference": "Float helper. The certificate is exact_cocycle_defect.",
-          "exact_primitive_difference": "D(x, y) = y - x over the rationals.",
-          "exact_cocycle_defect": "(y - x) + (z - y) minus the direct step (z - x).",
-          "is_same": "Sameness is equality of the rational values. `tol` is not consulted.",
-          "check_difference_cocycle": "Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.",
-          "check_difference_antisymmetry": "Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.",
-          "triangle_boundary_rank": "Rank of the triangle coboundary over Fraction, by Gaussian elimination.",
-          "CochainPacket": "Finite cochain packet over a declared 2-complex.",
-          "build_triangle_packet": "Builds standard oriented 3-cycle triangle packet.",
-          "weights_to_probabilities": "Rung 3: L^1 normalization of positive residual weights into probabilities.",
-          "verify_ray_invariance": "Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.",
-          "amplitudes_to_probabilities": "Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.",
-          "born_normalization": "Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.",
-          "verify_born_normalization_redundancy": "Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.",
-          "weights_to_born_density": "Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.",
-          "compute_cycle_holonomy": "Rung 4: Computes U(1) holonomy phase around a directed closed cycle.",
-          "two_path_interference": "Rung 4: Evaluates two-path interference via canonical interference crate.",
-          "sorkin_3slit_parameter": "Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.",
-          "superposition_quotient_fiber": "Rung 4: Analyzes superposition as the quotient fiber over classical probability.",
-          "superposition_interference_test": "Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.",
-          "schmidt_decomposition": "Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.",
-          "is_entangled_pure_state": "Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).",
-          "verify_mermin_peres_contextuality": "Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.",
-          "partial_trace": "Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.",
-          "bipartite_linear_entropy": "Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.",
-          "bipartite_von_neumann_entropy": "Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).",
-          "bell_state": "Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).",
-          "verify_non_signaling": "Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).",
-          "is_unitary": "Rung 6: Verifies U^dagger U = I.",
-          "discrete_unitary_step": "Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.",
-          "continuous_generator_branch_count": "Rung 6: Exhibits the continuous-time generator obstruction.",
-          "is_valid_povm": "Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).",
-          "povm_probabilities": "Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.",
-          "non_selective_measurement_decoherence": "Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).",
-          "verify_cptp_contractivity": "Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.",
-          "BoundaryDefense": "Rung 8: Exact defended statement of where the finite presentation stops.",
-          "get_boundary_defense": "Rung 8: Constructs the boundary defense object for a given carrier dimension.",
-          "is_orthonormal_frame": "Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.",
-          "evaluate_frame_function": "Evaluates the sum of a candidate frame function f over an orthonormal frame.",
-          "density_matrix_frame_function": "Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.",
-          "verify_gleason_frame_additivity": "Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.",
-          "gleason_dimension_2_counterexample": "Exhibits the failure of Gleason's Theorem in dimension d = 2.",
-          "discrete_gleason_triads_d3": "Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.",
-          "rational_pythagorean_frames_d2": "Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "BoundaryDefense": "Rung 8: Exact defended statement of where the finite presentation stops.",
+          "CochainPacket": "Finite cochain packet over a declared 2-complex.",
+          "RungFrameError": "A rational frame or a rational cocycle failed an exact check.",
+          "amplitudes_to_probabilities": "Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.",
+          "bell_state": "Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).",
+          "bipartite_linear_entropy": "Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.",
+          "bipartite_von_neumann_entropy": "Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).",
+          "born_normalization": "Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.",
+          "build_triangle_packet": "Builds standard oriented 3-cycle triangle packet.",
+          "check_difference_antisymmetry": "Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.",
+          "check_difference_cocycle": "Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.",
+          "compute_cycle_holonomy": "Rung 4: Computes U(1) holonomy phase around a directed closed cycle.",
+          "continuous_generator_branch_count": "Rung 6: Exhibits the continuous-time generator obstruction.",
+          "density_matrix_frame_function": "Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.",
+          "discrete_gleason_triads_d3": "Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.",
+          "discrete_unitary_step": "Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.",
+          "evaluate_frame_function": "Evaluates the sum of a candidate frame function f over an orthonormal frame.",
+          "exact_cocycle_defect": "(y - x) + (z - y) minus the direct step (z - x).",
+          "exact_primitive_difference": "D(x, y) = y - x over the rationals.",
+          "get_boundary_defense": "Rung 8: Constructs the boundary defense object for a given carrier dimension.",
+          "gleason_dimension_2_counterexample": "Exhibits the failure of Gleason's Theorem in dimension d = 2.",
+          "is_entangled_pure_state": "Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).",
+          "is_orthonormal_frame": "Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.",
+          "is_same": "Sameness is equality of the rational values. `tol` is not consulted.",
+          "is_unitary": "Rung 6: Verifies U^dagger U = I.",
+          "is_valid_povm": "Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).",
+          "non_selective_measurement_decoherence": "Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).",
+          "partial_trace": "Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.",
+          "povm_probabilities": "Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.",
+          "primitive_difference": "Float helper. The certificate is exact_cocycle_defect.",
+          "rational_pythagorean_frames_d2": "Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples.",
+          "schmidt_decomposition": "Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.",
+          "sorkin_3slit_parameter": "Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.",
+          "superposition_interference_test": "Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.",
+          "superposition_quotient_fiber": "Rung 4: Analyzes superposition as the quotient fiber over classical probability.",
+          "triangle_boundary_rank": "Rank of the triangle coboundary over Fraction, by Gaussian elimination.",
+          "two_path_interference": "Rung 4: Evaluates two-path interference via canonical interference crate.",
+          "verify_born_normalization_redundancy": "Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.",
+          "verify_cptp_contractivity": "Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.",
+          "verify_gleason_frame_additivity": "Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.",
+          "verify_mermin_peres_contextuality": "Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.",
+          "verify_non_signaling": "Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).",
+          "verify_ray_invariance": "Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.",
+          "weights_to_born_density": "Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.",
+          "weights_to_probabilities": "Rung 3: L^1 normalization of positive residual weights into probabilities."
+        },
+        "profile": "Exact",
+        "purpose": "Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:rungs:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Rungs 1 through 8 foundational walk for finite quantum mechanics. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"RungFrameError\": \"A rational frame or a rational cocycle failed an exact check.\",\n    \"primitive_difference\": \"Float helper. The certificate is exact_cocycle_defect.\",\n    \"exact_primitive_difference\": \"D(x, y) = y - x over the rationals.\",\n    \"exact_cocycle_defect\": \"(y - x) + (z - y) minus the direct step (z - x).\",\n    \"is_same\": \"Sameness is equality of the rational values. `tol` is not consulted.\",\n    \"check_difference_cocycle\": \"Cocycle identity on 0-simplexes, decided by exact_cocycle_defect.\",\n    \"check_difference_antisymmetry\": \"Antisymmetry: D(x, y) + D(y, x) == 0 over the rationals.\",\n    \"triangle_boundary_rank\": \"Rank of the triangle coboundary over Fraction, by Gaussian elimination.\",\n    \"CochainPacket\": \"Finite cochain packet over a declared 2-complex.\",\n    \"build_triangle_packet\": \"Builds standard oriented 3-cycle triangle packet.\",\n    \"weights_to_probabilities\": \"Rung 3: L^1 normalization of positive residual weights into probabilities.\",\n    \"verify_ray_invariance\": \"Rung 3: Probabilities are ray invariant under positive scaling w -> c*w.\",\n    \"amplitudes_to_probabilities\": \"Rung 3: Quadratic Born rule mapping complex state amplitudes to probabilities.\",\n    \"born_normalization\": \"Rung 3: Normalizes a state vector psi to unit L^2 norm and constructs rank-1 Born projector P = |psi><psi|.\",\n    \"verify_born_normalization_redundancy\": \"Rung 3: Verifies that sum_k Tr(E_k rho) == 1 is an algebraic redundancy under complete POVM resolution.\",\n    \"weights_to_born_density\": \"Rung 3: L^1 positive residual weights lifted to a pure state Born projector P = |psi><psi|.\",\n    \"compute_cycle_holonomy\": \"Rung 4: Computes U(1) holonomy phase around a directed closed cycle.\",\n    \"two_path_interference\": \"Rung 4: Evaluates two-path interference via canonical interference crate.\",\n    \"sorkin_3slit_parameter\": \"Rung 4: Sorkin 3-slit interference parameter I_3(A, B, C) via canonical interference crate.\",\n    \"superposition_quotient_fiber\": \"Rung 4: Analyzes superposition as the quotient fiber over classical probability.\",\n    \"superposition_interference_test\": \"Rung 4: Demonstrates 2-state superposition interference fringes under a beam splitter.\",\n    \"schmidt_decomposition\": \"Rung 5: Computes Schmidt coefficients of a bipartite pure state in H_A ⊗ H_B.\",\n    \"is_entangled_pure_state\": \"Rung 5: Entanglement as an obstruction to product factorization (Schmidt rank > 1).\",\n    \"verify_mermin_peres_contextuality\": \"Rung 5: Verifies Mermin-Peres 3x3 contextuality obstruction on C^2 ⊗ C^2 via contextuality_f2.\",\n    \"partial_trace\": \"Rung 5: Partial trace of bipartite density matrix rho_AB over subsystem B.\",\n    \"bipartite_linear_entropy\": \"Rung 5: Computes linear entropy S_L(rho_A) = 1 - Tr(rho_A^2) of the reduced state.\",\n    \"bipartite_von_neumann_entropy\": \"Rung 5: Computes von Neumann entanglement entropy S(rho_A) = -Tr(rho_A log(rho_A)).\",\n    \"bell_state\": \"Rung 5: Returns one of the four canonical maximally entangled Bell states (indices 0..3).\",\n    \"verify_non_signaling\": \"Rung 5: Verifies the non-signaling theorem Tr_B((I_A ⊗ U_B) rho_AB (I_A ⊗ U_B^dagger)) == Tr_B(rho_AB).\",\n    \"is_unitary\": \"Rung 6: Verifies U^dagger U = I.\",\n    \"discrete_unitary_step\": \"Rung 6: Discrete time evolution psi(t+1) = U psi(t) or rho(t+1) = U rho(t) U^dagger.\",\n    \"continuous_generator_branch_count\": \"Rung 6: Exhibits the continuous-time generator obstruction.\",\n    \"is_valid_povm\": \"Rung 7: Verifies that a collection of matrices forms a valid POVM (E_m >= 0, sum E_m = I).\",\n    \"povm_probabilities\": \"Rung 7: Computes Born probabilities p(m) = Tr(E_m rho) for a POVM.\",\n    \"non_selective_measurement_decoherence\": \"Rung 7: Non-selective measurement state update rho' = sum_m P_m rho P_m (decoherence).\",\n    \"verify_cptp_contractivity\": \"Rung 7: Verifies monotonicity of trace distance under depolarizing CPTP channel.\",\n    \"BoundaryDefense\": \"Rung 8: Exact defended statement of where the finite presentation stops.\",\n    \"get_boundary_defense\": \"Rung 8: Constructs the boundary defense object for a given carrier dimension.\",\n    \"is_orthonormal_frame\": \"Checks whether a set of d vectors forms an orthonormal basis for C^d or R^d.\",\n    \"evaluate_frame_function\": \"Evaluates the sum of a candidate frame function f over an orthonormal frame.\",\n    \"density_matrix_frame_function\": \"Constructs the canonical Gleason frame function f_rho(v) = <v| rho |v>.\",\n    \"verify_gleason_frame_additivity\": \"Verifies that f_rho(v) = <v|rho|v> sums to 1.0 across all supplied orthonormal frames.\",\n    \"gleason_dimension_2_counterexample\": \"Exhibits the failure of Gleason's Theorem in dimension d = 2.\",\n    \"discrete_gleason_triads_d3\": \"Returns a collection of orthogonal triad frames in R^3 for testing discrete Gleason.\",\n    \"rational_pythagorean_frames_d2\": \"Constructs exact rational orthonormal 2-frames in Q^2 via primitive Pythagorean triples.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "b70992ae73baedbf09d385cdd5289f6226edd79a780889e928159d7e90e01453"
+    },
+    {
+      "bytes": 1562,
       "original_paths": [
-        "code/python/src/qm/rungs.contract.score.yaml#contract"
-      ]
+        "code/python/src/qm/rungs.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/qm/rungs.py\",\n      \"sha256\": \"bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1\",\n  \"subject\": \"code/python/src/qm/rungs.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/qm/rungs.py",
+          "sha256": "bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/qm/rungs.py",
+            "sha256": "bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1",
+        "subject": "code/python/src/qm/rungs.py"
+      },
+      "sha256": "bdfb54d756f4c324af6acaa35ff2d896e0ff77d73ba935327c9e13f8f952f10a"
     }
   ],
+  "current_contract": "bdfb54d756f4c324af6acaa35ff2d896e0ff77d73ba935327c9e13f8f952f10a",
+  "current_scoring": "78dd4b78f2fe907b2133fc185b2a597b830768a6d5cb3feae757b6beca2164b7",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "b783c831995506ee40673cfdfa43f00f3ce6041de6772ecf676f05c1f0b2f9f6",
       "bytes": 2178,
+      "original_paths": [
+        "code/python/src/qm/rungs.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"26661ccd2f7c4d2027e77d1ac3f7e00f983e3c6461c80ee2d09e2eae536a25b5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:rungs:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 11), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 11,\n    \"weighted_control_upper_bound\": 20,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/rungs.py",
           "sha256": "26661ccd2f7c4d2027e77d1ac3f7e00f983e3c6461c80ee2d09e2eae536a25b5"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:campaigns:rungs:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -342,60 +343,60 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 11), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models."
         },
-        "metrics": {
-          "radon_ccn": 11,
-          "lizard_ccn": 11,
-          "weighted_control_upper_bound": 20,
-          "control_nesting": 3
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 11,
+          "radon_ccn": 11,
+          "weighted_control_upper_bound": 20
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
-        "evidence": [
-          {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-          }
-        ]
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"26661ccd2f7c4d2027e77d1ac3f7e00f983e3c6461c80ee2d09e2eae536a25b5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:rungs:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 11), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 11,\n    \"weighted_control_upper_bound\": 20,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/rungs.contract.score.yaml#scoring"
-      ]
+      "sha256": "b783c831995506ee40673cfdfa43f00f3ce6041de6772ecf676f05c1f0b2f9f6"
     },
     {
-      "sha256": "a3029fe43fc2428346c8edc349da1b66f7dc661603fb6da94423a69c7bf2901c",
       "bytes": 2144,
+      "original_paths": [
+        "code/python/src/qm/rungs.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"dbbc8550c72b9fc60b377f3c359411510ec8199e906f735e176d1453007ca0ed\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:rungs:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 3 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 11,\n    \"weighted_control_upper_bound\": 20,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/rungs.py",
           "sha256": "dbbc8550c72b9fc60b377f3c359411510ec8199e906f735e176d1453007ca0ed"
         },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
-        },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:qm:rungs:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
           "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
@@ -403,60 +404,60 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 3 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 11,
-          "lizard_ccn": 11,
-          "weighted_control_upper_bound": 20,
-          "control_nesting": 3
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 11,
+          "radon_ccn": 11,
+          "weighted_control_upper_bound": 20
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
-        "evidence": [
-          {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-          }
-        ]
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"dbbc8550c72b9fc60b377f3c359411510ec8199e906f735e176d1453007ca0ed\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:rungs:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 3 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 11,\n    \"weighted_control_upper_bound\": 20,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/rungs.contract.score.yaml#scoring"
-      ]
+      "sha256": "a3029fe43fc2428346c8edc349da1b66f7dc661603fb6da94423a69c7bf2901c"
     },
     {
-      "sha256": "d9445ab75470e19ce93998b5f817f46b22727a0145022f7be461fb107e536078",
       "bytes": 2144,
+      "original_paths": [
+        "code/python/src/qm/rungs.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:rungs:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 3 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 11,\n    \"weighted_control_upper_bound\": 20,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/rungs.py",
           "sha256": "bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1"
         },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
-        },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:qm:rungs:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
           "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
@@ -464,35 +465,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 3 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 11,
-          "lizard_ccn": 11,
-          "weighted_control_upper_bound": 20,
-          "control_nesting": 3
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 11,
+          "radon_ccn": 11,
+          "weighted_control_upper_bound": 20
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "d9445ab75470e19ce93998b5f817f46b22727a0145022f7be461fb107e536078"
+    },
+    {
+      "bytes": 1568,
+      "original_paths": [
+        "code/python/src/qm/rungs.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/qm/rungs.py\",\n      \"sha256\": \"bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/qm/rungs.py",
+          "sha256": "bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/src/qm/rungs.py",
+            "sha256": "bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/rungs.py\",\n    \"sha256\": \"bab0c979c7e1201c4f3bbbb521be107fb14c2afa648053a491cdeef4ca13bac1\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:rungs:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 3 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 11,\n    \"weighted_control_upper_bound\": 20,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/rungs.contract.score.yaml#scoring"
-      ]
+      "sha256": "78dd4b78f2fe907b2133fc185b2a597b830768a6d5cb3feae757b6beca2164b7"
     }
   ]
 }

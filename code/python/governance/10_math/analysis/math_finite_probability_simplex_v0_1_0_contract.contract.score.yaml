@@ -1,193 +1,83 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:finite_probability_simplex:v0.1.0",
-    "title": "Finite Probability Simplex Contract",
-    "kind": "math_contract",
-    "status": "active",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py",
+      "sha256": "bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db"
     },
-    "math": {
-      "object_kind": "finite_probability_distribution",
-      "symbol": "p ∈ Δ(Fin n) = {p ∈ ℚ^n : p_i ≥ 0, ∑_i p_i = 1}",
-      "ascii_symbol": "probability_simplex",
-      "notation": "p ∈ Δ_n over Fin n = {0, ..., n-1}; P(A) = ∑_(i∈A) p_i; E[f] = ∑_i p_i f_i; TV(p, q) = (1/2) ∑_i |p_i - q_i|",
-      "domain": [
-        "carrier: Fin n with n ≥ 1",
-        "masses: n exact rationals (BigRational), each ≥ 0, summing to exactly 1"
-      ],
-      "codomain": {
-        "description": "A validated probability vector on a finite carrier, with exact events, expectations, total variation distance, product distributions on Fin n x Fin m (index i*m + j), convex mixtures and rational power sums ∑ p_i^α. Equality is equality of the mass vectors; the label is provenance only.\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Every mass is a nonnegative exact rational and the masses sum to exactly one; there is no tolerance",
-        "The fields are private: a value comes from a validating constructor (try_from_probs, try_new, try_from_weights, dirac, uniform)",
-        "The carrier Fin n has n ≥ 1, and a size product that overflows usize is refused, not wrapped",
-        "Events and expectations name points and values of the carrier, and a point outside it is refused"
-      ]
-    },
-    "laws": [
-      "Total variation is a metric on Δ_n (symmetric, zero exactly on equal vectors, triangle inequality) with values in [0, 1]",
-      "TV(p, q) = (1/2) ∑_i |p_i - q_i| = max over events A of |p(A) - q(A)|, two independent computations of one number",
-      "Probability is additive over disjoint events, and expectation is linear in the function",
-      "The product distribution p ⊗ q has mass p_i q_j at index i*m + j and has p and q as marginals",
-      "A convex combination of simplices with nonnegative weights summing to one is a simplex",
-      "The power sum ∑_(p_i>0) p_i^α is rational; α = 0 is the support size, α = 1 is 1, α = 2 is the purity, and the uniform distribution on n points has purity 1/n"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "All arithmetic is exact in BigRational",
-        "Support lists and events are reported in increasing order"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_finite_probability",
-      "module": "simplex",
-      "symbols": [
-        "ProbabilitySimplex",
-        "ProbabilitySimplex::try_from_probs",
-        "ProbabilitySimplex::try_new",
-        "ProbabilitySimplex::try_from_weights",
-        "ProbabilitySimplex::total_variation",
-        "ProbabilitySimplex::probability_of",
-        "ProbabilitySimplex::expectation",
-        "ProbabilitySimplex::product",
-        "ProbabilitySimplex::convex_combination",
-        "ProbabilitySimplex::power_sum"
-      ],
-      "required_tests": [
-        "a_vector_not_summing_to_one_is_refused_with_its_exact_sum",
-        "a_negative_mass_is_refused_at_its_index",
-        "empty_and_wrongly_sized_masses_are_refused",
-        "a_dirac_point_outside_the_carrier_is_refused",
-        "weights_are_normalised_exactly_and_a_zero_total_is_refused",
-        "events_are_additive_over_disjoint_events_and_count_repeats_once",
-        "total_variation_of_disjoint_supports_is_one_and_sizes_must_agree",
-        "a_convex_combination_is_a_simplex_and_bad_weights_are_refused",
-        "expectation_is_linear_and_matches_a_hand_value",
-        "a_carrier_needs_a_point",
-        "a_product_that_overflows_usize_is_refused_not_wrapped",
-        "total_variation_is_a_metric_on_the_three_point_grid",
-        "total_variation_is_the_largest_event_gap_on_every_grid_pair",
-        "a_product_distribution_multiplies_masses_and_has_the_factors_as_marginals",
-        "power_sums_are_the_rational_moments_and_purity_is_the_second"
-      ]
-    },
-    "negative_tests": [
-      "Masses that do not sum to exactly one must be refused, reporting the exact sum",
-      "A negative mass must be refused, reporting its index",
-      "An empty vector, or one whose length differs from the carrier, must be refused",
-      "A Dirac point outside the carrier must be refused",
-      "Weights that sum to zero, or a negative weight, must not be normalised",
-      "An event naming a point outside the carrier must be refused",
-      "Total variation between simplices of different sizes must be refused",
-      "A mixture with a negative weight, weights not summing to one, or parts of different sizes must be refused",
-      "An expectation whose value list has the wrong length must be refused",
-      "A carrier with no points must be refused",
-      "A carrier product that overflows usize must be refused"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py",
+        "sha256": "bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "A finite probability simplex is a vector of exact rationals that sums to one, so a value of the type is a distribution and consumers never re-validate it. Its derived quantities (events, expectations, total variation, products, mixtures, power sums) are exact, and the total variation is checked against an independent maximum over events. This is classical finite probability; it makes no claim about a quantum Born rule.",
-      "non_role": [
-        "Continuous or infinite distributions",
-        "Floating-point probabilities or tolerances",
-        "Any quantum state or Born-rule claim",
-        "Measure-theoretic structure beyond a finite carrier"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "FinN lives in the sibling module finite_set and is bound by the test a_carrier_needs_a_point; this contract binds the module simplex only",
-      "Entropy is not a method of the simplex: it is the LogForm of the log_linear_entropy_form contract"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db",
+    "subject": "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py"
   },
-  "current_contract": "f5bba099afc805982e59a15349856195187bc78d279001529d847b4d2058c723",
-  "current_scoring": "4cae3d21cb61dd751807366c2186c301a9e92adb759e6c94eb44261f8afb1a71",
   "contract_history": [
     {
-      "sha256": "f5bba099afc805982e59a15349856195187bc78d279001529d847b4d2058c723",
       "bytes": 6373,
+      "original_paths": [
+        "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:finite_probability_simplex:v0.1.0\",\n  \"title\": \"Finite Probability Simplex Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"active\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_probability_distribution\",\n    \"symbol\": \"p ∈ Δ(Fin n) = {p ∈ ℚ^n : p_i ≥ 0, ∑_i p_i = 1}\",\n    \"ascii_symbol\": \"probability_simplex\",\n    \"notation\": \"p ∈ Δ_n over Fin n = {0, ..., n-1}; P(A) = ∑_(i∈A) p_i; E[f] = ∑_i p_i f_i; TV(p, q) = (1/2) ∑_i |p_i - q_i|\",\n    \"domain\": [\n      \"carrier: Fin n with n ≥ 1\",\n      \"masses: n exact rationals (BigRational), each ≥ 0, summing to exactly 1\"\n    ],\n    \"codomain\": {\n      \"description\": \"A validated probability vector on a finite carrier, with exact events, expectations, total variation distance, product distributions on Fin n x Fin m (index i*m + j), convex mixtures and rational power sums ∑ p_i^α. Equality is equality of the mass vectors; the label is provenance only.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Every mass is a nonnegative exact rational and the masses sum to exactly one; there is no tolerance\",\n      \"The fields are private: a value comes from a validating constructor (try_from_probs, try_new, try_from_weights, dirac, uniform)\",\n      \"The carrier Fin n has n ≥ 1, and a size product that overflows usize is refused, not wrapped\",\n      \"Events and expectations name points and values of the carrier, and a point outside it is refused\"\n    ]\n  },\n  \"laws\": [\n    \"Total variation is a metric on Δ_n (symmetric, zero exactly on equal vectors, triangle inequality) with values in [0, 1]\",\n    \"TV(p, q) = (1/2) ∑_i |p_i - q_i| = max over events A of |p(A) - q(A)|, two independent computations of one number\",\n    \"Probability is additive over disjoint events, and expectation is linear in the function\",\n    \"The product distribution p ⊗ q has mass p_i q_j at index i*m + j and has p and q as marginals\",\n    \"A convex combination of simplices with nonnegative weights summing to one is a simplex\",\n    \"The power sum ∑_(p_i>0) p_i^α is rational; α = 0 is the support size, α = 1 is 1, α = 2 is the purity, and the uniform distribution on n points has purity 1/n\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"All arithmetic is exact in BigRational\",\n      \"Support lists and events are reported in increasing order\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_finite_probability\",\n    \"module\": \"simplex\",\n    \"symbols\": [\n      \"ProbabilitySimplex\",\n      \"ProbabilitySimplex::try_from_probs\",\n      \"ProbabilitySimplex::try_new\",\n      \"ProbabilitySimplex::try_from_weights\",\n      \"ProbabilitySimplex::total_variation\",\n      \"ProbabilitySimplex::probability_of\",\n      \"ProbabilitySimplex::expectation\",\n      \"ProbabilitySimplex::product\",\n      \"ProbabilitySimplex::convex_combination\",\n      \"ProbabilitySimplex::power_sum\"\n    ],\n    \"required_tests\": [\n      \"a_vector_not_summing_to_one_is_refused_with_its_exact_sum\",\n      \"a_negative_mass_is_refused_at_its_index\",\n      \"empty_and_wrongly_sized_masses_are_refused\",\n      \"a_dirac_point_outside_the_carrier_is_refused\",\n      \"weights_are_normalised_exactly_and_a_zero_total_is_refused\",\n      \"events_are_additive_over_disjoint_events_and_count_repeats_once\",\n      \"total_variation_of_disjoint_supports_is_one_and_sizes_must_agree\",\n      \"a_convex_combination_is_a_simplex_and_bad_weights_are_refused\",\n      \"expectation_is_linear_and_matches_a_hand_value\",\n      \"a_carrier_needs_a_point\",\n      \"a_product_that_overflows_usize_is_refused_not_wrapped\",\n      \"total_variation_is_a_metric_on_the_three_point_grid\",\n      \"total_variation_is_the_largest_event_gap_on_every_grid_pair\",\n      \"a_product_distribution_multiplies_masses_and_has_the_factors_as_marginals\",\n      \"power_sums_are_the_rational_moments_and_purity_is_the_second\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Masses that do not sum to exactly one must be refused, reporting the exact sum\",\n    \"A negative mass must be refused, reporting its index\",\n    \"An empty vector, or one whose length differs from the carrier, must be refused\",\n    \"A Dirac point outside the carrier must be refused\",\n    \"Weights that sum to zero, or a negative weight, must not be normalised\",\n    \"An event naming a point outside the carrier must be refused\",\n    \"Total variation between simplices of different sizes must be refused\",\n    \"A mixture with a negative weight, weights not summing to one, or parts of different sizes must be refused\",\n    \"An expectation whose value list has the wrong length must be refused\",\n    \"A carrier with no points must be refused\",\n    \"A carrier product that overflows usize must be refused\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A finite probability simplex is a vector of exact rationals that sums to one, so a value of the type is a distribution and consumers never re-validate it. Its derived quantities (events, expectations, total variation, products, mixtures, power sums) are exact, and the total variation is checked against an independent maximum over events. This is classical finite probability; it makes no claim about a quantum Born rule.\",\n    \"non_role\": [\n      \"Continuous or infinite distributions\",\n      \"Floating-point probabilities or tolerances\",\n      \"Any quantum state or Born-rule claim\",\n      \"Measure-theoretic structure beyond a finite carrier\"\n    ]\n  },\n  \"wip\": [\n    \"FinN lives in the sibling module finite_set and is bound by the test a_carrier_needs_a_point; this contract binds the module simplex only\",\n    \"Entropy is not a method of the simplex: it is the LogForm of the log_linear_entropy_form contract\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:finite_probability_simplex:v0.1.0",
-        "title": "Finite Probability Simplex Contract",
-        "kind": "math_contract",
-        "status": "active",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
-        "math": {
-          "object_kind": "finite_probability_distribution",
-          "symbol": "p ∈ Δ(Fin n) = {p ∈ ℚ^n : p_i ≥ 0, ∑_i p_i = 1}",
-          "ascii_symbol": "probability_simplex",
-          "notation": "p ∈ Δ_n over Fin n = {0, ..., n-1}; P(A) = ∑_(i∈A) p_i; E[f] = ∑_i p_i f_i; TV(p, q) = (1/2) ∑_i |p_i - q_i|",
-          "domain": [
-            "carrier: Fin n with n ≥ 1",
-            "masses: n exact rationals (BigRational), each ≥ 0, summing to exactly 1"
+        "doctrine": {
+          "non_role": [
+            "Continuous or infinite distributions",
+            "Floating-point probabilities or tolerances",
+            "Any quantum state or Born-rule claim",
+            "Measure-theoretic structure beyond a finite carrier"
           ],
-          "codomain": {
-            "description": "A validated probability vector on a finite carrier, with exact events, expectations, total variation distance, product distributions on Fin n x Fin m (index i*m + j), convex mixtures and rational power sums ∑ p_i^α. Equality is equality of the mass vectors; the label is provenance only.\n"
-          }
+          "summary": "A finite probability simplex is a vector of exact rationals that sums to one, so a value of the type is a distribution and consumers never re-validate it. Its derived quantities (events, expectations, total variation, products, mixtures, power sums) are exact, and the total variation is checked against an independent maximum over events. This is classical finite probability; it makes no claim about a quantum Born rule."
         },
-        "requirements": {
-          "required_structures": [
-            "Every mass is a nonnegative exact rational and the masses sum to exactly one; there is no tolerance",
-            "The fields are private: a value comes from a validating constructor (try_from_probs, try_new, try_from_weights, dirac, uniform)",
-            "The carrier Fin n has n ≥ 1, and a size product that overflows usize is refused, not wrapped",
-            "Events and expectations name points and values of the carrier, and a point outside it is refused"
-          ]
-        },
+        "kind": "math_contract",
         "laws": [
           "Total variation is a metric on Δ_n (symmetric, zero exactly on equal vectors, triangle inequality) with values in [0, 1]",
           "TV(p, q) = (1/2) ∑_i |p_i - q_i| = max over events A of |p(A) - q(A)|, two independent computations of one number",
@@ -196,6 +86,38 @@
           "A convex combination of simplices with nonnegative weights summing to one is a simplex",
           "The power sum ∑_(p_i>0) p_i^α is rational; α = 0 is the support size, α = 1 is 1, α = 2 is the purity, and the uniform distribution on n points has purity 1/n"
         ],
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "probability_simplex",
+          "codomain": {
+            "description": "A validated probability vector on a finite carrier, with exact events, expectations, total variation distance, product distributions on Fin n x Fin m (index i*m + j), convex mixtures and rational power sums ∑ p_i^α. Equality is equality of the mass vectors; the label is provenance only.\n"
+          },
+          "domain": [
+            "carrier: Fin n with n ≥ 1",
+            "masses: n exact rationals (BigRational), each ≥ 0, summing to exactly 1"
+          ],
+          "notation": "p ∈ Δ_n over Fin n = {0, ..., n-1}; P(A) = ∑_(i∈A) p_i; E[f] = ∑_i p_i f_i; TV(p, q) = (1/2) ∑_i |p_i - q_i|",
+          "object_kind": "finite_probability_distribution",
+          "symbol": "p ∈ Δ(Fin n) = {p ∈ ℚ^n : p_i ≥ 0, ∑_i p_i = 1}"
+        },
+        "negative_tests": [
+          "Masses that do not sum to exactly one must be refused, reporting the exact sum",
+          "A negative mass must be refused, reporting its index",
+          "An empty vector, or one whose length differs from the carrier, must be refused",
+          "A Dirac point outside the carrier must be refused",
+          "Weights that sum to zero, or a negative weight, must not be normalised",
+          "An event naming a point outside the carrier must be refused",
+          "Total variation between simplices of different sizes must be refused",
+          "A mixture with a negative weight, weights not summing to one, or parts of different sizes must be refused",
+          "An expectation whose value list has the wrong length must be refused",
+          "A carrier with no points must be refused",
+          "A carrier product that overflows usize must be refused"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
         "replay": {
           "requirements": [
             "No external state",
@@ -205,26 +127,17 @@
             "Support lists and events are reported in increasing order"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
+        "requirements": {
+          "required_structures": [
+            "Every mass is a nonnegative exact rational and the masses sum to exactly one; there is no tolerance",
+            "The fields are private: a value comes from a validating constructor (try_from_probs, try_new, try_from_weights, dirac, uniform)",
+            "The carrier Fin n has n ≥ 1, and a size product that overflows usize is refused, not wrapped",
+            "Events and expectations name points and values of the carrier, and a point outside it is refused"
           ]
         },
         "rust_binding": {
           "crate": "omega_finite_probability",
           "module": "simplex",
-          "symbols": [
-            "ProbabilitySimplex",
-            "ProbabilitySimplex::try_from_probs",
-            "ProbabilitySimplex::try_new",
-            "ProbabilitySimplex::try_from_weights",
-            "ProbabilitySimplex::total_variation",
-            "ProbabilitySimplex::probability_of",
-            "ProbabilitySimplex::expectation",
-            "ProbabilitySimplex::product",
-            "ProbabilitySimplex::convex_combination",
-            "ProbabilitySimplex::power_sum"
-          ],
           "required_tests": [
             "a_vector_not_summing_to_one_is_refused_with_its_exact_sum",
             "a_negative_mass_is_refused_at_its_index",
@@ -241,65 +154,94 @@
             "total_variation_is_the_largest_event_gap_on_every_grid_pair",
             "a_product_distribution_multiplies_masses_and_has_the_factors_as_marginals",
             "power_sums_are_the_rational_moments_and_purity_is_the_second"
+          ],
+          "symbols": [
+            "ProbabilitySimplex",
+            "ProbabilitySimplex::try_from_probs",
+            "ProbabilitySimplex::try_new",
+            "ProbabilitySimplex::try_from_weights",
+            "ProbabilitySimplex::total_variation",
+            "ProbabilitySimplex::probability_of",
+            "ProbabilitySimplex::expectation",
+            "ProbabilitySimplex::product",
+            "ProbabilitySimplex::convex_combination",
+            "ProbabilitySimplex::power_sum"
           ]
         },
-        "negative_tests": [
-          "Masses that do not sum to exactly one must be refused, reporting the exact sum",
-          "A negative mass must be refused, reporting its index",
-          "An empty vector, or one whose length differs from the carrier, must be refused",
-          "A Dirac point outside the carrier must be refused",
-          "Weights that sum to zero, or a negative weight, must not be normalised",
-          "An event naming a point outside the carrier must be refused",
-          "Total variation between simplices of different sizes must be refused",
-          "A mixture with a negative weight, weights not summing to one, or parts of different sizes must be refused",
-          "An expectation whose value list has the wrong length must be refused",
-          "A carrier with no points must be refused",
-          "A carrier product that overflows usize must be refused"
-        ],
-        "doctrine": {
-          "summary": "A finite probability simplex is a vector of exact rationals that sums to one, so a value of the type is a distribution and consumers never re-validate it. Its derived quantities (events, expectations, total variation, products, mixtures, power sums) are exact, and the total variation is checked against an independent maximum over events. This is classical finite probability; it makes no claim about a quantum Born rule.",
-          "non_role": [
-            "Continuous or infinite distributions",
-            "Floating-point probabilities or tolerances",
-            "Any quantum state or Born-rule claim",
-            "Measure-theoretic structure beyond a finite carrier"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "active",
+        "title": "Finite Probability Simplex Contract",
         "wip": [
           "FinN lives in the sibling module finite_set and is bound by the test a_carrier_needs_a_point; this contract binds the module simplex only",
           "Entropy is not a method of the simplex: it is the LogForm of the log_linear_entropy_form contract"
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:finite_probability_simplex:v0.1.0\",\n  \"title\": \"Finite Probability Simplex Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"active\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_probability_distribution\",\n    \"symbol\": \"p ∈ Δ(Fin n) = {p ∈ ℚ^n : p_i ≥ 0, ∑_i p_i = 1}\",\n    \"ascii_symbol\": \"probability_simplex\",\n    \"notation\": \"p ∈ Δ_n over Fin n = {0, ..., n-1}; P(A) = ∑_(i∈A) p_i; E[f] = ∑_i p_i f_i; TV(p, q) = (1/2) ∑_i |p_i - q_i|\",\n    \"domain\": [\n      \"carrier: Fin n with n ≥ 1\",\n      \"masses: n exact rationals (BigRational), each ≥ 0, summing to exactly 1\"\n    ],\n    \"codomain\": {\n      \"description\": \"A validated probability vector on a finite carrier, with exact events, expectations, total variation distance, product distributions on Fin n x Fin m (index i*m + j), convex mixtures and rational power sums ∑ p_i^α. Equality is equality of the mass vectors; the label is provenance only.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Every mass is a nonnegative exact rational and the masses sum to exactly one; there is no tolerance\",\n      \"The fields are private: a value comes from a validating constructor (try_from_probs, try_new, try_from_weights, dirac, uniform)\",\n      \"The carrier Fin n has n ≥ 1, and a size product that overflows usize is refused, not wrapped\",\n      \"Events and expectations name points and values of the carrier, and a point outside it is refused\"\n    ]\n  },\n  \"laws\": [\n    \"Total variation is a metric on Δ_n (symmetric, zero exactly on equal vectors, triangle inequality) with values in [0, 1]\",\n    \"TV(p, q) = (1/2) ∑_i |p_i - q_i| = max over events A of |p(A) - q(A)|, two independent computations of one number\",\n    \"Probability is additive over disjoint events, and expectation is linear in the function\",\n    \"The product distribution p ⊗ q has mass p_i q_j at index i*m + j and has p and q as marginals\",\n    \"A convex combination of simplices with nonnegative weights summing to one is a simplex\",\n    \"The power sum ∑_(p_i>0) p_i^α is rational; α = 0 is the support size, α = 1 is 1, α = 2 is the purity, and the uniform distribution on n points has purity 1/n\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"All arithmetic is exact in BigRational\",\n      \"Support lists and events are reported in increasing order\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_finite_probability\",\n    \"module\": \"simplex\",\n    \"symbols\": [\n      \"ProbabilitySimplex\",\n      \"ProbabilitySimplex::try_from_probs\",\n      \"ProbabilitySimplex::try_new\",\n      \"ProbabilitySimplex::try_from_weights\",\n      \"ProbabilitySimplex::total_variation\",\n      \"ProbabilitySimplex::probability_of\",\n      \"ProbabilitySimplex::expectation\",\n      \"ProbabilitySimplex::product\",\n      \"ProbabilitySimplex::convex_combination\",\n      \"ProbabilitySimplex::power_sum\"\n    ],\n    \"required_tests\": [\n      \"a_vector_not_summing_to_one_is_refused_with_its_exact_sum\",\n      \"a_negative_mass_is_refused_at_its_index\",\n      \"empty_and_wrongly_sized_masses_are_refused\",\n      \"a_dirac_point_outside_the_carrier_is_refused\",\n      \"weights_are_normalised_exactly_and_a_zero_total_is_refused\",\n      \"events_are_additive_over_disjoint_events_and_count_repeats_once\",\n      \"total_variation_of_disjoint_supports_is_one_and_sizes_must_agree\",\n      \"a_convex_combination_is_a_simplex_and_bad_weights_are_refused\",\n      \"expectation_is_linear_and_matches_a_hand_value\",\n      \"a_carrier_needs_a_point\",\n      \"a_product_that_overflows_usize_is_refused_not_wrapped\",\n      \"total_variation_is_a_metric_on_the_three_point_grid\",\n      \"total_variation_is_the_largest_event_gap_on_every_grid_pair\",\n      \"a_product_distribution_multiplies_masses_and_has_the_factors_as_marginals\",\n      \"power_sums_are_the_rational_moments_and_purity_is_the_second\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Masses that do not sum to exactly one must be refused, reporting the exact sum\",\n    \"A negative mass must be refused, reporting its index\",\n    \"An empty vector, or one whose length differs from the carrier, must be refused\",\n    \"A Dirac point outside the carrier must be refused\",\n    \"Weights that sum to zero, or a negative weight, must not be normalised\",\n    \"An event naming a point outside the carrier must be refused\",\n    \"Total variation between simplices of different sizes must be refused\",\n    \"A mixture with a negative weight, weights not summing to one, or parts of different sizes must be refused\",\n    \"An expectation whose value list has the wrong length must be refused\",\n    \"A carrier with no points must be refused\",\n    \"A carrier product that overflows usize must be refused\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A finite probability simplex is a vector of exact rationals that sums to one, so a value of the type is a distribution and consumers never re-validate it. Its derived quantities (events, expectations, total variation, products, mixtures, power sums) are exact, and the total variation is checked against an independent maximum over events. This is classical finite probability; it makes no claim about a quantum Born rule.\",\n    \"non_role\": [\n      \"Continuous or infinite distributions\",\n      \"Floating-point probabilities or tolerances\",\n      \"Any quantum state or Born-rule claim\",\n      \"Measure-theoretic structure beyond a finite carrier\"\n    ]\n  },\n  \"wip\": [\n    \"FinN lives in the sibling module finite_set and is bound by the test a_carrier_needs_a_point; this contract binds the module simplex only\",\n    \"Entropy is not a method of the simplex: it is the LogForm of the log_linear_entropy_form contract\"\n  ]\n}\n",
+      "sha256": "f5bba099afc805982e59a15349856195187bc78d279001529d847b4d2058c723"
+    },
+    {
+      "bytes": 1751,
       "original_paths": [
-        "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py\",\n    \"sha256\": \"bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py\",\n      \"sha256\": \"bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db\",\n  \"subject\": \"code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py",
+          "sha256": "bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py",
+            "sha256": "bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db",
+        "subject": "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py"
+      },
+      "sha256": "2f2deab522713cd179b3bc3d98e5ce2cfbf43d6aabb114372c0e0d02019a1787"
     }
   ],
+  "current_contract": "2f2deab522713cd179b3bc3d98e5ce2cfbf43d6aabb114372c0e0d02019a1787",
+  "current_scoring": "64df0166718c57848918288bb5c517e6ddfa17eeb1214eb1e59ac44e9aadf97c",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0.contract.yaml": "1dc6c043d5bec13cd0046afab525d8e7d3cb9c5c695a1266bd4698c04c0b30af"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "4cae3d21cb61dd751807366c2186c301a9e92adb759e6c94eb44261f8afb1a71",
       "bytes": 2251,
+      "original_paths": [
+        "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py\",\n    \"sha256\": \"bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:math-finite-probability-simplex-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py",
           "sha256": "bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:analysis:math-finite-probability-simplex-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -308,40 +250,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "4cae3d21cb61dd751807366c2186c301a9e92adb759e6c94eb44261f8afb1a71"
+    },
+    {
+      "bytes": 1694,
+      "original_paths": [
+        "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py\",\n    \"sha256\": \"bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py\",\n      \"sha256\": \"bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py",
+          "sha256": "bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py",
+            "sha256": "bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.py\",\n    \"sha256\": \"bfbc2f0f7a38bd0e44bd59a64d3b6b98b9eed2328986ab6c2118070927da76db\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:math-finite-probability-simplex-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "64df0166718c57848918288bb5c517e6ddfa17eeb1214eb1e59ac44e9aadf97c"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/analysis/math_finite_probability_simplex_v0_1_0.contract.yaml": "1dc6c043d5bec13cd0046afab525d8e7d3cb9c5c695a1266bd4698c04c0b30af"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

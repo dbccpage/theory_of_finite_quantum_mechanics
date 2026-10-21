@@ -1,67 +1,56 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/functional/test_exported_zero_phi1.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/functional/test_exported_zero_phi1.py",
       "sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:phi1:exported-zero-test-certificate:v1",
-    "role": "test checker",
-    "purpose": "Independent zero primal-dual oracle with computed fixture witnesses and honest source/self mutation accounting.",
-    "operations": {
-      "oracles": "Compute zero primal residual/dual feasibility/cost independently of the public facade; derive row-count and weight witnesses from declared fixtures and run the guard rejection probe.",
-      "mutation_checks": "Unique source replacement and assessed semantic rejection required; invalid import/syntax refuses without a kill. Unexpected infrastructure failures propagate and previous sys.modules bindings are restored."
-    },
-    "engineering_policy": "Fixed two-coordinate fixture and finite source replacement lists. External challenge harness provides captured process deadlines and six-outcome reporting.",
-    "failure_boundary": "ClaimCheckError for semantic mismatches; typed unassessable-candidate refusal for syntax/import problems. Only expected semantic exceptions count toward oracle rejection; finally restores imports.",
-    "cost_model": "Fixed rational oracle operations plus linear copied-source/import work per named candidate. No exhaustive verification or independent alternate checker claim.",
-    "scope_ceiling": "One zero witness. No derivation of L1, general optimality solver or inherited Lean kernel receipt.",
-    "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
-        "path": "evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json",
-        "sha256": "c4c3952ca582382759111b912d389ead3543fae7d28075176a70831b49a25eac"
+        "path": "code/python/src/functional/test_exported_zero_phi1.py",
+        "sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2"
       },
       {
-        "path": "evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json",
-        "sha256": "f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/batch3-baseline.log",
-        "sha256": "200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/batch3-atlas.log",
-        "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
-      },
-      {
-        "path": "code/rust/quality/expanded_scope/batch3_reviews.json",
-        "sha256": "d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd"
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "test or verification harness",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2",
+    "subject": "code/python/src/functional/test_exported_zero_phi1.py"
   },
-  "current_contract": "00ae7d39665fbbfb78a8409ab578581e689018918def8a4d9ef158115fd41667",
-  "current_scoring": "62032192f2b334157cd2a2953c32781a8b43a5833548e0966dd9191f3d90aac2",
   "contract_history": [
     {
-      "sha256": "7ea94819e4767d14c18d66fc65bd8821945ae66148302334b8257b84835be5e3",
       "bytes": 1721,
+      "original_paths": [
+        "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#historical-defect-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n    \"sha256\": \"a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64\"\n  },\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Earlier captured implementation only; later contracts and budgets are not retroactive.\",\n  \"source_claims_verbatim\": \"Unit, integration, end-to-end, and mutation checks for the zero Phi1 export.\\n\\nOrigin: lean4/DerivationDagQMClosure.lean theorem\\nl1_gs001_replica_and_phi1_quotient_invariance, recomputed by\\ncode/python/src/functional/__init__.py.\\nClaim: urn:omega:fqm:phi1:exported-zero-test-certificate:v1\\nAuthorityEffect: None\\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/functional/test_exported_zero_phi1.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 7; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\\nScope Fence: The checker certifies one zero residual on the boundary column\\n(1, -1) with weights (1, 1). It does not select L1 over a rival seminorm.\",\n  \"source_claims_status\": \"Captured claims only, not endorsed measurements, verification or capability grades.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json\",\n      \"sha256\": \"fd245f1d621260d2bf07c56d0b326176885c5684eab090b477a467d0cd2beda3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/test_exported_zero_phi1.py\",\n      \"sha256\": \"a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/functional/test_exported_zero_phi1.py",
           "sha256": "a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64"
         },
-        "profile": "Exact",
-        "status": "historical_defect_review",
-        "purpose": "Earlier captured implementation only; later contracts and budgets are not retroactive.",
-        "source_claims_verbatim": "Unit, integration, end-to-end, and mutation checks for the zero Phi1 export.\n\nOrigin: lean4/DerivationDagQMClosure.lean theorem\nl1_gs001_replica_and_phi1_quotient_invariance, recomputed by\ncode/python/src/functional/__init__.py.\nClaim: urn:omega:fqm:phi1:exported-zero-test-certificate:v1\nAuthorityEffect: None\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/functional/test_exported_zero_phi1.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 7; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\nScope Fence: The checker certifies one zero residual on the boundary column\n(1, -1) with weights (1, 1). It does not select L1 over a rival seminorm.",
-        "source_claims_status": "Captured claims only, not endorsed measurements, verification or capability grades.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json",
@@ -71,36 +60,30 @@
             "path": "evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/test_exported_zero_phi1.py",
             "sha256": "a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64"
           }
-        ]
+        ],
+        "profile": "Exact",
+        "purpose": "Earlier captured implementation only; later contracts and budgets are not retroactive.",
+        "source_claims_status": "Captured claims only, not endorsed measurements, verification or capability grades.",
+        "source_claims_verbatim": "Unit, integration, end-to-end, and mutation checks for the zero Phi1 export.\n\nOrigin: lean4/DerivationDagQMClosure.lean theorem\nl1_gs001_replica_and_phi1_quotient_invariance, recomputed by\ncode/python/src/functional/__init__.py.\nClaim: urn:omega:fqm:phi1:exported-zero-test-certificate:v1\nAuthorityEffect: None\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/functional/test_exported_zero_phi1.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 7; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\nScope Fence: The checker certifies one zero residual on the boundary column\n(1, -1) with weights (1, 1). It does not select L1 over a rival seminorm.",
+        "status": "historical_defect_review"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n    \"sha256\": \"a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64\"\n  },\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Earlier captured implementation only; later contracts and budgets are not retroactive.\",\n  \"source_claims_verbatim\": \"Unit, integration, end-to-end, and mutation checks for the zero Phi1 export.\\n\\nOrigin: lean4/DerivationDagQMClosure.lean theorem\\nl1_gs001_replica_and_phi1_quotient_invariance, recomputed by\\ncode/python/src/functional/__init__.py.\\nClaim: urn:omega:fqm:phi1:exported-zero-test-certificate:v1\\nAuthorityEffect: None\\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/functional/test_exported_zero_phi1.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 7; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\\nScope Fence: The checker certifies one zero residual on the boundary column\\n(1, -1) with weights (1, 1). It does not select L1 over a rival seminorm.\",\n  \"source_claims_status\": \"Captured claims only, not endorsed measurements, verification or capability grades.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json\",\n      \"sha256\": \"fd245f1d621260d2bf07c56d0b326176885c5684eab090b477a467d0cd2beda3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/test_exported_zero_phi1.py\",\n      \"sha256\": \"a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#historical-defect-review/contract"
-      ]
+      "sha256": "7ea94819e4767d14c18d66fc65bd8821945ae66148302334b8257b84835be5e3"
     },
     {
-      "sha256": "00ae7d39665fbbfb78a8409ab578581e689018918def8a4d9ef158115fd41667",
       "bytes": 2903,
+      "original_paths": [
+        "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#bounded-production-and-checker-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n    \"sha256\": \"9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:phi1:exported-zero-test-certificate:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Independent zero primal-dual oracle with computed fixture witnesses and honest source/self mutation accounting.\",\n  \"operations\": {\n    \"oracles\": \"Compute zero primal residual/dual feasibility/cost independently of the public facade; derive row-count and weight witnesses from declared fixtures and run the guard rejection probe.\",\n    \"mutation_checks\": \"Unique source replacement and assessed semantic rejection required; invalid import/syntax refuses without a kill. Unexpected infrastructure failures propagate and previous sys.modules bindings are restored.\"\n  },\n  \"engineering_policy\": \"Fixed two-coordinate fixture and finite source replacement lists. External challenge harness provides captured process deadlines and six-outcome reporting.\",\n  \"failure_boundary\": \"ClaimCheckError for semantic mismatches; typed unassessable-candidate refusal for syntax/import problems. Only expected semantic exceptions count toward oracle rejection; finally restores imports.\",\n  \"cost_model\": \"Fixed rational oracle operations plus linear copied-source/import work per named candidate. No exhaustive verification or independent alternate checker claim.\",\n  \"scope_ceiling\": \"One zero witness. No derivation of L1, general optimality solver or inherited Lean kernel receipt.\",\n  \"trust\": \"Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json\",\n      \"sha256\": \"c4c3952ca582382759111b912d389ead3543fae7d28075176a70831b49a25eac\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json\",\n      \"sha256\": \"f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-baseline.log\",\n      \"sha256\": \"200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch3_reviews.json\",\n      \"sha256\": \"d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/functional/test_exported_zero_phi1.py",
           "sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:phi1:exported-zero-test-certificate:v1",
-        "role": "test checker",
-        "purpose": "Independent zero primal-dual oracle with computed fixture witnesses and honest source/self mutation accounting.",
-        "operations": {
-          "oracles": "Compute zero primal residual/dual feasibility/cost independently of the public facade; derive row-count and weight witnesses from declared fixtures and run the guard rejection probe.",
-          "mutation_checks": "Unique source replacement and assessed semantic rejection required; invalid import/syntax refuses without a kill. Unexpected infrastructure failures propagate and previous sys.modules bindings are restored."
-        },
-        "engineering_policy": "Fixed two-coordinate fixture and finite source replacement lists. External challenge harness provides captured process deadlines and six-outcome reporting.",
-        "failure_boundary": "ClaimCheckError for semantic mismatches; typed unassessable-candidate refusal for syntax/import problems. Only expected semantic exceptions count toward oracle rejection; finally restores imports.",
         "cost_model": "Fixed rational oracle operations plus linear copied-source/import work per named candidate. No exhaustive verification or independent alternate checker claim.",
-        "scope_ceiling": "One zero witness. No derivation of L1, general optimality solver or inherited Lean kernel receipt.",
-        "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Fixed two-coordinate fixture and finite source replacement lists. External challenge harness provides captured process deadlines and six-outcome reporting.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json",
@@ -122,45 +105,90 @@
             "path": "code/rust/quality/expanded_scope/batch3_reviews.json",
             "sha256": "d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd"
           }
-        ]
+        ],
+        "failure_boundary": "ClaimCheckError for semantic mismatches; typed unassessable-candidate refusal for syntax/import problems. Only expected semantic exceptions count toward oracle rejection; finally restores imports.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "mutation_checks": "Unique source replacement and assessed semantic rejection required; invalid import/syntax refuses without a kill. Unexpected infrastructure failures propagate and previous sys.modules bindings are restored.",
+          "oracles": "Compute zero primal residual/dual feasibility/cost independently of the public facade; derive row-count and weight witnesses from declared fixtures and run the guard rejection probe."
+        },
+        "profile": "Exact",
+        "purpose": "Independent zero primal-dual oracle with computed fixture witnesses and honest source/self mutation accounting.",
+        "role": "test checker",
+        "scope_ceiling": "One zero witness. No derivation of L1, general optimality solver or inherited Lean kernel receipt.",
+        "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n    \"sha256\": \"9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:phi1:exported-zero-test-certificate:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Independent zero primal-dual oracle with computed fixture witnesses and honest source/self mutation accounting.\",\n  \"operations\": {\n    \"oracles\": \"Compute zero primal residual/dual feasibility/cost independently of the public facade; derive row-count and weight witnesses from declared fixtures and run the guard rejection probe.\",\n    \"mutation_checks\": \"Unique source replacement and assessed semantic rejection required; invalid import/syntax refuses without a kill. Unexpected infrastructure failures propagate and previous sys.modules bindings are restored.\"\n  },\n  \"engineering_policy\": \"Fixed two-coordinate fixture and finite source replacement lists. External challenge harness provides captured process deadlines and six-outcome reporting.\",\n  \"failure_boundary\": \"ClaimCheckError for semantic mismatches; typed unassessable-candidate refusal for syntax/import problems. Only expected semantic exceptions count toward oracle rejection; finally restores imports.\",\n  \"cost_model\": \"Fixed rational oracle operations plus linear copied-source/import work per named candidate. No exhaustive verification or independent alternate checker claim.\",\n  \"scope_ceiling\": \"One zero witness. No derivation of L1, general optimality solver or inherited Lean kernel receipt.\",\n  \"trust\": \"Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json\",\n      \"sha256\": \"c4c3952ca582382759111b912d389ead3543fae7d28075176a70831b49a25eac\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json\",\n      \"sha256\": \"f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-baseline.log\",\n      \"sha256\": \"200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch3_reviews.json\",\n      \"sha256\": \"d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd\"\n    }\n  ]\n}\n",
+      "sha256": "00ae7d39665fbbfb78a8409ab578581e689018918def8a4d9ef158115fd41667"
+    },
+    {
+      "bytes": 1655,
       "original_paths": [
-        "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#bounded-production-and-checker-review/contract"
-      ]
+        "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n    \"sha256\": \"9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n      \"sha256\": \"9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"test or verification harness\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2\",\n  \"subject\": \"code/python/src/functional/test_exported_zero_phi1.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/functional/test_exported_zero_phi1.py",
+          "sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/functional/test_exported_zero_phi1.py",
+            "sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "test or verification harness",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2",
+        "subject": "code/python/src/functional/test_exported_zero_phi1.py"
+      },
+      "sha256": "d5b8e20f986f36adf78f6e187d01fe861efa646efcad17e537b329312e512771"
     }
   ],
+  "current_contract": "d5b8e20f986f36adf78f6e187d01fe861efa646efcad17e537b329312e512771",
+  "current_scoring": "774e87433755587ab90a7a711a3ac50a0dd34a1f1e37f46db418fae4f0c4e07b",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#bounded-production-and-checker-review/contract": "00ae7d39665fbbfb78a8409ab578581e689018918def8a4d9ef158115fd41667",
+    "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#bounded-production-and-checker-review/scoring": "62032192f2b334157cd2a2953c32781a8b43a5833548e0966dd9191f3d90aac2",
+    "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#historical-defect-review/contract": "7ea94819e4767d14c18d66fc65bd8821945ae66148302334b8257b84835be5e3",
+    "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#historical-defect-review/scoring": "61aead58744f4f143d85766fadf940c5fac9d926add75f6eda880a136de159c7"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "61aead58744f4f143d85766fadf940c5fac9d926add75f6eda880a136de159c7",
       "bytes": 1393,
+      "original_paths": [
+        "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#historical-defect-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n    \"sha256\": \"a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"historical-defect-review\",\n  \"profile\": \"Exact\",\n  \"level\": null,\n  \"level_basis\": \"No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": \"D\",\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"score_token\": null,\n  \"composite_grade\": null,\n  \"grade_ceiling\": \"D\",\n  \"finding\": \"Inspection of captured old source finds blanket candidate/import and oracle exception handling; no separately executed historical failure is asserted for this file.\",\n  \"target_achieved\": false,\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json\",\n      \"sha256\": \"fd245f1d621260d2bf07c56d0b326176885c5684eab090b477a467d0cd2beda3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/test_exported_zero_phi1.py\",\n      \"sha256\": \"a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/functional/test_exported_zero_phi1.py",
           "sha256": "a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64"
         },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "historical-defect-review",
-        "profile": "Exact",
-        "level": null,
-        "level_basis": "No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.",
-        "gates": {
-          "G1": null,
-          "G2": null,
-          "G3": null,
-          "G4": "D",
-          "G5": null
-        },
-        "is_complete": false,
-        "score_token": null,
         "composite_grade": null,
-        "grade_ceiling": "D",
-        "finding": "Inspection of captured old source finds blanket candidate/import and oracle exception handling; no separately executed historical failure is asserted for this file.",
-        "target_achieved": false,
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json",
@@ -170,36 +198,41 @@
             "path": "evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/test_exported_zero_phi1.py",
             "sha256": "a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64"
           }
-        ]
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n    \"sha256\": \"a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"historical-defect-review\",\n  \"profile\": \"Exact\",\n  \"level\": null,\n  \"level_basis\": \"No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": \"D\",\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"score_token\": null,\n  \"composite_grade\": null,\n  \"grade_ceiling\": \"D\",\n  \"finding\": \"Inspection of captured old source finds blanket candidate/import and oracle exception handling; no separately executed historical failure is asserted for this file.\",\n  \"target_achieved\": false,\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/receipt.json\",\n      \"sha256\": \"fd245f1d621260d2bf07c56d0b326176885c5684eab090b477a467d0cd2beda3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T215305Z-functional-before/sources/code/python/src/functional/test_exported_zero_phi1.py\",\n      \"sha256\": \"a597dc46ac78aca041f921503eb345730c4538b4d19c7aa8f15e47035a3f2c64\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#historical-defect-review/scoring"
-      ]
-    },
-    {
-      "sha256": "62032192f2b334157cd2a2953c32781a8b43a5833548e0966dd9191f3d90aac2",
-      "bytes": 3482,
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/python/src/functional/test_exported_zero_phi1.py",
-          "sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2"
+        ],
+        "finding": "Inspection of captured old source finds blanket candidate/import and oracle exception handling; no separately executed historical failure is asserted for this file.",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": "D",
+          "G5": null
         },
+        "grade_ceiling": "D",
+        "is_complete": false,
+        "level": null,
+        "level_basis": "No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.",
+        "phase": "historical-defect-review",
         "profile": "Exact",
         "rubric": {
           "path": "SCORING.md",
           "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
         },
-        "phase": "bounded-production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production checker lifecycle and epistemic integrity with independent arithmetic, fixture-derived values, explicit candidate admission and challenged restoration/refusal behavior.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
+        "score_token": null,
+        "target_achieved": false
+      },
+      "sha256": "61aead58744f4f143d85766fadf940c5fac9d926add75f6eda880a136de159c7"
+    },
+    {
+      "bytes": 3482,
+      "original_paths": [
+        "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#bounded-production-and-checker-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n    \"sha256\": \"9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"bounded-production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production checker lifecycle and epistemic integrity with independent arithmetic, fixture-derived values, explicit candidate admission and challenged restoration/refusal behavior.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.\",\n    \"G2\": \"Exact profile fixed before challenge; independent finite laws/arithmetic, valid and forged inputs, shape and scalar refusals tested. No mathematical completeness claim follows from finite testing.\",\n    \"G3\": \"ClaimCheckError for semantic mismatches; typed unassessable-candidate refusal for syntax/import problems. Only expected semantic exceptions count toward oracle rejection; finally restores imports. No crash-freedom or arbitrary hostile-code isolation claim.\",\n    \"G4\": \"9 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.\",\n    \"G5\": \"Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Backend category nesting 4 explicitly caps eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 3\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 9\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only. The full 24-directory objective remains open.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json\",\n      \"sha256\": \"c4c3952ca582382759111b912d389ead3543fae7d28075176a70831b49a25eac\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json\",\n      \"sha256\": \"f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-baseline.log\",\n      \"sha256\": \"200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch3_reviews.json\",\n      \"sha256\": \"d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd\"\n    }\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/functional/test_exported_zero_phi1.py",
+          "sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2"
         },
         "basis": {
           "G1": "Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.",
@@ -208,27 +241,7 @@
           "G4": "9 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.",
           "G5": "Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Backend category nesting 4 explicitly caps eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance."
         },
-        "metrics": {
-          "radon_ccn": 6,
-          "lizard_ccn": 6,
-          "weighted_control_upper_bound": 7,
-          "control_nesting": 3
-        },
-        "mutation_outcomes": {
-          "KILLED": 9
-        },
-        "is_complete": true,
         "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only. The full 24-directory objective remains open.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline guarantees"
-        ],
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json",
@@ -250,20 +263,97 @@
             "path": "code/rust/quality/expanded_scope/batch3_reviews.json",
             "sha256": "d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd"
           }
-        ]
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production checker lifecycle and epistemic integrity with independent arithmetic, fixture-derived values, explicit candidate admission and challenged restoration/refusal behavior.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 6,
+          "radon_ccn": 6,
+          "weighted_control_upper_bound": 7
+        },
+        "mutation_outcomes": {
+          "KILLED": 9
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "phase": "bounded-production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only. The full 24-directory objective remains open."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n    \"sha256\": \"9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"bounded-production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production checker lifecycle and epistemic integrity with independent arithmetic, fixture-derived values, explicit candidate admission and challenged restoration/refusal behavior.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.\",\n    \"G2\": \"Exact profile fixed before challenge; independent finite laws/arithmetic, valid and forged inputs, shape and scalar refusals tested. No mathematical completeness claim follows from finite testing.\",\n    \"G3\": \"ClaimCheckError for semantic mismatches; typed unassessable-candidate refusal for syntax/import problems. Only expected semantic exceptions count toward oracle rejection; finally restores imports. No crash-freedom or arbitrary hostile-code isolation claim.\",\n    \"G4\": \"9 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.\",\n    \"G5\": \"Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Backend category nesting 4 explicitly caps eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 3\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 9\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only. The full 24-directory objective remains open.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220419Z-functional-challenge/receipt.json\",\n      \"sha256\": \"c4c3952ca582382759111b912d389ead3543fae7d28075176a70831b49a25eac\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json\",\n      \"sha256\": \"f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-baseline.log\",\n      \"sha256\": \"200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch3_reviews.json\",\n      \"sha256\": \"d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd\"\n    }\n  ]\n}\n",
+      "sha256": "62032192f2b334157cd2a2953c32781a8b43a5833548e0966dd9191f3d90aac2"
+    },
+    {
+      "bytes": 1620,
       "original_paths": [
-        "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#bounded-production-and-checker-review/scoring"
-      ]
+        "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n    \"sha256\": \"9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/functional/test_exported_zero_phi1.py\",\n      \"sha256\": \"9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/functional/test_exported_zero_phi1.py",
+          "sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/python/src/functional/test_exported_zero_phi1.py",
+            "sha256": "9e0363a3ea56b94af9e053a6528d4733899a930ea7df4ce57eb7eef4bb360fc2"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "774e87433755587ab90a7a711a3ac50a0dd34a1f1e37f46db418fae4f0c4e07b"
     }
-  ],
-  "legacy_paths": {
-    "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#historical-defect-review/contract": "7ea94819e4767d14c18d66fc65bd8821945ae66148302334b8257b84835be5e3",
-    "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#historical-defect-review/scoring": "61aead58744f4f143d85766fadf940c5fac9d926add75f6eda880a136de159c7",
-    "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#bounded-production-and-checker-review/contract": "00ae7d39665fbbfb78a8409ab578581e689018918def8a4d9ef158115fd41667",
-    "code/python/src/functional/test_exported_zero_phi1.contract.score.yaml#bounded-production-and-checker-review/scoring": "62032192f2b334157cd2a2953c32781a8b43a5833548e0966dd9191f3d90aac2"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Append-only historical findings and individually authored source-bound reviews. No whole-scope certification follows."
+  ]
 }

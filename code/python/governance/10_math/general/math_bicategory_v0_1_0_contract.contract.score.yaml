@@ -1,181 +1,104 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:bicategory:v0.1.0",
-    "title": "Bicategory Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py",
+      "sha256": "4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py",
+        "sha256": "4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "bicategory",
-      "symbol": "B (bicategory with 0-cells, 1-cells, 2-cells, compositions, coherence)",
-      "ascii_symbol": "bicategory",
-      "notation": "B = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2, associator, left_unitor, right_unitor)",
-      "domain": [
-        "zero_cells: (Obj : Type u) collection of objects (0-cells)",
-        "one_cells: (Hom : Obj -> Obj -> Type v) 1-morphisms with source and target 0-cells",
-        "two_cells: (Hom2 : Hom A B -> Hom A B -> Type w) 2-morphisms between parallel 1-cells",
-        "vertical_composition: (vcomp : Hom2 f g -> Hom2 g h -> Hom2 f h) with vertical identity id2",
-        "horizontal_composition_1: (hcomp1 : Hom A B -> Hom B C -> Hom A C) with identity 1-cells id1",
-        "horizontal_composition_2: (hcomp2 : Hom2 f1 f2 -> Hom2 g1 g2 -> Hom2 (hcomp1 f1 g1) (hcomp1 f2 g2))",
-        "whisker_left: whiskerLeft f beta = hcomp2 (id2 f) beta",
-        "whisker_right: whiskerRight alpha g = hcomp2 alpha (id2 g)",
-        "associator: natural 2-isomorphism associator (f : Hom A B) (g : Hom B C) (h : Hom C D) : Iso2 (hcomp1 (hcomp1 f g) h) (hcomp1 f (hcomp1 g h))",
-        "left_unitor: natural 2-isomorphism leftUnitor (f : Hom A B) : Iso2 (hcomp1 (id1 A) f) f",
-        "right_unitor: natural 2-isomorphism rightUnitor (f : Hom A B) : Iso2 (hcomp1 f (id1 B)) f"
-      ],
-      "codomain": {
-        "description": "A bicategory consists of 0-cells, 1-cells with source and target, 2-cells between parallel 1-cells, vertical composition forming a category on each Hom(A, B), horizontal composition operations on 1-cells and 2-cells, and coherent associator and left/right unitor 2-isomorphisms."
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "All 1-cells have valid source/target 0-cells; all 2-cells have parallel source/target 1-cells.",
-        "For each pair of 0-cells A, B, the 1-cells and 2-cells form a category under vertical composition with identity 2-cells.",
-        "Horizontal composition of 1-cells and 2-cells respects boundaries and preserves vertical identities.",
-        "Whiskering operations whiskerLeft and whiskerRight correspond to horizontal composition with identity 2-cells.",
-        "The middle-four interchange law hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta) holds.",
-        "The Mac Lane pentagon coherence diagram for associators commutes.",
-        "The Mac Lane triangle coherence diagram relating associator and unitors commutes.",
-        "Structure hash is deterministically computed from cell and morphism data."
-      ]
-    },
-    "laws": [
-      "Vertical category axioms: vcomp (vcomp alpha beta) gamma = vcomp alpha (vcomp beta gamma), vcomp (id2 f) alpha = alpha, vcomp alpha (id2 g) = alpha",
-      "Horizontal identity preservation: hcomp2 (id2 f) (id2 g) = id2 (hcomp1 f g)",
-      "Middle-four interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)",
-      "Associator naturality: vcomp (hcomp2 (hcomp2 alpha beta) gamma) (associator f2 g2 h2).hom = vcomp (associator f1 g1 h1).hom (hcomp2 alpha (hcomp2 beta gamma))",
-      "Left unitor naturality: vcomp (whiskerLeft (id1 A) alpha) (leftUnitor f2).hom = vcomp (leftUnitor f1).hom alpha",
-      "Right unitor naturality: vcomp (whiskerRight alpha (id1 B)) (rightUnitor f2).hom = vcomp (rightUnitor f1).hom alpha",
-      "Mac Lane pentagon axiom: vcomp (whiskerRight (associator f g h).hom k) (vcomp (associator f (hcomp1 g h) k).hom (whiskerLeft f (associator g h k).hom)) = vcomp (associator (hcomp1 f g) h k).hom (associator f g (hcomp1 h k)).hom",
-      "Mac Lane triangle axiom: vcomp (associator f (id1 B) g).hom (whiskerLeft f (leftUnitor g).hom) = whiskerRight (rightUnitor f).hom g"
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Cells and morphisms serialized in canonical order",
-        "All compositions deterministic",
-        "Validators and computation functions content-addressed"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "scope": "finite_table_diagnostics_only",
-      "complete_contract_implementation": false,
-      "crate": "omega_higher_category_theory",
-      "module": "bicategory",
-      "symbols": [
-        "Bicategory",
-        "FiniteBicategory",
-        "Invertible2Cell"
-      ],
-      "required_tests": [
-        "test_triangle_coherence_verified",
-        "test_invertibility_violation_caught",
-        "test_challenge_mut_05_triangle_coherence_enforcement",
-        "test_challenge_mut_06_pentagon_coherence_enforcement"
-      ]
-    },
-    "negative_tests": [
-      "1-cell source/target not in 0-cells (ZeroCellNotFound or OneCellBoundaryMismatch)",
-      "2-cells with non-parallel source/target 1-cells (TwoCellBoundaryMismatch)",
-      "Vertical composition not associative or lacks units (VerticalNotComposable)",
-      "Horizontal composition boundary mismatch (HorizontalNotComposable)",
-      "Middle-four interchange law violated (ExchangeLawViolation)",
-      "Mac Lane pentagon axiom violated (PentagonCoherenceViolation)",
-      "Mac Lane triangle axiom violated (TriangleCoherenceViolation)",
-      "Associator is not an invertible 2-cell (InvertibilityViolation)",
-      "Unitor is not an invertible 2-cell (InvertibilityViolation)"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "A Bicategory (weak 2-category) consists of 0-cells, 1-cells, and 2-cells where composition of 1-cells is associative and unital up to coherent 2-isomorphisms (associators and unitors). Coherence is governed by Mac Lane's pentagon and triangle identities and the middle-four interchange law.",
-      "non_role": [
-        "Strict 2-categories (where associator and unitors are identity morphisms)",
-        "Tricategories (weak 3-categories)",
-        "Double categories (with two independent composition directions)",
-        "Monoidal categories (which are one-object bicategories via delooping)"
-      ]
-    },
-    "wip": [
-      "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
-      "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
-      "The Rust binding supplies finite tables and selected diagnostics, not complete category certification."
-    ],
-    "lean_binding": {
-      "path": "lean4/research_programs/higher_category_theory/Bicategory.lean",
-      "symbol": "HigherCategoryTheory.Bicategory",
-      "scope": "algebraic_structure_with_law_fields"
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83",
+    "subject": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py"
   },
-  "current_contract": "c33121eb09b3d2332dea27de76503ab8545d965466f3bc3ddfde3388f934835d",
-  "current_scoring": "d9447735882b42a41e5f295d5758f986aee88c15cec9c21fb1945e50d9b43dd1",
   "contract_history": [
     {
-      "sha256": "c33121eb09b3d2332dea27de76503ab8545d965466f3bc3ddfde3388f934835d",
       "bytes": 7200,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_bicategory_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:bicategory:v0.1.0\",\n  \"title\": \"Bicategory Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"bicategory\",\n    \"symbol\": \"B (bicategory with 0-cells, 1-cells, 2-cells, compositions, coherence)\",\n    \"ascii_symbol\": \"bicategory\",\n    \"notation\": \"B = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2, associator, left_unitor, right_unitor)\",\n    \"domain\": [\n      \"zero_cells: (Obj : Type u) collection of objects (0-cells)\",\n      \"one_cells: (Hom : Obj -> Obj -> Type v) 1-morphisms with source and target 0-cells\",\n      \"two_cells: (Hom2 : Hom A B -> Hom A B -> Type w) 2-morphisms between parallel 1-cells\",\n      \"vertical_composition: (vcomp : Hom2 f g -> Hom2 g h -> Hom2 f h) with vertical identity id2\",\n      \"horizontal_composition_1: (hcomp1 : Hom A B -> Hom B C -> Hom A C) with identity 1-cells id1\",\n      \"horizontal_composition_2: (hcomp2 : Hom2 f1 f2 -> Hom2 g1 g2 -> Hom2 (hcomp1 f1 g1) (hcomp1 f2 g2))\",\n      \"whisker_left: whiskerLeft f beta = hcomp2 (id2 f) beta\",\n      \"whisker_right: whiskerRight alpha g = hcomp2 alpha (id2 g)\",\n      \"associator: natural 2-isomorphism associator (f : Hom A B) (g : Hom B C) (h : Hom C D) : Iso2 (hcomp1 (hcomp1 f g) h) (hcomp1 f (hcomp1 g h))\",\n      \"left_unitor: natural 2-isomorphism leftUnitor (f : Hom A B) : Iso2 (hcomp1 (id1 A) f) f\",\n      \"right_unitor: natural 2-isomorphism rightUnitor (f : Hom A B) : Iso2 (hcomp1 f (id1 B)) f\"\n    ],\n    \"codomain\": {\n      \"description\": \"A bicategory consists of 0-cells, 1-cells with source and target, 2-cells between parallel 1-cells, vertical composition forming a category on each Hom(A, B), horizontal composition operations on 1-cells and 2-cells, and coherent associator and left/right unitor 2-isomorphisms.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"All 1-cells have valid source/target 0-cells; all 2-cells have parallel source/target 1-cells.\",\n      \"For each pair of 0-cells A, B, the 1-cells and 2-cells form a category under vertical composition with identity 2-cells.\",\n      \"Horizontal composition of 1-cells and 2-cells respects boundaries and preserves vertical identities.\",\n      \"Whiskering operations whiskerLeft and whiskerRight correspond to horizontal composition with identity 2-cells.\",\n      \"The middle-four interchange law hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta) holds.\",\n      \"The Mac Lane pentagon coherence diagram for associators commutes.\",\n      \"The Mac Lane triangle coherence diagram relating associator and unitors commutes.\",\n      \"Structure hash is deterministically computed from cell and morphism data.\"\n    ]\n  },\n  \"laws\": [\n    \"Vertical category axioms: vcomp (vcomp alpha beta) gamma = vcomp alpha (vcomp beta gamma), vcomp (id2 f) alpha = alpha, vcomp alpha (id2 g) = alpha\",\n    \"Horizontal identity preservation: hcomp2 (id2 f) (id2 g) = id2 (hcomp1 f g)\",\n    \"Middle-four interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)\",\n    \"Associator naturality: vcomp (hcomp2 (hcomp2 alpha beta) gamma) (associator f2 g2 h2).hom = vcomp (associator f1 g1 h1).hom (hcomp2 alpha (hcomp2 beta gamma))\",\n    \"Left unitor naturality: vcomp (whiskerLeft (id1 A) alpha) (leftUnitor f2).hom = vcomp (leftUnitor f1).hom alpha\",\n    \"Right unitor naturality: vcomp (whiskerRight alpha (id1 B)) (rightUnitor f2).hom = vcomp (rightUnitor f1).hom alpha\",\n    \"Mac Lane pentagon axiom: vcomp (whiskerRight (associator f g h).hom k) (vcomp (associator f (hcomp1 g h) k).hom (whiskerLeft f (associator g h k).hom)) = vcomp (associator (hcomp1 f g) h k).hom (associator f g (hcomp1 h k)).hom\",\n    \"Mac Lane triangle axiom: vcomp (associator f (id1 B) g).hom (whiskerLeft f (leftUnitor g).hom) = whiskerRight (rightUnitor f).hom g\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Cells and morphisms serialized in canonical order\",\n      \"All compositions deterministic\",\n      \"Validators and computation functions content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"scope\": \"finite_table_diagnostics_only\",\n    \"complete_contract_implementation\": false,\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"bicategory\",\n    \"symbols\": [\n      \"Bicategory\",\n      \"FiniteBicategory\",\n      \"Invertible2Cell\"\n    ],\n    \"required_tests\": [\n      \"test_triangle_coherence_verified\",\n      \"test_invertibility_violation_caught\",\n      \"test_challenge_mut_05_triangle_coherence_enforcement\",\n      \"test_challenge_mut_06_pentagon_coherence_enforcement\"\n    ]\n  },\n  \"negative_tests\": [\n    \"1-cell source/target not in 0-cells (ZeroCellNotFound or OneCellBoundaryMismatch)\",\n    \"2-cells with non-parallel source/target 1-cells (TwoCellBoundaryMismatch)\",\n    \"Vertical composition not associative or lacks units (VerticalNotComposable)\",\n    \"Horizontal composition boundary mismatch (HorizontalNotComposable)\",\n    \"Middle-four interchange law violated (ExchangeLawViolation)\",\n    \"Mac Lane pentagon axiom violated (PentagonCoherenceViolation)\",\n    \"Mac Lane triangle axiom violated (TriangleCoherenceViolation)\",\n    \"Associator is not an invertible 2-cell (InvertibilityViolation)\",\n    \"Unitor is not an invertible 2-cell (InvertibilityViolation)\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Bicategory (weak 2-category) consists of 0-cells, 1-cells, and 2-cells where composition of 1-cells is associative and unital up to coherent 2-isomorphisms (associators and unitors). Coherence is governed by Mac Lane's pentagon and triangle identities and the middle-four interchange law.\",\n    \"non_role\": [\n      \"Strict 2-categories (where associator and unitors are identity morphisms)\",\n      \"Tricategories (weak 3-categories)\",\n      \"Double categories (with two independent composition directions)\",\n      \"Monoidal categories (which are one-object bicategories via delooping)\"\n    ]\n  },\n  \"wip\": [\n    \"General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.\",\n    \"The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.\",\n    \"The Rust binding supplies finite tables and selected diagnostics, not complete category certification.\"\n  ],\n  \"lean_binding\": {\n    \"path\": \"lean4/research_programs/higher_category_theory/Bicategory.lean\",\n    \"symbol\": \"HigherCategoryTheory.Bicategory\",\n    \"scope\": \"algebraic_structure_with_law_fields\"\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:bicategory:v0.1.0",
-        "title": "Bicategory Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Strict 2-categories (where associator and unitors are identity morphisms)",
+            "Tricategories (weak 3-categories)",
+            "Double categories (with two independent composition directions)",
+            "Monoidal categories (which are one-object bicategories via delooping)"
+          ],
+          "summary": "A Bicategory (weak 2-category) consists of 0-cells, 1-cells, and 2-cells where composition of 1-cells is associative and unital up to coherent 2-isomorphisms (associators and unitors). Coherence is governed by Mac Lane's pentagon and triangle identities and the middle-four interchange law."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "Vertical category axioms: vcomp (vcomp alpha beta) gamma = vcomp alpha (vcomp beta gamma), vcomp (id2 f) alpha = alpha, vcomp alpha (id2 g) = alpha",
+          "Horizontal identity preservation: hcomp2 (id2 f) (id2 g) = id2 (hcomp1 f g)",
+          "Middle-four interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)",
+          "Associator naturality: vcomp (hcomp2 (hcomp2 alpha beta) gamma) (associator f2 g2 h2).hom = vcomp (associator f1 g1 h1).hom (hcomp2 alpha (hcomp2 beta gamma))",
+          "Left unitor naturality: vcomp (whiskerLeft (id1 A) alpha) (leftUnitor f2).hom = vcomp (leftUnitor f1).hom alpha",
+          "Right unitor naturality: vcomp (whiskerRight alpha (id1 B)) (rightUnitor f2).hom = vcomp (rightUnitor f1).hom alpha",
+          "Mac Lane pentagon axiom: vcomp (whiskerRight (associator f g h).hom k) (vcomp (associator f (hcomp1 g h) k).hom (whiskerLeft f (associator g h k).hom)) = vcomp (associator (hcomp1 f g) h k).hom (associator f g (hcomp1 h k)).hom",
+          "Mac Lane triangle axiom: vcomp (associator f (id1 B) g).hom (whiskerLeft f (leftUnitor g).hom) = whiskerRight (rightUnitor f).hom g"
+        ],
+        "layer": "math",
+        "lean_binding": {
+          "path": "lean4/research_programs/higher_category_theory/Bicategory.lean",
+          "scope": "algebraic_structure_with_law_fields",
+          "symbol": "HigherCategoryTheory.Bicategory"
+        },
         "math": {
-          "object_kind": "bicategory",
-          "symbol": "B (bicategory with 0-cells, 1-cells, 2-cells, compositions, coherence)",
           "ascii_symbol": "bicategory",
-          "notation": "B = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2, associator, left_unitor, right_unitor)",
+          "codomain": {
+            "description": "A bicategory consists of 0-cells, 1-cells with source and target, 2-cells between parallel 1-cells, vertical composition forming a category on each Hom(A, B), horizontal composition operations on 1-cells and 2-cells, and coherent associator and left/right unitor 2-isomorphisms."
+          },
           "domain": [
             "zero_cells: (Obj : Type u) collection of objects (0-cells)",
             "one_cells: (Hom : Obj -> Obj -> Type v) 1-morphisms with source and target 0-cells",
@@ -189,9 +112,35 @@
             "left_unitor: natural 2-isomorphism leftUnitor (f : Hom A B) : Iso2 (hcomp1 (id1 A) f) f",
             "right_unitor: natural 2-isomorphism rightUnitor (f : Hom A B) : Iso2 (hcomp1 f (id1 B)) f"
           ],
-          "codomain": {
-            "description": "A bicategory consists of 0-cells, 1-cells with source and target, 2-cells between parallel 1-cells, vertical composition forming a category on each Hom(A, B), horizontal composition operations on 1-cells and 2-cells, and coherent associator and left/right unitor 2-isomorphisms."
-          }
+          "notation": "B = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2, associator, left_unitor, right_unitor)",
+          "object_kind": "bicategory",
+          "symbol": "B (bicategory with 0-cells, 1-cells, 2-cells, compositions, coherence)"
+        },
+        "negative_tests": [
+          "1-cell source/target not in 0-cells (ZeroCellNotFound or OneCellBoundaryMismatch)",
+          "2-cells with non-parallel source/target 1-cells (TwoCellBoundaryMismatch)",
+          "Vertical composition not associative or lacks units (VerticalNotComposable)",
+          "Horizontal composition boundary mismatch (HorizontalNotComposable)",
+          "Middle-four interchange law violated (ExchangeLawViolation)",
+          "Mac Lane pentagon axiom violated (PentagonCoherenceViolation)",
+          "Mac Lane triangle axiom violated (TriangleCoherenceViolation)",
+          "Associator is not an invertible 2-cell (InvertibilityViolation)",
+          "Unitor is not an invertible 2-cell (InvertibilityViolation)"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Cells and morphisms serialized in canonical order",
+            "All compositions deterministic",
+            "Validators and computation functions content-addressed"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -205,109 +154,98 @@
             "Structure hash is deterministically computed from cell and morphism data."
           ]
         },
-        "laws": [
-          "Vertical category axioms: vcomp (vcomp alpha beta) gamma = vcomp alpha (vcomp beta gamma), vcomp (id2 f) alpha = alpha, vcomp alpha (id2 g) = alpha",
-          "Horizontal identity preservation: hcomp2 (id2 f) (id2 g) = id2 (hcomp1 f g)",
-          "Middle-four interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)",
-          "Associator naturality: vcomp (hcomp2 (hcomp2 alpha beta) gamma) (associator f2 g2 h2).hom = vcomp (associator f1 g1 h1).hom (hcomp2 alpha (hcomp2 beta gamma))",
-          "Left unitor naturality: vcomp (whiskerLeft (id1 A) alpha) (leftUnitor f2).hom = vcomp (leftUnitor f1).hom alpha",
-          "Right unitor naturality: vcomp (whiskerRight alpha (id1 B)) (rightUnitor f2).hom = vcomp (rightUnitor f1).hom alpha",
-          "Mac Lane pentagon axiom: vcomp (whiskerRight (associator f g h).hom k) (vcomp (associator f (hcomp1 g h) k).hom (whiskerLeft f (associator g h k).hom)) = vcomp (associator (hcomp1 f g) h k).hom (associator f g (hcomp1 h k)).hom",
-          "Mac Lane triangle axiom: vcomp (associator f (id1 B) g).hom (whiskerLeft f (leftUnitor g).hom) = whiskerRight (rightUnitor f).hom g"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "Cells and morphisms serialized in canonical order",
-            "All compositions deterministic",
-            "Validators and computation functions content-addressed"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
         "rust_binding": {
-          "scope": "finite_table_diagnostics_only",
           "complete_contract_implementation": false,
           "crate": "omega_higher_category_theory",
           "module": "bicategory",
-          "symbols": [
-            "Bicategory",
-            "FiniteBicategory",
-            "Invertible2Cell"
-          ],
           "required_tests": [
             "test_triangle_coherence_verified",
             "test_invertibility_violation_caught",
             "test_challenge_mut_05_triangle_coherence_enforcement",
             "test_challenge_mut_06_pentagon_coherence_enforcement"
+          ],
+          "scope": "finite_table_diagnostics_only",
+          "symbols": [
+            "Bicategory",
+            "FiniteBicategory",
+            "Invertible2Cell"
           ]
         },
-        "negative_tests": [
-          "1-cell source/target not in 0-cells (ZeroCellNotFound or OneCellBoundaryMismatch)",
-          "2-cells with non-parallel source/target 1-cells (TwoCellBoundaryMismatch)",
-          "Vertical composition not associative or lacks units (VerticalNotComposable)",
-          "Horizontal composition boundary mismatch (HorizontalNotComposable)",
-          "Middle-four interchange law violated (ExchangeLawViolation)",
-          "Mac Lane pentagon axiom violated (PentagonCoherenceViolation)",
-          "Mac Lane triangle axiom violated (TriangleCoherenceViolation)",
-          "Associator is not an invertible 2-cell (InvertibilityViolation)",
-          "Unitor is not an invertible 2-cell (InvertibilityViolation)"
-        ],
-        "doctrine": {
-          "summary": "A Bicategory (weak 2-category) consists of 0-cells, 1-cells, and 2-cells where composition of 1-cells is associative and unital up to coherent 2-isomorphisms (associators and unitors). Coherence is governed by Mac Lane's pentagon and triangle identities and the middle-four interchange law.",
-          "non_role": [
-            "Strict 2-categories (where associator and unitors are identity morphisms)",
-            "Tricategories (weak 3-categories)",
-            "Double categories (with two independent composition directions)",
-            "Monoidal categories (which are one-object bicategories via delooping)"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Bicategory Contract",
         "wip": [
           "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
           "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
           "The Rust binding supplies finite tables and selected diagnostics, not complete category certification."
-        ],
-        "lean_binding": {
-          "path": "lean4/research_programs/higher_category_theory/Bicategory.lean",
-          "symbol": "HigherCategoryTheory.Bicategory",
-          "scope": "algebraic_structure_with_law_fields"
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:bicategory:v0.1.0\",\n  \"title\": \"Bicategory Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"bicategory\",\n    \"symbol\": \"B (bicategory with 0-cells, 1-cells, 2-cells, compositions, coherence)\",\n    \"ascii_symbol\": \"bicategory\",\n    \"notation\": \"B = (Obj, Hom, Hom2, id1, hcomp1, id2, vcomp, hcomp2, associator, left_unitor, right_unitor)\",\n    \"domain\": [\n      \"zero_cells: (Obj : Type u) collection of objects (0-cells)\",\n      \"one_cells: (Hom : Obj -> Obj -> Type v) 1-morphisms with source and target 0-cells\",\n      \"two_cells: (Hom2 : Hom A B -> Hom A B -> Type w) 2-morphisms between parallel 1-cells\",\n      \"vertical_composition: (vcomp : Hom2 f g -> Hom2 g h -> Hom2 f h) with vertical identity id2\",\n      \"horizontal_composition_1: (hcomp1 : Hom A B -> Hom B C -> Hom A C) with identity 1-cells id1\",\n      \"horizontal_composition_2: (hcomp2 : Hom2 f1 f2 -> Hom2 g1 g2 -> Hom2 (hcomp1 f1 g1) (hcomp1 f2 g2))\",\n      \"whisker_left: whiskerLeft f beta = hcomp2 (id2 f) beta\",\n      \"whisker_right: whiskerRight alpha g = hcomp2 alpha (id2 g)\",\n      \"associator: natural 2-isomorphism associator (f : Hom A B) (g : Hom B C) (h : Hom C D) : Iso2 (hcomp1 (hcomp1 f g) h) (hcomp1 f (hcomp1 g h))\",\n      \"left_unitor: natural 2-isomorphism leftUnitor (f : Hom A B) : Iso2 (hcomp1 (id1 A) f) f\",\n      \"right_unitor: natural 2-isomorphism rightUnitor (f : Hom A B) : Iso2 (hcomp1 f (id1 B)) f\"\n    ],\n    \"codomain\": {\n      \"description\": \"A bicategory consists of 0-cells, 1-cells with source and target, 2-cells between parallel 1-cells, vertical composition forming a category on each Hom(A, B), horizontal composition operations on 1-cells and 2-cells, and coherent associator and left/right unitor 2-isomorphisms.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"All 1-cells have valid source/target 0-cells; all 2-cells have parallel source/target 1-cells.\",\n      \"For each pair of 0-cells A, B, the 1-cells and 2-cells form a category under vertical composition with identity 2-cells.\",\n      \"Horizontal composition of 1-cells and 2-cells respects boundaries and preserves vertical identities.\",\n      \"Whiskering operations whiskerLeft and whiskerRight correspond to horizontal composition with identity 2-cells.\",\n      \"The middle-four interchange law hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta) holds.\",\n      \"The Mac Lane pentagon coherence diagram for associators commutes.\",\n      \"The Mac Lane triangle coherence diagram relating associator and unitors commutes.\",\n      \"Structure hash is deterministically computed from cell and morphism data.\"\n    ]\n  },\n  \"laws\": [\n    \"Vertical category axioms: vcomp (vcomp alpha beta) gamma = vcomp alpha (vcomp beta gamma), vcomp (id2 f) alpha = alpha, vcomp alpha (id2 g) = alpha\",\n    \"Horizontal identity preservation: hcomp2 (id2 f) (id2 g) = id2 (hcomp1 f g)\",\n    \"Middle-four interchange law: hcomp2 (vcomp alpha beta) (vcomp gamma delta) = vcomp (hcomp2 alpha gamma) (hcomp2 beta delta)\",\n    \"Associator naturality: vcomp (hcomp2 (hcomp2 alpha beta) gamma) (associator f2 g2 h2).hom = vcomp (associator f1 g1 h1).hom (hcomp2 alpha (hcomp2 beta gamma))\",\n    \"Left unitor naturality: vcomp (whiskerLeft (id1 A) alpha) (leftUnitor f2).hom = vcomp (leftUnitor f1).hom alpha\",\n    \"Right unitor naturality: vcomp (whiskerRight alpha (id1 B)) (rightUnitor f2).hom = vcomp (rightUnitor f1).hom alpha\",\n    \"Mac Lane pentagon axiom: vcomp (whiskerRight (associator f g h).hom k) (vcomp (associator f (hcomp1 g h) k).hom (whiskerLeft f (associator g h k).hom)) = vcomp (associator (hcomp1 f g) h k).hom (associator f g (hcomp1 h k)).hom\",\n    \"Mac Lane triangle axiom: vcomp (associator f (id1 B) g).hom (whiskerLeft f (leftUnitor g).hom) = whiskerRight (rightUnitor f).hom g\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Cells and morphisms serialized in canonical order\",\n      \"All compositions deterministic\",\n      \"Validators and computation functions content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"scope\": \"finite_table_diagnostics_only\",\n    \"complete_contract_implementation\": false,\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"bicategory\",\n    \"symbols\": [\n      \"Bicategory\",\n      \"FiniteBicategory\",\n      \"Invertible2Cell\"\n    ],\n    \"required_tests\": [\n      \"test_triangle_coherence_verified\",\n      \"test_invertibility_violation_caught\",\n      \"test_challenge_mut_05_triangle_coherence_enforcement\",\n      \"test_challenge_mut_06_pentagon_coherence_enforcement\"\n    ]\n  },\n  \"negative_tests\": [\n    \"1-cell source/target not in 0-cells (ZeroCellNotFound or OneCellBoundaryMismatch)\",\n    \"2-cells with non-parallel source/target 1-cells (TwoCellBoundaryMismatch)\",\n    \"Vertical composition not associative or lacks units (VerticalNotComposable)\",\n    \"Horizontal composition boundary mismatch (HorizontalNotComposable)\",\n    \"Middle-four interchange law violated (ExchangeLawViolation)\",\n    \"Mac Lane pentagon axiom violated (PentagonCoherenceViolation)\",\n    \"Mac Lane triangle axiom violated (TriangleCoherenceViolation)\",\n    \"Associator is not an invertible 2-cell (InvertibilityViolation)\",\n    \"Unitor is not an invertible 2-cell (InvertibilityViolation)\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Bicategory (weak 2-category) consists of 0-cells, 1-cells, and 2-cells where composition of 1-cells is associative and unital up to coherent 2-isomorphisms (associators and unitors). Coherence is governed by Mac Lane's pentagon and triangle identities and the middle-four interchange law.\",\n    \"non_role\": [\n      \"Strict 2-categories (where associator and unitors are identity morphisms)\",\n      \"Tricategories (weak 3-categories)\",\n      \"Double categories (with two independent composition directions)\",\n      \"Monoidal categories (which are one-object bicategories via delooping)\"\n    ]\n  },\n  \"wip\": [\n    \"General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.\",\n    \"The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.\",\n    \"The Rust binding supplies finite tables and selected diagnostics, not complete category certification.\"\n  ],\n  \"lean_binding\": {\n    \"path\": \"lean4/research_programs/higher_category_theory/Bicategory.lean\",\n    \"symbol\": \"HigherCategoryTheory.Bicategory\",\n    \"scope\": \"algebraic_structure_with_law_fields\"\n  }\n}\n",
+      "sha256": "c33121eb09b3d2332dea27de76503ab8545d965466f3bc3ddfde3388f934835d"
+    },
+    {
+      "bytes": 1700,
       "original_paths": [
-        "code/python/governance/10_math/general/math_bicategory_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py\",\n    \"sha256\": \"4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py\",\n      \"sha256\": \"4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83\",\n  \"subject\": \"code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py",
+          "sha256": "4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py",
+            "sha256": "4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83",
+        "subject": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py"
+      },
+      "sha256": "609b1984d9bb4eaa6c9d09d56bd3f81155f3734c9a2594f479abff4d71389f5b"
     }
   ],
+  "current_contract": "609b1984d9bb4eaa6c9d09d56bd3f81155f3734c9a2594f479abff4d71389f5b",
+  "current_scoring": "6a648e960f05bc2c261f54389a68849017bddfb77933ef59f1cc604fa87b359e",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_bicategory_v0_1_0.contract.yaml": "140172ecfd470184e49757de27cb09272a410f38dceb216f24e7aff653cd846a"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "d9447735882b42a41e5f295d5758f986aee88c15cec9c21fb1945e50d9b43dd1",
       "bytes": 2217,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py\",\n    \"sha256\": \"4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-bicategory-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py",
           "sha256": "4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-bicategory-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -316,40 +254,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "d9447735882b42a41e5f295d5758f986aee88c15cec9c21fb1945e50d9b43dd1"
+    },
+    {
+      "bytes": 1662,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py\",\n    \"sha256\": \"4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py\",\n      \"sha256\": \"4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py",
+          "sha256": "4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py",
+            "sha256": "4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.py\",\n    \"sha256\": \"4e248ca851ceb327f553b1479432c819eb3d83d2a12c052fedbf47b2b4500f83\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-bicategory-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_bicategory_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "6a648e960f05bc2c261f54389a68849017bddfb77933ef59f1cc604fa87b359e"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_bicategory_v0_1_0.contract.yaml": "140172ecfd470184e49757de27cb09272a410f38dceb216f24e7aff653cd846a"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1,195 +1,84 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:complex_matrix:v1.0.0",
-    "title": "Complex Matrix Contract",
-    "kind": "math_contract",
-    "status": "active",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py",
+      "sha256": "3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73"
     },
-    "math": {
-      "object_kind": "finite_rectangular_complex_matrix",
-      "symbol": "A ∈ C^{m×n}",
-      "ascii_symbol": "complex_matrix",
-      "notation": "A ∈ C^{m×n}",
-      "domain": [
-        "rows: finite_index_set",
-        "cols: finite_index_set",
-        "entries: complex_field_C"
-      ],
-      "codomain": {
-        "description": "A finite rectangular array with fixed shape (rows, cols) and entries from the complex field C. Each entry z = a + bi where a, b are finite real numbers.\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "rows and cols are finite natural numbers (rows, cols > 0)",
-        "all entries z = a + bi have finite a and b (no NaN, no Inf)",
-        "every access must satisfy 0 <= i < rows and 0 <= j < cols",
-        "stored data length must equal rows * cols",
-        "same matrix, row, and col always resolve to the same entry",
-        "A** = A (adjoint applied twice returns original matrix)",
-        "operations may not silently change shape"
-      ]
-    },
-    "laws": [
-      "rows and cols are finite natural numbers (rows, cols > 0)",
-      "all entries z = a + bi have finite a and b (no NaN, no Inf)",
-      "every access must satisfy 0 <= i < rows and 0 <= j < cols",
-      "stored data length must equal rows * cols",
-      "same matrix, row, and col always resolve to the same entry",
-      "A** = A (adjoint applied twice returns original matrix)",
-      "(αA + βB)* = ᾱA* + β̄B* (adjoint is conjugate-linear)"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "All serializations are fixed byte arrays",
-        "Operation functions are content-addressed",
-        "Complex number operations are IEEE 754 deterministic"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_linear_algebra",
-      "module": "linear_algebra::complex_matrix",
-      "symbols": [
-        "ComplexMatrix",
-        "ComplexMatrixError",
-        "C64",
-        "CMatrix",
-        "CVector"
-      ],
-      "required_tests": [
-        "from_row_major_rejects_length_mismatch",
-        "from_row_major_rejects_nan_real_part",
-        "from_row_major_rejects_nan_imag_part",
-        "from_row_major_rejects_infinite_entry",
-        "from_row_major_rejects_infinite_imag_part",
-        "scale_real_rejects_nan_scalar",
-        "get_rejects_out_of_bounds",
-        "set_rejects_out_of_bounds",
-        "set_rejects_non_finite_value",
-        "mul_rejects_dimension_mismatch",
-        "add_rejects_shape_mismatch",
-        "sub_rejects_shape_mismatch"
-      ]
-    },
-    "negative_tests": [
-      "Matrix with rows=0 must be rejected",
-      "Matrix with cols=0 must be rejected",
-      "Data length not equal to rows*cols must be rejected",
-      "Entry with NaN real part must be rejected",
-      "Entry with NaN imaginary part must be rejected",
-      "Entry with Inf real part must be rejected",
-      "Entry with Inf imaginary part must be rejected",
-      "scale_real with NaN or Inf scalar must be rejected",
-      "Accessing index >= rows or >= cols must fail",
-      "Setting index >= rows or >= cols must fail",
-      "Setting nonfinite value must be rejected",
-      "Matmul with lhs_cols != rhs_rows must be rejected",
-      "Add with different shapes must be rejected",
-      "Sub with different shapes must be rejected"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py",
+        "sha256": "3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "Defines rectangular matrices over the complex field C with complex number operations, Hermitian adjoints (conjugate transpose), and complex-specific matrix operations. ComplexMatrix extends BasicMatrix semantics to the complex domain, adding conjugation, adjoint operations, and Hermitian properties. All entries are validated for finiteness (no NaN or Inf in real or imaginary parts). This contract is purely structural and does not confer authority.",
-      "non_role": [
-        "Infinite-dimensional operators (out of scope)",
-        "Sparse matrix optimization (separate sparse_complex_matrix contract)",
-        "Symbolic complex algebra (deferred to symbolic computation contract)",
-        "Implicit shape coercion (always rejected)",
-        "Unchecked complex infinity (NaN, Inf always rejected)"
-      ]
-    }
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73",
+    "subject": "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py"
   },
-  "current_contract": "8d4eb2f516e730f11d811b6e1b66a97df0b0012c6b392a8030ecd2188dbb41cb",
-  "current_scoring": "eec752e1bc402698c2038c7b2adb718736a035fce5f563c8368b30759e0c8943",
   "contract_history": [
     {
-      "sha256": "8d4eb2f516e730f11d811b6e1b66a97df0b0012c6b392a8030ecd2188dbb41cb",
       "bytes": 4843,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:complex_matrix:v1.0.0\",\n  \"title\": \"Complex Matrix Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"active\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_rectangular_complex_matrix\",\n    \"symbol\": \"A ∈ C^{m×n}\",\n    \"ascii_symbol\": \"complex_matrix\",\n    \"notation\": \"A ∈ C^{m×n}\",\n    \"domain\": [\n      \"rows: finite_index_set\",\n      \"cols: finite_index_set\",\n      \"entries: complex_field_C\"\n    ],\n    \"codomain\": {\n      \"description\": \"A finite rectangular array with fixed shape (rows, cols) and entries from the complex field C. Each entry z = a + bi where a, b are finite real numbers.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"rows and cols are finite natural numbers (rows, cols > 0)\",\n      \"all entries z = a + bi have finite a and b (no NaN, no Inf)\",\n      \"every access must satisfy 0 <= i < rows and 0 <= j < cols\",\n      \"stored data length must equal rows * cols\",\n      \"same matrix, row, and col always resolve to the same entry\",\n      \"A** = A (adjoint applied twice returns original matrix)\",\n      \"operations may not silently change shape\"\n    ]\n  },\n  \"laws\": [\n    \"rows and cols are finite natural numbers (rows, cols > 0)\",\n    \"all entries z = a + bi have finite a and b (no NaN, no Inf)\",\n    \"every access must satisfy 0 <= i < rows and 0 <= j < cols\",\n    \"stored data length must equal rows * cols\",\n    \"same matrix, row, and col always resolve to the same entry\",\n    \"A** = A (adjoint applied twice returns original matrix)\",\n    \"(αA + βB)* = ᾱA* + β̄B* (adjoint is conjugate-linear)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"All serializations are fixed byte arrays\",\n      \"Operation functions are content-addressed\",\n      \"Complex number operations are IEEE 754 deterministic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"linear_algebra::complex_matrix\",\n    \"symbols\": [\n      \"ComplexMatrix\",\n      \"ComplexMatrixError\",\n      \"C64\",\n      \"CMatrix\",\n      \"CVector\"\n    ],\n    \"required_tests\": [\n      \"from_row_major_rejects_length_mismatch\",\n      \"from_row_major_rejects_nan_real_part\",\n      \"from_row_major_rejects_nan_imag_part\",\n      \"from_row_major_rejects_infinite_entry\",\n      \"from_row_major_rejects_infinite_imag_part\",\n      \"scale_real_rejects_nan_scalar\",\n      \"get_rejects_out_of_bounds\",\n      \"set_rejects_out_of_bounds\",\n      \"set_rejects_non_finite_value\",\n      \"mul_rejects_dimension_mismatch\",\n      \"add_rejects_shape_mismatch\",\n      \"sub_rejects_shape_mismatch\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Matrix with rows=0 must be rejected\",\n    \"Matrix with cols=0 must be rejected\",\n    \"Data length not equal to rows*cols must be rejected\",\n    \"Entry with NaN real part must be rejected\",\n    \"Entry with NaN imaginary part must be rejected\",\n    \"Entry with Inf real part must be rejected\",\n    \"Entry with Inf imaginary part must be rejected\",\n    \"scale_real with NaN or Inf scalar must be rejected\",\n    \"Accessing index >= rows or >= cols must fail\",\n    \"Setting index >= rows or >= cols must fail\",\n    \"Setting nonfinite value must be rejected\",\n    \"Matmul with lhs_cols != rhs_rows must be rejected\",\n    \"Add with different shapes must be rejected\",\n    \"Sub with different shapes must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Defines rectangular matrices over the complex field C with complex number operations, Hermitian adjoints (conjugate transpose), and complex-specific matrix operations. ComplexMatrix extends BasicMatrix semantics to the complex domain, adding conjugation, adjoint operations, and Hermitian properties. All entries are validated for finiteness (no NaN or Inf in real or imaginary parts). This contract is purely structural and does not confer authority.\",\n    \"non_role\": [\n      \"Infinite-dimensional operators (out of scope)\",\n      \"Sparse matrix optimization (separate sparse_complex_matrix contract)\",\n      \"Symbolic complex algebra (deferred to symbolic computation contract)\",\n      \"Implicit shape coercion (always rejected)\",\n      \"Unchecked complex infinity (NaN, Inf always rejected)\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:complex_matrix:v1.0.0",
-        "title": "Complex Matrix Contract",
-        "kind": "math_contract",
-        "status": "active",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
-        "math": {
-          "object_kind": "finite_rectangular_complex_matrix",
-          "symbol": "A ∈ C^{m×n}",
-          "ascii_symbol": "complex_matrix",
-          "notation": "A ∈ C^{m×n}",
-          "domain": [
-            "rows: finite_index_set",
-            "cols: finite_index_set",
-            "entries: complex_field_C"
+        "doctrine": {
+          "non_role": [
+            "Infinite-dimensional operators (out of scope)",
+            "Sparse matrix optimization (separate sparse_complex_matrix contract)",
+            "Symbolic complex algebra (deferred to symbolic computation contract)",
+            "Implicit shape coercion (always rejected)",
+            "Unchecked complex infinity (NaN, Inf always rejected)"
           ],
-          "codomain": {
-            "description": "A finite rectangular array with fixed shape (rows, cols) and entries from the complex field C. Each entry z = a + bi where a, b are finite real numbers.\n"
-          }
+          "summary": "Defines rectangular matrices over the complex field C with complex number operations, Hermitian adjoints (conjugate transpose), and complex-specific matrix operations. ComplexMatrix extends BasicMatrix semantics to the complex domain, adding conjugation, adjoint operations, and Hermitian properties. All entries are validated for finiteness (no NaN or Inf in real or imaginary parts). This contract is purely structural and does not confer authority."
         },
-        "requirements": {
-          "required_structures": [
-            "rows and cols are finite natural numbers (rows, cols > 0)",
-            "all entries z = a + bi have finite a and b (no NaN, no Inf)",
-            "every access must satisfy 0 <= i < rows and 0 <= j < cols",
-            "stored data length must equal rows * cols",
-            "same matrix, row, and col always resolve to the same entry",
-            "A** = A (adjoint applied twice returns original matrix)",
-            "operations may not silently change shape"
-          ]
-        },
+        "kind": "math_contract",
         "laws": [
           "rows and cols are finite natural numbers (rows, cols > 0)",
           "all entries z = a + bi have finite a and b (no NaN, no Inf)",
@@ -199,45 +88,20 @@
           "A** = A (adjoint applied twice returns original matrix)",
           "(αA + βB)* = ᾱA* + β̄B* (adjoint is conjugate-linear)"
         ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "All serializations are fixed byte arrays",
-            "Operation functions are content-addressed",
-            "Complex number operations are IEEE 754 deterministic"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
-        "rust_binding": {
-          "crate": "omega_linear_algebra",
-          "module": "linear_algebra::complex_matrix",
-          "symbols": [
-            "ComplexMatrix",
-            "ComplexMatrixError",
-            "C64",
-            "CMatrix",
-            "CVector"
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "complex_matrix",
+          "codomain": {
+            "description": "A finite rectangular array with fixed shape (rows, cols) and entries from the complex field C. Each entry z = a + bi where a, b are finite real numbers.\n"
+          },
+          "domain": [
+            "rows: finite_index_set",
+            "cols: finite_index_set",
+            "entries: complex_field_C"
           ],
-          "required_tests": [
-            "from_row_major_rejects_length_mismatch",
-            "from_row_major_rejects_nan_real_part",
-            "from_row_major_rejects_nan_imag_part",
-            "from_row_major_rejects_infinite_entry",
-            "from_row_major_rejects_infinite_imag_part",
-            "scale_real_rejects_nan_scalar",
-            "get_rejects_out_of_bounds",
-            "set_rejects_out_of_bounds",
-            "set_rejects_non_finite_value",
-            "mul_rejects_dimension_mismatch",
-            "add_rejects_shape_mismatch",
-            "sub_rejects_shape_mismatch"
-          ]
+          "notation": "A ∈ C^{m×n}",
+          "object_kind": "finite_rectangular_complex_matrix",
+          "symbol": "A ∈ C^{m×n}"
         },
         "negative_tests": [
           "Matrix with rows=0 must be rejected",
@@ -255,47 +119,127 @@
           "Add with different shapes must be rejected",
           "Sub with different shapes must be rejected"
         ],
-        "doctrine": {
-          "summary": "Defines rectangular matrices over the complex field C with complex number operations, Hermitian adjoints (conjugate transpose), and complex-specific matrix operations. ComplexMatrix extends BasicMatrix semantics to the complex domain, adding conjugation, adjoint operations, and Hermitian properties. All entries are validated for finiteness (no NaN or Inf in real or imaginary parts). This contract is purely structural and does not confer authority.",
-          "non_role": [
-            "Infinite-dimensional operators (out of scope)",
-            "Sparse matrix optimization (separate sparse_complex_matrix contract)",
-            "Symbolic complex algebra (deferred to symbolic computation contract)",
-            "Implicit shape coercion (always rejected)",
-            "Unchecked complex infinity (NaN, Inf always rejected)"
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
           ]
-        }
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "All serializations are fixed byte arrays",
+            "Operation functions are content-addressed",
+            "Complex number operations are IEEE 754 deterministic"
+          ]
+        },
+        "requirements": {
+          "required_structures": [
+            "rows and cols are finite natural numbers (rows, cols > 0)",
+            "all entries z = a + bi have finite a and b (no NaN, no Inf)",
+            "every access must satisfy 0 <= i < rows and 0 <= j < cols",
+            "stored data length must equal rows * cols",
+            "same matrix, row, and col always resolve to the same entry",
+            "A** = A (adjoint applied twice returns original matrix)",
+            "operations may not silently change shape"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "linear_algebra::complex_matrix",
+          "required_tests": [
+            "from_row_major_rejects_length_mismatch",
+            "from_row_major_rejects_nan_real_part",
+            "from_row_major_rejects_nan_imag_part",
+            "from_row_major_rejects_infinite_entry",
+            "from_row_major_rejects_infinite_imag_part",
+            "scale_real_rejects_nan_scalar",
+            "get_rejects_out_of_bounds",
+            "set_rejects_out_of_bounds",
+            "set_rejects_non_finite_value",
+            "mul_rejects_dimension_mismatch",
+            "add_rejects_shape_mismatch",
+            "sub_rejects_shape_mismatch"
+          ],
+          "symbols": [
+            "ComplexMatrix",
+            "ComplexMatrixError",
+            "C64",
+            "CMatrix",
+            "CVector"
+          ]
+        },
+        "schema_version": "omega.contract.v1",
+        "status": "active",
+        "title": "Complex Matrix Contract"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:complex_matrix:v1.0.0\",\n  \"title\": \"Complex Matrix Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"active\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_rectangular_complex_matrix\",\n    \"symbol\": \"A ∈ C^{m×n}\",\n    \"ascii_symbol\": \"complex_matrix\",\n    \"notation\": \"A ∈ C^{m×n}\",\n    \"domain\": [\n      \"rows: finite_index_set\",\n      \"cols: finite_index_set\",\n      \"entries: complex_field_C\"\n    ],\n    \"codomain\": {\n      \"description\": \"A finite rectangular array with fixed shape (rows, cols) and entries from the complex field C. Each entry z = a + bi where a, b are finite real numbers.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"rows and cols are finite natural numbers (rows, cols > 0)\",\n      \"all entries z = a + bi have finite a and b (no NaN, no Inf)\",\n      \"every access must satisfy 0 <= i < rows and 0 <= j < cols\",\n      \"stored data length must equal rows * cols\",\n      \"same matrix, row, and col always resolve to the same entry\",\n      \"A** = A (adjoint applied twice returns original matrix)\",\n      \"operations may not silently change shape\"\n    ]\n  },\n  \"laws\": [\n    \"rows and cols are finite natural numbers (rows, cols > 0)\",\n    \"all entries z = a + bi have finite a and b (no NaN, no Inf)\",\n    \"every access must satisfy 0 <= i < rows and 0 <= j < cols\",\n    \"stored data length must equal rows * cols\",\n    \"same matrix, row, and col always resolve to the same entry\",\n    \"A** = A (adjoint applied twice returns original matrix)\",\n    \"(αA + βB)* = ᾱA* + β̄B* (adjoint is conjugate-linear)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"All serializations are fixed byte arrays\",\n      \"Operation functions are content-addressed\",\n      \"Complex number operations are IEEE 754 deterministic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"linear_algebra::complex_matrix\",\n    \"symbols\": [\n      \"ComplexMatrix\",\n      \"ComplexMatrixError\",\n      \"C64\",\n      \"CMatrix\",\n      \"CVector\"\n    ],\n    \"required_tests\": [\n      \"from_row_major_rejects_length_mismatch\",\n      \"from_row_major_rejects_nan_real_part\",\n      \"from_row_major_rejects_nan_imag_part\",\n      \"from_row_major_rejects_infinite_entry\",\n      \"from_row_major_rejects_infinite_imag_part\",\n      \"scale_real_rejects_nan_scalar\",\n      \"get_rejects_out_of_bounds\",\n      \"set_rejects_out_of_bounds\",\n      \"set_rejects_non_finite_value\",\n      \"mul_rejects_dimension_mismatch\",\n      \"add_rejects_shape_mismatch\",\n      \"sub_rejects_shape_mismatch\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Matrix with rows=0 must be rejected\",\n    \"Matrix with cols=0 must be rejected\",\n    \"Data length not equal to rows*cols must be rejected\",\n    \"Entry with NaN real part must be rejected\",\n    \"Entry with NaN imaginary part must be rejected\",\n    \"Entry with Inf real part must be rejected\",\n    \"Entry with Inf imaginary part must be rejected\",\n    \"scale_real with NaN or Inf scalar must be rejected\",\n    \"Accessing index >= rows or >= cols must fail\",\n    \"Setting index >= rows or >= cols must fail\",\n    \"Setting nonfinite value must be rejected\",\n    \"Matmul with lhs_cols != rhs_rows must be rejected\",\n    \"Add with different shapes must be rejected\",\n    \"Sub with different shapes must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Defines rectangular matrices over the complex field C with complex number operations, Hermitian adjoints (conjugate transpose), and complex-specific matrix operations. ComplexMatrix extends BasicMatrix semantics to the complex domain, adding conjugation, adjoint operations, and Hermitian properties. All entries are validated for finiteness (no NaN or Inf in real or imaginary parts). This contract is purely structural and does not confer authority.\",\n    \"non_role\": [\n      \"Infinite-dimensional operators (out of scope)\",\n      \"Sparse matrix optimization (separate sparse_complex_matrix contract)\",\n      \"Symbolic complex algebra (deferred to symbolic computation contract)\",\n      \"Implicit shape coercion (always rejected)\",\n      \"Unchecked complex infinity (NaN, Inf always rejected)\"\n    ]\n  }\n}\n",
+      "sha256": "8d4eb2f516e730f11d811b6e1b66a97df0b0012c6b392a8030ecd2188dbb41cb"
+    },
+    {
+      "bytes": 1712,
       "original_paths": [
-        "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py\",\n    \"sha256\": \"3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py\",\n      \"sha256\": \"3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73\",\n  \"subject\": \"code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py",
+          "sha256": "3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py",
+            "sha256": "3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73",
+        "subject": "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py"
+      },
+      "sha256": "410cb59db8e9827be8978d163cad377ca1632c48fd1561c440c85e79bd042eb5"
     }
   ],
+  "current_contract": "410cb59db8e9827be8978d163cad377ca1632c48fd1561c440c85e79bd042eb5",
+  "current_scoring": "9f6f73a7b2188ac491437f1d4a21ece401becd5c366075f5534f072de0d332d1",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0.contract.yaml": "71a9b46b5c0a2de49447dbc24fdd79ba02e7fd95f3bf7858ff58be6f4fcb0dca"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "eec752e1bc402698c2038c7b2adb718736a035fce5f563c8368b30759e0c8943",
       "bytes": 2225,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py\",\n    \"sha256\": \"3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-complex-matrix-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py",
           "sha256": "3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:algebra:math-complex-matrix-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -304,40 +248,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "eec752e1bc402698c2038c7b2adb718736a035fce5f563c8368b30759e0c8943"
+    },
+    {
+      "bytes": 1670,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py\",\n    \"sha256\": \"3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py\",\n      \"sha256\": \"3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py",
+          "sha256": "3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py",
+            "sha256": "3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.py\",\n    \"sha256\": \"3740ec0a5a90a6b7a6b1ca49e12bc777b974e505032df64e69150502f4826d73\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-complex-matrix-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "9f6f73a7b2188ac491437f1d4a21ece401becd5c366075f5534f072de0d332d1"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/algebra/math_complex_matrix_v1_0_0.contract.yaml": "71a9b46b5c0a2de49447dbc24fdd79ba02e7fd95f3bf7858ff58be6f4fcb0dca"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

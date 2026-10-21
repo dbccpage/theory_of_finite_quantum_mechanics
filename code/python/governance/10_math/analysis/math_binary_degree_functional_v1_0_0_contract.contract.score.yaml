@@ -1,129 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:binary_degree_functional:v1.0.0",
-    "title": "Binary (F₂) Φ₁ and Γ₂ specializations and integer triangle-face Γ₂",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:math:phi1:v1.0.0",
-          "urn:omega:math:gamma2_closure_defect:v1.0.0"
-        ],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py",
+      "sha256": "a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856"
     },
-    "math": {
-      "object_kind": "binary_degree_functionals",
-      "symbol": "Φ₁, Γ₂ over F₂",
-      "ascii_symbol": "BinaryDegree",
-      "notation": "Φ₁(r) = min_{x ∈ F₂^n} |r + d₀x|_H;  Γ₂(r) = |d₁r|_H;  Γ₂(face) = |ab + bc + ca|; BinaryDegreeFunctional only measures chain composites and exposes binary carrier helpers",
-      "domain": [
-        "row-major F₂ matrices d₀ (m × n) and d₁, given as Vec<Vec<bool>>",
-        "binary residual r ∈ F₂^m",
-        "three orientation-adjusted i64 edge coefficients per triangle face (integer path)"
-      ],
-      "codomain": {
-        "description": "Phi1Functional and Gamma2Functional return exact usize Hamming values or a typed BinaryDegreeError. Gamma2Functional returns exact i64/u64 values or IntegerGamma2Error::CapacityOverflow."
-      },
-      "definition": {
-        "phi1": "Hamming distance from r to im(d₀) over F₂, by exhaustive search over F₂^n when n ≤ 20",
-        "gamma2": "Hamming weight of d₁r over F₂",
-        "image_membership": "Gaussian elimination over F₂ on the augmented matrix [d₀ | r]",
-        "chain_composite_weight": "number of nonzero entries of a supplied d₁d₀ matrix",
-        "integer_face": "closure = ab + bc + ca (checked i64); face Γ₂ = |closure|; total = checked u64 sum"
-      }
-    },
-    "laws": [
-      "Exhaustive Φ₁ law: for n ≤ 20 (MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM) every x ∈ F₂^n is tried, so the returned value is the exact minimum Hamming distance.",
-      "Bounded fallback law: for n > 20, Φ₁ is returned only when r ∈ im(d₀) (value 0) or r has Hamming weight at most 1 (value equal to that weight). Every other input is refused with ExhaustiveSearchTooLarge, never approximated.",
-      "Γ₂ law: Γ₂ is the Hamming weight of d₁r on the supplied binary C² carrier. It is a different functional from Φ₁, computed by a separate routine.",
-      "Composite fence: chain_composite_weight counts chain-law violations in a supplied d₁d₀. It is not Φ₁ and does not build the composite.",
-      "Shape law: ragged matrices and inputs of the wrong length are refused with typed errors.",
-      "Integer overflow law: the triangle closure and the face total use checked arithmetic and refuse on overflow instead of wrapping.",
-      "Exactness law: F₂ values are bool and integer values are checked i64/u64; there is no floating-point path.",
-      "Authority law: no value from this module mints AuthorityEffect, PROVED, GlobalGreen or ActionLicense."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state, randomness or wall-clock",
-        "Deterministic exhaustive enumeration order over F₂^n"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_functional",
-      "module": "binary_degree",
-      "symbols": [
-        "MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM",
-        "BinaryDegreeError",
-        "BinaryDegreeFunctional"
-      ],
-      "required_tests": [
-        "composite_weight_is_shape_checked_and_separate_from_phi1",
-        "integer_face_gamma2_detects_arithmetic_overflow",
-        "binary_quotient_and_closure_have_distinct_values"
-      ]
-    },
-    "negative_tests": [
-      "A ragged composite matrix must be rejected, and composite weight is not Φ₁",
-      "Integer face closure overflow must be refused, not wrapped"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py",
+        "sha256": "a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "binding_review_20261014": "The integer Gamma2 refusal type is declared in omega_functional::gamma2, not binary_degree. This binding covers binary_degree only; the Gamma2 dependency remains declared separately.",
-      "summary": "Phi1Functional owns the exact F₂ arithmetic for Φ₁ (Hamming distance to im(d₀), exhaustive up to 20 source dimensions, fail-closed beyond). Gamma2Functional owns binary Γ₂ (Hamming weight of d₁r) and checked integer Γ₂ on oriented triangle faces. Callers may build cochains but should not recompute these values elsewhere. Nonclaim: no search beyond the declared bound; not authority; not PROVED; not GlobalGreen.",
-      "non_role": [
-        "Φ₁ over ℚ or ℝ, or a primal-dual certificate",
-        "Approximate Φ₁ above the exhaustive bound",
-        "Cochain construction or carrier declaration",
-        "Authority minting, ActionLicense, PROVED or GlobalGreen"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "OPEN_OBLIGATION untested_paths: the n > 20 fallback, ExhaustiveSearchTooLarge, InputDimensionMismatch, is_in_image and Gamma2Functional::checked_total overflow have no dedicated unit test here; omega_discrete_deformation_algebra exercises some of them through its degree tower; AuthorityEffect: None."
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856",
+    "subject": "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py"
   },
-  "current_contract": "5a2710750ddc2419d776438751b85408e7759b4b8feb20f8ec9551e5e1e01426",
-  "current_scoring": "88c9838c33a10a4121059ad27debf476158fb1641ebf839f711c7217f62b1eff",
   "contract_history": [
     {
-      "sha256": "5a2710750ddc2419d776438751b85408e7759b4b8feb20f8ec9551e5e1e01426",
       "bytes": 5453,
+      "original_paths": [
+        "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:binary_degree_functional:v1.0.0\",\n  \"title\": \"Binary (F₂) Φ₁ and Γ₂ specializations and integer triangle-face Γ₂\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:phi1:v1.0.0\",\n        \"urn:omega:math:gamma2_closure_defect:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"binary_degree_functionals\",\n    \"symbol\": \"Φ₁, Γ₂ over F₂\",\n    \"ascii_symbol\": \"BinaryDegree\",\n    \"notation\": \"Φ₁(r) = min_{x ∈ F₂^n} |r + d₀x|_H;  Γ₂(r) = |d₁r|_H;  Γ₂(face) = |ab + bc + ca|; BinaryDegreeFunctional only measures chain composites and exposes binary carrier helpers\",\n    \"domain\": [\n      \"row-major F₂ matrices d₀ (m × n) and d₁, given as Vec<Vec<bool>>\",\n      \"binary residual r ∈ F₂^m\",\n      \"three orientation-adjusted i64 edge coefficients per triangle face (integer path)\"\n    ],\n    \"codomain\": {\n      \"description\": \"Phi1Functional and Gamma2Functional return exact usize Hamming values or a typed BinaryDegreeError. Gamma2Functional returns exact i64/u64 values or IntegerGamma2Error::CapacityOverflow.\"\n    },\n    \"definition\": {\n      \"phi1\": \"Hamming distance from r to im(d₀) over F₂, by exhaustive search over F₂^n when n ≤ 20\",\n      \"gamma2\": \"Hamming weight of d₁r over F₂\",\n      \"image_membership\": \"Gaussian elimination over F₂ on the augmented matrix [d₀ | r]\",\n      \"chain_composite_weight\": \"number of nonzero entries of a supplied d₁d₀ matrix\",\n      \"integer_face\": \"closure = ab + bc + ca (checked i64); face Γ₂ = |closure|; total = checked u64 sum\"\n    }\n  },\n  \"laws\": [\n    \"Exhaustive Φ₁ law: for n ≤ 20 (MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM) every x ∈ F₂^n is tried, so the returned value is the exact minimum Hamming distance.\",\n    \"Bounded fallback law: for n > 20, Φ₁ is returned only when r ∈ im(d₀) (value 0) or r has Hamming weight at most 1 (value equal to that weight). Every other input is refused with ExhaustiveSearchTooLarge, never approximated.\",\n    \"Γ₂ law: Γ₂ is the Hamming weight of d₁r on the supplied binary C² carrier. It is a different functional from Φ₁, computed by a separate routine.\",\n    \"Composite fence: chain_composite_weight counts chain-law violations in a supplied d₁d₀. It is not Φ₁ and does not build the composite.\",\n    \"Shape law: ragged matrices and inputs of the wrong length are refused with typed errors.\",\n    \"Integer overflow law: the triangle closure and the face total use checked arithmetic and refuse on overflow instead of wrapping.\",\n    \"Exactness law: F₂ values are bool and integer values are checked i64/u64; there is no floating-point path.\",\n    \"Authority law: no value from this module mints AuthorityEffect, PROVED, GlobalGreen or ActionLicense.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state, randomness or wall-clock\",\n      \"Deterministic exhaustive enumeration order over F₂^n\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_functional\",\n    \"module\": \"binary_degree\",\n    \"symbols\": [\n      \"MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM\",\n      \"BinaryDegreeError\",\n      \"BinaryDegreeFunctional\"\n    ],\n    \"required_tests\": [\n      \"composite_weight_is_shape_checked_and_separate_from_phi1\",\n      \"integer_face_gamma2_detects_arithmetic_overflow\",\n      \"binary_quotient_and_closure_have_distinct_values\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A ragged composite matrix must be rejected, and composite weight is not Φ₁\",\n    \"Integer face closure overflow must be refused, not wrapped\"\n  ],\n  \"doctrine\": {\n    \"binding_review_20261014\": \"The integer Gamma2 refusal type is declared in omega_functional::gamma2, not binary_degree. This binding covers binary_degree only; the Gamma2 dependency remains declared separately.\",\n    \"summary\": \"Phi1Functional owns the exact F₂ arithmetic for Φ₁ (Hamming distance to im(d₀), exhaustive up to 20 source dimensions, fail-closed beyond). Gamma2Functional owns binary Γ₂ (Hamming weight of d₁r) and checked integer Γ₂ on oriented triangle faces. Callers may build cochains but should not recompute these values elsewhere. Nonclaim: no search beyond the declared bound; not authority; not PROVED; not GlobalGreen.\",\n    \"non_role\": [\n      \"Φ₁ over ℚ or ℝ, or a primal-dual certificate\",\n      \"Approximate Φ₁ above the exhaustive bound\",\n      \"Cochain construction or carrier declaration\",\n      \"Authority minting, ActionLicense, PROVED or GlobalGreen\"\n    ]\n  },\n  \"wip\": [\n    \"OPEN_OBLIGATION untested_paths: the n > 20 fallback, ExhaustiveSearchTooLarge, InputDimensionMismatch, is_in_image and Gamma2Functional::checked_total overflow have no dedicated unit test here; omega_discrete_deformation_algebra exercises some of them through its degree tower; AuthorityEffect: None.\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:binary_degree_functional:v1.0.0",
-        "title": "Binary (F₂) Φ₁ and Γ₂ specializations and integer triangle-face Γ₂",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -132,39 +57,31 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
-        "math": {
-          "object_kind": "binary_degree_functionals",
-          "symbol": "Φ₁, Γ₂ over F₂",
-          "ascii_symbol": "BinaryDegree",
-          "notation": "Φ₁(r) = min_{x ∈ F₂^n} |r + d₀x|_H;  Γ₂(r) = |d₁r|_H;  Γ₂(face) = |ab + bc + ca|; BinaryDegreeFunctional only measures chain composites and exposes binary carrier helpers",
-          "domain": [
-            "row-major F₂ matrices d₀ (m × n) and d₁, given as Vec<Vec<bool>>",
-            "binary residual r ∈ F₂^m",
-            "three orientation-adjusted i64 edge coefficients per triangle face (integer path)"
+        "doctrine": {
+          "binding_review_20261014": "The integer Gamma2 refusal type is declared in omega_functional::gamma2, not binary_degree. This binding covers binary_degree only; the Gamma2 dependency remains declared separately.",
+          "non_role": [
+            "Φ₁ over ℚ or ℝ, or a primal-dual certificate",
+            "Approximate Φ₁ above the exhaustive bound",
+            "Cochain construction or carrier declaration",
+            "Authority minting, ActionLicense, PROVED or GlobalGreen"
           ],
-          "codomain": {
-            "description": "Phi1Functional and Gamma2Functional return exact usize Hamming values or a typed BinaryDegreeError. Gamma2Functional returns exact i64/u64 values or IntegerGamma2Error::CapacityOverflow."
-          },
-          "definition": {
-            "phi1": "Hamming distance from r to im(d₀) over F₂, by exhaustive search over F₂^n when n ≤ 20",
-            "gamma2": "Hamming weight of d₁r over F₂",
-            "image_membership": "Gaussian elimination over F₂ on the augmented matrix [d₀ | r]",
-            "chain_composite_weight": "number of nonzero entries of a supplied d₁d₀ matrix",
-            "integer_face": "closure = ab + bc + ca (checked i64); face Γ₂ = |closure|; total = checked u64 sum"
-          }
+          "summary": "Phi1Functional owns the exact F₂ arithmetic for Φ₁ (Hamming distance to im(d₀), exhaustive up to 20 source dimensions, fail-closed beyond). Gamma2Functional owns binary Γ₂ (Hamming weight of d₁r) and checked integer Γ₂ on oriented triangle faces. Callers may build cochains but should not recompute these values elsewhere. Nonclaim: no search beyond the declared bound; not authority; not PROVED; not GlobalGreen."
         },
+        "kind": "math_contract",
         "laws": [
           "Exhaustive Φ₁ law: for n ≤ 20 (MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM) every x ∈ F₂^n is tried, so the returned value is the exact minimum Hamming distance.",
           "Bounded fallback law: for n > 20, Φ₁ is returned only when r ∈ im(d₀) (value 0) or r has Hamming weight at most 1 (value equal to that weight). Every other input is refused with ExhaustiveSearchTooLarge, never approximated.",
@@ -175,79 +92,130 @@
           "Exactness law: F₂ values are bool and integer values are checked i64/u64; there is no floating-point path.",
           "Authority law: no value from this module mints AuthorityEffect, PROVED, GlobalGreen or ActionLicense."
         ],
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "BinaryDegree",
+          "codomain": {
+            "description": "Phi1Functional and Gamma2Functional return exact usize Hamming values or a typed BinaryDegreeError. Gamma2Functional returns exact i64/u64 values or IntegerGamma2Error::CapacityOverflow."
+          },
+          "definition": {
+            "chain_composite_weight": "number of nonzero entries of a supplied d₁d₀ matrix",
+            "gamma2": "Hamming weight of d₁r over F₂",
+            "image_membership": "Gaussian elimination over F₂ on the augmented matrix [d₀ | r]",
+            "integer_face": "closure = ab + bc + ca (checked i64); face Γ₂ = |closure|; total = checked u64 sum",
+            "phi1": "Hamming distance from r to im(d₀) over F₂, by exhaustive search over F₂^n when n ≤ 20"
+          },
+          "domain": [
+            "row-major F₂ matrices d₀ (m × n) and d₁, given as Vec<Vec<bool>>",
+            "binary residual r ∈ F₂^m",
+            "three orientation-adjusted i64 edge coefficients per triangle face (integer path)"
+          ],
+          "notation": "Φ₁(r) = min_{x ∈ F₂^n} |r + d₀x|_H;  Γ₂(r) = |d₁r|_H;  Γ₂(face) = |ab + bc + ca|; BinaryDegreeFunctional only measures chain composites and exposes binary carrier helpers",
+          "object_kind": "binary_degree_functionals",
+          "symbol": "Φ₁, Γ₂ over F₂"
+        },
+        "negative_tests": [
+          "A ragged composite matrix must be rejected, and composite weight is not Φ₁",
+          "Integer face closure overflow must be refused, not wrapped"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
         "replay": {
           "requirements": [
             "No external state, randomness or wall-clock",
             "Deterministic exhaustive enumeration order over F₂^n"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
         "rust_binding": {
           "crate": "omega_functional",
           "module": "binary_degree",
-          "symbols": [
-            "MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM",
-            "BinaryDegreeError",
-            "BinaryDegreeFunctional"
-          ],
           "required_tests": [
             "composite_weight_is_shape_checked_and_separate_from_phi1",
             "integer_face_gamma2_detects_arithmetic_overflow",
             "binary_quotient_and_closure_have_distinct_values"
+          ],
+          "symbols": [
+            "MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM",
+            "BinaryDegreeError",
+            "BinaryDegreeFunctional"
           ]
         },
-        "negative_tests": [
-          "A ragged composite matrix must be rejected, and composite weight is not Φ₁",
-          "Integer face closure overflow must be refused, not wrapped"
-        ],
-        "doctrine": {
-          "binding_review_20261014": "The integer Gamma2 refusal type is declared in omega_functional::gamma2, not binary_degree. This binding covers binary_degree only; the Gamma2 dependency remains declared separately.",
-          "summary": "Phi1Functional owns the exact F₂ arithmetic for Φ₁ (Hamming distance to im(d₀), exhaustive up to 20 source dimensions, fail-closed beyond). Gamma2Functional owns binary Γ₂ (Hamming weight of d₁r) and checked integer Γ₂ on oriented triangle faces. Callers may build cochains but should not recompute these values elsewhere. Nonclaim: no search beyond the declared bound; not authority; not PROVED; not GlobalGreen.",
-          "non_role": [
-            "Φ₁ over ℚ or ℝ, or a primal-dual certificate",
-            "Approximate Φ₁ above the exhaustive bound",
-            "Cochain construction or carrier declaration",
-            "Authority minting, ActionLicense, PROVED or GlobalGreen"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Binary (F₂) Φ₁ and Γ₂ specializations and integer triangle-face Γ₂",
         "wip": [
           "OPEN_OBLIGATION untested_paths: the n > 20 fallback, ExhaustiveSearchTooLarge, InputDimensionMismatch, is_in_image and Gamma2Functional::checked_total overflow have no dedicated unit test here; omega_discrete_deformation_algebra exercises some of them through its degree tower; AuthorityEffect: None."
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:binary_degree_functional:v1.0.0\",\n  \"title\": \"Binary (F₂) Φ₁ and Γ₂ specializations and integer triangle-face Γ₂\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:phi1:v1.0.0\",\n        \"urn:omega:math:gamma2_closure_defect:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"binary_degree_functionals\",\n    \"symbol\": \"Φ₁, Γ₂ over F₂\",\n    \"ascii_symbol\": \"BinaryDegree\",\n    \"notation\": \"Φ₁(r) = min_{x ∈ F₂^n} |r + d₀x|_H;  Γ₂(r) = |d₁r|_H;  Γ₂(face) = |ab + bc + ca|; BinaryDegreeFunctional only measures chain composites and exposes binary carrier helpers\",\n    \"domain\": [\n      \"row-major F₂ matrices d₀ (m × n) and d₁, given as Vec<Vec<bool>>\",\n      \"binary residual r ∈ F₂^m\",\n      \"three orientation-adjusted i64 edge coefficients per triangle face (integer path)\"\n    ],\n    \"codomain\": {\n      \"description\": \"Phi1Functional and Gamma2Functional return exact usize Hamming values or a typed BinaryDegreeError. Gamma2Functional returns exact i64/u64 values or IntegerGamma2Error::CapacityOverflow.\"\n    },\n    \"definition\": {\n      \"phi1\": \"Hamming distance from r to im(d₀) over F₂, by exhaustive search over F₂^n when n ≤ 20\",\n      \"gamma2\": \"Hamming weight of d₁r over F₂\",\n      \"image_membership\": \"Gaussian elimination over F₂ on the augmented matrix [d₀ | r]\",\n      \"chain_composite_weight\": \"number of nonzero entries of a supplied d₁d₀ matrix\",\n      \"integer_face\": \"closure = ab + bc + ca (checked i64); face Γ₂ = |closure|; total = checked u64 sum\"\n    }\n  },\n  \"laws\": [\n    \"Exhaustive Φ₁ law: for n ≤ 20 (MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM) every x ∈ F₂^n is tried, so the returned value is the exact minimum Hamming distance.\",\n    \"Bounded fallback law: for n > 20, Φ₁ is returned only when r ∈ im(d₀) (value 0) or r has Hamming weight at most 1 (value equal to that weight). Every other input is refused with ExhaustiveSearchTooLarge, never approximated.\",\n    \"Γ₂ law: Γ₂ is the Hamming weight of d₁r on the supplied binary C² carrier. It is a different functional from Φ₁, computed by a separate routine.\",\n    \"Composite fence: chain_composite_weight counts chain-law violations in a supplied d₁d₀. It is not Φ₁ and does not build the composite.\",\n    \"Shape law: ragged matrices and inputs of the wrong length are refused with typed errors.\",\n    \"Integer overflow law: the triangle closure and the face total use checked arithmetic and refuse on overflow instead of wrapping.\",\n    \"Exactness law: F₂ values are bool and integer values are checked i64/u64; there is no floating-point path.\",\n    \"Authority law: no value from this module mints AuthorityEffect, PROVED, GlobalGreen or ActionLicense.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state, randomness or wall-clock\",\n      \"Deterministic exhaustive enumeration order over F₂^n\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_functional\",\n    \"module\": \"binary_degree\",\n    \"symbols\": [\n      \"MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM\",\n      \"BinaryDegreeError\",\n      \"BinaryDegreeFunctional\"\n    ],\n    \"required_tests\": [\n      \"composite_weight_is_shape_checked_and_separate_from_phi1\",\n      \"integer_face_gamma2_detects_arithmetic_overflow\",\n      \"binary_quotient_and_closure_have_distinct_values\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A ragged composite matrix must be rejected, and composite weight is not Φ₁\",\n    \"Integer face closure overflow must be refused, not wrapped\"\n  ],\n  \"doctrine\": {\n    \"binding_review_20261014\": \"The integer Gamma2 refusal type is declared in omega_functional::gamma2, not binary_degree. This binding covers binary_degree only; the Gamma2 dependency remains declared separately.\",\n    \"summary\": \"Phi1Functional owns the exact F₂ arithmetic for Φ₁ (Hamming distance to im(d₀), exhaustive up to 20 source dimensions, fail-closed beyond). Gamma2Functional owns binary Γ₂ (Hamming weight of d₁r) and checked integer Γ₂ on oriented triangle faces. Callers may build cochains but should not recompute these values elsewhere. Nonclaim: no search beyond the declared bound; not authority; not PROVED; not GlobalGreen.\",\n    \"non_role\": [\n      \"Φ₁ over ℚ or ℝ, or a primal-dual certificate\",\n      \"Approximate Φ₁ above the exhaustive bound\",\n      \"Cochain construction or carrier declaration\",\n      \"Authority minting, ActionLicense, PROVED or GlobalGreen\"\n    ]\n  },\n  \"wip\": [\n    \"OPEN_OBLIGATION untested_paths: the n > 20 fallback, ExhaustiveSearchTooLarge, InputDimensionMismatch, is_in_image and Gamma2Functional::checked_total overflow have no dedicated unit test here; omega_discrete_deformation_algebra exercises some of them through its degree tower; AuthorityEffect: None.\"\n  ]\n}\n",
+      "sha256": "5a2710750ddc2419d776438751b85408e7759b4b8feb20f8ec9551e5e1e01426"
+    },
+    {
+      "bytes": 1745,
       "original_paths": [
-        "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py\",\n    \"sha256\": \"a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py\",\n      \"sha256\": \"a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856\",\n  \"subject\": \"code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py",
+          "sha256": "a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py",
+            "sha256": "a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856",
+        "subject": "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py"
+      },
+      "sha256": "e00f57978a504e0235f3ea2ace3903da9ff51d81a3de771fc2b355d1774f9e49"
     }
   ],
+  "current_contract": "e00f57978a504e0235f3ea2ace3903da9ff51d81a3de771fc2b355d1774f9e49",
+  "current_scoring": "a9815ab812fc9a94a31f799e64bf768ea6515329d82ca7a54f8ea30815b5c914",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0.contract.yaml": "69e635a6524794782f40abd254624019d863aec5357de2e2420f9f80527aa380"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "88c9838c33a10a4121059ad27debf476158fb1641ebf839f711c7217f62b1eff",
       "bytes": 2247,
+      "original_paths": [
+        "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py\",\n    \"sha256\": \"a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:math-binary-degree-functional-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py",
           "sha256": "a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:analysis:math-binary-degree-functional-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -256,40 +224,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "88c9838c33a10a4121059ad27debf476158fb1641ebf839f711c7217f62b1eff"
+    },
+    {
+      "bytes": 1690,
+      "original_paths": [
+        "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py\",\n    \"sha256\": \"a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py\",\n      \"sha256\": \"a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py",
+          "sha256": "a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py",
+            "sha256": "a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.py\",\n    \"sha256\": \"a853b07914febdff6a354d2f57850c71cdb169a89815fafd58e45072db2c7856\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:math-binary-degree-functional-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "a9815ab812fc9a94a31f799e64bf768ea6515329d82ca7a54f8ea30815b5c914"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/analysis/math_binary_degree_functional_v1_0_0.contract.yaml": "69e635a6524794782f40abd254624019d863aec5357de2e2420f9f80527aa380"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

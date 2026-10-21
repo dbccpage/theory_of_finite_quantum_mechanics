@@ -1,55 +1,80 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/50_os/os_decoder_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/governance/50_os/os_decoder_contract.py",
       "sha256": "767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:50_os:os-decoder-contract:v1",
-    "role": "library",
-    "purpose": "Pydantic v2 Twin Model for os:decoder Schema Version: 1.0.0",
-    "operations": {
-      "ContractModel": "Class ContractModel domain record and methods.",
-      "validate_contract": "Function validate_contract operation."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/governance/50_os/os_decoder_contract.py",
+        "sha256": "767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66",
+    "subject": "code/python/governance/50_os/os_decoder_contract.py"
   },
-  "current_contract": "0273ceec6065d4b6fcc2f18aa759efb471bf7a6d7442312b121dafcfa00e1fd4",
-  "current_scoring": "b2e844bf4698e303a0caab111f9d07252d8a5e1d7702259a6b5948eb1476e4e7",
   "contract_history": [
     {
-      "sha256": "be42e7769cd1a5ae61175c8d595de7e1960ff0c6217d15c9ae1af49f540f32bb",
       "bytes": 3349,
+      "original_paths": [
+        "code/python/governance/50_os/os_decoder.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"contract_id\": \"os:decoder\",\n  \"name\": \"Decoder Operator Contract\",\n  \"version\": \"1.0.0\",\n  \"kind\": \"os_doctrine_contract\",\n  \"status\": \"active_doctrine\",\n  \"enforcement_status\": \"enforced\",\n  \"description\": \"A Decoder is a deterministic, stateless representation boundary operator that reconstructs a structured State/Carrier from a constrained representation space strictly within the bounds permitted by attached EncodingEvidence. It maps a representation back to an admitted target schema, verifying representation invariants and emitting typed decoding failures upon out-of-distribution, truncated, or invalid inputs. A Decoder does not fabricate missing data, evaluate functionals, search, rank, certify, authorize transitions, or mutate runtime state.\\n\",\n  \"layer\": \"OS\",\n  \"module_path\": \"operators::decoder\",\n  \"governs\": [\n    \"operators/decoders/**\",\n    \"operators/decoder/**\"\n  ],\n  \"does_not_govern\": [\n    \"operators/encoders/**\",\n    \"constructors/**\",\n    \"generators/**\",\n    \"operators/lambdas/**\",\n    \"operators/reducers/**\",\n    \"operators/transforms/**\",\n    \"omega_functional/**\",\n    \"omega_homological/**\",\n    \"omega_lifts/**\",\n    \"omega_certifiers/**\",\n    \"omega_replay/**\",\n    \"omega_id_run/**\",\n    \"omega_pipeline/**\",\n    \"omega_engines/**\",\n    \"meta/**\"\n  ],\n  \"claims\": [\n    {\n      \"id\": \"OP-DEC-001\",\n      \"description\": \"Decoder bounded reconstruction theorem: reconstruction is strictly constrained by provided representation evidence.\",\n      \"status\": \"active\",\n      \"provenance\": \"Decoder OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-DEC-002\",\n      \"description\": \"Decoder determinism: decoding identical representation tokens under identical parameters yields identical reconstructed carrier state.\",\n      \"status\": \"active\",\n      \"provenance\": \"Decoder OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-DEC-003\",\n      \"description\": \"Decoder fail-closed law: unrepresentable, corrupt, or unsupported encodings fail closed with typed DecodingFailure.\",\n      \"status\": \"active\",\n      \"provenance\": \"Decoder OS Doctrine\"\n    }\n  ],\n  \"rules\": {\n    \"authority_effect\": \"none\",\n    \"mutation\": \"forbidden\",\n    \"canonical_functional_computation\": \"forbidden\",\n    \"terminalize\": \"forbidden\",\n    \"certify\": \"forbidden\",\n    \"fabrication_forbidden\": true,\n    \"carrier_enlargement\": \"forbidden\",\n    \"hidden_lift\": \"forbidden\",\n    \"search\": \"forbidden\",\n    \"rank\": \"forbidden\",\n    \"runtime_orchestration\": \"forbidden\",\n    \"side_effects\": \"forbidden\",\n    \"deterministic\": true,\n    \"stateless\": true,\n    \"unary\": true,\n    \"typed_failure_required\": true\n  },\n  \"allowed\": [\n    \"read constrained representation bytes / tensors / tokens\",\n    \"verify encoding evidence headers and schema compatibility\",\n    \"reconstruct structured target state within declared bounds\",\n    \"return typed reconstruction output\",\n    \"return typed decoding failure\"\n  ],\n  \"forbidden\": [\n    \"compute Φ₁\",\n    \"compute Γ₂\",\n    \"compute R_cl\",\n    \"compute Ξ\",\n    \"mint CertifiedAuthority\",\n    \"emit ActionLicense\",\n    \"hallucinate or fabricate ungrounded invariants\",\n    \"upgrade evidence authority to fact or certificate\",\n    \"mutate runtime state\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"os:operator\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "1.0.0",
-        "contract_id": "os:decoder",
-        "name": "Decoder Operator Contract",
-        "version": "1.0.0",
-        "kind": "os_doctrine_contract",
-        "status": "active_doctrine",
-        "enforcement_status": "enforced",
-        "description": "A Decoder is a deterministic, stateless representation boundary operator that reconstructs a structured State/Carrier from a constrained representation space strictly within the bounds permitted by attached EncodingEvidence. It maps a representation back to an admitted target schema, verifying representation invariants and emitting typed decoding failures upon out-of-distribution, truncated, or invalid inputs. A Decoder does not fabricate missing data, evaluate functionals, search, rank, certify, authorize transitions, or mutate runtime state.\n",
-        "layer": "OS",
-        "module_path": "operators::decoder",
-        "governs": [
-          "operators/decoders/**",
-          "operators/decoder/**"
+        "allowed": [
+          "read constrained representation bytes / tensors / tokens",
+          "verify encoding evidence headers and schema compatibility",
+          "reconstruct structured target state within declared bounds",
+          "return typed reconstruction output",
+          "return typed decoding failure"
         ],
+        "claims": [
+          {
+            "description": "Decoder bounded reconstruction theorem: reconstruction is strictly constrained by provided representation evidence.",
+            "id": "OP-DEC-001",
+            "provenance": "Decoder OS Doctrine",
+            "status": "active"
+          },
+          {
+            "description": "Decoder determinism: decoding identical representation tokens under identical parameters yields identical reconstructed carrier state.",
+            "id": "OP-DEC-002",
+            "provenance": "Decoder OS Doctrine",
+            "status": "active"
+          },
+          {
+            "description": "Decoder fail-closed law: unrepresentable, corrupt, or unsupported encodings fail closed with typed DecodingFailure.",
+            "id": "OP-DEC-003",
+            "provenance": "Decoder OS Doctrine",
+            "status": "active"
+          }
+        ],
+        "contract_id": "os:decoder",
+        "description": "A Decoder is a deterministic, stateless representation boundary operator that reconstructs a structured State/Carrier from a constrained representation space strictly within the bounds permitted by attached EncodingEvidence. It maps a representation back to an admitted target schema, verifying representation invariants and emitting typed decoding failures upon out-of-distribution, truncated, or invalid inputs. A Decoder does not fabricate missing data, evaluate functionals, search, rank, certify, authorize transitions, or mutate runtime state.\n",
         "does_not_govern": [
           "operators/encoders/**",
           "constructors/**",
@@ -67,51 +92,7 @@
           "omega_engines/**",
           "meta/**"
         ],
-        "claims": [
-          {
-            "id": "OP-DEC-001",
-            "description": "Decoder bounded reconstruction theorem: reconstruction is strictly constrained by provided representation evidence.",
-            "status": "active",
-            "provenance": "Decoder OS Doctrine"
-          },
-          {
-            "id": "OP-DEC-002",
-            "description": "Decoder determinism: decoding identical representation tokens under identical parameters yields identical reconstructed carrier state.",
-            "status": "active",
-            "provenance": "Decoder OS Doctrine"
-          },
-          {
-            "id": "OP-DEC-003",
-            "description": "Decoder fail-closed law: unrepresentable, corrupt, or unsupported encodings fail closed with typed DecodingFailure.",
-            "status": "active",
-            "provenance": "Decoder OS Doctrine"
-          }
-        ],
-        "rules": {
-          "authority_effect": "none",
-          "mutation": "forbidden",
-          "canonical_functional_computation": "forbidden",
-          "terminalize": "forbidden",
-          "certify": "forbidden",
-          "fabrication_forbidden": true,
-          "carrier_enlargement": "forbidden",
-          "hidden_lift": "forbidden",
-          "search": "forbidden",
-          "rank": "forbidden",
-          "runtime_orchestration": "forbidden",
-          "side_effects": "forbidden",
-          "deterministic": true,
-          "stateless": true,
-          "unary": true,
-          "typed_failure_required": true
-        },
-        "allowed": [
-          "read constrained representation bytes / tensors / tokens",
-          "verify encoding evidence headers and schema compatibility",
-          "reconstruct structured target state within declared bounds",
-          "return typed reconstruction output",
-          "return typed decoding failure"
-        ],
+        "enforcement_status": "enforced",
         "forbidden": [
           "compute Φ₁",
           "compute Γ₂",
@@ -123,78 +104,143 @@
           "upgrade evidence authority to fact or certificate",
           "mutate runtime state"
         ],
+        "governs": [
+          "operators/decoders/**",
+          "operators/decoder/**"
+        ],
+        "kind": "os_doctrine_contract",
+        "layer": "OS",
+        "module_path": "operators::decoder",
+        "name": "Decoder Operator Contract",
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0",
             "os:operator"
           ]
-        }
+        },
+        "rules": {
+          "authority_effect": "none",
+          "canonical_functional_computation": "forbidden",
+          "carrier_enlargement": "forbidden",
+          "certify": "forbidden",
+          "deterministic": true,
+          "fabrication_forbidden": true,
+          "hidden_lift": "forbidden",
+          "mutation": "forbidden",
+          "rank": "forbidden",
+          "runtime_orchestration": "forbidden",
+          "search": "forbidden",
+          "side_effects": "forbidden",
+          "stateless": true,
+          "terminalize": "forbidden",
+          "typed_failure_required": true,
+          "unary": true
+        },
+        "schema_version": "1.0.0",
+        "status": "active_doctrine",
+        "version": "1.0.0"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"contract_id\": \"os:decoder\",\n  \"name\": \"Decoder Operator Contract\",\n  \"version\": \"1.0.0\",\n  \"kind\": \"os_doctrine_contract\",\n  \"status\": \"active_doctrine\",\n  \"enforcement_status\": \"enforced\",\n  \"description\": \"A Decoder is a deterministic, stateless representation boundary operator that reconstructs a structured State/Carrier from a constrained representation space strictly within the bounds permitted by attached EncodingEvidence. It maps a representation back to an admitted target schema, verifying representation invariants and emitting typed decoding failures upon out-of-distribution, truncated, or invalid inputs. A Decoder does not fabricate missing data, evaluate functionals, search, rank, certify, authorize transitions, or mutate runtime state.\\n\",\n  \"layer\": \"OS\",\n  \"module_path\": \"operators::decoder\",\n  \"governs\": [\n    \"operators/decoders/**\",\n    \"operators/decoder/**\"\n  ],\n  \"does_not_govern\": [\n    \"operators/encoders/**\",\n    \"constructors/**\",\n    \"generators/**\",\n    \"operators/lambdas/**\",\n    \"operators/reducers/**\",\n    \"operators/transforms/**\",\n    \"omega_functional/**\",\n    \"omega_homological/**\",\n    \"omega_lifts/**\",\n    \"omega_certifiers/**\",\n    \"omega_replay/**\",\n    \"omega_id_run/**\",\n    \"omega_pipeline/**\",\n    \"omega_engines/**\",\n    \"meta/**\"\n  ],\n  \"claims\": [\n    {\n      \"id\": \"OP-DEC-001\",\n      \"description\": \"Decoder bounded reconstruction theorem: reconstruction is strictly constrained by provided representation evidence.\",\n      \"status\": \"active\",\n      \"provenance\": \"Decoder OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-DEC-002\",\n      \"description\": \"Decoder determinism: decoding identical representation tokens under identical parameters yields identical reconstructed carrier state.\",\n      \"status\": \"active\",\n      \"provenance\": \"Decoder OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-DEC-003\",\n      \"description\": \"Decoder fail-closed law: unrepresentable, corrupt, or unsupported encodings fail closed with typed DecodingFailure.\",\n      \"status\": \"active\",\n      \"provenance\": \"Decoder OS Doctrine\"\n    }\n  ],\n  \"rules\": {\n    \"authority_effect\": \"none\",\n    \"mutation\": \"forbidden\",\n    \"canonical_functional_computation\": \"forbidden\",\n    \"terminalize\": \"forbidden\",\n    \"certify\": \"forbidden\",\n    \"fabrication_forbidden\": true,\n    \"carrier_enlargement\": \"forbidden\",\n    \"hidden_lift\": \"forbidden\",\n    \"search\": \"forbidden\",\n    \"rank\": \"forbidden\",\n    \"runtime_orchestration\": \"forbidden\",\n    \"side_effects\": \"forbidden\",\n    \"deterministic\": true,\n    \"stateless\": true,\n    \"unary\": true,\n    \"typed_failure_required\": true\n  },\n  \"allowed\": [\n    \"read constrained representation bytes / tensors / tokens\",\n    \"verify encoding evidence headers and schema compatibility\",\n    \"reconstruct structured target state within declared bounds\",\n    \"return typed reconstruction output\",\n    \"return typed decoding failure\"\n  ],\n  \"forbidden\": [\n    \"compute Φ₁\",\n    \"compute Γ₂\",\n    \"compute R_cl\",\n    \"compute Ξ\",\n    \"mint CertifiedAuthority\",\n    \"emit ActionLicense\",\n    \"hallucinate or fabricate ungrounded invariants\",\n    \"upgrade evidence authority to fact or certificate\",\n    \"mutate runtime state\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"os:operator\"\n    ]\n  }\n}\n",
-      "original_paths": [
-        "code/python/governance/50_os/os_decoder.contract.yaml"
-      ]
+      "sha256": "be42e7769cd1a5ae61175c8d595de7e1960ff0c6217d15c9ae1af49f540f32bb"
     },
     {
-      "sha256": "0273ceec6065d4b6fcc2f18aa759efb471bf7a6d7442312b121dafcfa00e1fd4",
       "bytes": 1742,
+      "original_paths": [
+        "code/python/governance/50_os/os_decoder_contract.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_decoder_contract.py\",\n    \"sha256\": \"767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:50_os:os-decoder-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for os:decoder Schema Version: 1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/50_os/os_decoder_contract.py",
           "sha256": "767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:50_os:os-decoder-contract:v1",
-        "role": "library",
-        "purpose": "Pydantic v2 Twin Model for os:decoder Schema Version: 1.0.0",
-        "operations": {
-          "ContractModel": "Class ContractModel domain record and methods.",
-          "validate_contract": "Function validate_contract operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "profile": "Exact",
+        "purpose": "Pydantic v2 Twin Model for os:decoder Schema Version: 1.0.0",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_decoder_contract.py\",\n    \"sha256\": \"767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:50_os:os-decoder-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for os:decoder Schema Version: 1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "0273ceec6065d4b6fcc2f18aa759efb471bf7a6d7442312b121dafcfa00e1fd4"
+    },
+    {
+      "bytes": 1634,
       "original_paths": [
-        "code/python/governance/50_os/os_decoder_contract.contract.score.yaml#contract"
-      ]
+        "code/python/governance/50_os/os_decoder_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/50_os/os_decoder_contract.py\",\n    \"sha256\": \"767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/50_os/os_decoder_contract.py\",\n      \"sha256\": \"767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66\",\n  \"subject\": \"code/python/governance/50_os/os_decoder_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/50_os/os_decoder_contract.py",
+          "sha256": "767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/50_os/os_decoder_contract.py",
+            "sha256": "767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66",
+        "subject": "code/python/governance/50_os/os_decoder_contract.py"
+      },
+      "sha256": "8d8190bb84925eff9241d0237cd822542f5d04dc244f1e56a2b2594c1c2dac36"
     }
   ],
+  "current_contract": "8d8190bb84925eff9241d0237cd822542f5d04dc244f1e56a2b2594c1c2dac36",
+  "current_scoring": "84f95a5a3eda6f7ac9f734a7f0d6b9b406a15224da2dd1859980c1ea90175441",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/50_os/os_decoder.contract.yaml": "51edd17dec9f996bf8646ff94c543e97058cdc00ea888d614c6564f4cbdb9ed6"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "b2e844bf4698e303a0caab111f9d07252d8a5e1d7702259a6b5948eb1476e4e7",
       "bytes": 2181,
+      "original_paths": [
+        "code/python/governance/50_os/os_decoder_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_decoder_contract.py\",\n    \"sha256\": \"767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:os-decoder-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/50_os/os_decoder_contract.py",
           "sha256": "767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:50_os:os-decoder-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -203,40 +249,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "b2e844bf4698e303a0caab111f9d07252d8a5e1d7702259a6b5948eb1476e4e7"
+    },
+    {
+      "bytes": 1618,
+      "original_paths": [
+        "code/python/governance/50_os/os_decoder_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/50_os/os_decoder_contract.py\",\n    \"sha256\": \"767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/50_os/os_decoder_contract.py\",\n      \"sha256\": \"767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/50_os/os_decoder_contract.py",
+          "sha256": "767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/50_os/os_decoder_contract.py",
+            "sha256": "767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_decoder_contract.py\",\n    \"sha256\": \"767eb71eca6a440cddd6fd41d0edce3ceb3921cb7af354fcb7880f25a9d05e66\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:os-decoder-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/50_os/os_decoder_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "84f95a5a3eda6f7ac9f734a7f0d6b9b406a15224da2dd1859980c1ea90175441"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/50_os/os_decoder.contract.yaml": "51edd17dec9f996bf8646ff94c543e97058cdc00ea888d614c6564f4cbdb9ed6"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

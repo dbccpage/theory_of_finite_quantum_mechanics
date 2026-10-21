@@ -1,247 +1,70 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:evidence:trace_artifact:v1.0.0",
-    "title": "TraceArtifact",
-    "kind": "evidence_contract",
-    "status": "mathematical_wip",
-    "layer": "02_evidence",
-    "role": "Trace",
-    "descriptor": {
-      "authority_effect": "evidence_only",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "ReplayKernel",
-          "GlobalContractTaxonomy",
-          "ContractConstitution"
-        ],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py",
+      "sha256": "33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py",
+        "sha256": "33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      },
-      "constitution": {
-        "contract_dependencies": [
-          "ReplayKernel",
-          "GlobalContractTaxonomy",
-          "ContractConstitution"
-        ],
-        "emits": "EvidenceEnvelope",
-        "authority_layer": "Evidence",
-        "replay_certificates": [
-          "schema_hash"
-        ]
-      },
-      "constraints": {
-        "immutable_after_emit": true,
-        "mutation_forbidden": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "doctrine": {
-      "summary": "Trace records immutable causal event evidence. Trace artifacts and bundles are EvidenceOnly\nuntil checked. Checked traces may support FactOnly historical claims, but Trace does not\nexecute, decide, certify, terminalize, license, authorize, mutate, repair, enrich post-hoc,\nor hide control flow.\n",
-      "non_role": [
-        "execution_trigger",
-        "policy_rule",
-        "hidden_cache",
-        "post_hoc_enrichment",
-        "authority_upgrade",
-        "terminal_mapping",
-        "certificate_creation",
-        "transition_authorization",
-        "action_licensing",
-        "trace_driven_state_mutation",
-        "implicit_runtime_control"
-      ],
-      "authority_defaults": {
-        "trace_artifact": "EvidenceOnly",
-        "trace_bundle": "EvidenceOnly",
-        "checked_trace_history_claim": "FactOnly only after schema validation, hash verification, causal-chain validation, provenance verification, and replay/dependency checks where required."
-      },
-      "structural_representation": {
-        "raw": {
-          "struct_name": "TraceArtifact",
-          "fields": [
-            {
-              "name": "trace_id",
-              "type": "TraceId"
-            },
-            {
-              "name": "emitter_ref",
-              "type": "EmitterRef"
-            },
-            {
-              "name": "event_kind",
-              "type": "TraceEventKind"
-            },
-            {
-              "name": "input_boundary_refs",
-              "type": "Vec<BoundaryRef>"
-            },
-            {
-              "name": "output_boundary_refs",
-              "type": "Vec<BoundaryRef>"
-            },
-            {
-              "name": "parent_trace_refs",
-              "type": "Vec<TraceId>"
-            },
-            {
-              "name": "artifact_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "authority_effect",
-              "type": "AuthorityEffect",
-              "default": "EvidenceOnly"
-            }
-          ]
-        },
-        "checked": {
-          "struct_name": "CheckedTraceRecord",
-          "fields": [
-            {
-              "name": "trace_ref",
-              "type": "TraceId"
-            },
-            {
-              "name": "schema_ref",
-              "type": "SchemaRef"
-            },
-            {
-              "name": "checked_causal_chain_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "replay_ref",
-              "type": "Option<ReplayRef>"
-            },
-            {
-              "name": "authority_effect",
-              "type": "AuthorityEffect",
-              "default": "FactOnly"
-            }
-          ]
-        },
-        "records": [
-          {
-            "name": "TruncatedLineageRecord",
-            "authority_effect": "EvidenceOnly"
-          },
-          {
-            "name": "RetentionRecord",
-            "authority_effect": "EvidenceOnly"
-          }
-        ]
-      },
-      "flow": "Licensed action / observed event\n-> TraceArtifact\n-> TraceBundle\n-> ReplayKernel / TraceValidator\n-> CheckedTraceRecord or EvidenceEnvelope\n-> Analysis / Audit\n",
-      "forbidden_implementation_tokens": {
-        "scope": "behavior, not substring",
-        "tokens": [
-          "execute(",
-          "terminalize(",
-          "mutate_state",
-          "authorize_transition",
-          "license_transition",
-          "self_certify",
-          "compute_phi",
-          "rank_candidates",
-          "score_candidate"
-        ]
-      },
-      "required_tests": [
-        "trace_authority_effect_defaults_to_evidence_only",
-        "checked_trace_may_support_factonly_history_claim",
-        "trace_cannot_emit_decision_envelope",
-        "trace_cannot_emit_action_license",
-        "trace_cannot_authorize_transition",
-        "trace_cannot_execute",
-        "trace_does_not_create_certificates",
-        "trace_consumer_contract_required_for_runtime_interpretation",
-        "recomputed_replay_state_not_stored_in_trace_artifact"
-      ],
-      "canonical_invariant": "Trace records immutable causal facts and controls nothing. Replay and checking can support\nhistory facts; Trace itself cannot decide, license, authorize, execute, mutate, or certify.\n",
-      "legacy_metadata": {
-        "name": "TraceArtifact",
-        "source_file": "non-math/02_evidence/trace_contract.md",
-        "active": true,
-        "machine_authority": true,
-        "role": "Immutable audit record and causal execution evidence",
-        "version": "2.0",
-        "classification": "evidence",
-        "effect_class": "none",
-        "depends_on": [
-          "ReplayKernel",
-          "GlobalContractTaxonomy",
-          "ContractConstitution"
-        ],
-        "forbidden_authority": [
-          "execution_trigger",
-          "policy_rule",
-          "hidden_cache",
-          "post_hoc_enrichment",
-          "authority_upgrade",
-          "terminal_mapping",
-          "certificate_creation",
-          "transition_authorization",
-          "action_licensing",
-          "trace_driven_state_mutation",
-          "implicit_runtime_control"
-        ],
-        "primary_output_family": "Record",
-        "domain_output_kind": "TraceArtifact",
-        "referenced_output_families": [
-          "EvidenceEnvelope",
-          "FactEnvelope",
-          "Record"
-        ]
-      }
-    },
-    "rust_binding": {
-      "crate": "omega_types",
-      "module": "trace_artifact",
-      "symbols": [
-        "TraceArtifact"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_evidence_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971",
+    "subject": "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py"
   },
-  "current_contract": "d75b7abb662b51037055e2e33b97164a6edbb3db9b01a4a9fb29216763dffd34",
-  "current_scoring": "4a7513ab703ca48e43678e64d56b5d0f950eb9a57ebd1037cae74c017a7deb5e",
   "contract_history": [
     {
-      "sha256": "d75b7abb662b51037055e2e33b97164a6edbb3db9b01a4a9fb29216763dffd34",
       "bytes": 6547,
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:evidence:trace_artifact:v1.0.0\",\n  \"title\": \"TraceArtifact\",\n  \"kind\": \"evidence_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"02_evidence\",\n  \"role\": \"Trace\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"ReplayKernel\",\n        \"GlobalContractTaxonomy\",\n        \"ContractConstitution\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"constitution\": {\n      \"contract_dependencies\": [\n        \"ReplayKernel\",\n        \"GlobalContractTaxonomy\",\n        \"ContractConstitution\"\n      ],\n      \"emits\": \"EvidenceEnvelope\",\n      \"authority_layer\": \"Evidence\",\n      \"replay_certificates\": [\n        \"schema_hash\"\n      ]\n    },\n    \"constraints\": {\n      \"immutable_after_emit\": true,\n      \"mutation_forbidden\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"Trace records immutable causal event evidence. Trace artifacts and bundles are EvidenceOnly\\nuntil checked. Checked traces may support FactOnly historical claims, but Trace does not\\nexecute, decide, certify, terminalize, license, authorize, mutate, repair, enrich post-hoc,\\nor hide control flow.\\n\",\n    \"non_role\": [\n      \"execution_trigger\",\n      \"policy_rule\",\n      \"hidden_cache\",\n      \"post_hoc_enrichment\",\n      \"authority_upgrade\",\n      \"terminal_mapping\",\n      \"certificate_creation\",\n      \"transition_authorization\",\n      \"action_licensing\",\n      \"trace_driven_state_mutation\",\n      \"implicit_runtime_control\"\n    ],\n    \"authority_defaults\": {\n      \"trace_artifact\": \"EvidenceOnly\",\n      \"trace_bundle\": \"EvidenceOnly\",\n      \"checked_trace_history_claim\": \"FactOnly only after schema validation, hash verification, causal-chain validation, provenance verification, and replay/dependency checks where required.\"\n    },\n    \"structural_representation\": {\n      \"raw\": {\n        \"struct_name\": \"TraceArtifact\",\n        \"fields\": [\n          {\n            \"name\": \"trace_id\",\n            \"type\": \"TraceId\"\n          },\n          {\n            \"name\": \"emitter_ref\",\n            \"type\": \"EmitterRef\"\n          },\n          {\n            \"name\": \"event_kind\",\n            \"type\": \"TraceEventKind\"\n          },\n          {\n            \"name\": \"input_boundary_refs\",\n            \"type\": \"Vec<BoundaryRef>\"\n          },\n          {\n            \"name\": \"output_boundary_refs\",\n            \"type\": \"Vec<BoundaryRef>\"\n          },\n          {\n            \"name\": \"parent_trace_refs\",\n            \"type\": \"Vec<TraceId>\"\n          },\n          {\n            \"name\": \"artifact_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      },\n      \"checked\": {\n        \"struct_name\": \"CheckedTraceRecord\",\n        \"fields\": [\n          {\n            \"name\": \"trace_ref\",\n            \"type\": \"TraceId\"\n          },\n          {\n            \"name\": \"schema_ref\",\n            \"type\": \"SchemaRef\"\n          },\n          {\n            \"name\": \"checked_causal_chain_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"replay_ref\",\n            \"type\": \"Option<ReplayRef>\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"FactOnly\"\n          }\n        ]\n      },\n      \"records\": [\n        {\n          \"name\": \"TruncatedLineageRecord\",\n          \"authority_effect\": \"EvidenceOnly\"\n        },\n        {\n          \"name\": \"RetentionRecord\",\n          \"authority_effect\": \"EvidenceOnly\"\n        }\n      ]\n    },\n    \"flow\": \"Licensed action / observed event\\n-> TraceArtifact\\n-> TraceBundle\\n-> ReplayKernel / TraceValidator\\n-> CheckedTraceRecord or EvidenceEnvelope\\n-> Analysis / Audit\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"execute(\",\n        \"terminalize(\",\n        \"mutate_state\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"self_certify\",\n        \"compute_phi\",\n        \"rank_candidates\",\n        \"score_candidate\"\n      ]\n    },\n    \"required_tests\": [\n      \"trace_authority_effect_defaults_to_evidence_only\",\n      \"checked_trace_may_support_factonly_history_claim\",\n      \"trace_cannot_emit_decision_envelope\",\n      \"trace_cannot_emit_action_license\",\n      \"trace_cannot_authorize_transition\",\n      \"trace_cannot_execute\",\n      \"trace_does_not_create_certificates\",\n      \"trace_consumer_contract_required_for_runtime_interpretation\",\n      \"recomputed_replay_state_not_stored_in_trace_artifact\"\n    ],\n    \"canonical_invariant\": \"Trace records immutable causal facts and controls nothing. Replay and checking can support\\nhistory facts; Trace itself cannot decide, license, authorize, execute, mutate, or certify.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"TraceArtifact\",\n      \"source_file\": \"non-math/02_evidence/trace_contract.md\",\n      \"active\": true,\n      \"machine_authority\": true,\n      \"role\": \"Immutable audit record and causal execution evidence\",\n      \"version\": \"2.0\",\n      \"classification\": \"evidence\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"ReplayKernel\",\n        \"GlobalContractTaxonomy\",\n        \"ContractConstitution\"\n      ],\n      \"forbidden_authority\": [\n        \"execution_trigger\",\n        \"policy_rule\",\n        \"hidden_cache\",\n        \"post_hoc_enrichment\",\n        \"authority_upgrade\",\n        \"terminal_mapping\",\n        \"certificate_creation\",\n        \"transition_authorization\",\n        \"action_licensing\",\n        \"trace_driven_state_mutation\",\n        \"implicit_runtime_control\"\n      ],\n      \"primary_output_family\": \"Record\",\n      \"domain_output_kind\": \"TraceArtifact\",\n      \"referenced_output_families\": [\n        \"EvidenceEnvelope\",\n        \"FactEnvelope\",\n        \"Record\"\n      ]\n    }\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_types\",\n    \"module\": \"trace_artifact\",\n    \"symbols\": [\n      \"TraceArtifact\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:evidence:trace_artifact:v1.0.0",
-        "title": "TraceArtifact",
-        "kind": "evidence_contract",
-        "status": "mathematical_wip",
-        "layer": "02_evidence",
-        "role": "Trace",
         "descriptor": {
           "authority_effect": "evidence_only",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
+          "constitution": {
+            "authority_layer": "Evidence",
+            "contract_dependencies": [
+              "ReplayKernel",
+              "GlobalContractTaxonomy",
+              "ContractConstitution"
+            ],
+            "emits": "EvidenceEnvelope",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          },
+          "constraints": {
+            "immutable_after_emit": true,
+            "mutation_forbidden": true
+          },
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -251,36 +74,77 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
-          },
-          "refusals": {
-            "may_emit": []
-          },
+          "evidence_ceiling": "LocalReplay",
           "operator_classes": {
             "may_support": [],
             "must_not_self_assign": true
           },
-          "constitution": {
-            "contract_dependencies": [
+          "refusals": {
+            "may_emit": []
+          },
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          }
+        },
+        "doctrine": {
+          "authority_defaults": {
+            "checked_trace_history_claim": "FactOnly only after schema validation, hash verification, causal-chain validation, provenance verification, and replay/dependency checks where required.",
+            "trace_artifact": "EvidenceOnly",
+            "trace_bundle": "EvidenceOnly"
+          },
+          "canonical_invariant": "Trace records immutable causal facts and controls nothing. Replay and checking can support\nhistory facts; Trace itself cannot decide, license, authorize, execute, mutate, or certify.\n",
+          "flow": "Licensed action / observed event\n-> TraceArtifact\n-> TraceBundle\n-> ReplayKernel / TraceValidator\n-> CheckedTraceRecord or EvidenceEnvelope\n-> Analysis / Audit\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "execute(",
+              "terminalize(",
+              "mutate_state",
+              "authorize_transition",
+              "license_transition",
+              "self_certify",
+              "compute_phi",
+              "rank_candidates",
+              "score_candidate"
+            ]
+          },
+          "legacy_metadata": {
+            "active": true,
+            "classification": "evidence",
+            "depends_on": [
               "ReplayKernel",
               "GlobalContractTaxonomy",
               "ContractConstitution"
             ],
-            "emits": "EvidenceEnvelope",
-            "authority_layer": "Evidence",
-            "replay_certificates": [
-              "schema_hash"
-            ]
+            "domain_output_kind": "TraceArtifact",
+            "effect_class": "none",
+            "forbidden_authority": [
+              "execution_trigger",
+              "policy_rule",
+              "hidden_cache",
+              "post_hoc_enrichment",
+              "authority_upgrade",
+              "terminal_mapping",
+              "certificate_creation",
+              "transition_authorization",
+              "action_licensing",
+              "trace_driven_state_mutation",
+              "implicit_runtime_control"
+            ],
+            "machine_authority": true,
+            "name": "TraceArtifact",
+            "primary_output_family": "Record",
+            "referenced_output_families": [
+              "EvidenceEnvelope",
+              "FactEnvelope",
+              "Record"
+            ],
+            "role": "Immutable audit record and causal execution evidence",
+            "source_file": "non-math/02_evidence/trace_contract.md",
+            "version": "2.0"
           },
-          "constraints": {
-            "immutable_after_emit": true,
-            "mutation_forbidden": true
-          }
-        },
-        "doctrine": {
-          "summary": "Trace records immutable causal event evidence. Trace artifacts and bundles are EvidenceOnly\nuntil checked. Checked traces may support FactOnly historical claims, but Trace does not\nexecute, decide, certify, terminalize, license, authorize, mutate, repair, enrich post-hoc,\nor hide control flow.\n",
           "non_role": [
             "execution_trigger",
             "policy_rule",
@@ -294,14 +158,45 @@
             "trace_driven_state_mutation",
             "implicit_runtime_control"
           ],
-          "authority_defaults": {
-            "trace_artifact": "EvidenceOnly",
-            "trace_bundle": "EvidenceOnly",
-            "checked_trace_history_claim": "FactOnly only after schema validation, hash verification, causal-chain validation, provenance verification, and replay/dependency checks where required."
-          },
+          "required_tests": [
+            "trace_authority_effect_defaults_to_evidence_only",
+            "checked_trace_may_support_factonly_history_claim",
+            "trace_cannot_emit_decision_envelope",
+            "trace_cannot_emit_action_license",
+            "trace_cannot_authorize_transition",
+            "trace_cannot_execute",
+            "trace_does_not_create_certificates",
+            "trace_consumer_contract_required_for_runtime_interpretation",
+            "recomputed_replay_state_not_stored_in_trace_artifact"
+          ],
           "structural_representation": {
+            "checked": {
+              "fields": [
+                {
+                  "name": "trace_ref",
+                  "type": "TraceId"
+                },
+                {
+                  "name": "schema_ref",
+                  "type": "SchemaRef"
+                },
+                {
+                  "name": "checked_causal_chain_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "replay_ref",
+                  "type": "Option<ReplayRef>"
+                },
+                {
+                  "default": "FactOnly",
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect"
+                }
+              ],
+              "struct_name": "CheckedTraceRecord"
+            },
             "raw": {
-              "struct_name": "TraceArtifact",
               "fields": [
                 {
                   "name": "trace_id",
@@ -332,112 +227,35 @@
                   "type": "Hash256"
                 },
                 {
+                  "default": "EvidenceOnly",
                   "name": "authority_effect",
-                  "type": "AuthorityEffect",
-                  "default": "EvidenceOnly"
+                  "type": "AuthorityEffect"
                 }
-              ]
-            },
-            "checked": {
-              "struct_name": "CheckedTraceRecord",
-              "fields": [
-                {
-                  "name": "trace_ref",
-                  "type": "TraceId"
-                },
-                {
-                  "name": "schema_ref",
-                  "type": "SchemaRef"
-                },
-                {
-                  "name": "checked_causal_chain_hash",
-                  "type": "Hash256"
-                },
-                {
-                  "name": "replay_ref",
-                  "type": "Option<ReplayRef>"
-                },
-                {
-                  "name": "authority_effect",
-                  "type": "AuthorityEffect",
-                  "default": "FactOnly"
-                }
-              ]
+              ],
+              "struct_name": "TraceArtifact"
             },
             "records": [
               {
-                "name": "TruncatedLineageRecord",
-                "authority_effect": "EvidenceOnly"
+                "authority_effect": "EvidenceOnly",
+                "name": "TruncatedLineageRecord"
               },
               {
-                "name": "RetentionRecord",
-                "authority_effect": "EvidenceOnly"
+                "authority_effect": "EvidenceOnly",
+                "name": "RetentionRecord"
               }
             ]
           },
-          "flow": "Licensed action / observed event\n-> TraceArtifact\n-> TraceBundle\n-> ReplayKernel / TraceValidator\n-> CheckedTraceRecord or EvidenceEnvelope\n-> Analysis / Audit\n",
-          "forbidden_implementation_tokens": {
-            "scope": "behavior, not substring",
-            "tokens": [
-              "execute(",
-              "terminalize(",
-              "mutate_state",
-              "authorize_transition",
-              "license_transition",
-              "self_certify",
-              "compute_phi",
-              "rank_candidates",
-              "score_candidate"
-            ]
-          },
-          "required_tests": [
-            "trace_authority_effect_defaults_to_evidence_only",
-            "checked_trace_may_support_factonly_history_claim",
-            "trace_cannot_emit_decision_envelope",
-            "trace_cannot_emit_action_license",
-            "trace_cannot_authorize_transition",
-            "trace_cannot_execute",
-            "trace_does_not_create_certificates",
-            "trace_consumer_contract_required_for_runtime_interpretation",
-            "recomputed_replay_state_not_stored_in_trace_artifact"
-          ],
-          "canonical_invariant": "Trace records immutable causal facts and controls nothing. Replay and checking can support\nhistory facts; Trace itself cannot decide, license, authorize, execute, mutate, or certify.\n",
-          "legacy_metadata": {
-            "name": "TraceArtifact",
-            "source_file": "non-math/02_evidence/trace_contract.md",
-            "active": true,
-            "machine_authority": true,
-            "role": "Immutable audit record and causal execution evidence",
-            "version": "2.0",
-            "classification": "evidence",
-            "effect_class": "none",
-            "depends_on": [
-              "ReplayKernel",
-              "GlobalContractTaxonomy",
-              "ContractConstitution"
-            ],
-            "forbidden_authority": [
-              "execution_trigger",
-              "policy_rule",
-              "hidden_cache",
-              "post_hoc_enrichment",
-              "authority_upgrade",
-              "terminal_mapping",
-              "certificate_creation",
-              "transition_authorization",
-              "action_licensing",
-              "trace_driven_state_mutation",
-              "implicit_runtime_control"
-            ],
-            "primary_output_family": "Record",
-            "domain_output_kind": "TraceArtifact",
-            "referenced_output_families": [
-              "EvidenceEnvelope",
-              "FactEnvelope",
-              "Record"
-            ]
-          }
+          "summary": "Trace records immutable causal event evidence. Trace artifacts and bundles are EvidenceOnly\nuntil checked. Checked traces may support FactOnly historical claims, but Trace does not\nexecute, decide, certify, terminalize, license, authorize, mutate, repair, enrich post-hoc,\nor hide control flow.\n"
         },
+        "kind": "evidence_contract",
+        "layer": "02_evidence",
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ]
+        },
+        "role": "Trace",
         "rust_binding": {
           "crate": "omega_types",
           "module": "trace_artifact",
@@ -445,43 +263,76 @@
             "TraceArtifact"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0",
-            "urn:omega:constitution:base_evidence_contract:v1.0.0"
-          ]
-        }
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "TraceArtifact"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:evidence:trace_artifact:v1.0.0\",\n  \"title\": \"TraceArtifact\",\n  \"kind\": \"evidence_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"02_evidence\",\n  \"role\": \"Trace\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"ReplayKernel\",\n        \"GlobalContractTaxonomy\",\n        \"ContractConstitution\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"constitution\": {\n      \"contract_dependencies\": [\n        \"ReplayKernel\",\n        \"GlobalContractTaxonomy\",\n        \"ContractConstitution\"\n      ],\n      \"emits\": \"EvidenceEnvelope\",\n      \"authority_layer\": \"Evidence\",\n      \"replay_certificates\": [\n        \"schema_hash\"\n      ]\n    },\n    \"constraints\": {\n      \"immutable_after_emit\": true,\n      \"mutation_forbidden\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"Trace records immutable causal event evidence. Trace artifacts and bundles are EvidenceOnly\\nuntil checked. Checked traces may support FactOnly historical claims, but Trace does not\\nexecute, decide, certify, terminalize, license, authorize, mutate, repair, enrich post-hoc,\\nor hide control flow.\\n\",\n    \"non_role\": [\n      \"execution_trigger\",\n      \"policy_rule\",\n      \"hidden_cache\",\n      \"post_hoc_enrichment\",\n      \"authority_upgrade\",\n      \"terminal_mapping\",\n      \"certificate_creation\",\n      \"transition_authorization\",\n      \"action_licensing\",\n      \"trace_driven_state_mutation\",\n      \"implicit_runtime_control\"\n    ],\n    \"authority_defaults\": {\n      \"trace_artifact\": \"EvidenceOnly\",\n      \"trace_bundle\": \"EvidenceOnly\",\n      \"checked_trace_history_claim\": \"FactOnly only after schema validation, hash verification, causal-chain validation, provenance verification, and replay/dependency checks where required.\"\n    },\n    \"structural_representation\": {\n      \"raw\": {\n        \"struct_name\": \"TraceArtifact\",\n        \"fields\": [\n          {\n            \"name\": \"trace_id\",\n            \"type\": \"TraceId\"\n          },\n          {\n            \"name\": \"emitter_ref\",\n            \"type\": \"EmitterRef\"\n          },\n          {\n            \"name\": \"event_kind\",\n            \"type\": \"TraceEventKind\"\n          },\n          {\n            \"name\": \"input_boundary_refs\",\n            \"type\": \"Vec<BoundaryRef>\"\n          },\n          {\n            \"name\": \"output_boundary_refs\",\n            \"type\": \"Vec<BoundaryRef>\"\n          },\n          {\n            \"name\": \"parent_trace_refs\",\n            \"type\": \"Vec<TraceId>\"\n          },\n          {\n            \"name\": \"artifact_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      },\n      \"checked\": {\n        \"struct_name\": \"CheckedTraceRecord\",\n        \"fields\": [\n          {\n            \"name\": \"trace_ref\",\n            \"type\": \"TraceId\"\n          },\n          {\n            \"name\": \"schema_ref\",\n            \"type\": \"SchemaRef\"\n          },\n          {\n            \"name\": \"checked_causal_chain_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"replay_ref\",\n            \"type\": \"Option<ReplayRef>\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"FactOnly\"\n          }\n        ]\n      },\n      \"records\": [\n        {\n          \"name\": \"TruncatedLineageRecord\",\n          \"authority_effect\": \"EvidenceOnly\"\n        },\n        {\n          \"name\": \"RetentionRecord\",\n          \"authority_effect\": \"EvidenceOnly\"\n        }\n      ]\n    },\n    \"flow\": \"Licensed action / observed event\\n-> TraceArtifact\\n-> TraceBundle\\n-> ReplayKernel / TraceValidator\\n-> CheckedTraceRecord or EvidenceEnvelope\\n-> Analysis / Audit\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"execute(\",\n        \"terminalize(\",\n        \"mutate_state\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"self_certify\",\n        \"compute_phi\",\n        \"rank_candidates\",\n        \"score_candidate\"\n      ]\n    },\n    \"required_tests\": [\n      \"trace_authority_effect_defaults_to_evidence_only\",\n      \"checked_trace_may_support_factonly_history_claim\",\n      \"trace_cannot_emit_decision_envelope\",\n      \"trace_cannot_emit_action_license\",\n      \"trace_cannot_authorize_transition\",\n      \"trace_cannot_execute\",\n      \"trace_does_not_create_certificates\",\n      \"trace_consumer_contract_required_for_runtime_interpretation\",\n      \"recomputed_replay_state_not_stored_in_trace_artifact\"\n    ],\n    \"canonical_invariant\": \"Trace records immutable causal facts and controls nothing. Replay and checking can support\\nhistory facts; Trace itself cannot decide, license, authorize, execute, mutate, or certify.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"TraceArtifact\",\n      \"source_file\": \"non-math/02_evidence/trace_contract.md\",\n      \"active\": true,\n      \"machine_authority\": true,\n      \"role\": \"Immutable audit record and causal execution evidence\",\n      \"version\": \"2.0\",\n      \"classification\": \"evidence\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"ReplayKernel\",\n        \"GlobalContractTaxonomy\",\n        \"ContractConstitution\"\n      ],\n      \"forbidden_authority\": [\n        \"execution_trigger\",\n        \"policy_rule\",\n        \"hidden_cache\",\n        \"post_hoc_enrichment\",\n        \"authority_upgrade\",\n        \"terminal_mapping\",\n        \"certificate_creation\",\n        \"transition_authorization\",\n        \"action_licensing\",\n        \"trace_driven_state_mutation\",\n        \"implicit_runtime_control\"\n      ],\n      \"primary_output_family\": \"Record\",\n      \"domain_output_kind\": \"TraceArtifact\",\n      \"referenced_output_families\": [\n        \"EvidenceEnvelope\",\n        \"FactEnvelope\",\n        \"Record\"\n      ]\n    }\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_types\",\n    \"module\": \"trace_artifact\",\n    \"symbols\": [\n      \"TraceArtifact\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "d75b7abb662b51037055e2e33b97164a6edbb3db9b01a4a9fb29216763dffd34"
+    },
+    {
+      "bytes": 1712,
       "original_paths": [
-        "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py\",\n    \"sha256\": \"33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py\",\n      \"sha256\": \"33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971\",\n  \"subject\": \"code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py",
+          "sha256": "33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py",
+            "sha256": "33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971",
+        "subject": "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py"
+      },
+      "sha256": "c1295ce2917568f18aaf96b66ed5a555166a6a4faae5785b3cf98bc032369b69"
     }
   ],
+  "current_contract": "c1295ce2917568f18aaf96b66ed5a555166a6a4faae5785b3cf98bc032369b69",
+  "current_scoring": "b19417eb6fecdb1e767cd9159f36cbc9637bfb88fd9bdd0c2a1aa1181aea1ec6",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0.contract.yaml": "95ccb9ef5bbec419167c467556299c284baa96703009628d61df57a90e1c632d"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "4a7513ab703ca48e43678e64d56b5d0f950eb9a57ebd1037cae74c017a7deb5e",
       "bytes": 2233,
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py\",\n    \"sha256\": \"33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:evidence-trace-artifact-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py",
           "sha256": "33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:30_evidence:evidence-trace-artifact-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -490,40 +341,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "4a7513ab703ca48e43678e64d56b5d0f950eb9a57ebd1037cae74c017a7deb5e"
+    },
+    {
+      "bytes": 1670,
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py\",\n    \"sha256\": \"33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py\",\n      \"sha256\": \"33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py",
+          "sha256": "33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py",
+            "sha256": "33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.py\",\n    \"sha256\": \"33ee6cd3034f2b85fe3227e692ae3fa5a8e04b724fbadb8712a426a4ddc77971\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:evidence-trace-artifact-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "b19417eb6fecdb1e767cd9159f36cbc9637bfb88fd9bdd0c2a1aa1181aea1ec6"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/30_evidence/evidence_trace_artifact_v1_0_0.contract.yaml": "95ccb9ef5bbec419167c467556299c284baa96703009628d61df57a90e1c632d"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

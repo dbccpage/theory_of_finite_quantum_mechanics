@@ -1,129 +1,60 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:evidence:replay_trace_containers:v1.0.0",
-    "title": "Replay trace containers",
-    "kind": "evidence_contract",
-    "status": "active",
-    "layer": "02_evidence",
-    "role": "Trace",
-    "descriptor": {
-      "authority_effect": "evidence_only",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:evidence:trace_artifact:v1.0.0"
-        ],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      },
-      "constitution": {
-        "contract_dependencies": [
-          "urn:omega:evidence:trace_artifact:v1.0.0"
-        ],
-        "emits": "EvidenceEnvelope",
-        "authority_layer": "Evidence",
-        "replay_certificates": [
-          "schema_hash"
-        ]
-      },
-      "constraints": {
-        "immutable_after_emit": true,
-        "mutation_forbidden": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py",
+      "sha256": "c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b"
     },
-    "doctrine": {
-      "summary": "The two concrete replay-side trace containers. StepTrace<T> holds an ordered list of step records; LayeredTrace<T> holds a flat collection of layer records. Both keep their backing Vec private and expose it only through borrowing and consuming accessors, and both implement the TraceArtifact and ImmutableTrace traits defined by the foundation contract.",
-      "vocabulary_ownership": "This module re-exports the trace-artifact vocabulary (TraceArtifact, ImmutableTrace, VoidTrace, and the Decision/Analysis/Validation/ActionResult artifact markers) from omega_types::trace_artifact so that existing omega_replay::trace::* paths keep resolving. That vocabulary is OWNED by urn:omega:evidence:trace_artifact:v1.0.0 and is deliberately NOT listed in this contract's symbols; the foundation crate holds it so governance law in omega_contracts can depend on it without depending on this verification crate (SG-LAYER-001 / PO-LAYER). Listing it here would create a second canonical owner for one vocabulary.",
-      "reexport_shim_ruling": "Operator ruling (2026-07-18), recorded here because this module was first mistaken for a pure shim: a pure re-export shim is NOT exempt from file inventory or contract coverage. It is exempt only from independent semantic ownership, and only when it contains no behavior beyond `pub use` of a separately contracted canonical owner; the canonical owner then retains all mathematical, validation, serialization, terminalization and authority obligations. THIS MODULE DOES NOT MEET THAT CONDITION -- alongside the re-exports it defines StepTrace<T> and LayeredTrace<T> with constructors, accessors, Serialize/Deserialize derives and trait impls -- so it is contracted as a hybrid: canonical owner of those two containers (see symbols) and a non-owning re-export surface for the foundation vocabulary (see vocabulary_ownership). If the containers are ever relocated and only `pub use` remains, narrow this contract to the shim form.",
-      "non_role": [
-        "Does not verify a trace. These are containers; replay verification is urn:omega:evidence:replay_kernel:v1.0.0.",
-        "Does not decide admissibility, terminalize, or emit authority. A trace records what happened; it does not license anything.",
-        "Does not define the trace-artifact vocabulary it re-exports.",
-        "Does not enforce immutability at the type level. `immutable_after_emit` is a contract obligation on callers, not a property of the types. The containers derive Clone, Serialize and Deserialize, so a caller can deserialize or clone-and-rebuild one. The private fields prevent in-place mutation, not reconstruction.",
-        "Not the linear-algebra trace operator. urn:omega:math:trace:v0.1.0 is the diagonal sum of a matrix, an unrelated object that shares the name."
-      ]
-    },
-    "wip": [
-      "The containers are generic over T with no bound at construction. The TraceArtifact and ImmutableTrace impls apply only where T is Clone plus Serialize plus Deserialize, so a StepTrace of some other T is constructible but is not a trace artifact.",
-      "No replay certificate binds a container instance to the run that produced it. schema_hash is declared but nothing in this module computes or checks it."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "rust_binding": {
-      "crate": "omega_replay",
-      "module": "trace",
-      "symbols": [
-        "StepTrace",
-        "LayeredTrace"
-      ]
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py",
+        "sha256": "c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_evidence_contract:v1.0.0"
-      ],
-      "coalescence_mode": "specializes",
-      "coalesces_with": [
-        "urn:omega:evidence:replay_kernel:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b",
+    "subject": "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py"
   },
-  "current_contract": "80b53e896d1e285a67ceedf11c5c313cd40a20444f00f2327d56bda2b31f5d9b",
-  "current_scoring": "f3abe093753755200aeae460e99fdb2aaffc927b61cda088dddb3c2fe67d29aa",
   "contract_history": [
     {
-      "sha256": "80b53e896d1e285a67ceedf11c5c313cd40a20444f00f2327d56bda2b31f5d9b",
       "bytes": 4793,
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:evidence:replay_trace_containers:v1.0.0\",\n  \"title\": \"Replay trace containers\",\n  \"kind\": \"evidence_contract\",\n  \"status\": \"active\",\n  \"layer\": \"02_evidence\",\n  \"role\": \"Trace\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:evidence:trace_artifact:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"constitution\": {\n      \"contract_dependencies\": [\n        \"urn:omega:evidence:trace_artifact:v1.0.0\"\n      ],\n      \"emits\": \"EvidenceEnvelope\",\n      \"authority_layer\": \"Evidence\",\n      \"replay_certificates\": [\n        \"schema_hash\"\n      ]\n    },\n    \"constraints\": {\n      \"immutable_after_emit\": true,\n      \"mutation_forbidden\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"The two concrete replay-side trace containers. StepTrace<T> holds an ordered list of step records; LayeredTrace<T> holds a flat collection of layer records. Both keep their backing Vec private and expose it only through borrowing and consuming accessors, and both implement the TraceArtifact and ImmutableTrace traits defined by the foundation contract.\",\n    \"vocabulary_ownership\": \"This module re-exports the trace-artifact vocabulary (TraceArtifact, ImmutableTrace, VoidTrace, and the Decision/Analysis/Validation/ActionResult artifact markers) from omega_types::trace_artifact so that existing omega_replay::trace::* paths keep resolving. That vocabulary is OWNED by urn:omega:evidence:trace_artifact:v1.0.0 and is deliberately NOT listed in this contract's symbols; the foundation crate holds it so governance law in omega_contracts can depend on it without depending on this verification crate (SG-LAYER-001 / PO-LAYER). Listing it here would create a second canonical owner for one vocabulary.\",\n    \"reexport_shim_ruling\": \"Operator ruling (2026-07-18), recorded here because this module was first mistaken for a pure shim: a pure re-export shim is NOT exempt from file inventory or contract coverage. It is exempt only from independent semantic ownership, and only when it contains no behavior beyond `pub use` of a separately contracted canonical owner; the canonical owner then retains all mathematical, validation, serialization, terminalization and authority obligations. THIS MODULE DOES NOT MEET THAT CONDITION -- alongside the re-exports it defines StepTrace<T> and LayeredTrace<T> with constructors, accessors, Serialize/Deserialize derives and trait impls -- so it is contracted as a hybrid: canonical owner of those two containers (see symbols) and a non-owning re-export surface for the foundation vocabulary (see vocabulary_ownership). If the containers are ever relocated and only `pub use` remains, narrow this contract to the shim form.\",\n    \"non_role\": [\n      \"Does not verify a trace. These are containers; replay verification is urn:omega:evidence:replay_kernel:v1.0.0.\",\n      \"Does not decide admissibility, terminalize, or emit authority. A trace records what happened; it does not license anything.\",\n      \"Does not define the trace-artifact vocabulary it re-exports.\",\n      \"Does not enforce immutability at the type level. `immutable_after_emit` is a contract obligation on callers, not a property of the types. The containers derive Clone, Serialize and Deserialize, so a caller can deserialize or clone-and-rebuild one. The private fields prevent in-place mutation, not reconstruction.\",\n      \"Not the linear-algebra trace operator. urn:omega:math:trace:v0.1.0 is the diagonal sum of a matrix, an unrelated object that shares the name.\"\n    ]\n  },\n  \"wip\": [\n    \"The containers are generic over T with no bound at construction. The TraceArtifact and ImmutableTrace impls apply only where T is Clone plus Serialize plus Deserialize, so a StepTrace of some other T is constructible but is not a trace artifact.\",\n    \"No replay certificate binds a container instance to the run that produced it. schema_hash is declared but nothing in this module computes or checks it.\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_replay\",\n    \"module\": \"trace\",\n    \"symbols\": [\n      \"StepTrace\",\n      \"LayeredTrace\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n    ],\n    \"coalescence_mode\": \"specializes\",\n    \"coalesces_with\": [\n      \"urn:omega:evidence:replay_kernel:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:evidence:replay_trace_containers:v1.0.0",
-        "title": "Replay trace containers",
-        "kind": "evidence_contract",
-        "status": "active",
-        "layer": "02_evidence",
-        "role": "Trace",
         "descriptor": {
           "authority_effect": "evidence_only",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
-          "customer_claim_allowed": false,
-          "dependencies": {
-            "contracts": [
-              "urn:omega:evidence:trace_artifact:v1.0.0"
-            ],
-            "proof_obligations": []
-          },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
-          },
-          "refusals": {
-            "may_emit": []
-          },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
-          },
           "constitution": {
+            "authority_layer": "Evidence",
             "contract_dependencies": [
               "urn:omega:evidence:trace_artifact:v1.0.0"
             ],
             "emits": "EvidenceEnvelope",
-            "authority_layer": "Evidence",
             "replay_certificates": [
               "schema_hash"
             ]
@@ -131,24 +62,53 @@
           "constraints": {
             "immutable_after_emit": true,
             "mutation_forbidden": true
+          },
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:evidence:trace_artifact:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
         "doctrine": {
-          "summary": "The two concrete replay-side trace containers. StepTrace<T> holds an ordered list of step records; LayeredTrace<T> holds a flat collection of layer records. Both keep their backing Vec private and expose it only through borrowing and consuming accessors, and both implement the TraceArtifact and ImmutableTrace traits defined by the foundation contract.",
-          "vocabulary_ownership": "This module re-exports the trace-artifact vocabulary (TraceArtifact, ImmutableTrace, VoidTrace, and the Decision/Analysis/Validation/ActionResult artifact markers) from omega_types::trace_artifact so that existing omega_replay::trace::* paths keep resolving. That vocabulary is OWNED by urn:omega:evidence:trace_artifact:v1.0.0 and is deliberately NOT listed in this contract's symbols; the foundation crate holds it so governance law in omega_contracts can depend on it without depending on this verification crate (SG-LAYER-001 / PO-LAYER). Listing it here would create a second canonical owner for one vocabulary.",
-          "reexport_shim_ruling": "Operator ruling (2026-07-18), recorded here because this module was first mistaken for a pure shim: a pure re-export shim is NOT exempt from file inventory or contract coverage. It is exempt only from independent semantic ownership, and only when it contains no behavior beyond `pub use` of a separately contracted canonical owner; the canonical owner then retains all mathematical, validation, serialization, terminalization and authority obligations. THIS MODULE DOES NOT MEET THAT CONDITION -- alongside the re-exports it defines StepTrace<T> and LayeredTrace<T> with constructors, accessors, Serialize/Deserialize derives and trait impls -- so it is contracted as a hybrid: canonical owner of those two containers (see symbols) and a non-owning re-export surface for the foundation vocabulary (see vocabulary_ownership). If the containers are ever relocated and only `pub use` remains, narrow this contract to the shim form.",
           "non_role": [
             "Does not verify a trace. These are containers; replay verification is urn:omega:evidence:replay_kernel:v1.0.0.",
             "Does not decide admissibility, terminalize, or emit authority. A trace records what happened; it does not license anything.",
             "Does not define the trace-artifact vocabulary it re-exports.",
             "Does not enforce immutability at the type level. `immutable_after_emit` is a contract obligation on callers, not a property of the types. The containers derive Clone, Serialize and Deserialize, so a caller can deserialize or clone-and-rebuild one. The private fields prevent in-place mutation, not reconstruction.",
             "Not the linear-algebra trace operator. urn:omega:math:trace:v0.1.0 is the diagonal sum of a matrix, an unrelated object that shares the name."
+          ],
+          "reexport_shim_ruling": "Operator ruling (2026-07-18), recorded here because this module was first mistaken for a pure shim: a pure re-export shim is NOT exempt from file inventory or contract coverage. It is exempt only from independent semantic ownership, and only when it contains no behavior beyond `pub use` of a separately contracted canonical owner; the canonical owner then retains all mathematical, validation, serialization, terminalization and authority obligations. THIS MODULE DOES NOT MEET THAT CONDITION -- alongside the re-exports it defines StepTrace<T> and LayeredTrace<T> with constructors, accessors, Serialize/Deserialize derives and trait impls -- so it is contracted as a hybrid: canonical owner of those two containers (see symbols) and a non-owning re-export surface for the foundation vocabulary (see vocabulary_ownership). If the containers are ever relocated and only `pub use` remains, narrow this contract to the shim form.",
+          "summary": "The two concrete replay-side trace containers. StepTrace<T> holds an ordered list of step records; LayeredTrace<T> holds a flat collection of layer records. Both keep their backing Vec private and expose it only through borrowing and consuming accessors, and both implement the TraceArtifact and ImmutableTrace traits defined by the foundation contract.",
+          "vocabulary_ownership": "This module re-exports the trace-artifact vocabulary (TraceArtifact, ImmutableTrace, VoidTrace, and the Decision/Analysis/Validation/ActionResult artifact markers) from omega_types::trace_artifact so that existing omega_replay::trace::* paths keep resolving. That vocabulary is OWNED by urn:omega:evidence:trace_artifact:v1.0.0 and is deliberately NOT listed in this contract's symbols; the foundation crate holds it so governance law in omega_contracts can depend on it without depending on this verification crate (SG-LAYER-001 / PO-LAYER). Listing it here would create a second canonical owner for one vocabulary."
+        },
+        "kind": "evidence_contract",
+        "layer": "02_evidence",
+        "relationships": {
+          "coalescence_mode": "specializes",
+          "coalesces_with": [
+            "urn:omega:evidence:replay_kernel:v1.0.0"
+          ],
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
           ]
         },
-        "wip": [
-          "The containers are generic over T with no bound at construction. The TraceArtifact and ImmutableTrace impls apply only where T is Clone plus Serialize plus Deserialize, so a StepTrace of some other T is constructible but is not a trace artifact.",
-          "No replay certificate binds a container instance to the run that produced it. schema_hash is declared but nothing in this module computes or checks it."
-        ],
+        "role": "Trace",
         "rust_binding": {
           "crate": "omega_replay",
           "module": "trace",
@@ -157,47 +117,80 @@
             "LayeredTrace"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0",
-            "urn:omega:constitution:base_evidence_contract:v1.0.0"
-          ],
-          "coalescence_mode": "specializes",
-          "coalesces_with": [
-            "urn:omega:evidence:replay_kernel:v1.0.0"
-          ]
-        }
+        "schema_version": "omega.contract.v1",
+        "status": "active",
+        "title": "Replay trace containers",
+        "wip": [
+          "The containers are generic over T with no bound at construction. The TraceArtifact and ImmutableTrace impls apply only where T is Clone plus Serialize plus Deserialize, so a StepTrace of some other T is constructible but is not a trace artifact.",
+          "No replay certificate binds a container instance to the run that produced it. schema_hash is declared but nothing in this module computes or checks it."
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:evidence:replay_trace_containers:v1.0.0\",\n  \"title\": \"Replay trace containers\",\n  \"kind\": \"evidence_contract\",\n  \"status\": \"active\",\n  \"layer\": \"02_evidence\",\n  \"role\": \"Trace\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:evidence:trace_artifact:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"constitution\": {\n      \"contract_dependencies\": [\n        \"urn:omega:evidence:trace_artifact:v1.0.0\"\n      ],\n      \"emits\": \"EvidenceEnvelope\",\n      \"authority_layer\": \"Evidence\",\n      \"replay_certificates\": [\n        \"schema_hash\"\n      ]\n    },\n    \"constraints\": {\n      \"immutable_after_emit\": true,\n      \"mutation_forbidden\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"The two concrete replay-side trace containers. StepTrace<T> holds an ordered list of step records; LayeredTrace<T> holds a flat collection of layer records. Both keep their backing Vec private and expose it only through borrowing and consuming accessors, and both implement the TraceArtifact and ImmutableTrace traits defined by the foundation contract.\",\n    \"vocabulary_ownership\": \"This module re-exports the trace-artifact vocabulary (TraceArtifact, ImmutableTrace, VoidTrace, and the Decision/Analysis/Validation/ActionResult artifact markers) from omega_types::trace_artifact so that existing omega_replay::trace::* paths keep resolving. That vocabulary is OWNED by urn:omega:evidence:trace_artifact:v1.0.0 and is deliberately NOT listed in this contract's symbols; the foundation crate holds it so governance law in omega_contracts can depend on it without depending on this verification crate (SG-LAYER-001 / PO-LAYER). Listing it here would create a second canonical owner for one vocabulary.\",\n    \"reexport_shim_ruling\": \"Operator ruling (2026-07-18), recorded here because this module was first mistaken for a pure shim: a pure re-export shim is NOT exempt from file inventory or contract coverage. It is exempt only from independent semantic ownership, and only when it contains no behavior beyond `pub use` of a separately contracted canonical owner; the canonical owner then retains all mathematical, validation, serialization, terminalization and authority obligations. THIS MODULE DOES NOT MEET THAT CONDITION -- alongside the re-exports it defines StepTrace<T> and LayeredTrace<T> with constructors, accessors, Serialize/Deserialize derives and trait impls -- so it is contracted as a hybrid: canonical owner of those two containers (see symbols) and a non-owning re-export surface for the foundation vocabulary (see vocabulary_ownership). If the containers are ever relocated and only `pub use` remains, narrow this contract to the shim form.\",\n    \"non_role\": [\n      \"Does not verify a trace. These are containers; replay verification is urn:omega:evidence:replay_kernel:v1.0.0.\",\n      \"Does not decide admissibility, terminalize, or emit authority. A trace records what happened; it does not license anything.\",\n      \"Does not define the trace-artifact vocabulary it re-exports.\",\n      \"Does not enforce immutability at the type level. `immutable_after_emit` is a contract obligation on callers, not a property of the types. The containers derive Clone, Serialize and Deserialize, so a caller can deserialize or clone-and-rebuild one. The private fields prevent in-place mutation, not reconstruction.\",\n      \"Not the linear-algebra trace operator. urn:omega:math:trace:v0.1.0 is the diagonal sum of a matrix, an unrelated object that shares the name.\"\n    ]\n  },\n  \"wip\": [\n    \"The containers are generic over T with no bound at construction. The TraceArtifact and ImmutableTrace impls apply only where T is Clone plus Serialize plus Deserialize, so a StepTrace of some other T is constructible but is not a trace artifact.\",\n    \"No replay certificate binds a container instance to the run that produced it. schema_hash is declared but nothing in this module computes or checks it.\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_replay\",\n    \"module\": \"trace\",\n    \"symbols\": [\n      \"StepTrace\",\n      \"LayeredTrace\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n    ],\n    \"coalescence_mode\": \"specializes\",\n    \"coalesces_with\": [\n      \"urn:omega:evidence:replay_kernel:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "80b53e896d1e285a67ceedf11c5c313cd40a20444f00f2327d56bda2b31f5d9b"
+    },
+    {
+      "bytes": 1739,
       "original_paths": [
-        "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py\",\n    \"sha256\": \"c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py\",\n      \"sha256\": \"c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b\",\n  \"subject\": \"code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py",
+          "sha256": "c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py",
+            "sha256": "c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b",
+        "subject": "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py"
+      },
+      "sha256": "a8295c5408aa8cf0c7be49ef08c0820f7f4f98aed36d1b7fdab9214c8a71b672"
     }
   ],
+  "current_contract": "a8295c5408aa8cf0c7be49ef08c0820f7f4f98aed36d1b7fdab9214c8a71b672",
+  "current_scoring": "c39ffa75d9b4933088185eb801642309b7e59f2ae37df567989d75de41f1be2b",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0.contract.yaml": "dfeba25ed481bf1d712637e64e4e8e8205828467947be08b916345d52ad31fef"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "f3abe093753755200aeae460e99fdb2aaffc927b61cda088dddb3c2fe67d29aa",
       "bytes": 2251,
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py\",\n    \"sha256\": \"c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:evidence-replay-trace-containers-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py",
           "sha256": "c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:30_evidence:evidence-replay-trace-containers-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -206,40 +199,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "f3abe093753755200aeae460e99fdb2aaffc927b61cda088dddb3c2fe67d29aa"
+    },
+    {
+      "bytes": 1688,
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py\",\n    \"sha256\": \"c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py\",\n      \"sha256\": \"c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py",
+          "sha256": "c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py",
+            "sha256": "c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.py\",\n    \"sha256\": \"c04bd11a8c37025d20bfbdd530d5ff4eac0157bac4ce348c64acc2bb0035424b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:evidence-replay-trace-containers-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "c39ffa75d9b4933088185eb801642309b7e59f2ae37df567989d75de41f1be2b"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/30_evidence/evidence_replay_trace_containers_v1_0_0.contract.yaml": "dfeba25ed481bf1d712637e64e4e8e8205828467947be08b916345d52ad31fef"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

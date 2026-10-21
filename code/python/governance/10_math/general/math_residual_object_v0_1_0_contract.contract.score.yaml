@@ -1,158 +1,95 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:residual_object:v0.1.0",
-    "title": "Residual Object Contract",
-    "kind": "math_contract",
-    "status": "exact_rational_classifier_implemented",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py",
+      "sha256": "8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py",
+        "sha256": "8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "residual_object",
-      "symbol": "[b] in Q = M / im(f), [b] != 0",
-      "ascii_symbol": "residual_object",
-      "notation": "[b] in Q = M / im(f), [b] != 0",
-      "domain": [
-        "representative: b (element of ambient module M)",
-        "ambient_module: M (module containing the representative)",
-        "quotient_module: Q = M / im(f) (cokernel or homology group)",
-        "projection: pi: M -> Q (canonical quotient projection)",
-        "nontriviality_witness: w: proof that [b] != 0 in Q"
-      ],
-      "codomain": {
-        "description": "A tuple R = (b, M, Q, pi, w) where b is the representative element, M is the ambient module, Q is the quotient module, pi: M -> Q is the projection, and w is the non-triviality witness.\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Representative element b must be a valid member of ambient module M",
-        "Ambient module M must be well-defined with content-addressed hash",
-        "Quotient module Q must be well-defined",
-        "Non-triviality witness must prove [b] != 0 in Q",
-        "Provenance (which computation produced this residual) must be recorded"
-      ]
-    },
-    "laws": [
-      "Representative b is a valid element of ambient module M",
-      "Quotient Q = M / im(f) is well-defined",
-      "[b] != 0 in Q (b is not in im(f))",
-      "pi(b) = [b] in Q"
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Nontriviality checking is deterministic",
-        "Quotient projection is deterministic",
-        "All modules use canonical serialization"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "Representative not in ambient module M must be rejected",
-      "Residual where [b] = 0 in Q must be rejected",
-      "Quotient module that is not well-defined must be rejected",
-      "Residual with no provenance record must be rejected",
-      "Residual object artifact claiming authority must be rejected",
-      "Residual object artifact claiming admissibility must be rejected"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "A ResidualObject represents an algebraic element that remains after a computation stage has processed what it can. In homological algebra, this corresponds to a cokernel element in coker(d) = C_n / im(d_{n+1}), or more generally an element of a quotient module that witnesses incomplete resolution. The residual object carries its algebraic data (representative element, ambient module, quotient structure), its provenance (which computation produced it), and its status (open, handed_off, resolved).",
-      "non_role": [
-        "Resolving residuals (separate resolution contract)",
-        "Policy on residual handling",
-        "Authority over residual significance",
-        "Customer-facing claims about residual meaning"
-      ]
-    },
-    "wip": [
-      "Should residual objects track their 'resolution distance' estimate?",
-      "How to handle residual objects from spectral sequence computations?",
-      "Should residual objects support algebraic operations (addition, scalar multiplication)?",
-      "Currently assumes finitely generated modules",
-      "Spectral sequence residuals deferred to future version",
-      "Algebraic operations on residuals deferred",
-      "Status transitions are recorded but not enforced by this contract"
-    ],
-    "rust_binding": {
-      "crate": "omega_higher_category_theory",
-      "module": "dg_category",
-      "symbols": [
-        "CohomologyCategoryH0",
-        "GradedHomComplex"
-      ],
-      "required_tests": [
-        "test_dg_category_basic_lifecycle"
-      ]
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b",
+    "subject": "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py"
   },
-  "current_contract": "92766aee8eb5530cd47052cc6c6338cd446e15b33428d3989b5d28bb85a6b35f",
-  "current_scoring": "e63295abe340ed4a6b74a7cc704152cb1e433fbffa1dedf9b0d110786a65a3da",
   "contract_history": [
     {
-      "sha256": "92766aee8eb5530cd47052cc6c6338cd446e15b33428d3989b5d28bb85a6b35f",
       "bytes": 4331,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_residual_object_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:residual_object:v0.1.0\",\n  \"title\": \"Residual Object Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"residual_object\",\n    \"symbol\": \"[b] in Q = M / im(f), [b] != 0\",\n    \"ascii_symbol\": \"residual_object\",\n    \"notation\": \"[b] in Q = M / im(f), [b] != 0\",\n    \"domain\": [\n      \"representative: b (element of ambient module M)\",\n      \"ambient_module: M (module containing the representative)\",\n      \"quotient_module: Q = M / im(f) (cokernel or homology group)\",\n      \"projection: pi: M -> Q (canonical quotient projection)\",\n      \"nontriviality_witness: w: proof that [b] != 0 in Q\"\n    ],\n    \"codomain\": {\n      \"description\": \"A tuple R = (b, M, Q, pi, w) where b is the representative element, M is the ambient module, Q is the quotient module, pi: M -> Q is the projection, and w is the non-triviality witness.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Representative element b must be a valid member of ambient module M\",\n      \"Ambient module M must be well-defined with content-addressed hash\",\n      \"Quotient module Q must be well-defined\",\n      \"Non-triviality witness must prove [b] != 0 in Q\",\n      \"Provenance (which computation produced this residual) must be recorded\"\n    ]\n  },\n  \"laws\": [\n    \"Representative b is a valid element of ambient module M\",\n    \"Quotient Q = M / im(f) is well-defined\",\n    \"[b] != 0 in Q (b is not in im(f))\",\n    \"pi(b) = [b] in Q\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Nontriviality checking is deterministic\",\n      \"Quotient projection is deterministic\",\n      \"All modules use canonical serialization\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Representative not in ambient module M must be rejected\",\n    \"Residual where [b] = 0 in Q must be rejected\",\n    \"Quotient module that is not well-defined must be rejected\",\n    \"Residual with no provenance record must be rejected\",\n    \"Residual object artifact claiming authority must be rejected\",\n    \"Residual object artifact claiming admissibility must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A ResidualObject represents an algebraic element that remains after a computation stage has processed what it can. In homological algebra, this corresponds to a cokernel element in coker(d) = C_n / im(d_{n+1}), or more generally an element of a quotient module that witnesses incomplete resolution. The residual object carries its algebraic data (representative element, ambient module, quotient structure), its provenance (which computation produced it), and its status (open, handed_off, resolved).\",\n    \"non_role\": [\n      \"Resolving residuals (separate resolution contract)\",\n      \"Policy on residual handling\",\n      \"Authority over residual significance\",\n      \"Customer-facing claims about residual meaning\"\n    ]\n  },\n  \"wip\": [\n    \"Should residual objects track their 'resolution distance' estimate?\",\n    \"How to handle residual objects from spectral sequence computations?\",\n    \"Should residual objects support algebraic operations (addition, scalar multiplication)?\",\n    \"Currently assumes finitely generated modules\",\n    \"Spectral sequence residuals deferred to future version\",\n    \"Algebraic operations on residuals deferred\",\n    \"Status transitions are recorded but not enforced by this contract\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"dg_category\",\n    \"symbols\": [\n      \"CohomologyCategoryH0\",\n      \"GradedHomComplex\"\n    ],\n    \"required_tests\": [\n      \"test_dg_category_basic_lifecycle\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:residual_object:v0.1.0",
-        "title": "Residual Object Contract",
-        "kind": "math_contract",
-        "status": "exact_rational_classifier_implemented",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Resolving residuals (separate resolution contract)",
+            "Policy on residual handling",
+            "Authority over residual significance",
+            "Customer-facing claims about residual meaning"
+          ],
+          "summary": "A ResidualObject represents an algebraic element that remains after a computation stage has processed what it can. In homological algebra, this corresponds to a cokernel element in coker(d) = C_n / im(d_{n+1}), or more generally an element of a quotient module that witnesses incomplete resolution. The residual object carries its algebraic data (representative element, ambient module, quotient structure), its provenance (which computation produced it), and its status (open, handed_off, resolved)."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "Representative b is a valid element of ambient module M",
+          "Quotient Q = M / im(f) is well-defined",
+          "[b] != 0 in Q (b is not in im(f))",
+          "pi(b) = [b] in Q"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "residual_object",
-          "symbol": "[b] in Q = M / im(f), [b] != 0",
           "ascii_symbol": "residual_object",
-          "notation": "[b] in Q = M / im(f), [b] != 0",
+          "codomain": {
+            "description": "A tuple R = (b, M, Q, pi, w) where b is the representative element, M is the ambient module, Q is the quotient module, pi: M -> Q is the projection, and w is the non-triviality witness.\n"
+          },
           "domain": [
             "representative: b (element of ambient module M)",
             "ambient_module: M (module containing the representative)",
@@ -160,25 +97,23 @@
             "projection: pi: M -> Q (canonical quotient projection)",
             "nontriviality_witness: w: proof that [b] != 0 in Q"
           ],
-          "codomain": {
-            "description": "A tuple R = (b, M, Q, pi, w) where b is the representative element, M is the ambient module, Q is the quotient module, pi: M -> Q is the projection, and w is the non-triviality witness.\n"
-          }
+          "notation": "[b] in Q = M / im(f), [b] != 0",
+          "object_kind": "residual_object",
+          "symbol": "[b] in Q = M / im(f), [b] != 0"
         },
-        "requirements": {
-          "required_structures": [
-            "Representative element b must be a valid member of ambient module M",
-            "Ambient module M must be well-defined with content-addressed hash",
-            "Quotient module Q must be well-defined",
-            "Non-triviality witness must prove [b] != 0 in Q",
-            "Provenance (which computation produced this residual) must be recorded"
+        "negative_tests": [
+          "Representative not in ambient module M must be rejected",
+          "Residual where [b] = 0 in Q must be rejected",
+          "Quotient module that is not well-defined must be rejected",
+          "Residual with no provenance record must be rejected",
+          "Residual object artifact claiming authority must be rejected",
+          "Residual object artifact claiming admissibility must be rejected"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
           ]
         },
-        "laws": [
-          "Representative b is a valid element of ambient module M",
-          "Quotient Q = M / im(f) is well-defined",
-          "[b] != 0 in Q (b is not in im(f))",
-          "pi(b) = [b] in Q"
-        ],
         "replay": {
           "requirements": [
             "No external state",
@@ -189,28 +124,29 @@
             "All modules use canonical serialization"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
+        "requirements": {
+          "required_structures": [
+            "Representative element b must be a valid member of ambient module M",
+            "Ambient module M must be well-defined with content-addressed hash",
+            "Quotient module Q must be well-defined",
+            "Non-triviality witness must prove [b] != 0 in Q",
+            "Provenance (which computation produced this residual) must be recorded"
           ]
         },
-        "negative_tests": [
-          "Representative not in ambient module M must be rejected",
-          "Residual where [b] = 0 in Q must be rejected",
-          "Quotient module that is not well-defined must be rejected",
-          "Residual with no provenance record must be rejected",
-          "Residual object artifact claiming authority must be rejected",
-          "Residual object artifact claiming admissibility must be rejected"
-        ],
-        "doctrine": {
-          "summary": "A ResidualObject represents an algebraic element that remains after a computation stage has processed what it can. In homological algebra, this corresponds to a cokernel element in coker(d) = C_n / im(d_{n+1}), or more generally an element of a quotient module that witnesses incomplete resolution. The residual object carries its algebraic data (representative element, ambient module, quotient structure), its provenance (which computation produced it), and its status (open, handed_off, resolved).",
-          "non_role": [
-            "Resolving residuals (separate resolution contract)",
-            "Policy on residual handling",
-            "Authority over residual significance",
-            "Customer-facing claims about residual meaning"
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "dg_category",
+          "required_tests": [
+            "test_dg_category_basic_lifecycle"
+          ],
+          "symbols": [
+            "CohomologyCategoryH0",
+            "GradedHomComplex"
           ]
         },
+        "schema_version": "omega.contract.v1",
+        "status": "exact_rational_classifier_implemented",
+        "title": "Residual Object Contract",
         "wip": [
           "Should residual objects track their 'resolution distance' estimate?",
           "How to handle residual objects from spectral sequence computations?",
@@ -219,49 +155,74 @@
           "Spectral sequence residuals deferred to future version",
           "Algebraic operations on residuals deferred",
           "Status transitions are recorded but not enforced by this contract"
-        ],
-        "rust_binding": {
-          "crate": "omega_higher_category_theory",
-          "module": "dg_category",
-          "symbols": [
-            "CohomologyCategoryH0",
-            "GradedHomComplex"
-          ],
-          "required_tests": [
-            "test_dg_category_basic_lifecycle"
-          ]
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:residual_object:v0.1.0\",\n  \"title\": \"Residual Object Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"residual_object\",\n    \"symbol\": \"[b] in Q = M / im(f), [b] != 0\",\n    \"ascii_symbol\": \"residual_object\",\n    \"notation\": \"[b] in Q = M / im(f), [b] != 0\",\n    \"domain\": [\n      \"representative: b (element of ambient module M)\",\n      \"ambient_module: M (module containing the representative)\",\n      \"quotient_module: Q = M / im(f) (cokernel or homology group)\",\n      \"projection: pi: M -> Q (canonical quotient projection)\",\n      \"nontriviality_witness: w: proof that [b] != 0 in Q\"\n    ],\n    \"codomain\": {\n      \"description\": \"A tuple R = (b, M, Q, pi, w) where b is the representative element, M is the ambient module, Q is the quotient module, pi: M -> Q is the projection, and w is the non-triviality witness.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Representative element b must be a valid member of ambient module M\",\n      \"Ambient module M must be well-defined with content-addressed hash\",\n      \"Quotient module Q must be well-defined\",\n      \"Non-triviality witness must prove [b] != 0 in Q\",\n      \"Provenance (which computation produced this residual) must be recorded\"\n    ]\n  },\n  \"laws\": [\n    \"Representative b is a valid element of ambient module M\",\n    \"Quotient Q = M / im(f) is well-defined\",\n    \"[b] != 0 in Q (b is not in im(f))\",\n    \"pi(b) = [b] in Q\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Nontriviality checking is deterministic\",\n      \"Quotient projection is deterministic\",\n      \"All modules use canonical serialization\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Representative not in ambient module M must be rejected\",\n    \"Residual where [b] = 0 in Q must be rejected\",\n    \"Quotient module that is not well-defined must be rejected\",\n    \"Residual with no provenance record must be rejected\",\n    \"Residual object artifact claiming authority must be rejected\",\n    \"Residual object artifact claiming admissibility must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A ResidualObject represents an algebraic element that remains after a computation stage has processed what it can. In homological algebra, this corresponds to a cokernel element in coker(d) = C_n / im(d_{n+1}), or more generally an element of a quotient module that witnesses incomplete resolution. The residual object carries its algebraic data (representative element, ambient module, quotient structure), its provenance (which computation produced it), and its status (open, handed_off, resolved).\",\n    \"non_role\": [\n      \"Resolving residuals (separate resolution contract)\",\n      \"Policy on residual handling\",\n      \"Authority over residual significance\",\n      \"Customer-facing claims about residual meaning\"\n    ]\n  },\n  \"wip\": [\n    \"Should residual objects track their 'resolution distance' estimate?\",\n    \"How to handle residual objects from spectral sequence computations?\",\n    \"Should residual objects support algebraic operations (addition, scalar multiplication)?\",\n    \"Currently assumes finitely generated modules\",\n    \"Spectral sequence residuals deferred to future version\",\n    \"Algebraic operations on residuals deferred\",\n    \"Status transitions are recorded but not enforced by this contract\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"dg_category\",\n    \"symbols\": [\n      \"CohomologyCategoryH0\",\n      \"GradedHomComplex\"\n    ],\n    \"required_tests\": [\n      \"test_dg_category_basic_lifecycle\"\n    ]\n  }\n}\n",
+      "sha256": "92766aee8eb5530cd47052cc6c6338cd446e15b33428d3989b5d28bb85a6b35f"
+    },
+    {
+      "bytes": 1715,
       "original_paths": [
-        "code/python/governance/10_math/general/math_residual_object_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py\",\n    \"sha256\": \"8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py\",\n      \"sha256\": \"8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b\",\n  \"subject\": \"code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py",
+          "sha256": "8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py",
+            "sha256": "8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b",
+        "subject": "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py"
+      },
+      "sha256": "10d51f21279487e7fa668ccf513757f2f21c1285fbedd163a9f400537d248877"
     }
   ],
+  "current_contract": "10d51f21279487e7fa668ccf513757f2f21c1285fbedd163a9f400537d248877",
+  "current_scoring": "3b0c880a9b25160612721455fcf90bc4b184aa05f84da5cd62ca4bbc669daa7d",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_residual_object_v0_1_0.contract.yaml": "6d946b6003d4f55effd590f0a6de6a6bb48bd6edd144c36f1c507527a634a9e5"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "e63295abe340ed4a6b74a7cc704152cb1e433fbffa1dedf9b0d110786a65a3da",
       "bytes": 2227,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py\",\n    \"sha256\": \"8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-residual-object-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py",
           "sha256": "8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-residual-object-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -270,40 +231,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "e63295abe340ed4a6b74a7cc704152cb1e433fbffa1dedf9b0d110786a65a3da"
+    },
+    {
+      "bytes": 1666,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py\",\n    \"sha256\": \"8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py\",\n      \"sha256\": \"8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py",
+          "sha256": "8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py",
+            "sha256": "8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Exact",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.py\",\n    \"sha256\": \"8ee3420e6dcb4e37f5d8a8f9b06786004ba9f3c78a9a9358d674b065ef7bb42b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-residual-object-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_residual_object_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "3b0c880a9b25160612721455fcf90bc4b184aa05f84da5cd62ca4bbc669daa7d"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_residual_object_v0_1_0.contract.yaml": "6d946b6003d4f55effd590f0a6de6a6bb48bd6edd144c36f1c507527a634a9e5"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

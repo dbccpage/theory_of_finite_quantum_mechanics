@@ -1,150 +1,121 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:truncation_level:v0.1.0",
-    "title": "TruncationLevel Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py",
+      "sha256": "27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583"
     },
-    "math": {
-      "object_kind": "homotopy_type_classification",
-      "symbol": "is-n-type A, where n ∈ {-2, -1, 0, 1, 2, ...}",
-      "ascii_symbol": "truncation_level",
-      "notation": "is-n-type A, where n ∈ {-2, -1, 0, 1, 2, ...}",
-      "domain": [
-        "level: integer n ≥ -2",
-        "type_ref: type A",
-        "proof: proof that A is n-truncated"
-      ],
-      "codomain": {
-        "description": "Integer n ≥ -2 representing the truncation level, together with a type A and a proof that A is n-truncated\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Truncation level n must be ≥ -2",
-        "Referenced type A must exist and be resolvable",
-        "Truncation proof must correctly establish n-truncation",
-        "Artifact hash must be deterministic SHA-256 of inputs"
-      ]
-    },
-    "laws": [
-      "n ≥ -2",
-      "For all x, y : A and all (n+1)-fold path spaces, the path space is contractible\n",
-      "If A is n-truncated, then A is (n+1)-truncated"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Validators and computation functions are content-addressed"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "type_id does not resolve",
-      "level < -2",
-      "Type claimed to be set (n=0) but has non-trivial path spaces\n",
-      "proof_id does not resolve",
-      "Level -2 requires ContractibleType proof, but different proof provided\n"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py",
+        "sha256": "27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "A TruncationLevel classifies types by their homotopical complexity. The levels are: (-2) contractible, (-1) proposition, (0) set, (1) groupoid, (n) n-type. The contract validates that a type is n-truncated by verifying that all (n+1)-fold path spaces are contractible.",
-      "non_role": [
-        "Does not implement the truncation operation ||A||_n (higher inductive type)",
-        "Does not provide lattice operations on truncation levels",
-        "Does not handle infinite or unbounded truncation levels"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "The n-truncation operation ||A||_n is a higher inductive type - implementation strategy TBD",
-      "Truncation levels form a lattice; higher types are less truncated - formalize lattice structure",
-      "Relationship with ContractibleType: contractible = (-2)-type - ensure consistency",
-      "Univalence compatibility with truncation - verify preservation under equivalence",
-      "Computation rules for truncation operation - define canonical forms",
-      "Contract defines classification only, not the truncation operation itself",
-      "Proof validation requires recursive checking of path spaces",
-      "Level -2 (contractible) special case handled via ContractibleType contract",
-      "Levels -1 (prop) and 0 (set) are most common in practice",
-      "Higher levels (n ≥ 1) require sophisticated path space analysis"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583",
+    "subject": "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py"
   },
-  "current_contract": "cbedc2d1b9ca563ea1f5dded3fd8befed0f651c93d438c9bfe534c781f3b476f",
-  "current_scoring": "adee14df579888307d5f134d8bbccecc6d51629bcf34019c35820e74f808b423",
   "contract_history": [
     {
-      "sha256": "cbedc2d1b9ca563ea1f5dded3fd8befed0f651c93d438c9bfe534c781f3b476f",
       "bytes": 3595,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_truncation_level_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:truncation_level:v0.1.0\",\n  \"title\": \"TruncationLevel Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"homotopy_type_classification\",\n    \"symbol\": \"is-n-type A, where n ∈ {-2, -1, 0, 1, 2, ...}\",\n    \"ascii_symbol\": \"truncation_level\",\n    \"notation\": \"is-n-type A, where n ∈ {-2, -1, 0, 1, 2, ...}\",\n    \"domain\": [\n      \"level: integer n ≥ -2\",\n      \"type_ref: type A\",\n      \"proof: proof that A is n-truncated\"\n    ],\n    \"codomain\": {\n      \"description\": \"Integer n ≥ -2 representing the truncation level, together with a type A and a proof that A is n-truncated\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Truncation level n must be ≥ -2\",\n      \"Referenced type A must exist and be resolvable\",\n      \"Truncation proof must correctly establish n-truncation\",\n      \"Artifact hash must be deterministic SHA-256 of inputs\"\n    ]\n  },\n  \"laws\": [\n    \"n ≥ -2\",\n    \"For all x, y : A and all (n+1)-fold path spaces, the path space is contractible\\n\",\n    \"If A is n-truncated, then A is (n+1)-truncated\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"type_id does not resolve\",\n    \"level < -2\",\n    \"Type claimed to be set (n=0) but has non-trivial path spaces\\n\",\n    \"proof_id does not resolve\",\n    \"Level -2 requires ContractibleType proof, but different proof provided\\n\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A TruncationLevel classifies types by their homotopical complexity. The levels are: (-2) contractible, (-1) proposition, (0) set, (1) groupoid, (n) n-type. The contract validates that a type is n-truncated by verifying that all (n+1)-fold path spaces are contractible.\",\n    \"non_role\": [\n      \"Does not implement the truncation operation ||A||_n (higher inductive type)\",\n      \"Does not provide lattice operations on truncation levels\",\n      \"Does not handle infinite or unbounded truncation levels\"\n    ]\n  },\n  \"wip\": [\n    \"The n-truncation operation ||A||_n is a higher inductive type - implementation strategy TBD\",\n    \"Truncation levels form a lattice; higher types are less truncated - formalize lattice structure\",\n    \"Relationship with ContractibleType: contractible = (-2)-type - ensure consistency\",\n    \"Univalence compatibility with truncation - verify preservation under equivalence\",\n    \"Computation rules for truncation operation - define canonical forms\",\n    \"Contract defines classification only, not the truncation operation itself\",\n    \"Proof validation requires recursive checking of path spaces\",\n    \"Level -2 (contractible) special case handled via ContractibleType contract\",\n    \"Levels -1 (prop) and 0 (set) are most common in practice\",\n    \"Higher levels (n ≥ 1) require sophisticated path space analysis\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:truncation_level:v0.1.0",
-        "title": "TruncationLevel Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Does not implement the truncation operation ||A||_n (higher inductive type)",
+            "Does not provide lattice operations on truncation levels",
+            "Does not handle infinite or unbounded truncation levels"
+          ],
+          "summary": "A TruncationLevel classifies types by their homotopical complexity. The levels are: (-2) contractible, (-1) proposition, (0) set, (1) groupoid, (n) n-type. The contract validates that a type is n-truncated by verifying that all (n+1)-fold path spaces are contractible."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "n ≥ -2",
+          "For all x, y : A and all (n+1)-fold path spaces, the path space is contractible\n",
+          "If A is n-truncated, then A is (n+1)-truncated"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "homotopy_type_classification",
-          "symbol": "is-n-type A, where n ∈ {-2, -1, 0, 1, 2, ...}",
           "ascii_symbol": "truncation_level",
-          "notation": "is-n-type A, where n ∈ {-2, -1, 0, 1, 2, ...}",
+          "codomain": {
+            "description": "Integer n ≥ -2 representing the truncation level, together with a type A and a proof that A is n-truncated\n"
+          },
           "domain": [
             "level: integer n ≥ -2",
             "type_ref: type A",
             "proof: proof that A is n-truncated"
           ],
-          "codomain": {
-            "description": "Integer n ≥ -2 representing the truncation level, together with a type A and a proof that A is n-truncated\n"
-          }
+          "notation": "is-n-type A, where n ∈ {-2, -1, 0, 1, 2, ...}",
+          "object_kind": "homotopy_type_classification",
+          "symbol": "is-n-type A, where n ∈ {-2, -1, 0, 1, 2, ...}"
+        },
+        "negative_tests": [
+          "type_id does not resolve",
+          "level < -2",
+          "Type claimed to be set (n=0) but has non-trivial path spaces\n",
+          "proof_id does not resolve",
+          "Level -2 requires ContractibleType proof, but different proof provided\n"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators and computation functions are content-addressed"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -154,39 +125,9 @@
             "Artifact hash must be deterministic SHA-256 of inputs"
           ]
         },
-        "laws": [
-          "n ≥ -2",
-          "For all x, y : A and all (n+1)-fold path spaces, the path space is contractible\n",
-          "If A is n-truncated, then A is (n+1)-truncated"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "Validators and computation functions are content-addressed"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
-        "negative_tests": [
-          "type_id does not resolve",
-          "level < -2",
-          "Type claimed to be set (n=0) but has non-trivial path spaces\n",
-          "proof_id does not resolve",
-          "Level -2 requires ContractibleType proof, but different proof provided\n"
-        ],
-        "doctrine": {
-          "summary": "A TruncationLevel classifies types by their homotopical complexity. The levels are: (-2) contractible, (-1) proposition, (0) set, (1) groupoid, (n) n-type. The contract validates that a type is n-truncated by verifying that all (n+1)-fold path spaces are contractible.",
-          "non_role": [
-            "Does not implement the truncation operation ||A||_n (higher inductive type)",
-            "Does not provide lattice operations on truncation levels",
-            "Does not handle infinite or unbounded truncation levels"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "TruncationLevel Contract",
         "wip": [
           "The n-truncation operation ||A||_n is a higher inductive type - implementation strategy TBD",
           "Truncation levels form a lattice; higher types are less truncated - formalize lattice structure",
@@ -200,36 +141,72 @@
           "Higher levels (n ≥ 1) require sophisticated path space analysis"
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:truncation_level:v0.1.0\",\n  \"title\": \"TruncationLevel Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"homotopy_type_classification\",\n    \"symbol\": \"is-n-type A, where n ∈ {-2, -1, 0, 1, 2, ...}\",\n    \"ascii_symbol\": \"truncation_level\",\n    \"notation\": \"is-n-type A, where n ∈ {-2, -1, 0, 1, 2, ...}\",\n    \"domain\": [\n      \"level: integer n ≥ -2\",\n      \"type_ref: type A\",\n      \"proof: proof that A is n-truncated\"\n    ],\n    \"codomain\": {\n      \"description\": \"Integer n ≥ -2 representing the truncation level, together with a type A and a proof that A is n-truncated\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Truncation level n must be ≥ -2\",\n      \"Referenced type A must exist and be resolvable\",\n      \"Truncation proof must correctly establish n-truncation\",\n      \"Artifact hash must be deterministic SHA-256 of inputs\"\n    ]\n  },\n  \"laws\": [\n    \"n ≥ -2\",\n    \"For all x, y : A and all (n+1)-fold path spaces, the path space is contractible\\n\",\n    \"If A is n-truncated, then A is (n+1)-truncated\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"type_id does not resolve\",\n    \"level < -2\",\n    \"Type claimed to be set (n=0) but has non-trivial path spaces\\n\",\n    \"proof_id does not resolve\",\n    \"Level -2 requires ContractibleType proof, but different proof provided\\n\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A TruncationLevel classifies types by their homotopical complexity. The levels are: (-2) contractible, (-1) proposition, (0) set, (1) groupoid, (n) n-type. The contract validates that a type is n-truncated by verifying that all (n+1)-fold path spaces are contractible.\",\n    \"non_role\": [\n      \"Does not implement the truncation operation ||A||_n (higher inductive type)\",\n      \"Does not provide lattice operations on truncation levels\",\n      \"Does not handle infinite or unbounded truncation levels\"\n    ]\n  },\n  \"wip\": [\n    \"The n-truncation operation ||A||_n is a higher inductive type - implementation strategy TBD\",\n    \"Truncation levels form a lattice; higher types are less truncated - formalize lattice structure\",\n    \"Relationship with ContractibleType: contractible = (-2)-type - ensure consistency\",\n    \"Univalence compatibility with truncation - verify preservation under equivalence\",\n    \"Computation rules for truncation operation - define canonical forms\",\n    \"Contract defines classification only, not the truncation operation itself\",\n    \"Proof validation requires recursive checking of path spaces\",\n    \"Level -2 (contractible) special case handled via ContractibleType contract\",\n    \"Levels -1 (prop) and 0 (set) are most common in practice\",\n    \"Higher levels (n ≥ 1) require sophisticated path space analysis\"\n  ]\n}\n",
+      "sha256": "cbedc2d1b9ca563ea1f5dded3fd8befed0f651c93d438c9bfe534c781f3b476f"
+    },
+    {
+      "bytes": 1718,
       "original_paths": [
-        "code/python/governance/10_math/general/math_truncation_level_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py\",\n    \"sha256\": \"27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py\",\n      \"sha256\": \"27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583\",\n  \"subject\": \"code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py",
+          "sha256": "27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py",
+            "sha256": "27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583",
+        "subject": "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py"
+      },
+      "sha256": "e0f0878653c419efd744587fee7ccfba28f34eef6a9f18d986e07b770c1caf3b"
     }
   ],
+  "current_contract": "e0f0878653c419efd744587fee7ccfba28f34eef6a9f18d986e07b770c1caf3b",
+  "current_scoring": "125af3d7724d8b90e7faa5a9a83f80918b7ce54859508413bfea1ababa25b776",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_truncation_level_v0_1_0.contract.yaml": "e322262cc151e99244d601731d74461d84efa4e87fedfe044923bf228fa6e78b"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "adee14df579888307d5f134d8bbccecc6d51629bcf34019c35820e74f808b423",
       "bytes": 2229,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py\",\n    \"sha256\": \"27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-truncation-level-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py",
           "sha256": "27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-truncation-level-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -238,40 +215,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "adee14df579888307d5f134d8bbccecc6d51629bcf34019c35820e74f808b423"
+    },
+    {
+      "bytes": 1674,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py\",\n    \"sha256\": \"27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py\",\n      \"sha256\": \"27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py",
+          "sha256": "27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py",
+            "sha256": "27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.py\",\n    \"sha256\": \"27828f0777b3b00fd2217ff89d0e6641efa884d5a084f9d7d43684c0d86a9583\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-truncation-level-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_truncation_level_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "125af3d7724d8b90e7faa5a9a83f80918b7ce54859508413bfea1ababa25b776"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_truncation_level_v0_1_0.contract.yaml": "e322262cc151e99244d601731d74461d84efa4e87fedfe044923bf228fa6e78b"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

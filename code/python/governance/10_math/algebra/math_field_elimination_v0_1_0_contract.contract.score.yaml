@@ -1,190 +1,132 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:field_elimination:v0.1.0",
-    "title": "Exact Field Elimination Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py",
+      "sha256": "c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a"
     },
-    "math": {
-      "object_kind": "linear_algebra_algorithm",
-      "symbol": "RREF(A), rank A, ker A, ker Aᵀ, im A, A x = b, A⁻¹, det A over an exact field F",
-      "ascii_symbol": "field_elimination",
-      "notation": "A ∈ M_{m×n}(F), b ∈ Fᵐ, F : Field + ExactRing",
-      "domain": [
-        "matrix: BasicMatrix<F> of shape m×n",
-        "right-hand side: slice of F of length m",
-        "budgets: OperationLimits { max_elements, max_scalar_ops }"
-      ],
-      "codomain": {
-        "description": "The unique reduced row echelon form with its pivot columns, the rank, bases of the right kernel, left kernel and column space, the solution set of A x = b as a particular solution plus a kernel basis or an inconsistency certificate, the inverse of a square matrix or a Singular refusal carrying its rank, and the determinant. Every answer is exact; a scalar that is not a field is refused.\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Gauss–Jordan elimination takes the first nonzero entry of the column as pivot and multiplies by try_inv of the pivot; a nonzero pivot with no inverse is refused as ScalarContract",
-        "The pivot columns are strictly increasing, each pivot column of the reduced form is a standard unit vector, and the zero rows come last",
-        "kernel_basis returns one vector per free column, in column order, with 1 at its own free column, 0 at the other free columns and minus the reduced-form entries at the pivot columns",
-        "image_basis returns the columns of the ORIGINAL matrix at the pivot columns",
-        "solve returns Consistent { particular, kernel_basis } with every free variable of the particular solution equal to 0, or Inconsistent with a certificate y satisfying yᵀA = 0 and yᵀb = 1, obtained as a solution of the dual system [Aᵀ; bᵀ] y = e; a consistent answer is replayed as A x = b and a certificate is replayed before it is returned",
-        "inverse of a singular matrix is refused as Singular { rank, size } with the true rank; determinant of the empty matrix is 1",
-        "Every function has a _with_limits form whose preflight charges the worse of the paths it may take: solve charges the consistent path (replay and kernel basis) or the refusal path (reduction of the dual system [Aᵀ; bᵀ] y = e and the certificate replay), whichever is larger"
-      ]
-    },
-    "laws": [
-      "The reduced row echelon form of a matrix is unique; rref(rref(A)) = rref(A)",
-      "rank(A) = |pivot columns| = rank(Aᵀ)",
-      "rank(A) + dim ker(A) = n (rank–nullity) and rank(A) + dim ker(Aᵀ) = m",
-      "A v = 0 for every kernel vector v, the kernel vectors are linearly independent, and yᵀ A = 0 for every left-kernel vector y",
-      "b ∈ im(A) iff yᵀ b = 0 for every y in the left kernel (Fredholm alternative); otherwise a replayable y with yᵀA = 0 and yᵀb != 0 exists",
-      "the solutions of A x = b are exactly particular + span(kernel_basis)",
-      "A A⁻¹ = I = A⁻¹ A, and A is invertible iff rank A = n iff det A != 0",
-      "det(A B) = det A · det B, det Aᵀ = det A, det(c A) = cⁿ det A, and exchanging two rows negates the determinant"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "The reduced row echelon form, pivot columns, kernel basis and image basis agree entry for entry with the BigRational instance of ExactRowReduction (uniqueness of the reduced form makes this a differential test)",
-        "solve agrees with solve_in_image on verdict and particular solution; determinant agrees with bareiss_determinant on integer matrices",
-        "An InconsistencyCertificate replays through verify without trusting the solver"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_linear_algebra",
-      "module": "exact_field::elimination",
-      "symbols": [
-        "RowReduced",
-        "InconsistencyCertificate",
-        "LinearSolution",
-        "rref",
-        "rank",
-        "kernel_basis",
-        "left_kernel_basis",
-        "image_basis",
-        "solve",
-        "inverse",
-        "determinant",
-        "is_invertible"
-      ],
-      "required_tests": [
-        "a_non_field_scalar_is_refused_not_miscomputed",
-        "inverse_refuses_singular_matrices_with_their_rank_and_non_square_input",
-        "a_singular_refusal_is_certified_by_a_kernel_vector_and_a_zero_determinant",
-        "solve_inconsistent_yields_a_replayable_certificate",
-        "a_certificate_failing_in_a_single_column_is_rejected",
-        "solve_handles_empty_shapes_and_refuses_wrong_length",
-        "reduction_budget_boundaries_are_inclusive",
-        "solve_budget_covers_the_certificate_path",
-        "the_kernel_budget_charges_the_output_not_just_the_input",
-        "left_kernel_budget_charges_the_output_size",
-        "is_invertible_agrees_with_a_nonzero_determinant"
-      ]
-    },
-    "negative_tests": [
-      "a scalar with a nonzero element that has no inverse must be refused as ScalarContract, never produce a rank, kernel or determinant",
-      "inverse of a singular matrix must be refused as Singular carrying the true rank, the refusal must be certified by a nonzero kernel vector with A x = 0 and a zero determinant, and inverse or determinant of a non-square matrix must be refused as NotSquare",
-      "an inconsistent system must yield a certificate that verify accepts, and a tampered or unrelated certificate must be rejected, including one that fails in a single column only",
-      "a right-hand side whose length is not the row count must be refused with both lengths",
-      "an operation whose documented worst-case bound exceeds the budget must be refused before any scalar work, and a bound equal to the limit must be accepted",
-      "a budget that covers only the success path of solve but not its certificate path must be refused",
-      "the kernel and left-kernel budgets must charge the output size, not only the input size",
-      "is_invertible of a non-square matrix must be refused rather than answer false"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py",
+        "sha256": "c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "Exact elimination over any field of the scalar tower: reduced row echelon form, rank, right kernel, left kernel, column-space basis, the linear system A x = b with a replayable refusal certificate, the inverse and the determinant. It removes the restriction of the pre-existing elimination to Rational64 and BigRational, so the same algorithms serve Q(i), cyclotomic fields, finite fields and real quadratic fields, and it cross-validates against the pre-existing elimination on BigRational.",
-      "non_role": [
-        "Numerical linear algebra and conditioning (see eigen and gram_schmidt for the float tier)",
-        "Fraction-free integer elimination (determinant::bareiss_determinant is the integer route)",
-        "Smith normal form and module structure over rings",
-        "Iterative or sparse solvers (solvers belong to omega_solvers)"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "No Lean statement of the elimination laws exists; the YAML to Lean to Rust chain for this contract is open",
-      "Pivots are the first nonzero entry, which is exact but can grow coefficient size over fields with large representations; no pivoting strategy for size is implemented",
-      "The certificate path of solve runs a second elimination (of the dual system [Aᵀ; bᵀ] y = e) instead of tracking row operations in the first",
-      "Kernel and image bases are returned as Vec<Vec<F>> rather than the sealed RawSubspaceBasis of the Rational64/BigRational route",
-      "The existing ExactRowReduction trait remains sealed to Rational64 and BigRational; it is not generalised here"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a",
+    "subject": "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py"
   },
-  "current_contract": "6c593d89d3fb0cc044a7655c718c84a5f19f3f1558e123f0336577c969a675e4",
-  "current_scoring": "b38206da2b2c3612d50e282d7df92089f9144661c98a5d084dab7188071e73cb",
   "contract_history": [
     {
-      "sha256": "6c593d89d3fb0cc044a7655c718c84a5f19f3f1558e123f0336577c969a675e4",
       "bytes": 8317,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:field_elimination:v0.1.0\",\n  \"title\": \"Exact Field Elimination Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"linear_algebra_algorithm\",\n    \"symbol\": \"RREF(A), rank A, ker A, ker Aᵀ, im A, A x = b, A⁻¹, det A over an exact field F\",\n    \"ascii_symbol\": \"field_elimination\",\n    \"notation\": \"A ∈ M_{m×n}(F), b ∈ Fᵐ, F : Field + ExactRing\",\n    \"domain\": [\n      \"matrix: BasicMatrix<F> of shape m×n\",\n      \"right-hand side: slice of F of length m\",\n      \"budgets: OperationLimits { max_elements, max_scalar_ops }\"\n    ],\n    \"codomain\": {\n      \"description\": \"The unique reduced row echelon form with its pivot columns, the rank, bases of the right kernel, left kernel and column space, the solution set of A x = b as a particular solution plus a kernel basis or an inconsistency certificate, the inverse of a square matrix or a Singular refusal carrying its rank, and the determinant. Every answer is exact; a scalar that is not a field is refused.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Gauss–Jordan elimination takes the first nonzero entry of the column as pivot and multiplies by try_inv of the pivot; a nonzero pivot with no inverse is refused as ScalarContract\",\n      \"The pivot columns are strictly increasing, each pivot column of the reduced form is a standard unit vector, and the zero rows come last\",\n      \"kernel_basis returns one vector per free column, in column order, with 1 at its own free column, 0 at the other free columns and minus the reduced-form entries at the pivot columns\",\n      \"image_basis returns the columns of the ORIGINAL matrix at the pivot columns\",\n      \"solve returns Consistent { particular, kernel_basis } with every free variable of the particular solution equal to 0, or Inconsistent with a certificate y satisfying yᵀA = 0 and yᵀb = 1, obtained as a solution of the dual system [Aᵀ; bᵀ] y = e; a consistent answer is replayed as A x = b and a certificate is replayed before it is returned\",\n      \"inverse of a singular matrix is refused as Singular { rank, size } with the true rank; determinant of the empty matrix is 1\",\n      \"Every function has a _with_limits form whose preflight charges the worse of the paths it may take: solve charges the consistent path (replay and kernel basis) or the refusal path (reduction of the dual system [Aᵀ; bᵀ] y = e and the certificate replay), whichever is larger\"\n    ]\n  },\n  \"laws\": [\n    \"The reduced row echelon form of a matrix is unique; rref(rref(A)) = rref(A)\",\n    \"rank(A) = |pivot columns| = rank(Aᵀ)\",\n    \"rank(A) + dim ker(A) = n (rank–nullity) and rank(A) + dim ker(Aᵀ) = m\",\n    \"A v = 0 for every kernel vector v, the kernel vectors are linearly independent, and yᵀ A = 0 for every left-kernel vector y\",\n    \"b ∈ im(A) iff yᵀ b = 0 for every y in the left kernel (Fredholm alternative); otherwise a replayable y with yᵀA = 0 and yᵀb != 0 exists\",\n    \"the solutions of A x = b are exactly particular + span(kernel_basis)\",\n    \"A A⁻¹ = I = A⁻¹ A, and A is invertible iff rank A = n iff det A != 0\",\n    \"det(A B) = det A · det B, det Aᵀ = det A, det(c A) = cⁿ det A, and exchanging two rows negates the determinant\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"The reduced row echelon form, pivot columns, kernel basis and image basis agree entry for entry with the BigRational instance of ExactRowReduction (uniqueness of the reduced form makes this a differential test)\",\n      \"solve agrees with solve_in_image on verdict and particular solution; determinant agrees with bareiss_determinant on integer matrices\",\n      \"An InconsistencyCertificate replays through verify without trusting the solver\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"exact_field::elimination\",\n    \"symbols\": [\n      \"RowReduced\",\n      \"InconsistencyCertificate\",\n      \"LinearSolution\",\n      \"rref\",\n      \"rank\",\n      \"kernel_basis\",\n      \"left_kernel_basis\",\n      \"image_basis\",\n      \"solve\",\n      \"inverse\",\n      \"determinant\",\n      \"is_invertible\"\n    ],\n    \"required_tests\": [\n      \"a_non_field_scalar_is_refused_not_miscomputed\",\n      \"inverse_refuses_singular_matrices_with_their_rank_and_non_square_input\",\n      \"a_singular_refusal_is_certified_by_a_kernel_vector_and_a_zero_determinant\",\n      \"solve_inconsistent_yields_a_replayable_certificate\",\n      \"a_certificate_failing_in_a_single_column_is_rejected\",\n      \"solve_handles_empty_shapes_and_refuses_wrong_length\",\n      \"reduction_budget_boundaries_are_inclusive\",\n      \"solve_budget_covers_the_certificate_path\",\n      \"the_kernel_budget_charges_the_output_not_just_the_input\",\n      \"left_kernel_budget_charges_the_output_size\",\n      \"is_invertible_agrees_with_a_nonzero_determinant\"\n    ]\n  },\n  \"negative_tests\": [\n    \"a scalar with a nonzero element that has no inverse must be refused as ScalarContract, never produce a rank, kernel or determinant\",\n    \"inverse of a singular matrix must be refused as Singular carrying the true rank, the refusal must be certified by a nonzero kernel vector with A x = 0 and a zero determinant, and inverse or determinant of a non-square matrix must be refused as NotSquare\",\n    \"an inconsistent system must yield a certificate that verify accepts, and a tampered or unrelated certificate must be rejected, including one that fails in a single column only\",\n    \"a right-hand side whose length is not the row count must be refused with both lengths\",\n    \"an operation whose documented worst-case bound exceeds the budget must be refused before any scalar work, and a bound equal to the limit must be accepted\",\n    \"a budget that covers only the success path of solve but not its certificate path must be refused\",\n    \"the kernel and left-kernel budgets must charge the output size, not only the input size\",\n    \"is_invertible of a non-square matrix must be refused rather than answer false\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Exact elimination over any field of the scalar tower: reduced row echelon form, rank, right kernel, left kernel, column-space basis, the linear system A x = b with a replayable refusal certificate, the inverse and the determinant. It removes the restriction of the pre-existing elimination to Rational64 and BigRational, so the same algorithms serve Q(i), cyclotomic fields, finite fields and real quadratic fields, and it cross-validates against the pre-existing elimination on BigRational.\",\n    \"non_role\": [\n      \"Numerical linear algebra and conditioning (see eigen and gram_schmidt for the float tier)\",\n      \"Fraction-free integer elimination (determinant::bareiss_determinant is the integer route)\",\n      \"Smith normal form and module structure over rings\",\n      \"Iterative or sparse solvers (solvers belong to omega_solvers)\"\n    ]\n  },\n  \"wip\": [\n    \"No Lean statement of the elimination laws exists; the YAML to Lean to Rust chain for this contract is open\",\n    \"Pivots are the first nonzero entry, which is exact but can grow coefficient size over fields with large representations; no pivoting strategy for size is implemented\",\n    \"The certificate path of solve runs a second elimination (of the dual system [Aᵀ; bᵀ] y = e) instead of tracking row operations in the first\",\n    \"Kernel and image bases are returned as Vec<Vec<F>> rather than the sealed RawSubspaceBasis of the Rational64/BigRational route\",\n    \"The existing ExactRowReduction trait remains sealed to Rational64 and BigRational; it is not generalised here\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:field_elimination:v0.1.0",
-        "title": "Exact Field Elimination Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Numerical linear algebra and conditioning (see eigen and gram_schmidt for the float tier)",
+            "Fraction-free integer elimination (determinant::bareiss_determinant is the integer route)",
+            "Smith normal form and module structure over rings",
+            "Iterative or sparse solvers (solvers belong to omega_solvers)"
+          ],
+          "summary": "Exact elimination over any field of the scalar tower: reduced row echelon form, rank, right kernel, left kernel, column-space basis, the linear system A x = b with a replayable refusal certificate, the inverse and the determinant. It removes the restriction of the pre-existing elimination to Rational64 and BigRational, so the same algorithms serve Q(i), cyclotomic fields, finite fields and real quadratic fields, and it cross-validates against the pre-existing elimination on BigRational."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "The reduced row echelon form of a matrix is unique; rref(rref(A)) = rref(A)",
+          "rank(A) = |pivot columns| = rank(Aᵀ)",
+          "rank(A) + dim ker(A) = n (rank–nullity) and rank(A) + dim ker(Aᵀ) = m",
+          "A v = 0 for every kernel vector v, the kernel vectors are linearly independent, and yᵀ A = 0 for every left-kernel vector y",
+          "b ∈ im(A) iff yᵀ b = 0 for every y in the left kernel (Fredholm alternative); otherwise a replayable y with yᵀA = 0 and yᵀb != 0 exists",
+          "the solutions of A x = b are exactly particular + span(kernel_basis)",
+          "A A⁻¹ = I = A⁻¹ A, and A is invertible iff rank A = n iff det A != 0",
+          "det(A B) = det A · det B, det Aᵀ = det A, det(c A) = cⁿ det A, and exchanging two rows negates the determinant"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "linear_algebra_algorithm",
-          "symbol": "RREF(A), rank A, ker A, ker Aᵀ, im A, A x = b, A⁻¹, det A over an exact field F",
           "ascii_symbol": "field_elimination",
-          "notation": "A ∈ M_{m×n}(F), b ∈ Fᵐ, F : Field + ExactRing",
+          "codomain": {
+            "description": "The unique reduced row echelon form with its pivot columns, the rank, bases of the right kernel, left kernel and column space, the solution set of A x = b as a particular solution plus a kernel basis or an inconsistency certificate, the inverse of a square matrix or a Singular refusal carrying its rank, and the determinant. Every answer is exact; a scalar that is not a field is refused.\n"
+          },
           "domain": [
             "matrix: BasicMatrix<F> of shape m×n",
             "right-hand side: slice of F of length m",
             "budgets: OperationLimits { max_elements, max_scalar_ops }"
           ],
-          "codomain": {
-            "description": "The unique reduced row echelon form with its pivot columns, the rank, bases of the right kernel, left kernel and column space, the solution set of A x = b as a particular solution plus a kernel basis or an inconsistency certificate, the inverse of a square matrix or a Singular refusal carrying its rank, and the determinant. Every answer is exact; a scalar that is not a field is refused.\n"
-          }
+          "notation": "A ∈ M_{m×n}(F), b ∈ Fᵐ, F : Field + ExactRing",
+          "object_kind": "linear_algebra_algorithm",
+          "symbol": "RREF(A), rank A, ker A, ker Aᵀ, im A, A x = b, A⁻¹, det A over an exact field F"
+        },
+        "negative_tests": [
+          "a scalar with a nonzero element that has no inverse must be refused as ScalarContract, never produce a rank, kernel or determinant",
+          "inverse of a singular matrix must be refused as Singular carrying the true rank, the refusal must be certified by a nonzero kernel vector with A x = 0 and a zero determinant, and inverse or determinant of a non-square matrix must be refused as NotSquare",
+          "an inconsistent system must yield a certificate that verify accepts, and a tampered or unrelated certificate must be rejected, including one that fails in a single column only",
+          "a right-hand side whose length is not the row count must be refused with both lengths",
+          "an operation whose documented worst-case bound exceeds the budget must be refused before any scalar work, and a bound equal to the limit must be accepted",
+          "a budget that covers only the success path of solve but not its certificate path must be refused",
+          "the kernel and left-kernel budgets must charge the output size, not only the input size",
+          "is_invertible of a non-square matrix must be refused rather than answer false"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "The reduced row echelon form, pivot columns, kernel basis and image basis agree entry for entry with the BigRational instance of ExactRowReduction (uniqueness of the reduced form makes this a differential test)",
+            "solve agrees with solve_in_image on verdict and particular solution; determinant agrees with bareiss_determinant on integer matrices",
+            "An InconsistencyCertificate replays through verify without trusting the solver"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -197,34 +139,22 @@
             "Every function has a _with_limits form whose preflight charges the worse of the paths it may take: solve charges the consistent path (replay and kernel basis) or the refusal path (reduction of the dual system [Aᵀ; bᵀ] y = e and the certificate replay), whichever is larger"
           ]
         },
-        "laws": [
-          "The reduced row echelon form of a matrix is unique; rref(rref(A)) = rref(A)",
-          "rank(A) = |pivot columns| = rank(Aᵀ)",
-          "rank(A) + dim ker(A) = n (rank–nullity) and rank(A) + dim ker(Aᵀ) = m",
-          "A v = 0 for every kernel vector v, the kernel vectors are linearly independent, and yᵀ A = 0 for every left-kernel vector y",
-          "b ∈ im(A) iff yᵀ b = 0 for every y in the left kernel (Fredholm alternative); otherwise a replayable y with yᵀA = 0 and yᵀb != 0 exists",
-          "the solutions of A x = b are exactly particular + span(kernel_basis)",
-          "A A⁻¹ = I = A⁻¹ A, and A is invertible iff rank A = n iff det A != 0",
-          "det(A B) = det A · det B, det Aᵀ = det A, det(c A) = cⁿ det A, and exchanging two rows negates the determinant"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "The reduced row echelon form, pivot columns, kernel basis and image basis agree entry for entry with the BigRational instance of ExactRowReduction (uniqueness of the reduced form makes this a differential test)",
-            "solve agrees with solve_in_image on verdict and particular solution; determinant agrees with bareiss_determinant on integer matrices",
-            "An InconsistencyCertificate replays through verify without trusting the solver"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
         "rust_binding": {
           "crate": "omega_linear_algebra",
           "module": "exact_field::elimination",
+          "required_tests": [
+            "a_non_field_scalar_is_refused_not_miscomputed",
+            "inverse_refuses_singular_matrices_with_their_rank_and_non_square_input",
+            "a_singular_refusal_is_certified_by_a_kernel_vector_and_a_zero_determinant",
+            "solve_inconsistent_yields_a_replayable_certificate",
+            "a_certificate_failing_in_a_single_column_is_rejected",
+            "solve_handles_empty_shapes_and_refuses_wrong_length",
+            "reduction_budget_boundaries_are_inclusive",
+            "solve_budget_covers_the_certificate_path",
+            "the_kernel_budget_charges_the_output_not_just_the_input",
+            "left_kernel_budget_charges_the_output_size",
+            "is_invertible_agrees_with_a_nonzero_determinant"
+          ],
           "symbols": [
             "RowReduced",
             "InconsistencyCertificate",
@@ -238,40 +168,11 @@
             "inverse",
             "determinant",
             "is_invertible"
-          ],
-          "required_tests": [
-            "a_non_field_scalar_is_refused_not_miscomputed",
-            "inverse_refuses_singular_matrices_with_their_rank_and_non_square_input",
-            "a_singular_refusal_is_certified_by_a_kernel_vector_and_a_zero_determinant",
-            "solve_inconsistent_yields_a_replayable_certificate",
-            "a_certificate_failing_in_a_single_column_is_rejected",
-            "solve_handles_empty_shapes_and_refuses_wrong_length",
-            "reduction_budget_boundaries_are_inclusive",
-            "solve_budget_covers_the_certificate_path",
-            "the_kernel_budget_charges_the_output_not_just_the_input",
-            "left_kernel_budget_charges_the_output_size",
-            "is_invertible_agrees_with_a_nonzero_determinant"
           ]
         },
-        "negative_tests": [
-          "a scalar with a nonzero element that has no inverse must be refused as ScalarContract, never produce a rank, kernel or determinant",
-          "inverse of a singular matrix must be refused as Singular carrying the true rank, the refusal must be certified by a nonzero kernel vector with A x = 0 and a zero determinant, and inverse or determinant of a non-square matrix must be refused as NotSquare",
-          "an inconsistent system must yield a certificate that verify accepts, and a tampered or unrelated certificate must be rejected, including one that fails in a single column only",
-          "a right-hand side whose length is not the row count must be refused with both lengths",
-          "an operation whose documented worst-case bound exceeds the budget must be refused before any scalar work, and a bound equal to the limit must be accepted",
-          "a budget that covers only the success path of solve but not its certificate path must be refused",
-          "the kernel and left-kernel budgets must charge the output size, not only the input size",
-          "is_invertible of a non-square matrix must be refused rather than answer false"
-        ],
-        "doctrine": {
-          "summary": "Exact elimination over any field of the scalar tower: reduced row echelon form, rank, right kernel, left kernel, column-space basis, the linear system A x = b with a replayable refusal certificate, the inverse and the determinant. It removes the restriction of the pre-existing elimination to Rational64 and BigRational, so the same algorithms serve Q(i), cyclotomic fields, finite fields and real quadratic fields, and it cross-validates against the pre-existing elimination on BigRational.",
-          "non_role": [
-            "Numerical linear algebra and conditioning (see eigen and gram_schmidt for the float tier)",
-            "Fraction-free integer elimination (determinant::bareiss_determinant is the integer route)",
-            "Smith normal form and module structure over rings",
-            "Iterative or sparse solvers (solvers belong to omega_solvers)"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Exact Field Elimination Contract",
         "wip": [
           "No Lean statement of the elimination laws exists; the YAML to Lean to Rust chain for this contract is open",
           "Pivots are the first nonzero entry, which is exact but can grow coefficient size over fields with large representations; no pivoting strategy for size is implemented",
@@ -280,36 +181,72 @@
           "The existing ExactRowReduction trait remains sealed to Rational64 and BigRational; it is not generalised here"
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:field_elimination:v0.1.0\",\n  \"title\": \"Exact Field Elimination Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"linear_algebra_algorithm\",\n    \"symbol\": \"RREF(A), rank A, ker A, ker Aᵀ, im A, A x = b, A⁻¹, det A over an exact field F\",\n    \"ascii_symbol\": \"field_elimination\",\n    \"notation\": \"A ∈ M_{m×n}(F), b ∈ Fᵐ, F : Field + ExactRing\",\n    \"domain\": [\n      \"matrix: BasicMatrix<F> of shape m×n\",\n      \"right-hand side: slice of F of length m\",\n      \"budgets: OperationLimits { max_elements, max_scalar_ops }\"\n    ],\n    \"codomain\": {\n      \"description\": \"The unique reduced row echelon form with its pivot columns, the rank, bases of the right kernel, left kernel and column space, the solution set of A x = b as a particular solution plus a kernel basis or an inconsistency certificate, the inverse of a square matrix or a Singular refusal carrying its rank, and the determinant. Every answer is exact; a scalar that is not a field is refused.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Gauss–Jordan elimination takes the first nonzero entry of the column as pivot and multiplies by try_inv of the pivot; a nonzero pivot with no inverse is refused as ScalarContract\",\n      \"The pivot columns are strictly increasing, each pivot column of the reduced form is a standard unit vector, and the zero rows come last\",\n      \"kernel_basis returns one vector per free column, in column order, with 1 at its own free column, 0 at the other free columns and minus the reduced-form entries at the pivot columns\",\n      \"image_basis returns the columns of the ORIGINAL matrix at the pivot columns\",\n      \"solve returns Consistent { particular, kernel_basis } with every free variable of the particular solution equal to 0, or Inconsistent with a certificate y satisfying yᵀA = 0 and yᵀb = 1, obtained as a solution of the dual system [Aᵀ; bᵀ] y = e; a consistent answer is replayed as A x = b and a certificate is replayed before it is returned\",\n      \"inverse of a singular matrix is refused as Singular { rank, size } with the true rank; determinant of the empty matrix is 1\",\n      \"Every function has a _with_limits form whose preflight charges the worse of the paths it may take: solve charges the consistent path (replay and kernel basis) or the refusal path (reduction of the dual system [Aᵀ; bᵀ] y = e and the certificate replay), whichever is larger\"\n    ]\n  },\n  \"laws\": [\n    \"The reduced row echelon form of a matrix is unique; rref(rref(A)) = rref(A)\",\n    \"rank(A) = |pivot columns| = rank(Aᵀ)\",\n    \"rank(A) + dim ker(A) = n (rank–nullity) and rank(A) + dim ker(Aᵀ) = m\",\n    \"A v = 0 for every kernel vector v, the kernel vectors are linearly independent, and yᵀ A = 0 for every left-kernel vector y\",\n    \"b ∈ im(A) iff yᵀ b = 0 for every y in the left kernel (Fredholm alternative); otherwise a replayable y with yᵀA = 0 and yᵀb != 0 exists\",\n    \"the solutions of A x = b are exactly particular + span(kernel_basis)\",\n    \"A A⁻¹ = I = A⁻¹ A, and A is invertible iff rank A = n iff det A != 0\",\n    \"det(A B) = det A · det B, det Aᵀ = det A, det(c A) = cⁿ det A, and exchanging two rows negates the determinant\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"The reduced row echelon form, pivot columns, kernel basis and image basis agree entry for entry with the BigRational instance of ExactRowReduction (uniqueness of the reduced form makes this a differential test)\",\n      \"solve agrees with solve_in_image on verdict and particular solution; determinant agrees with bareiss_determinant on integer matrices\",\n      \"An InconsistencyCertificate replays through verify without trusting the solver\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"exact_field::elimination\",\n    \"symbols\": [\n      \"RowReduced\",\n      \"InconsistencyCertificate\",\n      \"LinearSolution\",\n      \"rref\",\n      \"rank\",\n      \"kernel_basis\",\n      \"left_kernel_basis\",\n      \"image_basis\",\n      \"solve\",\n      \"inverse\",\n      \"determinant\",\n      \"is_invertible\"\n    ],\n    \"required_tests\": [\n      \"a_non_field_scalar_is_refused_not_miscomputed\",\n      \"inverse_refuses_singular_matrices_with_their_rank_and_non_square_input\",\n      \"a_singular_refusal_is_certified_by_a_kernel_vector_and_a_zero_determinant\",\n      \"solve_inconsistent_yields_a_replayable_certificate\",\n      \"a_certificate_failing_in_a_single_column_is_rejected\",\n      \"solve_handles_empty_shapes_and_refuses_wrong_length\",\n      \"reduction_budget_boundaries_are_inclusive\",\n      \"solve_budget_covers_the_certificate_path\",\n      \"the_kernel_budget_charges_the_output_not_just_the_input\",\n      \"left_kernel_budget_charges_the_output_size\",\n      \"is_invertible_agrees_with_a_nonzero_determinant\"\n    ]\n  },\n  \"negative_tests\": [\n    \"a scalar with a nonzero element that has no inverse must be refused as ScalarContract, never produce a rank, kernel or determinant\",\n    \"inverse of a singular matrix must be refused as Singular carrying the true rank, the refusal must be certified by a nonzero kernel vector with A x = 0 and a zero determinant, and inverse or determinant of a non-square matrix must be refused as NotSquare\",\n    \"an inconsistent system must yield a certificate that verify accepts, and a tampered or unrelated certificate must be rejected, including one that fails in a single column only\",\n    \"a right-hand side whose length is not the row count must be refused with both lengths\",\n    \"an operation whose documented worst-case bound exceeds the budget must be refused before any scalar work, and a bound equal to the limit must be accepted\",\n    \"a budget that covers only the success path of solve but not its certificate path must be refused\",\n    \"the kernel and left-kernel budgets must charge the output size, not only the input size\",\n    \"is_invertible of a non-square matrix must be refused rather than answer false\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Exact elimination over any field of the scalar tower: reduced row echelon form, rank, right kernel, left kernel, column-space basis, the linear system A x = b with a replayable refusal certificate, the inverse and the determinant. It removes the restriction of the pre-existing elimination to Rational64 and BigRational, so the same algorithms serve Q(i), cyclotomic fields, finite fields and real quadratic fields, and it cross-validates against the pre-existing elimination on BigRational.\",\n    \"non_role\": [\n      \"Numerical linear algebra and conditioning (see eigen and gram_schmidt for the float tier)\",\n      \"Fraction-free integer elimination (determinant::bareiss_determinant is the integer route)\",\n      \"Smith normal form and module structure over rings\",\n      \"Iterative or sparse solvers (solvers belong to omega_solvers)\"\n    ]\n  },\n  \"wip\": [\n    \"No Lean statement of the elimination laws exists; the YAML to Lean to Rust chain for this contract is open\",\n    \"Pivots are the first nonzero entry, which is exact but can grow coefficient size over fields with large representations; no pivoting strategy for size is implemented\",\n    \"The certificate path of solve runs a second elimination (of the dual system [Aᵀ; bᵀ] y = e) instead of tracking row operations in the first\",\n    \"Kernel and image bases are returned as Vec<Vec<F>> rather than the sealed RawSubspaceBasis of the Rational64/BigRational route\",\n    \"The existing ExactRowReduction trait remains sealed to Rational64 and BigRational; it is not generalised here\"\n  ]\n}\n",
+      "sha256": "6c593d89d3fb0cc044a7655c718c84a5f19f3f1558e123f0336577c969a675e4"
+    },
+    {
+      "bytes": 1721,
       "original_paths": [
-        "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py\",\n    \"sha256\": \"c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py\",\n      \"sha256\": \"c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a\",\n  \"subject\": \"code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py",
+          "sha256": "c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py",
+            "sha256": "c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a",
+        "subject": "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py"
+      },
+      "sha256": "ccf400861105c1e3a28f494692dabf68df69dc45dc2159c500b82b9156f1ada6"
     }
   ],
+  "current_contract": "ccf400861105c1e3a28f494692dabf68df69dc45dc2159c500b82b9156f1ada6",
+  "current_scoring": "15cf0ce70d5ad026d503015d1b4365b722d46922830cfe310d7156756543693c",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0.contract.yaml": "711659259e48b93d66582bcb2ccba335f052d28865cd5fa66d8ae0c9f022e031"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "b38206da2b2c3612d50e282d7df92089f9144661c98a5d084dab7188071e73cb",
       "bytes": 2231,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py\",\n    \"sha256\": \"c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-field-elimination-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py",
           "sha256": "c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:algebra:math-field-elimination-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -318,40 +255,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "b38206da2b2c3612d50e282d7df92089f9144661c98a5d084dab7188071e73cb"
+    },
+    {
+      "bytes": 1674,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py\",\n    \"sha256\": \"c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py\",\n      \"sha256\": \"c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py",
+          "sha256": "c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py",
+            "sha256": "c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.py\",\n    \"sha256\": \"c737fab058e5fe13da36059913a6404bba004c254ce65b05cf1de8701b63f37a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-field-elimination-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "15cf0ce70d5ad026d503015d1b4365b722d46922830cfe310d7156756543693c"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/algebra/math_field_elimination_v0_1_0.contract.yaml": "711659259e48b93d66582bcb2ccba335f052d28865cd5fa66d8ae0c9f022e031"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

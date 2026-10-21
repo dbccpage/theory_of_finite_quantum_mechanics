@@ -1,146 +1,72 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/higher_functor.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/higher_functor.rs",
-      "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14",
-      "language": "Rust"
+      "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact retained from initial record; discrete name/key membership, borrowed equality and ordered diagnostics only, no floating arithmetic, narrowing or hidden numeric extension.",
-      "domain": "Unchecked publicly mutable map/pair records, potentially missing, extra, duplicated image or nonsensical labels; caller-supplied source/target boundary tables and target name set.",
-      "behavior": "Exact finite input-row presence precedence and independent endpoint/name membership diagnostics. No generic trait implementation is certified. Neither membership of both names nor a forward/inverse pair establishes invertibility, coherence or 2-functor admission."
-    },
-    "operations": {
-      "new": {
-        "line": 166,
-        "signature": "pub fn new(name: &str, source: &str, target: &str) -> Self",
-        "obligation": "Own exact supplied name/source/target names and initialize three independent empty BTreeMaps. No admission, source/target law binding, nonblank names or full domain requirement."
-      },
-      "on_ob": {
-        "line": 177,
-        "signature": "pub fn on_ob(&self, a: &str) -> Option<&str>",
-        "obligation": "Exact object_map lookup by borrowed key, returning a borrowed string or None. Do not route through either morphism map."
-      },
-      "on_1": {
-        "line": 181,
-        "signature": "pub fn on_1(&self, f: &str) -> Option<&str>",
-        "obligation": "Exact one_morphism_map lookup by borrowed key, returning a borrowed string or None."
-      },
-      "on_2": {
-        "line": 185,
-        "signature": "pub fn on_2(&self, alpha: &str) -> Option<&str>",
-        "obligation": "Exact two_morphism_map lookup by borrowed key, returning a borrowed string or None."
-      },
-      "check_two_functor_one_boundaries": {
-        "line": 220,
-        "signature": "pub fn check_two_functor_one_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_one_boundaries: &BTreeMap<String, (String, String)>,\n    target_one_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String>",
-        "obligation": "Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously."
-      },
-      "check_two_functor_two_boundaries": {
-        "line": 275,
-        "signature": "pub fn check_two_functor_two_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_two_boundaries: &BTreeMap<String, (String, String)>,\n    target_two_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String>",
-        "obligation": "Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged."
-      },
-      "check_pseudo_coherence_cells_defined": {
-        "line": 331,
-        "signature": "pub fn check_pseudo_coherence_cells_defined(\n    pseudo: &DeclaredFinitePseudoFunctor,\n    target_two_morphisms: &std::collections::BTreeSet<String>,\n) -> Vec<String>",
-        "obligation": "For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate."
-      }
-    },
-    "invariants": [
-      "Own exact supplied name/source/target names and initialize three independent empty BTreeMaps. No admission, source/target law binding, nonblank names or full domain requirement.",
-      "Exact object_map lookup by borrowed key, returning a borrowed string or None. Do not route through either morphism map.",
-      "Exact one_morphism_map lookup by borrowed key, returning a borrowed string or None.",
-      "Exact two_morphism_map lookup by borrowed key, returning a borrowed string or None.",
-      "Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.",
-      "Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.",
-      "For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "check_two_functor_one_boundaries": "Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.",
-      "check_two_functor_two_boundaries": "Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.",
-      "check_pseudo_coherence_cells_defined": "For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate.",
-      "runtime": "Only ordinary format! diagnostic generation and standard structural derives. Missing data/mismatch are Vec<String> observations, with no own panic/indexing/unchecked arithmetic or callbacks in these checks. Queries borrow maps; no mutation, partial output object or stored certification occurs. Allocator/format/std/compiler behavior remains runtime trust. No total allocation/termination for arbitrary trait implementations or rollback guarantee."
-    },
-    "trust_boundary": {
-      "runtime": "rustc/std String/BTreeMap/BTreeSet order/equality/lookup, format and structural derives/allocator. The concrete raw diagnostics execute no external trait method or user callback; required trait signatures are caller contracts.",
-      "formal": "Pinned clean prepared Lean/Mathlib, standard foundational axioms; pure flags model presence precedence, independent endpoint mismatches, pair membership and ordered map-of-pairs append. Symbol lookup, exact Unicode diagnostic formatting and Rust representation refinement are separate source/native evidence; no compiler extraction."
-    },
-    "assurance_limits": [
-      "L2 standard raw map records and finite diagnostic loops; no admitted higher functor, inverse laws, pentagon, triangle, complete domains or mathematical 2-category certificate. Empty supplied rows/maps pass vacuously; all public record fields remain unchecked.",
-      "A is scoped source/model/native evidence, not A+, whole-workspace or external application validation, expanded MIR, allocator totality or generic trait purity/termination. Standard numeric payload types in unchecked generic records are opaque transport; no arithmetic admission is claimed.",
-      "All production/trait/data/test noncomment lines are unchanged; only misleading raw witness/check wording is narrowed. Contracts remain pending."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/higher_functor.score.yaml",
-        "sha256": "bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1"
+        "path": "code/rust/src/category_theory/higher_functor.rs",
+        "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14",
+    "subject": "code/rust/src/category_theory/higher_functor.rs"
   },
-  "current_contract": "aaecf735eedcb07aafe8a16131bc9bda01a65e2ee95a57e021cadc3fab08dbaa",
-  "current_scoring": "d3f92c429434e4dcbde17814b80ddb99fcc7c49921a64f9ab7dbad2b79755a47",
   "contract_history": [
     {
-      "sha256": "aaecf735eedcb07aafe8a16131bc9bda01a65e2ee95a57e021cadc3fab08dbaa",
       "bytes": 10018,
+      "original_paths": [
+        "code/rust/src/category_theory/higher_functor.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/higher_functor.rs\",\n    \"sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained from initial record; discrete name/key membership, borrowed equality and ordered diagnostics only, no floating arithmetic, narrowing or hidden numeric extension.\",\n    \"domain\": \"Unchecked publicly mutable map/pair records, potentially missing, extra, duplicated image or nonsensical labels; caller-supplied source/target boundary tables and target name set.\",\n    \"behavior\": \"Exact finite input-row presence precedence and independent endpoint/name membership diagnostics. No generic trait implementation is certified. Neither membership of both names nor a forward/inverse pair establishes invertibility, coherence or 2-functor admission.\"\n  },\n  \"operations\": {\n    \"new\": {\n      \"line\": 166,\n      \"signature\": \"pub fn new(name: &str, source: &str, target: &str) -> Self\",\n      \"obligation\": \"Own exact supplied name/source/target names and initialize three independent empty BTreeMaps. No admission, source/target law binding, nonblank names or full domain requirement.\"\n    },\n    \"on_ob\": {\n      \"line\": 177,\n      \"signature\": \"pub fn on_ob(&self, a: &str) -> Option<&str>\",\n      \"obligation\": \"Exact object_map lookup by borrowed key, returning a borrowed string or None. Do not route through either morphism map.\"\n    },\n    \"on_1\": {\n      \"line\": 181,\n      \"signature\": \"pub fn on_1(&self, f: &str) -> Option<&str>\",\n      \"obligation\": \"Exact one_morphism_map lookup by borrowed key, returning a borrowed string or None.\"\n    },\n    \"on_2\": {\n      \"line\": 185,\n      \"signature\": \"pub fn on_2(&self, alpha: &str) -> Option<&str>\",\n      \"obligation\": \"Exact two_morphism_map lookup by borrowed key, returning a borrowed string or None.\"\n    },\n    \"check_two_functor_one_boundaries\": {\n      \"line\": 220,\n      \"signature\": \"pub fn check_two_functor_one_boundaries(\\n    functor: &DeclaredFiniteTwoFunctor,\\n    source_one_boundaries: &BTreeMap<String, (String, String)>,\\n    target_one_boundaries: &BTreeMap<String, (String, String)>,\\n) -> Vec<String>\",\n      \"obligation\": \"Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.\"\n    },\n    \"check_two_functor_two_boundaries\": {\n      \"line\": 275,\n      \"signature\": \"pub fn check_two_functor_two_boundaries(\\n    functor: &DeclaredFiniteTwoFunctor,\\n    source_two_boundaries: &BTreeMap<String, (String, String)>,\\n    target_two_boundaries: &BTreeMap<String, (String, String)>,\\n) -> Vec<String>\",\n      \"obligation\": \"Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.\"\n    },\n    \"check_pseudo_coherence_cells_defined\": {\n      \"line\": 331,\n      \"signature\": \"pub fn check_pseudo_coherence_cells_defined(\\n    pseudo: &DeclaredFinitePseudoFunctor,\\n    target_two_morphisms: &std::collections::BTreeSet<String>,\\n) -> Vec<String>\",\n      \"obligation\": \"For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate.\"\n    }\n  },\n  \"invariants\": [\n    \"Own exact supplied name/source/target names and initialize three independent empty BTreeMaps. No admission, source/target law binding, nonblank names or full domain requirement.\",\n    \"Exact object_map lookup by borrowed key, returning a borrowed string or None. Do not route through either morphism map.\",\n    \"Exact one_morphism_map lookup by borrowed key, returning a borrowed string or None.\",\n    \"Exact two_morphism_map lookup by borrowed key, returning a borrowed string or None.\",\n    \"Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.\",\n    \"Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.\",\n    \"For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate.\"\n  ],\n  \"failure_paths\": {\n    \"check_two_functor_one_boundaries\": \"Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.\",\n    \"check_two_functor_two_boundaries\": \"Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.\",\n    \"check_pseudo_coherence_cells_defined\": \"For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate.\",\n    \"runtime\": \"Only ordinary format! diagnostic generation and standard structural derives. Missing data/mismatch are Vec<String> observations, with no own panic/indexing/unchecked arithmetic or callbacks in these checks. Queries borrow maps; no mutation, partial output object or stored certification occurs. Allocator/format/std/compiler behavior remains runtime trust. No total allocation/termination for arbitrary trait implementations or rollback guarantee.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"rustc/std String/BTreeMap/BTreeSet order/equality/lookup, format and structural derives/allocator. The concrete raw diagnostics execute no external trait method or user callback; required trait signatures are caller contracts.\",\n    \"formal\": \"Pinned clean prepared Lean/Mathlib, standard foundational axioms; pure flags model presence precedence, independent endpoint mismatches, pair membership and ordered map-of-pairs append. Symbol lookup, exact Unicode diagnostic formatting and Rust representation refinement are separate source/native evidence; no compiler extraction.\"\n  },\n  \"assurance_limits\": [\n    \"L2 standard raw map records and finite diagnostic loops; no admitted higher functor, inverse laws, pentagon, triangle, complete domains or mathematical 2-category certificate. Empty supplied rows/maps pass vacuously; all public record fields remain unchecked.\",\n    \"A is scoped source/model/native evidence, not A+, whole-workspace or external application validation, expanded MIR, allocator totality or generic trait purity/termination. Standard numeric payload types in unchecked generic records are opaque transport; no arithmetic admission is claimed.\",\n    \"All production/trait/data/test noncomment lines are unchanged; only misleading raw witness/check wording is narrowed. Contracts remain pending.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/higher_functor.score.yaml\",\n      \"sha256\": \"bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/higher_functor.rs",
-          "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14",
-          "language": "Rust"
+          "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "L2 standard raw map records and finite diagnostic loops; no admitted higher functor, inverse laws, pentagon, triangle, complete domains or mathematical 2-category certificate. Empty supplied rows/maps pass vacuously; all public record fields remain unchecked.",
+          "A is scoped source/model/native evidence, not A+, whole-workspace or external application validation, expanded MIR, allocator totality or generic trait purity/termination. Standard numeric payload types in unchecked generic records are opaque transport; no arithmetic admission is claimed.",
+          "All production/trait/data/test noncomment lines are unchanged; only misleading raw witness/check wording is narrowed. Contracts remain pending."
+        ],
+        "failure_paths": {
+          "check_pseudo_coherence_cells_defined": "For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate.",
+          "check_two_functor_one_boundaries": "Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.",
+          "check_two_functor_two_boundaries": "Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.",
+          "runtime": "Only ordinary format! diagnostic generation and standard structural derives. Missing data/mismatch are Vec<String> observations, with no own panic/indexing/unchecked arithmetic or callbacks in these checks. Queries borrow maps; no mutation, partial output object or stored certification occurs. Allocator/format/std/compiler behavior remains runtime trust. No total allocation/termination for arbitrary trait implementations or rollback guarantee."
+        },
         "formal_specification": {
-          "profile": "Exact retained from initial record; discrete name/key membership, borrowed equality and ordered diagnostics only, no floating arithmetic, narrowing or hidden numeric extension.",
+          "behavior": "Exact finite input-row presence precedence and independent endpoint/name membership diagnostics. No generic trait implementation is certified. Neither membership of both names nor a forward/inverse pair establishes invertibility, coherence or 2-functor admission.",
           "domain": "Unchecked publicly mutable map/pair records, potentially missing, extra, duplicated image or nonsensical labels; caller-supplied source/target boundary tables and target name set.",
-          "behavior": "Exact finite input-row presence precedence and independent endpoint/name membership diagnostics. No generic trait implementation is certified. Neither membership of both names nor a forward/inverse pair establishes invertibility, coherence or 2-functor admission."
-        },
-        "operations": {
-          "new": {
-            "line": 166,
-            "signature": "pub fn new(name: &str, source: &str, target: &str) -> Self",
-            "obligation": "Own exact supplied name/source/target names and initialize three independent empty BTreeMaps. No admission, source/target law binding, nonblank names or full domain requirement."
-          },
-          "on_ob": {
-            "line": 177,
-            "signature": "pub fn on_ob(&self, a: &str) -> Option<&str>",
-            "obligation": "Exact object_map lookup by borrowed key, returning a borrowed string or None. Do not route through either morphism map."
-          },
-          "on_1": {
-            "line": 181,
-            "signature": "pub fn on_1(&self, f: &str) -> Option<&str>",
-            "obligation": "Exact one_morphism_map lookup by borrowed key, returning a borrowed string or None."
-          },
-          "on_2": {
-            "line": 185,
-            "signature": "pub fn on_2(&self, alpha: &str) -> Option<&str>",
-            "obligation": "Exact two_morphism_map lookup by borrowed key, returning a borrowed string or None."
-          },
-          "check_two_functor_one_boundaries": {
-            "line": 220,
-            "signature": "pub fn check_two_functor_one_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_one_boundaries: &BTreeMap<String, (String, String)>,\n    target_one_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String>",
-            "obligation": "Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously."
-          },
-          "check_two_functor_two_boundaries": {
-            "line": 275,
-            "signature": "pub fn check_two_functor_two_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_two_boundaries: &BTreeMap<String, (String, String)>,\n    target_two_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String>",
-            "obligation": "Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged."
-          },
-          "check_pseudo_coherence_cells_defined": {
-            "line": 331,
-            "signature": "pub fn check_pseudo_coherence_cells_defined(\n    pseudo: &DeclaredFinitePseudoFunctor,\n    target_two_morphisms: &std::collections::BTreeSet<String>,\n) -> Vec<String>",
-            "obligation": "For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate."
-          }
+          "profile": "Exact retained from initial record; discrete name/key membership, borrowed equality and ordered diagnostics only, no floating arithmetic, narrowing or hidden numeric extension."
         },
         "invariants": [
           "Own exact supplied name/source/target names and initialize three independent empty BTreeMaps. No admission, source/target law binding, nonblank names or full domain requirement.",
@@ -151,51 +77,179 @@
           "Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.",
           "For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate."
         ],
-        "failure_paths": {
-          "check_two_functor_one_boundaries": "Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.",
-          "check_two_functor_two_boundaries": "Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.",
-          "check_pseudo_coherence_cells_defined": "For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate.",
-          "runtime": "Only ordinary format! diagnostic generation and standard structural derives. Missing data/mismatch are Vec<String> observations, with no own panic/indexing/unchecked arithmetic or callbacks in these checks. Queries borrow maps; no mutation, partial output object or stored certification occurs. Allocator/format/std/compiler behavior remains runtime trust. No total allocation/termination for arbitrary trait implementations or rollback guarantee."
+        "open_obligations": [],
+        "operations": {
+          "check_pseudo_coherence_cells_defined": {
+            "line": 331,
+            "obligation": "For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate.",
+            "signature": "pub fn check_pseudo_coherence_cells_defined(\n    pseudo: &DeclaredFinitePseudoFunctor,\n    target_two_morphisms: &std::collections::BTreeSet<String>,\n) -> Vec<String>"
+          },
+          "check_two_functor_one_boundaries": {
+            "line": 220,
+            "obligation": "Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.",
+            "signature": "pub fn check_two_functor_one_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_one_boundaries: &BTreeMap<String, (String, String)>,\n    target_one_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String>"
+          },
+          "check_two_functor_two_boundaries": {
+            "line": 275,
+            "obligation": "Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.",
+            "signature": "pub fn check_two_functor_two_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_two_boundaries: &BTreeMap<String, (String, String)>,\n    target_two_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String>"
+          },
+          "new": {
+            "line": 166,
+            "obligation": "Own exact supplied name/source/target names and initialize three independent empty BTreeMaps. No admission, source/target law binding, nonblank names or full domain requirement.",
+            "signature": "pub fn new(name: &str, source: &str, target: &str) -> Self"
+          },
+          "on_1": {
+            "line": 181,
+            "obligation": "Exact one_morphism_map lookup by borrowed key, returning a borrowed string or None.",
+            "signature": "pub fn on_1(&self, f: &str) -> Option<&str>"
+          },
+          "on_2": {
+            "line": 185,
+            "obligation": "Exact two_morphism_map lookup by borrowed key, returning a borrowed string or None.",
+            "signature": "pub fn on_2(&self, alpha: &str) -> Option<&str>"
+          },
+          "on_ob": {
+            "line": 177,
+            "obligation": "Exact object_map lookup by borrowed key, returning a borrowed string or None. Do not route through either morphism map.",
+            "signature": "pub fn on_ob(&self, a: &str) -> Option<&str>"
+          }
         },
-        "trust_boundary": {
-          "runtime": "rustc/std String/BTreeMap/BTreeSet order/equality/lookup, format and structural derives/allocator. The concrete raw diagnostics execute no external trait method or user callback; required trait signatures are caller contracts.",
-          "formal": "Pinned clean prepared Lean/Mathlib, standard foundational axioms; pure flags model presence precedence, independent endpoint mismatches, pair membership and ordered map-of-pairs append. Symbol lookup, exact Unicode diagnostic formatting and Rust representation refinement are separate source/native evidence; no compiler extraction."
-        },
-        "assurance_limits": [
-          "L2 standard raw map records and finite diagnostic loops; no admitted higher functor, inverse laws, pentagon, triangle, complete domains or mathematical 2-category certificate. Empty supplied rows/maps pass vacuously; all public record fields remain unchecked.",
-          "A is scoped source/model/native evidence, not A+, whole-workspace or external application validation, expanded MIR, allocator totality or generic trait purity/termination. Standard numeric payload types in unchecked generic records are opaque transport; no arithmetic admission is claimed.",
-          "All production/trait/data/test noncomment lines are unchanged; only misleading raw witness/check wording is narrowed. Contracts remain pending."
-        ],
         "review_evidence": [
           {
             "path": "code/rust/src/category_theory/higher_functor.score.yaml",
             "sha256": "bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1"
           }
         ],
-        "open_obligations": []
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": {
+          "formal": "Pinned clean prepared Lean/Mathlib, standard foundational axioms; pure flags model presence precedence, independent endpoint mismatches, pair membership and ordered map-of-pairs append. Symbol lookup, exact Unicode diagnostic formatting and Rust representation refinement are separate source/native evidence; no compiler extraction.",
+          "runtime": "rustc/std String/BTreeMap/BTreeSet order/equality/lookup, format and structural derives/allocator. The concrete raw diagnostics execute no external trait method or user callback; required trait signatures are caller contracts."
+        }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/higher_functor.rs\",\n    \"sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained from initial record; discrete name/key membership, borrowed equality and ordered diagnostics only, no floating arithmetic, narrowing or hidden numeric extension.\",\n    \"domain\": \"Unchecked publicly mutable map/pair records, potentially missing, extra, duplicated image or nonsensical labels; caller-supplied source/target boundary tables and target name set.\",\n    \"behavior\": \"Exact finite input-row presence precedence and independent endpoint/name membership diagnostics. No generic trait implementation is certified. Neither membership of both names nor a forward/inverse pair establishes invertibility, coherence or 2-functor admission.\"\n  },\n  \"operations\": {\n    \"new\": {\n      \"line\": 166,\n      \"signature\": \"pub fn new(name: &str, source: &str, target: &str) -> Self\",\n      \"obligation\": \"Own exact supplied name/source/target names and initialize three independent empty BTreeMaps. No admission, source/target law binding, nonblank names or full domain requirement.\"\n    },\n    \"on_ob\": {\n      \"line\": 177,\n      \"signature\": \"pub fn on_ob(&self, a: &str) -> Option<&str>\",\n      \"obligation\": \"Exact object_map lookup by borrowed key, returning a borrowed string or None. Do not route through either morphism map.\"\n    },\n    \"on_1\": {\n      \"line\": 181,\n      \"signature\": \"pub fn on_1(&self, f: &str) -> Option<&str>\",\n      \"obligation\": \"Exact one_morphism_map lookup by borrowed key, returning a borrowed string or None.\"\n    },\n    \"on_2\": {\n      \"line\": 185,\n      \"signature\": \"pub fn on_2(&self, alpha: &str) -> Option<&str>\",\n      \"obligation\": \"Exact two_morphism_map lookup by borrowed key, returning a borrowed string or None.\"\n    },\n    \"check_two_functor_one_boundaries\": {\n      \"line\": 220,\n      \"signature\": \"pub fn check_two_functor_one_boundaries(\\n    functor: &DeclaredFiniteTwoFunctor,\\n    source_one_boundaries: &BTreeMap<String, (String, String)>,\\n    target_one_boundaries: &BTreeMap<String, (String, String)>,\\n) -> Vec<String>\",\n      \"obligation\": \"Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.\"\n    },\n    \"check_two_functor_two_boundaries\": {\n      \"line\": 275,\n      \"signature\": \"pub fn check_two_functor_two_boundaries(\\n    functor: &DeclaredFiniteTwoFunctor,\\n    source_two_boundaries: &BTreeMap<String, (String, String)>,\\n    target_two_boundaries: &BTreeMap<String, (String, String)>,\\n) -> Vec<String>\",\n      \"obligation\": \"Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.\"\n    },\n    \"check_pseudo_coherence_cells_defined\": {\n      \"line\": 331,\n      \"signature\": \"pub fn check_pseudo_coherence_cells_defined(\\n    pseudo: &DeclaredFinitePseudoFunctor,\\n    target_two_morphisms: &std::collections::BTreeSet<String>,\\n) -> Vec<String>\",\n      \"obligation\": \"For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate.\"\n    }\n  },\n  \"invariants\": [\n    \"Own exact supplied name/source/target names and initialize three independent empty BTreeMaps. No admission, source/target law binding, nonblank names or full domain requirement.\",\n    \"Exact object_map lookup by borrowed key, returning a borrowed string or None. Do not route through either morphism map.\",\n    \"Exact one_morphism_map lookup by borrowed key, returning a borrowed string or None.\",\n    \"Exact two_morphism_map lookup by borrowed key, returning a borrowed string or None.\",\n    \"Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.\",\n    \"Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.\",\n    \"For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate.\"\n  ],\n  \"failure_paths\": {\n    \"check_two_functor_one_boundaries\": \"Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously.\",\n    \"check_two_functor_two_boundaries\": \"Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged.\",\n    \"check_pseudo_coherence_cells_defined\": \"For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate.\",\n    \"runtime\": \"Only ordinary format! diagnostic generation and standard structural derives. Missing data/mismatch are Vec<String> observations, with no own panic/indexing/unchecked arithmetic or callbacks in these checks. Queries borrow maps; no mutation, partial output object or stored certification occurs. Allocator/format/std/compiler behavior remains runtime trust. No total allocation/termination for arbitrary trait implementations or rollback guarantee.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"rustc/std String/BTreeMap/BTreeSet order/equality/lookup, format and structural derives/allocator. The concrete raw diagnostics execute no external trait method or user callback; required trait signatures are caller contracts.\",\n    \"formal\": \"Pinned clean prepared Lean/Mathlib, standard foundational axioms; pure flags model presence precedence, independent endpoint mismatches, pair membership and ordered map-of-pairs append. Symbol lookup, exact Unicode diagnostic formatting and Rust representation refinement are separate source/native evidence; no compiler extraction.\"\n  },\n  \"assurance_limits\": [\n    \"L2 standard raw map records and finite diagnostic loops; no admitted higher functor, inverse laws, pentagon, triangle, complete domains or mathematical 2-category certificate. Empty supplied rows/maps pass vacuously; all public record fields remain unchecked.\",\n    \"A is scoped source/model/native evidence, not A+, whole-workspace or external application validation, expanded MIR, allocator totality or generic trait purity/termination. Standard numeric payload types in unchecked generic records are opaque transport; no arithmetic admission is claimed.\",\n    \"All production/trait/data/test noncomment lines are unchanged; only misleading raw witness/check wording is narrowed. Contracts remain pending.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/higher_functor.score.yaml\",\n      \"sha256\": \"bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/higher_functor.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
+      "sha256": "aaecf735eedcb07aafe8a16131bc9bda01a65e2ee95a57e021cadc3fab08dbaa"
+    },
     {
-      "sha256": "bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1",
-      "bytes": 5864,
+      "bytes": 1620,
+      "original_paths": [
+        "code/rust/src/category_theory/higher_functor.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/higher_functor.rs\",\n    \"sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/higher_functor.rs\",\n      \"sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\",\n  \"subject\": \"code/rust/src/category_theory/higher_functor.rs\"\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "artifact": {
-          "path": "code/rust/src/category_theory/higher_functor.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/higher_functor.rs",
           "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
         },
-        "profile": "Exact",
-        "level": "L2",
-        "level_basis": "Raw 2-functor map records, signature contracts and supplied boundary/name-membership diagnostics; no admitted higher functor or inverse/coherence certificate.",
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/higher_functor.rs",
+            "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14",
+        "subject": "code/rust/src/category_theory/higher_functor.rs"
+      },
+      "sha256": "500e36068116bd042cd9f962db16fcb527c159cb6609fc83655ba7eb591ea065"
+    }
+  ],
+  "current_contract": "500e36068116bd042cd9f962db16fcb527c159cb6609fc83655ba7eb591ea065",
+  "current_scoring": "897d2184534a80deaf683b20f3ec25e31c4484e903ac3038cc6501b5d8c63674",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/higher_functor.rs.contract.yaml": "aaecf735eedcb07aafe8a16131bc9bda01a65e2ee95a57e021cadc3fab08dbaa",
+    "code/rust/src/category_theory/higher_functor.rs.scoring.yaml": "1cce506a13e292246d46c778a3aa586771b8cf43e57ca794b9196215265862fc",
+    "code/rust/src/category_theory/higher_functor.score.yaml": "bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1",
+    "evidence/quality/category_homology/resume-20261019/higher-functor-previous/higher_functor.score.yaml": "887667418eb4aa46772cae81dd65462e3b7964e5c53492963d0536bcdce86168"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 5864,
+      "original_paths": [
+        "code/rust/src/category_theory/higher_functor.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/higher_functor.rs\"\n  language: \"Rust\"\n  sha256: \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\"\nprofile: \"Exact\"\nlevel: \"L2\"\nlevel_basis: \"Raw 2-functor map records, signature contracts and supplied boundary/name-membership diagnostics; no admitted higher functor or inverse/coherence certificate.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T17:23:26.127223+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:higher_functor\"\n  description: \"Higher-Category Functors \\u2014 Spec Section 10.  Three strictness levels: Strict 2-Functor:  preserves composition and identity by equality. Pseudofunctor:     preserves up to invertible 2-cells (coherence required). Lax Functor:       preserves up to possibly non-invertible 2-cells.  Direction convention (lax, not oplax): Composition:  F(g) \\u2218 F(f) \\u21d2 F(g \\u2218 f) Unit:         id_{F(A)} \\u21d2 F(id_A)  The reverse (oplax) direction would be: Composition:  F(g \\u2218 f) \\u21d2 F(g) \\u2218 F(f) Unit:         F(id_A) \\u21d2 id_{F(A)} This module uses the lax convention exclusively.  Boundary preservation (validation obligation, not compiler-enforced): For 1-cells:  src\\u2081(F(f)) = F(src\\u2081(f)),  tgt\\u2081(F(f)) = F(tgt\\u2081(f)) For 2-cells:  src\\u2082(F(\\u03b1)) = F(src\\u2082(\\u03b1)),  tgt\\u2082(F(\\u03b1)) = F(tgt\\u2082(\\u03b1))  Delivered checks inspect supplied boundary tables and coherence-name membership. They do not admit a 2-functor, inverse laws, coherence or complete map domains. Empty supplied tables pass vacuously. Trait names express caller obligations; public records and forward/inverse pairs carry no checked certificate.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T172037Z/baseline.json\", \"sha256\": \"73ff893a6a510aa70a96428409d0543f4a32b2d4d7ca521e05e26b5138f3a347\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T172037Z/summary.json\", \"sha256\": \"edc56e6485b9bdc5b93839a7564ef5a81fced9bcb9e7903b9ce30a4c935044b1\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T172037Z/mutations.json\", \"sha256\": \"eb74face9e3c3a22ec6587576641723b861855b664dac9f917765183f8c06335\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T172138Z-metrics/receipt.json\", \"sha256\": \"451b51334e94a5129a5cc509733db7823232dcc49d4bd9ade091e0ce47a06299\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T172037Z/dependency_receipt.json\", \"sha256\": \"d965189c3b7a19b39c3acd2529cf831b7e01483d48143576d9632a901a4a3e86\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/higher_functor.json\", \"sha256\": \"91693a3a7225fe074f16bea304bb36a78b2edbd2d246c47a4c1e08c0430129de\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 26\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 459\n  parsed_production_functions: 7\n  max_production_ccn: 8\n  cognitive_complexity_upper_bound: 13\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L2 standard raw map records and finite diagnostic loops; no admitted higher functor, inverse laws, pentagon, triangle, complete domains or mathematical 2-category certificate. Empty supplied rows/maps pass vacuously; all public record fields remain unchecked.\"\n  - \"A is scoped source/model/native evidence, not A+, whole-workspace or external application validation, expanded MIR, allocator totality or generic trait purity/termination. Standard numeric payload types in unchecked generic records are opaque transport; no arithmetic admission is claimed.\"\n  - \"All production/trait/data/test noncomment lines are unchanged; only misleading raw witness/check wording is narrowed. Contracts remain pending.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
         "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/higher_functor.rs",
+          "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
+        },
+        "assurance_limits": [
+          "L2 standard raw map records and finite diagnostic loops; no admitted higher functor, inverse laws, pentagon, triangle, complete domains or mathematical 2-category certificate. Empty supplied rows/maps pass vacuously; all public record fields remain unchecked.",
+          "A is scoped source/model/native evidence, not A+, whole-workspace or external application validation, expanded MIR, allocator totality or generic trait purity/termination. Standard numeric payload types in unchecked generic records are opaque transport; no arithmetic admission is claimed.",
+          "All production/trait/data/test noncomment lines are unchanged; only misleading raw witness/check wording is narrowed. Contracts remain pending."
+        ],
+        "claim": {
+          "description": "Higher-Category Functors — Spec Section 10.  Three strictness levels: Strict 2-Functor:  preserves composition and identity by equality. Pseudofunctor:     preserves up to invertible 2-cells (coherence required). Lax Functor:       preserves up to possibly non-invertible 2-cells.  Direction convention (lax, not oplax): Composition:  F(g) ∘ F(f) ⇒ F(g ∘ f) Unit:         id_{F(A)} ⇒ F(id_A)  The reverse (oplax) direction would be: Composition:  F(g ∘ f) ⇒ F(g) ∘ F(f) Unit:         F(id_A) ⇒ id_{F(A)} This module uses the lax convention exclusively.  Boundary preservation (validation obligation, not compiler-enforced): For 1-cells:  src₁(F(f)) = F(src₁(f)),  tgt₁(F(f)) = F(tgt₁(f)) For 2-cells:  src₂(F(α)) = F(src₂(α)),  tgt₂(F(α)) = F(tgt₂(α))  Delivered checks inspect supplied boundary tables and coherence-name membership. They do not admit a 2-functor, inverse laws, coherence or complete map domains. Empty supplied tables pass vacuously. Trait names express caller obligations; public records and forward/inverse pairs carry no checked certificate.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:higher_functor"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T17:23:26.127223+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T172037Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "73ff893a6a510aa70a96428409d0543f4a32b2d4d7ca521e05e26b5138f3a347"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T172037Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "edc56e6485b9bdc5b93839a7564ef5a81fced9bcb9e7903b9ce30a4c935044b1"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T172037Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "eb74face9e3c3a22ec6587576641723b861855b664dac9f917765183f8c06335"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T172138Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "451b51334e94a5129a5cc509733db7823232dcc49d4bd9ade091e0ce47a06299"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T172037Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "d965189c3b7a19b39c3acd2529cf831b7e01483d48143576d9632a901a4a3e86"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/higher_functor.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "91693a3a7225fe074f16bea304bb36a78b2edbd2d246c47a4c1e08c0430129de"
+          }
+        ],
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -203,58 +257,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T17:23:26.127223+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:higher_functor",
-          "description": "Higher-Category Functors — Spec Section 10.  Three strictness levels: Strict 2-Functor:  preserves composition and identity by equality. Pseudofunctor:     preserves up to invertible 2-cells (coherence required). Lax Functor:       preserves up to possibly non-invertible 2-cells.  Direction convention (lax, not oplax): Composition:  F(g) ∘ F(f) ⇒ F(g ∘ f) Unit:         id_{F(A)} ⇒ F(id_A)  The reverse (oplax) direction would be: Composition:  F(g ∘ f) ⇒ F(g) ∘ F(f) Unit:         F(id_A) ⇒ id_{F(A)} This module uses the lax convention exclusively.  Boundary preservation (validation obligation, not compiler-enforced): For 1-cells:  src₁(F(f)) = F(src₁(f)),  tgt₁(F(f)) = F(tgt₁(f)) For 2-cells:  src₂(F(α)) = F(src₂(α)),  tgt₂(F(α)) = F(tgt₂(α))  Delivered checks inspect supplied boundary tables and coherence-name membership. They do not admit a 2-functor, inverse laws, coherence or complete map domains. Empty supplied tables pass vacuously. Trait names express caller obligations; public records and forward/inverse pairs carry no checked certificate.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Raw 2-functor map records, signature contracts and supplied boundary/name-membership diagnostics; no admitted higher functor or inverse/coherence certificate.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 26,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 13,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 8,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 7,
+          "physical_lines": 459,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T172037Z/baseline.json",
-            "sha256": "73ff893a6a510aa70a96428409d0543f4a32b2d4d7ca521e05e26b5138f3a347",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T172037Z/summary.json",
-            "sha256": "edc56e6485b9bdc5b93839a7564ef5a81fced9bcb9e7903b9ce30a4c935044b1",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T172037Z/mutations.json",
-            "sha256": "eb74face9e3c3a22ec6587576641723b861855b664dac9f917765183f8c06335",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T172138Z-metrics/receipt.json",
-            "sha256": "451b51334e94a5129a5cc509733db7823232dcc49d4bd9ade091e0ce47a06299",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T172037Z/dependency_receipt.json",
-            "sha256": "d965189c3b7a19b39c3acd2529cf831b7e01483d48143576d9632a901a4a3e86",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/higher_functor.json",
-            "sha256": "91693a3a7225fe074f16bea304bb36a78b2edbd2d246c47a4c1e08c0430129de",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -283,60 +319,37 @@
             "RR-25-24",
             "RR-26-25"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 26,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 459,
-          "parsed_production_functions": 7,
-          "max_production_ccn": 8,
-          "cognitive_complexity_upper_bound": 13,
-          "control_nesting": 2,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "L2 standard raw map records and finite diagnostic loops; no admitted higher functor, inverse laws, pentagon, triangle, complete domains or mathematical 2-category certificate. Empty supplied rows/maps pass vacuously; all public record fields remain unchecked.",
-          "A is scoped source/model/native evidence, not A+, whole-workspace or external application validation, expanded MIR, allocator totality or generic trait purity/termination. Standard numeric payload types in unchecked generic records are opaque transport; no arithmetic admission is claimed.",
-          "All production/trait/data/test noncomment lines are unchanged; only misleading raw witness/check wording is narrowed. Contracts remain pending."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/higher_functor.rs\"\n  language: \"Rust\"\n  sha256: \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\"\nprofile: \"Exact\"\nlevel: \"L2\"\nlevel_basis: \"Raw 2-functor map records, signature contracts and supplied boundary/name-membership diagnostics; no admitted higher functor or inverse/coherence certificate.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T17:23:26.127223+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:higher_functor\"\n  description: \"Higher-Category Functors \\u2014 Spec Section 10.  Three strictness levels: Strict 2-Functor:  preserves composition and identity by equality. Pseudofunctor:     preserves up to invertible 2-cells (coherence required). Lax Functor:       preserves up to possibly non-invertible 2-cells.  Direction convention (lax, not oplax): Composition:  F(g) \\u2218 F(f) \\u21d2 F(g \\u2218 f) Unit:         id_{F(A)} \\u21d2 F(id_A)  The reverse (oplax) direction would be: Composition:  F(g \\u2218 f) \\u21d2 F(g) \\u2218 F(f) Unit:         F(id_A) \\u21d2 id_{F(A)} This module uses the lax convention exclusively.  Boundary preservation (validation obligation, not compiler-enforced): For 1-cells:  src\\u2081(F(f)) = F(src\\u2081(f)),  tgt\\u2081(F(f)) = F(tgt\\u2081(f)) For 2-cells:  src\\u2082(F(\\u03b1)) = F(src\\u2082(\\u03b1)),  tgt\\u2082(F(\\u03b1)) = F(tgt\\u2082(\\u03b1))  Delivered checks inspect supplied boundary tables and coherence-name membership. They do not admit a 2-functor, inverse laws, coherence or complete map domains. Empty supplied tables pass vacuously. Trait names express caller obligations; public records and forward/inverse pairs carry no checked certificate.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T172037Z/baseline.json\", \"sha256\": \"73ff893a6a510aa70a96428409d0543f4a32b2d4d7ca521e05e26b5138f3a347\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T172037Z/summary.json\", \"sha256\": \"edc56e6485b9bdc5b93839a7564ef5a81fced9bcb9e7903b9ce30a4c935044b1\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T172037Z/mutations.json\", \"sha256\": \"eb74face9e3c3a22ec6587576641723b861855b664dac9f917765183f8c06335\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T172138Z-metrics/receipt.json\", \"sha256\": \"451b51334e94a5129a5cc509733db7823232dcc49d4bd9ade091e0ce47a06299\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T172037Z/dependency_receipt.json\", \"sha256\": \"d965189c3b7a19b39c3acd2529cf831b7e01483d48143576d9632a901a4a3e86\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/higher_functor.json\", \"sha256\": \"91693a3a7225fe074f16bea304bb36a78b2edbd2d246c47a4c1e08c0430129de\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 26\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 459\n  parsed_production_functions: 7\n  max_production_ccn: 8\n  cognitive_complexity_upper_bound: 13\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L2 standard raw map records and finite diagnostic loops; no admitted higher functor, inverse laws, pentagon, triangle, complete domains or mathematical 2-category certificate. Empty supplied rows/maps pass vacuously; all public record fields remain unchecked.\"\n  - \"A is scoped source/model/native evidence, not A+, whole-workspace or external application validation, expanded MIR, allocator totality or generic trait purity/termination. Standard numeric payload types in unchecked generic records are opaque transport; no arithmetic admission is claimed.\"\n  - \"All production/trait/data/test noncomment lines are unchanged; only misleading raw witness/check wording is narrowed. Contracts remain pending.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/higher_functor.score.yaml"
-      ]
+      "sha256": "bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1"
     },
     {
-      "sha256": "1cce506a13e292246d46c778a3aa586771b8cf43e57ca794b9196215265862fc",
       "bytes": 2323,
+      "original_paths": [
+        "code/rust/src/category_theory/higher_functor.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/higher_functor.rs\",\n    \"sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/higher_functor.score.yaml\",\n    \"sha256\": \"bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/higher_functor.rs.contract.yaml\",\n    \"sha256\": \"aaecf735eedcb07aafe8a16131bc9bda01a65e2ee95a57e021cadc3fab08dbaa\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\",\n    \"function_count\": 7,\n    \"maxima\": {\n      \"ccn\": 8,\n      \"cognitive_upper_bound\": 13,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/higher_functor.rs",
-          "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/higher_functor.rs",
+          "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/higher_functor.score.yaml",
+          "sha256": "bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/higher_functor.rs.contract.yaml",
+          "sha256": "aaecf735eedcb07aafe8a16131bc9bda01a65e2ee95a57e021cadc3fab08dbaa"
+        },
         "engineering_target": "A",
-        "level": "L2",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -344,30 +357,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/higher_functor.score.yaml",
-          "sha256": "bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/higher_functor.rs.contract.yaml",
-          "sha256": "aaecf735eedcb07aafe8a16131bc9bda01a65e2ee95a57e021cadc3fab08dbaa"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L2",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
         "structural_measurement": {
-          "source_sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14",
-          "function_count": 7,
-          "maxima": {
-            "ccn": 8,
-            "cognitive_upper_bound": 13,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -382,29 +381,69 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 7,
+          "maxima": {
+            "ccn": 8,
+            "cognitive_upper_bound": 13,
+            "control_nesting": 2
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/higher_functor.rs\",\n    \"sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/higher_functor.score.yaml\",\n    \"sha256\": \"bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/higher_functor.rs.contract.yaml\",\n    \"sha256\": \"aaecf735eedcb07aafe8a16131bc9bda01a65e2ee95a57e021cadc3fab08dbaa\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\",\n    \"function_count\": 7,\n    \"maxima\": {\n      \"ccn\": 8,\n      \"cognitive_upper_bound\": 13,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/higher_functor.rs.scoring.yaml"
-      ]
+      "sha256": "1cce506a13e292246d46c778a3aa586771b8cf43e57ca794b9196215265862fc"
     },
     {
-      "sha256": "887667418eb4aa46772cae81dd65462e3b7964e5c53492963d0536bcdce86168",
       "bytes": 4008,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/higher-functor-previous/higher_functor.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/higher_functor.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"712f28dd9621693c8e4ec0d7b3302465e0f721d00d5be9565f4d7289cbb09e3a\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"A\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:higher_functor\"\r\n  description: \"Higher-Category Functors \\u2014 Spec Section 10.  Three strictness levels: Strict 2-Functor:  preserves composition and identity by equality. Pseudofunctor:     preserves up to invertible 2-cells (coherence required). Lax Functor:       preserves up to possibly non-invertible 2-cells.  Direction convention (lax, not oplax): Composition:  F(g) \\u2218 F(f) \\u21d2 F(g \\u2218 f) Unit:         id_{F(A)} \\u21d2 F(id_A)  The reverse (oplax) direction would be: Composition:  F(g \\u2218 f) \\u21d2 F(g) \\u2218 F(f) Unit:         F(id_A) \\u21d2 id_{F(A)} This module uses the lax convention exclusively.  Boundary preservation (validation obligation, not compiler-enforced): For 1-cells:  src\\u2081(F(f)) = F(src\\u2081(f)),  tgt\\u2081(F(f)) = F(tgt\\u2081(f)) For 2-cells:  src\\u2082(F(\\u03b1)) = F(src\\u2082(\\u03b1)),  tgt\\u2082(F(\\u03b1)) = F(tgt\\u2082(\\u03b1))\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 454\r\n  parsed_production_functions: 7\r\n  max_production_ccn: 8\r\n  cognitive_complexity_upper_bound: 13\r\n  control_nesting: 2\r\n  opaque_function_macros: []\r\n  functions_exceeding_A: []\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/higher_functor.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/higher_functor.rs",
           "sha256": "712f28dd9621693c8e4ec0d7b3302465e0f721d00d5be9565f4d7289cbb09e3a"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "Higher-Category Functors — Spec Section 10.  Three strictness levels: Strict 2-Functor:  preserves composition and identity by equality. Pseudofunctor:     preserves up to invertible 2-cells (coherence required). Lax Functor:       preserves up to possibly non-invertible 2-cells.  Direction convention (lax, not oplax): Composition:  F(g) ∘ F(f) ⇒ F(g ∘ f) Unit:         id_{F(A)} ⇒ F(id_A)  The reverse (oplax) direction would be: Composition:  F(g ∘ f) ⇒ F(g) ∘ F(f) Unit:         F(id_A) ⇒ id_{F(A)} This module uses the lax convention exclusively.  Boundary preservation (validation obligation, not compiler-enforced): For 1-cells:  src₁(F(f)) = F(src₁(f)),  tgt₁(F(f)) = F(tgt₁(f)) For 2-cells:  src₂(F(α)) = F(src₂(α)),  tgt₂(F(α)) = F(tgt₂(α))",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:higher_functor"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -412,107 +451,61 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:higher_functor",
-          "description": "Higher-Category Functors — Spec Section 10.  Three strictness levels: Strict 2-Functor:  preserves composition and identity by equality. Pseudofunctor:     preserves up to invertible 2-cells (coherence required). Lax Functor:       preserves up to possibly non-invertible 2-cells.  Direction convention (lax, not oplax): Composition:  F(g) ∘ F(f) ⇒ F(g ∘ f) Unit:         id_{F(A)} ⇒ F(id_A)  The reverse (oplax) direction would be: Composition:  F(g ∘ f) ⇒ F(g) ∘ F(f) Unit:         F(id_A) ⇒ id_{F(A)} This module uses the lax convention exclusively.  Boundary preservation (validation obligation, not compiler-enforced): For 1-cells:  src₁(F(f)) = F(src₁(f)),  tgt₁(F(f)) = F(tgt₁(f)) For 2-cells:  src₂(F(α)) = F(src₂(α)),  tgt₂(F(α)) = F(tgt₂(α))",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 454,
-          "parsed_production_functions": 7,
-          "max_production_ccn": 8,
-          "cognitive_complexity_upper_bound": 13,
-          "control_nesting": 2,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "unrun": 0
         },
         "open_findings": [
           "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
           "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
           "External path dependency source contents have not received a separate origin/content attestation."
-        ]
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
+        "structure": {
+          "cognitive_complexity_upper_bound": 13,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 8,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 7,
+          "physical_lines": 454,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/higher_functor.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"712f28dd9621693c8e4ec0d7b3302465e0f721d00d5be9565f4d7289cbb09e3a\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"A\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:higher_functor\"\r\n  description: \"Higher-Category Functors \\u2014 Spec Section 10.  Three strictness levels: Strict 2-Functor:  preserves composition and identity by equality. Pseudofunctor:     preserves up to invertible 2-cells (coherence required). Lax Functor:       preserves up to possibly non-invertible 2-cells.  Direction convention (lax, not oplax): Composition:  F(g) \\u2218 F(f) \\u21d2 F(g \\u2218 f) Unit:         id_{F(A)} \\u21d2 F(id_A)  The reverse (oplax) direction would be: Composition:  F(g \\u2218 f) \\u21d2 F(g) \\u2218 F(f) Unit:         F(id_A) \\u21d2 id_{F(A)} This module uses the lax convention exclusively.  Boundary preservation (validation obligation, not compiler-enforced): For 1-cells:  src\\u2081(F(f)) = F(src\\u2081(f)),  tgt\\u2081(F(f)) = F(tgt\\u2081(f)) For 2-cells:  src\\u2082(F(\\u03b1)) = F(src\\u2082(\\u03b1)),  tgt\\u2082(F(\\u03b1)) = F(tgt\\u2082(\\u03b1))\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 454\r\n  parsed_production_functions: 7\r\n  max_production_ccn: 8\r\n  cognitive_complexity_upper_bound: 13\r\n  control_nesting: 2\r\n  opaque_function_macros: []\r\n  functions_exceeding_A: []\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/higher-functor-previous/higher_functor.score.yaml"
-      ]
+      "sha256": "887667418eb4aa46772cae81dd65462e3b7964e5c53492963d0536bcdce86168"
     },
     {
-      "sha256": "d3f92c429434e4dcbde17814b80ddb99fcc7c49921a64f9ab7dbad2b79755a47",
       "bytes": 5632,
+      "original_paths": [
+        "code/rust/src/category_theory/higher_functor.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/higher_functor.rs\",\n    \"sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:higher-functor:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 13,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T172037Z/baseline.json\",\n      \"sha256\": \"73ff893a6a510aa70a96428409d0543f4a32b2d4d7ca521e05e26b5138f3a347\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T172037Z/summary.json\",\n      \"sha256\": \"edc56e6485b9bdc5b93839a7564ef5a81fced9bcb9e7903b9ce30a4c935044b1\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T172037Z/mutations.json\",\n      \"sha256\": \"eb74face9e3c3a22ec6587576641723b861855b664dac9f917765183f8c06335\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T172138Z-metrics/receipt.json\",\n      \"sha256\": \"451b51334e94a5129a5cc509733db7823232dcc49d4bd9ade091e0ce47a06299\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T172037Z/dependency_receipt.json\",\n      \"sha256\": \"d965189c3b7a19b39c3acd2529cf831b7e01483d48143576d9632a901a4a3e86\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/higher_functor.json\",\n      \"sha256\": \"91693a3a7225fe074f16bea304bb36a78b2edbd2d246c47a4c1e08c0430129de\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 459,\n    \"parsed_production_functions\": 7,\n    \"max_production_ccn\": 8,\n    \"cognitive_complexity_upper_bound\": 13,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/higher_functor.rs",
-          "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:higher-functor:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -521,24 +514,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 8,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 13,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -546,81 +522,155 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T172037Z/baseline.json",
-            "sha256": "73ff893a6a510aa70a96428409d0543f4a32b2d4d7ca521e05e26b5138f3a347",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "73ff893a6a510aa70a96428409d0543f4a32b2d4d7ca521e05e26b5138f3a347"
           },
           {
             "path": "evidence/quality/category_homology/20261019T172037Z/summary.json",
-            "sha256": "edc56e6485b9bdc5b93839a7564ef5a81fced9bcb9e7903b9ce30a4c935044b1",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "edc56e6485b9bdc5b93839a7564ef5a81fced9bcb9e7903b9ce30a4c935044b1"
           },
           {
             "path": "evidence/quality/category_homology/20261019T172037Z/mutations.json",
-            "sha256": "eb74face9e3c3a22ec6587576641723b861855b664dac9f917765183f8c06335",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "eb74face9e3c3a22ec6587576641723b861855b664dac9f917765183f8c06335"
           },
           {
             "path": "evidence/quality/category_homology/20261019T172138Z-metrics/receipt.json",
-            "sha256": "451b51334e94a5129a5cc509733db7823232dcc49d4bd9ade091e0ce47a06299",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "451b51334e94a5129a5cc509733db7823232dcc49d4bd9ade091e0ce47a06299"
           },
           {
             "path": "evidence/quality/category_homology/20261019T172037Z/dependency_receipt.json",
-            "sha256": "d965189c3b7a19b39c3acd2529cf831b7e01483d48143576d9632a901a4a3e86",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "d965189c3b7a19b39c3acd2529cf831b7e01483d48143576d9632a901a4a3e86"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/higher_functor.json",
-            "sha256": "91693a3a7225fe074f16bea304bb36a78b2edbd2d246c47a4c1e08c0430129de",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "91693a3a7225fe074f16bea304bb36a78b2edbd2d246c47a4c1e08c0430129de"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 7,
+          "radon_ccn": 8,
+          "weighted_control_upper_bound": 13
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 459,
-          "parsed_production_functions": 7,
-          "max_production_ccn": 8,
           "cognitive_complexity_upper_bound": 13,
           "control_nesting": 2,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 8,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 7,
+          "physical_lines": 459,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/higher_functor.rs\",\n    \"sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:higher-functor:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 13,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T172037Z/baseline.json\",\n      \"sha256\": \"73ff893a6a510aa70a96428409d0543f4a32b2d4d7ca521e05e26b5138f3a347\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T172037Z/summary.json\",\n      \"sha256\": \"edc56e6485b9bdc5b93839a7564ef5a81fced9bcb9e7903b9ce30a4c935044b1\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T172037Z/mutations.json\",\n      \"sha256\": \"eb74face9e3c3a22ec6587576641723b861855b664dac9f917765183f8c06335\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T172138Z-metrics/receipt.json\",\n      \"sha256\": \"451b51334e94a5129a5cc509733db7823232dcc49d4bd9ade091e0ce47a06299\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T172037Z/dependency_receipt.json\",\n      \"sha256\": \"d965189c3b7a19b39c3acd2529cf831b7e01483d48143576d9632a901a4a3e86\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/higher_functor.json\",\n      \"sha256\": \"91693a3a7225fe074f16bea304bb36a78b2edbd2d246c47a4c1e08c0430129de\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 459,\n    \"parsed_production_functions\": 7,\n    \"max_production_ccn\": 8,\n    \"cognitive_complexity_upper_bound\": 13,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "d3f92c429434e4dcbde17814b80ddb99fcc7c49921a64f9ab7dbad2b79755a47"
+    },
+    {
+      "bytes": 1608,
       "original_paths": [
-        "code/rust/src/category_theory/higher_functor.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/higher_functor.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/higher_functor.rs\",\n    \"sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/higher_functor.rs\",\n      \"sha256\": \"320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/higher_functor.rs",
+          "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/higher_functor.rs",
+            "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "897d2184534a80deaf683b20f3ec25e31c4484e903ac3038cc6501b5d8c63674"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/higher_functor.rs.contract.yaml": "aaecf735eedcb07aafe8a16131bc9bda01a65e2ee95a57e021cadc3fab08dbaa",
-    "code/rust/src/category_theory/higher_functor.score.yaml": "bfcc2c9aa0ba504f8081d4a3544bf8a2622274de9b6e13110385bf6a6eec45a1",
-    "code/rust/src/category_theory/higher_functor.rs.scoring.yaml": "1cce506a13e292246d46c778a3aa586771b8cf43e57ca794b9196215265862fc",
-    "evidence/quality/category_homology/resume-20261019/higher-functor-previous/higher_functor.score.yaml": "887667418eb4aa46772cae81dd65462e3b7964e5c53492963d0536bcdce86168"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

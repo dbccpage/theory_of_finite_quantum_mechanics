@@ -1,169 +1,96 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:dg_category:v0.1.0",
-    "title": "Differential Graded Category Contract",
-    "kind": "math_contract",
-    "status": "exact_rational_classifier_implemented",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py",
+      "sha256": "60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec"
     },
-    "math": {
-      "object_kind": "dg_category",
-      "symbol": "C = (Ob, Hom^\\bullet, d, \\circ, id)",
-      "ascii_symbol": "dg_category",
-      "notation": "C = (Obj, Hom^\\bullet, d, comp, id) with d^2 = 0 and graded Leibniz rule",
-      "domain": [
-        "objects: (Obj : Type u) collection of 0-cells",
-        "graded_homs: (Hom^\\bullet : Obj -> Obj -> GradedModule) graded morphism spaces \\bigoplus_n Hom^n(X, Y)",
-        "differentials: (d : Hom^n(X, Y) -> Hom^{n+1}(X, Y)) cochain differential satisfying d \\circ d = 0",
-        "graded_composition: (\\circ : Hom^m(Y, Z) \\times Hom^n(X, Y) -> Hom^{m+n}(X, Z))",
-        "identities: id_X \\in Hom^0(X, X) satisfying d(id_X) = 0",
-        "graded_leibniz_rule: d(g \\circ f) = d(g) \\circ f + (-1)^{|g|} g \\circ d(f)",
-        "cohomology_category: H^0(C) where morphisms are degree 0 cocycles modulo coboundaries"
-      ],
-      "codomain": {
-        "description": "A Differential Graded (DG) category is a category enriched over chain complexes of modules. Morphism spaces Hom^\\bullet(X, Y) are cochain complexes with differentials d satisfying d^2 = 0. Morphism composition satisfies the graded Leibniz product rule with sign factor (-1)^{|g|}, and identities are closed degree-0 cocycles."
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Differential satisfies d^2 = 0 on all graded morphism spaces.",
-        "Graded composition strictly satisfies the graded Leibniz rule d(g \\circ f) = d(g) \\circ f + (-1)^{|g|} g \\circ d(f).",
-        "Identity elements id_X are degree 0 cocycles with d(id_X) = 0.",
-        {
-          "Composition is strictly associative": "(h \\circ g) \\circ f = h \\circ (g \\circ f)."
-        },
-        {
-          "Left and right unit laws hold": "id_Y \\circ f = f = f \\circ id_X."
-        },
-        "Cohomology category H^0(C) is well-defined on closed degree-0 cocycles modulo boundaries.",
-        "Structure hash is deterministically content-addressed."
-      ]
-    },
-    "laws": [
-      "Differential nilpotence: d \\circ d = 0 for all degrees",
-      "Graded Leibniz rule: d(g \\circ f) = d(g) \\circ f + (-1)^{|g|} g \\circ d(f)",
-      "Identity closedness: d(id_X) = 0 for all objects X",
-      "Graded associativity: (h \\circ g) \\circ f = h \\circ (g \\circ f)",
-      "Graded units: id_Y \\circ f = f = f \\circ id_X",
-      "Homotopy invariance: chain homotopic morphisms f ~ g induce equal morphisms in H^0(C)"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Graded bases and differentials serialized in canonical order",
-        "Exact discrete integer degree and sign arithmetic",
-        "Deterministic evaluation produces identical artifact hash"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_higher_category_theory",
-      "module": "dg_category",
-      "symbols": [
-        "DgCategory",
-        "GradedHomComplex",
-        "DifferentialMap",
-        "ChainDifferential",
-        "LeibnizSignValidator",
-        "CohomologyCategoryH0"
-      ],
-      "required_tests": [
-        "test_dg_category_basic_lifecycle",
-        "test_dg_graded_leibniz_even_and_odd",
-        "test_kill_mut_p2_01_broken_differential",
-        "test_kill_mut_p2_02_violated_leibniz_sign"
-      ]
-    },
-    "negative_tests": [
-      "Differential fails nilpotence d^2 != 0 (BrokenDifferential / MUT-P2-01)",
-      "Graded Leibniz rule violated with incorrect sign (+1 instead of (-1)^|g|) (ViolatedLeibnizSign / MUT-P2-02)",
-      "Identity morphism not closed under differential d(id_X) != 0",
-      "Graded composition degree mismatch |g \\circ f| != |g| + |f|",
-      "Composition fails associativity (h \\circ g) \\circ f != h \\circ (g \\circ f)"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py",
+        "sha256": "60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "A DG-category (differential graded category) is a category enriched over chain complexes of modules. Morphism spaces are cochain complexes with differentials d satisfying d^2 = 0, and composition satisfies the graded Leibniz rule with sign factor (-1)^{|g|}. DG categories provide algebraic enhancements for triangulated and derived categories, eliminating non-functorial cone cones.",
-      "non_role": [
-        "A-infinity categories with higher homotopies m_k for k >= 3",
-        "Model category structures on DG-categories",
-        "Non-linear or differential geometric manifolds"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "Pretriangulated DG structures with twisted complexes and shift functors",
-      "DG enhancement of bounded derived category D^b(A)",
-      "Exact rational discrete verification of Leibniz sign in Rust"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec",
+    "subject": "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py"
   },
-  "current_contract": "8cce5b53eb7b8587fc40ab70e2f5c9cbeb4fe9da8129757dc6657ad1e0388aeb",
-  "current_scoring": "7ebdf032e1ad3afeaa25804b71bb4af9a22076f5a0c30138a8cf2a3602f3210d",
   "contract_history": [
     {
-      "sha256": "8cce5b53eb7b8587fc40ab70e2f5c9cbeb4fe9da8129757dc6657ad1e0388aeb",
       "bytes": 5302,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_dg_category_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:dg_category:v0.1.0\",\n  \"title\": \"Differential Graded Category Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"dg_category\",\n    \"symbol\": \"C = (Ob, Hom^\\\\bullet, d, \\\\circ, id)\",\n    \"ascii_symbol\": \"dg_category\",\n    \"notation\": \"C = (Obj, Hom^\\\\bullet, d, comp, id) with d^2 = 0 and graded Leibniz rule\",\n    \"domain\": [\n      \"objects: (Obj : Type u) collection of 0-cells\",\n      \"graded_homs: (Hom^\\\\bullet : Obj -> Obj -> GradedModule) graded morphism spaces \\\\bigoplus_n Hom^n(X, Y)\",\n      \"differentials: (d : Hom^n(X, Y) -> Hom^{n+1}(X, Y)) cochain differential satisfying d \\\\circ d = 0\",\n      \"graded_composition: (\\\\circ : Hom^m(Y, Z) \\\\times Hom^n(X, Y) -> Hom^{m+n}(X, Z))\",\n      \"identities: id_X \\\\in Hom^0(X, X) satisfying d(id_X) = 0\",\n      \"graded_leibniz_rule: d(g \\\\circ f) = d(g) \\\\circ f + (-1)^{|g|} g \\\\circ d(f)\",\n      \"cohomology_category: H^0(C) where morphisms are degree 0 cocycles modulo coboundaries\"\n    ],\n    \"codomain\": {\n      \"description\": \"A Differential Graded (DG) category is a category enriched over chain complexes of modules. Morphism spaces Hom^\\\\bullet(X, Y) are cochain complexes with differentials d satisfying d^2 = 0. Morphism composition satisfies the graded Leibniz product rule with sign factor (-1)^{|g|}, and identities are closed degree-0 cocycles.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Differential satisfies d^2 = 0 on all graded morphism spaces.\",\n      \"Graded composition strictly satisfies the graded Leibniz rule d(g \\\\circ f) = d(g) \\\\circ f + (-1)^{|g|} g \\\\circ d(f).\",\n      \"Identity elements id_X are degree 0 cocycles with d(id_X) = 0.\",\n      {\n        \"Composition is strictly associative\": \"(h \\\\circ g) \\\\circ f = h \\\\circ (g \\\\circ f).\"\n      },\n      {\n        \"Left and right unit laws hold\": \"id_Y \\\\circ f = f = f \\\\circ id_X.\"\n      },\n      \"Cohomology category H^0(C) is well-defined on closed degree-0 cocycles modulo boundaries.\",\n      \"Structure hash is deterministically content-addressed.\"\n    ]\n  },\n  \"laws\": [\n    \"Differential nilpotence: d \\\\circ d = 0 for all degrees\",\n    \"Graded Leibniz rule: d(g \\\\circ f) = d(g) \\\\circ f + (-1)^{|g|} g \\\\circ d(f)\",\n    \"Identity closedness: d(id_X) = 0 for all objects X\",\n    \"Graded associativity: (h \\\\circ g) \\\\circ f = h \\\\circ (g \\\\circ f)\",\n    \"Graded units: id_Y \\\\circ f = f = f \\\\circ id_X\",\n    \"Homotopy invariance: chain homotopic morphisms f ~ g induce equal morphisms in H^0(C)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Graded bases and differentials serialized in canonical order\",\n      \"Exact discrete integer degree and sign arithmetic\",\n      \"Deterministic evaluation produces identical artifact hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"dg_category\",\n    \"symbols\": [\n      \"DgCategory\",\n      \"GradedHomComplex\",\n      \"DifferentialMap\",\n      \"ChainDifferential\",\n      \"LeibnizSignValidator\",\n      \"CohomologyCategoryH0\"\n    ],\n    \"required_tests\": [\n      \"test_dg_category_basic_lifecycle\",\n      \"test_dg_graded_leibniz_even_and_odd\",\n      \"test_kill_mut_p2_01_broken_differential\",\n      \"test_kill_mut_p2_02_violated_leibniz_sign\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Differential fails nilpotence d^2 != 0 (BrokenDifferential / MUT-P2-01)\",\n    \"Graded Leibniz rule violated with incorrect sign (+1 instead of (-1)^|g|) (ViolatedLeibnizSign / MUT-P2-02)\",\n    \"Identity morphism not closed under differential d(id_X) != 0\",\n    \"Graded composition degree mismatch |g \\\\circ f| != |g| + |f|\",\n    \"Composition fails associativity (h \\\\circ g) \\\\circ f != h \\\\circ (g \\\\circ f)\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A DG-category (differential graded category) is a category enriched over chain complexes of modules. Morphism spaces are cochain complexes with differentials d satisfying d^2 = 0, and composition satisfies the graded Leibniz rule with sign factor (-1)^{|g|}. DG categories provide algebraic enhancements for triangulated and derived categories, eliminating non-functorial cone cones.\",\n    \"non_role\": [\n      \"A-infinity categories with higher homotopies m_k for k >= 3\",\n      \"Model category structures on DG-categories\",\n      \"Non-linear or differential geometric manifolds\"\n    ]\n  },\n  \"wip\": [\n    \"Pretriangulated DG structures with twisted complexes and shift functors\",\n    \"DG enhancement of bounded derived category D^b(A)\",\n    \"Exact rational discrete verification of Leibniz sign in Rust\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:dg_category:v0.1.0",
-        "title": "Differential Graded Category Contract",
-        "kind": "math_contract",
-        "status": "exact_rational_classifier_implemented",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "A-infinity categories with higher homotopies m_k for k >= 3",
+            "Model category structures on DG-categories",
+            "Non-linear or differential geometric manifolds"
+          ],
+          "summary": "A DG-category (differential graded category) is a category enriched over chain complexes of modules. Morphism spaces are cochain complexes with differentials d satisfying d^2 = 0, and composition satisfies the graded Leibniz rule with sign factor (-1)^{|g|}. DG categories provide algebraic enhancements for triangulated and derived categories, eliminating non-functorial cone cones."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "Differential nilpotence: d \\circ d = 0 for all degrees",
+          "Graded Leibniz rule: d(g \\circ f) = d(g) \\circ f + (-1)^{|g|} g \\circ d(f)",
+          "Identity closedness: d(id_X) = 0 for all objects X",
+          "Graded associativity: (h \\circ g) \\circ f = h \\circ (g \\circ f)",
+          "Graded units: id_Y \\circ f = f = f \\circ id_X",
+          "Homotopy invariance: chain homotopic morphisms f ~ g induce equal morphisms in H^0(C)"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "dg_category",
-          "symbol": "C = (Ob, Hom^\\bullet, d, \\circ, id)",
           "ascii_symbol": "dg_category",
-          "notation": "C = (Obj, Hom^\\bullet, d, comp, id) with d^2 = 0 and graded Leibniz rule",
+          "codomain": {
+            "description": "A Differential Graded (DG) category is a category enriched over chain complexes of modules. Morphism spaces Hom^\\bullet(X, Y) are cochain complexes with differentials d satisfying d^2 = 0. Morphism composition satisfies the graded Leibniz product rule with sign factor (-1)^{|g|}, and identities are closed degree-0 cocycles."
+          },
           "domain": [
             "objects: (Obj : Type u) collection of 0-cells",
             "graded_homs: (Hom^\\bullet : Obj -> Obj -> GradedModule) graded morphism spaces \\bigoplus_n Hom^n(X, Y)",
@@ -173,9 +100,31 @@
             "graded_leibniz_rule: d(g \\circ f) = d(g) \\circ f + (-1)^{|g|} g \\circ d(f)",
             "cohomology_category: H^0(C) where morphisms are degree 0 cocycles modulo coboundaries"
           ],
-          "codomain": {
-            "description": "A Differential Graded (DG) category is a category enriched over chain complexes of modules. Morphism spaces Hom^\\bullet(X, Y) are cochain complexes with differentials d satisfying d^2 = 0. Morphism composition satisfies the graded Leibniz product rule with sign factor (-1)^{|g|}, and identities are closed degree-0 cocycles."
-          }
+          "notation": "C = (Obj, Hom^\\bullet, d, comp, id) with d^2 = 0 and graded Leibniz rule",
+          "object_kind": "dg_category",
+          "symbol": "C = (Ob, Hom^\\bullet, d, \\circ, id)"
+        },
+        "negative_tests": [
+          "Differential fails nilpotence d^2 != 0 (BrokenDifferential / MUT-P2-01)",
+          "Graded Leibniz rule violated with incorrect sign (+1 instead of (-1)^|g|) (ViolatedLeibnizSign / MUT-P2-02)",
+          "Identity morphism not closed under differential d(id_X) != 0",
+          "Graded composition degree mismatch |g \\circ f| != |g| + |f|",
+          "Composition fails associativity (h \\circ g) \\circ f != h \\circ (g \\circ f)"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Graded bases and differentials serialized in canonical order",
+            "Exact discrete integer degree and sign arithmetic",
+            "Deterministic evaluation produces identical artifact hash"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -192,32 +141,15 @@
             "Structure hash is deterministically content-addressed."
           ]
         },
-        "laws": [
-          "Differential nilpotence: d \\circ d = 0 for all degrees",
-          "Graded Leibniz rule: d(g \\circ f) = d(g) \\circ f + (-1)^{|g|} g \\circ d(f)",
-          "Identity closedness: d(id_X) = 0 for all objects X",
-          "Graded associativity: (h \\circ g) \\circ f = h \\circ (g \\circ f)",
-          "Graded units: id_Y \\circ f = f = f \\circ id_X",
-          "Homotopy invariance: chain homotopic morphisms f ~ g induce equal morphisms in H^0(C)"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "Graded bases and differentials serialized in canonical order",
-            "Exact discrete integer degree and sign arithmetic",
-            "Deterministic evaluation produces identical artifact hash"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
         "rust_binding": {
           "crate": "omega_higher_category_theory",
           "module": "dg_category",
+          "required_tests": [
+            "test_dg_category_basic_lifecycle",
+            "test_dg_graded_leibniz_even_and_odd",
+            "test_kill_mut_p2_01_broken_differential",
+            "test_kill_mut_p2_02_violated_leibniz_sign"
+          ],
           "symbols": [
             "DgCategory",
             "GradedHomComplex",
@@ -225,65 +157,83 @@
             "ChainDifferential",
             "LeibnizSignValidator",
             "CohomologyCategoryH0"
-          ],
-          "required_tests": [
-            "test_dg_category_basic_lifecycle",
-            "test_dg_graded_leibniz_even_and_odd",
-            "test_kill_mut_p2_01_broken_differential",
-            "test_kill_mut_p2_02_violated_leibniz_sign"
           ]
         },
-        "negative_tests": [
-          "Differential fails nilpotence d^2 != 0 (BrokenDifferential / MUT-P2-01)",
-          "Graded Leibniz rule violated with incorrect sign (+1 instead of (-1)^|g|) (ViolatedLeibnizSign / MUT-P2-02)",
-          "Identity morphism not closed under differential d(id_X) != 0",
-          "Graded composition degree mismatch |g \\circ f| != |g| + |f|",
-          "Composition fails associativity (h \\circ g) \\circ f != h \\circ (g \\circ f)"
-        ],
-        "doctrine": {
-          "summary": "A DG-category (differential graded category) is a category enriched over chain complexes of modules. Morphism spaces are cochain complexes with differentials d satisfying d^2 = 0, and composition satisfies the graded Leibniz rule with sign factor (-1)^{|g|}. DG categories provide algebraic enhancements for triangulated and derived categories, eliminating non-functorial cone cones.",
-          "non_role": [
-            "A-infinity categories with higher homotopies m_k for k >= 3",
-            "Model category structures on DG-categories",
-            "Non-linear or differential geometric manifolds"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "exact_rational_classifier_implemented",
+        "title": "Differential Graded Category Contract",
         "wip": [
           "Pretriangulated DG structures with twisted complexes and shift functors",
           "DG enhancement of bounded derived category D^b(A)",
           "Exact rational discrete verification of Leibniz sign in Rust"
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:dg_category:v0.1.0\",\n  \"title\": \"Differential Graded Category Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"dg_category\",\n    \"symbol\": \"C = (Ob, Hom^\\\\bullet, d, \\\\circ, id)\",\n    \"ascii_symbol\": \"dg_category\",\n    \"notation\": \"C = (Obj, Hom^\\\\bullet, d, comp, id) with d^2 = 0 and graded Leibniz rule\",\n    \"domain\": [\n      \"objects: (Obj : Type u) collection of 0-cells\",\n      \"graded_homs: (Hom^\\\\bullet : Obj -> Obj -> GradedModule) graded morphism spaces \\\\bigoplus_n Hom^n(X, Y)\",\n      \"differentials: (d : Hom^n(X, Y) -> Hom^{n+1}(X, Y)) cochain differential satisfying d \\\\circ d = 0\",\n      \"graded_composition: (\\\\circ : Hom^m(Y, Z) \\\\times Hom^n(X, Y) -> Hom^{m+n}(X, Z))\",\n      \"identities: id_X \\\\in Hom^0(X, X) satisfying d(id_X) = 0\",\n      \"graded_leibniz_rule: d(g \\\\circ f) = d(g) \\\\circ f + (-1)^{|g|} g \\\\circ d(f)\",\n      \"cohomology_category: H^0(C) where morphisms are degree 0 cocycles modulo coboundaries\"\n    ],\n    \"codomain\": {\n      \"description\": \"A Differential Graded (DG) category is a category enriched over chain complexes of modules. Morphism spaces Hom^\\\\bullet(X, Y) are cochain complexes with differentials d satisfying d^2 = 0. Morphism composition satisfies the graded Leibniz product rule with sign factor (-1)^{|g|}, and identities are closed degree-0 cocycles.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Differential satisfies d^2 = 0 on all graded morphism spaces.\",\n      \"Graded composition strictly satisfies the graded Leibniz rule d(g \\\\circ f) = d(g) \\\\circ f + (-1)^{|g|} g \\\\circ d(f).\",\n      \"Identity elements id_X are degree 0 cocycles with d(id_X) = 0.\",\n      {\n        \"Composition is strictly associative\": \"(h \\\\circ g) \\\\circ f = h \\\\circ (g \\\\circ f).\"\n      },\n      {\n        \"Left and right unit laws hold\": \"id_Y \\\\circ f = f = f \\\\circ id_X.\"\n      },\n      \"Cohomology category H^0(C) is well-defined on closed degree-0 cocycles modulo boundaries.\",\n      \"Structure hash is deterministically content-addressed.\"\n    ]\n  },\n  \"laws\": [\n    \"Differential nilpotence: d \\\\circ d = 0 for all degrees\",\n    \"Graded Leibniz rule: d(g \\\\circ f) = d(g) \\\\circ f + (-1)^{|g|} g \\\\circ d(f)\",\n    \"Identity closedness: d(id_X) = 0 for all objects X\",\n    \"Graded associativity: (h \\\\circ g) \\\\circ f = h \\\\circ (g \\\\circ f)\",\n    \"Graded units: id_Y \\\\circ f = f = f \\\\circ id_X\",\n    \"Homotopy invariance: chain homotopic morphisms f ~ g induce equal morphisms in H^0(C)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Graded bases and differentials serialized in canonical order\",\n      \"Exact discrete integer degree and sign arithmetic\",\n      \"Deterministic evaluation produces identical artifact hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"dg_category\",\n    \"symbols\": [\n      \"DgCategory\",\n      \"GradedHomComplex\",\n      \"DifferentialMap\",\n      \"ChainDifferential\",\n      \"LeibnizSignValidator\",\n      \"CohomologyCategoryH0\"\n    ],\n    \"required_tests\": [\n      \"test_dg_category_basic_lifecycle\",\n      \"test_dg_graded_leibniz_even_and_odd\",\n      \"test_kill_mut_p2_01_broken_differential\",\n      \"test_kill_mut_p2_02_violated_leibniz_sign\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Differential fails nilpotence d^2 != 0 (BrokenDifferential / MUT-P2-01)\",\n    \"Graded Leibniz rule violated with incorrect sign (+1 instead of (-1)^|g|) (ViolatedLeibnizSign / MUT-P2-02)\",\n    \"Identity morphism not closed under differential d(id_X) != 0\",\n    \"Graded composition degree mismatch |g \\\\circ f| != |g| + |f|\",\n    \"Composition fails associativity (h \\\\circ g) \\\\circ f != h \\\\circ (g \\\\circ f)\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A DG-category (differential graded category) is a category enriched over chain complexes of modules. Morphism spaces are cochain complexes with differentials d satisfying d^2 = 0, and composition satisfies the graded Leibniz rule with sign factor (-1)^{|g|}. DG categories provide algebraic enhancements for triangulated and derived categories, eliminating non-functorial cone cones.\",\n    \"non_role\": [\n      \"A-infinity categories with higher homotopies m_k for k >= 3\",\n      \"Model category structures on DG-categories\",\n      \"Non-linear or differential geometric manifolds\"\n    ]\n  },\n  \"wip\": [\n    \"Pretriangulated DG structures with twisted complexes and shift functors\",\n    \"DG enhancement of bounded derived category D^b(A)\",\n    \"Exact rational discrete verification of Leibniz sign in Rust\"\n  ]\n}\n",
+      "sha256": "8cce5b53eb7b8587fc40ab70e2f5c9cbeb4fe9da8129757dc6657ad1e0388aeb"
+    },
+    {
+      "bytes": 1703,
       "original_paths": [
-        "code/python/governance/10_math/general/math_dg_category_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py\",\n    \"sha256\": \"60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py\",\n      \"sha256\": \"60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec\",\n  \"subject\": \"code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py",
+          "sha256": "60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py",
+            "sha256": "60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec",
+        "subject": "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py"
+      },
+      "sha256": "d02e4b2be8383334a9b182fd4265fb099a5a8dbe7f77edd0621f7599341a66c0"
     }
   ],
+  "current_contract": "d02e4b2be8383334a9b182fd4265fb099a5a8dbe7f77edd0621f7599341a66c0",
+  "current_scoring": "ec4282c4cdc9d7c1e6aac54431bb23a29ba3c9a39c9940c6cec49126e98072f8",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_dg_category_v0_1_0.contract.yaml": "6a456e7928558d429b361c5a400bec1424780756a633608493af636f18d2a739"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "7ebdf032e1ad3afeaa25804b71bb4af9a22076f5a0c30138a8cf2a3602f3210d",
       "bytes": 2219,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py\",\n    \"sha256\": \"60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-dg-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py",
           "sha256": "60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-dg-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -292,40 +242,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "7ebdf032e1ad3afeaa25804b71bb4af9a22076f5a0c30138a8cf2a3602f3210d"
+    },
+    {
+      "bytes": 1658,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py\",\n    \"sha256\": \"60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py\",\n      \"sha256\": \"60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py",
+          "sha256": "60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py",
+            "sha256": "60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Exact",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.py\",\n    \"sha256\": \"60e438e9f2522fe91d309bcb24d6d354565db7166f9619b2d3ec7df156f120ec\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-dg-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_dg_category_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "ec4282c4cdc9d7c1e6aac54431bb23a29ba3c9a39c9940c6cec49126e98072f8"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_dg_category_v0_1_0.contract.yaml": "6a456e7928558d429b361c5a400bec1424780756a633608493af636f18d2a739"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

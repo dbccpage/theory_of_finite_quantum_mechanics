@@ -1,284 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:constitution:meta_judgment:v1.0.0",
-    "title": "MetaJudgmentAndMetaLift",
-    "kind": "constitution_contract",
-    "status": "mathematical_wip",
-    "layer": "00_constitution",
-    "role": "Constitution",
-    "descriptor": {
-      "authority_effect": "requests_decision",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "ContractConstitution"
-        ],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py",
+      "sha256": "95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca"
     },
-    "doctrine": {
-      "summary": "MetaJudgment = read-only governance judgment over lift admissibility and authority\nconditions. MetaLiftContract = lift-license artifact or proposed lift contract.\nEngine = only executor of licensed lift transitions.\n",
-      "non_role": [
-        "lift application",
-        "carrier mutation",
-        "search execution",
-        "candidate scheduling",
-        "operator computation",
-        "solver computation",
-        "measurement computation",
-        "evaluator recomputation",
-        "terminalization",
-        "certificate creation for unverified evidence",
-        "certificate authority above attached evidence",
-        "engine action execution",
-        "trace mutation",
-        "storage mutation",
-        "unlicensed carrier extension",
-        "self-certification of minimality"
-      ],
-      "two_forms": {
-        "MetaJudgment": "Read-only 2-morphism-like governance over contracts, operators, and traces. Validates admissibility and composability.",
-        "MetaLiftContract": "Licensed boundary artifact describing an admissible carrier-extension transition L_h : C_N -> C_{N+1}. Does not execute."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py",
+        "sha256": "95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca"
       },
-      "minimality_enforcement": {
-        "conditions": [
-          "sim_{N+1} is a congruence",
-          "For all L' subset L_h, sim_{N+1}^{L'} is not a congruence"
-        ],
-        "mechanisms": {
-          "repair_enabling": "A lift is invalid unless obstruction equivalence becomes a congruence after the lift.",
-          "delta_law": "Unary lift (Delta=1) iff already a congruence but names lacking. Binary lift (Delta=2) iff not a congruence. Higher-arity lifts presently unlicensed.",
-          "context_witnessed": "Binary lift admissible only when an admissible context C[_] distinguishes the irreducible failure."
-        }
-      },
-      "area_lock_phase_gate": "If m_G(gamma) > 0, the evidence may support irreducibility under the declared gauge\nmodel. A lift still requires persistence, context witness, license, minimality evidence,\nand Engine execution boundary. MetaJudgment may consume checked MeasurementId references\nbut MUST NOT compute or recompute measurements.\n",
-      "failure_classes": [
-        {
-          "name": "Authority failure",
-          "description": "Licensed lift claimed but no governance license permits it."
-        },
-        {
-          "name": "Representation failure",
-          "description": "No admissible representation expansion reduces the obstruction."
-        },
-        {
-          "name": "Evidence failure",
-          "description": "Claim cannot survive forgetful descent due to missing/revoked evidence."
-        }
-      ],
-      "structural_representation": {
-        "meta_decision": {
-          "variants": [
-            {
-              "name": "NoLift",
-              "fields": [
-                "reason",
-                "evidence_refs"
-              ]
-            },
-            {
-              "name": "LiftAdmissible",
-              "fields": [
-                "license",
-                "contract_ref",
-                "evidence_refs"
-              ]
-            },
-            {
-              "name": "Refuse",
-              "fields": [
-                "failure",
-                "certificate_ref"
-              ]
-            }
-          ]
-        },
-        "meta_no_lift_reason": {
-          "variants": [
-            "GaugeRemovable",
-            "NoContextWitness",
-            "NotPersistent",
-            "NotIrreducible",
-            "LicenseMissing",
-            "DeltaNotAdmissible"
-          ]
-        },
-        "meta_lift_contract": {
-          "fields": [
-            "source_carrier",
-            "target_carrier_schema",
-            "obstruction_ref",
-            "context_witness",
-            "persistence_certificate",
-            "irreducibility_certificate",
-            "minimality_certificate",
-            "delta",
-            "contract_hash"
-          ]
-        },
-        "lift_license": {
-          "fields": [
-            "license_id",
-            "contract_ref",
-            "authority_refs",
-            "evidence_refs",
-            "authority_effect"
-          ]
-        },
-        "lift_delta": {
-          "variants": [
-            "UnaryName",
-            "BinaryConjugatePair"
-          ]
-        }
-      },
-      "authority_effect_mapping": {
-        "MetaJudgment": "RequestsDecision",
-        "unchecked_MetaLiftRequest": "EvidenceOnly",
-        "checked_MetaLiftContract_LiftLicense": "AuthorizesTransition",
-        "Engine": "StateTransition",
-        "Pipeline": "None or EvidenceOnly"
-      },
-      "anti_god_object_law": "producer != judge != executor",
-      "negative_capabilities": [
-        "apply a lift",
-        "mutate a carrier",
-        "run search",
-        "schedule candidates",
-        "compute operator outputs",
-        "terminalize final state",
-        "create certificates for unverified evidence",
-        "execute Engine actions",
-        "compute measurements",
-        "recompute Functional outputs",
-        "invoke solvers",
-        "inspect mutable Engine internals",
-        "emit Action directly",
-        "emit StateTransition directly",
-        "store or mutate Trace"
-      ],
-      "forbidden_implementation_tokens": {
-        "scope": "behavior, not substring",
-        "tokens": [
-          "apply_lift",
-          "execute_lift",
-          "mutate_carrier",
-          "EngineResult",
-          "StateTransition",
-          "TerminalEnvelope",
-          "execute(",
-          "schedule_search",
-          "run_search",
-          "compute_operator",
-          "compute_phi",
-          "compute_gamma",
-          "compute_xi",
-          "invoke_solver",
-          "terminalize(",
-          "write_trace",
-          "store_state"
-        ]
-      },
-      "required_tests": [
-        "meta_judgment_does_not_apply_lift",
-        "meta_judgment_does_not_mutate_carrier",
-        "meta_judgment_does_not_run_search",
-        "meta_judgment_does_not_schedule_candidates",
-        "meta_judgment_does_not_compute_operator_outputs",
-        "meta_judgment_does_not_compute_measurements",
-        "meta_judgment_consumes_measurement_refs_only",
-        "meta_judgment_does_not_invoke_solvers",
-        "meta_judgment_does_not_terminalize",
-        "meta_judgment_does_not_execute_engine_actions",
-        "meta_lift_request_is_evidence_only",
-        "lift_license_authorizes_but_does_not_execute",
-        "engine_requires_lift_license_for_lift_execution",
-        "binary_lift_requires_context_witness",
-        "lift_without_license_rejected",
-        "lift_without_persistence_certificate_rejected",
-        "lift_without_irreducibility_certificate_rejected",
-        "lift_without_minimality_certificate_rejected",
-        "metalift_contract_does_not_self_certify_minimality"
-      ],
-      "canonical_invariant": "MetaJudgment judges lift admissibility from submitted evidence. MetaLiftContract\ndescribes a carrier-extension transition. LiftLicense authorizes the Engine to attempt\nthat transition. Engine alone executes licensed lift transitions. No Meta artifact\nexecutes, mutates, terminalizes, searches, solves, measures, or self-certifies.\n",
-      "legacy_metadata": {
-        "name": "MetaJudgmentAndMetaLift",
-        "role": "Meta layer governance boundary - judgment and lift licensing",
-        "version": "2.0",
-        "classification": "constitution",
-        "split_from": "contract_constitution.md (lines 247-757)",
-        "doctrine_version": "2026-05",
-        "depends_on": [
-          "ContractConstitution"
-        ],
-        "forbidden_authority": [
-          "lift application",
-          "carrier mutation",
-          "search execution",
-          "candidate scheduling",
-          "operator computation",
-          "solver computation",
-          "measurement computation",
-          "evaluator recomputation",
-          "terminalization",
-          "certificate creation for unverified evidence",
-          "certificate authority above attached evidence",
-          "engine action execution",
-          "trace mutation",
-          "storage mutation",
-          "unlicensed carrier extension",
-          "self-certification of minimality"
-        ],
-        "primary_output_family": "DecisionEnvelope",
-        "referenced_output_families": [
-          "ActionLicense",
-          "EvidenceEnvelope",
-          "FactEnvelope"
-        ],
-        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca",
+    "subject": "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py"
   },
-  "current_contract": "cd99fb1d64a47d177007aa5dc23269b5dfd425bf454ca66f693d5ea3d6d254f9",
-  "current_scoring": "9239e6d4db5f5b7dc9b1c339418275bd8b1a9d9781e5eccee63cad8f5913f388",
   "contract_history": [
     {
-      "sha256": "cd99fb1d64a47d177007aa5dc23269b5dfd425bf454ca66f693d5ea3d6d254f9",
       "bytes": 8927,
+      "original_paths": [
+        "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:constitution:meta_judgment:v1.0.0\",\n  \"title\": \"MetaJudgmentAndMetaLift\",\n  \"kind\": \"constitution_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"00_constitution\",\n  \"role\": \"Constitution\",\n  \"descriptor\": {\n    \"authority_effect\": \"requests_decision\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"ContractConstitution\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"MetaJudgment = read-only governance judgment over lift admissibility and authority\\nconditions. MetaLiftContract = lift-license artifact or proposed lift contract.\\nEngine = only executor of licensed lift transitions.\\n\",\n    \"non_role\": [\n      \"lift application\",\n      \"carrier mutation\",\n      \"search execution\",\n      \"candidate scheduling\",\n      \"operator computation\",\n      \"solver computation\",\n      \"measurement computation\",\n      \"evaluator recomputation\",\n      \"terminalization\",\n      \"certificate creation for unverified evidence\",\n      \"certificate authority above attached evidence\",\n      \"engine action execution\",\n      \"trace mutation\",\n      \"storage mutation\",\n      \"unlicensed carrier extension\",\n      \"self-certification of minimality\"\n    ],\n    \"two_forms\": {\n      \"MetaJudgment\": \"Read-only 2-morphism-like governance over contracts, operators, and traces. Validates admissibility and composability.\",\n      \"MetaLiftContract\": \"Licensed boundary artifact describing an admissible carrier-extension transition L_h : C_N -> C_{N+1}. Does not execute.\"\n    },\n    \"minimality_enforcement\": {\n      \"conditions\": [\n        \"sim_{N+1} is a congruence\",\n        \"For all L' subset L_h, sim_{N+1}^{L'} is not a congruence\"\n      ],\n      \"mechanisms\": {\n        \"repair_enabling\": \"A lift is invalid unless obstruction equivalence becomes a congruence after the lift.\",\n        \"delta_law\": \"Unary lift (Delta=1) iff already a congruence but names lacking. Binary lift (Delta=2) iff not a congruence. Higher-arity lifts presently unlicensed.\",\n        \"context_witnessed\": \"Binary lift admissible only when an admissible context C[_] distinguishes the irreducible failure.\"\n      }\n    },\n    \"area_lock_phase_gate\": \"If m_G(gamma) > 0, the evidence may support irreducibility under the declared gauge\\nmodel. A lift still requires persistence, context witness, license, minimality evidence,\\nand Engine execution boundary. MetaJudgment may consume checked MeasurementId references\\nbut MUST NOT compute or recompute measurements.\\n\",\n    \"failure_classes\": [\n      {\n        \"name\": \"Authority failure\",\n        \"description\": \"Licensed lift claimed but no governance license permits it.\"\n      },\n      {\n        \"name\": \"Representation failure\",\n        \"description\": \"No admissible representation expansion reduces the obstruction.\"\n      },\n      {\n        \"name\": \"Evidence failure\",\n        \"description\": \"Claim cannot survive forgetful descent due to missing/revoked evidence.\"\n      }\n    ],\n    \"structural_representation\": {\n      \"meta_decision\": {\n        \"variants\": [\n          {\n            \"name\": \"NoLift\",\n            \"fields\": [\n              \"reason\",\n              \"evidence_refs\"\n            ]\n          },\n          {\n            \"name\": \"LiftAdmissible\",\n            \"fields\": [\n              \"license\",\n              \"contract_ref\",\n              \"evidence_refs\"\n            ]\n          },\n          {\n            \"name\": \"Refuse\",\n            \"fields\": [\n              \"failure\",\n              \"certificate_ref\"\n            ]\n          }\n        ]\n      },\n      \"meta_no_lift_reason\": {\n        \"variants\": [\n          \"GaugeRemovable\",\n          \"NoContextWitness\",\n          \"NotPersistent\",\n          \"NotIrreducible\",\n          \"LicenseMissing\",\n          \"DeltaNotAdmissible\"\n        ]\n      },\n      \"meta_lift_contract\": {\n        \"fields\": [\n          \"source_carrier\",\n          \"target_carrier_schema\",\n          \"obstruction_ref\",\n          \"context_witness\",\n          \"persistence_certificate\",\n          \"irreducibility_certificate\",\n          \"minimality_certificate\",\n          \"delta\",\n          \"contract_hash\"\n        ]\n      },\n      \"lift_license\": {\n        \"fields\": [\n          \"license_id\",\n          \"contract_ref\",\n          \"authority_refs\",\n          \"evidence_refs\",\n          \"authority_effect\"\n        ]\n      },\n      \"lift_delta\": {\n        \"variants\": [\n          \"UnaryName\",\n          \"BinaryConjugatePair\"\n        ]\n      }\n    },\n    \"authority_effect_mapping\": {\n      \"MetaJudgment\": \"RequestsDecision\",\n      \"unchecked_MetaLiftRequest\": \"EvidenceOnly\",\n      \"checked_MetaLiftContract_LiftLicense\": \"AuthorizesTransition\",\n      \"Engine\": \"StateTransition\",\n      \"Pipeline\": \"None or EvidenceOnly\"\n    },\n    \"anti_god_object_law\": \"producer != judge != executor\",\n    \"negative_capabilities\": [\n      \"apply a lift\",\n      \"mutate a carrier\",\n      \"run search\",\n      \"schedule candidates\",\n      \"compute operator outputs\",\n      \"terminalize final state\",\n      \"create certificates for unverified evidence\",\n      \"execute Engine actions\",\n      \"compute measurements\",\n      \"recompute Functional outputs\",\n      \"invoke solvers\",\n      \"inspect mutable Engine internals\",\n      \"emit Action directly\",\n      \"emit StateTransition directly\",\n      \"store or mutate Trace\"\n    ],\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"apply_lift\",\n        \"execute_lift\",\n        \"mutate_carrier\",\n        \"EngineResult\",\n        \"StateTransition\",\n        \"TerminalEnvelope\",\n        \"execute(\",\n        \"schedule_search\",\n        \"run_search\",\n        \"compute_operator\",\n        \"compute_phi\",\n        \"compute_gamma\",\n        \"compute_xi\",\n        \"invoke_solver\",\n        \"terminalize(\",\n        \"write_trace\",\n        \"store_state\"\n      ]\n    },\n    \"required_tests\": [\n      \"meta_judgment_does_not_apply_lift\",\n      \"meta_judgment_does_not_mutate_carrier\",\n      \"meta_judgment_does_not_run_search\",\n      \"meta_judgment_does_not_schedule_candidates\",\n      \"meta_judgment_does_not_compute_operator_outputs\",\n      \"meta_judgment_does_not_compute_measurements\",\n      \"meta_judgment_consumes_measurement_refs_only\",\n      \"meta_judgment_does_not_invoke_solvers\",\n      \"meta_judgment_does_not_terminalize\",\n      \"meta_judgment_does_not_execute_engine_actions\",\n      \"meta_lift_request_is_evidence_only\",\n      \"lift_license_authorizes_but_does_not_execute\",\n      \"engine_requires_lift_license_for_lift_execution\",\n      \"binary_lift_requires_context_witness\",\n      \"lift_without_license_rejected\",\n      \"lift_without_persistence_certificate_rejected\",\n      \"lift_without_irreducibility_certificate_rejected\",\n      \"lift_without_minimality_certificate_rejected\",\n      \"metalift_contract_does_not_self_certify_minimality\"\n    ],\n    \"canonical_invariant\": \"MetaJudgment judges lift admissibility from submitted evidence. MetaLiftContract\\ndescribes a carrier-extension transition. LiftLicense authorizes the Engine to attempt\\nthat transition. Engine alone executes licensed lift transitions. No Meta artifact\\nexecutes, mutates, terminalizes, searches, solves, measures, or self-certifies.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"MetaJudgmentAndMetaLift\",\n      \"role\": \"Meta layer governance boundary - judgment and lift licensing\",\n      \"version\": \"2.0\",\n      \"classification\": \"constitution\",\n      \"split_from\": \"contract_constitution.md (lines 247-757)\",\n      \"doctrine_version\": \"2026-05\",\n      \"depends_on\": [\n        \"ContractConstitution\"\n      ],\n      \"forbidden_authority\": [\n        \"lift application\",\n        \"carrier mutation\",\n        \"search execution\",\n        \"candidate scheduling\",\n        \"operator computation\",\n        \"solver computation\",\n        \"measurement computation\",\n        \"evaluator recomputation\",\n        \"terminalization\",\n        \"certificate creation for unverified evidence\",\n        \"certificate authority above attached evidence\",\n        \"engine action execution\",\n        \"trace mutation\",\n        \"storage mutation\",\n        \"unlicensed carrier extension\",\n        \"self-certification of minimality\"\n      ],\n      \"primary_output_family\": \"DecisionEnvelope\",\n      \"referenced_output_families\": [\n        \"ActionLicense\",\n        \"EvidenceEnvelope\",\n        \"FactEnvelope\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:constitution:meta_judgment:v1.0.0",
-        "title": "MetaJudgmentAndMetaLift",
-        "kind": "constitution_contract",
-        "status": "mathematical_wip",
-        "layer": "00_constitution",
-        "role": "Constitution",
         "descriptor": {
           "authority_effect": "requests_decision",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -286,158 +56,44 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
         "doctrine": {
-          "summary": "MetaJudgment = read-only governance judgment over lift admissibility and authority\nconditions. MetaLiftContract = lift-license artifact or proposed lift contract.\nEngine = only executor of licensed lift transitions.\n",
-          "non_role": [
-            "lift application",
-            "carrier mutation",
-            "search execution",
-            "candidate scheduling",
-            "operator computation",
-            "solver computation",
-            "measurement computation",
-            "evaluator recomputation",
-            "terminalization",
-            "certificate creation for unverified evidence",
-            "certificate authority above attached evidence",
-            "engine action execution",
-            "trace mutation",
-            "storage mutation",
-            "unlicensed carrier extension",
-            "self-certification of minimality"
-          ],
-          "two_forms": {
-            "MetaJudgment": "Read-only 2-morphism-like governance over contracts, operators, and traces. Validates admissibility and composability.",
-            "MetaLiftContract": "Licensed boundary artifact describing an admissible carrier-extension transition L_h : C_N -> C_{N+1}. Does not execute."
-          },
-          "minimality_enforcement": {
-            "conditions": [
-              "sim_{N+1} is a congruence",
-              "For all L' subset L_h, sim_{N+1}^{L'} is not a congruence"
-            ],
-            "mechanisms": {
-              "repair_enabling": "A lift is invalid unless obstruction equivalence becomes a congruence after the lift.",
-              "delta_law": "Unary lift (Delta=1) iff already a congruence but names lacking. Binary lift (Delta=2) iff not a congruence. Higher-arity lifts presently unlicensed.",
-              "context_witnessed": "Binary lift admissible only when an admissible context C[_] distinguishes the irreducible failure."
-            }
-          },
+          "anti_god_object_law": "producer != judge != executor",
           "area_lock_phase_gate": "If m_G(gamma) > 0, the evidence may support irreducibility under the declared gauge\nmodel. A lift still requires persistence, context witness, license, minimality evidence,\nand Engine execution boundary. MetaJudgment may consume checked MeasurementId references\nbut MUST NOT compute or recompute measurements.\n",
+          "authority_effect_mapping": {
+            "Engine": "StateTransition",
+            "MetaJudgment": "RequestsDecision",
+            "Pipeline": "None or EvidenceOnly",
+            "checked_MetaLiftContract_LiftLicense": "AuthorizesTransition",
+            "unchecked_MetaLiftRequest": "EvidenceOnly"
+          },
+          "canonical_invariant": "MetaJudgment judges lift admissibility from submitted evidence. MetaLiftContract\ndescribes a carrier-extension transition. LiftLicense authorizes the Engine to attempt\nthat transition. Engine alone executes licensed lift transitions. No Meta artifact\nexecutes, mutates, terminalizes, searches, solves, measures, or self-certifies.\n",
           "failure_classes": [
             {
-              "name": "Authority failure",
-              "description": "Licensed lift claimed but no governance license permits it."
+              "description": "Licensed lift claimed but no governance license permits it.",
+              "name": "Authority failure"
             },
             {
-              "name": "Representation failure",
-              "description": "No admissible representation expansion reduces the obstruction."
+              "description": "No admissible representation expansion reduces the obstruction.",
+              "name": "Representation failure"
             },
             {
-              "name": "Evidence failure",
-              "description": "Claim cannot survive forgetful descent due to missing/revoked evidence."
+              "description": "Claim cannot survive forgetful descent due to missing/revoked evidence.",
+              "name": "Evidence failure"
             }
-          ],
-          "structural_representation": {
-            "meta_decision": {
-              "variants": [
-                {
-                  "name": "NoLift",
-                  "fields": [
-                    "reason",
-                    "evidence_refs"
-                  ]
-                },
-                {
-                  "name": "LiftAdmissible",
-                  "fields": [
-                    "license",
-                    "contract_ref",
-                    "evidence_refs"
-                  ]
-                },
-                {
-                  "name": "Refuse",
-                  "fields": [
-                    "failure",
-                    "certificate_ref"
-                  ]
-                }
-              ]
-            },
-            "meta_no_lift_reason": {
-              "variants": [
-                "GaugeRemovable",
-                "NoContextWitness",
-                "NotPersistent",
-                "NotIrreducible",
-                "LicenseMissing",
-                "DeltaNotAdmissible"
-              ]
-            },
-            "meta_lift_contract": {
-              "fields": [
-                "source_carrier",
-                "target_carrier_schema",
-                "obstruction_ref",
-                "context_witness",
-                "persistence_certificate",
-                "irreducibility_certificate",
-                "minimality_certificate",
-                "delta",
-                "contract_hash"
-              ]
-            },
-            "lift_license": {
-              "fields": [
-                "license_id",
-                "contract_ref",
-                "authority_refs",
-                "evidence_refs",
-                "authority_effect"
-              ]
-            },
-            "lift_delta": {
-              "variants": [
-                "UnaryName",
-                "BinaryConjugatePair"
-              ]
-            }
-          },
-          "authority_effect_mapping": {
-            "MetaJudgment": "RequestsDecision",
-            "unchecked_MetaLiftRequest": "EvidenceOnly",
-            "checked_MetaLiftContract_LiftLicense": "AuthorizesTransition",
-            "Engine": "StateTransition",
-            "Pipeline": "None or EvidenceOnly"
-          },
-          "anti_god_object_law": "producer != judge != executor",
-          "negative_capabilities": [
-            "apply a lift",
-            "mutate a carrier",
-            "run search",
-            "schedule candidates",
-            "compute operator outputs",
-            "terminalize final state",
-            "create certificates for unverified evidence",
-            "execute Engine actions",
-            "compute measurements",
-            "recompute Functional outputs",
-            "invoke solvers",
-            "inspect mutable Engine internals",
-            "emit Action directly",
-            "emit StateTransition directly",
-            "store or mutate Trace"
           ],
           "forbidden_implementation_tokens": {
             "scope": "behavior, not substring",
@@ -461,6 +117,88 @@
               "store_state"
             ]
           },
+          "legacy_metadata": {
+            "classification": "constitution",
+            "depends_on": [
+              "ContractConstitution"
+            ],
+            "doctrine_version": "2026-05",
+            "forbidden_authority": [
+              "lift application",
+              "carrier mutation",
+              "search execution",
+              "candidate scheduling",
+              "operator computation",
+              "solver computation",
+              "measurement computation",
+              "evaluator recomputation",
+              "terminalization",
+              "certificate creation for unverified evidence",
+              "certificate authority above attached evidence",
+              "engine action execution",
+              "trace mutation",
+              "storage mutation",
+              "unlicensed carrier extension",
+              "self-certification of minimality"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority.",
+            "name": "MetaJudgmentAndMetaLift",
+            "primary_output_family": "DecisionEnvelope",
+            "referenced_output_families": [
+              "ActionLicense",
+              "EvidenceEnvelope",
+              "FactEnvelope"
+            ],
+            "role": "Meta layer governance boundary - judgment and lift licensing",
+            "split_from": "contract_constitution.md (lines 247-757)",
+            "version": "2.0"
+          },
+          "minimality_enforcement": {
+            "conditions": [
+              "sim_{N+1} is a congruence",
+              "For all L' subset L_h, sim_{N+1}^{L'} is not a congruence"
+            ],
+            "mechanisms": {
+              "context_witnessed": "Binary lift admissible only when an admissible context C[_] distinguishes the irreducible failure.",
+              "delta_law": "Unary lift (Delta=1) iff already a congruence but names lacking. Binary lift (Delta=2) iff not a congruence. Higher-arity lifts presently unlicensed.",
+              "repair_enabling": "A lift is invalid unless obstruction equivalence becomes a congruence after the lift."
+            }
+          },
+          "negative_capabilities": [
+            "apply a lift",
+            "mutate a carrier",
+            "run search",
+            "schedule candidates",
+            "compute operator outputs",
+            "terminalize final state",
+            "create certificates for unverified evidence",
+            "execute Engine actions",
+            "compute measurements",
+            "recompute Functional outputs",
+            "invoke solvers",
+            "inspect mutable Engine internals",
+            "emit Action directly",
+            "emit StateTransition directly",
+            "store or mutate Trace"
+          ],
+          "non_role": [
+            "lift application",
+            "carrier mutation",
+            "search execution",
+            "candidate scheduling",
+            "operator computation",
+            "solver computation",
+            "measurement computation",
+            "evaluator recomputation",
+            "terminalization",
+            "certificate creation for unverified evidence",
+            "certificate authority above attached evidence",
+            "engine action execution",
+            "trace mutation",
+            "storage mutation",
+            "unlicensed carrier extension",
+            "self-certification of minimality"
+          ],
           "required_tests": [
             "meta_judgment_does_not_apply_lift",
             "meta_judgment_does_not_mutate_carrier",
@@ -482,80 +220,156 @@
             "lift_without_minimality_certificate_rejected",
             "metalift_contract_does_not_self_certify_minimality"
           ],
-          "canonical_invariant": "MetaJudgment judges lift admissibility from submitted evidence. MetaLiftContract\ndescribes a carrier-extension transition. LiftLicense authorizes the Engine to attempt\nthat transition. Engine alone executes licensed lift transitions. No Meta artifact\nexecutes, mutates, terminalizes, searches, solves, measures, or self-certifies.\n",
-          "legacy_metadata": {
-            "name": "MetaJudgmentAndMetaLift",
-            "role": "Meta layer governance boundary - judgment and lift licensing",
-            "version": "2.0",
-            "classification": "constitution",
-            "split_from": "contract_constitution.md (lines 247-757)",
-            "doctrine_version": "2026-05",
-            "depends_on": [
-              "ContractConstitution"
-            ],
-            "forbidden_authority": [
-              "lift application",
-              "carrier mutation",
-              "search execution",
-              "candidate scheduling",
-              "operator computation",
-              "solver computation",
-              "measurement computation",
-              "evaluator recomputation",
-              "terminalization",
-              "certificate creation for unverified evidence",
-              "certificate authority above attached evidence",
-              "engine action execution",
-              "trace mutation",
-              "storage mutation",
-              "unlicensed carrier extension",
-              "self-certification of minimality"
-            ],
-            "primary_output_family": "DecisionEnvelope",
-            "referenced_output_families": [
-              "ActionLicense",
-              "EvidenceEnvelope",
-              "FactEnvelope"
-            ],
-            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          "structural_representation": {
+            "lift_delta": {
+              "variants": [
+                "UnaryName",
+                "BinaryConjugatePair"
+              ]
+            },
+            "lift_license": {
+              "fields": [
+                "license_id",
+                "contract_ref",
+                "authority_refs",
+                "evidence_refs",
+                "authority_effect"
+              ]
+            },
+            "meta_decision": {
+              "variants": [
+                {
+                  "fields": [
+                    "reason",
+                    "evidence_refs"
+                  ],
+                  "name": "NoLift"
+                },
+                {
+                  "fields": [
+                    "license",
+                    "contract_ref",
+                    "evidence_refs"
+                  ],
+                  "name": "LiftAdmissible"
+                },
+                {
+                  "fields": [
+                    "failure",
+                    "certificate_ref"
+                  ],
+                  "name": "Refuse"
+                }
+              ]
+            },
+            "meta_lift_contract": {
+              "fields": [
+                "source_carrier",
+                "target_carrier_schema",
+                "obstruction_ref",
+                "context_witness",
+                "persistence_certificate",
+                "irreducibility_certificate",
+                "minimality_certificate",
+                "delta",
+                "contract_hash"
+              ]
+            },
+            "meta_no_lift_reason": {
+              "variants": [
+                "GaugeRemovable",
+                "NoContextWitness",
+                "NotPersistent",
+                "NotIrreducible",
+                "LicenseMissing",
+                "DeltaNotAdmissible"
+              ]
+            }
+          },
+          "summary": "MetaJudgment = read-only governance judgment over lift admissibility and authority\nconditions. MetaLiftContract = lift-license artifact or proposed lift contract.\nEngine = only executor of licensed lift transitions.\n",
+          "two_forms": {
+            "MetaJudgment": "Read-only 2-morphism-like governance over contracts, operators, and traces. Validates admissibility and composability.",
+            "MetaLiftContract": "Licensed boundary artifact describing an admissible carrier-extension transition L_h : C_N -> C_{N+1}. Does not execute."
           }
         },
+        "kind": "constitution_contract",
+        "layer": "00_constitution",
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0"
           ]
-        }
+        },
+        "role": "Constitution",
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "MetaJudgmentAndMetaLift"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:constitution:meta_judgment:v1.0.0\",\n  \"title\": \"MetaJudgmentAndMetaLift\",\n  \"kind\": \"constitution_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"00_constitution\",\n  \"role\": \"Constitution\",\n  \"descriptor\": {\n    \"authority_effect\": \"requests_decision\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"ContractConstitution\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"MetaJudgment = read-only governance judgment over lift admissibility and authority\\nconditions. MetaLiftContract = lift-license artifact or proposed lift contract.\\nEngine = only executor of licensed lift transitions.\\n\",\n    \"non_role\": [\n      \"lift application\",\n      \"carrier mutation\",\n      \"search execution\",\n      \"candidate scheduling\",\n      \"operator computation\",\n      \"solver computation\",\n      \"measurement computation\",\n      \"evaluator recomputation\",\n      \"terminalization\",\n      \"certificate creation for unverified evidence\",\n      \"certificate authority above attached evidence\",\n      \"engine action execution\",\n      \"trace mutation\",\n      \"storage mutation\",\n      \"unlicensed carrier extension\",\n      \"self-certification of minimality\"\n    ],\n    \"two_forms\": {\n      \"MetaJudgment\": \"Read-only 2-morphism-like governance over contracts, operators, and traces. Validates admissibility and composability.\",\n      \"MetaLiftContract\": \"Licensed boundary artifact describing an admissible carrier-extension transition L_h : C_N -> C_{N+1}. Does not execute.\"\n    },\n    \"minimality_enforcement\": {\n      \"conditions\": [\n        \"sim_{N+1} is a congruence\",\n        \"For all L' subset L_h, sim_{N+1}^{L'} is not a congruence\"\n      ],\n      \"mechanisms\": {\n        \"repair_enabling\": \"A lift is invalid unless obstruction equivalence becomes a congruence after the lift.\",\n        \"delta_law\": \"Unary lift (Delta=1) iff already a congruence but names lacking. Binary lift (Delta=2) iff not a congruence. Higher-arity lifts presently unlicensed.\",\n        \"context_witnessed\": \"Binary lift admissible only when an admissible context C[_] distinguishes the irreducible failure.\"\n      }\n    },\n    \"area_lock_phase_gate\": \"If m_G(gamma) > 0, the evidence may support irreducibility under the declared gauge\\nmodel. A lift still requires persistence, context witness, license, minimality evidence,\\nand Engine execution boundary. MetaJudgment may consume checked MeasurementId references\\nbut MUST NOT compute or recompute measurements.\\n\",\n    \"failure_classes\": [\n      {\n        \"name\": \"Authority failure\",\n        \"description\": \"Licensed lift claimed but no governance license permits it.\"\n      },\n      {\n        \"name\": \"Representation failure\",\n        \"description\": \"No admissible representation expansion reduces the obstruction.\"\n      },\n      {\n        \"name\": \"Evidence failure\",\n        \"description\": \"Claim cannot survive forgetful descent due to missing/revoked evidence.\"\n      }\n    ],\n    \"structural_representation\": {\n      \"meta_decision\": {\n        \"variants\": [\n          {\n            \"name\": \"NoLift\",\n            \"fields\": [\n              \"reason\",\n              \"evidence_refs\"\n            ]\n          },\n          {\n            \"name\": \"LiftAdmissible\",\n            \"fields\": [\n              \"license\",\n              \"contract_ref\",\n              \"evidence_refs\"\n            ]\n          },\n          {\n            \"name\": \"Refuse\",\n            \"fields\": [\n              \"failure\",\n              \"certificate_ref\"\n            ]\n          }\n        ]\n      },\n      \"meta_no_lift_reason\": {\n        \"variants\": [\n          \"GaugeRemovable\",\n          \"NoContextWitness\",\n          \"NotPersistent\",\n          \"NotIrreducible\",\n          \"LicenseMissing\",\n          \"DeltaNotAdmissible\"\n        ]\n      },\n      \"meta_lift_contract\": {\n        \"fields\": [\n          \"source_carrier\",\n          \"target_carrier_schema\",\n          \"obstruction_ref\",\n          \"context_witness\",\n          \"persistence_certificate\",\n          \"irreducibility_certificate\",\n          \"minimality_certificate\",\n          \"delta\",\n          \"contract_hash\"\n        ]\n      },\n      \"lift_license\": {\n        \"fields\": [\n          \"license_id\",\n          \"contract_ref\",\n          \"authority_refs\",\n          \"evidence_refs\",\n          \"authority_effect\"\n        ]\n      },\n      \"lift_delta\": {\n        \"variants\": [\n          \"UnaryName\",\n          \"BinaryConjugatePair\"\n        ]\n      }\n    },\n    \"authority_effect_mapping\": {\n      \"MetaJudgment\": \"RequestsDecision\",\n      \"unchecked_MetaLiftRequest\": \"EvidenceOnly\",\n      \"checked_MetaLiftContract_LiftLicense\": \"AuthorizesTransition\",\n      \"Engine\": \"StateTransition\",\n      \"Pipeline\": \"None or EvidenceOnly\"\n    },\n    \"anti_god_object_law\": \"producer != judge != executor\",\n    \"negative_capabilities\": [\n      \"apply a lift\",\n      \"mutate a carrier\",\n      \"run search\",\n      \"schedule candidates\",\n      \"compute operator outputs\",\n      \"terminalize final state\",\n      \"create certificates for unverified evidence\",\n      \"execute Engine actions\",\n      \"compute measurements\",\n      \"recompute Functional outputs\",\n      \"invoke solvers\",\n      \"inspect mutable Engine internals\",\n      \"emit Action directly\",\n      \"emit StateTransition directly\",\n      \"store or mutate Trace\"\n    ],\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"apply_lift\",\n        \"execute_lift\",\n        \"mutate_carrier\",\n        \"EngineResult\",\n        \"StateTransition\",\n        \"TerminalEnvelope\",\n        \"execute(\",\n        \"schedule_search\",\n        \"run_search\",\n        \"compute_operator\",\n        \"compute_phi\",\n        \"compute_gamma\",\n        \"compute_xi\",\n        \"invoke_solver\",\n        \"terminalize(\",\n        \"write_trace\",\n        \"store_state\"\n      ]\n    },\n    \"required_tests\": [\n      \"meta_judgment_does_not_apply_lift\",\n      \"meta_judgment_does_not_mutate_carrier\",\n      \"meta_judgment_does_not_run_search\",\n      \"meta_judgment_does_not_schedule_candidates\",\n      \"meta_judgment_does_not_compute_operator_outputs\",\n      \"meta_judgment_does_not_compute_measurements\",\n      \"meta_judgment_consumes_measurement_refs_only\",\n      \"meta_judgment_does_not_invoke_solvers\",\n      \"meta_judgment_does_not_terminalize\",\n      \"meta_judgment_does_not_execute_engine_actions\",\n      \"meta_lift_request_is_evidence_only\",\n      \"lift_license_authorizes_but_does_not_execute\",\n      \"engine_requires_lift_license_for_lift_execution\",\n      \"binary_lift_requires_context_witness\",\n      \"lift_without_license_rejected\",\n      \"lift_without_persistence_certificate_rejected\",\n      \"lift_without_irreducibility_certificate_rejected\",\n      \"lift_without_minimality_certificate_rejected\",\n      \"metalift_contract_does_not_self_certify_minimality\"\n    ],\n    \"canonical_invariant\": \"MetaJudgment judges lift admissibility from submitted evidence. MetaLiftContract\\ndescribes a carrier-extension transition. LiftLicense authorizes the Engine to attempt\\nthat transition. Engine alone executes licensed lift transitions. No Meta artifact\\nexecutes, mutates, terminalizes, searches, solves, measures, or self-certifies.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"MetaJudgmentAndMetaLift\",\n      \"role\": \"Meta layer governance boundary - judgment and lift licensing\",\n      \"version\": \"2.0\",\n      \"classification\": \"constitution\",\n      \"split_from\": \"contract_constitution.md (lines 247-757)\",\n      \"doctrine_version\": \"2026-05\",\n      \"depends_on\": [\n        \"ContractConstitution\"\n      ],\n      \"forbidden_authority\": [\n        \"lift application\",\n        \"carrier mutation\",\n        \"search execution\",\n        \"candidate scheduling\",\n        \"operator computation\",\n        \"solver computation\",\n        \"measurement computation\",\n        \"evaluator recomputation\",\n        \"terminalization\",\n        \"certificate creation for unverified evidence\",\n        \"certificate authority above attached evidence\",\n        \"engine action execution\",\n        \"trace mutation\",\n        \"storage mutation\",\n        \"unlicensed carrier extension\",\n        \"self-certification of minimality\"\n      ],\n      \"primary_output_family\": \"DecisionEnvelope\",\n      \"referenced_output_families\": [\n        \"ActionLicense\",\n        \"EvidenceEnvelope\",\n        \"FactEnvelope\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "cd99fb1d64a47d177007aa5dc23269b5dfd425bf454ca66f693d5ea3d6d254f9"
+    },
+    {
+      "bytes": 1733,
       "original_paths": [
-        "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py\",\n    \"sha256\": \"95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py\",\n      \"sha256\": \"95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca\",\n  \"subject\": \"code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py",
+          "sha256": "95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py",
+            "sha256": "95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca",
+        "subject": "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py"
+      },
+      "sha256": "cd4e801b724796b296b7678de4767f99c15555e66e0dc85c9657830f1d64be73"
     }
   ],
+  "current_contract": "cd4e801b724796b296b7678de4767f99c15555e66e0dc85c9657830f1d64be73",
+  "current_scoring": "6a317290c330892bfc4acbb1795581de7e3b0398262b45c08fde417181006837",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0.contract.yaml": "ffa29dc8c5bedb91b0c33031794137d97446fd4be3103561ca5da04ef2a02cb2"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "9239e6d4db5f5b7dc9b1c339418275bd8b1a9d9781e5eccee63cad8f5913f388",
       "bytes": 2247,
+      "original_paths": [
+        "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py\",\n    \"sha256\": \"95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:00_constitution:constitution-meta-judgment-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py",
           "sha256": "95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:00_constitution:constitution-meta-judgment-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -564,40 +378,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "9239e6d4db5f5b7dc9b1c339418275bd8b1a9d9781e5eccee63cad8f5913f388"
+    },
+    {
+      "bytes": 1684,
+      "original_paths": [
+        "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py\",\n    \"sha256\": \"95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py\",\n      \"sha256\": \"95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py",
+          "sha256": "95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py",
+            "sha256": "95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.py\",\n    \"sha256\": \"95518407f81651107240fffb7e527b02b8ee50a504cdf77954789d4290e988ca\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:00_constitution:constitution-meta-judgment-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "6a317290c330892bfc4acbb1795581de7e3b0398262b45c08fde417181006837"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/00_constitution/constitution_meta_judgment_v1_0_0.contract.yaml": "ffa29dc8c5bedb91b0c33031794137d97446fd4be3103561ca5da04ef2a02cb2"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

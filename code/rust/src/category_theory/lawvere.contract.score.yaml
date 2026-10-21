@@ -1,263 +1,68 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/lawvere.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/lawvere.rs",
-      "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709",
-      "language": "Rust"
+      "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact profile retained from original: finite string/name/usize table diagnostics, checked slot sum with ordinary refusal; no floating arithmetic or profile change after failure.",
-      "domain": "Unrestricted mutable raw records, duplicate names and possibly ill-typed/partial substitution tables. Equation strings and stored Cauchy status have no admitted mathematical semantics.",
-      "behavior": "Literal supplied-case associativity at specified i,j,i+j and declared-name split inventory; exact ordered diagnostics, not universal laws or a certified Lawvere theory."
-    },
-    "operations": {
-      "OperationDecl::new": {
-        "line": 20,
-        "signature": "pub fn new(name: &str, input_sorts: Vec<String>, output_sorts: Vec<String>) -> Self",
-        "obligation": "Own exact name and supplied ordered input/output sort vectors, without type/membership/uniqueness admission."
-      },
-      "OperationDecl::arity": {
-        "line": 28,
-        "signature": "pub fn arity(&self) -> usize",
-        "obligation": "Return the actual input vector length, not output length or a mathematical sort exponent."
-      },
-      "OperationDecl::coarity": {
-        "line": 32,
-        "signature": "pub fn coarity(&self) -> usize",
-        "obligation": "Return actual output vector length."
-      },
-      "EquationDecl::new": {
-        "line": 46,
-        "signature": "pub fn new(name: &str, lhs: &str, rhs: &str) -> Self",
-        "obligation": "Own exact name/lhs/rhs strings without parsing, normalization or equation-law validation."
-      },
-      "LawvereTheory::new": {
-        "line": 76,
-        "signature": "pub fn new(name: &str) -> Self",
-        "obligation": "Own supplied name; empty vectors/maps and literal Complete status. This default is untrusted inventory metadata, not a theorem."
-      },
-      "LawvereTheory::add_sort": {
-        "line": 88,
-        "signature": "pub fn add_sort(&mut self, sort: &str)",
-        "obligation": "Append the exact sort name, preserving input order and duplicates."
-      },
-      "LawvereTheory::add_operation": {
-        "line": 91,
-        "signature": "pub fn add_operation(&mut self, op: OperationDecl)",
-        "obligation": "Append the entire supplied record, preserving order, duplicate names and unchecked sort lists."
-      },
-      "LawvereTheory::add_equation": {
-        "line": 94,
-        "signature": "pub fn add_equation(&mut self, eq: EquationDecl)",
-        "obligation": "Append exact uninterpreted equation record, preserving duplicates and order."
-      },
-      "LawvereTheory::add_substitution": {
-        "line": 98,
-        "signature": "pub fn add_substitution(&mut self, outer: &str, slot: usize, inner: &str, result: &str)",
-        "obligation": "Insert exact owned outer/slot/inner key and result, replacing only an equal key; no arity, membership or sort admission."
-      },
-      "LawvereTheory::substitute": {
-        "line": 103,
-        "signature": "pub fn substitute(&self, outer: &str, slot: usize, inner: &str) -> Option<&str>",
-        "obligation": "Exact BTreeMap tuple lookup of outer/slot/inner with borrowed returned str lifetime tied to self. It constructs two temporary String key copies for this public isolated lookup; diagnostics use their once-built borrowed index."
-      },
-      "LawvereTheory::operations_of_arity": {
-        "line": 109,
-        "signature": "pub fn operations_of_arity(&self, arity: usize) -> Vec<&OperationDecl>",
-        "obligation": "Collect borrowed references with matching actual input length, in original order including duplicates; other fields and stored status untouched."
-      },
-      "SubstitutionLookup::new": {
-        "line": 124,
-        "signature": "fn new(theory: &'a LawvereTheory) -> Self",
-        "obligation": "Collect one borrowed tuple/value per map entry. BTreeMap order by owned String/usize/String equals lexicographic str/usize/str order; no sort, filtering or owned key copy changes the key-value association. Snapshot borrows self, so mutation cannot invalidate the view during the diagnostic."
-      },
-      "SubstitutionLookup::get": {
-        "line": 132,
-        "signature": "fn get(&self, outer: &str, slot: usize, inner: &str) -> Option<&'a str>",
-        "obligation": "Search the exact borrowed outer/slot/inner tuple in the sorted unique view. Successful index comes from std binary search, and checked Vec::get returns the associated borrowed value; absent keys return None. No ad-hoc key hashing, insertion or string allocation in lookup."
-      },
-      "check_substitution_associativity": {
-        "line": 143,
-        "signature": "pub fn check_substitution_associativity(\n    theory: &LawvereTheory,\n    cases: &[(&str, usize, &str, usize, &str)],\n) -> Vec<String>",
-        "obligation": "For each supplied case, checked usize i+j is admitted before lookups; overflow emits exactly one ordered i/j diagnostic and continues. Otherwise compare g[j]h then f[i]result with f[i]g then result[i+j]h. Both defined/equal succeeds; both defined/different emits exact mismatch payload, and either absent emits undefined, including both absent. Preserve all failing-case order/multiplicity. Empty list is vacuous; do not admit arbitrary operations or infer universal associativity."
-      },
-      "is_declared_idempotent": {
-        "line": 171,
-        "signature": "fn is_declared_idempotent(lookup: &SubstitutionLookup<'_>, op: &OperationDecl) -> bool",
-        "obligation": "Conjoin actual one-input/one-output shape and the explicit slot-zero own-name/own-name table result equal to the own name. Absence or differing result fails; no mathematical idempotence beyond this raw entry."
-      },
-      "splitting_pair": {
-        "line": 175,
-        "signature": "fn splitting_pair(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str,\n                  r: &OperationDecl, s: &OperationDecl) -> bool",
-        "obligation": "Conjoin explicit s[0]r=e with r[0]s equal to the identity recorded at r first output sort. Missing first sort/identity/table entry fails. No unary/typing/membership requirement is added for candidate r,s, preserving the legacy raw split diagnostic rather than silently changing its domain."
-      },
-      "has_splitting": {
-        "line": 182,
-        "signature": "fn has_splitting(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str) -> bool",
-        "obligation": "Existentially search every ordered declared r,s pair for the literal predicate. Short-circuiting affects only pure lookups. Duplicate names remain records; an empty candidate list has no pair."
-      },
-      "check_theory_cauchy": {
-        "line": 194,
-        "signature": "pub fn check_theory_cauchy(theory: &LawvereTheory) -> TheoryCauchyStatus",
-        "obligation": "Build one borrowed index, retain exactly each unary/co-unary self-idempotent record for which no declared literal split exists, and clone its name in original operation order. Duplicates remain. Empty retained list returns Complete; otherwise retain exact names. Neither result authenticates a category nor mutates independent cauchy_status."
-      }
-    },
-    "invariants": [
-      "Own exact name and supplied ordered input/output sort vectors, without type/membership/uniqueness admission.",
-      "Return the actual input vector length, not output length or a mathematical sort exponent.",
-      "Return actual output vector length.",
-      "Own exact name/lhs/rhs strings without parsing, normalization or equation-law validation.",
-      "Own supplied name; empty vectors/maps and literal Complete status. This default is untrusted inventory metadata, not a theorem.",
-      "Append the exact sort name, preserving input order and duplicates.",
-      "Append the entire supplied record, preserving order, duplicate names and unchecked sort lists.",
-      "Append exact uninterpreted equation record, preserving duplicates and order.",
-      "Insert exact owned outer/slot/inner key and result, replacing only an equal key; no arity, membership or sort admission.",
-      "Exact BTreeMap tuple lookup of outer/slot/inner with borrowed returned str lifetime tied to self. It constructs two temporary String key copies for this public isolated lookup; diagnostics use their once-built borrowed index.",
-      "Collect borrowed references with matching actual input length, in original order including duplicates; other fields and stored status untouched.",
-      "Collect one borrowed tuple/value per map entry. BTreeMap order by owned String/usize/String equals lexicographic str/usize/str order; no sort, filtering or owned key copy changes the key-value association. Snapshot borrows self, so mutation cannot invalidate the view during the diagnostic.",
-      "Search the exact borrowed outer/slot/inner tuple in the sorted unique view. Successful index comes from std binary search, and checked Vec::get returns the associated borrowed value; absent keys return None. No ad-hoc key hashing, insertion or string allocation in lookup.",
-      "For each supplied case, checked usize i+j is admitted before lookups; overflow emits exactly one ordered i/j diagnostic and continues. Otherwise compare g[j]h then f[i]result with f[i]g then result[i+j]h. Both defined/equal succeeds; both defined/different emits exact mismatch payload, and either absent emits undefined, including both absent. Preserve all failing-case order/multiplicity. Empty list is vacuous; do not admit arbitrary operations or infer universal associativity.",
-      "Conjoin actual one-input/one-output shape and the explicit slot-zero own-name/own-name table result equal to the own name. Absence or differing result fails; no mathematical idempotence beyond this raw entry.",
-      "Conjoin explicit s[0]r=e with r[0]s equal to the identity recorded at r first output sort. Missing first sort/identity/table entry fails. No unary/typing/membership requirement is added for candidate r,s, preserving the legacy raw split diagnostic rather than silently changing its domain.",
-      "Existentially search every ordered declared r,s pair for the literal predicate. Short-circuiting affects only pure lookups. Duplicate names remain records; an empty candidate list has no pair.",
-      "Build one borrowed index, retain exactly each unary/co-unary self-idempotent record for which no declared literal split exists, and clone its name in original operation order. Duplicates remain. Empty retained list returns Complete; otherwise retain exact names. Neither result authenticates a category nor mutates independent cauchy_status."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": "Slot overflow is an explicit ordinary diagnostic, before lookup; undefined/mismatch are ordinary diagnostics. Missing split evidence becomes an unsplit name. Empty inventory is vacuous. All diagnostic calls borrow the raw theory immutably, including stored status. Allocation failure, formatting/stdlib/compiler defects and resource exhaustion remain runtime trust boundaries; no catch-all or allocator-totality claim.",
-    "trust_boundary": {
-      "runtime": "rustc/std allocator, String ordering/equality, Vec iteration/get and BTreeMap sorted order plus binary_search_by_key. Immutable safe references prevent invalidating the borrowed index during a check. No user callback or unsafe code.",
-      "proof": "Pinned prepared Lean/Mathlib with standard foundational axioms; pure bounded-Nat slot guard, defined-value equality, finite pair existential and filtering arbitrary full records. Source refinement/library algorithms/compiler extraction remain separate."
-    },
-    "assurance_limits": [
-      "L3 bounded raw-table algorithms, not an admitted Lawvere theory, profunctor, equation calculus, universal associativity or Cauchy category certificate. Complete on no detected declared idempotents is vacuous and stored status is independent metadata.",
-      "A is scoped local source/model/native evidence, not A+, whole-workspace/external application verification, expanded MIR, allocator totality or a work-budget promise. String length and cubic pair-search costs remain explicit. Contracts pending.",
-      "The original source-bound G2/G3 E overflow and failed native counterexample remain retained. First repaired campaign caught 30/31: sort-order mutation survived identical-name-only fixture; distinct Q sort added and final 31/31 passes. No equivalent exclusion/relabeling.",
-      "Initial proof import was unavailable; unnecessary module import removed. Generic full-record filter model then triggered unused typeclass warnings; unused DecidableEq assumption removed, with warnings treated as failure. Only the final clean14-declaration receipt supports this assessment."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/lawvere.score.yaml",
-        "sha256": "067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2"
+        "path": "code/rust/src/category_theory/lawvere.rs",
+        "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709",
+    "subject": "code/rust/src/category_theory/lawvere.rs"
   },
-  "current_contract": "1e29f3a89a502c83ed03db0e1464437feedaf402b7de94414bfc0b3f88bf1769",
-  "current_scoring": "ce154920969afa7b6f9a670f139b8086753f790244c0c2365a5c7511a50e48b3",
   "contract_history": [
     {
-      "sha256": "1e29f3a89a502c83ed03db0e1464437feedaf402b7de94414bfc0b3f88bf1769",
       "bytes": 13007,
+      "original_paths": [
+        "code/rust/src/category_theory/lawvere.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lawvere.rs\",\n    \"sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact profile retained from original: finite string/name/usize table diagnostics, checked slot sum with ordinary refusal; no floating arithmetic or profile change after failure.\",\n    \"domain\": \"Unrestricted mutable raw records, duplicate names and possibly ill-typed/partial substitution tables. Equation strings and stored Cauchy status have no admitted mathematical semantics.\",\n    \"behavior\": \"Literal supplied-case associativity at specified i,j,i+j and declared-name split inventory; exact ordered diagnostics, not universal laws or a certified Lawvere theory.\"\n  },\n  \"operations\": {\n    \"OperationDecl::new\": {\n      \"line\": 20,\n      \"signature\": \"pub fn new(name: &str, input_sorts: Vec<String>, output_sorts: Vec<String>) -> Self\",\n      \"obligation\": \"Own exact name and supplied ordered input/output sort vectors, without type/membership/uniqueness admission.\"\n    },\n    \"OperationDecl::arity\": {\n      \"line\": 28,\n      \"signature\": \"pub fn arity(&self) -> usize\",\n      \"obligation\": \"Return the actual input vector length, not output length or a mathematical sort exponent.\"\n    },\n    \"OperationDecl::coarity\": {\n      \"line\": 32,\n      \"signature\": \"pub fn coarity(&self) -> usize\",\n      \"obligation\": \"Return actual output vector length.\"\n    },\n    \"EquationDecl::new\": {\n      \"line\": 46,\n      \"signature\": \"pub fn new(name: &str, lhs: &str, rhs: &str) -> Self\",\n      \"obligation\": \"Own exact name/lhs/rhs strings without parsing, normalization or equation-law validation.\"\n    },\n    \"LawvereTheory::new\": {\n      \"line\": 76,\n      \"signature\": \"pub fn new(name: &str) -> Self\",\n      \"obligation\": \"Own supplied name; empty vectors/maps and literal Complete status. This default is untrusted inventory metadata, not a theorem.\"\n    },\n    \"LawvereTheory::add_sort\": {\n      \"line\": 88,\n      \"signature\": \"pub fn add_sort(&mut self, sort: &str)\",\n      \"obligation\": \"Append the exact sort name, preserving input order and duplicates.\"\n    },\n    \"LawvereTheory::add_operation\": {\n      \"line\": 91,\n      \"signature\": \"pub fn add_operation(&mut self, op: OperationDecl)\",\n      \"obligation\": \"Append the entire supplied record, preserving order, duplicate names and unchecked sort lists.\"\n    },\n    \"LawvereTheory::add_equation\": {\n      \"line\": 94,\n      \"signature\": \"pub fn add_equation(&mut self, eq: EquationDecl)\",\n      \"obligation\": \"Append exact uninterpreted equation record, preserving duplicates and order.\"\n    },\n    \"LawvereTheory::add_substitution\": {\n      \"line\": 98,\n      \"signature\": \"pub fn add_substitution(&mut self, outer: &str, slot: usize, inner: &str, result: &str)\",\n      \"obligation\": \"Insert exact owned outer/slot/inner key and result, replacing only an equal key; no arity, membership or sort admission.\"\n    },\n    \"LawvereTheory::substitute\": {\n      \"line\": 103,\n      \"signature\": \"pub fn substitute(&self, outer: &str, slot: usize, inner: &str) -> Option<&str>\",\n      \"obligation\": \"Exact BTreeMap tuple lookup of outer/slot/inner with borrowed returned str lifetime tied to self. It constructs two temporary String key copies for this public isolated lookup; diagnostics use their once-built borrowed index.\"\n    },\n    \"LawvereTheory::operations_of_arity\": {\n      \"line\": 109,\n      \"signature\": \"pub fn operations_of_arity(&self, arity: usize) -> Vec<&OperationDecl>\",\n      \"obligation\": \"Collect borrowed references with matching actual input length, in original order including duplicates; other fields and stored status untouched.\"\n    },\n    \"SubstitutionLookup::new\": {\n      \"line\": 124,\n      \"signature\": \"fn new(theory: &'a LawvereTheory) -> Self\",\n      \"obligation\": \"Collect one borrowed tuple/value per map entry. BTreeMap order by owned String/usize/String equals lexicographic str/usize/str order; no sort, filtering or owned key copy changes the key-value association. Snapshot borrows self, so mutation cannot invalidate the view during the diagnostic.\"\n    },\n    \"SubstitutionLookup::get\": {\n      \"line\": 132,\n      \"signature\": \"fn get(&self, outer: &str, slot: usize, inner: &str) -> Option<&'a str>\",\n      \"obligation\": \"Search the exact borrowed outer/slot/inner tuple in the sorted unique view. Successful index comes from std binary search, and checked Vec::get returns the associated borrowed value; absent keys return None. No ad-hoc key hashing, insertion or string allocation in lookup.\"\n    },\n    \"check_substitution_associativity\": {\n      \"line\": 143,\n      \"signature\": \"pub fn check_substitution_associativity(\\n    theory: &LawvereTheory,\\n    cases: &[(&str, usize, &str, usize, &str)],\\n) -> Vec<String>\",\n      \"obligation\": \"For each supplied case, checked usize i+j is admitted before lookups; overflow emits exactly one ordered i/j diagnostic and continues. Otherwise compare g[j]h then f[i]result with f[i]g then result[i+j]h. Both defined/equal succeeds; both defined/different emits exact mismatch payload, and either absent emits undefined, including both absent. Preserve all failing-case order/multiplicity. Empty list is vacuous; do not admit arbitrary operations or infer universal associativity.\"\n    },\n    \"is_declared_idempotent\": {\n      \"line\": 171,\n      \"signature\": \"fn is_declared_idempotent(lookup: &SubstitutionLookup<'_>, op: &OperationDecl) -> bool\",\n      \"obligation\": \"Conjoin actual one-input/one-output shape and the explicit slot-zero own-name/own-name table result equal to the own name. Absence or differing result fails; no mathematical idempotence beyond this raw entry.\"\n    },\n    \"splitting_pair\": {\n      \"line\": 175,\n      \"signature\": \"fn splitting_pair(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str,\\n                  r: &OperationDecl, s: &OperationDecl) -> bool\",\n      \"obligation\": \"Conjoin explicit s[0]r=e with r[0]s equal to the identity recorded at r first output sort. Missing first sort/identity/table entry fails. No unary/typing/membership requirement is added for candidate r,s, preserving the legacy raw split diagnostic rather than silently changing its domain.\"\n    },\n    \"has_splitting\": {\n      \"line\": 182,\n      \"signature\": \"fn has_splitting(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str) -> bool\",\n      \"obligation\": \"Existentially search every ordered declared r,s pair for the literal predicate. Short-circuiting affects only pure lookups. Duplicate names remain records; an empty candidate list has no pair.\"\n    },\n    \"check_theory_cauchy\": {\n      \"line\": 194,\n      \"signature\": \"pub fn check_theory_cauchy(theory: &LawvereTheory) -> TheoryCauchyStatus\",\n      \"obligation\": \"Build one borrowed index, retain exactly each unary/co-unary self-idempotent record for which no declared literal split exists, and clone its name in original operation order. Duplicates remain. Empty retained list returns Complete; otherwise retain exact names. Neither result authenticates a category nor mutates independent cauchy_status.\"\n    }\n  },\n  \"invariants\": [\n    \"Own exact name and supplied ordered input/output sort vectors, without type/membership/uniqueness admission.\",\n    \"Return the actual input vector length, not output length or a mathematical sort exponent.\",\n    \"Return actual output vector length.\",\n    \"Own exact name/lhs/rhs strings without parsing, normalization or equation-law validation.\",\n    \"Own supplied name; empty vectors/maps and literal Complete status. This default is untrusted inventory metadata, not a theorem.\",\n    \"Append the exact sort name, preserving input order and duplicates.\",\n    \"Append the entire supplied record, preserving order, duplicate names and unchecked sort lists.\",\n    \"Append exact uninterpreted equation record, preserving duplicates and order.\",\n    \"Insert exact owned outer/slot/inner key and result, replacing only an equal key; no arity, membership or sort admission.\",\n    \"Exact BTreeMap tuple lookup of outer/slot/inner with borrowed returned str lifetime tied to self. It constructs two temporary String key copies for this public isolated lookup; diagnostics use their once-built borrowed index.\",\n    \"Collect borrowed references with matching actual input length, in original order including duplicates; other fields and stored status untouched.\",\n    \"Collect one borrowed tuple/value per map entry. BTreeMap order by owned String/usize/String equals lexicographic str/usize/str order; no sort, filtering or owned key copy changes the key-value association. Snapshot borrows self, so mutation cannot invalidate the view during the diagnostic.\",\n    \"Search the exact borrowed outer/slot/inner tuple in the sorted unique view. Successful index comes from std binary search, and checked Vec::get returns the associated borrowed value; absent keys return None. No ad-hoc key hashing, insertion or string allocation in lookup.\",\n    \"For each supplied case, checked usize i+j is admitted before lookups; overflow emits exactly one ordered i/j diagnostic and continues. Otherwise compare g[j]h then f[i]result with f[i]g then result[i+j]h. Both defined/equal succeeds; both defined/different emits exact mismatch payload, and either absent emits undefined, including both absent. Preserve all failing-case order/multiplicity. Empty list is vacuous; do not admit arbitrary operations or infer universal associativity.\",\n    \"Conjoin actual one-input/one-output shape and the explicit slot-zero own-name/own-name table result equal to the own name. Absence or differing result fails; no mathematical idempotence beyond this raw entry.\",\n    \"Conjoin explicit s[0]r=e with r[0]s equal to the identity recorded at r first output sort. Missing first sort/identity/table entry fails. No unary/typing/membership requirement is added for candidate r,s, preserving the legacy raw split diagnostic rather than silently changing its domain.\",\n    \"Existentially search every ordered declared r,s pair for the literal predicate. Short-circuiting affects only pure lookups. Duplicate names remain records; an empty candidate list has no pair.\",\n    \"Build one borrowed index, retain exactly each unary/co-unary self-idempotent record for which no declared literal split exists, and clone its name in original operation order. Duplicates remain. Empty retained list returns Complete; otherwise retain exact names. Neither result authenticates a category nor mutates independent cauchy_status.\"\n  ],\n  \"failure_paths\": \"Slot overflow is an explicit ordinary diagnostic, before lookup; undefined/mismatch are ordinary diagnostics. Missing split evidence becomes an unsplit name. Empty inventory is vacuous. All diagnostic calls borrow the raw theory immutably, including stored status. Allocation failure, formatting/stdlib/compiler defects and resource exhaustion remain runtime trust boundaries; no catch-all or allocator-totality claim.\",\n  \"trust_boundary\": {\n    \"runtime\": \"rustc/std allocator, String ordering/equality, Vec iteration/get and BTreeMap sorted order plus binary_search_by_key. Immutable safe references prevent invalidating the borrowed index during a check. No user callback or unsafe code.\",\n    \"proof\": \"Pinned prepared Lean/Mathlib with standard foundational axioms; pure bounded-Nat slot guard, defined-value equality, finite pair existential and filtering arbitrary full records. Source refinement/library algorithms/compiler extraction remain separate.\"\n  },\n  \"assurance_limits\": [\n    \"L3 bounded raw-table algorithms, not an admitted Lawvere theory, profunctor, equation calculus, universal associativity or Cauchy category certificate. Complete on no detected declared idempotents is vacuous and stored status is independent metadata.\",\n    \"A is scoped local source/model/native evidence, not A+, whole-workspace/external application verification, expanded MIR, allocator totality or a work-budget promise. String length and cubic pair-search costs remain explicit. Contracts pending.\",\n    \"The original source-bound G2/G3 E overflow and failed native counterexample remain retained. First repaired campaign caught 30/31: sort-order mutation survived identical-name-only fixture; distinct Q sort added and final 31/31 passes. No equivalent exclusion/relabeling.\",\n    \"Initial proof import was unavailable; unnecessary module import removed. Generic full-record filter model then triggered unused typeclass warnings; unused DecidableEq assumption removed, with warnings treated as failure. Only the final clean14-declaration receipt supports this assessment.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/lawvere.score.yaml\",\n      \"sha256\": \"067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/lawvere.rs",
-          "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709",
-          "language": "Rust"
+          "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "L3 bounded raw-table algorithms, not an admitted Lawvere theory, profunctor, equation calculus, universal associativity or Cauchy category certificate. Complete on no detected declared idempotents is vacuous and stored status is independent metadata.",
+          "A is scoped local source/model/native evidence, not A+, whole-workspace/external application verification, expanded MIR, allocator totality or a work-budget promise. String length and cubic pair-search costs remain explicit. Contracts pending.",
+          "The original source-bound G2/G3 E overflow and failed native counterexample remain retained. First repaired campaign caught 30/31: sort-order mutation survived identical-name-only fixture; distinct Q sort added and final 31/31 passes. No equivalent exclusion/relabeling.",
+          "Initial proof import was unavailable; unnecessary module import removed. Generic full-record filter model then triggered unused typeclass warnings; unused DecidableEq assumption removed, with warnings treated as failure. Only the final clean14-declaration receipt supports this assessment."
+        ],
+        "failure_paths": "Slot overflow is an explicit ordinary diagnostic, before lookup; undefined/mismatch are ordinary diagnostics. Missing split evidence becomes an unsplit name. Empty inventory is vacuous. All diagnostic calls borrow the raw theory immutably, including stored status. Allocation failure, formatting/stdlib/compiler defects and resource exhaustion remain runtime trust boundaries; no catch-all or allocator-totality claim.",
         "formal_specification": {
-          "profile": "Exact profile retained from original: finite string/name/usize table diagnostics, checked slot sum with ordinary refusal; no floating arithmetic or profile change after failure.",
+          "behavior": "Literal supplied-case associativity at specified i,j,i+j and declared-name split inventory; exact ordered diagnostics, not universal laws or a certified Lawvere theory.",
           "domain": "Unrestricted mutable raw records, duplicate names and possibly ill-typed/partial substitution tables. Equation strings and stored Cauchy status have no admitted mathematical semantics.",
-          "behavior": "Literal supplied-case associativity at specified i,j,i+j and declared-name split inventory; exact ordered diagnostics, not universal laws or a certified Lawvere theory."
-        },
-        "operations": {
-          "OperationDecl::new": {
-            "line": 20,
-            "signature": "pub fn new(name: &str, input_sorts: Vec<String>, output_sorts: Vec<String>) -> Self",
-            "obligation": "Own exact name and supplied ordered input/output sort vectors, without type/membership/uniqueness admission."
-          },
-          "OperationDecl::arity": {
-            "line": 28,
-            "signature": "pub fn arity(&self) -> usize",
-            "obligation": "Return the actual input vector length, not output length or a mathematical sort exponent."
-          },
-          "OperationDecl::coarity": {
-            "line": 32,
-            "signature": "pub fn coarity(&self) -> usize",
-            "obligation": "Return actual output vector length."
-          },
-          "EquationDecl::new": {
-            "line": 46,
-            "signature": "pub fn new(name: &str, lhs: &str, rhs: &str) -> Self",
-            "obligation": "Own exact name/lhs/rhs strings without parsing, normalization or equation-law validation."
-          },
-          "LawvereTheory::new": {
-            "line": 76,
-            "signature": "pub fn new(name: &str) -> Self",
-            "obligation": "Own supplied name; empty vectors/maps and literal Complete status. This default is untrusted inventory metadata, not a theorem."
-          },
-          "LawvereTheory::add_sort": {
-            "line": 88,
-            "signature": "pub fn add_sort(&mut self, sort: &str)",
-            "obligation": "Append the exact sort name, preserving input order and duplicates."
-          },
-          "LawvereTheory::add_operation": {
-            "line": 91,
-            "signature": "pub fn add_operation(&mut self, op: OperationDecl)",
-            "obligation": "Append the entire supplied record, preserving order, duplicate names and unchecked sort lists."
-          },
-          "LawvereTheory::add_equation": {
-            "line": 94,
-            "signature": "pub fn add_equation(&mut self, eq: EquationDecl)",
-            "obligation": "Append exact uninterpreted equation record, preserving duplicates and order."
-          },
-          "LawvereTheory::add_substitution": {
-            "line": 98,
-            "signature": "pub fn add_substitution(&mut self, outer: &str, slot: usize, inner: &str, result: &str)",
-            "obligation": "Insert exact owned outer/slot/inner key and result, replacing only an equal key; no arity, membership or sort admission."
-          },
-          "LawvereTheory::substitute": {
-            "line": 103,
-            "signature": "pub fn substitute(&self, outer: &str, slot: usize, inner: &str) -> Option<&str>",
-            "obligation": "Exact BTreeMap tuple lookup of outer/slot/inner with borrowed returned str lifetime tied to self. It constructs two temporary String key copies for this public isolated lookup; diagnostics use their once-built borrowed index."
-          },
-          "LawvereTheory::operations_of_arity": {
-            "line": 109,
-            "signature": "pub fn operations_of_arity(&self, arity: usize) -> Vec<&OperationDecl>",
-            "obligation": "Collect borrowed references with matching actual input length, in original order including duplicates; other fields and stored status untouched."
-          },
-          "SubstitutionLookup::new": {
-            "line": 124,
-            "signature": "fn new(theory: &'a LawvereTheory) -> Self",
-            "obligation": "Collect one borrowed tuple/value per map entry. BTreeMap order by owned String/usize/String equals lexicographic str/usize/str order; no sort, filtering or owned key copy changes the key-value association. Snapshot borrows self, so mutation cannot invalidate the view during the diagnostic."
-          },
-          "SubstitutionLookup::get": {
-            "line": 132,
-            "signature": "fn get(&self, outer: &str, slot: usize, inner: &str) -> Option<&'a str>",
-            "obligation": "Search the exact borrowed outer/slot/inner tuple in the sorted unique view. Successful index comes from std binary search, and checked Vec::get returns the associated borrowed value; absent keys return None. No ad-hoc key hashing, insertion or string allocation in lookup."
-          },
-          "check_substitution_associativity": {
-            "line": 143,
-            "signature": "pub fn check_substitution_associativity(\n    theory: &LawvereTheory,\n    cases: &[(&str, usize, &str, usize, &str)],\n) -> Vec<String>",
-            "obligation": "For each supplied case, checked usize i+j is admitted before lookups; overflow emits exactly one ordered i/j diagnostic and continues. Otherwise compare g[j]h then f[i]result with f[i]g then result[i+j]h. Both defined/equal succeeds; both defined/different emits exact mismatch payload, and either absent emits undefined, including both absent. Preserve all failing-case order/multiplicity. Empty list is vacuous; do not admit arbitrary operations or infer universal associativity."
-          },
-          "is_declared_idempotent": {
-            "line": 171,
-            "signature": "fn is_declared_idempotent(lookup: &SubstitutionLookup<'_>, op: &OperationDecl) -> bool",
-            "obligation": "Conjoin actual one-input/one-output shape and the explicit slot-zero own-name/own-name table result equal to the own name. Absence or differing result fails; no mathematical idempotence beyond this raw entry."
-          },
-          "splitting_pair": {
-            "line": 175,
-            "signature": "fn splitting_pair(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str,\n                  r: &OperationDecl, s: &OperationDecl) -> bool",
-            "obligation": "Conjoin explicit s[0]r=e with r[0]s equal to the identity recorded at r first output sort. Missing first sort/identity/table entry fails. No unary/typing/membership requirement is added for candidate r,s, preserving the legacy raw split diagnostic rather than silently changing its domain."
-          },
-          "has_splitting": {
-            "line": 182,
-            "signature": "fn has_splitting(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str) -> bool",
-            "obligation": "Existentially search every ordered declared r,s pair for the literal predicate. Short-circuiting affects only pure lookups. Duplicate names remain records; an empty candidate list has no pair."
-          },
-          "check_theory_cauchy": {
-            "line": 194,
-            "signature": "pub fn check_theory_cauchy(theory: &LawvereTheory) -> TheoryCauchyStatus",
-            "obligation": "Build one borrowed index, retain exactly each unary/co-unary self-idempotent record for which no declared literal split exists, and clone its name in original operation order. Duplicates remain. Empty retained list returns Complete; otherwise retain exact names. Neither result authenticates a category nor mutates independent cauchy_status."
-          }
+          "profile": "Exact profile retained from original: finite string/name/usize table diagnostics, checked slot sum with ordinary refusal; no floating arithmetic or profile change after failure."
         },
         "invariants": [
           "Own exact name and supplied ordered input/output sort vectors, without type/membership/uniqueness admission.",
@@ -279,10 +84,183 @@
           "Existentially search every ordered declared r,s pair for the literal predicate. Short-circuiting affects only pure lookups. Duplicate names remain records; an empty candidate list has no pair.",
           "Build one borrowed index, retain exactly each unary/co-unary self-idempotent record for which no declared literal split exists, and clone its name in original operation order. Duplicates remain. Empty retained list returns Complete; otherwise retain exact names. Neither result authenticates a category nor mutates independent cauchy_status."
         ],
-        "failure_paths": "Slot overflow is an explicit ordinary diagnostic, before lookup; undefined/mismatch are ordinary diagnostics. Missing split evidence becomes an unsplit name. Empty inventory is vacuous. All diagnostic calls borrow the raw theory immutably, including stored status. Allocation failure, formatting/stdlib/compiler defects and resource exhaustion remain runtime trust boundaries; no catch-all or allocator-totality claim.",
+        "open_obligations": [],
+        "operations": {
+          "EquationDecl::new": {
+            "line": 46,
+            "obligation": "Own exact name/lhs/rhs strings without parsing, normalization or equation-law validation.",
+            "signature": "pub fn new(name: &str, lhs: &str, rhs: &str) -> Self"
+          },
+          "LawvereTheory::add_equation": {
+            "line": 94,
+            "obligation": "Append exact uninterpreted equation record, preserving duplicates and order.",
+            "signature": "pub fn add_equation(&mut self, eq: EquationDecl)"
+          },
+          "LawvereTheory::add_operation": {
+            "line": 91,
+            "obligation": "Append the entire supplied record, preserving order, duplicate names and unchecked sort lists.",
+            "signature": "pub fn add_operation(&mut self, op: OperationDecl)"
+          },
+          "LawvereTheory::add_sort": {
+            "line": 88,
+            "obligation": "Append the exact sort name, preserving input order and duplicates.",
+            "signature": "pub fn add_sort(&mut self, sort: &str)"
+          },
+          "LawvereTheory::add_substitution": {
+            "line": 98,
+            "obligation": "Insert exact owned outer/slot/inner key and result, replacing only an equal key; no arity, membership or sort admission.",
+            "signature": "pub fn add_substitution(&mut self, outer: &str, slot: usize, inner: &str, result: &str)"
+          },
+          "LawvereTheory::new": {
+            "line": 76,
+            "obligation": "Own supplied name; empty vectors/maps and literal Complete status. This default is untrusted inventory metadata, not a theorem.",
+            "signature": "pub fn new(name: &str) -> Self"
+          },
+          "LawvereTheory::operations_of_arity": {
+            "line": 109,
+            "obligation": "Collect borrowed references with matching actual input length, in original order including duplicates; other fields and stored status untouched.",
+            "signature": "pub fn operations_of_arity(&self, arity: usize) -> Vec<&OperationDecl>"
+          },
+          "LawvereTheory::substitute": {
+            "line": 103,
+            "obligation": "Exact BTreeMap tuple lookup of outer/slot/inner with borrowed returned str lifetime tied to self. It constructs two temporary String key copies for this public isolated lookup; diagnostics use their once-built borrowed index.",
+            "signature": "pub fn substitute(&self, outer: &str, slot: usize, inner: &str) -> Option<&str>"
+          },
+          "OperationDecl::arity": {
+            "line": 28,
+            "obligation": "Return the actual input vector length, not output length or a mathematical sort exponent.",
+            "signature": "pub fn arity(&self) -> usize"
+          },
+          "OperationDecl::coarity": {
+            "line": 32,
+            "obligation": "Return actual output vector length.",
+            "signature": "pub fn coarity(&self) -> usize"
+          },
+          "OperationDecl::new": {
+            "line": 20,
+            "obligation": "Own exact name and supplied ordered input/output sort vectors, without type/membership/uniqueness admission.",
+            "signature": "pub fn new(name: &str, input_sorts: Vec<String>, output_sorts: Vec<String>) -> Self"
+          },
+          "SubstitutionLookup::get": {
+            "line": 132,
+            "obligation": "Search the exact borrowed outer/slot/inner tuple in the sorted unique view. Successful index comes from std binary search, and checked Vec::get returns the associated borrowed value; absent keys return None. No ad-hoc key hashing, insertion or string allocation in lookup.",
+            "signature": "fn get(&self, outer: &str, slot: usize, inner: &str) -> Option<&'a str>"
+          },
+          "SubstitutionLookup::new": {
+            "line": 124,
+            "obligation": "Collect one borrowed tuple/value per map entry. BTreeMap order by owned String/usize/String equals lexicographic str/usize/str order; no sort, filtering or owned key copy changes the key-value association. Snapshot borrows self, so mutation cannot invalidate the view during the diagnostic.",
+            "signature": "fn new(theory: &'a LawvereTheory) -> Self"
+          },
+          "check_substitution_associativity": {
+            "line": 143,
+            "obligation": "For each supplied case, checked usize i+j is admitted before lookups; overflow emits exactly one ordered i/j diagnostic and continues. Otherwise compare g[j]h then f[i]result with f[i]g then result[i+j]h. Both defined/equal succeeds; both defined/different emits exact mismatch payload, and either absent emits undefined, including both absent. Preserve all failing-case order/multiplicity. Empty list is vacuous; do not admit arbitrary operations or infer universal associativity.",
+            "signature": "pub fn check_substitution_associativity(\n    theory: &LawvereTheory,\n    cases: &[(&str, usize, &str, usize, &str)],\n) -> Vec<String>"
+          },
+          "check_theory_cauchy": {
+            "line": 194,
+            "obligation": "Build one borrowed index, retain exactly each unary/co-unary self-idempotent record for which no declared literal split exists, and clone its name in original operation order. Duplicates remain. Empty retained list returns Complete; otherwise retain exact names. Neither result authenticates a category nor mutates independent cauchy_status.",
+            "signature": "pub fn check_theory_cauchy(theory: &LawvereTheory) -> TheoryCauchyStatus"
+          },
+          "has_splitting": {
+            "line": 182,
+            "obligation": "Existentially search every ordered declared r,s pair for the literal predicate. Short-circuiting affects only pure lookups. Duplicate names remain records; an empty candidate list has no pair.",
+            "signature": "fn has_splitting(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str) -> bool"
+          },
+          "is_declared_idempotent": {
+            "line": 171,
+            "obligation": "Conjoin actual one-input/one-output shape and the explicit slot-zero own-name/own-name table result equal to the own name. Absence or differing result fails; no mathematical idempotence beyond this raw entry.",
+            "signature": "fn is_declared_idempotent(lookup: &SubstitutionLookup<'_>, op: &OperationDecl) -> bool"
+          },
+          "splitting_pair": {
+            "line": 175,
+            "obligation": "Conjoin explicit s[0]r=e with r[0]s equal to the identity recorded at r first output sort. Missing first sort/identity/table entry fails. No unary/typing/membership requirement is added for candidate r,s, preserving the legacy raw split diagnostic rather than silently changing its domain.",
+            "signature": "fn splitting_pair(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str,\n                  r: &OperationDecl, s: &OperationDecl) -> bool"
+          }
+        },
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/lawvere.score.yaml",
+            "sha256": "067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2"
+          }
+        ],
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
         "trust_boundary": {
-          "runtime": "rustc/std allocator, String ordering/equality, Vec iteration/get and BTreeMap sorted order plus binary_search_by_key. Immutable safe references prevent invalidating the borrowed index during a check. No user callback or unsafe code.",
-          "proof": "Pinned prepared Lean/Mathlib with standard foundational axioms; pure bounded-Nat slot guard, defined-value equality, finite pair existential and filtering arbitrary full records. Source refinement/library algorithms/compiler extraction remain separate."
+          "proof": "Pinned prepared Lean/Mathlib with standard foundational axioms; pure bounded-Nat slot guard, defined-value equality, finite pair existential and filtering arbitrary full records. Source refinement/library algorithms/compiler extraction remain separate.",
+          "runtime": "rustc/std allocator, String ordering/equality, Vec iteration/get and BTreeMap sorted order plus binary_search_by_key. Immutable safe references prevent invalidating the borrowed index during a check. No user callback or unsafe code."
+        }
+      },
+      "sha256": "1e29f3a89a502c83ed03db0e1464437feedaf402b7de94414bfc0b3f88bf1769"
+    },
+    {
+      "bytes": 1599,
+      "original_paths": [
+        "code/rust/src/category_theory/lawvere.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/lawvere.rs\",\n    \"sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/lawvere.rs\",\n      \"sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\",\n  \"subject\": \"code/rust/src/category_theory/lawvere.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/lawvere.rs",
+          "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/lawvere.rs",
+            "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709",
+        "subject": "code/rust/src/category_theory/lawvere.rs"
+      },
+      "sha256": "75888c468c0c87fedd3af43a23724bd79256507eace28a02cb84dee5b7744980"
+    }
+  ],
+  "current_contract": "75888c468c0c87fedd3af43a23724bd79256507eace28a02cb84dee5b7744980",
+  "current_scoring": "4612c568091483cdfbf0df8db7ebd6fd3f82e715b6a5987b38545e955f5e7c92",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/lawvere.rs.contract.yaml": "1e29f3a89a502c83ed03db0e1464437feedaf402b7de94414bfc0b3f88bf1769",
+    "code/rust/src/category_theory/lawvere.rs.scoring.yaml": "7204462a7cee49806e51fdd4170fbfac503e876306c81a4cf8448bc8cc7b72da",
+    "code/rust/src/category_theory/lawvere.score.yaml": "067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2",
+    "evidence/quality/category_homology/resume-20261019/lawvere-previous/lawvere.score.yaml": "28c9b4d18b496c5a847f644b044d0d85eed8de6bee8e425b915f9fca50c1bd3c"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 5603,
+      "original_paths": [
+        "code/rust/src/category_theory/lawvere.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/lawvere.rs\"\n  language: \"Rust\"\n  sha256: \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Exact slot admission and finite raw-table diagnostics with borrowed lookup indexing; no admitted Lawvere theory or mathematical Cauchy-completeness certificate.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T17:16:23.054181+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:lawvere\"\n  description: \"Raw operation/equation declarations and literal partial-table diagnostics.  These records do not admit a Lawvere theory, profunctor, typed substitution calculus or equation semantics. Names, sorts and stored status are caller data. Associativity checks only the supplied cases under the documented slot formula; the Cauchy diagnostic searches declared names for the two literal split entries. Neither result establishes completeness of an underlying mathematical category.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T171250Z/baseline.json\", \"sha256\": \"55879722d9c1501686b00cc0d989e9469b1368b9050c1422f31111b56098588a\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T171250Z/summary.json\", \"sha256\": \"f480ba0ec597c3df31a1222feaaff95b84af9987e034528b34b6db26282c599c\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T171250Z/mutations.json\", \"sha256\": \"3cbd3125f58b2694c3258516c669fbab3bd375f23355e16f44ba9e68086b508c\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T171348Z-metrics/receipt.json\", \"sha256\": \"139caf75ee8af11a3880f27fe9109e869e8d9057e391db1ae272b01917939e06\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T171250Z/dependency_receipt.json\", \"sha256\": \"bbd605b84e0348c3fdf94b45a67776e64247699fe7a0591b858fb2bbe626f28b\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/lawvere.json\", \"sha256\": \"d090a8117dbec64800b3d5d0a7470483b0f7109e46f6d8dc9130eaccfb0cd7ae\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n    - \"RR-31-30\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 31\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 236\n  parsed_production_functions: 18\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 6\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L3 bounded raw-table algorithms, not an admitted Lawvere theory, profunctor, equation calculus, universal associativity or Cauchy category certificate. Complete on no detected declared idempotents is vacuous and stored status is independent metadata.\"\n  - \"A is scoped local source/model/native evidence, not A+, whole-workspace/external application verification, expanded MIR, allocator totality or a work-budget promise. String length and cubic pair-search costs remain explicit. Contracts pending.\"\n  - \"The original source-bound G2/G3 E overflow and failed native counterexample remain retained. First repaired campaign caught 30/31: sort-order mutation survived identical-name-only fixture; distinct Q sort added and final 31/31 passes. No equivalent exclusion/relabeling.\"\n  - \"Initial proof import was unavailable; unnecessary module import removed. Generic full-record filter model then triggered unused typeclass warnings; unused DecidableEq assumption removed, with warnings treated as failure. Only the final clean14-declaration receipt supports this assessment.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/lawvere.rs",
+          "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
         },
         "assurance_limits": [
           "L3 bounded raw-table algorithms, not an admitted Lawvere theory, profunctor, equation calculus, universal associativity or Cauchy category certificate. Complete on no detected declared idempotents is vacuous and stored status is independent metadata.",
@@ -290,36 +268,51 @@
           "The original source-bound G2/G3 E overflow and failed native counterexample remain retained. First repaired campaign caught 30/31: sort-order mutation survived identical-name-only fixture; distinct Q sort added and final 31/31 passes. No equivalent exclusion/relabeling.",
           "Initial proof import was unavailable; unnecessary module import removed. Generic full-record filter model then triggered unused typeclass warnings; unused DecidableEq assumption removed, with warnings treated as failure. Only the final clean14-declaration receipt supports this assessment."
         ],
-        "review_evidence": [
+        "claim": {
+          "description": "Raw operation/equation declarations and literal partial-table diagnostics.  These records do not admit a Lawvere theory, profunctor, typed substitution calculus or equation semantics. Names, sorts and stored status are caller data. Associativity checks only the supplied cases under the documented slot formula; the Cauchy diagnostic searches declared names for the two literal split entries. Neither result establishes completeness of an underlying mathematical category.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:lawvere"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T17:16:23.054181+00:00",
+        "evidence": [
           {
-            "path": "code/rust/src/category_theory/lawvere.score.yaml",
-            "sha256": "067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2"
+            "path": "evidence/quality/category_homology/20261019T171250Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "55879722d9c1501686b00cc0d989e9469b1368b9050c1422f31111b56098588a"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T171250Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "f480ba0ec597c3df31a1222feaaff95b84af9987e034528b34b6db26282c599c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T171250Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "3cbd3125f58b2694c3258516c669fbab3bd375f23355e16f44ba9e68086b508c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T171348Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "139caf75ee8af11a3880f27fe9109e869e8d9057e391db1ae272b01917939e06"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T171250Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "bbd605b84e0348c3fdf94b45a67776e64247699fe7a0591b858fb2bbe626f28b"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/lawvere.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "d090a8117dbec64800b3d5d0a7470483b0f7109e46f6d8dc9130eaccfb0cd7ae"
           }
         ],
-        "open_obligations": []
-      },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lawvere.rs\",\n    \"sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact profile retained from original: finite string/name/usize table diagnostics, checked slot sum with ordinary refusal; no floating arithmetic or profile change after failure.\",\n    \"domain\": \"Unrestricted mutable raw records, duplicate names and possibly ill-typed/partial substitution tables. Equation strings and stored Cauchy status have no admitted mathematical semantics.\",\n    \"behavior\": \"Literal supplied-case associativity at specified i,j,i+j and declared-name split inventory; exact ordered diagnostics, not universal laws or a certified Lawvere theory.\"\n  },\n  \"operations\": {\n    \"OperationDecl::new\": {\n      \"line\": 20,\n      \"signature\": \"pub fn new(name: &str, input_sorts: Vec<String>, output_sorts: Vec<String>) -> Self\",\n      \"obligation\": \"Own exact name and supplied ordered input/output sort vectors, without type/membership/uniqueness admission.\"\n    },\n    \"OperationDecl::arity\": {\n      \"line\": 28,\n      \"signature\": \"pub fn arity(&self) -> usize\",\n      \"obligation\": \"Return the actual input vector length, not output length or a mathematical sort exponent.\"\n    },\n    \"OperationDecl::coarity\": {\n      \"line\": 32,\n      \"signature\": \"pub fn coarity(&self) -> usize\",\n      \"obligation\": \"Return actual output vector length.\"\n    },\n    \"EquationDecl::new\": {\n      \"line\": 46,\n      \"signature\": \"pub fn new(name: &str, lhs: &str, rhs: &str) -> Self\",\n      \"obligation\": \"Own exact name/lhs/rhs strings without parsing, normalization or equation-law validation.\"\n    },\n    \"LawvereTheory::new\": {\n      \"line\": 76,\n      \"signature\": \"pub fn new(name: &str) -> Self\",\n      \"obligation\": \"Own supplied name; empty vectors/maps and literal Complete status. This default is untrusted inventory metadata, not a theorem.\"\n    },\n    \"LawvereTheory::add_sort\": {\n      \"line\": 88,\n      \"signature\": \"pub fn add_sort(&mut self, sort: &str)\",\n      \"obligation\": \"Append the exact sort name, preserving input order and duplicates.\"\n    },\n    \"LawvereTheory::add_operation\": {\n      \"line\": 91,\n      \"signature\": \"pub fn add_operation(&mut self, op: OperationDecl)\",\n      \"obligation\": \"Append the entire supplied record, preserving order, duplicate names and unchecked sort lists.\"\n    },\n    \"LawvereTheory::add_equation\": {\n      \"line\": 94,\n      \"signature\": \"pub fn add_equation(&mut self, eq: EquationDecl)\",\n      \"obligation\": \"Append exact uninterpreted equation record, preserving duplicates and order.\"\n    },\n    \"LawvereTheory::add_substitution\": {\n      \"line\": 98,\n      \"signature\": \"pub fn add_substitution(&mut self, outer: &str, slot: usize, inner: &str, result: &str)\",\n      \"obligation\": \"Insert exact owned outer/slot/inner key and result, replacing only an equal key; no arity, membership or sort admission.\"\n    },\n    \"LawvereTheory::substitute\": {\n      \"line\": 103,\n      \"signature\": \"pub fn substitute(&self, outer: &str, slot: usize, inner: &str) -> Option<&str>\",\n      \"obligation\": \"Exact BTreeMap tuple lookup of outer/slot/inner with borrowed returned str lifetime tied to self. It constructs two temporary String key copies for this public isolated lookup; diagnostics use their once-built borrowed index.\"\n    },\n    \"LawvereTheory::operations_of_arity\": {\n      \"line\": 109,\n      \"signature\": \"pub fn operations_of_arity(&self, arity: usize) -> Vec<&OperationDecl>\",\n      \"obligation\": \"Collect borrowed references with matching actual input length, in original order including duplicates; other fields and stored status untouched.\"\n    },\n    \"SubstitutionLookup::new\": {\n      \"line\": 124,\n      \"signature\": \"fn new(theory: &'a LawvereTheory) -> Self\",\n      \"obligation\": \"Collect one borrowed tuple/value per map entry. BTreeMap order by owned String/usize/String equals lexicographic str/usize/str order; no sort, filtering or owned key copy changes the key-value association. Snapshot borrows self, so mutation cannot invalidate the view during the diagnostic.\"\n    },\n    \"SubstitutionLookup::get\": {\n      \"line\": 132,\n      \"signature\": \"fn get(&self, outer: &str, slot: usize, inner: &str) -> Option<&'a str>\",\n      \"obligation\": \"Search the exact borrowed outer/slot/inner tuple in the sorted unique view. Successful index comes from std binary search, and checked Vec::get returns the associated borrowed value; absent keys return None. No ad-hoc key hashing, insertion or string allocation in lookup.\"\n    },\n    \"check_substitution_associativity\": {\n      \"line\": 143,\n      \"signature\": \"pub fn check_substitution_associativity(\\n    theory: &LawvereTheory,\\n    cases: &[(&str, usize, &str, usize, &str)],\\n) -> Vec<String>\",\n      \"obligation\": \"For each supplied case, checked usize i+j is admitted before lookups; overflow emits exactly one ordered i/j diagnostic and continues. Otherwise compare g[j]h then f[i]result with f[i]g then result[i+j]h. Both defined/equal succeeds; both defined/different emits exact mismatch payload, and either absent emits undefined, including both absent. Preserve all failing-case order/multiplicity. Empty list is vacuous; do not admit arbitrary operations or infer universal associativity.\"\n    },\n    \"is_declared_idempotent\": {\n      \"line\": 171,\n      \"signature\": \"fn is_declared_idempotent(lookup: &SubstitutionLookup<'_>, op: &OperationDecl) -> bool\",\n      \"obligation\": \"Conjoin actual one-input/one-output shape and the explicit slot-zero own-name/own-name table result equal to the own name. Absence or differing result fails; no mathematical idempotence beyond this raw entry.\"\n    },\n    \"splitting_pair\": {\n      \"line\": 175,\n      \"signature\": \"fn splitting_pair(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str,\\n                  r: &OperationDecl, s: &OperationDecl) -> bool\",\n      \"obligation\": \"Conjoin explicit s[0]r=e with r[0]s equal to the identity recorded at r first output sort. Missing first sort/identity/table entry fails. No unary/typing/membership requirement is added for candidate r,s, preserving the legacy raw split diagnostic rather than silently changing its domain.\"\n    },\n    \"has_splitting\": {\n      \"line\": 182,\n      \"signature\": \"fn has_splitting(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str) -> bool\",\n      \"obligation\": \"Existentially search every ordered declared r,s pair for the literal predicate. Short-circuiting affects only pure lookups. Duplicate names remain records; an empty candidate list has no pair.\"\n    },\n    \"check_theory_cauchy\": {\n      \"line\": 194,\n      \"signature\": \"pub fn check_theory_cauchy(theory: &LawvereTheory) -> TheoryCauchyStatus\",\n      \"obligation\": \"Build one borrowed index, retain exactly each unary/co-unary self-idempotent record for which no declared literal split exists, and clone its name in original operation order. Duplicates remain. Empty retained list returns Complete; otherwise retain exact names. Neither result authenticates a category nor mutates independent cauchy_status.\"\n    }\n  },\n  \"invariants\": [\n    \"Own exact name and supplied ordered input/output sort vectors, without type/membership/uniqueness admission.\",\n    \"Return the actual input vector length, not output length or a mathematical sort exponent.\",\n    \"Return actual output vector length.\",\n    \"Own exact name/lhs/rhs strings without parsing, normalization or equation-law validation.\",\n    \"Own supplied name; empty vectors/maps and literal Complete status. This default is untrusted inventory metadata, not a theorem.\",\n    \"Append the exact sort name, preserving input order and duplicates.\",\n    \"Append the entire supplied record, preserving order, duplicate names and unchecked sort lists.\",\n    \"Append exact uninterpreted equation record, preserving duplicates and order.\",\n    \"Insert exact owned outer/slot/inner key and result, replacing only an equal key; no arity, membership or sort admission.\",\n    \"Exact BTreeMap tuple lookup of outer/slot/inner with borrowed returned str lifetime tied to self. It constructs two temporary String key copies for this public isolated lookup; diagnostics use their once-built borrowed index.\",\n    \"Collect borrowed references with matching actual input length, in original order including duplicates; other fields and stored status untouched.\",\n    \"Collect one borrowed tuple/value per map entry. BTreeMap order by owned String/usize/String equals lexicographic str/usize/str order; no sort, filtering or owned key copy changes the key-value association. Snapshot borrows self, so mutation cannot invalidate the view during the diagnostic.\",\n    \"Search the exact borrowed outer/slot/inner tuple in the sorted unique view. Successful index comes from std binary search, and checked Vec::get returns the associated borrowed value; absent keys return None. No ad-hoc key hashing, insertion or string allocation in lookup.\",\n    \"For each supplied case, checked usize i+j is admitted before lookups; overflow emits exactly one ordered i/j diagnostic and continues. Otherwise compare g[j]h then f[i]result with f[i]g then result[i+j]h. Both defined/equal succeeds; both defined/different emits exact mismatch payload, and either absent emits undefined, including both absent. Preserve all failing-case order/multiplicity. Empty list is vacuous; do not admit arbitrary operations or infer universal associativity.\",\n    \"Conjoin actual one-input/one-output shape and the explicit slot-zero own-name/own-name table result equal to the own name. Absence or differing result fails; no mathematical idempotence beyond this raw entry.\",\n    \"Conjoin explicit s[0]r=e with r[0]s equal to the identity recorded at r first output sort. Missing first sort/identity/table entry fails. No unary/typing/membership requirement is added for candidate r,s, preserving the legacy raw split diagnostic rather than silently changing its domain.\",\n    \"Existentially search every ordered declared r,s pair for the literal predicate. Short-circuiting affects only pure lookups. Duplicate names remain records; an empty candidate list has no pair.\",\n    \"Build one borrowed index, retain exactly each unary/co-unary self-idempotent record for which no declared literal split exists, and clone its name in original operation order. Duplicates remain. Empty retained list returns Complete; otherwise retain exact names. Neither result authenticates a category nor mutates independent cauchy_status.\"\n  ],\n  \"failure_paths\": \"Slot overflow is an explicit ordinary diagnostic, before lookup; undefined/mismatch are ordinary diagnostics. Missing split evidence becomes an unsplit name. Empty inventory is vacuous. All diagnostic calls borrow the raw theory immutably, including stored status. Allocation failure, formatting/stdlib/compiler defects and resource exhaustion remain runtime trust boundaries; no catch-all or allocator-totality claim.\",\n  \"trust_boundary\": {\n    \"runtime\": \"rustc/std allocator, String ordering/equality, Vec iteration/get and BTreeMap sorted order plus binary_search_by_key. Immutable safe references prevent invalidating the borrowed index during a check. No user callback or unsafe code.\",\n    \"proof\": \"Pinned prepared Lean/Mathlib with standard foundational axioms; pure bounded-Nat slot guard, defined-value equality, finite pair existential and filtering arbitrary full records. Source refinement/library algorithms/compiler extraction remain separate.\"\n  },\n  \"assurance_limits\": [\n    \"L3 bounded raw-table algorithms, not an admitted Lawvere theory, profunctor, equation calculus, universal associativity or Cauchy category certificate. Complete on no detected declared idempotents is vacuous and stored status is independent metadata.\",\n    \"A is scoped local source/model/native evidence, not A+, whole-workspace/external application verification, expanded MIR, allocator totality or a work-budget promise. String length and cubic pair-search costs remain explicit. Contracts pending.\",\n    \"The original source-bound G2/G3 E overflow and failed native counterexample remain retained. First repaired campaign caught 30/31: sort-order mutation survived identical-name-only fixture; distinct Q sort added and final 31/31 passes. No equivalent exclusion/relabeling.\",\n    \"Initial proof import was unavailable; unnecessary module import removed. Generic full-record filter model then triggered unused typeclass warnings; unused DecidableEq assumption removed, with warnings treated as failure. Only the final clean14-declaration receipt supports this assessment.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/lawvere.score.yaml\",\n      \"sha256\": \"067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/lawvere.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2",
-      "bytes": 5603,
-      "record": {
-        "schema_version": "2.0.0",
-        "artifact": {
-          "path": "code/rust/src/category_theory/lawvere.rs",
-          "language": "Rust",
-          "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
-        },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Exact slot admission and finite raw-table diagnostics with borrowed lookup indexing; no admitted Lawvere theory or mathematical Cauchy-completeness certificate.",
-        "architecture_target": "L5",
-        "engineering_target": "A",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -327,58 +320,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T17:16:23.054181+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:lawvere",
-          "description": "Raw operation/equation declarations and literal partial-table diagnostics.  These records do not admit a Lawvere theory, profunctor, typed substitution calculus or equation semantics. Names, sorts and stored status are caller data. Associativity checks only the supplied cases under the documented slot formula; the Cauchy diagnostic searches declared names for the two literal split entries. Neither result establishes completeness of an underlying mathematical category.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Exact slot admission and finite raw-table diagnostics with borrowed lookup indexing; no admitted Lawvere theory or mathematical Cauchy-completeness certificate.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 31,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 6,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 6,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 18,
+          "physical_lines": 236,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T171250Z/baseline.json",
-            "sha256": "55879722d9c1501686b00cc0d989e9469b1368b9050c1422f31111b56098588a",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T171250Z/summary.json",
-            "sha256": "f480ba0ec597c3df31a1222feaaff95b84af9987e034528b34b6db26282c599c",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T171250Z/mutations.json",
-            "sha256": "3cbd3125f58b2694c3258516c669fbab3bd375f23355e16f44ba9e68086b508c",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T171348Z-metrics/receipt.json",
-            "sha256": "139caf75ee8af11a3880f27fe9109e869e8d9057e391db1ae272b01917939e06",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T171250Z/dependency_receipt.json",
-            "sha256": "bbd605b84e0348c3fdf94b45a67776e64247699fe7a0591b858fb2bbe626f28b",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/lawvere.json",
-            "sha256": "d090a8117dbec64800b3d5d0a7470483b0f7109e46f6d8dc9130eaccfb0cd7ae",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -412,61 +387,37 @@
             "RR-30-29",
             "RR-31-30"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 31,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 236,
-          "parsed_production_functions": 18,
-          "max_production_ccn": 6,
-          "cognitive_complexity_upper_bound": 6,
-          "control_nesting": 2,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "L3 bounded raw-table algorithms, not an admitted Lawvere theory, profunctor, equation calculus, universal associativity or Cauchy category certificate. Complete on no detected declared idempotents is vacuous and stored status is independent metadata.",
-          "A is scoped local source/model/native evidence, not A+, whole-workspace/external application verification, expanded MIR, allocator totality or a work-budget promise. String length and cubic pair-search costs remain explicit. Contracts pending.",
-          "The original source-bound G2/G3 E overflow and failed native counterexample remain retained. First repaired campaign caught 30/31: sort-order mutation survived identical-name-only fixture; distinct Q sort added and final 31/31 passes. No equivalent exclusion/relabeling.",
-          "Initial proof import was unavailable; unnecessary module import removed. Generic full-record filter model then triggered unused typeclass warnings; unused DecidableEq assumption removed, with warnings treated as failure. Only the final clean14-declaration receipt supports this assessment."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/lawvere.rs\"\n  language: \"Rust\"\n  sha256: \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Exact slot admission and finite raw-table diagnostics with borrowed lookup indexing; no admitted Lawvere theory or mathematical Cauchy-completeness certificate.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T17:16:23.054181+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:lawvere\"\n  description: \"Raw operation/equation declarations and literal partial-table diagnostics.  These records do not admit a Lawvere theory, profunctor, typed substitution calculus or equation semantics. Names, sorts and stored status are caller data. Associativity checks only the supplied cases under the documented slot formula; the Cauchy diagnostic searches declared names for the two literal split entries. Neither result establishes completeness of an underlying mathematical category.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T171250Z/baseline.json\", \"sha256\": \"55879722d9c1501686b00cc0d989e9469b1368b9050c1422f31111b56098588a\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T171250Z/summary.json\", \"sha256\": \"f480ba0ec597c3df31a1222feaaff95b84af9987e034528b34b6db26282c599c\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T171250Z/mutations.json\", \"sha256\": \"3cbd3125f58b2694c3258516c669fbab3bd375f23355e16f44ba9e68086b508c\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T171348Z-metrics/receipt.json\", \"sha256\": \"139caf75ee8af11a3880f27fe9109e869e8d9057e391db1ae272b01917939e06\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T171250Z/dependency_receipt.json\", \"sha256\": \"bbd605b84e0348c3fdf94b45a67776e64247699fe7a0591b858fb2bbe626f28b\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/lawvere.json\", \"sha256\": \"d090a8117dbec64800b3d5d0a7470483b0f7109e46f6d8dc9130eaccfb0cd7ae\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n    - \"RR-31-30\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 31\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 236\n  parsed_production_functions: 18\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 6\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L3 bounded raw-table algorithms, not an admitted Lawvere theory, profunctor, equation calculus, universal associativity or Cauchy category certificate. Complete on no detected declared idempotents is vacuous and stored status is independent metadata.\"\n  - \"A is scoped local source/model/native evidence, not A+, whole-workspace/external application verification, expanded MIR, allocator totality or a work-budget promise. String length and cubic pair-search costs remain explicit. Contracts pending.\"\n  - \"The original source-bound G2/G3 E overflow and failed native counterexample remain retained. First repaired campaign caught 30/31: sort-order mutation survived identical-name-only fixture; distinct Q sort added and final 31/31 passes. No equivalent exclusion/relabeling.\"\n  - \"Initial proof import was unavailable; unnecessary module import removed. Generic full-record filter model then triggered unused typeclass warnings; unused DecidableEq assumption removed, with warnings treated as failure. Only the final clean14-declaration receipt supports this assessment.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/lawvere.score.yaml"
-      ]
+      "sha256": "067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2"
     },
     {
-      "sha256": "7204462a7cee49806e51fdd4170fbfac503e876306c81a4cf8448bc8cc7b72da",
       "bytes": 2302,
+      "original_paths": [
+        "code/rust/src/category_theory/lawvere.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lawvere.rs\",\n    \"sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/lawvere.score.yaml\",\n    \"sha256\": \"067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/lawvere.rs.contract.yaml\",\n    \"sha256\": \"1e29f3a89a502c83ed03db0e1464437feedaf402b7de94414bfc0b3f88bf1769\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\",\n    \"function_count\": 18,\n    \"maxima\": {\n      \"ccn\": 6,\n      \"cognitive_upper_bound\": 6,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/lawvere.rs",
-          "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/lawvere.rs",
+          "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/lawvere.score.yaml",
+          "sha256": "067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/lawvere.rs.contract.yaml",
+          "sha256": "1e29f3a89a502c83ed03db0e1464437feedaf402b7de94414bfc0b3f88bf1769"
+        },
         "engineering_target": "A",
-        "level": "L3",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -474,30 +425,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/lawvere.score.yaml",
-          "sha256": "067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/lawvere.rs.contract.yaml",
-          "sha256": "1e29f3a89a502c83ed03db0e1464437feedaf402b7de94414bfc0b3f88bf1769"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L3",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
         "structural_measurement": {
-          "source_sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709",
-          "function_count": 18,
-          "maxima": {
-            "ccn": 6,
-            "cognitive_upper_bound": 6,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -512,29 +449,69 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 18,
+          "maxima": {
+            "ccn": 6,
+            "cognitive_upper_bound": 6,
+            "control_nesting": 2
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lawvere.rs\",\n    \"sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/lawvere.score.yaml\",\n    \"sha256\": \"067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/lawvere.rs.contract.yaml\",\n    \"sha256\": \"1e29f3a89a502c83ed03db0e1464437feedaf402b7de94414bfc0b3f88bf1769\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\",\n    \"function_count\": 18,\n    \"maxima\": {\n      \"ccn\": 6,\n      \"cognitive_upper_bound\": 6,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/lawvere.rs.scoring.yaml"
-      ]
+      "sha256": "7204462a7cee49806e51fdd4170fbfac503e876306c81a4cf8448bc8cc7b72da"
     },
     {
-      "sha256": "28c9b4d18b496c5a847f644b044d0d85eed8de6bee8e425b915f9fca50c1bd3c",
       "bytes": 3644,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/lawvere-previous/lawvere.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/lawvere.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"88f3b71794190eab51cc51cee15603660fde253b54168164b31be1fddf953c55\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:lawvere\"\r\n  description: \"Lawvere Theory \\u2014 Spec Section 25.  A Lawvere theory is a Cauchy-complete monoid in Prof. Operations are profunctor elements, substitution is composition, and equations are 2-cells.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 213\r\n  parsed_production_functions: 13\r\n  max_production_ccn: 8\r\n  cognitive_complexity_upper_bound: 11\r\n  control_nesting: 5\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 8, \"cognitive_upper_bound\": 11, \"control_nesting\": 5, \"line\": 137, \"name\": \"check_theory_cauchy\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/lawvere.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/lawvere.rs",
           "sha256": "88f3b71794190eab51cc51cee15603660fde253b54168164b31be1fddf953c55"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "Lawvere Theory — Spec Section 25.  A Lawvere theory is a Cauchy-complete monoid in Prof. Operations are profunctor elements, substitution is composition, and equations are 2-cells.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:lawvere"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -542,69 +519,32 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "C",
-        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:lawvere",
-          "description": "Lawvere Theory — Spec Section 25.  A Lawvere theory is a Cauchy-complete monoid in Prof. Operations are profunctor elements, substitution is composition, and equations are 2-cells.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
+          "unrun": 0
         },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 213,
-          "parsed_production_functions": 13,
-          "max_production_ccn": 8,
           "cognitive_complexity_upper_bound": 11,
           "control_nesting": 5,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [
             {
               "ccn": 8,
@@ -615,44 +555,35 @@
               "opaque_macros": []
             }
           ],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "max_production_ccn": 8,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 13,
+          "physical_lines": 213,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "open_findings": [
-          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
-          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
-          "External path dependency source contents have not received a separate origin/content attestation.",
-          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
-        ]
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/lawvere.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"88f3b71794190eab51cc51cee15603660fde253b54168164b31be1fddf953c55\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:lawvere\"\r\n  description: \"Lawvere Theory \\u2014 Spec Section 25.  A Lawvere theory is a Cauchy-complete monoid in Prof. Operations are profunctor elements, substitution is composition, and equations are 2-cells.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 213\r\n  parsed_production_functions: 13\r\n  max_production_ccn: 8\r\n  cognitive_complexity_upper_bound: 11\r\n  control_nesting: 5\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 8, \"cognitive_upper_bound\": 11, \"control_nesting\": 5, \"line\": 137, \"name\": \"check_theory_cauchy\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/lawvere-previous/lawvere.score.yaml"
-      ]
+      "sha256": "28c9b4d18b496c5a847f644b044d0d85eed8de6bee8e425b915f9fca50c1bd3c"
     },
     {
-      "sha256": "ce154920969afa7b6f9a670f139b8086753f790244c0c2365a5c7511a50e48b3",
       "bytes": 5610,
+      "original_paths": [
+        "code/rust/src/category_theory/lawvere.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lawvere.rs\",\n    \"sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:lawvere:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 6,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T171250Z/baseline.json\",\n      \"sha256\": \"55879722d9c1501686b00cc0d989e9469b1368b9050c1422f31111b56098588a\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T171250Z/summary.json\",\n      \"sha256\": \"f480ba0ec597c3df31a1222feaaff95b84af9987e034528b34b6db26282c599c\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T171250Z/mutations.json\",\n      \"sha256\": \"3cbd3125f58b2694c3258516c669fbab3bd375f23355e16f44ba9e68086b508c\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T171348Z-metrics/receipt.json\",\n      \"sha256\": \"139caf75ee8af11a3880f27fe9109e869e8d9057e391db1ae272b01917939e06\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T171250Z/dependency_receipt.json\",\n      \"sha256\": \"bbd605b84e0348c3fdf94b45a67776e64247699fe7a0591b858fb2bbe626f28b\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/lawvere.json\",\n      \"sha256\": \"d090a8117dbec64800b3d5d0a7470483b0f7109e46f6d8dc9130eaccfb0cd7ae\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 236,\n    \"parsed_production_functions\": 18,\n    \"max_production_ccn\": 6,\n    \"cognitive_complexity_upper_bound\": 6,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/lawvere.rs",
-          "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:lawvere:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -661,24 +592,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 6,
-          "lizard_ccn": 5,
-          "weighted_control_upper_bound": 6,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -686,81 +600,155 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T171250Z/baseline.json",
-            "sha256": "55879722d9c1501686b00cc0d989e9469b1368b9050c1422f31111b56098588a",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "55879722d9c1501686b00cc0d989e9469b1368b9050c1422f31111b56098588a"
           },
           {
             "path": "evidence/quality/category_homology/20261019T171250Z/summary.json",
-            "sha256": "f480ba0ec597c3df31a1222feaaff95b84af9987e034528b34b6db26282c599c",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "f480ba0ec597c3df31a1222feaaff95b84af9987e034528b34b6db26282c599c"
           },
           {
             "path": "evidence/quality/category_homology/20261019T171250Z/mutations.json",
-            "sha256": "3cbd3125f58b2694c3258516c669fbab3bd375f23355e16f44ba9e68086b508c",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "3cbd3125f58b2694c3258516c669fbab3bd375f23355e16f44ba9e68086b508c"
           },
           {
             "path": "evidence/quality/category_homology/20261019T171348Z-metrics/receipt.json",
-            "sha256": "139caf75ee8af11a3880f27fe9109e869e8d9057e391db1ae272b01917939e06",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "139caf75ee8af11a3880f27fe9109e869e8d9057e391db1ae272b01917939e06"
           },
           {
             "path": "evidence/quality/category_homology/20261019T171250Z/dependency_receipt.json",
-            "sha256": "bbd605b84e0348c3fdf94b45a67776e64247699fe7a0591b858fb2bbe626f28b",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "bbd605b84e0348c3fdf94b45a67776e64247699fe7a0591b858fb2bbe626f28b"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/lawvere.json",
-            "sha256": "d090a8117dbec64800b3d5d0a7470483b0f7109e46f6d8dc9130eaccfb0cd7ae",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "d090a8117dbec64800b3d5d0a7470483b0f7109e46f6d8dc9130eaccfb0cd7ae"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 5,
+          "radon_ccn": 6,
+          "weighted_control_upper_bound": 6
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 236,
-          "parsed_production_functions": 18,
-          "max_production_ccn": 6,
           "cognitive_complexity_upper_bound": 6,
           "control_nesting": 2,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 6,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 18,
+          "physical_lines": 236,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lawvere.rs\",\n    \"sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:lawvere:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 6,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T171250Z/baseline.json\",\n      \"sha256\": \"55879722d9c1501686b00cc0d989e9469b1368b9050c1422f31111b56098588a\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T171250Z/summary.json\",\n      \"sha256\": \"f480ba0ec597c3df31a1222feaaff95b84af9987e034528b34b6db26282c599c\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T171250Z/mutations.json\",\n      \"sha256\": \"3cbd3125f58b2694c3258516c669fbab3bd375f23355e16f44ba9e68086b508c\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T171348Z-metrics/receipt.json\",\n      \"sha256\": \"139caf75ee8af11a3880f27fe9109e869e8d9057e391db1ae272b01917939e06\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T171250Z/dependency_receipt.json\",\n      \"sha256\": \"bbd605b84e0348c3fdf94b45a67776e64247699fe7a0591b858fb2bbe626f28b\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/lawvere.json\",\n      \"sha256\": \"d090a8117dbec64800b3d5d0a7470483b0f7109e46f6d8dc9130eaccfb0cd7ae\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 236,\n    \"parsed_production_functions\": 18,\n    \"max_production_ccn\": 6,\n    \"cognitive_complexity_upper_bound\": 6,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "ce154920969afa7b6f9a670f139b8086753f790244c0c2365a5c7511a50e48b3"
+    },
+    {
+      "bytes": 1594,
       "original_paths": [
-        "code/rust/src/category_theory/lawvere.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/lawvere.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/lawvere.rs\",\n    \"sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/lawvere.rs\",\n      \"sha256\": \"21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/lawvere.rs",
+          "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/lawvere.rs",
+            "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "4612c568091483cdfbf0df8db7ebd6fd3f82e715b6a5987b38545e955f5e7c92"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/lawvere.rs.contract.yaml": "1e29f3a89a502c83ed03db0e1464437feedaf402b7de94414bfc0b3f88bf1769",
-    "code/rust/src/category_theory/lawvere.score.yaml": "067daabe3d4cedff2541ff3c6851f307488436881724df9fd8fc87913eb6e4a2",
-    "code/rust/src/category_theory/lawvere.rs.scoring.yaml": "7204462a7cee49806e51fdd4170fbfac503e876306c81a4cf8448bc8cc7b72da",
-    "evidence/quality/category_homology/resume-20261019/lawvere-previous/lawvere.score.yaml": "28c9b4d18b496c5a847f644b044d0d85eed8de6bee8e425b915f9fca50c1bd3c"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

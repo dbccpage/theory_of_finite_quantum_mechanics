@@ -1,85 +1,84 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/40_packets/observer_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/governance/40_packets/observer_contract.py",
       "sha256": "1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:40_packets:observer-contract:v1",
-    "role": "library",
-    "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0",
-    "operations": {
-      "ContractModel": "Class ContractModel domain record and methods.",
-      "validate_contract": "Function validate_contract operation."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/governance/40_packets/observer_contract.py",
+        "sha256": "1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b",
+    "subject": "code/python/governance/40_packets/observer_contract.py"
   },
-  "current_contract": "0bc5261eb54b46d5f6c1b4c7d0768678275d13ac25fef8157d486d94450f872d",
-  "current_scoring": "c81357ceaee30eff4c178f735835cf7dabbe1831d48f139552c4fa3d72c14800",
   "contract_history": [
     {
-      "sha256": "76cbdf0cf118bb9e8a51ae3a1884d938ebdc2d115ad9f80d60f7183e26c0651a",
       "bytes": 6222,
+      "original_paths": [
+        "code/python/governance/40_packets/observer.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"v1.0.0\",\n  \"packet_id\": \"urn:omega:packet:omega:observer:v1.0.0\",\n  \"title\": \"Observer Evaluation Structure, Generated Observer Q_I & Observer Packet\",\n  \"kind\": \"execution_contract\",\n  \"status\": \"Active\",\n  \"layer\": \"Governance / Execution & Observer Theory\",\n  \"authority_effect\": \"None\",\n  \"formal_anchors\": {\n    \"primary_paper\": {\n      \"paper_id\": \"Paper 000\",\n      \"title\": \"Primitive Axiomatics of Finite Cohomological Obstruction Theory\",\n      \"source_document\": \"omega_research/programs/999_published_in_general_media/linkedin_article_01_what_the_hell_is_an_observer.md\"\n    },\n    \"formal_mechanization\": {\n      \"lean_module\": \"WGOC\",\n      \"source_document\": \"lean4/wgoc_observer.lean\",\n      \"proof_packet\": \"WGOC-20260730\",\n      \"frozen_statements\": \"research/proof_packets/wgoc_witness_observer_convergence/001_frozen_formal_statements.md\"\n    },\n    \"estate_anchors\": {\n      \"primitive_difference\": \"lean4/primitive_difference.lean (OmegaCore.PrimitiveDifference)\",\n      \"congruence_layer\": \"PCC-20260730 Settings A/B\",\n      \"contextual_congruence\": \"ENC-0209 (Primitive Axiomatics v2.6 §1.8)\"\n    }\n  },\n  \"definition\": {\n    \"summary\": \"An observer is the declared evaluation structure (K, F, R, delta, d0, d1, J, M, tau) that turns local disagreement into authorized evaluation. Mechanized as Q_I = X / B_I.\",\n    \"aphorism\": \"O is the packet that turns local disagreement into authorized evaluation.\",\n    \"tuple_specification\": {\n      \"K\": \"Finite carrier: sites, records, states, nodes, or boundary objects being compared.\",\n      \"F\": \"Local state space assignment mapping sites to local value domains.\",\n      \"R\": \"Comparability relation declaring which local sites or structures are comparable.\",\n      \"delta\": \"Primitive difference map turning comparison failures into edge defects.\",\n      \"d0\": \"Admissible local repair / gauge shift map describing allowed reference adjustments.\",\n      \"d1\": \"Higher-order closure operator verifying 2-cochain consistency.\",\n      \"J\": \"Observer-selected gauge or seminorm measuring quotient residual defect mass.\",\n      \"M\": \"Compatible transformation class of admissible transport or symmetry maps.\",\n      \"tau\": \"Terminalizer function assigning authorized terminal evaluation statuses.\"\n    }\n  },\n  \"generated_observer_q_i\": {\n    \"formula\": \"Q_I := X / B_I\",\n    \"construction\": \"Behavioral quotient of state space X under greatest contextual difference-preserving equivalence relation B_I for action M and probe family d.\",\n    \"canonical_relative_scope\": \"Q_I is canonical ONLY relative to the declared action M and declared probe family d; no absolute canonical observer is claimed.\"\n  },\n  \"formal_theorems\": [\n    {\n      \"id\": \"W1a_qI_eq_iff\",\n      \"statement\": \"qI(x) = qI(y) iff B_I(x, y) (kernel of the class map is B_I).\"\n    },\n    {\n      \"id\": \"W1b_sigbar_iso\",\n      \"statement\": \"Q_I is isomorphic to im(Sigma_I) via unique commuting, injective, surjective signature map.\"\n    },\n    {\n      \"id\": \"W1c_greatest_preserving\",\n      \"statement\": \"B_I is the unique greatest difference-preserving equivalence relation.\"\n    },\n    {\n      \"id\": \"W1d_observer_minimal\",\n      \"statement\": \"Every difference-preserving observer surjects onto Q_I (Q_I is the minimal coarsest observer).\"\n    },\n    {\n      \"id\": \"W1e_observer_unique_iso\",\n      \"statement\": \"Difference-preserving observers are unique up to unique commuting bijection.\"\n    },\n    {\n      \"id\": \"W2a_W2b_contextual_amplification\",\n      \"statement\": \"Immediate difference separation amplifies to contextual difference separation across all action paths.\"\n    }\n  ],\n  \"pipeline_stages\": [\n    {\n      \"stage\": 1,\n      \"name\": \"carrier_scope\",\n      \"description\": \"Admitted finite cells, sites, and boundary objects K.\"\n    },\n    {\n      \"stage\": 2,\n      \"name\": \"local_states\",\n      \"description\": \"Target state spaces F assigned to carrier sites.\"\n    },\n    {\n      \"stage\": 3,\n      \"name\": \"comparisons\",\n      \"description\": \"Evaluation relation R establishing comparable sites.\"\n    },\n    {\n      \"stage\": 4,\n      \"name\": \"defects\",\n      \"description\": \"Primitive difference delta extracting edge defect cochains.\"\n    },\n    {\n      \"stage\": 5,\n      \"name\": \"admissible_repairs\",\n      \"description\": \"Exact coboundary gauge repairs d0(alpha).\"\n    },\n    {\n      \"stage\": 6,\n      \"name\": \"quotient_residual\",\n      \"description\": \"Gauge-equivalent quotient class representative h = omega - d0(alpha).\"\n    },\n    {\n      \"stage\": 7,\n      \"name\": \"observer_selected_gauge\",\n      \"description\": \"Quotient seminorm measurement J(h) = Phi_1(h).\"\n    },\n    {\n      \"stage\": 8,\n      \"name\": \"closure_diagnostics\",\n      \"description\": \"Higher closure defect check d1(h) = Gamma_2(h).\"\n    },\n    {\n      \"stage\": 9,\n      \"name\": \"terminal_status\",\n      \"description\": \"Terminal decision tau(h) mapping residual to authorized status.\"\n    }\n  ],\n  \"negative_axioms\": [\n    \"An observer is NOT a person, camera, or subjective consciousness.\",\n    \"An observer is NOT a sensor; a sensor records signals without defining evaluation regimes.\",\n    \"An observer is NOT an agent; proposal systems must not own terminal evaluation.\",\n    \"An observer is NOT a view from nowhere; every observer selects an explicit comparison geometry.\"\n  ],\n  \"laws\": [\n    {\n      \"id\": \"OBS_LAW_01_EXPLICIT_REGIME\",\n      \"statement\": \"Nothing is publicly evaluable until an observer has declared its comparison regime.\"\n    },\n    {\n      \"id\": \"OBS_LAW_02_SEPARATION_OF_ROLES\",\n      \"statement\": \"Proposal systems (agents) shall not own or mutate the terminalizer tau.\"\n    },\n    {\n      \"id\": \"OBS_LAW_03_REPLAYABLE_PROVENANCE\",\n      \"statement\": \"Evaluation results must preserve replay hashes for carrier K, defect delta, and repair d0.\"\n    },\n    {\n      \"id\": \"OBS_LAW_04_RELATIVE_CANONICALITY\",\n      \"statement\": \"Observer canonicality is strictly relative to declared action M and probe family d.\"\n    }\n  ],\n  \"runtime_bindings\": [\n    \"omega_engine.crates.observer\",\n    \"omega_engine.crates.homology_theory.observer_gauge\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "v1.0.0",
-        "packet_id": "urn:omega:packet:omega:observer:v1.0.0",
-        "title": "Observer Evaluation Structure, Generated Observer Q_I & Observer Packet",
-        "kind": "execution_contract",
-        "status": "Active",
-        "layer": "Governance / Execution & Observer Theory",
         "authority_effect": "None",
-        "formal_anchors": {
-          "primary_paper": {
-            "paper_id": "Paper 000",
-            "title": "Primitive Axiomatics of Finite Cohomological Obstruction Theory",
-            "source_document": "omega_research/programs/999_published_in_general_media/linkedin_article_01_what_the_hell_is_an_observer.md"
-          },
-          "formal_mechanization": {
-            "lean_module": "WGOC",
-            "source_document": "lean4/wgoc_observer.lean",
-            "proof_packet": "WGOC-20260730",
-            "frozen_statements": "research/proof_packets/wgoc_witness_observer_convergence/001_frozen_formal_statements.md"
-          },
-          "estate_anchors": {
-            "primitive_difference": "lean4/primitive_difference.lean (OmegaCore.PrimitiveDifference)",
-            "congruence_layer": "PCC-20260730 Settings A/B",
-            "contextual_congruence": "ENC-0209 (Primitive Axiomatics v2.6 §1.8)"
-          }
-        },
         "definition": {
-          "summary": "An observer is the declared evaluation structure (K, F, R, delta, d0, d1, J, M, tau) that turns local disagreement into authorized evaluation. Mechanized as Q_I = X / B_I.",
           "aphorism": "O is the packet that turns local disagreement into authorized evaluation.",
+          "summary": "An observer is the declared evaluation structure (K, F, R, delta, d0, d1, J, M, tau) that turns local disagreement into authorized evaluation. Mechanized as Q_I = X / B_I.",
           "tuple_specification": {
-            "K": "Finite carrier: sites, records, states, nodes, or boundary objects being compared.",
             "F": "Local state space assignment mapping sites to local value domains.",
+            "J": "Observer-selected gauge or seminorm measuring quotient residual defect mass.",
+            "K": "Finite carrier: sites, records, states, nodes, or boundary objects being compared.",
+            "M": "Compatible transformation class of admissible transport or symmetry maps.",
             "R": "Comparability relation declaring which local sites or structures are comparable.",
-            "delta": "Primitive difference map turning comparison failures into edge defects.",
             "d0": "Admissible local repair / gauge shift map describing allowed reference adjustments.",
             "d1": "Higher-order closure operator verifying 2-cochain consistency.",
-            "J": "Observer-selected gauge or seminorm measuring quotient residual defect mass.",
-            "M": "Compatible transformation class of admissible transport or symmetry maps.",
+            "delta": "Primitive difference map turning comparison failures into edge defects.",
             "tau": "Terminalizer function assigning authorized terminal evaluation statuses."
           }
         },
-        "generated_observer_q_i": {
-          "formula": "Q_I := X / B_I",
-          "construction": "Behavioral quotient of state space X under greatest contextual difference-preserving equivalence relation B_I for action M and probe family d.",
-          "canonical_relative_scope": "Q_I is canonical ONLY relative to the declared action M and declared probe family d; no absolute canonical observer is claimed."
+        "formal_anchors": {
+          "estate_anchors": {
+            "congruence_layer": "PCC-20260730 Settings A/B",
+            "contextual_congruence": "ENC-0209 (Primitive Axiomatics v2.6 §1.8)",
+            "primitive_difference": "lean4/primitive_difference.lean (OmegaCore.PrimitiveDifference)"
+          },
+          "formal_mechanization": {
+            "frozen_statements": "research/proof_packets/wgoc_witness_observer_convergence/001_frozen_formal_statements.md",
+            "lean_module": "WGOC",
+            "proof_packet": "WGOC-20260730",
+            "source_document": "lean4/wgoc_observer.lean"
+          },
+          "primary_paper": {
+            "paper_id": "Paper 000",
+            "source_document": "omega_research/programs/999_published_in_general_media/linkedin_article_01_what_the_hell_is_an_observer.md",
+            "title": "Primitive Axiomatics of Finite Cohomological Obstruction Theory"
+          }
         },
         "formal_theorems": [
           {
@@ -107,59 +106,12 @@
             "statement": "Immediate difference separation amplifies to contextual difference separation across all action paths."
           }
         ],
-        "pipeline_stages": [
-          {
-            "stage": 1,
-            "name": "carrier_scope",
-            "description": "Admitted finite cells, sites, and boundary objects K."
-          },
-          {
-            "stage": 2,
-            "name": "local_states",
-            "description": "Target state spaces F assigned to carrier sites."
-          },
-          {
-            "stage": 3,
-            "name": "comparisons",
-            "description": "Evaluation relation R establishing comparable sites."
-          },
-          {
-            "stage": 4,
-            "name": "defects",
-            "description": "Primitive difference delta extracting edge defect cochains."
-          },
-          {
-            "stage": 5,
-            "name": "admissible_repairs",
-            "description": "Exact coboundary gauge repairs d0(alpha)."
-          },
-          {
-            "stage": 6,
-            "name": "quotient_residual",
-            "description": "Gauge-equivalent quotient class representative h = omega - d0(alpha)."
-          },
-          {
-            "stage": 7,
-            "name": "observer_selected_gauge",
-            "description": "Quotient seminorm measurement J(h) = Phi_1(h)."
-          },
-          {
-            "stage": 8,
-            "name": "closure_diagnostics",
-            "description": "Higher closure defect check d1(h) = Gamma_2(h)."
-          },
-          {
-            "stage": 9,
-            "name": "terminal_status",
-            "description": "Terminal decision tau(h) mapping residual to authorized status."
-          }
-        ],
-        "negative_axioms": [
-          "An observer is NOT a person, camera, or subjective consciousness.",
-          "An observer is NOT a sensor; a sensor records signals without defining evaluation regimes.",
-          "An observer is NOT an agent; proposal systems must not own terminal evaluation.",
-          "An observer is NOT a view from nowhere; every observer selects an explicit comparison geometry."
-        ],
+        "generated_observer_q_i": {
+          "canonical_relative_scope": "Q_I is canonical ONLY relative to the declared action M and declared probe family d; no absolute canonical observer is claimed.",
+          "construction": "Behavioral quotient of state space X under greatest contextual difference-preserving equivalence relation B_I for action M and probe family d.",
+          "formula": "Q_I := X / B_I"
+        },
+        "kind": "execution_contract",
         "laws": [
           {
             "id": "OBS_LAW_01_EXPLICIT_REGIME",
@@ -178,81 +130,175 @@
             "statement": "Observer canonicality is strictly relative to declared action M and probe family d."
           }
         ],
-        "runtime_bindings": [
-          "omega_engine.crates.observer",
-          "omega_engine.crates.homology_theory.observer_gauge"
+        "layer": "Governance / Execution & Observer Theory",
+        "negative_axioms": [
+          "An observer is NOT a person, camera, or subjective consciousness.",
+          "An observer is NOT a sensor; a sensor records signals without defining evaluation regimes.",
+          "An observer is NOT an agent; proposal systems must not own terminal evaluation.",
+          "An observer is NOT a view from nowhere; every observer selects an explicit comparison geometry."
+        ],
+        "packet_id": "urn:omega:packet:omega:observer:v1.0.0",
+        "pipeline_stages": [
+          {
+            "description": "Admitted finite cells, sites, and boundary objects K.",
+            "name": "carrier_scope",
+            "stage": 1
+          },
+          {
+            "description": "Target state spaces F assigned to carrier sites.",
+            "name": "local_states",
+            "stage": 2
+          },
+          {
+            "description": "Evaluation relation R establishing comparable sites.",
+            "name": "comparisons",
+            "stage": 3
+          },
+          {
+            "description": "Primitive difference delta extracting edge defect cochains.",
+            "name": "defects",
+            "stage": 4
+          },
+          {
+            "description": "Exact coboundary gauge repairs d0(alpha).",
+            "name": "admissible_repairs",
+            "stage": 5
+          },
+          {
+            "description": "Gauge-equivalent quotient class representative h = omega - d0(alpha).",
+            "name": "quotient_residual",
+            "stage": 6
+          },
+          {
+            "description": "Quotient seminorm measurement J(h) = Phi_1(h).",
+            "name": "observer_selected_gauge",
+            "stage": 7
+          },
+          {
+            "description": "Higher closure defect check d1(h) = Gamma_2(h).",
+            "name": "closure_diagnostics",
+            "stage": 8
+          },
+          {
+            "description": "Terminal decision tau(h) mapping residual to authorized status.",
+            "name": "terminal_status",
+            "stage": 9
+          }
         ],
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0"
           ]
-        }
+        },
+        "runtime_bindings": [
+          "omega_engine.crates.observer",
+          "omega_engine.crates.homology_theory.observer_gauge"
+        ],
+        "schema_version": "v1.0.0",
+        "status": "Active",
+        "title": "Observer Evaluation Structure, Generated Observer Q_I & Observer Packet"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"v1.0.0\",\n  \"packet_id\": \"urn:omega:packet:omega:observer:v1.0.0\",\n  \"title\": \"Observer Evaluation Structure, Generated Observer Q_I & Observer Packet\",\n  \"kind\": \"execution_contract\",\n  \"status\": \"Active\",\n  \"layer\": \"Governance / Execution & Observer Theory\",\n  \"authority_effect\": \"None\",\n  \"formal_anchors\": {\n    \"primary_paper\": {\n      \"paper_id\": \"Paper 000\",\n      \"title\": \"Primitive Axiomatics of Finite Cohomological Obstruction Theory\",\n      \"source_document\": \"omega_research/programs/999_published_in_general_media/linkedin_article_01_what_the_hell_is_an_observer.md\"\n    },\n    \"formal_mechanization\": {\n      \"lean_module\": \"WGOC\",\n      \"source_document\": \"lean4/wgoc_observer.lean\",\n      \"proof_packet\": \"WGOC-20260730\",\n      \"frozen_statements\": \"research/proof_packets/wgoc_witness_observer_convergence/001_frozen_formal_statements.md\"\n    },\n    \"estate_anchors\": {\n      \"primitive_difference\": \"lean4/primitive_difference.lean (OmegaCore.PrimitiveDifference)\",\n      \"congruence_layer\": \"PCC-20260730 Settings A/B\",\n      \"contextual_congruence\": \"ENC-0209 (Primitive Axiomatics v2.6 §1.8)\"\n    }\n  },\n  \"definition\": {\n    \"summary\": \"An observer is the declared evaluation structure (K, F, R, delta, d0, d1, J, M, tau) that turns local disagreement into authorized evaluation. Mechanized as Q_I = X / B_I.\",\n    \"aphorism\": \"O is the packet that turns local disagreement into authorized evaluation.\",\n    \"tuple_specification\": {\n      \"K\": \"Finite carrier: sites, records, states, nodes, or boundary objects being compared.\",\n      \"F\": \"Local state space assignment mapping sites to local value domains.\",\n      \"R\": \"Comparability relation declaring which local sites or structures are comparable.\",\n      \"delta\": \"Primitive difference map turning comparison failures into edge defects.\",\n      \"d0\": \"Admissible local repair / gauge shift map describing allowed reference adjustments.\",\n      \"d1\": \"Higher-order closure operator verifying 2-cochain consistency.\",\n      \"J\": \"Observer-selected gauge or seminorm measuring quotient residual defect mass.\",\n      \"M\": \"Compatible transformation class of admissible transport or symmetry maps.\",\n      \"tau\": \"Terminalizer function assigning authorized terminal evaluation statuses.\"\n    }\n  },\n  \"generated_observer_q_i\": {\n    \"formula\": \"Q_I := X / B_I\",\n    \"construction\": \"Behavioral quotient of state space X under greatest contextual difference-preserving equivalence relation B_I for action M and probe family d.\",\n    \"canonical_relative_scope\": \"Q_I is canonical ONLY relative to the declared action M and declared probe family d; no absolute canonical observer is claimed.\"\n  },\n  \"formal_theorems\": [\n    {\n      \"id\": \"W1a_qI_eq_iff\",\n      \"statement\": \"qI(x) = qI(y) iff B_I(x, y) (kernel of the class map is B_I).\"\n    },\n    {\n      \"id\": \"W1b_sigbar_iso\",\n      \"statement\": \"Q_I is isomorphic to im(Sigma_I) via unique commuting, injective, surjective signature map.\"\n    },\n    {\n      \"id\": \"W1c_greatest_preserving\",\n      \"statement\": \"B_I is the unique greatest difference-preserving equivalence relation.\"\n    },\n    {\n      \"id\": \"W1d_observer_minimal\",\n      \"statement\": \"Every difference-preserving observer surjects onto Q_I (Q_I is the minimal coarsest observer).\"\n    },\n    {\n      \"id\": \"W1e_observer_unique_iso\",\n      \"statement\": \"Difference-preserving observers are unique up to unique commuting bijection.\"\n    },\n    {\n      \"id\": \"W2a_W2b_contextual_amplification\",\n      \"statement\": \"Immediate difference separation amplifies to contextual difference separation across all action paths.\"\n    }\n  ],\n  \"pipeline_stages\": [\n    {\n      \"stage\": 1,\n      \"name\": \"carrier_scope\",\n      \"description\": \"Admitted finite cells, sites, and boundary objects K.\"\n    },\n    {\n      \"stage\": 2,\n      \"name\": \"local_states\",\n      \"description\": \"Target state spaces F assigned to carrier sites.\"\n    },\n    {\n      \"stage\": 3,\n      \"name\": \"comparisons\",\n      \"description\": \"Evaluation relation R establishing comparable sites.\"\n    },\n    {\n      \"stage\": 4,\n      \"name\": \"defects\",\n      \"description\": \"Primitive difference delta extracting edge defect cochains.\"\n    },\n    {\n      \"stage\": 5,\n      \"name\": \"admissible_repairs\",\n      \"description\": \"Exact coboundary gauge repairs d0(alpha).\"\n    },\n    {\n      \"stage\": 6,\n      \"name\": \"quotient_residual\",\n      \"description\": \"Gauge-equivalent quotient class representative h = omega - d0(alpha).\"\n    },\n    {\n      \"stage\": 7,\n      \"name\": \"observer_selected_gauge\",\n      \"description\": \"Quotient seminorm measurement J(h) = Phi_1(h).\"\n    },\n    {\n      \"stage\": 8,\n      \"name\": \"closure_diagnostics\",\n      \"description\": \"Higher closure defect check d1(h) = Gamma_2(h).\"\n    },\n    {\n      \"stage\": 9,\n      \"name\": \"terminal_status\",\n      \"description\": \"Terminal decision tau(h) mapping residual to authorized status.\"\n    }\n  ],\n  \"negative_axioms\": [\n    \"An observer is NOT a person, camera, or subjective consciousness.\",\n    \"An observer is NOT a sensor; a sensor records signals without defining evaluation regimes.\",\n    \"An observer is NOT an agent; proposal systems must not own terminal evaluation.\",\n    \"An observer is NOT a view from nowhere; every observer selects an explicit comparison geometry.\"\n  ],\n  \"laws\": [\n    {\n      \"id\": \"OBS_LAW_01_EXPLICIT_REGIME\",\n      \"statement\": \"Nothing is publicly evaluable until an observer has declared its comparison regime.\"\n    },\n    {\n      \"id\": \"OBS_LAW_02_SEPARATION_OF_ROLES\",\n      \"statement\": \"Proposal systems (agents) shall not own or mutate the terminalizer tau.\"\n    },\n    {\n      \"id\": \"OBS_LAW_03_REPLAYABLE_PROVENANCE\",\n      \"statement\": \"Evaluation results must preserve replay hashes for carrier K, defect delta, and repair d0.\"\n    },\n    {\n      \"id\": \"OBS_LAW_04_RELATIVE_CANONICALITY\",\n      \"statement\": \"Observer canonicality is strictly relative to declared action M and probe family d.\"\n    }\n  ],\n  \"runtime_bindings\": [\n    \"omega_engine.crates.observer\",\n    \"omega_engine.crates.homology_theory.observer_gauge\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
-      "original_paths": [
-        "code/python/governance/40_packets/observer.contract.yaml"
-      ]
+      "sha256": "76cbdf0cf118bb9e8a51ae3a1884d938ebdc2d115ad9f80d60f7183e26c0651a"
     },
     {
-      "sha256": "0bc5261eb54b46d5f6c1b4c7d0768678275d13ac25fef8157d486d94450f872d",
       "bytes": 1756,
+      "original_paths": [
+        "code/python/governance/40_packets/observer_contract.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/observer_contract.py\",\n    \"sha256\": \"1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:40_packets:observer-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/40_packets/observer_contract.py",
           "sha256": "1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:40_packets:observer-contract:v1",
-        "role": "library",
-        "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0",
-        "operations": {
-          "ContractModel": "Class ContractModel domain record and methods.",
-          "validate_contract": "Function validate_contract operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "profile": "Exact",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/observer_contract.py\",\n    \"sha256\": \"1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:40_packets:observer-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "0bc5261eb54b46d5f6c1b4c7d0768678275d13ac25fef8157d486d94450f872d"
+    },
+    {
+      "bytes": 1643,
       "original_paths": [
-        "code/python/governance/40_packets/observer_contract.contract.score.yaml#contract"
-      ]
+        "code/python/governance/40_packets/observer_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/40_packets/observer_contract.py\",\n    \"sha256\": \"1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/40_packets/observer_contract.py\",\n      \"sha256\": \"1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b\",\n  \"subject\": \"code/python/governance/40_packets/observer_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/40_packets/observer_contract.py",
+          "sha256": "1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/40_packets/observer_contract.py",
+            "sha256": "1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b",
+        "subject": "code/python/governance/40_packets/observer_contract.py"
+      },
+      "sha256": "9303443ce9463810b22afefa78626449ff673471f721fb6ae6eeb95f9aaa4d39"
     }
   ],
+  "current_contract": "9303443ce9463810b22afefa78626449ff673471f721fb6ae6eeb95f9aaa4d39",
+  "current_scoring": "325e8fe8abb4dbb2284571112346991c5b3d97a0d5552765627c7372a6c17b42",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/40_packets/observer.contract.yaml": "4f72954472294f27764bb2d144edb71069a31404ea359f108397e3a236ad916e"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "c81357ceaee30eff4c178f735835cf7dabbe1831d48f139552c4fa3d72c14800",
       "bytes": 2187,
+      "original_paths": [
+        "code/python/governance/40_packets/observer_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/observer_contract.py\",\n    \"sha256\": \"1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:observer-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/40_packets/observer_contract.py",
           "sha256": "1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:40_packets:observer-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -261,40 +307,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "c81357ceaee30eff4c178f735835cf7dabbe1831d48f139552c4fa3d72c14800"
+    },
+    {
+      "bytes": 1624,
+      "original_paths": [
+        "code/python/governance/40_packets/observer_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/40_packets/observer_contract.py\",\n    \"sha256\": \"1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/40_packets/observer_contract.py\",\n      \"sha256\": \"1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/40_packets/observer_contract.py",
+          "sha256": "1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/40_packets/observer_contract.py",
+            "sha256": "1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/observer_contract.py\",\n    \"sha256\": \"1c0c734439656334da82afd9a176e0cda7f516fecdc62c0384659b4df4844e6b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:observer-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/40_packets/observer_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "325e8fe8abb4dbb2284571112346991c5b3d97a0d5552765627c7372a6c17b42"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/40_packets/observer.contract.yaml": "4f72954472294f27764bb2d144edb71069a31404ea359f108397e3a236ad916e"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

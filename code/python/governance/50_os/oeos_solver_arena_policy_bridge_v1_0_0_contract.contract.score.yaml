@@ -1,148 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:oeos:solver_arena_policy_bridge:v1.0.0",
-    "title": "Solver Arena Policy Bridge",
-    "kind": "host_contract",
-    "status": "proposed",
-    "layer": "09_host",
-    "role": "SolverArenaPolicyBridge",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "RequirementsOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:oeos:experience_memory_bridge:v1.0.0",
-          "urn:omega:oeos:worker_host:v1.0.0"
-        ],
-        "proof_obligations": [
-          {
-            "id": "SAP-INV-001",
-            "statement": "Every competitor and corpus case binds exact implementation, lineage, route, budget, memory, and anti-skill digests.",
-            "verification_status": "open"
-          },
-          {
-            "id": "SAP-INV-002",
-            "statement": "Holdout scoring uses independent deterministic tests and mutation-sensitive gates rather than an LLM judge.",
-            "verification_status": "open"
-          },
-          {
-            "id": "SAP-INV-003",
-            "statement": "Arena output remains a proposal until a human admits one exact scoped and expiring policy digest.",
-            "verification_status": "open"
-          }
-        ]
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py",
+      "sha256": "a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py",
+        "sha256": "a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": [
-          "ARENA_CORPUS_REFUSED",
-          "ARENA_EVIDENCE_REFUSED",
-          "ARENA_POLICY_REFUSED",
-          "ARENA_TRIAL_REFUSED"
-        ]
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "abstract": false,
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_host_contract:v1.0.0"
-      ]
-    },
-    "requirements": {
-      "inputs": [
-        {
-          "name": "frozen_arena_trial",
-          "type": "urn:omega:oeos:type:frozen_arena_trial:v1.0.0",
-          "required": true
-        }
-      ],
-      "outputs": [
-        {
-          "name": "routing_policy_proposal",
-          "type": "urn:omega:oeos:type:routing_policy_proposal:v1.0.0",
-          "required": true
-        }
-      ],
-      "typed_refusals": [
-        "ARENA_CORPUS_REFUSED",
-        "ARENA_EVIDENCE_REFUSED",
-        "ARENA_POLICY_REFUSED",
-        "ARENA_TRIAL_REFUSED"
-      ],
-      "platform_requirements": [
-        {
-          "profile": "local_frozen_solver_arena",
-          "requirements": [
-            "lineage_disjoint_holdout_manifest",
-            "independent_replayable_scorer",
-            "exact_human_policy_admission"
-          ],
-          "verification_status": "requirements_only"
-        }
-      ],
-      "evidence_ceiling": "RequirementsOnly"
-    },
-    "doctrine": {
-      "summary": "Declares the OEOS host bridge into AG Arena trials and exact routing-policy proposals without owning evaluation or admission semantics.",
-      "non_role": [
-        "arena_evaluation_authority",
-        "autonomous_policy_promoter",
-        "online_learning_controller"
-      ],
-      "nonclaims": [
-        "does_not_create_mathematical_facts_or_witnesses",
-        "does_not_issue_action_licenses",
-        "does_not_authorize_engine_state_transitions",
-        "a_pareto_scorecard_does_not_admit_a_runtime_policy"
-      ],
-      "invariants": [
-        "holdout_cases_never_enter_memory_or_training_projection",
-        "proposed_routes_cannot_widen_eligibility"
-      ],
-      "allowed_operations": [
-        "dispatch_isolated_arena_trial",
-        "record_independent_trial_receipt",
-        "emit_exact_policy_proposal"
-      ],
-      "forbidden_operations": [
-        "self_admit_policy_or_candidate",
-        "use_llm_judgment_as_success_oracle",
-        "update_runtime_policy_online"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf",
+    "subject": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py"
   },
-  "current_contract": "e7dfb02bd02ddce6ea078e258ff0c328e7ca5ea1491b8148dad51073ed0e92b7",
-  "current_scoring": "2ada58ec64beeaeff1cedc0b7ca2186e7704f59b3ef50cbda8ab105a72cde8f3",
   "contract_history": [
     {
-      "sha256": "e7dfb02bd02ddce6ea078e258ff0c328e7ca5ea1491b8148dad51073ed0e92b7",
       "bytes": 3709,
+      "original_paths": [
+        "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:solver_arena_policy_bridge:v1.0.0\",\n  \"title\": \"Solver Arena Policy Bridge\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"SolverArenaPolicyBridge\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:oeos:experience_memory_bridge:v1.0.0\",\n        \"urn:omega:oeos:worker_host:v1.0.0\"\n      ],\n      \"proof_obligations\": [\n        {\n          \"id\": \"SAP-INV-001\",\n          \"statement\": \"Every competitor and corpus case binds exact implementation, lineage, route, budget, memory, and anti-skill digests.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"SAP-INV-002\",\n          \"statement\": \"Holdout scoring uses independent deterministic tests and mutation-sensitive gates rather than an LLM judge.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"SAP-INV-003\",\n          \"statement\": \"Arena output remains a proposal until a human admits one exact scoped and expiring policy digest.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"ARENA_CORPUS_REFUSED\",\n        \"ARENA_EVIDENCE_REFUSED\",\n        \"ARENA_POLICY_REFUSED\",\n        \"ARENA_TRIAL_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"frozen_arena_trial\",\n        \"type\": \"urn:omega:oeos:type:frozen_arena_trial:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"routing_policy_proposal\",\n        \"type\": \"urn:omega:oeos:type:routing_policy_proposal:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"ARENA_CORPUS_REFUSED\",\n      \"ARENA_EVIDENCE_REFUSED\",\n      \"ARENA_POLICY_REFUSED\",\n      \"ARENA_TRIAL_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"local_frozen_solver_arena\",\n        \"requirements\": [\n          \"lineage_disjoint_holdout_manifest\",\n          \"independent_replayable_scorer\",\n          \"exact_human_policy_admission\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares the OEOS host bridge into AG Arena trials and exact routing-policy proposals without owning evaluation or admission semantics.\",\n    \"non_role\": [\n      \"arena_evaluation_authority\",\n      \"autonomous_policy_promoter\",\n      \"online_learning_controller\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"a_pareto_scorecard_does_not_admit_a_runtime_policy\"\n    ],\n    \"invariants\": [\n      \"holdout_cases_never_enter_memory_or_training_projection\",\n      \"proposed_routes_cannot_widen_eligibility\"\n    ],\n    \"allowed_operations\": [\n      \"dispatch_isolated_arena_trial\",\n      \"record_independent_trial_receipt\",\n      \"emit_exact_policy_proposal\"\n    ],\n    \"forbidden_operations\": [\n      \"self_admit_policy_or_candidate\",\n      \"use_llm_judgment_as_success_oracle\",\n      \"update_runtime_policy_online\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:oeos:solver_arena_policy_bridge:v1.0.0",
-        "title": "Solver Arena Policy Bridge",
-        "kind": "host_contract",
-        "status": "proposed",
-        "layer": "09_host",
-        "role": "SolverArenaPolicyBridge",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "RequirementsOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -167,9 +73,10 @@
               }
             ]
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "RequirementsOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": [
@@ -179,11 +86,42 @@
               "ARENA_TRIAL_REFUSED"
             ]
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "allowed_operations": [
+            "dispatch_isolated_arena_trial",
+            "record_independent_trial_receipt",
+            "emit_exact_policy_proposal"
+          ],
+          "forbidden_operations": [
+            "self_admit_policy_or_candidate",
+            "use_llm_judgment_as_success_oracle",
+            "update_runtime_policy_online"
+          ],
+          "invariants": [
+            "holdout_cases_never_enter_memory_or_training_projection",
+            "proposed_routes_cannot_widen_eligibility"
+          ],
+          "non_role": [
+            "arena_evaluation_authority",
+            "autonomous_policy_promoter",
+            "online_learning_controller"
+          ],
+          "nonclaims": [
+            "does_not_create_mathematical_facts_or_witnesses",
+            "does_not_issue_action_licenses",
+            "does_not_authorize_engine_state_transitions",
+            "a_pareto_scorecard_does_not_admit_a_runtime_policy"
+          ],
+          "summary": "Declares the OEOS host bridge into AG Arena trials and exact routing-policy proposals without owning evaluation or admission semantics."
+        },
+        "kind": "host_contract",
+        "layer": "09_host",
         "relationships": {
           "abstract": false,
           "extends": [
@@ -192,25 +130,20 @@
           ]
         },
         "requirements": {
+          "evidence_ceiling": "RequirementsOnly",
           "inputs": [
             {
               "name": "frozen_arena_trial",
-              "type": "urn:omega:oeos:type:frozen_arena_trial:v1.0.0",
-              "required": true
+              "required": true,
+              "type": "urn:omega:oeos:type:frozen_arena_trial:v1.0.0"
             }
           ],
           "outputs": [
             {
               "name": "routing_policy_proposal",
-              "type": "urn:omega:oeos:type:routing_policy_proposal:v1.0.0",
-              "required": true
+              "required": true,
+              "type": "urn:omega:oeos:type:routing_policy_proposal:v1.0.0"
             }
-          ],
-          "typed_refusals": [
-            "ARENA_CORPUS_REFUSED",
-            "ARENA_EVIDENCE_REFUSED",
-            "ARENA_POLICY_REFUSED",
-            "ARENA_TRIAL_REFUSED"
           ],
           "platform_requirements": [
             {
@@ -223,67 +156,84 @@
               "verification_status": "requirements_only"
             }
           ],
-          "evidence_ceiling": "RequirementsOnly"
-        },
-        "doctrine": {
-          "summary": "Declares the OEOS host bridge into AG Arena trials and exact routing-policy proposals without owning evaluation or admission semantics.",
-          "non_role": [
-            "arena_evaluation_authority",
-            "autonomous_policy_promoter",
-            "online_learning_controller"
-          ],
-          "nonclaims": [
-            "does_not_create_mathematical_facts_or_witnesses",
-            "does_not_issue_action_licenses",
-            "does_not_authorize_engine_state_transitions",
-            "a_pareto_scorecard_does_not_admit_a_runtime_policy"
-          ],
-          "invariants": [
-            "holdout_cases_never_enter_memory_or_training_projection",
-            "proposed_routes_cannot_widen_eligibility"
-          ],
-          "allowed_operations": [
-            "dispatch_isolated_arena_trial",
-            "record_independent_trial_receipt",
-            "emit_exact_policy_proposal"
-          ],
-          "forbidden_operations": [
-            "self_admit_policy_or_candidate",
-            "use_llm_judgment_as_success_oracle",
-            "update_runtime_policy_online"
+          "typed_refusals": [
+            "ARENA_CORPUS_REFUSED",
+            "ARENA_EVIDENCE_REFUSED",
+            "ARENA_POLICY_REFUSED",
+            "ARENA_TRIAL_REFUSED"
           ]
-        }
+        },
+        "role": "SolverArenaPolicyBridge",
+        "schema_version": "omega.contract.v1",
+        "status": "proposed",
+        "title": "Solver Arena Policy Bridge"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:solver_arena_policy_bridge:v1.0.0\",\n  \"title\": \"Solver Arena Policy Bridge\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"SolverArenaPolicyBridge\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:oeos:experience_memory_bridge:v1.0.0\",\n        \"urn:omega:oeos:worker_host:v1.0.0\"\n      ],\n      \"proof_obligations\": [\n        {\n          \"id\": \"SAP-INV-001\",\n          \"statement\": \"Every competitor and corpus case binds exact implementation, lineage, route, budget, memory, and anti-skill digests.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"SAP-INV-002\",\n          \"statement\": \"Holdout scoring uses independent deterministic tests and mutation-sensitive gates rather than an LLM judge.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"SAP-INV-003\",\n          \"statement\": \"Arena output remains a proposal until a human admits one exact scoped and expiring policy digest.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"ARENA_CORPUS_REFUSED\",\n        \"ARENA_EVIDENCE_REFUSED\",\n        \"ARENA_POLICY_REFUSED\",\n        \"ARENA_TRIAL_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"frozen_arena_trial\",\n        \"type\": \"urn:omega:oeos:type:frozen_arena_trial:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"routing_policy_proposal\",\n        \"type\": \"urn:omega:oeos:type:routing_policy_proposal:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"ARENA_CORPUS_REFUSED\",\n      \"ARENA_EVIDENCE_REFUSED\",\n      \"ARENA_POLICY_REFUSED\",\n      \"ARENA_TRIAL_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"local_frozen_solver_arena\",\n        \"requirements\": [\n          \"lineage_disjoint_holdout_manifest\",\n          \"independent_replayable_scorer\",\n          \"exact_human_policy_admission\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares the OEOS host bridge into AG Arena trials and exact routing-policy proposals without owning evaluation or admission semantics.\",\n    \"non_role\": [\n      \"arena_evaluation_authority\",\n      \"autonomous_policy_promoter\",\n      \"online_learning_controller\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"a_pareto_scorecard_does_not_admit_a_runtime_policy\"\n    ],\n    \"invariants\": [\n      \"holdout_cases_never_enter_memory_or_training_projection\",\n      \"proposed_routes_cannot_widen_eligibility\"\n    ],\n    \"allowed_operations\": [\n      \"dispatch_isolated_arena_trial\",\n      \"record_independent_trial_receipt\",\n      \"emit_exact_policy_proposal\"\n    ],\n    \"forbidden_operations\": [\n      \"self_admit_policy_or_candidate\",\n      \"use_llm_judgment_as_success_oracle\",\n      \"update_runtime_policy_online\"\n    ]\n  }\n}\n",
+      "sha256": "e7dfb02bd02ddce6ea078e258ff0c328e7ca5ea1491b8148dad51073ed0e92b7"
+    },
+    {
+      "bytes": 1718,
       "original_paths": [
-        "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py\",\n    \"sha256\": \"a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py\",\n      \"sha256\": \"a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf\",\n  \"subject\": \"code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py",
+          "sha256": "a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py",
+            "sha256": "a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf",
+        "subject": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py"
+      },
+      "sha256": "c2c9104cfc192ec8c5f0ba966fbf4ccf762aff5aaf00a7330d771ffbc81a671c"
     }
   ],
+  "current_contract": "c2c9104cfc192ec8c5f0ba966fbf4ccf762aff5aaf00a7330d771ffbc81a671c",
+  "current_scoring": "154e4c7d8d0301256d07770927c9d4330b48b54f24671dc7cb3837fb969850ba",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0.contract.yaml": "94a6bceca1a628a3efa17db094cf0dc7f57a191316469669e59f0285243a23ca"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "2ada58ec64beeaeff1cedc0b7ca2186e7704f59b3ef50cbda8ab105a72cde8f3",
       "bytes": 2237,
+      "original_paths": [
+        "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py\",\n    \"sha256\": \"a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-solver-arena-policy-bridge-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py",
           "sha256": "a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:50_os:oeos-solver-arena-policy-bridge-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -292,40 +242,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "2ada58ec64beeaeff1cedc0b7ca2186e7704f59b3ef50cbda8ab105a72cde8f3"
+    },
+    {
+      "bytes": 1674,
+      "original_paths": [
+        "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py\",\n    \"sha256\": \"a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py\",\n      \"sha256\": \"a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py",
+          "sha256": "a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py",
+            "sha256": "a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py\",\n    \"sha256\": \"a9185a3fbd0263588acca18691d8319237e8765a3534f06611e490e6ded9f8cf\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-solver-arena-policy-bridge-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "154e4c7d8d0301256d07770927c9d4330b48b54f24671dc7cb3837fb969850ba"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0.contract.yaml": "94a6bceca1a628a3efa17db094cf0dc7f57a191316469669e59f0285243a23ca"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

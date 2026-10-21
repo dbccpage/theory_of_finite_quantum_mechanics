@@ -1,176 +1,114 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:pasting_certificate:v0.1.0",
-    "title": "PastingCertificate Contract",
-    "kind": "math_contract",
-    "status": "exact_rational_classifier_implemented",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py",
+      "sha256": "15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py",
+        "sha256": "15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "pasting-witness",
-      "symbol": "Paste(c_1, ..., c_k; w)",
-      "ascii_symbol": "pasting_certificate",
-      "notation": "Paste(c_1, ..., c_k; w)",
-      "domain": [
-        "pasting_diagram: A labeled directed graph of n-cells with boundary data",
-        "composite_cell: The resulting n-cell from pasting all cells in the diagram",
-        "boundary_witnesses: For each adjacent pair, a witness that target(c_i) = source(c_{i+1})",
-        "coherence_data: Associator/unitor witnesses when operating in a weak setting"
-      ],
-      "codomain": {
-        "description": "A tuple (pasting_diagram, composite_cell, boundary_witnesses)"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "All cell hashes in the pasting diagram must resolve to valid cells",
-        "For each adjacent pair, target(c_i) = source(c_{i+1})",
-        "Cell dimensions are compatible with the pasting pattern",
-        "The composite cell has correct source and target boundaries"
-      ]
-    },
-    "laws": [
-      "For each adjacent pair (c_i, c_{i+1}) in the diagram, target(c_i) = source(c_{i+1})",
-      "All cells being pasted have compatible dimensions for the pasting pattern",
-      "source(composite) = source(c_1) and target(composite) = target(c_k) for a linear pasting"
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Cells serialized in canonical diagram order",
-        "Validators and computation functions are content-addressed"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "Some cell hash does not resolve",
-      "target(c_i) != source(c_{i+1}) for some adjacent pair",
-      "Cell dimensions incompatible with pasting pattern",
-      "Composite cell has wrong source or target"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "A PastingCertificate witnesses that a collection of higher-dimensional cells in a (strict or weak) n-category can be validly pasted together. Given cells c_1, ..., c_k with compatible boundaries (source/target matching), the certificate records the pasting diagram, the resulting composite cell, and a witness that all boundary identifications hold. This contract does NOT confer authority; it merely records a mathematical fact about diagram composition.",
-      "non_role": [
-        "Authority decisions or admissibility classification",
-        "Uniqueness of pasting in weak settings (only existence is witnessed)",
-        "Policy emission or terminal status assignment"
-      ]
-    },
-    "wip": [
-      "Coherence data representation for weak pasting (associators, unitors)",
-      "Non-linear pasting diagrams (2D and higher pasting schemes)",
-      "Uniqueness witness in the strict case vs existence-only in the weak case",
-      "Relationship to the pasting theorem for omega-categories",
-      "Currently models linear pasting diagrams (sequential composition)",
-      "2D pasting schemes (whiskering, horizontal composition) pending",
-      "Coherence data for weak settings not yet fully specified",
-      "Does not classify admissibility or emit authority decisions"
-    ],
-    "rust_binding": {
-      "crate": "omega_higher_category_theory",
-      "module": "two_category",
-      "symbols": [
-        "Strict2Category",
-        "TwoCategory"
-      ],
-      "required_tests": [
-        "test_challenge_reserve_exact_boundary_safety",
-        "test_challenge_deterministic_hash_morphisms_and_compositions"
-      ]
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228",
+    "subject": "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py"
   },
-  "current_contract": "f5cbbb5dc1d5375fde9f8f8e9260fa4f5e707bafa823e6a9cb08ae208d88e552",
-  "current_scoring": "69d1903ee409dc15d5a173e16e966366d9998bec2b96ce199436792e3d997274",
   "contract_history": [
     {
-      "sha256": "f5cbbb5dc1d5375fde9f8f8e9260fa4f5e707bafa823e6a9cb08ae208d88e552",
       "bytes": 4172,
+      "original_paths": [
+        "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:pasting_certificate:v0.1.0\",\n  \"title\": \"PastingCertificate Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"pasting-witness\",\n    \"symbol\": \"Paste(c_1, ..., c_k; w)\",\n    \"ascii_symbol\": \"pasting_certificate\",\n    \"notation\": \"Paste(c_1, ..., c_k; w)\",\n    \"domain\": [\n      \"pasting_diagram: A labeled directed graph of n-cells with boundary data\",\n      \"composite_cell: The resulting n-cell from pasting all cells in the diagram\",\n      \"boundary_witnesses: For each adjacent pair, a witness that target(c_i) = source(c_{i+1})\",\n      \"coherence_data: Associator/unitor witnesses when operating in a weak setting\"\n    ],\n    \"codomain\": {\n      \"description\": \"A tuple (pasting_diagram, composite_cell, boundary_witnesses)\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"All cell hashes in the pasting diagram must resolve to valid cells\",\n      \"For each adjacent pair, target(c_i) = source(c_{i+1})\",\n      \"Cell dimensions are compatible with the pasting pattern\",\n      \"The composite cell has correct source and target boundaries\"\n    ]\n  },\n  \"laws\": [\n    \"For each adjacent pair (c_i, c_{i+1}) in the diagram, target(c_i) = source(c_{i+1})\",\n    \"All cells being pasted have compatible dimensions for the pasting pattern\",\n    \"source(composite) = source(c_1) and target(composite) = target(c_k) for a linear pasting\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Cells serialized in canonical diagram order\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Some cell hash does not resolve\",\n    \"target(c_i) != source(c_{i+1}) for some adjacent pair\",\n    \"Cell dimensions incompatible with pasting pattern\",\n    \"Composite cell has wrong source or target\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A PastingCertificate witnesses that a collection of higher-dimensional cells in a (strict or weak) n-category can be validly pasted together. Given cells c_1, ..., c_k with compatible boundaries (source/target matching), the certificate records the pasting diagram, the resulting composite cell, and a witness that all boundary identifications hold. This contract does NOT confer authority; it merely records a mathematical fact about diagram composition.\",\n    \"non_role\": [\n      \"Authority decisions or admissibility classification\",\n      \"Uniqueness of pasting in weak settings (only existence is witnessed)\",\n      \"Policy emission or terminal status assignment\"\n    ]\n  },\n  \"wip\": [\n    \"Coherence data representation for weak pasting (associators, unitors)\",\n    \"Non-linear pasting diagrams (2D and higher pasting schemes)\",\n    \"Uniqueness witness in the strict case vs existence-only in the weak case\",\n    \"Relationship to the pasting theorem for omega-categories\",\n    \"Currently models linear pasting diagrams (sequential composition)\",\n    \"2D pasting schemes (whiskering, horizontal composition) pending\",\n    \"Coherence data for weak settings not yet fully specified\",\n    \"Does not classify admissibility or emit authority decisions\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"two_category\",\n    \"symbols\": [\n      \"Strict2Category\",\n      \"TwoCategory\"\n    ],\n    \"required_tests\": [\n      \"test_challenge_reserve_exact_boundary_safety\",\n      \"test_challenge_deterministic_hash_morphisms_and_compositions\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:pasting_certificate:v0.1.0",
-        "title": "PastingCertificate Contract",
-        "kind": "math_contract",
-        "status": "exact_rational_classifier_implemented",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Authority decisions or admissibility classification",
+            "Uniqueness of pasting in weak settings (only existence is witnessed)",
+            "Policy emission or terminal status assignment"
+          ],
+          "summary": "A PastingCertificate witnesses that a collection of higher-dimensional cells in a (strict or weak) n-category can be validly pasted together. Given cells c_1, ..., c_k with compatible boundaries (source/target matching), the certificate records the pasting diagram, the resulting composite cell, and a witness that all boundary identifications hold. This contract does NOT confer authority; it merely records a mathematical fact about diagram composition."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "For each adjacent pair (c_i, c_{i+1}) in the diagram, target(c_i) = source(c_{i+1})",
+          "All cells being pasted have compatible dimensions for the pasting pattern",
+          "source(composite) = source(c_1) and target(composite) = target(c_k) for a linear pasting"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "pasting-witness",
-          "symbol": "Paste(c_1, ..., c_k; w)",
           "ascii_symbol": "pasting_certificate",
-          "notation": "Paste(c_1, ..., c_k; w)",
+          "codomain": {
+            "description": "A tuple (pasting_diagram, composite_cell, boundary_witnesses)"
+          },
           "domain": [
             "pasting_diagram: A labeled directed graph of n-cells with boundary data",
             "composite_cell: The resulting n-cell from pasting all cells in the diagram",
             "boundary_witnesses: For each adjacent pair, a witness that target(c_i) = source(c_{i+1})",
             "coherence_data: Associator/unitor witnesses when operating in a weak setting"
           ],
-          "codomain": {
-            "description": "A tuple (pasting_diagram, composite_cell, boundary_witnesses)"
-          }
+          "notation": "Paste(c_1, ..., c_k; w)",
+          "object_kind": "pasting-witness",
+          "symbol": "Paste(c_1, ..., c_k; w)"
         },
-        "requirements": {
-          "required_structures": [
-            "All cell hashes in the pasting diagram must resolve to valid cells",
-            "For each adjacent pair, target(c_i) = source(c_{i+1})",
-            "Cell dimensions are compatible with the pasting pattern",
-            "The composite cell has correct source and target boundaries"
+        "negative_tests": [
+          "Some cell hash does not resolve",
+          "target(c_i) != source(c_{i+1}) for some adjacent pair",
+          "Cell dimensions incompatible with pasting pattern",
+          "Composite cell has wrong source or target"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
           ]
         },
-        "laws": [
-          "For each adjacent pair (c_i, c_{i+1}) in the diagram, target(c_i) = source(c_{i+1})",
-          "All cells being pasted have compatible dimensions for the pasting pattern",
-          "source(composite) = source(c_1) and target(composite) = target(c_k) for a linear pasting"
-        ],
         "replay": {
           "requirements": [
             "No external state",
@@ -180,25 +118,29 @@
             "Validators and computation functions are content-addressed"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
+        "requirements": {
+          "required_structures": [
+            "All cell hashes in the pasting diagram must resolve to valid cells",
+            "For each adjacent pair, target(c_i) = source(c_{i+1})",
+            "Cell dimensions are compatible with the pasting pattern",
+            "The composite cell has correct source and target boundaries"
           ]
         },
-        "negative_tests": [
-          "Some cell hash does not resolve",
-          "target(c_i) != source(c_{i+1}) for some adjacent pair",
-          "Cell dimensions incompatible with pasting pattern",
-          "Composite cell has wrong source or target"
-        ],
-        "doctrine": {
-          "summary": "A PastingCertificate witnesses that a collection of higher-dimensional cells in a (strict or weak) n-category can be validly pasted together. Given cells c_1, ..., c_k with compatible boundaries (source/target matching), the certificate records the pasting diagram, the resulting composite cell, and a witness that all boundary identifications hold. This contract does NOT confer authority; it merely records a mathematical fact about diagram composition.",
-          "non_role": [
-            "Authority decisions or admissibility classification",
-            "Uniqueness of pasting in weak settings (only existence is witnessed)",
-            "Policy emission or terminal status assignment"
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "two_category",
+          "required_tests": [
+            "test_challenge_reserve_exact_boundary_safety",
+            "test_challenge_deterministic_hash_morphisms_and_compositions"
+          ],
+          "symbols": [
+            "Strict2Category",
+            "TwoCategory"
           ]
         },
+        "schema_version": "omega.contract.v1",
+        "status": "exact_rational_classifier_implemented",
+        "title": "PastingCertificate Contract",
         "wip": [
           "Coherence data representation for weak pasting (associators, unitors)",
           "Non-linear pasting diagrams (2D and higher pasting schemes)",
@@ -208,50 +150,74 @@
           "2D pasting schemes (whiskering, horizontal composition) pending",
           "Coherence data for weak settings not yet fully specified",
           "Does not classify admissibility or emit authority decisions"
-        ],
-        "rust_binding": {
-          "crate": "omega_higher_category_theory",
-          "module": "two_category",
-          "symbols": [
-            "Strict2Category",
-            "TwoCategory"
-          ],
-          "required_tests": [
-            "test_challenge_reserve_exact_boundary_safety",
-            "test_challenge_deterministic_hash_morphisms_and_compositions"
-          ]
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:pasting_certificate:v0.1.0\",\n  \"title\": \"PastingCertificate Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"pasting-witness\",\n    \"symbol\": \"Paste(c_1, ..., c_k; w)\",\n    \"ascii_symbol\": \"pasting_certificate\",\n    \"notation\": \"Paste(c_1, ..., c_k; w)\",\n    \"domain\": [\n      \"pasting_diagram: A labeled directed graph of n-cells with boundary data\",\n      \"composite_cell: The resulting n-cell from pasting all cells in the diagram\",\n      \"boundary_witnesses: For each adjacent pair, a witness that target(c_i) = source(c_{i+1})\",\n      \"coherence_data: Associator/unitor witnesses when operating in a weak setting\"\n    ],\n    \"codomain\": {\n      \"description\": \"A tuple (pasting_diagram, composite_cell, boundary_witnesses)\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"All cell hashes in the pasting diagram must resolve to valid cells\",\n      \"For each adjacent pair, target(c_i) = source(c_{i+1})\",\n      \"Cell dimensions are compatible with the pasting pattern\",\n      \"The composite cell has correct source and target boundaries\"\n    ]\n  },\n  \"laws\": [\n    \"For each adjacent pair (c_i, c_{i+1}) in the diagram, target(c_i) = source(c_{i+1})\",\n    \"All cells being pasted have compatible dimensions for the pasting pattern\",\n    \"source(composite) = source(c_1) and target(composite) = target(c_k) for a linear pasting\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Cells serialized in canonical diagram order\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Some cell hash does not resolve\",\n    \"target(c_i) != source(c_{i+1}) for some adjacent pair\",\n    \"Cell dimensions incompatible with pasting pattern\",\n    \"Composite cell has wrong source or target\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A PastingCertificate witnesses that a collection of higher-dimensional cells in a (strict or weak) n-category can be validly pasted together. Given cells c_1, ..., c_k with compatible boundaries (source/target matching), the certificate records the pasting diagram, the resulting composite cell, and a witness that all boundary identifications hold. This contract does NOT confer authority; it merely records a mathematical fact about diagram composition.\",\n    \"non_role\": [\n      \"Authority decisions or admissibility classification\",\n      \"Uniqueness of pasting in weak settings (only existence is witnessed)\",\n      \"Policy emission or terminal status assignment\"\n    ]\n  },\n  \"wip\": [\n    \"Coherence data representation for weak pasting (associators, unitors)\",\n    \"Non-linear pasting diagrams (2D and higher pasting schemes)\",\n    \"Uniqueness witness in the strict case vs existence-only in the weak case\",\n    \"Relationship to the pasting theorem for omega-categories\",\n    \"Currently models linear pasting diagrams (sequential composition)\",\n    \"2D pasting schemes (whiskering, horizontal composition) pending\",\n    \"Coherence data for weak settings not yet fully specified\",\n    \"Does not classify admissibility or emit authority decisions\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"two_category\",\n    \"symbols\": [\n      \"Strict2Category\",\n      \"TwoCategory\"\n    ],\n    \"required_tests\": [\n      \"test_challenge_reserve_exact_boundary_safety\",\n      \"test_challenge_deterministic_hash_morphisms_and_compositions\"\n    ]\n  }\n}\n",
+      "sha256": "f5cbbb5dc1d5375fde9f8f8e9260fa4f5e707bafa823e6a9cb08ae208d88e552"
+    },
+    {
+      "bytes": 1715,
       "original_paths": [
-        "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py\",\n    \"sha256\": \"15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py\",\n      \"sha256\": \"15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228\",\n  \"subject\": \"code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py",
+          "sha256": "15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py",
+            "sha256": "15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228",
+        "subject": "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py"
+      },
+      "sha256": "1a7665a7cff00e0262d82a2eb648d7fe3a6c526640a5f40cf660195efeb4d29f"
     }
   ],
+  "current_contract": "1a7665a7cff00e0262d82a2eb648d7fe3a6c526640a5f40cf660195efeb4d29f",
+  "current_scoring": "a7f14511c468361d3b3fc83d8d37dee1897535da203668d51a64957ca0ec8260",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0.contract.yaml": "d6c01e33a1b52dfd443b58d3584ed1b650d5be4255847eda27e585c47e9c184b"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "69d1903ee409dc15d5a173e16e966366d9998bec2b96ce199436792e3d997274",
       "bytes": 2235,
+      "original_paths": [
+        "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py\",\n    \"sha256\": \"15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:math-pasting-certificate-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py",
           "sha256": "15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:30_evidence:math-pasting-certificate-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -260,40 +226,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "69d1903ee409dc15d5a173e16e966366d9998bec2b96ce199436792e3d997274"
+    },
+    {
+      "bytes": 1666,
+      "original_paths": [
+        "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py\",\n    \"sha256\": \"15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py\",\n      \"sha256\": \"15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py",
+          "sha256": "15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py",
+            "sha256": "15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Exact",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.py\",\n    \"sha256\": \"15f80ee1f3b36c44dd551589ea45ea24873dc066e086345da7c9489c55cf9228\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:math-pasting-certificate-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "a7f14511c468361d3b3fc83d8d37dee1897535da203668d51a64957ca0ec8260"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/30_evidence/math_pasting_certificate_v0_1_0.contract.yaml": "d6c01e33a1b52dfd443b58d3584ed1b650d5be4255847eda27e585c47e9c184b"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

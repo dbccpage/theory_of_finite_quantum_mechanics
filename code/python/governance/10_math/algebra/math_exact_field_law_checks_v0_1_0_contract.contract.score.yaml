@@ -1,161 +1,121 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:exact_field_law_checks:v0.1.0",
-    "title": "Exact Field Law Checks Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py",
+      "sha256": "074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5"
     },
-    "math": {
-      "object_kind": "finite_sample_law_replay",
-      "symbol": "check(laws, S) for a finite sample S ⊂ F of the field, involution and order obligations",
-      "ascii_symbol": "exact_field_law_checks",
-      "notation": "S : &[F], F : Field + ExactRing (+ Involution, OrderedExactField, HermitianOrdered)",
-      "domain": [
-        "sample: a finite slice of scalar values",
-        "trait obligations: the field axioms, the four involution axioms, the order axioms, the Hermitian-order axioms"
-      ],
-      "codomain": {
-        "description": "Ok when every law holds on the sample, otherwise LawViolated naming the first violated law in a documented check order. A failing check proves the implementation breaks that law; a passing check is evidence on the sample only.\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "check_field_axioms runs three passes (single elements, pairs, triples) so a missing inverse is reported before a derived division failure",
-        "check_involution_axioms checks in this order: additive, multiplicative, fixes 1, order at most two",
-        "check_ordered_axioms checks in this order: sign in {-1, 0, 1}, zero exactly for zero, negation, positive sums, positive products",
-        "check_hermitian_ordered_axioms checks that fixed_field_sign is None exactly for non-fixed elements, that signs are valid, the negation and closure laws on the fixed elements, and that every norm x · conj x has sign >= 0 and 0 only for zero",
-        "Cost is cubic in the sample size; samples are expected to have a few dozen elements"
-      ]
-    },
-    "laws": [
-      "a failing check names a law that the implementation provably violates on the sample",
-      "BigRational, GF(p), a Gaussian rational field and a real quadratic field satisfy the obligations they claim on the shipped test samples",
-      "a ring with zero divisors claiming to be a field, a conjugation that is not a ring homomorphism, a signum that is out of range or inconsistent with is_zero, and a fixed-field sign that is None for a fixed element are each detected"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "The check order is fixed, so the reported law is deterministic"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_linear_algebra",
-      "module": "exact_field::laws",
-      "symbols": [
-        "check_field_axioms",
-        "check_involution_axioms",
-        "check_ordered_axioms",
-        "check_hermitian_ordered_axioms"
-      ],
-      "required_tests": [
-        "a_ring_with_zero_divisors_fails_the_field_axioms",
-        "a_wrong_inverse_is_caught_and_named",
-        "a_defective_involution_is_caught_and_named",
-        "a_defective_order_is_caught_and_named",
-        "a_defective_hermitian_sign_is_caught_and_named",
-        "a_negative_norm_violates_the_hermitian_order_obligations"
-      ]
-    },
-    "negative_tests": [
-      "a sample containing a ring with zero divisors used as a field must be reported as violating the inverse law",
-      "a try_inv that answers Some(x) with x · x != 1 must be reported as violating the inverse law",
-      "a conjugation that is not additive, not multiplicative or does not fix 1 must be reported with that law",
-      "a signum out of range, inconsistent with is_zero, or violating the negation law must be reported with that law",
-      "a fixed-field sign that is None for a fixed element or out of range must be reported with that law",
-      "a field with a Galois involution whose norm is negative must be reported as violating the norm law"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py",
+        "sha256": "074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "The scalar traits state obligations the compiler cannot check. These functions replay them on a finite sample and name the first law that fails, so a crate that implements Field, Involution, OrderedExactField or HermitianOrdered for a new exact type can put one line in its tests. They are evidence, not proof.",
-      "non_role": [
-        "A proof that an implementation satisfies the axioms",
-        "Exhaustive checking of an infinite field",
-        "Checks of the analytic (floating-point) tier"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "No Lean statement of the field, involution or order axioms exists; the YAML to Lean to Rust chain for this contract is open",
-      "The samples used by the shipped tests are hand-chosen; there is no generator that draws from every component of a cyclotomic field",
-      "Associativity and distributivity are checked on triples only, so a sample of size N costs O(N³) scalar operations"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5",
+    "subject": "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py"
   },
-  "current_contract": "f4f7afb724b41568759fe94b3e26bebe11d3ecdea9e7258a38ecb1604949b067",
-  "current_scoring": "0a6241b478466e2c12a6cf396a1089025ab3b7ffe1c1edbe75ccaf718645cf21",
   "contract_history": [
     {
-      "sha256": "f4f7afb724b41568759fe94b3e26bebe11d3ecdea9e7258a38ecb1604949b067",
       "bytes": 5289,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:exact_field_law_checks:v0.1.0\",\n  \"title\": \"Exact Field Law Checks Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_sample_law_replay\",\n    \"symbol\": \"check(laws, S) for a finite sample S ⊂ F of the field, involution and order obligations\",\n    \"ascii_symbol\": \"exact_field_law_checks\",\n    \"notation\": \"S : &[F], F : Field + ExactRing (+ Involution, OrderedExactField, HermitianOrdered)\",\n    \"domain\": [\n      \"sample: a finite slice of scalar values\",\n      \"trait obligations: the field axioms, the four involution axioms, the order axioms, the Hermitian-order axioms\"\n    ],\n    \"codomain\": {\n      \"description\": \"Ok when every law holds on the sample, otherwise LawViolated naming the first violated law in a documented check order. A failing check proves the implementation breaks that law; a passing check is evidence on the sample only.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"check_field_axioms runs three passes (single elements, pairs, triples) so a missing inverse is reported before a derived division failure\",\n      \"check_involution_axioms checks in this order: additive, multiplicative, fixes 1, order at most two\",\n      \"check_ordered_axioms checks in this order: sign in {-1, 0, 1}, zero exactly for zero, negation, positive sums, positive products\",\n      \"check_hermitian_ordered_axioms checks that fixed_field_sign is None exactly for non-fixed elements, that signs are valid, the negation and closure laws on the fixed elements, and that every norm x · conj x has sign >= 0 and 0 only for zero\",\n      \"Cost is cubic in the sample size; samples are expected to have a few dozen elements\"\n    ]\n  },\n  \"laws\": [\n    \"a failing check names a law that the implementation provably violates on the sample\",\n    \"BigRational, GF(p), a Gaussian rational field and a real quadratic field satisfy the obligations they claim on the shipped test samples\",\n    \"a ring with zero divisors claiming to be a field, a conjugation that is not a ring homomorphism, a signum that is out of range or inconsistent with is_zero, and a fixed-field sign that is None for a fixed element are each detected\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"The check order is fixed, so the reported law is deterministic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"exact_field::laws\",\n    \"symbols\": [\n      \"check_field_axioms\",\n      \"check_involution_axioms\",\n      \"check_ordered_axioms\",\n      \"check_hermitian_ordered_axioms\"\n    ],\n    \"required_tests\": [\n      \"a_ring_with_zero_divisors_fails_the_field_axioms\",\n      \"a_wrong_inverse_is_caught_and_named\",\n      \"a_defective_involution_is_caught_and_named\",\n      \"a_defective_order_is_caught_and_named\",\n      \"a_defective_hermitian_sign_is_caught_and_named\",\n      \"a_negative_norm_violates_the_hermitian_order_obligations\"\n    ]\n  },\n  \"negative_tests\": [\n    \"a sample containing a ring with zero divisors used as a field must be reported as violating the inverse law\",\n    \"a try_inv that answers Some(x) with x · x != 1 must be reported as violating the inverse law\",\n    \"a conjugation that is not additive, not multiplicative or does not fix 1 must be reported with that law\",\n    \"a signum out of range, inconsistent with is_zero, or violating the negation law must be reported with that law\",\n    \"a fixed-field sign that is None for a fixed element or out of range must be reported with that law\",\n    \"a field with a Galois involution whose norm is negative must be reported as violating the norm law\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"The scalar traits state obligations the compiler cannot check. These functions replay them on a finite sample and name the first law that fails, so a crate that implements Field, Involution, OrderedExactField or HermitianOrdered for a new exact type can put one line in its tests. They are evidence, not proof.\",\n    \"non_role\": [\n      \"A proof that an implementation satisfies the axioms\",\n      \"Exhaustive checking of an infinite field\",\n      \"Checks of the analytic (floating-point) tier\"\n    ]\n  },\n  \"wip\": [\n    \"No Lean statement of the field, involution or order axioms exists; the YAML to Lean to Rust chain for this contract is open\",\n    \"The samples used by the shipped tests are hand-chosen; there is no generator that draws from every component of a cyclotomic field\",\n    \"Associativity and distributivity are checked on triples only, so a sample of size N costs O(N³) scalar operations\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:exact_field_law_checks:v0.1.0",
-        "title": "Exact Field Law Checks Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "A proof that an implementation satisfies the axioms",
+            "Exhaustive checking of an infinite field",
+            "Checks of the analytic (floating-point) tier"
+          ],
+          "summary": "The scalar traits state obligations the compiler cannot check. These functions replay them on a finite sample and name the first law that fails, so a crate that implements Field, Involution, OrderedExactField or HermitianOrdered for a new exact type can put one line in its tests. They are evidence, not proof."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "a failing check names a law that the implementation provably violates on the sample",
+          "BigRational, GF(p), a Gaussian rational field and a real quadratic field satisfy the obligations they claim on the shipped test samples",
+          "a ring with zero divisors claiming to be a field, a conjugation that is not a ring homomorphism, a signum that is out of range or inconsistent with is_zero, and a fixed-field sign that is None for a fixed element are each detected"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "finite_sample_law_replay",
-          "symbol": "check(laws, S) for a finite sample S ⊂ F of the field, involution and order obligations",
           "ascii_symbol": "exact_field_law_checks",
-          "notation": "S : &[F], F : Field + ExactRing (+ Involution, OrderedExactField, HermitianOrdered)",
+          "codomain": {
+            "description": "Ok when every law holds on the sample, otherwise LawViolated naming the first violated law in a documented check order. A failing check proves the implementation breaks that law; a passing check is evidence on the sample only.\n"
+          },
           "domain": [
             "sample: a finite slice of scalar values",
             "trait obligations: the field axioms, the four involution axioms, the order axioms, the Hermitian-order axioms"
           ],
-          "codomain": {
-            "description": "Ok when every law holds on the sample, otherwise LawViolated naming the first violated law in a documented check order. A failing check proves the implementation breaks that law; a passing check is evidence on the sample only.\n"
-          }
+          "notation": "S : &[F], F : Field + ExactRing (+ Involution, OrderedExactField, HermitianOrdered)",
+          "object_kind": "finite_sample_law_replay",
+          "symbol": "check(laws, S) for a finite sample S ⊂ F of the field, involution and order obligations"
+        },
+        "negative_tests": [
+          "a sample containing a ring with zero divisors used as a field must be reported as violating the inverse law",
+          "a try_inv that answers Some(x) with x · x != 1 must be reported as violating the inverse law",
+          "a conjugation that is not additive, not multiplicative or does not fix 1 must be reported with that law",
+          "a signum out of range, inconsistent with is_zero, or violating the negation law must be reported with that law",
+          "a fixed-field sign that is None for a fixed element or out of range must be reported with that law",
+          "a field with a Galois involution whose norm is negative must be reported as violating the norm law"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "The check order is fixed, so the reported law is deterministic"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -166,33 +126,9 @@
             "Cost is cubic in the sample size; samples are expected to have a few dozen elements"
           ]
         },
-        "laws": [
-          "a failing check names a law that the implementation provably violates on the sample",
-          "BigRational, GF(p), a Gaussian rational field and a real quadratic field satisfy the obligations they claim on the shipped test samples",
-          "a ring with zero divisors claiming to be a field, a conjugation that is not a ring homomorphism, a signum that is out of range or inconsistent with is_zero, and a fixed-field sign that is None for a fixed element are each detected"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "The check order is fixed, so the reported law is deterministic"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
         "rust_binding": {
           "crate": "omega_linear_algebra",
           "module": "exact_field::laws",
-          "symbols": [
-            "check_field_axioms",
-            "check_involution_axioms",
-            "check_ordered_axioms",
-            "check_hermitian_ordered_axioms"
-          ],
           "required_tests": [
             "a_ring_with_zero_divisors_fails_the_field_axioms",
             "a_wrong_inverse_is_caught_and_named",
@@ -200,60 +136,89 @@
             "a_defective_order_is_caught_and_named",
             "a_defective_hermitian_sign_is_caught_and_named",
             "a_negative_norm_violates_the_hermitian_order_obligations"
+          ],
+          "symbols": [
+            "check_field_axioms",
+            "check_involution_axioms",
+            "check_ordered_axioms",
+            "check_hermitian_ordered_axioms"
           ]
         },
-        "negative_tests": [
-          "a sample containing a ring with zero divisors used as a field must be reported as violating the inverse law",
-          "a try_inv that answers Some(x) with x · x != 1 must be reported as violating the inverse law",
-          "a conjugation that is not additive, not multiplicative or does not fix 1 must be reported with that law",
-          "a signum out of range, inconsistent with is_zero, or violating the negation law must be reported with that law",
-          "a fixed-field sign that is None for a fixed element or out of range must be reported with that law",
-          "a field with a Galois involution whose norm is negative must be reported as violating the norm law"
-        ],
-        "doctrine": {
-          "summary": "The scalar traits state obligations the compiler cannot check. These functions replay them on a finite sample and name the first law that fails, so a crate that implements Field, Involution, OrderedExactField or HermitianOrdered for a new exact type can put one line in its tests. They are evidence, not proof.",
-          "non_role": [
-            "A proof that an implementation satisfies the axioms",
-            "Exhaustive checking of an infinite field",
-            "Checks of the analytic (floating-point) tier"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Exact Field Law Checks Contract",
         "wip": [
           "No Lean statement of the field, involution or order axioms exists; the YAML to Lean to Rust chain for this contract is open",
           "The samples used by the shipped tests are hand-chosen; there is no generator that draws from every component of a cyclotomic field",
           "Associativity and distributivity are checked on triples only, so a sample of size N costs O(N³) scalar operations"
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:exact_field_law_checks:v0.1.0\",\n  \"title\": \"Exact Field Law Checks Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_sample_law_replay\",\n    \"symbol\": \"check(laws, S) for a finite sample S ⊂ F of the field, involution and order obligations\",\n    \"ascii_symbol\": \"exact_field_law_checks\",\n    \"notation\": \"S : &[F], F : Field + ExactRing (+ Involution, OrderedExactField, HermitianOrdered)\",\n    \"domain\": [\n      \"sample: a finite slice of scalar values\",\n      \"trait obligations: the field axioms, the four involution axioms, the order axioms, the Hermitian-order axioms\"\n    ],\n    \"codomain\": {\n      \"description\": \"Ok when every law holds on the sample, otherwise LawViolated naming the first violated law in a documented check order. A failing check proves the implementation breaks that law; a passing check is evidence on the sample only.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"check_field_axioms runs three passes (single elements, pairs, triples) so a missing inverse is reported before a derived division failure\",\n      \"check_involution_axioms checks in this order: additive, multiplicative, fixes 1, order at most two\",\n      \"check_ordered_axioms checks in this order: sign in {-1, 0, 1}, zero exactly for zero, negation, positive sums, positive products\",\n      \"check_hermitian_ordered_axioms checks that fixed_field_sign is None exactly for non-fixed elements, that signs are valid, the negation and closure laws on the fixed elements, and that every norm x · conj x has sign >= 0 and 0 only for zero\",\n      \"Cost is cubic in the sample size; samples are expected to have a few dozen elements\"\n    ]\n  },\n  \"laws\": [\n    \"a failing check names a law that the implementation provably violates on the sample\",\n    \"BigRational, GF(p), a Gaussian rational field and a real quadratic field satisfy the obligations they claim on the shipped test samples\",\n    \"a ring with zero divisors claiming to be a field, a conjugation that is not a ring homomorphism, a signum that is out of range or inconsistent with is_zero, and a fixed-field sign that is None for a fixed element are each detected\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"The check order is fixed, so the reported law is deterministic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"exact_field::laws\",\n    \"symbols\": [\n      \"check_field_axioms\",\n      \"check_involution_axioms\",\n      \"check_ordered_axioms\",\n      \"check_hermitian_ordered_axioms\"\n    ],\n    \"required_tests\": [\n      \"a_ring_with_zero_divisors_fails_the_field_axioms\",\n      \"a_wrong_inverse_is_caught_and_named\",\n      \"a_defective_involution_is_caught_and_named\",\n      \"a_defective_order_is_caught_and_named\",\n      \"a_defective_hermitian_sign_is_caught_and_named\",\n      \"a_negative_norm_violates_the_hermitian_order_obligations\"\n    ]\n  },\n  \"negative_tests\": [\n    \"a sample containing a ring with zero divisors used as a field must be reported as violating the inverse law\",\n    \"a try_inv that answers Some(x) with x · x != 1 must be reported as violating the inverse law\",\n    \"a conjugation that is not additive, not multiplicative or does not fix 1 must be reported with that law\",\n    \"a signum out of range, inconsistent with is_zero, or violating the negation law must be reported with that law\",\n    \"a fixed-field sign that is None for a fixed element or out of range must be reported with that law\",\n    \"a field with a Galois involution whose norm is negative must be reported as violating the norm law\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"The scalar traits state obligations the compiler cannot check. These functions replay them on a finite sample and name the first law that fails, so a crate that implements Field, Involution, OrderedExactField or HermitianOrdered for a new exact type can put one line in its tests. They are evidence, not proof.\",\n    \"non_role\": [\n      \"A proof that an implementation satisfies the axioms\",\n      \"Exhaustive checking of an infinite field\",\n      \"Checks of the analytic (floating-point) tier\"\n    ]\n  },\n  \"wip\": [\n    \"No Lean statement of the field, involution or order axioms exists; the YAML to Lean to Rust chain for this contract is open\",\n    \"The samples used by the shipped tests are hand-chosen; there is no generator that draws from every component of a cyclotomic field\",\n    \"Associativity and distributivity are checked on triples only, so a sample of size N costs O(N³) scalar operations\"\n  ]\n}\n",
+      "sha256": "f4f7afb724b41568759fe94b3e26bebe11d3ecdea9e7258a38ecb1604949b067"
+    },
+    {
+      "bytes": 1736,
       "original_paths": [
-        "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py\",\n    \"sha256\": \"074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py\",\n      \"sha256\": \"074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5\",\n  \"subject\": \"code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py",
+          "sha256": "074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py",
+            "sha256": "074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5",
+        "subject": "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py"
+      },
+      "sha256": "6c0f08862d74ab9ae3e6564df1b09fe0220d11598ec3313285a31b38be55fa4e"
     }
   ],
+  "current_contract": "6c0f08862d74ab9ae3e6564df1b09fe0220d11598ec3313285a31b38be55fa4e",
+  "current_scoring": "5813c5555167e6fde1df4878d9ea41d5a500269fc67153b7b03b73aa44be5a08",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0.contract.yaml": "f0fee3185690b1eaf64b5a7eb20f3f40025703867a46a4d43d729d998a06dd85"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "0a6241b478466e2c12a6cf396a1089025ab3b7ffe1c1edbe75ccaf718645cf21",
       "bytes": 2241,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py\",\n    \"sha256\": \"074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-exact-field-law-checks-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py",
           "sha256": "074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:algebra:math-exact-field-law-checks-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -262,40 +227,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "0a6241b478466e2c12a6cf396a1089025ab3b7ffe1c1edbe75ccaf718645cf21"
+    },
+    {
+      "bytes": 1684,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py\",\n    \"sha256\": \"074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py\",\n      \"sha256\": \"074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py",
+          "sha256": "074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py",
+            "sha256": "074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.py\",\n    \"sha256\": \"074e5d01c6113a86511a872bd37f2e608b6ceab103476047b95233aefd28d6a5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-exact-field-law-checks-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "5813c5555167e6fde1df4878d9ea41d5a500269fc67153b7b03b73aa44be5a08"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/algebra/math_exact_field_law_checks_v0_1_0.contract.yaml": "f0fee3185690b1eaf64b5a7eb20f3f40025703867a46a4d43d729d998a06dd85"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

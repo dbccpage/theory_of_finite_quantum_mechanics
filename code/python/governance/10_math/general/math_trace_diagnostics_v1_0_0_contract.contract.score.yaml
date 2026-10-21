@@ -1,125 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:trace_diagnostics:v1.0.0",
-    "title": "Legacy f64 reasoning-trace features (not Φ₁, Γ₂ or Ξ)",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:math:phi1:v1.0.0"
-        ],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py",
+      "sha256": "624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc"
     },
-    "math": {
-      "object_kind": "trace_scalar_features",
-      "symbol": "S(a), S̄(a), V(a), I(a)",
-      "ascii_symbol": "TraceDiagnostics",
-      "notation": "S(a) = Σ a_i a_{i+1};  S̄(a) = S(a)/(Σ a_i² + ε);  V(a) = mean |a_{i+1} − a_i|;  I(a) = mean_{i ≠ b} |a_i|",
-      "domain": [
-        "finite f64 trace a",
-        "caller-chosen f64 ε for the normalized pairing",
-        "optional boundary index b for the interior magnitude"
-      ],
-      "codomain": {
-        "description": "f64 scalar features of a trace. shift_pairing_coherence and normalized_shift_pairing_coherence return Err for an empty trace; the other two return 0.0 on degenerate input. None of them is an obstruction functional."
-      },
-      "definition": {
-        "shift_pairing": "S(a) = Σ_i a_i a_{i+1}; empty trace refused",
-        "normalized_shift_pairing": "S(a) / (Σ_i a_i² + ε)",
-        "mean_adjacent_variation": "Σ_i |a_{i+1} − a_i| / (n − 1), and 0 when n < 2",
-        "interior_delta_magnitude": "mean of |a_i| over i ≠ b; 0 for an empty trace, for a one-entry trace with no boundary, and when every entry is excluded"
-      }
-    },
-    "laws": [
-      "Name fence: earlier homology code called S a shift-Xi score and V a normalized Gamma2. S is not the primal-dual density-distance Ξ, and V inspects no coboundary, so it is not the closure defect Γ₂.",
-      "Obstruction fence: these features do not certify an obstruction class, a quotient distance or a closure defect.",
-      "Floating-point scope: all four are f64 computations with no NaN or infinity guard. With ε = 0 and an all-zero trace, S̄ is 0/0.",
-      "Refusal law: shift_pairing_coherence refuses an empty trace; its normalized form inherits that refusal.",
-      "Boundary law: interior_delta_magnitude excludes only the entry at the declared boundary index; an out-of-range index excludes nothing.",
-      "Authority law: no feature from this module mints AuthorityEffect, PROVED, GlobalGreen or ActionLicense."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state, randomness or wall-clock",
-        "Deterministic f64 evaluation in declared order; not exact arithmetic"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_functional",
-      "module": "trace_diagnostics",
-      "symbols": [
-        "shift_pairing_coherence",
-        "normalized_shift_pairing_coherence",
-        "mean_adjacent_variation",
-        "interior_delta_magnitude"
-      ],
-      "required_tests": [
-        "shift_pairing_preserves_signed_trace_behavior",
-        "adjacent_variation_preserves_trace_length_normalization",
-        "interior_magnitude_excludes_only_declared_boundary"
-      ]
-    },
-    "negative_tests": [
-      "An empty trace must be refused by the shift pairing"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py",
+        "sha256": "624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "Legacy scalar features over finite f64 reasoning traces, kept apart from the canonical finite obstruction functionals in phi1, gamma2 and xi. They are routing features only. Nonclaim: not Φ₁, Γ₂ or Ξ; not exact; not authority; not PROVED; not GlobalGreen.",
-      "non_role": [
-        "Canonical Φ₁, Γ₂ or Ξ",
-        "Exact rational arithmetic",
-        "Obstruction classification or certification",
-        "Authority minting, ActionLicense, PROVED or GlobalGreen"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "OPEN_OBLIGATION nonfinite_inputs: NaN, infinities and the ε = 0 zero-energy case are passed through rather than refused; AuthorityEffect: None.",
-      "OPEN_OBLIGATION single_entry_interior: interior_delta_magnitude returns 0 for a one-entry trace with no boundary instead of |a₀|; recorded as current behavior, not endorsed; AuthorityEffect: None."
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc",
+    "subject": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py"
   },
-  "current_contract": "2410b8f886deaa48c3f7dfe26a4e33837021a9bb1d2d84ed141190edb94a0213",
-  "current_scoring": "cc6219289e63f5f537ef355f35363c08a46d1a2afd73b8767ef5b3c9dddbc3cd",
   "contract_history": [
     {
-      "sha256": "2410b8f886deaa48c3f7dfe26a4e33837021a9bb1d2d84ed141190edb94a0213",
       "bytes": 4437,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:trace_diagnostics:v1.0.0\",\n  \"title\": \"Legacy f64 reasoning-trace features (not Φ₁, Γ₂ or Ξ)\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:phi1:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"trace_scalar_features\",\n    \"symbol\": \"S(a), S̄(a), V(a), I(a)\",\n    \"ascii_symbol\": \"TraceDiagnostics\",\n    \"notation\": \"S(a) = Σ a_i a_{i+1};  S̄(a) = S(a)/(Σ a_i² + ε);  V(a) = mean |a_{i+1} − a_i|;  I(a) = mean_{i ≠ b} |a_i|\",\n    \"domain\": [\n      \"finite f64 trace a\",\n      \"caller-chosen f64 ε for the normalized pairing\",\n      \"optional boundary index b for the interior magnitude\"\n    ],\n    \"codomain\": {\n      \"description\": \"f64 scalar features of a trace. shift_pairing_coherence and normalized_shift_pairing_coherence return Err for an empty trace; the other two return 0.0 on degenerate input. None of them is an obstruction functional.\"\n    },\n    \"definition\": {\n      \"shift_pairing\": \"S(a) = Σ_i a_i a_{i+1}; empty trace refused\",\n      \"normalized_shift_pairing\": \"S(a) / (Σ_i a_i² + ε)\",\n      \"mean_adjacent_variation\": \"Σ_i |a_{i+1} − a_i| / (n − 1), and 0 when n < 2\",\n      \"interior_delta_magnitude\": \"mean of |a_i| over i ≠ b; 0 for an empty trace, for a one-entry trace with no boundary, and when every entry is excluded\"\n    }\n  },\n  \"laws\": [\n    \"Name fence: earlier homology code called S a shift-Xi score and V a normalized Gamma2. S is not the primal-dual density-distance Ξ, and V inspects no coboundary, so it is not the closure defect Γ₂.\",\n    \"Obstruction fence: these features do not certify an obstruction class, a quotient distance or a closure defect.\",\n    \"Floating-point scope: all four are f64 computations with no NaN or infinity guard. With ε = 0 and an all-zero trace, S̄ is 0/0.\",\n    \"Refusal law: shift_pairing_coherence refuses an empty trace; its normalized form inherits that refusal.\",\n    \"Boundary law: interior_delta_magnitude excludes only the entry at the declared boundary index; an out-of-range index excludes nothing.\",\n    \"Authority law: no feature from this module mints AuthorityEffect, PROVED, GlobalGreen or ActionLicense.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state, randomness or wall-clock\",\n      \"Deterministic f64 evaluation in declared order; not exact arithmetic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_functional\",\n    \"module\": \"trace_diagnostics\",\n    \"symbols\": [\n      \"shift_pairing_coherence\",\n      \"normalized_shift_pairing_coherence\",\n      \"mean_adjacent_variation\",\n      \"interior_delta_magnitude\"\n    ],\n    \"required_tests\": [\n      \"shift_pairing_preserves_signed_trace_behavior\",\n      \"adjacent_variation_preserves_trace_length_normalization\",\n      \"interior_magnitude_excludes_only_declared_boundary\"\n    ]\n  },\n  \"negative_tests\": [\n    \"An empty trace must be refused by the shift pairing\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Legacy scalar features over finite f64 reasoning traces, kept apart from the canonical finite obstruction functionals in phi1, gamma2 and xi. They are routing features only. Nonclaim: not Φ₁, Γ₂ or Ξ; not exact; not authority; not PROVED; not GlobalGreen.\",\n    \"non_role\": [\n      \"Canonical Φ₁, Γ₂ or Ξ\",\n      \"Exact rational arithmetic\",\n      \"Obstruction classification or certification\",\n      \"Authority minting, ActionLicense, PROVED or GlobalGreen\"\n    ]\n  },\n  \"wip\": [\n    \"OPEN_OBLIGATION nonfinite_inputs: NaN, infinities and the ε = 0 zero-energy case are passed through rather than refused; AuthorityEffect: None.\",\n    \"OPEN_OBLIGATION single_entry_interior: interior_delta_magnitude returns 0 for a one-entry trace with no boundary instead of |a₀|; recorded as current behavior, not endorsed; AuthorityEffect: None.\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:trace_diagnostics:v1.0.0",
-        "title": "Legacy f64 reasoning-trace features (not Φ₁, Γ₂ or Ξ)",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -127,38 +56,30 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
-        "math": {
-          "object_kind": "trace_scalar_features",
-          "symbol": "S(a), S̄(a), V(a), I(a)",
-          "ascii_symbol": "TraceDiagnostics",
-          "notation": "S(a) = Σ a_i a_{i+1};  S̄(a) = S(a)/(Σ a_i² + ε);  V(a) = mean |a_{i+1} − a_i|;  I(a) = mean_{i ≠ b} |a_i|",
-          "domain": [
-            "finite f64 trace a",
-            "caller-chosen f64 ε for the normalized pairing",
-            "optional boundary index b for the interior magnitude"
+        "doctrine": {
+          "non_role": [
+            "Canonical Φ₁, Γ₂ or Ξ",
+            "Exact rational arithmetic",
+            "Obstruction classification or certification",
+            "Authority minting, ActionLicense, PROVED or GlobalGreen"
           ],
-          "codomain": {
-            "description": "f64 scalar features of a trace. shift_pairing_coherence and normalized_shift_pairing_coherence return Err for an empty trace; the other two return 0.0 on degenerate input. None of them is an obstruction functional."
-          },
-          "definition": {
-            "shift_pairing": "S(a) = Σ_i a_i a_{i+1}; empty trace refused",
-            "normalized_shift_pairing": "S(a) / (Σ_i a_i² + ε)",
-            "mean_adjacent_variation": "Σ_i |a_{i+1} − a_i| / (n − 1), and 0 when n < 2",
-            "interior_delta_magnitude": "mean of |a_i| over i ≠ b; 0 for an empty trace, for a one-entry trace with no boundary, and when every entry is excluded"
-          }
+          "summary": "Legacy scalar features over finite f64 reasoning traces, kept apart from the canonical finite obstruction functionals in phi1, gamma2 and xi. They are routing features only. Nonclaim: not Φ₁, Γ₂ or Ξ; not exact; not authority; not PROVED; not GlobalGreen."
         },
+        "kind": "math_contract",
         "laws": [
           "Name fence: earlier homology code called S a shift-Xi score and V a normalized Gamma2. S is not the primal-dual density-distance Ξ, and V inspects no coboundary, so it is not the closure defect Γ₂.",
           "Obstruction fence: these features do not certify an obstruction class, a quotient distance or a closure defect.",
@@ -167,79 +88,130 @@
           "Boundary law: interior_delta_magnitude excludes only the entry at the declared boundary index; an out-of-range index excludes nothing.",
           "Authority law: no feature from this module mints AuthorityEffect, PROVED, GlobalGreen or ActionLicense."
         ],
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "TraceDiagnostics",
+          "codomain": {
+            "description": "f64 scalar features of a trace. shift_pairing_coherence and normalized_shift_pairing_coherence return Err for an empty trace; the other two return 0.0 on degenerate input. None of them is an obstruction functional."
+          },
+          "definition": {
+            "interior_delta_magnitude": "mean of |a_i| over i ≠ b; 0 for an empty trace, for a one-entry trace with no boundary, and when every entry is excluded",
+            "mean_adjacent_variation": "Σ_i |a_{i+1} − a_i| / (n − 1), and 0 when n < 2",
+            "normalized_shift_pairing": "S(a) / (Σ_i a_i² + ε)",
+            "shift_pairing": "S(a) = Σ_i a_i a_{i+1}; empty trace refused"
+          },
+          "domain": [
+            "finite f64 trace a",
+            "caller-chosen f64 ε for the normalized pairing",
+            "optional boundary index b for the interior magnitude"
+          ],
+          "notation": "S(a) = Σ a_i a_{i+1};  S̄(a) = S(a)/(Σ a_i² + ε);  V(a) = mean |a_{i+1} − a_i|;  I(a) = mean_{i ≠ b} |a_i|",
+          "object_kind": "trace_scalar_features",
+          "symbol": "S(a), S̄(a), V(a), I(a)"
+        },
+        "negative_tests": [
+          "An empty trace must be refused by the shift pairing"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
         "replay": {
           "requirements": [
             "No external state, randomness or wall-clock",
             "Deterministic f64 evaluation in declared order; not exact arithmetic"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
         "rust_binding": {
           "crate": "omega_functional",
           "module": "trace_diagnostics",
+          "required_tests": [
+            "shift_pairing_preserves_signed_trace_behavior",
+            "adjacent_variation_preserves_trace_length_normalization",
+            "interior_magnitude_excludes_only_declared_boundary"
+          ],
           "symbols": [
             "shift_pairing_coherence",
             "normalized_shift_pairing_coherence",
             "mean_adjacent_variation",
             "interior_delta_magnitude"
-          ],
-          "required_tests": [
-            "shift_pairing_preserves_signed_trace_behavior",
-            "adjacent_variation_preserves_trace_length_normalization",
-            "interior_magnitude_excludes_only_declared_boundary"
           ]
         },
-        "negative_tests": [
-          "An empty trace must be refused by the shift pairing"
-        ],
-        "doctrine": {
-          "summary": "Legacy scalar features over finite f64 reasoning traces, kept apart from the canonical finite obstruction functionals in phi1, gamma2 and xi. They are routing features only. Nonclaim: not Φ₁, Γ₂ or Ξ; not exact; not authority; not PROVED; not GlobalGreen.",
-          "non_role": [
-            "Canonical Φ₁, Γ₂ or Ξ",
-            "Exact rational arithmetic",
-            "Obstruction classification or certification",
-            "Authority minting, ActionLicense, PROVED or GlobalGreen"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Legacy f64 reasoning-trace features (not Φ₁, Γ₂ or Ξ)",
         "wip": [
           "OPEN_OBLIGATION nonfinite_inputs: NaN, infinities and the ε = 0 zero-energy case are passed through rather than refused; AuthorityEffect: None.",
           "OPEN_OBLIGATION single_entry_interior: interior_delta_magnitude returns 0 for a one-entry trace with no boundary instead of |a₀|; recorded as current behavior, not endorsed; AuthorityEffect: None."
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:trace_diagnostics:v1.0.0\",\n  \"title\": \"Legacy f64 reasoning-trace features (not Φ₁, Γ₂ or Ξ)\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:phi1:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"trace_scalar_features\",\n    \"symbol\": \"S(a), S̄(a), V(a), I(a)\",\n    \"ascii_symbol\": \"TraceDiagnostics\",\n    \"notation\": \"S(a) = Σ a_i a_{i+1};  S̄(a) = S(a)/(Σ a_i² + ε);  V(a) = mean |a_{i+1} − a_i|;  I(a) = mean_{i ≠ b} |a_i|\",\n    \"domain\": [\n      \"finite f64 trace a\",\n      \"caller-chosen f64 ε for the normalized pairing\",\n      \"optional boundary index b for the interior magnitude\"\n    ],\n    \"codomain\": {\n      \"description\": \"f64 scalar features of a trace. shift_pairing_coherence and normalized_shift_pairing_coherence return Err for an empty trace; the other two return 0.0 on degenerate input. None of them is an obstruction functional.\"\n    },\n    \"definition\": {\n      \"shift_pairing\": \"S(a) = Σ_i a_i a_{i+1}; empty trace refused\",\n      \"normalized_shift_pairing\": \"S(a) / (Σ_i a_i² + ε)\",\n      \"mean_adjacent_variation\": \"Σ_i |a_{i+1} − a_i| / (n − 1), and 0 when n < 2\",\n      \"interior_delta_magnitude\": \"mean of |a_i| over i ≠ b; 0 for an empty trace, for a one-entry trace with no boundary, and when every entry is excluded\"\n    }\n  },\n  \"laws\": [\n    \"Name fence: earlier homology code called S a shift-Xi score and V a normalized Gamma2. S is not the primal-dual density-distance Ξ, and V inspects no coboundary, so it is not the closure defect Γ₂.\",\n    \"Obstruction fence: these features do not certify an obstruction class, a quotient distance or a closure defect.\",\n    \"Floating-point scope: all four are f64 computations with no NaN or infinity guard. With ε = 0 and an all-zero trace, S̄ is 0/0.\",\n    \"Refusal law: shift_pairing_coherence refuses an empty trace; its normalized form inherits that refusal.\",\n    \"Boundary law: interior_delta_magnitude excludes only the entry at the declared boundary index; an out-of-range index excludes nothing.\",\n    \"Authority law: no feature from this module mints AuthorityEffect, PROVED, GlobalGreen or ActionLicense.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state, randomness or wall-clock\",\n      \"Deterministic f64 evaluation in declared order; not exact arithmetic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_functional\",\n    \"module\": \"trace_diagnostics\",\n    \"symbols\": [\n      \"shift_pairing_coherence\",\n      \"normalized_shift_pairing_coherence\",\n      \"mean_adjacent_variation\",\n      \"interior_delta_magnitude\"\n    ],\n    \"required_tests\": [\n      \"shift_pairing_preserves_signed_trace_behavior\",\n      \"adjacent_variation_preserves_trace_length_normalization\",\n      \"interior_magnitude_excludes_only_declared_boundary\"\n    ]\n  },\n  \"negative_tests\": [\n    \"An empty trace must be refused by the shift pairing\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Legacy scalar features over finite f64 reasoning traces, kept apart from the canonical finite obstruction functionals in phi1, gamma2 and xi. They are routing features only. Nonclaim: not Φ₁, Γ₂ or Ξ; not exact; not authority; not PROVED; not GlobalGreen.\",\n    \"non_role\": [\n      \"Canonical Φ₁, Γ₂ or Ξ\",\n      \"Exact rational arithmetic\",\n      \"Obstruction classification or certification\",\n      \"Authority minting, ActionLicense, PROVED or GlobalGreen\"\n    ]\n  },\n  \"wip\": [\n    \"OPEN_OBLIGATION nonfinite_inputs: NaN, infinities and the ε = 0 zero-energy case are passed through rather than refused; AuthorityEffect: None.\",\n    \"OPEN_OBLIGATION single_entry_interior: interior_delta_magnitude returns 0 for a one-entry trace with no boundary instead of |a₀|; recorded as current behavior, not endorsed; AuthorityEffect: None.\"\n  ]\n}\n",
+      "sha256": "2410b8f886deaa48c3f7dfe26a4e33837021a9bb1d2d84ed141190edb94a0213"
+    },
+    {
+      "bytes": 1721,
       "original_paths": [
-        "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py\",\n    \"sha256\": \"624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py\",\n      \"sha256\": \"624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc\",\n  \"subject\": \"code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py",
+          "sha256": "624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py",
+            "sha256": "624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc",
+        "subject": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py"
+      },
+      "sha256": "ae496d6ef1f64e7e88310a80d8c465997ec6e193f3eac21dda5767826487cc5d"
     }
   ],
+  "current_contract": "ae496d6ef1f64e7e88310a80d8c465997ec6e193f3eac21dda5767826487cc5d",
+  "current_scoring": "ef893920b83422fb64beeceff99cd77de1052c65f7a46c9c07addbfea1828089",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0.contract.yaml": "6eb6b6cd07622cd2db522d9d139465a81d8e1cae400a35b5c9beae21c96a3608"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "cc6219289e63f5f537ef355f35363c08a46d1a2afd73b8767ef5b3c9dddbc3cd",
       "bytes": 2231,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py\",\n    \"sha256\": \"624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-trace-diagnostics-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py",
           "sha256": "624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-trace-diagnostics-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -248,40 +220,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "cc6219289e63f5f537ef355f35363c08a46d1a2afd73b8767ef5b3c9dddbc3cd"
+    },
+    {
+      "bytes": 1674,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py\",\n    \"sha256\": \"624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py\",\n      \"sha256\": \"624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py",
+          "sha256": "624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py",
+            "sha256": "624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.py\",\n    \"sha256\": \"624170bba1756d60cf1f42dd3e9d60f2f46e83611050bcf1903537e3e5f916dc\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-trace-diagnostics-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "ef893920b83422fb64beeceff99cd77de1052c65f7a46c9c07addbfea1828089"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_trace_diagnostics_v1_0_0.contract.yaml": "6eb6b6cd07622cd2db522d9d139465a81d8e1cae400a35b5c9beae21c96a3608"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }
