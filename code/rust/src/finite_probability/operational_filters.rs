@@ -3,7 +3,45 @@
 use num_bigint::BigInt;
 use num_rational::BigRational as Q;
 use num_traits::{One, Zero};
+use serde::{Deserialize, Serialize};
 use serde_json::Value;
+// Typed decoding rejects missing, extra, duplicate and ill-typed fields before
+// any numerical evidence can be accepted. Preserve assumptions with the data.
+#[derive(Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+struct Certificate {
+    schema: String,
+    authority_effect: String,
+    premises: Vec<String>,
+    models: Models,
+}
+#[derive(Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+struct Models {
+    classical_product: Model,
+    doubled_visible: Model,
+    doubled_all_preparations: Model,
+    doubled_global_tests: Model,
+}
+#[derive(Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+struct Model {
+    state_dimension: usize,
+    local_frame_sizes: Vec<usize>,
+    observe: Vec<Vec<String>>,
+    prepare: Vec<Vec<String>>,
+    preparations: Vec<Vec<String>>,
+    effects: Vec<Vec<String>>,
+    filters: Vec<Vec<Vec<String>>>,
+    coordinate_filters: Vec<Vec<Vec<String>>>,
+}
+const PREMISES: [&str; 5] = [
+    "field-linear carriers, positive cones and normalization are supplied",
+    "test followed by preparation is an admitted selective operation",
+    "global separating effects and spanning preparations suffice for irreducibility",
+    "product-test reset irreducibility is equivalent to tomography",
+    "global reset descent is not independently derived from primitives",
+];
 type Mat = Vec<Vec<Q>>;
 fn q(x: i64) -> Q {
     Q::from_integer(BigInt::from(x))
@@ -18,6 +56,7 @@ fn parse(v: &Value, rows: usize, cols: usize) -> Mat {
             row.iter()
                 .map(|x| {
                     let s = x.as_str().expect("rational string");
+                    assert!(s.len() <= 48, "rational length");
                     let r = s.parse::<Q>().expect("rational");
                     assert_eq!(r.to_string(), s);
                     r
@@ -51,7 +90,12 @@ fn eye(n: usize) -> Mat {
 fn candidate() -> Value {
     let path=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(
       "../../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/candidate.json");
-    serde_json::from_slice(&std::fs::read(path).unwrap()).unwrap()
+    decode(&std::fs::read(path).unwrap())
+}
+fn decode(raw: &[u8]) -> Value {
+    assert!(raw.len() < 1_000_000, "certificate size");
+    let c: Certificate = serde_json::from_slice(raw).expect("strict certificate JSON");
+    serde_json::to_value(c).unwrap()
 }
 fn orthogonal_nonzero(vectors: &[Vec<Q>]) {
     assert!(!vectors.is_empty());
@@ -69,6 +113,9 @@ fn orthogonal_nonzero(vectors: &[Vec<Q>]) {
     }
 }
 fn check(c: &Value) {
+    let envelope: Certificate =
+        serde_json::from_value(c.clone()).expect("strict certificate schema");
+    assert_eq!(envelope.premises, PREMISES, "declared assumptions");
     assert_eq!(c["schema"], "operational-filter-family.v1");
     assert_eq!(c["authority_effect"], "None");
     assert_eq!(c["models"].as_object().unwrap().len(), 4);
@@ -197,4 +244,71 @@ fn visible_output_and_coarse_graining_bound_are_essential() {
         .map(|row| row.iter().map(|x| x * q(2)).collect())
         .collect();
     assert_eq!(twice.iter().map(|row| row[0].clone()).sum::<Q>(), q(2));
+}
+
+#[test]
+fn scope_and_schema_mutations_are_rejected() {
+    let mut cases = Vec::new();
+    let mut c = candidate();
+    c["premises"] = serde_json::json!([]);
+    cases.push(("empty premises", c));
+    let mut c = candidate();
+    c.as_object_mut().unwrap().remove("premises");
+    cases.push(("missing premises", c));
+    let mut c = candidate();
+    c["claim"] = Value::String("unconditional tomography".into());
+    cases.push(("extra claim", c));
+    let mut c = candidate();
+    c["models"]["classical_product"]["claim"] = Value::Bool(true);
+    cases.push(("extra model field", c));
+    let mut c = candidate();
+    c["premises"][0] = Value::String("no assumptions".into());
+    cases.push(("changed premise", c));
+    let mut c = candidate();
+    c["models"]["unreviewed_model"] = c["models"]["classical_product"].clone();
+    cases.push(("extra model", c));
+    for value in [
+        serde_json::json!(true),
+        serde_json::json!(4.0),
+        serde_json::json!("4"),
+    ] {
+        let mut c = candidate();
+        c["models"]["classical_product"]["state_dimension"] = value;
+        cases.push(("noninteger dimension", c));
+    }
+    let mut c = candidate();
+    c["models"]["classical_product"]["effects"][0][0] = Value::Bool(true);
+    cases.push(("nonstring scalar", c));
+    let accepted: Vec<_> = cases
+        .iter()
+        .filter(|(_, c)| std::panic::catch_unwind(|| check(c)).is_ok())
+        .map(|(name, _)| *name)
+        .collect();
+    assert!(
+        accepted.is_empty(),
+        "accepted invalid envelopes: {accepted:?}"
+    );
+}
+
+#[test]
+fn duplicate_json_fields_are_rejected() {
+    let raw = serde_json::to_string(&candidate()).unwrap();
+    let variants = [
+        raw.replacen("\"schema\":", "\"schema\":\"wrong\",\"schema\":", 1),
+        raw.replacen(
+            "\"classical_product\":",
+            "\"classical_product\":{},\"classical_product\":",
+            1,
+        ),
+        raw.replacen(
+            "\"state_dimension\":",
+            "\"state_dimension\":99,\"state_dimension\":",
+            1,
+        ),
+    ];
+    let accepted = variants
+        .iter()
+        .filter(|s| std::panic::catch_unwind(|| check(&decode(s.as_bytes()))).is_ok())
+        .count();
+    assert_eq!(accepted, 0, "duplicate JSON fields accepted");
 }
