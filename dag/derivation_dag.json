@@ -2861,7 +2861,7 @@
       "id": "FQ-GAP-U1-CIRCLE",
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
-      "source_status": "Pythagorean (3+4i)/5 half-angle obstruction and rational Cayley unit-circle parameterization ((1-t^2)^2 + (2t)^2 = (1+t^2)^2 punctured at (-1,0)) mechanized in DerivationDagQMClosure.lean; compact R/Z circle completion remains an external interface",
+      "source_status": "Projective Cayley compactification P^1(Q) <-> S^1(Q), 5-adic half-angle obstruction (4/5 and 1/5 not squares), mod-5 Gaussian power injectivity, Q/Z torsion-tower m-divisibility and finite Haar character orthogonality, quadratic sqrt(5) half-angle restoration + iterated real quadratic square-root tower K_{m+1} = K_m(sqrt((1+c_m)/2)) (explicit K_2 = Q(sqrt(5))(sqrt((5+2*sqrt(5))/10)) with N_{Q(sqrt(5))/Q}((5+2*sqrt(5))/10) = 1/20 and general 2^m-step Chebyshev recursion T_{2^{m+1}} = T_2 o T_{2^m}), rational Chebyshev/Taylor Cauchy approximations to (cos(2*pi*q), sin(2*pi*q)) over RegPhaseSeq, 4D Q(i) Hermitian Born trace representation, and discrete Cayley unitary steps U_H(t) = (I - i t H)(I + i t H)^(-1) kernel-checked in lean4/U1PythagoreanObstruction.lean, lean4/U1PowerMapInjectivity.lean, lean4/U1CayleyProjectiveCircle.lean, lean4/U1CyclotomicTorsionTower.lean, lean4/U1CauchyCircleCompletion.lean, lean4/U1ChebyshevCauchyBridge.lean, lean4/U1QuadraticTowerAndCayleyStone.lean, and lean4/U1PhaseSynthesis.lean (run 20261020T223000Z_u1_phase_completion_lean) and replayed in code/python/src/qm/u1_phase_completion.py and code/rust/src/qm/u1_phase_completion.rs; compact continuous R/Z circle topology remains an explicit completion structure",
       "statement": "The circle group U(1) is not constructed on the finite host; continuity of a one-parameter phase group remains a hypothesis. In Q(i), u=(3+4i)/5 has no square root and n -> u^n is injective, so no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:243"
@@ -2869,7 +2869,24 @@
       "lean": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/U1PythagoreanObstruction.lean::U1Fable.PythagoreanObstruction.no_rational_one_param_group_through_u345",
+        "lean4/U1PowerMapInjectivity.lean::U1Fable.PowerMapInjectivity.u345_infinite_order",
+        "lean4/U1CayleyProjectiveCircle.lean::U1Fable.CayleyProjectiveCircle.homCayley_surjective",
+        "lean4/U1CayleyProjectiveCircle.lean::U1Fable.CayleyProjectiveCircle.homCayley_projMul",
+        "lean4/U1CyclotomicTorsionTower.lean::U1Fable.CyclotomicTorsionTower.ratPhaseQuot_divisible",
+        "lean4/U1CauchyCircleCompletion.lean::U1Fable.CauchyCircleCompletion.quad_half_angle_squares_to_u345",
+        "lean4/U1CauchyCircleCompletion.lean::U1Fable.CauchyCircleCompletion.RegPhaseSeq.add_assoc_equiv",
+        "lean4/U1ChebyshevCauchyBridge.lean::U1Fable.ChebyshevCauchyBridge.circleRatPow_eq_chebyshev",
+        "lean4/U1ChebyshevCauchyBridge.lean::U1Fable.ChebyshevCauchyBridge.taylor_circle_norm_defect_identity",
+        "lean4/U1ChebyshevCauchyBridge.lean::U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.pureProjector_born_pairing",
+        "lean4/U1QuadraticTowerAndCayleyStone.lean::U1Fable.QuadraticTowerAndCayleyStone.chebT2Pow_succ",
+        "lean4/U1QuadraticTowerAndCayleyStone.lean::U1Fable.QuadraticTowerAndCayleyStone.u345_k2_double_angle_recovery",
+        "lean4/U1QuadraticTowerAndCayleyStone.lean::U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_regular",
+        "lean4/U1QuadraticTowerAndCayleyStone.lean::U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace",
+        "lean4/U1PhaseSynthesis.lean::U1Fable.PhaseSynthesis.u1_phase_completion_synthesis",
+        "lean4/U1PhaseSynthesis.lean::U1Fable.PhaseSynthesis.chebyshev_taylor_and_hermitian_qi_bridge",
+        "lean4/U1PhaseSynthesis.lean::U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::half_exponent_obstruction",
@@ -2881,7 +2898,7 @@
         "circle group U(1) (assumption)",
         "continuity of one-parameter phase group (assumption)"
       ],
-      "bottleneck": "Algebraic non-square obstruction in Q(i) and rational Cayley punctured-circle parameterization are mechanized; compact continuous R/Z completion remains a declared external import.",
+      "bottleneck": "Projective P^1(Q) Cayley compactification, 5-adic half-angle obstruction, mod-5 Gaussian power injectivity, Q/Z torsion-tower divisibility, quadratic sqrt(5) half-angle restoration + iterated real quadratic square-root tower K_{m+1} = K_m(sqrt((1+c_m)/2)), rational Chebyshev/Taylor Cauchy approximations over RegPhaseSeq, 4D Q(i) Hermitian Born trace representation, and discrete Cayley unitary steps U_H(t) = (I - i t H)(I + i t H)^(-1) are kernel-checked; compact continuous R/Z circle topology remains an explicit completion structure.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-CIRCLE-U1",
@@ -2951,7 +2968,7 @@
       "id": "FQ-GAP-STONE-CONTINUOUS-TIME",
       "stage": "FINITE_QM_DYNAMICS",
       "status": "CONDITIONAL",
-      "source_status": "Carrier-level specification kernel-checked in dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec (lean4/DiscreteTimeStoneSpec.lean): a Q-parameter group (QParamGroup) restricts to the Z-action of its unit step (U_eq_discreteEvolution) and needs roots of every order (roots_of_all_orders); half-steps come in pairs +-V, so generator selection is a choice (matrix_half_step_not_unique); the rational 2x2 Pythagorean rotation R345 is a reversible discrete evolution (R345_pow_orthogonal) with no rational half-step (no_rational_half_step: any root is p*1 + r*J with p^2 = 4/5, whose denominator 5 is not a square), hence no Q-parameter group of rational 2x2 matrices passes through it (no_qparam_group_through_R345). Exact replays: code/python/src/qm/discrete_time_stone.py, code/rust/src/qm/discrete_time_stone.rs. Earlier: Pythagorean rotation powers (3+4i)^k (k=1..4) and discrete modular frequency aliasing (k + N) % N = k % N mechanized in DerivationDagQMClosure.lean; continuous-time Stone generator remains an external import",
+      "source_status": "Carrier-level specification kernel-checked in dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec (lean4/DiscreteTimeStoneSpec.lean): a Q-parameter group (QParamGroup) restricts to the Z-action of its unit step (U_eq_discreteEvolution) and needs roots of every order (roots_of_all_orders); half-steps come in pairs +-V, so generator selection is a choice (matrix_half_step_not_unique); the rational 2x2 Pythagorean rotation R345 is a reversible discrete evolution (R345_pow_orthogonal) with no rational half-step (no_rational_half_step: any root is p*1 + r*J with p^2 = 4/5, whose denominator 5 is not a square), hence no Q-parameter group of rational 2x2 matrices passes through it (no_qparam_group_through_R345). Exact replays: code/python/src/qm/discrete_time_stone.py, code/rust/src/qm/discrete_time_stone.rs. Discrete Cayley unitary step U_H(t) = (I - i t H)(I + i t H)^(-1) on 2x2 traceless Hermitian matrices over Q(i) (exact resolvent identity, left/right unitarity, det = 1, projective-tangent composition law when 1 - t1*t2*||H||^2 != 0, south-pole collision -I_2 when 1 - t1*t2*||H||^2 = 0, and Born trace invariance) kernel-checked in lean4/U1QuadraticTowerAndCayleyStone.lean and lean4/U1PhaseSynthesis.lean (run 20261020T223000Z_u1_phase_completion_lean) and replayed in code/python/src/qm/u1_phase_completion.py and code/rust/src/qm/u1_phase_completion.rs. Earlier: Pythagorean rotation powers (3+4i)^k (k=1..4) and discrete modular frequency aliasing (k + N) % N = k % N mechanized in DerivationDagQMClosure.lean; continuous-time Stone generator remains an external import",
       "statement": "Continuous time and the Stone theorem are not constructed: strong continuity, one-parameter group and generator selection are priced interfaces; rational entries alone do not imply infinite order. Causal order between events is also admitted externally (GAP-C1000-001, declared_assumption, non-blocking): Q(zeta_n) carriers supply no relation between spacetime events.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:304",
@@ -2967,7 +2984,13 @@
         "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.matrix_half_step_not_unique",
         "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.R345_pow_orthogonal",
         "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.no_rational_half_step",
-        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.no_qparam_group_through_R345"
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.no_qparam_group_through_R345",
+        "lean4/U1QuadraticTowerAndCayleyStone.lean::U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_right",
+        "lean4/U1QuadraticTowerAndCayleyStone.lean::U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_left",
+        "lean4/U1QuadraticTowerAndCayleyStone.lean::U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_regular",
+        "lean4/U1QuadraticTowerAndCayleyStone.lean::U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_pole",
+        "lean4/U1QuadraticTowerAndCayleyStone.lean::U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace",
+        "lean4/U1PhaseSynthesis.lean::U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness",
@@ -2979,7 +3002,7 @@
         "generator selection (assumption: half-steps come in pairs, no canonical choice)",
         "external causal order datum (assumption)"
       ],
-      "bottleneck": "Specified on the carrier: continuous time = a Q-parameter group extending the Z-action of a unit step; this needs roots of every order, which the rational 2x2 Pythagorean rotation lacks already at order two (no rational half-step; a half-step exists only after adjoining sqrt 5), so continuous time requires a carrier extension and a generator choice. Open: the general triviality of Q-parameter groups over Q(i) (needs unique factorisation in Z[i]); strong continuity and the R-completion remain declared external imports. Discrete step aliasing and non-trivial Pythagorean rotation powers without rational angle logarithms remain mechanized.",
+      "bottleneck": "Specified on the carrier: continuous time = a Q-parameter group extending the Z-action of a unit step; this needs roots of every order, which the rational 2x2 Pythagorean rotation lacks already at order two (no rational half-step; a half-step exists only after adjoining sqrt 5), so continuous time requires a carrier extension and a generator choice. Discrete Cayley unitary steps U_H(t) = (I - i t H)(I + i t H)^(-1) on 2x2 Hermitian Q(i) generators (with projective-tangent composition law (t1+t2)/(1 - t1*t2*||H||^2), south-pole collision -I_2 at t1*t2*||H||^2 = 1, and Born trace invariance) are kernel-checked. Open: the general triviality of Q-parameter groups over Q(i) (needs unique factorisation in Z[i]); strong continuity and the R-completion remain declared external imports. Discrete step aliasing and non-trivial Pythagorean rotation powers without rational angle logarithms remain mechanized.",
       "tags": [],
       "see_also": [
         "FQ-DISCRETE-TIME-STONE-AMBIGUITY",
