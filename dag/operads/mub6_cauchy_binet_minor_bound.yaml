@@ -39,7 +39,7 @@ operation_candidates:
         Matrix (Fin 3) (Fin 3) ℂ
   source: lean4/MubMinorChart.lean
   repository: this_repository
-  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  source_sha256: 3379f7033335fabf69871324b9aab57771e453d3e5e0843ca66d3fed594ea581
   status: source_candidate_requires_semantic_review
 - kind: def
   name: columns
@@ -47,27 +47,27 @@ operation_candidates:
   signature_excerpt: 'def columns : Fin 20 → Fin 3 → Fin 6'
   source: lean4/MubMinorChart.lean
   repository: this_repository
-  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  source_sha256: 3379f7033335fabf69871324b9aab57771e453d3e5e0843ca66d3fed594ea581
   status: source_candidate_requires_semantic_review
 - kind: def
   name: firstRows
-  line: 67
+  line: 66
   signature_excerpt: 'def firstRows (H : Matrix (Fin 6) (Fin 6) ℂ) : Matrix (Fin 3) (Fin 6) ℂ'
   source: lean4/MubMinorChart.lean
   repository: this_repository
-  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  source_sha256: 3379f7033335fabf69871324b9aab57771e453d3e5e0843ca66d3fed594ea581
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: exists_minor_norm_ge
-  line: 57
+  line: 56
   signature_excerpt: |-
     theorem exists_minor_norm_ge (A : Matrix (Fin 3) (Fin 6) ℂ)
         (hA : A * A.conjTranspose = (6 : ℂ) • (1 : Matrix (Fin 3) (Fin 3) ℂ)) :
         ∃ s : Fin 20, (54 / 5 : ℝ) ≤ Complex.normSq (minor A s).det
   source: lean4/MubMinorChart.lean
   repository: this_repository
-  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  source_sha256: 3379f7033335fabf69871324b9aab57771e453d3e5e0843ca66d3fed594ea581
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -75,7 +75,7 @@ relation_candidates:
     follows automatically.
 - kind: theorem
   name: inverse_entry_normSq_le
-  line: 108
+  line: 107
   signature_excerpt: |-
     theorem inverse_entry_normSq_le (B : Matrix (Fin 3) (Fin 3) ℂ)
         (hB : ∀ i j, Complex.normSq (B i j) = 1)
@@ -83,7 +83,7 @@ relation_candidates:
         Complex.normSq (B⁻¹ i j) ≤ 10 / 27
   source: lean4/MubMinorChart.lean
   repository: this_repository
-  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  source_sha256: 3379f7033335fabf69871324b9aab57771e453d3e5e0843ca66d3fed594ea581
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -91,7 +91,7 @@ relation_candidates:
     follows automatically.
 - kind: theorem
   name: exists_bounded_inverse_minor
-  line: 119
+  line: 118
   signature_excerpt: |-
     theorem exists_bounded_inverse_minor (H : Matrix (Fin 6) (Fin 6) ℂ)
         (hunit : ∀ i j, Complex.normSq (H i j) = 1)
@@ -101,7 +101,7 @@ relation_candidates:
           ∀ i j, Complex.normSq ((minor (firstRows H) s)⁻¹ i j) ≤ 10 / 27
   source: lean4/MubMinorChart.lean
   repository: this_repository
-  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  source_sha256: 3379f7033335fabf69871324b9aab57771e453d3e5e0843ca66d3fed594ea581
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -113,27 +113,27 @@ source_bindings:
   symbol: exists_minor_norm_ge
   path: lean4/MubMinorChart.lean
   repository: this_repository
-  sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  sha256: 3379f7033335fabf69871324b9aab57771e453d3e5e0843ca66d3fed594ea581
   declaration_status: declaration_found_not_proof_checked
-  line: 57
+  line: 56
   role: source_lead_only
 - original_ref: lean4/MubMinorChart.lean::inverse_entry_normSq_le
   availability: local
   symbol: inverse_entry_normSq_le
   path: lean4/MubMinorChart.lean
   repository: this_repository
-  sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  sha256: 3379f7033335fabf69871324b9aab57771e453d3e5e0843ca66d3fed594ea581
   declaration_status: declaration_found_not_proof_checked
-  line: 108
+  line: 107
   role: source_lead_only
 - original_ref: lean4/MubMinorChart.lean::exists_bounded_inverse_minor
   availability: local
   symbol: exists_bounded_inverse_minor
   path: lean4/MubMinorChart.lean
   repository: this_repository
-  sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  sha256: 3379f7033335fabf69871324b9aab57771e453d3e5e0843ca66d3fed594ea581
   declaration_status: declaration_found_not_proof_checked
-  line: 119
+  line: 118
   role: source_lead_only
 presentation:
   colours: []
