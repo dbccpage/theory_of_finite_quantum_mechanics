@@ -1,0 +1,15 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/BornHermitianTraceRepresentation.lean
+source_sha256: 3e1bcb60f82cef30c92e2cf350ffb080ab56d8155d92aa50481c893d92b1b68e
+authority_effect: None
+purpose: 'Born representation over Q(i): every effect valuation on Gaussian-rational matrices is E ->
+  re trace(rho E) for a unique Hermitian rational-PSD trace-one rho; converse for every state; nonvacuity.'
+design:
+  profile: Exact rational arithmetic or kernel-checked Lean on the declared carrier; no floating point.
+  frozen_sources: Run snapshots under verification/ are immutable custody assets.
+boundaries:
+- Effect additivity, positivity and normalisation are hypotheses; their operational justification is not
+  addressed.
+- Valuations are real-valued and Q-linear; no Q(i)-linearity is assumed or claimed.
+evidence:
+- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T224000Z_gaussian_hermitian_carrier/README.md

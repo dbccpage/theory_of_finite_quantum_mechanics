@@ -1,0 +1,14 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/BornMatrixCarrier.lean
+source_sha256: 723ec7dad59f111be54b11096ac8de4040b7b0777a6be521a07ca6b09c1311eb
+authority_effect: None
+purpose: Rational n x n matrices with the quadratic-form preorder as an OrderedQUnit; order-unit bound,
+  rank-one effects, trace representation of Q-linear functionals.
+design:
+  profile: Exact rational arithmetic or kernel-checked Lean on the declared carrier; no floating point.
+  frozen_sources: Run snapshots under verification/ are immutable custody assets.
+boundaries:
+- The order is a preorder, not a partial order (skew matrices are null).
+- Real-symmetric rational carrier only; the matrix algebra and its order are supplied, not derived.
+evidence:
+- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md

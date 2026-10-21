@@ -1,0 +1,11 @@
+"""Record the prior evidence this run builds on, with exact digests; nothing is modified."""
+from pathlib import Path
+import hashlib,json
+B=Path(__file__).resolve().parents[1]
+ROOT=next(p for p in B.parents if (p/'lean4/lakefile.lean').is_file())
+PRIOR=['dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born/contract.lean','dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born/target_types.txt','dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born/host_type_wrappers.txt','dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born/README.md','dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T012825Z_born_lemmas/README.md','dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T012825Z_born_lemmas/lemma_status.json','dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T012825Z_born_lemmas/submissions/01_first_chat_proof.md','dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T023856Z_gleason_frame_review/README.md','dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/user_submissions/20261020T023856Z_gleason_frame_review/next_requests.md','dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T162715Z_jordan_classical_qubit/tools/replay.py','dag/operads/fq_gap_born_uniqueness_gleason.yaml','dag/prompts/finite_qm_core_fq_gap_born_uniqueness_gleason_conditional.yaml','lean4/lean-toolchain','lean4/lake-manifest.json']
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+if __name__=='__main__':
+    entries=[{'path':p,'bytes':(ROOT/p).stat().st_size,'sha256':sha(ROOT/p)} for p in PRIOR]
+    (B/'provenance.json').write_text(json.dumps({'authority_effect':'None','prior_evidence':entries,'frozen_interface':'runs/20261020T004525Z_fable51_born/contract.lean (OrderedQUnit, EffectValuation) and target_types.txt (eight targets) are reproduced verbatim in BornEffectValuation.lean except for the import header.','replay_tool':'tools/replay.py is byte-identical to the one of runs/20261020T162715Z_jordan_classical_qubit.','unchanged':'Prior sealed bundles, canonical operad collections and user submissions are not modified by this run.'},indent=2)+'\n',encoding='utf-8')
+    print(json.dumps({'prior_entries':len(entries)}))

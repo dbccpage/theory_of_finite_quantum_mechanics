@@ -1,0 +1,14 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/BornGaussRat.lean
+source_sha256: b3cd5a1f31afc2f074455cc29337108b57366739b707668448f2328d16c2c056
+authority_effect: None
+purpose: Gaussian rationals Q(i) as a concrete structure with CommRing, StarRing, Algebra Q and Field
+  instances and componentwise lemmas.
+design:
+  profile: Exact rational arithmetic or kernel-checked Lean on the declared carrier; no floating point.
+  frozen_sources: Run snapshots under verification/ are immutable custody assets.
+boundaries:
+- Supplied carrier arithmetic; no physical claim.
+- No StarOrderedRing instance; positivity is handled through normSq and real parts.
+evidence:
+- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T224000Z_gaussian_hermitian_carrier/README.md

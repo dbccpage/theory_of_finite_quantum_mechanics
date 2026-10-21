@@ -2440,7 +2440,7 @@
       "id": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
-      "source_status": "Born vs quartic rival separation on (3,4) and d=3 orthogonal frame additivity eliminating the quartic rival mechanized in DerivationDagQMClosure.lean; continuum Gleason on S^{n-1} remains an external import",
+      "source_status": "Effect-additive (Busch-type) route kernel-checked over Q in dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean: every positive normalized effect-additive valuation on rational n x n matrices is E -> trace(rho E) for a unique symmetric rational-PSD trace-one rho (born_representation, density_is_state, born_rule, state_valuation_correspondence); the eight frozen targets of runs/20261020T004525Z_fable51_born (val_zero .. val_sandwich) are discharged; the rational-sphere parity frame function (parity_frame_function, parity_not_quadratic) shows that additivity on orthogonal triples of rational rays in d=3 does not select the quadratic form. Continuum Gleason on S^{n-1} is not used; it remains an external import only for the projection-lattice route. Exact replays: code/python/src/qm/born_effect_valuation.py, code/rust/src/qm/born_effect_valuation.rs. Earlier: Born vs quartic rival separation on (3,4) and d=3 orthogonal frame additivity eliminating the quartic rival mechanized in DerivationDagQMClosure.lean",
       "statement": "Born uniqueness of the quadratic form needs imported Hilbert space, projection lattices and Gleason-type assumptions, with dimension n >= 3; Gleason frame additivity at n >= 3 is verified only over orthogonal frames of specific finite ray sets. The three-label cardinality surrogate (3 <= |Q|) is false on Bool; the unit-effect contract already has two disagreeing pairings.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:193",
@@ -2451,7 +2451,25 @@
         "lean4/quantum_mechanics/H013QuarticRivalSeparation.lean::frames_equinorm",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/BornEffectValuation.lean::BornFable.val_rat_smul",
+        "lean4/BornLinearExtension.lean::BornFable.OrderedQUnit.linear_extension",
+        "lean4/BornMatrixCarrier.lean::BornFable.MatrixCarrier.order_unit",
+        "lean4/BornPsdDecomposition.lean::BornFable.PsdDecomposition.gram_of_psd",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.born_representation",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.density_is_state",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.born_rule",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.state_valuation_correspondence",
+        "lean4/BornRationalSphereObstruction.lean::BornFable.RationalSphere.parity_frame_function",
+        "lean4/BornRationalSphereObstruction.lean::BornFable.RationalSphere.parity_not_quadratic",
+        "lean4/BornGaussRat.lean::BornFable.GaussRat.instStarRing",
+        "lean4/BornHermitianCarrier.lean::BornFable.HermitianCarrier.normSq_dot_le",
+        "lean4/BornHermitianCarrier.lean::BornFable.HermitianCarrier.trace_rep",
+        "lean4/BornHermitianPsdDecomposition.lean::BornFable.HermitianPsd.gram_of_psd",
+        "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.born_representation",
+        "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.density_is_state",
+        "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.born_rule",
+        "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.state_valuation_correspondence"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
@@ -2459,11 +2477,13 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
       "imported_structure": [
-        "Gleason theorem for d >= 3 (assumption)",
-        "projection lattice (assumption)",
+        "rational matrix algebra with the quadratic-form preorder and unit identity (supplied carrier)",
+        "effect additivity: v(E+F) = v(E)+v(F) whenever E, F and E+F are effects (assumption)",
+        "Gleason theorem for d >= 3 (assumption, projection-lattice route only)",
+        "projection lattice (assumption, projection-lattice route only)",
         "Hilbert space (assumption)"
       ],
-      "bottleneck": "Finite rational frame obstructions (Cabello 18-9, d=2 plane, and d=3 rotated frame eliminating the quartic rival) are mechanized; continuum Gleason frame additivity on S^{n-1} remains an external import.",
+      "bottleneck": "The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n >= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-GLEASON",
@@ -2931,7 +2951,7 @@
       "id": "FQ-GAP-STONE-CONTINUOUS-TIME",
       "stage": "FINITE_QM_DYNAMICS",
       "status": "CONDITIONAL",
-      "source_status": "Pythagorean rotation powers (3+4i)^k (k=1..4) and discrete modular frequency aliasing (k + N) % N = k % N mechanized in DerivationDagQMClosure.lean; continuous-time Stone generator remains an external import",
+      "source_status": "Carrier-level specification kernel-checked in dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec (lean4/DiscreteTimeStoneSpec.lean): a Q-parameter group (QParamGroup) restricts to the Z-action of its unit step (U_eq_discreteEvolution) and needs roots of every order (roots_of_all_orders); half-steps come in pairs +-V, so generator selection is a choice (matrix_half_step_not_unique); the rational 2x2 Pythagorean rotation R345 is a reversible discrete evolution (R345_pow_orthogonal) with no rational half-step (no_rational_half_step: any root is p*1 + r*J with p^2 = 4/5, whose denominator 5 is not a square), hence no Q-parameter group of rational 2x2 matrices passes through it (no_qparam_group_through_R345). Exact replays: code/python/src/qm/discrete_time_stone.py, code/rust/src/qm/discrete_time_stone.rs. Earlier: Pythagorean rotation powers (3+4i)^k (k=1..4) and discrete modular frequency aliasing (k + N) % N = k % N mechanized in DerivationDagQMClosure.lean; continuous-time Stone generator remains an external import",
       "statement": "Continuous time and the Stone theorem are not constructed: strong continuity, one-parameter group and generator selection are priced interfaces; rational entries alone do not imply infinite order. Causal order between events is also admitted externally (GAP-C1000-001, declared_assumption, non-blocking): Q(zeta_n) carriers supply no relation between spacetime events.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:304",
@@ -2940,7 +2960,14 @@
       "lean": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.QParamGroup",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.QParamGroup.roots_of_all_orders",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.matrix_half_step_not_unique",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.R345_pow_orthogonal",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.no_rational_half_step",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.no_qparam_group_through_R345"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness",
@@ -2948,10 +2975,11 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
       "imported_structure": [
-        "continuous time / Stone theorem (assumption)",
+        "continuous time / Stone theorem (assumption; on the finite carrier the strongest available notion is a Q-parameter group, and the Pythagorean rotation admits none)",
+        "generator selection (assumption: half-steps come in pairs, no canonical choice)",
         "external causal order datum (assumption)"
       ],
-      "bottleneck": "Discrete step aliasing and non-trivial Pythagorean rotation powers without rational angle logarithms are mechanized; continuous R completion and Stone strong continuity remain declared external imports.",
+      "bottleneck": "Specified on the carrier: continuous time = a Q-parameter group extending the Z-action of a unit step; this needs roots of every order, which the rational 2x2 Pythagorean rotation lacks already at order two (no rational half-step; a half-step exists only after adjoining sqrt 5), so continuous time requires a carrier extension and a generator choice. Open: the general triviality of Q-parameter groups over Q(i) (needs unique factorisation in Z[i]); strong continuity and the R-completion remain declared external imports. Discrete step aliasing and non-trivial Pythagorean rotation powers without rational angle logarithms remain mechanized.",
       "tags": [],
       "see_also": [
         "FQ-DISCRETE-TIME-STONE-AMBIGUITY",
