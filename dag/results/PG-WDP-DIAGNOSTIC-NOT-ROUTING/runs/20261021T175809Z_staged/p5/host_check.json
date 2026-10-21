@@ -1,0 +1,51 @@
+{
+  "task_id": "PG-WDP-DIAGNOSTIC-NOT-ROUTING",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "97c790ef2e20a03aaf20f4cf5cfb983e60f613eb3733460558450029d6dc2e43",
+  "candidate_sha256": "c710d01e6e1f1fccdd138f9ee9ff2073ba2ee63d6c0c9c337a858bef6664957c",
+  "status": "scoped_result_or_obstruction_recorded_pending_batch_review",
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "rust_replay": 0,
+      "lean_version": 0,
+      "lean": 0
+    },
+    "required_named_Lean_reports": true,
+    "lean_version": {
+      "expected": "v4.35.0",
+      "reported": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "matches": true
+    },
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "test_counts": {
+      "python": 11,
+      "rust": 7
+    },
+    "cargo_guard": {
+      "target": "C:\\Users\\a343o\\.pfp-ct",
+      "size_gb_before": 1.281,
+      "cleared": false,
+      "free_gb_after": 11.477,
+      "min_free_gb": 10.0,
+      "max_target_gb": 6.0
+    },
+    "scope": {
+      "supports": "Over finite enumerations transcribed BY HAND from the pinned sources (checked against routing.rs, terminal_status.rs, run.rs, checked_packet.rs and terminal_routing.json by a one-off regex and a unit test that re-reads the pinned Rust text when the checkout is present; Lean, producer and checker share the transcription): (1) as abstract maps between a 3-set and a 7-set, the diagnostic class and the routing terminal give 21 cells, no value is forced, any two classes take any two terminals independently (343 policies), injective policies exist (210) and none is surjective; the source declares a partial map for 2 of the 3 classes; (2) run.rs 626-633 emits a status-tag string per class; composing it by string identity with the PfpTerminal-to-RoutingTerminal map (routing.rs, terminal_routing.json; no source code performs this composition) gives a partial route: ClosedResidual to RequiresLift, ActiveClosureFailure to Refusal, and the exact class, whose tag is the Rust name ExactRepair, has none (2 of the 21 cells declared, 1 class unrouted, 19 cells neither realised nor excluded); (3) in the TerminalStatus tables the residual class does not determine the routing terminal and vice versa (8 of 28 cells realised), all 7 terminals are reachable from the 21 statuses, the PfpTerminal map is not surjective (Repair and NoRule are missing, kernel routePfp_misses_repair_and_norule; its image has 5 values, native), and terminal_from_fiber reaches only 4 terminals (general over all counts in Lean, 640 inputs natively); (4) in the model the Certified predicate and the routing terminal are functions of (status, witness) only (by construction of the model); the only source code taking a diagnostic class towards authority (checked_packet.rs:248) is a necessary eligibility gate (only the exact class can seal a checked-packet certificate, which retains AuthorityEffect::None), never sufficient (kernel sealed_only_exact, sealed_needs_witness); the tag-level type AuthTag has no Certified value, so tag-level never-certified is true by construction of the modelled type; (5) the external Routing.lean `route` is a separate four-valued axis with Bool inputs (re-transcribed copy).",
+      "does_not_support": "That any policy from diagnostic classes to terminals is the correct one or is forced; WDP-CH04-O01, which stays conditional; any identification of terminal_status::ResidualClass (Exact, ClosedSurvivor, Open, Refused) with the diagnostic class (the unrelated omega_homology ResidualClass with values ExactRepair, StabilizedSurvivor, OpenObstruction has the three values of the diagnostic class and is not modelled); that the Rust class name ExactRepair and the ledger name ExactClass denote different things (the Lean exactRepairAllowed is the same predicate as certEligible, so the clause \"ExactClass is not ExactRepair\" has no anchor of its own); a route for the exact class (the source declares none); budget, rule or lift availability as routing inputs (none exist in the source routing code); evidence about the source from the leaves that are definitional in the model (authority counts, AuthTag); any physical or interpretive claim.",
+      "narrowest_claim": "Over hand-transcribed source tables, the diagnostic class, routing terminal, residual class and authority tag are different finite axes and nothing forces the partial class-to-terminal composite the source declares (the exact class is unrouted); a diagnostic value is at most a necessary eligibility gate for sealing a certificate, never authority. The source code itself names the exact class ExactRepair and tags ClosedResidual as StabilizedSurvivor, contrary to ledger N01.",
+      "next_test": "Enumerate the 7 total extensions of the declared partial policy (the 7 choices of terminal for ExactClass) and decide for each whether it is compatible with (a) certificate eligibility being exact-class-only, (b) the 4-element image of terminal_from_fiber, (c) Certified requiring an authority-bearing terminal; then state the surviving extension(s) as the policy O01 must declare."
+    }
+  },
+  "bounded_failure_codes": [],
+  "claim_boundary": {
+    "supports": "Over finite enumerations transcribed BY HAND from the pinned sources (checked against routing.rs, terminal_status.rs, run.rs, checked_packet.rs and terminal_routing.json by a one-off regex and a unit test that re-reads the pinned Rust text when the checkout is present; Lean, producer and checker share the transcription): (1) as abstract maps between a 3-set and a 7-set, the diagnostic class and the routing terminal give 21 cells, no value is forced, any two classes take any two terminals independently (343 policies), injective policies exist (210) and none is surjective; the source declares a partial map for 2 of the 3 classes; (2) run.rs 626-633 emits a status-tag string per class; composing it by string identity with the PfpTerminal-to-RoutingTerminal map (routing.rs, terminal_routing.json; no source code performs this composition) gives a partial route: ClosedResidual to RequiresLift, ActiveClosureFailure to Refusal, and the exact class, whose tag is the Rust name ExactRepair, has none (2 of the 21 cells declared, 1 class unrouted, 19 cells neither realised nor excluded); (3) in the TerminalStatus tables the residual class does not determine the routing terminal and vice versa (8 of 28 cells realised), all 7 terminals are reachable from the 21 statuses, the PfpTerminal map is not surjective (Repair and NoRule are missing, kernel routePfp_misses_repair_and_norule; its image has 5 values, native), and terminal_from_fiber reaches only 4 terminals (general over all counts in Lean, 640 inputs natively); (4) in the model the Certified predicate and the routing terminal are functions of (status, witness) only (by construction of the model); the only source code taking a diagnostic class towards authority (checked_packet.rs:248) is a necessary eligibility gate (only the exact class can seal a checked-packet certificate, which retains AuthorityEffect::None), never sufficient (kernel sealed_only_exact, sealed_needs_witness); the tag-level type AuthTag has no Certified value, so tag-level never-certified is true by construction of the modelled type; (5) the external Routing.lean `route` is a separate four-valued axis with Bool inputs (re-transcribed copy).",
+    "does_not_support": "That any policy from diagnostic classes to terminals is the correct one or is forced; WDP-CH04-O01, which stays conditional; any identification of terminal_status::ResidualClass (Exact, ClosedSurvivor, Open, Refused) with the diagnostic class (the unrelated omega_homology ResidualClass with values ExactRepair, StabilizedSurvivor, OpenObstruction has the three values of the diagnostic class and is not modelled); that the Rust class name ExactRepair and the ledger name ExactClass denote different things (the Lean exactRepairAllowed is the same predicate as certEligible, so the clause \"ExactClass is not ExactRepair\" has no anchor of its own); a route for the exact class (the source declares none); budget, rule or lift availability as routing inputs (none exist in the source routing code); evidence about the source from the leaves that are definitional in the model (authority counts, AuthTag); any physical or interpretive claim.",
+    "narrowest_claim": "Over hand-transcribed source tables, the diagnostic class, routing terminal, residual class and authority tag are different finite axes and nothing forces the partial class-to-terminal composite the source declares (the exact class is unrouted); a diagnostic value is at most a necessary eligibility gate for sealing a certificate, never authority. The source code itself names the exact class ExactRepair and tags ClosedResidual as StabilizedSurvivor, contrary to ledger N01.",
+    "next_test": "Enumerate the 7 total extensions of the declared partial policy (the 7 choices of terminal for ExactClass) and decide for each whether it is compatible with (a) certificate eligibility being exact-class-only, (b) the 4-element image of terminal_from_fiber, (c) Certified requiring an authority-bearing terminal; then state the surviving extension(s) as the policy O01 must declare."
+  }
+}

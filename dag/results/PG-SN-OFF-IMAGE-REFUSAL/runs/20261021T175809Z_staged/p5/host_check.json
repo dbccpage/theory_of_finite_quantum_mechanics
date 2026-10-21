@@ -1,0 +1,51 @@
+{
+  "task_id": "PG-SN-OFF-IMAGE-REFUSAL",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "b28762ca8ada302e1e0e40627518a2f5c8bb139ce7614c71d185a976619c51c6",
+  "candidate_sha256": "ac3d39431d7d08020e70babdcd23e039bd67c6674730169f632cf0b01ca0eca7",
+  "status": "scoped_result_or_obstruction_recorded_pending_batch_review",
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "rust_replay": 0,
+      "lean_version": 0,
+      "lean": 0
+    },
+    "required_named_Lean_reports": true,
+    "lean_version": {
+      "expected": "v4.35.0",
+      "reported": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "matches": true
+    },
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "test_counts": {
+      "python": 8,
+      "rust": 4
+    },
+    "cargo_guard": {
+      "target": "C:\\Users\\a343o\\.pfp-ct",
+      "size_gb_before": 1.267,
+      "cleared": false,
+      "free_gb_after": 12.195,
+      "min_free_gb": 10.0,
+      "max_target_gb": 6.0
+    },
+    "scope": {
+      "supports": "Kernel-checked, for every glyph alphabet and every stage: in the transcription of the pinned SnCarrier definitions (glyph alphabet abstracted, one-field wrappers flattened; restated, not imported) every accepted outcome of r_n is a section image with the base presentation as payload (accepted_only_from_section, accepted_iff), r_n refuses exactly the presentations that are no section image at that stage (nonDescent_iff_off_image), a section image at another stage is refused (retraction_stage_strict), sectionLift is injective (sectionLift_injective), and the image test is decided by the outcome (inImage_iff); the restated pair (sectionLift n, retrB n), with the outcome read as Base + Unit, is a SectionRetraction of the abstract part (sn_is_section_retraction), so refusal is exactly the absence of a base presentation lifting to p (sn_refused_iff_off_image); in the abstract setting of a section s and a retraction r with the old-image law and soundness, r refuses exactly off the image of s, the round trip s(r y) = y fails exactly off the image (refused_iff_off_image, roundtrip_fails_off_image), and the soundness hypothesis cannot be dropped (abstract instance on Fin 1 -> Fin 2; for S(n), laxRetr obeys the law and never refuses for every alphabet, and lax_breaks_refusal_characterisation is an instance on Bool glyphs at stage 0). refuseOffImage constructs a sound refusing retraction by testing the round trip (refuseOffImage_isSectionRetraction, toy_refused_iff_odd), so refusal-iff-off-image is circular by construction there and is not evidence for the S(n) statement. All S(n) re-proofs report propext only. Native: on eight explicit universes of presentations (up to 866 elements) the pinned lift and retraction are executed: refusal equals off-image with zero violations, payloads are correct, the round trip holds on exactly the image and fails on exactly the refused points, other-stage lifts and over-long bodies are refused, and the lax retraction recovers every base presentation (lax_law_holds) while refusing nothing (lax_refused = 0; both columns are by-construction consequences, the Lean file carries the statement); plus five toy sections x -> c x with exact on-image and refused counts.",
+      "does_not_support": "The claim that this closes the domain-restriction half of ledger row WDP-P001-019 (a ledger interpretation, not examined); the external prompt file fable_theorems_2026-10-17/05_sn_off_image_refusal.md named in the DAG source list, which was not read; off-image refusal for sections other than the five base shapes (nested lift, retraction or refusal terms as base members are outside the model); any cardinality claim about Carrier n or the declared table (node PG-SN-CARRIER); unrestricted old-image recovery (ledger row WDP-P001-019 stays a negative boundary for the unrestricted interface); the 36-glyph source alphabet beyond the generic statement, and alphabets above three glyphs in the native universes; wire parsing of the source grammar; decidability beyond this syntactic model (the source itself says the image condition is not a general computability theorem); the circular reading in which off-image is defined as failure of the round trip; any physical interpretation.",
+      "narrowest_claim": "For a restatement over an arbitrary glyph alphabet of the pinned S(n) section and retraction (five base shapes at a given stage), the retraction refuses exactly the presentations that are not section images at that stage, and the restated pair is a section/retraction pair (law and soundness) in the abstract sense, where refusal is the failure of the round trip s(r(p)) = p; this rests on the soundness of the specific retraction (accepted_only_from_section), because the old-image law alone is satisfied by a retraction that refuses nothing.",
+      "next_test": "With the bridge sn_is_section_retraction proved, extend the refusal characterisation to a grammar that admits nested lift, retraction and refusal terms as base members: add them to Base, restate sectionLift and retr on the enlarged type, and decide whether accepted_only_from_section and sectionLift injectivity still hold or whether a new off-image class appears."
+    }
+  },
+  "bounded_failure_codes": [],
+  "claim_boundary": {
+    "supports": "Kernel-checked, for every glyph alphabet and every stage: in the transcription of the pinned SnCarrier definitions (glyph alphabet abstracted, one-field wrappers flattened; restated, not imported) every accepted outcome of r_n is a section image with the base presentation as payload (accepted_only_from_section, accepted_iff), r_n refuses exactly the presentations that are no section image at that stage (nonDescent_iff_off_image), a section image at another stage is refused (retraction_stage_strict), sectionLift is injective (sectionLift_injective), and the image test is decided by the outcome (inImage_iff); the restated pair (sectionLift n, retrB n), with the outcome read as Base + Unit, is a SectionRetraction of the abstract part (sn_is_section_retraction), so refusal is exactly the absence of a base presentation lifting to p (sn_refused_iff_off_image); in the abstract setting of a section s and a retraction r with the old-image law and soundness, r refuses exactly off the image of s, the round trip s(r y) = y fails exactly off the image (refused_iff_off_image, roundtrip_fails_off_image), and the soundness hypothesis cannot be dropped (abstract instance on Fin 1 -> Fin 2; for S(n), laxRetr obeys the law and never refuses for every alphabet, and lax_breaks_refusal_characterisation is an instance on Bool glyphs at stage 0). refuseOffImage constructs a sound refusing retraction by testing the round trip (refuseOffImage_isSectionRetraction, toy_refused_iff_odd), so refusal-iff-off-image is circular by construction there and is not evidence for the S(n) statement. All S(n) re-proofs report propext only. Native: on eight explicit universes of presentations (up to 866 elements) the pinned lift and retraction are executed: refusal equals off-image with zero violations, payloads are correct, the round trip holds on exactly the image and fails on exactly the refused points, other-stage lifts and over-long bodies are refused, and the lax retraction recovers every base presentation (lax_law_holds) while refusing nothing (lax_refused = 0; both columns are by-construction consequences, the Lean file carries the statement); plus five toy sections x -> c x with exact on-image and refused counts.",
+    "does_not_support": "The claim that this closes the domain-restriction half of ledger row WDP-P001-019 (a ledger interpretation, not examined); the external prompt file fable_theorems_2026-10-17/05_sn_off_image_refusal.md named in the DAG source list, which was not read; off-image refusal for sections other than the five base shapes (nested lift, retraction or refusal terms as base members are outside the model); any cardinality claim about Carrier n or the declared table (node PG-SN-CARRIER); unrestricted old-image recovery (ledger row WDP-P001-019 stays a negative boundary for the unrestricted interface); the 36-glyph source alphabet beyond the generic statement, and alphabets above three glyphs in the native universes; wire parsing of the source grammar; decidability beyond this syntactic model (the source itself says the image condition is not a general computability theorem); the circular reading in which off-image is defined as failure of the round trip; any physical interpretation.",
+    "narrowest_claim": "For a restatement over an arbitrary glyph alphabet of the pinned S(n) section and retraction (five base shapes at a given stage), the retraction refuses exactly the presentations that are not section images at that stage, and the restated pair is a section/retraction pair (law and soundness) in the abstract sense, where refusal is the failure of the round trip s(r(p)) = p; this rests on the soundness of the specific retraction (accepted_only_from_section), because the old-image law alone is satisfied by a retraction that refuses nothing.",
+    "next_test": "With the bridge sn_is_section_retraction proved, extend the refusal characterisation to a grammar that admits nested lift, retraction and refusal terms as base members: add them to Base, restate sectionLift and retr on the enlarged type, and decide whether accepted_only_from_section and sectionLift injectivity still hold or whether a new off-image class appears."
+  }
+}

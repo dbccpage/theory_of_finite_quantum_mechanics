@@ -1,0 +1,51 @@
+{
+  "task_id": "PG-PREGEN-CONSTRUCTIVE-SUMMARY",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "1ae47af520ffa7df00f5c9d8b891a6dd3d5c252b8bce2d2360174d9aeb86c5e3",
+  "candidate_sha256": "79fe46cd3d11d747982bc95828d2d1457e65aa28dc2bbbba729fe791b18ed28f",
+  "status": "scoped_result_or_obstruction_recorded_pending_batch_review",
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "rust_replay": 0,
+      "lean_version": 0,
+      "lean": 0
+    },
+    "required_named_Lean_reports": true,
+    "lean_version": {
+      "expected": "v4.35.0",
+      "reported": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "matches": true
+    },
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "test_counts": {
+      "python": 7,
+      "rust": 4
+    },
+    "cargo_guard": {
+      "target": "C:\\Users\\a343o\\.pfp-ct",
+      "size_gb_before": 1.08,
+      "cleared": false,
+      "free_gb_after": 13.072,
+      "min_free_gb": 10.0,
+      "max_target_gb": 6.0
+    },
+    "scope": {
+      "supports": "Own re-derivation (lean4/PregenConstructive.lean, structural recursion) over a list of histories with DecidableEq reports: first-match reconstruction recon returns every listed answer iff the answer is constant on report fibers among the listed histories; recon is none exactly on unreported values; any f returning the listed answers agrees with recon on listed reports; a complete listing plus global fiber constancy gives the factor through the report image (the choice-free bridge to node 163); with an unlisted history of a listed report and a different answer, recon returns the listed answer, which is then wrong. The kernel reports NO axioms at all for the seven general theorems recon_of_fiberConstant, fiberConstantOn_of_recon, listed_history_report_criterion, recon_eq_none_iff, recon_unique, recon_wrong_off_list and listed_factor_exists (relative to the supplied DecidableEq instance on reports); the instance anchors report at most propext (instance_wrong_off_list and instance_not_fiberConstant: propext); the variant for a report type without decidable equality (instance from Classical.propDecidable) reports propext, Classical.choice, Quot.sound for that proof term. The external ListedHistorySummary.lean is not in this repository and was not part of the gated evidence; all kernel claims are for the in-repo re-derivation PregenConstructive. Exhaustive native check over ALL listings of length <= ell (repeats included), all reports and all answers for 11 non-degenerate tuples (p >= 1, v >= 1, s >= 1) and 4 degenerate boundary tuples (p = 0, or v = 0 or s = 0, where there is at most one triple): recon correct on every listed history iff listed fiber constant, zero mismatches; complete listings agree with the global criterion; partial_false_positive = triples on a non-complete listing that are listed-fiber-constant but not globally fiber-constant; unlisted_refused/correct/wrong = quadruples (listing, report, answer, unlisted history) whose triple is listed-fiber-constant, classified by what recon returns for the unlisted history.",
+      "does_not_support": "Report types without decidable equality (only the classical instance is covered, its proof term uses Classical.choice, and necessity of choice there is not shown); infinite or unlisted populations beyond the explicit complete-listing hypothesis; the unconditional factorization for an arbitrary history type (node PG-HISTORY-REPORT-CRITERION); the external ListedHistorySummary.lean (not in this repository); any probability, measurement or physical reading of reports.",
+      "narrowest_claim": "Over an explicit listing with decidable report equality, first-match reconstruction returns every listed answer iff the answer is constant on the listed report fibers, with no axiom in the kernel for the seven general theorems (relative to the supplied DecidableEq instance on reports); off the listing it refuses unreported values and can be wrong on unlisted histories; verified exhaustively on 11 non-degenerate small tuples.",
+      "next_test": "Decide whether the listed criterion survives a report type without decidable equality by a choice-free substitute for the first-match search, or show that the Classical.propDecidable instance is unavoidable there (a choice-free model or an independence argument)."
+    }
+  },
+  "bounded_failure_codes": [],
+  "claim_boundary": {
+    "supports": "Own re-derivation (lean4/PregenConstructive.lean, structural recursion) over a list of histories with DecidableEq reports: first-match reconstruction recon returns every listed answer iff the answer is constant on report fibers among the listed histories; recon is none exactly on unreported values; any f returning the listed answers agrees with recon on listed reports; a complete listing plus global fiber constancy gives the factor through the report image (the choice-free bridge to node 163); with an unlisted history of a listed report and a different answer, recon returns the listed answer, which is then wrong. The kernel reports NO axioms at all for the seven general theorems recon_of_fiberConstant, fiberConstantOn_of_recon, listed_history_report_criterion, recon_eq_none_iff, recon_unique, recon_wrong_off_list and listed_factor_exists (relative to the supplied DecidableEq instance on reports); the instance anchors report at most propext (instance_wrong_off_list and instance_not_fiberConstant: propext); the variant for a report type without decidable equality (instance from Classical.propDecidable) reports propext, Classical.choice, Quot.sound for that proof term. The external ListedHistorySummary.lean is not in this repository and was not part of the gated evidence; all kernel claims are for the in-repo re-derivation PregenConstructive. Exhaustive native check over ALL listings of length <= ell (repeats included), all reports and all answers for 11 non-degenerate tuples (p >= 1, v >= 1, s >= 1) and 4 degenerate boundary tuples (p = 0, or v = 0 or s = 0, where there is at most one triple): recon correct on every listed history iff listed fiber constant, zero mismatches; complete listings agree with the global criterion; partial_false_positive = triples on a non-complete listing that are listed-fiber-constant but not globally fiber-constant; unlisted_refused/correct/wrong = quadruples (listing, report, answer, unlisted history) whose triple is listed-fiber-constant, classified by what recon returns for the unlisted history.",
+    "does_not_support": "Report types without decidable equality (only the classical instance is covered, its proof term uses Classical.choice, and necessity of choice there is not shown); infinite or unlisted populations beyond the explicit complete-listing hypothesis; the unconditional factorization for an arbitrary history type (node PG-HISTORY-REPORT-CRITERION); the external ListedHistorySummary.lean (not in this repository); any probability, measurement or physical reading of reports.",
+    "narrowest_claim": "Over an explicit listing with decidable report equality, first-match reconstruction returns every listed answer iff the answer is constant on the listed report fibers, with no axiom in the kernel for the seven general theorems (relative to the supplied DecidableEq instance on reports); off the listing it refuses unreported values and can be wrong on unlisted histories; verified exhaustively on 11 non-degenerate small tuples.",
+    "next_test": "Decide whether the listed criterion survives a report type without decidable equality by a choice-free substitute for the first-match search, or show that the Classical.propDecidable instance is unavoidable there (a choice-free model or an independence argument)."
+  }
+}
