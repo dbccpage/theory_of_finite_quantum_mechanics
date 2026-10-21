@@ -1,0 +1,47 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: r_allpairs_length
+  equation_or_predicate: The all-pairs requirement list for n data has length n*n.
+  typing_conditions: none beyond the cited theorem
+  source_pins:
+  - path: lean4/WorldObserverDirectedColimitNoGo.lean
+    declaration: OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length
+    line: 254
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/WorldObserverDirectedColimitNoGo.lean
+    decl: OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length
+    kind: theorem
+    line: 254
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-9029C31F3CF0
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_terminal_all_separated: For a well-formed policy terminal with all imposed requirements separated,
+    every admitted pair i<j is separated.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-POLICY-ENDPOINT-ALL-SEPARATED
+counterexamples: []
+open_obligations:
+- No existing declarations found for policy_terminal_separates, mark_progress, or the round bound; the
+  host must supply paths.
+- The Lean skeletons are placeholders and need real definitions of regime, admitted pair, and response.
+- A constructive, Classical.choice-free proof is not provided.
+- No generators are grounded.
+- 'relation r_policy_terminal_separates unverified: no existing declaration cited'
+- 'near_miss nm_resource_stop unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

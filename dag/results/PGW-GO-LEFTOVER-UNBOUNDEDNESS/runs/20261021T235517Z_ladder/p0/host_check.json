@@ -1,0 +1,139 @@
+{
+  "task_id": "PGW-GO-LEFTOVER-UNBOUNDEDNESS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "3635c9378b33427b9430763fce2fe1b966a038ddffe8add77f63ba17f397771c",
+  "candidate_sha256": "75127e9c8e96417b7a0e1e77fe504378b45152bf65c2cda2d98cbfb099a46009",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 2,
+    "failure_rate": 0.4,
+    "failures_by_class": {
+      "vacuous_proof": 2
+    },
+    "unverifiable": 2,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:55:27Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_not_closed_of_unbounded",
+        "equation_or_predicate": "UnboundedSupply RL a implies not Closed RL L a, for every L",
+        "typing_conditions": "UnboundedSupply RL a",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.not_closed_of_unbounded",
+            "line": 833
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.not_closed_of_unbounded",
+          "kind": "theorem",
+          "line": 833,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_admit_gate",
+        "equation_or_predicate": "Only the admit operation changes n among the six pre-generation operations",
+        "typing_conditions": "six pre-generation operations of the derivation DAG closure",
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate",
+            "line": 764
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate",
+          "kind": "theorem",
+          "line": 764,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-6D022513EDBD",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_reach16_unbounded: If Reach16 s t n holds from a well-formed state with a term then Reach16 s t (2k+n) holds for every k, via the two-change remove-then-admit cycle.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-GO-LEFTOVER-UNBOUNDEDNESS"
+      },
+      {
+        "id": "NEG-9DF99ED8DBE8",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_admit_remove_unbounded: ara reaches itself in 2k changes by removing and admitting, for every k.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-GO-LEFTOVER-UNBOUNDEDNESS"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Generator signatures for remove, admit, add, identify of the tenth and sixteenth derivations were not given in SRC, so none are listed.",
+      "Reach16 and the Lean proofs of Reach16.unbounded and admit_remove_unbounded are not grounded in cited files; the skeletons are placeholders.",
+      "Compositions need licensing relations that are not grounded yet.",
+      "near_miss nm_add_remove unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_unbounded_results unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_cycle_len",
+        "expr": "2*1+0",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

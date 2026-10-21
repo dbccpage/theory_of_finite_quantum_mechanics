@@ -1,0 +1,124 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_sectionLift",
+      "inputs": [
+        "Nat",
+        "Base"
+      ],
+      "output": "Pres",
+      "arity": 2,
+      "carrier": "Pres G",
+      "ref": {
+        "path": "lean4/SnOffImageRefusal.lean",
+        "decl": "SnOffImageRefusal.sectionLift",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_old_image_base",
+      "statement": "retr n (sectionLift n b) = accepted b.toPres",
+      "hypotheses": "n : Nat, b : Base G",
+      "ref": {
+        "path": "lean4/SnOffImageRefusal.lean",
+        "decl": "SnOffImageRefusal.old_image_base",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_accepted_only_from_section",
+      "statement": "retr n p = accepted q implies exists b, p = sectionLift n b and q = b.toPres",
+      "hypotheses": "n : Nat, p q : Pres G",
+      "ref": {
+        "path": "lean4/SnOffImageRefusal.lean",
+        "decl": "SnOffImageRefusal.accepted_only_from_section",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_nonDescent_iff_off_image",
+      "statement": "retr n p = nonDescent iff for all b, p <> sectionLift n b",
+      "hypotheses": "n : Nat, p : Pres G",
+      "ref": {
+        "path": "lean4/SnOffImageRefusal.lean",
+        "decl": "SnOffImageRefusal.nonDescent_iff_off_image",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_sectionLift_injective",
+      "statement": "sectionLift n is injective on Base G",
+      "hypotheses": "n : Nat",
+      "ref": {
+        "path": "lean4/SnOffImageRefusal.lean",
+        "decl": "SnOffImageRefusal.sectionLift_injective",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_accepted_only_from_section",
+      "statement": "If retr n p = accepted q then there is b with p = sectionLift n b and q = b.toPres.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_accepted_only_from_section"
+      ],
+      "lean_skeleton": "theorem L (n : Nat) (p q : Pres G) (h : retr n p = .accepted q) : ∃ b : Base G, p = sectionLift n b ∧ q = b.toPres := SnOffImageRefusal.accepted_only_from_section n p q h",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/SnOffImageRefusal.lean",
+        "decl": "SnOffImageRefusal.accepted_only_from_section",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "L_refusal_off_image",
+      "statement": "Refusal holds exactly off the section image.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_nonDescent_iff_off_image"
+      ],
+      "lean_skeleton": "theorem L (n : Nat) (p : Pres G) : retr n p = .nonDescent ↔ ∀ b : Base G, p ≠ sectionLift n b := SnOffImageRefusal.nonDescent_iff_off_image n p",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/SnOffImageRefusal.lean",
+        "decl": "SnOffImageRefusal.nonDescent_iff_off_image",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "L_witness_unique",
+      "statement": "The witness b is unique because sectionLift n is injective.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_sectionLift_injective"
+      ],
+      "lean_skeleton": "theorem L (n : Nat) : Function.Injective (sectionLift n : Base G → Pres G) := SnOffImageRefusal.sectionLift_injective n",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/SnOffImageRefusal.lean",
+        "decl": "SnOffImageRefusal.sectionLift_injective",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_lax",
+      "claim": "A retraction obeying the left-inverse law on the image automatically refuses off the image.",
+      "rejecting_invariant": "SnOffImageRefusal.lax_retraction_obeys_law_but_accepts_off_image shows a lax retraction obeys the law yet accepts off-image."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Exact signatures of retraction_stage_strict and inImage_iff not listed in SRC; not stated.",
+    "Lean skeletons not elaborated by me; claims_proved false.",
+    "Generator for retraction retr not given a signature, so no composition grounded.",
+    "Lean 4.34.0 build and axiom lines not verified here."
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R_swap_involution",
+      "statement": "The exchange of the two relations r and s on ninth-seed states is an involution: swap9 (swap9 x) = x.",
+      "hypotheses": "x is a state of the ninth seed (terms plus a multiplicity table per relation).",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R_embed_empty_s",
+      "statement": "The seventh derivation's one-relation states embed into ninth-seed states with nothing in s; projections to r and s hold definitionally.",
+      "hypotheses": "One-relation state; empty beginning for s.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_swap9_swap",
+      "statement": "swap9 (swap9 x) = x for ninth-seed states x.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_swap_involution"
+      ],
+      "lean_skeleton": "theorem swap9_swap (x : State9) : swap9 (swap9 x) = x := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L_reach9_swap",
+      "statement": "Reachability and cost are invariant under swapping the two relations: Reach9 (swap9 x) (swap9 y) iff Reach9 x y.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "L_swap9_swap"
+      ],
+      "lean_skeleton": "theorem reach9_swap (x y : State9) : Reach9 (swap9 x) (swap9 y) ↔ Reach9 x y := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No @SRC or @KNOWN+ declarations ground the ninth-seed state type, swap9, Reach9, or proj_ofR9_false/true; only a ledger-builder script is listed, so all entries are proposed_new.",
+    "Generators (assertion, term, identification, sequence projection) cannot be typed without a grounded declaration list.",
+    "Compositions need licensing relations from grounded declarations.",
+    "Lean skeletons are unelaborated and use sorry; none are claimed proved."
+  ]
+}

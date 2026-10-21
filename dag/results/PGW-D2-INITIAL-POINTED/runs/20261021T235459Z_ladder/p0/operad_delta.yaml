@@ -1,0 +1,37 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: r_irrefl_witness_ne
+  equation_or_predicate: For an irreflexive relation r and witness r a b, a ≠ b.
+  typing_conditions: 'r irreflexive: ∀ x, ¬ r x x; hab : r a b'
+  source_pins:
+  - path: lean4/Mub6L1SnTower.lean
+    declaration: MUB6.Gluing.L1.irrefl_witness_ne
+    line: 23
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/Mub6L1SnTower.lean
+    decl: MUB6.Gluing.L1.irrefl_witness_ne
+    kind: theorem
+    line: 23
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Lean proofs of D2_initial_pointed and D2_map_injective are not yet written (skeletons use sorry).
+- No existing generators are grounded in SRC or KNOWN+ for this target, so generators and compositions
+  are empty.
+- D2 carrier type formalization (Bool vs Fin 2) and edge structure are undecided.
+- 'relation r_d2_initial_pointed unverified: no existing declaration cited'
+- 'lemma l_d2_initial_pointed unverified: Lean elaboration disabled'
+- 'lemma l_injective_irrefl unverified: Lean elaboration disabled'
+- 'near_miss nm_all_edges unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_irrefl_forced unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

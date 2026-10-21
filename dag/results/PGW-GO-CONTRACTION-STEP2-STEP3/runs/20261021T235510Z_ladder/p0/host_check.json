@@ -1,0 +1,130 @@
+{
+  "task_id": "PGW-GO-CONTRACTION-STEP2-STEP3",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "ae78bb1858d88b53df218a18497eb3e2b2cdbb2e3b822d1a8e7d2dd2d62d47d2",
+  "candidate_sha256": "b5d115b06399ebe53b7a71a4fcbbfacf22fff9d9085b15490f13f4aacb08818a",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS",
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 4,
+    "failure_rate": 0.6667,
+    "failures_by_class": {
+      "composition_type_mismatch": 2,
+      "vacuous_proof": 2
+    },
+    "unverifiable": 9,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:55:24Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-A33B5A6F4D39",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "add_assertion . slot 0 <- add_term via reach3_carries",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-GO-CONTRACTION-STEP2-STEP3"
+      },
+      {
+        "id": "NEG-6148294E6E06",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "identify_terms . slot 0 <- add_assertion via reach3_carries",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-GO-CONTRACTION-STEP2-STEP3"
+      },
+      {
+        "id": "NEG-2EE940DD5E7D",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "step2_containment_carry: For a Step2 change s -> s', the containment of s in s' is a carrying map with q = identity.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-GO-CONTRACTION-STEP2-STEP3"
+      },
+      {
+        "id": "NEG-A417CA47D0B4",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "reach3_carries_induction: Reach3.carries follows from Step3.carries by induction on the sequence, composing the carrying maps.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-GO-CONTRACTION-STEP2-STEP3"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations were found by the host, so every reference is proposed_new with an empty path. The Lean declarations Step3, Step2, Step3.carries, Reach3.carries, Step2.toStep3 and Reach2.toReach3 are unverified.",
+      "The Lean skeletons are placeholders with sorry and do not state the real theorems.",
+      "The carrier, colour and type names are guesses and unverified.",
+      "The composition entries are unverified against the intended operad structure.",
+      "generator add_term unverified: no existing declaration cited",
+      "generator add_assertion unverified: no existing declaration cited",
+      "generator identify_terms unverified: no existing declaration cited",
+      "relation step3_carries unverified: no existing declaration cited",
+      "relation reach3_carries unverified: no existing declaration cited",
+      "relation step2_to_step3 unverified: no existing declaration cited",
+      "relation reach2_to_reach3 unverified: no existing declaration cited",
+      "near_miss base_seed_removal unverified: semantic near miss; P4 host check decides",
+      "near_miss name_numbering unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "step3_kinds",
+        "expr": "3",
+        "value": "3",
+        "host_evidence": {
+          "recomputed": "3"
+        }
+      },
+      {
+        "id": "step2_kinds",
+        "expr": "3 - 1",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "task_id": "PGW-SN-REPRESENTATION-QUOTIENT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "98ffea95d8f7403f6cf481a32510611f8e7d6571fd04d81b4c84c17968c99a85",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"balance_map_T\",\"inputs\":[\"TensorCoeff4\"],\"output\":\"BalanceCoeff2\",\"arity\":1,\"carrier\":\"Q^4 -> Q^2 with T(rr,ri,ir,ii)=(rr-ii, ri+ir)\",\"ref\":{\"path\":\"code/rust/src/linear_algebra/complex_tensor.rs\",\"decl\":\"balance_map_with_limits\",\"status\":\"existing\"}},{\"id\":\"balance_projector_P\",\"inputs\":[\"TensorCoeff4\"],\"output\":\"TensorCoeff4\",\"arity\":1,\"carrier\":\"Q^4 -> Q^4 with P=T^t T/2\",\"ref\":{\"path\":\"code/rust/src/linear_algebra/complex_tensor.rs\",\"decl\":\"balance_projector_with_limits\",\"status\":\"existing\"}},{\"id\":\"section_u\",\"inputs\":[\"BalanceCoeff2\"],\"output\":\"TensorCoeff4\",\"arity\":1,\"carrier\":\"Q^2 -> Q^4, u=T^t/2\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"r_u_identity_doubled\",\"statement\":\"T T^t = 2 I2 (integer form of r u = I2 after dividing by 2)\",\"hypotheses\":\"m=n=1, coordinates (rr,ri,ir,ii)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"kernel_test\",\"statement\":\"T v = 0 iff rr = ii and ri = -ir\",\"hypotheses\":\"v=(rr,ri,ir,ii) over Q\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"projector_doubled_idempotent\",\"statement\":\"(T^t T)^2 = 2 (T^t T), so P^2=P; P != I4 since (1,0,0,1) in ker T\",\"hypotheses\":\"m=n=1\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[{\"outer\":\"balance_map_T\",\"slot\":0,\"inner\":\"section_u\",\"licensing_relation\":\"r_u_identity_doubled\"}],\"lemmas\":[{\"id\":\"L_balance_after_section_doubling\",\"statement\":\"For all a b : Int, T(T^t(a,b)) = 2*(a,b), i.e. (a-(-... computed): (a+0 - (-b... ) restated as T T^t = 2 I2\",\"relation_to_target\":\"implies\",\"depends_on\":[],\"lean_skeleton\":\"theorem balance_section (a b : Int) : (a - 0 + 0 - 0 + 0 - 0 + 0 * 0 + 0 : Int) = a - 0 + 0 - 0 + 0 - 0 + 0 := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"L_kernel_vector\",\"statement\":\"(1,0,0,1) is in ker T, hence P(1,0,0,1)=0 != (1,0,0,1), so P != I4\",\"relation_to_target\":\"implies\",\"depends_on\":[\"kernel_test\"],\"lean_skeleton\":\"theorem kernel_vec : (1:Int) - 1 = 0 ∧ (0:Int) + 0 = 0 := by decide\",\"claims_proved\":true,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_P_is_identity\",\"claim\":\"P = I4, so the representation loses nothing\",\"rejecting_invariant\":\"(1,0,0,1) in ker T gives P v = 0 != v; rank P = 2 < 4\"},{\"id\":\"nm_native_Sn_obstruction\",\"claim\":\"the representation quotient yields a new native S(n) obstruction or permits advancing beyond S(6)\",\"rejecting_invariant\":\"target states the quotient supplies no native S(n) obstruction\"}],\"numeric_claims\":[{\"id\":\"rank_T\",\"expr\":\"2\",\"value\":\"2\"},{\"id\":\"trace_P\",\"expr\":\"4/2\",\"value\":\"2\"},{\"id\":\"kernel_dim\",\"expr\":\"4 - 2\",\"value\":\"2\"}],\"open_obligations\":[\"lemma L_balance_after_section_doubling skeleton is a placeholder and must be rewritten as a real Lean statement of T*T^t = 2*I2\",\"no existing declaration for section u or for the integer relations; all proposed_new\",\"correspondence of Rust balance_map_with_limits to this T not verified by reading source\",\"realification supplement assumption unverified\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "balance_map_T",
+        "inputs": [
+          "TensorCoeff4"
+        ],
+        "output": "BalanceCoeff2",
+        "arity": 1,
+        "carrier": "Q^4 -> Q^2 with T(rr,ri,ir,ii)=(rr-ii, ri+ir)",
+        "ref": {
+          "path": "code/rust/src/linear_algebra/complex_tensor.rs",
+          "decl": "balance_map_with_limits",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "balance_projector_P",
+        "inputs": [
+          "TensorCoeff4"
+        ],
+        "output": "TensorCoeff4",
+        "arity": 1,
+        "carrier": "Q^4 -> Q^4 with P=T^t T/2",
+        "ref": {
+          "path": "code/rust/src/linear_algebra/complex_tensor.rs",
+          "decl": "balance_projector_with_limits",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "section_u",
+        "inputs": [
+          "BalanceCoeff2"
+        ],
+        "output": "TensorCoeff4",
+        "arity": 1,
+        "carrier": "Q^2 -> Q^4, u=T^t/2",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_u_identity_doubled",
+        "statement": "T T^t = 2 I2 (integer form of r u = I2 after dividing by 2)",
+        "hypotheses": "m=n=1, coordinates (rr,ri,ir,ii)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "kernel_test",
+        "statement": "T v = 0 iff rr = ii and ri = -ir",
+        "hypotheses": "v=(rr,ri,ir,ii) over Q",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "projector_doubled_idempotent",
+        "statement": "(T^t T)^2 = 2 (T^t T), so P^2=P; P != I4 since (1,0,0,1) in ker T",
+        "hypotheses": "m=n=1",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "balance_map_T",
+        "slot": 0,
+        "inner": "section_u",
+        "licensing_relation": "r_u_identity_doubled"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "L_balance_after_section_doubling",
+        "statement": "For all a b : Int, T(T^t(a,b)) = 2*(a,b), i.e. (a-(-... computed): (a+0 - (-b... ) restated as T T^t = 2 I2",
+        "relation_to_target": "implies",
+        "depends_on": [],
+        "lean_skeleton": "theorem balance_section (a b : Int) : (a - 0 + 0 - 0 + 0 - 0 + 0 * 0 + 0 : Int) = a - 0 + 0 - 0 + 0 - 0 + 0 := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "L_kernel_vector",
+        "statement": "(1,0,0,1) is in ker T, hence P(1,0,0,1)=0 != (1,0,0,1), so P != I4",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "kernel_test"
+        ],
+        "lean_skeleton": "theorem kernel_vec : (1:Int) - 1 = 0 ∧ (0:Int) + 0 = 0 := by decide",
+        "claims_proved": true,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_P_is_identity",
+        "claim": "P = I4, so the representation loses nothing",
+        "rejecting_invariant": "(1,0,0,1) in ker T gives P v = 0 != v; rank P = 2 < 4"
+      },
+      {
+        "id": "nm_native_Sn_obstruction",
+        "claim": "the representation quotient yields a new native S(n) obstruction or permits advancing beyond S(6)",
+        "rejecting_invariant": "target states the quotient supplies no native S(n) obstruction"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "rank_T",
+        "expr": "2",
+        "value": "2"
+      },
+      {
+        "id": "trace_P",
+        "expr": "4/2",
+        "value": "2"
+      },
+      {
+        "id": "kernel_dim",
+        "expr": "4 - 2",
+        "value": "2"
+      }
+    ],
+    "open_obligations": [
+      "lemma L_balance_after_section_doubling skeleton is a placeholder and must be rewritten as a real Lean statement of T*T^t = 2*I2",
+      "no existing declaration for section u or for the integer relations; all proposed_new",
+      "correspondence of Rust balance_map_with_limits to this T not verified by reading source",
+      "realification supplement assumption unverified"
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "PGW-GO-H3-TWIN-FILLS-HOLONOMY",
+  "stage": "P0",
+  "run_id": "PGW-GO-H3-TWIN-FILLS-HOLONOMY/20261021T235521Z_ladder",
+  "finished_utc": "2026-10-21T23:55:33Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 1,
+  "free_calls": 0,
+  "paid_calls": 1,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 3,
+      "name": "sonnet",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ]
+    }
+  ],
+  "run_cap_usd": 0.12,
+  "summary": {
+    "node_id": "PGW-GO-H3-TWIN-FILLS-HOLONOMY",
+    "run_id": "PGW-GO-H3-TWIN-FILLS-HOLONOMY/20261021T235521Z_ladder",
+    "stage": "P0",
+    "status": "accepted",
+    "stop_reason": "accepted_at_tier_3",
+    "accepted_attempt": "a3-1",
+    "best_attempt": "a3-1",
+    "attempts": [
+      {
+        "attempt_id": "a3-1",
+        "tier": 3,
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "guided": true,
+        "known_neg_injected": 1,
+        "known_pos_injected": 0,
+        "input_sha256": "6167fdfe5fa6a66cf9d1eaf79bc86bf0e0bc6e870180ed8d3076654c25c9a724",
+        "injected_neg_ids": [
+          "NEG-16306B6F2ED5"
+        ],
+        "status": "accepted",
+        "verified_total": 3,
+        "failures_total": 2,
+        "failure_rate": 0.4,
+        "failures_by_class": {
+          "vacuous_proof": 2
+        },
+        "unverifiable": 3,
+        "input_tokens": 3454,
+        "output_tokens": 927,
+        "cost_microusd": 16178,
+        "request_id": "req_011CgGHX9hjenUnRK1RKqVZE",
+        "latency_s": 7.75,
+        "stop_reason": "end_turn",
+        "served_model": "claude-sonnet-5-5",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-F6478F988BA3",
+          "NEG-2461046D57A1"
+        ]
+      }
+    ],
+    "totals_by_tier": {
+      "3": {
+        "calls": 1,
+        "sent": 1,
+        "input_tokens": 3454,
+        "output_tokens": 927,
+        "cost_microusd": 16178,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 16178,
+    "spend_usd": 0.016178,
+    "hallucinations_by_class": {
+      "vacuous_proof": 2
+    },
+    "hallucinations_by_model": {
+      "claude-sonnet-5-5": {
+        "vacuous_proof": 2
+      }
+    },
+    "verified": {
+      "generators": 0,
+      "relations": 0,
+      "compositions": 0,
+      "lemmas": 0,
+      "numeric": 3
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a3-1:7331bc76",
+      "run_id": "PGW-GO-H3-TWIN-FILLS-HOLONOMY/20261021T235521Z_ladder",
+      "attempt_id": "a3-1",
+      "tier": 3,
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "family": "anthropic",
+      "effort": "medium",
+      "max_tokens": 5000,
+      "started_utc": "2026-10-21T23:55:23Z",
+      "status": "ok",
+      "estimated_input_tokens": 2770,
+      "estimate_microusd": 55540,
+      "served_model": "claude-sonnet-5-5",
+      "input_tokens": 3454,
+      "output_tokens": 927,
+      "cost_microusd": 16178,
+      "cost_source": "price_table",
+      "request_id": "req_011CgGHX9hjenUnRK1RKqVZE",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 7.75,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 6.833252,
+    "anthropic_cap_microusd": 59.605884,
+    "paid_other_microusd": 0.000449,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}

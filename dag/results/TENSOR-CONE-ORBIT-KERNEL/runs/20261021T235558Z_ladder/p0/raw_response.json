@@ -1,0 +1,86 @@
+{
+  "task_id": "TENSOR-CONE-ORBIT-KERNEL",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "6705f06bae4cd3644d2676c4c6510c3f84de8fb43a39a1b2cddb6f18299e7700",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"rankOne\",\"inputs\":[\"Vec\"],\"output\":\"Matrix\",\"arity\":1,\"carrier\":\"Matrix n n C\",\"ref\":{\"path\":\"lean4/TensorConeReconstruction.lean\",\"decl\":\"TensorConeReconstruction.rankOne\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"orbit_selects_positive\",\"statement\":\"If K is Hermitian, contains 0, is closed under addition, and the OrbitData transports cover all vectors, then K equals PSD.\",\"hypotheses\":\"0 in K; K closed under addition; K Hermitian; OrbitData K G with preserving transports and seed-vector orbit covering all vectors\",\"ref\":{\"path\":\"lean4/TensorConeReconstruction.lean\",\"decl\":\"TensorConeReconstruction.operational_orbit_selects_positive\",\"status\":\"existing\"}},{\"id\":\"rankOne_cone_psd\",\"statement\":\"If K contains 0, is closed under addition, and contains rankOne v for all v, then every PSD A lies in K.\",\"hypotheses\":\"0 in K; additive closure; all rankOne v in K; A positive semidefinite\",\"ref\":{\"path\":\"lean4/TensorConeReconstruction.lean\",\"decl\":\"TensorConeReconstruction.positive_mem_of_rankOne\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"orbit_target\",\"statement\":\"For any finite index type n, a Hermitian set K containing 0 and closed under addition, with OrbitData transport covering all vectors, equals PSD.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"orbit_selects_positive\",\"rankOne_cone_psd\"],\"lean_skeleton\":\"theorem orbit_target : True := by trivial\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/TensorConeReconstruction.lean\",\"decl\":\"TensorConeReconstruction.operational_orbit_selects_positive\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"no_hermitian\",\"claim\":\"A cone containing 0 and closed under addition with all rank-one matrices equals PSD without Hermiticity.\",\"rejecting_invariant\":\"Elements of K must be Hermitian; otherwise nonHermitian matrices could lie in K while not PSD.\"},{\"id\":\"no_cover\",\"claim\":\"Orbit of the seed vector under preserving operations need not cover all vectors.\",\"rejecting_invariant\":\"Without vector coverage, rankOne v need not lie in K for every v, so K may be strictly smaller than PSD.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Exact signature of OrbitData fields not visible in the source excerpt\",\"Exact statement of operational_orbit_selects_positive is truncated\",\"No existing citations for the TensorOperationalCone Schmidt controlled-shift instance or TensorComposition\",\"Lean skeleton is a placeholder, not an elaborated statement of the target\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "rankOne",
+        "inputs": [
+          "Vec"
+        ],
+        "output": "Matrix",
+        "arity": 1,
+        "carrier": "Matrix n n C",
+        "ref": {
+          "path": "lean4/TensorConeReconstruction.lean",
+          "decl": "TensorConeReconstruction.rankOne",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "orbit_selects_positive",
+        "statement": "If K is Hermitian, contains 0, is closed under addition, and the OrbitData transports cover all vectors, then K equals PSD.",
+        "hypotheses": "0 in K; K closed under addition; K Hermitian; OrbitData K G with preserving transports and seed-vector orbit covering all vectors",
+        "ref": {
+          "path": "lean4/TensorConeReconstruction.lean",
+          "decl": "TensorConeReconstruction.operational_orbit_selects_positive",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "rankOne_cone_psd",
+        "statement": "If K contains 0, is closed under addition, and contains rankOne v for all v, then every PSD A lies in K.",
+        "hypotheses": "0 in K; additive closure; all rankOne v in K; A positive semidefinite",
+        "ref": {
+          "path": "lean4/TensorConeReconstruction.lean",
+          "decl": "TensorConeReconstruction.positive_mem_of_rankOne",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "orbit_target",
+        "statement": "For any finite index type n, a Hermitian set K containing 0 and closed under addition, with OrbitData transport covering all vectors, equals PSD.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "orbit_selects_positive",
+          "rankOne_cone_psd"
+        ],
+        "lean_skeleton": "theorem orbit_target : True := by trivial",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/TensorConeReconstruction.lean",
+          "decl": "TensorConeReconstruction.operational_orbit_selects_positive",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "no_hermitian",
+        "claim": "A cone containing 0 and closed under addition with all rank-one matrices equals PSD without Hermiticity.",
+        "rejecting_invariant": "Elements of K must be Hermitian; otherwise nonHermitian matrices could lie in K while not PSD."
+      },
+      {
+        "id": "no_cover",
+        "claim": "Orbit of the seed vector under preserving operations need not cover all vectors.",
+        "rejecting_invariant": "Without vector coverage, rankOne v need not lie in K for every v, so K may be strictly smaller than PSD."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Exact signature of OrbitData fields not visible in the source excerpt",
+      "Exact statement of operational_orbit_selects_positive is truncated",
+      "No existing citations for the TensorOperationalCone Schmidt controlled-shift instance or TensorComposition",
+      "Lean skeleton is a placeholder, not an elaborated statement of the target"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+add_or_refine_generators:
+- id: rankOne
+  ordered_inputs:
+  - Vec
+  output: Matrix
+  arity: 1
+  carrier: Matrix n n C
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/TensorConeReconstruction.lean
+    declaration: TensorConeReconstruction.rankOne
+    line: 19
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/TensorConeReconstruction.lean
+    decl: TensorConeReconstruction.rankOne
+    kind: def
+    line: 19
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: orbit_selects_positive
+  equation_or_predicate: If K is Hermitian, contains 0, is closed under addition, and the OrbitData transports
+    cover all vectors, then K equals PSD.
+  typing_conditions: 0 in K; K closed under addition; K Hermitian; OrbitData K G with preserving transports
+    and seed-vector orbit covering all vectors
+  source_pins:
+  - path: lean4/TensorConeReconstruction.lean
+    declaration: TensorConeReconstruction.operational_orbit_selects_positive
+    line: 72
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/TensorConeReconstruction.lean
+    decl: TensorConeReconstruction.operational_orbit_selects_positive
+    kind: theorem
+    line: 72
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: rankOne_cone_psd
+  equation_or_predicate: If K contains 0, is closed under addition, and contains rankOne v for all v,
+    then every PSD A lies in K.
+  typing_conditions: 0 in K; additive closure; all rankOne v in K; A positive semidefinite
+  source_pins:
+  - path: lean4/TensorConeReconstruction.lean
+    declaration: TensorConeReconstruction.positive_mem_of_rankOne
+    line: 25
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/TensorConeReconstruction.lean
+    decl: TensorConeReconstruction.positive_mem_of_rankOne
+    kind: theorem
+    line: 25
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-E0DD77A2482C
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'orbit_target: For any finite index type n, a Hermitian set K containing 0 and closed under addition,
+    with OrbitData transport covering all vectors, equals PSD.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TENSOR-CONE-ORBIT-KERNEL
+counterexamples: []
+open_obligations:
+- Exact signature of OrbitData fields not visible in the source excerpt
+- Exact statement of operational_orbit_selects_positive is truncated
+- No existing citations for the TensorOperationalCone Schmidt controlled-shift instance or TensorComposition
+- Lean skeleton is a placeholder, not an elaborated statement of the target
+- 'near_miss no_hermitian unverified: semantic near miss; P4 host check decides'
+- 'near_miss no_cover unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

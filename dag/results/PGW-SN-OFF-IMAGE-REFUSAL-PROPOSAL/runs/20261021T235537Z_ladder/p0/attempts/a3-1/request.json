@@ -1,0 +1,313 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "cbd32ec7f94fa32d663073dace234d3684919e64f934062d5f9364d65326997d",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL stage=P0 attempt=a3-1 in=cbd32ec7 guided=yes\n@TARGET [PROVED_LEAN] For the pinned education SnCarrier model, SnOffImage.lean compiles the domain restriction of the S(6) retraction law: retractionDownMap n p = accepted q implies p = sectionLift n b and q = b.toPresentation for some base presentation b (accepted_only_from_section), refusal holds exactly off the section image (nonDescent_iff_off_image), the witness b is unique (sectionLift_injective), a lift at stage m ≠ n is refused by r_n (retraction_stage_strict), and image membership is a Bool test computed from the syntax (inImage_iff). With old_image_base this gives a left inverse on the image and refusal off it. The accompanying note is a proposal with AuthorityEffect None and records a Lean 4.34.0 build whose six axiom lines stay within propext and Quot.sound.\n@BOTTLENECK A proposal only: ledger row WDP-P001-019 is untouched and TFQ-0372 is not discharged by this record; the corrected cardinality theorem, OB-1, carrierCard, the wire grammar, the Python codec and any stage beyond the five base shapes are outside its scope, and S6Descent checks the separate integer example u(x) = (x,0).\n@ASSUME Pinned education SnCarrier model: BasePresentation, sectionLift and retractionDownMap in 002_oesn/lean4/SnCarrier.lean (assumption)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/SnCarrierPfp.lean | SnCarrierPfp.sectionLift | def | def sectionLift (stage : Nat) : Base G → Pres G | .ground => .lift stage (.glyphs []) | .supplied m => .lift stage (.glyphs [m]) | .relation (.pair f \n lean4/SnCarrierPfp.lean | SnCarrierPfp.old_image_base | theorem | theorem old_image_base (n : Nat) (b : Base G) : retr n (sectionLift n b) = .accepted b.toPres\n lean4/SnCarrierPfp.lean | SnCarrierPfp.sectionLift_injective | theorem | theorem sectionLift_injective (n : Nat) : Function.Injective (sectionLift n : Base G → Pres G)\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.sectionLift | def | def sectionLift (stage : Nat) : Base G → Pres G | .ground => .lift stage (.glyphs []) | .supplied m => .lift stage (.glyphs [m]) | .relation (.pair f \n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.old_image_base | theorem | theorem old_image_base (n : Nat) (b : Base G) : retr n (sectionLift n b) = .accepted b.toPres\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.sectionLift_injective | theorem | theorem sectionLift_injective (n : Nat) : Function.Injective (sectionLift n : Base G → Pres G)\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.accepted_only_from_section | theorem | theorem accepted_only_from_section (n : Nat) (p q : Pres G) (h : retr n p = .accepted q) : ∃ b : Base G, p = sectionLift n b ∧ q = b.toPres\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.nonDescent_iff_off_image | theorem | theorem nonDescent_iff_off_image (n : Nat) (p : Pres G) : retr n p = .nonDescent ↔ ∀ b : Base G, p ≠ sectionLift n b\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.retraction_stage_strict | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.inImage_iff | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.SectionRetraction.injective | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.liftStage_sectionLift | theorem\n lean4/OldImageInjective.lean | OldImageInjective.law_freedom_off_image | theorem\n lean4/OldImageInjective.lean | OldImageInjective.injective_iff_exists_law | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.SectionRetraction | structure\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.refused_iff_off_image | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.refuseOffImage_isSectionRetraction | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.toy_refused_iff_odd | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.lax_retraction_obeys_law_but_accepts_off_image | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.accepted_iff | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.sn_is_section_retraction | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.sn_refused_iff_off_image | theorem\n lean4/SnOffImageRefusal.lean | SnOffImageRefusal.liftStage | def\n code/python/tests/test_pfp_old_image_injective.py | test_law_implies_injective_on_a_range | def [test]\n code/python/tests/test_pfp_old_image_injective.py | test_injective_iff_some_recovery_exists | def [test]\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:old_image_law OldImageLaw u r: r (u a) = inl a for all a in A src=lean4/OldImageInjective.lean | OldImageInjective.OldImageLaw\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] OldImageInjective.OldImageLaw -- Do not state that arity/signature for OldImageInjective.OldImageLaw.\n [vacuous_proof] L1: If X is empty then every Postnikov truncation P_j(X), j>=0, is empty; if X is nonempty then every P_j(X) i -- Do not present a sorry/axiom/tautology as a proof.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 2,
+    "known_pos_injected": 1,
+    "neighbours": [
+      "PG-OLD-IMAGE-INJECTIVE",
+      "PG-SN-OFF-IMAGE-REFUSAL",
+      "PGW-MSSN-ATLAS-NOT-DERIVATION",
+      "PGW-SN-POSTNIKOV-REFUSAL",
+      "PGW-SN-PROTECTED-ANSWER-TRANSPORT",
+      "PGW-SN-REPRESENTATION-QUOTIENT",
+      "PGW-SN5-CONTINUATION-RECORDED-REQUEST"
+    ],
+    "feedback": true,
+    "index_position": 638,
+    "neg_entry_ids": [
+      "NEG-33E7BFCB9D7B",
+      "NEG-D479B7F98FA8"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

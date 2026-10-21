@@ -1,0 +1,85 @@
+{
+  "task_id": "PGW-D2-INITIAL-POINTED",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "aa9b0558041aa896abcdb178661a8bd0561cbd6f9f693539ec1af2e3b543e65e",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"r_irrefl_witness_ne\",\"statement\":\"For an irreflexive relation r and witness r a b, a ≠ b.\",\"hypotheses\":\"r irreflexive: ∀ x, ¬ r x x; hab : r a b\",\"ref\":{\"path\":\"lean4/Mub6L1SnTower.lean\",\"decl\":\"MUB6.Gluing.L1.irrefl_witness_ne\",\"status\":\"existing\"}},{\"id\":\"r_d2_initial_pointed\",\"statement\":\"For witness R(a,b), f(0)=a, f(1)=b preserves the edge 0→1, and any map g with g(0)=a, g(1)=b equals f (funext over Bool/Fin 2).\",\"hypotheses\":\"D2 carrier {0,1} with single edge 0→1; hab : R a b\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_d2_initial_pointed\",\"statement\":\"Given R a b, the map f: D2 → α with f 0 = a, f 1 = b preserves the edge, and every endpoint-preserving map equals f.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_d2_initial_pointed\"],\"lean_skeleton\":\"theorem D2_initial_pointed {α : Type} (R : α → α → Prop) {a b : α} (hab : R a b) : ∃! f : Bool → α, f false = a ∧ f true = b := sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"D2_initial_pointed\",\"status\":\"proposed_new\"}},{\"id\":\"l_injective_irrefl\",\"statement\":\"Under irreflexivity of R, the map f with f 0 = a, f 1 = b is injective, since a ≠ b by irrefl_witness_ne.\",\"relation_to_target\":\"implies\",\"depends_on\":[\"r_irrefl_witness_ne\",\"l_d2_initial_pointed\"],\"lean_skeleton\":\"theorem D2_map_injective {α : Type} (R : α → α → Prop) (hirr : ∀ x, ¬ R x x) {a b : α} (hab : R a b) (f : Bool → α) (h0 : f false = a) (h1 : f true = b) : Function.Injective f := sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"D2_map_injective\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_all_edges\",\"claim\":\"The map f describes every edge of R or preserves non-edges.\",\"rejecting_invariant\":\"Only the chosen witness R(a,b) is represented; the map need not reflect non-edges or other edges of R.\"},{\"id\":\"nm_irrefl_forced\",\"claim\":\"Irreflexivity follows from the witness alone.\",\"rejecting_invariant\":\"Without the hypothesis, R a a may hold, so f may be non-injective (a = b); irreflexivity is a supplied hypothesis.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Lean proofs of D2_initial_pointed and D2_map_injective are not yet written (skeletons use sorry).\",\"No existing generators are grounded in SRC or KNOWN+ for this target, so generators and compositions are empty.\",\"D2 carrier type formalization (Bool vs Fin 2) and edge structure are undecided.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "r_irrefl_witness_ne",
+        "statement": "For an irreflexive relation r and witness r a b, a ≠ b.",
+        "hypotheses": "r irreflexive: ∀ x, ¬ r x x; hab : r a b",
+        "ref": {
+          "path": "lean4/Mub6L1SnTower.lean",
+          "decl": "MUB6.Gluing.L1.irrefl_witness_ne",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_d2_initial_pointed",
+        "statement": "For witness R(a,b), f(0)=a, f(1)=b preserves the edge 0→1, and any map g with g(0)=a, g(1)=b equals f (funext over Bool/Fin 2).",
+        "hypotheses": "D2 carrier {0,1} with single edge 0→1; hab : R a b",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_d2_initial_pointed",
+        "statement": "Given R a b, the map f: D2 → α with f 0 = a, f 1 = b preserves the edge, and every endpoint-preserving map equals f.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_d2_initial_pointed"
+        ],
+        "lean_skeleton": "theorem D2_initial_pointed {α : Type} (R : α → α → Prop) {a b : α} (hab : R a b) : ∃! f : Bool → α, f false = a ∧ f true = b := sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "D2_initial_pointed",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "l_injective_irrefl",
+        "statement": "Under irreflexivity of R, the map f with f 0 = a, f 1 = b is injective, since a ≠ b by irrefl_witness_ne.",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "r_irrefl_witness_ne",
+          "l_d2_initial_pointed"
+        ],
+        "lean_skeleton": "theorem D2_map_injective {α : Type} (R : α → α → Prop) (hirr : ∀ x, ¬ R x x) {a b : α} (hab : R a b) (f : Bool → α) (h0 : f false = a) (h1 : f true = b) : Function.Injective f := sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "D2_map_injective",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_all_edges",
+        "claim": "The map f describes every edge of R or preserves non-edges.",
+        "rejecting_invariant": "Only the chosen witness R(a,b) is represented; the map need not reflect non-edges or other edges of R."
+      },
+      {
+        "id": "nm_irrefl_forced",
+        "claim": "Irreflexivity follows from the witness alone.",
+        "rejecting_invariant": "Without the hypothesis, R a a may hold, so f may be non-injective (a = b); irreflexivity is a supplied hypothesis."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Lean proofs of D2_initial_pointed and D2_map_injective are not yet written (skeletons use sorry).",
+      "No existing generators are grounded in SRC or KNOWN+ for this target, so generators and compositions are empty.",
+      "D2 carrier type formalization (Bool vs Fin 2) and edge structure are undecided."
+    ]
+  }
+}
