@@ -104,6 +104,7 @@ pub mod finite_spinfoam;
 pub mod finite_witness;
 pub mod group_param;
 pub mod hilbert_lift_completion;
+pub mod inner_product_uniqueness;
 pub mod legacy_suites;
 pub mod observer_functor;
 pub mod obstruction_calc;

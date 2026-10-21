@@ -79,6 +79,8 @@ lean_lib «FiniteQuantum» where
     `BornHermitianCarrier,
     `BornHermitianPsdDecomposition,
     `BornHermitianTraceRepresentation,
+    `SectorFormUniqueness,
+    `SectorFormHermitian,
     `WeylCommutant,
     `H001ProbabilitySimplex,
     `H001Rats,
