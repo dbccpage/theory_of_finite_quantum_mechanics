@@ -6,11 +6,15 @@ target:
   source_statement: 'Open problem: no four pairwise mutually unbiased bases exist in C^6.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: The corpus certifies exact reductions (quartet existence iff solutions of the 618-,
+  source_bottleneck: 'The corpus certifies exact reductions (quartet existence iff solutions of the 618-,
     648- or 666-equation quadratic systems in stated boxes), conditional implications over supplied premises,
     and exclusion of the regions in MUB6-C28 and MUB6-PAPER-CLOSE-COLUMNS; it does not cover the full
     boxes, the six charts, the 56 family cells, the three cusp collars, or triples outside the Szollosi
-    parameterization.
+    parameterization. N(6) <= 5 is recorded separately as MUB6-OPENAI-FAMILY-LE-FIVE (external theorem
+    of OpenAI, not built here); it does not decide whether a quartet exists. OpenAI N(6)=3 is recorded
+    as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code
+    and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize
+    it; it is not imported.'
   source_refs:
   - dag/derivations/25_mub/tfq_1254_mub6_no_quartet_d6.md
   - papers/core/mub6/theory_of_finite_mub6.jsonl
@@ -26,7 +30,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/25_mub/tfq_1254_mub6_no_quartet_d6.md
-    sha256: 301385ef8aa00aebf94814c81dd7fc61264be3f98874e12d8f8e69bd0506b423
+    sha256: 7130ff4f86ed650d852506db097ab7d65d11f7267b789eb6ce2f3fe57b70f537
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

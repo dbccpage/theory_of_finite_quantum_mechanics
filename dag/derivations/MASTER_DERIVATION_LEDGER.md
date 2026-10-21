@@ -24,7 +24,7 @@ In strict adherence to the **Claim Hygiene Rule** and `AuthorityEffect: None`:
 
 ## 2. Derivation Stage Census & Status Taxonomy
 
-The derivation tree comprises **873 primary derivation steps** structured across **29 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
+The derivation tree comprises **874 primary derivation steps** structured across **29 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
 
 | Stage Index | Stage Name | Derivation Step Count | Core Physical & Mathematical Focus | Primary DAG Range |
 | :--- | :--- | :---: | :--- | :--- |
@@ -52,7 +52,7 @@ The derivation tree comprises **873 primary derivation steps** structured across
 | §22 | `IMPLEMENTATION_SIBLING` | 34 | Diagnostic controls, GF(2) parity schedules, exact rational measurements | [`TFQ-0166`..`TFQ-0199`] |
 | §23 | `ENGINE_CUSTODY` | 34 | Three-language parity protocol (Lean 4, Rust, Python), authority ceiling None | [`TFQ-0200`..`TFQ-0233`] |
 | §24 | `DRESSING_FIELD` | 43 | Group-valued multigraph connections, spanning-tree gauge dressing | [`TFQ-0397`..`TFQ-1137`] |
-| §25 | `MUTUALLY_UNBIASED_BASES` | 66 | Exact projector MUBs, prime-power constructions, MUB(6) non-existence fences | [`TFQ-0402`..`TFQ-1282`] |
+| §25 | `MUTUALLY_UNBIASED_BASES` | 67 | Exact projector MUBs, prime-power constructions, MUB(6) non-existence fences | [`TFQ-0402`..`TFQ-1282`] |
 | §26 | `FERMION_SIGN` | 41 | Signed-graph switching normal form, meron character cancellation on flip orbits | [`TFQ-0406`..`TFQ-1220`] |
 | §27 | `TENSOR_COMPOSITION` | 7 | Tomographic composite coordinates, operational effect cones, finite POVMs | [`TFQ-0410`..`TFQ-0416`] |
 | §28 | `MAJORANA` | 46 | F2 parity schedules, residual trichotomy, syndrome completion, tetron carriers | [`TFQ-1138`..`TFQ-1183`] |
@@ -60,7 +60,7 @@ The derivation tree comprises **873 primary derivation steps** structured across
 
 ---
 
-## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-1364`)
+## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-1365`)
 
 Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) Stage, (4) Direct DAG Parent, (5) Epistemic Status, (6) Governing Obligation / Invariant Summary, (7) Multi-Tier Code & Proof Witnesses, and (8) Link to the Standalone Markdown Paper in `dag/derivations/`.
 
@@ -832,6 +832,7 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-1253`** | Tao matrix balanced Laurent sums have squared modulus nine | `MUTUALLY_UNBIASED_BASES` | `PROVED_LEAN` | `TFQ-1230` | `MUB6-TAO-LAURENT-NORM-NINE` (PROVED_LEAN) | - | [`TFQ-1253.md`](../../dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md) | Lean: `3` |
 | **`TFQ-1254`** | Non-existence of four MUBs in dimension six (open) | `MUTUALLY_UNBIASED_BASES` | `OPEN_OBLIGATION` | `TFQ-0405` | `MUB6-NO-QUARTET-D6` (OPEN) | - | [`TFQ-1254.md`](../../dag/derivations/25_mub/tfq_1254_mub6_no_quartet_d6.md) | Declarative / Formal Spec |
 | **`TFQ-1255`** | Maximal number of MUBs in dimension six equals three (open) | `MUTUALLY_UNBIASED_BASES` | `OPEN_OBLIGATION` | `TFQ-0405` | `MUB6-MAX-MUB-SIX-EQUALS-THREE` (OPEN) | - | [`TFQ-1255.md`](../../dag/derivations/25_mub/tfq_1255_mub6_max_mub_six_equals_three.md) | Declarative / Formal Spec |
+| **`TFQ-1365`** | At most five mutually unbiased bases in dimension six (OpenAI, imported) | `MUTUALLY_UNBIASED_BASES` | `IMPORTED_ASSUMPTION` | `TFQ-0405` | `MUB6-OPENAI-FAMILY-LE-FIVE` (IMPORTED_ASSUMPTION) | - | [`TFQ-1365.md`](../../dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md) | Declarative / Formal Spec |
 | **`TFQ-1256`** | Route C label-count arithmetic | `MUTUALLY_UNBIASED_BASES` | `PROVED_LEAN` | `TFQ-0405` | `MUB6-ROUTE-C-LABEL-ARITHMETIC` (PROVED_LEAN) | - | [`TFQ-1256.md`](../../dag/derivations/25_mub/tfq_1256_mub6_route_c_label_arithmetic.md) | Lean: `3` |
 | **`TFQ-1257`** | Route C: no complete family under a Fourier-triple landing premise | `MUTUALLY_UNBIASED_BASES` | `CONDITIONAL` | `TFQ-1258` | `MUB6-ROUTE-C-CONDITIONAL` (CONDITIONAL) | - | [`TFQ-1257.md`](../../dag/derivations/25_mub/tfq_1257_mub6_route_c_conditional.md) | Lean: `2` |
 | **`TFQ-1258`** | Combinatorial gluing over opaque bases | `MUTUALLY_UNBIASED_BASES` | `PROVED_LEAN` | `TFQ-0405` | `MUB6-GLUING-G3-OPAQUE` (PROVED_LEAN) | - | [`TFQ-1258.md`](../../dag/derivations/25_mub/tfq_1258_mub6_gluing_g3_opaque.md) | Lean: `2` |
@@ -946,7 +947,7 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 
 ## 3b. One Derivation Graph
 
-`dag/derivation_dag.json` (821 nodes, 818 routes) and `dag/theory_of_finite_qm.jsonl` (873 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 265 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
+`dag/derivation_dag.json` (822 nodes, 819 routes) and `dag/theory_of_finite_qm.jsonl` (874 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 266 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
 
 ---
 
@@ -1023,7 +1024,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 ## 6. Claim Hygiene Assessment
 
 ### 6.1 What this Master Ledger Supports
-- Complete, un-truncated mathematical cataloging of all 873 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
+- Complete, un-truncated mathematical cataloging of all 874 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
 - Exact 1-to-1 bijection between ledger rows, standalone Markdown papers, and cryptographic contract score sidecars.
 - Complete mapping of the 43 foundational packets in `theory_of_finite_quantum_foundations.md` and the 65 atlas questions in `docs/QM_PROBLEM_AND_PROOF_ATLAS.md`.
 - Verification that every derivation carries explicitly declared premises, boundary fences, and multi-language implementation witnesses.
@@ -1034,7 +1035,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 - Does not assert that passing computational and formal verification replaces experimental laboratory observation.
 
 ### 6.3 The Narrowest Defensible Claim
-Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 873 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
+Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 874 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
 
 ### 6.4 The Next Test Needed
 Run `python scripts/contract_scores.py check` to certify cryptographic integrity of all companion score sidecars, followed by `python scripts/verify_qm_atlas_loc.py` to confirm zero line-range drift across the repository.

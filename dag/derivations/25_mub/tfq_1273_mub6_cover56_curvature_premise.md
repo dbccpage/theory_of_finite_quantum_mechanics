@@ -14,7 +14,7 @@
 Certified membership of a point in the stored 56-interval moduli cover is equivalent to geometric membership together with a supplied curvature certificate for its triple.
 
 ### Governing Obligation
-The 56 stored intervals carry a depth label 64 and positive margins but no contractor execution, per-cell boxes, interval Jacobians or cusp collars; the curvature certificate remains a premise of conjecture3_szollosi_deltoid_closure.
+The 56 stored intervals carry a depth label 64 and positive margins but no contractor execution, per-cell boxes, interval Jacobians or cusp collars; the curvature certificate remains a premise of conjecture3_szollosi_deltoid_closure. The legacy 28-cell, 56-cell, 24-leaf cusp and collar receipts are relabelled NOT_A_CERTIFICATE (literal margins) as of 2026-10-21.
 
 ### Witness Audit
 The iff exposes HasCurvatureCertificate pt.triple as a conjunct.

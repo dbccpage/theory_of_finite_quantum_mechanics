@@ -55,6 +55,26 @@ The Matolcsi receipt has raw SHA-256
 `598d73b4f7b6807d62fc8d5c7698fd7c00ca73634c24641e0f2a848c873fc6fa`.
 Its internal digest is a separate field, not the file digest.
 
+## Honesty addendum 2026-10-21: legacy receipts that are not certificates
+
+No claim above is weakened. The following legacy receipts and modules are relabelled
+`NOT_A_CERTIFICATE`, with the reason, in the receipts themselves
+(`artifacts/*.json`, key `certificate_status`) and in `artifacts/manifest.json`.
+
+| Receipt or module | Status | Reason |
+|:---|:---|:---|
+| `artifacts/mub6_szollosi_t5_cover_receipt.json`; `code/rust/src/mub/omega_native/mub6_szollosi_t5_cover.rs` (the "T5 cover") | `NOT_A_CERTIFICATE: evaluates known roots only; no cover` | It evaluates only the 120 known root boxes loaded from `special_replay.json`; `excluded_leaves` is 0 and no complement leaf exists. `verified_sound` is the literal `true` in each receipt constructor. The dimension-3 control compares the literal `3 == 3`. The tests return silently when the replay file is missing. The 1e-10 radius cover uses an asserted sensitivity constant (8000). Only the exact interval pair-gap over the 120 boxes is genuine. Ray completeness at p0 is open. |
+| `artifacts/mub_target_a10_global_cover_receipt.json` (28-cell A10 tree: F6 4, B6 8, S6 4, collar 4, Karlsson exterior 4, H6 4) | `NOT_A_CERTIFICATE` | The margins 37249/90000, 12133/30000 and 527/576 are literals. The deltoid-cover candidate box forces \|U00\|^2 >= 81/100 whereas every basis unbiased to the identity has \|U00\|^2 = 1/6, so the box contains no candidate (DAG `MUB6-DELTOID-COVER-BOX-DEFECT`). `certified:true` is a stored flag. |
+| `artifacts/mub_target_a12_smale_sentry_receipt.json`; `TargetA12SmaleSentry.lean` `canonicalCell56` (56 cells) | `NOT_A_CERTIFICATE` | The 56 cells are scalar intervals [i/56,(i+1)/56] of one label with a stored depth constant 64; they do not cover the two-parameter Szollosi family. No per-cell boxes, Jacobians or Krawczyk images exist. `HasCurvatureCertificate` is a supplied premise. Conjecture 3 is OPEN. The receipt itself scans 28 cells. |
+| `artifacts/mub_target_a2_deltoid_cusp_receipt.json` (A2 cusp blow-up, 24 leaf cells) | `NOT_A_CERTIFICATE` | Literal margins, formal angle labels and stored flags; no blow-up chart or collar data. |
+| `artifacts/mub_target_a8_collar_boundary_receipt.json` (A1/A8 collar cover) | `NOT_A_CERTIFICATE` | Literal margins and stored flags. |
+| `artifacts/mub_karlsson_volume_cover.json` | Not edited (the file carries its own internal digest). Treat as `NOT_A_CERTIFICATE`. | The minimum of the 104 stored per-box gaps equals the literal 37249/90000, `min_triad_defect_gap` is 0, and the margins are the same fixture literals. |
+| `checkPartitionCover_sound` (`TargetA5FiniteCover.lean:237`) | Narrow | It quantifies only over rational points `x : Fin 5 -> Rat`, so it is not a cover of a real parameter domain. |
+
+What does stand: the Lean soundness lemmas (`RectangularQuadraticExclusion`, `SparseRectangularExclusion`,
+`SzollosiIntervalExclusion`, `MubQuadraticTransitionSeparation.close_columns_box_excluded`) are unchanged,
+as is the general reduction chain to the 386/320-coordinate quadratic system.
+
 ## Conjecture 3 / 56-cell sentry
 
 - Supported: positive stored rational margins and conditional implications in
@@ -414,7 +434,7 @@ and deterministic archive re-certification.
 
 Audit of 2026-10-21. The unified derivation DAG (`dag/fragments/unified_dag.json`) folds the records of this corpus into one graph: a record with no trunk counterpart is a NEW application-branch node with its own TFQ record; a restatement of a trunk step is an ALIAS row that points to the trunk node. *Source claimed* is the status the source asserted; *Audited* is the status the audit assigned against what is actually in this checkout (Lean declarations resolved, replays rerun, statements compared). The original claims, labels and text of this document are kept unchanged. A status below the source claim means the claim is not established as stated; it does not mean the underlying mathematics is false (only REFUTED means that). For an ALIAS row the audited column is the status of the trunk node, which is the authority for the restated step. Regenerate with `python -I -X utf8 papers/core/tools/build_corpus_dag_backlinks.py`. The MUB6 register has no status field; the claimed status of its records is PROVED_LEAN because each cites a Lean name. Rows whose id is not a `MUB6-DERIV-*` id come from the claim ledger, the paper or the atlas.
 
-62 NEW records and 51 ALIAS rows; 34 same, 26 lowered, 1 raised, 1 reclassified. REFUTED: `MUB6-DERIV-062`.
+63 NEW records and 51 ALIAS rows; 35 same, 26 lowered, 1 raised, 1 reclassified. REFUTED: `MUB6-DERIV-062`.
 
 | Source id | Kind | TFQ record | DAG node | Source claimed | Audited | Reconciliation |
 |---|---|---|---|---|---|---|
@@ -525,6 +545,7 @@ Audit of 2026-10-21. The unified derivation DAG (`dag/fragments/unified_dag.json
 | `MUB6-DERIV-084` | NEW | [TFQ-1250](../../../dag/derivations/25_mub/tfq_1250_mub6_five_branch_routing_claim.md) | `MUB6-FIVE-BRANCH-ROUTING-CLAIM` | PROVED_LEAN | **OPEN** | lowered |
 | `MUB6-DERIV-085` | NEW | [TFQ-1254](../../../dag/derivations/25_mub/tfq_1254_mub6_no_quartet_d6.md) | `MUB6-NO-QUARTET-D6` | PROVED_LEAN | **OPEN** | lowered |
 | `MUB6-DERIV-086` | NEW | [TFQ-1255](../../../dag/derivations/25_mub/tfq_1255_mub6_max_mub_six_equals_three.md) | `MUB6-MAX-MUB-SIX-EQUALS-THREE` | PROVED_LEAN | **OPEN** | lowered |
+| `MUB6-IMPORT-OPENAI-LE5` | NEW | [TFQ-1365](../../../dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md) | `MUB6-OPENAI-FAMILY-LE-FIVE` | IMPORTED_ASSUMPTION | **IMPORTED_ASSUMPTION** | same |
 | `MUB6-LEDGER-COVER56` | NEW | [TFQ-1273](../../../dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md) | `MUB6-COVER56-CURVATURE-PREMISE` | PROVED_LEAN | **PROVED_LEAN** | same |
 | `MUB6-LEDGER-G3-GLUING` | NEW | [TFQ-1258](../../../dag/derivations/25_mub/tfq_1258_mub6_gluing_g3_opaque.md) | `MUB6-GLUING-G3-OPAQUE` | PROVED_LEAN | **PROVED_LEAN** | same |
 | `MUB6-PAPER-BALANCE-SYZYGY` | NEW | [TFQ-1265](../../../dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md) | `MUB6-TRANSITION-BALANCE-SYZYGY` | PROVED_LEAN | **PROVED_LEAN** | same |
@@ -537,6 +558,7 @@ Audit of 2026-10-21. The unified derivation DAG (`dag/fragments/unified_dag.json
 - 2026-10-21 ERRATUM (MUB6-DERIV-062, TFQ-1231): REFUTED. The register claims that no affine family through F_2 (x) F_3 contains a third basis unbiased to both the identity and the base matrix. The product triple I_6, F_2 (x) F_3 / sqrt 6, A_2 (x) C_2 (itself row-phase equivalent to F_2 (x) F_3) is pairwise unbiased (exact check `verify_three_bases`, squared overlaps 1/6; Jaming et al., arXiv:0902.0882, give an infinite family of such triplets from the Fourier family).
 - 2026-10-21 ERRATUM (MUB6-DERIV-064/065, TFQ-1233/TFQ-1234): The total of 180 real constraints in 72 coordinates is correct, but the split '36 normalization, 36 against I_6, 108 against F_6 and B_3' is not the one in Lean. The Lean indexing (`total_equation_count`, `mu_equation_count`, `coordinate_count`) is 108 MU residuals (36 per basis of the fixed triple) plus 72 real and imaginary components of U*U - I. The count is not an independence, rank or overdetermination statement.
 - 2026-10-21 ERRATUM (MUB6-DERIV-053, TFQ-1223): With X|j> = |j+1 mod 6> and Z|j> = w^j|j> one has Z X = w X Z, equivalently X Z = w^{-1} Z X. The register writes X Z = w Z X, which holds only under the opposite clock convention. There is no d = 6 Lean declaration for it, and no MUB count follows from the relation.
+- 2026-10-21 ERRATUM (MUB6-DERIV-075, TFQ-1252): The register summary states Conjecture 2 as: no 6x6 complex Hadamard matrix has all 20 balanced 3x3 submatrices with determinant zero, and that it implies no fourth basis unbiased to F_6. Neither is the conjecture. Matolcsi, Matszangosz, Varga and Weiner (arXiv:2503.14752) conjecture Laurent (character) vanishing g_H(pi a) = 0 for every coordinate permutation pi of a = (1,1,1,-1,-1,-1), plus a condition coupling the characters at 3a, for transitions of a MUB triplet; with Conjecture 3 and Proposition 4.2 it would give at most three MUBs. Corrected in the register (original wording in summary_original) on 2026-10-21.
 - 2026-10-21 ERRATUM (MUB6-DERIV-076, TFQ-1253): The register calls the quantity an l1 operator norm ||P S_6 P||_1 = 9. The computed (and Lean) quantity is |sum_j prod_r S_rj^{g_r}|^2 = 9 for each of the 20 balanced sign vectors g (`tao_all_balanced_masks`, `tao_all_balanced_laurent`). This is a finite evaluation for one matrix and gives no nonextension statement without Conjecture 2.
 - 2026-10-21 ERRATUM (MUB6-DERIV-085/086, TFQ-1254/TFQ-1255): Both records carry PROVED_LEAN. DERIV-085 (no quartet in dimension six) and DERIV-086 (max MUB(6) = 3) are OPEN: no such declaration exists under `lean4/`, and the package itself states that N(6) = 3 remains open.
 - 2026-10-21 ERRATUM (MUB6-LEAN-CENSUS): None of the 86 Lean names in the register's `languages.lean4` fields exists. The Lean that actually backs the audited records lives in the repository-root `lean4/` (ConcreteMub*, Szollosi*, MubTaoLaurent, Conjecture2GeneralMechanization, ...).

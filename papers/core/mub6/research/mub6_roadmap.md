@@ -3,9 +3,15 @@
 AuthorityEffect: None
 Status: Regional Firewall Discharged via Route C (The Fourier Landing Bypass); `NoCompleteMUB6` unconditionally mechanized in Lean 4 with zero non-standard axioms.
 
+> **Correction 2026-10-21.** The statement just above is withdrawn; see `superseded_notice.md`, `../mub6.md` sections 3 and 4 and `mub6_review_and_next_derivation.md`. `no_complete_mub6_via_route_c` takes the landing hypothesis `h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily` as a premise, the cover margins it cites (37249/90000, 12133/30000) are literal fixture values rather than computed ones, and gap G1 is OPEN. The original text is kept unchanged. Separately, OpenAI's published Lean proof of N(6) <= 5 (which implies that no seven MUBs exist) is a different, imported argument; see `../documentation/mub6_master_classification_and_openai_comparative_synthesis.md` (corrected 2026-10-21) and `../documentation/openai_mub6_le5_external_import.md`. It neither rescues Route C nor shows N(6) = 3.
+
+
 Last Updated: 2026-10-09
 
 PR 58 scope correction: earlier milestone descriptions below are historical labels. The complete 7-basis non-existence problem (`NoCompleteMUB6`) is unconditionally derived via Route C (`RouteCFourierLandingBypass.lean`).
+
+> **Correction 2026-10-21.** The statement just above is withdrawn; see `superseded_notice.md`, `../mub6.md` sections 3 and 4 and `mub6_review_and_next_derivation.md`. `no_complete_mub6_via_route_c` takes the landing hypothesis `h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily` as a premise, the cover margins it cites (37249/90000, 12133/30000) are literal fixture values rather than computed ones, and gap G1 is OPEN. The original text is kept unchanged. Separately, OpenAI's published Lean proof of N(6) <= 5 (which implies that no seven MUBs exist) is a different, imported argument; see `../documentation/mub6_master_classification_and_openai_comparative_synthesis.md` (corrected 2026-10-21) and `../documentation/openai_mub6_le5_external_import.md`. It neither rescues Route C nor shows N(6) = 3.
+
 
 ---
 
@@ -212,6 +218,9 @@ G1 ∧ G2 (Moduli Reduction Assembly) ──────────────
 ## 6. Risk Assessment & Epistemic Boundaries
 
 1. **Epistemic Scoping & Regional Firewall Discharge**: The former conditional regional firewall (`stated region only; mints no authority`) has been formally removed and discharged for the complete 7-basis problem via Route C (`RouteCFourierLandingBypass.lean`). `NoCompleteMUB6` is unconditionally established in Lean 4 without external hypotheses. For sub-problems concerning whether an isolated 4th basis exists in non-Fourier configurations ($\mathrm{MUB}(6) = 3$), that remains an independent variety classification problem. All statements must preserve claim hygiene: "supports", "demonstrates in this certified model", "is consistent with".
+
+> **Correction 2026-10-21.** The statement just above is withdrawn; see `superseded_notice.md`, `../mub6.md` sections 3 and 4 and `mub6_review_and_next_derivation.md`. `no_complete_mub6_via_route_c` takes the landing hypothesis `h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily` as a premise, the cover margins it cites (37249/90000, 12133/30000) are literal fixture values rather than computed ones, and gap G1 is OPEN. The original text is kept unchanged. Separately, OpenAI's published Lean proof of N(6) <= 5 (which implies that no seven MUBs exist) is a different, imported argument; see `../documentation/mub6_master_classification_and_openai_comparative_synthesis.md` (corrected 2026-10-21) and `../documentation/openai_mub6_le5_external_import.md`. It neither rescues Route C nor shows N(6) = 3.
+
 2. **Zero Floating-Point Discipline**: Zero floating-point types (`f32`/`f64`/`float`/`complex`) are permitted in any certifier, verifier, or solver. All computations must use exact rational ($\mathbb{Q}$) or cyclotomic ($\mathbb{Q}(\zeta_{24})$) arithmetic.
 3. **Lean 4 Foundational Axioms**: All Lean 4 modules must compile cleanly with 0 `sorry` and depend solely on the standard kernel axioms: `[propext, Classical.choice, Quot.sound]`.
 4. **Dual Outcome Readiness**: The engineering and mathematical infrastructure remains fully agnostic between Branch A (obstruction confirmation) and Branch B (counterexample extraction) for general sub-problems. The Smale $\alpha$-theory sentry ensures that if a 4th MUB exists in non-Fourier configurations, it will be rigorously identified and verified.
@@ -224,3 +233,6 @@ With the completion of Route C (`RouteCFourierLandingBypass.lean`), the 50-varia
 2. Certified global partition cover (`canonicalGlobalPartitionTree` on `cell_dita`) and Jaming et al. (2009) prove Fourier triples do not extend to 4 MUBs.
 3. Basis gluing ($G_3$) requires all constituent triples of a 7-MUB family to extend to 4 MUBs, creating an exact contradiction.
 4. Hence `NoCompleteMUB6` is unconditionally mechanized with 0 `sorry` in Lean 4.
+
+> **Correction 2026-10-21.** The statement just above is withdrawn; see `superseded_notice.md`, `../mub6.md` sections 3 and 4 and `mub6_review_and_next_derivation.md`. `no_complete_mub6_via_route_c` takes the landing hypothesis `h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily` as a premise, the cover margins it cites (37249/90000, 12133/30000) are literal fixture values rather than computed ones, and gap G1 is OPEN. The original text is kept unchanged. Separately, OpenAI's published Lean proof of N(6) <= 5 (which implies that no seven MUBs exist) is a different, imported argument; see `../documentation/mub6_master_classification_and_openai_comparative_synthesis.md` (corrected 2026-10-21) and `../documentation/openai_mub6_le5_external_import.md`. It neither rescues Route C nor shows N(6) = 3.
+
