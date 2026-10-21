@@ -250,14 +250,14 @@
     "No arbitrary-GPT classification, primitive reconstruction, instruments or channel classification is asserted."
   ],
   "sha256": {
-    "dag/derivation_dag.json": "ea298fa3004b0d165e68be6239e63a96119f2fc177a64f84eec6f344c4fd5046",
+    "dag/derivation_dag.json": "7d47692f1d53a94f14fe16dec4c13285d18bd7e20e240874c8f7a01e459ddd93",
     "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md": "3d1f897722aad08811a52c863e8bc47cfda41d9d087929a00c3925f4782de12f",
     "dag/derivations/README.md": "209664d2b0d469872b257db7fbe07b045df131fa64176dd98d637bd813483bc6",
     "dag/fragments/application_branches.json": "337b0a212553ff774a1706a1e0548774abe98b3cf1ed006e16640e9a2918093f",
     "dag/research/replay_tensor_countermodels.py": "4a104ca91efee4e5fb1311a962a7c7c64d6f7c4918b94085946c73b331944d52",
     "dag/research/tensor_countermodel_failed_replay.json": "e97668cf2cb3f78847b66a007de9b947b57b58f5a74be659db0311d62e46ae35",
-    "dag/sync_application_branches.py": "905356bdddf0eaf08c35315bc0251e3e77ab10e4d187d504e24aabb3d9935d5c",
-    "dag/test_application_branches.py": "04e6f152d53cfa91d302ebee8b82706309e32faf1954aef8dc411d006705dcde",
+    "dag/sync_application_branches.py": "8d3a02da769ee4797ce3ff40296fd9e18a01c37e47d5c41c8d040a20197d0fb6",
+    "dag/test_application_branches.py": "7f7609683a46d292b81a1d0bbbd5f6fd5377a2133584134a1e5a0b96b415e44f",
     "dag/test_tensor_countermodel_receipt.py": "c21e303b0d616513fae733bdab323315f7e4831f5b2e1479e379fdf81a0aedf2",
     "dag/test_tensor_measurement_receipt.py": "2b943c4d2892623f1296a2764ca128789428bd141a8ff5ec219bbbc6fb2459c6",
     "dag/theory_of_finite_qm.jsonl": "6afcbd51b7e3fc71fb741eacd1f1c41cd5ec34826265aa553aed0d04e5802bde",
@@ -528,6 +528,30 @@
       "previous": "0b99f72320824269df7653c6000aa578eace0042cacaa479954ac2673dfa0b22",
       "current": "c146e55b88e17f14ad66f21069b5c92ad13c5fffcc5d022fd95d6f9fb5421640",
       "reason": "current-file digest rebound when the lean-v4-35 (#137) and comp-integration (#145) commits were cherry-picked onto pfp-prompts (#131, #133, #136, #139) and the sync cycle was re-run: the master listing was regenerated from the consolidated graph; the Lean replay section and every tensor node, route and master record are unchanged",
+      "run": "branch dag-single-source"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/derivation_dag.json",
+      "previous": "ea298fa3004b0d165e68be6239e63a96119f2fc177a64f84eec6f344c4fd5046",
+      "current": "7d47692f1d53a94f14fe16dec4c13285d18bd7e20e240874c8f7a01e459ddd93",
+      "reason": "current-file digest rebound when derivation_dag.json became the single source of the derivation graph (schema derivation_dag.v2): the file gained the top-level keys records (every TFQ record, as in the JSONL), index_document and schema_notes, and schema_version derivation_dag.v2; the Lean replay section and every tensor node, route and master record are unchanged",
+      "run": "branch dag-single-source"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/sync_application_branches.py",
+      "previous": "905356bdddf0eaf08c35315bc0251e3e77ab10e4d187d504e24aabb3d9935d5c",
+      "current": "8d3a02da769ee4797ce3ff40296fd9e18a01c37e47d5c41c8d040a20197d0fb6",
+      "reason": "current-file digest rebound when derivation_dag.json became the single source of the derivation graph (schema derivation_dag.v2): the sync reads and writes records inside derivation_dag.json and renders the two views through dag/render_dag_views.py; the Lean replay section and every tensor node, route and master record are unchanged",
+      "run": "branch dag-single-source"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/test_application_branches.py",
+      "previous": "04e6f152d53cfa91d302ebee8b82706309e32faf1954aef8dc411d006705dcde",
+      "current": "7f7609683a46d292b81a1d0bbbd5f6fd5377a2133584134a1e5a0b96b415e44f",
+      "reason": "current-file digest rebound when derivation_dag.json became the single source of the derivation graph (schema derivation_dag.v2): the tests read the records from derivation_dag.json; the Lean replay section and every tensor node, route and master record are unchanged",
       "run": "branch dag-single-source"
     }
   ]
