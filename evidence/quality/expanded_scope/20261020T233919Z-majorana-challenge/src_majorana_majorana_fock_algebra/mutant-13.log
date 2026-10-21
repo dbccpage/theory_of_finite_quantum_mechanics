@@ -1,0 +1,76 @@
+{"phase": "candidate_bindings", "checked_symbols": ["FockCarrier", "GaussianRat", "first_anticommutation_failure", "gi"]}
+...........F..                                                           [100%]
+================================== FAILURES ===================================
+______________________ test_shape_and_resource_refusals _______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000249CBCC56E0>
+
+    def test_shape_and_resource_refusals(monkeypatch):
+        import src.majorana.majorana_modes as modes
+        import src.majorana.majorana_fock_algebra as fock
+        import src.majorana.native_exact_input as native
+        big = 1 << 1024
+        for fn in (q, checked_int, MajoranaMonomial.single, lambda x: GaussianRat(x, 0), as_rational):
+            with pytest.raises(ValueError if fn is not checked_int else CheckError):
+                fn(big)
+        assert q((1 << 1023)-1) == (1 << 1023)-1
+        with pytest.raises(ValueError):
+            as_rational(Rational(big, 3))
+        with pytest.raises(ScalarError):
+            hash_rational(F((1 << 1023)-1), F(1, (1 << 1023)-1))
+        assert len(hash_rational_vec([0]*4096).split(',')) == 4096
+        for value in ([0]*4097, ContainerChild([1])):
+            with pytest.raises(ScalarError):
+                hash_rational_vec(value)
+        assert len(MajoranaMonomial(tuple(range(256))).modes) == 256
+        with pytest.raises(MajoranaError):
+            MajoranaMonomial(tuple(range(257)))
+        with pytest.raises(MajoranaError):
+            MajoranaMonomial(tuple(range(256))).multiply(MajoranaMonomial.single(257))
+        terms = {MajoranaMonomial.single(j): F(1) for j in range(4096)}
+        owned = MajoranaOperator(terms)
+        assert len(owned.terms) == 4096
+        with pytest.raises(MajoranaError):
+            owned.add(MajoranaOperator.mode(4096))
+        terms[MajoranaMonomial.single(4096)] = F(0)
+        with pytest.raises(MajoranaError):
+            MajoranaOperator(terms)
+        with pytest.raises(MajoranaError, match='product budget'):
+            owned.multiply(owned)
+        a = MajoranaOperator({MajoranaMonomial((0, 1)): F(1)})
+        monkeypatch.setattr(modes, 'MAX_TERM_MODE_WORK', 3)
+        with pytest.raises(MajoranaError, match='mode-work'):
+            a.multiply(a)
+        monkeypatch.setattr(modes, 'MAX_WORK_BITS', 2)
+        with pytest.raises(MajoranaError, match='bit budget'):
+            MajoranaOperator({MajoranaMonomial.identity(): F(4)}).multiply(a)
+        with pytest.raises(MajoranaError):
+            kitaev_chain_parity(129)
+        assert kitaev_chain_parity(0) == MajoranaOperator.identity()
+        assert FockCarrier(5).dimension() == 32
+        for count in (0, 6, True, 1.0):
+            with pytest.raises(MajoranaError):
+                FockCarrier(count)
+        c = FockCarrier(1)
+        for method, end in [(c.majorana_generator, 2), (c.number_operator, 1), (c.lowering_operator, 1), (c.braid_unitary, 1)]:
+            for invalid in (0, -1, end+1, True, 1.0):
+                with pytest.raises(MajoranaError):
+>                   method(invalid)
+
+code\python\tests\test_majorana_integrity.py:339: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = FockCarrier(_modes=1, _dim=2), a = 3
+
+    def majorana_generator(self, a: object) -> list[list[GaussianRat]]:
+        a = self._index(a, 2 * self._modes, "Majorana index")
+        mode = (a - 1) // 2
+>       mask = 1 << (self._modes - 1 - mode)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: negative shift count
+
+evidence\quality\expanded_scope\20261020T233919Z-majorana-challenge\src_majorana_majorana_fock_algebra\mutant-13.py:180: ValueError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_integrity.py::test_shape_and_resource_refusals
+1 failed, 13 passed in 3.36s
+{"phase": "pytest", "exit_code": 1}

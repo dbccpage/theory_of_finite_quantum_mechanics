@@ -1,0 +1,194 @@
+{
+  "AuthorityEffect": "None",
+  "sources": {
+    "code/python/src/majorana/majorana_fock_algebra.py": "e3b7e4fcb412bd51543a75b46ea4c2d8a0c26236f2abe52d1b29bd5c418113f3",
+    "code/python/src/majorana/majorana_modes.py": "2b24d57e94393af39b8d66a0da0ecf72a62a50c33648cb5687940c2e6a9dd5a6",
+    "code/python/src/majorana/scalar.py": "659ba9e0de57c19c1a5a25db23edadb4e9ad4b68aa06ae7650111c5788d68e0a",
+    "code/python/src/majorana/native_exact_input.py": "aada70cf25ccf071707cb842f02c0948f2e8b0af243d8ee828301ffb60b2ace1",
+    "code/python/src/majorana/majorana/core/gf2_schema.py": "44be495abaab1feec10695e146e7abb63062bd96cac0a2a7c0d0de53055d7c58",
+    "code/python/src/majorana/majorana/core/gf2_matrix.py": "0dca3bcf607bccaefad7ebc90c0ebdba8e79a12bdfd7b9117123c4ee741004bc",
+    "code/python/src/majorana/majorana/core/gf2_diagnostic.py": "06e08db2e777fc22a0ff76dfec76fb31c1b964515df2e9c9368e1fe40ab03687"
+  },
+  "cases": [
+    {
+      "name": "lowering occupation mismatch",
+      "lowering": [
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        [
+          [
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      ],
+      "declared_number": [
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "0"
+          ]
+        ]
+      ],
+      "computed_c_dagger_c": [
+        [
+          [
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      ],
+      "equal": false
+    },
+    {
+      "name": "scalar subclass retained",
+      "returned_type": "LeakingFraction",
+      "arithmetic_type": "float"
+    },
+    {
+      "name": "unchecked scalar certificate constructor",
+      "status": "accepted inconsistent value/text"
+    },
+    {
+      "name": "number index admission",
+      "input": "True",
+      "status": "RETURNED",
+      "result": [
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "0"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "number index admission",
+      "input": "1.0",
+      "status": "TypeError",
+      "detail": "unsupported operand type(s) for <<: 'int' and 'float'"
+    },
+    {
+      "name": "number index admission",
+      "input": "-1",
+      "status": "RETURNED",
+      "result": [
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "number index admission",
+      "input": "2",
+      "status": "ValueError",
+      "detail": "negative shift count"
+    },
+    {
+      "name": "native scalar grammar observation",
+      "input": "0.5",
+      "output": "1/2",
+      "type": "Half"
+    },
+    {
+      "name": "native scalar grammar observation",
+      "input": "1e3",
+      "output": "1000",
+      "type": "Integer"
+    },
+    {
+      "name": "native scalar grammar observation",
+      "input": "1/-2",
+      "output": "-1/2",
+      "type": "Rational"
+    },
+    {
+      "name": "native scalar grammar observation",
+      "input": "0.1/0.2",
+      "output": "1/2",
+      "type": "Half"
+    },
+    {
+      "name": "native scalar grammar observation",
+      "input": "1/0",
+      "status": "ValueError"
+    },
+    {
+      "name": "native scalar grammar observation",
+      "input": "nan",
+      "status": "ValueError"
+    }
+  ],
+  "scope": "Exact runtime observations of current local providers. The native-backed imports remain unavailable and no native integration or full Majorana test score is inferred."
+}

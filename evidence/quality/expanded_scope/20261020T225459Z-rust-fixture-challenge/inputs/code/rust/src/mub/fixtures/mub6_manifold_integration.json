@@ -1,0 +1,15 @@
+{
+  "schema": "omega_mub.fixture_values.v1",
+  "authority_effect": "None",
+  "module": "mub6_manifold_integration",
+  "description": "Values mub6_manifold_integration.rs reads instead of computing them. None is evidence for any MUB(6) statement.",
+  "values": {
+    "coverage_closure_certified": {
+      "value": false,
+      "type": "bool",
+      "kind": "fixed_verdict",
+      "reason": "verify_full_unified_coverage sets closure_certified without a cover certificate; finitely many samples cannot certify a continuous region. It makes moduli_covering_closure false, so omega_mub_verify_all stops at step 3.2, and the committed mub_target_b3_manifold_integration_receipt.json (no producer) reports closure true.",
+      "used_at": "src/omega_native/mub6_manifold_integration.rs"
+    }
+  }
+}

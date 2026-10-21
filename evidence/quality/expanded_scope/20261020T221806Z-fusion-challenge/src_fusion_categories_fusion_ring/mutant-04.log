@@ -1,0 +1,34 @@
+{"phase": "candidate_bindings", "checked_symbols": ["AbelianGroup", "FusionRing", "FusionTable", "RingDefectType", "ising_global_dimension_rational"]}
+............F.....                                                       [100%]
+================================== FAILURES ===================================
+_________________________ test_unit_ising_fusion_ring _________________________
+
+    def test_unit_ising_fusion_ring():
+        ising = FusionRing.ising()
+        assert ising.rank == 3
+        assert ising.names == ["1", "sigma", "psi"]
+    
+        assert ising.dual(0) == 0
+        assert ising.dual(1) == 1
+        assert ising.dual(2) == 2
+    
+        assert ising.n(1, 1, 0) == 1
+        assert ising.n(1, 1, 1) == 0
+        assert ising.n(1, 1, 2) == 1
+    
+        assert ising.n(1, 2, 1) == 1
+    
+        assert ising.n(2, 2, 0) == 1
+    
+        assert ising.fusion_path_count(0, [1], 1) == 1
+        assert ising.fusion_path_count(0, [1, 1], 0) == 1
+        assert ising.fusion_path_count(0, [1, 1], 2) == 1
+>       assert ising_global_dimension_rational() == 4
+E       assert 5 == 4
+E        +  where 5 = ising_global_dimension_rational()
+
+code\python\tests\test_fusion_ring.py:61: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_ring.py::test_unit_ising_fusion_ring - a...
+1 failed, 17 passed, 1 deselected in 2.37s
+{"phase": "pytest", "exit_code": 1}

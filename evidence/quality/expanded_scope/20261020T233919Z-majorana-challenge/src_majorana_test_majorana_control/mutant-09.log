@@ -1,0 +1,22 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CheckError", "_all_hold", "_captured", "_demand", "_exec", "_fail", "_float_probe", "_gap", "_harness_oracle", "_invariant", "_joined", "_kill_all", "_killed_one", "_library_oracle", "_load", "_package_oracle", "_product", "_record", "_repo_root", "_require_baseline", "_require_int", "_restore_module", "_sum", "checked_int", "harness_seal", "test_end_to_end_cli", "test_harness_refuses_non_integers", "test_harness_seal", "test_integration_reads_origin", "test_mutation_harness", "test_mutation_library", "test_mutation_package", "test_negative_boundary", "test_origin_headers", "test_unit_certificate"]}
+............F........                                                    [100%]
+================================== FAILURES ===================================
+_______ test_mutant_protocol_restores_modules_and_does_not_invent_kills _______
+
+    def test_mutant_protocol_restores_modules_and_does_not_invent_kills():
+        name = '_majorana_integrity_candidate'
+        prior = ModuleType(name)
+        sys.modules[name] = prior
+        try:
+            for replacement in ('x = (', 'raise ImportError("fixture")'):
+                with pytest.raises(CheckError, match='not counted as a kill'):
+                    _killed_one('x = 1', 'invalid', 'x = 1', replacement, name, '', lambda ns: False)
+>               assert sys.modules[name] is prior
+                       ^^^^^^^^^^^^^^^^^
+E               KeyError: '_majorana_integrity_candidate'
+
+code\python\tests\test_majorana_integrity.py:379: KeyError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_integrity.py::test_mutant_protocol_restores_modules_and_does_not_invent_kills
+1 failed, 20 passed, 3 deselected in 3.78s
+{"phase": "pytest", "exit_code": 1}

@@ -1,0 +1,29 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ExactPhi1Certificate", "L1Seminorm", "L1SeminormError", "evaluate_weighted_l1_quotient"]}
+...F..............                                                       [100%]
+================================== FAILURES ===================================
+________ test_scalar_container_and_context_admission_has_no_callbacks _________
+
+    def test_scalar_container_and_context_admission_has_no_callbacks():
+        for value in [ClassCallback(), LeakingFraction(1), True]:
+            with pytest.raises(api.L1SeminormError):
+>               api.require_rational(value, "fixture")
+
+code\python\tests\test_functional_integrity.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-00.py:104: in require_rational
+    if isinstance(value, float):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tests.test_functional_integrity.ClassCallback object at 0x000002256EB5D810>
+
+    @property
+    def __class__(self):
+>       raise RuntimeError("must not invoke user class metadata")
+E       RuntimeError: must not invoke user class metadata
+
+code\python\tests\test_functional_integrity.py:18: RuntimeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_functional_integrity.py::test_scalar_container_and_context_admission_has_no_callbacks
+1 failed, 17 passed, 1 deselected in 1.59s
+{"phase": "pytest", "exit_code": 1}

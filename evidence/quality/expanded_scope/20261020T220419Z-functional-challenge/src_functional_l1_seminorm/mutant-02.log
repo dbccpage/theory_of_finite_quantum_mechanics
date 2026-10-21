@@ -1,0 +1,477 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ExactPhi1Certificate", "L1Seminorm", "L1SeminormError", "evaluate_weighted_l1_quotient"]}
+FFF..FF..FF.F.FFF.                                                       [100%]
+================================== FAILURES ===================================
+______ test_verified_context_is_detached_from_raw_and_exported_witnesses ______
+
+    def test_verified_context_is_detached_from_raw_and_exported_witnesses():
+        raw = submitted()
+        presentation = api.L1Seminorm([[0]], [1])
+>       result = presentation.verify_certificate(raw)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_functional_integrity.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:423: in _verified_parts
+    _require_primal(rows, alpha, omega, residual)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+boundary = ((Fraction(0, 1),),), alpha = (Fraction(0, 1),)
+omega = (Fraction(2, 1),), residual = (Fraction(2, 1),)
+
+    def _require_primal(
+        boundary: Sequence[Sequence[Fraction]],
+        alpha: Sequence[Fraction],
+        omega: Sequence[Fraction],
+        residual: Sequence[Fraction],
+    ) -> None:
+        for index, row in enumerate(boundary):
+            repair = _dot(row, alpha)
+            expected = omega[index] - repair
+            _work_fraction(expected, "primal residual")
+            if residual[index] == expected:
+>               raise _refuse(
+                    "Primal residual mismatch",
+                    index=index,
+                    expected=str(expected),
+                    actual=str(residual[index]),
+                )
+E               src.functional.l1_seminorm.L1SeminormError: Primal residual mismatch (index=0, expected=2, actual=2)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:277: L1SeminormError
+____________ test_all_public_verified_construction_checks_the_math ____________
+
+    def test_all_public_verified_construction_checks_the_math():
+>       with pytest.raises(api.L1SeminormError, match="Primal residual mismatch"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'Primal residual mismatch'
+E         Actual message: 'Duality gap not closed (primal=2, dual=100, reported=2)'
+
+code\python\tests\test_functional_integrity.py:62: AssertionError
+_____________ test_presentation_and_verified_lifecycle_are_frozen _____________
+
+    def test_presentation_and_verified_lifecycle_are_frozen():
+        boundary = [[0]]; weights = [1]
+        presentation = api.L1Seminorm(boundary, weights)
+>       result = presentation.verify_certificate(submitted())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_functional_integrity.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:423: in _verified_parts
+    _require_primal(rows, alpha, omega, residual)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+boundary = ((Fraction(0, 1),),), alpha = (Fraction(0, 1),)
+omega = (Fraction(2, 1),), residual = (Fraction(2, 1),)
+
+    def _require_primal(
+        boundary: Sequence[Sequence[Fraction]],
+        alpha: Sequence[Fraction],
+        omega: Sequence[Fraction],
+        residual: Sequence[Fraction],
+    ) -> None:
+        for index, row in enumerate(boundary):
+            repair = _dot(row, alpha)
+            expected = omega[index] - repair
+            _work_fraction(expected, "primal residual")
+            if residual[index] == expected:
+>               raise _refuse(
+                    "Primal residual mismatch",
+                    index=index,
+                    expected=str(expected),
+                    actual=str(residual[index]),
+                )
+E               src.functional.l1_seminorm.L1SeminormError: Primal residual mismatch (index=0, expected=2, actual=2)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:277: L1SeminormError
+______________________ test_work_budget_refusal_is_typed ______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000019008802650>
+
+    def test_work_budget_refusal_is_typed(monkeypatch):
+        monkeypatch.setattr(api, "MAX_WORK_BITS", 3)
+        # 3/5 is admitted at the input boundary; 9/25 needs more than 3 bits.
+        cert = api.ExactPhi1Certificate([Fraction(3, 5)], [[0]], [Fraction(3, 5)], [0],
+                                      [Fraction(3, 5)], [Fraction(3, 5)], Fraction(9, 25))
+>       with pytest.raises(api.L1SeminormError, match="bit budget exceeded") as cost:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'bit budget exceeded'
+E         Actual message: 'Primal residual mismatch (index=0, expected=3/5, actual=3/5)'
+
+code\python\tests\test_functional_integrity.py:140: AssertionError
+_________ test_nonzero_certificates_against_closed_one_column_problem _________
+
+    def test_nonzero_certificates_against_closed_one_column_problem():
+        # For B=(1,1)^T and weights (p,q), the exact minimum is
+        # min(p,q)*abs(x-y), attained by repairing to the heavier coordinate.
+        for p, q, x, y in product(range(1, 4), range(1, 4), range(-2, 3), range(-2, 3)):
+            shift = y if p <= q else x
+            difference = x - y
+            sign = (difference > 0) - (difference < 0)
+            dual = min(p, q) * sign
+            expected = min(p, q) * abs(difference)
+>           result = api.evaluate_weighted_l1_quotient([[1], [1]], [p, q], [x, y], [shift],
+                [x - shift, y - shift], [dual, -dual], expected)
+
+code\python\tests\test_functional_integrity.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:452: in evaluate_weighted_l1_quotient
+    return presentation.verify_certificate(certificate).value
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:423: in _verified_parts
+    _require_primal(rows, alpha, omega, residual)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+boundary = ((Fraction(1, 1),), (Fraction(1, 1),)), alpha = (Fraction(-2, 1),)
+omega = (Fraction(-2, 1), Fraction(-2, 1))
+residual = (Fraction(0, 1), Fraction(0, 1))
+
+    def _require_primal(
+        boundary: Sequence[Sequence[Fraction]],
+        alpha: Sequence[Fraction],
+        omega: Sequence[Fraction],
+        residual: Sequence[Fraction],
+    ) -> None:
+        for index, row in enumerate(boundary):
+            repair = _dot(row, alpha)
+            expected = omega[index] - repair
+            _work_fraction(expected, "primal residual")
+            if residual[index] == expected:
+>               raise _refuse(
+                    "Primal residual mismatch",
+                    index=index,
+                    expected=str(expected),
+                    actual=str(residual[index]),
+                )
+E               src.functional.l1_seminorm.L1SeminormError: Primal residual mismatch (index=0, expected=0, actual=0)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:277: L1SeminormError
+____________________________ test_zero_certificate ____________________________
+
+    def test_zero_certificate() -> None:
+        boundary = [[Fraction(1)], [Fraction(-1)]]
+        weights = [Fraction(1), Fraction(1)]
+        semi = L1Seminorm(boundary, weights)
+        cert = ExactPhi1Certificate(
+            omega=[Fraction(0), Fraction(0)],
+            d0=boundary,
+            weights=weights,
+            alpha=[Fraction(0)],
+            primal_residual=[Fraction(0), Fraction(0)],
+            dual_witness=[Fraction(0), Fraction(0)],
+            reported_value=Fraction(0),
+        )
+>       verified = semi.verify_certificate(cert)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_l1_seminorm.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:423: in _verified_parts
+    _require_primal(rows, alpha, omega, residual)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+boundary = ((Fraction(1, 1),), (Fraction(-1, 1),)), alpha = (Fraction(0, 1),)
+omega = (Fraction(0, 1), Fraction(0, 1))
+residual = (Fraction(0, 1), Fraction(0, 1))
+
+    def _require_primal(
+        boundary: Sequence[Sequence[Fraction]],
+        alpha: Sequence[Fraction],
+        omega: Sequence[Fraction],
+        residual: Sequence[Fraction],
+    ) -> None:
+        for index, row in enumerate(boundary):
+            repair = _dot(row, alpha)
+            expected = omega[index] - repair
+            _work_fraction(expected, "primal residual")
+            if residual[index] == expected:
+>               raise _refuse(
+                    "Primal residual mismatch",
+                    index=index,
+                    expected=str(expected),
+                    actual=str(residual[index]),
+                )
+E               src.functional.l1_seminorm.L1SeminormError: Primal residual mismatch (index=0, expected=0, actual=0)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:277: L1SeminormError
+_____________________ test_quotient_projection_reduction ______________________
+
+    def test_quotient_projection_reduction() -> None:
+        boundary = [[Fraction(1)], [Fraction(1)]]
+        weights = [Fraction(1), Fraction(1)]
+        semi = L1Seminorm(boundary, weights)
+        cert = ExactPhi1Certificate(
+            omega=[Fraction(2), Fraction(0)],
+            d0=boundary,
+            weights=weights,
+            alpha=[Fraction(1)],
+            primal_residual=[Fraction(1), Fraction(-1)],
+            dual_witness=[Fraction(1), Fraction(-1)],
+            reported_value=Fraction(2),
+        )
+>       verified = semi.verify_certificate(cert)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_l1_seminorm.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:423: in _verified_parts
+    _require_primal(rows, alpha, omega, residual)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+boundary = ((Fraction(1, 1),), (Fraction(1, 1),)), alpha = (Fraction(1, 1),)
+omega = (Fraction(2, 1), Fraction(0, 1))
+residual = (Fraction(1, 1), Fraction(-1, 1))
+
+    def _require_primal(
+        boundary: Sequence[Sequence[Fraction]],
+        alpha: Sequence[Fraction],
+        omega: Sequence[Fraction],
+        residual: Sequence[Fraction],
+    ) -> None:
+        for index, row in enumerate(boundary):
+            repair = _dot(row, alpha)
+            expected = omega[index] - repair
+            _work_fraction(expected, "primal residual")
+            if residual[index] == expected:
+>               raise _refuse(
+                    "Primal residual mismatch",
+                    index=index,
+                    expected=str(expected),
+                    actual=str(residual[index]),
+                )
+E               src.functional.l1_seminorm.L1SeminormError: Primal residual mismatch (index=0, expected=1, actual=1)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:277: L1SeminormError
+______________________ test_dual_orthogonality_violation ______________________
+
+    def test_dual_orthogonality_violation() -> None:
+        boundary = [[Fraction(1)], [Fraction(1)]]
+        weights = [Fraction(1), Fraction(1)]
+        semi = L1Seminorm(boundary, weights)
+        cert = ExactPhi1Certificate(
+            omega=[Fraction(2), Fraction(0)],
+            d0=boundary,
+            weights=weights,
+            alpha=[Fraction(1)],
+            primal_residual=[Fraction(1), Fraction(-1)],
+            dual_witness=[Fraction(1), Fraction(1)],
+            reported_value=Fraction(2),
+        )
+>       with pytest.raises(L1SeminormError, match="Dual witness not orthogonal") as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'Dual witness not orthogonal'
+E         Actual message: 'Primal residual mismatch (index=0, expected=1, actual=1)'
+
+code\python\tests\test_l1_seminorm.py:116: AssertionError
+_____________________ test_negative_certificate_refusals ______________________
+
+    def test_negative_certificate_refusals() -> None:
+        boundary = [[Fraction(1)], [Fraction(0)]]
+        weights = [Fraction(2), Fraction(3)]
+        semi = L1Seminorm(boundary, weights)
+        good = ExactPhi1Certificate(
+            omega=[Fraction(1), Fraction(2)],
+            d0=[[Fraction(1)], [Fraction(0)]],
+            weights=[Fraction(2), Fraction(3)],
+            alpha=[Fraction(1)],
+            primal_residual=[Fraction(0), Fraction(2)],
+            dual_witness=[Fraction(0), Fraction(3)],
+            reported_value=Fraction(6),
+        )
+>       assert semi.verify_certificate(good).value == Fraction(6)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_l1_seminorm.py:155: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:423: in _verified_parts
+    _require_primal(rows, alpha, omega, residual)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+boundary = ((Fraction(1, 1),), (Fraction(0, 1),)), alpha = (Fraction(1, 1),)
+omega = (Fraction(1, 1), Fraction(2, 1))
+residual = (Fraction(0, 1), Fraction(2, 1))
+
+    def _require_primal(
+        boundary: Sequence[Sequence[Fraction]],
+        alpha: Sequence[Fraction],
+        omega: Sequence[Fraction],
+        residual: Sequence[Fraction],
+    ) -> None:
+        for index, row in enumerate(boundary):
+            repair = _dot(row, alpha)
+            expected = omega[index] - repair
+            _work_fraction(expected, "primal residual")
+            if residual[index] == expected:
+>               raise _refuse(
+                    "Primal residual mismatch",
+                    index=index,
+                    expected=str(expected),
+                    actual=str(residual[index]),
+                )
+E               src.functional.l1_seminorm.L1SeminormError: Primal residual mismatch (index=0, expected=0, actual=0)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:277: L1SeminormError
+___________________ test_integration_with_triangle_boundary ___________________
+
+    def test_integration_with_triangle_boundary() -> None:
+        """Phi1 of the face column is zero, and the neighbor's matrix defect is zero."""
+        assert triangle_boundary_defect() == Fraction(0)
+        _edge, face = triangle_boundaries()
+        boundary = [face.row(index) for index in range(face.rows)]
+        weights = [Fraction(1), Fraction(1), Fraction(1)]
+        column = [Fraction(entry) for entry in face.col(0)]
+>       certified = evaluate_weighted_l1_quotient(
+            boundary=boundary,
+            weights=weights,
+            omega=column,
+            alpha=[Fraction(1)],
+            primal_residual=[Fraction(0), Fraction(0), Fraction(0)],
+            dual_witness=[Fraction(0), Fraction(0), Fraction(0)],
+            reported_value=Fraction(0),
+        )
+
+code\python\tests\test_l1_seminorm.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:452: in evaluate_weighted_l1_quotient
+    return presentation.verify_certificate(certificate).value
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:423: in _verified_parts
+    _require_primal(rows, alpha, omega, residual)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+boundary = ((Fraction(1, 1),), (Fraction(-1, 1),), (Fraction(1, 1),))
+alpha = (Fraction(1, 1),)
+omega = (Fraction(1, 1), Fraction(-1, 1), Fraction(1, 1))
+residual = (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))
+
+    def _require_primal(
+        boundary: Sequence[Sequence[Fraction]],
+        alpha: Sequence[Fraction],
+        omega: Sequence[Fraction],
+        residual: Sequence[Fraction],
+    ) -> None:
+        for index, row in enumerate(boundary):
+            repair = _dot(row, alpha)
+            expected = omega[index] - repair
+            _work_fraction(expected, "primal residual")
+            if residual[index] == expected:
+>               raise _refuse(
+                    "Primal residual mismatch",
+                    index=index,
+                    expected=str(expected),
+                    actual=str(residual[index]),
+                )
+E               src.functional.l1_seminorm.L1SeminormError: Primal residual mismatch (index=0, expected=0, actual=0)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:277: L1SeminormError
+_______________________ test_end_to_end_public_contract _______________________
+
+    def test_end_to_end_public_contract() -> None:
+>       value = evaluate_weighted_l1_quotient(
+            boundary=[[(1, 1)], [(0, 1)]],
+            weights=[(2, 1), (3, 1)],
+            omega=[(1, 1), (2, 1)],
+            alpha=[(1, 1)],
+            primal_residual=[(0, 1), (2, 1)],
+            dual_witness=[(0, 1), (3, 1)],
+            reported_value=(6, 1),
+        )
+
+code\python\tests\test_l1_seminorm.py:266: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:452: in evaluate_weighted_l1_quotient
+    return presentation.verify_certificate(certificate).value
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:423: in _verified_parts
+    _require_primal(rows, alpha, omega, residual)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+boundary = ((Fraction(1, 1),), (Fraction(0, 1),)), alpha = (Fraction(1, 1),)
+omega = (Fraction(1, 1), Fraction(2, 1))
+residual = (Fraction(0, 1), Fraction(2, 1))
+
+    def _require_primal(
+        boundary: Sequence[Sequence[Fraction]],
+        alpha: Sequence[Fraction],
+        omega: Sequence[Fraction],
+        residual: Sequence[Fraction],
+    ) -> None:
+        for index, row in enumerate(boundary):
+            repair = _dot(row, alpha)
+            expected = omega[index] - repair
+            _work_fraction(expected, "primal residual")
+            if residual[index] == expected:
+>               raise _refuse(
+                    "Primal residual mismatch",
+                    index=index,
+                    expected=str(expected),
+                    actual=str(residual[index]),
+                )
+E               src.functional.l1_seminorm.L1SeminormError: Primal residual mismatch (index=0, expected=0, actual=0)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_l1_seminorm\mutant-02.py:277: L1SeminormError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_functional_integrity.py::test_verified_context_is_detached_from_raw_and_exported_witnesses
+FAILED code/python/tests/test_functional_integrity.py::test_all_public_verified_construction_checks_the_math
+FAILED code/python/tests/test_functional_integrity.py::test_presentation_and_verified_lifecycle_are_frozen
+FAILED code/python/tests/test_functional_integrity.py::test_work_budget_refusal_is_typed
+FAILED code/python/tests/test_functional_integrity.py::test_nonzero_certificates_against_closed_one_column_problem
+FAILED code/python/tests/test_l1_seminorm.py::test_zero_certificate - src.fun...
+FAILED code/python/tests/test_l1_seminorm.py::test_quotient_projection_reduction
+FAILED code/python/tests/test_l1_seminorm.py::test_dual_orthogonality_violation
+FAILED code/python/tests/test_l1_seminorm.py::test_negative_certificate_refusals
+FAILED code/python/tests/test_l1_seminorm.py::test_integration_with_triangle_boundary
+FAILED code/python/tests/test_l1_seminorm.py::test_end_to_end_public_contract
+11 failed, 7 passed, 1 deselected in 2.77s
+{"phase": "pytest", "exit_code": 1}

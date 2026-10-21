@@ -1,0 +1,39 @@
+......FF..........................                                       [100%]
+================================== FAILURES ===================================
+___ test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering ____
+
+    def test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering():
+        edge = (1 << 1024) - 1
+        assert ray.ray_power_two((edge, 0, 0)) == Fraction(edge * edge)
+        assert mass.integer_mass((edge, edge)) == 2 * edge
+        rejected = [1 << 1024, -(1 << 20000), Fraction((1 << 1024) + 1, 2), Fraction(1, 1 << 1024)]
+        for value in rejected:
+            with pytest.raises(ray.BinWitnessError, match="bit budget exceeded"):
+                ray.ray_power_two((value, 0, 0))
+>           with pytest.raises(collision.ParityError, match="bit budget exceeded"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AssertionError: Regex pattern did not match.
+E             Expected regex: 'bit budget exceeded'
+E             Actual message: 'parity weights do not sum to one (total=179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768814416622492847430639474124377767893424865485276302219601246094119453082952085005768838150682342462881473913110540827237163350510684586298239947245938479716304835356329624224137216)'
+
+code\python\tests\test_bounded_entrypoints.py:83: AssertionError
+________________________ test_vector_and_work_budgets _________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002720E0F5350>
+
+    def test_vector_and_work_budgets(monkeypatch):
+        assert collision.collision_probability((1,) + (0,) * 4095) == Fraction(1)
+        with pytest.raises(collision.ParityError, match="vector budget exceeded"):
+            collision.collision_probability((1,) + (0,) * 4096)
+        monkeypatch.setattr(collision, "MAX_WORK_BITS", 2)
+        # Mass totals fit 2 bits; the first squared denominator, 9, needs 4 bits.
+>       with pytest.raises(collision.ParityError, match="bit budget exceeded"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ParityError
+
+code\python\tests\test_bounded_entrypoints.py:98: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering
+FAILED code/python/tests/test_bounded_entrypoints.py::test_vector_and_work_budgets
+2 failed, 32 passed, 1 deselected in 4.26s
+{"phase": "pytest", "exit_code": 1}

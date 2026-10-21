@@ -1,0 +1,49 @@
+..........F...F.....                                                     [100%]
+================================== FAILURES ===================================
+___________ test_invalid_mutants_and_loader_failures_are_not_kills ____________
+
+    def test_invalid_mutants_and_loader_failures_are_not_kills():
+        from src.combinatorics import test_finite_combinatorics as counting
+        from src.combinatorics import test_exported_binomial as facade
+        for harness, old, new in [
+            (counting, "return _choose(left, right)", "return ("),
+            (facade, "_require_neighbors(value)\n    return value", "_require_neighbors(value)\n    return ("),
+            (counting, "from dataclasses import dataclass", "import __tfqm_missing_dependency__"),
+            (facade, "from typing import Mapping", "import __tfqm_missing_dependency__"),
+        ]:
+            source = Path(harness._LIBRARY).read_text()
+            assert source.count(old) == 1
+            args = (source, ("deliberately invalid candidate", old, new), "invalid_candidate_guard")
+            if harness is counting:
+                args += (str(harness._LIBRARY),)
+>           with pytest.raises(harness.ClaimCheckError, match="not counted as a kill"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ClaimCheckError
+
+code\python\tests\test_combinatorics_resources.py:156: Failed
+___________ test_failed_candidate_restores_existing_module_binding ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002AC8B4B4C00>
+
+    def test_failed_candidate_restores_existing_module_binding(monkeypatch):
+        from src.combinatorics import test_finite_combinatorics as counting
+        from src.combinatorics import test_exported_binomial as facade
+        name = "invalid_candidate_lifecycle_guard"
+        marker = types.ModuleType(name)
+        monkeypatch.setitem(sys.modules, name, marker)
+        for harness, old in [(counting, "return _choose(left, right)"),
+                             (facade, "_require_neighbors(value)\n    return value")]:
+            source = Path(harness._LIBRARY).read_text()
+            args = (source, ("malformed lifecycle probe", old, "return ("), name)
+            if harness is counting:
+                args += (str(harness._LIBRARY),)
+>           with pytest.raises(harness.ClaimCheckError, match="not counted as a kill"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ClaimCheckError
+
+code\python\tests\test_combinatorics_resources.py:202: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_combinatorics_resources.py::test_invalid_mutants_and_loader_failures_are_not_kills
+FAILED code/python/tests/test_combinatorics_resources.py::test_failed_candidate_restores_existing_module_binding
+2 failed, 18 passed, 2 deselected in 4.73s
+{"phase": "pytest", "exit_code": 1}

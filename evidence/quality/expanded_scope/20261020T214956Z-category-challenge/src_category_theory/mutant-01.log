@@ -1,0 +1,72 @@
+{"phase": "candidate_bindings", "checked_symbols": ["arrow_decoder_size"]}
+..................F.                                                     [100%]
+================================== FAILURES ===================================
+________________________________ test_negative ________________________________
+
+probe = <function _check_decoder.<locals>.<lambda> at 0x000001EC624068D0>
+error = <class 'src.category_theory.finite_category.CategoryLawError'>
+invariant = 'float refused at the public boundary'
+
+    def _require_refusal(probe: Callable[[], object], error: object, invariant: str) -> None:
+        caught = _as_error(error)
+        try:
+>           probe()
+
+code\python\src\category_theory\test_arrow_decoder.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\category_theory\test_arrow_decoder.py:108: in <lambda>
+    _require_refusal(lambda: decode(report=_floated_report()), error, "float refused at the public boundary")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-01.py:111: in arrow_decoder_size
+    return _require_decoder(factor_report_query(_table(report_rows, "report"), _table(query_rows, "query")))
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-01.py:74: in _table
+    key, value = _pair(row, role)
+                 ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-01.py:64: in _pair
+    return (_exact_int(row[0], role + "_0"), _exact_int(row[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 0.0, role = 'report_0'
+
+    def _exact_int(value: object, role: str) -> int:
+        _refuse_float(value, role)
+        if type(value) is bool:
+            raise _fail("boolean refused where an integer label was required", role=role)
+        if type(value) is not int:
+>           raise _fail("label is not an exact integer", role=role, received=type(value).__name__)
+E           src.category_theory.finite_category.CategoryLawError: label is not an exact integer (role=report_0, received=float)
+
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-01.py:55: CategoryLawError
+
+During handling of the above exception, another exception occurred:
+
+    def test_negative() -> None:
+        """Float, bool, and an empty report are refused."""
+>       _check_decoder(arrow_decoder_size, CategoryLawError)
+
+code\python\src\category_theory\test_arrow_decoder.py:281: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\category_theory\test_arrow_decoder.py:108: in _check_decoder
+    _require_refusal(lambda: decode(report=_floated_report()), error, "float refused at the public boundary")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+probe = <function _check_decoder.<locals>.<lambda> at 0x000001EC624068D0>
+error = <class 'src.category_theory.finite_category.CategoryLawError'>
+invariant = 'float refused at the public boundary'
+
+    def _require_refusal(probe: Callable[[], object], error: object, invariant: str) -> None:
+        caught = _as_error(error)
+        try:
+            probe()
+        except caught as exc:
+            if getattr(exc, "invariant", None) != invariant:
+>               raise _fail("refusal named the wrong invariant", expected=invariant, got=getattr(exc, "invariant", None))
+E               src.category_theory.test_arrow_decoder.ClaimCheckError: refusal named the wrong invariant (expected=float refused at the public boundary, got=label is not an exact integer)
+
+code\python\src\category_theory\test_arrow_decoder.py:100: ClaimCheckError
+=========================== short test summary info ===========================
+FAILED code/python/src/category_theory/test_arrow_decoder.py::test_negative
+1 failed, 19 passed, 2 deselected in 1.05s
+{"phase": "pytest", "exit_code": 1}

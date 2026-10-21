@@ -1,0 +1,70 @@
+{"phase": "candidate_bindings", "checked_symbols": ["arrow_decoder_size"]}
+...........F....FFFF.                                                    [100%]
+================================== FAILURES ===================================
+________________ test_witness_tables_never_drop_duplicate_keys ________________
+
+    def test_witness_tables_never_drop_duplicate_keys():
+        for rows in [((0, 999), (0, 10), (1, 10), (2, 20)), ((0, 10), (0, 10), (1, 10), (2, 20))]:
+            with pytest.raises(api.CategoryLawError, match="duplicate witness source"):
+                facade.arrow_decoder_size(report=rows)
+        with pytest.raises(api.CategoryLawError, match="duplicate witness source"):
+            facade.arrow_decoder_size(query=((0, 99), (0, 1), (1, 1), (2, 0)))
+>       assert facade.arrow_decoder_size() == 2
+E       assert 3 == 2
+E        +  where 3 = <function arrow_decoder_size at 0x000002628424C930>()
+E        +    where <function arrow_decoder_size at 0x000002628424C930> = facade.arrow_decoder_size
+
+code\python\tests\test_category_integrity.py:206: AssertionError
+__________________________________ test_unit __________________________________
+
+    def test_unit() -> None:
+        """The default decoder has two images."""
+        if arrow_decoder_size() != 2:
+>           raise _fail("unit decoder size drifted", got=arrow_decoder_size())
+E           src.category_theory.test_arrow_decoder.ClaimCheckError: unit decoder size drifted (got=3)
+
+code\python\src\category_theory\test_arrow_decoder.py:264: ClaimCheckError
+______________________________ test_integration _______________________________
+
+    def test_integration() -> None:
+        """The export size equals the neighbor factorization of the same tables."""
+        if arrow_decoder_size() != len(factor_report_query(_REPORT, _QUERY)):
+>           raise _fail("export and factor_report_query diverged")
+E           src.category_theory.test_arrow_decoder.ClaimCheckError: export and factor_report_query diverged
+
+code\python\src\category_theory\test_arrow_decoder.py:270: ClaimCheckError
+_______________________________ test_end_to_end _______________________________
+
+    def test_end_to_end() -> None:
+        """The public default call returns the frozen decoder size."""
+        if arrow_decoder_size() != len({10: 1, 20: 0}):
+>           raise _fail("end-to-end decoder size drifted")
+E           src.category_theory.test_arrow_decoder.ClaimCheckError: end-to-end decoder size drifted
+
+code\python\src\category_theory\test_arrow_decoder.py:276: ClaimCheckError
+________________________________ test_negative ________________________________
+
+    def test_negative() -> None:
+        """Float, bool, and an empty report are refused."""
+>       _check_decoder(arrow_decoder_size, CategoryLawError)
+
+code\python\src\category_theory\test_arrow_decoder.py:281: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+decode = <function arrow_decoder_size at 0x000002628424C930>
+error = <class 'src.category_theory.finite_category.CategoryLawError'>
+
+    def _check_decoder(decode: Callable[..., object], error: object) -> None:
+        if decode() != len(factor_report_query(_REPORT, _QUERY)):
+>           raise _fail("decoder size drifted from the factored report", got=decode())
+E           src.category_theory.test_arrow_decoder.ClaimCheckError: decoder size drifted from the factored report (got=3)
+
+code\python\src\category_theory\test_arrow_decoder.py:107: ClaimCheckError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_witness_tables_never_drop_duplicate_keys
+FAILED code/python/src/category_theory/test_arrow_decoder.py::test_unit - src...
+FAILED code/python/src/category_theory/test_arrow_decoder.py::test_integration
+FAILED code/python/src/category_theory/test_arrow_decoder.py::test_end_to_end
+FAILED code/python/src/category_theory/test_arrow_decoder.py::test_negative
+5 failed, 16 passed, 2 deselected in 1.77s
+{"phase": "pytest", "exit_code": 1}

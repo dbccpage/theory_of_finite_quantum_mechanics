@@ -1,0 +1,25 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ExactPhi1Certificate", "L1Seminorm", "L1SeminormError", "evaluate_weighted_l1_quotient"]}
+.....F............                                                       [100%]
+================================== FAILURES ===================================
+______________________ test_work_budget_refusal_is_typed ______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A4361F0FC0>
+
+    def test_work_budget_refusal_is_typed(monkeypatch):
+        monkeypatch.setattr(api, "MAX_WORK_BITS", 3)
+        # 3/5 is admitted at the input boundary; 9/25 needs more than 3 bits.
+        cert = api.ExactPhi1Certificate([Fraction(3, 5)], [[0]], [Fraction(3, 5)], [0],
+                                      [Fraction(3, 5)], [Fraction(3, 5)], Fraction(9, 25))
+        with pytest.raises(api.L1SeminormError, match="bit budget exceeded") as cost:
+            api.VerifiedExactPhi1(cert)
+>       assert cost.value.parameters["role"] == "weighted l1"
+E       AssertionError: assert 'dot product' == 'weighted l1'
+E         
+E         - weighted l1
+E         + dot product
+
+code\python\tests\test_functional_integrity.py:142: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_functional_integrity.py::test_work_budget_refusal_is_typed
+1 failed, 17 passed, 1 deselected in 1.07s
+{"phase": "pytest", "exit_code": 1}

@@ -1,0 +1,34 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ExactPhi1Certificate", "L1Seminorm", "L1SeminormError", "evaluate_weighted_l1_quotient"]}
+.............F..F.                                                       [100%]
+================================== FAILURES ===================================
+_______________________ test_negative_boundary_refusals _______________________
+
+    def test_negative_boundary_refusals() -> None:
+>       with pytest.raises(L1SeminormError, match="float refused") as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE L1SeminormError
+
+code\python\tests\test_l1_seminorm.py:122: Failed
+_______________________ test_end_to_end_public_contract _______________________
+
+    def test_end_to_end_public_contract() -> None:
+        value = evaluate_weighted_l1_quotient(
+            boundary=[[(1, 1)], [(0, 1)]],
+            weights=[(2, 1), (3, 1)],
+            omega=[(1, 1), (2, 1)],
+            alpha=[(1, 1)],
+            primal_residual=[(0, 1), (2, 1)],
+            dual_witness=[(0, 1), (3, 1)],
+            reported_value=(6, 1),
+        )
+        assert value == Fraction(6)
+>       with pytest.raises(L1SeminormError, match="float refused") as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE L1SeminormError
+
+code\python\tests\test_l1_seminorm.py:276: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_l1_seminorm.py::test_negative_boundary_refusals
+FAILED code/python/tests/test_l1_seminorm.py::test_end_to_end_public_contract
+2 failed, 16 passed, 1 deselected in 0.88s
+{"phase": "pytest", "exit_code": 1}

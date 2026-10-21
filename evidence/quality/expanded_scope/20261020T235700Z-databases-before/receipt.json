@@ -1,0 +1,119 @@
+{
+  "AuthorityEffect": "None",
+  "sqlite_version": "3.50.4",
+  "source_sha256": {
+    "code/python/src/databases/chiral_superconductor_schema.sql": "0612990117f72ca20aa34aaf47457432e06f47003b86032379239796aadc9f11",
+    "code/python/src/databases/fermion_gin_index_schema.sql": "134c804e186954e79f101ce45cf854c259c6a92ba36ecb6ea195c2ba33dd9b9c",
+    "code/python/src/databases/fermion_sign_problem.sql": "04ed53e10aee23db1e80867fc7dd39eb269b70d112fbf7a32d6e2eb6e4733108",
+    "code/python/src/databases/kitaev_honeycomb_schema.sql": "152dcc2de16d4bb030839594b41e3e06fe28a7f2bda4e2df3fa226806dd65db4",
+    "code/python/src/databases/meron_hubbard.sql": "2e772cb9eccd510aed828b5f71438dddef7ead99a26bd99f3009039888b07c49",
+    "code/python/src/databases/README.md": "445891297ef58778df2db78c24f3204f53176e2649dccb360f57c38dc8a25bde",
+    "code/python/src/databases/regge_wdw_schema.sql": "6a162f49b40b7de164215676f33f7ba48ad1513dc1dfcdf0cf0fe124a0367aa2",
+    "code/python/src/databases/schema.sql": "6281d181b9a52e86ff757a1f316c51590fb7cfbd164de4ee7209aa8f9631df82",
+    "code/python/src/fsp/fermion_gin_index.py": "1755b33a84aba552db9f1e6dbb53790cf55d4840c1f5157d8fbb9dbc370e5df9"
+  },
+  "observations": [
+    {
+      "case": "ledger domain/custody",
+      "null_primary_key_and_bad_boolean_admitted": {
+        "witness_id": null,
+        "stage_id": -1,
+        "x_locus": "x",
+        "y_locus": "y",
+        "demand_type": "d",
+        "qx_observation": "x",
+        "qy_observation": "y",
+        "reason": "r",
+        "is_retained": 7,
+        "created_at": "2026-10-20 23:57:00"
+      },
+      "unprovided_stokes_verification_default": {
+        "chain_id": "c",
+        "dimension": -1,
+        "simplex_label": "s",
+        "boundary_representation": "b",
+        "stokes_verified": 1
+      }
+    },
+    {
+      "case": "integer ratio query 1",
+      "observed": [
+        {
+          "average_sign": 0
+        }
+      ],
+      "independent_expected_ratio": "1/2"
+    },
+    {
+      "case": "integer ratio query 2",
+      "observed": [
+        {
+          "state_orbit_hash": "o",
+          "local_bosonic_sum": 4,
+          "local_fermionic_sum": 2,
+          "orbit_decay_ratio": 0
+        }
+      ],
+      "independent_expected_ratio": "1/2"
+    },
+    {
+      "case": "mixed dialect remainder under declared SQLite use",
+      "status": "OperationalError: near \"BY\": syntax error"
+    },
+    {
+      "case": "balanced signed mass changed by quotient",
+      "observed": {
+        "model_name": "balanced",
+        "signed_partition_sum": 0.0,
+        "bosonic_partition_sum": 2.0,
+        "raw_average_sign": 0.0,
+        "uncancelled_sign_mass": 0.0,
+        "gin_quotiented_average_sign": 1.0,
+        "terminal_route": "Repair"
+      },
+      "expected_raw_and_quotient_sign": 0,
+      "scope": "A zero-mass quotient has no normalized average sign. It cannot be manufactured as 1."
+    },
+    {
+      "case": "tolerance promoted to exact",
+      "observed": {
+        "pair_id": 2,
+        "involution_type": "fixture",
+        "cfg_pos_id": 3,
+        "cfg_neg_id": 4,
+        "pos_weight": 1.0,
+        "neg_weight": 1.0000000000005,
+        "pos_sign": 1,
+        "neg_sign": -1,
+        "net_sign_sum": 0,
+        "weight_defect": 5.000444502911705e-13,
+        "cancellation_status": "EXACT_CANCELLATION"
+      },
+      "unequal_binary_values": true
+    },
+    {
+      "case": "incomplete hexagon accepted as flux consistent",
+      "boundary_links": 1,
+      "observed": {
+        "lattice_id": "h",
+        "plaquette_id": "p",
+        "recorded_wp": 1,
+        "recorded_vortex": 0,
+        "computed_wp": 1,
+        "computed_vortex": 0,
+        "audit_status": "FLUX_CONSISTENT"
+      }
+    },
+    {
+      "case": "unbounded native cluster shift wraps",
+      "observed": {
+        "gid": 1,
+        "clusters": 64,
+        "merons": 0,
+        "reduced_weight": "0"
+      },
+      "independent_expected_positive_orbit_weight": "18446744073709551616"
+    }
+  ],
+  "scope": "Actual disposable SQLite runs, not model proofs or full source assessments. Exact and numerical profiles remain distinct; no missing runtime is classified E."
+}

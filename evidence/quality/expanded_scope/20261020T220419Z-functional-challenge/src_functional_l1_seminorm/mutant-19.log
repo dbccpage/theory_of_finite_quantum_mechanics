@@ -1,0 +1,28 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ExactPhi1Certificate", "L1Seminorm", "L1SeminormError", "evaluate_weighted_l1_quotient"]}
+....F.............                                                       [100%]
+================================== FAILURES ===================================
+__________ test_policy_is_declared_and_boundary_admission_is_bounded __________
+
+    def test_policy_is_declared_and_boundary_admission_is_bounded():
+        assert (api.MAX_VECTOR_LENGTH, api.MAX_COORDINATES, api.MAX_BOUNDARY_COLUMNS,
+                api.MAX_BOUNDARY_ENTRIES, api.MAX_INPUT_BITS, api.MAX_WORK_BITS, api.MAX_ROLE_CHARACTERS) == (4096, 256, 256, 16384, 1024, 8192, 256)
+        assert len(api.require_vector([0] * 4096, "edge")) == 4096
+        with pytest.raises(api.L1SeminormError, match="vector entry budget exceeded"):
+            api.require_vector([0] * 4097, "edge")
+        with pytest.raises(api.L1SeminormError, match="coordinate budget exceeded"):
+            api.L1Seminorm([[]] * 257, [1] * 257)
+        with pytest.raises(api.L1SeminormError, match="coordinate budget exceeded"):
+            api.require_positive_weights([1] * 257)
+        with pytest.raises(api.L1SeminormError, match="height budget exceeded"):
+            api.L1Seminorm([[]] * 257, [1])
+        with pytest.raises(api.L1SeminormError, match="width budget exceeded"):
+            api.L1Seminorm([[0] * 257], [1])
+>       with pytest.raises(api.L1SeminormError, match="entry budget exceeded"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE L1SeminormError
+
+code\python\tests\test_functional_integrity.py:125: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_functional_integrity.py::test_policy_is_declared_and_boundary_admission_is_bounded
+1 failed, 17 passed, 1 deselected in 1.12s
+{"phase": "pytest", "exit_code": 1}

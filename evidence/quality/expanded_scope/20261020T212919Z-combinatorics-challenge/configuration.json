@@ -1,0 +1,120 @@
+{
+  "suite": "combinatorics",
+  "test_file": "code/python/tests/test_combinatorics_resources.py",
+  "definitions": {
+    "src.combinatorics.test_finite_combinatorics": {
+      "source": "code/python/src/combinatorics/test_finite_combinatorics.py",
+      "old_tests": "code/python/src/combinatorics/test_finite_combinatorics.py",
+      "mutants": [
+        [
+          "user class callback introduced",
+          "def parse_exact_size(value: object) -> int:\n    \"\"\"Refuse float and bool before an exact size is accepted.\"\"\"\n    if issubclass(type(value), float):",
+          "def parse_exact_size(value: object) -> int:\n    \"\"\"Refuse float and bool before an exact size is accepted.\"\"\"\n    if isinstance(value, float):"
+        ],
+        [
+          "primary witness shifted",
+          "return _factorial_choose(6, 3)",
+          "return _factorial_choose(6, 2)"
+        ],
+        [
+          "outside witness shifted",
+          "return _factorial_choose(5, 7)",
+          "return _factorial_choose(5, 1)"
+        ],
+        [
+          "plane witness shifted",
+          "return _projective_points(3)",
+          "return _projective_points(2)"
+        ],
+        [
+          "guard witness silenced",
+          "return exc.invariant",
+          "return \"admitted\""
+        ],
+        [
+          "invalid library mutant falsely counted as kill",
+          "raise _fail(\"mutant could not be assessed; not counted as a kill\", name=label, error=type(error).__name__) from error",
+          "survived = False"
+        ],
+        [
+          "invalid self mutant falsely counted as kill",
+          "raise _fail(\"self mutant could not be assessed; not counted as a kill\", name=label, error=type(error).__name__) from error",
+          "survived = False"
+        ],
+        [
+          "oracle infrastructure failure silently counted",
+          "except (ClaimCheckError, ValueError, ArithmeticError, AssertionError):",
+          "except Exception:"
+        ],
+        [
+          "previous module binding lost",
+          "sys.modules[name] = previous",
+          "sys.modules.pop(name, None)"
+        ]
+      ],
+      "dependencies": [
+        "code/python/src/combinatorics/__init__.py",
+        "code/python/src/combinatorics/finite_combinatorics.py",
+        "code/python/src/combinatorics/test_finite_combinatorics.py",
+        "code/python/src/combinatorics/test_exported_binomial.py"
+      ]
+    },
+    "src.combinatorics.test_exported_binomial": {
+      "source": "code/python/src/combinatorics/test_exported_binomial.py",
+      "old_tests": "code/python/src/combinatorics/test_exported_binomial.py",
+      "mutants": [
+        [
+          "user class callback introduced",
+          "def parse_exact_size(value: object) -> int:\n    \"\"\"Refuse float and bool before an exact size is accepted.\"\"\"\n    if issubclass(type(value), float):",
+          "def parse_exact_size(value: object) -> int:\n    \"\"\"Refuse float and bool before an exact size is accepted.\"\"\"\n    if isinstance(value, float):"
+        ],
+        [
+          "primary witness shifted",
+          "return _factorial_choose(6, 3)",
+          "return _factorial_choose(6, 2)"
+        ],
+        [
+          "outside witness shifted",
+          "return _factorial_choose(5, 2)",
+          "return _factorial_choose(5, 1)"
+        ],
+        [
+          "library witness shifted",
+          "return binomial_exact(6, 3)",
+          "return binomial_exact(6, 2)"
+        ],
+        [
+          "guard witness silenced",
+          "return exc.invariant",
+          "return \"admitted\""
+        ],
+        [
+          "invalid library mutant falsely counted as kill",
+          "raise _fail(\"mutant could not be assessed; not counted as a kill\", name=label, error=type(error).__name__) from error",
+          "survived = False"
+        ],
+        [
+          "invalid self mutant falsely counted as kill",
+          "raise _fail(\"self mutant could not be assessed; not counted as a kill\", name=label, error=type(error).__name__) from error",
+          "survived = False"
+        ],
+        [
+          "oracle infrastructure failure silently counted",
+          "except (ClaimCheckError, ValueError, ArithmeticError, AssertionError):",
+          "except Exception:"
+        ],
+        [
+          "previous module binding lost",
+          "sys.modules[name] = previous",
+          "sys.modules.pop(name, None)"
+        ]
+      ],
+      "dependencies": [
+        "code/python/src/combinatorics/__init__.py",
+        "code/python/src/combinatorics/finite_combinatorics.py",
+        "code/python/src/combinatorics/test_finite_combinatorics.py",
+        "code/python/src/combinatorics/test_exported_binomial.py"
+      ]
+    }
+  }
+}

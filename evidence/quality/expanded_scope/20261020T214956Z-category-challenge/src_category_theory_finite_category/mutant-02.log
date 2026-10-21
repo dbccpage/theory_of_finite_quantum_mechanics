@@ -1,0 +1,48 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CategoryLawError", "FiniteCategory", "factor_report_query", "verify_report_query_factorization"]}
+........F.........F.                                                     [100%]
+================================== FAILURES ===================================
+_______ test_factorization_uses_the_exact_common_carrier_and_all_values _______
+
+    def test_factorization_uses_the_exact_common_carrier_and_all_values():
+        for report, query in [({0: 10}, {0: 1, 9: 2}), ({0: 10, 9: 20}, {0: 1}),
+                              ({0: 10}, {0: 1, 9: 0.5}), ({0: 10}, {0: True}),
+                              ({1.0: 10}, {1: 1}), ({0: 10}, {0: 1.0}),
+                              (HostileDict({0: 10}), {0: 1}), ({0: 10}, HostileDict({0: 1}))]:
+>           with pytest.raises(api.CategoryLawError):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE CategoryLawError
+
+code\python\tests\test_category_integrity.py:157: Failed
+________________________________ test_negative ________________________________
+
+    def test_negative() -> None:
+        """Empty tables, floats, bools, and colliding queries are refused."""
+>       _check_factor(factor_report_query, verify_report_query_factorization, CategoryLawError)
+
+code\python\src\category_theory\test_finite_category.py:364: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\category_theory\test_finite_category.py:158: in _check_factor
+    _require_refusal(lambda: factor({True: 10}, {1: 4}), error, "boolean refused where an integer label was required")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+probe = <function _check_factor.<locals>.<lambda> at 0x000002305AB04E00>
+error = <class 'src.category_theory.finite_category.CategoryLawError'>
+invariant = 'boolean refused where an integer label was required'
+
+    def _require_refusal(probe: Callable[[], object], error: object, invariant: str) -> None:
+        caught = _as_error(error)
+        try:
+            probe()
+        except caught as exc:
+            if getattr(exc, "invariant", None) != invariant:
+                raise _fail("refusal named the wrong invariant", expected=invariant, got=getattr(exc, "invariant", None))
+            return
+>       raise _fail("invalid input was accepted", expected=invariant)
+E       src.category_theory.test_finite_category.ClaimCheckError: invalid input was accepted (expected=boolean refused where an integer label was required)
+
+code\python\src\category_theory\test_finite_category.py:132: ClaimCheckError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_factorization_uses_the_exact_common_carrier_and_all_values
+FAILED code/python/src/category_theory/test_finite_category.py::test_negative
+2 failed, 18 passed, 2 deselected in 3.18s
+{"phase": "pytest", "exit_code": 1}

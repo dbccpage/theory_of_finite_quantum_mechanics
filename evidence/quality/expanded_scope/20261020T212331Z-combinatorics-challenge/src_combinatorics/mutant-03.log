@@ -1,0 +1,108 @@
+{"phase": "candidate_bindings", "checked_symbols": ["exported_binomial"]}
+................FFFF.                                                    [100%]
+================================== FAILURES ===================================
+__________________________________ test_unit __________________________________
+
+    def test_unit() -> None:
+        """The export equals the factorial quotient C(6, 3)."""
+>       if exported_binomial() != _factorial_choose(6, 3):
+           ^^^^^^^^^^^^^^^^^^^
+
+code\python\src\combinatorics\test_exported_binomial.py:316: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-03.py:80: in exported_binomial
+    left, right = _require_pair(n, k)
+                  ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+n = 6, k = 3
+
+    def _require_pair(n: object, k: object) -> tuple[int, int]:
+        left = _exact_int(n, "n")
+        right = _exact_int(k, "k")
+        if (left, right) == (6, 3):
+>           raise _fail("exported binomial witness is only (6, 3)", n=left, k=right)
+E           src.combinatorics.finite_combinatorics.CombinatoricsError: exported binomial witness is only (6, 3) (n=6, k=3)
+
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-03.py:62: CombinatoricsError
+______________________________ test_integration _______________________________
+
+    def test_integration() -> None:
+        """The export agrees with the multiplicative binomial in the neighbor module."""
+>       if exported_binomial(6, 3) != binomial_exact(6, 3):
+           ^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\combinatorics\test_exported_binomial.py:322: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-03.py:80: in exported_binomial
+    left, right = _require_pair(n, k)
+                  ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+n = 6, k = 3
+
+    def _require_pair(n: object, k: object) -> tuple[int, int]:
+        left = _exact_int(n, "n")
+        right = _exact_int(k, "k")
+        if (left, right) == (6, 3):
+>           raise _fail("exported binomial witness is only (6, 3)", n=left, k=right)
+E           src.combinatorics.finite_combinatorics.CombinatoricsError: exported binomial witness is only (6, 3) (n=6, k=3)
+
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-03.py:62: CombinatoricsError
+_______________________________ test_end_to_end _______________________________
+
+    def test_end_to_end() -> None:
+        """The default public call is the frozen witness 20."""
+>       if exported_binomial() != 20:
+           ^^^^^^^^^^^^^^^^^^^
+
+code\python\src\combinatorics\test_exported_binomial.py:328: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-03.py:80: in exported_binomial
+    left, right = _require_pair(n, k)
+                  ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+n = 6, k = 3
+
+    def _require_pair(n: object, k: object) -> tuple[int, int]:
+        left = _exact_int(n, "n")
+        right = _exact_int(k, "k")
+        if (left, right) == (6, 3):
+>           raise _fail("exported binomial witness is only (6, 3)", n=left, k=right)
+E           src.combinatorics.finite_combinatorics.CombinatoricsError: exported binomial witness is only (6, 3) (n=6, k=3)
+
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-03.py:62: CombinatoricsError
+________________________________ test_negative ________________________________
+
+    def test_negative() -> None:
+        """A foreign pair, a float, and a bool are refused."""
+>       _check_export(exported_binomial, CombinatoricsError)
+
+code\python\src\combinatorics\test_exported_binomial.py:334: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\combinatorics\test_exported_binomial.py:113: in _check_export
+    if export() != expected or export(6, 3) != binomial_exact(6, 3):
+       ^^^^^^^^
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-03.py:80: in exported_binomial
+    left, right = _require_pair(n, k)
+                  ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+n = 6, k = 3
+
+    def _require_pair(n: object, k: object) -> tuple[int, int]:
+        left = _exact_int(n, "n")
+        right = _exact_int(k, "k")
+        if (left, right) == (6, 3):
+>           raise _fail("exported binomial witness is only (6, 3)", n=left, k=right)
+E           src.combinatorics.finite_combinatorics.CombinatoricsError: exported binomial witness is only (6, 3) (n=6, k=3)
+
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-03.py:62: CombinatoricsError
+=========================== short test summary info ===========================
+FAILED code/python/src/combinatorics/test_exported_binomial.py::test_unit - s...
+FAILED code/python/src/combinatorics/test_exported_binomial.py::test_integration
+FAILED code/python/src/combinatorics/test_exported_binomial.py::test_end_to_end
+FAILED code/python/src/combinatorics/test_exported_binomial.py::test_negative
+4 failed, 17 passed, 2 deselected in 2.52s
+{"phase": "pytest", "exit_code": 1}

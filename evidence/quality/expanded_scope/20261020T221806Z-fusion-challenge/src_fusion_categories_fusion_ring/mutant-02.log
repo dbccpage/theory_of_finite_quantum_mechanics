@@ -1,0 +1,122 @@
+{"phase": "candidate_bindings", "checked_symbols": ["AbelianGroup", "FusionRing", "FusionTable", "RingDefectType", "ising_global_dimension_rational"]}
+..FF..F....F..F...                                                       [100%]
+================================== FAILURES ===================================
+_________________ test_immutable_values_and_validated_tables __________________
+
+    def test_immutable_values_and_validated_tables():
+        moduli = [2, 3]
+        group = api.AbelianGroup(moduli)
+        moduli[0] = 9
+        assert group.moduli == [2, 3]
+        group.moduli[0] = 9
+>       assert group.order == 6
+E       assert 3 == 6
+E        +  where 3 = AbelianGroup(_moduli=(2, 3), _order=3).order
+
+code\python\tests\test_fusion_integrity.py:75: AssertionError
+________________ test_group_mixed_radix_against_tuple_addition ________________
+
+    def test_group_mixed_radix_against_tuple_addition():
+        for moduli in [(2,), (3, 2), (2, 2, 2), (2, 2, 2, 2, 2)]:
+            group = api.AbelianGroup(moduli)
+            for a, b in product(range(group.order), repeat=2):
+                digits = [(x + y) % m for x, y, m in zip(group.digits(a), group.digits(b), moduli)]
+                assert group.digits(group.add(a, b)) == digits
+                assert group.label(group.digits(a)) == a
+>               assert group.add(a, group.negate(a)) == 0
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_fusion_integrity.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-02.py:237: in add
+    total = _component_sum(self.digits(left), self.digits(right), self._moduli)
+                                              ^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = AbelianGroup(_moduli=(3, 2), _order=2), label = 2
+
+    def digits(self, label: object) -> list[int]:
+        index = _require_int(label, "label")
+        if index < 0 or index >= self._order:
+>           raise _fail("label is outside the group order", label=index, order=self._order)
+E           src.fusion_categories.fusion_ring.FusionError: label is outside the group order (label=2, order=2)
+
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-02.py:230: FusionError
+______ test_dimensions_and_paths_against_independent_integer_enumeration ______
+
+    def test_dimensions_and_paths_against_independent_integer_enumeration():
+        expected = [api.QuadraticRational(4, 0, 1), api.QuadraticRational(Q(5, 2), Q(1, 2), 5), api.QuadraticRational(4, 0, 1), api.QuadraticRational(6, 0, 1)]
+>       for ring, global_dimension in zip([api.FusionRing.ising(), api.FusionRing.fibonacci(), api.FusionRing.toric_code(), api.FusionRing.rep_s3()], expected):
+                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_fusion_integrity.py:161: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-02.py:687: in toric_code
+    return cls(FusionTable.from_3d(_group_tensor(group), ("1", "e", "m", "epsilon")))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-02.py:334: in from_3d
+    return cls(rank, flat, names)
+           ^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-02.py:323: in __init__
+    labels = _parse_names(names, width)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+names = ('1', 'e', 'm', 'epsilon'), rank = 2
+
+    def _parse_names(names: Sequence[object] | None, rank: int) -> tuple[str, ...]:
+        if names is None:
+            return tuple(str(index) for index in range(rank))
+        names = _require_sequence(names, "names", MAX_RANK)
+        if len(names) != rank:
+>           raise _fail("name width is not the rank", expected=rank, received=len(names))
+E           src.fusion_categories.fusion_ring.FusionError: name width is not the rank (expected=2, received=4)
+
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-02.py:397: FusionError
+___________________ test_negative_abelian_group_properties ____________________
+
+    def test_negative_abelian_group_properties():
+        grp = AbelianGroup([2, 3])
+>       assert grp.order == 6
+E       assert 3 == 6
+E        +  where 3 = AbelianGroup(_moduli=(2, 3), _order=3).order
+
+code\python\tests\test_fusion_ring.py:22: AssertionError
+____________________________ test_toric_code_ring _____________________________
+
+    def test_toric_code_ring():
+>       toric = FusionRing.toric_code()
+                ^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_fusion_ring.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-02.py:687: in toric_code
+    return cls(FusionTable.from_3d(_group_tensor(group), ("1", "e", "m", "epsilon")))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-02.py:334: in from_3d
+    return cls(rank, flat, names)
+           ^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-02.py:323: in __init__
+    labels = _parse_names(names, width)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+names = ('1', 'e', 'm', 'epsilon'), rank = 2
+
+    def _parse_names(names: Sequence[object] | None, rank: int) -> tuple[str, ...]:
+        if names is None:
+            return tuple(str(index) for index in range(rank))
+        names = _require_sequence(names, "names", MAX_RANK)
+        if len(names) != rank:
+>           raise _fail("name width is not the rank", expected=rank, received=len(names))
+E           src.fusion_categories.fusion_ring.FusionError: name width is not the rank (expected=2, received=4)
+
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-02.py:397: FusionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_immutable_values_and_validated_tables
+FAILED code/python/tests/test_fusion_integrity.py::test_group_mixed_radix_against_tuple_addition
+FAILED code/python/tests/test_fusion_integrity.py::test_dimensions_and_paths_against_independent_integer_enumeration
+FAILED code/python/tests/test_fusion_ring.py::test_negative_abelian_group_properties
+FAILED code/python/tests/test_fusion_ring.py::test_toric_code_ring - src.fusi...
+5 failed, 13 passed, 1 deselected in 2.40s
+{"phase": "pytest", "exit_code": 1}

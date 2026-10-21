@@ -1,0 +1,1 @@
+fn sample(x:u8)->bool{matches!(x,1|2|3)}

@@ -1,0 +1,22 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ClaimCheckError", "_anchor", "_arrow_fields", "_arrow_from", "_as_error", "_broken_from", "_callable", "_check_axioms", "_check_factor", "_exec_module", "_fail", "_float_probe", "_holds", "_image_agrees", "_kill_count", "_load", "_main", "_one_mutant", "_require_receipt", "_require_refusal", "_restore_module", "_safe_holds", "_safe_self", "_self_holds", "_verified", "parse_exact_label", "test_end_to_end", "test_integration", "test_library_mutation", "test_negative", "test_origin", "test_self_mutation", "test_unit", "witness_axiom", "witness_decoder", "witness_guard", "witness_sources"]}
+.............F......                                                     [100%]
+================================== FAILURES ===================================
+________ test_checker_witnesses_are_computed_and_class_guards_are_safe ________
+
+    def test_checker_witnesses_are_computed_and_class_guards_are_safe():
+        from src.category_theory import test_finite_category as category_checks
+        from src.category_theory import test_arrow_decoder as decoder_checks
+        assert (category_checks.witness_decoder(), category_checks.witness_sources(), category_checks.witness_axiom()) == (2, 3, 1)
+        assert (decoder_checks.witness_width(), decoder_checks.witness_sources(), decoder_checks.witness_points()) == (2, 3, 2)
+        for checks in [category_checks, decoder_checks]:
+            with pytest.raises(checks.ClaimCheckError):
+                checks.parse_exact_label(ClassCallback())
+>           with pytest.raises(KeyError):
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE KeyError
+
+code\python\tests\test_category_integrity.py:226: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_checker_witnesses_are_computed_and_class_guards_are_safe
+1 failed, 19 passed, 2 deselected in 0.99s
+{"phase": "pytest", "exit_code": 1}

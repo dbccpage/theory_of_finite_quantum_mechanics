@@ -1,0 +1,25 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CategoryLawError", "FiniteCategory", "factor_report_query", "verify_report_query_factorization"]}
+...F.................                                                    [100%]
+================================== FAILURES ===================================
+_________________ test_category_owns_immutable_detached_state _________________
+
+    def test_category_owns_immutable_detached_state():
+        objects, arrows, identities, composition = arrow_fields()
+        category = api.FiniteCategory(objects, arrows, identities, composition)
+        equal = api.FiniteCategory(*arrow_fields())
+        arrows.clear(); identities.clear(); composition.clear()
+        assert category.verify_axioms() and category == equal
+        assert category != ClassCallback()
+        with pytest.raises(FrozenInstanceError):
+            category.objects = frozenset()
+        with pytest.raises(TypeError):
+            category.composition[("f", "i")] = "i"
+>       with pytest.raises(api.CategoryLawError, match="already initialized"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE CategoryLawError
+
+code\python\tests\test_category_integrity.py:81: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_category_owns_immutable_detached_state
+1 failed, 20 passed, 2 deselected in 2.56s
+{"phase": "pytest", "exit_code": 1}

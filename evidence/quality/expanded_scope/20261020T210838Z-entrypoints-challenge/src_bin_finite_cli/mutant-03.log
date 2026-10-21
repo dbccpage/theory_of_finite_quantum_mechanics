@@ -1,0 +1,103 @@
+.........F...................F.FF.                                       [100%]
+================================== FAILURES ===================================
+__________________ test_real_identity_provider_at_boundaries __________________
+
+    def test_real_identity_provider_at_boundaries():
+        for dimension in [0, 1, 2, 3, 16, 256]:
+>           result = trace.cli_identity_trace(dimension)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin_finite_cli\mutant-03.py:105: in cli_identity_trace
+    return _require_trace(_sum_diagonal(eye), width)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(0, 1), size = 0
+
+    def _require_trace(total: Fraction, size: int) -> Fraction:
+        expected = Fraction(size + 1)
+        if total != expected:
+>           raise _fail("cli identity trace is not the dimension", trace=str(total), size=size)
+E           src.bin.finite_cli.CliTraceError: cli identity trace is not the dimension (trace=0, size=0)
+
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin_finite_cli\mutant-03.py:96: CliTraceError
+________________ test_default_cli_trace_matches_dimension_two _________________
+
+    def test_default_cli_trace_matches_dimension_two() -> None:
+>       assert cli_identity_trace() == Fraction(2)
+               ^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_finite_cli.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin_finite_cli\mutant-03.py:105: in cli_identity_trace
+    return _require_trace(_sum_diagonal(eye), width)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(2, 1), size = 2
+
+    def _require_trace(total: Fraction, size: int) -> Fraction:
+        expected = Fraction(size + 1)
+        if total != expected:
+>           raise _fail("cli identity trace is not the dimension", trace=str(total), size=size)
+E           src.bin.finite_cli.CliTraceError: cli identity trace is not the dimension (trace=2, size=2)
+
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin_finite_cli\mutant-03.py:96: CliTraceError
+_________________ test_integration_matches_cited_lean_traces __________________
+
+    def test_integration_matches_cited_lean_traces() -> None:
+        root = Path(__file__).resolve().parents[3]
+        scaled = (root / "lean4" / "H056ContinuumLiftBoundary.lean").read_text(encoding="utf-8")
+        eye = (root / "lean4" / "H047StoneVonNeumannObstruction.lean").read_text(encoding="utf-8")
+        assert "theorem trace_scalar_identity" in scaled
+        assert "theorem tr_eye3_nonzero" in eye
+>       assert cli_identity_trace(2) == Fraction(2 * 1)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_finite_cli.py:99: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin_finite_cli\mutant-03.py:105: in cli_identity_trace
+    return _require_trace(_sum_diagonal(eye), width)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(2, 1), size = 2
+
+    def _require_trace(total: Fraction, size: int) -> Fraction:
+        expected = Fraction(size + 1)
+        if total != expected:
+>           raise _fail("cli identity trace is not the dimension", trace=str(total), size=size)
+E           src.bin.finite_cli.CliTraceError: cli identity trace is not the dimension (trace=2, size=2)
+
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin_finite_cli\mutant-03.py:96: CliTraceError
+__________________ test_end_to_end_unproven_sizes_stay_exact __________________
+
+    def test_end_to_end_unproven_sizes_stay_exact() -> None:
+>       assert cli_identity_trace(0) == Fraction(0)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_finite_cli.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin_finite_cli\mutant-03.py:105: in cli_identity_trace
+    return _require_trace(_sum_diagonal(eye), width)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(0, 1), size = 0
+
+    def _require_trace(total: Fraction, size: int) -> Fraction:
+        expected = Fraction(size + 1)
+        if total != expected:
+>           raise _fail("cli identity trace is not the dimension", trace=str(total), size=size)
+E           src.bin.finite_cli.CliTraceError: cli identity trace is not the dimension (trace=0, size=0)
+
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin_finite_cli\mutant-03.py:96: CliTraceError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_real_identity_provider_at_boundaries
+FAILED code/python/tests/test_finite_cli.py::test_default_cli_trace_matches_dimension_two
+FAILED code/python/tests/test_finite_cli.py::test_integration_matches_cited_lean_traces
+FAILED code/python/tests/test_finite_cli.py::test_end_to_end_unproven_sizes_stay_exact
+4 failed, 30 passed, 1 deselected in 3.66s
+{"phase": "pytest", "exit_code": 1}

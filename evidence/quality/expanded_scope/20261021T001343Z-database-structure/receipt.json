@@ -1,0 +1,873 @@
+{
+  "AuthorityEffect": "None",
+  "inputs": [
+    {
+      "path": "code/python/src/databases/schema.sql",
+      "sha256": "f29fd10c01095eb4deb6075c5146b50bfe30fe07a1fc6acb72a581d0bc3ed8f4"
+    },
+    {
+      "path": "code/python/src/databases/schema.down.sql",
+      "sha256": "6ffd8d8caf18c83adaf11159189af6ba3c733aeefc08d41632096b39437d2601"
+    },
+    {
+      "path": "code/python/src/databases/fermion_sign_problem.sql",
+      "sha256": "f71961457ef92700ae6ce89417659c4c6bf72acec316012e6217dfe0247d76e1"
+    },
+    {
+      "path": "code/python/src/databases/fermion_sign_problem.down.sql",
+      "sha256": "90cc9a38ad30ee9547e818e020bd7c882132dd8c4e709a109292352878c08cca"
+    },
+    {
+      "path": "code/python/src/databases/migrations.py",
+      "sha256": "f471d241560982177459106d458184c505007bbbb303cbb7b4bf81d60eab44a4"
+    }
+  ],
+  "sqlite_version": "3.50.4",
+  "engine_compile_options": [
+    "ATOMIC_INTRINSICS=0",
+    "COMPILER=msvc-1944",
+    "DEFAULT_AUTOVACUUM",
+    "DEFAULT_CACHE_SIZE=-2000",
+    "DEFAULT_FILE_FORMAT=4",
+    "DEFAULT_JOURNAL_SIZE_LIMIT=-1",
+    "DEFAULT_MMAP_SIZE=0",
+    "DEFAULT_PAGE_SIZE=4096",
+    "DEFAULT_PCACHE_INITSZ=20",
+    "DEFAULT_RECURSIVE_TRIGGERS",
+    "DEFAULT_SECTOR_SIZE=4096",
+    "DEFAULT_SYNCHRONOUS=2",
+    "DEFAULT_WAL_AUTOCHECKPOINT=1000",
+    "DEFAULT_WAL_SYNCHRONOUS=2",
+    "DEFAULT_WORKER_THREADS=0",
+    "DIRECT_OVERFLOW_READ",
+    "ENABLE_FTS3",
+    "ENABLE_FTS4",
+    "ENABLE_FTS5",
+    "ENABLE_MATH_FUNCTIONS",
+    "ENABLE_RTREE",
+    "MALLOC_SOFT_LIMIT=1024",
+    "MAX_ATTACHED=10",
+    "MAX_COLUMN=2000",
+    "MAX_COMPOUND_SELECT=500",
+    "MAX_DEFAULT_PAGE_SIZE=8192",
+    "MAX_EXPR_DEPTH=1000",
+    "MAX_FUNCTION_ARG=1000",
+    "MAX_LENGTH=1000000000",
+    "MAX_LIKE_PATTERN_LENGTH=50000",
+    "MAX_MMAP_SIZE=0x7fff0000",
+    "MAX_PAGE_COUNT=0xfffffffe",
+    "MAX_PAGE_SIZE=65536",
+    "MAX_SQL_LENGTH=1000000000",
+    "MAX_TRIGGER_DEPTH=1000",
+    "MAX_VARIABLE_NUMBER=32766",
+    "MAX_VDBE_OP=250000000",
+    "MAX_WORKER_THREADS=8",
+    "MUTEX_W32",
+    "OMIT_AUTOINIT",
+    "SYSTEM_MALLOC",
+    "TEMP_STORE=1",
+    "THREADSAFE=1"
+  ],
+  "observations": {
+    "ledger": {
+      "migration_observation": {
+        "schema": "ledger",
+        "direction": "up",
+        "source_sha256": "f29fd10c01095eb4deb6075c5146b50bfe30fe07a1fc6acb72a581d0bc3ed8f4",
+        "sqlite_version": "3.50.4"
+      },
+      "table_and_view_metadata": [
+        {
+          "schema": "main",
+          "name": "simplicial_chains",
+          "type": "table",
+          "ncol": 7,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "survivor_witnesses",
+          "type": "table",
+          "ncol": 11,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "ledger_schema_version",
+          "type": "table",
+          "ncol": 2,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "genesis_stages",
+          "type": "table",
+          "ncol": 6,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "ledger_receipts",
+          "type": "table",
+          "ncol": 3,
+          "wr": 1,
+          "strict": 1
+        }
+      ],
+      "tables": [
+        {
+          "schema": "main",
+          "name": "simplicial_chains",
+          "type": "table",
+          "ncol": 7,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "survivor_witnesses",
+          "type": "table",
+          "ncol": 11,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "ledger_schema_version",
+          "type": "table",
+          "ncol": 2,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "genesis_stages",
+          "type": "table",
+          "ncol": 6,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "ledger_receipts",
+          "type": "table",
+          "ncol": 3,
+          "wr": 1,
+          "strict": 1
+        }
+      ],
+      "schema_details": {
+        "simplicial_chains": {
+          "columns": [
+            {
+              "cid": 0,
+              "name": "chain_id",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "stage_id",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "dimension",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "simplex_label",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "boundary_representation",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "stokes_verified",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": "0",
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "evidence_sha256",
+              "type": "TEXT",
+              "notnull": 0,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "foreign_keys": [
+            {
+              "id": 0,
+              "seq": 0,
+              "table": "ledger_receipts",
+              "from": "evidence_sha256",
+              "to": "sha256",
+              "on_update": "RESTRICT",
+              "on_delete": "RESTRICT",
+              "match": "NONE"
+            },
+            {
+              "id": 1,
+              "seq": 0,
+              "table": "genesis_stages",
+              "from": "stage_id",
+              "to": "stage_num",
+              "on_update": "RESTRICT",
+              "on_delete": "RESTRICT",
+              "match": "NONE"
+            }
+          ],
+          "indexes": [
+            {
+              "seq": 0,
+              "name": "idx_chain_receipt",
+              "unique": 0,
+              "origin": "c",
+              "partial": 0
+            },
+            {
+              "seq": 1,
+              "name": "idx_chain_stage",
+              "unique": 0,
+              "origin": "c",
+              "partial": 0
+            },
+            {
+              "seq": 2,
+              "name": "sqlite_autoindex_simplicial_chains_1",
+              "unique": 1,
+              "origin": "pk",
+              "partial": 0
+            }
+          ]
+        },
+        "survivor_witnesses": {
+          "columns": [
+            {
+              "cid": 0,
+              "name": "witness_id",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "stage_id",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "x_locus",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "y_locus",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "demand_type",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "qx_observation",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "qy_observation",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "reason",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "is_retained",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": "1",
+              "pk": 0
+            },
+            {
+              "cid": 9,
+              "name": "evidence_sha256",
+              "type": "TEXT",
+              "notnull": 0,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 10,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": "CURRENT_TIMESTAMP",
+              "pk": 0
+            }
+          ],
+          "foreign_keys": [
+            {
+              "id": 0,
+              "seq": 0,
+              "table": "ledger_receipts",
+              "from": "evidence_sha256",
+              "to": "sha256",
+              "on_update": "RESTRICT",
+              "on_delete": "RESTRICT",
+              "match": "NONE"
+            },
+            {
+              "id": 1,
+              "seq": 0,
+              "table": "genesis_stages",
+              "from": "stage_id",
+              "to": "stage_num",
+              "on_update": "RESTRICT",
+              "on_delete": "RESTRICT",
+              "match": "NONE"
+            }
+          ],
+          "indexes": [
+            {
+              "seq": 0,
+              "name": "idx_survivor_receipt",
+              "unique": 0,
+              "origin": "c",
+              "partial": 0
+            },
+            {
+              "seq": 1,
+              "name": "idx_survivor_stage",
+              "unique": 0,
+              "origin": "c",
+              "partial": 0
+            },
+            {
+              "seq": 2,
+              "name": "sqlite_autoindex_survivor_witnesses_1",
+              "unique": 1,
+              "origin": "pk",
+              "partial": 0
+            }
+          ]
+        },
+        "ledger_schema_version": {
+          "columns": [
+            {
+              "cid": 0,
+              "name": "schema_key",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "version",
+              "type": "INTEGER",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [
+            {
+              "seq": 0,
+              "name": "sqlite_autoindex_ledger_schema_version_1",
+              "unique": 1,
+              "origin": "pk",
+              "partial": 0
+            }
+          ]
+        },
+        "genesis_stages": {
+          "columns": [
+            {
+              "cid": 0,
+              "name": "stage_num",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "category_name",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "carrier_type",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "boundary_formula",
+              "type": "TEXT",
+              "notnull": 0,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "degrees_of_freedom",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "status",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [
+            {
+              "seq": 0,
+              "name": "sqlite_autoindex_genesis_stages_1",
+              "unique": 1,
+              "origin": "pk",
+              "partial": 0
+            }
+          ]
+        },
+        "ledger_receipts": {
+          "columns": [
+            {
+              "cid": 0,
+              "name": "sha256",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "reference",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "kind",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [
+            {
+              "seq": 0,
+              "name": "sqlite_autoindex_ledger_receipts_1",
+              "unique": 1,
+              "origin": "pk",
+              "partial": 0
+            }
+          ]
+        }
+      },
+      "plans": {
+        "stage_lookup": [
+          {
+            "id": 2,
+            "parent": 0,
+            "notused": 53,
+            "detail": "SEARCH survivor_witnesses USING COVERING INDEX idx_survivor_stage (stage_id=?)"
+          }
+        ],
+        "receipt_lookup": [
+          {
+            "id": 2,
+            "parent": 0,
+            "notused": 55,
+            "detail": "SEARCH simplicial_chains USING COVERING INDEX idx_chain_receipt (evidence_sha256=?)"
+          }
+        ]
+      },
+      "foreign_key_check": "PASS for these finite rows only",
+      "resource_model": "Enforced bounded row/text/integer domains, indexed point/parent lookups, at most parent-to-child 1:N joins; window/DISTINCT work may use temporary B-trees. Count triggers have bounded O(N) per-insert work. No measured peak heap or universal latency claim."
+    },
+    "signed_ensemble": {
+      "migration_observation": {
+        "schema": "signed_ensemble",
+        "direction": "up",
+        "source_sha256": "f71961457ef92700ae6ce89417659c4c6bf72acec316012e6217dfe0247d76e1",
+        "sqlite_version": "3.50.4"
+      },
+      "table_and_view_metadata": [
+        {
+          "schema": "main",
+          "name": "SignedOrbitAudit",
+          "type": "view",
+          "ncol": 9,
+          "wr": 0,
+          "strict": 0
+        },
+        {
+          "schema": "main",
+          "name": "SignedPathWindowAudit",
+          "type": "view",
+          "ncol": 9,
+          "wr": 0,
+          "strict": 0
+        },
+        {
+          "schema": "main",
+          "name": "SignedEnsembleAudit",
+          "type": "view",
+          "ncol": 8,
+          "wr": 0,
+          "strict": 0
+        },
+        {
+          "schema": "main",
+          "name": "signed_schema_version",
+          "type": "table",
+          "ncol": 2,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "signed_ensembles",
+          "type": "table",
+          "ncol": 2,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "signed_configurations",
+          "type": "table",
+          "ncol": 5,
+          "wr": 1,
+          "strict": 1
+        }
+      ],
+      "tables": [
+        {
+          "schema": "main",
+          "name": "signed_schema_version",
+          "type": "table",
+          "ncol": 2,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "signed_ensembles",
+          "type": "table",
+          "ncol": 2,
+          "wr": 1,
+          "strict": 1
+        },
+        {
+          "schema": "main",
+          "name": "signed_configurations",
+          "type": "table",
+          "ncol": 5,
+          "wr": 1,
+          "strict": 1
+        }
+      ],
+      "schema_details": {
+        "signed_schema_version": {
+          "columns": [
+            {
+              "cid": 0,
+              "name": "schema_key",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "version",
+              "type": "INTEGER",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [
+            {
+              "seq": 0,
+              "name": "sqlite_autoindex_signed_schema_version_1",
+              "unique": 1,
+              "origin": "pk",
+              "partial": 0
+            }
+          ]
+        },
+        "signed_ensembles": {
+          "columns": [
+            {
+              "cid": 0,
+              "name": "ensemble_id",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "common_denominator",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "foreign_keys": [],
+          "indexes": [
+            {
+              "seq": 0,
+              "name": "sqlite_autoindex_signed_ensembles_1",
+              "unique": 1,
+              "origin": "pk",
+              "partial": 0
+            }
+          ]
+        },
+        "signed_configurations": {
+          "columns": [
+            {
+              "cid": 0,
+              "name": "ensemble_id",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "path_id",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 2
+            },
+            {
+              "cid": 2,
+              "name": "orbit_id",
+              "type": "TEXT",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "magnitude",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "sign",
+              "type": "ANY",
+              "notnull": 1,
+              "dflt_value": null,
+              "pk": 0
+            }
+          ],
+          "foreign_keys": [
+            {
+              "id": 0,
+              "seq": 0,
+              "table": "signed_ensembles",
+              "from": "ensemble_id",
+              "to": "ensemble_id",
+              "on_update": "RESTRICT",
+              "on_delete": "RESTRICT",
+              "match": "NONE"
+            }
+          ],
+          "indexes": [
+            {
+              "seq": 0,
+              "name": "idx_signed_orbit",
+              "unique": 0,
+              "origin": "c",
+              "partial": 0
+            },
+            {
+              "seq": 1,
+              "name": "sqlite_autoindex_signed_configurations_1",
+              "unique": 1,
+              "origin": "pk",
+              "partial": 0
+            }
+          ]
+        }
+      },
+      "plans": {
+        "orbit_lookup": [
+          {
+            "id": 3,
+            "parent": 0,
+            "notused": 67,
+            "detail": "SEARCH signed_configurations USING INDEX idx_signed_orbit (ensemble_id=? AND orbit_id=?)"
+          }
+        ],
+        "ensemble_audit": [
+          {
+            "id": 2,
+            "parent": 0,
+            "notused": 0,
+            "detail": "CO-ROUTINE totals"
+          },
+          {
+            "id": 10,
+            "parent": 2,
+            "notused": 15,
+            "detail": "SEARCH e USING PRIMARY KEY (ensemble_id=?)"
+          },
+          {
+            "id": 14,
+            "parent": 2,
+            "notused": 115,
+            "detail": "SEARCH c USING INDEX idx_signed_orbit (ensemble_id=?) LEFT-JOIN"
+          },
+          {
+            "id": 71,
+            "parent": 0,
+            "notused": 82,
+            "detail": "SCAN totals"
+          }
+        ],
+        "orbit_window_audit": [
+          {
+            "id": 2,
+            "parent": 0,
+            "notused": 0,
+            "detail": "CO-ROUTINE SignedOrbitAudit"
+          },
+          {
+            "id": 4,
+            "parent": 2,
+            "notused": 0,
+            "detail": "CO-ROUTINE SignedPathWindowAudit"
+          },
+          {
+            "id": 9,
+            "parent": 4,
+            "notused": 0,
+            "detail": "CO-ROUTINE (subquery-4)"
+          },
+          {
+            "id": 14,
+            "parent": 9,
+            "notused": 116,
+            "detail": "SCAN c USING INDEX idx_signed_orbit"
+          },
+          {
+            "id": 19,
+            "parent": 9,
+            "notused": 15,
+            "detail": "SEARCH e USING PRIMARY KEY (ensemble_id=?)"
+          },
+          {
+            "id": 44,
+            "parent": 4,
+            "notused": 115,
+            "detail": "SCAN (subquery-4)"
+          },
+          {
+            "id": 124,
+            "parent": 2,
+            "notused": 115,
+            "detail": "SCAN SignedPathWindowAudit"
+          },
+          {
+            "id": 153,
+            "parent": 2,
+            "notused": 0,
+            "detail": "USE TEMP B-TREE FOR DISTINCT"
+          },
+          {
+            "id": 155,
+            "parent": 0,
+            "notused": 85,
+            "detail": "SCAN SignedOrbitAudit"
+          }
+        ]
+      },
+      "foreign_key_check": "PASS for these finite rows only",
+      "resource_model": "Enforced bounded row/text/integer domains, indexed point/parent lookups, at most parent-to-child 1:N joins; window/DISTINCT work may use temporary B-trees. Count triggers have bounded O(N) per-insert work. No measured peak heap or universal latency claim."
+    }
+  },
+  "imperative_complexity": "Not applicable to SQL. No false zero CCN/cognitive/nesting metric is emitted. SQL structure is reviewed through actual schema objects, keys/cardinalities and query plans.",
+  "status": "PASS"
+}

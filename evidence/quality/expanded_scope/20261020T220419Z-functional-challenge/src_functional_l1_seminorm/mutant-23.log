@@ -1,0 +1,24 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ExactPhi1Certificate", "L1Seminorm", "L1SeminormError", "evaluate_weighted_l1_quotient"]}
+..F...............                                                       [100%]
+================================== FAILURES ===================================
+_____________ test_presentation_and_verified_lifecycle_are_frozen _____________
+
+    def test_presentation_and_verified_lifecycle_are_frozen():
+        boundary = [[0]]; weights = [1]
+        presentation = api.L1Seminorm(boundary, weights)
+        result = presentation.verify_certificate(submitted())
+        boundary[0][0] = 20; weights[0] = 3
+        assert presentation.boundary == [[Fraction(0)]] and presentation.weights == [Fraction(1)]
+        with pytest.raises(FrozenInstanceError):
+            presentation._weights = (Fraction(99),)
+        with pytest.raises(FrozenInstanceError):
+            result._parts = ()
+>       with pytest.raises(api.L1SeminormError, match="already initialized"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE L1SeminormError
+
+code\python\tests\test_functional_integrity.py:84: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_functional_integrity.py::test_presentation_and_verified_lifecycle_are_frozen
+1 failed, 17 passed, 1 deselected in 0.84s
+{"phase": "pytest", "exit_code": 1}

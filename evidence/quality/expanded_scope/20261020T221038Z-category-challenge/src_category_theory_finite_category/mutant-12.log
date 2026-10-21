@@ -1,0 +1,19 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CategoryLawError", "FiniteCategory", "factor_report_query", "verify_report_query_factorization"]}
+........F............                                                    [100%]
+================================== FAILURES ===================================
+_______ test_factorization_uses_the_exact_common_carrier_and_all_values _______
+
+    def test_factorization_uses_the_exact_common_carrier_and_all_values():
+        for report, query in [({0: 10}, {0: 1, 9: 2}), ({0: 10, 9: 20}, {0: 1}),
+                              ({0: 10}, {0: 1, 9: 0.5}), ({0: 10}, {0: True}),
+                              ({1.0: 10}, {1: 1}), ({0: 10}, {0: 1.0}),
+                              (HostileDict({0: 10}), {0: 1}), ({0: 10}, HostileDict({0: 1}))]:
+>           with pytest.raises(api.CategoryLawError):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE CategoryLawError
+
+code\python\tests\test_category_integrity.py:157: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_factorization_uses_the_exact_common_carrier_and_all_values
+1 failed, 20 passed, 2 deselected in 3.28s
+{"phase": "pytest", "exit_code": 1}

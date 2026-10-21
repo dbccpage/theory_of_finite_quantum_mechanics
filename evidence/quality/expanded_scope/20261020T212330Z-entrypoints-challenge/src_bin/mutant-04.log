@@ -1,0 +1,301 @@
+{"phase": "candidate_bindings", "checked_symbols": ["BinWitnessError", "bin_two_square", "main", "ray_power_two"]}
+....FF.F.....FF..F..F.........FFFFF.                                     [100%]
+================================== FAILURES ===================================
+_______________________ test_closed_scalar_admission[1] _______________________
+
+scalar = 1
+
+    @pytest.mark.parametrize("scalar", [OverridingInt(1), OverridingFraction(1)])
+    def test_closed_scalar_admission(scalar):
+>       with pytest.raises(ray.BinWitnessError, match="not an exact rational"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'not an exact rational'
+E         Actual message: 'ray amplitudes are not three (length=3)'
+
+code\python\tests\test_bounded_entrypoints.py:79: AssertionError
+____________________ test_closed_scalar_admission[scalar1] ____________________
+
+scalar = OverridingFraction(1, 1)
+
+    @pytest.mark.parametrize("scalar", [OverridingInt(1), OverridingFraction(1)])
+    def test_closed_scalar_admission(scalar):
+>       with pytest.raises(ray.BinWitnessError, match="not an exact rational"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'not an exact rational'
+E         Actual message: 'ray amplitudes are not three (length=3)'
+
+code\python\tests\test_bounded_entrypoints.py:79: AssertionError
+___ test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering ____
+
+    def test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering():
+        edge = (1 << 1024) - 1
+>       assert ray.ray_power_two((edge, 0, 0)) == Fraction(edge * edge)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:123: in ray_power_two
+    parsed = _parsed(_RAY if amplitudes is None else amplitudes)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:88: in _parsed
+    return _collect(_require_three(_require_tuple(amplitudes)))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+amplitudes = (179769313486231590...5356329624224137215, 0, 0)
+
+    def _require_three(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
+        if len(amplitudes) != 4:
+>           raise _fail("ray amplitudes are not three", length=len(amplitudes))
+E           src.bin.BinWitnessError: ray amplitudes are not three (length=3)
+
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:56: BinWitnessError
+________________________ test_generated_exact_controls ________________________
+
+    def test_generated_exact_controls():
+        for scale in range(1, 8):
+            for a, b, c in product(range(-2, 3), repeat=3):
+>               result = ray.ray_power_two((Fraction(a, scale), Fraction(b, scale), Fraction(c, scale)))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:172: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:123: in ray_power_two
+    parsed = _parsed(_RAY if amplitudes is None else amplitudes)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:88: in _parsed
+    return _collect(_require_three(_require_tuple(amplitudes)))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+amplitudes = (Fraction(-2, 1), Fraction(-2, 1), Fraction(-2, 1))
+
+    def _require_three(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
+        if len(amplitudes) != 4:
+>           raise _fail("ray amplitudes are not three", length=len(amplitudes))
+E           src.bin.BinWitnessError: ray amplitudes are not three (length=3)
+
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:56: BinWitnessError
+______ test_closed_or_broken_stdout_is_graceful[BrokenPipeError-src.bin] ______
+
+provider = <module 'src.bin' from 'C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\python\\src\\bin\\__init__.py'>
+error = <class 'BrokenPipeError'>
+
+    @pytest.mark.parametrize("provider", [ray, collision, mass])
+    @pytest.mark.parametrize("error", [BrokenPipeError, ValueError])
+    def test_closed_or_broken_stdout_is_graceful(provider, error):
+        class BrokenStream(io.StringIO):
+            def write(self, text):
+                raise error("output unavailable")
+        with redirect_stdout(BrokenStream()):
+>           assert provider.main() == 2
+                   ^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:190: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:137: in main
+    value = bin_two_square()
+            ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:129: in bin_two_square
+    parsed = _parsed(_RAY)
+             ^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:88: in _parsed
+    return _collect(_require_three(_require_tuple(amplitudes)))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+amplitudes = (Fraction(3, 5), Fraction(4, 5), Fraction(0, 1))
+
+    def _require_three(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
+        if len(amplitudes) != 4:
+>           raise _fail("ray amplitudes are not three", length=len(amplitudes))
+E           src.bin.BinWitnessError: ray amplitudes are not three (length=3)
+
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:56: BinWitnessError
+________ test_closed_or_broken_stdout_is_graceful[ValueError-src.bin] _________
+
+provider = <module 'src.bin' from 'C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\python\\src\\bin\\__init__.py'>
+error = <class 'ValueError'>
+
+    @pytest.mark.parametrize("provider", [ray, collision, mass])
+    @pytest.mark.parametrize("error", [BrokenPipeError, ValueError])
+    def test_closed_or_broken_stdout_is_graceful(provider, error):
+        class BrokenStream(io.StringIO):
+            def write(self, text):
+                raise error("output unavailable")
+        with redirect_stdout(BrokenStream()):
+>           assert provider.main() == 2
+                   ^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:190: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:137: in main
+    value = bin_two_square()
+            ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:129: in bin_two_square
+    parsed = _parsed(_RAY)
+             ^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:88: in _parsed
+    return _collect(_require_three(_require_tuple(amplitudes)))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+amplitudes = (Fraction(3, 5), Fraction(4, 5), Fraction(0, 1))
+
+    def _require_three(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
+        if len(amplitudes) != 4:
+>           raise _fail("ray amplitudes are not three", length=len(amplitudes))
+E           src.bin.BinWitnessError: ray amplitudes are not three (length=3)
+
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:56: BinWitnessError
+______________________ test_witness_output_remains_exact ______________________
+
+    def test_witness_output_remains_exact():
+        for provider, expected in [(ray, "1\n"), (collision, "1/2\n"), (mass, "1\n")]:
+            output = io.StringIO()
+            with redirect_stdout(output):
+>               assert provider.main() == 0
+                       ^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:197: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:137: in main
+    value = bin_two_square()
+            ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:129: in bin_two_square
+    parsed = _parsed(_RAY)
+             ^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:88: in _parsed
+    return _collect(_require_three(_require_tuple(amplitudes)))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+amplitudes = (Fraction(3, 5), Fraction(4, 5), Fraction(0, 1))
+
+    def _require_three(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
+        if len(amplitudes) != 4:
+>           raise _fail("ray amplitudes are not three", length=len(amplitudes))
+E           src.bin.BinWitnessError: ray amplitudes are not three (length=3)
+
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:56: BinWitnessError
+__________________ test_pythagorean_ray_matches_the_theorem ___________________
+
+    def test_pythagorean_ray_matches_the_theorem() -> None:
+>       assert bin_two_square() == Fraction(1)
+               ^^^^^^^^^^^^^^^^
+
+code\python\tests\test_bin_witness.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:129: in bin_two_square
+    parsed = _parsed(_RAY)
+             ^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:88: in _parsed
+    return _collect(_require_three(_require_tuple(amplitudes)))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+amplitudes = (Fraction(3, 5), Fraction(4, 5), Fraction(0, 1))
+
+    def _require_three(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
+        if len(amplitudes) != 4:
+>           raise _fail("ray amplitudes are not three", length=len(amplitudes))
+E           src.bin.BinWitnessError: ray amplitudes are not three (length=3)
+
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:56: BinWitnessError
+_________________________ test_negative_type_failures _________________________
+
+    def test_negative_type_failures() -> None:
+>       with pytest.raises(BinWitnessError, match="float refused") as floated:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'float refused'
+E         Actual message: 'ray amplitudes are not three (length=3)'
+
+code\python\tests\test_bin_witness.py:56: AssertionError
+________________________ test_negative_shape_failures _________________________
+
+    def test_negative_shape_failures() -> None:
+        with pytest.raises(BinWitnessError, match="not three") as short:
+            ray_power_two((Fraction(3, 5), Fraction(4, 5)))
+        assert short.value.parameters["length"] == 2
+    
+>       with pytest.raises(BinWitnessError, match="not three") as long:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BinWitnessError
+
+code\python\tests\test_bin_witness.py:76: Failed
+____________________ test_integration_matches_packet_norm _____________________
+
+    def test_integration_matches_packet_norm() -> None:
+        root = Path(__file__).resolve().parents[3]
+        source = (root / "lean4" / "FiniteQM.lean").read_text(encoding="utf-8")
+        assert "theorem unit_sphere_pythagorean_ray_witness" in source
+        pair = packet_norm((Fraction(3, 5), Fraction(4, 5)))
+        assert pair == Fraction(1)
+>       assert ray_power_two() == pair
+               ^^^^^^^^^^^^^^^
+
+code\python\tests\test_bin_witness.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:123: in ray_power_two
+    parsed = _parsed(_RAY if amplitudes is None else amplitudes)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:88: in _parsed
+    return _collect(_require_three(_require_tuple(amplitudes)))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+amplitudes = (Fraction(3, 5), Fraction(4, 5), Fraction(0, 1))
+
+    def _require_three(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
+        if len(amplitudes) != 4:
+>           raise _fail("ray amplitudes are not three", length=len(amplitudes))
+E           src.bin.BinWitnessError: ray amplitudes are not three (length=3)
+
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:56: BinWitnessError
+_______________________ test_end_to_end_cli_prints_one ________________________
+
+    def test_end_to_end_cli_prints_one() -> None:
+        stdout = io.StringIO()
+        with redirect_stdout(stdout):
+>           code = main()
+                   ^^^^^^
+
+code\python\tests\test_bin_witness.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:137: in main
+    value = bin_two_square()
+            ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:129: in bin_two_square
+    parsed = _parsed(_RAY)
+             ^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:88: in _parsed
+    return _collect(_require_three(_require_tuple(amplitudes)))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+amplitudes = (Fraction(3, 5), Fraction(4, 5), Fraction(0, 1))
+
+    def _require_three(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
+        if len(amplitudes) != 4:
+>           raise _fail("ray amplitudes are not three", length=len(amplitudes))
+E           src.bin.BinWitnessError: ray amplitudes are not three (length=3)
+
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin\mutant-04.py:56: BinWitnessError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_scalar_admission[1]
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_scalar_admission[scalar1]
+FAILED code/python/tests/test_bounded_entrypoints.py::test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering
+FAILED code/python/tests/test_bounded_entrypoints.py::test_generated_exact_controls
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_or_broken_stdout_is_graceful[BrokenPipeError-src.bin]
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_or_broken_stdout_is_graceful[ValueError-src.bin]
+FAILED code/python/tests/test_bounded_entrypoints.py::test_witness_output_remains_exact
+FAILED code/python/tests/test_bin_witness.py::test_pythagorean_ray_matches_the_theorem
+FAILED code/python/tests/test_bin_witness.py::test_negative_type_failures - A...
+FAILED code/python/tests/test_bin_witness.py::test_negative_shape_failures - ...
+FAILED code/python/tests/test_bin_witness.py::test_integration_matches_packet_norm
+FAILED code/python/tests/test_bin_witness.py::test_end_to_end_cli_prints_one
+12 failed, 24 passed, 1 deselected in 4.76s
+{"phase": "pytest", "exit_code": 1}

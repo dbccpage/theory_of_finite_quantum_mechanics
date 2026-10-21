@@ -7,6 +7,9 @@
 *.contract.score.yaml -text
 evidence/contract_score_migration/** -text -whitespace
 
+# Preserve source snapshots, mutant outcomes and exact expanded-scope receipts.
+evidence/quality/expanded_scope/** -text -whitespace
+
 # Keep the exact bytes bound by category/homology source and evidence receipts.
 code/rust/src/category_theory/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 code/rust/src/homology/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

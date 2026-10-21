@@ -1,0 +1,40 @@
+F..................................                                      [100%]
+================================== FAILURES ===================================
+_ test_hostile_container_callbacks_are_not_run[ray_power_two-BinWitnessError-argument0] _
+
+operation = <function ray_power_two at 0x000002085295AF00>
+error = <class 'src.bin.BinWitnessError'>, argument = (1, 0, 0)
+
+    @pytest.mark.parametrize("operation, error, argument", [
+        (ray.ray_power_two, ray.BinWitnessError, HostileTuple((1, 0, 0))),
+        (collision.collision_probability, collision.ParityError, HostileTuple((1,))),
+        (mass.integer_mass, mass.ScaledSimplexError, HostileTuple((1, 0))),
+    ])
+    def test_hostile_container_callbacks_are_not_run(operation, error, argument):
+        with pytest.raises(error, match="container subclass refused"):
+>           operation(argument)
+
+code\python\tests\test_bounded_entrypoints.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin\mutant-01.py:123: in ray_power_two
+    parsed = _parsed(_RAY if amplitudes is None else amplitudes)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin\mutant-01.py:88: in _parsed
+    return _collect(_require_three(_require_tuple(amplitudes)))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_bin\mutant-01.py:51: in _require_tuple
+    return tuple(amplitudes)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = (1, 0, 0)
+
+    def __iter__(self):
+>       raise RuntimeError("must refuse before user iteration")
+E       RuntimeError: must refuse before user iteration
+
+code\python\tests\test_bounded_entrypoints.py:26: RuntimeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_hostile_container_callbacks_are_not_run[ray_power_two-BinWitnessError-argument0]
+1 failed, 34 passed, 1 deselected in 3.32s
+{"phase": "pytest", "exit_code": 1}

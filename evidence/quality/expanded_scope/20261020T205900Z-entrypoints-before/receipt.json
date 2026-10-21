@@ -1,0 +1,53 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Three concrete caller-container callbacks escaping the advertised typed input refusal boundary; no claim about process isolation or all APIs.",
+  "sources": {
+    "code/python/src/bin/__init__.py": "8884b13fdd3a7cb61162885110541ee532de936253e62061f9951e1f5c4c2b50",
+    "code/python/src/bin/entropy_cli.py": "e7dde2532a319938765264768698255cb42e8aff22077c79213501fe51beba38",
+    "code/python/src/bin/finite_cli.py": "7d8a1ff6a3417cec972f355d903abaca2814433aed20039d13ed42054651e67d",
+    "code/python/src/finite_probability/__init__.py": "a01620b939bff0ce2cbd3b312be4a73ad2ccd81a92fbcab5aaf869fecf9b4d28"
+  },
+  "cases": [
+    {
+      "module": "src.bin",
+      "function": "ray_power_two",
+      "probe": "tuple subclass with raising __iter__",
+      "status": "RAISED",
+      "exception": "RuntimeError",
+      "message": "untrusted tuple callback executed"
+    },
+    {
+      "module": "src.bin.entropy_cli",
+      "function": "collision_probability",
+      "probe": "tuple subclass with raising __iter__",
+      "status": "RAISED",
+      "exception": "RuntimeError",
+      "message": "untrusted tuple callback executed"
+    },
+    {
+      "module": "src.finite_probability",
+      "function": "integer_mass",
+      "probe": "tuple subclass with raising __iter__",
+      "status": "RAISED",
+      "exception": "RuntimeError",
+      "message": "untrusted tuple callback executed"
+    }
+  ],
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "cli_exit_probe": {
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "src.bin.finite_cli",
+      "evidence",
+      "check",
+      "--project-root",
+      "<repo>"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "SOURCE_MANIFEST_REQUIRED\n",
+    "finding": "The dispatcher reports SOURCE_MANIFEST_REQUIRED but the module discards return code 2 and exits zero."
+  }
+}

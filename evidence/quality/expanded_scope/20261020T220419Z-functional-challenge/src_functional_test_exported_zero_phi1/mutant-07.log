@@ -1,0 +1,25 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ClaimCheckError", "_anchor", "_as_error", "_callable", "_check_export", "_exec_module", "_fail", "_float_probe", "_holds", "_kill_count", "_load", "_main", "_one_mutant", "_require_receipt", "_require_refusal", "_restore_module", "_safe_holds", "_safe_self", "_self_holds", "certified_zero", "parse_exact_entry", "test_end_to_end", "test_integration", "test_library_mutation", "test_negative", "test_origin", "test_self_mutation", "test_unit", "witness_guard", "witness_pair", "witness_weight", "witness_zero"]}
+........F.....                                                           [100%]
+================================== FAILURES ===================================
+_____________ test_checker_witness_and_invalid_candidate_controls _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001F58E2379B0>
+
+    def test_checker_witness_and_invalid_candidate_controls(monkeypatch):
+        from src.functional import test_exported_zero_phi1 as checks
+        assert checks.witness_zero() == Fraction(0)
+        assert checks.witness_pair() == 2 and checks.witness_weight() == 1
+        assert checks.witness_guard() == "float refused at the public boundary"
+        with pytest.raises(checks.ClaimCheckError):
+            checks.parse_exact_entry(ClassCallback())
+        with pytest.raises(KeyError):
+            checks._safe_holds({})
+>       with pytest.raises(KeyError):
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE KeyError
+
+code\python\tests\test_functional_integrity.py:189: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_functional_integrity.py::test_checker_witness_and_invalid_candidate_controls
+1 failed, 13 passed, 2 deselected in 1.29s
+{"phase": "pytest", "exit_code": 1}

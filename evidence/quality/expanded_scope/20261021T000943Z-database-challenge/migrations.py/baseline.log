@@ -1,0 +1,37 @@
+{"phase": "candidate_bindings", "checked_symbols": ["MigrationError", "MigrationObservation", "apply_migration"]}
+...........................E                                             [100%]
+=================================== ERRORS ====================================
+____ ERROR at setup of test_busy_database_refusal_releases_no_caller_lock _____
+
+fixturedef = <FixtureDef argname='tmp_path' scope='function' baseid=''>
+request = <SubRequest 'tmp_path' for <Function test_busy_database_refusal_releases_no_caller_lock>>
+
+    @pytest.hookimpl(wrapper=True)
+    def pytest_fixture_setup(fixturedef: FixtureDef, request) -> object | None:
+        asyncio_mode = _get_asyncio_mode(request.config)
+        if not _is_asyncio_fixture_function(fixturedef.func):
+            if asyncio_mode == Mode.STRICT:
+                # Ignore async fixtures without explicit asyncio mark in strict mode
+                # This applies to pytest_trio fixtures, for example
+>               return (yield)
+                        ^^^^^
+
+..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pytest_asyncio\plugin.py:728: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/.pytest_cache/database-candidates/20261021T000943Z-database-challenge/migrations.py/baseline')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.pytest_cache\\database-candidates\\20261021T000943Z-database-challenge\\migrations.py\\baseline'
+
+..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:1011: FileNotFoundError
+=========================== short test summary info ===========================
+ERROR code/python/tests/test_database_integrity.py::test_busy_database_refusal_releases_no_caller_lock
+27 passed, 1 error in 2.46s
+{"phase": "pytest", "exit_code": 1}

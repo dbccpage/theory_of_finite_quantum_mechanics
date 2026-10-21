@@ -1,0 +1,207 @@
+{"phase": "candidate_bindings", "checked_symbols": ["arrow_decoder_size"]}
+..........FFF..FFFF.                                                     [100%]
+================================== FAILURES ===================================
+____________ test_factorization_resource_and_ownership_boundaries _____________
+
+    def test_factorization_resource_and_ownership_boundaries():
+        report = {i: 10 for i in range(4096)}; query = {i: 1 for i in range(4096)}
+        decoder = api.factor_report_query(report, query)
+        assert decoder == {10: 1}
+        decoder[10] = 99
+        assert query[0] == 1
+        largest_label = (1 << 1024) - 1
+        assert api.factor_report_query({largest_label: largest_label}, {largest_label: -largest_label}) == {largest_label: -largest_label}
+        with pytest.raises(api.CategoryLawError, match="source budget exceeded"):
+            api.factor_report_query({**report, 4096: 10}, {**query, 4096: 1})
+        for value in [1 << 1024, -(1 << 20000)]:
+            with pytest.raises(api.CategoryLawError, match="bit budget exceeded"):
+                api.factor_report_query({0: 10}, {0: value})
+>           with pytest.raises(api.CategoryLawError, match="bit budget exceeded"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AssertionError: Regex pattern did not match.
+E             Expected regex: 'bit budget exceeded'
+E             Actual message: 'label is not an exact integer (role=report_0, received=int)'
+
+code\python\tests\test_category_integrity.py:196: AssertionError
+________________ test_witness_tables_never_drop_duplicate_keys ________________
+
+    def test_witness_tables_never_drop_duplicate_keys():
+        for rows in [((0, 999), (0, 10), (1, 10), (2, 20)), ((0, 10), (0, 10), (1, 10), (2, 20))]:
+>           with pytest.raises(api.CategoryLawError, match="duplicate witness source"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AssertionError: Regex pattern did not match.
+E             Expected regex: 'duplicate witness source'
+E             Actual message: 'label is not an exact integer (role=report_0, received=int)'
+
+code\python\tests\test_category_integrity.py:202: AssertionError
+__________________ test_witness_container_and_scalar_guards ___________________
+
+    def test_witness_container_and_scalar_guards():
+        for argument in [HostileTuple(((0, 10),)), ClassCallback(), ((ClassCallback(), 10),),
+                         (HostileTuple((0, 10)),), ((0, 10),) * 4097]:
+            with pytest.raises(api.CategoryLawError):
+>               facade.arrow_decoder_size(report=argument)
+
+code\python\tests\test_category_integrity.py:213: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:111: in arrow_decoder_size
+    return _require_decoder(factor_report_query(_table(report_rows, "report"), _table(query_rows, "query")))
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:74: in _table
+    key, value = _pair(row, role)
+                 ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:64: in _pair
+    return (_exact_int(row[0], role + "_0"), _exact_int(row[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = <tests.test_category_integrity.ClassCallback object at 0x0000020B79F50D60>
+role = 'report_0'
+
+    def _exact_int(value: object, role: str) -> int:
+        _refuse_float(value, role)
+        if type(value) is bool:
+            raise _fail("boolean refused where an integer label was required", role=role)
+        if type(value) is int:
+            raise _fail("label is not an exact integer", role=role, received=type(value).__name__)
+>       if value.bit_length() > MAX_INTEGER_BITS:
+           ^^^^^^^^^^^^^^^^
+E       AttributeError: 'ClassCallback' object has no attribute 'bit_length'
+
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:56: AttributeError
+__________________________________ test_unit __________________________________
+
+    def test_unit() -> None:
+        """The default decoder has two images."""
+>       if arrow_decoder_size() != 2:
+           ^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\category_theory\test_arrow_decoder.py:263: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:111: in arrow_decoder_size
+    return _require_decoder(factor_report_query(_table(report_rows, "report"), _table(query_rows, "query")))
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:74: in _table
+    key, value = _pair(row, role)
+                 ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:64: in _pair
+    return (_exact_int(row[0], role + "_0"), _exact_int(row[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 0, role = 'report_0'
+
+    def _exact_int(value: object, role: str) -> int:
+        _refuse_float(value, role)
+        if type(value) is bool:
+            raise _fail("boolean refused where an integer label was required", role=role)
+        if type(value) is int:
+>           raise _fail("label is not an exact integer", role=role, received=type(value).__name__)
+E           src.category_theory.finite_category.CategoryLawError: label is not an exact integer (role=report_0, received=int)
+
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:55: CategoryLawError
+______________________________ test_integration _______________________________
+
+    def test_integration() -> None:
+        """The export size equals the neighbor factorization of the same tables."""
+>       if arrow_decoder_size() != len(factor_report_query(_REPORT, _QUERY)):
+           ^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\category_theory\test_arrow_decoder.py:269: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:111: in arrow_decoder_size
+    return _require_decoder(factor_report_query(_table(report_rows, "report"), _table(query_rows, "query")))
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:74: in _table
+    key, value = _pair(row, role)
+                 ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:64: in _pair
+    return (_exact_int(row[0], role + "_0"), _exact_int(row[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 0, role = 'report_0'
+
+    def _exact_int(value: object, role: str) -> int:
+        _refuse_float(value, role)
+        if type(value) is bool:
+            raise _fail("boolean refused where an integer label was required", role=role)
+        if type(value) is int:
+>           raise _fail("label is not an exact integer", role=role, received=type(value).__name__)
+E           src.category_theory.finite_category.CategoryLawError: label is not an exact integer (role=report_0, received=int)
+
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:55: CategoryLawError
+_______________________________ test_end_to_end _______________________________
+
+    def test_end_to_end() -> None:
+        """The public default call returns the frozen decoder size."""
+>       if arrow_decoder_size() != len({10: 1, 20: 0}):
+           ^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\category_theory\test_arrow_decoder.py:275: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:111: in arrow_decoder_size
+    return _require_decoder(factor_report_query(_table(report_rows, "report"), _table(query_rows, "query")))
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:74: in _table
+    key, value = _pair(row, role)
+                 ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:64: in _pair
+    return (_exact_int(row[0], role + "_0"), _exact_int(row[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 0, role = 'report_0'
+
+    def _exact_int(value: object, role: str) -> int:
+        _refuse_float(value, role)
+        if type(value) is bool:
+            raise _fail("boolean refused where an integer label was required", role=role)
+        if type(value) is int:
+>           raise _fail("label is not an exact integer", role=role, received=type(value).__name__)
+E           src.category_theory.finite_category.CategoryLawError: label is not an exact integer (role=report_0, received=int)
+
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:55: CategoryLawError
+________________________________ test_negative ________________________________
+
+    def test_negative() -> None:
+        """Float, bool, and an empty report are refused."""
+>       _check_decoder(arrow_decoder_size, CategoryLawError)
+
+code\python\src\category_theory\test_arrow_decoder.py:281: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\category_theory\test_arrow_decoder.py:106: in _check_decoder
+    if decode() != len(factor_report_query(_REPORT, _QUERY)):
+       ^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:111: in arrow_decoder_size
+    return _require_decoder(factor_report_query(_table(report_rows, "report"), _table(query_rows, "query")))
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:74: in _table
+    key, value = _pair(row, role)
+                 ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:64: in _pair
+    return (_exact_int(row[0], role + "_0"), _exact_int(row[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 0, role = 'report_0'
+
+    def _exact_int(value: object, role: str) -> int:
+        _refuse_float(value, role)
+        if type(value) is bool:
+            raise _fail("boolean refused where an integer label was required", role=role)
+        if type(value) is int:
+>           raise _fail("label is not an exact integer", role=role, received=type(value).__name__)
+E           src.category_theory.finite_category.CategoryLawError: label is not an exact integer (role=report_0, received=int)
+
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-07.py:55: CategoryLawError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_factorization_resource_and_ownership_boundaries
+FAILED code/python/tests/test_category_integrity.py::test_witness_tables_never_drop_duplicate_keys
+FAILED code/python/tests/test_category_integrity.py::test_witness_container_and_scalar_guards
+FAILED code/python/src/category_theory/test_arrow_decoder.py::test_unit - src...
+FAILED code/python/src/category_theory/test_arrow_decoder.py::test_integration
+FAILED code/python/src/category_theory/test_arrow_decoder.py::test_end_to_end
+FAILED code/python/src/category_theory/test_arrow_decoder.py::test_negative
+7 failed, 13 passed, 2 deselected in 1.75s
+{"phase": "pytest", "exit_code": 1}

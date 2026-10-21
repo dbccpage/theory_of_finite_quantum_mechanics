@@ -1,0 +1,56 @@
+{"phase": "candidate_bindings", "checked_symbols": ["exported_binomial"]}
+...............FFFF.                                                     [100%]
+================================== FAILURES ===================================
+__________________________________ test_unit __________________________________
+
+    def test_unit() -> None:
+        """The export equals the factorial quotient C(6, 3)."""
+        if exported_binomial() != _factorial_choose(6, 3):
+>           raise _fail("unit export drifted")
+E           src.combinatorics.test_exported_binomial.ClaimCheckError: unit export drifted
+
+code\python\src\combinatorics\test_exported_binomial.py:317: ClaimCheckError
+______________________________ test_integration _______________________________
+
+    def test_integration() -> None:
+        """The export agrees with the multiplicative binomial in the neighbor module."""
+        if exported_binomial(6, 3) != binomial_exact(6, 3):
+>           raise _fail("export and binomial_exact diverged")
+E           src.combinatorics.test_exported_binomial.ClaimCheckError: export and binomial_exact diverged
+
+code\python\src\combinatorics\test_exported_binomial.py:323: ClaimCheckError
+_______________________________ test_end_to_end _______________________________
+
+    def test_end_to_end() -> None:
+        """The default public call is the frozen witness 20."""
+        if exported_binomial() != 20:
+>           raise _fail("end-to-end witness drifted", got=exported_binomial())
+E           src.combinatorics.test_exported_binomial.ClaimCheckError: end-to-end witness drifted (got=21)
+
+code\python\src\combinatorics\test_exported_binomial.py:329: ClaimCheckError
+________________________________ test_negative ________________________________
+
+    def test_negative() -> None:
+        """A foreign pair, a float, and a bool are refused."""
+>       _check_export(exported_binomial, CombinatoricsError)
+
+code\python\src\combinatorics\test_exported_binomial.py:334: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+export = <function exported_binomial at 0x000002276F6A3320>
+error = <class 'src.combinatorics.finite_combinatorics.CombinatoricsError'>
+
+    def _check_export(export: Callable[..., object], error: object) -> None:
+        expected = _factorial_choose(6, 3)
+        if export() != expected or export(6, 3) != binomial_exact(6, 3):
+>           raise _fail("exported binomial drifted from the factorial quotient", got=export())
+E           src.combinatorics.test_exported_binomial.ClaimCheckError: exported binomial drifted from the factorial quotient (got=21)
+
+code\python\src\combinatorics\test_exported_binomial.py:114: ClaimCheckError
+=========================== short test summary info ===========================
+FAILED code/python/src/combinatorics/test_exported_binomial.py::test_unit - s...
+FAILED code/python/src/combinatorics/test_exported_binomial.py::test_integration
+FAILED code/python/src/combinatorics/test_exported_binomial.py::test_end_to_end
+FAILED code/python/src/combinatorics/test_exported_binomial.py::test_negative
+4 failed, 16 passed, 2 deselected in 3.21s
+{"phase": "pytest", "exit_code": 1}

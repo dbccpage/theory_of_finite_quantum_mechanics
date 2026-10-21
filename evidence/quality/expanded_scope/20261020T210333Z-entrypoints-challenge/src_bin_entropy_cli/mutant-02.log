@@ -1,0 +1,17 @@
+.......F..........................                                       [100%]
+================================== FAILURES ===================================
+________________________ test_vector_and_work_budgets _________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002D924DA6520>
+
+    def test_vector_and_work_budgets(monkeypatch):
+        assert collision.collision_probability((1,) + (0,) * 4095) == Fraction(1)
+>       with pytest.raises(collision.ParityError, match="vector budget exceeded"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ParityError
+
+code\python\tests\test_bounded_entrypoints.py:94: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_vector_and_work_budgets
+1 failed, 33 passed, 1 deselected in 3.08s
+{"phase": "pytest", "exit_code": 1}

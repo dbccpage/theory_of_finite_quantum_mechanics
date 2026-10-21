@@ -1,0 +1,19 @@
+......F............................                                      [100%]
+================================== FAILURES ===================================
+___ test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering ____
+
+    def test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering():
+        edge = (1 << 1024) - 1
+        assert ray.ray_power_two((edge, 0, 0)) == Fraction(edge * edge)
+        assert mass.integer_mass((edge, edge)) == 2 * edge
+        rejected = [1 << 1024, -(1 << 20000), Fraction((1 << 1024) + 1, 2), Fraction(1, 1 << 1024)]
+        for value in rejected:
+>           with pytest.raises(ray.BinWitnessError, match="bit budget exceeded"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE BinWitnessError
+
+code\python\tests\test_bounded_entrypoints.py:81: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering
+1 failed, 34 passed, 1 deselected in 2.84s
+{"phase": "pytest", "exit_code": 1}

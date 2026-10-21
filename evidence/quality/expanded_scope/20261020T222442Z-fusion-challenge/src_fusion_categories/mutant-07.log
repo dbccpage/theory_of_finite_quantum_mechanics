@@ -1,0 +1,46 @@
+{"phase": "candidate_bindings", "checked_symbols": ["main", "package_seal"]}
+.................FF.                                                     [100%]
+================================== FAILURES ===================================
+________________________ test_integration_reads_origin ________________________
+
+    def test_integration_reads_origin() -> None:
+        text = (_repo_root() / ORIGIN_REL).read_text(encoding="utf-8")
+        _demand(ORIGIN_MARKER in text, "origin marker missing")
+>       _demand(package_seal() == library_witness(), "package and library certificates differ")
+
+code\python\src\fusion_categories\test_fusion_control.py:339: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+flag = False, invariant = 'package and library certificates differ'
+parameters = {}
+
+    def _demand(flag: bool, invariant: str, **parameters: object) -> None:
+        if flag:
+            return
+>       raise _fail(invariant, **parameters)
+E       src.fusion_categories.test_fusion_control.CheckError: package and library certificates differ
+
+code\python\src\fusion_categories\test_fusion_control.py:54: CheckError
+_____________________________ test_end_to_end_cli _____________________________
+
+    def test_end_to_end_cli() -> None:
+        _demand(_captured(library_main) == PRINT_TEXT, "library cli drifted")
+>       _demand(_captured(package_main) == PRINT_TEXT, "package cli drifted")
+
+code\python\src\fusion_categories\test_fusion_control.py:345: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+flag = False, invariant = 'package cli drifted', parameters = {}
+
+    def _demand(flag: bool, invariant: str, **parameters: object) -> None:
+        if flag:
+            return
+>       raise _fail(invariant, **parameters)
+E       src.fusion_categories.test_fusion_control.CheckError: package cli drifted
+
+code\python\src\fusion_categories\test_fusion_control.py:54: CheckError
+=========================== short test summary info ===========================
+FAILED code/python/src/fusion_categories/test_fusion_control.py::test_integration_reads_origin
+FAILED code/python/src/fusion_categories/test_fusion_control.py::test_end_to_end_cli
+2 failed, 18 passed, 3 deselected in 3.85s
+{"phase": "pytest", "exit_code": 1}

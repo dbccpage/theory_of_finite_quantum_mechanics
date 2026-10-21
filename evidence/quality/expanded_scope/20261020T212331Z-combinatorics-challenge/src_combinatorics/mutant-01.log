@@ -1,0 +1,35 @@
+{"phase": "candidate_bindings", "checked_symbols": ["exported_binomial"]}
+...................F.                                                    [100%]
+================================== FAILURES ===================================
+________________________________ test_negative ________________________________
+
+    def test_negative() -> None:
+        """A foreign pair, a float, and a bool are refused."""
+>       _check_export(exported_binomial, CombinatoricsError)
+
+code\python\src\combinatorics\test_exported_binomial.py:334: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\combinatorics\test_exported_binomial.py:116: in _check_export
+    _require_refusal(lambda: export(_float_probe("6.0"), 3), error, "float refused at the public boundary")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+probe = <function _check_export.<locals>.<lambda> at 0x0000018000691640>
+error = <class 'src.combinatorics.finite_combinatorics.CombinatoricsError'>
+invariant = 'float refused at the public boundary'
+
+    def _require_refusal(probe: Callable[[], object], error: object, invariant: str) -> None:
+        caught = _as_error(error)
+        try:
+            probe()
+        except caught as exc:
+            if getattr(exc, "invariant", None) != invariant:
+                raise _fail("refusal named the wrong invariant", expected=invariant, got=getattr(exc, "invariant", None))
+            return
+>       raise _fail("invalid input was accepted", expected=invariant)
+E       src.combinatorics.test_exported_binomial.ClaimCheckError: invalid input was accepted (expected=float refused at the public boundary)
+
+code\python\src\combinatorics\test_exported_binomial.py:108: ClaimCheckError
+=========================== short test summary info ===========================
+FAILED code/python/src/combinatorics/test_exported_binomial.py::test_negative
+1 failed, 20 passed, 2 deselected in 1.63s
+{"phase": "pytest", "exit_code": 1}

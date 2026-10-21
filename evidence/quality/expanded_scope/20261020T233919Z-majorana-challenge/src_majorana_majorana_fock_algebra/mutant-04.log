@@ -1,0 +1,112 @@
+{"phase": "candidate_bindings", "checked_symbols": ["FockCarrier", "GaussianRat", "first_anticommutation_failure", "gi"]}
+..FFF.FF......                                                           [100%]
+================================== FAILURES ===================================
+___________________ test_lowering_action_and_occupation[2] ____________________
+
+modes = 2
+
+    @pytest.mark.parametrize('modes', [1, 2, 3, 4])
+    def test_lowering_action_and_occupation(modes):
+        carrier = FockCarrier(modes)
+        n = 2**modes
+        assert carrier.dimension() == n and carrier.modes() == modes
+        for j in range(1, modes+1):
+            a = pairs(carrier.lowering_operator(j))
+            expected = [[ZERO for _ in range(n)] for _ in range(n)]
+            mask = 2**(modes-j)
+            for state in range(n):
+                if state & mask:
+                    prefix = format(state, f'0{modes}b')[:j-1]
+                    expected[state-mask][state] = (F((-1)**prefix.count('1')), F(0))
+>           assert a == tuple(map(tuple, expected))
+E           assert (((Fraction(0...ction(0, 1)))) == (((Fraction(0...ction(0, 1))))
+E             
+E             At index 2 diff: ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(1, 1), Fraction(0, 1))) != ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(-1, 1), Fraction(0, 1)))
+E             Use -v to get more diff
+
+code\python\tests\test_majorana_integrity.py:121: AssertionError
+___________________ test_lowering_action_and_occupation[3] ____________________
+
+modes = 3
+
+    @pytest.mark.parametrize('modes', [1, 2, 3, 4])
+    def test_lowering_action_and_occupation(modes):
+        carrier = FockCarrier(modes)
+        n = 2**modes
+        assert carrier.dimension() == n and carrier.modes() == modes
+        for j in range(1, modes+1):
+            a = pairs(carrier.lowering_operator(j))
+            expected = [[ZERO for _ in range(n)] for _ in range(n)]
+            mask = 2**(modes-j)
+            for state in range(n):
+                if state & mask:
+                    prefix = format(state, f'0{modes}b')[:j-1]
+                    expected[state-mask][state] = (F((-1)**prefix.count('1')), F(0))
+>           assert a == tuple(map(tuple, expected))
+E           assert (((Fraction(0...)), ...), ...) == (((Fraction(0...)), ...), ...)
+E             
+E             At index 4 diff: ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1))) != ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(-1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)))
+E             Use -v to get more diff
+
+code\python\tests\test_majorana_integrity.py:121: AssertionError
+___________________ test_lowering_action_and_occupation[4] ____________________
+
+modes = 4
+
+    @pytest.mark.parametrize('modes', [1, 2, 3, 4])
+    def test_lowering_action_and_occupation(modes):
+        carrier = FockCarrier(modes)
+        n = 2**modes
+        assert carrier.dimension() == n and carrier.modes() == modes
+        for j in range(1, modes+1):
+            a = pairs(carrier.lowering_operator(j))
+            expected = [[ZERO for _ in range(n)] for _ in range(n)]
+            mask = 2**(modes-j)
+            for state in range(n):
+                if state & mask:
+                    prefix = format(state, f'0{modes}b')[:j-1]
+                    expected[state-mask][state] = (F((-1)**prefix.count('1')), F(0))
+>           assert a == tuple(map(tuple, expected))
+E           AssertionError: assert (((Fraction(0...)), ...), ...) == (((Fraction(0...)), ...), ...)
+E             
+E             At index 8 diff: ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1))) != ((Fraction(...
+E             
+E             ...Full output truncated (2 lines hidden), use '-vv' to show
+
+code\python\tests\test_majorana_integrity.py:121: AssertionError
+________________________ test_car_parity_and_braids[2] ________________________
+
+modes = 2
+
+    @pytest.mark.parametrize('modes', [1, 2, 3])
+    def test_car_parity_and_braids(modes):
+        c = FockCarrier(modes)
+        n = c.dimension()
+        gs = [c.majorana_generator(a) for a in range(1, 2*modes+1)]
+>       assert first_anticommutation_failure(gs) is None
+E       assert (1, 3) is None
+E        +  where (1, 3) = first_anticommutation_failure([[[GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), GaussianRat(r...raction(0, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(1, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1))]]])
+
+code\python\tests\test_majorana_integrity.py:132: AssertionError
+________________________ test_car_parity_and_braids[3] ________________________
+
+modes = 3
+
+    @pytest.mark.parametrize('modes', [1, 2, 3])
+    def test_car_parity_and_braids(modes):
+        c = FockCarrier(modes)
+        n = c.dimension()
+        gs = [c.majorana_generator(a) for a in range(1, 2*modes+1)]
+>       assert first_anticommutation_failure(gs) is None
+E       assert (1, 3) is None
+E        +  where (1, 3) = first_anticommutation_failure([[[GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), GaussianRat(r... 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(1, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), ...], ...]])
+
+code\python\tests\test_majorana_integrity.py:132: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_integrity.py::test_lowering_action_and_occupation[2]
+FAILED code/python/tests/test_majorana_integrity.py::test_lowering_action_and_occupation[3]
+FAILED code/python/tests/test_majorana_integrity.py::test_lowering_action_and_occupation[4]
+FAILED code/python/tests/test_majorana_integrity.py::test_car_parity_and_braids[2]
+FAILED code/python/tests/test_majorana_integrity.py::test_car_parity_and_braids[3]
+5 failed, 9 passed in 1.35s
+{"phase": "pytest", "exit_code": 1}

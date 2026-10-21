@@ -1,0 +1,21 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CategoryLawError", "FiniteCategory", "factor_report_query", "verify_report_query_factorization"]}
+.F..................                                                     [100%]
+================================== FAILURES ===================================
+_________ test_ghost_composites_and_noncomposable_pairs_are_rejected __________
+
+    def test_ghost_composites_and_noncomposable_pairs_are_rejected():
+        table = {("i", "i"): "i", ("i", "f"): "f", ("f", "i"): "f", ("f", "f"): "ghost",
+                 ("ghost", "i"): "ghost", ("i", "ghost"): "ghost"}
+>       assert not api.FiniteCategory(frozenset({"A"}), {"i": ("A", "A"), "f": ("A", "A")}, {"A": "i"}, table).verify_axioms()
+E       AssertionError: assert not True
+E        +  where True = verify_axioms()
+E        +    where verify_axioms = FiniteCategory(objects=frozenset({'A'}), morphisms=mappingproxy({'i': ('A', 'A'), 'f': ('A', 'A')}), identities=mappin..., 'i'): 'i', ('i', 'f'): 'f', ('f', 'i'): 'f', ('f', 'f'): 'ghost', ('ghost', 'i'): 'ghost', ('i', 'ghost'): 'ghost'})).verify_axioms
+E        +      where FiniteCategory(objects=frozenset({'A'}), morphisms=mappingproxy({'i': ('A', 'A'), 'f': ('A', 'A')}), identities=mappin..., 'i'): 'i', ('i', 'f'): 'f', ('f', 'i'): 'f', ('f', 'f'): 'ghost', ('ghost', 'i'): 'ghost', ('i', 'ghost'): 'ghost'})) = <class 'src.category_theory.finite_category.FiniteCategory'>(frozenset({'A'}), {'i': ('A', 'A'), 'f': ('A', 'A')}, {'A': 'i'}, {('i', 'i'): 'i', ('i', 'f'): 'f', ('f', 'i'): 'f', ('f', 'f'): 'ghost', ...})
+E        +        where <class 'src.category_theory.finite_category.FiniteCategory'> = api.FiniteCategory
+E        +        and   frozenset({'A'}) = frozenset({'A'})
+
+code\python\tests\test_category_integrity.py:49: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_ghost_composites_and_noncomposable_pairs_are_rejected
+1 failed, 19 passed, 2 deselected in 1.04s
+{"phase": "pytest", "exit_code": 1}

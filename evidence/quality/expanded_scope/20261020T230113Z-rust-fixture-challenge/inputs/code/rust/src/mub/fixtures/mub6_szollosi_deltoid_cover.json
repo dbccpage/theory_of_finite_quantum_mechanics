@@ -1,0 +1,36 @@
+{
+  "schema": "omega_mub.fixture_values.v1",
+  "authority_effect": "None",
+  "module": "mub6_szollosi_deltoid_cover",
+  "description": "Values mub6_szollosi_deltoid_cover.rs reads instead of computing them. None is evidence for any MUB(6) statement.",
+  "values": {
+    "extension_psi_base_term": {
+      "value": "37249/90000",
+      "type": "rational",
+      "kind": "assumed_constant",
+      "reason": "Base term (81/100 - 1/6)^2 added to the triad defect in extension_psi_lower; it is not computed from the candidate basis box and does not depend on the parameter box, so no box can fail. Feeds min_extension_psi_gap, outside_boxes_certified and complete in mub_szollosi_deltoid_cover.json.",
+      "used_at": "src/omega_native/mub6_szollosi_deltoid_cover.rs"
+    },
+    "cochain_base_edge_defect": {
+      "value": "37249/90000",
+      "type": "rational",
+      "kind": "assumed_constant",
+      "reason": "Defect on edge 2 -> 0 of the network-simplex fallback cochain; its numerator is the edge value and its denominator the integer scale of the triad edge. Not computed for the box, so Phi1 > 0 whatever the triad defect. Feeds boxes[].phi1_objective in mub_szollosi_deltoid_cover.json.",
+      "used_at": "src/omega_native/mub6_szollosi_deltoid_cover.rs"
+    },
+    "scalar_box_verified_positive": {
+      "value": true,
+      "type": "bool",
+      "kind": "fixed_verdict",
+      "reason": "verified_positive on each box certified by the scalar interval bound is written as true. Feeds boxes[].verified_positive in mub_szollosi_deltoid_cover.json.",
+      "used_at": "src/omega_native/mub6_szollosi_deltoid_cover.rs"
+    },
+    "network_simplex_box_verified_positive": {
+      "value": true,
+      "type": "bool",
+      "kind": "fixed_verdict",
+      "reason": "verified_positive on each box certified by the network-simplex fallback is written as true. Feeds boxes[].verified_positive in mub_szollosi_deltoid_cover.json.",
+      "used_at": "src/omega_native/mub6_szollosi_deltoid_cover.rs"
+    }
+  }
+}

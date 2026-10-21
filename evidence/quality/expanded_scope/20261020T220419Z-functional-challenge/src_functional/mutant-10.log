@@ -1,0 +1,37 @@
+{"phase": "candidate_bindings", "checked_symbols": ["exported_zero_phi1"]}
+.......F......                                                           [100%]
+================================== FAILURES ===================================
+______________ test_frontend_guards_before_certificate_provider _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000288B3111220>
+
+    def test_frontend_guards_before_certificate_provider(monkeypatch):
+        def must_not_delegate(*args):
+            raise AssertionError("invalid frontend input reached provider")
+        monkeypatch.setattr(facade, "evaluate_weighted_l1_quotient", must_not_delegate)
+        for value in [HostileTuple(((1, 0), (-1, 0))), ((ClassCallback(), 0), (-1, 0)),
+                      (((1 << 1024), 0), (-1, 0))]:
+            with pytest.raises(api.L1SeminormError):
+>               facade.exported_zero_phi1(boundary=value)
+
+code\python\tests\test_functional_integrity.py:177: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-10.py:91: in exported_zero_phi1
+    parsed_column = _rows(column, "boundary")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-10.py:70: in _rows
+    if not issubclass(type(value), tuple) or len(value) != 2:
+                                             ^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = ((1, 0), (-1, 0))
+
+    def __len__(self):
+>       raise RuntimeError("must refuse user length")
+E       RuntimeError: must refuse user length
+
+code\python\tests\test_functional_integrity.py:28: RuntimeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_functional_integrity.py::test_frontend_guards_before_certificate_provider
+1 failed, 13 passed, 2 deselected in 0.82s
+{"phase": "pytest", "exit_code": 1}

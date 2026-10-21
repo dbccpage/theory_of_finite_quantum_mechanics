@@ -1,0 +1,35 @@
+{"phase": "candidate_bindings", "checked_symbols": ["AbelianGroup", "FusionRing", "FusionTable", "RingDefectType", "ising_global_dimension_rational"]}
+...........F........                                                     [100%]
+================================== FAILURES ===================================
+____________________ test_stdout_failures_have_status_two _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002A503374A70>
+
+    def test_stdout_failures_have_status_two(monkeypatch):
+        class Broken:
+            def write(self, text):
+                raise BrokenPipeError("unavailable")
+            def flush(self):
+                pass
+        monkeypatch.setattr(sys, "stdout", Broken())
+>       assert api.main() == facade.main() == 2
+               ^^^^^^^^^^
+
+code\python\tests\test_fusion_integrity.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T222442Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-31.py:874: in main
+    print(ising_global_dimension_rational())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tests.test_fusion_integrity.test_stdout_failures_have_status_two.<locals>.Broken object at 0x000002A503206660>
+text = '4'
+
+    def write(self, text):
+>       raise BrokenPipeError("unavailable")
+E       BrokenPipeError: unavailable
+
+code\python\tests\test_fusion_integrity.py:254: BrokenPipeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_stdout_failures_have_status_two
+1 failed, 19 passed, 1 deselected in 4.15s
+{"phase": "pytest", "exit_code": 1}

@@ -1,0 +1,29 @@
+{
+  "schema": "omega_mub.fixture_values.v1",
+  "authority_effect": "None",
+  "module": "mub6_collar_boundary",
+  "description": "Values mub6_collar_boundary.rs reads instead of computing them. None is evidence for any MUB(6) statement.",
+  "values": {
+    "karlsson_volume_margin": {
+      "value": "37249/90000",
+      "type": "rational",
+      "kind": "assumed_constant",
+      "reason": "Margin of the Karlsson exterior, set equal to the base gap; no Karlsson cover is run here. Sets the interface margin, the overlap-layer effective margin and the 2 -> 0 transition defect of the collar boundary receipt.",
+      "used_at": "src/omega_native/mub6_collar_boundary.rs"
+    },
+    "collar_layer_certified": {
+      "value": true,
+      "type": "bool",
+      "kind": "fixed_verdict",
+      "reason": "collar_certified on every interface box is written as true; only the collar margin at the depth is checked to be positive. Feeds the collar boundary partition and receipt (mub_target_a8_collar_boundary_receipt.json analogue).",
+      "used_at": "src/omega_native/mub6_collar_boundary.rs"
+    },
+    "overlap_layer_karlsson_certified": {
+      "value": true,
+      "type": "bool",
+      "kind": "fixed_verdict",
+      "reason": "karlsson_certified on the overlap-layer boxes is written as true without a Karlsson cover check. Feeds the collar boundary partition and receipt (mub_target_a8_collar_boundary_receipt.json analogue).",
+      "used_at": "src/omega_native/mub6_collar_boundary.rs"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{"phase": "candidate_bindings", "checked_symbols": ["arrow_decoder_size"]}
+............F.......                                                     [100%]
+================================== FAILURES ===================================
+__________________ test_witness_container_and_scalar_guards ___________________
+
+    def test_witness_container_and_scalar_guards():
+        for argument in [HostileTuple(((0, 10),)), ClassCallback(), ((ClassCallback(), 10),),
+                         (HostileTuple((0, 10)),), ((0, 10),) * 4097]:
+            with pytest.raises(api.CategoryLawError):
+>               facade.arrow_decoder_size(report=argument)
+
+code\python\tests\test_category_integrity.py:213: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-00.py:111: in arrow_decoder_size
+    return _require_decoder(factor_report_query(_table(report_rows, "report"), _table(query_rows, "query")))
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-00.py:74: in _table
+    key, value = _pair(row, role)
+                 ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-00.py:64: in _pair
+    return (_exact_int(row[0], role + "_0"), _exact_int(row[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-00.py:51: in _exact_int
+    _refuse_float(value, role)
+evidence\quality\expanded_scope\20261020T214956Z-category-challenge\src_category_theory\mutant-00.py:46: in _refuse_float
+    if isinstance(value, float):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tests.test_category_integrity.ClassCallback object at 0x000001FCECEF0D60>
+
+    @property
+    def __class__(self):
+>       raise RuntimeError("admission must not inspect user __class__")
+E       RuntimeError: admission must not inspect user __class__
+
+code\python\tests\test_category_integrity.py:17: RuntimeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_witness_container_and_scalar_guards
+1 failed, 19 passed, 2 deselected in 0.97s
+{"phase": "pytest", "exit_code": 1}

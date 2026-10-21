@@ -1,0 +1,20 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ClaimCheckError", "_anchor", "_as_error", "_callable", "_check_export", "_exec_module", "_factorial", "_factorial_choose", "_fail", "_float_probe", "_holds", "_kill_count", "_load", "_main", "_one_mutant", "_one_self", "_require_baseline", "_require_receipt", "_require_refusal", "_restore_module", "_safe_holds", "_safe_self", "_self_holds", "_self_kill_count", "parse_exact_size", "test_end_to_end", "test_integration", "test_library_mutation", "test_negative", "test_origin", "test_self_mutation", "test_unit", "witness_library", "witness_outside", "witness_primary", "witness_size_guard"]}
+..............F......                                                    [100%]
+================================== FAILURES ===================================
+___________ test_checker_witnesses_have_independent_expected_values ___________
+
+    def test_checker_witnesses_have_independent_expected_values():
+        from src.combinatorics import test_finite_combinatorics as counting
+        from src.combinatorics import test_exported_binomial as facade
+        assert (counting.witness_primary(), counting.witness_outside(), counting.witness_plane()) == (comb(6, 3), 0, 13)
+>       assert (facade.witness_primary(), facade.witness_outside(), facade.witness_library()) == (comb(6, 3), comb(5, 2), comb(6, 3))
+E       assert (15, 10, 20) == (20, 10, 20)
+E         
+E         At index 0 diff: 15 != 20
+E         Use -v to get more diff
+
+code\python\tests\test_combinatorics_resources.py:205: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_combinatorics_resources.py::test_checker_witnesses_have_independent_expected_values
+1 failed, 20 passed, 2 deselected in 3.33s
+{"phase": "pytest", "exit_code": 1}

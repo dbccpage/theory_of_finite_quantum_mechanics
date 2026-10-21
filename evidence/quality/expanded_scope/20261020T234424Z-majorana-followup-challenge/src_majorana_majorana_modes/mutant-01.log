@@ -1,0 +1,19 @@
+{"phase": "candidate_bindings", "checked_symbols": ["MajoranaError", "MajoranaMonomial", "MajoranaOperator", "_add_coeff", "_multiply_modes", "anticommutator", "commutator", "kitaev_chain_parity", "main"]}
+....F.........                                                           [100%]
+================================== FAILURES ===================================
+_________________ test_internal_product_result_degree_budget __________________
+
+    def test_internal_product_result_degree_budget():
+        # Public multiply also checks the constructed blade. This separately tests
+        # the helper's result budget, using two already admissible sorted blades.
+        left = MajoranaMonomial(tuple(range(256)))
+        right = MajoranaMonomial.single(256)
+>       with pytest.raises(MajoranaError, match='degree budget'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE MajoranaError
+
+code\python\tests\test_majorana_boundaries_followup.py:69: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_boundaries_followup.py::test_internal_product_result_degree_budget
+1 failed, 13 passed, 1 deselected in 6.63s
+{"phase": "pytest", "exit_code": 1}

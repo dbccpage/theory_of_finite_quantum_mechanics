@@ -1,0 +1,126 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/test_expanded_exact_admission.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/test_expanded_exact_admission.py",
+      "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
+    },
+    "role": "test",
+    "profile": "Exact with negative float fixtures exempt under SCORING.md",
+    "purpose": "Adversarial Fraction-subclass admission refusals for simplex, stochastic-map, ray and collision APIs, with independent exact arithmetic controls.",
+    "operations": [
+      "LeakingFraction overrides multiplication to return a binary float; AdditionLeak overrides reflected addition. These are deliberate negative fixtures.",
+      "Two scalar variants exercise constructor, map, expectation, mixture, ray and collision refusals.",
+      "Controls check expectation 0, purity 5/9, Pythagorean power 1 and swap pushforward using direct rational arithmetic."
+    ],
+    "limits": [
+      "No complete public failure-path or resource policy review for the ray/collision providers.",
+      "Not a proof of rational arithmetic or Born uniqueness."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/expanded_scope/python-production-check.log",
+        "sha256": "2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json",
+        "sha256": "15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f"
+      }
+    ]
+  },
+  "current_contract": "059754219eafe9be3deaa0fdcd20eb7599156fa74601940a42a4a5574d3b5158",
+  "current_scoring": "b9342531ec7f1557b3d6736a2add7c8cbcd43b5dfc5063836632b2082b8bf509",
+  "contract_history": [
+    {
+      "sha256": "059754219eafe9be3deaa0fdcd20eb7599156fa74601940a42a4a5574d3b5158",
+      "bytes": 1426,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_expanded_exact_admission.py",
+          "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
+        },
+        "role": "test",
+        "profile": "Exact with negative float fixtures exempt under SCORING.md",
+        "purpose": "Adversarial Fraction-subclass admission refusals for simplex, stochastic-map, ray and collision APIs, with independent exact arithmetic controls.",
+        "operations": [
+          "LeakingFraction overrides multiplication to return a binary float; AdditionLeak overrides reflected addition. These are deliberate negative fixtures.",
+          "Two scalar variants exercise constructor, map, expectation, mixture, ray and collision refusals.",
+          "Controls check expectation 0, purity 5/9, Pythagorean power 1 and swap pushforward using direct rational arithmetic."
+        ],
+        "limits": [
+          "No complete public failure-path or resource policy review for the ray/collision providers.",
+          "Not a proof of rational arithmetic or Born uniqueness."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/python-production-check.log",
+            "sha256": "2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json",
+            "sha256": "15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n    \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n  },\n  \"role\": \"test\",\n  \"profile\": \"Exact with negative float fixtures exempt under SCORING.md\",\n  \"purpose\": \"Adversarial Fraction-subclass admission refusals for simplex, stochastic-map, ray and collision APIs, with independent exact arithmetic controls.\",\n  \"operations\": [\n    \"LeakingFraction overrides multiplication to return a binary float; AdditionLeak overrides reflected addition. These are deliberate negative fixtures.\",\n    \"Two scalar variants exercise constructor, map, expectation, mixture, ray and collision refusals.\",\n    \"Controls check expectation 0, purity 5/9, Pythagorean power 1 and swap pushforward using direct rational arithmetic.\"\n  ],\n  \"limits\": [\n    \"No complete public failure-path or resource policy review for the ray/collision providers.\",\n    \"Not a proof of rational arithmetic or Born uniqueness.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-production-check.log\",\n      \"sha256\": \"2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json\",\n      \"sha256\": \"15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "b9342531ec7f1557b3d6736a2add7c8cbcd43b5dfc5063836632b2082b8bf509",
+      "bytes": 1107,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_expanded_exact_admission.py",
+          "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "level": "L3",
+        "level_basis": "Nontrivial bounded-domain adversarial and exact invariant tests; no independent complete L4 test-file assessment claimed.",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "is_complete": false,
+        "score_token": null,
+        "composite_grade": null,
+        "target_achieved": false,
+        "status": "partial_source_review",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/python-production-check.log",
+            "sha256": "2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json",
+            "sha256": "15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n    \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L3\",\n  \"level_basis\": \"Nontrivial bounded-domain adversarial and exact invariant tests; no independent complete L4 test-file assessment claimed.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"score_token\": null,\n  \"composite_grade\": null,\n  \"target_achieved\": false,\n  \"status\": \"partial_source_review\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-production-check.log\",\n      \"sha256\": \"2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json\",\n      \"sha256\": \"15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/contract": "059754219eafe9be3deaa0fdcd20eb7599156fa74601940a42a4a5574d3b5158",
+    "code/python/tests/test_expanded_exact_admission.contract.score.yaml#source-review/scoring": "b9342531ec7f1557b3d6736a2add7c8cbcd43b5dfc5063836632b2082b8bf509"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

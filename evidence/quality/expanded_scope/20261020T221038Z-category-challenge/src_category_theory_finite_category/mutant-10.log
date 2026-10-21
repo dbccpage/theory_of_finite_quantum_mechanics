@@ -1,0 +1,22 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CategoryLawError", "FiniteCategory", "factor_report_query", "verify_report_query_factorization"]}
+..F..................                                                    [100%]
+================================== FAILURES ===================================
+_____________ test_endpoint_identity_and_composite_typing_guards ______________
+
+    def test_endpoint_identity_and_composite_typing_guards():
+        objects, arrows, identities, composition = arrow_fields()
+        unknown = dict(arrows, h=("outside", "A"))
+        assert not api.FiniteCategory(objects, unknown, identities, composition).verify_axioms()
+        extra_identity = dict(identities, ghost="i")
+>       assert not api.FiniteCategory(objects, arrows, extra_identity, composition).verify_axioms()
+E       AssertionError: assert not True
+E        +  where True = verify_axioms()
+E        +    where verify_axioms = FiniteCategory(objects=frozenset({'B', 'A'}), morphisms=mappingproxy({'i': ('A', 'A'), 'j': ('B', 'B'), 'f': ('A', 'B'...': 'j', 'ghost': 'i'}), composition=mappingproxy({('i', 'i'): 'i', ('j', 'j'): 'j', ('f', 'i'): 'f', ('j', 'f'): 'f'})).verify_axioms
+E        +      where FiniteCategory(objects=frozenset({'B', 'A'}), morphisms=mappingproxy({'i': ('A', 'A'), 'j': ('B', 'B'), 'f': ('A', 'B'...': 'j', 'ghost': 'i'}), composition=mappingproxy({('i', 'i'): 'i', ('j', 'j'): 'j', ('f', 'i'): 'f', ('j', 'f'): 'f'})) = <class 'src.category_theory.finite_category.FiniteCategory'>(frozenset({'A', 'B'}), {'i': ('A', 'A'), 'j': ('B', 'B'), 'f': ('A', 'B')}, {'A': 'i', 'B': 'j', 'ghost': 'i'}, {('i', 'i'): 'i', ('j', 'j'): 'j', ('f', 'i'): 'f', ('j', 'f'): 'f'})
+E        +        where <class 'src.category_theory.finite_category.FiniteCategory'> = api.FiniteCategory
+
+code\python\tests\test_category_integrity.py:60: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_endpoint_identity_and_composite_typing_guards
+1 failed, 20 passed, 2 deselected in 1.26s
+{"phase": "pytest", "exit_code": 1}

@@ -1,0 +1,40 @@
+....................F.......                                             [100%]
+================================== FAILURES ===================================
+____________________________ test_mutation_harness ____________________________
+
+    def test_mutation_harness() -> None:
+        source = Path(__file__).read_text(encoding="utf-8")
+>       killed = _kill_all(source, HARNESS_MUTANTS, __package__ or "", "harness", _harness_oracle)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\fusion_categories\test_fusion_control.py:275: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\fusion_categories\test_fusion_control.py:217: in _kill_all
+    if not _killed_one(source, title, _joined(old_parts), _joined(new_parts), name, package, oracle):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = '"""Unit, negative, integration, end-to-end, and mutation tests.\n\nOrigin: dag/theory_of_finite_qm.md section TFQ-019..._package_oracle)\n    _demand(killed == 8, "package kill count drifted", killed=killed)\n    _record(killed, source)\n'
+title = 'float', old = 'if issubclass(type(value), float):'
+new = 'if False and issubclass(type(value), float):', name = 'mutant_harness_0'
+package = 'src.fusion_categories'
+oracle = <function _harness_oracle at 0x0000017A43D0D430>
+
+    def _killed_one(
+        source: str,
+        title: str,
+        old: str,
+        new: str,
+        name: str,
+        package: str,
+        oracle: object,
+    ) -> bool:
+        count = source.count(old)
+        if count != 1:
+>           raise _fail("mutant site is not unique", name=title, count=count)
+E           src.fusion_categories.test_fusion_control.CheckError: mutant site is not unique (name=float, count=2)
+
+code\python\src\fusion_categories\test_fusion_control.py:178: CheckError
+=========================== short test summary info ===========================
+FAILED code/python/src/fusion_categories/test_fusion_control.py::test_mutation_harness
+1 failed, 27 passed in 5.40s

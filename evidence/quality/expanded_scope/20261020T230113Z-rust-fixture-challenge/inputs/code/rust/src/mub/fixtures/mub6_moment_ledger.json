@@ -1,0 +1,29 @@
+{
+  "schema": "omega_mub.fixture_values.v1",
+  "authority_effect": "None",
+  "module": "mub6_moment_ledger",
+  "description": "Values mub6_moment_ledger.rs reads instead of computing them. None is evidence for any MUB(6) statement.",
+  "values": {
+    "flat_extension_rank_m0": {
+      "value": 1,
+      "type": "count",
+      "kind": "literal",
+      "reason": "rank(M_0) in certify_flat_extension_rank_gap. No moment matrix is built or reduced.",
+      "used_at": "src/omega_native/mub6_moment_ledger.rs"
+    },
+    "flat_extension_rank_m1": {
+      "value": 21,
+      "type": "count",
+      "kind": "literal",
+      "reason": "rank(M_1) in certify_flat_extension_rank_gap. No moment matrix is built or reduced; the committed mub_flat_extension_rank_obstruction_receipt.json has no producer in the crate.",
+      "used_at": "src/omega_native/mub6_moment_ledger.rs"
+    },
+    "flat_extension_status": {
+      "value": "FLAT_EXTENSION_OBSTRUCTED",
+      "type": "string",
+      "kind": "fixed_verdict",
+      "reason": "Status of FlatExtensionReceipt, written without a check. A positive rank gap would show the extension is not flat, not an obstruction to MUB(6).",
+      "used_at": "src/omega_native/mub6_moment_ledger.rs"
+    }
+  }
+}

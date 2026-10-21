@@ -111,8 +111,8 @@ def test_origin_resolves_in_repo() -> None:
 _MUTANTS: tuple[tuple[str, str, str], ...] = (
     (
         "float amplitude admitted",
-        "if isinstance(value, float):",
-        "if False and isinstance(value, float):",
+        "if issubclass(type(value), float):",
+        "if False and issubclass(type(value), float):",
     ),
     (
         "boolean amplitude admitted",
@@ -140,7 +140,7 @@ _MUTANTS: tuple[tuple[str, str, str], ...] = (
         "if fourth != _UNIT - 2 * cross:",
         "if fourth == _UNIT - 2 * cross:",
     ),
-    ("tuple check inverted", "not isinstance(amplitudes, tuple)", "isinstance(amplitudes, tuple)"),
+    ("tuple check inverted", "not issubclass(type(amplitudes), tuple)", "issubclass(type(amplitudes), tuple)"),
 )
 
 

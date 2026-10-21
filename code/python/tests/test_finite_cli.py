@@ -123,8 +123,8 @@ def test_origin_resolves_in_repo() -> None:
 _MUTANTS: tuple[tuple[str, str, str], ...] = (
     (
         "float size admitted",
-        "if isinstance(value, float):",
-        "if isinstance(value, float):\n        return\n    if False:",
+        "if issubclass(type(value), float):",
+        "if issubclass(type(value), float):\n        return\n    if False:",
     ),
     (
         "boolean size admitted",

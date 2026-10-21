@@ -1,0 +1,20 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ExactPhi1Certificate", "L1Seminorm", "L1SeminormError", "evaluate_weighted_l1_quotient"]}
+.............F....                                                       [100%]
+================================== FAILURES ===================================
+_______________________ test_negative_boundary_refusals _______________________
+
+    def test_negative_boundary_refusals() -> None:
+        with pytest.raises(L1SeminormError, match="float refused") as caught:
+            L1Seminorm([[_probe("1.5")], [_probe("0.0")]], [1, 1])
+        assert caught.value.parameters["role"] == "boundary[0][0]"
+        with pytest.raises(L1SeminormError, match="boolean refused"):
+            L1Seminorm([[True], [False]], [1, 1])
+>       with pytest.raises(L1SeminormError, match="strictly positive") as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE L1SeminormError
+
+code\python\tests\test_l1_seminorm.py:127: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_l1_seminorm.py::test_negative_boundary_refusals
+1 failed, 17 passed, 1 deselected in 2.84s
+{"phase": "pytest", "exit_code": 1}

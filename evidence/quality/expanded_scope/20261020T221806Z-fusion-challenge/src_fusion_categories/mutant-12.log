@@ -1,0 +1,48 @@
+{"phase": "candidate_bindings", "checked_symbols": ["main", "package_seal"]}
+.........F........                                                       [100%]
+================================== FAILURES ===================================
+____________________ test_stdout_failures_have_status_two _____________________
+
+    def refuse():
+>       raise api.FusionError("test refusal")
+E       src.fusion_categories.fusion_ring.FusionError: test refusal
+
+code\python\tests\test_fusion_integrity.py:238: FusionError
+
+During handling of the above exception, another exception occurred:
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001BBD2F52EA0>
+
+    def test_stdout_failures_have_status_two(monkeypatch):
+        class Broken:
+            def write(self, text):
+                raise BrokenPipeError("unavailable")
+            def flush(self):
+                pass
+        monkeypatch.setattr(sys, "stdout", Broken())
+        assert api.main() == facade.main() == 2
+        def refuse():
+            raise api.FusionError("test refusal")
+        monkeypatch.setattr(api, "ising_global_dimension_rational", refuse)
+        monkeypatch.setattr(facade, "ising_global_dimension_rational", refuse)
+>       assert api.main() == facade.main() == 2
+                             ^^^^^^^^^^^^^
+
+code\python\tests\test_fusion_integrity.py:241: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories\mutant-12.py:82: in main
+    print(error.invariant)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tests.test_fusion_integrity.test_stdout_failures_have_status_two.<locals>.Broken object at 0x000001BBD2F5A7B0>
+text = 'test refusal'
+
+    def write(self, text):
+>       raise BrokenPipeError("unavailable")
+E       BrokenPipeError: unavailable
+
+code\python\tests\test_fusion_integrity.py:232: BrokenPipeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_stdout_failures_have_status_two
+1 failed, 17 passed, 3 deselected in 3.73s
+{"phase": "pytest", "exit_code": 1}

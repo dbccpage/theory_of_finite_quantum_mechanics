@@ -1,0 +1,189 @@
+......F.....FF..F..F.........F..FF.                                      [100%]
+================================== FAILURES ===================================
+___ test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering ____
+
+    def test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering():
+        edge = (1 << 1024) - 1
+>       assert ray.ray_power_two((edge, 0, 0)) == Fraction(edge * edge)
+E       assert Fraction(3595386269724631815458610381578049467235953957884613145468601623154653516110019262654169546448150720422402277...8906165904170011537676301364684925762947826221081654474326701021369172596479894491876959432609670712659248448274430, 1) == Fraction(3231700607131100730071487668866995196044410266971548403213034542752465513886789089319720141152291346368871796...0772376676486686397369695903668072875267698945307782861216901114064057008165423986727992715583885140951811147956225, 1)
+E        +  where Fraction(3595386269724631815458610381578049467235953957884613145468601623154653516110019262654169546448150720422402277...8906165904170011537676301364684925762947826221081654474326701021369172596479894491876959432609670712659248448274430, 1) = <function ray_power_two at 0x00000177750D6FB0>((179769313486231590...5356329624224137215, 0, 0))
+E        +    where <function ray_power_two at 0x00000177750D6FB0> = ray.ray_power_two
+E        +  and   Fraction(3231700607131100730071487668866995196044410266971548403213034542752465513886789089319720141152291346368871796...0772376676486686397369695903668072875267698945307782861216901114064057008165423986727992715583885140951811147956225, 1) = Fraction((179769313486231590...5356329624224137215 * 179769313486231590...5356329624224137215))
+
+code\python\tests\test_bounded_entrypoints.py:77: AssertionError
+________________________ test_generated_exact_controls ________________________
+
+    def test_generated_exact_controls():
+        for scale in range(1, 8):
+            for a, b, c in product(range(-2, 3), repeat=3):
+                result = ray.ray_power_two((Fraction(a, scale), Fraction(b, scale), Fraction(c, scale)))
+                assert type(result) is Fraction
+>               assert result == Fraction(a * a + b * b + c * c, scale * scale)
+E               assert Fraction(-12, 1) == Fraction(12, 1)
+E                +  where Fraction(12, 1) = Fraction((((-2 * -2) + (-2 * -2)) + (-2 * -2)), (1 * 1))
+
+code\python\tests\test_bounded_entrypoints.py:152: AssertionError
+______ test_closed_or_broken_stdout_is_graceful[BrokenPipeError-src.bin] ______
+
+provider = <module 'src.bin' from 'C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\evidence\\quality\\expanded_scope\\20261020T210333Z-entrypoints-challenge\\src_bin\\mutant-04.py'>
+error = <class 'BrokenPipeError'>
+
+    @pytest.mark.parametrize("provider", [ray, collision, mass])
+    @pytest.mark.parametrize("error", [BrokenPipeError, ValueError])
+    def test_closed_or_broken_stdout_is_graceful(provider, error):
+        class BrokenStream(io.StringIO):
+            def write(self, text):
+                raise error("output unavailable")
+        with redirect_stdout(BrokenStream()):
+>           assert provider.main() == 2
+                   ^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:168: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:137: in main
+    value = bin_two_square()
+            ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:133: in bin_two_square
+    return _require_witness(power, fourth, cross)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+power = Fraction(14, 5), fourth = Fraction(28, 5), cross = Fraction(48, 25)
+
+    def _require_witness(power: Fraction, fourth: Fraction, cross: Fraction) -> Fraction:
+        if power != _UNIT:
+>           raise _fail("power two is not one", power=str(power))
+E           src.bin.BinWitnessError: power two is not one (power=14/5)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:113: BinWitnessError
+________ test_closed_or_broken_stdout_is_graceful[ValueError-src.bin] _________
+
+provider = <module 'src.bin' from 'C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\evidence\\quality\\expanded_scope\\20261020T210333Z-entrypoints-challenge\\src_bin\\mutant-04.py'>
+error = <class 'ValueError'>
+
+    @pytest.mark.parametrize("provider", [ray, collision, mass])
+    @pytest.mark.parametrize("error", [BrokenPipeError, ValueError])
+    def test_closed_or_broken_stdout_is_graceful(provider, error):
+        class BrokenStream(io.StringIO):
+            def write(self, text):
+                raise error("output unavailable")
+        with redirect_stdout(BrokenStream()):
+>           assert provider.main() == 2
+                   ^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:168: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:137: in main
+    value = bin_two_square()
+            ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:133: in bin_two_square
+    return _require_witness(power, fourth, cross)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+power = Fraction(14, 5), fourth = Fraction(28, 5), cross = Fraction(48, 25)
+
+    def _require_witness(power: Fraction, fourth: Fraction, cross: Fraction) -> Fraction:
+        if power != _UNIT:
+>           raise _fail("power two is not one", power=str(power))
+E           src.bin.BinWitnessError: power two is not one (power=14/5)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:113: BinWitnessError
+______________________ test_witness_output_remains_exact ______________________
+
+    def test_witness_output_remains_exact():
+        for provider, expected in [(ray, "1\n"), (collision, "1/2\n"), (mass, "1\n")]:
+            output = io.StringIO()
+            with redirect_stdout(output):
+>               assert provider.main() == 0
+                       ^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:175: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:137: in main
+    value = bin_two_square()
+            ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:133: in bin_two_square
+    return _require_witness(power, fourth, cross)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+power = Fraction(14, 5), fourth = Fraction(28, 5), cross = Fraction(48, 25)
+
+    def _require_witness(power: Fraction, fourth: Fraction, cross: Fraction) -> Fraction:
+        if power != _UNIT:
+>           raise _fail("power two is not one", power=str(power))
+E           src.bin.BinWitnessError: power two is not one (power=14/5)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:113: BinWitnessError
+__________________ test_pythagorean_ray_matches_the_theorem ___________________
+
+    def test_pythagorean_ray_matches_the_theorem() -> None:
+>       assert bin_two_square() == Fraction(1)
+               ^^^^^^^^^^^^^^^^
+
+code\python\tests\test_bin_witness.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:133: in bin_two_square
+    return _require_witness(power, fourth, cross)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+power = Fraction(14, 5), fourth = Fraction(28, 5), cross = Fraction(48, 25)
+
+    def _require_witness(power: Fraction, fourth: Fraction, cross: Fraction) -> Fraction:
+        if power != _UNIT:
+>           raise _fail("power two is not one", power=str(power))
+E           src.bin.BinWitnessError: power two is not one (power=14/5)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:113: BinWitnessError
+____________________ test_integration_matches_packet_norm _____________________
+
+    def test_integration_matches_packet_norm() -> None:
+        root = Path(__file__).resolve().parents[3]
+        source = (root / "lean4" / "FiniteQM.lean").read_text(encoding="utf-8")
+        assert "theorem unit_sphere_pythagorean_ray_witness" in source
+        pair = packet_norm((Fraction(3, 5), Fraction(4, 5)))
+        assert pair == Fraction(1)
+>       assert ray_power_two() == pair
+E       assert Fraction(14, 5) == Fraction(1, 1)
+E        +  where Fraction(14, 5) = ray_power_two()
+
+code\python\tests\test_bin_witness.py:91: AssertionError
+_______________________ test_end_to_end_cli_prints_one ________________________
+
+    def test_end_to_end_cli_prints_one() -> None:
+        stdout = io.StringIO()
+        with redirect_stdout(stdout):
+>           code = main()
+                   ^^^^^^
+
+code\python\tests\test_bin_witness.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:137: in main
+    value = bin_two_square()
+            ^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:133: in bin_two_square
+    return _require_witness(power, fourth, cross)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+power = Fraction(14, 5), fourth = Fraction(28, 5), cross = Fraction(48, 25)
+
+    def _require_witness(power: Fraction, fourth: Fraction, cross: Fraction) -> Fraction:
+        if power != _UNIT:
+>           raise _fail("power two is not one", power=str(power))
+E           src.bin.BinWitnessError: power two is not one (power=14/5)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin\mutant-04.py:113: BinWitnessError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering
+FAILED code/python/tests/test_bounded_entrypoints.py::test_generated_exact_controls
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_or_broken_stdout_is_graceful[BrokenPipeError-src.bin]
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_or_broken_stdout_is_graceful[ValueError-src.bin]
+FAILED code/python/tests/test_bounded_entrypoints.py::test_witness_output_remains_exact
+FAILED code/python/tests/test_bin_witness.py::test_pythagorean_ray_matches_the_theorem
+FAILED code/python/tests/test_bin_witness.py::test_integration_matches_packet_norm
+FAILED code/python/tests/test_bin_witness.py::test_end_to_end_cli_prints_one
+8 failed, 27 passed, 1 deselected in 2.72s
+{"phase": "pytest", "exit_code": 1}
