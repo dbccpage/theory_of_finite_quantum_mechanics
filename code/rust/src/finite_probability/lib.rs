@@ -83,3 +83,6 @@ pub mod complex_selection;
 
 #[cfg(test)]
 mod operational_tomography;
+
+#[cfg(test)]
+mod operational_filters;
