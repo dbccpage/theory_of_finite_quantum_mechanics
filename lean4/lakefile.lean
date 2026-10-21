@@ -18,6 +18,8 @@ lean_lib «FiniteQuantum» where
     `TensorConeReconstruction,
     `TensorTomography,
     `ComplexFieldSelection,
+    `OperationalTomography,
+    `OperationalFieldSelection,
     `TensorCoordinates,
     `TensorSchmidt,
     `TensorReachability,
