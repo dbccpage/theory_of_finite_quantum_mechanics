@@ -194,7 +194,7 @@
     "open_obligations": []
   },
   "current_contract": "5ade988ee87a9d391d83b0ba0d0200da4807957325322dd773740f9657d58707",
-  "current_scoring": "030f59e73b0f9fd99e7e76450305fcdb83a0104b0bbbab2c3826b61013a547d9",
+  "current_scoring": "a9604277406e418f6d99ede3465172598e19c2fadf78490304e4c0ac73d98b75",
   "contract_history": [
     {
       "sha256": "5ade988ee87a9d391d83b0ba0d0200da4807957325322dd773740f9657d58707",
@@ -736,6 +736,131 @@
       "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/natural_trans_composition.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"91a6a7653c08ba364e70f48f083268651e1524fd9c526d1fab08ebc43dc63b2e\"\r\nprofile: \"Exact\"\r\nlevel: \"L5\"\r\nlevel_basis: \"Checked identity, vertical and horizontal composition re-admit natural-transformation certificates and enforce exact shared contexts and interchange.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"A\"\r\nevaluation_timestamp: \"2026-10-18T18:59:04+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:natural_trans_composition\"\r\n  description: \"Finite natural-transformation composition. AuthorityEffect: None.  Functions on `Declared*` data assemble candidates and reject missing data; they do not certify naturality. The `*_validated_*` operations own and check complete category/functor contexts, then replay output admission. Both paths for horizontal composition must agree. No sampled or infinite claim is made.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/baseline.json\", \"sha256\": \"85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/summary.json\", \"sha256\": \"8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/mutations.json\", \"sha256\": \"cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids:\r\n    - \"NT07-interchange\"\r\n    - \"NT08-horizontal-context\"\r\n    - \"NT09-vertical-context\"\r\nmutation_accounting:\r\n  killed: 3\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: 1.0\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 716\r\n  parsed_production_functions: 22\r\n  max_production_ccn: 6\r\n  cognitive_complexity_upper_bound: 3\r\n  control_nesting: 2\r\n  opaque_function_macros: []\r\n  functions_exceeding_A: []\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n",
       "original_paths": [
         "evidence/quality/category_homology/resume-20261019/natural-composition-previous/natural_trans_composition.score.yaml"
+      ]
+    },
+    {
+      "sha256": "a9604277406e418f6d99ede3465172598e19c2fadf78490304e4c0ac73d98b75",
+      "bytes": 5664,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/natural_trans_composition.rs",
+          "sha256": "dc006678c56be73ac184f8015d3fe7a55557d1d994eb1d3d8647f089079a568e",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:category_theory:natural-trans-composition:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.",
+          "G3": "Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 6,
+          "lizard_ccn": 6,
+          "weighted_control_upper_bound": 3,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "A",
+        "score_token": "L4A",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T182316Z/baseline.json",
+            "sha256": "8701474542f71a35b0d7e1030b8bdbc9cfe14c78b78270c6bb4fe7b130402534",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T182316Z/summary.json",
+            "sha256": "1af8ded726f57e0b738bebd03c3879be72c46ca8eb4a007ed41367a67fb944a1",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T182316Z/mutations.json",
+            "sha256": "9cf60bdf5729af0195475f57d09372b51f4e9be72ddf4c91cc4f8a32fbc58fe3",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T182120Z-metrics/receipt.json",
+            "sha256": "a365397e268691e60051f0ee365cdcd13fa1688412c5197523b4354a9a606df3",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T182316Z/dependency_receipt.json",
+            "sha256": "1ddceb0f8d2f61976742152cc209848fef5925d23771f3d0041df8ba781f70fc",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/natural_trans_composition.json",
+            "sha256": "f8e7e5a361b0ff7bdb9940316af8b0400c37b79d6b202513e11367fb506c8c6f",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T185904Z/baseline.json",
+            "sha256": "85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T185904Z/summary.json",
+            "sha256": "8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T185904Z/mutations.json",
+            "sha256": "cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          }
+        ],
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 718,
+          "parsed_production_functions": 22,
+          "max_production_ccn": 6,
+          "cognitive_complexity_upper_bound": 3,
+          "control_nesting": 2,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        }
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/natural_trans_composition.rs\",\n    \"sha256\": \"dc006678c56be73ac184f8015d3fe7a55557d1d994eb1d3d8647f089079a568e\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:natural-trans-composition:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T182316Z/baseline.json\",\n      \"sha256\": \"8701474542f71a35b0d7e1030b8bdbc9cfe14c78b78270c6bb4fe7b130402534\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T182316Z/summary.json\",\n      \"sha256\": \"1af8ded726f57e0b738bebd03c3879be72c46ca8eb4a007ed41367a67fb944a1\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T182316Z/mutations.json\",\n      \"sha256\": \"9cf60bdf5729af0195475f57d09372b51f4e9be72ddf4c91cc4f8a32fbc58fe3\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T182120Z-metrics/receipt.json\",\n      \"sha256\": \"a365397e268691e60051f0ee365cdcd13fa1688412c5197523b4354a9a606df3\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T182316Z/dependency_receipt.json\",\n      \"sha256\": \"1ddceb0f8d2f61976742152cc209848fef5925d23771f3d0041df8ba781f70fc\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/natural_trans_composition.json\",\n      \"sha256\": \"f8e7e5a361b0ff7bdb9940316af8b0400c37b79d6b202513e11367fb506c8c6f\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T185904Z/baseline.json\",\n      \"sha256\": \"85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T185904Z/summary.json\",\n      \"sha256\": \"8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T185904Z/mutations.json\",\n      \"sha256\": \"cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 718,\n    \"parsed_production_functions\": 22,\n    \"max_production_ccn\": 6,\n    \"cognitive_complexity_upper_bound\": 3,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/natural_trans_composition.contract.score.yaml#scoring"
       ]
     }
   ],

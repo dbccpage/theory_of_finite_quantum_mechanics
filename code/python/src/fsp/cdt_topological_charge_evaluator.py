@@ -98,7 +98,12 @@ class CdtTopologicalChargeEvaluator:
         n_pos = max(0, clamped_q)
         n_neg = max(0, -clamped_q)
 
-        v_diag = np.array([1.0] * (d_half + clamped_q) + [-1.0] * (d_half - clamped_q), dtype=complex)
+        d1 = [0.0] * n_pos + [2.0] * (d_half - n_pos)
+        rem_neg = d_half - n_neg
+        val_neg = (2.0 * (d_half - n_pos) - 2.0 * (n_pos - n_neg)) / rem_neg if rem_neg > 0 else 0.0
+        d2 = [0.0] * n_neg + [val_neg] * rem_neg
+
+        diag = np.concatenate([d1, d2])
         g5_diag = np.array([1.0] * d_half + [-1.0] * d_half, dtype=complex)
 
         rng = np.random.default_rng(abs(clamped_q) * 31 + num_vertices)
@@ -109,11 +114,8 @@ class CdtTopologicalChargeEvaluator:
             [np.zeros((d_half, d_half), dtype=complex), u_neg]
         ])
 
-        V_mat = U @ np.diag(v_diag) @ U.conj().T
+        D_rat = U @ np.diag(diag) @ U.conj().T
         Gamma_5 = U @ np.diag(g5_diag) @ U.conj().T
-
-        a = 1.0
-        D_rat = (1.0 / a) * (np.eye(n_dof, dtype=complex) + Gamma_5 @ V_mat)
 
         return D_rat, Gamma_5, n_pos, n_neg
 
@@ -206,7 +208,10 @@ class CdtTopologicalChargeEvaluator:
         """Evaluates a single configuration for topological charge quantization and WDW preservation."""
         q_real = 0.5 * cfg.trace_val
         is_integer = bool(abs(q_real - round(q_real)) <= 1e-5)
-        index_residual = float(abs(cfg.topological_charge - (cfg.n_pos - cfg.n_neg)))
+        trace_charge_diff = float(abs(q_real - cfg.topological_charge))
+        zero_mode_diff = float(abs(cfg.topological_charge - (cfg.n_pos - cfg.n_neg)))
+        index_residual = float(trace_charge_diff + zero_mode_diff)
+        is_charge_integer = 1 if (is_integer and trace_charge_diff <= 1e-5 and zero_mode_diff <= 1e-5) else 0
         is_wdw_satisfied = bool(cfg.wdw_defect_norm <= 1e-8)
 
         return {
@@ -219,7 +224,7 @@ class CdtTopologicalChargeEvaluator:
             "topological_charge": cfg.topological_charge,
             "trace_gamma5_rat": cfg.trace_val,
             "index_residual": index_residual,
-            "is_charge_integer": int(is_integer),
+            "is_charge_integer": is_charge_integer,
             "wdw_defect_norm": cfg.wdw_defect_norm,
             "is_wdw_satisfied": int(is_wdw_satisfied),
         }

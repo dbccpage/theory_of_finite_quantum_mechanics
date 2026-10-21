@@ -27,7 +27,7 @@
     ]
   },
   "current_contract": "610a83383538b19915dc1b2ad4a42797933aa89fd55d8ca3ccc973adb638f8ac",
-  "current_scoring": "84035468e472f6524280245f7917b974deb3ad98ecc71637c21cfe726737d5c0",
+  "current_scoring": "adcd1e9f2306507b486bb9f10670ad139bb8c32d44a65d5d902a9f2e58f04d4f",
   "contract_history": [
     {
       "sha256": "610a83383538b19915dc1b2ad4a42797933aa89fd55d8ca3ccc973adb638f8ac",
@@ -149,6 +149,112 @@
       "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/finite_probability/structure_exact.rs\",\n    \"sha256\": \"9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": null,\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"assessment_status\": \"incomplete\",\n  \"assessment_source\": null,\n  \"contract\": {\n    \"path\": \"code/rust/src/finite_probability/structure_exact.rs.contract.yaml\",\n    \"sha256\": \"610a83383538b19915dc1b2ad4a42797933aa89fd55d8ca3ccc973adb638f8ac\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [\n    \"Complete each missing sovereign gate; no completed token until all five have adequate evidence.\"\n  ],\n  \"structural_measurement\": {\n    \"source_sha256\": \"9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28\",\n    \"function_count\": 14,\n    \"maxima\": {\n      \"ccn\": 28,\n      \"cognitive_upper_bound\": 65,\n      \"control_nesting\": 6\n    },\n    \"structural_ceiling\": \"E\",\n    \"opaque_macros\": [\n      {\n        \"line\": 94,\n        \"name\": \"evaluate\",\n        \"macros\": [\n          \"assert:98\",\n          \"assert:100\",\n          \"assert:114\",\n          \"assert:127\",\n          \"assert:164\",\n          \"assert:177\",\n          \"assert:283\",\n          \"assert:333\",\n          \"assert:347\",\n          \"assert:372\",\n          \"panic:389\"\n        ]\n      }\n    ],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "original_paths": [
         "code/rust/src/finite_probability/structure_exact.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "adcd1e9f2306507b486bb9f10670ad139bb8c32d44a65d5d902a9f2e58f04d4f",
+      "bytes": 3673,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/finite_probability/structure_exact.rs",
+          "sha256": "9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:finite_probability:structure-exact:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.",
+          "G3": "Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: CCN 34 <= 50 (D), nesting depth 6 <= 8 (D); Gate 5 ceiling D under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 34,
+          "lizard_ccn": 34,
+          "weighted_control_upper_bound": 65,
+          "control_nesting": 6
+        },
+        "is_complete": true,
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "structure": {
+          "source_sha256": "9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28",
+          "function_count": 14,
+          "maxima": {
+            "ccn": 28,
+            "cognitive_upper_bound": 65,
+            "control_nesting": 6
+          },
+          "structural_ceiling": "E",
+          "opaque_macros": [
+            {
+              "line": 94,
+              "name": "evaluate",
+              "macros": [
+                "assert:98",
+                "assert:100",
+                "assert:114",
+                "assert:127",
+                "assert:164",
+                "assert:177",
+                "assert:283",
+                "assert:333",
+                "assert:347",
+                "assert:372",
+                "panic:389"
+              ]
+            }
+          ],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/finite_probability/structure_exact.rs\",\n    \"sha256\": \"9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:finite_probability:structure-exact:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 34 <= 50 (D), nesting depth 6 <= 8 (D); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 34,\n    \"lizard_ccn\": 34,\n    \"weighted_control_upper_bound\": 65,\n    \"control_nesting\": 6\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ],\n  \"structure\": {\n    \"source_sha256\": \"9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28\",\n    \"function_count\": 14,\n    \"maxima\": {\n      \"ccn\": 28,\n      \"cognitive_upper_bound\": 65,\n      \"control_nesting\": 6\n    },\n    \"structural_ceiling\": \"E\",\n    \"opaque_macros\": [\n      {\n        \"line\": 94,\n        \"name\": \"evaluate\",\n        \"macros\": [\n          \"assert:98\",\n          \"assert:100\",\n          \"assert:114\",\n          \"assert:127\",\n          \"assert:164\",\n          \"assert:177\",\n          \"assert:283\",\n          \"assert:333\",\n          \"assert:347\",\n          \"assert:372\",\n          \"panic:389\"\n        ]\n      }\n    ],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/finite_probability/structure_exact.contract.score.yaml#scoring"
       ]
     }
   ],

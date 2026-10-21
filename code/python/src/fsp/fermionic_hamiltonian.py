@@ -46,12 +46,16 @@ class FermionicLattice:
     edges: List[Tuple[int, int]]
 
     def __post_init__(self) -> None:
-        if not isinstance(self.num_sites, int) or self.num_sites <= 0:
+        if isinstance(self.num_sites, bool) or not isinstance(self.num_sites, int) or self.num_sites <= 0:
             raise ValueError(f"num_sites must be a positive integer, got {self.num_sites}")
+        if self.num_sites > 32:
+            raise ValueError(f"num_sites {self.num_sites} exceeds maximum finite lattice envelope (32 sites)")
         valid_edges = []
         for e in self.edges:
             if len(e) != 2:
                 raise ValueError(f"Edge must be a 2-tuple, got {e}")
+            if isinstance(e[0], bool) or isinstance(e[1], bool) or not isinstance(e[0], int) or not isinstance(e[1], int):
+                raise TypeError(f"Edge endpoints must be integers, not booleans: {e}")
             u, v = int(e[0]), int(e[1])
             if u < 0 or u >= self.num_sites or v < 0 or v >= self.num_sites:
                 raise ValueError(f"Edge ({u}, {v}) outside site range [0, {self.num_sites - 1}]")
@@ -164,8 +168,13 @@ class DiscreteFermionicHamiltonian:
             exact_u = exact_fraction(u, "u")
         except ValueError as exc:
             raise ValueError("Couplings t and u must be finite real numbers") from exc
-        if not isinstance(num_up, int) or not isinstance(num_down, int):
-            raise TypeError("Fermion particle counts must be integers")
+        if (
+            isinstance(num_up, bool)
+            or not isinstance(num_up, int)
+            or isinstance(num_down, bool)
+            or not isinstance(num_down, int)
+        ):
+            raise TypeError("Fermion particle counts must be integers, not booleans")
         if num_up < 0 or num_down < 0:
             raise ValueError(f"Fermion counts must be non-negative, got num_up={num_up}, num_down={num_down}")
         if num_up + num_down == 0:
@@ -174,6 +183,9 @@ class DiscreteFermionicHamiltonian:
             raise ValueError(
                 f"Fermion counts (up={num_up}, down={num_down}) cannot exceed lattice sites ({lattice.num_sites})"
             )
+        fock_dim = math.comb(lattice.num_sites, num_up) * math.comb(lattice.num_sites, num_down)
+        if fock_dim > 100_000:
+            raise ValueError(f"Fock space dimension {fock_dim} exceeds maximum finite envelope (100,000)")
 
         self.lattice = lattice
         self.t = exact_t
@@ -476,6 +488,15 @@ class FockLatticeScalingRow:
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "FockLatticeScalingRow":
+        raw_cancel = data["has_sign_cancellation"]
+        if isinstance(raw_cancel, str):
+            has_sign_cancel = raw_cancel.strip().lower() in ("true", "1", "yes")
+        elif isinstance(raw_cancel, bool):
+            has_sign_cancel = raw_cancel
+        elif isinstance(raw_cancel, int):
+            has_sign_cancel = bool(raw_cancel)
+        else:
+            raise TypeError(f"Invalid type for has_sign_cancellation: {type(raw_cancel)}")
         return cls(
             label=str(data["label"]),
             num_sites=int(data["num_sites"]),
@@ -487,7 +508,7 @@ class FockLatticeScalingRow:
             z_fermionic=Fraction(str(data["z_fermionic"])),
             z_bosonic=Fraction(str(data["z_bosonic"])),
             average_sign=Fraction(str(data["average_sign"])),
-            has_sign_cancellation=bool(data["has_sign_cancellation"]),
+            has_sign_cancellation=has_sign_cancel,
         )
 
 

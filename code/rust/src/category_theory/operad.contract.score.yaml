@@ -27,7 +27,7 @@
     ]
   },
   "current_contract": "775ec15a32b05958050e53c9dd4b96845a64f61400ffa7b4390d6b0d9d722696",
-  "current_scoring": "4ebab2d9fd37236b3ea15c65022b54856e822aef05d82457f64942e4369fcdca",
+  "current_scoring": "40c1a85040ed511fdab0afd71ed38bfb99b27050b3b12309dc038207cb707629",
   "contract_history": [
     {
       "sha256": "775ec15a32b05958050e53c9dd4b96845a64f61400ffa7b4390d6b0d9d722696",
@@ -243,6 +243,110 @@
       "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/operad.rs\",\n    \"sha256\": \"6bf2dd11ddb8dca05cbfbfe1a28bcf3da4fa164d5314af23920e579e10dab869\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"assessment_status\": \"incomplete\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/operad.score.yaml\",\n    \"sha256\": \"24712703ebd83143bfefc06dedd59c7828655a67f275eb60612100d98816d416\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/operad.rs.contract.yaml\",\n    \"sha256\": \"775ec15a32b05958050e53c9dd4b96845a64f61400ffa7b4390d6b0d9d722696\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [\n    \"Complete each missing sovereign gate; no completed token until all five have adequate evidence.\"\n  ],\n  \"structural_measurement\": {\n    \"source_sha256\": \"6bf2dd11ddb8dca05cbfbfe1a28bcf3da4fa164d5314af23920e579e10dab869\",\n    \"function_count\": 15,\n    \"maxima\": {\n      \"ccn\": 9,\n      \"cognitive_upper_bound\": 28,\n      \"control_nesting\": 5\n    },\n    \"structural_ceiling\": \"D\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "original_paths": [
         "code/rust/src/category_theory/operad.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "40c1a85040ed511fdab0afd71ed38bfb99b27050b3b12309dc038207cb707629",
+      "bytes": 4027,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/operad.rs",
+          "sha256": "6bf2dd11ddb8dca05cbfbfe1a28bcf3da4fa164d5314af23920e579e10dab869",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "C"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:category_theory:operad:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.",
+          "G3": "Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: CCN 9 <= 10 (A), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 9,
+          "weighted_control_upper_bound": 28,
+          "control_nesting": 5
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          }
+        ],
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 375,
+          "parsed_production_functions": 15,
+          "max_production_ccn": 9,
+          "cognitive_complexity_upper_bound": 28,
+          "control_nesting": 5,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 28,
+              "control_nesting": 5,
+              "line": 221,
+              "name": "check_operad_unit",
+              "opaque_macros": []
+            }
+          ],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        }
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/operad.rs\",\n    \"sha256\": \"6bf2dd11ddb8dca05cbfbfe1a28bcf3da4fa164d5314af23920e579e10dab869\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:operad:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 9 <= 10 (A), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 28,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 375,\n    \"parsed_production_functions\": 15,\n    \"max_production_ccn\": 9,\n    \"cognitive_complexity_upper_bound\": 28,\n    \"control_nesting\": 5,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 28,\n        \"control_nesting\": 5,\n        \"line\": 221,\n        \"name\": \"check_operad_unit\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/operad.contract.score.yaml#scoring"
       ]
     }
   ],

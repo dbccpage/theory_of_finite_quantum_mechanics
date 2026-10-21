@@ -161,7 +161,7 @@ class CtAuxMarkovChainSampler:
                 g_tau = np.exp(-tau_folded * eps) * (1.0 - fermi)
             else:
                 fermi = 1.0 / (1.0 + math.exp(self.beta * eps))
-                g_tau = np.exp((self.beta - tau_folded) * (-eps)) * fermi
+                g_tau = np.exp((self.beta - tau_folded) * eps) * fermi
 
             psi_m = self.evecs[sites, m]
             G0_mat += (psi_m[:, None] * psi_m[None, :]) * (g_tau * phase)
@@ -215,7 +215,7 @@ class CtAuxMarkovChainSampler:
                 g_tau = math.exp(-tau * eps) * (1.0 - fermi)
             else:
                 fermi = 1.0 / (1.0 + math.exp(self.beta * eps))
-                g_tau = math.exp((self.beta - tau) * (-eps)) * fermi
+                g_tau = math.exp((self.beta - tau) * eps) * fermi
             val += self.evecs[x_idx, m] * self.evecs[y_idx, m] * g_tau
         return val
 
@@ -245,7 +245,7 @@ class CtAuxMarkovChainSampler:
                 g_tau = np.exp(-tau_folded * eps) * (1.0 - fermi)
             else:
                 fermi = 1.0 / (1.0 + math.exp(self.beta * eps))
-                g_tau = np.exp((self.beta - tau_folded) * (-eps)) * fermi
+                g_tau = np.exp((self.beta - tau_folded) * eps) * fermi
             val += (self.evecs[sx_idx, m] * self.evecs[sy_idx, m]) * (g_tau * phase)
         return val
 
@@ -603,10 +603,13 @@ class StreamingGinPostingIndex:
     """Dynamic streaming Generalized Inverted Index with sliding window eviction and partner pairing."""
 
     def __init__(self, max_window_size: int = 500):
+        if max_window_size <= 0:
+            raise ValueError(f"max_window_size must be a positive integer, got {max_window_size}")
         self.max_window_size = max_window_size
         self.posting_index: Dict[int, Set[int]] = collections.defaultdict(set)
         self.cfg_store: Dict[int, CtAuxConfiguration] = {}
         self.window_queue: collections.deque[int] = collections.deque()
+        self.cancelled_cfgs: Set[int] = set()
 
         self.total_insertions = 0
         self.total_deletions = 0
@@ -629,6 +632,8 @@ class StreamingGinPostingIndex:
 
         If current window exceeds capacity, automatically evicts the oldest configuration.
         """
+        if cfg.cfg_id in self.cfg_store:
+            raise ValueError(f"Configuration with id {cfg.cfg_id} already exists in active window")
         evicted_id = None
         if len(self.window_queue) >= self.max_window_size:
             evicted_id = self.window_queue.popleft()
@@ -671,6 +676,7 @@ class StreamingGinPostingIndex:
                     del self.posting_index[m]
 
         del self.cfg_store[cfg_id]
+        self.cancelled_cfgs.discard(cfg_id)
         self.total_deletions += 1
         return True
 
@@ -687,8 +693,6 @@ class StreamingGinPostingIndex:
                 return set()
             candidates = set(first_post)
             for m in sorted_req[1:]:
-                if len(candidates) <= 1:
-                    break
                 candidates.intersection_update(self.posting_index.get(m, ()))
                 if not candidates:
                     return set()
@@ -722,15 +726,25 @@ class StreamingGinPostingIndex:
         candidates.discard(cfg_id)
 
         expected_occ = (current_modes - target_cluster_empty) | target_cluster_occupied
+        valid_partners = []
         for c_id in candidates:
+            if c_id in self.cancelled_cfgs or cfg_id in self.cancelled_cfgs:
+                continue
             cand_cfg = self.cfg_store[c_id]
             if cand_cfg.active_modes == expected_occ:
-                if cand_cfg.sign == -cfg.sign:
-                    return c_id
+                if cand_cfg.sign == -cfg.sign and math.isclose(cand_cfg.weight, cfg.weight, rel_tol=1e-9, abs_tol=1e-12):
+                    valid_partners.append(c_id)
+        if len(valid_partners) == 1:
+            return valid_partners[0]
         return None
 
     def register_involution_cancellation(self, cfg_id_1: int, cfg_id_2: int) -> float:
         """Quotients out the cancelled signed mass of a matched involution pair."""
+        if cfg_id_1 in self.cancelled_cfgs or cfg_id_2 in self.cancelled_cfgs:
+            return 0.0
+        if cfg_id_1 == cfg_id_2:
+            raise ValueError("Cannot cancel configuration with itself")
+
         c1 = self.cfg_store.get(cfg_id_1)
         c2 = self.cfg_store.get(cfg_id_2)
         if c1 is None or c2 is None:
@@ -743,6 +757,8 @@ class StreamingGinPostingIndex:
 
         self.quotiented_signed_sum -= signed_pair
         self.paired_partners_count += 1
+        self.cancelled_cfgs.add(cfg_id_1)
+        self.cancelled_cfgs.add(cfg_id_2)
         return defect
 
     def get_receipt(self, total_steps: int) -> StreamingSignRecoveryReceipt:

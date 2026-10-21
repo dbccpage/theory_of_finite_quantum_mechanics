@@ -370,6 +370,37 @@ impl Strict2Category {
         Ok(())
     }
 
+    fn check_compose_2_h_boundaries(
+        &self,
+        a_str: &str,
+        b_str: &str,
+        comp_str: &str,
+        a_cell: &TwoMorphismData,
+        b_cell: &TwoMorphismData,
+        comp_cell: &TwoMorphismData,
+    ) -> Result<(), HigherCategoryError> {
+        if a_cell.tgt_0 != b_cell.src_0 {
+            return Err(HigherCategoryError::HorizontalNotComposable {
+                alpha: a_str.to_string(),
+                beta: b_str.to_string(),
+                tgt0: a_cell.tgt_0.clone(),
+                src0: b_cell.src_0.clone(),
+            });
+        }
+
+        let gf = self.compose_1(&a_cell.src_1, &b_cell.src_1)?;
+        let gp_fp = self.compose_1(&a_cell.tgt_1, &b_cell.tgt_1)?;
+
+        if comp_cell.src_1 != gf || comp_cell.tgt_1 != gp_fp {
+            return Err(HigherCategoryError::TwoCellBoundaryMismatch {
+                cell: comp_str.to_string(),
+                expected_1_src: gf,
+                actual_1_src: comp_cell.src_1.clone(),
+            });
+        }
+        Ok(())
+    }
+
     pub fn set_compose_2_h(
         &mut self,
         alpha: impl Into<String>,
@@ -395,31 +426,12 @@ impl Strict2Category {
                     id: comp_str.clone(),
                 })?;
 
-        if a_cell.tgt_0 != b_cell.src_0 {
-            return Err(HigherCategoryError::HorizontalNotComposable {
-                alpha: a_str,
-                beta: b_str,
-                tgt0: a_cell.tgt_0.clone(),
-                src0: b_cell.src_0.clone(),
-            });
-        }
-
-        let gf = self.compose_1(&a_cell.src_1, &b_cell.src_1)?;
-        let gp_fp = self.compose_1(&a_cell.tgt_1, &b_cell.tgt_1)?;
-
-        if comp_cell.src_1 != gf || comp_cell.tgt_1 != gp_fp {
-            return Err(HigherCategoryError::TwoCellBoundaryMismatch {
-                cell: comp_str,
-                expected_1_src: gf,
-                actual_1_src: comp_cell.src_1.clone(),
-            });
-        }
-
+        self.check_compose_2_h_boundaries(&a_str, &b_str, &comp_str, a_cell, b_cell, comp_cell)?;
         self.compose_2_h_table.insert((a_str, b_str), comp_str);
         Ok(())
     }
 
-    pub fn validate_all_laws(&self) -> Result<(), HigherCategoryError> {
+    fn validate_zero_cell_identities(&self) -> Result<(), HigherCategoryError> {
         for ob in &self.zero_cells {
             let id_f = self.id_1(ob)?;
             let mor = self
@@ -434,7 +446,10 @@ impl Strict2Category {
                 });
             }
         }
+        Ok(())
+    }
 
+    fn validate_one_cell_identities(&self) -> Result<(), HigherCategoryError> {
         for (f_id, mor) in &self.one_cells {
             let id_src = self.id_1(&mor.src)?;
             let id_tgt = self.id_1(&mor.tgt)?;
@@ -453,30 +468,46 @@ impl Strict2Category {
                 });
             }
         }
+        Ok(())
+    }
 
+    fn check_one_cell_associativity_triple(
+        &self,
+        f_id: &String,
+        g_id: &String,
+        g: &OneMorphismData,
+        gf: &String,
+    ) -> Result<(), HigherCategoryError> {
+        for (h_id, h) in &self.one_cells {
+            if g.tgt != h.src {
+                continue;
+            }
+            let hg = self.compose_1(g_id, h_id)?;
+            let lhs = self.compose_1(gf, h_id)?;
+            let rhs = self.compose_1(f_id, &hg)?;
+            if lhs != rhs {
+                return Err(HigherCategoryError::AssociativityViolation {
+                    details: format!("1-cell associativity failed for ({f_id}, {g_id}, {h_id}): ({h_id}∘{g_id})∘{f_id}='{lhs}' != {h_id}∘({g_id}∘{f_id})='{rhs}'"),
+                });
+            }
+        }
+        Ok(())
+    }
+
+    fn validate_one_cell_associativity(&self) -> Result<(), HigherCategoryError> {
         for (f_id, f) in &self.one_cells {
             for (g_id, g) in &self.one_cells {
                 if f.tgt != g.src {
                     continue;
                 }
                 let gf = self.compose_1(f_id, g_id)?;
-                for (h_id, h) in &self.one_cells {
-                    if g.tgt != h.src {
-                        continue;
-                    }
-                    let hg = self.compose_1(g_id, h_id)?;
-
-                    let lhs = self.compose_1(&gf, h_id)?;
-                    let rhs = self.compose_1(f_id, &hg)?;
-                    if lhs != rhs {
-                        return Err(HigherCategoryError::AssociativityViolation {
-                            details: format!("1-cell associativity failed for ({f_id}, {g_id}, {h_id}): ({h_id}∘{g_id})∘{f_id}='{lhs}' != {h_id}∘({g_id}∘{f_id})='{rhs}'"),
-                        });
-                    }
-                }
+                self.check_one_cell_associativity_triple(f_id, g_id, g, &gf)?;
             }
         }
+        Ok(())
+    }
 
+    fn validate_two_cell_identities(&self) -> Result<(), HigherCategoryError> {
         for mor_id in self.one_cells.keys() {
             let id_2 = self.id_2(mor_id)?;
             let cell2 = self
@@ -491,7 +522,10 @@ impl Strict2Category {
                 });
             }
         }
+        Ok(())
+    }
 
+    fn validate_two_cell_vertical_identities(&self) -> Result<(), HigherCategoryError> {
         for (alpha_id, alpha) in &self.two_cells {
             let id_src1 = self.id_2(&alpha.src_1)?;
             let id_tgt1 = self.id_2(&alpha.tgt_1)?;
@@ -510,30 +544,46 @@ impl Strict2Category {
                 });
             }
         }
+        Ok(())
+    }
 
+    fn check_two_cell_vertical_associativity_triple(
+        &self,
+        a_id: &String,
+        b_id: &String,
+        beta: &TwoMorphismData,
+        ba: &String,
+    ) -> Result<(), HigherCategoryError> {
+        for (c_id, gamma) in &self.two_cells {
+            if beta.tgt_1 != gamma.src_1 {
+                continue;
+            }
+            let cb = self.compose_2_vertical(b_id, c_id)?;
+            let lhs = self.compose_2_vertical(ba, c_id)?;
+            let rhs = self.compose_2_vertical(a_id, &cb)?;
+            if lhs != rhs {
+                return Err(HigherCategoryError::AssociativityViolation {
+                    details: format!("2-cell vertical associativity failed for ({a_id}, {b_id}, {c_id}): LHS '{lhs}' != RHS '{rhs}'"),
+                });
+            }
+        }
+        Ok(())
+    }
+
+    fn validate_two_cell_vertical_associativity(&self) -> Result<(), HigherCategoryError> {
         for (a_id, alpha) in &self.two_cells {
             for (b_id, beta) in &self.two_cells {
                 if alpha.tgt_1 != beta.src_1 {
                     continue;
                 }
                 let ba = self.compose_2_vertical(a_id, b_id)?;
-                for (c_id, gamma) in &self.two_cells {
-                    if beta.tgt_1 != gamma.src_1 {
-                        continue;
-                    }
-                    let cb = self.compose_2_vertical(b_id, c_id)?;
-
-                    let lhs = self.compose_2_vertical(&ba, c_id)?;
-                    let rhs = self.compose_2_vertical(a_id, &cb)?;
-                    if lhs != rhs {
-                        return Err(HigherCategoryError::AssociativityViolation {
-                            details: format!("2-cell vertical associativity failed for ({a_id}, {b_id}, {c_id}): LHS '{lhs}' != RHS '{rhs}'"),
-                        });
-                    }
-                }
+                self.check_two_cell_vertical_associativity_triple(a_id, b_id, beta, &ba)?;
             }
         }
+        Ok(())
+    }
 
+    fn validate_horizontal_identity_preservation(&self) -> Result<(), HigherCategoryError> {
         for (f_id, f) in &self.one_cells {
             for (g_id, g) in &self.one_cells {
                 if f.tgt != g.src {
@@ -552,9 +602,18 @@ impl Strict2Category {
                 }
             }
         }
+        Ok(())
+    }
 
+    pub fn validate_all_laws(&self) -> Result<(), HigherCategoryError> {
+        self.validate_zero_cell_identities()?;
+        self.validate_one_cell_identities()?;
+        self.validate_one_cell_associativity()?;
+        self.validate_two_cell_identities()?;
+        self.validate_two_cell_vertical_identities()?;
+        self.validate_two_cell_vertical_associativity()?;
+        self.validate_horizontal_identity_preservation()?;
         crate::exchange::verify_all_exchange_laws(self)?;
-
         Ok(())
     }
 

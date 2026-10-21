@@ -2,6 +2,18 @@
 
 AuthorityEffect: None. A schema pass is not a proof of normalization laws.
 Runtime routing recomputes an actual finite cochain packet.
+
+Claim Hygiene:
+1. What this supports:
+   - Structural schema linting and field validation of normal-form YAML contracts.
+   - Runtime re-computation of sign packets on finite cochain complexes via BQNFSignEvaluator.
+   - Strict separation between declarative schema compliance and mathematical normalization proofs.
+2. What this does not support:
+   - Proof of normalization laws (soundness, idempotence, completeness, determinism) purely from schema validity.
+3. Narrowest defensible claim:
+   - A schema pass verifies structural conformance only; mathematical correctness requires independent execution and verified normalization evidence.
+4. Next test needed:
+   - Cross-check candidate cochain quotients against Lean 4 Lake proof kernel theorems.
 """
 
 from pathlib import Path

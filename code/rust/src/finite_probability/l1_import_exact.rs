@@ -37,21 +37,22 @@ fn mm(a: &[G], b: &[G]) -> Vec<G> {
         })
         .collect()
 }
-pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
-    let x = values.iter().map(|v| parse(v)).collect::<Vec<_>>();
-    let mut o: Vec<Q> = vec![];
-    macro_rules! e {($($v:expr),* $(,)?)=>{ $(o.push($v);)* };}
+
+fn eval_chain(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
     let bit = |v: bool| n(v as i64);
-    match kind {
-        "chain" => {
-            let (a, b, c, f) = (&x[0], &x[1], &x[2], &x[3]);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, c, f) = (&x[0], &x[1], &x[2], &x[3]);
             let d = vec![b - a, c - b, a - c];
             e!(f.clone(), n(0), -f);
             o.extend(d.clone());
             e!(d.iter().cloned().sum::<Q>() + f * &d[2], bit(f.is_zero()));
-        }
-        "kkt" => {
-            let (v, w, h, z) = (&x[..3], &x[3..6], &x[6..9], &x[9..12]);
+    None
+}
+
+fn eval_kkt(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (v, w, h, z) = (&x[..3], &x[3..6], &x[6..9], &x[9..12]);
             let d = vec![&h[1] - &h[0], &h[2] - &h[1], &h[0] - &h[2]];
             let r = (0..3).map(|i| &v[i] - &d[i]).collect::<Vec<_>>();
             let div = vec![&z[2] - &z[0], &z[0] - &z[1], &z[1] - &z[2]];
@@ -70,9 +71,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             o.extend(cap);
             o.extend(slack);
             e!(cost.clone(), dual.clone(), cost - dual, bit(ok));
-        }
-        "edge" | "gauge" | "observer" => {
-            let (a, b, p, q) = (&x[0], &x[1], &x[2], &x[3]);
+    None
+}
+
+fn eval_edge_gauge_observer(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, p, q) = (&x[0], &x[1], &x[2], &x[3]);
             assert!(*p >= n(0) && *q >= n(0));
             let norm = p * a.abs() + q * b.abs();
             let sw = p * b.abs() + q * a.abs();
@@ -89,10 +94,9 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 );
             } else if kind == "gauge" {
                 for swap in 0..2 {
-                    for _s in [-1, 1] {
-                        for _t in [-1, 1] {
-                            o.push(if swap == 0 { norm.clone() } else { sw.clone() });
-                        }
+                    let val = if swap == 0 { &norm } else { &sw };
+                    for _ in 0..4 {
+                        o.push(val.clone());
                     }
                 }
                 e!(
@@ -113,13 +117,17 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                     p * a.abs()
                 );
             }
-        }
-        "quotient" | "window" => {
-            let v = &x[..3];
+    None
+}
+
+fn eval_quotient_window(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let v = &x[..3];
             let w = &x[3..6];
             assert!(w.iter().all(|v| v > &n(0)));
             if kind == "window" && !x[9].is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let total = v.iter().cloned().sum::<Q>();
             let min = w.iter().min().unwrap();
@@ -148,29 +156,41 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                     if cost.is_zero() { n(0) } else { gamma / cost }
                 );
             }
-        }
-        "replica" => {
-            let (a, b, k) = (&x[0], &x[1], &x[2]);
+    None
+}
+
+fn eval_replica(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, k) = (&x[0], &x[1], &x[2]);
             let count = k.to_integer().to_i64().unwrap();
             assert!(k.is_integer() && (0..=8).contains(&count));
             let l = a.abs() + b.abs();
             let s = a * a + b * b;
             e!(k * &l, k * &s, k * l, k * &s, k * k * &s, k * k * s);
-        }
-        "mass" => {
-            if x.iter().any(|v| v < &n(0)) {
-                return vec!["-1".into()];
+    None
+}
+
+fn eval_mass(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    if x.iter().any(|v| v < &n(0)) {
+                return Some(vec!["-1".into()]);
             }
             let m = x.iter().cloned().sum::<Q>();
             if m.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             e!(n(1), m.clone());
             o.extend(x.iter().map(|v| v / &m));
             e!((&x[0] + &x[1]) / &m, (&x[2] + &x[3]) / &m, n(1));
-        }
-        "circle" => {
-            let k = x[0].to_integer().to_i64().unwrap();
+    None
+}
+
+fn eval_circle(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let k = x[0].to_integer().to_i64().unwrap();
             assert!(x[0].is_integer() && [2, 3, 4].contains(&k));
             for i in 0..k {
                 o.push(bit(2 * i % k == 0));
@@ -181,9 +201,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 }
             }
             e!(bit((0..k).all(|i| 2 * i % k == 0)), n(4), n(0));
-        }
-        "gauss" | "complex" => {
-            let (a, b) = (&x[0], &x[1]);
+    None
+}
+
+fn eval_gauss_complex(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b) = (&x[0], &x[1]);
             let z = a * a + b * b;
             if kind == "gauss" {
                 assert!(a.is_integer() && b.is_integer());
@@ -214,9 +238,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                     if z.is_zero() { n(0) } else { -b / &z }
                 );
             }
-        }
-        "time" => {
-            let s = &x[0];
+    None
+}
+
+fn eval_time(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let s = &x[0];
             assert!(*s == n(-1) || *s == n(1));
             let maps = [[0, 0], [0, 1], [1, 0], [1, 1]];
             let mut count = 0;
@@ -248,9 +276,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             for z in u.into_iter().chain(square).chain(unit) {
                 e!(z.0, z.1);
             }
-        }
-        "hilbert" => {
-            let k = x[0].to_integer().to_u32().unwrap();
+    None
+}
+
+fn eval_hilbert(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let k = x[0].to_integer().to_u32().unwrap();
             assert!(x[0].is_integer() && k <= 8);
             let u = (1..=k)
                 .map(|i| Q::new(1.into(), BigInt::from(2).pow(i)))
@@ -263,9 +295,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 Q::new(1.into(), 3.into()),
                 n(1)
             );
-        }
-        "dilation" => {
-            let (a, b, d) = (&x[0], &x[1], &x[2]);
+    None
+}
+
+fn eval_dilation(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, d) = (&x[0], &x[1], &x[2]);
             assert!(a + d == n(1) && *a >= n(0) && *d >= n(0) && a * d >= b * b);
             let mut ps = vec![];
             perm(&mut [0, 1, 2, 3], 0, &mut ps);
@@ -286,9 +322,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 }
             }
             e!(n(1), n(0), n(0), n(1), a + d, n(0), n(0), n(0));
-        }
-        "gleason" => {
-            let (a, b) = (&x[0], &x[1]);
+    None
+}
+
+fn eval_gleason(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b) = (&x[0], &x[1]);
             let u = (a + b) * (a + b);
             let v = (a - b) * (a - b);
             let z = a * a + b * b;
@@ -307,9 +347,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 n(2) * &z * &z,
                 n(8) * a * a * b * b
             );
-        }
-        "tensor" => {
-            let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
+    None
+}
+
+fn eval_tensor(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
             let t = vec![a * c, a * d, b * c, b * d];
             let v = vec![a * (c + d), n(0), b * (c + d), n(0)];
             o.extend(t.clone());
@@ -319,13 +363,17 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 (a * a + b * b) * (c * c + d * d),
                 t.iter().map(|v| v * v).sum::<Q>()
             );
-        }
-        "lift" => {
-            let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
+    None
+}
+
+fn eval_lift(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
             let aa = a * a + b * b;
             let bb = c * c + d * d;
             if aa.is_zero() || bb.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let rho = vec![a * a / &aa, a * b / &aa, a * b / &aa, b * b / &aa];
             let sig = vec![c * c / &bb, c * d / &bb, c * d / &bb, d * d / &bb];
@@ -340,9 +388,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             o.extend(rho);
             o.extend(sig);
             e!(ov.clone(), n(1) - &ov, bit(sat), bit(faith), bit(ov > n(0)));
-        }
-        "average" => {
-            let (a, b) = (&x[0], &x[1]);
+    None
+}
+
+fn eval_average(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b) = (&x[0], &x[1]);
             let ph = [(1, 0), (0, 1), (-1, 0), (0, -1)];
             let mut vals = vec![];
             let mut cor = vec![];
@@ -364,9 +416,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 a * a + b * b,
                 n(2) * a * b
             );
-        }
-        "gram" => {
-            let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
+    None
+}
+
+fn eval_gram(kind: &str, x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
             e!(
                 a * c + b * d,
                 a * c + n(2) * b * d,
@@ -377,8 +433,44 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 b * d,
                 b * b
             );
+    None
+}
+
+type EvalFn = fn(&str, &[Q], &mut Vec<Q>) -> Option<Vec<String>>;
+
+const HANDLERS: &[(&str, EvalFn)] = &[
+    ("chain", eval_chain),
+    ("kkt", eval_kkt),
+    ("edge", eval_edge_gauge_observer),
+    ("gauge", eval_edge_gauge_observer),
+    ("observer", eval_edge_gauge_observer),
+    ("quotient", eval_quotient_window),
+    ("window", eval_quotient_window),
+    ("replica", eval_replica),
+    ("mass", eval_mass),
+    ("circle", eval_circle),
+    ("gauss", eval_gauss_complex),
+    ("complex", eval_gauss_complex),
+    ("time", eval_time),
+    ("hilbert", eval_hilbert),
+    ("dilation", eval_dilation),
+    ("gleason", eval_gleason),
+    ("tensor", eval_tensor),
+    ("lift", eval_lift),
+    ("average", eval_average),
+    ("gram", eval_gram)
+];
+
+pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
+    let x = values.iter().map(|v| parse(v)).collect::<Vec<_>>();
+    let mut o: Vec<Q> = vec![];
+    for &(k, handler) in HANDLERS {
+        if k == kind {
+            if let Some(early) = handler(kind, &x, &mut o) {
+                return early;
+            }
+            return o.iter().map(ToString::to_string).collect();
         }
-        _ => panic!("unknown bounded operation"),
     }
     o.iter().map(ToString::to_string).collect()
 }

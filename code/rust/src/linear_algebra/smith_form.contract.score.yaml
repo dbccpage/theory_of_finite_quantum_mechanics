@@ -422,7 +422,7 @@
     }
   },
   "current_contract": "471a27ee683a444915f3f3803219c1f65a7d4a4c6fdf087302d7ee0a688262c6",
-  "current_scoring": "7a7f8860f9c870d226ddae2edd10d4a2b67395c395d8027f218774d708220bd8",
+  "current_scoring": "bd068f00a7b0d08eb46da061011567be6a2e8859bc9e247d35997c0efc40071f",
   "contract_history": [
     {
       "sha256": "471a27ee683a444915f3f3803219c1f65a7d4a4c6fdf087302d7ee0a688262c6",
@@ -5712,6 +5712,692 @@
       "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/smith_form.rs\",\n    \"sha256\": \"d8515871d15d6c26b10ef732e36262e53ee002c8d8ca96823dc485679b3a5691\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Individual source review: the dense Smith producer now exposes configurable admission and typed iteration policy, preserves a private dimensioned workspace, performs closed integer unimodular transformations with iterative Bezout reduction, and checks its final certificate identity. Current independent determinantal-divisor/unimodularity and sparse arithmetic/admission challenges support this production capability. Sparse/heuristic and other whole-file engineering obligations remain explicit; this level review does not award grade A.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": null,\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T14:53:16+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/linear_algebra/smith_form.rs.contract.yaml\",\n    \"status\": \"move_based_dense_and_bounded_sparse_individual_gate_review\",\n    \"sha256\": \"1c538253d2fcec78a3d3db029314b2c66c3e172a67abb0bb9e10d20a50e030a7\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": null,\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [\n      {\n        \"receipt\": {\n          \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n          \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n        },\n        \"claim\": \"Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.\",\n        \"run\": {\n          \"command\": [\n            \"cargo\",\n            \"--config\",\n            \"profile.dev.debug=0\",\n            \"--config\",\n            \"profile.test.debug=0\",\n            \"test\",\n            \"--frozen\",\n            \"--target-dir\",\n            \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T145120Z-qm-consumer\\\\build\",\n            \"--quiet\",\n            \"-p\",\n            \"theory_of_finite_qm\",\n            \"--lib\",\n            \"qm::campaigns::gleason\"\n          ],\n          \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\",\n          \"elapsed_seconds\": 1.688,\n          \"environment\": {\n            \"CARGO_BUILD_JOBS\": \"2\",\n            \"CARGO_INCREMENTAL\": \"0\"\n          },\n          \"exit_code\": 0,\n          \"log\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log\",\n          \"log_sha256\": \"1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b\",\n          \"timed_out\": false\n        }\n      }\n    ],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 54,\n        \"name\": \"new_checked\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 74,\n        \"name\": \"invariants\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 78,\n        \"name\": \"rank\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 105,\n        \"name\": \"diagonal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 109,\n        \"name\": \"diagonal_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 113,\n        \"name\": \"u\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 117,\n        \"name\": \"v\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 125,\n        \"name\": \"smith_normal_form_checked\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 139,\n        \"name\": \"default\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 147,\n        \"name\": \"smith_normal_form_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 158,\n        \"name\": \"smith_normal_form_checked_with_iteration_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 171,\n        \"name\": \"admit_smith_workspace\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 186,\n        \"name\": \"integer_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 217,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 226,\n        \"name\": \"smallest_pivot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 239,\n        \"name\": \"position_pivot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 252,\n        \"name\": \"clear_column\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 265,\n        \"name\": \"clear_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 280,\n        \"name\": \"nondivisible_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 291,\n        \"name\": \"repair_divisibility\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 300,\n        \"name\": \"reduce_pivot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 322,\n        \"name\": \"check_diagonal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 331,\n        \"name\": \"finish\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 369,\n        \"name\": \"integer_pair_transform\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 381,\n        \"name\": \"apply_integer_values\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 392,\n        \"name\": \"apply_integer_pair\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 396,\n        \"name\": \"apply_integer_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 407,\n        \"name\": \"consider_smith_pivot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 421,\n        \"name\": \"check_diagonal_entry\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 440,\n        \"name\": \"flatten_integer_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 457,\n        \"name\": \"transpose_integer_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 466,\n        \"name\": \"add_integer_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 472,\n        \"name\": \"negate_integer_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 477,\n        \"name\": \"verify_smith_identity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 493,\n        \"name\": \"borrowed_integer_product\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 512,\n        \"name\": \"integer_numerator_from_rational64\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 527,\n        \"name\": \"integer_numerator_big\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 541,\n        \"name\": \"from_rational64_integer_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 553,\n        \"name\": \"from_bigrational_integer_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 13,\n        \"control_nesting\": 3,\n        \"line\": 596,\n        \"name\": \"new_checked\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 638,\n        \"name\": \"rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 642,\n        \"name\": \"cols\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 646,\n        \"name\": \"columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 651,\n        \"name\": \"mul_vec\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 654,\n        \"name\": \"mul_vec_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 675,\n        \"name\": \"to_dense\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 678,\n        \"name\": \"to_dense_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 699,\n        \"name\": \"from_dense\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 704,\n        \"name\": \"from_dense_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 731,\n        \"name\": \"admit_sparse_elements\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 737,\n        \"name\": \"sparse_buffer\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 746,\n        \"name\": \"sparse_zeros\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 752,\n        \"name\": \"sparse_column_counts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 763,\n        \"name\": \"reserve_sparse_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 772,\n        \"name\": \"fill_sparse_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 791,\n        \"name\": \"egcd\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 811,\n        \"name\": \"sparse_pivot_gcd\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 3,\n        \"line\": 816,\n        \"name\": \"remove_sparse_pivot_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 825,\n        \"name\": \"sparse_column_gcd_heuristic\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 830,\n        \"name\": \"sparse_column_gcd_heuristic_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 870,\n        \"name\": \"borrow_sparse_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 884,\n        \"name\": \"borrow_sparse_column\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Individual G4 judgement withheld: execution or mutation prerequisite unmet.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"gates\": {\n      \"G1\": {\n        \"basis\": \"Source SHA, complete requirement/exported-symbol and consumer maps bind the dense result, integer conversion and bounded diagnostic-process claims to pinned dependency, metric and execution receipts. Used storage/access/constructor primitives are inspected; similarly named external algorithms are separate. No full-workspace or general heuristic certification is claimed.\",\n        \"grade\": \"A\"\n      },\n      \"G2\": {\n        \"basis\": \"Elementary-transform arguments establish unimodularity and U M V=D. Successful output additionally checks actual positive diagonal shape and divisibility order; private fields exclude unchecked candidate admission. Conversions widen native operands first and reject undefined/nonintegral input. Sparse structural admission and exact borrowed integer operations mirror the explicitly uncertified process.\",\n        \"grade\": \"A\"\n      },\n      \"G3\": {\n        \"basis\": \"Source arguments cover indices, disjoint slices, nonzero divisors, count/counter arithmetic and ownership. Checked admission/fallible vector reservation precede buffers; errors publish no partial result or input mutation. Used BasicMatrix primitives are inspected and pinned. Rust/std/allocator, num exact arithmetic and thiserror are explicit runtime assumptions; no custom field callback, recursion, process-OOM or machine-checked crash-freedom guarantee is introduced.\",\n        \"grade\": \"A\"\n      },\n      \"G4\": {\n        \"basis\": \"Conditional on current R>=0.95 for 29 designated Smith faults and successful untouched/restored package baselines. Independent minor/determinant, unimodularity, wide division, literal orientation, row-mask/GCD/order, typed boundary and compiler privacy challenges cover the declared failure classes. Staged receipts do not replace current integration; every outcome remains visible.\",\n        \"grade\": \"A\"\n      },\n      \"G5\": {\n        \"basis\": \"All explicit production functions must meet calibrated A ceilings without opaque source macros. Pivot comparisons borrow magnitudes, outputs move D/U/V payloads, and the separate owned diagonal is necessarily copied once. Sparse workspace borrows values, computes needed GCDs only and reserves buffers once. Conversions borrow fractions. Dense pass bounds and polynomial sparse filtering exclude integer bit growth, Euclid/scalar cost, allocator internals and total process memory/time; no stronger bound is inferred.\",\n        \"grade\": \"A\"\n      }\n    },\n    \"source_sha256\": \"d8515871d15d6c26b10ef732e36262e53ee002c8d8ca96823dc485679b3a5691\"\n  }\n}\n",
       "original_paths": [
         "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/smith_form.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "bd068f00a7b0d08eb46da061011567be6a2e8859bc9e247d35997c0efc40071f",
+      "bytes": 19282,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/smith_form.rs",
+          "sha256": "d8515871d15d6c26b10ef732e36262e53ee002c8d8ca96823dc485679b3a5691",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:linear_algebra:smith-form:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.",
+          "G3": "Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: CCN 9 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 9,
+          "weighted_control_upper_bound": 13,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "A",
+        "score_token": "L4A",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 54,
+              "name": "new_checked",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 74,
+              "name": "invariants",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 78,
+              "name": "rank",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 105,
+              "name": "diagonal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 109,
+              "name": "diagonal_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 113,
+              "name": "u",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 117,
+              "name": "v",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 125,
+              "name": "smith_normal_form_checked",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 139,
+              "name": "default",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 147,
+              "name": "smith_normal_form_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 158,
+              "name": "smith_normal_form_checked_with_iteration_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 171,
+              "name": "admit_smith_workspace",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 186,
+              "name": "integer_rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 217,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 226,
+              "name": "smallest_pivot",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 239,
+              "name": "position_pivot",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 252,
+              "name": "clear_column",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 265,
+              "name": "clear_row",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 280,
+              "name": "nondivisible_row",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 291,
+              "name": "repair_divisibility",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 2,
+              "line": 300,
+              "name": "reduce_pivot",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 322,
+              "name": "check_diagonal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 331,
+              "name": "finish",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 369,
+              "name": "integer_pair_transform",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 381,
+              "name": "apply_integer_values",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 392,
+              "name": "apply_integer_pair",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 396,
+              "name": "apply_integer_rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 407,
+              "name": "consider_smith_pivot",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 421,
+              "name": "check_diagonal_entry",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 440,
+              "name": "flatten_integer_rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 457,
+              "name": "transpose_integer_rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 466,
+              "name": "add_integer_row",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 472,
+              "name": "negate_integer_row",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 477,
+              "name": "verify_smith_identity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 493,
+              "name": "borrowed_integer_product",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 512,
+              "name": "integer_numerator_from_rational64",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 527,
+              "name": "integer_numerator_big",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 541,
+              "name": "from_rational64_integer_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 553,
+              "name": "from_bigrational_integer_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 13,
+              "control_nesting": 3,
+              "line": 596,
+              "name": "new_checked",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 638,
+              "name": "rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 642,
+              "name": "cols",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 646,
+              "name": "columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 651,
+              "name": "mul_vec",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 654,
+              "name": "mul_vec_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 675,
+              "name": "to_dense",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 678,
+              "name": "to_dense_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 699,
+              "name": "from_dense",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 704,
+              "name": "from_dense_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 731,
+              "name": "admit_sparse_elements",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 737,
+              "name": "sparse_buffer",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 746,
+              "name": "sparse_zeros",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 752,
+              "name": "sparse_column_counts",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 763,
+              "name": "reserve_sparse_columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 772,
+              "name": "fill_sparse_columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 791,
+              "name": "egcd",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 811,
+              "name": "sparse_pivot_gcd",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 3,
+              "line": 816,
+              "name": "remove_sparse_pivot_rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 825,
+              "name": "sparse_column_gcd_heuristic",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 830,
+              "name": "sparse_column_gcd_heuristic_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 870,
+              "name": "borrow_sparse_columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 884,
+              "name": "borrow_sparse_column",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        }
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/smith_form.rs\",\n    \"sha256\": \"d8515871d15d6c26b10ef732e36262e53ee002c8d8ca96823dc485679b3a5691\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:linear_algebra:smith-form:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 9 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 13,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 54,\n        \"name\": \"new_checked\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 74,\n        \"name\": \"invariants\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 78,\n        \"name\": \"rank\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 105,\n        \"name\": \"diagonal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 109,\n        \"name\": \"diagonal_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 113,\n        \"name\": \"u\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 117,\n        \"name\": \"v\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 125,\n        \"name\": \"smith_normal_form_checked\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 139,\n        \"name\": \"default\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 147,\n        \"name\": \"smith_normal_form_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 158,\n        \"name\": \"smith_normal_form_checked_with_iteration_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 171,\n        \"name\": \"admit_smith_workspace\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 186,\n        \"name\": \"integer_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 217,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 226,\n        \"name\": \"smallest_pivot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 239,\n        \"name\": \"position_pivot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 252,\n        \"name\": \"clear_column\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 265,\n        \"name\": \"clear_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 280,\n        \"name\": \"nondivisible_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 291,\n        \"name\": \"repair_divisibility\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 300,\n        \"name\": \"reduce_pivot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 322,\n        \"name\": \"check_diagonal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 331,\n        \"name\": \"finish\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 369,\n        \"name\": \"integer_pair_transform\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 381,\n        \"name\": \"apply_integer_values\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 392,\n        \"name\": \"apply_integer_pair\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 396,\n        \"name\": \"apply_integer_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 407,\n        \"name\": \"consider_smith_pivot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 421,\n        \"name\": \"check_diagonal_entry\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 440,\n        \"name\": \"flatten_integer_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 457,\n        \"name\": \"transpose_integer_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 466,\n        \"name\": \"add_integer_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 472,\n        \"name\": \"negate_integer_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 477,\n        \"name\": \"verify_smith_identity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 493,\n        \"name\": \"borrowed_integer_product\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 512,\n        \"name\": \"integer_numerator_from_rational64\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 527,\n        \"name\": \"integer_numerator_big\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 541,\n        \"name\": \"from_rational64_integer_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 553,\n        \"name\": \"from_bigrational_integer_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 13,\n        \"control_nesting\": 3,\n        \"line\": 596,\n        \"name\": \"new_checked\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 638,\n        \"name\": \"rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 642,\n        \"name\": \"cols\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 646,\n        \"name\": \"columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 651,\n        \"name\": \"mul_vec\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 654,\n        \"name\": \"mul_vec_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 675,\n        \"name\": \"to_dense\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 678,\n        \"name\": \"to_dense_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 699,\n        \"name\": \"from_dense\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 704,\n        \"name\": \"from_dense_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 731,\n        \"name\": \"admit_sparse_elements\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 737,\n        \"name\": \"sparse_buffer\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 746,\n        \"name\": \"sparse_zeros\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 752,\n        \"name\": \"sparse_column_counts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 763,\n        \"name\": \"reserve_sparse_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 772,\n        \"name\": \"fill_sparse_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 791,\n        \"name\": \"egcd\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 811,\n        \"name\": \"sparse_pivot_gcd\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 3,\n        \"line\": 816,\n        \"name\": \"remove_sparse_pivot_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 825,\n        \"name\": \"sparse_column_gcd_heuristic\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 830,\n        \"name\": \"sparse_column_gcd_heuristic_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 870,\n        \"name\": \"borrow_sparse_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 884,\n        \"name\": \"borrow_sparse_column\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/linear_algebra/smith_form.contract.score.yaml#scoring"
       ]
     }
   ],

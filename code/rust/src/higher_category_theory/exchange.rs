@@ -21,58 +21,95 @@ impl<T> ExchangeQuadruple<T> {
     }
 }
 
-pub fn check_exchange_composability<C: TwoCategory>(
+fn check_vertical_pairs<C: TwoCategory>(
     cat: &C,
-    quad: &ExchangeQuadruple<C::TwoCell>,
+    a1: &C::TwoCell,
+    b1: &C::TwoCell,
+    a2: &C::TwoCell,
+    b2: &C::TwoCell,
 ) -> Result<(), HigherCategoryError> {
-    let a1_tgt = cat.target_1_of_2(&quad.alpha_1)?;
-    let b1_src = cat.source_1_of_2(&quad.beta_1)?;
+    let a1_tgt = cat.target_1_of_2(a1)?;
+    let b1_src = cat.source_1_of_2(b1)?;
     if a1_tgt != b1_src {
         return Err(HigherCategoryError::VerticalNotComposable {
-            alpha: format!("{:?}", quad.alpha_1),
-            beta: format!("{:?}", quad.beta_1),
-            tgt1: format!("{:?}", a1_tgt),
-            src1: format!("{:?}", b1_src),
+            alpha: format!("{a1:?}"),
+            beta: format!("{b1:?}"),
+            tgt1: format!("{a1_tgt:?}"),
+            src1: format!("{b1_src:?}"),
         });
     }
 
-    let a2_tgt = cat.target_1_of_2(&quad.alpha_2)?;
-    let b2_src = cat.source_1_of_2(&quad.beta_2)?;
+    let a2_tgt = cat.target_1_of_2(a2)?;
+    let b2_src = cat.source_1_of_2(b2)?;
     if a2_tgt != b2_src {
         return Err(HigherCategoryError::VerticalNotComposable {
-            alpha: format!("{:?}", quad.alpha_2),
-            beta: format!("{:?}", quad.beta_2),
-            tgt1: format!("{:?}", a2_tgt),
-            src1: format!("{:?}", b2_src),
+            alpha: format!("{a2:?}"),
+            beta: format!("{b2:?}"),
+            tgt1: format!("{a2_tgt:?}"),
+            src1: format!("{b2_src:?}"),
         });
     }
+    Ok(())
+}
 
-    let a1_src1 = cat.source_1_of_2(&quad.alpha_1)?;
-    let a2_src1 = cat.source_1_of_2(&quad.alpha_2)?;
+fn check_a_horizontal<C: TwoCategory>(
+    cat: &C,
+    a1: &C::TwoCell,
+    a2: &C::TwoCell,
+) -> Result<(), HigherCategoryError> {
+    let a1_src1 = cat.source_1_of_2(a1)?;
+    let a2_src1 = cat.source_1_of_2(a2)?;
     let a1_tgt0 = cat.target_0_of_1(&a1_src1)?;
     let a2_src0 = cat.source_0_of_1(&a2_src1)?;
     if a1_tgt0 != a2_src0 {
         return Err(HigherCategoryError::HorizontalNotComposable {
-            alpha: format!("{:?}", quad.alpha_1),
-            beta: format!("{:?}", quad.alpha_2),
-            tgt0: format!("{:?}", a1_tgt0),
-            src0: format!("{:?}", a2_src0),
+            alpha: format!("{a1:?}"),
+            beta: format!("{a2:?}"),
+            tgt0: format!("{a1_tgt0:?}"),
+            src0: format!("{a2_src0:?}"),
         });
     }
+    Ok(())
+}
 
-    let b1_tgt1 = cat.target_1_of_2(&quad.beta_1)?;
-    let b2_tgt1 = cat.target_1_of_2(&quad.beta_2)?;
+fn check_b_horizontal<C: TwoCategory>(
+    cat: &C,
+    b1: &C::TwoCell,
+    b2: &C::TwoCell,
+) -> Result<(), HigherCategoryError> {
+    let b1_tgt1 = cat.target_1_of_2(b1)?;
+    let b2_tgt1 = cat.target_1_of_2(b2)?;
     let b1_tgt0 = cat.target_0_of_1(&b1_tgt1)?;
     let b2_src0 = cat.source_0_of_1(&b2_tgt1)?;
     if b1_tgt0 != b2_src0 {
         return Err(HigherCategoryError::HorizontalNotComposable {
-            alpha: format!("{:?}", quad.beta_1),
-            beta: format!("{:?}", quad.beta_2),
-            tgt0: format!("{:?}", b1_tgt0),
-            src0: format!("{:?}", b2_src0),
+            alpha: format!("{b1:?}"),
+            beta: format!("{b2:?}"),
+            tgt0: format!("{b1_tgt0:?}"),
+            src0: format!("{b2_src0:?}"),
         });
     }
+    Ok(())
+}
 
+fn check_horizontal_pairs<C: TwoCategory>(
+    cat: &C,
+    a1: &C::TwoCell,
+    b1: &C::TwoCell,
+    a2: &C::TwoCell,
+    b2: &C::TwoCell,
+) -> Result<(), HigherCategoryError> {
+    check_a_horizontal(cat, a1, a2)?;
+    check_b_horizontal(cat, b1, b2)?;
+    Ok(())
+}
+
+pub fn check_exchange_composability<C: TwoCategory>(
+    cat: &C,
+    quad: &ExchangeQuadruple<C::TwoCell>,
+) -> Result<(), HigherCategoryError> {
+    check_vertical_pairs(cat, &quad.alpha_1, &quad.beta_1, &quad.alpha_2, &quad.beta_2)?;
+    check_horizontal_pairs(cat, &quad.alpha_1, &quad.beta_1, &quad.alpha_2, &quad.beta_2)?;
     Ok(())
 }
 
@@ -94,14 +131,52 @@ pub fn verify_exchange_law<C: TwoCategory>(
         Ok(())
     } else {
         Err(HigherCategoryError::ExchangeLawViolation {
-            left: format!("{:?}", lhs),
-            right: format!("{:?}", rhs),
+            left: format!("{lhs:?}"),
+            right: format!("{rhs:?}"),
             details: format!(
                 "Exchange failure on quadruple: alpha_1={:?}, beta_1={:?}, alpha_2={:?}, beta_2={:?}",
                 quad.alpha_1, quad.beta_1, quad.alpha_2, quad.beta_2
             ),
         })
     }
+}
+
+fn check_b2_match(
+    cat: &crate::two_category::Strict2Category,
+    a2: &String,
+    b1: &String,
+    b2: &String,
+) -> Result<bool, HigherCategoryError> {
+    if cat.target_1_of_2(a2)? != cat.source_1_of_2(b2)? {
+        return Ok(false);
+    }
+    let b1_tgt1 = cat.target_1_of_2(b1)?;
+    let b2_tgt1 = cat.target_1_of_2(b2)?;
+    let ok = cat.target_0_of_1(&b1_tgt1)? == cat.source_0_of_1(&b2_tgt1)?;
+    Ok(ok)
+}
+
+fn find_exchange_quads_for_a2(
+    cat: &crate::two_category::Strict2Category,
+    a1: &String,
+    b1: &String,
+    a2: &String,
+    two_cell_ids: &[&String],
+    quadruples: &mut Vec<ExchangeQuadruple<String>>,
+) -> Result<(), HigherCategoryError> {
+    let a1_src1 = cat.source_1_of_2(a1)?;
+    let a2_src1 = cat.source_1_of_2(a2)?;
+    if cat.target_0_of_1(&a1_src1)? != cat.source_0_of_1(&a2_src1)? {
+        return Ok(());
+    }
+    for &b2 in two_cell_ids {
+        if check_b2_match(cat, a2, b1, b2)? {
+            let quad = ExchangeQuadruple::new(a1.clone(), b1.clone(), a2.clone(), b2.clone());
+            reserve_exact(quadruples, 1, &cat.limits)?;
+            quadruples.push(quad);
+        }
+    }
+    Ok(())
 }
 
 pub fn verify_all_exchange_laws(
@@ -117,26 +192,7 @@ pub fn verify_all_exchange_laws(
                 continue;
             }
             for &a2 in &two_cell_ids {
-                let a1_src1 = cat.source_1_of_2(a1)?;
-                let a2_src1 = cat.source_1_of_2(a2)?;
-                if cat.target_0_of_1(&a1_src1)? != cat.source_0_of_1(&a2_src1)? {
-                    continue;
-                }
-                for &b2 in &two_cell_ids {
-                    if cat.target_1_of_2(a2)? != cat.source_1_of_2(b2)? {
-                        continue;
-                    }
-                    let b1_tgt1 = cat.target_1_of_2(b1)?;
-                    let b2_tgt1 = cat.target_1_of_2(b2)?;
-                    if cat.target_0_of_1(&b1_tgt1)? != cat.source_0_of_1(&b2_tgt1)? {
-                        continue;
-                    }
-
-                    let quad =
-                        ExchangeQuadruple::new(a1.clone(), b1.clone(), a2.clone(), b2.clone());
-                    reserve_exact(&mut quadruples, 1, &cat.limits)?;
-                    quadruples.push(quad);
-                }
+                find_exchange_quads_for_a2(cat, a1, b1, a2, &two_cell_ids, &mut quadruples)?;
             }
         }
     }

@@ -128,44 +128,71 @@ pub enum HolonomyError {
 }
 
 impl HolonomyError {
-    pub fn precedence_rank(&self) -> usize {
+    fn precedence_group_0_to_9(&self) -> Option<usize> {
         match self {
-            HolonomyError::ResourceCountOverflow => 0,
-            HolonomyError::AllocationFailure { .. } => 1,
-            HolonomyError::SingularConnection { .. } => 2,
-            HolonomyError::OpenLoop { .. } => 3,
-            HolonomyError::VertexNotFound { .. } => 4,
-            HolonomyError::EdgeNotFound { .. } => 5,
-            HolonomyError::DimensionMismatch { .. } => 6,
-            HolonomyError::PathLengthExceeded { .. } => 7,
-            HolonomyError::LoopCountExceeded { .. } => 8,
-            HolonomyError::OperationLimitExceeded { .. } => 9,
-            HolonomyError::MalformedPath { .. } => 10,
-            HolonomyError::EmptyPath => 11,
-            HolonomyError::DuplicateVertex { .. } => 12,
-            HolonomyError::DuplicateEdge { .. } => 13,
-            HolonomyError::DuplicateFace { .. } => 14,
-            HolonomyError::FaceNotFound { .. } => 15,
-            HolonomyError::BoundaryCycleMismatch { .. } => 16,
-            HolonomyError::ZeroDivision => 17,
-            HolonomyError::NonHermitianLaplacian { .. } => 18,
-            HolonomyError::CurvatureCommutatorViolation { .. } => 19,
-            HolonomyError::NegativeBound { .. } => 20,
-            HolonomyError::SingularMatrix { .. } => 21,
-            HolonomyError::EdgeIndexOutOfRange { .. } => 22,
-            HolonomyError::VertexIndexOutOfRange { .. } => 23,
-            HolonomyError::EdgeValueCount { .. } => 24,
-            HolonomyError::VertexValueCount { .. } => 25,
-            HolonomyError::AntiparallelEdges { .. } => 26,
-            HolonomyError::BrokenWalk { .. } => 27,
-            HolonomyError::InvalidStepDirection { .. } => 28,
-            HolonomyError::InvalidGroupOrder { .. } => 29,
-            HolonomyError::IntegerEliminationFailed { .. } => 30,
-            HolonomyError::MatrixIndexOutOfBounds { .. } => 31,
-            HolonomyError::InvalidScalar { .. } => 32,
-            HolonomyError::VertexRegistryMismatch { .. } => 33,
-            HolonomyError::MatrixCellLimitExceeded { .. } => 34,
+            HolonomyError::ResourceCountOverflow => Some(0),
+            HolonomyError::AllocationFailure { .. } => Some(1),
+            HolonomyError::SingularConnection { .. } => Some(2),
+            HolonomyError::OpenLoop { .. } => Some(3),
+            HolonomyError::VertexNotFound { .. } => Some(4),
+            HolonomyError::EdgeNotFound { .. } => Some(5),
+            HolonomyError::DimensionMismatch { .. } => Some(6),
+            HolonomyError::PathLengthExceeded { .. } => Some(7),
+            HolonomyError::LoopCountExceeded { .. } => Some(8),
+            HolonomyError::OperationLimitExceeded { .. } => Some(9),
+            _ => None,
         }
+    }
+
+    fn precedence_group_10_to_19(&self) -> Option<usize> {
+        match self {
+            HolonomyError::MalformedPath { .. } => Some(10),
+            HolonomyError::EmptyPath => Some(11),
+            HolonomyError::DuplicateVertex { .. } => Some(12),
+            HolonomyError::DuplicateEdge { .. } => Some(13),
+            HolonomyError::DuplicateFace { .. } => Some(14),
+            HolonomyError::FaceNotFound { .. } => Some(15),
+            HolonomyError::BoundaryCycleMismatch { .. } => Some(16),
+            HolonomyError::ZeroDivision => Some(17),
+            HolonomyError::NonHermitianLaplacian { .. } => Some(18),
+            HolonomyError::CurvatureCommutatorViolation { .. } => Some(19),
+            _ => None,
+        }
+    }
+
+    fn precedence_group_20_to_27(&self) -> Option<usize> {
+        match self {
+            HolonomyError::NegativeBound { .. } => Some(20),
+            HolonomyError::SingularMatrix { .. } => Some(21),
+            HolonomyError::EdgeIndexOutOfRange { .. } => Some(22),
+            HolonomyError::VertexIndexOutOfRange { .. } => Some(23),
+            HolonomyError::EdgeValueCount { .. } => Some(24),
+            HolonomyError::VertexValueCount { .. } => Some(25),
+            HolonomyError::AntiparallelEdges { .. } => Some(26),
+            HolonomyError::BrokenWalk { .. } => Some(27),
+            _ => None,
+        }
+    }
+
+    fn precedence_group_28_to_34(&self) -> Option<usize> {
+        match self {
+            HolonomyError::InvalidStepDirection { .. } => Some(28),
+            HolonomyError::InvalidGroupOrder { .. } => Some(29),
+            HolonomyError::IntegerEliminationFailed { .. } => Some(30),
+            HolonomyError::MatrixIndexOutOfBounds { .. } => Some(31),
+            HolonomyError::InvalidScalar { .. } => Some(32),
+            HolonomyError::VertexRegistryMismatch { .. } => Some(33),
+            HolonomyError::MatrixCellLimitExceeded { .. } => Some(34),
+            _ => None,
+        }
+    }
+
+    pub fn precedence_rank(&self) -> usize {
+        self.precedence_group_0_to_9()
+            .or_else(|| self.precedence_group_10_to_19())
+            .or_else(|| self.precedence_group_20_to_27())
+            .or_else(|| self.precedence_group_28_to_34())
+            .unwrap_or(usize::MAX)
     }
 }
 

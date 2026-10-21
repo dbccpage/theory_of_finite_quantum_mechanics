@@ -4,7 +4,8 @@ AuthorityEffect: None.
 The rational section is a normal form modulo im(d0), not an L1 minimizer.
 The switching section is a normal form for diagonal +/-1 gauges on a fixed
 ordered, labelled graph. Neither is a general solution of the sign problem.
-Legacy finite float inputs denote their exact binary rational values; use
+Finite binary float inputs are converted to their exact binary rational
+equivalents via Fraction.from_float() without tolerance or rounding; use
 Fraction or rational strings when a decimal/rational value is intended.
 """
 
@@ -78,24 +79,31 @@ class TerminalRoute(str, Enum):
     REFUSED = "Refused"
 
 
-@dataclass
+@dataclass(frozen=True)
 class CochainComplex:
-    """Finite rational complex, with dimensions and d1*d0 checked exactly."""
+    """Finite rational complex, with dimensions and d1*d0 checked exactly.
+
+    Stored differential matrices are immutable nested tuples to enforce custody integrity.
+    """
     dim_c0: int
     dim_c1: int
     dim_c2: int
-    d0: List[List[Fraction]]
-    d1: List[List[Fraction]]
+    d0: Tuple[Tuple[Fraction, ...], ...]
+    d1: Tuple[Tuple[Fraction, ...], ...]
 
-    def __post_init__(self):
-        for dim in (self.dim_c0, self.dim_c1, self.dim_c2):
+    def __init__(self, dim_c0: int, dim_c1: int, dim_c2: int, d0: Any, d1: Any):
+        for dim in (dim_c0, dim_c1, dim_c2):
             if type(dim) is not int or dim < 0:
                 raise ValueError("Dimensions must be nonnegative integers")
-        for name, height, width in (("d0", self.dim_c1, self.dim_c0), ("d1", self.dim_c2, self.dim_c1)):
-            matrix = getattr(self, name)
+        object.__setattr__(self, "dim_c0", dim_c0)
+        object.__setattr__(self, "dim_c1", dim_c1)
+        object.__setattr__(self, "dim_c2", dim_c2)
+
+        for name, matrix, height, width in (("d0", d0, dim_c1, dim_c0), ("d1", d1, dim_c2, dim_c1)):
             if len(matrix) != height or any(len(row) != width for row in matrix):
                 raise ValueError(f"{name} dimension mismatch")
-            setattr(self, name, [[exact_rational(x) for x in row] for row in matrix])
+            frozen_mat = tuple(tuple(exact_rational(x) for x in row) for row in matrix)
+            object.__setattr__(self, name, frozen_mat)
 
     def check_nilpotence(self, tol=None) -> bool:
         """The compatibility tolerance argument has no effect on exact equality."""

@@ -54,6 +54,8 @@ def _require_int(value: object, role: str) -> int:
     if type(value) is bool:
         raise _fail("boolean refused where an integer part was required", role=role)
     if type(value) is int:
+        if value.bit_length() > 1024:
+            raise _fail("integer exceeds 1024-bit limit", role=role, bits=value.bit_length())
         return value
     raise _fail("gaussian part is not an integer", role=role, received=type(value).__name__)
 
@@ -135,6 +137,9 @@ def relative_fiber_size(left: object | None = None, right: object | None = None)
         _require_scalar_gap(second)
         _require_phase_blind(_ONE)
     return 2
+
+
+witness_pair_size = relative_fiber_size
 
 
 def main() -> int:
