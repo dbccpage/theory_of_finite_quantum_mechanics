@@ -1,0 +1,113 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "terminalize",
+      "inputs": [
+        "Proposal",
+        "Evidence"
+      ],
+      "output": "Terminal",
+      "arity": 2,
+      "carrier": "finite set of terminals {authorized, rejected, unresolved, refused, not_admitted}",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "mark_unresolved",
+      "inputs": [
+        "Proposal"
+      ],
+      "output": "Terminal",
+      "arity": 1,
+      "carrier": "constant unresolved terminal",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "terminal_closed_enumeration",
+      "statement": "Every terminalize output lies in the five-element set {authorized, rejected, unresolved, refused, not_admitted}; truth and FACT are not members.",
+      "hypotheses": "Terminal type is defined as the five-constructor inductive type.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "unresolved_default",
+      "statement": "terminalize p e = unresolved whenever e does not discharge authorization or rejection; this agrees with mark_unresolved p.",
+      "hypotheses": "Evidence insufficient; no refusal or non-admission condition holds.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "terminalize",
+      "slot": 0,
+      "inner": "mark_unresolved",
+      "licensing_relation": "unresolved_default"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "terminal_no_truth",
+      "statement": "The Terminal type has exactly five constructors, so truth or FACT cannot be an Atlas terminal.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "terminal_closed_enumeration"
+      ],
+      "lean_skeleton": "inductive Terminal | authorized | rejected | unresolved | refused | notAdmitted\n\ntheorem terminal_card : Fintype.card Terminal = 5 := sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_rice",
+      "claim": "The finite diagonal on Nat to Nat to Bool in TuringBarrier.lean is Rice's theorem or MHC1/MHC2.",
+      "rejecting_invariant": "S001-GAP-ATLAS-TOY-NOT-RICE: it is only a finite toy diagonal, not Rice."
+    },
+    {
+      "id": "nm_ait7_closed",
+      "claim": "AIT-7 is closed by the Atlas diagonal.",
+      "rejecting_invariant": "S001-GAP-MHC3-MHC5: language coverage, decidability-class binding, and replayed custody remain open."
+    },
+    {
+      "id": "nm_truth_terminal",
+      "claim": "Truth or FACT is an Atlas terminal.",
+      "rejecting_invariant": "Book nonclaims refuse truth/FACT as a terminal; the five-terminal enumeration excludes them."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "terminal_count",
+      "expr": "5",
+      "value": "5"
+    }
+  ],
+  "open_obligations": [
+    "No existing declarations were found; every generator, relation and lemma reference is proposed_new with empty path.",
+    "Intended proposal-language coverage for AIT-7 not grounded.",
+    "Ordinary-computable decision-class binding not grounded.",
+    "Independently replayed custody for AIT-7 not grounded.",
+    "Lean skeleton not elaborated; Fintype/DecidableEq deriving needs adding.",
+    "Precise conditions separating refused from not_admitted are undefined."
+  ]
+}

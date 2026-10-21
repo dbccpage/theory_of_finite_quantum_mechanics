@@ -1,0 +1,113 @@
+add_or_refine_generators:
+- id: g_primitive_difference
+  ordered_inputs: []
+  output: PrimitiveDifference
+  arity: 0
+  carrier: PrimitiveDifference α β
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/PrimitiveDifference.lean
+    declaration: OmegaCore.PrimitiveDifference
+    line: 7
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/PrimitiveDifference.lean
+    decl: OmegaCore.PrimitiveDifference
+    kind: structure
+    line: 7
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_residual_quotient
+  ordered_inputs:
+  - PrimitiveDifference
+  output: ResidualQuotient
+  arity: 1
+  carrier: P.ResidualQuotient
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/PrimitiveDifference.lean
+    declaration: OmegaCore.PrimitiveDifference.ResidualQuotient
+    line: 43
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/PrimitiveDifference.lean
+    decl: OmegaCore.PrimitiveDifference.ResidualQuotient
+    kind: def
+    line: 43
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_admissible_repair_system
+  ordered_inputs: []
+  output: AdmissibleRepairSystem
+  arity: 0
+  carrier: AdmissibleRepairSystem Q
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/PrimitiveAdmissibleRepair.lean
+    declaration: OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem
+    line: 13
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/PrimitiveAdmissibleRepair.lean
+    decl: OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem
+    kind: structure
+    line: 13
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_adm_witness_implies_exact
+  equation_or_predicate: An admissible witnessed exact repair implies exact repair.
+  typing_conditions: 'C : ObstructionClassifier Q, S : AdmissibleRepairSystem Q, zeroClass q : Q, AdmissibleWitnessedExactRepair
+    C S zeroClass q'
+  source_pins:
+  - path: lean4/PrimitiveAdmissibleRepair.lean
+    declaration: OmegaCore.PrimitiveAdmissibleRepair.admissibleWitnessedExactRepair_implies_exact
+    line: 78
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveAdmissibleRepair.lean
+    decl: OmegaCore.PrimitiveAdmissibleRepair.admissibleWitnessedExactRepair_implies_exact
+    kind: theorem
+    line: 78
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Declare the allowed operations on Prompt 11 states.
+- 'Declare a selection rule: minimality order, cost functional, deterministic tie-breaker or retention
+  of all tied minimal branches.'
+- Link the quiescent and repetition replies to AdmissibleRepairSystem and RepairCost, if appropriate.
+- Formalize Adm(P_1) as a proposed declaration, since none exists in the sources.
+- 'relation r_two_continuations_distinct_assumptions unverified: no existing declaration cited'
+- 'lemma l_nonuniqueness_record unverified: Lean elaboration disabled'
+- 'near_miss nm_two_successors unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_canonical_s1 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_adm_lower_bound
+  expr: 1 + 1
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+verified_lemma_statements: []

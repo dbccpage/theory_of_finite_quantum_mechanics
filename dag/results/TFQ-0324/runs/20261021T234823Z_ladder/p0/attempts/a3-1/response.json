@@ -1,0 +1,74 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "If a map Tbar on the quotient M agrees with the ambient dynamics on the image of the projection p (AgreesOnImage), then the selected representative map selectedS equals Tbar on M, so the descended dynamics is unique.",
+      "hypotheses": "SplitPresentation S : X to M, AmbientDynamics D, Tbar : M -> M, AgreesOnImage S.p D Tbar",
+      "ref": {
+        "path": "lean4/E012_unique_descended_dynamics.lean",
+        "decl": "GrokPdNight20260814.E012.selectedS_unique_on_M",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R2",
+      "statement": "The selected representative map agrees with the section: selectedS composed with the projection of a section point of m equals the dynamics projected on m.",
+      "hypotheses": "SplitPresentation Splt, AmbientDynamics D, m : M",
+      "ref": {
+        "path": "lean4/E013_selected_projected_map.lean",
+        "decl": "GrokPdNight20260814.E013.selectedS_section_agreement",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R3",
+      "statement": "A point off the section lies in the same fiber as the section point (fstBool offSection = fstBool (false,false)), so fiber membership alone does not fix the representative.",
+      "hypotheses": "concrete Bool pair example",
+      "ref": {
+        "path": "lean4/E013_selected_projected_map.lean",
+        "decl": "GrokPdNight20260814.E013.same_fiber_off_section",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "Fiber-preserving descended map is unique on M when it agrees with the ambient dynamics on the image of p (restates E012 theorem).",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R1"
+      ],
+      "lean_skeleton": "-- cite GrokPdNight20260814.E012.selectedS_unique_on_M; no new declaration",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/E012_unique_descended_dynamics.lean",
+        "decl": "GrokPdNight20260814.E012.selectedS_unique_on_M",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "N1",
+      "claim": "Same fiber under p implies the selected representative equals the ambient point, so descent agreement is automatic.",
+      "rejecting_invariant": "same_fiber_off_section: offSection and (false,false) share fstBool but are distinct points, so the fiber does not determine the representative."
+    },
+    {
+      "id": "N2",
+      "claim": "A file named descent_agreement discharges the Genesis map in S000-GAP-GENESIS-TO-PD.",
+      "rejecting_invariant": "The target states that the file name is not a discharge and the candidate-only scope marker is retained; AuthorityEffect is None."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No generators grounded: no operation declarations listed in SRC or KNOWN+ that are not checkers.",
+    "E014 descent agreement, E016 semigroup defect, E017 escape with exact descent, and test_descent.py are not listed in SRC, so they are not cited.",
+    "Semigroup defect retention lemma when descended map and selected representative disagree is not grounded; needs a proposed_new declaration.",
+    "Compositions need licensed generators; none available.",
+    "Genesis map discharge in S000-GAP-GENESIS-TO-PD remains open."
+  ]
+}

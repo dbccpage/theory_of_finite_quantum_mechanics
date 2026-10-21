@@ -1,0 +1,109 @@
+add_or_refine_generators:
+- id: G_profile
+  ordered_inputs:
+  - QuestionList
+  - Raw
+  output: Profile
+  arity: 2
+  carrier: List γ over raw type α
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/PrimitiveDifferenceBridge.lean
+    declaration: OmegaCore.FablePrimitiveDifferenceBridge.profile
+    line: 17
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/PrimitiveDifferenceBridge.lean
+    decl: OmegaCore.FablePrimitiveDifferenceBridge.profile
+    kind: def
+    line: 17
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: G_rawCarrierFromRaw
+  ordered_inputs:
+  - PointedPrimitiveDifference
+  - ObstructionClassifier
+  - Raw
+  output: RawClassCarrier
+  arity: 3
+  carrier: RawClassCarrier P C (PointedResidualQuotient class of x)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/PrimitiveLiftCandidate.lean
+    declaration: OmegaCore.PrimitiveLiftCandidate.rawCarrierFromRaw
+    line: 20
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/PrimitiveLiftCandidate.lean
+    decl: OmegaCore.PrimitiveLiftCandidate.rawCarrierFromRaw
+    kind: def
+    line: 20
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: R_family_misses_zeroRel
+  equation_or_predicate: FamilyMisses questions x y iff the presentation difference relation holds (zeroRel
+    characterization)
+  typing_conditions: questions family over carrier; x y in carrier
+  source_pins:
+  - path: lean4/PrimitiveDifferenceBridge.lean
+    declaration: OmegaCore.FablePrimitiveDifferenceBridge.familyMisses_iff_zeroRel
+    line: 31
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveDifferenceBridge.lean
+    decl: OmegaCore.FablePrimitiveDifferenceBridge.familyMisses_iff_zeroRel
+    kind: theorem
+    line: 31
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R_rawCarrier_class_eq
+  equation_or_predicate: The class of the carrier built from raw x equals the class of x in the residual
+    quotient
+  typing_conditions: P pointed primitive difference, C obstruction classifier, q quotient element
+  source_pins:
+  - path: lean4/PrimitiveLiftCandidate.lean
+    declaration: OmegaCore.PrimitiveLiftCandidate.rawCarrier_class_eq
+    line: 31
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveLiftCandidate.lean
+    decl: OmegaCore.PrimitiveLiftCandidate.rawCarrier_class_eq
+    kind: theorem
+    line: 31
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Certified term map from sealed-derivation-v1 into the PrimitiveDifference carrier is not supplied
+- No existing declaration grounds the Genesis side generators or finite-set and coboundary witnesses
+- Compositions left empty because no relation licenses a typed plug
+- Correspondence of the candidate Lean mirror to the Genesis receipt is unproven
+- 'generator G_genesis_term_map unverified: no existing declaration cited'
+- 'relation R_genesis_map_correspondence unverified: no existing declaration cited'
+- 'lemma L_missing_carrier_blocks unverified: Lean elaboration disabled'
+- 'near_miss NM_green_build unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_readme_complete unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

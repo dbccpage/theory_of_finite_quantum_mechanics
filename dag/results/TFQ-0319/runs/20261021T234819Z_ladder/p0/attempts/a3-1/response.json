@@ -1,0 +1,117 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "G_profile",
+      "inputs": [
+        "QuestionList",
+        "Raw"
+      ],
+      "output": "Profile",
+      "arity": 2,
+      "carrier": "List γ over raw type α",
+      "ref": {
+        "path": "lean4/PrimitiveDifferenceBridge.lean",
+        "decl": "OmegaCore.FablePrimitiveDifferenceBridge.profile",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "G_rawCarrierFromRaw",
+      "inputs": [
+        "PointedPrimitiveDifference",
+        "ObstructionClassifier",
+        "Raw"
+      ],
+      "output": "RawClassCarrier",
+      "arity": 3,
+      "carrier": "RawClassCarrier P C (PointedResidualQuotient class of x)",
+      "ref": {
+        "path": "lean4/PrimitiveLiftCandidate.lean",
+        "decl": "OmegaCore.PrimitiveLiftCandidate.rawCarrierFromRaw",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "G_genesis_term_map",
+      "inputs": [
+        "SealedDerivationTerm"
+      ],
+      "output": "PrimitiveDifferenceCarrier",
+      "arity": 1,
+      "carrier": "term map from sealed-derivation-v1 into PrimitiveDifference carrier",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_family_misses_zeroRel",
+      "statement": "FamilyMisses questions x y iff the presentation difference relation holds (zeroRel characterization)",
+      "hypotheses": "questions family over carrier; x y in carrier",
+      "ref": {
+        "path": "lean4/PrimitiveDifferenceBridge.lean",
+        "decl": "OmegaCore.FablePrimitiveDifferenceBridge.familyMisses_iff_zeroRel",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_rawCarrier_class_eq",
+      "statement": "The class of the carrier built from raw x equals the class of x in the residual quotient",
+      "hypotheses": "P pointed primitive difference, C obstruction classifier, q quotient element",
+      "ref": {
+        "path": "lean4/PrimitiveLiftCandidate.lean",
+        "decl": "OmegaCore.PrimitiveLiftCandidate.rawCarrier_class_eq",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_genesis_map_correspondence",
+      "statement": "The Genesis term map preserves typed distinction steps and coboundaries into the PrimitiveDifference carrier",
+      "hypotheses": "A certified term map exists; not supplied",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_missing_carrier_blocks",
+      "statement": "A lift candidate without a new carrier is not licensed, so the Genesis receipt cannot be joined to the finite carrier by a lift lacking a new carrier",
+      "relation_to_target": "auxiliary",
+      "depends_on": [],
+      "lean_skeleton": "theorem x (L : LiftCandidate) (h : L.hasNewCarrier = false) : ¬ IsLicensedLiftCandidate L := missing_new_carrier_blocks_lift L h",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/PrimitiveLiftCandidate.lean",
+        "decl": "OmegaCore.PrimitiveLiftCandidate.missing_new_carrier_blocks_lift",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_green_build",
+      "claim": "A green Lake build of the sealed-derivation receipt establishes correspondence with the PrimitiveDifference carrier",
+      "rejecting_invariant": "A green build is a mechanical receipt, not a certified term map; the gap S000-GAP-GENESIS-TO-PD stays open"
+    },
+    {
+      "id": "NM_readme_complete",
+      "claim": "The sealed-derivation-v1 volume is a completed Genesis-to-FOC derivation",
+      "rejecting_invariant": "The book README states the volume is not a completed derivation"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Certified term map from sealed-derivation-v1 into the PrimitiveDifference carrier is not supplied",
+    "No existing declaration grounds the Genesis side generators or finite-set and coboundary witnesses",
+    "Compositions left empty because no relation licenses a typed plug",
+    "Correspondence of the candidate Lean mirror to the Genesis receipt is unproven"
+  ]
+}

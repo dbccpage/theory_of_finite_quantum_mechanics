@@ -1,0 +1,54 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "Over Bool-indexed Int matrices, the matrices nMat and nMat' do not commute, while diagonal matrices commute with each other under mmul. The source declaration is cited verbatim only up to its truncated signature.",
+      "hypotheses": "Finite module indexed by Bool with Int entries; only the truncated statement from @SRC is relied on.",
+      "ref": {
+        "path": "lean4/H012OperatorAlgebraShadow.lean",
+        "decl": "FableHilbertWalk20260819.H012.operator_algebra_shadow",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "Restatement of the finite operator-algebra shadow: nMat and nMat' fail to commute under mmul on Bool-indexed Int matrices, and diagonal matrices commute. This does not fill the QM_202-C0 stub and mints no authority.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R1"
+      ],
+      "lean_skeleton": "theorem l1 : True := by trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/H012OperatorAlgebraShadow.lean",
+        "decl": "FableHilbertWalk20260819.H012.operator_algebra_shadow",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "N1",
+      "claim": "Exact repairs inside one quotient class generate a noncommuting algebra.",
+      "rejecting_invariant": "qm_004 recorded that such repairs do not generate a noncommuting algebra."
+    },
+    {
+      "id": "N2",
+      "claim": "Gaussian-integer matrices from qm_122 fill the QM_202-C0 stub.",
+      "rejecting_invariant": "qm_122 recovers Gaussian-integer matrices only as a scoped stand-in."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No generators grounded: the only listed declarations are a theorem and checker-like functions, and the operations (mmul, diag) are not listed in @SRC or @KNOWN+.",
+    "The full statement of operator_algebra_shadow is truncated, so the second conjunct is unconfirmed.",
+    "The Lean skeleton for L1 is a placeholder, not the real theorem.",
+    "No compositions are possible without generators and licensing relations.",
+    "The QM_202-C0 ledger row remains a stub and must stay open."
+  ]
+}

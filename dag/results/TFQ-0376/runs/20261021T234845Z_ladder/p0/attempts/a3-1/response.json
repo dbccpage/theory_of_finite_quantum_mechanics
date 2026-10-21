@@ -1,0 +1,65 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "A necessity or minimality claim for an extension is well-formed only if it names the failed predicate, the admissible repairs, the extension class, the cost order, and tied minima, and the census it relies on is exhaustive on its declared domain.",
+      "hypotheses": "A declared finite domain; a declared predicate; a declared repair set; a declared extension class; a declared cost order (preorder).",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R2",
+      "statement": "A budget stop yields evidence state 'incomplete search' and never an obstruction result; only exhaustion of the declared domain yields an obstruction.",
+      "hypotheses": "Search procedure with a declared budget and a declared domain.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "For each of the three subjects (successor, proposed lift, licensed transition), the six section-15 checks are tracked as separate evidence states, and no check's state is inferred from another's.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R1",
+        "R2"
+      ],
+      "lean_skeleton": "inductive Ev | open | incomplete | obstructed | verified\nstructure Checks where\n  failedPred : Ev\n  repairs : Ev\n  extClass : Ev\n  costOrder : Ev\n  tiedMinima : Ev\n  census : Ev\ntheorem budget_stop_not_obstruction : Ev.incomplete ≠ Ev.obstructed := by intro h; cases h",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "N1",
+      "claim": "A search that halted on budget with no repair found proves the extension is necessary.",
+      "rejecting_invariant": "A budget stop is incomplete search, not an obstruction result; exhaustiveness holds only on the declared domain."
+    },
+    {
+      "id": "N2",
+      "claim": "A unique minimum under one cost order implies minimality under other cost orders or without naming tied minima.",
+      "rejecting_invariant": "The cost order and tied minima must be named; minimality is relative to the declared order."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing declarations were provided; all generators, relations, and lemmas are unground.",
+    "Define concrete colours and generators for successor, proposed lift, and licensed transition.",
+    "Fix the declared domain and census for each subject.",
+    "Formalize the six checks and their evidence states in Lean; the skeleton is only a stub.",
+    "This node does not close the six checks."
+  ]
+}

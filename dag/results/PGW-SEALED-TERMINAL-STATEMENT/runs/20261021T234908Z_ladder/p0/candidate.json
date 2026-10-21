@@ -1,0 +1,257 @@
+{
+  "task_id": "PGW-SEALED-TERMINAL-STATEMENT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "bad0d06389a773ecfc80d65ac5762d640602531ea0a668865957349814a74209",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_from_classes",
+          "inputs": [
+            "Points",
+            "Classes"
+          ],
+          "output": "SectionRecord",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_decide_separation",
+          "inputs": [
+            "FinitePseudometric",
+            "FiniteEquivalence"
+          ],
+          "output": "SeparationOutcome",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_sep_replay",
+          "equation_or_predicate": "verify_separation replays a separation outcome and accepts it only when it matches the decided result",
+          "typing_conditions": "finite pseudometric and equivalence on the same point set",
+          "source_pins": [
+            {
+              "path": "code/rust/src/category_theory/finite_section_separation.rs",
+              "declaration": "verify_separation",
+              "line": 793
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/category_theory/finite_section_separation.rs",
+            "decl": "verify_separation",
+            "kind": "fn",
+            "line": 793,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No cited declaration implements admission, mu1/mu2 classes, or response existence, so none is grounded.",
+        "Lean skeletons are placeholders with sorry, and none is proved.",
+        "The mapping from n to the n(n-1)/2 bound and the baseline round counts is not grounded in the sources.",
+        "The depth-15 external policy computation and the 963/1847 node counts are not grounded in the sources.",
+        "Compositions are empty because no licensing relation was verified.",
+        "near_miss nm_f_unbounded unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_h_selected unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_g_theorem unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_from_classes",
+        "ordered_inputs": [
+          "Points",
+          "Classes"
+        ],
+        "output": "SectionRecord",
+        "arity": 2,
+        "carrier": "finite section records over a point set",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/category_theory/finite_section_separation.rs",
+            "declaration": "from_classes",
+            "line": 489
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/category_theory/finite_section_separation.rs",
+          "decl": "from_classes",
+          "kind": "fn",
+          "line": 489,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_decide_separation",
+        "ordered_inputs": [
+          "FinitePseudometric",
+          "FiniteEquivalence"
+        ],
+        "output": "SeparationOutcome",
+        "arity": 2,
+        "carrier": "separation outcomes",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/category_theory/finite_section_separation.rs",
+            "declaration": "decide_separation",
+            "line": 677
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/category_theory/finite_section_separation.rs",
+          "decl": "decide_separation",
+          "kind": "fn",
+          "line": 677,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_sep_replay",
+        "equation_or_predicate": "verify_separation replays a separation outcome and accepts it only when it matches the decided result",
+        "typing_conditions": "finite pseudometric and equivalence on the same point set",
+        "source_pins": [
+          {
+            "path": "code/rust/src/category_theory/finite_section_separation.rs",
+            "declaration": "verify_separation",
+            "line": 793
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/category_theory/finite_section_separation.rs",
+          "decl": "verify_separation",
+          "kind": "fn",
+          "line": 793,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-E11429A357BD",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_clause_tags: Section 11 keeps the tags separate: (a)-(c) theorems, (d) theorem for reading L, bounded theorem for reading F, mu2 uniqueness in both readings, (e) theorem, (f) bounded theorem, (g) finite computation, (h) unresolved with both admission readings surviving.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-SEALED-TERMINAL-STATEMENT"
+      },
+      {
+        "id": "NEG-15B6294BFE06",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_f_bound: Closure terminates within n(n-1)/2 rounds, and the baselines take 1 and 3 rounds.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-SEALED-TERMINAL-STATEMENT"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No cited declaration implements admission, mu1/mu2 classes, or response existence, so none is grounded.",
+      "Lean skeletons are placeholders with sorry, and none is proved.",
+      "The mapping from n to the n(n-1)/2 bound and the baseline round counts is not grounded in the sources.",
+      "The depth-15 external policy computation and the 963/1847 node counts are not grounded in the sources.",
+      "Compositions are empty because no licensing relation was verified.",
+      "near_miss nm_f_unbounded unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_h_selected unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_g_theorem unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_pairs_baseline",
+        "expr": "3*2/2",
+        "value": "3",
+        "host_evidence": {
+          "recomputed": "3"
+        }
+      },
+      {
+        "id": "n_depth_trees",
+        "expr": "963+1847",
+        "value": "2810",
+        "host_evidence": {
+          "recomputed": "2810"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

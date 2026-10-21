@@ -1,0 +1,99 @@
+{
+  "task_id": "PGW-BOUNDED-TIE-CENSUS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "9025eb8c3d4fc6943af049dd735562b39e1b506f63131739bb46c3aad8039e45",
+  "candidate_sha256": "75c88e697e473f1369cf272aed1b0ca902a86867fc0c432c020934c55e0a2209",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 1,
+    "failure_rate": 0.2,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 2,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:49:06Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-C3F900355799",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_F_extra_classes: Reading F has exactly two classes beyond reading L at (2,2): links to and from the never-required genesis datum, non-isomorphic because the bijection must preserve the requirement pair.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-BOUNDED-TIE-CENSUS"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations were found, so all references are proposed_new and need host-side Lean formalization.",
+      "The census replay and its cross-check against the unpruned space are not reproduced here.",
+      "mu2 minimality (two minimal deltas in one class for each reading) is not formalized.",
+      "No generators were grounded.",
+      "The relation of the target to the TFQ-0441 tie family is not formalized.",
+      "relation R_iso_census unverified: no existing declaration cited",
+      "near_miss NM_genesis_iso unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_L_deltas",
+        "expr": "6",
+        "value": "6",
+        "host_evidence": {
+          "recomputed": "6"
+        }
+      },
+      {
+        "id": "N_F_deltas",
+        "expr": "10",
+        "value": "10",
+        "host_evidence": {
+          "recomputed": "10"
+        }
+      },
+      {
+        "id": "N_extra_deltas",
+        "expr": "10 - 6",
+        "value": "4",
+        "host_evidence": {
+          "recomputed": "4"
+        }
+      },
+      {
+        "id": "N_extra_classes",
+        "expr": "5 - 3",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 4 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

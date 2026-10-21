@@ -1,0 +1,31 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No @SRC declaration covers closedRun_round_bound_from_empty or the baseline enumeration, so all refs
+  are proposed_new with empty paths.
+- The Lean skeleton above is a placeholder and does not prove the real bound; the actual proof requires
+  the round-shape definitions, which are not listed.
+- Node and branch counts (4/3, 20/16) and rounds (1, 3) must be recomputed by the host enumerator.
+- The termination flag over all maximal branches is not formalized.
+- 'No generators are grounded: @SRC lists only refusal-store declarations, which are unrelated to the
+  baseline.'
+- 'relation R_round_bound unverified: no existing declaration cited'
+- 'lemma L_round_bound_restate unverified: Lean elaboration disabled'
+- 'near_miss NM_L_bound unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_open_branches unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N_F_nonterminal
+  expr: 20 - 16
+  value: '4'
+  host_evidence:
+    recomputed: '4'
+- id: N_L_nonterminal
+  expr: 4 - 3
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+verified_lemma_statements: []

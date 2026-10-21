@@ -1,0 +1,55 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R2
+  equation_or_predicate: 'The authority effect text of any census receipt is exactly the string AuthorityEffect:
+    None.'
+  typing_conditions: The receipt carries the authority effect text.
+  source_pins:
+  - path: code/rust/src/wdp/po000_projection_obstruction.rs
+    declaration: AUTHORITY_EFFECT_TEXT
+    line: 11
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/wdp/po000_projection_obstruction.rs
+    decl: AUTHORITY_EFFECT_TEXT
+    kind: const
+    line: 11
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-A1345B42B5DE
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L2: The census does not imply the uniqueness conjecture; the conjecture remains deferred and
+    open.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0286
+counterexamples: []
+open_obligations:
+- Ingredient list and per-ingredient status assignments are not given in the source, so none are recorded.
+- 'No generators grounded: SRC items are a const, struct, and enum, with no typed operations having colours.'
+- Existing declaration semantics for ProjectionObstructionReceipt, ProjectionTokenError and DeclaredProjectionProblem
+  are not confirmed, so they are not cited.
+- Uniqueness conjecture deferred; continuum surplus deferred to a later cut.
+- 'relation R1 unverified: no existing declaration cited'
+- 'lemma L1 unverified: Lean elaboration disabled'
+- 'near_miss N1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss N2 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: C1
+  expr: '4'
+  value: '4'
+  host_evidence:
+    recomputed: '4'
+verified_lemma_statements: []

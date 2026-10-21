@@ -1,0 +1,85 @@
+{
+  "task_id": "TFQ-0289",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "573f22c97256638297ca7877aa4ae46f711e39757deadb2a211a39e8c8ec64a3",
+  "candidate_sha256": "0be568152fba9a0164c86605a081c105f65dcdc4bc6861c07570e860d47ad418",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 1,
+    "failure_rate": 0.3333,
+    "failures_by_class": {
+      "statement_drift": 1
+    },
+    "unverifiable": 4,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:48:17Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-08BCC48977F0",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "R2: Existing finite-density unit-trace theorem: trace d = d.denominator for FiniteDensity2, a related trace-one fact on a different carrier (a 2-level density with a denominator), not the n-weight diagonal shadow. [FiniteDensity.density_is_positive_unit_trace]",
+        "evidence": "numerals 2 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": "FiniteDensity.density_is_positive_unit_trace",
+        "confidence": "heuristic",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0289"
+      }
+    ],
+    "open_obligations": [
+      "Mechanize the diagonal n-weight carrier: nonnegativity, trace 1, and purity = sum of squares; no existing declaration covers it.",
+      "Existing FiniteDensity declarations concern FiniteDensity2 and are not a verified match for the diagonal shadow.",
+      "Generators not grounded: no existing declaration confirmed as an operation with a verified signature.",
+      "Coherence import must be stated as an explicit external hypothesis, not derived from the weights.",
+      "The mechanization name in the claim ledger is unresolved.",
+      "relation R1 unverified: no existing declaration cited",
+      "lemma L1 unverified: Lean elaboration disabled",
+      "near_miss N1 unverified: semantic near miss; P4 host check decides",
+      "near_miss N2 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "C1",
+        "expr": "(1/2)^2 + (1/2)^2",
+        "value": "1/2",
+        "host_evidence": {
+          "recomputed": "1/2"
+        }
+      },
+      {
+        "id": "C2",
+        "expr": "(1/2)^2 + (1/4)^2 + (1/4)^2",
+        "value": "3/8",
+        "host_evidence": {
+          "recomputed": "3/8"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

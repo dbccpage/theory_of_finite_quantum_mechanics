@@ -1,0 +1,129 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "Replay",
+      "inputs": [
+        "History"
+      ],
+      "output": "State",
+      "arity": 1,
+      "carrier": "finite event histories mapped to states",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "BindContext",
+      "inputs": [
+        "State"
+      ],
+      "output": "ContextBinding",
+      "arity": 1,
+      "carrier": "declared context s' wrapped as C(s')",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "AcceptBinding",
+      "inputs": [
+        "ContextBinding",
+        "History"
+      ],
+      "output": "Verdict",
+      "arity": 2,
+      "carrier": "accept iff s' = Replay(H)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_accept_iff_replay",
+      "statement": "AcceptBinding(C(s'),H) = accept iff s' = Replay(H)",
+      "hypotheses": "Replay is a function on histories; State has decidable equality",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R_valid_trace_context_dependence",
+      "statement": "ValidTrace(tau | s') and s = Replay(H) with s' = s implies ValidTrace(tau | s)",
+      "hypotheses": "ValidTrace(tau | -) is a predicate on States, a declared semantics not yet in sources",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "AcceptBinding",
+      "slot": 0,
+      "inner": "BindContext",
+      "licensing_relation": "R_accept_iff_replay"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "L_stale_counterexample",
+      "statement": "There exist a trace tau, states s' and s with s' != s such that ValidTrace(tau | s') and not ValidTrace(tau | s); e.g. s'={<>}, s={<a>} when a step requires the current element to be <>",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_valid_trace_context_dependence"
+      ],
+      "lean_skeleton": "theorem stale_counterexample : ∃ (S T : Type) (valid : T → S → Prop) (t : T) (s' s : S), s' ≠ s ∧ valid t s' ∧ ¬ valid t s := sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L_sound_binding",
+      "statement": "If AcceptBinding(C(s'),H)=accept then ValidTrace(tau | s') implies ValidTrace(tau | Replay(H))",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "R_accept_iff_replay"
+      ],
+      "lean_skeleton": "theorem sound_binding {S H T : Type} (valid : T → S → Prop) (replay : H → S) (t : T) (s' : S) (h : H) (acc : s' = replay h) : valid t s' → valid t (replay h) := by subst acc; exact id",
+      "claims_proved": true,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_truncated_window",
+      "claim": "A verdict on a truncated history window is a verdict on the full history",
+      "rejecting_invariant": "Replay(H') = Replay(H) is not guaranteed for a truncation H' of H (Prompt 17: Verified vs Retracted)"
+    },
+    {
+      "id": "NM_internal_consistency",
+      "claim": "Internally consistent reasoning from s' implies validity at the actual state",
+      "rejecting_invariant": "Validity is relative to the state; requires s' = Replay(H)"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "ValidTrace semantics undefined in sources; no existing declaration grounds it",
+    "Existing replay certifiers (ContractModel/validate_contract) check Genesis regime against event history and were not cited since they do not define Replay or ValidTrace",
+    "Lean skeleton for the counterexample needs a concrete model of steps",
+    "Mapping of Trial 2 Result 15 and Prompt 12/17 data to a concrete model not provided"
+  ]
+}

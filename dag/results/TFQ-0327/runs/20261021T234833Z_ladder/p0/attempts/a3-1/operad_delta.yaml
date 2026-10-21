@@ -1,0 +1,74 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R-refused-iff-policy
+  equation_or_predicate: repairBoundaryDecision input = refused iff input.policyAllowed = false
+  typing_conditions: 'input : RepairBoundaryInput'
+  source_pins:
+  - path: lean4/PrimitiveRepairBoundary.lean
+    declaration: OmegaCore.PrimitiveRepairBoundary.repairBoundary_refused_iff
+    line: 98
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveRepairBoundary.lean
+    decl: OmegaCore.PrimitiveRepairBoundary.repairBoundary_refused_iff
+    kind: theorem
+    line: 98
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R-refused-not-repaired
+  equation_or_predicate: RepairBoundaryStatus.refused is distinct from RepairBoundaryStatus.repaired
+  typing_conditions: none
+  source_pins:
+  - path: lean4/PrimitiveRepairBoundary.lean
+    declaration: OmegaCore.PrimitiveRepairBoundary.refused_not_repaired
+    line: 128
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveRepairBoundary.lean
+    decl: OmegaCore.PrimitiveRepairBoundary.refused_not_repaired
+    kind: theorem
+    line: 128
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R-zerorel-equivalence
+  equation_or_predicate: ZeroRel of a PrimitiveDifference is an equivalence relation on the carrier
+  typing_conditions: 'P : PrimitiveDifference α β'
+  source_pins:
+  - path: lean4/PrimitiveDifference.lean
+    declaration: OmegaCore.PrimitiveDifference.zeroRel_equivalence
+    line: 33
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveDifference.lean
+    decl: OmegaCore.PrimitiveDifference.zeroRel_equivalence
+    kind: theorem
+    line: 33
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- 'No generator is grounded: signatures of existing declarations were not listed in @SRC, and classOf
+  signature is host-refused.'
+- Proposal-space and reporting-alphabet generators for chapter 01 are not grounded in any existing declaration.
+- Bridge S001-GAP-GENESIS-TO-PD remains unjoined and is deliberately not claimed.
+- Terminal set authorized/rejected/unresolved/refused/not admitted has only refused grounded.
+- Compositions need licensing relations that are not yet established.
+- 'lemma L-policy-failure-refused unverified: Lean elaboration disabled'
+- 'near_miss NM-refused-is-repaired unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []
