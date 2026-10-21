@@ -1,0 +1,104 @@
+{
+  "task_id": "TFQ-0028",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "34f0c252388f011f4ba14d86a78c57cfa1a16be0b072ab737f73da1ff31ba08f",
+  "raw_text": "{\n  \"status\": \"ready_for_host_review\",\n  \"generators\": [\n    {\n      \"id\": \"gen_qcdBeta0\",\n      \"inputs\": [\"nc\", \"nf\"],\n      \"output\": \"Rat\",\n      \"arity\": 2,\n      \"carrier\": \"FiniteQM\",\n      \"ref\": {\n        \"decl\": \"qcdBeta0\",\n        \"path\": \"lean4/FiniteQM.lean\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"rel_asymptotic_freedom_window\",\n      \"statement\": \"(4 : Rat) * suNCasimirAdjoint 3 + (-1 / 3 : Rat) * suNCasimirAdjoint 3 = 11 ∧ qcdBeta0 3 0 = 11\",\n      \"hypotheses\": \"\",\n      \"ref\": {\n        \"decl\": \"qcd_beta0_asymptotic_freedom_window\",\n        \"path\": \"lean4/FiniteQM.lean\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"compositions\": [],\n  \"lemmas\": [\n    {\n      \"id\": \"lem_beta0_window_arithmetic\",\n      \"statement\": \"For n_f ∈ ℕ, qcdBeta0 3 n_f = 11 - (2/3) * n_f. Consequently the values are 11 at n_f=0, 9 at n_f=3, 23/3 at n_f=5, 7 at n_f=6, 1/3 at n_f=16, and -1/3 at n_f=17.\",\n      \"relation_to_target\": \"restates\",\n      \"depends_on\": [\"rel_asymptotic_freedom_window\"],\n      \"lean_skeleton\": \"theorem lem_beta0_window_arithmetic (nf : ℕ) : qcdBeta0 3 nf = 11 - (2/3) * nf := by\\n  -- computation follows from definition of qcdBeta0\\n  sorry\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"decl\": \"\",\n        \"path\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    },\n    {\n      \"id\": \"lem_withheld_continuum_claims\",\n      \"statement\": \"The research map does not support a continuum mass‑gap claim, a weak‑coupling limit, Monte Carlo spectroscopy, or higher‑loop MS¯ matching.\",\n      \"relation_to_target\": \"auxiliary\",\n      \"depends_on\": [],\n      \"lean_skeleton\": \"theorem lem_withheld_continuum_claims : ¬ (supports_mass_gap ∧ supports_weak_coupling ∧ supports_MC_spectroscopy ∧ supports_higher_loop_MSbar) := by\\n  -- map explicitly withholds these claims\\n  sorry\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"decl\": \"\",\n        \"path\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    }\n  ],\n  \"near_misses\": [],\n  \"numeric_claims\": [\n    {\n      \"id\": \"nc_0_beta0\",\n      \"expr\": \"11 - (2/3)*0\",\n      \"value\": \"11\"\n    },\n    {\n      \"id\": \"nc_3_beta0\",\n      \"expr\": \"11 - (2/3)*3\",\n      \"value\": \"9\"\n    },\n    {\n      \"id\": \"nc_5_beta0\",\n      \"expr\": \"11 - (2/3)*5\",\n      \"value\": \"23/3\"\n    },\n    {\n      \"id\": \"nc_6_beta0\",\n      \"expr\": \"11 - (2/3)*6\",\n      \"value\": \"7\"\n    },\n    {\n      \"id\": \"nc_16_beta0\",\n      \"expr\": \"11 - (2/3)*16\",\n      \"value\": \"1/3\"\n    },\n    {\n      \"id\": \"nc_17_beta0\",\n      \"expr\": \"11 - (2/3)*17\",\n      \"value\": \"-1/3\"\n    }\n  ],\n  \"open_obligations\": []\n}",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [
+      {
+        "id": "gen_qcdBeta0",
+        "inputs": [
+          "nc",
+          "nf"
+        ],
+        "output": "Rat",
+        "arity": 2,
+        "carrier": "FiniteQM",
+        "ref": {
+          "decl": "qcdBeta0",
+          "path": "lean4/FiniteQM.lean",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_asymptotic_freedom_window",
+        "statement": "(4 : Rat) * suNCasimirAdjoint 3 + (-1 / 3 : Rat) * suNCasimirAdjoint 3 = 11 ∧ qcdBeta0 3 0 = 11",
+        "hypotheses": "",
+        "ref": {
+          "decl": "qcd_beta0_asymptotic_freedom_window",
+          "path": "lean4/FiniteQM.lean",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "lem_beta0_window_arithmetic",
+        "statement": "For n_f ∈ ℕ, qcdBeta0 3 n_f = 11 - (2/3) * n_f. Consequently the values are 11 at n_f=0, 9 at n_f=3, 23/3 at n_f=5, 7 at n_f=6, 1/3 at n_f=16, and -1/3 at n_f=17.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "rel_asymptotic_freedom_window"
+        ],
+        "lean_skeleton": "theorem lem_beta0_window_arithmetic (nf : ℕ) : qcdBeta0 3 nf = 11 - (2/3) * nf := by\n  -- computation follows from definition of qcdBeta0\n  sorry",
+        "claims_proved": false,
+        "ref": {
+          "decl": "",
+          "path": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "lem_withheld_continuum_claims",
+        "statement": "The research map does not support a continuum mass‑gap claim, a weak‑coupling limit, Monte Carlo spectroscopy, or higher‑loop MS¯ matching.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "theorem lem_withheld_continuum_claims : ¬ (supports_mass_gap ∧ supports_weak_coupling ∧ supports_MC_spectroscopy ∧ supports_higher_loop_MSbar) := by\n  -- map explicitly withholds these claims\n  sorry",
+        "claims_proved": false,
+        "ref": {
+          "decl": "",
+          "path": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [],
+    "numeric_claims": [
+      {
+        "id": "nc_0_beta0",
+        "expr": "11 - (2/3)*0",
+        "value": "11"
+      },
+      {
+        "id": "nc_3_beta0",
+        "expr": "11 - (2/3)*3",
+        "value": "9"
+      },
+      {
+        "id": "nc_5_beta0",
+        "expr": "11 - (2/3)*5",
+        "value": "23/3"
+      },
+      {
+        "id": "nc_6_beta0",
+        "expr": "11 - (2/3)*6",
+        "value": "7"
+      },
+      {
+        "id": "nc_16_beta0",
+        "expr": "11 - (2/3)*16",
+        "value": "1/3"
+      },
+      {
+        "id": "nc_17_beta0",
+        "expr": "11 - (2/3)*17",
+        "value": "-1/3"
+      }
+    ],
+    "open_obligations": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_id": "finite-qm.pfp.post-discharge-addendum.v1",
+  "authority_effect": "None",
+  "task_id": "FQ-GAP-CONTINUUM-HILBERT-LIFT",
+  "added": "2026-10-21",
+  "rule": "Sealed run, review and operad files are not edited. This addendum points from the sealed record to the later artifact that changes how it is read.",
+  "items": [
+    {
+      "kind": "later_run_supersedes_operad_record",
+      "operad": "dag/operads/fq_gap_continuum_hilbert_lift.yaml",
+      "operad_merged_in_this_change": true,
+      "operad_sealed_by_batch_manifest": [],
+      "index_latest_run_before": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261019T145000Z_staged",
+      "index_json_sealed_by_batch_manifest": [
+        "dag/results/batches/20261020T000351Z_prompts_132_151/manifest.json"
+      ],
+      "newer_runs": [
+        {
+          "run": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion",
+          "operad_delta": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/operad_delta.json",
+          "operad_delta_sha256": "29fdc9514df3d900abc5db93a5f1af109c9a97b2e505dc73f4473b5c0ed969a9",
+          "operad_namespace": "HL-HILBERT-LIFT",
+          "operad_records": 16,
+          "claim_status": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/claim_status.json",
+          "claim_status_sha256": "30a32995c796c67ba15470dd745525363b46fb5a4867a19e13076cb177581d90",
+          "next_steps": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/next_steps.md",
+          "readme": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md"
+        },
+        {
+          "run": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps",
+          "operad_delta": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/operad_delta.json",
+          "operad_delta_sha256": "fb2b229f773b956ca21d215ba1ea009eb442f6476befaf21259fbb8137de05ae",
+          "operad_namespace": "HL-HILBERT-LIFT",
+          "operad_records": 7,
+          "claim_status": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/claim_status.json",
+          "claim_status_sha256": "39593634b5f2e4cb4896551b5e0535b5a489519540e3436f5f4b63f7f13a67ab",
+          "next_steps": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/next_steps.md",
+          "readme": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md"
+        }
+      ],
+      "note": "The later Lean run(s) were never merged into the operad collection. The collection now lists them as POST_REVIEW_LEAN_RUN entries of stage_history and its latest_run names the newest. dag/operads/index.json is sealed by the manifest of batch 20261020T000351Z_prompts_132_151 and is not edited, so its latest_run field still names the run before the newer one."
+    }
+  ]
+}

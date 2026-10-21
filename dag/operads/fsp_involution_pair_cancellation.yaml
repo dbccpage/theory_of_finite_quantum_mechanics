@@ -1,0 +1,307 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FSP-INVOLUTION-PAIR-CANCELLATION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For any carrier with weights in N and signs +-1, an involution tau with w(tau c) =
+    w(c) and sign(tau c) = -sign(c) has no fixed point and each pair satisfies w(c) sign(c) + w(tau c)
+    sign(tau c) = 0; zero signed sum does not require such a pairing (+2, -1, -1), and a cancelling doublet
+    can carry a nonzero observable numerator.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - supplied weight-preserving sign-reversing involution
+  source_bottleneck: Summing pairs to get sum_c w(c) sign(c) = 0 on a finite set is a prose orbit-partition
+    step (manuscript Section 4.2), not mechanized; observable numerators need A o tau = A; the involution
+    is sufficient, not necessary (INV-INVOL-CANC).
+  source_refs:
+  - dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md
+  - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - papers/core/fsp/theory_of_finite_fsp.md
+  paper_refs:
+  - dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md
+    sha256: aa785d94a1372927e3ca237e4c0fb075b11903f6e2500e9c096e84d770cbe5ef
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/fermion_sign_fsp_involution_pair_cancellation_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: MeronConfig
+  line: 48
+  signature_excerpt: 'structure MeronConfig (C : Type u)'
+  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  repository: this_repository
+  source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: MeronFlipInvolution
+  line: 53
+  signature_excerpt: 'structure MeronFlipInvolution {C : Type u} (M : MeronConfig C)'
+  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  repository: this_repository
+  source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: toInt
+  line: 32
+  signature_excerpt: |-
+    def toInt : MeronSign → Int
+      | MeronSign.Plus  => 1
+      | MeronSign.Minus => -1
+
+    /-- Parity flip on MeronSign. -/
+    def flipSign : MeronSign → MeronSign
+      | MeronSign.Plus  => MeronSign.Minus
+      | MeronSign.Minus => MeronSign.Plus
+
+    theorem flipSign_involutive (s : MeronSign) : flipSign (flipSign s) = s
+  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  repository: this_repository
+  source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: MeronSign
+  line: 26
+  signature_excerpt: |-
+    inductive MeronSign : Type
+      | Plus  : MeronSign
+      | Minus : MeronSign
+    deriving DecidableEq, Repr
+
+    /-- Mapping MeronSign to integer values +1, -1. -/
+    def toInt : MeronSign → Int
+      | MeronSign.Plus  => 1
+      | MeronSign.Minus => -1
+
+    /-- Parity flip on MeronSign. -/
+    def flipSign : MeronSign → MeronSign
+      | MeronSign.Plus  => MeronSign.Minus
+      | MeronSign.Minus => MeronSign.Plus
+  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  repository: this_repository
+  source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: flipSign
+  line: 37
+  signature_excerpt: |-
+    def flipSign : MeronSign → MeronSign
+      | MeronSign.Plus  => MeronSign.Minus
+      | MeronSign.Minus => MeronSign.Plus
+
+    theorem flipSign_involutive (s : MeronSign) : flipSign (flipSign s) = s
+  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  repository: this_repository
+  source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: TrotterPath
+  line: 34
+  signature_excerpt: 'structure TrotterPath (P : Type u)'
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: BipartiteInvolution
+  line: 42
+  signature_excerpt: 'structure BipartiteInvolution {P : Type u} (T : TrotterPath P)'
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: toInt
+  line: 29
+  signature_excerpt: |-
+    def toInt : JwSign → Int
+      | JwSign.Plus  => 1
+      | JwSign.Minus => -1
+
+    /-- A fermionic Trotter path with declared Boltzmann weight and Jordan-Wigner sign. -/
+    structure TrotterPath (P : Type u)
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: JwSign
+  line: 24
+  signature_excerpt: |-
+    inductive JwSign : Type
+      | Plus  : JwSign
+      | Minus : JwSign
+    deriving DecidableEq, Repr
+
+    def toInt : JwSign → Int
+      | JwSign.Plus  => 1
+      | JwSign.Minus => -1
+
+    /-- A fermionic Trotter path with declared Boltzmann weight and Jordan-Wigner sign. -/
+    structure TrotterPath (P : Type u)
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: meron_pair_exact_cancellation
+  line: 64
+  signature_excerpt: |-
+    theorem meron_pair_exact_cancellation {C : Type u} {M : MeronConfig C}
+        (inv : MeronFlipInvolution M) (c : C) :
+        (M.weight c : Int) * toInt (M.sign c) +
+        (M.weight (inv.tau c) : Int) * toInt (M.sign (inv.tau c)) = 0
+  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  repository: this_repository
+  source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fixed_point_contradiction
+  line: 87
+  signature_excerpt: |-
+    theorem fixed_point_contradiction {C : Type u} {M : MeronConfig C}
+        (inv : MeronFlipInvolution M) (c : C) (h_tau : inv.tau c = c) : False
+  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  repository: this_repository
+  source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: bipartite_pair_exact_cancellation
+  line: 51
+  signature_excerpt: |-
+    theorem bipartite_pair_exact_cancellation {P : Type u} {T : TrotterPath P}
+        (inv : BipartiteInvolution T) (p : P) :
+        (T.weight p : Int) * toInt (T.sign p) +
+        (T.weight (inv.xi p) : Int) * toInt (T.sign (inv.xi p)) = 0
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unequal_three_term_cancellation
+  line: 54
+  signature_excerpt: 'theorem unequal_three_term_cancellation : ([2, -1, -1] : List Int).sum = 0'
+  source: papers/core/fsp/lean4/MeronCharacter.lean
+  repository: this_repository
+  source_sha256: 0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: observable_doublet_counterexample
+  line: 58
+  signature_excerpt: |-
+    theorem observable_doublet_counterexample :
+        (1 : Int) + (-1) = 0 ∧ (1 : Int) * 1 + (-1) * (-1) = 2
+  source: papers/core/fsp/lean4/MeronCharacter.lean
+  repository: this_repository
+  source_sha256: 0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/fsp/lean4/MeronClusterInvolution.lean::meron_pair_exact_cancellation
+  availability: local
+  symbol: meron_pair_exact_cancellation
+  path: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  repository: this_repository
+  sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
+- original_ref: papers/core/fsp/lean4/MeronClusterInvolution.lean::fixed_point_contradiction
+  availability: local
+  symbol: fixed_point_contradiction
+  path: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  repository: this_repository
+  sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
+  declaration_status: declaration_found_not_proof_checked
+  line: 87
+  role: source_lead_only
+- original_ref: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean::bipartite_pair_exact_cancellation
+  availability: local
+  symbol: bipartite_pair_exact_cancellation
+  path: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: papers/core/fsp/lean4/MeronCharacter.lean::unequal_three_term_cancellation
+  availability: local
+  symbol: unequal_three_term_cancellation
+  path: papers/core/fsp/lean4/MeronCharacter.lean
+  repository: this_repository
+  sha256: 0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: papers/core/fsp/lean4/MeronCharacter.lean::observable_doublet_counterexample
+  availability: local
+  symbol: observable_doublet_counterexample
+  path: papers/core/fsp/lean4/MeronCharacter.lean
+  repository: this_repository
+  sha256: 0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870
+  declaration_status: declaration_found_not_proof_checked
+  line: 58
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - supplied weight-preserving sign-reversing involution
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - supplied weight-preserving sign-reversing involution
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

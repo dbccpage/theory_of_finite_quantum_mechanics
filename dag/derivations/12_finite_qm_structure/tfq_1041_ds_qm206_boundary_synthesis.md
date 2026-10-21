@@ -1,6 +1,6 @@
 # [TFQ-1041] DS-QM206-BOUNDARY-SYNTHESIS
 
-> **Stage**: `FINITE_QM_STRUCTURE` | **Status**: `PROVED_LEAN` | **DAG node**: `DS-QM206-BOUNDARY-SYNTHESIS` (`PROVED_LEAN`)  
+> **Stage**: `FINITE_QM_STRUCTURE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `DS-QM206-BOUNDARY-SYNTHESIS` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `ae4a0b3e-178a-5247-8e6e-a16edbc1aa5b`  
 > **Parent Derivation**: [TFQ-0250](tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Synthesis ledger: a 4-tier exact cochain factorization of contact points and a lift of L1 weights into U(1) and SU(2) holonomies, each stated conditional on QM-063/080/081/120/205 contents; descent functor GTOC -> Hilb_finite is non-full and non-faithful. Hilbert geometry remains imported. Depends on QM_205 which is a stub, so QM206-C4 (pointer basis = ker d1) has no upstream result.
+On a declared four-vertex toy map the image and kernel and all composition controls are exact, and additive homomorphism, collision and missed-arrow statements hold. The toy map is not the intended descent functor from the graph-transport category to finite-dimensional Hilbert spaces; functoriality, non-fullness and non-faithfulness are not established.
 
 ### Governing Obligation
-None (4-vertex plaquette exactness, coboundary holonomy invariance, and Theorem 2.1 non-full/non-faithful diagonal descent mechanized in ds_qm206_four_tier_cochain_exactness_holonomy_invariance_and_nonfull_nonfaithful_descent and ds_qm206_207_211_non_full_non_faithful_descent_and_five_import_independence).
+Unmet after the PFP review: Define the intended GTOC/Hilb categories and actual descent functor, prove its properties and discharge the QM205 pointer-basis stub. The toy map is not that functor. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 QM206-C1 4-vertex plaquette cochain exactness d1(d0 f)=0, QM206-C3 coboundary holonomy invariance, and QM206-C7 Theorem 2.1 non-full/non-faithful diagonal descent F_Descent mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm

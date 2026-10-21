@@ -1,0 +1,496 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: QCV-OVERHEAD-GROWTH-CRITERION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For p(k+1) = c(k)*p(k)^2 with c(k) >= 0, p(k) = p(0)^(2^k)*amp(k) with amp(0) = 1,
+    amp(k+1) = c(k)*amp(k)^2, and some p(0) > 0 has p(k) tending to zero iff some M > 0 has amp(k) <=
+    M^(2^k) for all k; the criterion holds for c(k) <= C, for c(k) <= A*B^(k+1) with A, B >= 1, for c(k)
+    = (k+1)^2, and for c(k) <= a*b^N(k) with block size N(k+1) <= s*N(k), s < 2; it fails for c(k) >=
+    a*b^(2^k) with a > 0, b > 1, and for c(k) >= a*b^N(k) with 2^k <= N(k), b > 1, where no positive p(0)
+    has p(k) tending to zero.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The families are exact illustrations of the criterion, not claims that any physical
+    overhead has such a form; correlated-noise strength as an exponential of block size is a declared
+    toy.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1320_qcv_overhead_growth_criterion.md
+  - dag/research/quantum_computation_self_obstruction.md
+  - dag/research/quantum_computation_self_obstruction_axioms.txt
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1320_qcv_overhead_growth_criterion.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1320_qcv_overhead_growth_criterion.md
+    sha256: d3fc380988251f78ddec1b1291472a05f9f8a8ffb3ffaf02d8422c1c6ad412a4
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_qcv_overhead_growth_criterion_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: concv
+  line: 220
+  signature_excerpt: |-
+    def concv (c : ℕ → ℚ) (p : ℚ) : ℕ → ℚ
+      | 0 => p
+      | k + 1 => c k * (concv c p k) ^ 2
+
+    /-- The overhead amplification `amp c`: `amp 0 = 1`, `amp (k + 1) = c k * amp k ^ 2`, equal to the
+    product of `c j ^ (2 ^ (k - 1 - j))` over `j < k`. -/
+    def amp (c : ℕ → ℚ) : ℕ → ℚ
+      | 0 => 1
+      | k + 1 => c k * (amp c k) ^ 2
+
+    theorem concv_eq_amp (c : ℕ → ℚ) (p : ℚ) (k : ℕ) : concv c p k = p ^ (2 ^ k) * amp c k
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: amp
+  line: 226
+  signature_excerpt: |-
+    def amp (c : ℕ → ℚ) : ℕ → ℚ
+      | 0 => 1
+      | k + 1 => c k * (amp c k) ^ 2
+
+    theorem concv_eq_amp (c : ℕ → ℚ) (p : ℚ) (k : ℕ) : concv c p k = p ^ (2 ^ k) * amp c k
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ThresholdRegionNonempty
+  line: 268
+  signature_excerpt: 'def ThresholdRegionNonempty (c : ℕ → ℚ) : Prop'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: AmpBounded
+  line: 265
+  signature_excerpt: 'def AmpBounded (c : ℕ → ℚ) : Prop'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: GoesToZero
+  line: 57
+  signature_excerpt: 'def GoesToZero (f : ℕ → ℚ) : Prop'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: blockExp
+  line: 509
+  signature_excerpt: |-
+    def blockExp (N : ℕ → ℕ) : ℕ → ℕ
+      | 0 => 0
+      | k + 1 => 2 * blockExp N k + N k
+
+    /-- If the block size `N k` grows at most by the factor `s < 2` per level, then
+    `E k + N k / (2 - s) <= 2 ^ k * N 0 / (2 - s)`. -/
+    theorem blockExp_le {N : ℕ → ℕ} {s : ℚ} (hs : s < 2) (hN : ∀ k, (N (k + 1) : ℚ) ≤ s * N k)
+        (k : ℕ) : (blockExp N k : ℚ) + N k / (2 - s) ≤ 2 ^ k * (N 0 / (2 - s))
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: concv_eq_amp
+  line: 230
+  signature_excerpt: 'theorem concv_eq_amp (c : ℕ → ℚ) (p : ℚ) (k : ℕ) : concv c p k = p ^ (2 ^ k) * amp
+    c k'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: threshold_region_iff
+  line: 320
+  signature_excerpt: |-
+    theorem threshold_region_iff {c : ℕ → ℚ} (hc : ∀ k, 0 ≤ c k) :
+        ThresholdRegionNonempty c ↔ AmpBounded c
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: region_empty_iff
+  line: 332
+  signature_excerpt: |-
+    theorem region_empty_iff {c : ℕ → ℚ} (hc : ∀ k, 0 ≤ c k) :
+        (∀ p : ℚ, 0 < p → ¬ GoesToZero (concv c p)) ↔ ¬ AmpBounded c
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ampBounded_of_bounded
+  line: 358
+  signature_excerpt: |-
+    theorem ampBounded_of_bounded {c : ℕ → ℚ} {C : ℚ} (hc : ∀ k, 0 ≤ c k) (hC : ∀ k, c k ≤ C) :
+        AmpBounded c
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: bounded_overhead_goesToZero
+  line: 377
+  signature_excerpt: |-
+    theorem bounded_overhead_goesToZero {c : ℕ → ℚ} {C : ℚ} (hc : ∀ k, 0 ≤ c k) (hC : ∀ k, c k ≤ C)
+        {p : ℚ} (hp : 0 ≤ p) (hth : max C 1 * p < 1) : GoesToZero (concv c p)
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ampBounded_of_geom
+  line: 412
+  signature_excerpt: |-
+    theorem ampBounded_of_geom {c : ℕ → ℚ} {A B : ℚ} (hc : ∀ k, 0 ≤ c k) (hA : 1 ≤ A) (hB : 1 ≤ B)
+        (hC : ∀ k, c k ≤ A * B ^ (k + 1)) : AmpBounded c
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ampBounded_poly
+  line: 437
+  signature_excerpt: 'theorem ampBounded_poly : AmpBounded (fun k => ((k : ℚ) + 1) ^ 2)'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ampBounded_of_sizes
+  line: 533
+  signature_excerpt: |-
+    theorem ampBounded_of_sizes {c : ℕ → ℚ} {a b s : ℚ} {N : ℕ → ℕ} (hc : ∀ k, 0 ≤ c k) (ha : 1 ≤ a)
+        (hb : 1 ≤ b) (hs : s < 2) (hN : ∀ k, (N (k + 1) : ℚ) ≤ s * N k)
+        (hC : ∀ k, c k ≤ a * b ^ N k) : AmpBounded c
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: blockExp_le
+  line: 515
+  signature_excerpt: |-
+    theorem blockExp_le {N : ℕ → ℕ} {s : ℚ} (hs : s < 2) (hN : ∀ k, (N (k + 1) : ℚ) ≤ s * N k)
+        (k : ℕ) : (blockExp N k : ℚ) + N k / (2 - s) ≤ 2 ^ k * (N 0 / (2 - s))
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dexp_not_ampBounded
+  line: 474
+  signature_excerpt: |-
+    theorem dexp_not_ampBounded {c : ℕ → ℚ} {a b : ℚ} (ha : 0 < a) (hb : 1 < b)
+        (hge : ∀ k, a * b ^ (2 ^ k) ≤ c k) : ¬ AmpBounded c
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dexp_region_empty
+  line: 500
+  signature_excerpt: |-
+    theorem dexp_region_empty {c : ℕ → ℚ} {a b : ℚ} (ha : 0 < a) (hb : 1 < b)
+        (hge : ∀ k, a * b ^ (2 ^ k) ≤ c k) (p : ℚ) (hp : 0 < p) : ¬ GoesToZero (concv c p)
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sizes_not_ampBounded
+  line: 586
+  signature_excerpt: |-
+    theorem sizes_not_ampBounded {c : ℕ → ℚ} {a b : ℚ} {N : ℕ → ℕ} (ha : 0 < a) (hb : 1 < b)
+        (hN : ∀ k, 2 ^ k ≤ N k) (hC : ∀ k, a * b ^ N k ≤ c k) : ¬ AmpBounded c
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: amp_dexp_sq
+  line: 447
+  signature_excerpt: |-
+    theorem amp_dexp_sq (a b : ℚ) (k : ℕ) :
+        (amp (fun j => a * b ^ (2 ^ j)) k * a) ^ 2 = (a ^ 2 * b ^ k) ^ (2 ^ k)
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/QcConcatenation.lean::concv_eq_amp
+  availability: local
+  symbol: concv_eq_amp
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 230
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::threshold_region_iff
+  availability: local
+  symbol: threshold_region_iff
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 320
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::region_empty_iff
+  availability: local
+  symbol: region_empty_iff
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 332
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::ampBounded_of_bounded
+  availability: local
+  symbol: ampBounded_of_bounded
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 358
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::bounded_overhead_goesToZero
+  availability: local
+  symbol: bounded_overhead_goesToZero
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 377
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::ampBounded_of_geom
+  availability: local
+  symbol: ampBounded_of_geom
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 412
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::ampBounded_poly
+  availability: local
+  symbol: ampBounded_poly
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 437
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::ampBounded_of_sizes
+  availability: local
+  symbol: ampBounded_of_sizes
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 533
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::blockExp_le
+  availability: local
+  symbol: blockExp_le
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 515
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::dexp_not_ampBounded
+  availability: local
+  symbol: dexp_not_ampBounded
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 474
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::dexp_region_empty
+  availability: local
+  symbol: dexp_region_empty
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 500
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::sizes_not_ampBounded
+  availability: local
+  symbol: sizes_not_ampBounded
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 586
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::amp_dexp_sq
+  availability: local
+  symbol: amp_dexp_sq
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 447
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::amp
+  availability: local
+  symbol: amp
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 192
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::concv
+  availability: local
+  symbol: concv
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 204
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::amp_bound_holds
+  availability: local
+  symbol: amp_bound_holds
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 221
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::amp_escape_level
+  availability: local
+  symbol: amp_escape_level
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 234
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::geom_invariant_holds
+  availability: local
+  symbol: geom_invariant_holds
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 316
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::size_family
+  availability: local
+  symbol: size_family
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 261
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::block_exp_bound_holds
+  availability: local
+  symbol: block_exp_bound_holds
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 276
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::dexp_square_identity_holds
+  availability: local
+  symbol: dexp_square_identity_holds
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 334
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

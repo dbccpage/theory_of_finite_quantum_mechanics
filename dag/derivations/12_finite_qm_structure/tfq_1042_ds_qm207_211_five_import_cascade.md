@@ -1,6 +1,6 @@
 # [TFQ-1042] DS-QM207-211-FIVE-IMPORT-CASCADE
 
-> **Stage**: `FINITE_QM_STRUCTURE` | **Status**: `PROVED_LEAN` | **DAG node**: `DS-QM207-211-FIVE-IMPORT-CASCADE` (`PROVED_LEAN`)  
+> **Stage**: `FINITE_QM_STRUCTURE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `DS-QM207-211-FIVE-IMPORT-CASCADE` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `7ba54cc1-e150-57fb-96fd-d009cff46cfb`  
 > **Parent Derivation**: [TFQ-0253](tfq_0253_conditional_complex_carrier_selector.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-QM over C^n is presented as added fiber structure over L1, separated by five imports: U(1) phase fiber and involution (207), quadratic L2 readout (208), non-commutative algebra B(H) (209), Born rule postulate with Gleason-type uniqueness (210), continuous unitary dynamics (211). The 207-211 papers only state that each import is needed; the proofs I read are absence arguments (QM211 Thm 1.1 is a one-paragraph prose argument), not derivations of any import.
+Exact phase/readout and noncommutative matrix controls are retained, and the cross-term and quartic-gap polynomials are exact identities over the rationals. They do not derive the five imports (U(1) phase fiber, quadratic readout, operator algebra, Born uniqueness, continuous dynamics) or establish that those imports are independent.
 
 ### Governing Obligation
-None (derived from parents DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE and DS-QM030-GRADED-PATHSUM and upstream imports DS-QM062-U1-RESIDUES-IMPORT, DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY, and DS-CONTINUOUS-TIME-EXP-GENERATOR via ds_qm090_093_and_207_211_tier3_survival_rebit_tomography_and_five_import_cascade and ds_qm206_207_211_non_full_non_faithful_descent_and_five_import_independence).
+Unmet after the PFP review: Prove each correctly specified physical necessity claim and supply phase, quadratic pairing, operator algebra, Born uniqueness and continuous dynamics. These controls do not derive or establish independence of all five imports. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 QM207-C1 phase-blindness of L1 weights, QM208-C3 quadratic cross-term interference, QM209-C2 non-commutative operator algebra, QM210-C3 Lp power-rule separation, and QM211-C1..C3 five-import drop-one independence mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm

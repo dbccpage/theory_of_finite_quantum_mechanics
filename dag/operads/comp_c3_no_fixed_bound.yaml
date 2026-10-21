@@ -1,0 +1,257 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C3-NO-FIXED-BOUND
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: If the map from an input to its start word were computable and one length bound witnessed
+    every halting start word inside the bound, normal-form reachability would be decidable, contradicting
+    nfReach_not_computable.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - startWord_computable (open lemma)
+  source_bottleneck: Prove startWord_computable (COMP-C7c) and state the uniform version in Lean.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md
+  - dag/research/genesis_to_universal_computation.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md
+  source_claim_label: CONDITIONAL
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md
+    sha256: 67b7f46be638410a35786030b0c4f5014cd4f5334e5923e38211e850fb8cb251
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c3_no_fixed_bound_conditional.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: RuleList
+  line: 612
+  signature_excerpt: 'abbrev RuleList (α : Type*)'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ReachB
+  line: 658
+  signature_excerpt: 'def ReachB (RL : RuleList α) (L : ℕ) : List α → List α → Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: reachSet
+  line: 675
+  signature_excerpt: 'def reachSet (RL : RuleList α) (L : ℕ) (a : List α) : Finset (List α)'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: StepB
+  line: 654
+  signature_excerpt: 'def StepB (RL : RuleList α) (L : ℕ) (w w'' : List α) : Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: reachN
+  line: 463
+  signature_excerpt: |-
+    def reachN (s : β → Finset β) : ℕ → β → Finset β
+      | 0, a => {a}
+      | n + 1, a => reachN s n a ∪ (reachN s n a).biUnion s
+
+    theorem reachN_succ_subset (s : β → Finset β) (n : ℕ) (a : β) :
+        reachN s n a ⊆ reachN s (n + 1) a
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sB
+  line: 650
+  signature_excerpt: 'def sB (RL : RuleList α) (L : ℕ) (w : List α) : Finset (List α)'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wordsLE
+  line: 574
+  signature_excerpt: |-
+    def wordsLE (α : Type*) [Fintype α] [DecidableEq α] : ℕ → Finset (List α)
+      | 0 => {[]}
+      | n + 1 => insert [] (Finset.univ.biUnion fun a => (wordsLE α n).image (List.cons a))
+
+    theorem mem_wordsLE {n : ℕ} {w : List α} : w ∈ wordsLE α n ↔ w.length ≤ n
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Step
+  line: 267
+  signature_excerpt: 'def Step (R : List α → List α → Prop) (w w'' : List α) : Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: inRules
+  line: 615
+  signature_excerpt: 'def inRules (RL : RuleList α) : List α → List α → Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: succList
+  line: 619
+  signature_excerpt: 'def succList (RL : RuleList α) (w : List α) : List (List α)'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: NFReach
+  line: 306
+  signature_excerpt: 'def NFReach (x : ℕ) : Prop'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: M0
+  line: 104
+  signature_excerpt: 'abbrev M0 : TM0.Machine G1 (TM1to0.Λ'' M1)'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: startWord
+  line: 197
+  signature_excerpt: 'noncomputable def startWord (x : ℕ) : List (Sym G1 (TM1to0.Λ'' M1))'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: G1
+  line: 92
+  signature_excerpt: 'abbrev G1 : Type'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: M1
+  line: 101
+  signature_excerpt: 'abbrev M1 : L1 → TM1.Stmt G1 L1 (Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: initCfg0
+  line: 140
+  signature_excerpt: 'noncomputable def initCfg0 (x : ℕ) : TM0.Cfg G1 (TM1to0.Λ'' M1)'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: reachB_iff
+  line: 678
+  signature_excerpt: |-
+    theorem reachB_iff {RL : RuleList α} {L : ℕ} {a b : List α} (ha : a.length ≤ L) :
+        ReachB RL L a b ↔ b ∈ reachSet RL L a
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nfReach_not_computable
+  line: 315
+  signature_excerpt: 'theorem nfReach_not_computable : ¬ ComputablePred NFReach'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisComputation.lean::reachB_iff
+  availability: local
+  symbol: reachB_iff
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 678
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::nfReach_not_computable
+  availability: local
+  symbol: nfReach_not_computable
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 315
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - startWord_computable (open lemma)
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - startWord_computable (open lemma)
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

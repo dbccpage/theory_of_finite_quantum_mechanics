@@ -488,6 +488,9 @@ lean_lib «FiniteQuantum» where
     `FqhLaughlinBraiding,
     `FrustratedSpectrumObstruction,
     `GenesisFspBridge,
+    `GenesisComputation,
+    `GenesisCompTM,
+    `GenesisCompUniv,
     `HaltingQuotient,
     `Higher2GroupBraiding,
     `InstantonDyonGas,
@@ -516,3 +519,11 @@ lean_lib PromptL1Imports where
 
 lean_lib PromptBornBoundaries where
   roots := #[`PromptBornBoundaries]
+
+-- Recovered Authorization-Incompleteness finite models (provenance: lean4/AuthIncompleteness/*.lean headers).
+-- Not a default target: build with `lake build AuthIncompleteness`.
+lean_lib AuthIncompleteness where
+  roots := #[`AuthIncompleteness]
+
+lean_lib QcSelfObstruction where
+  roots := #[`QcConcatenation, `QcRepairQueue, `QcEntropySink, `QcSelfObstruction]

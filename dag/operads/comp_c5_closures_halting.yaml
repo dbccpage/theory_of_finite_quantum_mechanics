@@ -1,0 +1,226 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C5-CLOSURES-HALTING
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Forward and backward simulation extend to the closures, and the machine halts from
+    c iff some word reachable from a word representing c is irreducible.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Existential in the target word because a configuration has many padded representations.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1300_comp_c5_closures_halting.md
+  - dag/research/genesis_to_universal_computation.md
+  - lean4/GenesisCompTM.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1300_comp_c5_closures_halting.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1300_comp_c5_closures_halting.md
+    sha256: 4e926b8cf5074fbf6098aceb568d8329c7b7b4793dbb971bdde1788f055347e2
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c5_closures_halting_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Halts
+  line: 410
+  signature_excerpt: 'def Halts (M : TM0.Machine Γ Λ) (c : TM0.Cfg Γ Λ) : Prop'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Irreducible
+  line: 414
+  signature_excerpt: 'def Irreducible (R : List (Sym Γ Λ) → List (Sym Γ Λ) → Prop) (w : List (Sym Γ Λ))
+    : Prop'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Sym
+  line: 36
+  signature_excerpt: |-
+    inductive Sym (Γ Λ : Type*)
+      | lend
+      | rend
+      | st (q : Λ)
+      | sym (a : Γ)
+      deriving DecidableEq
+
+    variable {Γ Λ : Type*}
+
+    /-- The mark type is a finite sum: `Sym Γ Λ ≃ (Unit ⊕ Unit) ⊕ (Λ ⊕ Γ)`. -/
+    def Sym.equivSum : Sym Γ Λ ≃ (Unit ⊕ Unit) ⊕ (Λ ⊕ Γ)
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Rep
+  line: 78
+  signature_excerpt: 'def Rep (c : TM0.Cfg Γ Λ) (w : List (Sym Γ Λ)) : Prop'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Rules
+  line: 83
+  signature_excerpt: |-
+    inductive Rules (M : TM0.Machine Γ Λ) : List (Sym Γ Λ) → List (Sym Γ Λ) → Prop
+      | write {q a q' b} (h : M q a = some (q', TM0.Stmt.write b)) :
+          Rules M [.st q, .sym a] [.st q', .sym b]
+      | right {q a q' c} (h : M q a = some (q', TM0.Stmt.move Dir.right)) :
+          Rules M [.st q, .sym a, .sym c] [.sym a, .st q', .sym c]
+      | rightEnd {q a q'} (h : M q a = some (q', TM0.Stmt.move Dir.right)) :
+          Rules M [.st q, .sym a, .rend] [.sym a, .st q', .sym default, .rend]
+      | left {q a q' c} (h : M q a = some (q', TM0.Stmt.move Dir.left)) :
+          Rules M [.sym c, .st q, .sym a] [.st q', .sym c, .
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cfgWord
+  line: 73
+  signature_excerpt: 'def cfgWord (ul : List Γ) (q : Λ) (a : Γ) (ur : List Γ) : List (Sym Γ Λ)'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: reaches_fwd
+  line: 390
+  signature_excerpt: |-
+    theorem reaches_fwd {M : TM0.Machine Γ Λ} {c c' : TM0.Cfg Γ Λ} (h : TM0.Reaches M c c')
+        {w : List (Sym Γ Λ)} (hr : Rep c w) : ∃ w', Rep c' w' ∧ Reach (Rules M) w w'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reach_bwd
+  line: 400
+  signature_excerpt: |-
+    theorem reach_bwd {M : TM0.Machine Γ Λ} {c : TM0.Cfg Γ Λ} {w w' : List (Sym Γ Λ)}
+        (hr : Rep c w) (h : Reach (Rules M) w w') : ∃ c', Rep c' w' ∧ TM0.Reaches M c c'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: halts_iff
+  line: 418
+  signature_excerpt: |-
+    theorem halts_iff {M : TM0.Machine Γ Λ} {c : TM0.Cfg Γ Λ} {w : List (Sym Γ Λ)}
+        (hr : Rep c w) :
+        Halts M c ↔ ∃ w', Reach (Rules M) w w' ∧ Irreducible (Rules M) w'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisCompTM.lean::reaches_fwd
+  availability: local
+  symbol: reaches_fwd
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 390
+  role: source_lead_only
+- original_ref: lean4/GenesisCompTM.lean::reach_bwd
+  availability: local
+  symbol: reach_bwd
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 400
+  role: source_lead_only
+- original_ref: lean4/GenesisCompTM.lean::halts_iff
+  availability: local
+  symbol: halts_iff
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 418
+  role: source_lead_only
+- original_ref: lean4/GenesisCompTM.lean::Halts
+  availability: local
+  symbol: Halts
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 410
+  role: source_lead_only
+- original_ref: lean4/GenesisCompTM.lean::Irreducible
+  availability: local
+  symbol: Irreducible
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 414
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

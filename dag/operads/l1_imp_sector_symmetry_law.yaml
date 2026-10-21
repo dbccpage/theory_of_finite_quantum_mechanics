@@ -1,0 +1,275 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: L1-IMP-SECTOR-SYMMETRY-LAW
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Transitive sector symmetry of the quadratic readout: relabelling sectors by any permutation
+    in a set whose generated group acts transitively does not change the readout. This is the second law
+    under which the inner product is selected up to scale; it is supplied, not derived from primitive
+    difference, and sectors with distinguished labels would break it (then the diagonal is constant only
+    on orbits).'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - 'transitive sector symmetry of the readout: assumption'
+  source_bottleneck: No finite-theory primitive forces readout invariance under sector relabelling; H006
+    supplies the permutation envelope only. Deriving the law, or recording which sector labels are distinguished,
+    is item 1 of the run next steps.
+  source_refs:
+  - dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md
+  - dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md
+  - lean4/H006PermutationUnitary.lean
+  paper_refs:
+  - dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md
+  source_claim_label: IMPORTED_ASSUMPTION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md
+    sha256: 0d3cdcd6acfc10d68f457153b473376e056fafe22b208761d40d666b464b312b
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/l1_to_l2_l1_imp_sector_symmetry_law_imported_assumption.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Invariant
+  line: 191
+  signature_excerpt: 'def Invariant (G : Matrix (Fin n) (Fin n) ℚ) (σ : Equiv.Perm (Fin n)) : Prop'
+  source: lean4/SectorFormUniqueness.lean
+  repository: this_repository
+  source_sha256: 2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: TransitiveOn
+  line: 196
+  signature_excerpt: 'def TransitiveOn (S : Set (Equiv.Perm (Fin n))) : Prop'
+  source: lean4/SectorFormUniqueness.lean
+  repository: this_repository
+  source_sha256: 2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Generated
+  line: 214
+  signature_excerpt: |-
+    inductive Generated (S : Set (Equiv.Perm (Fin n))) : Equiv.Perm (Fin n) → Prop
+      | of {σ : Equiv.Perm (Fin n)} (h : σ ∈ S) : Generated S σ
+      | one : Generated S 1
+      | mul {σ τ : Equiv.Perm (Fin n)} (hσ : Generated S σ) (hτ : Generated S τ) : Generated S (σ * τ)
+      | inv {σ : Equiv.Perm (Fin n)} (hσ : Generated S σ) : Generated S σ⁻¹
+
+    theorem permute_one (x : Fin n → ℚ) : permute (1 : Equiv.Perm (Fin n)) x = x
+  source: lean4/SectorFormUniqueness.lean
+  repository: this_repository
+  source_sha256: 2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Invariant
+  line: 115
+  signature_excerpt: 'def Invariant (H : Matrix (Fin n) (Fin n) GaussRat) (σ : Equiv.Perm (Fin n)) : Prop'
+  source: lean4/SectorFormHermitian.lean
+  repository: this_repository
+  source_sha256: 78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Generated
+  line: 140
+  signature_excerpt: |-
+    inductive Generated (S : Set (Equiv.Perm (Fin n))) : Equiv.Perm (Fin n) → Prop
+      | of {σ : Equiv.Perm (Fin n)} (h : σ ∈ S) : Generated S σ
+      | one : Generated S 1
+      | mul {σ τ : Equiv.Perm (Fin n)} (hσ : Generated S σ) (hτ : Generated S τ) : Generated S (σ * τ)
+      | inv {σ : Equiv.Perm (Fin n)} (hσ : Generated S σ) : Generated S σ⁻¹
+
+    theorem permute_one (x : Fin n → GaussRat) : permute (1 : Equiv.Perm (Fin n)) x = x
+  source: lean4/SectorFormHermitian.lean
+  repository: this_repository
+  source_sha256: 78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: permU
+  line: 21
+  signature_excerpt: |-
+    def permU {K Q : Type} (_ : StarRingPack K) {τ : Q → Q}
+        (R : Reversible τ) (v : Vec K Q) : Vec K Q
+  source: lean4/H006PermutationUnitary.lean
+  repository: this_repository
+  source_sha256: 84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: invariant_of_generated
+  line: 252
+  signature_excerpt: |-
+    theorem invariant_of_generated {G : Matrix (Fin n) (Fin n) ℚ} {S : Set (Equiv.Perm (Fin n))}
+        (hS : ∀ σ ∈ S, Invariant G σ) {σ : Equiv.Perm (Fin n)} (h : Generated S σ) : Invariant G σ
+  source: lean4/SectorFormUniqueness.lean
+  repository: this_repository
+  source_sha256: 2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: diag_const_of_transitive
+  line: 203
+  signature_excerpt: |-
+    theorem diag_const_of_transitive {G : Matrix (Fin n) (Fin n) ℚ} {S : Set (Equiv.Perm (Fin n))}
+        (hS : ∀ σ ∈ S, Invariant G σ) (hT : TransitiveOn S) (i j : Fin n) : G i i = G j j
+  source: lean4/SectorFormUniqueness.lean
+  repository: this_repository
+  source_sha256: 2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: permutation_isometry
+  line: 25
+  signature_excerpt: |-
+    theorem permutation_isometry {K Q : Type} (P : StarRingPack K)
+        [DecidableEq Q] (E : Enum Q) {τ : Q → Q} (R : Reversible τ)
+        (u v : Vec K Q) :
+        sesq P E (permU P R u) (permU P R v) = sesq P E u v
+  source: lean4/H006PermutationUnitary.lean
+  repository: this_repository
+  source_sha256: 84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.Invariant
+  availability: local
+  symbol: InnerProductFable.SectorForm.Invariant
+  path: lean4/SectorFormUniqueness.lean
+  repository: this_repository
+  sha256: 2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be
+  declaration_status: declaration_found_not_proof_checked
+  line: 191
+  role: source_lead_only
+- original_ref: lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.TransitiveOn
+  availability: local
+  symbol: InnerProductFable.SectorForm.TransitiveOn
+  path: lean4/SectorFormUniqueness.lean
+  repository: this_repository
+  sha256: 2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be
+  declaration_status: declaration_found_not_proof_checked
+  line: 196
+  role: source_lead_only
+- original_ref: lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.Generated
+  availability: local
+  symbol: InnerProductFable.SectorForm.Generated
+  path: lean4/SectorFormUniqueness.lean
+  repository: this_repository
+  sha256: 2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be
+  declaration_status: declaration_found_not_proof_checked
+  line: 214
+  role: source_lead_only
+- original_ref: lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.invariant_of_generated
+  availability: local
+  symbol: InnerProductFable.SectorForm.invariant_of_generated
+  path: lean4/SectorFormUniqueness.lean
+  repository: this_repository
+  sha256: 2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be
+  declaration_status: declaration_found_not_proof_checked
+  line: 252
+  role: source_lead_only
+- original_ref: lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.diag_const_of_transitive
+  availability: local
+  symbol: InnerProductFable.SectorForm.diag_const_of_transitive
+  path: lean4/SectorFormUniqueness.lean
+  repository: this_repository
+  sha256: 2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be
+  declaration_status: declaration_found_not_proof_checked
+  line: 203
+  role: source_lead_only
+- original_ref: lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.Invariant
+  availability: local
+  symbol: InnerProductFable.HermitianSectorForm.Invariant
+  path: lean4/SectorFormHermitian.lean
+  repository: this_repository
+  sha256: 78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc
+  declaration_status: declaration_found_not_proof_checked
+  line: 115
+  role: source_lead_only
+- original_ref: lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.Generated
+  availability: local
+  symbol: InnerProductFable.HermitianSectorForm.Generated
+  path: lean4/SectorFormHermitian.lean
+  repository: this_repository
+  sha256: 78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc
+  declaration_status: declaration_found_not_proof_checked
+  line: 140
+  role: source_lead_only
+- original_ref: lean4/H006PermutationUnitary.lean::FableHilbertWalk20260819.H006.permutation_isometry
+  availability: local
+  symbol: FableHilbertWalk20260819.H006.permutation_isometry
+  path: lean4/H006PermutationUnitary.lean
+  repository: this_repository
+  sha256: 84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f
+  declaration_status: declaration_found_not_proof_checked
+  line: 25
+  role: source_lead_only
+- original_ref: code/rust/src/qm/inner_product_uniqueness.rs::invariance_certificate
+  availability: local
+  symbol: invariance_certificate
+  path: code/rust/src/qm/inner_product_uniqueness.rs
+  repository: this_repository
+  sha256: 3288c2617990e81fef8a9796a537a60c3f639a1eedc3c373d6860ae59a94fdd7
+  declaration_status: declaration_found_not_executed
+  line: 585
+  role: source_lead_only
+- original_ref: code/rust/src/qm/inner_product_uniqueness.rs::generated_transitivity_certificate
+  availability: local
+  symbol: generated_transitivity_certificate
+  path: code/rust/src/qm/inner_product_uniqueness.rs
+  repository: this_repository
+  sha256: 3288c2617990e81fef8a9796a537a60c3f639a1eedc3c373d6860ae59a94fdd7
+  declaration_status: declaration_found_not_executed
+  line: 431
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - 'transitive sector symmetry of the readout: assumption'
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - 'transitive sector symmetry of the readout: assumption'
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -1,0 +1,164 @@
+add_or_refine_generators:
+- id: gen_qcdBeta0
+  ordered_inputs:
+  - Rat
+  - Rat
+  output: Rat
+  arity: 2
+  carrier: Rat (nc, nf) -> Rat; finite rational model of the 1-loop coefficient
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FiniteQM.lean
+    declaration: FiniteQM.qcdBeta0
+    line: 608
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FiniteQM.lean
+    decl: FiniteQM.qcdBeta0
+    kind: abbrev
+    line: 608
+    lang: lean
+  proposed_by:
+    model: claude-opus-5-5
+    provider: anthropic
+    tier: 4
+- id: gen_py_qcd_beta0
+  ordered_inputs:
+  - int
+  - int
+  output: Q
+  arity: 2
+  carrier: Python Fraction-valued beta_0(N_c, n_f) = (11/3) N_c - (2/3) n_f
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/python/src/qm/qcd_confinement.py
+    declaration: qcd_beta0
+    line: 224
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/python/src/qm/qcd_confinement.py
+    decl: qcd_beta0
+    kind: def
+    line: 224
+    lang: python
+  proposed_by:
+    model: claude-opus-5-5
+    provider: anthropic
+    tier: 4
+add_or_refine_relations:
+- id: rel_window_theorem
+  equation_or_predicate: '(4 : Rat) * suNCasimirAdjoint 3 + (-1/3 : Rat) * suNCasimirAdjoint 3 = 11 and
+    qcdBeta0 3 0 = 11, together with the recorded window values of qcdBeta0 3 nf'
+  typing_conditions: finite rational model; N_c = 3; no continuum or running-coupling content
+  source_pins:
+  - path: lean4/FiniteQM.lean
+    declaration: FiniteQM.qcd_beta0_asymptotic_freedom_window
+    line: 614
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteQM.lean
+    decl: FiniteQM.qcd_beta0_asymptotic_freedom_window
+    kind: theorem
+    line: 614
+    lang: lean
+  proposed_by:
+    model: claude-opus-5-5
+    provider: anthropic
+    tier: 4
+- id: rel_py_definition
+  equation_or_predicate: qcd_beta0(n_c, n_f) = 11*n_c/3 - 2*n_f/3 as an exact rational; at n_c = 3 this
+    is 11 - (2/3) n_f
+  typing_conditions: exact Fraction arithmetic
+  source_pins:
+  - path: code/python/src/qm/qcd_confinement.py
+    declaration: qcd_beta0
+    line: 224
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/python/src/qm/qcd_confinement.py
+    decl: qcd_beta0
+    kind: def
+    line: 224
+    lang: python
+  proposed_by:
+    model: claude-opus-5-5
+    provider: anthropic
+    tier: 4
+- id: rel_test_part_b
+  equation_or_predicate: Test checker confirming the Gross-Wilczek-Politzer beta0 values agree with the
+    rational formula in the finite model
+  typing_conditions: checker only; not an operation
+  source_pins:
+  - path: code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py
+    declaration: test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio
+    line: 46
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py
+    decl: test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio
+    kind: def
+    line: 46
+    lang: python
+  proposed_by:
+    model: claude-opus-5-5
+    provider: anthropic
+    tier: 4
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Sorry-free proof of lem_beta0_window_values, e.g. by unfolding FiniteQM.qcdBeta0 and norm_num; this
+  needs the abbrev body, which is not shown in @SRC.
+- The C_A = suNCasimirAdjoint 3 = 3 value is used in nc_split but is not separately cited, because its
+  declaration is not listed in @SRC.
+- 'Withheld claims are not supported: continuum mass gap, weak-coupling limit, Monte Carlo spectroscopy,
+  higher-loop MSbar matching, continuum running-coupling behaviour.'
+- 'lemma lem_beta0_window_values unverified: Lean elaboration skipped: installed lean 4.35.0 does not
+  match lean4/lean-toolchain 4.33.1 (toolchain check)'
+- 'near_miss nm_continuum unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_nf16_sign unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_split
+  expr: 4*3 + (-1/3)*3
+  value: '11'
+  host_evidence:
+    recomputed: '11'
+- id: nc_nf0
+  expr: 11 - 2/3*0
+  value: '11'
+  host_evidence:
+    recomputed: '11'
+- id: nc_nf3
+  expr: 11 - 2/3*3
+  value: '9'
+  host_evidence:
+    recomputed: '9'
+- id: nc_nf5
+  expr: 11 - 2/3*5
+  value: 23/3
+  host_evidence:
+    recomputed: 23/3
+- id: nc_nf6
+  expr: 11 - 2/3*6
+  value: '7'
+  host_evidence:
+    recomputed: '7'
+- id: nc_nf16
+  expr: 11 - 2/3*16
+  value: 1/3
+  host_evidence:
+    recomputed: 1/3
+- id: nc_nf17
+  expr: 11 - 2/3*17
+  value: -1/3
+  host_evidence:
+    recomputed: -1/3
+verified_lemma_statements: []

@@ -1,0 +1,152 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-180-RESIDUAL-COUNT
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'The fixed-triple system indexes exactly 180 real constraints in 72 coordinates: 108
+    MU residuals (36 per basis of the triple) and 72 real and imaginary components of U* U - I; the count
+    is not an independence or dimension claim.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The source split (36 normalization, 36 against I_6, 108 against F_6 and B_3) does
+    not match the Lean indexing; no rank or overdetermination statement is established.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1234_mub6_180_residual_count.md
+  - papers/core/mub6/theory_of_finite_mub6.jsonl
+  - papers/core/mub6/theory_of_finite_mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1234_mub6_180_residual_count.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1234_mub6_180_residual_count.md
+    sha256: 772243a084ddd7735ced77fdaeb380211398d28e49b70f795faa4c4040872878
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_180_residual_count_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: EquationIndex
+  line: 159
+  signature_excerpt: abbrev EquationIndex
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Coord
+  line: 29
+  signature_excerpt: abbrev Coord
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: total_equation_count
+  line: 190
+  signature_excerpt: 'theorem total_equation_count : Fintype.card EquationIndex = 180'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: coordinate_count
+  line: 192
+  signature_excerpt: 'theorem coordinate_count : Fintype.card Coord = 72'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: mu_equation_count
+  line: 194
+  signature_excerpt: 'theorem mu_equation_count : Fintype.card (Fin 3 × Fin 6 × Fin 6) = 108'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/ConcreteMubPolynomials.lean::total_equation_count
+  availability: local
+  symbol: total_equation_count
+  path: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  declaration_status: declaration_found_not_proof_checked
+  line: 190
+  role: source_lead_only
+- original_ref: lean4/ConcreteMubPolynomials.lean::coordinate_count
+  availability: local
+  symbol: coordinate_count
+  path: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  declaration_status: declaration_found_not_proof_checked
+  line: 192
+  role: source_lead_only
+- original_ref: lean4/ConcreteMubPolynomials.lean::mu_equation_count
+  availability: local
+  symbol: mu_equation_count
+  path: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  declaration_status: declaration_found_not_proof_checked
+  line: 194
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

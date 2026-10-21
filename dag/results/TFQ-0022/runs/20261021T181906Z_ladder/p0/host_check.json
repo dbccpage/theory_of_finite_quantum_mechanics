@@ -1,0 +1,56 @@
+{
+  "task_id": "TFQ-0022",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "ab432a43ed3cbb98b33b166e8cd2775dc95be466d54a09739b952ee31215c00d",
+  "candidate_sha256": "1997bb46a2c1f832c63356d3d95e0f3672d27914c3cbb1a84d35d00b4c679743",
+  "status": "incomplete",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 0,
+    "failure_rate": 1.0,
+    "failures_by_class": {},
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T18:19:34Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-86D334235D12",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "tfq0022_exhaustive_matches_scalar: The weighted Fierz identity (1/2) delta_il delta_kj - (1/6) delta_ij delta_kl holds for all relevant indices in both the exhaustive replay and the Lean scalar slice",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0022"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Maintain exhaustive 81‑entry Fierz replay in Rust and Python controls; do not equate with Lean scalar slice.",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

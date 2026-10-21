@@ -1,0 +1,48 @@
+{
+  "compositions": [],
+  "generators": [
+    {
+      "arity": 0,
+      "carrier": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+      "id": "G_eval_qcd_finite",
+      "inputs": [],
+      "output": "qcd_finite_result",
+      "ref": {
+        "decl": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+        "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+        "status": "existing"
+      }
+    }
+  ],
+  "lemmas": [
+    {
+      "claims_proved": true,
+      "depends_on": [
+        "G_eval_qcd_finite"
+      ],
+      "id": "L_finite_control_validity",
+      "lean_skeleton": "theorem L_finite_control_validity : \n  -- The finite control test validates the strong-coupling formulae\n  -- but does not establish a continuum mass-gap or weak-coupling non-perturbative behavior\n  ∀ (r : qcd_finite_result), \n    r.plot_3x3_plaquette_reduction ∧ \n    r.wilson_creutz_confinement_rows\n  → \n    r.has_no_continuum_mass_gap_claim ∧\n    r.has_no_weak_coupling_limit_claim :=\n  by\n    intro r h\n    constructor\n    · -- The test asserts specific finite lattice properties\n      -- The absence of a continuum claim is a meta-property of the test's scope\n      -- A soritee would be required to bridge finite lattice to continuum\n      admit -- This part requires reflecting on the test's code, which explicitly withholds such claims\n    · admit",
+      "ref": {
+        "decl": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+        "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+        "status": "existing"
+      },
+      "relation_to_target": "auxiliary",
+      "statement": "The finite control test for part C validates the plaquette reduction and Wilson/Creutz confinement rows but withholds a continuum mass-gap claim and weak-coupling non-perturbative behavior, confirming the boundary of the finite certificate."
+    }
+  ],
+  "near_misses": [
+    {
+      "claim": "The Creutz rows supply a general confinement mechanism beyond strong coupling.",
+      "id": "NM_creutz_generality",
+      "rejecting_invariant": "The test explicitly limits the scope to specific rows (e.g., lattice_3x3) and strong-coupling contexts, with the target explicitly noting the gap beyond these formulae."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "A derivation bridging finite lattice confinement (strong-coupling) to the continuum mass-gap.",
+    "A proof of non-perturbative behavior of the Wilson action as lattice spacing a -> 0."
+  ],
+  "relations": [],
+  "status": "incomplete"
+}

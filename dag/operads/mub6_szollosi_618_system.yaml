@@ -1,0 +1,378 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-SZOLLOSI-618-SYSTEM
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For the Szollosi two-circulant family with both additional bases arbitrary, quartet
+    existence (at some and at each fixed admissible parameter) is equivalent to a real solution of 618
+    rational equations of degree at most two in 440 variables, and every solution lies in the box of radius
+    1 for phase and raw-basis coordinates and 3 for cross-product coordinates.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Emptiness over all admissible parameters and all third bases (no_quartet_iff_all_varieties_empty)
+    is open; the system covers quartets containing a family member only.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1268_mub6_szollosi_618_system.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  - papers/core/mub6/mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1268_mub6_szollosi_618_system.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1268_mub6_szollosi_618_system.md
+    sha256: 9d8b6c96d0e7582140342730131140bcb1df76399853b0761e230f6c5cf0e1db
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_szollosi_618_system_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: Variable
+  line: 38
+  signature_excerpt: abbrev Variable
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: realEval
+  line: 43
+  signature_excerpt: 'def realEval (r : Variable → ℝ) : QPoly →+* ℝ'
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: equationPolynomial
+  line: 214
+  signature_excerpt: |-
+    def equationPolynomial : Equation → QPoly
+      | .inl e => parameterEquation e
+      | .inr (.inl (i,j,b)) => familyEquation i j b
+      | .inr (.inr (.inl (a,i,j,b))) => unitaryEquation a i j b
+      | .inr (.inr (.inr (.inl (a,i,j)))) => entryEquation a i j
+      | .inr (.inr (.inr (.inr (.inl (a,i,j,b))))) => productEquation a i j b
+      | .inr (.inr (.inr (.inr (.inr (a,i,j))))) => overlapEquation a i j
+
+    theorem variable_count : Fintype.card Variable = 440
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Slot
+  line: 37
+  signature_excerpt: abbrev Slot
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: QPoly
+  line: 39
+  signature_excerpt: abbrev QPoly
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Equation
+  line: 188
+  signature_excerpt: abbrev Equation
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: parameterEquation
+  line: 192
+  signature_excerpt: |-
+    def parameterEquation : ParameterEquation → QPoly
+      | .inl i => normPolynomial (phasePolynomial i) - 1
+      | .inr b => component compatibilityPolynomial b
+
+    def familyEquation (i j : Fin 6) (b : Bool) : QPoly
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: familyEquation
+  line: 196
+  signature_excerpt: 'def familyEquation (i j : Fin 6) (b : Bool) : QPoly'
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: unitaryEquation
+  line: 200
+  signature_excerpt: 'def unitaryEquation (a : Fin 2) (i j : Fin 6) (b : Bool) : QPoly'
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: entryEquation
+  line: 204
+  signature_excerpt: 'def entryEquation (a : Fin 2) (i j : Fin 6) : QPoly'
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: productEquation
+  line: 207
+  signature_excerpt: 'def productEquation (a : Fin 3) (i j : Fin 6) (b : Bool) : QPoly'
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: overlapEquation
+  line: 211
+  signature_excerpt: 'def overlapEquation (a : Fin 3) (i j : Fin 6) : QPoly'
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: UnitaryIndex
+  line: 186
+  signature_excerpt: abbrev UnitaryIndex
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: EntryIndex
+  line: 187
+  signature_excerpt: abbrev EntryIndex
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normPolynomial
+  line: 56
+  signature_excerpt: 'def normPolynomial (p : CPoly) : QPoly'
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: phasePolynomial
+  line: 86
+  signature_excerpt: 'def phasePolynomial (i : Fin 4) : CPoly'
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: exists_solution_iff_quartet
+  line: 576
+  signature_excerpt: |-
+    theorem exists_solution_iff_quartet :
+        (∃ r : Variable → ℝ, ∀ e, realEval r (equationPolynomial e) = 0) ↔
+          ∃ p : ParameterCoord → ℝ, (∀ e, eval p (parameterPolynomial e) = 0) ∧
+            ∃ U V, Quartet (bases (parameterMatrix p) U V)
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: exists_solution_with_parameters_iff
+  line: 782
+  signature_excerpt: |-
+    theorem exists_solution_with_parameters_iff (p : ParameterCoord → ℝ)
+        (hp : ∀ e, eval p (parameterPolynomial e) = 0) :
+        (∃ r, parameters r = p ∧ ∀ e, realEval r (equationPolynomial e) = 0) ↔
+          ∃ U V, Quartet (bases (parameterMatrix p) U V)
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: equation_degree
+  line: 700
+  signature_excerpt: 'theorem equation_degree (e : Equation) : (equationPolynomial e).totalDegree ≤ 2'
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: exists_bounded_solution_iff_quartet
+  line: 795
+  signature_excerpt: |-
+    theorem exists_bounded_solution_iff_quartet :
+        (∃ r : Variable → ℝ, (∀ e, realEval r (equationPolynomial e) = 0) ∧
+          ∀ i, -(radius i : ℝ) ≤ r i ∧ r i ≤ (radius i : ℝ)) ↔
+          ∃ p : ParameterCoord → ℝ, (∀ e, eval p (parameterPolynomial e) = 0) ∧
+            ∃ U V, Quartet (bases (parameterMatrix p) U V)
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: solution_in_full_box
+  line: 756
+  signature_excerpt: |-
+    theorem solution_in_full_box (r : Variable → ℝ)
+        (h : ∀ e, realEval r (equationPolynomial e) = 0) :
+        ∀ i, -(radius i : ℝ) ≤ r i ∧ r i ≤ (radius i : ℝ)
+  source: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  source_sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: quartet_iff_candidate_equations
+  line: 111
+  signature_excerpt: |-
+    theorem quartet_iff_candidate_equations (r : ParameterCoord → ℝ)
+        (hr : ∀ e, MvPolynomial.eval r (parameterPolynomial e) = 0) :
+        (∃ U V, Quartet (bases (parameterMatrix r) U V)) ↔
+        ∃ u v : Coord → ℝ,
+          (candidate u).conjTranspose * candidate u = 1 ∧
+          PairMU 1 (candidate u) ∧ PairMU (parameterMatrix r) (candidate u) ∧
+          Vanishing (triple (parameterMatrix r) (candidate u)) v
+  source: lean4/SzollosiQuartetSystem.lean
+  repository: this_repository
+  source_sha256: 6fa7c1b58f88056161fc9ea83fc5ed61a6421f17b0bd3e34c94662d65aa6ad3b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: mu_identity_coordinates_bounded
+  line: 136
+  signature_excerpt: |-
+    theorem mu_identity_coordinates_bounded (U : Candidate) (h : PairMU 1 U) :
+        ∀ i, -(1/2 : ℝ) ≤ coordinates U i ∧ coordinates U i ≤ 1/2
+  source: lean4/SzollosiQuartetSystem.lean
+  repository: this_repository
+  source_sha256: 6fa7c1b58f88056161fc9ea83fc5ed61a6421f17b0bd3e34c94662d65aa6ad3b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/SzollosiQuadraticSystem.lean::exists_solution_iff_quartet
+  availability: local
+  symbol: exists_solution_iff_quartet
+  path: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  declaration_status: declaration_found_not_proof_checked
+  line: 576
+  role: source_lead_only
+- original_ref: lean4/SzollosiQuadraticSystem.lean::exists_solution_with_parameters_iff
+  availability: local
+  symbol: exists_solution_with_parameters_iff
+  path: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  declaration_status: declaration_found_not_proof_checked
+  line: 782
+  role: source_lead_only
+- original_ref: lean4/SzollosiQuadraticSystem.lean::equation_degree
+  availability: local
+  symbol: equation_degree
+  path: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  declaration_status: declaration_found_not_proof_checked
+  line: 700
+  role: source_lead_only
+- original_ref: lean4/SzollosiQuadraticSystem.lean::exists_bounded_solution_iff_quartet
+  availability: local
+  symbol: exists_bounded_solution_iff_quartet
+  path: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  declaration_status: declaration_found_not_proof_checked
+  line: 795
+  role: source_lead_only
+- original_ref: lean4/SzollosiQuadraticSystem.lean::solution_in_full_box
+  availability: local
+  symbol: solution_in_full_box
+  path: lean4/SzollosiQuadraticSystem.lean
+  repository: this_repository
+  sha256: 1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25
+  declaration_status: declaration_found_not_proof_checked
+  line: 756
+  role: source_lead_only
+- original_ref: lean4/SzollosiQuartetSystem.lean::quartet_iff_candidate_equations
+  availability: local
+  symbol: quartet_iff_candidate_equations
+  path: lean4/SzollosiQuartetSystem.lean
+  repository: this_repository
+  sha256: 6fa7c1b58f88056161fc9ea83fc5ed61a6421f17b0bd3e34c94662d65aa6ad3b
+  declaration_status: declaration_found_not_proof_checked
+  line: 111
+  role: source_lead_only
+- original_ref: lean4/SzollosiQuartetSystem.lean::mu_identity_coordinates_bounded
+  availability: local
+  symbol: mu_identity_coordinates_bounded
+  path: lean4/SzollosiQuartetSystem.lean
+  repository: this_repository
+  sha256: 6fa7c1b58f88056161fc9ea83fc5ed61a6421f17b0bd3e34c94662d65aa6ad3b
+  declaration_status: declaration_found_not_proof_checked
+  line: 136
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

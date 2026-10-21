@@ -13,7 +13,7 @@
 Transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space. QM_122 section 6 refuses it; QM_020 demotion box fences it.
 
 ### Governing Obligation
-Not constructed in any source paper; asymptotic interface open.
+The completion, its identification with l2 and the lift of bounded exact operators are recorded at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). What stays imported is the selection of the scalar field and of the l2 uniformity from finite-theory primitives, and the review of this node still asks for a verified topology, Cauchy completion and infinite-dimensional carrier.
 
 ### Source Status
 OPEN gap GAP-F001-S000-002 (continuum interface)

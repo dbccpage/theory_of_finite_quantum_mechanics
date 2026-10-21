@@ -1,0 +1,92 @@
+{
+  "task_id": "TFQ-0022",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a4-1",
+  "input_sha256": "b93f00ccc9baf5f45a2390a663b10c7632946af0e841e39f0d2dda88b9ed7c36",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Rust and Python control modules that perform the 81-quadruple replay are not listed under @SRC/@KNOWN+, so they cannot be cited as existing declarations.",
+        "The Lean slice su3_fierz_diagonal_and_offdiagonal_identities was host-refused as nonexistent, so it is not cited as existing here. Its exact location still needs to be confirmed by the host.",
+        "An optional Lean decide/fin_cases proof over all 81 quadruples would be a separate, new artifact. It must not be conflated with the existing scalar slice.",
+        "relation R_scalar_contraction unverified: no existing declaration cited",
+        "relation R_replay_scope unverified: no existing declaration cited",
+        "lemma L_contraction_value unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+        "lemma L_quadruple_count unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+        "near_miss NM_lean_equals_replay unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_contraction_implies_identity unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Rust and Python control modules that perform the 81-quadruple replay are not listed under @SRC/@KNOWN+, so they cannot be cited as existing declarations.",
+      "The Lean slice su3_fierz_diagonal_and_offdiagonal_identities was host-refused as nonexistent, so it is not cited as existing here. Its exact location still needs to be confirmed by the host.",
+      "An optional Lean decide/fin_cases proof over all 81 quadruples would be a separate, new artifact. It must not be conflated with the existing scalar slice.",
+      "relation R_scalar_contraction unverified: no existing declaration cited",
+      "relation R_replay_scope unverified: no existing declaration cited",
+      "lemma L_contraction_value unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+      "lemma L_quadruple_count unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+      "near_miss NM_lean_equals_replay unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_contraction_implies_identity unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_contraction",
+        "expr": "3*(1/2) - 1/6",
+        "value": "4/3",
+        "host_evidence": {
+          "recomputed": "4/3"
+        }
+      },
+      {
+        "id": "N_quadruples",
+        "expr": "3*3*3*3",
+        "value": "81",
+        "host_evidence": {
+          "recomputed": "81"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

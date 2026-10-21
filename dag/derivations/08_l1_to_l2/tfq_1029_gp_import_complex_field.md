@@ -16,7 +16,7 @@ Complex numbers as a complete field. On the finite report host only Z[i] (Gaussi
 No derivation of a field with completion from primitive difference; discrete substitute is the cyclotomic ring Z[zeta_n].
 
 ### Source Status
-imported / lost on this host (GaussInt is not a field)
+imported / lost on this host (GaussInt is not a field); conditional selection of d = 2 among supplied same-family matrix carriers is established by ComplexFieldSelection (node L1-IMP-COMPLEX-FIELD), but the original complete-field claim remains imported because completeness is not derived
 
 ---
 

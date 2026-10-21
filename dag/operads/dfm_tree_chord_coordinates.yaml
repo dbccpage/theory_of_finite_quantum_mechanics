@@ -1,0 +1,134 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DFM-TREE-CHORD-COORDINATES
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: On the triangle graph with tree edges 01, 12 and chord 02, for rational 2x2 matrices
+    with right inverses and an anchored gauge (1, G1, G2), the rooted tree dressing sends both gauged
+    tree links to the identity and sends the gauged chord to U02 U12^{-1} U01^{-1}, the ungauged rooted
+    cycle holonomy.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The general bijection (u_T on V minus the root, dressed chords) <-> H^{|E|} for every
+    finite connected graph and group is stated in the dossier without proof and is not in Lean; the general
+    neutralization and residual statements are TFQ-0398 and TFQ-0399.
+  source_refs:
+  - dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md
+  - papers/ravera_dfm_dossier.md
+  - lean4/RaveraDfmFiniteToContinuum.lean
+  paper_refs:
+  - dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md
+    sha256: babde2f29e3c40f93a89beedd6c19da373c63a6e5b024b47d2ea0297b07c707c
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/dressing_field_dfm_tree_chord_coordinates_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: Mat2Rat
+  line: 6
+  signature_excerpt: structure Mat2Rat
+  source: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  source_sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: spanning_tree_nonabelian_mat2_factorization
+  line: 289
+  signature_excerpt: |-
+    theorem spanning_tree_nonabelian_mat2_factorization
+        (U01 U01_inv U12 U12_inv U02 G1 G1_inv G2 G2_inv : Mat2Rat)
+        (hU01 : Mat2Rat.mul U01 U01_inv = Mat2Rat.id)
+        (hU12 : Mat2Rat.mul U12 U12_inv = Mat2Rat.id)
+        (hG1_r : Mat2Rat.mul G1 G1_inv = Mat2Rat.id)
+        (hG2_r : Mat2Rat.mul G2 G2_inv = Mat2Rat.id) :
+        let U01_g
+  source: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  source_sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: mat2_mul_assoc
+  line: 281
+  signature_excerpt: |-
+    theorem mat2_mul_assoc (A B C : Mat2Rat) :
+        Mat2Rat.mul (Mat2Rat.mul A B) C = Mat2Rat.mul A (Mat2Rat.mul B C)
+  source: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  source_sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/RaveraDfmFiniteToContinuum.lean::spanning_tree_nonabelian_mat2_factorization
+  availability: local
+  symbol: spanning_tree_nonabelian_mat2_factorization
+  path: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  declaration_status: declaration_found_not_proof_checked
+  line: 289
+  role: source_lead_only
+- original_ref: lean4/RaveraDfmFiniteToContinuum.lean::mat2_mul_assoc
+  availability: local
+  symbol: mat2_mul_assoc
+  path: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  declaration_status: declaration_found_not_proof_checked
+  line: 281
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

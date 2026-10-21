@@ -1,0 +1,117 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DFM-TREE-CHANGE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For any two dressings u and u prime, the change field C(v)=u prime(v)u(v) inverse
+    intertwines the residual connections. In particular this describes two spanning-forest choices without
+    commuting group elements.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Use the same multiplication convention in all three languages; distinguish edge residuals
+    from conjugacy-invariant closed-loop observables.
+  source_refs:
+  - dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md
+  - dag/research/finite_graph_dressing.py
+  - dag/research/finite_graph_dressing.rs
+  paper_refs:
+  - dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md
+    sha256: 075660d7fd2591335d28fa43c620f541ac56838207ad1b355ebf8e38903cf9b7
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/dressing_field_dfm_tree_change_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: dress
+  line: 26
+  signature_excerpt: 'def dress (U : E → G) (u : V → G) (e : E) : G'
+  source: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  source_sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: change_dressing
+  line: 111
+  signature_excerpt: |-
+    theorem change_dressing (U : E → G) (u u' : V → G) (e : E) :
+        dress src dst U u' e =
+          (u' (dst e) * (u (dst e))⁻¹) * dress src dst U u e *
+            (u' (src e) * (u (src e))⁻¹)⁻¹
+  source: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  source_sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/FiniteGraphDressing.lean::change_dressing
+  availability: local
+  symbol: change_dressing
+  path: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 111
+  role: source_lead_only
+- original_ref: dag/research/finite_graph_dressing.rs::forest_dressing
+  availability: local
+  symbol: forest_dressing
+  path: dag/research/finite_graph_dressing.rs
+  repository: this_repository
+  sha256: e712f48dcd6dfc980b43b6c3962349ea2d22f92d4854548dcef60561b1705324
+  declaration_status: declaration_found_not_executed
+  line: 46
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

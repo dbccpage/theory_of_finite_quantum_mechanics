@@ -14,9 +14,9 @@
     "primitive_gap": "FQ-GAP-TENSOR-UNIQUENESS remains CONDITIONAL. No primitive derivation of local QM, tomography, calibration or either saturation assumption is asserted."
   },
   "counts": {
-    "dag_nodes": 738,
-    "dag_routes": 735,
-    "master_records": 790
+    "dag_nodes": 821,
+    "dag_routes": 818,
+    "master_records": 873
   },
   "preservation": {
     "upstream_master_records_unchanged_as_data": true,
@@ -304,12 +304,27 @@
         "master_records": 789
       },
       "current": {
-        "dag_nodes": 738,
-        "dag_routes": 735,
-        "master_records": 790
+        "dag_nodes": 819,
+        "dag_routes": 816,
+        "master_records": 871
       },
-      "reason": "L1-IMP-TRANSITION-PROBABILITY-LAW and the route L1-R-DYNAMICS-FINITE-WIGNER were added, and L1-IMP-LINEAR-ISOMETRIC-DYNAMICS rewritten, by dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/tools/dag_update.py (the unified sync then added the new node's master record); no tensor node, route or record changed",
-      "run": "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner"
+      "reason": "the COMPUTATION stage was folded into the unified DAG: 82 domain nodes with 82 routes and 82 master records from the Genesis computation chain, the quantum-computation self-obstruction derivation and the recovered Authorization-as-Incompleteness prose and formal packages; no tensor node, route or master record changed",
+      "run": "branch comp-integration"
+    },
+    {
+      "field": "counts",
+      "previous": {
+        "dag_nodes": 819,
+        "dag_routes": 816,
+        "master_records": 871
+      },
+      "current": {
+        "dag_nodes": 821,
+        "dag_routes": 818,
+        "master_records": 873
+      },
+      "reason": "the integration of the unified DAG with the results of #138, #144, #147 and #150 added the nodes L1-IMP-TRANSITION-PROBABILITY-LAW and FQ-OPERATIONAL-LOCAL-TOMOGRAPHY, the routes L1-R-DYNAMICS-FINITE-WIGNER and FQ-R-OPERATIONAL-LOCAL-TOMOGRAPHY and their master records (TFQ-1047, TFQ-1048); no tensor node, route or master record changed",
+      "run": "branch integration-main"
     }
   ]
 }

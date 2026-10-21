@@ -1,0 +1,271 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-CORNER-ROUTING-DEPHASING
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Every 6x6 complex Hadamard matrix is Hadamard-equivalent to a dephased complex Hadamard
+    matrix D, and D falls into the corner-determinant zero or nonzero case, each assigned a component
+    label.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The labels carry no parameters or family realization; FullModuliClassification follows
+    only from FiveBranchRealizationHypothesis, and the superseded notice withdraws reading this as routing
+    to certified components.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1266_mub6_corner_routing_dephasing.md
+  - papers/core/mub6/mub6_global_proof_atlas.md
+  - papers/core/mub6/research/superseded_notice.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1266_mub6_corner_routing_dephasing.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1266_mub6_corner_routing_dephasing.md
+    sha256: faafeae2c46fa4323b660adb1eeb9cde6e0b55db15047c9f2a94e31647b8c815
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_corner_routing_dephasing_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: CornerRoutingClassification
+  line: 851
+  signature_excerpt: 'def CornerRoutingClassification : Prop'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ModuliComponent
+  line: 46
+  signature_excerpt: inductive ModuliComponent
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: branchToComponent
+  line: 752
+  signature_excerpt: 'noncomputable def branchToComponent (D : Matrix (Fin 6) (Fin 6) ℂ) : ModuliComponent'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: SingularSegreComponent
+  line: 807
+  signature_excerpt: 'def SingularSegreComponent (c : ModuliComponent) : Prop'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: RegularCornerComponent
+  line: 815
+  signature_excerpt: 'def RegularCornerComponent (c : ModuliComponent) : Prop'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: InModuliClassification
+  line: 726
+  signature_excerpt: 'def InModuliClassification (H : Matrix (Fin 6) (Fin 6) ℂ) : Prop'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Realizes
+  line: 182
+  signature_excerpt: |-
+    def Realizes : (c : ModuliComponent) → Param c → Matrix (Fin 6) (Fin 6) ℂ → Prop
+      | .fourierDita, p, D => D = fourierDitaMatrix p
+      | .szollosiDeltoid, p, D => D = szollosiMatrix p
+      | .karlssonVolume, p, D => D = karlssonMatrix p
+      | .taoConfluence, _, D => D = taoMatrix
+      | .haagerupIsolated, _, D => D = haagerupMatrix
+
+    /-!
+    ### Auxiliary Algebraic Lemmas for Szöllősi Matrix Unitarity
+    -/
+
+    lemma unit_mul_star (z : ℂ) (hz : Complex.normSq z = 1) :
+        z * (starRingEnd ℂ) z = 1
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Param
+  line: 86
+  signature_excerpt: |-
+    def Param : ModuliComponent → Type
+      | .fourierDita => FourierDitaParam
+      | .szollosiDeltoid => SzollosiParam
+      | .karlssonVolume => KarlssonParam
+      | .taoConfluence => PUnit
+      | .haagerupIsolated => PUnit
+
+    /-- Invariant bilinear sum z_1 for the Szöllősi family. -/
+    def szollosi_z1 (a b c : ℂ) : ℂ
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: fourierDitaMatrix
+  line: 166
+  signature_excerpt: 'noncomputable def fourierDitaMatrix (p : FourierDitaParam) : Matrix (Fin 6) (Fin
+    6) ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: szollosiMatrix
+  line: 121
+  signature_excerpt: 'def szollosiMatrix (p : SzollosiParam) : Matrix (Fin 6) (Fin 6) ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: karlssonMatrix
+  line: 144
+  signature_excerpt: 'noncomputable def karlssonMatrix (p : KarlssonParam) : Matrix (Fin 6) (Fin 6) ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: taoMatrix
+  line: 133
+  signature_excerpt: 'noncomputable def taoMatrix : Matrix (Fin 6) (Fin 6) ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: haagerupMatrix
+  line: 157
+  signature_excerpt: 'def haagerupMatrix : Matrix (Fin 6) (Fin 6) ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: FourierDitaParam
+  line: 73
+  signature_excerpt: structure FourierDitaParam
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: SzollosiParam
+  line: 55
+  signature_excerpt: structure SzollosiParam
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: KarlssonParam
+  line: 64
+  signature_excerpt: structure KarlssonParam
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: corner_routing_classification
+  line: 860
+  signature_excerpt: 'theorem corner_routing_classification : CornerRoutingClassification'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dephase_and_route_corner
+  line: 738
+  signature_excerpt: |-
+    theorem dephase_and_route_corner (H : Matrix (Fin 6) (Fin 6) ℂ) (hH : IsCH6 H) :
+        InModuliClassification H
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/MasterClassification.lean::corner_routing_classification
+  availability: local
+  symbol: corner_routing_classification
+  path: lean4/MasterClassification.lean
+  repository: this_repository
+  sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  declaration_status: declaration_found_not_proof_checked
+  line: 860
+  role: source_lead_only
+- original_ref: lean4/MasterClassification.lean::dephase_and_route_corner
+  availability: local
+  symbol: dephase_and_route_corner
+  path: lean4/MasterClassification.lean
+  repository: this_repository
+  sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  declaration_status: declaration_found_not_proof_checked
+  line: 738
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

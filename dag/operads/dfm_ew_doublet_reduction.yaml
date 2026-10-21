@@ -1,0 +1,153 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DFM-EW-DOUBLET-REDUCTION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For rational a, b, c, d, r with r != 0 and a^2 + b^2 + c^2 + d^2 = r^2, the four real
+    component identities of u(Phi)^dagger Phi = (0, r) hold; for a real doublet (phi_+, phi_0) on the
+    circle of radius r the real dressing matrix has determinant 1, is orthogonal and maps the doublet
+    to (0, r).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Unitarity and det = 1 of the complex u(Phi), the covariance u(g_L Phi) = g_L u(Phi),
+    and SU(2)_L invariance of the dressed W are not in Lean or Python.
+  source_refs:
+  - dag/derivations/24_dressing_field/tfq_1119_dfm_ew_doublet_reduction.md
+  - papers/ravera_dfm_dossier.md
+  - lean4/RaveraDfmFiniteToContinuum.lean
+  - code/python/src/qm/ravera_dfm.py
+  paper_refs:
+  - dag/derivations/24_dressing_field/tfq_1119_dfm_ew_doublet_reduction.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/24_dressing_field/tfq_1119_dfm_ew_doublet_reduction.md
+    sha256: d250c63111fa554ff156a544f1576c9c3e5c68a4764e3490f3296549bfcc2958
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/dressing_field_dfm_ew_doublet_reduction_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: ewDressingMat
+  line: 39
+  signature_excerpt: 'abbrev ewDressingMat (phiPlus phiZero r : Rat) : Mat2Rat'
+  source: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  source_sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: ewDressedDoublet
+  line: 45
+  signature_excerpt: 'abbrev ewDressedDoublet (phiPlus phiZero r : Rat) : Rat × Rat'
+  source: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  source_sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Rat
+  line: 6
+  signature_excerpt: structure Mat2Rat
+  source: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  source_sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: ew_dfm_goldstone_elimination_on_sphere
+  line: 51
+  signature_excerpt: |-
+    theorem ew_dfm_goldstone_elimination_on_sphere (phiPlus phiZero r : Rat)
+        (hr : r ≠ 0) (hsphere : phiPlus ^ 2 + phiZero ^ 2 = r ^ 2) :
+        Mat2Rat.det (ewDressingMat phiPlus phiZero r) = 1 ∧
+        Mat2Rat.mul (Mat2Rat.transpose (ewDressingMat phiPlus phiZero r))
+                    (ewDressingMat phiPlus phiZero r) = Mat2Rat.id ∧
+        ewDressedDoublet phiPlus phiZero r = (0, r)
+  source: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  source_sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ew_gaussian_4d_goldstone_elimination
+  line: 62
+  signature_excerpt: |-
+    theorem ew_gaussian_4d_goldstone_elimination (a b c d r : Rat)
+        (hr : r ≠ 0) (hsphere4 : a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = r ^ 2) :
+        ((c / r) * a - (d / r) * b + (-a / r) * c + (b / r) * d = 0) ∧
+        ((c / r) * b + (d / r) * a + (-a / r) * d - (b / r) * c = 0) ∧
+        ((a / r) * a + (b / r) * b + (c / r) * c + (d / r) * d = r) ∧
+        ((a / r) * b - (b / r) * a + (c / r) * d - (d / r) * c = 0)
+  source: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  source_sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/RaveraDfmFiniteToContinuum.lean::ew_dfm_goldstone_elimination_on_sphere
+  availability: local
+  symbol: ew_dfm_goldstone_elimination_on_sphere
+  path: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: lean4/RaveraDfmFiniteToContinuum.lean::ew_gaussian_4d_goldstone_elimination
+  availability: local
+  symbol: ew_gaussian_4d_goldstone_elimination
+  path: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  declaration_status: declaration_found_not_proof_checked
+  line: 62
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

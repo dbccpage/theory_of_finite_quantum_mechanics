@@ -1,0 +1,86 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FSP-CAR-EXTERIOR-FOCK
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: On an admitted N-dimensional complex inner-product space V with orthonormal basis
+    e_i, creation c_i^dagger = e_i wedge - and interior annihilation c_i on the exterior algebra of V
+    (dimension 2^N) satisfy {c_i, c_j} = 0 and {c_i, c_j^dagger} = delta_ij; in particular (c_i)^2 = 0.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - complex mode space V with inner product (admitted)
+  - exterior Fock space as the carrier for fermionic states (admitted)
+  source_bottleneck: Mechanize the CAR identities on the exterior algebra; the statistics choice (exterior
+    versus symmetric algebra) is an admitted postulate, and identifying modes with spin-1/2 particles
+    needs the relativistic spin-statistics theorem, outside this finite setting.
+  source_refs:
+  - dag/derivations/26_fsp/tfq_1184_fsp_car_exterior_fock.md
+  - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - papers/core/fsp/theory_of_finite_fsp.md
+  paper_refs:
+  - dag/derivations/26_fsp/tfq_1184_fsp_car_exterior_fock.md
+  source_claim_label: PROVED_PROSE
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/26_fsp/tfq_1184_fsp_car_exterior_fock.md
+    sha256: 9f0b0761172ccbf4d72e797d8bd882d71d54e2deb7c176431775f336df2a2fdd
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/fermion_sign_fsp_car_exterior_fock_proved_prose.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings: []
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - complex mode space V with inner product (admitted)
+    - exterior Fock space as the carrier for fermionic states (admitted)
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - complex mode space V with inner product (admitted)
+    - exterior Fock space as the carrier for fermionic states (admitted)
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

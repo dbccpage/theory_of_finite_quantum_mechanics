@@ -1,0 +1,111 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because
+    δ'' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional):
+    when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after
+    quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers.
+    WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤
+    w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis)
+    specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an
+    explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and
+    reports a value only after an independent certificate check.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Finite-dimensional convex (linear-programming) strong duality, REF-MATH-005 Rockafellar Convex Analysis,
+    specialized to the declared weighted graph complex (assumption)
+  - 'Attainment hypothesis: repair space finite-dimensional over R or C and J a norm, not a seminorm (assumption)'
+  source_bottleneck: Representative independence is unconditional; the weak direction of the duality is
+    not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for
+    arbitrary coefficient spaces.
+  source_refs:
+  - dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:921-940
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:942-944
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1342-1359
+  paper_refs: []
+  source_claim_label: CONDITIONAL
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins: []
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/wdp_pgw_wdp_phi_well_defined_l1_duality_conditional.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound
+  availability: external
+  symbol: dual_certificate_lower_bound
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt
+  availability: external
+  symbol: FenchelDualityReceipt
+  path: omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Finite-dimensional convex (linear-programming) strong duality, REF-MATH-005 Rockafellar Convex Analysis,
+      specialized to the declared weighted graph complex (assumption)
+    - 'Attainment hypothesis: repair space finite-dimensional over R or C and J a norm, not a seminorm
+      (assumption)'
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Finite-dimensional convex (linear-programming) strong duality, REF-MATH-005 Rockafellar Convex Analysis,
+      specialized to the declared weighted graph complex (assumption)
+    - 'Attainment hypothesis: repair space finite-dimensional over R or C and J a norm, not a seminorm
+      (assumption)'
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

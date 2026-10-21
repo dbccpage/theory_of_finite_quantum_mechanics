@@ -1,0 +1,15 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/AuthIncompleteness/MathlibBridge.lean
+source_sha256: ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49
+authority_effect: None
+purpose: 'NEW (not recovered): instantiates the GlobalLift transport with Mathlib Computable and ComputablePred.halting_problem.'
+design:
+  profile: Exact kernel-checked Lean or exact finite replay on the declared carrier; no floating point.
+  frozen_sources: papers/foundations/authorization_incompleteness/evidence/original holds the unported
+    bytes.
+boundaries:
+- Written during recovery, not part of the source folder; compiled with lean against the Mathlib build,
+  not a lakefile root.
+- Gives a no-computable-decider transport for halting only; no Rice instance.
+evidence:
+- papers/foundations/authorization_incompleteness/evidence/README.md

@@ -1,0 +1,96 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "qcdBeta0",
+      "inputs": ["nc", "nf"],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.qcdBeta0",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "qcdBeta1",
+      "inputs": ["nc", "nf"],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.qcdBeta1",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "beta0_definition",
+      "statement": "qcdBeta0 nc nf = (11/3) * nc - (2/3) * nf",
+      "hypotheses": "",
+      "ref": {
+        "path": "code/python/src/qm/qcd_confinement.py",
+        "decl": "qcd_beta0",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "beta0_window",
+      "statement": "For n_f = 0,3,5,6,16,17 the values of qcdBeta0 3 n_f are 11, 9, 23/3, 7, 1/3, and -1/3 respectively.",
+      "relation_to_target": "restates",
+      "depends_on": ["beta0_definition"],
+      "lean_skeleton": "theorem beta0_window : ∀ nf ∈ ({0,3,5,6,16,17} : Finset ℚ), qcdBeta0 3 nf = 11 - (2/3) * nf := by\n  intro nf hnf\n  have : nf = 0 ∨ nf = 3 ∨ nf = 5 ∨ nf = 6 ∨ nf = 16 ∨ nf = 17 := by\n    -- proof omitted\n    sorry\n  cases this <;> simp [qcdBeta0, *, mul_comm, mul_left_comm, add_comm] at *\n",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [
+    {
+      "id": "beta0_n0",
+      "expr": "11 - (2/3)*0",
+      "value": "11"
+    },
+    {
+      "id": "beta0_n3",
+      "expr": "11 - (2/3)*3",
+      "value": "9"
+    },
+    {
+      "id": "beta0_n5",
+      "expr": "11 - (2/3)*5",
+      "value": "23/3"
+    },
+    {
+      "id": "beta0_n6",
+      "expr": "11 - (2/3)*6",
+      "value": "7"
+    },
+    {
+      "id": "beta0_n16",
+      "expr": "11 - (2/3)*16",
+      "value": "1/3"
+    },
+    {
+      "id": "beta0_n17",
+      "expr": "11 - (2/3)*17",
+      "value": "-1/3"
+    }
+  ],
+  "open_obligations": [
+    "continuum mass-gap claim",
+    "weak-coupling limit",
+    "Monte Carlo spectroscopy",
+    "higher-loop MSbar matching"
+  ]
+}

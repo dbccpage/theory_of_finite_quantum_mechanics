@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-At declared real places, an informationally-complete POVM family and a polyhedral frame cone are distinguished (busch_ic_povm_vs_polyhedral_frame_cone); Galois-conjugate negativity versus SOS total positivity is witnessed (galois_conjugate_negativity_vs_sos_total_positivity). Busch-type effect hypotheses are explicit.
+Reviewed scope: Exact six-effect readouts and reconstruction, plus a finite-probe-versus-PSD counterexample, are native/kernel checked at the stated scalar/coordinate scopes.
 
 ### Governing Obligation
-H058 first theorems are field arithmetic (two_mul_half); the effect-algebra content is in the named FiniteQM theorems.
+Unmet after the PFP review: Prove full effect positivity, matrix/trace transport, arbitrary Busch hypotheses and the separate real-place/Galois/SOS claims. Finite informational completeness alone is not full positivity or Born uniqueness. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 H058 theorem family (38 theorems); Rust exact effects at declared cyclotomic real places

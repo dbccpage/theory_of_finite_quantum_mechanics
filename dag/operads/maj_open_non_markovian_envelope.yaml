@@ -1,0 +1,182 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MAJ-OPEN-NON-MARKOVIAN-ENVELOPE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For a bath J(w) = 2 pi alpha w_c^{1-s} w^s e^{-w/w_c}, the envelope C_LZ (hbar/(Delta
+    T))^2 + A_s T^p has minimizer T* = (2 C_LZ hbar^2 / (p A_s Delta^2))^{1/(p+2)}, a positive minimum
+    for alpha > 0, and exponent beta = 2/(p+2).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - structured bosonic bath spectral density (Leggett et al. 1987)
+  source_bottleneck: Derive the bath term A_s T^p and p(s) from the spectral density; the calculus minimization
+    of the stated envelope is not written out.
+  source_refs:
+  - dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md
+  - papers/core/majorana/the_majorana_problem.md
+  - papers/core/majorana/the_majorana_problem_claim_ledger.md
+  paper_refs:
+  - dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md
+  source_claim_label: OPEN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md
+    sha256: 5cb1971f2b52353bd3b0d5a0a077c672ff1cefe290f1f02c4704a93ea1a9c1ee
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/majorana_maj_open_non_markovian_envelope_open.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: NonMarkovianTransferBound
+  line: 323
+  signature_excerpt: structure NonMarkovianTransferBound
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: non_markovian_transfer_defect_pos
+  line: 337
+  signature_excerpt: |-
+    theorem non_markovian_transfer_defect_pos (B : NonMarkovianTransferBound) :
+        B.coupling_alpha * B.braid_time > 0
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pareto_denominator_pos
+  line: 341
+  signature_excerpt: |-
+    theorem pareto_denominator_pos (p : Nat) (h_p : p > 0) :
+        p + 2 > 0
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: non_markovian_pareto_defect_pos
+  line: 345
+  signature_excerpt: |-
+    theorem non_markovian_pareto_defect_pos (c_lz alpha_coupling p : Nat)
+        (h_lz : c_lz > 0) (h_alpha : alpha_coupling > 0) (h_p : p > 0) :
+        c_lz + alpha_coupling + p > 0
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sub_ohmic_exponent_shift
+  line: 350
+  signature_excerpt: |-
+    theorem sub_ohmic_exponent_shift (p_sub p_ohm : Nat) (h_sub : p_sub > p_ohm) :
+        p_sub + 2 > p_ohm + 2
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::NonMarkovianTransferBound
+  availability: local
+  symbol: NonMarkovianTransferBound
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 323
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::non_markovian_transfer_defect_pos
+  availability: local
+  symbol: non_markovian_transfer_defect_pos
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 337
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::pareto_denominator_pos
+  availability: local
+  symbol: pareto_denominator_pos
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 341
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::non_markovian_pareto_defect_pos
+  availability: local
+  symbol: non_markovian_pareto_defect_pos
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 345
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::sub_ohmic_exponent_shift
+  availability: local
+  symbol: sub_ohmic_exponent_shift
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 350
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - structured bosonic bath spectral density (Leggett et al. 1987)
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - structured bosonic bath spectral density (Leggett et al. 1987)
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -185,6 +185,10 @@
     "L1-IMP-TRANSITION-PROBABILITY-LAW": {
       "id": "TFQ-1047",
       "parent": "TFQ-0303"
+    },
+    "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY": {
+      "id": "TFQ-1048",
+      "parent": "TFQ-1019"
     }
   },
   "packet_crosswalk": {
@@ -234,7 +238,8 @@
     "QM_212": "TFQ-0181"
   },
   "domain_stages_added": [
-    "MAJORANA"
+    "MAJORANA",
+    "COMPUTATION"
   ],
   "domain_aliases": [
     {
@@ -704,6 +709,78 @@
       "corpus": "papers/core/mub6/theory_of_finite_mub6.jsonl",
       "alias_of": "MUB-EXACT-PROJECTORS",
       "alias_note": "Same MUB definition at d = 6; the source adds the standard bound d+1 = 7 (not checked here) and says max MUB(6) reduces to extending one given triple, a substitution MUB6-GLOBAL-OBLIGATIONS rejects without a stated reduction."
+    },
+    {
+      "source_id": "COMP-A1",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "alias_of": "PG-INERT-DIAMOND",
+      "alias_note": "The paper starts from the inert two-character mark <>; same statement. The chain adds only the declared labelling mark0 := <> (COMP-C1a)."
+    },
+    {
+      "source_id": "COMP-A2",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "alias_of": "PG-FREE-MONOID-NONISO",
+      "alias_note": "Words over a finite alphabet form the free monoid; the non-isomorphism across alphabet sizes is cited from the trunk, not re-proved. The coding of C8 is an injective homomorphism, not an isomorphism."
+    },
+    {
+      "source_id": "COMP-A3",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "alias_of": "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
+      "alias_note": "Closed Genesis saturates and any further requirement needs external supply; cited as the Genesis form of the bounded-regime obstruction. Same statement, used as input to COMP-C4b."
+    },
+    {
+      "source_id": "COMP-A4",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "alias_of": "PG-DEMAND-ACCOUNTING",
+      "alias_note": "The accounting identity s_next = s - d + b is cited as stated; only the growth arithmetic on top of it is new (COMP-C4c)."
+    },
+    {
+      "source_id": "AIT-1",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "alias_of": "PG-HISTORY-REPORT-CRITERION",
+      "alias_note": "Same fiber-constancy obstruction for a report-only decision; AIT-1 states only the necessary direction for a Bool-valued validity predicate and establishes it by a three-step equality chain, while the trunk node also records the converse and uniqueness."
+    },
+    {
+      "source_id": "AIT-P0",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "alias_of": "PG-HISTORY-REPORT-CRITERION",
+      "alias_note": "PO-000 AuthorizationBoundary.no_report_decision is the same split-fiber obstruction under another name; PO-000 is external to this checkout, so the trunk node is the local statement."
+    },
+    {
+      "source_id": "SEAL-TC-00",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "alias_of": "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT",
+      "alias_note": "Same separation of a presented inscription distinction from an internal or semantic class, here for tape-cell inscriptions; adds the typing fence that a declared blank, an unread observation outcome and a meta-level absent cell are three different carriers."
+    },
+    {
+      "source_id": "SEAL-TC-04",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "alias_of": "TFQ-0217",
+      "alias_note": "Same scope: a replay shows only the result of a fixed checker on frozen bytes, as a digest shows only byte agreement; SEAL-TC-04 adds a list of required substitution attacks on table, parser, decoder, checker, schema, environment and policy binding."
+    },
+    {
+      "source_id": "total_authorization_requires_adequacy",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "alias_of": "PG-HISTORY-REPORT-CRITERION",
+      "alias_note": "Restates the necessity half of the fibre criterion for Bool-valued validity over arbitrary types; the converse and the uniqueness of the factorization are not in the recovered file."
+    },
+    {
+      "source_id": "split_fiber_blocks_total_authorization",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "alias_of": "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER",
+      "alias_note": "Same split-fibre obstruction (equal reports, unequal decisions forbid every report-only decoder), stated for a Bool decision and proved without choice; the existing node is CONDITIONAL on its bridge hand-off."
+    },
+    {
+      "source_id": "can_authorize_requires_adequacy",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "alias_of": "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER",
+      "alias_note": "The same obstruction packaged as a Presentation record with two unused Site labels; nothing beyond the split-fibre statement is added."
+    },
+    {
+      "source_id": "AuthorizationTerminal",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "alias_of": "TFQ-0330",
+      "alias_note": "Three-valued vocabulary authorized, rejected, unresolved only; the refused and not-admitted terminals of the existing record are absent from the recovered inductive."
     }
   ],
   "domain_records": [
@@ -7350,6 +7427,3332 @@
       ],
       "audit": "",
       "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C1a",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1283",
+      "node_id": "COMP-C1-FIRST-SEPARATION-REPLAY",
+      "slug": "comp-c1-first-separation-replay",
+      "name": "First separation replay as the two-mark alphabet",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_claimed_status": "COMPUTATIONALLY_CHECKED",
+      "statement": "In the byte copy of the sealed event semantics, the history of two admitted data, one unary form, one instance on datum 0 and the demand (0,1) replays from the empty regime to a regime in which datum 0 and datum 1 are told apart by a unary instance, giving the alphabet {mark0, mark1}; a fixed instance.",
+      "obligation": "The cost-two minimum (TFQ-0381) and the external definition of separable are not re-proved here; mark0 as <> and mark1 as its first separated successor is a declared labelling.",
+      "imported_structure": [
+        "Labelling mark0 := <> and mark1 := its first separated successor (declared)",
+        "Byte copy of the sealed Regime, Event, stepE, replayE from the staged SupplyErasure.lean"
+      ],
+      "parent_nodes": [
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER",
+        "PG-GEN-COLLAPSE-AND-FIRST-SEPARATION",
+        "PG-INERT-DIAMOND"
+      ],
+      "parent_record": "TFQ-0486",
+      "lean": [
+        "lean4/GenesisComputation.lean::first_separation_replay",
+        "lean4/GenesisComputation.lean::first_separation_pairwise",
+        "lean4/GenesisComputation.lean::firstSeparationHistory",
+        "lean4/GenesisComputation.lean::Mark2.toDatum_bijective"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::replay_e",
+        "code/rust/src/wdp/genesis_tm.rs::first_separation_history",
+        "code/rust/src/wdp/genesis_tm.rs::step_e"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::replay",
+        "code/python/src/qm/genesis_tm.py::FIRST_SEPARATION",
+        "code/python/src/qm/genesis_tm.py::step_e"
+      ],
+      "external_witnesses": [
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean (sealed events; staged copy in dag/results/PG-GEN-SUPPLY-ERASURE)"
+      ],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:56-66",
+        "dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean:24-70"
+      ],
+      "audit": "first_separation_replay is a decide on a closed term (replayE of the five-event history equals the stated regime); first_separation_pairwise shows the unary separation of the single pair (0,1) by case split on the two data.",
+      "see_also": [
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+        "PG-GEN-SUPPLY-NO-OP"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C1b",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1284",
+      "node_id": "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+      "slug": "comp-c1-canonical-separated-alphabet",
+      "name": "Canonical regimes on n marks are pairwise separated",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For every n, the regime with n data, n-1 unary forms and the instances (i,[i]) is pairwise separated under the unary separation mirror UnarySep, which is decidable with Collapsed and PairwiseSeparated; two admitted marks with no form are collapsed.",
+      "obligation": "UnarySep is a mirror of the hole-only unary case of the Genesis separable, not the external definition; the lift to all contexts including uniform rules is not done.",
+      "imported_structure": [
+        "UnarySep as a mirror of the unary hole-only separable"
+      ],
+      "parent_nodes": [
+        "COMP-C1-FIRST-SEPARATION-REPLAY",
+        "PG-GEN-IRREFLEXIVE-DISTINCT"
+      ],
+      "parent_record": "TFQ-1283",
+      "lean": [
+        "lean4/GenesisComputation.lean::canonicalRegime_pairwise",
+        "lean4/GenesisComputation.lean::canonicalRegime_four_pairwise_decide",
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/GenesisComputation.lean::unarySep_iff",
+        "lean4/GenesisComputation.lean::pairwiseSeparated_iff"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::pairwise_separated",
+        "code/rust/src/wdp/genesis_tm.rs::canonical_regime",
+        "code/rust/src/wdp/genesis_tm.rs::collapsed"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::pairwise_separated",
+        "code/python/src/qm/genesis_tm.py::canonical_regime",
+        "code/python/src/qm/genesis_tm.py::collapsed"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:56-66",
+        "lean4/GenesisComputation.lean:214-232"
+      ],
+      "audit": "canonicalRegime_pairwise is a theorem for all n by cases on which of two distinct marks has index below n-1; canonicalRegime_four_pairwise_decide and two_marks_without_forms_collapsed are decide on closed terms; the Decidable instances come from unarySep_iff.",
+      "see_also": [
+        "COMP-C1-IDENTITY-CONVENTION-INPUT"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C1c",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1285",
+      "node_id": "COMP-C1-IDENTITY-CONVENTION-INPUT",
+      "slug": "comp-c1-identity-convention-input",
+      "name": "Identity convention is a declared input of the computation alphabet",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_claimed_status": "IMPORTED_ASSUMPTION",
+      "statement": "Whether an admitted mark is a new state or one internal class with another depends on the identity convention, which is not derived; on a pairwise separated alphabet the opaque and exact-inscription conventions give the same marks, so blank, state and end marks must be admitted as separated marks or the convention declared.",
+      "obligation": "Declare the identity convention before reading any mark of a machine alphabet as a new state; nothing in this chain derives it.",
+      "imported_structure": [
+        "Identity convention (opaque or exact-inscription), declared"
+      ],
+      "parent_nodes": [
+        "COMP-C1-FIRST-SEPARATION-REPLAY",
+        "PGW-IDENTITY-CONVENTION-UNDECIDABLE"
+      ],
+      "parent_record": "TFQ-1283",
+      "lean": [
+        "lean4/GenesisComputation.lean::separated_marks_not_collapsed",
+        "lean4/GenesisComputation.lean::IdentityConvention"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:56-66"
+      ],
+      "audit": "separated_marks_not_collapsed states that a pairwise separated regime has no collapsed pair of distinct marks; IdentityConvention is an inductive type with two constructors and no theorem about it.",
+      "see_also": [
+        "PGW-IDENTITY-CONVENTION-UNDECIDABLE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C2a",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1286",
+      "node_id": "COMP-C2-WORD-REWRITING",
+      "slug": "comp-c2-word-rewriting",
+      "name": "Words and one-hole rewriting steps",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_claimed_status": "DEFINITION",
+      "statement": "Words are lists over the marks; Step R holds between w and w2 when w = u ++ l ++ v and w2 = u ++ r ++ v for a rule l -> r of R; Reach is the reflexive-transitive closure; step_iff_plug reads a step as a rule applied under a one-hole context.",
+      "obligation": "The rule predicate is supplied by the regime; Genesis Step3 is a different relation (COMP-C2e).",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+        "PG-FREE-MONOID-NONISO"
+      ],
+      "parent_record": "TFQ-1284",
+      "lean": [
+        "lean4/GenesisComputation.lean::Step",
+        "lean4/GenesisComputation.lean::Reach",
+        "lean4/GenesisComputation.lean::Ctx.plug",
+        "lean4/GenesisComputation.lean::step_iff_plug",
+        "lean4/GenesisComputation.lean::Step.context",
+        "lean4/GenesisComputation.lean::Reach.context"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::Srs",
+        "code/rust/src/wdp/genesis_tm.rs::Rule"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::successors"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:68-74",
+        "lean4/GenesisComputation.lean:267-271"
+      ],
+      "audit": "Step is an existential over the context (u,v) and the rule; Ctx.plug is u ++ w ++ v; step_iff_plug is the equivalence with the plug form; Step.context adds an outer context.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C2b",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1287",
+      "node_id": "COMP-C2-LETTER-RENAME-COMMUTES",
+      "slug": "comp-c2-letter-rename-commutes",
+      "name": "Letter renaming commutes with word steps and reach",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For every letter map f, a step or reach on words gives a step or reach of the f-image rule predicate on the f-image words; for an injective f a reach of the image comes from a reach of the original (Reach.of_map).",
+      "obligation": "This is the word-side analogue of Genesis Step.rename and Reach.rename, not an instance of them.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C2-WORD-REWRITING",
+        "PG-GEN-REWRITING-COMMUTATION"
+      ],
+      "parent_record": "TFQ-1286",
+      "lean": [
+        "lean4/GenesisComputation.lean::Step.map",
+        "lean4/GenesisComputation.lean::Reach.map",
+        "lean4/GenesisComputation.lean::Reach.of_map",
+        "lean4/GenesisComputation.lean::Step.exists_of_map",
+        "lean4/GenesisComputation.lean::Reach.exists_of_map"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::map_marks",
+        "code/rust/src/wdp/genesis_tm.rs::letter_map_commutes_with_steps"
+      ],
+      "python": [],
+      "external_witnesses": [
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::Step3.rename (staged partial copy in dag/results/PG-GEN-REWRITING-COMMUTATION)"
+      ],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:68-74",
+        "lean4/GenesisComputation.lean:308-348"
+      ],
+      "audit": "Step.map and Reach.map are by induction on the reach; Step.exists_of_map shows a step from a renamed word lands in the image, which is what Reach.of_map needs when the map is not onto.",
+      "see_also": [
+        "COMP-C2-STEP3-NOT-WORD-STEP"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C2c",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1288",
+      "node_id": "COMP-C2-ONE-HOLE-CONTEXTS",
+      "slug": "comp-c2-one-hole-contexts",
+      "name": "One-hole Genesis contexts are the word contexts",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "A Genesis-style context (a slot tuple with holes, one datum plugged into every hole) has exactly one hole iff it is ofSplit u v for a unique pair of letter lists, and plugging d gives u ++ d :: v; so the one-hole contexts of arity a are the word contexts (u,v) with |u| + |v| = a - 1.",
+      "obligation": "Genesis plugs one datum into every hole while a word rule plugs a word into one hole, which is the wider operation; the sealed regime contexts with forms and rules are not modelled.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C2-WORD-REWRITING",
+        "PGW-CONTEXTS-PLUGGING-PROFILES"
+      ],
+      "parent_record": "TFQ-1286",
+      "lean": [
+        "lean4/GenesisComputation.lean::oneHole_iff_split",
+        "lean4/GenesisComputation.lean::ofSplit_injective",
+        "lean4/GenesisComputation.lean::plug1_ofSplit",
+        "lean4/GenesisComputation.lean::holes_ofSplit",
+        "lean4/GenesisComputation.lean::plug1_ofSplit_eq_plug"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::contexts",
+        "code/rust/src/wdp/genesis_tm.rs::plug1"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::context_counts"
+      ],
+      "external_witnesses": [
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::plug"
+      ],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:68-74",
+        "lean4/GenesisComputation.lean:402-432"
+      ],
+      "audit": "oneHole_iff_split is an iff by induction on the slot list; ofSplit_injective is by induction on the left part; plug1_ofSplit is a simp computation.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C2d",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1289",
+      "node_id": "COMP-C2-CONTEXT-COUNTS-CHECKED",
+      "slug": "comp-c2-context-counts-checked",
+      "name": "Context counts for small data and arity checked by computation",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_claimed_status": "COMPUTATIONALLY_CHECKED",
+      "statement": "For 2 data and arity 3 there are 19 = 3^3 - 2^3 contexts with a hole and 12 = 3*2^2 with exactly one hole (decide); Rust enumerates n from 0 to 4 and a from 1 to 5, Python n from 0 to 3 and a from 1 to 4, and both match (n+1)^a - n^a and a*n^(a-1).",
+      "obligation": "Finite ranges only; the general formula is the trunk record TFQ-0436.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C2-ONE-HOLE-CONTEXTS",
+        "PGW-CONTEXT-COUNT-FORMULA"
+      ],
+      "parent_record": "TFQ-1288",
+      "lean": [
+        "lean4/GenesisComputation.lean::genesis_context_count_n2_a3",
+        "lean4/GenesisComputation.lean::genesis_one_hole_count_n2_a3",
+        "lean4/GenesisComputation.lean::allCtxs"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::context_count_formula_and_one_hole_splits"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::context_counts"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:68-74",
+        "lean4/GenesisComputation.lean:446-458"
+      ],
+      "audit": "The two Lean theorems are decide on closed lists produced by allCtxs; the Rust and Python checks enumerate all slot tuples independently.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C2e",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1290",
+      "node_id": "COMP-C2-STEP3-NOT-WORD-STEP",
+      "slug": "comp-c2-step3-not-word-step",
+      "name": "Genesis Step3 is not shown to be a word rewriting step",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "OPEN",
+      "statement": "Genesis Step3 acts on states of a finite term set, a finite assertion set and two named terms by add-term, add-assertion and identify (a non-injective merge); no word encoding of these states under which each move is a word step is proved or claimed.",
+      "obligation": "Construct a word encoding of Step3 states under which addTerm, addAssertion and identify are word steps, or show that none exists.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C2-LETTER-RENAME-COMMUTES",
+        "PG-GEN-REWRITING-COMMUTATION"
+      ],
+      "parent_record": "TFQ-1287",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Cost.lean::Step3 (not staged in this checkout)"
+      ],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:76-76",
+        "dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:24-100"
+      ],
+      "audit": "The staged Rename.lean defines rename on St and establishes Step3.rename and Reach3.rename; nothing in this chain relates St to words, so the correspondence is recorded as the exact place where Genesis Step is narrower and different.",
+      "see_also": [
+        "COMP-C2-LETTER-RENAME-COMMUTES"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C3a",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1291",
+      "node_id": "COMP-C3-BOUNDED-REACH-DECIDABLE",
+      "slug": "comp-c3-bounded-reach-decidable",
+      "name": "Bounded reachability is decidable on a finite configuration space",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For k marks, a finite rule list and a length bound L, ReachB is decided by an explicit closure of at most card(wordsLE L) rounds (decideReachB_iff); the configuration space has exactly 1 + k + ... + k^L words (card_wordsLE); Step on a finite rule list is decidable (mem_succList).",
+      "obligation": "This decides rewriting reachability in a declared bound; the decision procedure over all Genesis contexts of the sealed regime asked by TFQ-0497 is not built (COMP-C3c).",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C2-WORD-REWRITING",
+        "PGW-RUNS-PAST-DECLARED-BOUNDS"
+      ],
+      "parent_record": "TFQ-1286",
+      "lean": [
+        "lean4/GenesisComputation.lean::reachB_iff",
+        "lean4/GenesisComputation.lean::decideReachB_iff",
+        "lean4/GenesisComputation.lean::card_wordsLE",
+        "lean4/GenesisComputation.lean::mem_succList",
+        "lean4/GenesisComputation.lean::reachSet_card_le",
+        "lean4/GenesisComputation.lean::rtg_iff_mem_reachN_card"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::reach_set_bounded",
+        "code/rust/src/wdp/genesis_tm.rs::decide_reach",
+        "code/rust/src/wdp/genesis_tm.rs::config_space_size",
+        "code/rust/src/wdp/genesis_tm.rs::bounded_decider_is_exact_on_a_closed_system"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::bounded_reach",
+        "code/python/src/qm/genesis_tm.py::decide_reach",
+        "code/python/src/qm/genesis_tm.py::config_space_size"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:78-90",
+        "lean4/GenesisComputation.lean:678-708"
+      ],
+      "audit": "reachB_iff identifies ReachB with membership in reachSet = reachN with card(wordsLE) rounds, using the stabilisation argument reachN_grow and reachN_card_stable; card_wordsLE is a recurrence 1 + k * card.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C3b",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1292",
+      "node_id": "COMP-C3-VERDICT-SOUND",
+      "slug": "comp-c3-verdict-sound",
+      "name": "The bounded verdict is sound for the unbounded relation",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "The three-valued verdict returns reachable only for a true Reach, returns unreachable only when the bounded search is closed so no longer path exists, and otherwise returns a witness step that leaves the bound; every Reach is a ReachB for some bound.",
+      "obligation": "Soundness only; the verdict boundExceeded does not decide the unbounded question.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C3-BOUNDED-REACH-DECIDABLE"
+      ],
+      "parent_record": "TFQ-1291",
+      "lean": [
+        "lean4/GenesisComputation.lean::verdict_reachable_sound",
+        "lean4/GenesisComputation.lean::verdict_unreachable_sound",
+        "lean4/GenesisComputation.lean::verdict_boundExceeded_witness",
+        "lean4/GenesisComputation.lean::closed_reach",
+        "lean4/GenesisComputation.lean::reach_iff_reachB_of_closed",
+        "lean4/GenesisComputation.lean::Reach.exists_bound",
+        "lean4/GenesisComputation.lean::ReachB.reach"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::Verdict",
+        "code/rust/src/wdp/genesis_tm.rs::bounded_decider_reports_bound_exceeded",
+        "code/rust/src/wdp/genesis_tm.rs::start_outside_bound_is_refused"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::decide_reach",
+        "code/python/tests/test_genesis_tm.py::test_growth_rule_is_refused_with_bound_exceeded"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:78-90",
+        "lean4/GenesisComputation.lean:783-843"
+      ],
+      "audit": "verdict_unreachable_sound uses closed_reach, which keeps every reached word inside reachSet when no step leaves the bound; Reach.exists_bound takes the maximum length along a path.",
+      "see_also": [
+        "AUTH-FUEL-EXHAUSTION-TYPED-STOP",
+        "AUTH-G5C-TERMINALIZATION-CONSEQUENCE",
+        "AUTHF-TERMINAL-CLOSED-TWO-SIDED"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C3c",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1293",
+      "node_id": "COMP-C3-CONTEXT-DECISION-PARTIAL",
+      "slug": "comp-c3-context-decision-partial",
+      "name": "Unary collapse is decidable; TFQ-0497 stays open",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "OPEN",
+      "statement": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
+      "obligation": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C3-BOUNDED-REACH-DECIDABLE",
+        "PGW-CONTEXT-DECISION-PROCEDURE"
+      ],
+      "parent_record": "TFQ-1291",
+      "lean": [
+        "lean4/GenesisComputation.lean::unarySep_iff",
+        "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::unary_sep",
+        "code/rust/src/wdp/genesis_tm.rs::collapsed"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::unary_sep",
+        "code/python/src/qm/genesis_tm.py::collapsed"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:88-88",
+        "lean4/GenesisComputation.lean:127-155"
+      ],
+      "audit": "The instances come from unarySep_iff and pairwiseSeparated_iff over List.range of the admitted forms; they cover only unary forms with the hole as the sole slot.",
+      "see_also": [
+        "PGW-CONTEXT-DECISION-PROCEDURE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C3d",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1294",
+      "node_id": "COMP-C3-RUNNER-NEEDS-BLANKS",
+      "slug": "comp-c3-runner-needs-blanks",
+      "name": "A right-running machine needs an unbounded supply of fresh blanks",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "The one-state machine that moves right forever reaches words of every length under the TM0 encoding, so its bounded search is closed at no bound and the bounded decider returns boundExceeded at every bound; any regime that reaches arbitrarily long words is closed at no bound.",
+      "obligation": "One concrete machine; the general statement for every general-purpose regime is conditional (COMP-C3e).",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C3-VERDICT-SOUND",
+        "COMP-C5-TM0-STEP-SIMULATION"
+      ],
+      "parent_record": "TFQ-1292",
+      "lean": [
+        "lean4/GenesisCompTM.lean::runner_unbounded",
+        "lean4/GenesisCompTM.lean::runner_step",
+        "lean4/GenesisCompTM.lean::runner_not_closed",
+        "lean4/GenesisCompTM.lean::runner_unboundedSupply",
+        "lean4/GenesisComputation.lean::not_closed_of_unbounded",
+        "lean4/GenesisComputation.lean::closed_bounds_reach"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::right_runner",
+        "code/rust/src/wdp/genesis_tm.rs::right_runner_is_refused_by_every_bounded_decider"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::right_runner",
+        "code/python/tests/test_genesis_tm.py::test_right_runner_needs_unbounded_blanks"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:90-90",
+        "lean4/GenesisCompTM.lean:448-468"
+      ],
+      "audit": "runner_step applies the right-end rule once per step so runnerWord n goes to runnerWord (n+1) with length n+4; not_closed_of_unbounded applies closed_reach at a bound below the reached length.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C3e",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1295",
+      "node_id": "COMP-C3-NO-FIXED-BOUND",
+      "slug": "comp-c3-no-fixed-bound",
+      "name": "No fixed length bound suffices for a general-purpose regime",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_claimed_status": "CONDITIONAL",
+      "statement": "If the map from an input to its start word were computable and one length bound witnessed every halting start word inside the bound, normal-form reachability would be decidable, contradicting nfReach_not_computable.",
+      "obligation": "Prove startWord_computable (COMP-C7c) and state the uniform version in Lean.",
+      "imported_structure": [
+        "startWord_computable (open lemma)"
+      ],
+      "parent_nodes": [
+        "COMP-C3-RUNNER-NEEDS-BLANKS",
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "parent_record": "TFQ-1294",
+      "lean": [
+        "lean4/GenesisComputation.lean::reachB_iff",
+        "lean4/GenesisCompUniv.lean::nfReach_not_computable"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:90-90"
+      ],
+      "audit": "The implication is argued in prose from reachB_iff and nfReach_not_computable; no single Lean declaration states it.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C4a",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1296",
+      "node_id": "COMP-C4-STEPE-UNCAPPED",
+      "slug": "comp-c4-stepe-uncapped",
+      "name": "Genesis stepE has no cap on admission",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "In the byte copy of stepE, k copies of admitDatum replay to data = base.data + k, for every n a history reaches at least n data, and no event lowers the number of data; unbounded admission is permitted by the event semantics.",
+      "obligation": "This is a statement about the copied stepE; every admitDatum is a host event and nothing here generates them.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C1-FIRST-SEPARATION-REPLAY",
+        "PG-GEN-SUPPLY-NO-OP"
+      ],
+      "parent_record": "TFQ-1283",
+      "lean": [
+        "lean4/GenesisComputation.lean::replay_admitDatum_replicate",
+        "lean4/GenesisComputation.lean::genesis_unbounded_admission",
+        "lean4/GenesisComputation.lean::stepE_data_mono",
+        "lean4/GenesisComputation.lean::stepE"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::step_e",
+        "code/rust/src/wdp/genesis_tm.rs::first_separation_replays_and_admission_is_uncapped"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::step_e",
+        "code/python/src/qm/genesis_tm.py::replay"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:92-99",
+        "lean4/GenesisComputation.lean:861-889"
+      ],
+      "audit": "replay_admitDatum_replicate is by induction on k using that replayE of a cons is the bind of stepE; stepE_data_mono is a case split on the six event kinds.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C4b",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1297",
+      "node_id": "COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+      "slug": "comp-c4-unbounded-supply-import",
+      "name": "Unbounded admission of fresh blank marks is a declared import",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_claimed_status": "IMPORTED_ASSUMPTION",
+      "statement": "A general-purpose rewriting regime needs words of unbounded length, which in Genesis terms is unbounded admission of fresh marks; stepE permits it but every admitDatum is a host event, closed Genesis saturates (TFQ-0451, TFQ-0487), TFQ-0482 gives unbounded sequence length over bounded state and not unbounded space, and no endogenous generator exists (TFQ-0504).",
+      "obligation": "Derive an endogenous source of unboundedly many admitted data (TFQ-0504) or keep the supply as a recorded host input.",
+      "imported_structure": [
+        "Unbounded admission of fresh blank marks, supplied by host events (declared, not derived)"
+      ],
+      "parent_nodes": [
+        "COMP-C4-STEPE-UNCAPPED",
+        "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
+        "PGW-GO-LEFTOVER-UNBOUNDEDNESS",
+        "PGW-ENDOGENOUS-DEMAND-OB1"
+      ],
+      "parent_record": "TFQ-1296",
+      "lean": [
+        "lean4/GenesisComputation.lean::UnboundedSupply",
+        "lean4/GenesisComputation.lean::not_closed_of_unbounded"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:92-99",
+        "dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md:8-20"
+      ],
+      "audit": "UnboundedSupply is a definition (for every L a word longer than L is reachable); not_closed_of_unbounded draws the consequence for the bounded decider; no theorem derives the supply.",
+      "see_also": [
+        "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
+        "PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS",
+        "QCV-FRESH-MARK-SUPPLY-BRIDGE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C4c",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1298",
+      "node_id": "COMP-C4-SUPPLY-GROWTH",
+      "slug": "comp-c4-supply-growth",
+      "name": "Supply growth under demand accounting",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "If in s_next = s - d + b with d_n <= s_n every round has strictly more births than discharges, then the active count is at least s_0 + n after n rounds; the births are an input.",
+      "obligation": "Genesis does not derive the births; this is arithmetic on the accounting identity.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+        "PG-DEMAND-ACCOUNTING"
+      ],
+      "parent_record": "TFQ-1297",
+      "lean": [
+        "lean4/GenesisComputation.lean::supply_growth"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:92-99",
+        "lean4/GenesisComputation.lean:883-893"
+      ],
+      "audit": "supply_growth is an omega argument per round and an induction on n; it uses the three hypotheses on d, s and b and no Genesis definition.",
+      "see_also": [
+        "QCV-FRESH-MARK-SUPPLY-BRIDGE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C5a",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1299",
+      "node_id": "COMP-C5-TM0-STEP-SIMULATION",
+      "slug": "comp-c5-tm0-step-simulation",
+      "name": "Turing machine steps are rewrite steps, in both directions",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For a Mathlib TM0 machine encoded on configuration words lend, left cells, q, a, right cells, rend, a machine step from a represented configuration is matched by a rewrite step to a word representing the next configuration, and every rewrite step of a represented word is the machine step; a word represents at most one configuration.",
+      "obligation": "Machines in the TM0 form only (one write or one move per transition); representations allow blank padding at the far ends; the end rules write a fresh blank, the only place where words grow.",
+      "imported_structure": [
+        "Mathlib Turing.TM0.Machine, step, Reaches, Tape, ListBlank"
+      ],
+      "parent_nodes": [
+        "COMP-C2-WORD-REWRITING",
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET"
+      ],
+      "parent_record": "TFQ-1286",
+      "lean": [
+        "lean4/GenesisCompTM.lean::step_fwd",
+        "lean4/GenesisCompTM.lean::step_bwd",
+        "lean4/GenesisCompTM.lean::rep_exists",
+        "lean4/GenesisCompTM.lean::rep_unique",
+        "lean4/GenesisCompTM.lean::Rules",
+        "lean4/GenesisCompTM.lean::cfgWord",
+        "lean4/GenesisCompTM.lean::split_st"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::rules_of",
+        "code/rust/src/wdp/genesis_tm.rs::encode",
+        "code/rust/src/wdp/genesis_tm.rs::decode",
+        "code/rust/src/wdp/genesis_tm.rs::check_step_simulation",
+        "code/rust/src/wdp/genesis_tm.rs::tm_step"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::rules_for",
+        "code/python/src/qm/genesis_tm.py::encode",
+        "code/python/src/qm/genesis_tm.py::decode",
+        "code/python/src/qm/genesis_tm.py::run_checked"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:101-112",
+        "lean4/GenesisCompTM.lean:213-373"
+      ],
+      "audit": "step_fwd splits on the transition and on whether the relevant tape side is empty; step_bwd locates the redex at the unique state mark with split_st and reads the neighbours; rep_unique decodes by the same split.",
+      "see_also": [
+        "AUTH-DTM0-FINITE-RULE-MACHINE",
+        "AUTHF-DTM0-RULE-MACHINE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C5b",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1300",
+      "node_id": "COMP-C5-CLOSURES-HALTING",
+      "slug": "comp-c5-closures-halting",
+      "name": "Reach of represented words is Reaches of the machine, and halting is an irreducible word",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "Forward and backward simulation extend to the closures, and the machine halts from c iff some word reachable from a word representing c is irreducible.",
+      "obligation": "Existential in the target word because a configuration has many padded representations.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C5-TM0-STEP-SIMULATION"
+      ],
+      "parent_record": "TFQ-1299",
+      "lean": [
+        "lean4/GenesisCompTM.lean::reaches_fwd",
+        "lean4/GenesisCompTM.lean::reach_bwd",
+        "lean4/GenesisCompTM.lean::halts_iff",
+        "lean4/GenesisCompTM.lean::Halts",
+        "lean4/GenesisCompTM.lean::Irreducible"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:101-112",
+        "lean4/GenesisCompTM.lean:390-440"
+      ],
+      "audit": "reaches_fwd and reach_bwd are inductions on the closure using step_fwd and step_bwd; halts_iff uses that an irreducible represented word has no machine step.",
+      "see_also": [
+        "AUTHF-DTM0-SIMULATION-OPEN",
+        "AUTH-DTM2-INPUT-REQUEST-PLANNED"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C5c",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1301",
+      "node_id": "COMP-C5-MARK-BUDGET-RULE-LIST",
+      "slug": "comp-c5-mark-budget-rule-list",
+      "name": "Mark budget and finite rule list of an encoded machine",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "A machine with tape alphabet G and state type L uses |G| + |L| + 2 marks, all of which must be admitted and separated; for finite G and L the rule set is the finite list ruleList M and the bounded decider of C3 applies to it.",
+      "obligation": "The enumeration of marks by an equivalence with Fin is a declared choice.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C5-TM0-STEP-SIMULATION",
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET"
+      ],
+      "parent_record": "TFQ-1299",
+      "lean": [
+        "lean4/GenesisCompTM.lean::card_sym",
+        "lean4/GenesisCompTM.lean::ruleList",
+        "lean4/GenesisCompTM.lean::mem_ruleList",
+        "lean4/GenesisCompTM.lean::reach_ruleList_iff",
+        "lean4/GenesisComputation.lean::canonicalRegime_pairwise"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:101-112",
+        "lean4/GenesisCompTM.lean:489-525"
+      ],
+      "audit": "card_sym is the cardinality of a sum type; mem_ruleList shows ruleList M contains exactly the pairs of Rules M by case analysis on the transition.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C5d",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1302",
+      "node_id": "COMP-C5-SMALL-MACHINES-CHECKED",
+      "slug": "comp-c5-small-machines-checked",
+      "name": "Small machines checked by exact computation",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_claimed_status": "COMPUTATIONALLY_CHECKED",
+      "statement": "Rust: a binary incrementer on inputs 0 to 40 with 0 to 2 padding cells (steps 2c+1, value n+1), the two-state busy beaver in the TM0 form (12 steps, 4 ones), step simulation on all 3150 small configurations of that machine; Python: all 6561 two-state two-symbol TM0 machines for 20 steps from the blank tape with a different tape representation; Lean: one write-and-halt machine.",
+      "obligation": "Finite instances; they are not a proof for other machines.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C5-CLOSURES-HALTING"
+      ],
+      "parent_record": "TFQ-1300",
+      "lean": [
+        "lean4/GenesisCompTM.lean::writeOne_halts"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::incrementer",
+        "code/rust/src/wdp/genesis_tm.rs::busy_beaver_2",
+        "code/rust/src/wdp/genesis_tm.rs::incrementer_matches_machine_for_all_small_inputs",
+        "code/rust/src/wdp/genesis_tm.rs::busy_beaver_2_matches_machine",
+        "code/rust/src/wdp/genesis_tm.rs::step_simulation_holds_on_every_small_configuration"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::all_two_state_machines",
+        "code/python/src/qm/genesis_tm.py::incrementer",
+        "code/python/src/qm/genesis_tm.py::busy_beaver_2",
+        "code/python/tests/test_genesis_tm.py::test_all_two_state_two_symbol_machines_step_simulation"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:101-112",
+        "code/rust/src/wdp/genesis_tm.rs:777-870"
+      ],
+      "audit": "The Rust and Python checks compare every step against the machine step; the Python representation is a dictionary of cells with a position-free canonical form; writeOne_halts is a Lean proof for one machine.",
+      "see_also": [
+        "AUTHF-DTM0-FIXTURES"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C6a",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1303",
+      "node_id": "COMP-C6-EVAL-HAS-A-CODE",
+      "slug": "comp-c6-eval-has-a-code",
+      "name": "One fixed code evaluates every code",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "There is a fixed Nat.Partrec.Code u with eval u (pair (encode c) n) = eval c n for all codes c and inputs n, and a fixed ToPartrec code computing the same function on one natural number.",
+      "obligation": "Imported infrastructure is cited, not re-derived; the codes are existence statements chosen by Classical.choose.",
+      "imported_structure": [
+        "Mathlib Nat.Partrec.Code.eval_part and exists_code",
+        "Mathlib Turing.ToPartrec.Code.exists_code"
+      ],
+      "parent_nodes": [
+        "COMP-C5-CLOSURES-HALTING"
+      ],
+      "parent_record": "TFQ-1300",
+      "lean": [
+        "lean4/GenesisCompUniv.lean::univFun_partrec",
+        "lean4/GenesisCompUniv.lean::universal_code",
+        "lean4/GenesisCompUniv.lean::univCode_exists",
+        "lean4/GenesisCompUniv.lean::univCode_eval"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:114-127",
+        "lean4/GenesisCompUniv.lean:62-76"
+      ],
+      "audit": "universal_code applies exists_code to the partial recursive function m -> eval (ofNat (unpair m).1) (unpair m).2, whose partial recursiveness is eval_part composed with computable projections.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C6b",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1304",
+      "node_id": "COMP-C6-TM2-OUTPUT-FORM",
+      "slug": "comp-c6-tm2-output-form",
+      "name": "The fixed TM2 machine computes Code.eval in output form",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "The fixed TM2 machine PartrecToTM2.tr, started on init of the fixed code and the paired input, evaluates to halt applied to the value of Code.eval c n exactly when that value is defined.",
+      "obligation": "TM2 level only; the corresponding output form at the TM0 level is open (COMP-C6e).",
+      "imported_structure": [
+        "Mathlib PartrecToTM2.tr_eval"
+      ],
+      "parent_nodes": [
+        "COMP-C6-EVAL-HAS-A-CODE"
+      ],
+      "parent_record": "TFQ-1303",
+      "lean": [
+        "lean4/GenesisCompUniv.lean::tm2_computes_eval"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:114-127",
+        "lean4/GenesisCompUniv.lean:149-157"
+      ],
+      "audit": "tm2_computes_eval rewrites with Mathlib tr_eval, univCode_eval and univFun_apply.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C6c",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1305",
+      "node_id": "COMP-C6-TM0-HALTING-EQUIVALENCE",
+      "slug": "comp-c6-tm0-halting-equivalence",
+      "name": "The fixed composite TM0 machine halts iff the evaluation halts",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For the fixed TM0 machine M0 = TM1to0.tr (TM2to1.tr PartrecToTM2.tr) and the explicit initial configurations initCfg0, M0 halts from initCfg0 (pair (encode c) n) iff Code.eval c n is defined.",
+      "obligation": "Halting form only; the TM0 output form is open (COMP-C6e).",
+      "imported_structure": [
+        "Mathlib TM2to1.tr_respects",
+        "Mathlib TM1to0.tr_respects",
+        "Mathlib StateTransition.tr_eval_dom"
+      ],
+      "parent_nodes": [
+        "COMP-C6-TM2-OUTPUT-FORM",
+        "COMP-C5-CLOSURES-HALTING"
+      ],
+      "parent_record": "TFQ-1304",
+      "lean": [
+        "lean4/GenesisCompUniv.lean::dom_chain",
+        "lean4/GenesisCompUniv.lean::halts_iff_dom",
+        "lean4/GenesisCompUniv.lean::halts_iff_eval_dom",
+        "lean4/GenesisCompUniv.lean::trCfg_init_gen",
+        "lean4/GenesisCompUniv.lean::initCfg0"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:114-127",
+        "lean4/GenesisCompUniv.lean:157-187"
+      ],
+      "audit": "dom_chain composes tr_eval_dom along the TM1 to TM0 and TM2 to TM1 relations with the TM2 evaluation; trCfg_init_gen supplies the TrCfg relation at an arbitrary starting label.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C6d",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1306",
+      "node_id": "COMP-C6-FINITE-MARKS",
+      "slug": "comp-c6-finite-marks",
+      "name": "The composite machine uses a finite set of marks",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "Every word reachable from a start word of the fixed rewriting regime has its marks in the finite set markSet: two end markers, the 1250 tape marks of Bool x (K -> Option G), and the state marks of the finite set S0 given by the Mathlib tr_supports chain.",
+      "obligation": "The size of S0 is not computed and the machine is not claimed small.",
+      "imported_structure": [
+        "Mathlib tr_supports for PartrecToTM2, TM2to1 and TM1to0"
+      ],
+      "parent_nodes": [
+        "COMP-C6-TM0-HALTING-EQUIVALENCE"
+      ],
+      "parent_record": "TFQ-1305",
+      "lean": [
+        "lean4/GenesisCompUniv.lean::used_marks_finite",
+        "lean4/GenesisCompUniv.lean::used_state_marks_finite",
+        "lean4/GenesisCompUniv.lean::card_G1",
+        "lean4/GenesisCompUniv.lean::step_closed",
+        "lean4/GenesisCompUniv.lean::init_mem",
+        "lean4/GenesisCompUniv.lean::markSet"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:114-127",
+        "lean4/GenesisCompUniv.lean:250-262"
+      ],
+      "audit": "step_closed derives closure of S0 under the machine from the composite tr_supports; used_marks_finite combines it with reach_bwd and the shape of cfgWord; card_G1 is a cardinality computation.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C6e",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1307",
+      "node_id": "COMP-C6-TM0-OUTPUT-FORM-OPEN",
+      "slug": "comp-c6-tm0-output-form-open",
+      "name": "Output form of the composite TM0 machine",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "OPEN",
+      "statement": "The tape of the halting TM0 configuration of M0 from initCfg0 should read the value of Code.eval c n; Mathlib gives this only existentially through TM2to1.tr_eval and is not composed here.",
+      "obligation": "Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output tape.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C6-TM0-HALTING-EQUIVALENCE"
+      ],
+      "parent_record": "TFQ-1305",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:127-127"
+      ],
+      "audit": "Only the TM2 output form (tm2_computes_eval) and the TM0 halting form are proved.",
+      "see_also": [
+        "COMP-C6-TM2-OUTPUT-FORM",
+        "COMP-C6-TM0-HALTING-EQUIVALENCE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C7a",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1308",
+      "node_id": "COMP-C7-MACHINE-HALTING-UNDECIDABLE",
+      "slug": "comp-c7-machine-halting-undecidable",
+      "name": "Halting of the fixed machine on the start family is not computable",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For each n, the predicate c -> M0 halts from initCfg0 (pair (encode c) n) is not a computable predicate of the code c.",
+      "obligation": "Imports the halting problem from Mathlib.",
+      "imported_structure": [
+        "Mathlib ComputablePred.halting_problem"
+      ],
+      "parent_nodes": [
+        "COMP-C6-TM0-HALTING-EQUIVALENCE"
+      ],
+      "parent_record": "TFQ-1305",
+      "lean": [
+        "lean4/GenesisCompUniv.lean::halting_not_computable"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:129-134",
+        "lean4/GenesisCompUniv.lean:189-197"
+      ],
+      "audit": "halting_not_computable turns a decider for the predicate into a decider for (eval c n).Dom with ComputablePred.of_eq and halts_iff_eval_dom.",
+      "see_also": [
+        "AUTHF-MATHLIB-HALTING-BRIDGE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C7b",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1309",
+      "node_id": "COMP-C7-NF-REACH-UNDECIDABLE",
+      "slug": "comp-c7-nf-reach-undecidable",
+      "name": "Normal-form reachability of the fixed regime is not computable",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For the fixed rewriting regime Rules M0 and its explicit family of start words, the predicate that the start word of the input reaches an irreducible word is not computable, as a predicate of the code or of the natural number input.",
+      "obligation": "The statement is about the family startWord; that the input-to-start-word map is computable is not proved (COMP-C7c).",
+      "imported_structure": [
+        "Mathlib ComputablePred.halting_problem"
+      ],
+      "parent_nodes": [
+        "COMP-C7-MACHINE-HALTING-UNDECIDABLE",
+        "COMP-C5-CLOSURES-HALTING"
+      ],
+      "parent_record": "TFQ-1308",
+      "lean": [
+        "lean4/GenesisCompUniv.lean::reach_irreducible_iff",
+        "lean4/GenesisCompUniv.lean::reach_irreducible_not_computable",
+        "lean4/GenesisCompUniv.lean::nfReach_iff",
+        "lean4/GenesisCompUniv.lean::nfReach_not_computable",
+        "lean4/GenesisCompUniv.lean::startWord_rep"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:129-134",
+        "lean4/GenesisCompUniv.lean:207-221",
+        "lean4/GenesisCompUniv.lean:315-329"
+      ],
+      "audit": "reach_irreducible_iff and nfReach_iff combine halts_iff of C5 with the TM0 halting equivalence; the non-computability then follows from the halting problem as in COMP-C7a.",
+      "see_also": [
+        "PGW-CONTEXT-DECISION-PROCEDURE",
+        "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+        "AUTHF-CLASS-RELATIVE-TRANSPORT",
+        "AUTH-RICE-THEOREM-IMPORT",
+        "AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+        "AUTHF-RICE-GODEL-OPEN"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C7c",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1310",
+      "node_id": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
+      "slug": "comp-c7-encoded-instance-reduction",
+      "name": "Reduction over encoded rewriting instances is conditional",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_claimed_status": "CONDITIONAL",
+      "statement": "If the mark type has a Primcodable structure and startWord is computable, the normal-form reachability problem on words of the fixed regime is not a computable predicate.",
+      "obligation": "Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.",
+      "imported_structure": [
+        "Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)"
+      ],
+      "parent_nodes": [
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "parent_record": "TFQ-1309",
+      "lean": [
+        "lean4/GenesisCompUniv.lean::reach_problem_not_computable"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:129-134",
+        "lean4/GenesisCompUniv.lean:329-339"
+      ],
+      "audit": "reach_problem_not_computable composes the computable start-word map with a hypothetical decider and contradicts nfReach_not_computable; the two hypotheses are not proved.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C7d",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1311",
+      "node_id": "COMP-C7-FIXED-TARGET-OPEN",
+      "slug": "comp-c7-fixed-target-open",
+      "name": "Reach to a fixed target word is undecidable",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "OPEN",
+      "statement": "Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.",
+      "obligation": "Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "parent_record": "TFQ-1309",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:129-134"
+      ],
+      "audit": "Only normal-form reachability is proved undecidable (COMP-C7b).",
+      "see_also": [
+        "COMP-C7-ENCODED-INSTANCE-REDUCTION"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C8a",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1312",
+      "node_id": "COMP-C8-BINARY-CODING",
+      "slug": "comp-c8-binary-coding",
+      "name": "Injective binary coding of any finite alphabet with a decoder",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For any finite alphabet, the letter-by-letter fixed-width binary code of width clog 2 |alphabet| + 1 is an injective monoid homomorphism on words with the explicit decoder decodeWord (decode_encode), and the same holds with the two separated marks as the target alphabet.",
+      "obligation": "A code is not an isomorphism of free monoids; no claim that a machine over the coded alphabet simulates a machine over the original (Mathlib TM1to1 is not used).",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+        "PG-FREE-MONOID-NONISO"
+      ],
+      "parent_record": "TFQ-1284",
+      "lean": [
+        "lean4/GenesisComputation.lean::decode_encode",
+        "lean4/GenesisComputation.lean::encodeWord_injective",
+        "lean4/GenesisComputation.lean::encodeMarks_injective",
+        "lean4/GenesisComputation.lean::encodeMarks_append",
+        "lean4/GenesisComputation.lean::decodeMarks_encodeMarks",
+        "lean4/GenesisComputation.lean::bits_injective"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::encode_binary",
+        "code/rust/src/wdp/genesis_tm.rs::decode_binary",
+        "code/rust/src/wdp/genesis_tm.rs::code_width",
+        "code/rust/src/wdp/genesis_tm.rs::binary_coding_roundtrips_and_is_injective"
+      ],
+      "python": [
+        "code/python/src/qm/genesis_tm.py::encode_binary",
+        "code/python/src/qm/genesis_tm.py::decode_binary",
+        "code/python/src/qm/genesis_tm.py::code_width"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:136-141",
+        "lean4/GenesisComputation.lean:1022-1030"
+      ],
+      "audit": "bits_injective compares testBit on indices below 2^k; dec1_enc recovers the letter by search over finRange; decodeFuel_encode is induction on the word.",
+      "see_also": [
+        "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+        "AUTHF-DTM1-ROUNDTRIP"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "COMP-C8b",
+      "corpus": "dag/research/genesis_to_universal_computation.md",
+      "record_id": "TFQ-1313",
+      "node_id": "COMP-C8-MINIMALITY-FENCE",
+      "slug": "comp-c8-minimality-fence",
+      "name": "No smallest general-purpose machine is claimed",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "OPEN",
+      "statement": "Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.",
+      "obligation": "State and prove in Lean the simulation of a machine over the coded alphabet by a machine over the two marks and a blank before any minimality statement.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "COMP-C8-BINARY-CODING",
+        "COMP-C6-FINITE-MARKS"
+      ],
+      "parent_record": "TFQ-1312",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/genesis_to_universal_computation.md:136-141"
+      ],
+      "audit": "Only the coding of words (COMP-C8a) and the mark count of M0 (COMP-C6d) are proved.",
+      "see_also": [
+        "COMP-C8-BINARY-CODING"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q0",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1314",
+      "node_id": "QCV-QUESTION-SELF-LIMITING-REPAIR",
+      "slug": "qcv-question-self-limiting-repair",
+      "name": "Does the obstruction a quantum computation generates limit its own ability to finish reliably",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "OPEN",
+      "statement": "Every step of a noisy quantum computation, syndrome extraction and repair included, adds residual, and repair consumes capacity while adding residual of its own; the question is whether this makes reliable completion a self-referential no-go or a threshold condition that holds only under named resource assumptions (fresh supply, net-efficient repair, bounded overhead growth, physical error below threshold).",
+      "obligation": "The finite model answers the question as a threshold condition (QCV-Q1 to QCV-Q6); whether any physical system meets the named assumptions is not derived and no verdict on physical viability is given.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE",
+        "DS-QM102-SYNDROME-CAPACITY-BOUND",
+        "DS-QM061-BUILDABILITY-SET-S"
+      ],
+      "parent_record": "TFQ-0269",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:1-28",
+        "dag/research/quantum_computation_self_obstruction.md:47-50"
+      ],
+      "audit": "A question node: no Lean declaration states it; the derived records QCV-Q1 to QCV-Q6 carry the evidence.",
+      "see_also": [
+        "MAJ-OPEN-LIEB-ROBINSON-LOCALITY",
+        "MAJ-SURFACE-SHADOW-FENCE",
+        "DS-QM102-SYNDROME-CAPACITY-BOUND",
+        "DS-QM103-SHOW-THE-PACKET-PROTOCOL"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q1",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1315",
+      "node_id": "QCV-SELF-OBSTRUCTION-MODEL",
+      "slug": "qcv-self-obstruction-model",
+      "name": "Finite model of per-step residual with repair that generates residual of its own",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_claimed_status": "DEFINITION",
+      "statement": "Backlog q(t+1) = max(0, q(t) + lam + g*mu - mu) in units of the Phi_1 repair cost, where lam is the residual generated per round by the computation, mu = kappa*r the repair rate from r fresh ancillas per round at kappa units each, and g the residual generated per unit of repair; with g = 0 this is the DS-QM101 queue; a distance-three level with a fault locations has constant c = a(a-1)/2.",
+      "obligation": "lam, g, kappa and r are declared inputs; no value is derived or measured for any code, and Phi_1 of a residual is not computed here.",
+      "imported_structure": [
+        "declared generation rate lam",
+        "declared self-generated fraction g of repair",
+        "declared capacity kappa per fresh ancilla",
+        "declared fresh supply r per round"
+      ],
+      "parent_nodes": [
+        "QCV-QUESTION-SELF-LIMITING-REPAIR",
+        "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE",
+        "L1-WDP-WINDOW-PHI1-GAMMA2",
+        "DS-QM061-BUILDABILITY-SET-S"
+      ],
+      "parent_record": "TFQ-1314",
+      "lean": [
+        "lean4/QcRepairQueue.lean::backlog",
+        "lean4/QcRepairQueue.lean::drift",
+        "lean4/QcConcatenation.lean::pairCount"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::backlog",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::pair_count"
+      ],
+      "python": [
+        "code/python/src/qm/qc_self_obstruction.py::backlog",
+        "code/python/src/qm/qc_self_obstruction.py::pair_count"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:51-70",
+        "dag/derivation_dag.json:5016-5044",
+        "dag/derivation_dag.json:1002-1030",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:1-3"
+      ],
+      "audit": "backlog and drift are recursive definitions over the rationals; pairCount a = a*(a-1)/2; no theorem is claimed by this record. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "see_also": [
+        "PG-WDP-GROWTH-NO-REPAIR",
+        "MAJ-PHI1-SYNDROME-DECODING"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q1B",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1316",
+      "node_id": "QCV-NET-RATE-BACKLOG-DICHOTOMY",
+      "slug": "qcv-net-rate-backlog-dichotomy",
+      "name": "Backlog is bounded exactly when the net repair rate covers generation; unit-gain repair never bounds it",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "In the QCV-Q1 model with q0 >= 0, the backlog is bounded iff lam <= (1-g)*mu; for g >= 1 and lam > 0 no mu >= 0 bounds it; for g < 1 and mu = kappa*r, with kappa > 0, it is bounded iff r >= lam/((1-g)*kappa); with r = 0 and lam > 0 it equals q0 + t*lam.",
+      "obligation": "A statement inside the declared model; it does not say any code has g < 1 or that any supply r is available.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "QCV-SELF-OBSTRUCTION-MODEL"
+      ],
+      "parent_record": "TFQ-1315",
+      "lean": [
+        "lean4/QcRepairQueue.lean::backlog_bounded_iff",
+        "lean4/QcRepairQueue.lean::no_bounded_backlog_if_unit_gain",
+        "lean4/QcRepairQueue.lean::fresh_supply_threshold",
+        "lean4/QcRepairQueue.lean::no_supply_linear_growth",
+        "lean4/QcRepairQueue.lean::backlog_linear",
+        "lean4/QcRepairQueue.lean::backlog_le_initial"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::backlog",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::backlog_bounded_decision",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::supply_threshold"
+      ],
+      "python": [
+        "code/python/src/qm/qc_self_obstruction.py::backlog",
+        "code/python/src/qm/qc_self_obstruction.py::backlog_bounded_decision",
+        "code/python/src/qm/qc_self_obstruction.py::supply_threshold"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:51-70",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:4-9"
+      ],
+      "audit": "backlog_bounded_iff is an iff over the rationals with hypothesis 0 <= q0; the other three are direct corollaries stated with their own hypotheses. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "see_also": [
+        "DS-QM061-BUILDABILITY-SET-S"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q1C",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1317",
+      "node_id": "QCV-REPAIR-NEEDED-BUT-COSTLY",
+      "slug": "qcv-repair-needed-but-costly",
+      "name": "Without a squaring repair step the error never contracts, and added repair locations lower the certified threshold",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "The union-bound recurrence p(k+1) = a*p(k) with a >= 1 and p(0) > 0 does not tend to zero; for 2 <= a <= b fault locations the certified threshold 1/pairCount(b) is at most 1/pairCount(a).",
+      "obligation": "The location counts are declared; nothing here says how many repair locations a physical code needs.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "QCV-SELF-OBSTRUCTION-MODEL"
+      ],
+      "parent_record": "TFQ-1315",
+      "lean": [
+        "lean4/QcConcatenation.lean::lin_not_goesToZero",
+        "lean4/QcConcatenation.lean::lin_closed",
+        "lean4/QcConcatenation.lean::pairCount_mono",
+        "lean4/QcConcatenation.lean::threshold_decreases_with_repair"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::linear_level",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::pair_count"
+      ],
+      "python": [
+        "code/python/src/qm/qc_self_obstruction.py::linear_level",
+        "code/python/src/qm/qc_self_obstruction.py::pair_count"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:51-70",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:10-13"
+      ],
+      "audit": "lin_not_goesToZero: for 1 <= a and 0 < p the sequence a^k*p is bounded below by p, hence not eventually below p. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-IMP-THRESHOLD",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1318",
+      "node_id": "QCV-IMPORT-THRESHOLD-THEOREM",
+      "slug": "qcv-import-threshold-theorem",
+      "name": "Threshold theorem for concatenated codes (literature)",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_claimed_status": "IMPORTED_ASSUMPTION",
+      "statement": "The fault-tolerance threshold theorems (Shor 1996; Aharonov and Ben-Or 1997; Kitaev 1997; Knill, Laflamme and Zurek 1998; Aliferis, Gottesman and Preskill 2006) are cited under each theorem's own noise, locality and overhead hypotheses; they are not re-proved.",
+      "obligation": "Exact constants and noise hypotheses of each theorem are not reproduced; the finite recurrence in QCV-Q2 is the only part checked.",
+      "imported_structure": [
+        "threshold theorems for concatenated codes under their stated noise models"
+      ],
+      "parent_nodes": [
+        "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE"
+      ],
+      "parent_record": "TFQ-0269",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:158-165"
+      ],
+      "audit": "A citation record: no Lean or code declaration states the imported theorems.",
+      "see_also": [
+        "TFQ-0152",
+        "TFQ-0048"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q2",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1319",
+      "node_id": "QCV-CONCATENATION-THRESHOLD-DICHOTOMY",
+      "slug": "qcv-concatenation-threshold-dichotomy",
+      "name": "Concatenation recurrence p(k+1) = c*p(k)^2: exact closed form and threshold dichotomy over the rationals",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For the recurrence p(k+1) = c*p(k)^2 over Q, c*p(k) = (c*p(0))^(2^k); for c > 0 and p(0) >= 0: if c*p(0) < 1 then p(k) tends to zero with c*p(k) <= (c*p(0))^(k+1) and, for c*p(0) <= 1/2, p(k) <= (1/2)^(2^k)/c; if c*p(0) = 1 then p(k) = 1/c for all k; if c*p(0) > 1 then p(k) diverges; so p(k) tends to zero iff p(0) < 1/c.",
+      "obligation": "The recurrence is the hypothesis; no noise model is shown to obey it and no constant c is computed for any code.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "QCV-SELF-OBSTRUCTION-MODEL",
+        "QCV-IMPORT-THRESHOLD-THEOREM"
+      ],
+      "parent_record": "TFQ-1315",
+      "lean": [
+        "lean4/QcConcatenation.lean::conc_closed",
+        "lean4/QcConcatenation.lean::conc_eq_div",
+        "lean4/QcConcatenation.lean::threshold_trichotomy",
+        "lean4/QcConcatenation.lean::goesToZero_iff_below_threshold",
+        "lean4/QcConcatenation.lean::sub_bound",
+        "lean4/QcConcatenation.lean::sub_half_bound",
+        "lean4/QcConcatenation.lean::super_bound",
+        "lean4/QcConcatenation.lean::super_diverges",
+        "lean4/QcConcatenation.lean::fixed_point"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::conc",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::conc_closed_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::classify",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::first_level_below",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::first_level_above",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::half_bound_holds"
+      ],
+      "python": [
+        "code/python/src/qm/qc_self_obstruction.py::conc",
+        "code/python/src/qm/qc_self_obstruction.py::conc_closed_holds",
+        "code/python/src/qm/qc_self_obstruction.py::classify",
+        "code/python/src/qm/qc_self_obstruction.py::first_level_below",
+        "code/python/src/qm/qc_self_obstruction.py::first_level_above",
+        "code/python/src/qm/qc_self_obstruction.py::half_bound_holds"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:71-83",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:14-22"
+      ],
+      "audit": "GoesToZero is the epsilon form over Q; Diverges means eventually above every bound; threshold_trichotomy states the three cases with the closed form in the first. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q3",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1320",
+      "node_id": "QCV-OVERHEAD-GROWTH-CRITERION",
+      "slug": "qcv-overhead-growth-criterion",
+      "name": "Exact criterion on a level-dependent overhead for the existence of a threshold region",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For p(k+1) = c(k)*p(k)^2 with c(k) >= 0, p(k) = p(0)^(2^k)*amp(k) with amp(0) = 1, amp(k+1) = c(k)*amp(k)^2, and some p(0) > 0 has p(k) tending to zero iff some M > 0 has amp(k) <= M^(2^k) for all k; the criterion holds for c(k) <= C, for c(k) <= A*B^(k+1) with A, B >= 1, for c(k) = (k+1)^2, and for c(k) <= a*b^N(k) with block size N(k+1) <= s*N(k), s < 2; it fails for c(k) >= a*b^(2^k) with a > 0, b > 1, and for c(k) >= a*b^N(k) with 2^k <= N(k), b > 1, where no positive p(0) has p(k) tending to zero.",
+      "obligation": "The families are exact illustrations of the criterion, not claims that any physical overhead has such a form; correlated-noise strength as an exponential of block size is a declared toy.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "QCV-CONCATENATION-THRESHOLD-DICHOTOMY"
+      ],
+      "parent_record": "TFQ-1319",
+      "lean": [
+        "lean4/QcConcatenation.lean::concv_eq_amp",
+        "lean4/QcConcatenation.lean::threshold_region_iff",
+        "lean4/QcConcatenation.lean::region_empty_iff",
+        "lean4/QcConcatenation.lean::ampBounded_of_bounded",
+        "lean4/QcConcatenation.lean::bounded_overhead_goesToZero",
+        "lean4/QcConcatenation.lean::ampBounded_of_geom",
+        "lean4/QcConcatenation.lean::ampBounded_poly",
+        "lean4/QcConcatenation.lean::ampBounded_of_sizes",
+        "lean4/QcConcatenation.lean::blockExp_le",
+        "lean4/QcConcatenation.lean::dexp_not_ampBounded",
+        "lean4/QcConcatenation.lean::dexp_region_empty",
+        "lean4/QcConcatenation.lean::sizes_not_ampBounded",
+        "lean4/QcConcatenation.lean::amp_dexp_sq"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::amp",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::concv",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::amp_bound_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::amp_escape_level",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::geom_invariant_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::size_family",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::block_exp_bound_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::dexp_square_identity_holds"
+      ],
+      "python": [
+        "code/python/src/qm/qc_self_obstruction.py::amp",
+        "code/python/src/qm/qc_self_obstruction.py::concv",
+        "code/python/src/qm/qc_self_obstruction.py::amp_bound_holds",
+        "code/python/src/qm/qc_self_obstruction.py::amp_escape_level",
+        "code/python/src/qm/qc_self_obstruction.py::geom_invariant_holds",
+        "code/python/src/qm/qc_self_obstruction.py::size_family",
+        "code/python/src/qm/qc_self_obstruction.py::block_exp_bound_holds",
+        "code/python/src/qm/qc_self_obstruction.py::dexp_square_identity_holds"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:84-104",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:23-35"
+      ],
+      "audit": "threshold_region_iff is an iff between a positive p(0) with GoesToZero and AmpBounded c under 0 <= c(k); the family results are separate declarations with their own hypotheses. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "see_also": [
+        "MAJ-OPEN-LIEB-ROBINSON-LOCALITY"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-IMP-ABIN",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1321",
+      "node_id": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
+      "slug": "qcv-import-noisy-reversible-limits",
+      "name": "Limitations of noisy reversible computation without fresh bits (literature)",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_claimed_status": "IMPORTED_ASSUMPTION",
+      "statement": "Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth; the result is cited, not re-proved or imported as a proof here.",
+      "obligation": "The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.",
+      "imported_structure": [
+        "ABIN 1996 limitation theorem for noisy reversible computation"
+      ],
+      "parent_nodes": [
+        "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE"
+      ],
+      "parent_record": "TFQ-0269",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:158-165"
+      ],
+      "audit": "A citation record: no declaration in this checkout states the cited theorem.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q4",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1322",
+      "node_id": "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY",
+      "slug": "qcv-noisy-history-trace-distance-decay",
+      "name": "Trace distance of two noisy unitary histories without fresh resources decays by the product of one minus the noise rates",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For complex matrices of any size d and the variational trace norm tn(X) = sup over unitaries U of |tr(UX)|, the global depolarizing channel satisfies tn(Delta_p(rho) - Delta_p(sigma)) = (1-p)*tn(rho - sigma) for equal-trace rho, sigma and p <= 1; along any history of unitaries V(i) with depolarizing rates p(i) in [0,1], tn(run rho - run sigma) = (product of (1-p(i)))*tn(rho - sigma), which is at most (1-p)^t*tn(rho - sigma) when every p(i) >= p, and (1-p)^t <= 1/(1+p*t).",
+      "obligation": "The trace norm is the variational form, whose equality with the sum of singular values is cited; the noise is global depolarizing with a declared rate per step, not independent per-qubit noise, and the statement is about histories without fresh resets.",
+      "imported_structure": [
+        "variational trace norm equals the Schatten-1 norm (Ky Fan, cited)",
+        "global depolarizing noise at a declared rate after every step"
+      ],
+      "parent_nodes": [
+        "QCV-SELF-OBSTRUCTION-MODEL",
+        "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS"
+      ],
+      "parent_record": "TFQ-1315",
+      "lean": [
+        "lean4/QcEntropySink.lean::tn",
+        "lean4/QcEntropySink.lean::tn_smul",
+        "lean4/QcEntropySink.lean::tn_conj",
+        "lean4/QcEntropySink.lean::pairingSet_bddAbove",
+        "lean4/QcEntropySink.lean::depol_dist",
+        "lean4/QcEntropySink.lean::noisyStep_dist",
+        "lean4/QcEntropySink.lean::run_dist",
+        "lean4/QcEntropySink.lean::run_dist_le",
+        "lean4/QcEntropySink.lean::decay_le_inv",
+        "lean4/QcEntropySink.lean::decay_below"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::decay_le_inv_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::depth_until_below",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::matrix_step",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::depolarize_matrix"
+      ],
+      "python": [
+        "code/python/src/qm/qc_self_obstruction.py::decay_le_inv_holds",
+        "code/python/src/qm/qc_self_obstruction.py::depth_until_below",
+        "code/python/src/qm/qc_self_obstruction.py::matrix_step",
+        "code/python/src/qm/qc_self_obstruction.py::depolarize_matrix"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:105-122",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:36-45"
+      ],
+      "audit": "tn is a sSup of |tr(UX)| over the unitary group, proved bounded, homogeneous for nonnegative real scalars and invariant under unitary conjugation; run_dist is an equality, run_dist_le the decay bound. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "see_also": [
+        "QCV-FRESH-MARK-SUPPLY-BRIDGE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q4B",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1323",
+      "node_id": "QCV-QUBIT-BLOCH-DECAY-EXACT",
+      "slug": "qcv-qubit-bloch-decay-exact",
+      "name": "Exact qubit form: squared Bloch distance of two noisy histories contracts by the product of squared factors",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For rational Bloch vectors, noisy steps r -> (1-p)*R*r with rational rotations R (R^T R = 1) give sqDist(run r, run s) = (product of (1-p(i))^2)*sqDist(r, s), at most ((1-p)^2)^t*sqDist(r, s) when every p(i) in [p,1]; and (v.sigma)^2 = (v.v)*1 over the complex numbers, so the difference of two qubit states has both singular values |r-s|/2.",
+      "obligation": "The identification of the qubit trace norm with the Bloch distance uses the cited eigenvalue fact; Python and Rust replays are exact on declared instances only.",
+      "imported_structure": [
+        "trace norm of a Hermitian matrix is the sum of absolute eigenvalues (cited)"
+      ],
+      "parent_nodes": [
+        "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY"
+      ],
+      "parent_record": "TFQ-1322",
+      "lean": [
+        "lean4/QcEntropySink.lean::sqDist_runB",
+        "lean4/QcEntropySink.lean::sqDist_runB_le",
+        "lean4/QcEntropySink.lean::sqDist_stepB",
+        "lean4/QcEntropySink.lean::rot_dot",
+        "lean4/QcEntropySink.lean::blochMat_sq"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::bloch_step",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::bloch_run",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::decay_identity_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::pauli_part_squares_to_norm",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::bloch_of_matrix"
+      ],
+      "python": [
+        "code/python/src/qm/qc_self_obstruction.py::bloch_step",
+        "code/python/src/qm/qc_self_obstruction.py::bloch_run",
+        "code/python/src/qm/qc_self_obstruction.py::decay_identity_holds",
+        "code/python/src/qm/qc_self_obstruction.py::pauli_part_squares_to_norm",
+        "code/python/src/qm/qc_self_obstruction.py::bloch_of_matrix"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:105-122",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:46-50"
+      ],
+      "audit": "RatRot packages a rational matrix with R^T R = 1; sqDist is the dot product of the difference with itself; blochMat is the 2x2 complex matrix v.sigma with blochMat_sq an entrywise computation. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q5",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1324",
+      "node_id": "QCV-CONDITIONAL-VIABILITY-CERTIFICATE",
+      "slug": "qcv-conditional-viability-certificate",
+      "name": "Conditional viability: explicit logical failure bound under fresh supply, net-efficient repair and bounded overhead",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_claimed_status": "CONDITIONAL",
+      "statement": "If g < 1, kappa > 0, r >= lam/((1-g)*kappa), c(k) <= C, max(C,1)*p(0) < 1 and the level errors p(k) >= 0 obey p(k+1) <= c(k)*p(k)^2 whenever the backlog is bounded, then the backlog is bounded and for every L >= 0 and epsilon > 0 some level k has L*p(k) <= epsilon; with max(C,1)*p(0) <= 1/2 any k with L <= epsilon*max(C,1)*2^(2^k) works.",
+      "obligation": "The noise recurrence is a hypothesis: independence or locality of noise, fresh ancillas, fast classical control and bounded overhead are not shown for any device; the hypotheses are only shown jointly satisfiable on declared toy numbers.",
+      "imported_structure": [
+        "noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)",
+        "fresh ancillas at rate r",
+        "classical control and decoding fast enough for the syndrome",
+        "level-bounded overhead c(k) <= C"
+      ],
+      "parent_nodes": [
+        "QCV-OVERHEAD-GROWTH-CRITERION",
+        "QCV-NET-RATE-BACKLOG-DICHOTOMY",
+        "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY"
+      ],
+      "parent_record": "TFQ-1320",
+      "lean": [
+        "lean4/QcSelfObstruction.lean::conditional_viability",
+        "lean4/QcSelfObstruction.lean::conditional_viability_explicit",
+        "lean4/QcSelfObstruction.lean::conditional_viability_instance",
+        "lean4/QcSelfObstruction.lean::level_error_le",
+        "lean4/QcSelfObstruction.lean::explicit_level"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::level_for_failure"
+      ],
+      "python": [
+        "code/python/src/qm/qc_self_obstruction.py::viability_report",
+        "code/python/src/qm/qc_self_obstruction.py::level_for_failure"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:123-136",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:51-55"
+      ],
+      "audit": "conditional_viability is an implication whose noise hypothesis is itself conditioned on a bounded backlog; the conclusion is a union bound over L locations; the instance theorem checks satisfiability on lam = 1, g = 1/2, kappa = 1, r = 2, c = 4, p(0) = 1/10. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "see_also": [
+        "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q5B",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1325",
+      "node_id": "QCV-VIABILITY-NEEDS-ALL-REQUIREMENTS",
+      "slug": "qcv-viability-needs-all-requirements",
+      "name": "Inside the model, viability holds exactly when the fresh supply reaches threshold and the overhead means are bounded",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For g < 1, kappa > 0 and c(k) >= 0, the backlog is bounded and some positive physical rate has p(k) tending to zero iff r >= lam/((1-g)*kappa) and some M > 0 has amp(k) <= M^(2^k); with no supply the backlog is unbounded, with g >= 1 it is unbounded for every supply, and a tight profile p(k+1) >= c(k)*p(k)^2 with c(k) >= a*b^(2^k), b > 1, p(0) > 0 does not tend to zero.",
+      "obligation": "A statement about the declared model: a failed requirement shows the certificate is empty, not that a physical machine fails.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "QCV-CONDITIONAL-VIABILITY-CERTIFICATE"
+      ],
+      "parent_record": "TFQ-1324",
+      "lean": [
+        "lean4/QcSelfObstruction.lean::model_viable_iff",
+        "lean4/QcSelfObstruction.lean::not_viable_without_supply",
+        "lean4/QcSelfObstruction.lean::not_viable_unit_gain",
+        "lean4/QcSelfObstruction.lean::not_viable_dexp_profile",
+        "lean4/QcSelfObstruction.lean::level_error_ge"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report"
+      ],
+      "python": [
+        "code/python/src/qm/qc_self_obstruction.py::viability_report"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:123-136",
+        "dag/research/quantum_computation_self_obstruction.md:147-157",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:56-60"
+      ],
+      "audit": "model_viable_iff rewrites with fresh_supply_threshold and threshold_region_iff; not_viable_dexp_profile uses level_error_ge and dexp_region_empty. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q5C",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1326",
+      "node_id": "QCV-PHYSICAL-SATISFIABILITY-OPEN",
+      "slug": "qcv-physical-satisfiability-open",
+      "name": "Whether a physical system meets the conditional viability hypotheses is not derived",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "OPEN",
+      "statement": "Whether any physical system has noise obeying the recurrence with level-bounded overhead, a fresh ancilla supply at rate r >= lam/((1-g)*kappa) and fast classical control is not established here, in either direction; the rate comparison mu_repair >= lambda_proj at scale stays open.",
+      "obligation": "A named packet (code family, noise hypothesis, repair capacity, residual quotient) and a locality bound would be needed before any verdict; no claim about physical viability is made.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "QCV-CONDITIONAL-VIABILITY-CERTIFICATE",
+        "MAJ-OPEN-LIEB-ROBINSON-LOCALITY",
+        "DS-QM103-SHOW-THE-PACKET-PROTOCOL"
+      ],
+      "parent_record": "TFQ-1324",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:137-140",
+        "dag/research/quantum_computation_self_obstruction.md:166-174"
+      ],
+      "audit": "An open record: no declaration states or discharges it.",
+      "see_also": [
+        "DS-QM103-SHOW-THE-PACKET-PROTOCOL",
+        "MAJ-SURFACE-SHADOW-FENCE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "QCV-Q6",
+      "corpus": "dag/research/quantum_computation_self_obstruction.md",
+      "record_id": "TFQ-1327",
+      "node_id": "QCV-FRESH-MARK-SUPPLY-BRIDGE",
+      "slug": "qcv-fresh-mark-supply-bridge",
+      "name": "Shared structure with the Turing-completeness branch: unbounded computation needs an unbounded supply of fresh distinguished marks",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_claimed_status": "DEFINITION",
+      "statement": "A fresh-mark supply is a stream of distinguished marks each usable once; a process consuming at least rmin > 0 marks per round completes at most B/rmin rounds from a total supply B, and a positive per-round consumption exhausts every finite supply; reliable quantum computation of unbounded length (QCV-Q1B, QCV-Q4) and Turing-complete computation in the parallel UTM branch each need such an unbounded supply.",
+      "obligation": "A bridge definition only: no common theorem is proved, no map between the entropy-sink supply and the blank-tape supply of the UTM branch is defined, and that branch is not part of this checkout.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY",
+        "QCV-NET-RATE-BACKLOG-DICHOTOMY"
+      ],
+      "parent_record": "TFQ-1322",
+      "lean": [
+        "lean4/QcRepairQueue.lean::rounds_le_budget",
+        "lean4/QcRepairQueue.lean::budget_exhausted"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::rounds_upper_bound"
+      ],
+      "python": [
+        "code/python/src/qm/qc_self_obstruction.py::rounds_upper_bound"
+      ],
+      "external_witnesses": [
+        "external:branch comp-utm (parallel derivation that Turing-complete computation needs unbounded fresh blank marks; not in this checkout, no node of it is cited)"
+      ],
+      "sources": [
+        "dag/research/quantum_computation_self_obstruction.md:141-146",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:61-62"
+      ],
+      "audit": "rounds_le_budget and budget_exhausted state only arithmetic about sums and bounds; they do not state the UTM-branch claim. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "see_also": [
+        "COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+        "COMP-C4-SUPPLY-GROWTH"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-TC0",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1328",
+      "node_id": "AUTH-TC0-TAPE-CONTROL-TYPING",
+      "slug": "auth-tc0-tape-control-typing",
+      "name": "Read token, halt outcome and terminal policy are separate carriers in a two-presentation tape-control model",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_claimed_status": "proved (Lean finite model, all axiom-free)",
+      "statement": "On the fixed carrier of two halting presentations that differ only in the scanned cell (blank or marked), a control-only report does not determine the supplied content contract, an unread report does not determine it either, one read token admits two supplied semantic adapters, and one halt outcome admits two supplied terminal policies.",
+      "obligation": "State the same four facts for a general tape alphabet and head position; the content contract is chosen to separate the two presentations, so the result exhibits a split fiber and does not derive one.",
+      "imported_structure": [
+        "supplied content contract",
+        "supplied semantic adapters",
+        "supplied terminal policies"
+      ],
+      "parent_nodes": [
+        "PGW-CONTEXTS-PLUGGING-PROFILES",
+        "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT",
+        "PG-HISTORY-REPORT-CRITERION"
+      ],
+      "parent_record": "TFQ-0433",
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean::AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean::AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean::AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean::AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md:31",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:401-447",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:124-147",
+        "papers/foundations/authorization_incompleteness/proof_program.md:178-205"
+      ],
+      "audit": "Two declarations are no-go statements over a two-element domain closed by case analysis; the other two are rfl on definitions chosen to differ, so they show that alternatives exist and say nothing about a standard Turing machine; raise status only with the ported module in place.",
+      "see_also": [
+        "PGW-PREGENESIS-GRAMMAR",
+        "PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION",
+        "AUTHF-TAPE-CONTROL-REPORTS"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-TC2",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1329",
+      "node_id": "AUTH-TC2-FINITE-TRANSITION-CONTRACT",
+      "slug": "auth-tc2-finite-transition-contract",
+      "name": "Four-configuration transition table: one supplied contract preserved, one fails on a countertrace",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_claimed_status": "proved, rooted target (Lean finite model, axiom-free)",
+      "statement": "In a table over the four configurations running-blank, running-marked, halted-blank and halted-marked that exposes advance, stay and halt, the supplied clean-terminal contract is preserved, the supplied marked-cell contract fails from running-marked, the identity report is adequate for the marked-cell contract, and the control-only report is not.",
+      "obligation": "Replace the enumerated carrier by an actual tape and head, and replace the contracts, which were written to produce the countertrace, by contracts stated independently of the table.",
+      "imported_structure": [
+        "supplied clean-terminal contract",
+        "supplied marked-cell contract"
+      ],
+      "parent_nodes": [
+        "AUTH-TC0-TAPE-CONTROL-TYPING"
+      ],
+      "parent_record": "TFQ-1328",
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md:33",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:448-457",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:148-187",
+        "papers/foundations/authorization_incompleteness/proof_program.md:225-251"
+      ],
+      "audit": "Case analysis on four constructors; the identity report is adequate for every contract, and full_configuration_report_admits_marked_cell_decider returns the contract function itself, so the positive side carries no content; the source calls it a finite table result, not a Turing-machine theorem.",
+      "see_also": [
+        "PG-GEN-NO-RETURN",
+        "PG-GEN-ONGOING-OBSTRUCTION",
+        "AUTHF-TRANSITION-INVARIANTS"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-DTM0",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1330",
+      "node_id": "AUTH-DTM0-FINITE-RULE-MACHINE",
+      "slug": "auth-dtm0-finite-rule-machine",
+      "name": "Direct finite-rule machine with total tape, first-match lookup and fuel-bounded evaluation",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_claimed_status": "proved; partial carrier only",
+      "statement": "A machine is a designated halt state with an ordered finite rule list over natural-number states, the symbols blank and marked, and the moves left, right and stay; a step returns halted exactly when the state is the halt state, stuck when no rule matches, and otherwise applies the first matching rule; execute iterates at most the given fuel and returns halted, stuck or fuel exhausted with the last configuration.",
+      "obligation": "Relate the model to Mathlib Turing.TM0 by restricting initial tapes to finite support, splitting write-and-move rules into two steps and merging halted with stuck, then prove step simulation; no universality, extensional property or reduction is established here.",
+      "imported_structure": [
+        "tape as a function from the integers to symbols, which includes tapes of infinite support",
+        "natural-number state labels without a finiteness bound",
+        "first-match lookup as the determinism convention"
+      ],
+      "parent_nodes": [
+        "AUTH-TC2-FINITE-TRANSITION-CONTRACT",
+        "PG-GEN-REWRITING-COMMUTATION"
+      ],
+      "parent_record": "TFQ-1329",
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.step",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.step_halted_iff_declared_halt",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_executes_to_syntactic_halt"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [
+        "external:Mathlib/Computability/TuringMachine/PostTuringMachine.lean::Turing.TM0.Machine (comparison target; Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
+      ],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md:34",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:459-468",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:189-208",
+        "papers/foundations/authorization_incompleteness/proof_program.md:396-421",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md:34-99"
+      ],
+      "audit": "step_halted_iff_declared_halt unfolds the definition of step and the fixtures are closed rfl evaluations, so the declarations state the semantics and three outcomes rather than a property of all machines; the auth-formal axiom report under v4.35.0 shows propext on the generic and stuck or fuel declarations.",
+      "see_also": [
+        "PGW-NO-TRANSITION-QUIESCENCE",
+        "PGW-CONTEXTS-PLUGGING-PROFILES",
+        "AUTHF-DTM0-RULE-MACHINE",
+        "COMP-C5-TM0-STEP-SIMULATION"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AUTH-PAPER-1",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1331",
+      "node_id": "AUTH-FUEL-EXHAUSTION-TYPED-STOP",
+      "slug": "auth-fuel-exhaustion-typed-stop",
+      "name": "Fuel exhaustion is a typed bounded-run outcome and is not a non-halting verdict",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_claimed_status": "stated in prose and by a closed fixture (no separate claim id)",
+      "statement": "A bounded evaluator has three terminal outcomes, halted, stuck and fuel exhausted; the fuel-exhausted outcome records only that the budget ended and is never read as divergence, and a looping fixture exhausts a budget of one step without any claim about whether it halts.",
+      "obligation": "Apply the same three-way typing to the declared-bound runs of the Genesis continuation: a run stopped at the guard or the bound stays unresolved, neither closed nor diverging, until a longer run or a proof decides it.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "PGW-RUNS-PAST-DECLARED-BOUNDS",
+        "AUTH-DTM0-FINITE-RULE-MACHINE"
+      ],
+      "parent_record": "TFQ-0501",
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:459-468",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md:47-58",
+        "papers/foundations/authorization_incompleteness/proof_program.md:396-421"
+      ],
+      "audit": "A typing convention recorded with closed fixtures; the Lean statement is an rfl evaluation at fuel one and says nothing about whether the looping machine halts, so it supports the distinction between outcomes and not a halting result.",
+      "see_also": [
+        "PGW-ALPHA-LICENSE-BINDING-M1-M8",
+        "COMP-C3-VERDICT-SOUND"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-DTM1",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1332",
+      "node_id": "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+      "slug": "auth-dtm1-token-code-roundtrip",
+      "name": "Finite natural-number token code for finite-rule machines with a decoder-after-encoder round trip",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "proved; partial carrier only",
+      "statement": "For every finite-rule machine, decoding the token list that encodes it (the halt-state token followed by five-token frames of state, scanned tag, next state, written tag and move tag) returns that machine, and the all-consuming decoder returns none on the empty list, a truncated frame, an invalid symbol tag and an invalid move tag in the four named fixtures.",
+      "obligation": "No converse (encoding after decoding), no source-byte format, no configuration or input encoding and no agreement between parsed code and execution is established; the token alphabet is the natural numbers, so passing to the two-symbol tape alphabet needs a prefix-code argument, since free monoids on alphabets of different sizes are not isomorphic.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTH-DTM0-FINITE-RULE-MACHINE",
+        "PG-FREE-MONOID-NONISO"
+      ],
+      "parent_record": "TFQ-1330",
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.empty_machine_code_is_rejected",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.truncated_rule_code_is_rejected",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_symbol_tag_is_rejected",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_move_tag_is_rejected"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md:35",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:470-479",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:210-237",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm1_token_code_update_packet.md:26-53"
+      ],
+      "audit": "decodeRules_encodeRules is a structural induction and the four rejection fixtures are rfl on closed lists; the auth-formal axiom report under v4.35.0 gives propext on all declarations except the two tag round trips, as the source states.",
+      "see_also": [
+        "PGW-PREGENESIS-GRAMMAR",
+        "PGW-MSSN-ALPHABET-DECLARATIONS",
+        "AUTHF-DTM1-ROUNDTRIP",
+        "COMP-C8-BINARY-CODING"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-DTM2",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1333",
+      "node_id": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
+      "slug": "auth-dtm2-input-request-planned",
+      "name": "Planned length-delimited request grammar and result-level agreement with the bounded evaluator",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "planned in a producer-side update packet; absent from ledger, proof program, goals and Lean",
+      "statement": "The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.",
+      "obligation": "Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP"
+      ],
+      "parent_record": "TFQ-1332",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md:26-72",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md:122-144"
+      ],
+      "audit": "The module named in the packet is absent from the source formal folder; the packet and dialogue are producer-side, and the dialogue records its own finding DTM2-R3 as rebutted and rejected.",
+      "see_also": [
+        "AUTHF-DTM0-SIMULATION-OPEN",
+        "COMP-C5-CLOSURES-HALTING"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-G5a",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1334",
+      "node_id": "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+      "slug": "auth-g5a-class-relative-transport",
+      "name": "A no-decider boundary transports through a validity-preserving reduction and a closed decision class",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "proved, rooted target (axiom-free)",
+      "statement": "If a map from a source predicate into proposal validity preserves the predicate exactly, and the allowed proposal deciders are closed under precomposition with that map, then a source predicate with no allowed total decider gives a proposal predicate with no allowed total decider.",
+      "obligation": "Instantiate the allowed classes with ComputablePred on a code type, take the halting problem as the source predicate and prove closure under the reduction; the declaration supplies none of the three.",
+      "imported_structure": [
+        "decision classes allowedHard and allowedProposal as arbitrary predicates on Bool-valued functions"
+      ],
+      "parent_nodes": [
+        "TFQ-0330"
+      ],
+      "parent_record": "TFQ-0330",
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean::AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean::AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [
+        "external:Mathlib/Computability/Reduce.lean::computable_of_manyOneReducible (closure instance for ComputablePred; Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
+      ],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md:39",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:317-327",
+        "papers/foundations/authorization_incompleteness/proof_program.md:335-361"
+      ],
+      "audit": "The declaration is the contrapositive of function composition and carries no computability content until the classes are instantiated; the source says so in its own header, and the auth-formal axiom report under v4.35.0 gives no axioms.",
+      "see_also": [
+        "PGW-CONTEXT-DECISION-PROCEDURE",
+        "AUTHF-CLASS-RELATIVE-TRANSPORT",
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-G5c",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1335",
+      "node_id": "AUTH-G5C-TERMINALIZATION-CONSEQUENCE",
+      "slug": "auth-g5c-terminalization-consequence",
+      "name": "Under a no-total-decider premise no terminalizer is closed, two-sided sound and in the allowed class",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "proved, rooted target",
+      "statement": "Given an allowed class with no total decider for a validity predicate, no terminalizer whose authorized bit lies in the class is both acceptance-sound and acceptance-complete, and none is acceptance-sound, rejection-sound and never unresolved; a two-valued Boolean fixture is closed, sound and complete.",
+      "obligation": "The no-total-decider premise and the class membership of the acceptance bit are hypotheses that no program carrier supplies yet; the result does not say that every terminalizer must return unresolved, and it uses three terminal values where TFQ-0330 names five.",
+      "imported_structure": [
+        "NoTotalDecider premise for the declared class",
+        "class membership of the acceptance bit"
+      ],
+      "parent_nodes": [
+        "TFQ-0330",
+        "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
+      ],
+      "parent_record": "TFQ-0330",
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_decides_of_sound_complete",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.closed_two_sided_terminalization_is_acceptance_complete",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md:40",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:329-347",
+        "papers/foundations/authorization_incompleteness/proof_program.md:363-395",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_g5c_terminalization_update_packet.md:26-41"
+      ],
+      "audit": "A short logical consequence of the premises, with propext on four of five declarations in the auth-formal axiom report under v4.35.0; the Boolean fixture holds because its predicate has a total decider, so it fences the result and does not extend it.",
+      "see_also": [
+        "PGW-GENESIS-THREE-AXIS-VERDICT",
+        "COMP-C3-VERDICT-SOUND",
+        "AUTHF-TERMINAL-CLOSED-TWO-SIDED"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-G5b",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1336",
+      "node_id": "AUTH-G5B-CARRIER-ADMISSION-GATE",
+      "slug": "auth-g5b-carrier-admission-gate",
+      "name": "A program carrier is admitted for an undecidability claim only with eight frozen fields",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_claimed_status": "defined; open",
+      "statement": "A program carrier is admitted for a global undecidability claim only when syntax and encodings, execution semantics, a universality witness, an extensional property, positive and negative nontriviality witnesses, an effective reduction, the split between adequacy and authorization, and replay closure are all frozen in one record.",
+      "obligation": "None of the eight fields is closed by the source: DTM0 and DTM1 are partial on syntax, execution and replay only, and the candidate inventory records admission as open.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+        "AUTH-G5A-CLASS-RELATIVE-TRANSPORT"
+      ],
+      "parent_record": "TFQ-1332",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md:41",
+        "papers/foundations/authorization_incompleteness/computability_lift_admission.md:52-93",
+        "papers/foundations/authorization_incompleteness/proof_program.md:449-473",
+        "papers/foundations/authorization_incompleteness/goals.yaml:228-247"
+      ],
+      "audit": "A requirement list with an anti-promotion test in the code half; the gate is carried as a definition and its fulfilment is open, and the source explicitly selects no carrier.",
+      "see_also": [
+        "PGW-CONTEXT-DECISION-PROCEDURE",
+        "AUTHF-CARRIER-ADMISSION-GATE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-5",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1337",
+      "node_id": "AUTH-RICE-THEOREM-IMPORT",
+      "slug": "auth-rice-theorem-import",
+      "name": "Rice theorem imported for the programs of a Turing-complete language",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_claimed_status": "cited; local formalization open",
+      "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "imported_structure": [
+        "Rice theorem (Rice 1953)",
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+      ],
+      "parent_nodes": [
+        "AUTH-G5B-CARRIER-ADMISSION-GATE"
+      ],
+      "parent_record": "TFQ-1336",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
+      ],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md:44",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
+      ],
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "see_also": [
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-G5",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1338",
+      "node_id": "AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+      "slug": "auth-g5-global-computability-lift",
+      "name": "Global computability lift for an admitted carrier and a nontrivial extensional property",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "open",
+      "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "imported_structure": [
+        "admitted program carrier",
+        "nontrivial extensional property"
+      ],
+      "parent_nodes": [
+        "AUTH-RICE-THEOREM-IMPORT",
+        "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+        "AUTH-G5B-CARRIER-ADMISSION-GATE"
+      ],
+      "parent_record": "TFQ-1337",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md:44",
+        "papers/foundations/authorization_incompleteness/proof_program.md:475-502",
+        "papers/foundations/authorization_incompleteness/goals.yaml:248-260"
+      ],
+      "audit": "The source marks this open and promotes nothing; no declaration in the source formal folder instantiates a program carrier, a computable decision class or a source undecidability theorem.",
+      "see_also": [
+        "AUTHF-RICE-GODEL-OPEN",
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AIT-TC1",
+      "corpus": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+      "record_id": "TFQ-1339",
+      "node_id": "AUTH-BLIND-DERIVATION-PROTOCOL",
+      "slug": "auth-blind-derivation-protocol",
+      "name": "Frozen blind-derivation protocol for a run from Primitive Difference toward computation",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_claimed_status": "design",
+      "statement": "A derivation run toward computation is a proposal source: its prompt, model, tools, repository state, available context and outputs are frozen, every notion is labeled input, definition, theorem, example or open assumption, each lift carries a positive witness and a failed-descent control, and literature comparison happens only after sealing; isolation records provenance and does not show novelty or validity.",
+      "obligation": "Apply the protocol to the Genesis to computability derivation and keep recovered material out of any run meant to be blind until that run is sealed.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
+      ],
+      "parent_record": "TFQ-0486",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md:32",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:52-69",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:375-411",
+        "papers/foundations/authorization_incompleteness/proof_program.md:207-223"
+      ],
+      "audit": "A method description with no formal content; the Genesis freeze under TFQ-0486 follows the same pattern in practice, but the protocol text itself is only recovered here.",
+      "see_also": [
+        "PGW-GENESIS-THREE-AXIS-VERDICT",
+        "PGW-RUNG0-INHERITANCE-REPLAY"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AUTHF-1",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1340",
+      "node_id": "AUTHF-DTM0-RULE-MACHINE",
+      "slug": "authf-dtm0-rule-machine",
+      "name": "DTM0 finite-rule machine with total integer tape and fuel-bounded evaluator",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "A DTM0 machine is a designated halt state with a finite, left-biased list of rows (state, scanned symbol, next state, written symbol, move) over the two-symbol alphabet blank and marked; a configuration is a state, an integer head and a total tape Int to symbol; execute runs at most the stated fuel and returns halted, stuck or fuelExhausted.",
+      "obligation": "The definition carries no input encoding, no unbounded-run semantics, no halting predicate and no comparison with Mathlib Turing.TM0; fuel exhaustion is a bounded-evaluator result and not non-halting.",
+      "imported_structure": [
+        "two-symbol alphabet fixed",
+        "rule-list order as the operational semantics",
+        "fuel as an externally supplied bound"
+      ],
+      "parent_nodes": [
+        "PG-GEN-REWRITING-COMMUTATION",
+        "PGW-CONTEXTS-PLUGGING-PROFILES"
+      ],
+      "parent_record": "TFQ-0390",
+      "lean": [
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.Machine",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.Rule",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.Configuration",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.StepResult",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.step",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.lookup",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.isDeclaredHalt"
+      ],
+      "rust": [],
+      "python": [
+        "code/python/src/qm/auth_incompleteness/finite_models.py::execute",
+        "code/python/src/qm/auth_incompleteness/finite_models.py::lookup",
+        "code/python/src/qm/auth_incompleteness/finite_models.py::apply_rule"
+      ],
+      "external_witnesses": [
+        "external:the recovered source folder named in papers/foundations/authorization_incompleteness/evidence/README.md (original path C:/.ana/coda_university/coda_research/authorization_an_incompleteness_theory)"
+      ],
+      "sources": [
+        "lean4/AuthIncompleteness/DirectTM.lean:44-50",
+        "lean4/AuthIncompleteness/DirectTM.lean:57-60",
+        "lean4/AuthIncompleteness/DirectTM.lean:64-66",
+        "lean4/AuthIncompleteness/DirectTM.lean:70-74",
+        "lean4/AuthIncompleteness/DirectTM.lean:91-92",
+        "lean4/AuthIncompleteness/DirectTM.lean:120-126",
+        "lean4/AuthIncompleteness/DirectTM.lean:130-140",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md:84-84"
+      ],
+      "audit": "These are plain Lean structures and total functions; no Mathlib import. Rows with state equal to the halt state are never fired because the halt test comes first. The tape is an arbitrary function Int to symbol, so configurations include tapes with infinitely many marks; Mathlib's TM0 tape has finite support. Duplicate rows are allowed and resolved by list order. The definitions are faithful to a deterministic two-symbol Turing-style machine with a stay move, but no theorem relates them to any computability notion.",
+      "see_also": [
+        "PG-GEN-REWRITING-COMMUTATION",
+        "AUTH-DTM0-FINITE-RULE-MACHINE",
+        "COMP-C5-TM0-STEP-SIMULATION"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "step_halted_iff_declared_halt",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1341",
+      "node_id": "AUTHF-DTM0-HALT-IFF-STATE",
+      "slug": "authf-dtm0-halt-iff-state",
+      "name": "DTM0 step reports halted exactly in the designated halt state",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For every DTM0 machine and configuration, step returns halted exactly when the configuration's state equals the machine's halt state, and execute then returns halted at every fuel budget.",
+      "obligation": "This fixes what a declared halt means in DTM0; it is not a statement about halting of runs and selects no terminal policy.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-DTM0-RULE-MACHINE"
+      ],
+      "parent_record": "TFQ-1340",
+      "lean": [
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.step_halted_iff_declared_halt",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt"
+      ],
+      "rust": [],
+      "python": [
+        "code/python/tests/test_auth_incompleteness_finite_models.py::test_declared_halt_is_reported_at_any_fuel"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/DirectTM.lean:206-214",
+        "lean4/AuthIncompleteness/DirectTM.lean:218-227"
+      ],
+      "audit": "Both theorems unfold the definitions: halted is by construction the halt-state test, so they check the evaluator's internal consistency. The #print axioms report lists propext only (from simp); no Classical.choice.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "AUTHF-3",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1342",
+      "node_id": "AUTHF-DTM0-FIXTURES",
+      "slug": "authf-dtm0-fixtures",
+      "name": "DTM0 write-and-halt, stuck and self-loop fixtures",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "On the three named fixtures, writeAndHaltMachine writes a mark and reaches its halt state in one transition, the empty-rule machine is stuck at its first step, and the one-row self-loop machine returns fuelExhausted with the looped configuration after one unit of fuel.",
+      "obligation": "The self-loop result is exhaustion of one unit of fuel; no theorem says the loop never halts, and no fixture exceeds three rows.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-DTM0-RULE-MACHINE",
+        "PGW-RUNS-PAST-DECLARED-BOUNDS"
+      ],
+      "parent_record": "TFQ-1340",
+      "lean": [
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_writes_mark",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_reaches_declared_halt",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_executes_to_syntactic_halt",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel"
+      ],
+      "rust": [],
+      "python": [
+        "code/python/tests/test_auth_incompleteness_finite_models.py::test_write_and_halt_fixture",
+        "code/python/tests/test_auth_incompleteness_finite_models.py::test_stuck_and_looping_fixtures_are_distinct_outcomes"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/DirectTM.lean:230-233",
+        "lean4/AuthIncompleteness/DirectTM.lean:236-239",
+        "lean4/AuthIncompleteness/DirectTM.lean:256-258",
+        "lean4/AuthIncompleteness/DirectTM.lean:243-245",
+        "lean4/AuthIncompleteness/DirectTM.lean:249-252"
+      ],
+      "audit": "Each declaration is rfl on a fixed machine, so the kernel evaluates the fixture; the Python twin replays the same three outcomes including a 10000-fuel loop that still reports exhaustion. Nothing here generalizes beyond the three machines.",
+      "see_also": [
+        "COMP-C5-SMALL-MACHINES-CHECKED"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AUTHF-4",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1343",
+      "node_id": "AUTHF-DTM1-TOKEN-GRAMMAR",
+      "slug": "authf-dtm1-token-grammar",
+      "name": "DTM1 List Nat token grammar for DTM0 machines",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "A machine code is the halt-state token followed by complete five-token frames (state, scanned tag, next state, written tag, move tag) with tags 0 and 1 for symbols and 0, 1, 2 for moves; decodeMachine consumes the whole list and returns none on an empty list, a truncated frame or an invalid tag.",
+      "obligation": "Tokens are natural numbers, not bytes; there is no configuration or input encoding and no parser-to-execution agreement.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-DTM0-RULE-MACHINE",
+        "PGW-CONTEXTS-PLUGGING-PROFILES"
+      ],
+      "parent_record": "TFQ-1340",
+      "lean": [
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeMachine",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeRules",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeRule"
+      ],
+      "rust": [],
+      "python": [
+        "code/python/src/qm/auth_incompleteness/finite_models.py::encode_machine",
+        "code/python/src/qm/auth_incompleteness/finite_models.py::decode_machine"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/TokenCode.lean:65-67",
+        "lean4/AuthIncompleteness/TokenCode.lean:70-72",
+        "lean4/AuthIncompleteness/TokenCode.lean:76-92",
+        "lean4/AuthIncompleteness/TokenCode.lean:96-97",
+        "lean4/AuthIncompleteness/TokenCode.lean:100-105"
+      ],
+      "audit": "A list of naturals is not a single natural, so this is not a Goedel numbering; Mathlib's Nat.Partrec.Code encoding is not used. The grammar is a tiny parser with a fixed-width frame.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "decodeMachine_encodeMachine",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1344",
+      "node_id": "AUTHF-DTM1-ROUNDTRIP",
+      "slug": "authf-dtm1-roundtrip",
+      "name": "DTM1 decode after encode recovers every DTM0 machine",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For every DTM0 machine m, decodeMachine (encodeMachine m) = some m, supported by the tag round trips decodeTapeSymbol_encodeTapeSymbol and decodeMove_encodeMove and the rule-list round trip decodeRules_encodeRules.",
+      "obligation": "Only decode after encode is stated; injectivity of decode on arbitrary lists and encode after decode are not stated.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-DTM1-TOKEN-GRAMMAR"
+      ],
+      "parent_record": "TFQ-1343",
+      "lean": [
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeTapeSymbol_encodeTapeSymbol",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMove_encodeMove"
+      ],
+      "rust": [],
+      "python": [
+        "code/python/tests/test_auth_incompleteness_finite_models.py::test_token_code_round_trip_exhaustive_small_space"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/TokenCode.lean:108-110",
+        "lean4/AuthIncompleteness/TokenCode.lean:113-115",
+        "lean4/AuthIncompleteness/TokenCode.lean:118-127",
+        "lean4/AuthIncompleteness/TokenCode.lean:131-135"
+      ],
+      "audit": "Structural induction on the rule list with simp; the tag lemmas print no axioms and the rule-list and machine lemmas print propext. The Python twin checks the round trip exhaustively on a small rule space as a cross-check, not as a proof.",
+      "see_also": [
+        "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+        "COMP-C8-BINARY-CODING"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "invalid_symbol_tag_is_rejected",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1345",
+      "node_id": "AUTHF-DTM1-MALFORMED-CODES",
+      "slug": "authf-dtm1-malformed-codes",
+      "name": "DTM1 rejects empty, truncated and invalid-tag codes",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "decodeMachine returns none on the four named lists [], [0,0,0,1], [0,0,2,1,0,0] and [0,0,0,1,0,3].",
+      "obligation": "Four named inputs only; no theorem characterizes the full domain of decodeMachine.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-DTM1-TOKEN-GRAMMAR"
+      ],
+      "parent_record": "TFQ-1343",
+      "lean": [
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.empty_machine_code_is_rejected",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.truncated_rule_code_is_rejected",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_symbol_tag_is_rejected",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_move_tag_is_rejected"
+      ],
+      "rust": [],
+      "python": [
+        "code/python/tests/test_auth_incompleteness_finite_models.py::test_malformed_codes_are_rejected"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/TokenCode.lean:138-140",
+        "lean4/AuthIncompleteness/TokenCode.lean:143-145",
+        "lean4/AuthIncompleteness/TokenCode.lean:148-150",
+        "lean4/AuthIncompleteness/TokenCode.lean:153-155"
+      ],
+      "audit": "Each is rfl on a concrete list. The source manifest records mutation sensitivity for three of these parser branches; that mutation run is not re-executed here.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "self_receipt_blocks_authorization",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1346",
+      "node_id": "AUTHF-SELF-RECEIPT-TOY",
+      "slug": "authf-self-receipt-toy",
+      "name": "A constant receipt cannot decide a one-bit packet contract",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For the one-bit Packet type with validity equal to its bit, no function from Unit to Bool satisfies authorize (receipt p) = valid p for all p, while the identity report admits such a function.",
+      "obligation": "A toy instance of the split-fibre obstruction; it says nothing about receipts in general.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER"
+      ],
+      "parent_record": "TFQ-0556",
+      "lean": [
+        "lean4/AuthIncompleteness/Core.lean::AuthorizationIncompleteness.self_receipt_splits_validity",
+        "lean4/AuthIncompleteness/Core.lean::AuthorizationIncompleteness.self_receipt_blocks_authorization",
+        "lean4/AuthIncompleteness/Core.lean::AuthorizationIncompleteness.complete_receipt_decides_toy_contract"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/Core.lean:78-82",
+        "lean4/AuthIncompleteness/Core.lean:86-90",
+        "lean4/AuthIncompleteness/Core.lean:97-100",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md:78-78"
+      ],
+      "audit": "Direct instance of total_authorization_requires_adequacy with witnesses false and true; axiom-free.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "no_source_decider_blocks_total_authorizer",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1347",
+      "node_id": "AUTHF-CLASS-RELATIVE-TRANSPORT",
+      "slug": "authf-class-relative-transport",
+      "name": "Class-relative transport of a no-total-decider premise through a reduction",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "Given a map from source instances to proposals that preserves the source predicate as proposal validity, and closure of the allowed proposal deciders under precomposition with that map, a source predicate with no allowed total decider yields a proposal validity predicate with no allowed total decider.",
+      "obligation": "The allowed classes and the source no-decider premise are supplied; no computability class, halting-style source theorem or Rice reduction is instantiated.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "PGW-CONTEXT-DECISION-PROCEDURE"
+      ],
+      "parent_record": "TFQ-0497",
+      "lean": [
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.Decides",
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.NoTotalDecider",
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction",
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction",
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider",
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [
+        "external:Mathlib ComputablePred.halting_problem and ComputablePred.rice (Mathlib.Computability.Halting), the natural instance, not used by the recovered files"
+      ],
+      "sources": [
+        "lean4/AuthIncompleteness/GlobalLift.lean:35-37",
+        "lean4/AuthIncompleteness/GlobalLift.lean:41-43",
+        "lean4/AuthIncompleteness/GlobalLift.lean:47-50",
+        "lean4/AuthIncompleteness/GlobalLift.lean:54-60",
+        "lean4/AuthIncompleteness/GlobalLift.lean:64-81",
+        "lean4/AuthIncompleteness/GlobalLift.lean:86-97"
+      ],
+      "audit": "Pure logic over predicates and Bool functions; no Mathlib import. If the allowed class is all Bool functions, every predicate has a classical decider and the premise is false, so the theorem has content only for a restricted class such as computable functions. That instantiation (Mathlib's ManyOneReducible and ComputablePred) is the missing step and is not done in the recovered files. Axiom-free.",
+      "see_also": [
+        "PGW-CONTEXT-DECISION-PROCEDURE",
+        "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "no_computable_authorizer_of_computable_reduction",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1348",
+      "node_id": "AUTHF-MATHLIB-HALTING-BRIDGE",
+      "slug": "authf-mathlib-halting-bridge",
+      "name": "Class-relative transport instantiated with Mathlib computability for halting",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "With Computable as the allowed class on both sides, a source predicate with no computable total decider and a computable validity-preserving map give proposal validity with no computable total decider; for the source predicate that program c halts on input n this is Mathlib's ComputablePred.halting_problem.",
+      "obligation": "Halting is the only source predicate instantiated; no Rice instance, no extensional property of encoded DTM0 programs and no computable reduction from DTM0 to Nat.Partrec.Code is given.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-CLASS-RELATIVE-TRANSPORT"
+      ],
+      "parent_record": "TFQ-1347",
+      "lean": [
+        "lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider",
+        "lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.computable_closed_under_computable_reduction",
+        "lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction",
+        "lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.halting_transport_instance"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [
+        "external:Mathlib.Computability.Halting ComputablePred.halting_problem and ComputablePred.computable_iff"
+      ],
+      "sources": [
+        "lean4/AuthIncompleteness/MathlibBridge.lean:32-39",
+        "lean4/AuthIncompleteness/MathlibBridge.lean:42-47",
+        "lean4/AuthIncompleteness/MathlibBridge.lean:51-57",
+        "lean4/AuthIncompleteness/MathlibBridge.lean:66-69",
+        "papers/foundations/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md:85-91"
+      ],
+      "audit": "Written during recovery, not recovered: compiled with lean v4.35.0 against the Mathlib v4.35.0 build, exit 0 and no warning, but it is not a lakefile root, so the repository build does not replay it. Axioms are propext, Classical.choice and Quot.sound, all from Mathlib's computability library. The first theorem restates ComputablePred.halting_problem through ComputablePred.computable_iff. The binding manifest does not list this declaration; the claim of PROVED_LEAN is the recovery notes (FORMAL_RECOVERY_NOTES.md:85-91), which record it as new and compiled outside lake.",
+      "see_also": [
+        "COMP-C7-MACHINE-HALTING-UNDECIDABLE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "acceptance_bit_decides_of_sound_complete",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1349",
+      "node_id": "AUTHF-TERMINAL-ACCEPT-BIT",
+      "slug": "authf-terminal-accept-bit",
+      "name": "An acceptance-sound and acceptance-complete terminalizer yields a total decider",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For a terminalizer into authorized, rejected, unresolved that is acceptance-sound and acceptance-complete for a validity predicate, the Boolean that is true exactly on authorized decides the predicate; if that Boolean lies in an allowed class with no total decider, the terminalizer cannot be both.",
+      "obligation": "The no-total-decider premise and the membership of the acceptance bit in the allowed class are hypotheses; neither is discharged.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-CLASS-RELATIVE-TRANSPORT",
+        "TFQ-0330"
+      ],
+      "parent_record": "TFQ-1347",
+      "lean": [
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_true_iff",
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_decides_of_sound_complete",
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/Terminal.lean:80-84",
+        "lean4/AuthIncompleteness/Terminal.lean:88-101",
+        "lean4/AuthIncompleteness/Terminal.lean:106-116"
+      ],
+      "audit": "The conclusion False is derived from NoTotalDecider by exhibiting the acceptance bit; it is the contrapositive of a definition unfolding. These print propext. Conditional on supplied premises, not a Rice theorem.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "closed_two_sided_terminalization_is_acceptance_complete",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1350",
+      "node_id": "AUTHF-TERMINAL-CLOSED-TWO-SIDED",
+      "slug": "authf-terminal-closed-two-sided",
+      "name": "A rejection-sound terminalizer with no unresolved case is acceptance-complete",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "If a terminalizer never rejects a valid proposal and never returns unresolved, every valid proposal is authorized; with an allowed acceptance bit and no allowed total decider, acceptance-soundness, rejection-soundness and closure cannot all hold.",
+      "obligation": "The result leaves three options (an unsound acceptance, an unsound rejection, or an unresolved case) and does not say any of them must occur for a particular predicate.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-TERMINAL-ACCEPT-BIT"
+      ],
+      "parent_record": "TFQ-1349",
+      "lean": [
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.closed_two_sided_terminalization_is_acceptance_complete",
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/Terminal.lean:120-132",
+        "lean4/AuthIncompleteness/Terminal.lean:139-151"
+      ],
+      "audit": "Case analysis on the three terminals; the first theorem is axiom-free and the second prints propext. Conditional on the supplied no-decider premise.",
+      "see_also": [
+        "COMP-C3-VERDICT-SOUND",
+        "AUTH-G5C-TERMINALIZATION-CONSEQUENCE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "finite_closed_terminalizer_remains_possible",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1351",
+      "node_id": "AUTHF-TERMINAL-BOOL-FIXTURE",
+      "slug": "authf-terminal-bool-fixture",
+      "name": "A closed two-sided sound terminalizer exists for the Bool predicate",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "On Bool with validity equal to the bit, the terminalizer sending true to authorized and false to rejected is acceptance-sound, acceptance-complete, rejection-sound and closed.",
+      "obligation": "A decidable one-bit predicate only; it shows closed terminalization is not forbidden without a no-decider premise.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-TERMINAL-CLOSED-TWO-SIDED"
+      ],
+      "parent_record": "TFQ-1350",
+      "lean": [
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible",
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolTerminalize",
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolValidity"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/Terminal.lean:155-155",
+        "lean4/AuthIncompleteness/Terminal.lean:160-162",
+        "lean4/AuthIncompleteness/Terminal.lean:187-195"
+      ],
+      "audit": "Case analysis over Bool; prints propext.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "same_halt_control_blocks_control_only_decider",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1352",
+      "node_id": "AUTHF-TAPE-CONTROL-REPORTS",
+      "slug": "authf-tape-control-reports",
+      "name": "Control-only and unread reports cannot decide the tape-control content contract",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "In the tape-control model with cells blank and marked and outcomes advance, stay, halt, no function of the control outcome and no function of the always-unread report equals contentContract on every presentation, and the read token blank is given opposite verdicts by the two supplied semantic adapters.",
+      "obligation": "The contract and adapters are supplied examples; the model is not the full Turing-machine model.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-DTM0-RULE-MACHINE"
+      ],
+      "parent_record": "TFQ-1340",
+      "lean": [
+        "lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider",
+        "lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider",
+        "lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters",
+        "lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.shared_halt_control_splits_content_contract"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/TapeControl.lean:154-157",
+        "lean4/AuthIncompleteness/TapeControl.lean:149-152",
+        "lean4/AuthIncompleteness/TapeControl.lean:166-178",
+        "lean4/AuthIncompleteness/TapeControl.lean:182-194",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md:82-82"
+      ],
+      "audit": "Each is a two-witness split-fibre argument on the six presentations; axiom-free.",
+      "see_also": [
+        "AUTH-TC0-TAPE-CONTROL-TYPING"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "syntactic_halt_does_not_select_terminal_policy",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1353",
+      "node_id": "AUTHF-HALT-NOT-POLICY",
+      "slug": "authf-halt-not-policy",
+      "name": "A syntactic halt or verified outcome does not select a terminal policy",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "In the DTM0 model, the tape-control model and the replay model, a halted or verified outcome receives different terminal values from two supplied policies: acceptHalted versus leaveAllOpen, acceptHalt versus rejectAll, and authorizeOnVerified versus leaveVerifiedOpen.",
+      "obligation": "Existence of two policies only; no policy is selected or justified.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-DTM0-RULE-MACHINE"
+      ],
+      "parent_record": "TFQ-1340",
+      "lean": [
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.syntactic_halt_does_not_select_direct_machine_policy",
+        "lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.terminal_policy_is_not_selected_by_verification"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/DirectTM.lean:261-264",
+        "lean4/AuthIncompleteness/TapeControl.lean:159-162",
+        "lean4/AuthIncompleteness/Replay.lean:281-284"
+      ],
+      "audit": "Each is a pair of rfl facts about two constant-style policy values; the content is the definitional separation of policy from outcome, not a theorem about computation. DirectTM's version prints propext.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "transition_preserves_clean_terminal_contract",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1354",
+      "node_id": "AUTHF-TRANSITION-INVARIANTS",
+      "slug": "authf-transition-invariants",
+      "name": "Four-configuration table: one preserved contract and one violated contract",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "The four-configuration transition table maps every configuration to one that cleanTerminalContract accepts, so it preserves that contract, and it does not preserve markedCellContract because runningMarked is accepted while its successor runningBlank is not.",
+      "obligation": "Two supplied Boolean contracts on one finite table; nothing is said about transition systems in general.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-DTM0-RULE-MACHINE"
+      ],
+      "parent_record": "TFQ-1340",
+      "lean": [
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_output_satisfies_clean_terminal_contract"
+      ],
+      "rust": [],
+      "python": [
+        "code/python/tests/test_auth_incompleteness_finite_models.py::test_contracts_and_adequacy_match_lean_theorems"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/TapeTransition.lean:119-125",
+        "lean4/AuthIncompleteness/TapeTransition.lean:129-132",
+        "lean4/AuthIncompleteness/TapeTransition.lean:136-139",
+        "lean4/AuthIncompleteness/TapeTransition.lean:142-147",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md:83-83"
+      ],
+      "audit": "Case analysis on four constructors with rfl; axiom-free. The Python twin recomputes preservation on the same table.",
+      "see_also": [
+        "AUTH-TC2-FINITE-TRANSITION-CONTRACT"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "full_configuration_report_adequate_for_marked_cell_contract",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1355",
+      "node_id": "AUTHF-TRANSITION-ADEQUACY",
+      "slug": "authf-transition-adequacy",
+      "name": "Full-configuration report is adequate for the marked-cell contract; the control report is not",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "On the four configurations the identity report is adequate for markedCellContract, whereas the control-outcome report is not, because haltedBlank and haltedMarked both report stay and the contract separates them, so no function of the control outcome decides the contract.",
+      "obligation": "A finite adequacy example; whether any report is adequate for a semantic property of arbitrary programs is not addressed.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-TRANSITION-INVARIANTS"
+      ],
+      "parent_record": "TFQ-1354",
+      "lean": [
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_admits_marked_cell_decider",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider"
+      ],
+      "rust": [],
+      "python": [
+        "code/python/src/qm/auth_incompleteness/replay_packet.py::transition_evaluation"
+      ],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/TapeTransition.lean:159-171",
+        "lean4/AuthIncompleteness/TapeTransition.lean:175-180",
+        "lean4/AuthIncompleteness/TapeTransition.lean:185-189",
+        "lean4/AuthIncompleteness/TapeTransition.lean:194-202"
+      ],
+      "audit": "The positive half is trivial (the identity report); the negative half is the split-fibre obstruction at the shared stay fibre. Axiom-free.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "replayed_status_requires_bound_submission",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1356",
+      "node_id": "AUTHF-REPLAY-BOUND-SUBMISSION",
+      "slug": "authf-replay-bound-submission",
+      "name": "Replay succeeds only on the submission bound in the receipt",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "In the finite structural replay model, if replay of a receipt on an observed submission returns replayed with some outcome, then the observed submission equals the submission bound in the receipt.",
+      "obligation": "Equality is structural equality of a finite record, not a digest; verifier soundness and custody are not modelled.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
+      ],
+      "parent_record": "TFQ-0486",
+      "lean": [
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replayed_status_requires_bound_submission",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replay",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.issueReceipt"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/Replay.lean:148-151",
+        "lean4/AuthIncompleteness/Replay.lean:162-169",
+        "lean4/AuthIncompleteness/Replay.lean:270-279",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md:86-86"
+      ],
+      "audit": "A one-step case split on the if; the file compiles under v4.35.0 with one deprecation warning for if_neg that does not affect the result. Axiom-free.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "self_pass_cannot_authorize_invalid_content",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1357",
+      "node_id": "AUTHF-REPLAY-SUBSTITUTIONS",
+      "slug": "authf-replay-substitutions",
+      "name": "Finite replay model rejects self-pass and substituted checker, contract and schema",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "Under authorizeTrueRoot, verify returns contractRejected for the invalid submission that sets selfPass, returns bindingRejected for the checker, contract-version and schema-version substitutions, issues a receipt that replays the valid submission as verified, and rejects the invalid payload as a substitution.",
+      "obligation": "Six rfl facts on five named submissions; the model does not prove that every substitution is caught.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-REPLAY-BOUND-SUBMISSION"
+      ],
+      "parent_record": "TFQ-1356",
+      "lean": [
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.self_pass_cannot_authorize_invalid_content",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.checker_substitution_is_binding_rejected",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.contract_version_substitution_is_binding_rejected",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.schema_version_substitution_is_binding_rejected",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.issued_receipt_replays_exact_submission",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replay_rejects_payload_substitution"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/Replay.lean:244-246",
+        "lean4/AuthIncompleteness/Replay.lean:248-250",
+        "lean4/AuthIncompleteness/Replay.lean:252-254",
+        "lean4/AuthIncompleteness/Replay.lean:256-258",
+        "lean4/AuthIncompleteness/Replay.lean:260-263",
+        "lean4/AuthIncompleteness/Replay.lean:265-268"
+      ],
+      "audit": "Kernel evaluation of fixed structures; axiom-free. The selfPass field is present and unused by verify, which is the point of the first fixture.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "physical_separation_neither_needed_nor_sufficient_for_toy_authorization",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1358",
+      "node_id": "AUTHF-LOGICAL-EXTERNALITY",
+      "slug": "authf-logical-externality",
+      "name": "Site labels: co-location is enough and separation is not",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For the presentation with identity report and equal source and evaluator sites, a report-only authorization exists; for the presentation with a Unit report and distinct sites, none exists.",
+      "obligation": "Site is an unused finite label; the statement carries no custody, security or independence content.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER"
+      ],
+      "parent_record": "TFQ-0556",
+      "lean": [
+        "lean4/AuthIncompleteness/Externality.lean::AuthorizationIncompleteness.LogicalExternalityModels.physical_separation_neither_needed_nor_sufficient_for_toy_authorization",
+        "lean4/AuthIncompleteness/Externality.lean::AuthorizationIncompleteness.LogicalExternalityModels.coLocatedComplete_can_authorize",
+        "lean4/AuthIncompleteness/Externality.lean::AuthorizationIncompleteness.LogicalExternalityModels.separatedCollapsed_cannot_authorize"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/Externality.lean:67-71",
+        "lean4/AuthIncompleteness/Externality.lean:92-95",
+        "lean4/AuthIncompleteness/Externality.lean:99-105",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md:81-81"
+      ],
+      "audit": "Because Site never appears in the authorization predicate, the theorem is the split-fibre obstruction on two Bool presentations with arbitrary labels attached; axiom-free.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "primitive_interface_has_distinct_authorization_extensions",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1359",
+      "node_id": "AUTHF-PD-EXTENSION-NONUNIQUE",
+      "slug": "authf-pd-extension-nonunique",
+      "name": "Two authorization extensions over one Bool primitive-difference analogue",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "Over the minimal Bool analogue of a primitive difference with two unequal marks, identityExtension and rejectingExtension give different validity and terminal values at the same carrier point.",
+      "obligation": "The analogue is not the J011 interface and no naturality statement about all primitive differences follows.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "TFQ-0332"
+      ],
+      "parent_record": "TFQ-0332",
+      "lean": [
+        "lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.primitive_interface_has_distinct_authorization_extensions",
+        "lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_validity",
+        "lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_policy",
+        "lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.boolPrimitive"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "sources": [
+        "lean4/AuthIncompleteness/PDModels.lean:36-42",
+        "lean4/AuthIncompleteness/PDModels.lean:60-62",
+        "lean4/AuthIncompleteness/PDModels.lean:66-68",
+        "lean4/AuthIncompleteness/PDModels.lean:84-95",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md:79-79"
+      ],
+      "audit": "Conjunction of rfl facts about two named functions; axiom-free. Non-uniqueness is witnessed by choosing two different functions.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "pd_quotient_split_blocks_report_only_authorization",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1360",
+      "node_id": "AUTHF-PD-QUOTIENT-BRIDGE",
+      "slug": "authf-pd-quotient-bridge",
+      "name": "Primitive-difference quotient report cannot decide a ZeroRel-splitting validity",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "PROVED_LEAN",
+      "statement": "For a primitive difference P and a Bool validity that differs on some ZeroRel P class, no function on the canonical quotient report pdProj P agrees with validity everywhere; a ZeroRel-constant validity has a quotient decision.",
+      "obligation": "Not built here: the file imports J011_minimal_publication, whose source is absent from this repository, so the recorded proof is unreplayed.",
+      "imported_structure": [
+        "J011 candidate quotient interface: PrimitiveDifference, ZeroRel, ResidualQuotient, pdSetoid, pdProj, collapsePD"
+      ],
+      "parent_nodes": [
+        "TFQ-0332"
+      ],
+      "parent_record": "TFQ-0332",
+      "lean": [
+        "lean4/AuthIncompleteness/PDBridge.lean::AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_total_decision_requires_zeroRel_constancy",
+        "lean4/AuthIncompleteness/PDBridge.lean::AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_split_blocks_report_only_authorization",
+        "lean4/AuthIncompleteness/PDBridge.lean::AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pdQuotientDecision",
+        "lean4/AuthIncompleteness/PDBridge.lean::AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_decision_if_zeroRel_constant",
+        "lean4/AuthIncompleteness/PDBridge.lean::AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.collapse_pd_blocks_report_only_authorization"
+      ],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [
+        "external:lean4/genx/_work_review_queue/grok_pd_night_20260814/J011_minimal_publication.lean (cited by the source, not recovered)"
+      ],
+      "sources": [
+        "lean4/AuthIncompleteness/PDBridge.lean:56-67",
+        "lean4/AuthIncompleteness/PDBridge.lean:71-81",
+        "lean4/AuthIncompleteness/PDBridge.lean:86-93",
+        "lean4/AuthIncompleteness/PDBridge.lean:95-101",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md:80-80"
+      ],
+      "audit": "The source records propext and Quot.sound for the negative theorems and none for the positive one; those reports are not reproducible without J011. Mathematically the argument is the same equality chain as the split-fibre obstruction.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "AUTHF-23",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1361",
+      "node_id": "AUTHF-REPLAY-PACKET-PYTHON",
+      "slug": "authf-replay-packet-python",
+      "name": "SHA-256 replay packet for the four-configuration table (Python port)",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_claimed_status": "COMPUTATIONALLY_CHECKED",
+      "statement": "A manifest binding eight artifacts by SHA-256 together with a four-row transition proposal, a contract and a leave-open policy verifies under the Python port; it finds the clean-terminal contract preserved, the marked-cell contract violated at runningMarked and haltedMarked, the control-outcome report inadequate (haltedBlank and haltedMarked share stay), the route open_due_to_inadequate_report and the terminal open, and refuses 21 tamper mutations.",
+      "obligation": "Evaluator correspondence to the Lean model, SHA-256 collision resistance, runtime integrity and custody remain assumptions; the PowerShell runtime pin is not reproduced and the formal replay uses Lean v4.35.0 instead of the recorded v4.32.2.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-TRANSITION-ADEQUACY",
+        "TFQ-0331"
+      ],
+      "parent_record": "TFQ-1355",
+      "lean": [],
+      "rust": [],
+      "python": [
+        "code/python/src/qm/auth_incompleteness/replay_packet.py::invoke_replay_packet",
+        "code/python/src/qm/auth_incompleteness/replay_packet.py::check_packet",
+        "code/python/src/qm/auth_incompleteness/replay_packet.py::transition_evaluation",
+        "code/python/tests/test_auth_incompleteness_replay_packet.py::test_case_01_good_packet_verifies"
+      ],
+      "external_witnesses": [
+        "external:the recovered source folder named in papers/foundations/authorization_incompleteness/evidence/README.md (original path C:/.ana/coda_university/coda_research/authorization_an_incompleteness_theory) (PowerShell originals kept verbatim under evidence/original/code)"
+      ],
+      "sources": [
+        "code/python/src/qm/auth_incompleteness/replay_packet.py:1-30",
+        "code/python/src/qm/auth_incompleteness/replay_packet.py:369-405",
+        "code/python/src/qm/auth_incompleteness/replay_packet.py:408-411"
+      ],
+      "audit": "The evaluator hard-codes full_report_adequate as true (identity report) instead of computing it. The ported tests reproduce the recorded 23 cases and 21 rejected mutations; the formal replay compiles the two bound original Lean files against the installed toolchain.",
+      "see_also": [],
+      "uses": []
+    },
+    {
+      "source_id": "AUTHF-24",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1362",
+      "node_id": "AUTHF-CARRIER-ADMISSION-GATE",
+      "slug": "authf-carrier-admission-gate",
+      "name": "No computability carrier is admitted for the authorization lift",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "OPEN",
+      "statement": "The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses any selection or admission.",
+      "obligation": "A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
+      ],
+      "parent_record": "TFQ-0486",
+      "lean": [],
+      "rust": [],
+      "python": [
+        "code/python/src/qm/auth_incompleteness/carrier_candidates.py::validate_record",
+        "code/python/src/qm/auth_incompleteness/carrier_candidates.py::mutation_cases",
+        "code/python/tests/test_auth_incompleteness_candidates.py::test_record_is_globally_open_and_selects_nothing"
+      ],
+      "external_witnesses": [
+        "external:the recovered source folder named in papers/foundations/authorization_incompleteness/evidence/README.md (original path C:/.ana/coda_university/coda_research/authorization_an_incompleteness_theory)"
+      ],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json:1-30",
+        "code/python/src/qm/auth_incompleteness/carrier_candidates.py:1-24"
+      ],
+      "audit": "The gate is a structural validator over a JSON record, ported from PowerShell; it admits nothing. Seven of its evidence paths (PO-022 and PO-023 files, the GenX lakefile) do not resolve in this checkout.",
+      "see_also": [
+        "AUTH-G5B-CARRIER-ADMISSION-GATE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AUTHF-25",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1363",
+      "node_id": "AUTHF-RICE-GODEL-OPEN",
+      "slug": "authf-rice-godel-open",
+      "name": "Rice, Goedel and the LLM corollary are not formalized in the recovered files",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "OPEN",
+      "statement": "No recovered declaration states Rice's theorem, a halting-problem reduction, Goedel's second incompleteness theorem or the LLM corollary; the only link toward them is the class-relative transport with a supplied no-decider premise, which the recovery-time MathlibBridge file instantiates for halting only.",
+      "obligation": "Instantiate the transport for a nontrivial extensional property of encoded programs with Mathlib's ComputablePred.rice and a computable reduction from the DTM0 carrier before any such claim.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "PGW-CONTEXT-DECISION-PROCEDURE",
+        "AUTHF-CLASS-RELATIVE-TRANSPORT"
+      ],
+      "parent_record": "TFQ-0497",
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [
+        "external:omega_engine_atlas/.../001_authorization_an_incompleteness_theory/lean4/AuthorizationIncompletenessTheory/TuringBarrier.lean (named by TFQ-0330 as a finite diagonal on Nat to Nat to Bool, absent from this checkout and from the recovered folder)"
+      ],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md:1-12",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/README.md:1-40"
+      ],
+      "audit": "The prose ledger lists AIT-5, AIT-6 and AIT-7 as cited or pending. The recovered Lean never imports Mathlib, so Turing.TM0, Turing.TM1, Nat.Partrec.Code and ComputablePred.halting_problem are not used or related to.",
+      "see_also": [
+        "TFQ-0330",
+        "AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "uses": []
+    },
+    {
+      "source_id": "AUTHF-26",
+      "corpus": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+      "record_id": "TFQ-1364",
+      "node_id": "AUTHF-DTM0-SIMULATION-OPEN",
+      "slug": "authf-dtm0-simulation-open",
+      "name": "DTM0 is not shown Turing-complete and has no universality theorem",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_claimed_status": "OPEN",
+      "statement": "DTM0 has no simulation theorem, no machine that runs encoded machines, no input or configuration encoding, no parser-to-execution agreement and no equivalence with Mathlib's Turing.TM0 or with Nat.Partrec.Code; its fuel-bounded evaluator decides only bounded runs.",
+      "obligation": "A faithful comparison needs a finite-support tape restriction, the stay move split into Mathlib's move-or-write statements, and a halting predicate such as exists fuel with execute returning halted.",
+      "imported_structure": [],
+      "parent_nodes": [
+        "AUTHF-DTM0-RULE-MACHINE",
+        "PGW-RUNS-PAST-DECLARED-BOUNDS"
+      ],
+      "parent_record": "TFQ-1340",
+      "lean": [],
+      "rust": [],
+      "python": [
+        "code/python/src/qm/auth_incompleteness/finite_models.py::execute"
+      ],
+      "external_witnesses": [
+        "external:Mathlib Turing.TM0, Turing.TM1, Turing.TM2 and Nat.Partrec.Code (Mathlib.Computability), unused by the recovered files"
+      ],
+      "sources": [
+        "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json:1-30"
+      ],
+      "audit": "The recorded AIT-DTM0 admission fields mark universality open. The Python twin and the Lean evaluator agree on the fixtures but make no claim about arbitrary machines.",
+      "see_also": [
+        "COMP-C5-CLOSURES-HALTING",
+        "AUTH-DTM2-INPUT-REQUEST-PLANNED"
+      ],
       "uses": []
     }
   ]

@@ -1,0 +1,226 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C2-LETTER-RENAME-COMMUTES
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For every letter map f, a step or reach on words gives a step or reach of the f-image
+    rule predicate on the f-image words; for an injective f a reach of the image comes from a reach of
+    the original (Reach.of_map).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: This is the word-side analogue of Genesis Step.rename and Reach.rename, not an instance
+    of them.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1287_comp_c2_letter_rename_commutes.md
+  - dag/research/genesis_to_universal_computation.md
+  - lean4/GenesisComputation.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1287_comp_c2_letter_rename_commutes.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1287_comp_c2_letter_rename_commutes.md
+    sha256: 4d7972f430d77e5435956fec6f92c23f3eac76d05ed6f8b3bfb83f49b8ab48ab
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c2_letter_rename_commutes_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Step
+  line: 267
+  signature_excerpt: 'def Step (R : List α → List α → Prop) (w w'' : List α) : Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mapRule
+  line: 304
+  signature_excerpt: 'def mapRule (f : α → β) (R : List α → List α → Prop) : List β → List β → Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Reach
+  line: 271
+  signature_excerpt: 'def Reach (R : List α → List α → Prop) : List α → List α → Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: Step.map
+  line: 308
+  signature_excerpt: |-
+    theorem Step.map (f : α → β) {R : List α → List α → Prop} {w w' : List α}
+        (h : Step R w w') : Step (mapRule f R) (w.map f) (w'.map f)
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Reach.map
+  line: 314
+  signature_excerpt: |-
+    theorem Reach.map (f : α → β) {R : List α → List α → Prop} {w w' : List α}
+        (h : Reach R w w') : Reach (mapRule f R) (w.map f) (w'.map f)
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Reach.of_map
+  line: 346
+  signature_excerpt: |-
+    theorem Reach.of_map {f : α → β} (hf : Function.Injective f) {R : List α → List α → Prop}
+        {w w' : List α} (h : Reach (mapRule f R) (w.map f) (w'.map f)) : Reach R w w'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Step.exists_of_map
+  line: 322
+  signature_excerpt: |-
+    theorem Step.exists_of_map {f : α → β} (hf : Function.Injective f)
+        {R : List α → List α → Prop} {w : List α} {z : List β}
+        (h : Step (mapRule f R) (w.map f) z) : ∃ w2, z = w2.map f ∧ Step R w w2
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Reach.exists_of_map
+  line: 336
+  signature_excerpt: |-
+    theorem Reach.exists_of_map {f : α → β} (hf : Function.Injective f)
+        {R : List α → List α → Prop} {w : List α} {y : List β}
+        (h : Reach (mapRule f R) (w.map f) y) : ∃ w2, y = w2.map f ∧ Reach R w w2
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisComputation.lean::Step.map
+  availability: local
+  symbol: Step.map
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 308
+  role: source_lead_only
+- original_ref: lean4/GenesisComputation.lean::Reach.map
+  availability: local
+  symbol: Reach.map
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 314
+  role: source_lead_only
+- original_ref: lean4/GenesisComputation.lean::Reach.of_map
+  availability: local
+  symbol: Reach.of_map
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 346
+  role: source_lead_only
+- original_ref: lean4/GenesisComputation.lean::Step.exists_of_map
+  availability: local
+  symbol: Step.exists_of_map
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 322
+  role: source_lead_only
+- original_ref: lean4/GenesisComputation.lean::Reach.exists_of_map
+  availability: local
+  symbol: Reach.exists_of_map
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 336
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::map_marks
+  availability: local
+  symbol: map_marks
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 90
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::letter_map_commutes_with_steps
+  availability: local
+  symbol: letter_map_commutes_with_steps
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 706
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

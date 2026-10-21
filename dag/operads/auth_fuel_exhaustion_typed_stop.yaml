@@ -1,0 +1,287 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTH-FUEL-EXHAUSTION-TYPED-STOP
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: A bounded evaluator has three terminal outcomes, halted, stuck and fuel exhausted;
+    the fuel-exhausted outcome records only that the budget ended and is never read as divergence, and
+    a looping fixture exhausts a budget of one step without any claim about whether it halts.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: 'Apply the same three-way typing to the declared-bound runs of the Genesis continuation:
+    a run stopped at the guard or the bound stays unresolved, neither closed nor diverging, until a longer
+    run or a proof decides it.'
+  source_refs:
+  - dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md
+  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md
+  - papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md
+  - papers/foundations/authorization_incompleteness/proof_program.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md
+    sha256: 71d48336c845d4913920263dbf49ca41b55093e9e5196b689193510d86f0c69f
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_auth_fuel_exhaustion_typed_stop_definition.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: execute
+  line: 123
+  signature_excerpt: |-
+    def execute (machine : Machine) : Nat -> Configuration -> StepResult
+      | 0, configuration =>
+        match isDeclaredHalt machine configuration with
+        | true => .halted
+        | false => .fuelExhausted configuration
+      | fuel + 1, configuration =>
+        match step machine configuration with
+        | .next nextConfiguration => execute machine fuel nextConfiguration
+        | .halted => .halted
+        | .stuck => .stuck
+        | .fuelExhausted boundedConfiguration => .fuelExhausted boundedConfiguration
+
+    /-- A terminal policy is extra supplied structure over an operational result. -/
+    structure TerminalPolicy
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: loopingMachine
+  line: 186
+  signature_excerpt: 'def loopingMachine : Machine'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: initialConfiguration
+  line: 154
+  signature_excerpt: 'def initialConfiguration : Configuration'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: applyRule
+  line: 99
+  signature_excerpt: 'def applyRule (rule : Rule) (configuration : Configuration) : Configuration'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: loopingRule
+  line: 178
+  signature_excerpt: 'def loopingRule : Rule'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Machine
+  line: 57
+  signature_excerpt: structure Machine
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Configuration
+  line: 50
+  signature_excerpt: structure Configuration
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: StepResult
+  line: 63
+  signature_excerpt: inductive StepResult
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isDeclaredHalt
+  line: 105
+  signature_excerpt: 'def isDeclaredHalt (machine : Machine) (configuration : Configuration) : Bool'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: step
+  line: 113
+  signature_excerpt: 'def step (machine : Machine) (configuration : Configuration) : StepResult'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: blankTape
+  line: 151
+  signature_excerpt: 'def blankTape : Tape'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Rule
+  line: 37
+  signature_excerpt: structure Rule
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: applyMove
+  line: 92
+  signature_excerpt: 'def applyMove (move : Move) (head : Int) : Int'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: writeAt
+  line: 88
+  signature_excerpt: 'def writeAt (tape : Tape) (position : Int) (symbol : TapeSymbol) : Tape'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Tape
+  line: 47
+  signature_excerpt: abbrev Tape
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: lookup
+  line: 84
+  signature_excerpt: 'def lookup (machine : Machine) (configuration : Configuration) : Option Rule'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: looping_fixture_exhausts_bounded_fuel
+  line: 242
+  signature_excerpt: |-
+    theorem looping_fixture_exhausts_bounded_fuel :
+        execute loopingMachine 1 initialConfiguration =
+          .fuelExhausted (applyRule loopingRule initialConfiguration)
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: execute_halted_of_declared_halt
+  line: 211
+  signature_excerpt: |-
+    theorem execute_halted_of_declared_halt
+        (machine : Machine) (fuel : Nat) (configuration : Configuration)
+        (halted : DeclaredHalt machine configuration) :
+        execute machine fuel configuration = .halted
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: empty_rule_fixture_is_stuck
+  line: 236
+  signature_excerpt: |-
+    theorem empty_rule_fixture_is_stuck :
+        step stuckMachine initialConfiguration = .stuck
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  source_sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  declaration_status: declaration_found_not_proof_checked
+  line: 242
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  declaration_status: declaration_found_not_proof_checked
+  line: 211
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+  repository: this_repository
+  sha256: 0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9
+  declaration_status: declaration_found_not_proof_checked
+  line: 236
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -10,6 +10,11 @@ import yaml
 from custody import Custody
 
 ROOT=Path(__file__).resolve().parents[2]
+LOADER=getattr(yaml,'CSafeLoader',yaml.SafeLoader)
+
+
+def load_yaml(data):
+    return yaml.load(data,Loader=LOADER)
 REJECT=re.compile(r'stage_route_shadow_invariant|quotient_reduced_countermodel_defect|Set cochain_d1_d0_exact_zero|Set should_continue|exact 18 keys|which equals|raw_candidate_rival_int|countermodel_expected_int|P\* Cycle C_4')
 
 
@@ -46,21 +51,53 @@ def check_presentation(presentation):
     return errors
 
 
-def validate():
+EXTENSION='dag/pfp/prompt_audit_extension.json'
+EXTENSION_SCHEMA='omega.pfp.finite-qm.prompt-audit-extension.v1'
+
+
+def load_extension(root,base_digest):
+    """Rows of the generated-prompt audit extension; the sealed audit is never edited.
+
+    Returns (rows keyed by node, errors). A missing extension is an empty one.
+    """
+    path=root/EXTENSION
+    if not path.is_file(): return {},[]
     errors=[]
-    files=sorted((ROOT/'dag/prompts').glob('*.yaml'))
-    index=json.loads((ROOT/'dag/operads/index.json').read_text(encoding='utf-8'))
+    extension=json.loads(path.read_bytes())
+    if extension.get('schema_id')!=EXTENSION_SCHEMA or extension.get('authority_effect')!='None': errors.append('audit extension: schema')
+    if extension.get('base_audit_sha256')!=base_digest: errors.append('audit extension: not bound to the sealed audit')
+    rows={}
+    for row in extension.get('nodes',[]):
+        if row['node_id'] in rows: errors.append(row['node_id']+': duplicate extension row')
+        rows[row['node_id']]=row
+    if extension.get('prompts_reviewed')!=len(rows): errors.append('audit extension: count mismatch')
+    return rows,errors
+
+
+def validate(root=ROOT):
+    root=Path(root)
+    errors=[]
+    files=sorted((root/'dag/prompts').glob('*.yaml'))
+    index=json.loads((root/'dag/operads/index.json').read_text(encoding='utf-8'))
     indexed={row['node_id'] for row in index['nodes']}
-    audit=json.loads((ROOT/'dag/pfp/prompt_audit.json').read_text(encoding='utf-8'))
+    if len(indexed)!=len(index['nodes']): errors.append('duplicate index row')
+    audit_path=root/'dag/pfp/prompt_audit.json'
+    audit=json.loads(audit_path.read_text(encoding='utf-8'))
     audited={row['node_id']:row for row in audit['nodes']}
+    if audit['prompts_reviewed']!=len(audit['nodes']) or len(audited)!=len(audit['nodes']): errors.append('sealed audit count mismatch')
+    extended,extension_errors=load_extension(root,hashlib.sha256(audit_path.read_bytes()).hexdigest())
+    errors.extend(extension_errors)
+    if set(extended)&set(audited): errors.append('extension repeats a sealed audit node')
+    expected=len(audited)+len(extended)
     try:
-        custody=Custody(ROOT)
+        custody=Custody(root)
     except (ValueError,KeyError,TypeError,OSError) as error:
         return {'prompts':len(files),'collections':len(indexed),'errors':['filename custody invalid: '+str(error)],'claim':'Custody failure; no mathematical acceptance.'}
     seen=set()
     for path in files:
-        prompt=yaml.safe_load(path.read_bytes())
+        prompt=load_yaml(path.read_bytes())
         node=prompt['node_id']
+        generated=node in extended
         if node in seen: errors.append(node+': duplicate node')
         seen.add(node)
         if prompt.get('default_stage')!='P0_MINE_OPERAD': errors.append(node+': entry stage')
@@ -69,9 +106,9 @@ def validate():
         if 'response_schema' in prompt or 'user_prompt_without_m3_ablation' in prompt: errors.append(node+': legacy answer schema')
         for key in ('workflow','mode','stage_contracts','operad_record'):
             target=(path.parent/prompt[key]).resolve()
-            if not target.is_file() or ROOT not in target.parents:
+            if not target.is_file() or root.resolve() not in target.parents:
                 errors.append(node+': broken or escaping '+key)
-        record=yaml.safe_load((path.parent/prompt['operad_record']).read_bytes())
+        record=load_yaml((path.parent/prompt['operad_record']).read_bytes())
         if record['node_id']!=node: errors.append(node+': wrong collection')
         if record['target']['source_statement'] not in prompt['user_prompt']: errors.append(node+': truncated target')
         if record['target']['statement_status']!='source_claim_to_scope_check_not_accepted_result': errors.append(node+': source status promoted')
@@ -82,20 +119,27 @@ def validate():
         errors.extend(node+': '+e for e in check_presentation(record['presentation']))
         for binding in record['source_bindings']:
             if binding['availability']=='local':
-                p=ROOT/binding['path']
+                p=root/binding['path']
                 if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest()!=binding['sha256']:
                     errors.append(node+': local source pin changed '+binding['path'])
         for pin in record['target'].get('paper_source_pins',[]):
-            if not custody.matches('paper',pin['path'],pin['sha256'],node):
+            if generated:
+                # Generated pins are current digests: they never enter the sealed filename-custody ledger.
+                source=root/pin['path']
+                if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest()!=pin['sha256']:
+                    errors.append(node+': local paper source pin changed '+pin['path'])
+            elif not custody.matches('paper',pin['path'],pin['sha256'],node):
                 errors.append(node+': local paper source pin changed '+pin['path'])
-        row=audited.get(node,{})
-        if not custody.matches('prompt',path.relative_to(ROOT).as_posix(),row.get('after_sha256'),node): errors.append(node+': audit hash mismatch')
-    if len(files)!=177 or seen!=indexed or seen!=set(audited): errors.append('corpus identity mismatch')
+        row=extended[node] if generated else audited.get(node,{})
+        if generated and (row.get('prompt')!=path.relative_to(root).as_posix() or row.get('operad_collection')!=(path.parent/prompt['operad_record']).resolve().relative_to(root.resolve()).as_posix()):
+            errors.append(node+': extension row path mismatch')
+        if not custody.matches('prompt',path.relative_to(root).as_posix(),row.get('after_sha256'),node): errors.append(node+': audit hash mismatch')
+    if len(files)!=expected or seen!=indexed or seen!=set(audited)|set(extended): errors.append('corpus identity mismatch')
     try:
         custody.finish()
     except ValueError as error:
         errors.append(str(error))
-    workflow=yaml.safe_load((ROOT/'dag/pfp/workflow.yaml').read_bytes())
+    workflow=load_yaml((root/'dag/pfp/workflow.yaml').read_bytes())
     if workflow['entry_stage']!='P0_MINE_OPERAD': errors.append('workflow entry')
     if [s['id'] for s in workflow['stages']]!=['P0_MINE_OPERAD','P1_DERIVE','P2_VERIFY','P3_REPAIR','P4_CHALLENGE','P5_RECORD']:
         errors.append('stage sequence')

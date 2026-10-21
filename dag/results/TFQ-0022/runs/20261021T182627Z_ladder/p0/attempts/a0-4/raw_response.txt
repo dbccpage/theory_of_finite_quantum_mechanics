@@ -1,0 +1,19 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [
+    {
+      "id": "near_miss_1",
+      "claim": "Exhaustive replay of 81-index quadruple Fierz identity for V_3 tensor V_3",
+      "rejecting_invariant": "The target specification requires keeping the 81-entry Fierz replay in Rust and Python controls without equating it to the Lean scalar slice. The existing Lean theorem `su3_fierz_diagonal_and_offdiagonal_identities` checks only the diagonal Cartan contribution and one off-diagonal pair of scalar products, contracting to 4/3. It does not walk the 81 quadruples. Therefore, a generator or relation citing the Lean theorem as exhaustive would misrepresent the target obligation."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Verify the 81-entry Fierz identity: r_il r_kj = (1/2) delta_il delta_kj - (1/6) delta_ij delta_kl for all i,j,k,l in {1,2,3}. This must be kept in Rust and Python controls and not described as the Lean scalar identities loop.",
+    "Ensure that any cited declarations from @SRC/@KNOWN+ are verified as existing; none found that cover the 81 quadruple exhaustive replay."
+  ]
+}
