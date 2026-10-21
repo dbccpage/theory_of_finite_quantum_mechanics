@@ -112,44 +112,78 @@ fn dot(a: &[i64], b: &[i64]) -> BigInt {
         .sum()
 }
 
+fn validate_budget(
+    rays: &[Vec<i64>],
+    frames: &[Vec<usize>],
+    dimension: usize,
+) -> Result<(), FramePolytopeError> {
+    if dimension > 16 {
+        return Err(FramePolytopeError::CarrierBudget);
+    }
+    if rays.len() > 512 || frames.len() > 512 {
+        return Err(FramePolytopeError::CarrierBudget);
+    }
+    if rays
+        .len()
+        .checked_mul(frames.len())
+        .is_none_or(|n| n > 65536)
+    {
+        return Err(FramePolytopeError::CarrierBudget);
+    }
+    if rays.is_empty() || frames.is_empty() || dimension == 0 {
+        return Err(FramePolytopeError::Empty);
+    }
+    Ok(())
+}
+
+fn validate_rays(rays: &[Vec<i64>], dimension: usize) -> Result<(), FramePolytopeError> {
+    for (ray, r) in rays.iter().enumerate() {
+        if r.len() != dimension || r.iter().all(|&x| x == 0) {
+            return Err(FramePolytopeError::BadRay { ray });
+        }
+    }
+    Ok(())
+}
+
+fn check_frame_orthogonality(
+    rays: &[Vec<i64>],
+    frame: usize,
+    members: &[usize],
+) -> Result<(), FramePolytopeError> {
+    for (i, &left) in members.iter().enumerate() {
+        for &right in &members[i + 1..] {
+            if !dot(&rays[left], &rays[right]).is_zero() {
+                return Err(FramePolytopeError::NotOrthogonal { frame, left, right });
+            }
+        }
+    }
+    Ok(())
+}
+
+fn validate_frames(
+    rays: &[Vec<i64>],
+    frames: &[Vec<usize>],
+    dimension: usize,
+) -> Result<(), FramePolytopeError> {
+    for (frame, members) in frames.iter().enumerate() {
+        let distinct: BTreeSet<usize> = members.iter().copied().collect();
+        if members.len() != dimension || distinct.len() != dimension {
+            return Err(FramePolytopeError::BadFrame { frame, dimension });
+        }
+        if members.iter().any(|&r| r >= rays.len()) {
+            return Err(FramePolytopeError::BadFrame { frame, dimension });
+        }
+        check_frame_orthogonality(rays, frame, members)?;
+    }
+    Ok(())
+}
+
 impl FrameSystem {
     pub fn new(rays: Vec<Vec<i64>>, frames: Vec<Vec<usize>>) -> Result<Self, FramePolytopeError> {
         let dimension = rays.first().map_or(0, Vec::len);
-        if dimension > 16
-            || rays.len() > 512
-            || frames.len() > 512
-            || rays
-                .len()
-                .checked_mul(frames.len())
-                .is_none_or(|n| n > 65536)
-        {
-            return Err(FramePolytopeError::CarrierBudget);
-        }
-        if rays.is_empty() || frames.is_empty() || dimension == 0 {
-            return Err(FramePolytopeError::Empty);
-        }
-        if let Some(ray) = rays
-            .iter()
-            .position(|r| r.len() != dimension || r.iter().all(|&x| x == 0))
-        {
-            return Err(FramePolytopeError::BadRay { ray });
-        }
-        for (frame, members) in frames.iter().enumerate() {
-            let distinct: BTreeSet<usize> = members.iter().copied().collect();
-            if members.len() != dimension
-                || distinct.len() != dimension
-                || members.iter().any(|&r| r >= rays.len())
-            {
-                return Err(FramePolytopeError::BadFrame { frame, dimension });
-            }
-            for (i, &left) in members.iter().enumerate() {
-                for &right in &members[i + 1..] {
-                    if !dot(&rays[left], &rays[right]).is_zero() {
-                        return Err(FramePolytopeError::NotOrthogonal { frame, left, right });
-                    }
-                }
-            }
-        }
+        validate_budget(&rays, &frames, dimension)?;
+        validate_rays(&rays, dimension)?;
+        validate_frames(&rays, &frames, dimension)?;
         Ok(Self { rays, frames })
     }
 
@@ -276,6 +310,30 @@ impl FrameSystem {
         Ok(rank(&columns)? == support.len())
     }
 
+    fn solve_frame_coordinates(
+        &self,
+        f: &[Rational],
+        needed: usize,
+    ) -> Result<Vec<Rational>, FramePolytopeError> {
+        let rank = self.projector_span_rank()?;
+        if rank != needed {
+            return Err(FramePolytopeError::ProjectorsDoNotSpan { rank, needed });
+        }
+        let sol = solve(&self.projector_rows()?, f)?;
+        match sol {
+            LinearSolution::Consistent {
+                particular,
+                kernel_basis,
+            } => {
+                if !kernel_basis.is_empty() {
+                    return Err(FramePolytopeError::NotAFrameFunction);
+                }
+                Ok(particular)
+            }
+            _ => Err(FramePolytopeError::NotAFrameFunction),
+        }
+    }
+
     /// The unique symmetric `rho` with `f_r = r^T rho r / r^T r`; its trace is
     /// one because `f` is a frame function. This does not certify positivity;
     /// use `density_state_of` to admit a density matrix.
@@ -284,20 +342,7 @@ impl FrameSystem {
             return Err(FramePolytopeError::NotAFrameFunction);
         }
         let coordinates = self.symmetric_coordinates();
-        let rank = self.projector_span_rank()?;
-        if rank != coordinates.len() {
-            return Err(FramePolytopeError::ProjectorsDoNotSpan {
-                rank,
-                needed: coordinates.len(),
-            });
-        }
-        let solution = match solve(&self.projector_rows()?, f)? {
-            LinearSolution::Consistent {
-                particular,
-                kernel_basis,
-            } if kernel_basis.is_empty() => particular,
-            _ => return Err(FramePolytopeError::NotAFrameFunction),
-        };
+        let solution = self.solve_frame_coordinates(f, coordinates.len())?;
         let d = self.dimension();
         let mut rho = mx::zeros(d, d)?;
         for (&(i, j), value) in coordinates.iter().zip(solution) {
@@ -361,7 +406,106 @@ impl FrameSystem {
         }
         Ok(())
     }
+}
 
+fn peel_tree_leaves(
+    frames: usize,
+    edges: &[(usize, usize)],
+    support: &[usize],
+    incident: &[Vec<usize>],
+    demand: &mut [Rational],
+    values: &mut [Rational],
+    alive: &mut [bool],
+) {
+    let mut degree: Vec<usize> = incident.iter().map(Vec::len).collect();
+    let mut leaves: Vec<usize> = (0..frames).filter(|&v| degree[v] == 1).collect();
+    while let Some(v) = leaves.pop() {
+        if degree[v] == 1 {
+            let k = *incident[v]
+                .iter()
+                .find(|&&k| alive[k])
+                .expect("a leaf keeps one live edge");
+            let r = support[k];
+            let w = if edges[r].0 == v { edges[r].1 } else { edges[r].0 };
+            values[r] = demand[v].clone();
+            demand[w] = &demand[w] - &values[r];
+            alive[k] = false;
+            degree[v] -= 1;
+            degree[w] -= 1;
+            if degree[w] == 1 {
+                leaves.push(w);
+            }
+        }
+    }
+}
+
+fn trace_cycle(
+    start: usize,
+    incident: &[Vec<usize>],
+    edges: &[(usize, usize)],
+    support: &[usize],
+    alive: &[bool],
+) -> (Vec<usize>, Vec<usize>, usize) {
+    let (c0, first) = (edges[support[start]].0, edges[support[start]].1);
+    let mut cycle = vec![start];
+    let mut vertices = vec![first];
+    let (mut vertex, mut edge) = (first, start);
+    while vertex != c0 {
+        let next = *incident[vertex]
+            .iter()
+            .find(|&&k| alive[k] && k != edge)
+            .expect("a cycle vertex has two live edges");
+        let r = support[next];
+        vertex = if edges[r].0 == vertex { edges[r].1 } else { edges[r].0 };
+        edge = next;
+        cycle.push(next);
+        vertices.push(vertex);
+    }
+    (cycle, vertices, c0)
+}
+
+fn cycle_kernel_coeff(cycle: &[usize], support: &[usize], r: usize) -> Rational {
+    for (pos, &k) in cycle.iter().enumerate() {
+        if support[k] == r {
+            let sign = if pos % 2 == 0 { 1 } else { -1 };
+            return ri(sign);
+        }
+    }
+    Rational::zero()
+}
+
+fn build_even_cycle_kernel(
+    edges_len: usize,
+    support: &[usize],
+    cycle: &[usize],
+) -> Vec<Rational> {
+    (0..edges_len)
+        .map(|r| cycle_kernel_coeff(cycle, support, r))
+        .collect()
+}
+
+fn solve_odd_cycle(
+    cycle: &[usize],
+    vertices: &[usize],
+    c0: usize,
+    support: &[usize],
+    demand: &[Rational],
+    values: &mut [Rational],
+) {
+    let mut s = vec![Rational::zero()];
+    let mut t = vec![Rational::one()];
+    for j in 1..cycle.len() {
+        s.push(&demand[vertices[j - 1]] - &s[j - 1]);
+        t.push(-&t[j - 1]);
+    }
+    let last = cycle.len() - 1;
+    let x = (&demand[c0] - &s[last]) / (&t[last] + Rational::one());
+    for (j, &k) in cycle.iter().enumerate() {
+        values[support[k]] = &s[j] + &t[j] * &x;
+    }
+}
+
+impl FrameSystem {
     /// Solve `A_S f_S = 1` on a support whose components are unicyclic.
     fn basic_solution(
         &self,
@@ -377,78 +521,27 @@ impl FrameSystem {
             incident[edges[r].0].push(k);
             incident[edges[r].1].push(k);
         }
-        let mut degree: Vec<usize> = incident.iter().map(Vec::len).collect();
-        let mut leaves: Vec<usize> = (0..frames).filter(|&v| degree[v] == 1).collect();
-        while let Some(v) = leaves.pop() {
-            if degree[v] != 1 {
-                continue;
-            }
-            let k = *incident[v]
-                .iter()
-                .find(|&&k| alive[k])
-                .expect("a leaf keeps one live edge");
-            let r = support[k];
-            let w = if edges[r].0 == v {
-                edges[r].1
-            } else {
-                edges[r].0
-            };
-            values[r] = demand[v].clone();
-            demand[w] = &demand[w] - &values[r];
-            alive[k] = false;
-            degree[v] -= 1;
-            degree[w] -= 1;
-            if degree[w] == 1 {
-                leaves.push(w);
-            }
-        }
+        peel_tree_leaves(
+            frames,
+            edges,
+            support,
+            &incident,
+            &mut demand,
+            &mut values,
+            &mut alive,
+        );
         for start in 0..support.len() {
-            if !alive[start] {
-                continue;
-            }
-            let (c0, first) = (edges[support[start]].0, edges[support[start]].1);
-            let mut cycle = vec![start];
-            let mut vertices = vec![first];
-            let (mut vertex, mut edge) = (first, start);
-            while vertex != c0 {
-                let next = *incident[vertex]
-                    .iter()
-                    .find(|&&k| alive[k] && k != edge)
-                    .expect("a cycle vertex has two live edges");
-                let r = support[next];
-                vertex = if edges[r].0 == vertex {
-                    edges[r].1
-                } else {
-                    edges[r].0
-                };
-                edge = next;
-                cycle.push(next);
-                vertices.push(vertex);
-            }
-            for &k in &cycle {
-                alive[k] = false;
-            }
-            if cycle.len() % 2 == 0 {
-                let kernel: Vec<Rational> = (0..edges.len())
-                    .map(|r| match cycle.iter().position(|&k| support[k] == r) {
-                        Some(position) => ri(if position % 2 == 0 { 1 } else { -1 }),
-                        None => Rational::zero(),
-                    })
-                    .collect();
-                self.check_solution(edges, &kernel, &Rational::zero())?;
-                return Ok(BasicSolution::Singular);
-            }
-            // f(e_j) = s_j + t_j x with x = f(e_0); vertex c_j sits between e_(j-1) and e_j.
-            let mut s = vec![Rational::zero()];
-            let mut t = vec![Rational::one()];
-            for j in 1..cycle.len() {
-                s.push(&demand[vertices[j - 1]] - &s[j - 1]);
-                t.push(-&t[j - 1]);
-            }
-            let last = cycle.len() - 1;
-            let x = (&demand[c0] - &s[last]) / (&t[last] + Rational::one());
-            for (j, &k) in cycle.iter().enumerate() {
-                values[support[k]] = &s[j] + &t[j] * &x;
+            if alive[start] {
+                let (cycle, vertices, c0) = trace_cycle(start, &incident, edges, support, &alive);
+                for &k in &cycle {
+                    alive[k] = false;
+                }
+                if cycle.len() % 2 == 0 {
+                    let kernel = build_even_cycle_kernel(edges.len(), support, &cycle);
+                    self.check_solution(edges, &kernel, &Rational::zero())?;
+                    return Ok(BasicSolution::Singular);
+                }
+                solve_odd_cycle(&cycle, &vertices, c0, support, &demand, &mut values);
             }
         }
         self.check_solution(edges, &values, &Rational::one())?;
@@ -468,6 +561,27 @@ impl FrameSystem {
     ) -> Result<Vec<Vec<Rational>>, FramePolytopeError> {
         self.vertices_with_statistics(limit)
             .map(|(vertices, _)| vertices)
+    }
+
+    fn check_support_vertex(
+        &self,
+        frames: usize,
+        edges: &[(usize, usize)],
+        support: &[usize],
+    ) -> Result<Option<Vec<Rational>>, FramePolytopeError> {
+        if !components_are_unicyclic(frames, edges, support) {
+            return Ok(None);
+        }
+        let sol = self.basic_solution(edges, support)?;
+        match sol {
+            BasicSolution::Unique(values) => {
+                if !values.iter().any(Signed::is_negative) {
+                    return Ok(Some(values));
+                }
+            }
+            BasicSolution::Singular => {}
+        }
+        Ok(None)
     }
 
     /// Retain the actual number of size-rank supports visited, not a claimed census.
@@ -494,12 +608,8 @@ impl FrameSystem {
                 return Err(FramePolytopeError::EnumerationLimit { limit });
             }
             examined += 1;
-            if components_are_unicyclic(frames, &edges, &support) {
-                if let BasicSolution::Unique(values) = self.basic_solution(&edges, &support)? {
-                    if !values.iter().any(Signed::is_negative) {
-                        found.insert(values);
-                    }
-                }
+            if let Some(values) = self.check_support_vertex(frames, &edges, &support)? {
+                found.insert(values);
             }
             if !next_combination(&mut support, edges.len()) {
                 break;

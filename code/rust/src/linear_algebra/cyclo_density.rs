@@ -126,11 +126,7 @@ impl Element {
             a.mul(&inverse_zeta).add(&Self::rational(self.n, q.clone()))
         })
     }
-    #[allow(clippy::needless_range_loop)]
-    pub(crate) fn inverse(&self) -> Result<Self> {
-        if self.is_zero() {
-            return Err("CYCLOTOMIC_DIVISION_BY_ZERO".into());
-        }
+    fn multiplication_matrix(&self) -> Vec<Vec<Q>> {
         let d = self.c.len();
         let mut rows = vec![vec![Q::zero(); d + 1]; d];
         for col in 0..d {
@@ -142,25 +138,40 @@ impl Element {
             }
         }
         rows[0][d] = Q::one();
+        rows
+    }
+
+    fn eliminate_column(rows: &mut [Vec<Q>], col: usize, d: usize) -> Result<()> {
+        let pivot = (col..d)
+            .find(|&row| !rows[row][col].is_zero())
+            .ok_or("CYCLOTOMIC_INVERSE_SINGULAR")?;
+        rows.swap(col, pivot);
+        let divisor = rows[col][col].clone();
+        for entry in &mut rows[col][col..=d] {
+            *entry /= &divisor;
+        }
+        let pivot_row = rows[col].clone();
+        for row in 0..d {
+            if row == col {
+                continue;
+            }
+            let scale = rows[row][col].clone();
+            for j in col..=d {
+                rows[row][j] -= &scale * &pivot_row[j];
+            }
+        }
+        Ok(())
+    }
+
+    #[allow(clippy::needless_range_loop)]
+    pub(crate) fn inverse(&self) -> Result<Self> {
+        if self.is_zero() {
+            return Err("CYCLOTOMIC_DIVISION_BY_ZERO".into());
+        }
+        let d = self.c.len();
+        let mut rows = self.multiplication_matrix();
         for col in 0..d {
-            let pivot = (col..d)
-                .find(|&row| !rows[row][col].is_zero())
-                .ok_or("CYCLOTOMIC_INVERSE_SINGULAR")?;
-            rows.swap(col, pivot);
-            let divisor = rows[col][col].clone();
-            for entry in &mut rows[col][col..=d] {
-                *entry /= &divisor;
-            }
-            let pivot_row = rows[col].clone();
-            for row in 0..d {
-                if row == col {
-                    continue;
-                }
-                let scale = rows[row][col].clone();
-                for j in col..=d {
-                    rows[row][j] -= &scale * &pivot_row[j];
-                }
-            }
+            Self::eliminate_column(&mut rows, col, d)?;
         }
         let inverse = Self {
             n: self.n,
@@ -233,7 +244,21 @@ pub fn has_coefficient_objects(input: &Value) -> bool {
     })
 }
 
-fn validate(input: &Value) -> Result<Matrix> {
+fn system_parameters(system: &str) -> Result<(usize, u64)> {
+    match system {
+        "S1" => Ok((2, 4)),
+        "S2" => Ok((3, 3)),
+        "S3" => Ok((2, 8)),
+        "S4" => Ok((4, 8)),
+        "S5" => Ok((5, 5)),
+        "S6" => Ok((4, 1)),
+        "S7" => Ok((3, 1)),
+        "S8" => Ok((4, 4)),
+        _ => Err("SYSTEM_OUTSIDE_FROZEN_CLASS".into()),
+    }
+}
+
+fn validate_input_fields(input: &Value) -> Result<()> {
     reject_float(input, "input")?;
     let fields: BTreeSet<_> = input
         .as_object()
@@ -247,21 +272,16 @@ fn validate(input: &Value) -> Result<Matrix> {
     if input["fixture_id"].as_str().is_none_or(str::is_empty) {
         return Err("FIXTURE_ID_REQUIRED".into());
     }
+    Ok(())
+}
+
+fn validate_input_schema_and_system<'a>(input: &'a Value) -> Result<(u64, &'a str, usize)> {
+    validate_input_fields(input)?;
     let n = input["conductor"]
         .as_u64()
         .ok_or("CONDUCTOR_INTEGER_REQUIRED")?;
     let system = input["system_id"].as_str().ok_or("SYSTEM_ID_REQUIRED")?;
-    let (d, expected_n) = match system {
-        "S1" => (2, 4),
-        "S2" => (3, 3),
-        "S3" => (2, 8),
-        "S4" => (4, 8),
-        "S5" => (5, 5),
-        "S6" => (4, 1),
-        "S7" => (3, 1),
-        "S8" => (4, 4),
-        _ => return Err("SYSTEM_OUTSIDE_FROZEN_CLASS".into()),
-    };
+    let (d, expected_n) = system_parameters(system)?;
     if n != expected_n {
         return Err("SYSTEM_CONDUCTOR_MISMATCH".into());
     }
@@ -273,15 +293,18 @@ fn validate(input: &Value) -> Result<Matrix> {
     if input["scope"] != scope {
         return Err("SYSTEM_SCOPE_MISMATCH".into());
     }
-    let rows = input["matrix"].as_array().ok_or("MATRIX_ARRAY_REQUIRED")?;
+    Ok((n, system, d))
+}
+
+fn parse_square_matrix(input_matrix: &Value, n: u64, d: usize) -> Result<Matrix> {
+    let rows = input_matrix.as_array().ok_or("MATRIX_ARRAY_REQUIRED")?;
     if rows.is_empty() || rows.len() > 5 {
         return Err("REFUSED_AT_BUDGET:matrix_dimension_max".into());
     }
     if rows.len() != d {
         return Err("SYSTEM_DIMENSION_MISMATCH".into());
     }
-    let matrix: Matrix = rows
-        .iter()
+    rows.iter()
         .map(|row| {
             let entries = row.as_array().ok_or("MATRIX_ROW_ARRAY_REQUIRED")?;
             if entries.len() != d {
@@ -289,7 +312,10 @@ fn validate(input: &Value) -> Result<Matrix> {
             }
             entries.iter().map(|x| parse_element(n, x)).collect()
         })
-        .collect::<Result<_>>()?;
+        .collect()
+}
+
+fn check_hermitian(matrix: &Matrix) -> Result<()> {
     for (i, row) in matrix.iter().enumerate() {
         for (j, entry) in row.iter().enumerate() {
             if entry != &matrix[j][i].conjugate() {
@@ -297,9 +323,24 @@ fn validate(input: &Value) -> Result<Matrix> {
             }
         }
     }
-    if trace(&matrix) != Element::one(n) {
-        return Err("UNNORMALISED_SPECTRUM:trace_is_not_one".into());
+    Ok(())
+}
+
+fn check_s6_geometric_ladder(matrix: &Matrix, n: u64, d: usize) -> Result<()> {
+    if matrix[0][0].sign()? != Ordering::Greater {
+        return Err("S6_GEOMETRIC_LADDER_REQUIRED".into());
     }
+    let ratio = matrix[1][1].div(&matrix[0][0])?;
+    if ratio.sign()? != Ordering::Greater
+        || ratio.sub(&Element::one(n)).sign()? != Ordering::Less
+        || (1..d).any(|i| matrix[i][i] != matrix[i - 1][i - 1].mul(&ratio))
+    {
+        return Err("S6_GEOMETRIC_LADDER_REQUIRED".into());
+    }
+    Ok(())
+}
+
+fn check_ladder_system(system: &str, matrix: &Matrix, n: u64, d: usize) -> Result<()> {
     if system == "S6" || system == "S7" {
         for (i, row) in matrix.iter().enumerate() {
             if row.iter().enumerate().any(|(j, x)| i != j && !x.is_zero()) {
@@ -308,17 +349,19 @@ fn validate(input: &Value) -> Result<Matrix> {
         }
     }
     if system == "S6" {
-        if matrix[0][0].sign()? != Ordering::Greater {
-            return Err("S6_GEOMETRIC_LADDER_REQUIRED".into());
-        }
-        let ratio = matrix[1][1].div(&matrix[0][0])?;
-        if ratio.sign()? != Ordering::Greater
-            || ratio.sub(&Element::one(n)).sign()? != Ordering::Less
-            || (1..d).any(|i| matrix[i][i] != matrix[i - 1][i - 1].mul(&ratio))
-        {
-            return Err("S6_GEOMETRIC_LADDER_REQUIRED".into());
-        }
+        check_s6_geometric_ladder(matrix, n, d)?;
     }
+    Ok(())
+}
+
+fn validate(input: &Value) -> Result<Matrix> {
+    let (n, system, d) = validate_input_schema_and_system(input)?;
+    let matrix = parse_square_matrix(&input["matrix"], n, d)?;
+    check_hermitian(&matrix)?;
+    if trace(&matrix) != Element::one(n) {
+        return Err("UNNORMALISED_SPECTRUM:trace_is_not_one".into());
+    }
+    check_ladder_system(system, &matrix, n, d)?;
     psd(&matrix)?;
     Ok(matrix)
 }
@@ -524,6 +567,19 @@ fn polynomial_gcd(a: &[Element], b: &[Element]) -> Result<Polynomial> {
     let inverse = left[0].inverse()?;
     Ok(left.iter().map(|x| x.mul(&inverse)).collect())
 }
+fn verify_squarefree_product(factors: &[(Polynomial, usize)], p: &[Element]) -> Result<()> {
+    let mut product = vec![Element::one(p[0].n)];
+    for (factor, count) in factors {
+        for _ in 0..*count {
+            product = multiply(&product, factor);
+        }
+    }
+    if product != p {
+        return Err("SQUAREFREE_MULTIPLICITY_PRODUCT_MISMATCH".into());
+    }
+    Ok(())
+}
+
 fn squarefree(p: &[Element]) -> Result<Vec<(Polynomial, usize)>> {
     let mut repeated = polynomial_gcd(p, &derivative(p))?;
     let mut remaining = quotient(p, &repeated)?;
@@ -542,15 +598,7 @@ fn squarefree(p: &[Element]) -> Result<Vec<(Polynomial, usize)>> {
             return Err("SQUAREFREE_MULTIPLICITY_LOOP_FAILED".into());
         }
     }
-    let mut product = vec![Element::one(p[0].n)];
-    for (factor, count) in &factors {
-        for _ in 0..*count {
-            product = multiply(&product, factor);
-        }
-    }
-    if product != p {
-        return Err("SQUAREFREE_MULTIPLICITY_PRODUCT_MISMATCH".into());
-    }
+    verify_squarefree_product(&factors, p)?;
     Ok(factors)
 }
 fn sturm(p: &[Element]) -> Result<Vec<Polynomial>> {
@@ -611,6 +659,171 @@ impl Root {
             "distinct_root_count":self.distinct_root_count,"entropy_lower":qstr(&self.entropy_lo),"entropy_upper":qstr(&self.entropy_hi)})
     }
 }
+fn extract_factor_endpoints(
+    factor: &[Element],
+    multiplicity: usize,
+    n: u64,
+    roots: &mut Vec<Root>,
+) -> Result<Vec<Element>> {
+    let mut interior = factor.to_vec();
+    for endpoint in [Q::zero(), Q::one()] {
+        if interior.len() > 1 && eval(&interior, &endpoint).is_zero() {
+            interior = quotient(
+                &interior,
+                &[Element::one(n), Element::rational(n, -&endpoint)],
+            )?;
+            roots.push(Root {
+                polynomial: factor.to_vec(),
+                multiplicity,
+                distinct_root_count: 1,
+                lo: endpoint.clone(),
+                hi: endpoint,
+                entropy_lo: Q::zero(),
+                entropy_hi: Q::zero(),
+            });
+        }
+    }
+    Ok(interior)
+}
+
+struct BisectStep {
+    midpoint: Q,
+    exact: bool,
+    left: usize,
+    right: usize,
+}
+
+fn bisect_cluster_step(
+    sequence: &[Polynomial],
+    interior: &[Element],
+    lo: &Q,
+    hi: &Q,
+    count: usize,
+) -> Result<BisectStep> {
+    let midpoint = (lo + hi) / rat(2, 1);
+    let exact = eval(interior, &midpoint).is_zero();
+    let left = root_count(sequence, lo, &midpoint)?;
+    let right = root_count(sequence, &midpoint, hi)?;
+    if left + right + usize::from(exact) != count {
+        return Err("STURM_SUBDIVISION_ROOT_CENSUS_FAILED".into());
+    }
+    Ok(BisectStep {
+        midpoint,
+        exact,
+        left,
+        right,
+    })
+}
+
+fn push_cluster_step(
+    step: BisectStep,
+    interior: &[Element],
+    multiplicity: usize,
+    bounds: &ClusterBounds,
+    hi: Q,
+    lo: Q,
+    roots: &mut Vec<Root>,
+    queue: &mut Vec<(Q, Q, usize)>,
+    max_terms: &mut usize,
+) -> Result<()> {
+    if step.exact {
+        let (entropy_lo, entropy_hi, terms) =
+            cluster_entropy_interval(&step.midpoint, &step.midpoint, bounds)?;
+        *max_terms = (*max_terms).max(terms);
+        roots.push(Root {
+            polynomial: interior.to_vec(),
+            multiplicity,
+            distinct_root_count: 1,
+            lo: step.midpoint.clone(),
+            hi: step.midpoint.clone(),
+            entropy_lo,
+            entropy_hi,
+        });
+    }
+    if step.right != 0 {
+        queue.push((step.midpoint.clone(), hi, step.right));
+    }
+    if step.left != 0 {
+        queue.push((lo, step.midpoint, step.left));
+    }
+    Ok(())
+}
+
+fn initial_cluster_sturm(interior: &[Element]) -> Result<(Vec<Polynomial>, usize)> {
+    let sequence = sturm(interior)?;
+    let total = root_count(&sequence, &Q::zero(), &Q::one())?;
+    if total != interior.len() - 1 {
+        return Err("PSD_SPECTRUM_ROOT_CENSUS_FAILED".into());
+    }
+    Ok((sequence, total))
+}
+
+fn push_terminal_cluster(
+    interior: &[Element],
+    multiplicity: usize,
+    count: usize,
+    lo: Q,
+    hi: Q,
+    bounds: &ClusterBounds,
+    roots: &mut Vec<Root>,
+    max_terms: &mut usize,
+) -> Result<()> {
+    let (entropy_lo, entropy_hi, terms) = cluster_entropy_interval(&lo, &hi, bounds)?;
+    *max_terms = (*max_terms).max(terms);
+    roots.push(Root {
+        polynomial: interior.to_vec(),
+        multiplicity,
+        distinct_root_count: count,
+        lo,
+        hi,
+        entropy_lo,
+        entropy_hi,
+    });
+    Ok(())
+}
+
+fn isolate_factor_interior(
+    interior: &[Element],
+    multiplicity: usize,
+    bounds: &ClusterBounds,
+    limit: usize,
+    roots: &mut Vec<Root>,
+    used: &mut usize,
+    max_terms: &mut usize,
+) -> Result<()> {
+    if interior.len() <= 1 {
+        return Ok(());
+    }
+    let (sequence, total) = initial_cluster_sturm(interior)?;
+    let mut queue = vec![(Q::zero(), Q::one(), total)];
+    while let Some((lo, hi, count)) = queue.pop() {
+        if count == 0 {
+            continue;
+        }
+        if &hi - &lo <= bounds.delta {
+            push_terminal_cluster(interior, multiplicity, count, lo, hi, bounds, roots, max_terms)?;
+            continue;
+        }
+        check_subdivision_budget(*used, limit, bounds.subdivision_bound)?;
+        *used += 1;
+        let step = bisect_cluster_step(&sequence, interior, &lo, &hi, count)?;
+        push_cluster_step(step, interior, multiplicity, bounds, hi, lo, roots, &mut queue, max_terms)?;
+    }
+    Ok(())
+}
+
+fn check_subdivision_budget(used: usize, limit: usize, bound: usize) -> Result<()> {
+    if used >= limit {
+        return Err(format!(
+            "REFUSED_IMPLEMENTATION_RESOURCE_LIMIT:sturm_subdivisions:{used}/{limit}"
+        ));
+    }
+    if used >= bound {
+        return Err("CLUSTER_SUBDIVISION_PROOF_BOUND_FAILED".into());
+    }
+    Ok(())
+}
+
 fn isolate(
     p: &[Element],
     bounds: &ClusterBounds,
@@ -621,88 +834,8 @@ fn isolate(
     let mut used = 0;
     let mut max_terms = 0;
     for (factor, multiplicity) in squarefree(p)? {
-        let mut interior = factor.clone();
-        for endpoint in [Q::zero(), Q::one()] {
-            if interior.len() > 1 && eval(&interior, &endpoint).is_zero() {
-                interior = quotient(
-                    &interior,
-                    &[Element::one(n), Element::rational(n, -&endpoint)],
-                )?;
-                roots.push(Root {
-                    polynomial: factor.clone(),
-                    multiplicity,
-                    distinct_root_count: 1,
-                    lo: endpoint.clone(),
-                    hi: endpoint,
-                    entropy_lo: Q::zero(),
-                    entropy_hi: Q::zero(),
-                });
-            }
-        }
-        if interior.len() == 1 {
-            continue;
-        }
-        let sequence = sturm(&interior)?;
-        let total = root_count(&sequence, &Q::zero(), &Q::one())?;
-        if total != interior.len() - 1 {
-            return Err("PSD_SPECTRUM_ROOT_CENSUS_FAILED".into());
-        }
-        let mut queue = vec![(Q::zero(), Q::one(), total)];
-        while let Some((lo, hi, count)) = queue.pop() {
-            if count == 0 {
-                continue;
-            }
-            if &hi - &lo <= bounds.delta {
-                let (entropy_lo, entropy_hi, terms) = cluster_entropy_interval(&lo, &hi, bounds)?;
-                max_terms = max_terms.max(terms);
-                roots.push(Root {
-                    polynomial: interior.clone(),
-                    multiplicity,
-                    distinct_root_count: count,
-                    lo,
-                    hi,
-                    entropy_lo,
-                    entropy_hi,
-                });
-                continue;
-            }
-            if used >= limit {
-                return Err(format!(
-                    "REFUSED_IMPLEMENTATION_RESOURCE_LIMIT:sturm_subdivisions:{used}/{limit}"
-                ));
-            }
-            if used >= bounds.subdivision_bound {
-                return Err("CLUSTER_SUBDIVISION_PROOF_BOUND_FAILED".into());
-            }
-            used += 1;
-            let midpoint = (&lo + &hi) / rat(2, 1);
-            let exact = eval(&interior, &midpoint).is_zero();
-            let left = root_count(&sequence, &lo, &midpoint)?;
-            let right = root_count(&sequence, &midpoint, &hi)?;
-            if left + right + usize::from(exact) != count {
-                return Err("STURM_SUBDIVISION_ROOT_CENSUS_FAILED".into());
-            }
-            if exact {
-                let (entropy_lo, entropy_hi, terms) =
-                    cluster_entropy_interval(&midpoint, &midpoint, bounds)?;
-                max_terms = max_terms.max(terms);
-                roots.push(Root {
-                    polynomial: interior.clone(),
-                    multiplicity,
-                    distinct_root_count: 1,
-                    lo: midpoint.clone(),
-                    hi: midpoint.clone(),
-                    entropy_lo,
-                    entropy_hi,
-                });
-            }
-            if right != 0 {
-                queue.push((midpoint.clone(), hi, right));
-            }
-            if left != 0 {
-                queue.push((lo, midpoint, left));
-            }
-        }
+        let interior = extract_factor_endpoints(&factor, multiplicity, n, &mut roots)?;
+        isolate_factor_interior(&interior, multiplicity, bounds, limit, &mut roots, &mut used, &mut max_terms)?;
     }
     if roots
         .iter()

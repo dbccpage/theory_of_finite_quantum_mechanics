@@ -242,6 +242,133 @@ impl CellComplex {
     }
 }
 
+fn validate_cochain_limits(
+    complex: &CellComplex,
+    vertices: usize,
+    edges: usize,
+    faces: usize,
+) -> Result<(), HolonomyError> {
+    let dense = edges
+        .checked_mul(vertices)
+        .and_then(|n| faces.checked_mul(edges).and_then(|m| n.checked_add(m)))
+        .ok_or_else(|| HolonomyError::BoundaryCycleMismatch {
+            face: "cell_complex".into(),
+            detail: "dense matrix size overflow".into(),
+        })?;
+    if dense > 1 << 20 {
+        return Err(HolonomyError::OperationLimitExceeded {
+            limit: 1 << 20,
+            requested: dense,
+        });
+    }
+    let steps = complex
+        .faces
+        .iter()
+        .try_fold(0usize, |a, f| a.checked_add(f.boundary_edges.len()))
+        .ok_or_else(|| HolonomyError::BoundaryCycleMismatch {
+            face: "cell_complex".into(),
+            detail: "boundary work overflow".into(),
+        })?;
+    let work = steps
+        .checked_mul(vertices)
+        .ok_or_else(|| HolonomyError::BoundaryCycleMismatch {
+            face: "cell_complex".into(),
+            detail: "nilpotence work overflow".into(),
+        })?;
+    if work > 1 << 24 {
+        return Err(HolonomyError::OperationLimitExceeded {
+            limit: 1 << 24,
+            requested: work,
+        });
+    }
+    Ok(())
+}
+
+fn complexes_match(a: &CellComplex, b: &CellComplex) -> bool {
+    a.vertices == b.vertices
+        && a.edges == b.edges
+        && a.faces == b.faces
+        && a.vertex_map == b.vertex_map
+        && a.edge_map == b.edge_map
+        && a.face_map == b.face_map
+}
+
+fn rebuild_and_validate_complex(complex: &CellComplex) -> Result<CellComplex, HolonomyError> {
+    let mut rebuilt = CellComplex::new(complex.limits);
+    for v in &complex.vertices {
+        rebuilt.add_vertex(v.id.clone())?;
+    }
+    for e in &complex.edges {
+        rebuilt.add_edge(&e.source, &e.target)?;
+    }
+    for f in &complex.faces {
+        rebuilt.add_face(f.id.clone(), &f.boundary_vertices)?;
+    }
+    if !complexes_match(&rebuilt, complex) {
+        return Err(HolonomyError::BoundaryCycleMismatch {
+            face: "cell_complex".into(),
+            detail: "indices, maps, directions or face boundaries disagree".into(),
+        });
+    }
+    Ok(rebuilt)
+}
+
+fn build_cochain_matrices(
+    rebuilt: &CellComplex,
+    vertices: usize,
+    edges: usize,
+    faces: usize,
+) -> (
+    Vec<Vec<num_rational::BigRational>>,
+    Vec<Vec<num_rational::BigRational>>,
+) {
+    use num_rational::BigRational;
+    use num_traits::{One, Zero};
+    let mut d0 = vec![vec![BigRational::zero(); vertices]; edges];
+    for edge in &rebuilt.edges {
+        let source = rebuilt.vertex_map[&edge.source];
+        let target = rebuilt.vertex_map[&edge.target];
+        d0[edge.index][target] += BigRational::one();
+        d0[edge.index][source] -= BigRational::one();
+    }
+    let mut d1 = vec![vec![BigRational::zero(); edges]; faces];
+    for face in &rebuilt.faces {
+        for step in &face.boundary_edges {
+            d1[face.index][step.edge_index] +=
+                BigRational::from_integer(i64::from(step.direction).into());
+        }
+    }
+    (d0, d1)
+}
+
+fn verify_coboundary_nilpotence(
+    faces: &[Face],
+    d0: &[Vec<num_rational::BigRational>],
+    vertices: usize,
+) -> Result<(), HolonomyError> {
+    use num_rational::BigRational;
+    use num_traits::Zero;
+    for face in faces {
+        for vertex in 0..vertices {
+            let value: BigRational = face
+                .boundary_edges
+                .iter()
+                .map(|step| {
+                    BigRational::from_integer(i64::from(step.direction).into())
+                        * &d0[step.edge_index][vertex]
+                })
+                .sum();
+            if !value.is_zero() {
+                return Err(HolonomyError::BoundaryCycleMismatch {
+                    face: "cell_complex".into(),
+                    detail: "coboundaries violate d1 d0 = 0".into(),
+                });
+            }
+        }
+    }
+    Ok(())
+}
+
 impl CellComplex {
     pub fn cochain_matrices(
         &self,
@@ -252,87 +379,11 @@ impl CellComplex {
         ),
         HolonomyError,
     > {
-        use num_rational::BigRational;
-        use num_traits::{One, Zero};
-        let malformed = |detail: &str| HolonomyError::BoundaryCycleMismatch {
-            face: "cell_complex".into(),
-            detail: detail.into(),
-        };
         let (vertices, edges, faces) = (self.vertices.len(), self.edges.len(), self.faces.len());
-        let dense = edges
-            .checked_mul(vertices)
-            .and_then(|n| faces.checked_mul(edges).and_then(|m| n.checked_add(m)))
-            .ok_or_else(|| malformed("dense matrix size overflow"))?;
-        if dense > 1 << 20 {
-            return Err(HolonomyError::OperationLimitExceeded {
-                limit: 1 << 20,
-                requested: dense,
-            });
-        }
-        let steps = self
-            .faces
-            .iter()
-            .try_fold(0usize, |a, f| a.checked_add(f.boundary_edges.len()))
-            .ok_or_else(|| malformed("boundary work overflow"))?;
-        let work = steps
-            .checked_mul(vertices)
-            .ok_or_else(|| malformed("nilpotence work overflow"))?;
-        if work > 1 << 24 {
-            return Err(HolonomyError::OperationLimitExceeded {
-                limit: 1 << 24,
-                requested: work,
-            });
-        }
-        let mut rebuilt = CellComplex::new(self.limits);
-        for v in &self.vertices {
-            rebuilt.add_vertex(v.id.clone())?;
-        }
-        for e in &self.edges {
-            rebuilt.add_edge(&e.source, &e.target)?;
-        }
-        for f in &self.faces {
-            rebuilt.add_face(f.id.clone(), &f.boundary_vertices)?;
-        }
-        if rebuilt.vertices != self.vertices
-            || rebuilt.edges != self.edges
-            || rebuilt.faces != self.faces
-            || rebuilt.vertex_map != self.vertex_map
-            || rebuilt.edge_map != self.edge_map
-            || rebuilt.face_map != self.face_map
-        {
-            return Err(malformed(
-                "indices, maps, directions or face boundaries disagree",
-            ));
-        }
-        let mut d0 = vec![vec![BigRational::zero(); vertices]; edges];
-        for edge in &rebuilt.edges {
-            let source = rebuilt.vertex_map[&edge.source];
-            let target = rebuilt.vertex_map[&edge.target];
-            d0[edge.index][target] += BigRational::one();
-            d0[edge.index][source] -= BigRational::one();
-        }
-        let mut d1 = vec![vec![BigRational::zero(); edges]; faces];
-        for face in &rebuilt.faces {
-            for step in &face.boundary_edges {
-                d1[face.index][step.edge_index] +=
-                    BigRational::from_integer(i64::from(step.direction).into());
-            }
-        }
-        for face in 0..faces {
-            for vertex in 0..vertices {
-                let value: BigRational = self.faces[face]
-                    .boundary_edges
-                    .iter()
-                    .map(|step| {
-                        BigRational::from_integer(i64::from(step.direction).into())
-                            * &d0[step.edge_index][vertex]
-                    })
-                    .sum();
-                if !value.is_zero() {
-                    return Err(malformed("coboundaries violate d1 d0 = 0"));
-                }
-            }
-        }
+        validate_cochain_limits(self, vertices, edges, faces)?;
+        let rebuilt = rebuild_and_validate_complex(self)?;
+        let (d0, d1) = build_cochain_matrices(&rebuilt, vertices, edges, faces);
+        verify_coboundary_nilpotence(&self.faces, &d0, vertices)?;
         Ok((d0, d1))
     }
 }

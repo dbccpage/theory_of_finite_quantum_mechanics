@@ -152,6 +152,7 @@ fn refusal_code(error: &M2Refusal) -> i64 {
         M2Refusal::InvalidChannel(index) => 400 + *index as i64,
         M2Refusal::UnsupportedCarrier { index, .. } => 500 + *index as i64,
         M2Refusal::Algebra(_) => -2,
+        M2Refusal::ExactAlgebra(_) => -2,
         M2Refusal::GaugeComplex(_) => -3,
     }
 }

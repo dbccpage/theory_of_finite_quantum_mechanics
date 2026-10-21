@@ -105,6 +105,49 @@ fn support_graph(kernel: &StochasticMap) -> Vec<Vec<usize>> {
         .collect()
 }
 
+fn advance_dfs_step(
+    v: usize,
+    edge_idx: usize,
+    adjacency: &[Vec<usize>],
+    unvisited: usize,
+    next_index: &mut usize,
+    index: &mut [usize],
+    lowlink: &mut [usize],
+    stack: &mut Vec<usize>,
+    on_stack: &mut [bool],
+    frames: &mut Vec<(usize, usize)>,
+) {
+    let w = adjacency[v][edge_idx];
+    if index[w] == unvisited {
+        index[w] = *next_index;
+        lowlink[w] = *next_index;
+        *next_index += 1;
+        stack.push(w);
+        on_stack[w] = true;
+        frames.push((w, 0));
+    } else if on_stack[w] {
+        lowlink[v] = lowlink[v].min(index[w]);
+    }
+}
+
+fn pop_scc_component(
+    v: usize,
+    stack: &mut Vec<usize>,
+    on_stack: &mut [bool],
+    components: &mut Vec<Vec<usize>>,
+) {
+    let mut component = Vec::new();
+    while let Some(member) = stack.pop() {
+        on_stack[member] = false;
+        component.push(member);
+        if member == v {
+            break;
+        }
+    }
+    component.sort_unstable();
+    components.push(component);
+}
+
 fn strongly_connected_components(adjacency: &[Vec<usize>]) -> Vec<Vec<usize>> {
     let n = adjacency.len();
     let unvisited = usize::MAX;
@@ -128,31 +171,24 @@ fn strongly_connected_components(adjacency: &[Vec<usize>]) -> Vec<Vec<usize>> {
         while let Some(frame) = frames.last_mut() {
             let v = frame.0;
             if frame.1 < adjacency[v].len() {
-                let w = adjacency[v][frame.1];
+                let edge_idx = frame.1;
                 frame.1 += 1;
-                if index[w] == unvisited {
-                    index[w] = next_index;
-                    lowlink[w] = next_index;
-                    next_index += 1;
-                    stack.push(w);
-                    on_stack[w] = true;
-                    frames.push((w, 0));
-                } else if on_stack[w] {
-                    lowlink[v] = lowlink[v].min(index[w]);
-                }
+                advance_dfs_step(
+                    v,
+                    edge_idx,
+                    adjacency,
+                    unvisited,
+                    &mut next_index,
+                    &mut index,
+                    &mut lowlink,
+                    &mut stack,
+                    &mut on_stack,
+                    &mut frames,
+                );
             } else {
                 frames.pop();
                 if lowlink[v] == index[v] {
-                    let mut component = Vec::new();
-                    while let Some(member) = stack.pop() {
-                        on_stack[member] = false;
-                        component.push(member);
-                        if member == v {
-                            break;
-                        }
-                    }
-                    component.sort_unstable();
-                    components.push(component);
+                    pop_scc_component(v, &mut stack, &mut on_stack, &mut components);
                 }
                 if let Some(parent) = frames.last() {
                     lowlink[parent.0] = lowlink[parent.0].min(lowlink[v]);
@@ -341,7 +377,24 @@ impl MarkovChain {
     pub fn is_primitive(&self) -> bool {
         self.is_aperiodic()
     }
+}
 
+fn boolean_matrix_multiply(a: &[Vec<bool>], b: &[Vec<bool>], n: usize) -> Vec<Vec<bool>> {
+    let mut next = vec![vec![false; n]; n];
+    for i in 0..n {
+        for (m, &reaches) in a[i].iter().enumerate() {
+            if !reaches {
+                continue;
+            }
+            for j in 0..n {
+                next[i][j] |= b[m][j];
+            }
+        }
+    }
+    next
+}
+
+impl MarkovChain {
     pub fn first_positive_power(&self, max_power: u32) -> Option<u32> {
         let adjacency = support_graph(&self.kernel);
         let n = self.n();
@@ -356,19 +409,7 @@ impl MarkovChain {
             if power.iter().all(|row| row.iter().all(|&b| b)) {
                 return Some(k);
             }
-            let mut next = vec![vec![false; n]; n];
-            for i in 0..n {
-                for (m, &reaches) in power[i].iter().enumerate() {
-                    if reaches {
-                        for j in 0..n {
-                            if step[m][j] {
-                                next[i][j] = true;
-                            }
-                        }
-                    }
-                }
-            }
-            power = next;
+            power = boolean_matrix_multiply(&power, &step, n);
         }
         None
     }
@@ -483,8 +524,69 @@ impl MarkovChain {
             .collect();
         Self::from_rows(reversed, format!("reverse({})", self.kernel.label()))
     }
+}
 
+fn build_identity_minus_submatrix(
+    states: &[usize],
+    rows: &[Vec<Rational>],
+) -> Result<BasicMatrix<Rational>, MarkovChainError> {
+    let m = states.len();
+    let mut data = Vec::with_capacity(m * m);
+    for (r, &i) in states.iter().enumerate() {
+        for (c, &j) in states.iter().enumerate() {
+            let mut entry = -rows[i][j].clone();
+            if r == c {
+                entry += Rational::one();
+            }
+            data.push(entry);
+        }
+    }
+    BasicMatrix::from_row_major(m, m, data).map_err(Into::into)
+}
 
+fn validate_absorption_probabilities(
+    probabilities: &[Vec<Rational>],
+) -> Result<(), MarkovChainError> {
+    for row in probabilities {
+        let sum: Rational = row.iter().sum();
+        if !sum.is_one() || row.iter().any(Signed::is_negative) {
+            return Err(MarkovChainError::ReplayFailed {
+                what: "absorption probabilities",
+            });
+        }
+    }
+    Ok(())
+}
+
+fn verify_target_reachable(
+    target: usize,
+    n: usize,
+    adjacency: &[Vec<usize>],
+) -> Result<(), MarkovChainError> {
+    let mut predecessors = vec![Vec::new(); n];
+    for (i, successors) in adjacency.iter().enumerate() {
+        for &j in successors {
+            predecessors[j].push(i);
+        }
+    }
+    let mut reaches = vec![false; n];
+    reaches[target] = true;
+    let mut queue = std::collections::VecDeque::from([target]);
+    while let Some(v) = queue.pop_front() {
+        for &u in &predecessors[v] {
+            if !reaches[u] {
+                reaches[u] = true;
+                queue.push_back(u);
+            }
+        }
+    }
+    if let Some(from) = reaches.iter().position(|&r| !r) {
+        return Err(MarkovChainError::TargetUnreachable { from, target });
+    }
+    Ok(())
+}
+
+impl MarkovChain {
     pub fn absorption_analysis(&self) -> Result<AbsorptionAnalysis, MarkovChainError> {
         let closed_classes = self.closed_classes();
         let transient = self.transient_states();
@@ -498,17 +600,7 @@ impl MarkovChain {
         }
         let rows = self.kernel.rows();
         let t = transient.len();
-        let mut data = Vec::with_capacity(t * t);
-        for (r, &i) in transient.iter().enumerate() {
-            for (c, &j) in transient.iter().enumerate() {
-                let mut entry = -rows[i][j].clone();
-                if r == c {
-                    entry += Rational::one();
-                }
-                data.push(entry);
-            }
-        }
-        let system = BasicMatrix::from_row_major(t, t, data)?;
+        let system = build_identity_minus_submatrix(&transient, rows)?;
 
         let mut probabilities = vec![vec![Rational::zero(); closed_classes.len()]; t];
         for (k, class) in closed_classes.iter().enumerate() {
@@ -521,14 +613,7 @@ impl MarkovChain {
                 row[k] = value;
             }
         }
-        for row in &probabilities {
-            let sum: Rational = row.iter().sum();
-            if !sum.is_one() || row.iter().any(Signed::is_negative) {
-                return Err(MarkovChainError::ReplayFailed {
-                    what: "absorption probabilities",
-                });
-            }
-        }
+        validate_absorption_probabilities(&probabilities)?;
         let expected_steps = solve_unique(
             &system,
             &vec![Rational::one(); t],
@@ -556,26 +641,7 @@ impl MarkovChain {
             });
         }
         let adjacency = support_graph(&self.kernel);
-        let mut predecessors = vec![Vec::new(); n];
-        for (i, successors) in adjacency.iter().enumerate() {
-            for &j in successors {
-                predecessors[j].push(i);
-            }
-        }
-        let mut reaches = vec![false; n];
-        reaches[target] = true;
-        let mut queue = std::collections::VecDeque::from([target]);
-        while let Some(v) = queue.pop_front() {
-            for &u in &predecessors[v] {
-                if !reaches[u] {
-                    reaches[u] = true;
-                    queue.push_back(u);
-                }
-            }
-        }
-        if let Some(from) = reaches.iter().position(|&r| !r) {
-            return Err(MarkovChainError::TargetUnreachable { from, target });
-        }
+        verify_target_reachable(target, n, &adjacency)?;
 
         let others: Vec<usize> = (0..n).filter(|&i| i != target).collect();
         let mut times = vec![Rational::zero(); n];
@@ -584,17 +650,7 @@ impl MarkovChain {
         }
         let rows = self.kernel.rows();
         let m = others.len();
-        let mut data = Vec::with_capacity(m * m);
-        for (r, &i) in others.iter().enumerate() {
-            for (c, &j) in others.iter().enumerate() {
-                let mut entry = -rows[i][j].clone();
-                if r == c {
-                    entry += Rational::one();
-                }
-                data.push(entry);
-            }
-        }
-        let system = BasicMatrix::from_row_major(m, m, data)?;
+        let system = build_identity_minus_submatrix(&others, rows)?;
         let solution = solve_unique(&system, &vec![Rational::one(); m], "expected hitting times")?;
         for (&i, value) in others.iter().zip(solution) {
             times[i] = value;

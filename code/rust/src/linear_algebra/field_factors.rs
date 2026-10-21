@@ -230,6 +230,23 @@ fn derivative(p: &[Element]) -> Polynomial {
     )
 }
 
+fn squarefree_step(
+    remaining: &mut Polynomial,
+    repeated: &mut Polynomial,
+    multiplicity: usize,
+    result: &mut Vec<(Polynomial, usize)>,
+    d: u64,
+) -> Result<()> {
+    let common = gcd(remaining.clone(), repeated.clone(), d)?;
+    let part = quotient(remaining, &common, d)?;
+    if !one(&part) {
+        result.push((part, multiplicity));
+    }
+    *remaining = common.clone();
+    *repeated = quotient(repeated, &common, d)?;
+    Ok(())
+}
+
 fn squarefree(p: &[Element], d: u64) -> Result<Vec<(Polynomial, usize)>> {
     if p.len() == 1 {
         return Ok(Vec::new());
@@ -240,13 +257,7 @@ fn squarefree(p: &[Element], d: u64) -> Result<Vec<(Polynomial, usize)>> {
     let mut multiplicity = 1;
     let mut result = Vec::new();
     while !one(&remaining) {
-        let common = gcd(remaining.clone(), repeated.clone(), d)?;
-        let part = quotient(&remaining, &common, d)?;
-        if !one(&part) {
-            result.push((part, multiplicity));
-        }
-        remaining = common.clone();
-        repeated = quotient(&repeated, &common, d)?;
+        squarefree_step(&mut remaining, &mut repeated, multiplicity, &mut result, d)?;
         multiplicity += 1;
     }
     if !one(&repeated) {
@@ -326,6 +337,23 @@ fn separable_shift(p: &[Element], d: u64) -> Result<(usize, Polynomial, Polynomi
     Err("TRAGER_PROVED_SHIFT_BOUND_VIOLATION".into())
 }
 
+fn trager_factor_intersection(
+    shifted: &[Element],
+    rational_factor: &[Element],
+    d: u64,
+) -> Result<Polynomial> {
+    let intersection = gcd(shifted.to_vec(), rational_factor.to_vec(), d)?;
+    let degree = rational_factor.len() - 1;
+    if intersection.len() < 2
+        || degree % 2 != 0
+        || degree / 2 != intersection.len() - 1
+        || norm(&intersection, d)? != rational_factor
+    {
+        return Err("TRAGER_FACTOR_PAIRING_FAILED".into());
+    }
+    Ok(intersection)
+}
+
 fn factor_squarefree(p: &[Element], d: u64) -> Result<Vec<Polynomial>> {
     if d == 0 {
         return rational_factors(p).map(|rows| rows.into_iter().map(|(p, _)| p).collect());
@@ -340,15 +368,7 @@ fn factor_squarefree(p: &[Element], d: u64) -> Result<Vec<Polynomial>> {
         if multiplicity != 1 {
             return Err("TRAGER_NORM_FACTOR_NOT_SQUAREFREE".into());
         }
-        let intersection = gcd(shifted.clone(), rational_factor.clone(), d)?;
-        let degree = rational_factor.len() - 1;
-        if intersection.len() < 2
-            || degree % 2 != 0
-            || degree / 2 != intersection.len() - 1
-            || norm(&intersection, d)? != rational_factor
-        {
-            return Err("TRAGER_FACTOR_PAIRING_FAILED".into());
-        }
+        let intersection = trager_factor_intersection(&shifted, &rational_factor, d)?;
         result.push(shift(&intersection, &offset, d));
     }
     let product = result
@@ -433,9 +453,12 @@ pub fn evaluate_request(request: &Value) -> Result<Value> {
     )
 }
 
-pub fn validate_factorization(conductor: u64, coefficients: &Value, output: &Value) -> Result<()> {
-    let (d, name) = field(conductor)?;
-    let input = parse_polynomial(coefficients, d)?;
+fn validate_factorization_metadata(
+    conductor: u64,
+    d: u64,
+    name: &str,
+    output: &Value,
+) -> Result<()> {
     exact_fields(
         output,
         &[
@@ -459,6 +482,67 @@ pub fn validate_factorization(conductor: u64, coefficients: &Value, output: &Val
     {
         return Err("FACTORIZATION_METADATA_MISMATCH".into());
     }
+    Ok(())
+}
+
+fn check_factor_monic_and_sorted(p: &[Element], previous: &Option<Polynomial>) -> Result<()> {
+    if p.len() < 2 || !p.last().unwrap().is_one() {
+        return Err("MONIC_NONCONSTANT_FACTOR_REQUIRED".into());
+    }
+    if previous
+        .as_ref()
+        .is_some_and(|old| old.iter().rev().cmp(p.iter().rev()).is_ge())
+    {
+        return Err("DISTINCT_NUMERIC_SORTED_FACTORS_REQUIRED".into());
+    }
+    Ok(())
+}
+
+fn validate_factor_row(
+    row: &Value,
+    d: u64,
+    previous: &Option<Polynomial>,
+) -> Result<(Polynomial, usize)> {
+    exact_fields(row, &["polynomial", "multiplicity"])?;
+    let p = parse_polynomial(&row["polynomial"], d)?;
+    check_factor_monic_and_sorted(&p, previous)?;
+    let multiplicity = row["multiplicity"]
+        .as_u64()
+        .and_then(|x| usize::try_from(x).ok())
+        .filter(|x| *x > 0)
+        .ok_or("POSITIVE_INTEGER_MULTIPLICITY_REQUIRED")?;
+    if gcd(p.clone(), derivative(&p), d)?.len() != 1 || factor_squarefree(&p, d)?.len() != 1 {
+        return Err("REDUCIBLE_CLAIMED_FACTOR".into());
+    }
+    Ok((p, multiplicity))
+}
+
+fn accumulate_factor_degree(
+    total_degree: &mut usize,
+    p_len: usize,
+    multiplicity: usize,
+    input_len: usize,
+) -> Result<()> {
+    let term = (p_len - 1)
+        .checked_mul(multiplicity)
+        .ok_or("FACTORIZATION_DEGREE_MISMATCH")?;
+    *total_degree = total_degree
+        .checked_add(term)
+        .ok_or("FACTORIZATION_DEGREE_MISMATCH")?;
+    if *total_degree >= input_len {
+        return Err("FACTORIZATION_DEGREE_MISMATCH".into());
+    }
+    Ok(())
+}
+
+fn validate_factorization_input_and_content(
+    conductor: u64,
+    coefficients: &Value,
+    output: &Value,
+) -> Result<(u64, Polynomial, Element)> {
+    let (d, name) = field(conductor)?;
+    let input = parse_polynomial(coefficients, d)?;
+    validate_factorization_metadata(conductor, d, &name, output)?;
     if parse_polynomial(&output["coefficients"], d)? != input {
         return Err("FACTORIZATION_INPUT_BINDING_MISMATCH".into());
     }
@@ -466,6 +550,12 @@ pub fn validate_factorization(conductor: u64, coefficients: &Value, output: &Val
     if content != *input.last().unwrap() {
         return Err("FACTORIZATION_CONTENT_MISMATCH".into());
     }
+    Ok((d, input, content))
+}
+
+pub fn validate_factorization(conductor: u64, coefficients: &Value, output: &Value) -> Result<()> {
+    let (d, input, content) =
+        validate_factorization_input_and_content(conductor, coefficients, output)?;
     let rows = output["factors"]
         .as_array()
         .ok_or("FACTOR_ARRAY_REQUIRED")?;
@@ -473,36 +563,9 @@ pub fn validate_factorization(conductor: u64, coefficients: &Value, output: &Val
     let mut previous: Option<Polynomial> = None;
     let mut total_degree = 0usize;
     for row in rows {
-        exact_fields(row, &["polynomial", "multiplicity"])?;
-        let p = parse_polynomial(&row["polynomial"], d)?;
-        if p.len() < 2 || !p.last().unwrap().is_one() {
-            return Err("MONIC_NONCONSTANT_FACTOR_REQUIRED".into());
-        }
-        if previous
-            .as_ref()
-            .is_some_and(|old| old.iter().rev().cmp(p.iter().rev()).is_ge())
-        {
-            return Err("DISTINCT_NUMERIC_SORTED_FACTORS_REQUIRED".into());
-        }
+        let (p, multiplicity) = validate_factor_row(row, d, &previous)?;
         previous = Some(p.clone());
-        let multiplicity = row["multiplicity"]
-            .as_u64()
-            .and_then(|x| usize::try_from(x).ok())
-            .filter(|x| *x > 0)
-            .ok_or("POSITIVE_INTEGER_MULTIPLICITY_REQUIRED")?;
-        total_degree = total_degree
-            .checked_add(
-                (p.len() - 1)
-                    .checked_mul(multiplicity)
-                    .ok_or("FACTORIZATION_DEGREE_MISMATCH")?,
-            )
-            .ok_or("FACTORIZATION_DEGREE_MISMATCH")?;
-        if total_degree >= input.len() {
-            return Err("FACTORIZATION_DEGREE_MISMATCH".into());
-        }
-        if gcd(p.clone(), derivative(&p), d)?.len() != 1 || factor_squarefree(&p, d)?.len() != 1 {
-            return Err("REDUCIBLE_CLAIMED_FACTOR".into());
-        }
+        accumulate_factor_degree(&mut total_degree, p.len(), multiplicity, input.len())?;
         for _ in 0..multiplicity {
             product = multiply(&product, &p, d);
         }
@@ -536,6 +599,19 @@ pub fn norm_control(conductor: u64, coefficients: &Value, wrong_real_bar: bool) 
 }
 
 #[cfg(test)]
+fn pairwise_cross_numerator(terms: &[Q]) -> BigInt {
+    let mut numerator = BigInt::zero();
+    for (i, a) in terms.iter().enumerate() {
+        for (j, b) in terms.iter().enumerate() {
+            if i != j {
+                numerator += a.numer() * b.denom();
+            }
+        }
+    }
+    numerator
+}
+
+#[cfg(test)]
 pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
     let terms = terms
         .as_array()
@@ -544,14 +620,7 @@ pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
         .map(parse_rational)
         .collect::<Result<Vec<_>>>()?;
     if self_join {
-        let mut numerator = BigInt::zero();
-        for (i, a) in terms.iter().enumerate() {
-            for (j, b) in terms.iter().enumerate() {
-                if i != j {
-                    numerator += a.numer() * b.denom();
-                }
-            }
-        }
+        let numerator = pairwise_cross_numerator(&terms);
         return Ok(json!(rational_wire(&Q::from_integer(numerator))));
     }
     let sum = terms

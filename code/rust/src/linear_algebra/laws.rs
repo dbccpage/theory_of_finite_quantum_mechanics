@@ -30,6 +30,24 @@ fn check_identities_and_inverses<F: Field + ExactRing>(
     zero: &F,
     one: &F,
 ) -> Result<(), ExactFieldError> {
+    check_identities(samples, zero, one)?;
+    check_inverses(samples, zero, one)
+}
+
+fn check_identities<F: Field + ExactRing>(
+    samples: &[F],
+    zero: &F,
+    one: &F,
+) -> Result<(), ExactFieldError> {
+    check_additive_and_multiplicative_identity(samples, zero, one)?;
+    check_additive_inverse_and_zero(samples, zero)
+}
+
+fn check_additive_and_multiplicative_identity<F: Field + ExactRing>(
+    samples: &[F],
+    zero: &F,
+    one: &F,
+) -> Result<(), ExactFieldError> {
     for a in samples {
         if a.try_add(zero)? != *a {
             return violated("0 is the additive identity");
@@ -37,6 +55,15 @@ fn check_identities_and_inverses<F: Field + ExactRing>(
         if a.try_mul(one)? != *a {
             return violated("1 is the multiplicative identity");
         }
+    }
+    Ok(())
+}
+
+fn check_additive_inverse_and_zero<F: Field + ExactRing>(
+    samples: &[F],
+    zero: &F,
+) -> Result<(), ExactFieldError> {
+    for a in samples {
         let sum = a.try_add(&a.try_neg()?)?;
         if sum != *zero || !sum.try_is_zero()? {
             return violated("a + (-a) = 0");
@@ -44,25 +71,65 @@ fn check_identities_and_inverses<F: Field + ExactRing>(
         if a.try_is_zero()? != (*a == *zero) {
             return violated("is_zero agrees with equality to zero");
         }
-        match a.try_inv() {
-            Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero)
-                if !a.try_is_zero()? =>
-            {
-                return violated("every nonzero element has an inverse")
-            }
-            Ok(_) if a.try_is_zero()? => return violated("zero has no inverse"),
-            Ok(inverse) if a.try_mul(&inverse)? != *one => {
-                return violated("a · a⁻¹ = 1");
-            }
-            Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero) => {}
-            Err(error) => return Err(error.into()),
-            _ => {}
-        }
     }
     Ok(())
 }
 
+fn check_inverses<F: Field + ExactRing>(
+    samples: &[F],
+    _zero: &F,
+    one: &F,
+) -> Result<(), ExactFieldError> {
+    for a in samples {
+        check_single_inverse(a, one)?;
+    }
+    Ok(())
+}
+
+fn check_single_inverse<F: Field + ExactRing>(
+    a: &F,
+    one: &F,
+) -> Result<(), ExactFieldError> {
+    let is_zero = a.try_is_zero()?;
+    let inv_res = a.try_inv();
+    validate_inverse_result(a, one, is_zero, inv_res)
+}
+
+fn validate_inverse_result<F: Field + ExactRing>(
+    a: &F,
+    one: &F,
+    is_zero: bool,
+    inv_res: Result<F, crate::linear_algebra::scalars::ScalarError>,
+) -> Result<(), ExactFieldError> {
+    match inv_res {
+        Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero) => {
+            if !is_zero {
+                violated("every nonzero element has an inverse")
+            } else {
+                Ok(())
+            }
+        }
+        Ok(inverse) => {
+            if is_zero {
+                violated("zero has no inverse")
+            } else if a.try_mul(&inverse)? != *one {
+                violated("a · a⁻¹ = 1")
+            } else {
+                Ok(())
+            }
+        }
+        Err(error) => Err(error.into()),
+    }
+}
+
 fn check_commutativity_and_division<F: Field + ExactRing>(
+    samples: &[F],
+) -> Result<(), ExactFieldError> {
+    check_commutativity(samples)?;
+    check_division(samples)
+}
+
+fn check_commutativity<F: Field + ExactRing>(
     samples: &[F],
 ) -> Result<(), ExactFieldError> {
     for a in samples {
@@ -73,24 +140,55 @@ fn check_commutativity_and_division<F: Field + ExactRing>(
             if a.try_mul(b)? != b.try_mul(a)? {
                 return violated("multiplication is commutative");
             }
-            match (b.try_is_zero()?, a.try_div(b)) {
-                (true, Ok(_)) => return violated("division by zero is undefined"),
-                (false, Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero)) => {
-                    return violated("division by a nonzero element is defined")
-                }
-                (false, Ok(quotient)) if quotient.try_mul(b)? != *a => {
-                    return violated("(a / b) · b = a");
-                }
-                (true, Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero)) => {}
-                (_, Err(error)) => return Err(error.into()),
-                _ => {}
-            }
         }
     }
     Ok(())
 }
 
+fn check_division<F: Field + ExactRing>(
+    samples: &[F],
+) -> Result<(), ExactFieldError> {
+    for a in samples {
+        for b in samples {
+            check_single_division(a, b)?;
+        }
+    }
+    Ok(())
+}
+
+fn check_single_division<F: Field + ExactRing>(
+    a: &F,
+    b: &F,
+) -> Result<(), ExactFieldError> {
+    match (b.try_is_zero()?, a.try_div(b)) {
+        (true, Ok(_)) => violated("division by zero is undefined"),
+        (false, Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero)) => {
+            violated("division by a nonzero element is defined")
+        }
+        (false, Ok(quotient)) if quotient.try_mul(b)? != *a => {
+            violated("(a / b) · b = a")
+        }
+        (true, Err(crate::linear_algebra::scalars::ScalarError::DivisionByZero)) => Ok(()),
+        (_, Err(error)) => Err(error.into()),
+        _ => Ok(()),
+    }
+}
+
 fn check_associativity_and_distributivity<F: Field + ExactRing>(
+    samples: &[F],
+) -> Result<(), ExactFieldError> {
+    check_associativity(samples)?;
+    check_distributivity(samples)
+}
+
+fn check_associativity<F: Field + ExactRing>(
+    samples: &[F],
+) -> Result<(), ExactFieldError> {
+    check_additive_associativity(samples)?;
+    check_multiplicative_associativity(samples)
+}
+
+fn check_additive_associativity<F: Field + ExactRing>(
     samples: &[F],
 ) -> Result<(), ExactFieldError> {
     for a in samples {
@@ -99,9 +197,33 @@ fn check_associativity_and_distributivity<F: Field + ExactRing>(
                 if a.try_add(b)?.try_add(c)? != a.try_add(&b.try_add(c)?)? {
                     return violated("addition is associative");
                 }
+            }
+        }
+    }
+    Ok(())
+}
+
+fn check_multiplicative_associativity<F: Field + ExactRing>(
+    samples: &[F],
+) -> Result<(), ExactFieldError> {
+    for a in samples {
+        for b in samples {
+            for c in samples {
                 if a.try_mul(b)?.try_mul(c)? != a.try_mul(&b.try_mul(c)?)? {
                     return violated("multiplication is associative");
                 }
+            }
+        }
+    }
+    Ok(())
+}
+
+fn check_distributivity<F: Field + ExactRing>(
+    samples: &[F],
+) -> Result<(), ExactFieldError> {
+    for a in samples {
+        for b in samples {
+            for c in samples {
                 if a.try_mul(&b.try_add(c)?)? != a.try_mul(b)?.try_add(&a.try_mul(c)?)? {
                     return violated("multiplication distributes over addition");
                 }
@@ -112,6 +234,12 @@ fn check_associativity_and_distributivity<F: Field + ExactRing>(
 }
 
 pub fn check_involution_axioms<F: Involution>(samples: &[F]) -> Result<(), ExactFieldError> {
+    check_involution_additive(samples)?;
+    check_involution_multiplicative(samples)?;
+    check_involution_involution(samples)
+}
+
+fn check_involution_additive<F: Involution>(samples: &[F]) -> Result<(), ExactFieldError> {
     for a in samples {
         for b in samples {
             if a.try_add(b)?.try_conj()? != a.try_conj()?.try_add(&b.try_conj()?)? {
@@ -119,6 +247,10 @@ pub fn check_involution_axioms<F: Involution>(samples: &[F]) -> Result<(), Exact
             }
         }
     }
+    Ok(())
+}
+
+fn check_involution_multiplicative<F: Involution>(samples: &[F]) -> Result<(), ExactFieldError> {
     for a in samples {
         for b in samples {
             if a.try_mul(b)?.try_conj()? != a.try_conj()?.try_mul(&b.try_conj()?)? {
@@ -126,6 +258,10 @@ pub fn check_involution_axioms<F: Involution>(samples: &[F]) -> Result<(), Exact
             }
         }
     }
+    Ok(())
+}
+
+fn check_involution_involution<F: Involution>(samples: &[F]) -> Result<(), ExactFieldError> {
     if F::one().try_conj()? != F::one() {
         return violated("conjugation fixes 1");
     }
@@ -138,30 +274,57 @@ pub fn check_involution_axioms<F: Involution>(samples: &[F]) -> Result<(), Exact
 }
 
 pub fn check_ordered_axioms<F: OrderedExactField>(samples: &[F]) -> Result<(), ExactFieldError> {
+    check_ordered_signs(samples)?;
+    check_ordered_cones(samples)
+}
+
+fn check_ordered_signs<F: OrderedExactField>(samples: &[F]) -> Result<(), ExactFieldError> {
+    check_ordered_sign_values(samples)?;
+    check_ordered_sign_negations(samples)
+}
+
+fn check_ordered_sign_values<F: OrderedExactField>(samples: &[F]) -> Result<(), ExactFieldError> {
     for a in samples {
         if !(-1..=1).contains(&a.try_signum()?) {
             return violated("a sign is -1, 0 or 1");
         }
-    }
-    for a in samples {
         if (a.try_signum()? == 0) != a.try_is_zero()? {
             return violated("a sign is zero exactly for zero");
         }
     }
+    Ok(())
+}
+
+fn check_ordered_sign_negations<F: OrderedExactField>(samples: &[F]) -> Result<(), ExactFieldError> {
     for a in samples {
         if a.try_neg()?.try_signum()? != -a.try_signum()? {
             return violated("the sign of a negation is the negated sign");
         }
     }
+    Ok(())
+}
+
+fn check_ordered_cones<F: OrderedExactField>(samples: &[F]) -> Result<(), ExactFieldError> {
+    check_ordered_positive_sums(samples)?;
+    check_ordered_positive_products(samples)
+}
+
+fn check_ordered_positive_sums<F: OrderedExactField>(samples: &[F]) -> Result<(), ExactFieldError> {
     for a in samples {
         for b in samples {
-            if a.try_signum()? > 0 && b.try_signum()? > 0 {
-                if a.try_add(b)?.try_signum()? <= 0 {
-                    return violated("a sum of positive elements is positive");
-                }
-                if a.try_mul(b)?.try_signum()? <= 0 {
-                    return violated("a product of positive elements is positive");
-                }
+            if a.try_signum()? > 0 && b.try_signum()? > 0 && a.try_add(b)?.try_signum()? <= 0 {
+                return violated("a sum of positive elements is positive");
+            }
+        }
+    }
+    Ok(())
+}
+
+fn check_ordered_positive_products<F: OrderedExactField>(samples: &[F]) -> Result<(), ExactFieldError> {
+    for a in samples {
+        for b in samples {
+            if a.try_signum()? > 0 && b.try_signum()? > 0 && a.try_mul(b)?.try_signum()? <= 0 {
+                return violated("a product of positive elements is positive");
             }
         }
     }
@@ -171,56 +334,107 @@ pub fn check_ordered_axioms<F: OrderedExactField>(samples: &[F]) -> Result<(), E
 pub fn check_hermitian_ordered_axioms<F: HermitianOrdered>(
     samples: &[F],
 ) -> Result<(), ExactFieldError> {
+    check_hermitian_sign_domain(samples)?;
+    let fixed = collect_hermitian_fixed(samples)?;
+    check_hermitian_fixed_negation(&fixed)?;
+    check_hermitian_fixed_cones(&fixed)?;
+    check_hermitian_norms(samples)
+}
+
+fn check_hermitian_sign_domain<F: HermitianOrdered>(samples: &[F]) -> Result<(), ExactFieldError> {
     for a in samples {
-        let fixed = a.try_conj()? == *a;
-        match a.try_fixed_field_sign()? {
-            None if fixed => {
-                return violated("fixed_field_sign is None exactly for non-fixed elements")
-            }
-            Some(_) if !fixed => {
-                return violated("fixed_field_sign is None exactly for non-fixed elements")
-            }
-            Some(sign) if !(-1..=1).contains(&sign) => {
-                return violated("a fixed-field sign is -1, 0 or 1")
-            }
-            Some(sign) if (sign == 0) != a.try_is_zero()? => {
-                return violated("a fixed-field sign is zero exactly for zero")
-            }
-            _ => {}
-        }
+        check_single_hermitian_sign(a)?;
     }
+    Ok(())
+}
+
+fn check_single_hermitian_sign<F: HermitianOrdered>(a: &F) -> Result<(), ExactFieldError> {
+    let fixed = a.try_conj()? == *a;
+    let sign_opt = a.try_fixed_field_sign()?;
+    let is_zero = a.try_is_zero()?;
+    validate_hermitian_sign(fixed, sign_opt, is_zero)
+}
+
+fn validate_hermitian_sign(
+    fixed: bool,
+    sign_opt: Option<i8>,
+    is_zero: bool,
+) -> Result<(), ExactFieldError> {
+    match sign_opt {
+        None if fixed => violated("fixed_field_sign is None exactly for non-fixed elements"),
+        Some(_) if !fixed => violated("fixed_field_sign is None exactly for non-fixed elements"),
+        Some(sign) if !(-1..=1).contains(&sign) => violated("a fixed-field sign is -1, 0 or 1"),
+        Some(sign) if (sign == 0) != is_zero => {
+            violated("a fixed-field sign is zero exactly for zero")
+        }
+        _ => Ok(()),
+    }
+}
+
+fn collect_hermitian_fixed<F: HermitianOrdered>(samples: &[F]) -> Result<Vec<&F>, ExactFieldError> {
     let mut fixed: Vec<&F> = super::reserve(samples.len())?;
     for a in samples {
         if a.try_conj()? == *a {
             fixed.push(a);
         }
     }
-    for a in &fixed {
+    Ok(fixed)
+}
+
+fn check_hermitian_fixed_negation<F: HermitianOrdered>(fixed: &[&F]) -> Result<(), ExactFieldError> {
+    for a in fixed {
         if a.try_neg()?.try_fixed_field_sign()? != a.try_fixed_field_sign()?.map(|s| -s) {
             return violated("the sign of a negation is the negated sign on the fixed field");
         }
     }
-    for a in &fixed {
-        for b in &fixed {
+    Ok(())
+}
+
+fn check_hermitian_fixed_cones<F: HermitianOrdered>(fixed: &[&F]) -> Result<(), ExactFieldError> {
+    check_hermitian_fixed_sums(fixed)?;
+    check_hermitian_fixed_products(fixed)
+}
+
+fn check_hermitian_fixed_sums<F: HermitianOrdered>(fixed: &[&F]) -> Result<(), ExactFieldError> {
+    for a in fixed {
+        for b in fixed {
             if a.try_fixed_field_sign()? == Some(1) && b.try_fixed_field_sign()? == Some(1) {
                 if a.try_add(b)?.try_fixed_field_sign()? != Some(1) {
                     return violated("a sum of positive fixed elements is positive");
                 }
+            }
+        }
+    }
+    Ok(())
+}
+
+fn check_hermitian_fixed_products<F: HermitianOrdered>(fixed: &[&F]) -> Result<(), ExactFieldError> {
+    for a in fixed {
+        for b in fixed {
+            if a.try_fixed_field_sign()? == Some(1) && b.try_fixed_field_sign()? == Some(1) {
                 if a.try_mul(b)?.try_fixed_field_sign()? != Some(1) {
                     return violated("a product of positive fixed elements is positive");
                 }
             }
         }
     }
+    Ok(())
+}
+
+fn check_hermitian_norms<F: HermitianOrdered>(samples: &[F]) -> Result<(), ExactFieldError> {
     for a in samples {
-        let norm = a.try_mul(&a.try_conj()?)?;
-        match norm.try_fixed_field_sign()? {
-            Some(0) if a.try_is_zero()? => {}
-            Some(1) if !a.try_is_zero()? => {}
-            _ => return violated("a norm x · conj(x) is nonnegative and zero only for zero"),
-        }
+        check_single_hermitian_norm(a)?;
     }
     Ok(())
+}
+
+fn check_single_hermitian_norm<F: HermitianOrdered>(a: &F) -> Result<(), ExactFieldError> {
+    let norm = a.try_mul(&a.try_conj()?)?;
+    match norm.try_fixed_field_sign()? {
+        Some(0) if a.try_is_zero()? => Ok(()),
+        Some(1) if !a.try_is_zero()? => Ok(()),
+        _ => violated("a norm x · conj(x) is nonnegative and zero only for zero"),
+    }
 }
 
 #[cfg(test)]

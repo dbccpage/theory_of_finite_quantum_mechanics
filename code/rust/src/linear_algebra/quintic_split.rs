@@ -296,17 +296,71 @@ struct Algebra {
     roots: Vec<Vector>,
     reductions: RefCell<BTreeMap<Exp, Reduced>>,
 }
+fn validate_algebra_poly(p: &[E], d: u64) -> Result<(usize, Poly)> {
+    let degree = p.len().saturating_sub(1);
+    if !(2..=5).contains(&degree) {
+        return Err("SPLITTING_ALGEBRA_DEGREE_TWO_THROUGH_FIVE_REQUIRED".into());
+    }
+    let inverse = p.last().unwrap().inv(d)?;
+    let p: Poly = p.iter().map(|x| x.mul(&inverse, d)).collect();
+    if pgcd(p.clone(), derivative(&p, d), d)?.len() != 1 {
+        return Err("SEPARABLE_POLYNOMIAL_REQUIRED".into());
+    }
+    Ok((degree, p))
+}
+
+fn compute_relations(bounds: &[usize], p: &[E], zero: &[usize]) -> Vec<Multi> {
+    let mut residual: Vec<Multi> = p
+        .iter()
+        .map(|c| {
+            let mut terms = Multi::new();
+            accumulate(&mut terms, zero.to_vec(), c.clone());
+            terms
+        })
+        .collect();
+    let mut relations = Vec::new();
+    for (index, bound) in bounds.iter().copied().enumerate() {
+        let mut replacement = Multi::new();
+        for (power, coefficient) in residual[..bound].iter().enumerate() {
+            for (powers, value) in coefficient {
+                let mut powers = powers.clone();
+                powers[index] += power;
+                accumulate(&mut replacement, powers, value.neg());
+            }
+        }
+        relations.push(replacement);
+        let mut quotient = vec![Multi::new(); bound];
+        quotient[bound - 1] = residual[bound].clone();
+        for j in (1..bound).rev() {
+            quotient[j - 1] = madd(&residual[j], &mshift(&quotient[j], index));
+        }
+        residual = quotient;
+    }
+    relations
+}
+
+fn compute_and_verify_roots(algebra: &mut Algebra, degree: usize, zero: &[usize]) -> Result<()> {
+    for index in 0..degree - 1 {
+        let mut exponent = zero.to_vec();
+        exponent[index] = 1;
+        algebra.roots.push(algebra.monomial(&exponent)?);
+    }
+    let mut last = algebra.scalar(&algebra.polynomial[degree - 1].neg());
+    for root in &algebra.roots {
+        last = vadd(&last, &vscale(root, &E::one().neg(), algebra.d));
+    }
+    algebra.roots.push(last);
+    for root in &algebra.roots {
+        if !vzero(&algebra.evaluate(&algebra.polynomial, root, &algebra.unit())?) {
+            return Err("TRIANGULAR_ROOT_RELATION_FAILED".into());
+        }
+    }
+    Ok(())
+}
+
 impl Algebra {
     fn new(p: &[E], d: u64) -> Result<Self> {
-        let degree = p.len().saturating_sub(1);
-        if !(2..=5).contains(&degree) {
-            return Err("SPLITTING_ALGEBRA_DEGREE_TWO_THROUGH_FIVE_REQUIRED".into());
-        }
-        let inverse = p.last().unwrap().inv(d)?;
-        let p: Poly = p.iter().map(|x| x.mul(&inverse, d)).collect();
-        if pgcd(p.clone(), derivative(&p, d), d)?.len() != 1 {
-            return Err("SEPARABLE_POLYNOMIAL_REQUIRED".into());
-        }
+        let (degree, p) = validate_algebra_poly(p, d)?;
         let bounds: Vec<usize> = (2..=degree).rev().collect();
         let basis = enumerate_basis(&bounds);
         let indices = basis
@@ -316,32 +370,7 @@ impl Algebra {
             .map(|(i, e)| (e, i))
             .collect();
         let zero = vec![0; degree - 1];
-        let mut residual: Vec<Multi> = p
-            .iter()
-            .map(|c| {
-                let mut terms = Multi::new();
-                accumulate(&mut terms, zero.clone(), c.clone());
-                terms
-            })
-            .collect();
-        let mut relations = Vec::new();
-        for (index, bound) in bounds.iter().copied().enumerate() {
-            let mut replacement = Multi::new();
-            for (power, coefficient) in residual[..bound].iter().enumerate() {
-                for (powers, value) in coefficient {
-                    let mut powers = powers.clone();
-                    powers[index] += power;
-                    accumulate(&mut replacement, powers, value.neg());
-                }
-            }
-            relations.push(replacement);
-            let mut quotient = vec![Multi::new(); bound];
-            quotient[bound - 1] = residual[bound].clone();
-            for j in (1..bound).rev() {
-                quotient[j - 1] = madd(&residual[j], &mshift(&quotient[j], index));
-            }
-            residual = quotient;
-        }
+        let relations = compute_relations(&bounds, &p, &zero);
         let mut out = Self {
             d,
             polynomial: p,
@@ -352,21 +381,7 @@ impl Algebra {
             roots: Vec::new(),
             reductions: RefCell::new(BTreeMap::new()),
         };
-        for index in 0..degree - 1 {
-            let mut exponent = zero.clone();
-            exponent[index] = 1;
-            out.roots.push(out.monomial(&exponent)?);
-        }
-        let mut last = out.scalar(&out.polynomial[degree - 1].neg());
-        for root in &out.roots {
-            last = vadd(&last, &vscale(root, &E::one().neg(), d));
-        }
-        out.roots.push(last);
-        for root in &out.roots {
-            if !vzero(&out.evaluate(&out.polynomial, root, &out.unit())?) {
-                return Err("TRIANGULAR_ROOT_RELATION_FAILED".into());
-            }
-        }
+        compute_and_verify_roots(&mut out, degree, &zero)?;
         Ok(out)
     }
     fn rank(&self) -> usize {
@@ -472,6 +487,14 @@ impl Algebra {
     }
 }
 
+fn eliminate_row(row: &mut [E], normalized: &[E], multiplier: &E, d: u64) {
+    for (value, pivot_value) in row.iter_mut().zip(normalized) {
+        if !pivot_value.is_zero() {
+            *value = value.sub(&multiplier.mul(pivot_value, d));
+        }
+    }
+}
+
 fn rref(mut rows: Vec<Vector>, width: usize, d: u64) -> Result<(Vec<Vector>, Vec<usize>)> {
     if rows.iter().any(|row| row.len() < width) {
         return Err("MATRIX_SHAPE_MISMATCH".into());
@@ -487,14 +510,9 @@ fn rref(mut rows: Vec<Vector>, width: usize, d: u64) -> Result<(Vec<Vector>, Vec
         rows[next] = vscale(&rows[next], &inverse, d);
         let normalized = rows[next].clone();
         for (index, row) in rows.iter_mut().enumerate() {
-            if index == next || row[column].is_zero() {
-                continue;
-            }
-            let multiplier = row[column].clone();
-            for (value, pivot_value) in row.iter_mut().zip(&normalized) {
-                if !pivot_value.is_zero() {
-                    *value = value.sub(&multiplier.mul(pivot_value, d));
-                }
+            if index != next && !row[column].is_zero() {
+                let multiplier = row[column].clone();
+                eliminate_row(row, &normalized, &multiplier, d);
             }
         }
         pivots.push(column);
@@ -598,6 +616,20 @@ fn fixed_basis(algebra: &Algebra, actions: &[Vec<Vector>]) -> Result<Vec<Vector>
     }
     nullspace(equations, n, algebra.d)
 }
+fn reduce_against_echelon(
+    mut remainder: Vector,
+    echelon: &BTreeMap<usize, Vector>,
+    d: u64,
+) -> Vector {
+    for (&pivot, row) in echelon {
+        if !remainder[pivot].is_zero() {
+            let coefficient = remainder[pivot].clone();
+            remainder = vadd(&remainder, &vscale(row, &coefficient.neg(), d));
+        }
+    }
+    remainder
+}
+
 fn ideal_basis(algebra: &Algebra, idempotent: &[E]) -> Result<Vec<Vector>> {
     let mut original = Vec::new();
     let mut echelon: BTreeMap<usize, Vector> = BTreeMap::new();
@@ -606,14 +638,7 @@ fn ideal_basis(algebra: &Algebra, idempotent: &[E]) -> Result<Vec<Vector>> {
         let mut monomial = vec![E::zero(); algebra.rank()];
         monomial[index] = E::one();
         let column = algebra.mul(idempotent, &monomial)?;
-        let mut remainder = column.clone();
-        for (&pivot, row) in &echelon {
-            if remainder[pivot].is_zero() {
-                continue;
-            }
-            let coefficient = remainder[pivot].clone();
-            remainder = vadd(&remainder, &vscale(row, &coefficient.neg(), algebra.d));
-        }
+        let remainder = reduce_against_echelon(column.clone(), &echelon, algebra.d);
         if let Some(pivot) = remainder.iter().position(|x| !x.is_zero()) {
             let normalized = vscale(&remainder, &remainder[pivot].inv(algebra.d)?, algebra.d);
             echelon.insert(pivot, normalized);
@@ -726,8 +751,11 @@ fn find_primitive(
                     polynomial,
                 })
             }
-            Err(error) if error == "PRIMITIVE_KRYLOV_RANK_FAILED" => {}
-            Err(error) => return Err(error),
+            Err(error) => {
+                if error != "PRIMITIVE_KRYLOV_RANK_FAILED" {
+                    return Err(error);
+                }
+            }
         }
     }
     Err("PROVED_PRIMITIVE_FAMILY_EXHAUSTED_INVARIANT_FAILURE".into())
@@ -793,10 +821,12 @@ const SCOPE: &str = "E_QUINTIC_SPLITTING_DEGREE_NO_CARRIER_TRANSPORT_OR_DEPENDEN
 
 fn exact_json(value: &Value) -> Result<()> {
     match value {
-        Value::Number(number)
-            if number.is_f64() || number.to_string().contains(['.', 'e', 'E']) =>
-        {
-            Err("INEXACT_JSON_NUMBER".into())
+        Value::Number(number) => {
+            if number.is_f64() || number.to_string().contains(['.', 'e', 'E']) {
+                Err("INEXACT_JSON_NUMBER".into())
+            } else {
+                Ok(())
+            }
         }
         Value::Array(values) => {
             for value in values {
@@ -992,16 +1022,53 @@ fn verify_projector(
 }
 fn classified(pattern: Option<&[usize]>, square: bool) -> Result<(&'static str, u64)> {
     match pattern {
-        None => Ok(if square { ("A5", 60) } else { ("S5", 120) }),
-        Some([1, 1, 1, 1]) if square => Ok(("C5", 5)),
-        Some([2, 2]) if square => Ok(("D5", 10)),
-        Some([4]) if !square => Ok(("F20", 20)),
-        Some([1, 1, 1, 1] | [2, 2] | [4]) => Err("QUINTIC_DISCRIMINANT_PARITY_MISMATCH".into()),
+        None => {
+            if square {
+                Ok(("A5", 60))
+            } else {
+                Ok(("S5", 120))
+            }
+        }
+        Some([1, 1, 1, 1]) => {
+            if square {
+                Ok(("C5", 5))
+            } else {
+                Err("QUINTIC_DISCRIMINANT_PARITY_MISMATCH".into())
+            }
+        }
+        Some([2, 2]) => {
+            if square {
+                Ok(("D5", 10))
+            } else {
+                Err("QUINTIC_DISCRIMINANT_PARITY_MISMATCH".into())
+            }
+        }
+        Some([4]) => {
+            if !square {
+                Ok(("F20", 20))
+            } else {
+                Err("QUINTIC_DISCRIMINANT_PARITY_MISMATCH".into())
+            }
+        }
         _ => Err("LOCAL_FIXED_FACTOR_PATTERN_INVARIANT_FAILURE".into()),
     }
 }
 
-pub fn quintic_splitting_degree(conductor: &Value, coefficients: &Value) -> Result<Value> {
+struct QuinticInputs {
+    n: u64,
+    d: u64,
+    coefficient_field: &'static str,
+    algebra: Algebra,
+    factorization: Value,
+    disc_wire: Value,
+    square_certificate: Value,
+    square: bool,
+}
+
+fn validate_quintic_polynomial(
+    conductor: &Value,
+    coefficients: &Value,
+) -> Result<(u64, u64, &'static str, Poly, Value)> {
     exact_json(conductor)?;
     exact_json(coefficients)?;
     let n = small_integer(conductor)?;
@@ -1012,8 +1079,11 @@ pub fn quintic_splitting_degree(conductor: &Value, coefficients: &Value) -> Resu
     }
     let factorization = factor_polynomial(n, &input)?;
     irreducible_input(n, &input, &factorization, d)?;
-    let algebra = Algebra::new(&input, d)?;
-    let disc = discriminant(&algebra.polynomial, d)?;
+    Ok((n, d, coefficient_field, input, factorization))
+}
+
+fn compute_discriminant_square(n: u64, d: u64, poly: &[E]) -> Result<(Value, Value, bool)> {
+    let disc = discriminant(poly, d)?;
     if disc.is_zero() {
         return Err("QUINTIC_DISCRIMINANT_ZERO".into());
     }
@@ -1022,53 +1092,151 @@ pub fn quintic_splitting_degree(conductor: &Value, coefficients: &Value) -> Resu
     let square = square_certificate["is_square"]
         .as_bool()
         .ok_or("SQUARE_BOOLEAN_REQUIRED")?;
+    Ok((disc.wire(), square_certificate, square))
+}
+
+fn parse_and_validate_quintic_input(
+    conductor: &Value,
+    coefficients: &Value,
+) -> Result<QuinticInputs> {
+    let (n, d, coefficient_field, input, factorization) =
+        validate_quintic_polynomial(conductor, coefficients)?;
+    let algebra = Algebra::new(&input, d)?;
+    let (disc_wire, square_certificate, square) =
+        compute_discriminant_square(n, d, &algebra.polynomial)?;
+    Ok(QuinticInputs {
+        n,
+        d,
+        coefficient_field,
+        algebra,
+        factorization,
+        disc_wire,
+        square_certificate,
+        square,
+    })
+}
+
+struct FullFixedData {
+    actions: Vec<Vec<Vector>>,
+    full: Value,
+    full_polynomial: Poly,
+    root: Option<E>,
+}
+
+fn compute_fixed_actions_and_basis(
+    algebra: &Algebra,
+    d: u64,
+) -> Result<(Vec<Vec<Vector>>, Vec<Vector>)> {
     let actions = vec![algebra.action(&T)?, algebra.action(&U)?];
-    let basis = fixed_basis(&algebra, &actions)?;
+    let basis = fixed_basis(algebra, &actions)?;
     if basis.len() != 6 || rank(&basis, d)? != 6 {
         return Err("FULL_FIXED_DIMENSION_MISMATCH".into());
     }
+    Ok((actions, basis))
+}
+
+fn compute_full_fixed(inputs: &QuinticInputs) -> Result<FullFixedData> {
+    let (actions, basis) = compute_fixed_actions_and_basis(&inputs.algebra, inputs.d)?;
     let full = fixed_record(
-        &algebra,
-        n,
+        &inputs.algebra,
+        inputs.n,
         &[T.to_vec(), U.to_vec()],
         &basis,
-        &algebra.unit(),
+        &inputs.algebra.unit(),
         75,
     )?;
-    let full_polynomial = polynomial(&full["polynomial"], d)?;
-    let pattern = factor_pattern(n, &full_polynomial, &full["factorization"], d)?;
-    let root = full_root(&full_polynomial, &full["factorization"], d, &pattern)?;
-    let (localized, group, degree) = if let Some(root) = root {
-        let theta = sparse(&full["primitive_element"], &algebra)?;
-        let e = projector(&algebra, &theta, &full_polynomial, &root)?;
-        verify_projector(&algebra, &e, &theta, &root, &actions)?;
-        let ideal = ideal_basis(&algebra, &e)?;
-        let cyclic_basis = restricted_fixed_basis(&algebra, &ideal, &actions[0])?;
-        if cyclic_basis.len() != 4 {
-            return Err("LOCAL_FIXED_DIMENSION_MISMATCH".into());
-        }
-        let cyclic = fixed_record(&algebra, n, &[T.to_vec()], &cyclic_basis, &e, 18)?;
-        let local_polynomial = polynomial(&cyclic["polynomial"], d)?;
-        let local_pattern = factor_pattern(n, &local_polynomial, &cyclic["factorization"], d)?;
-        let (group, degree) = classified(Some(&local_pattern), square)?;
-        (
-            json!({"root":root.wire(),"idempotent":sparse_wire(&e),"ideal_dimension":20,
-            "ideal_basis":basis_wire(&ideal),"cyclic_fixed_algebra":cyclic}),
-            group,
-            degree,
-        )
+    let full_polynomial = polynomial(&full["polynomial"], inputs.d)?;
+    let pattern = factor_pattern(inputs.n, &full_polynomial, &full["factorization"], inputs.d)?;
+    let root = full_root(&full_polynomial, &full["factorization"], inputs.d, &pattern)?;
+    Ok(FullFixedData {
+        actions,
+        full,
+        full_polynomial,
+        root,
+    })
+}
+
+fn build_localized_ideal(
+    algebra: &Algebra,
+    full_data: &FullFixedData,
+    root: &E,
+) -> Result<(Vector, Vec<Vector>)> {
+    let theta = sparse(&full_data.full["primitive_element"], algebra)?;
+    let e = projector(algebra, &theta, &full_data.full_polynomial, root)?;
+    verify_projector(algebra, &e, &theta, root, &full_data.actions)?;
+    let ideal = ideal_basis(algebra, &e)?;
+    Ok((e, ideal))
+}
+
+fn build_cyclic_record(
+    algebra: &Algebra,
+    n: u64,
+    ideal: &[Vector],
+    action_t: &[Vector],
+    e: &[E],
+) -> Result<Value> {
+    let cyclic_basis = restricted_fixed_basis(algebra, ideal, action_t)?;
+    if cyclic_basis.len() != 4 {
+        return Err("LOCAL_FIXED_DIMENSION_MISMATCH".into());
+    }
+    fixed_record(algebra, n, &[T.to_vec()], &cyclic_basis, e, 18)
+}
+
+fn localize_and_classify(
+    inputs: &QuinticInputs,
+    full_data: &FullFixedData,
+    root: &E,
+) -> Result<(Value, &'static str, u64)> {
+    let (e, ideal) = build_localized_ideal(&inputs.algebra, full_data, root)?;
+    let cyclic = build_cyclic_record(
+        &inputs.algebra,
+        inputs.n,
+        &ideal,
+        &full_data.actions[0],
+        &e,
+    )?;
+    let local_polynomial = polynomial(&cyclic["polynomial"], inputs.d)?;
+    let local_pattern =
+        factor_pattern(inputs.n, &local_polynomial, &cyclic["factorization"], inputs.d)?;
+    let (group, degree) = classified(Some(&local_pattern), inputs.square)?;
+    let localized = json!({
+        "root": root.wire(),
+        "idempotent": sparse_wire(&e),
+        "ideal_dimension": 20,
+        "ideal_basis": basis_wire(&ideal),
+        "cyclic_fixed_algebra": cyclic
+    });
+    Ok((localized, group, degree))
+}
+
+pub fn quintic_splitting_degree(conductor: &Value, coefficients: &Value) -> Result<Value> {
+    let inputs = parse_and_validate_quintic_input(conductor, coefficients)?;
+    let full_data = compute_full_fixed(&inputs)?;
+    let (localized, group, degree) = if let Some(ref root) = full_data.root {
+        localize_and_classify(&inputs, &full_data, root)?
     } else {
-        let (group, degree) = classified(None, square)?;
+        let (group, degree) = classified(None, inputs.square)?;
         (Value::Null, group, degree)
     };
-    Ok(
-        json!({"schema":SCHEMA,"authority_effect":"None","algorithm":ALGORITHM,"scope":SCOPE,
-        "conductor":n,"real_generator_radicand":d,"coefficient_field":coefficient_field,
-        "algebra_rank":120,"coefficients":coefficients,"monic_polynomial":polynomial_wire(&algebra.polynomial),
-        "factorization":factorization,"discriminant":disc.wire(),"discriminant_square":square_certificate,
-        "full_fixed_algebra":full,"localized_fixed_algebra":localized,"galois_group":group,
-        "degree_over_real_field":degree}),
-    )
+    Ok(json!({
+        "schema": SCHEMA,
+        "authority_effect": "None",
+        "algorithm": ALGORITHM,
+        "scope": SCOPE,
+        "conductor": inputs.n,
+        "real_generator_radicand": inputs.d,
+        "coefficient_field": inputs.coefficient_field,
+        "algebra_rank": 120,
+        "coefficients": coefficients,
+        "monic_polynomial": polynomial_wire(&inputs.algebra.polynomial),
+        "factorization": inputs.factorization,
+        "discriminant": inputs.disc_wire,
+        "discriminant_square": inputs.square_certificate,
+        "full_fixed_algebra": full_data.full,
+        "localized_fixed_algebra": localized,
+        "galois_group": group,
+        "degree_over_real_field": degree
+    }))
 }
 
 struct ValidatedFixed {
@@ -1076,6 +1244,83 @@ struct ValidatedFixed {
     polynomial: Poly,
     pattern: Vec<usize>,
 }
+fn validate_generators(record: &Value, generators: &[Vec<usize>]) -> Result<()> {
+    let supplied_generators: Vec<Vec<usize>> = record["generators"]
+        .as_array()
+        .ok_or("GENERATOR_ARRAY_REQUIRED")?
+        .iter()
+        .map(|row| {
+            row.as_array()
+                .ok_or_else(|| "GENERATOR_PERMUTATION_REQUIRED".to_string())?
+                .iter()
+                .map(|index| {
+                    usize::try_from(small_integer(index)?)
+                        .map_err(|_| "GENERATOR_INDEX_RANGE".into())
+                })
+                .collect()
+        })
+        .collect::<Result<_>>()?;
+    if supplied_generators != generators {
+        return Err("FIXED_ALGEBRA_GENERATORS_MISMATCH".into());
+    }
+    Ok(())
+}
+
+fn check_basis_action_invariance(
+    algebra: &Algebra,
+    vector: &Vector,
+    actions: &[Vec<Vector>],
+) -> Result<()> {
+    for action in actions {
+        if algebra.apply_action(action, vector) != *vector {
+            return Err("FIXED_BASIS_INVARIANCE_FAILED".into());
+        }
+    }
+    Ok(())
+}
+
+fn validate_basis_coordinates(
+    algebra: &Algebra,
+    supplied: &[Vector],
+    actual_basis: &[Vector],
+    actions: &[Vec<Vector>],
+    unit: &[E],
+) -> Result<()> {
+    let actual_coordinates = Coordinates::new(actual_basis, algebra.d)?;
+    for vector in supplied {
+        check_basis_action_invariance(algebra, vector, actions)?;
+        actual_coordinates.get(vector)?;
+    }
+    let supplied_coordinates = Coordinates::new(supplied, algebra.d)?;
+    for vector in actual_basis {
+        supplied_coordinates.get(vector)?;
+    }
+    supplied_coordinates.get(unit)?;
+    Ok(())
+}
+
+fn validate_primitive_and_poly(
+    algebra: &Algebra,
+    n: u64,
+    record: &Value,
+    supplied: &[Vector],
+    unit: &[E],
+    dimension: usize,
+) -> Result<(Vector, Poly, Vec<usize>)> {
+    let parameter = big_integer(&record["primitive_parameter"])?;
+    let theta = sparse(&record["primitive_element"], algebra)?;
+    if theta != primitive_element(algebra, supplied, &parameter) {
+        return Err("PRIMITIVE_PARAMETER_ELEMENT_MISMATCH".into());
+    }
+    let expected_polynomial = primitive_polynomial(algebra, &theta, unit, dimension)?;
+    let supplied_polynomial = polynomial(&record["polynomial"], algebra.d)?;
+    if supplied_polynomial != expected_polynomial {
+        return Err("FIXED_PRIMITIVE_POLYNOMIAL_MISMATCH".into());
+    }
+    let pattern = factor_pattern(n, &expected_polynomial, &record["factorization"], algebra.d)?;
+    Ok((theta, expected_polynomial, pattern))
+}
+
 fn validate_fixed(
     algebra: &Algebra,
     n: u64,
@@ -1097,57 +1342,18 @@ fn validate_fixed(
             "factorization",
         ],
     )?;
-    let supplied_generators: Vec<Vec<usize>> = record["generators"]
-        .as_array()
-        .ok_or("GENERATOR_ARRAY_REQUIRED")?
-        .iter()
-        .map(|row| {
-            row.as_array()
-                .ok_or_else(|| "GENERATOR_PERMUTATION_REQUIRED".to_string())?
-                .iter()
-                .map(|index| {
-                    usize::try_from(small_integer(index)?)
-                        .map_err(|_| "GENERATOR_INDEX_RANGE".into())
-                })
-                .collect()
-        })
-        .collect::<Result<_>>()?;
-    if supplied_generators != generators {
-        return Err("FIXED_ALGEBRA_GENERATORS_MISMATCH".into());
-    }
+    validate_generators(record, generators)?;
     let dimension = actual_basis.len();
     if small_integer(&record["dimension"])? != dimension as u64 {
         return Err("FIXED_ALGEBRA_DIMENSION_MISMATCH".into());
     }
     let supplied = parse_basis(&record["basis"], dimension, algebra)?;
-    let actual_coordinates = Coordinates::new(actual_basis, algebra.d)?;
-    for vector in &supplied {
-        for action in actions {
-            if algebra.apply_action(action, vector) != *vector {
-                return Err("FIXED_BASIS_INVARIANCE_FAILED".into());
-            }
-        }
-        actual_coordinates.get(vector)?;
-    }
-    let supplied_coordinates = Coordinates::new(&supplied, algebra.d)?;
-    for vector in actual_basis {
-        supplied_coordinates.get(vector)?;
-    }
-    supplied_coordinates.get(unit)?;
-    let parameter = big_integer(&record["primitive_parameter"])?;
-    let theta = sparse(&record["primitive_element"], algebra)?;
-    if theta != primitive_element(algebra, &supplied, &parameter) {
-        return Err("PRIMITIVE_PARAMETER_ELEMENT_MISMATCH".into());
-    }
-    let expected_polynomial = primitive_polynomial(algebra, &theta, unit, dimension)?;
-    let supplied_polynomial = polynomial(&record["polynomial"], algebra.d)?;
-    if supplied_polynomial != expected_polynomial {
-        return Err("FIXED_PRIMITIVE_POLYNOMIAL_MISMATCH".into());
-    }
-    let pattern = factor_pattern(n, &expected_polynomial, &record["factorization"], algebra.d)?;
+    validate_basis_coordinates(algebra, &supplied, actual_basis, actions, unit)?;
+    let (theta, polynomial, pattern) =
+        validate_primitive_and_poly(algebra, n, record, &supplied, unit, dimension)?;
     Ok(ValidatedFixed {
         theta,
-        polynomial: expected_polynomial,
+        polynomial,
         pattern,
     })
 }
@@ -1395,32 +1601,41 @@ pub fn evaluate_request(request: &Value) -> Result<Value> {
     }
     quintic_splitting_degree(&request["conductor"], &request["coefficients"])
 }
+fn step_quoted(byte: u8, escaped: &mut bool, quoted: &mut bool) {
+    if *escaped {
+        *escaped = false;
+    } else if byte == b'\\' {
+        *escaped = true;
+    } else if byte == b'"' {
+        *quoted = false;
+    }
+}
+
+fn step_unquoted(byte: u8, quoted: &mut bool, number: &mut bool) -> Result<()> {
+    if byte == b'"' {
+        *quoted = true;
+        *number = false;
+        return Ok(());
+    }
+    if byte.is_ascii_digit() || byte == b'-' {
+        *number = true;
+    } else if *number && matches!(byte, b'.' | b'e' | b'E') {
+        return Err("RAW_INEXACT_JSON_NUMBER".into());
+    } else {
+        *number = false;
+    }
+    Ok(())
+}
+
 fn raw_number_admission(input: &str) -> Result<()> {
     let mut quoted = false;
     let mut escaped = false;
     let mut number = false;
     for byte in input.bytes() {
         if quoted {
-            if escaped {
-                escaped = false;
-            } else if byte == b'\\' {
-                escaped = true;
-            } else if byte == b'"' {
-                quoted = false;
-            }
-            continue;
-        }
-        if byte == b'"' {
-            quoted = true;
-            number = false;
-            continue;
-        }
-        if byte.is_ascii_digit() || byte == b'-' {
-            number = true;
-        } else if number && matches!(byte, b'.' | b'e' | b'E') {
-            return Err("RAW_INEXACT_JSON_NUMBER".into());
+            step_quoted(byte, &mut escaped, &mut quoted);
         } else {
-            number = false;
+            step_unquoted(byte, &mut quoted, &mut number)?;
         }
     }
     Ok(())
@@ -1548,19 +1763,24 @@ impl AlgebraControl {
     }
 }
 #[cfg(test)]
+fn compute_self_join_sum(values: &[Q]) -> BigInt {
+    let mut sum = BigInt::zero();
+    for (i, a) in values.iter().enumerate() {
+        for (j, b) in values.iter().enumerate() {
+            if i != j {
+                sum += a.numer() * b.denom();
+            }
+        }
+    }
+    sum
+}
+
+#[cfg(test)]
 pub fn fold_control(values: &Value, self_join: bool) -> Result<Value> {
     let entries = values.as_array().ok_or("ARRAY_REQUIRED")?;
     let values: Vec<Q> = entries.iter().map(rational).collect::<Result<_>>()?;
     let sum = if self_join {
-        let mut sum = BigInt::zero();
-        for (i, a) in values.iter().enumerate() {
-            for (j, b) in values.iter().enumerate() {
-                if i != j {
-                    sum += a.numer() * b.denom();
-                }
-            }
-        }
-        Q::from_integer(sum)
+        Q::from_integer(compute_self_join_sum(&values))
     } else {
         values.iter().fold(Q::zero(), |a, b| a + b)
     };

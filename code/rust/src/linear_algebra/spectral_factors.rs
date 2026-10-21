@@ -66,11 +66,20 @@ fn field(n: u64) -> Result<(u64, &'static str)> {
 
 fn from_pair(n: u64, a: Q, b: Q) -> Result<Element> {
     let c = match n {
-        1 if b.is_zero() => vec![a],
-        3 | 4 if b.is_zero() => vec![a, Q::zero()],
+        1 => {
+            if !b.is_zero() {
+                return Err("BINDING_NONREAL_FIELD_COORDINATE".into());
+            }
+            vec![a]
+        }
+        3 | 4 => {
+            if !b.is_zero() {
+                return Err("BINDING_NONREAL_FIELD_COORDINATE".into());
+            }
+            vec![a, Q::zero()]
+        }
         8 => vec![a, b.clone(), Q::zero(), -b],
         5 => vec![&a - &b, Q::zero(), -rat(2, 1) * &b, -rat(2, 1) * b],
-        1 | 3 | 4 => return Err("BINDING_NONREAL_FIELD_COORDINATE".into()),
         _ => return Err("BINDING_CONDUCTOR_UNSUPPORTED".into()),
     };
     Element::new(n, c)
@@ -95,22 +104,21 @@ fn to_pair(value: &Element) -> Result<Value> {
     Ok(json!([qstr(&a), qstr(&b)]))
 }
 
+fn element_from_pair_wire(n: u64, pair_val: &Value) -> Result<Element> {
+    let pair = pair_val.as_array().ok_or("BINDING_COORDINATE_PAIR_REQUIRED")?;
+    if pair.len() != 2 {
+        return Err("BINDING_COORDINATE_PAIR_REQUIRED".into());
+    }
+    let element = from_pair(n, rational(&pair[0])?, rational(&pair[1])?)?;
+    if to_pair(&element)? != json!(pair) {
+        return Err("BINDING_REAL_COORDINATE_ROUND_TRIP".into());
+    }
+    Ok(element)
+}
+
 fn polynomial_from_wire(n: u64, wire: &Value) -> Result<Polynomial> {
-    wire.as_array()
-        .ok_or("BINDING_POLYNOMIAL_ARRAY_REQUIRED")?
-        .iter()
-        .map(|pair| {
-            let pair = pair.as_array().ok_or("BINDING_COORDINATE_PAIR_REQUIRED")?;
-            if pair.len() != 2 {
-                return Err("BINDING_COORDINATE_PAIR_REQUIRED".into());
-            }
-            let element = from_pair(n, rational(&pair[0])?, rational(&pair[1])?)?;
-            if to_pair(&element)? != json!(pair) {
-                return Err("BINDING_REAL_COORDINATE_ROUND_TRIP".into());
-            }
-            Ok(element)
-        })
-        .collect()
+    let arr = wire.as_array().ok_or("BINDING_POLYNOMIAL_ARRAY_REQUIRED")?;
+    arr.iter().map(|p| element_from_pair_wire(n, p)).collect()
 }
 
 struct InputData {
@@ -144,6 +152,65 @@ fn transport(n: u64) -> Value {
     })
 }
 
+fn find_root_owner(
+    lower: &Q,
+    upper: &Q,
+    polynomials: &[Polynomial],
+    sequences: &[Vec<Polynomial>],
+) -> Result<usize> {
+    let mut owners = Vec::new();
+    for (i, p) in polynomials.iter().enumerate() {
+        let count = if lower == upper {
+            usize::from(eval(p, lower).is_zero())
+        } else {
+            root_count(&sequences[i], lower, upper)?
+        };
+        if count > 1 {
+            return Err("BINDING_FACTOR_HAS_MULTIPLE_ROOTS_IN_IDENTITY".into());
+        }
+        if count == 1 {
+            owners.push(i);
+        }
+    }
+    if owners.len() != 1 {
+        return Err("BINDING_ROOT_OWNER_NOT_UNIQUE".into());
+    }
+    Ok(owners[0])
+}
+
+fn process_root_assignment(
+    root: &Value,
+    polynomials: &[Polynomial],
+    sequences: &[Vec<Polynomial>],
+    multiplicities: &[usize],
+) -> Result<(usize, usize)> {
+    let lower = rational(&root["lower"])?;
+    let upper = rational(&root["upper"])?;
+    let factor_index = find_root_owner(&lower, &upper, polynomials, sequences)?;
+    let multiplicity = integer(&root["multiplicity"], "root_multiplicity")?;
+    if multiplicity != multiplicities[factor_index] {
+        return Err("BINDING_OWNER_MULTIPLICITY_MISMATCH".into());
+    }
+    Ok((factor_index, multiplicity))
+}
+
+fn verify_census(
+    census: &[usize],
+    polynomials: &[Polynomial],
+    weighted: usize,
+    dimension: usize,
+) -> Result<()> {
+    for (count, p) in census.iter().zip(polynomials) {
+        if *count != p.len() - 1 {
+            return Err("BINDING_FACTOR_ROOT_CENSUS_MISMATCH".into());
+        }
+    }
+    if weighted != dimension {
+        return Err("BINDING_WEIGHTED_CENSUS_MISMATCH".into());
+    }
+    Ok(())
+}
+
 fn ownership(data: &InputData, factorization: &Value, roots: &Value) -> Result<(Value, Value)> {
     let rows = factorization["factors"]
         .as_array()
@@ -163,50 +230,27 @@ fn ownership(data: &InputData, factorization: &Value, roots: &Value) -> Result<(
     let mut census = vec![0usize; rows.len()];
     let mut assignments = Vec::new();
     let mut weighted = 0usize;
-    for (root_index, root) in roots["spectrum"]
+    let spectrum = roots["spectrum"]
         .as_array()
-        .ok_or("BINDING_SPECTRUM_ARRAY_REQUIRED")?
-        .iter()
-        .enumerate()
-    {
-        let lower = rational(&root["lower"])?;
-        let upper = rational(&root["upper"])?;
-        let mut owners = Vec::new();
-        for (i, p) in polynomials.iter().enumerate() {
-            let count = if lower == upper {
-                usize::from(eval(p, &lower).is_zero())
-            } else {
-                root_count(&sequences[i], &lower, &upper)?
-            };
-            if count > 1 {
-                return Err("BINDING_FACTOR_HAS_MULTIPLE_ROOTS_IN_IDENTITY".into());
-            }
-            if count == 1 {
-                owners.push(i);
-            }
-        }
-        if owners.len() != 1 {
-            return Err("BINDING_ROOT_OWNER_NOT_UNIQUE".into());
-        }
-        let factor_index = owners[0];
-        let multiplicity = integer(&root["multiplicity"], "root_multiplicity")?;
-        if multiplicity != multiplicities[factor_index] {
-            return Err("BINDING_OWNER_MULTIPLICITY_MISMATCH".into());
-        }
+        .ok_or("BINDING_SPECTRUM_ARRAY_REQUIRED")?;
+    for (root_index, root) in spectrum.iter().enumerate() {
+        let (factor_index, multiplicity) = process_root_assignment(
+            root,
+            &polynomials,
+            &sequences,
+            &multiplicities,
+        )?;
         census[factor_index] += 1;
         weighted = weighted
             .checked_add(multiplicity)
             .ok_or("BINDING_WEIGHTED_CENSUS_OVERFLOW")?;
-        assignments.push(json!({"root_index":root_index,"factor_index":factor_index,"multiplicity":multiplicity}));
+        assignments.push(json!({
+            "root_index": root_index,
+            "factor_index": factor_index,
+            "multiplicity": multiplicity,
+        }));
     }
-    for (count, p) in census.iter().zip(&polynomials) {
-        if *count != p.len() - 1 {
-            return Err("BINDING_FACTOR_ROOT_CENSUS_MISMATCH".into());
-        }
-    }
-    if weighted != data.dimension {
-        return Err("BINDING_WEIGHTED_CENSUS_MISMATCH".into());
-    }
+    verify_census(&census, &polynomials, weighted, data.dimension)?;
     Ok((json!(assignments), json!(census)))
 }
 
@@ -231,89 +275,93 @@ pub fn bind_spectral_factors(input: &Value) -> Result<Value> {
     }))
 }
 
-pub fn validate_spectral_factor_binding(input: &Value, certificate: &Value) -> Result<()> {
-    let data = InputData::new(input)?;
-    reject_float(certificate, "spectral_factor_binding")?;
-    exact_keys(
-        certificate,
-        &[
-            "schema",
-            "authority_effect",
-            "scope",
-            "input",
-            "carrier_conductor",
-            "embedding",
-            "coefficient_field",
-            "real_generator_radicand",
-            "characteristic_polynomial",
-            "factorization",
-            "root_certificate",
-            "root_assignments",
-            "factor_root_counts",
-            "carrier_transport",
-        ],
-        "binding",
-    )?;
-    let (radicand, coefficient_field) = field(data.n)?;
-    if certificate["schema"] != SCHEMA
-        || certificate["authority_effect"] != "None"
-        || certificate["scope"] != SCOPE
+const BINDING_KEYS: [&str; 14] = [
+    "schema",
+    "authority_effect",
+    "scope",
+    "input",
+    "carrier_conductor",
+    "embedding",
+    "coefficient_field",
+    "real_generator_radicand",
+    "characteristic_polynomial",
+    "factorization",
+    "root_certificate",
+    "root_assignments",
+    "factor_root_counts",
+    "carrier_transport",
+];
+
+fn validate_metadata(input: &Value, cert: &Value) -> Result<()> {
+    if cert["schema"] != SCHEMA
+        || cert["authority_effect"] != "None"
+        || cert["scope"] != SCOPE
     {
         return Err("BINDING_SCOPE_OR_SCHEMA_MISMATCH".into());
     }
-    if certificate["input"] != *input {
+    if cert["input"] != *input {
         return Err("BINDING_TYPED_INPUT_MISMATCH".into());
     }
-    if certificate["carrier_conductor"].as_u64() != Some(data.n)
-        || certificate["real_generator_radicand"].as_u64() != Some(radicand)
-        || certificate["coefficient_field"] != coefficient_field
-        || certificate["embedding"] != embedding(data.n)?
+    Ok(())
+}
+
+fn validate_field_and_poly(data: &InputData, cert: &Value) -> Result<()> {
+    let (radicand, coefficient_field) = field(data.n)?;
+    if cert["carrier_conductor"].as_u64() != Some(data.n)
+        || cert["real_generator_radicand"].as_u64() != Some(radicand)
+        || cert["coefficient_field"] != coefficient_field
+        || cert["embedding"] != embedding(data.n)?
     {
         return Err("BINDING_FIELD_OR_EMBEDDING_MISMATCH".into());
     }
-    if certificate["characteristic_polynomial"] != data.coefficients {
+    if cert["characteristic_polynomial"] != data.coefficients {
         return Err("BINDING_CHARACTERISTIC_COORDINATE_MISMATCH".into());
     }
-    factors::validate_factorization(data.n, &data.coefficients, &certificate["factorization"])?;
-    polynomial_roots::verify_output(input, &certificate["root_certificate"])?;
-    let (assignments, census) = ownership(
-        &data,
-        &certificate["factorization"],
-        &certificate["root_certificate"],
-    )?;
-    let supplied = certificate["root_assignments"]
+    Ok(())
+}
+
+fn validate_root_assignments(cert: &Value, expected: &Value) -> Result<()> {
+    let supplied = cert["root_assignments"]
         .as_array()
         .ok_or("BINDING_ASSIGNMENTS_ARRAY_REQUIRED")?;
-    let actual = assignments.as_array().expect("constructed array");
+    let actual = expected.as_array().expect("constructed array");
     if supplied.len() != actual.len() {
         return Err("BINDING_ASSIGNMENT_CENSUS_MISMATCH".into());
     }
-    for (row, expected) in supplied.iter().zip(actual) {
+    for (row, exp) in supplied.iter().zip(actual) {
         exact_keys(
             row,
             &["root_index", "factor_index", "multiplicity"],
             "assignment",
         )?;
         for key in ["root_index", "factor_index", "multiplicity"] {
-            if integer(&row[key], key)? != integer(&expected[key], key)? {
+            if integer(&row[key], key)? != integer(&exp[key], key)? {
                 return Err(format!("BINDING_ASSIGNMENT_MISMATCH:{key}"));
             }
         }
     }
-    let supplied = certificate["factor_root_counts"]
+    Ok(())
+}
+
+fn validate_factor_root_counts(cert: &Value, expected: &Value) -> Result<()> {
+    let supplied = cert["factor_root_counts"]
         .as_array()
         .ok_or("BINDING_FACTOR_COUNTS_ARRAY_REQUIRED")?;
-    let expected = census.as_array().expect("constructed array");
-    if supplied.len() != expected.len() {
+    let exp_arr = expected.as_array().expect("constructed array");
+    if supplied.len() != exp_arr.len() {
         return Err("BINDING_FACTOR_COUNT_LENGTH_MISMATCH".into());
     }
-    for (count, correct) in supplied.iter().zip(expected) {
+    for (count, correct) in supplied.iter().zip(exp_arr) {
         if integer(count, "factor_root_count")? != integer(correct, "factor_root_count")? {
             return Err("BINDING_FACTOR_ROOT_CENSUS_MISMATCH".into());
         }
     }
+    Ok(())
+}
+
+fn validate_carrier_transport(n: u64, cert: &Value) -> Result<()> {
     exact_keys(
-        &certificate["carrier_transport"],
+        &cert["carrier_transport"],
         &[
             "rule",
             "carrier_degree_over_real_field",
@@ -323,10 +371,37 @@ pub fn validate_spectral_factor_binding(input: &Value, certificate: &Value) -> R
         ],
         "carrier_transport",
     )?;
-    if certificate["carrier_transport"] != transport(data.n) {
+    if cert["carrier_transport"] != transport(n) {
         return Err("BINDING_CARRIER_TRANSPORT_MISMATCH".into());
     }
     Ok(())
+}
+
+fn validate_post_ownership(
+    certificate: &Value,
+    assignments: &Value,
+    census: &Value,
+    conductor: u64,
+) -> Result<()> {
+    validate_root_assignments(certificate, assignments)?;
+    validate_factor_root_counts(certificate, census)?;
+    validate_carrier_transport(conductor, certificate)
+}
+
+pub fn validate_spectral_factor_binding(input: &Value, certificate: &Value) -> Result<()> {
+    let data = InputData::new(input)?;
+    reject_float(certificate, "spectral_factor_binding")?;
+    exact_keys(certificate, &BINDING_KEYS, "binding")?;
+    validate_metadata(input, certificate)?;
+    validate_field_and_poly(&data, certificate)?;
+    factors::validate_factorization(data.n, &data.coefficients, &certificate["factorization"])?;
+    polynomial_roots::verify_output(input, &certificate["root_certificate"])?;
+    let (assignments, census) = ownership(
+        &data,
+        &certificate["factorization"],
+        &certificate["root_certificate"],
+    )?;
+    validate_post_ownership(certificate, &assignments, &census, data.n)
 }
 
 pub fn evaluate_request(request: &Value) -> Result<Value> {

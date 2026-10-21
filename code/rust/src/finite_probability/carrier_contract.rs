@@ -12,6 +12,100 @@ pub struct Sample {
     pub target_polynomial: Vec<Q>,
     pub arrays: Vec<Vec<Q>>,
 }
+fn validate_conductor_chain(n: usize, mid: usize, target: usize) -> Result<(), CyclotomicError> {
+    if n == 0 || mid == 0 || target == 0 || mid % n != 0 || target % mid != 0 {
+        return Err(CyclotomicError::ConductorMismatch {
+            left: n,
+            right: target,
+        });
+    }
+    Ok(())
+}
+
+fn parse_canonical_operands(
+    n: usize,
+    a: Vec<Q>,
+    b: Vec<Q>,
+) -> Result<(C, C), CyclotomicError> {
+    super::pfp_exact::validate(&vec![a.clone()])
+        .map_err(|_| CyclotomicError::Inconsistent("canonical source coefficients required"))?;
+    super::pfp_exact::validate(&vec![b.clone()])
+        .map_err(|_| CyclotomicError::Inconsistent("canonical source coefficients required"))?;
+    let ca = C::from_coefficients(n, a)?;
+    let cb = C::from_coefficients(n, b)?;
+    Ok((ca, cb))
+}
+
+fn lift_and_norm(
+    a: &C,
+    b: &C,
+    mid: usize,
+    target: usize,
+) -> Result<(C, C, C, C, C), CyclotomicError> {
+    let ea = a.lift(target)?;
+    let eb = b.lift(target)?;
+    let ca = a.conjugate();
+    let norm = a.mul(&ca)?;
+    let via = a.lift(mid)?.lift(target)?;
+    Ok((ea, eb, ca, norm, via))
+}
+
+fn compute_sample_arrays(
+    a: &C,
+    b: &C,
+    ea: &C,
+    eb: &C,
+    ca: &C,
+    norm: &C,
+    via: &C,
+    target: usize,
+) -> Result<Vec<Vec<Q>>, CyclotomicError> {
+    let norm_lift = norm.lift(target)?;
+    let ea_norm = ea.mul(&ea.conjugate())?;
+    let ab_lift = a.add(b)?.lift(target)?;
+    let eab_add = ea.add(eb)?;
+    let ab_mul_lift = a.mul(b)?.lift(target)?;
+    let eab_mul = ea.mul(eb)?;
+    let ca_lift = ca.lift(target)?;
+    let ea_conj = ea.conjugate();
+    Ok(vec![
+        a.coefficients().to_vec(),
+        ca.coefficients().to_vec(),
+        norm.coefficients().to_vec(),
+        ea.coefficients().to_vec(),
+        via.coefficients().to_vec(),
+        norm_lift.coefficients().to_vec(),
+        ea_norm.coefficients().to_vec(),
+        ab_lift.coefficients().to_vec(),
+        eab_add.coefficients().to_vec(),
+        ab_mul_lift.coefficients().to_vec(),
+        eab_mul.coefficients().to_vec(),
+        ca_lift.coefficients().to_vec(),
+        ea_conj.coefficients().to_vec(),
+    ])
+}
+
+fn validate_lift_consistency(arrays: &[Vec<Q>], norm: &C) -> Result<(), CyclotomicError> {
+    if !norm.is_real() {
+        return Err(CyclotomicError::Inconsistent(
+            "selected lift composition/norm failed",
+        ));
+    }
+    let pairs = [(3, 4), (5, 6), (7, 8), (9, 10), (11, 12)];
+    if pairs.iter().any(|&(i, j)| arrays[i] != arrays[j]) {
+        return Err(CyclotomicError::Inconsistent(
+            "selected lift composition/norm failed",
+        ));
+    }
+    Ok(())
+}
+
+fn get_sample_polynomials(n: usize, target: usize) -> Result<(Vec<Q>, Vec<Q>), CyclotomicError> {
+    let src = cyclotomic_polynomial(n)?.coefficients().to_vec();
+    let tgt = cyclotomic_polynomial(target)?.coefficients().to_vec();
+    Ok((src, tgt))
+}
+
 pub fn certify_sample(
     n: usize,
     mid: usize,
@@ -19,55 +113,18 @@ pub fn certify_sample(
     a: Vec<Q>,
     b: Vec<Q>,
 ) -> Result<Sample, CyclotomicError> {
-    if n == 0 || mid == 0 || target == 0 || mid % n != 0 || target % mid != 0 {
-        return Err(CyclotomicError::ConductorMismatch {
-            left: n,
-            right: target,
-        });
-    }
-    super::pfp_exact::validate(&vec![a.clone()])
-        .map_err(|_| CyclotomicError::Inconsistent("canonical source coefficients required"))?;
-    super::pfp_exact::validate(&vec![b.clone()])
-        .map_err(|_| CyclotomicError::Inconsistent("canonical source coefficients required"))?;
-    let a = C::from_coefficients(n, a)?;
-    let b = C::from_coefficients(n, b)?;
-    let ea = a.lift(target)?;
-    let eb = b.lift(target)?;
-    let ca = a.conjugate();
-    let norm = a.mul(&ca)?;
-    let via = a.lift(mid)?.lift(target)?;
-    let arrays = vec![
-        a.coefficients().to_vec(),
-        ca.coefficients().to_vec(),
-        norm.coefficients().to_vec(),
-        ea.coefficients().to_vec(),
-        via.coefficients().to_vec(),
-        norm.lift(target)?.coefficients().to_vec(),
-        ea.mul(&ea.conjugate())?.coefficients().to_vec(),
-        a.add(&b)?.lift(target)?.coefficients().to_vec(),
-        ea.add(&eb)?.coefficients().to_vec(),
-        a.mul(&b)?.lift(target)?.coefficients().to_vec(),
-        ea.mul(&eb)?.coefficients().to_vec(),
-        ca.lift(target)?.coefficients().to_vec(),
-        ea.conjugate().coefficients().to_vec(),
-    ];
-    if arrays[3] != arrays[4]
-        || arrays[5] != arrays[6]
-        || arrays[7] != arrays[8]
-        || arrays[9] != arrays[10]
-        || arrays[11] != arrays[12]
-        || !norm.is_real()
-    {
-        return Err(CyclotomicError::Inconsistent(
-            "selected lift composition/norm failed",
-        ));
-    }
+    validate_conductor_chain(n, mid, target)?;
+    let (a, b) = parse_canonical_operands(n, a, b)?;
+    let (ea, eb, ca, norm, via) = lift_and_norm(&a, &b, mid, target)?;
+    let arrays = compute_sample_arrays(&a, &b, &ea, &eb, &ca, &norm, &via, target)?;
+    validate_lift_consistency(&arrays, &norm)?;
+    let (source_polynomial, target_polynomial) = get_sample_polynomials(n, target)?;
     Ok(Sample {
         source: n,
         intermediate: mid,
         target,
-        source_polynomial: cyclotomic_polynomial(n)?.coefficients().to_vec(),
-        target_polynomial: cyclotomic_polynomial(target)?.coefficients().to_vec(),
+        source_polynomial,
+        target_polynomial,
         arrays,
     })
 }

@@ -1,4 +1,4 @@
-//! Exact finite Cabello census, tomography, spectral margins and negative vectors.
+use linear_algebra::backend::basic_matrix::BasicMatrix;
 use super::frame_polytope::{
     eigenvalues_above, eigenvalues_at_least, FramePolytopeError, FrameSystem,
 };
@@ -53,6 +53,135 @@ fn shift(a: &Matrix, t: &Q) -> Matrix {
         })
         .collect()
 }
+
+fn find_witness_at_radius(rho: &Matrix, r: i64) -> Option<([i64; 4], Q)> {
+    let side = 2 * r + 1;
+    let total = side * side * side * side;
+    for idx in 0..total {
+        let mut rem = idx;
+        let d = (rem % side) - r;
+        rem /= side;
+        let c = (rem % side) - r;
+        rem /= side;
+        let b = (rem % side) - r;
+        rem /= side;
+        let a = rem - r;
+        let v = [a, b, c, d];
+        let value = quadratic(rho, &v);
+        if value.is_negative() {
+            return Some((v, value));
+        }
+    }
+    None
+}
+
+fn find_negative_witness(rho: &Matrix, radius: i64) -> Option<([i64; 4], Q)> {
+    for r in 1..=radius {
+        if let Some(res) = find_witness_at_radius(rho, r) {
+            return Some(res);
+        }
+    }
+    None
+}
+
+fn compute_spectral_class(
+    basic: &BasicMatrix<Q>,
+    rho: &Matrix,
+) -> Result<(&'static str, Q, Vec<Q>), FramePolytopeError> {
+    let half = shift(rho, &q(1, 2));
+    let quarter = shift(rho, &q(1, 4));
+    let half_det = mx::determinant(&half).map_err(|_| FramePolytopeError::InvalidSolution)?;
+    let leading: Vec<Q> = (1..=4)
+        .map(|k| {
+            mx::determinant(&quarter[..k].iter().map(|r| r[..k].to_vec()).collect())
+                .map_err(|_| FramePolytopeError::InvalidSolution)
+        })
+        .collect::<Result<_, _>>()?;
+    let spectral_class = if eigenvalues_at_least(basic, &q(-1, 2))? && half_det.is_zero() {
+        "at_minus_half"
+    } else if eigenvalues_above(basic, &q(-1, 4))? {
+        "above_minus_quarter"
+    } else {
+        return Err(FramePolytopeError::InvalidSolution);
+    };
+    Ok((spectral_class, half_det, leading))
+}
+
+fn build_vertex_certificate(
+    weights: Vec<Q>,
+    rho: Matrix,
+    negative_vector: [i64; 4],
+    quadratic_value: Q,
+    spectral_class: &'static str,
+    half_shift_determinant: Q,
+    quarter_shift_leading_minors: Vec<Q>,
+) -> Result<VertexCertificate, FramePolytopeError> {
+    let denominator = rho
+        .iter()
+        .flatten()
+        .fold(BigInt::one(), |d, x| d.lcm(x.denom()));
+    let scaled: Vec<Q> = rho
+        .iter()
+        .flatten()
+        .map(|x| x * Q::from_integer(denominator.clone()))
+        .collect();
+    let twice: Vec<Q> = weights.iter().map(|x| x * q(2, 1)).collect();
+    let neg = &quadratic_value * Q::from_integer(denominator.clone());
+    if scaled.iter().chain(&twice).any(|x| !x.denom().is_one()) || !neg.denom().is_one() {
+        return Err(FramePolytopeError::InvalidSolution);
+    }
+    Ok(VertexCertificate {
+        weights,
+        representative: rho,
+        negative_vector,
+        quadratic_value,
+        spectral_class,
+        half_shift_determinant,
+        quarter_shift_leading_minors,
+        denominator,
+        matrix_numerators: scaled.iter().map(|x| x.numer().clone()).collect(),
+        weights_twice: twice.iter().map(|x| x.numer().clone()).collect(),
+        negative_value_numerator: neg.numer().clone(),
+    })
+}
+
+fn certify_vertex(
+    system: &FrameSystem,
+    weights: Vec<Q>,
+    radius: i64,
+) -> Result<VertexCertificate, FramePolytopeError> {
+    if !system.is_vertex(&weights)? {
+        return Err(FramePolytopeError::InvalidSolution);
+    }
+    let basic = system.state_of(&weights)?;
+    let rho: Matrix = (0..4)
+        .map(|i| {
+            (0..4)
+                .map(|j| basic.as_slice()[4 * i + j].clone())
+                .collect()
+        })
+        .collect();
+    let (spectral_class, half_det, leading) = compute_spectral_class(&basic, &rho)?;
+    let (negative_vector, quadratic_value) = find_negative_witness(&rho, radius)
+        .ok_or(FramePolytopeError::InvalidSolution)?;
+    build_vertex_certificate(
+        weights,
+        rho,
+        negative_vector,
+        quadratic_value,
+        spectral_class,
+        half_det,
+        leading,
+    )
+}
+
+fn validate_system_and_radius(dim: usize, radius: i64) -> Result<(), FramePolytopeError> {
+    if dim != 4 || !(1..=8).contains(&radius) {
+        return Err(FramePolytopeError::CarrierBudget);
+    }
+    Ok(())
+}
+
 pub fn certify(
     rays: Vec<Vec<i64>>,
     frames: Vec<Vec<usize>>,
@@ -60,90 +189,19 @@ pub fn certify(
     radius: i64,
 ) -> Result<Census, FramePolytopeError> {
     let system = FrameSystem::new(rays, frames)?;
-    if system.dimension() != 4 || radius < 1 || radius > 8 {
-        return Err(FramePolytopeError::CarrierBudget);
-    }
+    validate_system_and_radius(system.dimension(), radius)?;
     let (points, examined) = system.vertices_with_statistics(budget)?;
     let mut vertices = Vec::new();
     let mut at_half = 0;
     let mut above_quarter = 0;
     for weights in points {
-        if !system.is_vertex(&weights)? {
-            return Err(FramePolytopeError::InvalidSolution);
+        let cert = certify_vertex(&system, weights, radius)?;
+        match cert.spectral_class {
+            "at_minus_half" => at_half += 1,
+            "above_minus_quarter" => above_quarter += 1,
+            _ => {}
         }
-        let basic = system.state_of(&weights)?;
-        let rho: Matrix = (0..4)
-            .map(|i| {
-                (0..4)
-                    .map(|j| basic.as_slice()[4 * i + j].clone())
-                    .collect()
-            })
-            .collect();
-        let half = shift(&rho, &q(1, 2));
-        let quarter = shift(&rho, &q(1, 4));
-        let half_det = mx::determinant(&half).map_err(|_| FramePolytopeError::InvalidSolution)?;
-        let leading: Vec<Q> = (1..=4)
-            .map(|k| {
-                mx::determinant(&quarter[..k].iter().map(|r| r[..k].to_vec()).collect())
-                    .map_err(|_| FramePolytopeError::InvalidSolution)
-            })
-            .collect::<Result<_, _>>()?;
-        let spectral_class = if eigenvalues_at_least(&basic, &q(-1, 2))? && half_det.is_zero() {
-            at_half += 1;
-            "at_minus_half"
-        } else if eigenvalues_above(&basic, &q(-1, 4))? {
-            above_quarter += 1;
-            "above_minus_quarter"
-        } else {
-            return Err(FramePolytopeError::InvalidSolution);
-        };
-        let mut witness = None;
-        'search: for r in 1..=radius {
-            for a in -r..=r {
-                for b in -r..=r {
-                    for c in -r..=r {
-                        for d in -r..=r {
-                            let v = [a, b, c, d];
-                            let value = quadratic(&rho, &v);
-                            if value.is_negative() {
-                                witness = Some((v, value));
-                                break 'search;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        let Some((negative_vector, quadratic_value)) = witness else {
-            return Err(FramePolytopeError::InvalidSolution);
-        };
-        let denominator = rho
-            .iter()
-            .flatten()
-            .fold(BigInt::one(), |d, x| d.lcm(x.denom()));
-        let scaled: Vec<Q> = rho
-            .iter()
-            .flatten()
-            .map(|x| x * Q::from_integer(denominator.clone()))
-            .collect();
-        let twice: Vec<Q> = weights.iter().map(|x| x * q(2, 1)).collect();
-        let neg = &quadratic_value * Q::from_integer(denominator.clone());
-        if scaled.iter().chain(&twice).any(|x| !x.denom().is_one()) || !neg.denom().is_one() {
-            return Err(FramePolytopeError::InvalidSolution);
-        }
-        vertices.push(VertexCertificate {
-            weights,
-            representative: rho,
-            negative_vector,
-            quadratic_value,
-            spectral_class,
-            half_shift_determinant: half_det,
-            quarter_shift_leading_minors: leading,
-            denominator,
-            matrix_numerators: scaled.iter().map(|x| x.numer().clone()).collect(),
-            weights_twice: twice.iter().map(|x| x.numer().clone()).collect(),
-            negative_value_numerator: neg.numer().clone(),
-        });
+        vertices.push(cert);
     }
     Ok(Census {
         basis_supports_examined: examined,

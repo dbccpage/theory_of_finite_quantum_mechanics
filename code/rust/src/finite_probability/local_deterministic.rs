@@ -28,11 +28,10 @@ pub fn binary_local_vertices(
     finite_local_vertices(&vec![2; variables], contexts, limits)
 }
 
-pub fn finite_local_vertices(
+fn validate_inputs(
     outcomes: &[usize],
     contexts: &[Vec<usize>],
-    limits: LocalVertexLimits,
-) -> Result<Vec<Vec<Rational>>, LocalVertexError> {
+) -> Result<(), LocalVertexError> {
     if outcomes.is_empty()
         || outcomes.len() > 20
         || outcomes.contains(&0)
@@ -41,6 +40,10 @@ pub fn finite_local_vertices(
     {
         return Err(LocalVertexError::InvalidCarrier);
     }
+    Ok(())
+}
+
+fn compute_strides(outcomes: &[usize]) -> Result<(Vec<usize>, usize), LocalVertexError> {
     let mut strides = Vec::with_capacity(outcomes.len());
     let mut assignments = 1usize;
     for &count in outcomes {
@@ -49,17 +52,33 @@ pub fn finite_local_vertices(
             .checked_mul(count)
             .ok_or(LocalVertexError::Budget)?;
     }
+    Ok((strides, assignments))
+}
+
+fn validate_context_indices(
+    c: &[usize],
+    num_outcomes: usize,
+    index: usize,
+) -> Result<(), LocalVertexError> {
+    if c.is_empty()
+        || c.iter()
+            .enumerate()
+            .any(|(k, &v)| v >= num_outcomes || c[..k].contains(&v))
+    {
+        return Err(LocalVertexError::InvalidContext(index));
+    }
+    Ok(())
+}
+
+fn compute_context_offsets(
+    outcomes: &[usize],
+    contexts: &[Vec<usize>],
+) -> Result<(Vec<usize>, usize), LocalVertexError> {
     let mut covered = vec![false; outcomes.len()];
     let mut coordinates = 0usize;
     let mut offsets = Vec::with_capacity(contexts.len());
     for (i, c) in contexts.iter().enumerate() {
-        if c.is_empty()
-            || c.iter()
-                .enumerate()
-                .any(|(k, &v)| v >= outcomes.len() || c[..k].contains(&v))
-        {
-            return Err(LocalVertexError::InvalidContext(i));
-        }
+        validate_context_indices(c, outcomes.len(), i)?;
         let mut size = 1usize;
         for &v in c {
             covered[v] = true;
@@ -75,18 +94,38 @@ pub fn finite_local_vertices(
     if covered.iter().any(|&x| !x) {
         return Err(LocalVertexError::IncompleteCover);
     }
-    if assignments > limits.assignments
-        || coordinates > limits.coordinates
-        || assignments
-            .checked_mul(coordinates)
-            .is_none_or(|n| n > limits.entries)
+    Ok((offsets, coordinates))
+}
+
+fn validate_limits(
+    assignments: usize,
+    coordinates: usize,
+    limits: LocalVertexLimits,
+) -> Result<(), LocalVertexError> {
+    if assignments > limits.assignments || coordinates > limits.coordinates {
+        return Err(LocalVertexError::Budget);
+    }
+    if assignments
+        .checked_mul(coordinates)
+        .is_none_or(|n| n > limits.entries)
     {
         return Err(LocalVertexError::Budget);
     }
+    Ok(())
+}
+
+fn enumerate_vertices(
+    assignments: usize,
+    coordinates: usize,
+    outcomes: &[usize],
+    contexts: &[Vec<usize>],
+    strides: &[usize],
+    offsets: &[usize],
+) -> Vec<Vec<Rational>> {
     let mut vertices = Vec::with_capacity(assignments);
     for assignment in 0..assignments {
         let mut point = vec![ri(0); coordinates];
-        for (c, &offset) in contexts.iter().zip(&offsets) {
+        for (c, &offset) in contexts.iter().zip(offsets) {
             let (mut local, mut stride) = (0, 1);
             for &v in c {
                 local += ((assignment / strides[v]) % outcomes[v]) * stride;
@@ -96,7 +135,26 @@ pub fn finite_local_vertices(
         }
         vertices.push(point);
     }
-    Ok(vertices)
+    vertices
+}
+
+pub fn finite_local_vertices(
+    outcomes: &[usize],
+    contexts: &[Vec<usize>],
+    limits: LocalVertexLimits,
+) -> Result<Vec<Vec<Rational>>, LocalVertexError> {
+    validate_inputs(outcomes, contexts)?;
+    let (strides, assignments) = compute_strides(outcomes)?;
+    let (offsets, coordinates) = compute_context_offsets(outcomes, contexts)?;
+    validate_limits(assignments, coordinates, limits)?;
+    Ok(enumerate_vertices(
+        assignments,
+        coordinates,
+        outcomes,
+        contexts,
+        &strides,
+        &offsets,
+    ))
 }
 
 #[cfg(test)]

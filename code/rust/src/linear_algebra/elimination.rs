@@ -5,6 +5,23 @@ use crate::linear_algebra::{
     charge, element_count, inverse_of, plus, require_square, reserve, times, ExactFieldError, Grid,
 };
 
+fn eliminate_other_rows<F: Field + ExactRing>(
+    grid: &mut Grid<F>,
+    rows: usize,
+    pivot_row: usize,
+    col: usize,
+) -> Result<(), ExactFieldError> {
+    for r in 0..rows {
+        if r != pivot_row {
+            let factor = grid.at(r, col).clone();
+            if !factor.try_is_zero()? {
+                grid.sub_scaled_row(r, pivot_row, &factor, col)?;
+            }
+        }
+    }
+    Ok(())
+}
+
 pub(crate) fn reduce_to_rref<F: Field + ExactRing>(
     grid: &mut Grid<F>,
 ) -> Result<Vec<usize>, ExactFieldError> {
@@ -21,14 +38,7 @@ pub(crate) fn reduce_to_rref<F: Field + ExactRing>(
         grid.swap_rows(pivot_row, found);
         let inv = inverse_of("rref", grid.at(pivot_row, col))?;
         grid.scale_row(pivot_row, &inv, col)?;
-        for r in 0..rows {
-            if r != pivot_row {
-                let factor = grid.at(r, col).clone();
-                if !factor.try_is_zero()? {
-                    grid.sub_scaled_row(r, pivot_row, &factor, col)?;
-                }
-            }
-        }
+        eliminate_other_rows(grid, rows, pivot_row, col)?;
         pivots.push(col);
         pivot_row += 1;
     }
@@ -184,22 +194,31 @@ impl<F> InconsistencyCertificate<F> {
     }
 }
 
+fn check_vector_lengths(
+    combination_len: usize,
+    b_len: usize,
+    rows: usize,
+) -> Result<(), ExactFieldError> {
+    if combination_len != rows {
+        return Err(ExactFieldError::VectorLength {
+            operation: "InconsistencyCertificate::verify",
+            expected: rows,
+            got: combination_len,
+        });
+    }
+    if b_len != rows {
+        return Err(ExactFieldError::VectorLength {
+            operation: "InconsistencyCertificate::verify",
+            expected: rows,
+            got: b_len,
+        });
+    }
+    Ok(())
+}
+
 impl<F: Field + ExactRing> InconsistencyCertificate<F> {
     pub fn verify(&self, a: &BasicMatrix<F>, b: &[F]) -> Result<(), ExactFieldError> {
-        if self.combination.len() != a.rows() {
-            return Err(ExactFieldError::VectorLength {
-                operation: "InconsistencyCertificate::verify",
-                expected: a.rows(),
-                got: self.combination.len(),
-            });
-        }
-        if b.len() != a.rows() {
-            return Err(ExactFieldError::VectorLength {
-                operation: "InconsistencyCertificate::verify",
-                expected: a.rows(),
-                got: b.len(),
-            });
-        }
+        check_vector_lengths(self.combination.len(), b.len(), a.rows())?;
         for c in 0..a.cols() {
             if !dot(&self.combination, &column(a, c)?)?.try_is_zero()? {
                 return Err(ExactFieldError::CertificateRejected {
@@ -240,6 +259,66 @@ pub fn solve<F: Field + ExactRing>(
     solve_with_limits(a, b, OperationLimits::UNLIMITED)
 }
 
+fn solve_element_count(
+    rows: usize,
+    cols: usize,
+    augmented: usize,
+) -> Result<usize, ExactFieldError> {
+    let dual_rows = augmented;
+    let dual_cols = plus(rows, 1)?;
+    let elements = element_count(rows, augmented)?
+        .max(element_count(cols, cols)?)
+        .max(element_count(dual_rows, dual_cols)?);
+    Ok(elements)
+}
+
+fn solve_operation_count(
+    rows: usize,
+    cols: usize,
+    augmented: usize,
+) -> Result<usize, ExactFieldError> {
+    let dual_rows = augmented;
+    let dual_cols = plus(rows, 1)?;
+    let consistent_path = times(times(2, rows)?, cols)?;
+    let refusal_path = plus(
+        reduction_cost(dual_rows, dual_cols)?,
+        times(times(2, rows)?, augmented)?,
+    )?;
+    Ok(plus(
+        reduction_cost(rows, augmented)?,
+        consistent_path.max(refusal_path),
+    )?)
+}
+
+fn solve_budget(rows: usize, cols: usize) -> Result<(usize, usize, usize), ExactFieldError> {
+    let augmented = plus(cols, 1)?;
+    let elements = solve_element_count(rows, cols, augmented)?;
+    let ops = solve_operation_count(rows, cols, augmented)?;
+    Ok((augmented, elements, ops))
+}
+
+fn build_consistent_solution<F: Field + ExactRing>(
+    a: &BasicMatrix<F>,
+    b: &[F],
+    grid: &Grid<F>,
+    pivots: &[usize],
+    cols: usize,
+) -> Result<LinearSolution<F>, ExactFieldError> {
+    let mut particular: Vec<F> = reserve(cols)?;
+    particular.resize(cols, F::zero());
+    for (row, &pivot) in pivots.iter().enumerate() {
+        particular[pivot] = grid.at(row, cols).clone();
+    }
+    let kernel = kernel_vectors(grid, pivots, cols)?;
+    if multiply_vector(a, &particular)?.as_slice() != b {
+        return Err(ExactFieldError::ReplayFailed { operation: "solve" });
+    }
+    Ok(LinearSolution::Consistent {
+        particular,
+        kernel_basis: kernel,
+    })
+}
+
 pub fn solve_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     b: &[F],
@@ -253,21 +332,7 @@ pub fn solve_with_limits<F: Field + ExactRing>(
             got: b.len(),
         });
     }
-    let augmented = plus(cols, 1)?;
-    let dual_rows = augmented;
-    let dual_cols = plus(rows, 1)?;
-    let elements = element_count(rows, augmented)?
-        .max(element_count(cols, cols)?)
-        .max(element_count(dual_rows, dual_cols)?);
-    let consistent_path = times(times(2, rows)?, cols)?;
-    let refusal_path = plus(
-        reduction_cost(dual_rows, dual_cols)?,
-        times(times(2, rows)?, augmented)?,
-    )?;
-    let ops = plus(
-        reduction_cost(rows, augmented)?,
-        consistent_path.max(refusal_path),
-    )?;
+    let (augmented, elements, ops) = solve_budget(rows, cols)?;
     charge(limits, elements, ops)?;
 
     let mut grid = Grid::from_fn(rows, augmented, |r, c| {
@@ -285,19 +350,25 @@ pub fn solve_with_limits<F: Field + ExactRing>(
         });
     }
 
-    let mut particular: Vec<F> = reserve(cols)?;
-    particular.resize(cols, F::zero());
-    for (row, &pivot) in pivots.iter().enumerate() {
-        particular[pivot] = grid.at(row, cols).clone();
+    build_consistent_solution(a, b, &grid, &pivots, cols)
+}
+
+fn refusal_grid_entry<F: Field + ExactRing>(
+    a: &BasicMatrix<F>,
+    b: &[F],
+    i: usize,
+    r: usize,
+    rows: usize,
+    cols: usize,
+) -> Result<F, ExactFieldError> {
+    if r == rows {
+        return Ok(if i == cols { F::one() } else { F::zero() });
     }
-    let kernel = kernel_vectors(&grid, &pivots, cols)?;
-    if multiply_vector(a, &particular)?.as_slice() != b {
-        return Err(ExactFieldError::ReplayFailed { operation: "solve" });
+    if i < cols {
+        Ok(a.get_ref(r, i)?.clone())
+    } else {
+        Ok(b[r].clone())
     }
-    Ok(LinearSolution::Consistent {
-        particular,
-        kernel_basis: kernel,
-    })
 }
 
 fn refusal_certificate<F: Field + ExactRing>(
@@ -308,17 +379,7 @@ fn refusal_certificate<F: Field + ExactRing>(
     let equations = plus(cols, 1)?;
     let columns = plus(rows, 1)?;
     let mut grid = Grid::from_fn(equations, columns, |i, r| {
-        Ok::<F, ExactFieldError>(if r == rows {
-            if i == cols {
-                F::one()
-            } else {
-                F::zero()
-            }
-        } else if i < cols {
-            a.get_ref(r, i)?.clone()
-        } else {
-            b[r].clone()
-        })
+        refusal_grid_entry(a, b, i, r, rows, cols)
     })?;
     let pivots = reduce_to_rref(&mut grid)?;
     if pivots.last() == Some(&rows) {
@@ -342,6 +403,21 @@ pub fn inverse<F: Field + ExactRing>(
     inverse_with_limits(a, OperationLimits::UNLIMITED)
 }
 
+fn augmented_inverse_entry<F: Field + ExactRing>(
+    a: &BasicMatrix<F>,
+    r: usize,
+    c: usize,
+    n: usize,
+) -> Result<F, ExactFieldError> {
+    if c < n {
+        Ok(a.get_ref(r, c)?.clone())
+    } else if c - n == r {
+        Ok(F::one())
+    } else {
+        Ok(F::zero())
+    }
+}
+
 pub fn inverse_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
@@ -349,15 +425,7 @@ pub fn inverse_with_limits<F: Field + ExactRing>(
     let n = require_square("inverse", a)?;
     let width = times(2, n)?;
     charge(limits, element_count(n, width)?, reduction_cost(n, width)?)?;
-    let mut grid = Grid::from_fn(n, width, |r, c| {
-        Ok::<F, ExactFieldError>(if c < n {
-            a.get_ref(r, c)?.clone()
-        } else if c - n == r {
-            F::one()
-        } else {
-            F::zero()
-        })
-    })?;
+    let mut grid = Grid::from_fn(n, width, |r, c| augmented_inverse_entry(a, r, c, n))?;
     let pivots = reduce_to_rref(&mut grid)?;
     let rank = pivots.iter().take_while(|&&p| p < n).count();
     if rank < n {
@@ -370,32 +438,59 @@ pub fn determinant<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<F, ExactF
     determinant_with_limits(a, OperationLimits::UNLIMITED)
 }
 
+fn eliminate_det_rows<F: Field + ExactRing>(
+    grid: &mut Grid<F>,
+    k: usize,
+    n: usize,
+    inv: &F,
+) -> Result<(), ExactFieldError> {
+    for r in (k + 1)..n {
+        let factor = grid.at(r, k).try_mul(inv)?;
+        if !factor.try_is_zero()? {
+            grid.sub_scaled_row(r, k, &factor, k)?;
+        }
+    }
+    Ok(())
+}
+
+fn eliminate_det_step<F: Field + ExactRing>(
+    grid: &mut Grid<F>,
+    k: usize,
+    n: usize,
+    det: &mut F,
+) -> Result<bool, ExactFieldError> {
+    let Some(found) = first_nonzero(grid, k, n, k)? else {
+        return Ok(false);
+    };
+    if found != k {
+        grid.swap_rows(k, found);
+        *det = det.try_neg()?;
+    }
+    let pivot = grid.at(k, k).clone();
+    *det = det.try_mul(&pivot)?;
+    let inv = inverse_of("determinant", &pivot)?;
+    eliminate_det_rows(grid, k, n, &inv)?;
+    Ok(true)
+}
+
+fn det_budget(n: usize) -> Result<(usize, usize), ExactFieldError> {
+    let square = element_count(n, n)?;
+    let ops = plus(plus(times(2, times(square, n)?)?, square)?, n)?;
+    Ok((square, ops))
+}
+
 pub fn determinant_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
 ) -> Result<F, ExactFieldError> {
     let n = require_square("determinant", a)?;
-    let square = element_count(n, n)?;
-    let ops = plus(plus(times(2, times(square, n)?)?, square)?, n)?;
+    let (square, ops) = det_budget(n)?;
     charge(limits, square, ops)?;
     let mut grid = Grid::from_matrix(a)?;
     let mut det = F::one();
     for k in 0..n {
-        let Some(found) = first_nonzero(&grid, k, n, k)? else {
+        if !eliminate_det_step(&mut grid, k, n, &mut det)? {
             return Ok(F::zero());
-        };
-        if found != k {
-            grid.swap_rows(k, found);
-            det = det.try_neg()?;
-        }
-        let pivot = grid.at(k, k).clone();
-        det = det.try_mul(&pivot)?;
-        let inv = inverse_of("determinant", &pivot)?;
-        for r in (k + 1)..n {
-            let factor = grid.at(r, k).try_mul(&inv)?;
-            if !factor.try_is_zero()? {
-                grid.sub_scaled_row(r, k, &factor, k)?;
-            }
         }
     }
     Ok(det)
@@ -464,7 +559,7 @@ mod tests {
             assert!(r.rank() < rows, "a dependent row must lower the rank");
             for (i, &p) in r.pivot_columns().iter().enumerate() {
                 for row in 0..rows {
-                    let expected = if row == i { q(1, 1) } else { q(0, 1) };
+                    let expected = q((row == i) as i64, 1);
                     assert_eq!(r.matrix().get(row, p).unwrap(), expected);
                 }
             }
@@ -737,26 +832,28 @@ mod tests {
         );
     }
 
+    fn random_unit_lower_triangular(rng: &mut Rng, n: usize) -> BasicMatrix<Q> {
+        let mut l = random_matrix(rng, n, n, 3);
+        for r in 0..n {
+            for c in 0..n {
+                let v = if c > r {
+                    q(0, 1)
+                } else if c == r {
+                    q(1, 1)
+                } else {
+                    l.get(r, c).unwrap()
+                };
+                l.set(r, c, v).unwrap();
+            }
+        }
+        l
+    }
+
     #[test]
     fn inverse_round_trips_on_random_invertible_matrices() {
         let mut rng = Rng::new(131);
         for n in 1..=5 {
-            let lower = {
-                let mut l = random_matrix(&mut rng, n, n, 3);
-                for r in 0..n {
-                    for c in 0..n {
-                        let v = if c > r {
-                            q(0, 1)
-                        } else if c == r {
-                            q(1, 1)
-                        } else {
-                            l.get(r, c).unwrap()
-                        };
-                        l.set(r, c, v).unwrap();
-                    }
-                }
-                l
-            };
+            let lower = random_unit_lower_triangular(&mut rng, n);
             let upper = transpose(&lower).unwrap();
             let a = multiply(&lower, &upper).unwrap();
             let inv = inverse(&a).unwrap();
@@ -796,21 +893,25 @@ mod tests {
         );
     }
 
+    fn random_singular_with_dependent_last_row(rng: &mut Rng, n: usize) -> BasicMatrix<Q> {
+        let base = random_matrix(rng, n, n, 3);
+        let mut data = base.as_slice().to_vec();
+        for c in 0..n {
+            let mut sum = q(0, 1);
+            for r in 0..n - 1 {
+                sum = sum + data[r * n + c].clone();
+            }
+            data[(n - 1) * n + c] = sum;
+        }
+        BasicMatrix::from_row_major(n, n, data).unwrap()
+    }
+
     #[test]
     fn a_singular_refusal_is_certified_by_a_kernel_vector_and_a_zero_determinant() {
         let mut rng = Rng::new(139);
         for n in 2..=5usize {
             for _ in 0..4 {
-                let base = random_matrix(&mut rng, n, n, 3);
-                let mut data = base.as_slice().to_vec();
-                for c in 0..n {
-                    let mut sum = q(0, 1);
-                    for r in 0..n - 1 {
-                        sum = sum + data[r * n + c].clone();
-                    }
-                    data[(n - 1) * n + c] = sum;
-                }
-                let a = BasicMatrix::from_row_major(n, n, data).unwrap();
+                let a = random_singular_with_dependent_last_row(&mut rng, n);
                 let Err(ExactFieldError::Singular {
                     rank: reported,
                     size,

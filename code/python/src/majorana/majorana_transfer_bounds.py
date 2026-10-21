@@ -19,7 +19,10 @@ from dataclasses import dataclass
 from typing import List, Optional, Tuple
 import numpy as np
 
-from .majorana_f2_trichotomy import TetronCarrier, logical_representative
+try:
+    from .majorana_f2_trichotomy import TetronCarrier, logical_representative
+except (ImportError, ValueError):
+    from majorana_f2_trichotomy import TetronCarrier, logical_representative
 
 
 @dataclass(frozen=True)

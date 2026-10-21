@@ -7,7 +7,7 @@
     "AuthorityEffect": "None",
     "artifact": {
       "path": "code/rust/src/linear_algebra/elimination.rs",
-      "sha256": "8d3400e306c7b5aee35a12650f315b64189595fe8f14ed80de135d765a8b367e",
+      "sha256": "30eff8cd2b0447f0a7971f663e93f51c3f9c74adb01ef2470808c7beb2ca2e88",
       "language": "Rust"
     },
     "contract_urn": "urn:tfqm:contract:linear_algebra:elimination.rs",
@@ -265,8 +265,8 @@
       }
     ]
   },
-  "current_contract": "06381d3013ab4a2ab92d90a2468e08efde8189c28bbc69736b1be3cf2669c348",
-  "current_scoring": "65b5256f50b7a6a051171c0a4ab7da27cbc571afec6dec706c55eea3a304a7bb",
+  "current_contract": "b866178888e1331eff5286c6a696a7ebcf81225759a6e9d17b0a254179deb4b0",
+  "current_scoring": "0a79cf75f54d45291d79619d1e4316585c7ca53d365033a56c5ce2f381b981d3",
   "contract_history": [
     {
       "sha256": "06381d3013ab4a2ab92d90a2468e08efde8189c28bbc69736b1be3cf2669c348",
@@ -1634,6 +1634,548 @@
       "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/elimination.rs\",\n    \"sha256\": \"8d3400e306c7b5aee35a12650f315b64189595fe8f14ed80de135d765a8b367e\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:linear_algebra:elimination.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"fn\",\n      \"name\": \"reduce_to_rref\",\n      \"line\": 8,\n      \"declaration_line\": \"pub(crate) fn reduce_to_rref<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"reduction_cost\",\n      \"line\": 38,\n      \"declaration_line\": \"pub(crate) fn reduction_cost(rows: usize, cols: usize) -> Result<usize, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RowReduced\",\n      \"line\": 68,\n      \"declaration_line\": \"pub struct RowReduced<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"matrix\",\n      \"line\": 74,\n      \"declaration_line\": \"pub fn matrix(&self) -> &BasicMatrix<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"pivot_columns\",\n      \"line\": 78,\n      \"declaration_line\": \"pub fn pivot_columns(&self) -> &[usize] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank\",\n      \"line\": 82,\n      \"declaration_line\": \"pub fn rank(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"into_parts\",\n      \"line\": 86,\n      \"declaration_line\": \"pub fn into_parts(self) -> (BasicMatrix<F>, Vec<usize>) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rref\",\n      \"line\": 91,\n      \"declaration_line\": \"pub fn rref<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<RowReduced<F>, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rref_with_limits\",\n      \"line\": 95,\n      \"declaration_line\": \"pub fn rref_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank\",\n      \"line\": 113,\n      \"declaration_line\": \"pub fn rank<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<usize, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank_with_limits\",\n      \"line\": 117,\n      \"declaration_line\": \"pub fn rank_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"kernel_basis\",\n      \"line\": 124,\n      \"declaration_line\": \"pub fn kernel_basis<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"kernel_basis_with_limits\",\n      \"line\": 130,\n      \"declaration_line\": \"pub fn kernel_basis_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"left_kernel_basis\",\n      \"line\": 142,\n      \"declaration_line\": \"pub fn left_kernel_basis<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"left_kernel_basis_with_limits\",\n      \"line\": 148,\n      \"declaration_line\": \"pub fn left_kernel_basis_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"image_basis\",\n      \"line\": 158,\n      \"declaration_line\": \"pub fn image_basis<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"image_basis_with_limits\",\n      \"line\": 164,\n      \"declaration_line\": \"pub fn image_basis_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"InconsistencyCertificate\",\n      \"line\": 177,\n      \"declaration_line\": \"pub struct InconsistencyCertificate<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"combination\",\n      \"line\": 182,\n      \"declaration_line\": \"pub fn combination(&self) -> &[F] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify\",\n      \"line\": 188,\n      \"declaration_line\": \"pub fn verify(&self, a: &BasicMatrix<F>, b: &[F]) -> Result<(), ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"LinearSolution\",\n      \"line\": 220,\n      \"declaration_line\": \"pub enum LinearSolution<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_consistent\",\n      \"line\": 231,\n      \"declaration_line\": \"pub fn is_consistent(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve\",\n      \"line\": 236,\n      \"declaration_line\": \"pub fn solve<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve_with_limits\",\n      \"line\": 243,\n      \"declaration_line\": \"pub fn solve_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"inverse\",\n      \"line\": 339,\n      \"declaration_line\": \"pub fn inverse<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"inverse_with_limits\",\n      \"line\": 345,\n      \"declaration_line\": \"pub fn inverse_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"determinant\",\n      \"line\": 369,\n      \"declaration_line\": \"pub fn determinant<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<F, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"determinant_with_limits\",\n      \"line\": 373,\n      \"declaration_line\": \"pub fn determinant_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_invertible\",\n      \"line\": 404,\n      \"declaration_line\": \"pub fn is_invertible<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"principal_minors\",\n      \"line\": 1175,\n      \"declaration_line\": \"pub fn principal_minors<F: Field + ExactRing>(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ]\n}\n",
       "original_paths": [
         "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/elimination.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "18b9856651b178a1ddc9ac765f3593b39a535faaa3a095117cba9f3dded210c1",
+      "bytes": 8810,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/elimination.rs",
+          "sha256": "0b0e96cbe22d12bce62e622e20182d9e871ef245cc74dd7da9263b89c1a725c4",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:linear_algebra:elimination.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "fn",
+            "name": "reduce_to_rref",
+            "line": 8,
+            "declaration_line": "pub(crate) fn reduce_to_rref<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "reduction_cost",
+            "line": 38,
+            "declaration_line": "pub(crate) fn reduction_cost(rows: usize, cols: usize) -> Result<usize, ExactFieldError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "RowReduced",
+            "line": 68,
+            "declaration_line": "pub struct RowReduced<F> {"
+          },
+          {
+            "kind": "fn",
+            "name": "matrix",
+            "line": 74,
+            "declaration_line": "pub fn matrix(&self) -> &BasicMatrix<F> {"
+          },
+          {
+            "kind": "fn",
+            "name": "pivot_columns",
+            "line": 78,
+            "declaration_line": "pub fn pivot_columns(&self) -> &[usize] {"
+          },
+          {
+            "kind": "fn",
+            "name": "rank",
+            "line": 82,
+            "declaration_line": "pub fn rank(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "into_parts",
+            "line": 86,
+            "declaration_line": "pub fn into_parts(self) -> (BasicMatrix<F>, Vec<usize>) {"
+          },
+          {
+            "kind": "fn",
+            "name": "rref",
+            "line": 91,
+            "declaration_line": "pub fn rref<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<RowReduced<F>, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rref_with_limits",
+            "line": 95,
+            "declaration_line": "pub fn rref_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "rank",
+            "line": 113,
+            "declaration_line": "pub fn rank<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<usize, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rank_with_limits",
+            "line": 117,
+            "declaration_line": "pub fn rank_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "kernel_basis",
+            "line": 124,
+            "declaration_line": "pub fn kernel_basis<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "kernel_basis_with_limits",
+            "line": 130,
+            "declaration_line": "pub fn kernel_basis_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "left_kernel_basis",
+            "line": 142,
+            "declaration_line": "pub fn left_kernel_basis<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "left_kernel_basis_with_limits",
+            "line": 148,
+            "declaration_line": "pub fn left_kernel_basis_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "image_basis",
+            "line": 158,
+            "declaration_line": "pub fn image_basis<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "image_basis_with_limits",
+            "line": 164,
+            "declaration_line": "pub fn image_basis_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "struct",
+            "name": "InconsistencyCertificate",
+            "line": 177,
+            "declaration_line": "pub struct InconsistencyCertificate<F> {"
+          },
+          {
+            "kind": "fn",
+            "name": "combination",
+            "line": 182,
+            "declaration_line": "pub fn combination(&self) -> &[F] {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify",
+            "line": 188,
+            "declaration_line": "pub fn verify(&self, a: &BasicMatrix<F>, b: &[F]) -> Result<(), ExactFieldError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "LinearSolution",
+            "line": 220,
+            "declaration_line": "pub enum LinearSolution<F> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_consistent",
+            "line": 231,
+            "declaration_line": "pub fn is_consistent(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "solve",
+            "line": 236,
+            "declaration_line": "pub fn solve<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "solve_with_limits",
+            "line": 243,
+            "declaration_line": "pub fn solve_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "inverse",
+            "line": 339,
+            "declaration_line": "pub fn inverse<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "inverse_with_limits",
+            "line": 345,
+            "declaration_line": "pub fn inverse_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "determinant",
+            "line": 369,
+            "declaration_line": "pub fn determinant<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<F, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "determinant_with_limits",
+            "line": 373,
+            "declaration_line": "pub fn determinant_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "is_invertible",
+            "line": 404,
+            "declaration_line": "pub fn is_invertible<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "principal_minors",
+            "line": 1175,
+            "declaration_line": "pub fn principal_minors<F: Field + ExactRing>("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/elimination.rs\",\n    \"sha256\": \"0b0e96cbe22d12bce62e622e20182d9e871ef245cc74dd7da9263b89c1a725c4\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:linear_algebra:elimination.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"fn\",\n      \"name\": \"reduce_to_rref\",\n      \"line\": 8,\n      \"declaration_line\": \"pub(crate) fn reduce_to_rref<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"reduction_cost\",\n      \"line\": 38,\n      \"declaration_line\": \"pub(crate) fn reduction_cost(rows: usize, cols: usize) -> Result<usize, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RowReduced\",\n      \"line\": 68,\n      \"declaration_line\": \"pub struct RowReduced<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"matrix\",\n      \"line\": 74,\n      \"declaration_line\": \"pub fn matrix(&self) -> &BasicMatrix<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"pivot_columns\",\n      \"line\": 78,\n      \"declaration_line\": \"pub fn pivot_columns(&self) -> &[usize] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank\",\n      \"line\": 82,\n      \"declaration_line\": \"pub fn rank(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"into_parts\",\n      \"line\": 86,\n      \"declaration_line\": \"pub fn into_parts(self) -> (BasicMatrix<F>, Vec<usize>) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rref\",\n      \"line\": 91,\n      \"declaration_line\": \"pub fn rref<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<RowReduced<F>, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rref_with_limits\",\n      \"line\": 95,\n      \"declaration_line\": \"pub fn rref_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank\",\n      \"line\": 113,\n      \"declaration_line\": \"pub fn rank<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<usize, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank_with_limits\",\n      \"line\": 117,\n      \"declaration_line\": \"pub fn rank_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"kernel_basis\",\n      \"line\": 124,\n      \"declaration_line\": \"pub fn kernel_basis<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"kernel_basis_with_limits\",\n      \"line\": 130,\n      \"declaration_line\": \"pub fn kernel_basis_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"left_kernel_basis\",\n      \"line\": 142,\n      \"declaration_line\": \"pub fn left_kernel_basis<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"left_kernel_basis_with_limits\",\n      \"line\": 148,\n      \"declaration_line\": \"pub fn left_kernel_basis_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"image_basis\",\n      \"line\": 158,\n      \"declaration_line\": \"pub fn image_basis<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"image_basis_with_limits\",\n      \"line\": 164,\n      \"declaration_line\": \"pub fn image_basis_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"InconsistencyCertificate\",\n      \"line\": 177,\n      \"declaration_line\": \"pub struct InconsistencyCertificate<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"combination\",\n      \"line\": 182,\n      \"declaration_line\": \"pub fn combination(&self) -> &[F] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify\",\n      \"line\": 188,\n      \"declaration_line\": \"pub fn verify(&self, a: &BasicMatrix<F>, b: &[F]) -> Result<(), ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"LinearSolution\",\n      \"line\": 220,\n      \"declaration_line\": \"pub enum LinearSolution<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_consistent\",\n      \"line\": 231,\n      \"declaration_line\": \"pub fn is_consistent(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve\",\n      \"line\": 236,\n      \"declaration_line\": \"pub fn solve<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve_with_limits\",\n      \"line\": 243,\n      \"declaration_line\": \"pub fn solve_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"inverse\",\n      \"line\": 339,\n      \"declaration_line\": \"pub fn inverse<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"inverse_with_limits\",\n      \"line\": 345,\n      \"declaration_line\": \"pub fn inverse_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"determinant\",\n      \"line\": 369,\n      \"declaration_line\": \"pub fn determinant<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<F, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"determinant_with_limits\",\n      \"line\": 373,\n      \"declaration_line\": \"pub fn determinant_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_invertible\",\n      \"line\": 404,\n      \"declaration_line\": \"pub fn is_invertible<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"principal_minors\",\n      \"line\": 1175,\n      \"declaration_line\": \"pub fn principal_minors<F: Field + ExactRing>(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/linear_algebra/elimination.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "b866178888e1331eff5286c6a696a7ebcf81225759a6e9d17b0a254179deb4b0",
+      "bytes": 8810,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/elimination.rs",
+          "sha256": "30eff8cd2b0447f0a7971f663e93f51c3f9c74adb01ef2470808c7beb2ca2e88",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:linear_algebra:elimination.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "fn",
+            "name": "reduce_to_rref",
+            "line": 8,
+            "declaration_line": "pub(crate) fn reduce_to_rref<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "reduction_cost",
+            "line": 38,
+            "declaration_line": "pub(crate) fn reduction_cost(rows: usize, cols: usize) -> Result<usize, ExactFieldError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "RowReduced",
+            "line": 68,
+            "declaration_line": "pub struct RowReduced<F> {"
+          },
+          {
+            "kind": "fn",
+            "name": "matrix",
+            "line": 74,
+            "declaration_line": "pub fn matrix(&self) -> &BasicMatrix<F> {"
+          },
+          {
+            "kind": "fn",
+            "name": "pivot_columns",
+            "line": 78,
+            "declaration_line": "pub fn pivot_columns(&self) -> &[usize] {"
+          },
+          {
+            "kind": "fn",
+            "name": "rank",
+            "line": 82,
+            "declaration_line": "pub fn rank(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "into_parts",
+            "line": 86,
+            "declaration_line": "pub fn into_parts(self) -> (BasicMatrix<F>, Vec<usize>) {"
+          },
+          {
+            "kind": "fn",
+            "name": "rref",
+            "line": 91,
+            "declaration_line": "pub fn rref<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<RowReduced<F>, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rref_with_limits",
+            "line": 95,
+            "declaration_line": "pub fn rref_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "rank",
+            "line": 113,
+            "declaration_line": "pub fn rank<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<usize, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rank_with_limits",
+            "line": 117,
+            "declaration_line": "pub fn rank_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "kernel_basis",
+            "line": 124,
+            "declaration_line": "pub fn kernel_basis<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "kernel_basis_with_limits",
+            "line": 130,
+            "declaration_line": "pub fn kernel_basis_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "left_kernel_basis",
+            "line": 142,
+            "declaration_line": "pub fn left_kernel_basis<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "left_kernel_basis_with_limits",
+            "line": 148,
+            "declaration_line": "pub fn left_kernel_basis_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "image_basis",
+            "line": 158,
+            "declaration_line": "pub fn image_basis<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "image_basis_with_limits",
+            "line": 164,
+            "declaration_line": "pub fn image_basis_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "struct",
+            "name": "InconsistencyCertificate",
+            "line": 177,
+            "declaration_line": "pub struct InconsistencyCertificate<F> {"
+          },
+          {
+            "kind": "fn",
+            "name": "combination",
+            "line": 182,
+            "declaration_line": "pub fn combination(&self) -> &[F] {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify",
+            "line": 188,
+            "declaration_line": "pub fn verify(&self, a: &BasicMatrix<F>, b: &[F]) -> Result<(), ExactFieldError> {"
+          },
+          {
+            "kind": "enum",
+            "name": "LinearSolution",
+            "line": 220,
+            "declaration_line": "pub enum LinearSolution<F> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_consistent",
+            "line": 231,
+            "declaration_line": "pub fn is_consistent(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "solve",
+            "line": 236,
+            "declaration_line": "pub fn solve<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "solve_with_limits",
+            "line": 243,
+            "declaration_line": "pub fn solve_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "inverse",
+            "line": 339,
+            "declaration_line": "pub fn inverse<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "inverse_with_limits",
+            "line": 345,
+            "declaration_line": "pub fn inverse_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "determinant",
+            "line": 369,
+            "declaration_line": "pub fn determinant<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<F, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "determinant_with_limits",
+            "line": 373,
+            "declaration_line": "pub fn determinant_with_limits<F: Field + ExactRing>("
+          },
+          {
+            "kind": "fn",
+            "name": "is_invertible",
+            "line": 404,
+            "declaration_line": "pub fn is_invertible<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "principal_minors",
+            "line": 1175,
+            "declaration_line": "pub fn principal_minors<F: Field + ExactRing>("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/elimination.rs\",\n    \"sha256\": \"30eff8cd2b0447f0a7971f663e93f51c3f9c74adb01ef2470808c7beb2ca2e88\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:linear_algebra:elimination.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"fn\",\n      \"name\": \"reduce_to_rref\",\n      \"line\": 8,\n      \"declaration_line\": \"pub(crate) fn reduce_to_rref<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"reduction_cost\",\n      \"line\": 38,\n      \"declaration_line\": \"pub(crate) fn reduction_cost(rows: usize, cols: usize) -> Result<usize, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RowReduced\",\n      \"line\": 68,\n      \"declaration_line\": \"pub struct RowReduced<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"matrix\",\n      \"line\": 74,\n      \"declaration_line\": \"pub fn matrix(&self) -> &BasicMatrix<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"pivot_columns\",\n      \"line\": 78,\n      \"declaration_line\": \"pub fn pivot_columns(&self) -> &[usize] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank\",\n      \"line\": 82,\n      \"declaration_line\": \"pub fn rank(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"into_parts\",\n      \"line\": 86,\n      \"declaration_line\": \"pub fn into_parts(self) -> (BasicMatrix<F>, Vec<usize>) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rref\",\n      \"line\": 91,\n      \"declaration_line\": \"pub fn rref<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<RowReduced<F>, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rref_with_limits\",\n      \"line\": 95,\n      \"declaration_line\": \"pub fn rref_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank\",\n      \"line\": 113,\n      \"declaration_line\": \"pub fn rank<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<usize, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank_with_limits\",\n      \"line\": 117,\n      \"declaration_line\": \"pub fn rank_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"kernel_basis\",\n      \"line\": 124,\n      \"declaration_line\": \"pub fn kernel_basis<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"kernel_basis_with_limits\",\n      \"line\": 130,\n      \"declaration_line\": \"pub fn kernel_basis_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"left_kernel_basis\",\n      \"line\": 142,\n      \"declaration_line\": \"pub fn left_kernel_basis<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"left_kernel_basis_with_limits\",\n      \"line\": 148,\n      \"declaration_line\": \"pub fn left_kernel_basis_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"image_basis\",\n      \"line\": 158,\n      \"declaration_line\": \"pub fn image_basis<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"image_basis_with_limits\",\n      \"line\": 164,\n      \"declaration_line\": \"pub fn image_basis_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"InconsistencyCertificate\",\n      \"line\": 177,\n      \"declaration_line\": \"pub struct InconsistencyCertificate<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"combination\",\n      \"line\": 182,\n      \"declaration_line\": \"pub fn combination(&self) -> &[F] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify\",\n      \"line\": 188,\n      \"declaration_line\": \"pub fn verify(&self, a: &BasicMatrix<F>, b: &[F]) -> Result<(), ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"LinearSolution\",\n      \"line\": 220,\n      \"declaration_line\": \"pub enum LinearSolution<F> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_consistent\",\n      \"line\": 231,\n      \"declaration_line\": \"pub fn is_consistent(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve\",\n      \"line\": 236,\n      \"declaration_line\": \"pub fn solve<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve_with_limits\",\n      \"line\": 243,\n      \"declaration_line\": \"pub fn solve_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"inverse\",\n      \"line\": 339,\n      \"declaration_line\": \"pub fn inverse<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"inverse_with_limits\",\n      \"line\": 345,\n      \"declaration_line\": \"pub fn inverse_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"determinant\",\n      \"line\": 369,\n      \"declaration_line\": \"pub fn determinant<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<F, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"determinant_with_limits\",\n      \"line\": 373,\n      \"declaration_line\": \"pub fn determinant_with_limits<F: Field + ExactRing>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_invertible\",\n      \"line\": 404,\n      \"declaration_line\": \"pub fn is_invertible<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"principal_minors\",\n      \"line\": 1175,\n      \"declaration_line\": \"pub fn principal_minors<F: Field + ExactRing>(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/linear_algebra/elimination.contract.score.yaml#contract"
       ]
     }
   ],
@@ -4282,6 +4824,370 @@
         }
       },
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/elimination.rs\",\n    \"sha256\": \"8d3400e306c7b5aee35a12650f315b64189595fe8f14ed80de135d765a8b367e\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:linear_algebra:elimination:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 27 <= 50 (D), nesting depth 4 <= 4 (B); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 27,\n    \"lizard_ccn\": 27,\n    \"weighted_control_upper_bound\": 14,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 14,\n        \"control_nesting\": 4,\n        \"line\": 8,\n        \"name\": \"reduce_to_rref\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 38,\n        \"name\": \"reduction_cost\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 43,\n        \"name\": \"kernel_vectors\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 74,\n        \"name\": \"matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 78,\n        \"name\": \"pivot_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 82,\n        \"name\": \"rank\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 86,\n        \"name\": \"into_parts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 91,\n        \"name\": \"rref\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 95,\n        \"name\": \"rref_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 113,\n        \"name\": \"rank\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 117,\n        \"name\": \"rank_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 124,\n        \"name\": \"kernel_basis\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 130,\n        \"name\": \"kernel_basis_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 142,\n        \"name\": \"left_kernel_basis\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 148,\n        \"name\": \"left_kernel_basis_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 158,\n        \"name\": \"image_basis\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 164,\n        \"name\": \"image_basis_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 182,\n        \"name\": \"combination\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 188,\n        \"name\": \"verify\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 231,\n        \"name\": \"is_consistent\",\n        \"opaque_macros\": [\n          \"matches:232\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 236,\n        \"name\": \"solve\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 27,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 243,\n        \"name\": \"solve_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 303,\n        \"name\": \"refusal_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 339,\n        \"name\": \"inverse\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 345,\n        \"name\": \"inverse_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 369,\n        \"name\": \"determinant\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 21,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 3,\n        \"line\": 373,\n        \"name\": \"determinant_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 404,\n        \"name\": \"is_invertible\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 1175,\n        \"name\": \"principal_minors\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 1246,\n        \"name\": \"first_nonzero\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 14,\n        \"control_nesting\": 4,\n        \"line\": 8,\n        \"name\": \"reduce_to_rref\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 188,\n        \"name\": \"verify\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 27,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 243,\n        \"name\": \"solve_with_limits\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"D\"\n      },\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 303,\n        \"name\": \"refusal_certificate\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 2,\n        \"line\": 345,\n        \"name\": \"inverse_with_limits\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 21,\n        \"cognitive_upper_bound\": 10,\n        \"control_nesting\": 3,\n        \"line\": 373,\n        \"name\": \"determinant_with_limits\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"D\"\n      }\n    ],\n    \"metric_ceiling\": \"D\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/linear_algebra/elimination.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "45efd6444f3db730938a362972f69c785f77817d430be0ad1044cebbd90fedd1",
+      "bytes": 7450,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/elimination.rs",
+          "sha256": "0b0e96cbe22d12bce62e622e20182d9e871ef245cc74dd7da9263b89c1a725c4",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:linear_algebra:elimination:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.",
+          "G3": "Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 10,
+          "lizard_ccn": 10,
+          "weighted_control_upper_bound": 65,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/elimination.rs\",\n    \"sha256\": \"0b0e96cbe22d12bce62e622e20182d9e871ef245cc74dd7da9263b89c1a725c4\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:linear_algebra:elimination:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 10,\n    \"weighted_control_upper_bound\": 65,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/linear_algebra/elimination.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "0a79cf75f54d45291d79619d1e4316585c7ca53d365033a56c5ce2f381b981d3",
+      "bytes": 7450,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/elimination.rs",
+          "sha256": "30eff8cd2b0447f0a7971f663e93f51c3f9c74adb01ef2470808c7beb2ca2e88",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:linear_algebra:elimination:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.",
+          "G3": "Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 10,
+          "lizard_ccn": 10,
+          "weighted_control_upper_bound": 65,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/elimination.rs\",\n    \"sha256\": \"30eff8cd2b0447f0a7971f663e93f51c3f9c74adb01ef2470808c7beb2ca2e88\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:linear_algebra:elimination:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 10,\n    \"weighted_control_upper_bound\": 65,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/rust/src/linear_algebra/elimination.contract.score.yaml#scoring"
       ]
