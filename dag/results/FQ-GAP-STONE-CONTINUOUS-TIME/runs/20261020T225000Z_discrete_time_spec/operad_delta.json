@@ -1,0 +1,328 @@
+{
+  "schema_version": 2,
+  "namespace": "DT-DISCRETE-TIME",
+  "records": [
+    {
+      "id": "DT-01",
+      "name": "Q-parameter group and discrete evolution",
+      "inputs": "A group G, a step u, a rational time parameter",
+      "output_or_relation": "Discrete evolution is the Z-action k -> u^k (additive, unital, inverse at -k); a Q-parameter group restricts to the Z-action of its unit step and is determined on Z by it",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching group/ring/matrix types and supply every displayed binder; no topology or continuum completion is available on the carrier.",
+      "proofs": [
+        {
+          "name": "BornFable.DiscreteTime.QParamGroup",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.discreteEvolution",
+          "axioms": [],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.discreteEvolution_add",
+          "axioms": [
+            "propext"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.discreteEvolution_zero",
+          "axioms": [
+            "propext"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.discreteEvolution_one",
+          "axioms": [],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.discreteEvolution_neg",
+          "axioms": [
+            "propext"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.QParamGroup.U_natMul",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.QParamGroup.U_neg",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.QParamGroup.U_int",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "DT-02",
+      "name": "Roots of every order are necessary for continuous time",
+      "inputs": "A Q-parameter group with unit step U(1); a positive natural m",
+      "output_or_relation": "U(1/m)^m = U(1): the unit step has an m-th root in the carrier for every m",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching group/ring/matrix types and supply every displayed binder; no topology or continuum completion is available on the carrier.",
+      "proofs": [
+        {
+          "name": "BornFable.DiscreteTime.QParamGroup.U_inv_nat",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.QParamGroup.roots_of_all_orders",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "DT-03",
+      "name": "Generator selection is a choice: half-steps come in pairs",
+      "inputs": "A ring R with a Q-module structure; v with v*v = u and v nonzero",
+      "output_or_relation": "-v also squares to u and differs from v; instantiated on rational n x n matrices",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching group/ring/matrix types and supply every displayed binder; no topology or continuum completion is available on the carrier.",
+      "proofs": [
+        {
+          "name": "BornFable.DiscreteTime.sq_root_neg",
+          "axioms": [
+            "propext"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.neg_ne_self_of_ne_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.half_step_not_unique",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.matrix_half_step_not_unique",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "DT-04",
+      "name": "The Pythagorean rotation as a reversible discrete evolution over Q",
+      "inputs": "The rational 2 x 2 rotation R345 = [[3/5,-4/5],[4/5,3/5]]",
+      "output_or_relation": "Orthogonal, determinant one, and every natural power orthogonal",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching group/ring/matrix types and supply every displayed binder; no topology or continuum completion is available on the carrier.",
+      "proofs": [
+        {
+          "name": "BornFable.DiscreteTime.R345",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.R345_transpose",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.R345_orthogonal",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.R345_det",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.R345_pow_orthogonal",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "DT-05",
+      "name": "No rational half-step, hence no Q-parameter group through R345",
+      "inputs": "Any rational 2 x 2 matrix V with V*V = R345; any Q-parameter group of invertible rational 2 x 2 matrices",
+      "output_or_relation": "V commutes with R345, so V = [[p,-r],[r,p]] with p^2 = 4/5, which is not a rational square (den 5); therefore no Q-parameter group has R345 as its unit step",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching group/ring/matrix types and supply every displayed binder; no topology or continuum completion is available on the carrier.",
+      "proofs": [
+        {
+          "name": "BornFable.DiscreteTime.four_fifths_den",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.nat_mul_self_ne_five",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.four_fifths_not_rat_square",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.no_rational_half_step",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        },
+        {
+          "name": "BornFable.DiscreteTime.no_qparam_group_through_R345",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "DiscreteTimeStoneSpec.lean",
+          "source_sha256": "78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda",
+          "receipt": "verification/discrete_time_spec_01/receipt.json"
+        }
+      ]
+    }
+  ],
+  "formal_operad_claim": "Scoped typed operations with kernel-checked relations and exact receipts; no complete higher-arity operad is claimed.",
+  "authority_effect": "None"
+}

@@ -1,0 +1,272 @@
+{
+  "schema_version": "tensor_countermodel_validation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-20T23:27:19.827083+00:00",
+  "integration_base": "1cd04dfc5d22b3839150fbcc04265cf0c69147e6",
+  "source_identity": "Candidate contents are identified by the sha256 manifest and Lean replay hashes, not by the integration-base revision.",
+  "branch": "codex/tensor-assumption-countermodels",
+  "result": "TFQ-0413 assumption countermodels verified in Lean with explicit carrier, dimension, calibration and path boundaries.",
+  "proof_boundary": {
+    "full_cones": "Full SEP conic hull, BP trace dual, partial-transpose cone self-duality, local preservation, and separation by all local binary matrix tests.",
+    "separations": "Exact Bell and partial-transpose witnesses embed into every finite n,m>=2.",
+    "interaction_failures": "Two-qubit controlled shift: SEP forward closure and BP inverse closure fail. Twisted and dephased maps share the classical table but fail coherent calibration; the dephased controlled shift is not injective.",
+    "twisted_dynamics": "Reversibility and trace preservation assume a supplied unitary. Continuity assumes a supplied continuous matrix path; unitarity at each time is needed for reversible dynamics.",
+    "hidden_coordinates": "Doubled Hermitian carrier with positive trace-one indistinguishable states; a basis index constructs a normalized state. Product-test separation fails.",
+    "effect_availability": "No operational saturation is inferred.",
+    "external_classification": "External theorem, not included in this Lean replay.",
+    "primitive_gap": "FQ-GAP-TENSOR-UNIQUENESS remains CONDITIONAL; no derivation of local complex QM or logical minimality theorem is asserted."
+  },
+  "counts": {
+    "dag_nodes": 197,
+    "dag_routes": 192,
+    "master_records": 417
+  },
+  "preservation": {
+    "other_master_records_unchanged_byte_for_byte": 416,
+    "previous_measurement_receipt": "Unmodified; its broad manifest is checked against its recorded historical Git revision."
+  },
+  "lean_replay": {
+    "lean_version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+    "mathlib_source_sha": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "build_directory": "C:\\Users\\a343o\\.codex\\worktrees\\mub-fsp-dressing-derivations\\theory_of_finite_quantum_mechanics\\lean4\\.lake\\tensor-countermodel-replay-xc4h5qzy",
+    "results": [
+      {
+        "module": "TensorConeReconstruction",
+        "exit_code": 0,
+        "seconds": 40.91,
+        "sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorConeReconstruction.positive_mem_of_rankOne' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorConeReconstruction.cone_eq_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorConeReconstruction.operational_orbit_selects_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorTomography",
+        "exit_code": 0,
+        "seconds": 135.42,
+        "sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "TensorTomography.lean:29:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_add_left`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:33:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_add_right`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:37:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_smul_left`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:41:8: warning: automatically included section variable(s) unused in theorem `TensorTomography.product_smul_right`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:54:0: warning: automatically included section variable(s) unused in theorem `TensorTomography.realPart_kronecker`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorTomography.lean:72:6: warning: try 'simp' instead of 'simpa'\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\n'TensorTomography.product_span' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.pairing_nondegenerate' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorSchmidt",
+        "exit_code": 0,
+        "seconds": 69.08,
+        "sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorSchmidt.exists_schmidt_bases' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorCoordinates",
+        "exit_code": 0,
+        "seconds": 70.04,
+        "sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorTomography.tomographicEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.tomographicEquiv_test' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.tomographicEquiv_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.product_calibration' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorTomography.finite_frame_calibration' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorReachability",
+        "exit_code": 0,
+        "seconds": 41.42,
+        "sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "TensorReachability.lean:76:8: warning: This simp argument is unused:\n  mul_ite\n\nHint: Omit it from the simp argument list.\n  [apply] simp [mul_comm, mul_left_comm, mul_assoc]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nTensorReachability.lean:76:27: warning: This simp argument is unused:\n  mul_left_comm\n\nHint: Omit it from the simp argument list.\n  [apply] simp [mul_ite, mul_comm, mul_assoc]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'TensorReachability.schmidt_reachability' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorOperationalCone",
+        "exit_code": 0,
+        "seconds": 187.53,
+        "sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorOperationalCone.controlled_shift_selects_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorComposition",
+        "exit_code": 0,
+        "seconds": 91.59,
+        "sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorComposition.quantum_state_cone' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorComposition.unit_test_is_trace' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorEffectOrder",
+        "exit_code": 0,
+        "seconds": 31.01,
+        "sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorEffectOrder.positive_iff_pairing' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorEffectOrder.binary_iff_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorEffectOrder.binary_iff_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorEffectOrder.positive_ray_binary' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorEffectCone",
+        "exit_code": 0,
+        "seconds": 26.91,
+        "sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "TensorEffectCone.lean:20:0: warning: automatically included section variable(s) unused in theorem `TensorEffectCone.cone_positive`:\n  [Fintype d]\n  [DecidableEq d]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype d] [DecidableEq d] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorEffectCone.lean:38:12: warning: try 'simp' instead of 'simpa'\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\n'TensorEffectCone.effect_cone_eq_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorMeasurements",
+        "exit_code": 0,
+        "seconds": 48.37,
+        "sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorMeasurements.effectRepresentation_apply' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.validEffect_iff_binary' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.available_effects_eq_interval' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.test_povm_of_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.test_iff_povm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.operational_effect_cone' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorMeasurements.quantum_measurements' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorPartialTranspose",
+        "exit_code": 0,
+        "seconds": 39.23,
+        "sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "TensorPartialTranspose.lean:15:8: warning: automatically included section variable(s) unused in theorem `TensorPartialTranspose.pt_pt`:\n  [Fintype n]\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\n'TensorPartialTranspose.pairing_gamma_gamma' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorPartialTranspose.gamma_conjMap_product' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorPartialTranspose.conjMap_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorCountermodelCones",
+        "exit_code": 0,
+        "seconds": 51.36,
+        "sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "TensorCountermodelCones.lean:44:0: warning: automatically included section variable(s) unused in theorem `TensorCountermodelCones.product_mem_sep`:\n  [Fintype n]\n  [Fintype m]\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [Fintype m] [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorCountermodelCones.lean:47:0: warning: automatically included section variable(s) unused in theorem `TensorCountermodelCones.sep_positive`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorCountermodelCones.lean:55:6: warning: Variable name `A` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _A\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\nTensorCountermodelCones.lean:55:8: warning: Variable name `B` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _B\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\nTensorCountermodelCones.lean:88:0: warning: automatically included section variable(s) unused in theorem `TensorCountermodelCones.twisted_product`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorCountermodelCones.lean:97:0: warning: automatically included section variable(s) unused in theorem `TensorCountermodelCones.twisted_eq_image`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorCountermodelCones.lean:139:0: warning: automatically included section variable(s) unused in theorem `TensorCountermodelCones.bp_local`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorCountermodelCones.lean:145:0: warning: automatically included section variable(s) unused in theorem `TensorCountermodelCones.twisted_local`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorCountermodelCones.lean:154:0: warning: automatically included section variable(s) unused in theorem `TensorCountermodelCones.twist_preserves`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorCountermodelCones.lean:185:0: warning: automatically included section variable(s) unused in theorem `TensorCountermodelCones.product_statistics_separate`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\n'TensorCountermodelCones.blockPositive_iff_dual_sep' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.sep_ppt' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.twisted_self_dual' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.sep_local' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.bp_local' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.twisted_local' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.twist_reversible' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.twist_trace' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.twist_path_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.product_statistics_separate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.binary_product_statistics_separate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelCones.bp_salient' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorHiddenCoordinates",
+        "exit_code": 0,
+        "seconds": 102.28,
+        "sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "TensorHiddenCoordinates.lean:61:8: warning: automatically included section variable(s) unused in theorem `TensorHiddenCoordinates.test_apply`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorHiddenCoordinates.lean:64:0: warning: automatically included section variable(s) unused in theorem `TensorHiddenCoordinates.independent_probabilities`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorHiddenCoordinates.lean:71:0: warning: automatically included section variable(s) unused in theorem `TensorHiddenCoordinates.preparation_positive`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorHiddenCoordinates.lean:101:0: warning: automatically included section variable(s) unused in theorem `TensorHiddenCoordinates.doubledConj_statistics`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nTensorHiddenCoordinates.lean:124:4: warning: try 'simp' instead of 'simpa'\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\nTensorHiddenCoordinates.lean:126:0: warning: automatically included section variable(s) unused in theorem `TensorHiddenCoordinates.no_local_tomography`:\n  [DecidableEq n]\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq n] [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\n'TensorHiddenCoordinates.independent_probabilities' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorHiddenCoordinates.doubledConj_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorHiddenCoordinates.hidden_normalized_states' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorHiddenCoordinates.no_local_tomography' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorHiddenCoordinates.dimension_doubled' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorHiddenCoordinates.basis_state_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      },
+      {
+        "module": "TensorCountermodelWitnesses",
+        "exit_code": 0,
+        "seconds": 219.27,
+        "sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "TensorCountermodelWitnesses.lean:119:45: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\nTensorCountermodelWitnesses.lean:203:40: warning: This simp argument is unused:\n  Matrix.diagonal_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [Matrix.conjTranspose_apply, h, Ne.symm h]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nTensorCountermodelWitnesses.lean:209:34: warning: Variable name `i` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _i\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\nTensorCountermodelWitnesses.lean:219:19: warning: This simp argument is unused:\n  Matrix.diagonal_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [dephase, h, classical, hermRankOne, rankOne, Matrix.vecMulVec_apply, Pi.single_apply]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'TensorCountermodelWitnesses.swap_blockPositive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelWitnesses.bell_not_separable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelWitnesses.sep_fails_controlled_shift' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelWitnesses.bp_fails_inverse_controlled_shift' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'TensorCountermodelWitnesses.twisted_fails_ordinary_calibration' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'TensorCountermodelWitnesses.twisted_same_classical_table' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelWitnesses.coherent_calibration_separates' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelWitnesses.dephased_same_classical_table' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelWitnesses.dephase_not_injective' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelWitnesses.dephased_controlled_shift_not_injective' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'TensorCountermodelWitnesses.imaginary_effect_binary' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelWitnesses.plus_binary' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelWitnesses.seed_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelWitnesses.dephased_coherent_calibration_separates' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n"
+      },
+      {
+        "module": "TensorCountermodelEmbeddings",
+        "exit_code": 0,
+        "seconds": 176.44,
+        "sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
+        "source_unchanged_during_build": true,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "output": "'TensorCountermodelEmbeddings.cone_separations' depends on axioms: [propext, Classical.choice, Quot.sound]\n'TensorCountermodelEmbeddings.cone_separations_all_dimensions' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n"
+      }
+    ]
+  },
+  "prior_attempts": [
+    {
+      "path": "dag/research/tensor_countermodel_failed_replay.json",
+      "status": "FAIL",
+      "reason": "Concurrent compiler memory exhaustion; excluded from verified results."
+    }
+  ],
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "application branches synchronized\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "nodes=197 routes=192 failures=0\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "scripts/verify_qm_atlas_loc.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "QM_ATLAS_LOC_VERIFIER all_passed=True questions=65 verified_links=403 verified_window_symbols=197 rust_python_parity=True\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "-m",
+        "pytest",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/test_finite_graph_dressing.py",
+        "dag/test_application_branches.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_validate_derivation_dag.py",
+        "code/python/tests/test_qm_atlas_loc.py",
+        "-q",
+        "--basetemp",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\20\\01a15ae8-c6e1-7250-95e8-d0fa22863075\\pytest-countermodels"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "..............................................................           [100%]\n62 passed in 7.93s\n"
+    }
+  ],
+  "limits": [
+    "Fresh outputs for all 15 scoped project modules reuse existing pinned Mathlib dependency artifacts. This is not a full repository lake build.",
+    "Topological closedness of SEP and a complete operational-model structure are not claimed as new formalizations.",
+    "No arbitrary-GPT classification, primitive reconstruction, instruments or channel classification is asserted."
+  ],
+  "sha256": {
+    "dag/derivation_dag.json": "a69ec74ca41ff5f640e1bb7b0936b131083428e85e6893f8d444c6877b4456ca",
+    "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md": "3d1f897722aad08811a52c863e8bc47cfda41d9d087929a00c3925f4782de12f",
+    "dag/derivations/README.md": "6e6f3ada1d782b726b72d0b0f8f922c62e465b32c543808e5c2cfe267c64f00b",
+    "dag/fragments/application_branches.json": "c6213489e72d8315cc161c76e1a2120982897651fa40a7a62a8bdbc21f518bb6",
+    "dag/research/replay_tensor_countermodels.py": "82679ca62e5ac5581ac0dfa59b91b25b42651247f8612ab75a58a063679abcb3",
+    "dag/research/tensor_countermodel_failed_replay.json": "e97668cf2cb3f78847b66a007de9b947b57b58f5a74be659db0311d62e46ae35",
+    "dag/sync_application_branches.py": "905356bdddf0eaf08c35315bc0251e3e77ab10e4d187d504e24aabb3d9935d5c",
+    "dag/test_application_branches.py": "53d9a7b96c4545dd57dc743fab917f64ee25d548667ebcbd78a1a671a08f3769",
+    "dag/test_tensor_countermodel_receipt.py": "67b0ad6aa08e4789f26d3464ad81ab25d3183ff16ff9cb384216149f3f85552e",
+    "dag/test_tensor_measurement_receipt.py": "5a8ace1e069e371f444271a3bde686701087c10da1d1c978662197eeddf8e76a",
+    "dag/theory_of_finite_qm.jsonl": "a70cb9cdaf35bc226b2dd63aca294df392f5e4e183c88743e5f4e08fc4117828",
+    "dag/theory_of_finite_qm.md": "3f47c0add19909823e7461f7e0e798055785bea0674ccf1667cbd056193cb3b0",
+    "lean4/TensorCountermodelCones.lean": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
+    "lean4/TensorCountermodelEmbeddings.lean": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
+    "lean4/TensorCountermodelWitnesses.lean": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
+    "lean4/TensorHiddenCoordinates.lean": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
+    "lean4/TensorPartialTranspose.lean": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
+    "lean4/lakefile.lean": "5267e52f1946fc761abb7c8af50e062ede79559200ec42b690ec52dbc5553dd2"
+  }
+}

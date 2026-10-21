@@ -1,0 +1,15 @@
+{
+  "authority_effect": "None",
+  "claims": [
+    {"id": "qparam_group_spec", "statement": "Q-parameter groups and the Z-action of a step are the finite specification of continuous and discrete time; a Q-parameter group restricts to the Z-action of its unit step", "status": "KERNEL_CHECKED", "where": "DiscreteTimeStoneSpec.lean::QParamGroup, discreteEvolution, U_eq_discreteEvolution"},
+    {"id": "roots_necessity", "statement": "A Q-parameter group needs an m-th root of its unit step for every m", "status": "KERNEL_CHECKED", "where": "DiscreteTimeStoneSpec.lean::roots_of_all_orders"},
+    {"id": "generator_choice", "statement": "Half-steps come in pairs +-V; generator selection is a choice", "status": "KERNEL_CHECKED", "where": "DiscreteTimeStoneSpec.lean::half_step_not_unique, matrix_half_step_not_unique"},
+    {"id": "r345_discrete_evolution", "statement": "The rational Pythagorean rotation is a reversible Z-action on Q^2", "status": "KERNEL_CHECKED", "where": "DiscreteTimeStoneSpec.lean::R345_pow_orthogonal"},
+    {"id": "r345_no_half_step", "statement": "No rational 2x2 matrix squares to R345; no Q-parameter group of invertible rational 2x2 matrices has R345 as unit step", "status": "KERNEL_CHECKED", "where": "DiscreteTimeStoneSpec.lean::no_rational_half_step, no_qparam_group_through_R345"},
+    {"id": "python_replay", "statement": "Exact replay: orbit, half-angle criterion, root pairs, orders, specification", "status": "NATIVE_TESTS_PASS", "where": "code/python/src/qm/discrete_time_stone.py"},
+    {"id": "rust_replay", "statement": "BigRational twin with inline tests", "status": "NATIVE_TESTS_PASS", "where": "code/rust/src/qm/discrete_time_stone.rs"},
+    {"id": "qi_qparam_groups_trivial", "statement": "Every Q-parameter group of matrices over Q(i) is trivial", "status": "OPEN", "where": "review.md; needs unique factorisation in Z[i]"},
+    {"id": "strong_continuity", "statement": "Strong continuity, real completion, exponential and generator", "status": "EXTERNAL_IMPORT", "where": "DAG node imported_structure"},
+    {"id": "causal_order", "statement": "Causal order between events", "status": "EXTERNAL_IMPORT", "where": "DAG node imported_structure (unchanged)"}
+  ]
+}

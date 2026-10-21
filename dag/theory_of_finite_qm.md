@@ -4,7 +4,7 @@
 
 This file is a table of contents for `theory_of_finite_qm.jsonl`. Each row is a finite derivation step that Python, Rust, and Lean 4 still have to carry, or a source record those languages have to match. The graph is a tree rooted at the inert inscription `<>`. A `GAP` or `OPEN_OBLIGATION` status is unfinished work. A computational control is not a completed derivation. Statuses other than SOURCE_RECORD, OPEN_OBLIGATION, GAP, and COMPUTATIONAL_CONTROL are fences from the source slice, including a float script and an exact area-deficit proxy that is not the Einstein-Hilbert action. F002 remains an interface inventory. Continuum QED, continuum QCD, and continuum quantum gravity are not derived here.
 
-Nodes: 397. Dropped atlas paths that were not on disk: 0.
+Nodes: 417. Dropped atlas paths that were not on disk: 0.
 
 ## Stage index
 
@@ -33,6 +33,10 @@ Nodes: 397. Dropped atlas paths that were not on disk: 0.
 | `IMPLEMENTATION_CORE` | 41 |
 | `IMPLEMENTATION_SIBLING` | 34 |
 | `ENGINE_CUSTODY` | 34 |
+| `DRESSING_FIELD` | 5 |
+| `MUTUALLY_UNBIASED_BASES` | 4 |
+| `FERMION_SIGN` | 4 |
+| `TENSOR_COMPOSITION` | 7 |
 
 ## Coda atlas packages cited from the four floors
 
@@ -5462,3 +5466,253 @@ Obligation: Cite S001 books as interface extracts with nonclaims, not as finishe
 Engine use notes on F003.S003 hold leftover marks from an earlier genx tree. The shelf is on disk even though the floor file lists only S000 and S001. It admits finite leftover marks and pricing hygiene, and its exit speaks of typed marks rather than a new physical result. The package README titles the book as notes from GENX. A finite quantum derivation must not treat a note as the rational carrier or as the three-language statement. Prime custody may mention a note path in the witness field while the obligation to name one finite statement in Python, Rust, and Lean 4 stays open.
 
 Obligation: Leave S003 notes as commentary and keep the three-language obligation open.
+
+<!-- application-branches: generated from fragments/application_branches.json -->
+
+## DRESSING_FIELD
+
+### TFQ-0397 Group-valued connections on a finite multigraph
+
+- UUID: `d9c5c6b3-b3de-5324-a6f8-9ebbf561409a`
+- Parent: `TFQ-0009`
+- Status: `DEFINITION`
+- DAG node: `DFM-GROUP-CONNECTION`
+- Paper: [derivation](derivations/24_dressing_field/tfq_0397_dfm_group_connection.md)
+
+A finite multigraph with oriented edge representatives carries labels in a supplied group G; reverse traversal carries the inverse label. This admits the group and connection rather than selecting them from primitive difference.
+
+Obligation: Keep the graph, group axioms, inverse-edge convention and multiplication order explicit.
+
+### TFQ-0398 General finite-graph dressing and closed-walk holonomy
+
+- UUID: `11cb0b74-177b-5626-9126-05861fee78de`
+- Parent: `TFQ-0397`
+- Status: `PROVED_LEAN`
+- DAG node: `DFM-GENERAL-GRAPH-DRESSING`
+- Paper: [derivation](derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md)
+
+Given a rooted spanning forest and an arbitrary supplied group, a vertex dressing neutralizes every edge iff every closed walk has identity transport. It suffices to test the fundamental chord residuals; disconnected components are handled separately.
+
+Obligation: Preserve the supplied-group and supplied-forest hypotheses; the Python and Rust enumerations are bounded witnesses for the general Lean theorem.
+
+### TFQ-0399 Tree-change covariance of the residual connection
+
+- UUID: `6de7cae6-16b8-5cb0-b64e-0359fb14f04d`
+- Parent: `TFQ-0398`
+- Status: `PROVED_LEAN`
+- DAG node: `DFM-TREE-CHANGE`
+- Paper: [derivation](derivations/24_dressing_field/tfq_0399_dfm_tree_change.md)
+
+For any two dressings u and u prime, the change field C(v)=u prime(v)u(v) inverse intertwines the residual connections. In particular this describes two spanning-forest choices without commuting group elements.
+
+Obligation: Use the same multiplication convention in all three languages; distinguish edge residuals from conjugacy-invariant closed-loop observables.
+
+### TFQ-0400 Hierarchical Borel dressing beyond the diamond control
+
+- UUID: `cb25b943-66e6-550c-9490-67640907b380`
+- Parent: `TFQ-0399`
+- Status: `OPEN_OBLIGATION`
+- DAG node: `DFM-HIERARCHICAL-BOREL`
+- Paper: [derivation](derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md)
+
+Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.
+
+Obligation: Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.
+
+### TFQ-0401 Dressing-field continuum and physical interpretation obligations
+
+- UUID: `bc218cca-9cda-5513-aa3e-2655ca2c514b`
+- Parent: `TFQ-0400`
+- Status: `GAP`
+- DAG node: `DFM-CONTINUUM-INTERFACE`
+- Paper: [derivation](derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md)
+
+A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations.
+
+Obligation: Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.
+
+## MUTUALLY_UNBIASED_BASES
+
+### TFQ-0402 Exact projector contract for mutually unbiased bases
+
+- UUID: `58bc42e5-4ead-503b-a19d-c85a9c012113`
+- Parent: `TFQ-0315`
+- Status: `DEFINITION`
+- DAG node: `MUB-EXACT-PROJECTORS`
+- Paper: [derivation](derivations/25_mub/tfq_0402_mub_exact_projectors.md)
+
+On a supplied finite-dimensional Hilbert carrier, a MUB family consists of rank-one orthogonal projector resolutions with cross-basis trace pairing 1/d. Exact arithmetic must include the required scalar extension.
+
+Obligation: Check the scalar field, adjoint, rank, resolutions and all cross-basis trace equalities before accepting a MUB witness.
+
+### TFQ-0403 Prime-power MUB construction and exact field obligations
+
+- UUID: `b1cd2642-4f5d-5264-a58f-a17a68f2f5de`
+- Parent: `TFQ-0402`
+- Status: `OPEN_OBLIGATION`
+- DAG node: `MUB-PRIME-POWER-CONSTRUCTION`
+- Paper: [derivation](derivations/25_mub/tfq_0403_mub_prime_power_construction.md)
+
+Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.
+
+Obligation: Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.
+
+### TFQ-0404 Tomography from a supplied complete MUB family
+
+- UUID: `e8d3329a-0bff-5c44-a5af-21a8e34fb83f`
+- Parent: `TFQ-0402`
+- Status: `PROVED_PROSE`
+- DAG node: `MUB-TOMOGRAPHY-INVERSION`
+- Paper: [derivation](derivations/25_mub/tfq_0404_mub_tomography_inversion.md)
+
+Given d+1 MUB projector resolutions on a d-dimensional complex Hilbert carrier and trace-one rho, the probabilities p_bj=tr(rho P_bj) reconstruct rho as sum_bj p_bj P_bj minus I.
+
+Obligation: Mechanize the trace-inner-product dimension and reconstruction argument; constructing a complete MUB family is a separate existence obligation.
+
+### TFQ-0405 Dimension-six MUB reductions and global obligations
+
+- UUID: `a1e856fa-cb68-5258-916d-5f1c9cfeb9f3`
+- Parent: `TFQ-0402`
+- Status: `OPEN_OBLIGATION`
+- DAG node: `MUB6-GLOBAL-OBLIGATIONS`
+- Paper: [derivation](derivations/25_mub/tfq_0405_mub6_global_obligations.md)
+
+Separate exact stated-region exclusions and conditional reductions from a global dimension-six existence or maximality theorem; the package leaves G1 open.
+
+Obligation: Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion.
+
+## FERMION_SIGN
+
+### TFQ-0406 Signed-graph switching normal form and class count
+
+- UUID: `8ec73c1a-51af-544e-9006-45d6ce3e93c8`
+- Parent: `TFQ-0003`
+- Status: `PROVED_LEAN`
+- DAG node: `FSP-SWITCHING-NORMAL-FORM`
+- Paper: [derivation](derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md)
+
+For a fixed labelled finite graph and supplied spanning forest, vertex sign switching has a canonical tree-zero representative determined by chord signs. NF-002 records a duplicate-free enumeration of length 2^numChord and numChord=|E|-|V|+c.
+
+Obligation: Retain fixed labels and vertex-switching equivalence; this canonicalizer is not a normal form under arbitrary many-body basis transformations.
+
+### TFQ-0407 Meron character cancellation on a supplied flip orbit
+
+- UUID: `a28e5fa0-4d9d-5b0e-8572-af5139a98de1`
+- Parent: `TFQ-0406`
+- Status: `PROVED_LEAN`
+- DAG node: `FSP-MERON-CHARACTER-CANCELLATION`
+- Paper: [derivation](derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md)
+
+The finite flip-orbit sign sum is zero when at least one meron flag is true, and is 2^k when all k flags are false. Weighted partition and observable reductions require additional orbit hypotheses.
+
+Obligation: Supply invariant weight magnitudes, valid flip action and compatible observables before using the sign identity as a model reduction.
+
+### TFQ-0408 Protected Hubbard representations and negative witnesses
+
+- UUID: `bb9d9304-f838-5059-9a43-2171cb38b77c`
+- Parent: `TFQ-0406`
+- Status: `CONDITIONAL`
+- DAG node: `FSP-HUBBARD-PROTECTED-REPRESENTATIONS`
+- Paper: [derivation](derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md)
+
+Hubbard determinant positivity is restricted to the package stated half-filled bipartite or attractive spin-balanced hypotheses; exact negative fields outside those protections remain distinct witnesses.
+
+Obligation: Prove the required determinant pairing and Hamiltonian-to-representation equality for each stated model, including boundary cases.
+
+### TFQ-0409 Efficient sampling and general FSP obligations
+
+- UUID: `fa3d9732-0513-5240-b158-86dd8cde85b0`
+- Parent: `TFQ-0408`
+- Status: `OPEN_OBLIGATION`
+- DAG node: `FSP-EFFICIENT-SAMPLING-OBLIGATIONS`
+- Paper: [derivation](derivations/26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md)
+
+Canonical sign representatives, finite cancellation and nonnegative determinant weights do not establish an efficient sampler or a general fermion sign-problem solution.
+
+Obligation: Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.
+
+## TENSOR_COMPOSITION
+
+### TFQ-0410 Composite coordinates from local operational statistics
+
+- UUID: `c1737cb8-173a-54e8-bcfa-f3efbb7422c8`
+- Parent: `TFQ-0127`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-TOMOGRAPHIC-COORDINATES`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md)
+
+Independent bilinear preparations and tests with trace-factorized product probabilities and local tomography construct a unique real linear equivalence with joint Hermitian matrices for arbitrary finite local complex dimensions. The equivalence preserves products and all product tests; the deterministic product test is trace. The joint state cone is not assumed.
+
+Obligation: Lean verifies Hermitian product spanning, nondegenerate trace pairing, finite dual-frame reconstruction, injectivity, surjectivity, uniqueness, and process calibration. Local complex QM and the operational bilinear/tomography premises remain supplied. The displayed positive projector-basis formula and SEP/BP commentary are prose corollaries, not additional Lean claims.
+
+### TFQ-0411 Positive cone selection by preparations and transported tests
+
+- UUID: `d848f596-e2a5-5f4d-b4dd-d272fa7da721`
+- Parent: `TFQ-0410`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-CONE-ORBIT-KERNEL`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md)
+
+For any finite complex matrix size, a Hermitian set containing zero and closed under addition equals PSD when seed preparations and positive seed tests are transported by preserving operations whose seed-vector orbits cover all vectors.
+
+Obligation: The general finite-index cone kernel retains explicit OrbitData assumptions. TensorOperationalCone now instantiates its transports and reachability using the proved Schmidt controlled-shift construction; TensorComposition connects that instance to the constructed operational coordinates.
+
+### TFQ-0412 Quantum composition from a calibrated reversible controlled shift
+
+- UUID: `6cccaded-526a-5033-ad6e-bf1d0d2d86a0`
+- Parent: `TFQ-0411`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md)
+
+For arbitrary finite n<=m with m nonzero (the smaller subsystem is the control), supplied local complex QM, independent bilinear preparation/testing, local tomography, positive product tests, finite-sum state closure, and calibrated local-unitary and reversible controlled-shift preservation force the represented state cone to be PSD(nm). Tomographic coordinates, Schmidt reachability, cone equality and trace normalization are verified in Lean.
+
+Obligation: Lean constructs complete rectangular Schmidt bases, local unitaries and one modular controlled shift, then checks the operational state cone. TFQ-0414--TFQ-0416 check the generated effect cone, binary interval and finite POVMs with explicit effect and finite-test saturation premises. Calibration and operational preservation remain supplied; primitive difference has not supplied these hypotheses.
+
+### TFQ-0413 Countermodels and the interaction assumption boundary
+
+- UUID: `a3dcdee6-32e4-5ed0-a614-dd0d65142ee8`
+- Parent: `TFQ-0412`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-ASSUMPTION-COUNTERMODELS`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md)
+
+Full SEP/BP duality, local preservation and binary-product tomography do not select PSD: exact Bell/partial-transpose separations embed into every n,m>=2. Two-qubit ordinary, twisted and dephased controlled shifts separate calibrated preservation, coherent calibration and reversibility despite matching classical tables. A doubled positive carrier has distinct normalized states with identical product statistics.
+
+Obligation: Countermodels delimit weakened hypotheses, not logical minimality of the sufficient package. No primitive derivation, arbitrary-GPT classification, operational saturation, or new proof of SEP closedness is claimed. The identical-qubit family classification remains external.
+
+### TFQ-0414 Generated operational effect cone
+
+- UUID: `5869bcf8-cac2-5dc9-9017-5ffbb7f6d4fe`
+- Parent: `TFQ-0412`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-GENERATED-EFFECT-CONE`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md)
+
+The conic hull of represented available effects equals PSD for arbitrary finite n<=m with m nonzero, using the verified state cone, sound effects, all local binary product tests and calibrated local-unitary and controlled-shift pullbacks. Neither effect saturation nor finite-test saturation is required.
+
+Obligation: Operational soundness, local binary product availability and reversible effect pullback closure remain explicit premises. The generated cone does not identify the available binary interval or available finite tests.
+
+### TFQ-0415 Binary effects and explicit effect saturation
+
+- UUID: `ad896317-3074-5bb0-8b74-2e10d864eee2`
+- Parent: `TFQ-0412`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-BINARY-EFFECT-INTERVAL`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md)
+
+The constructed dual representation identifies functionals satisfying 0<=e(x)<=u(x) on the state cone with Hermitian matrices 0<=E<=I. Homogeneous bounds are equivalent to probabilities in [0,1] on all trace-one PSD states. Soundness plus explicit EffectSaturated identifies the available binary effects with this full interval.
+
+Obligation: EffectSaturated is a separate no-restriction premise, not a consequence of state-cone or generated-effect-cone equality. Local complex QM and the state-reconstruction assumptions remain supplied.
+
+### TFQ-0416 Finite POVMs and separate test saturation
+
+- UUID: `6a96cc36-69a4-518a-8dc8-698987f61226`
+- Parent: `TFQ-0415`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-FINITE-POVM-AVAILABILITY`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md)
+
+For any finite outcome type, sound available tests correspond to positive Hermitian families summing to I. Conversely every such POVM is available under both EffectSaturated and the separate FiniteTestSaturated premise. The end-to-end quantum_measurements theorem invokes quantum_state_cone and returns the generated cone, binary interval and finite-POVM equivalence.
+
+Obligation: FiniteTestSaturated requires jointly implementing each finite family of available effects summing to the deterministic unit. It is distinct from individual effect saturation. No availability or classification of instruments or channels is asserted.

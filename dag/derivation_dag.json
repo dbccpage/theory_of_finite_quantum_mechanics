@@ -15,7 +15,11 @@
     "FINITE_QM_CORE",
     "FINITE_QM_DYNAMICS",
     "FINITE_QM_STRUCTURE",
-    "IMPLEMENTATION"
+    "IMPLEMENTATION",
+    "DRESSING_FIELD",
+    "MUTUALLY_UNBIASED_BASES",
+    "FERMION_SIGN",
+    "TENSOR_COMPOSITION"
   ],
   "status_legend": {
     "ADMITTED_PRIMITIVE": "posited as an input of the programme, not derived",
@@ -2436,7 +2440,7 @@
       "id": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
-      "source_status": "Born vs quartic rival separation on (3,4) and d=3 orthogonal frame additivity eliminating the quartic rival mechanized in DerivationDagQMClosure.lean; continuum Gleason on S^{n-1} remains an external import",
+      "source_status": "Effect-additive (Busch-type) route kernel-checked over Q in dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean: every positive normalized effect-additive valuation on rational n x n matrices is E -> trace(rho E) for a unique symmetric rational-PSD trace-one rho (born_representation, density_is_state, born_rule, state_valuation_correspondence); the eight frozen targets of runs/20261020T004525Z_fable51_born (val_zero .. val_sandwich) are discharged; the rational-sphere parity frame function (parity_frame_function, parity_not_quadratic) shows that additivity on orthogonal triples of rational rays in d=3 does not select the quadratic form. Continuum Gleason on S^{n-1} is not used; it remains an external import only for the projection-lattice route. Exact replays: code/python/src/qm/born_effect_valuation.py, code/rust/src/qm/born_effect_valuation.rs. Earlier: Born vs quartic rival separation on (3,4) and d=3 orthogonal frame additivity eliminating the quartic rival mechanized in DerivationDagQMClosure.lean",
       "statement": "Born uniqueness of the quadratic form needs imported Hilbert space, projection lattices and Gleason-type assumptions, with dimension n >= 3; Gleason frame additivity at n >= 3 is verified only over orthogonal frames of specific finite ray sets. The three-label cardinality surrogate (3 <= |Q|) is false on Bool; the unit-effect contract already has two disagreeing pairings.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:193",
@@ -2447,7 +2451,25 @@
         "lean4/quantum_mechanics/H013QuarticRivalSeparation.lean::frames_equinorm",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/BornEffectValuation.lean::BornFable.val_rat_smul",
+        "lean4/BornLinearExtension.lean::BornFable.OrderedQUnit.linear_extension",
+        "lean4/BornMatrixCarrier.lean::BornFable.MatrixCarrier.order_unit",
+        "lean4/BornPsdDecomposition.lean::BornFable.PsdDecomposition.gram_of_psd",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.born_representation",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.density_is_state",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.born_rule",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.state_valuation_correspondence",
+        "lean4/BornRationalSphereObstruction.lean::BornFable.RationalSphere.parity_frame_function",
+        "lean4/BornRationalSphereObstruction.lean::BornFable.RationalSphere.parity_not_quadratic",
+        "lean4/BornGaussRat.lean::BornFable.GaussRat.instStarRing",
+        "lean4/BornHermitianCarrier.lean::BornFable.HermitianCarrier.normSq_dot_le",
+        "lean4/BornHermitianCarrier.lean::BornFable.HermitianCarrier.trace_rep",
+        "lean4/BornHermitianPsdDecomposition.lean::BornFable.HermitianPsd.gram_of_psd",
+        "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.born_representation",
+        "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.density_is_state",
+        "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.born_rule",
+        "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.state_valuation_correspondence"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
@@ -2455,11 +2477,13 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
       "imported_structure": [
-        "Gleason theorem for d >= 3 (assumption)",
-        "projection lattice (assumption)",
+        "rational matrix algebra with the quadratic-form preorder and unit identity (supplied carrier)",
+        "effect additivity: v(E+F) = v(E)+v(F) whenever E, F and E+F are effects (assumption)",
+        "Gleason theorem for d >= 3 (assumption, projection-lattice route only)",
+        "projection lattice (assumption, projection-lattice route only)",
         "Hilbert space (assumption)"
       ],
-      "bottleneck": "Finite rational frame obstructions (Cabello 18-9, d=2 plane, and d=3 rotated frame eliminating the quartic rival) are mechanized; continuum Gleason frame additivity on S^{n-1} remains an external import.",
+      "bottleneck": "The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n >= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-GLEASON",
@@ -2524,11 +2548,20 @@
       "id": "FQ-GAP-TENSOR-UNIQUENESS",
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
-      "source_status": "Direct-sum vs Kronecker dimension separation, min-vs-Hilbert-vs-max cone bracketing (50 < 70 < 100), and product-table zero determinant mechanized in DerivationDagQMClosure.lean",
-      "statement": "Hilbert tensor product as the unique way to combine systems remains extra structure; rival exclusions exist only for stated hosts and covariance requirements. Bipartite composition and entangled preparation are load-bearing for Bell (s13.8.2).",
+      "source_status": "The 20261019 scope audit remains a determinant obstruction on a supplied rational host. TFQ-0410--TFQ-0412 verify general Lean tomography, Schmidt reachability and operational state-cone reconstruction. TFQ-0414--TFQ-0416 verify the generated effect cone, saturated binary interval and finite POVM corollaries. TFQ-0413 verifies assumption countermodels in Lean: full-cone duality, all-dimension cone separations, exact two-qubit calibration failures and hidden-coordinate tomography failure; external classification and primitive selection remain outside scope.",
+      "statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:255",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332"
+        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332",
+        "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md",
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "dag/research/tensor_composition_validation.json",
+        "dag/research/tensor_formalization_validation.json",
+        "dag/research/tensor_measurement_validation.json",
+        "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md",
+        "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md",
+        "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md",
+        "dag/research/tensor_countermodel_validation.json"
       ],
       "lean": [
         "lean4/quantum_mechanics/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate",
@@ -2543,12 +2576,24 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
       "imported_structure": [
-        "tensor composition (assumption)"
+        "local finite complex quantum state and effect spaces with trace probabilities",
+        "independent preparation, testing and convex composition",
+        "local tomography",
+        "all local unitary operations",
+        "fully coherently calibrated reversible controlled shift",
+        "effect and finite-test saturation for full measurement availability"
       ],
-      "bottleneck": "Finite bipartite/tripartite Kronecker projector decompositions and min-vs-max cone bracketing are mechanized; general state-effect tensor uniqueness without host covariance remains conditional.",
+      "bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional.",
       "tags": [],
       "see_also": [
-        "GP-IMPORT-TENSOR-PRODUCT"
+        "GP-IMPORT-TENSOR-PRODUCT",
+        "TENSOR-ASSUMPTION-COUNTERMODELS",
+        "TENSOR-CONE-ORBIT-KERNEL",
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+        "TENSOR-TOMOGRAPHIC-COORDINATES",
+        "TENSOR-GENERATED-EFFECT-CONE",
+        "TENSOR-BINARY-EFFECT-INTERVAL",
+        "TENSOR-FINITE-POVM-AVAILABILITY"
       ]
     },
     {
@@ -2906,7 +2951,7 @@
       "id": "FQ-GAP-STONE-CONTINUOUS-TIME",
       "stage": "FINITE_QM_DYNAMICS",
       "status": "CONDITIONAL",
-      "source_status": "Pythagorean rotation powers (3+4i)^k (k=1..4) and discrete modular frequency aliasing (k + N) % N = k % N mechanized in DerivationDagQMClosure.lean; continuous-time Stone generator remains an external import",
+      "source_status": "Carrier-level specification kernel-checked in dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec (lean4/DiscreteTimeStoneSpec.lean): a Q-parameter group (QParamGroup) restricts to the Z-action of its unit step (U_eq_discreteEvolution) and needs roots of every order (roots_of_all_orders); half-steps come in pairs +-V, so generator selection is a choice (matrix_half_step_not_unique); the rational 2x2 Pythagorean rotation R345 is a reversible discrete evolution (R345_pow_orthogonal) with no rational half-step (no_rational_half_step: any root is p*1 + r*J with p^2 = 4/5, whose denominator 5 is not a square), hence no Q-parameter group of rational 2x2 matrices passes through it (no_qparam_group_through_R345). Exact replays: code/python/src/qm/discrete_time_stone.py, code/rust/src/qm/discrete_time_stone.rs. Earlier: Pythagorean rotation powers (3+4i)^k (k=1..4) and discrete modular frequency aliasing (k + N) % N = k % N mechanized in DerivationDagQMClosure.lean; continuous-time Stone generator remains an external import",
       "statement": "Continuous time and the Stone theorem are not constructed: strong continuity, one-parameter group and generator selection are priced interfaces; rational entries alone do not imply infinite order. Causal order between events is also admitted externally (GAP-C1000-001, declared_assumption, non-blocking): Q(zeta_n) carriers supply no relation between spacetime events.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:304",
@@ -2915,7 +2960,14 @@
       "lean": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.QParamGroup",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.QParamGroup.roots_of_all_orders",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.matrix_half_step_not_unique",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.R345_pow_orthogonal",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.no_rational_half_step",
+        "lean4/DiscreteTimeStoneSpec.lean::BornFable.DiscreteTime.no_qparam_group_through_R345"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness",
@@ -2923,10 +2975,11 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
       "imported_structure": [
-        "continuous time / Stone theorem (assumption)",
+        "continuous time / Stone theorem (assumption; on the finite carrier the strongest available notion is a Q-parameter group, and the Pythagorean rotation admits none)",
+        "generator selection (assumption: half-steps come in pairs, no canonical choice)",
         "external causal order datum (assumption)"
       ],
-      "bottleneck": "Discrete step aliasing and non-trivial Pythagorean rotation powers without rational angle logarithms are mechanized; continuous R completion and Stone strong continuity remain declared external imports.",
+      "bottleneck": "Specified on the carrier: continuous time = a Q-parameter group extending the Z-action of a unit step; this needs roots of every order, which the rational 2x2 Pythagorean rotation lacks already at order two (no rational half-step; a half-step exists only after adjoining sqrt 5), so continuous time requires a carrier extension and a generator choice. Open: the general triviality of Q-parameter groups over Q(i) (needs unique factorisation in Z[i]); strong continuity and the R-completion remain declared external imports. Discrete step aliasing and non-trivial Pythagorean rotation powers without rational angle logarithms remain mechanized.",
       "tags": [],
       "see_also": [
         "FQ-DISCRETE-TIME-STONE-AMBIGUITY",
@@ -2937,7 +2990,7 @@
       "id": "FQ-GAP-CONTINUUM-HILBERT-LIFT",
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
-      "source_status": "Z[i] non-field obstruction (2*(a^2+b^2) != 1) and symmetric integer matrix M=[[2,1],[1,1]] characteristic discriminant 5 non-square obstruction in Q(i) mechanized in DerivationDagQMClosure.lean",
+      "source_status": "Controlled completion kernel-checked in dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion: the exact finite carriers Fin n -> Q form a tower under zero padding whose directed union N ->0 Q is exhausted by the finite stages (HilbertLiftFiniteTower: exhaustion, qinner_sq_le); the l2 Cauchy condition is stated with rational tolerances and the harmonic witness h_N = sum_{i<N} e_i/(i+1) is l2-Cauchy with the explicit modulus k -> k+1, is not l1-Cauchy, and converges to no exact vector (HilbertLiftRationalUniformity: harmonic_separates_uniformities); the Hausdorff completion of the pre-Hilbert carrier N ->0 k (k = R or C) is a complete inner product space into which the exact carrier embeds inner-product-preservingly, injectively and compatibly with padding, Cauchy-ness in the lift is exactly the rational l2 condition, every such sequence converges, and over R the exact carrier is dense, continuous maps out of the lift are determined on exact vectors, and the lift is strictly larger than the exact carrier (HilbertLiftCompletion: controlled_completion); over C the Gaussian-rational pairs a + ib are dense with the exact inner-product identity and the lift is strictly larger (HilbertLiftComplexCarrier: controlled_completion_complex). Exact replays: code/python/src/qm/hilbert_lift_completion.py (16 tests), code/rust/src/qm/hilbert_lift_completion.rs (14 inline tests). Earlier: Z[i] non-field obstruction (2*(a^2+b^2) != 1) and symmetric integer matrix M=[[2,1],[1,1]] characteristic discriminant 5 non-square obstruction in Q(i) mechanized in DerivationDagQMClosure.lean",
       "statement": "The transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space is not constructed in any source; QM_122 s6 refuses it. M_n(Z[i]) is recovered for finite report sets but is not M_n(C): Z[i] is not a field and a self-adjoint Gaussian-integer matrix need not have a Gaussian-integer eigenvalue (GAP-F001-S000-009).",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:159",
@@ -2946,18 +2999,35 @@
       "lean": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/HilbertLiftFiniteTower.lean::HilbertLift.exhaustion",
+        "lean4/HilbertLiftFiniteTower.lean::HilbertLift.qinner_sq_le",
+        "lean4/HilbertLiftRationalUniformity.lean::HilbertLift.harmonic_hasModulus",
+        "lean4/HilbertLiftRationalUniformity.lean::HilbertLift.harmonic_separates_uniformities",
+        "lean4/HilbertLiftCompletion.lean::HilbertLift.inner_lift",
+        "lean4/HilbertLiftCompletion.lean::HilbertLift.cauchySeq_lift_iff",
+        "lean4/HilbertLiftCompletion.lean::HilbertLift.exists_limit_of_isCauchyL2",
+        "lean4/HilbertLiftCompletion.lean::HilbertLift.denseRange_lift_real",
+        "lean4/HilbertLiftCompletion.lean::HilbertLift.lift_not_surjective",
+        "lean4/HilbertLiftCompletion.lean::HilbertLift.controlled_completion",
+        "lean4/HilbertLiftComplexCarrier.lean::HilbertLift.inner_liftPair",
+        "lean4/HilbertLiftComplexCarrier.lean::HilbertLift.denseRange_liftPair",
+        "lean4/HilbertLiftComplexCarrier.lean::HilbertLift.controlled_completion_complex"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
+        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
+        "code/rust/src/qm/hilbert_lift_completion.rs::harmonic_nonconvergence_bound_holds",
+        "code/rust/src/qm/hilbert_lift_completion.rs::modulus_holds",
+        "code/rust/src/qm/hilbert_lift_completion.rs::grid_approximation"
       ],
       "imported_structure": [
-        "continuum Hilbert space (assumption)",
-        "complex field C (assumption)"
+        "scalar field R or C, i.e. the completion of Q or of Q(i) (assumption; the lift is the Hausdorff completion of the finitely supported scalar sequences and nothing selects the field)",
+        "l2 uniformity on the exact carrier (assumption; harmonic_separates_uniformities shows that l1 is a different choice with a different Cauchy structure)",
+        "Cauchy convergence hypothesis: limits exist in the lift for rational-l2-Cauchy sequences of exact vectors and not on the exact carrier itself (harmonic_not_tendsTo)"
       ],
-      "bottleneck": "Z[i] non-field obstruction and discriminant-5 spectral exit from Q(i) are mechanized; continuum Hilbert completion remains an explicit import.",
+      "bottleneck": "The continuum Hilbert completion is now constructed with explicit embeddings (lift, liftFin, liftPair), explicit topology (rational l2 uniformity) and explicit convergence hypotheses (IsCauchyL2, HasModulusL2); what remains imported is the selection of the scalar field and of the l2 uniformity from finite-theory primitives, the lifting of operators and dynamics (FQ-GAP-STONE-CONTINUOUS-TIME), and the intrinsic identification Completion (N ->0 Q) with HilbertLiftSpace R (run next_steps.md). Z[i] non-field obstruction and discriminant-5 spectral exit from Q(i) remain mechanized.",
       "tags": [
         "cross-ref:L1_TO_L2 QM_020 conditional Hilbert lift"
       ],
@@ -4950,11 +5020,13 @@
       "id": "IMPL-FSP-SWITCHING-NORMAL-FORM-NF002",
       "stage": "IMPLEMENTATION",
       "status": "PROVED_LEAN",
-      "source_status": "MECHANIZED in SwitchingNormalForm.lean (including normalForms_length = 2 ^ numChord T, normalForms_nodup, and mem_normalForms_iff) with Rust witness",
-      "statement": "FSP switching normal form NF-002: theorems T1 to T3 and T5 and the T4 bijection are attached to the draft PR. The Nat count 2^(|E| - |V| + c) is the one residual, because it needs that functions from the chord set to Bool number 2^numChord and core Lean has no cardinality library.",
+      "source_status": "Local compatibility port replayed with Lean 4.33.1; enumeration length, uniqueness, membership and chord-count identity depend only on propext and Quot.sound.",
+      "statement": "FSP switching normal form NF-002 on a fixed labelled finite graph with a supplied spanning forest: T1-T5, soundness and completeness of the normal form, and a duplicate-free enumeration are mechanized. normalForms_length gives length 2^numChord; normalForms_nodup and mem_normalForms_iff certify enumeration uniqueness and membership. Together with numChord_identity this records 2^(|E|-|V|+c) switching classes. It does not assert graph-isomorphism canonicalization or efficient fermionic sampling.",
       "source": [
         "omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
+        "dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean",
+        "lean4/SwitchingNormalForm.lean"
       ],
       "lean": [
         "omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normal_sound",
@@ -4962,7 +5034,13 @@
         "omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.numChord_identity",
         "omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normalForms_length",
         "omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normalForms_nodup",
-        "omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.mem_normalForms_iff"
+        "omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.mem_normalForms_iff",
+        "lean4/SwitchingNormalForm.lean::normal_sound",
+        "lean4/SwitchingNormalForm.lean::same_class_iff",
+        "lean4/SwitchingNormalForm.lean::numChord_identity",
+        "lean4/SwitchingNormalForm.lean::normalForms_length",
+        "lean4/SwitchingNormalForm.lean::normalForms_nodup",
+        "lean4/SwitchingNormalForm.lean::mem_normalForms_iff"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_impl_nf002_thymus_and_lggr_witness",
@@ -5029,6 +5107,578 @@
       "tags": [
         "off-path"
       ]
+    },
+    {
+      "id": "DFM-GROUP-CONNECTION",
+      "stage": "DRESSING_FIELD",
+      "status": "DEFINITION",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "A finite multigraph with oriented edge representatives carries labels in a supplied group G; reverse traversal carries the inverse label. This admits the group and connection rather than selecting them from primitive difference.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md",
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "finite multigraph",
+        "supplied group G and group axioms"
+      ],
+      "bottleneck": "Keep the graph, group axioms, inverse-edge convention and multiplication order explicit.",
+      "tags": [
+        "application-branch",
+        "TFQ-0397"
+      ],
+      "see_also": [
+        "FQ-U1-TRANSPORT-N-TORSION",
+        "DS-QM063-HOLONOMY-COHERENT-INTENSITY"
+      ]
+    },
+    {
+      "id": "DFM-GENERAL-GRAPH-DRESSING",
+      "stage": "DRESSING_FIELD",
+      "status": "PROVED_LEAN",
+      "source_status": "New theorem checked in Lean 4.33.1; axioms printed separately.",
+      "statement": "Given a rooted spanning forest and an arbitrary supplied group, a vertex dressing neutralizes every edge iff every closed walk has identity transport. It suffices to test the fundamental chord residuals; disconnected components are handled separately.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md",
+        "dag/research/finite_graph_dressing.py",
+        "dag/research/finite_graph_dressing.rs"
+      ],
+      "lean": [
+        "lean4/FiniteGraphDressing.lean::neutralizable_iff_closed_walks_forest",
+        "lean4/FiniteGraphDressing.lean::tree_dressing_iff",
+        "lean4/FiniteGraphDressing.lean::neutralizers_constant"
+      ],
+      "rust": [
+        "dag/research/finite_graph_dressing.rs::forest_dressing"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Preserve the supplied-group and supplied-forest hypotheses; the Python and Rust enumerations are bounded witnesses for the general Lean theorem.",
+      "tags": [
+        "application-branch",
+        "TFQ-0398"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "DFM-TREE-CHANGE",
+      "stage": "DRESSING_FIELD",
+      "status": "PROVED_LEAN",
+      "source_status": "New theorem checked in Lean 4.33.1; axioms printed separately.",
+      "statement": "For any two dressings u and u prime, the change field C(v)=u prime(v)u(v) inverse intertwines the residual connections. In particular this describes two spanning-forest choices without commuting group elements.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md",
+        "dag/research/finite_graph_dressing.py",
+        "dag/research/finite_graph_dressing.rs"
+      ],
+      "lean": [
+        "lean4/FiniteGraphDressing.lean::change_dressing"
+      ],
+      "rust": [
+        "dag/research/finite_graph_dressing.rs::forest_dressing"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Use the same multiplication convention in all three languages; distinguish edge residuals from conjugacy-invariant closed-loop observables.",
+      "tags": [
+        "application-branch",
+        "TFQ-0399"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "DFM-HIERARCHICAL-BOREL",
+      "stage": "DRESSING_FIELD",
+      "status": "OPEN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "normal subgroup N and quotient action",
+        "specified incidence DGA"
+      ],
+      "bottleneck": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "tags": [
+        "application-branch",
+        "TFQ-0400"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "DFM-CONTINUUM-INTERFACE",
+      "stage": "DRESSING_FIELD",
+      "status": "OPEN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md",
+        "dag/research/electroweak_dfm_weinberg_finite_map.md",
+        "papers/ravera_dfm_dossier.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "tags": [
+        "application-branch",
+        "TFQ-0401"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "MUB-EXACT-PROJECTORS",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "DEFINITION",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "On a supplied finite-dimensional Hilbert carrier, a MUB family consists of rank-one orthogonal projector resolutions with cross-basis trace pairing 1/d. Exact arithmetic must include the required scalar extension.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md",
+        "papers/core/mub6/README.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "supplied finite-dimensional Hilbert carrier",
+        "sufficient exact scalar extension"
+      ],
+      "bottleneck": "Check the scalar field, adjoint, rank, resolutions and all cross-basis trace equalities before accepting a MUB witness.",
+      "tags": [
+        "application-branch",
+        "TFQ-0402"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "MUB-PRIME-POWER-CONSTRUCTION",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "OPEN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md",
+        "papers/core/mub6/README.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.",
+      "tags": [
+        "application-branch",
+        "TFQ-0403"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "MUB-TOMOGRAPHY-INVERSION",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "PROVED_PROSE",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Given d+1 MUB projector resolutions on a d-dimensional complex Hilbert carrier and trace-one rho, the probabilities p_bj=tr(rho P_bj) reconstruct rho as sum_bj p_bj P_bj minus I.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0404_mub_tomography_inversion.md",
+        "papers/core/mub6/README.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "complete d+1 MUB family",
+        "complex Hilbert trace inner product"
+      ],
+      "bottleneck": "Mechanize the trace-inner-product dimension and reconstruction argument; constructing a complete MUB family is a separate existence obligation.",
+      "tags": [
+        "application-branch",
+        "TFQ-0404"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "MUB6-GLOBAL-OBLIGATIONS",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "OPEN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Separate exact stated-region exclusions and conditional reductions from a global dimension-six existence or maximality theorem; the package leaves G1 open.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md",
+        "papers/core/mub6/README.md",
+        "papers/core/mub6/research/mub6_gap_registry.json"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion.",
+      "tags": [
+        "application-branch",
+        "TFQ-0405"
+      ],
+      "see_also": [
+        "FQ-GAP-TENSOR-UNIQUENESS",
+        "FQ-GAP-BORN-UNIQUENESS-GLEASON"
+      ]
+    },
+    {
+      "id": "FSP-SWITCHING-NORMAL-FORM",
+      "stage": "FERMION_SIGN",
+      "status": "PROVED_LEAN",
+      "source_status": "Local compatibility port replayed with Lean 4.33.1; enumeration length, uniqueness, membership and chord-count identity depend only on propext and Quot.sound.",
+      "statement": "For a fixed labelled finite graph and supplied spanning forest, vertex sign switching has a canonical tree-zero representative determined by chord signs. NF-002 records a duplicate-free enumeration of length 2^numChord and numChord=|E|-|V|+c.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md",
+        "dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean",
+        "lean4/SwitchingNormalForm.lean"
+      ],
+      "lean": [
+        "lean4/SwitchingNormalForm.lean::normal_sound",
+        "lean4/SwitchingNormalForm.lean::same_class_iff",
+        "lean4/SwitchingNormalForm.lean::numChord_identity",
+        "lean4/SwitchingNormalForm.lean::normalForms_length",
+        "lean4/SwitchingNormalForm.lean::normalForms_nodup",
+        "lean4/SwitchingNormalForm.lean::mem_normalForms_iff"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Retain fixed labels and vertex-switching equivalence; this canonicalizer is not a normal form under arbitrary many-body basis transformations.",
+      "tags": [
+        "application-branch",
+        "TFQ-0406"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "FSP-MERON-CHARACTER-CANCELLATION",
+      "stage": "FERMION_SIGN",
+      "status": "PROVED_LEAN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "The finite flip-orbit sign sum is zero when at least one meron flag is true, and is 2^k when all k flags are false. Weighted partition and observable reductions require additional orbit hypotheses.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md",
+        "papers/core/fsp/README.md"
+      ],
+      "lean": [
+        "lean4/MeronCharacter.lean::meron_orbit_cancels",
+        "lean4/MeronCharacter.lean::zero_meron_orbit_positive",
+        "lean4/MeronCharacter.lean::compression_preserves_partition"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "supplied Boolean flip-orbit model; not derived from graph switching"
+      ],
+      "bottleneck": "Supply invariant weight magnitudes, valid flip action and compatible observables before using the sign identity as a model reduction.",
+      "tags": [
+        "application-branch",
+        "TFQ-0407"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+      "stage": "FERMION_SIGN",
+      "status": "CONDITIONAL",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Hubbard determinant positivity is restricted to the package stated half-filled bipartite or attractive spin-balanced hypotheses; exact negative fields outside those protections remain distinct witnesses.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md",
+        "papers/core/fsp/README.md",
+        "papers/core/fsp/docs/sql_meron_hubbard.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "stated Hubbard model and protected symmetry hypotheses"
+      ],
+      "bottleneck": "Prove the required determinant pairing and Hamiltonian-to-representation equality for each stated model, including boundary cases.",
+      "tags": [
+        "application-branch",
+        "TFQ-0408"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "FSP-EFFICIENT-SAMPLING-OBLIGATIONS",
+      "stage": "FERMION_SIGN",
+      "status": "OPEN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Canonical sign representatives, finite cancellation and nonnegative determinant weights do not establish an efficient sampler or a general fermion sign-problem solution.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md",
+        "papers/core/fsp/README.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.",
+      "tags": [
+        "application-branch",
+        "TFQ-0409"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-TOMOGRAPHIC-COORDINATES",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; checked theorem scope and remaining prose corollaries are distinguished in the derivation and tensor formalization receipt.",
+      "statement": "Independent bilinear preparations and tests with trace-factorized product probabilities and local tomography construct a unique real linear equivalence with joint Hermitian matrices for arbitrary finite local complex dimensions. The equivalence preserves products and all product tests; the deterministic product test is trace. The joint state cone is not assumed.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorTomography.lean::product_span",
+        "lean4/TensorTomography.lean::pairing_nondegenerate",
+        "lean4/TensorCoordinates.lean::tomographicEquiv",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_prepare",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_test",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_unique",
+        "lean4/TensorCoordinates.lean::product_calibration",
+        "lean4/TensorCoordinates.lean::finite_frame_calibration",
+        "lean4/TensorComposition.lean::unit_test_is_trace"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "finite local complex quantum state and effect spaces",
+        "independent preparations and tests with factorized probabilities",
+        "local tomography",
+        "mixing and linear operational extension"
+      ],
+      "bottleneck": "Lean verifies Hermitian product spanning, nondegenerate trace pairing, finite dual-frame reconstruction, injectivity, surjectivity, uniqueness, and process calibration. Local complex QM and the operational bilinear/tomography premises remain supplied. The displayed positive projector-basis formula and SEP/BP commentary are prose corollaries, not additional Lean claims.",
+      "tags": [
+        "application-branch",
+        "TFQ-0410"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-CONE-ORBIT-KERNEL",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; checked theorem scope and remaining prose corollaries are distinguished in the derivation and tensor formalization receipt.",
+      "statement": "For any finite complex matrix size, a Hermitian set containing zero and closed under addition equals PSD when seed preparations and positive seed tests are transported by preserving operations whose seed-vector orbits cover all vectors.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorConeReconstruction.lean::operational_orbit_selects_positive",
+        "lean4/TensorConeReconstruction.lean::positive_mem_of_rankOne"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "finite complex matrix and spectral theory",
+        "explicit OrbitData reachability and transport hypotheses"
+      ],
+      "bottleneck": "The general finite-index cone kernel retains explicit OrbitData assumptions. TensorOperationalCone now instantiates its transports and reachability using the proved Schmidt controlled-shift construction; TensorComposition connects that instance to the constructed operational coordinates.",
+      "tags": [
+        "application-branch",
+        "TFQ-0411"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified state-space theorem with measurement corollaries separately verified in TFQ-0414--TFQ-0416.",
+      "statement": "For arbitrary finite n<=m with m nonzero (the smaller subsystem is the control), supplied local complex QM, independent bilinear preparation/testing, local tomography, positive product tests, finite-sum state closure, and calibrated local-unitary and reversible controlled-shift preservation force the represented state cone to be PSD(nm). Tomographic coordinates, Schmidt reachability, cone equality and trace normalization are verified in Lean.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorSchmidt.lean::exists_schmidt_bases",
+        "lean4/TensorReachability.lean::exists_schmidt_coefficients",
+        "lean4/TensorReachability.lean::schmidt_reachability",
+        "lean4/TensorOperationalCone.lean::controlled_shift_selects_positive",
+        "lean4/TensorComposition.lean::quantum_state_cone",
+        "lean4/TensorComposition.lean::unit_test_is_trace"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "local complex QM and spectral theory",
+        "independent preparation, testing and convex composition",
+        "local tomography",
+        "all local unitary operations",
+        "coherently calibrated reversible controlled shift",
+        "effect and finite-test saturation for full measurement availability"
+      ],
+      "bottleneck": "Lean constructs complete rectangular Schmidt bases, local unitaries and one modular controlled shift, then checks the operational state cone. TFQ-0414--TFQ-0416 check the generated effect cone, binary interval and finite POVMs with explicit effect and finite-test saturation premises. Calibration and operational preservation remain supplied; primitive difference has not supplied these hypotheses.",
+      "tags": [
+        "application-branch",
+        "TFQ-0412"
+      ],
+      "see_also": [
+        "TENSOR-GENERATED-EFFECT-CONE",
+        "TENSOR-BINARY-EFFECT-INTERVAL",
+        "TENSOR-FINITE-POVM-AVAILABILITY"
+      ]
+    },
+    {
+      "id": "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Lean 4.33.1 with pinned Mathlib verifies the full-cone algebra, exact two-qubit calibration failures, all-dimension cone embeddings, and hidden-coordinate tomography failure. The countermodel receipt records the precise scope and standard-axiom audits.",
+      "statement": "Full SEP/BP duality, local preservation and binary-product tomography do not select PSD: exact Bell/partial-transpose separations embed into every n,m>=2. Two-qubit ordinary, twisted and dephased controlled shifts separate calibrated preservation, coherent calibration and reversibility despite matching classical tables. A doubled positive carrier has distinct normalized states with identical product statistics.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_countermodel_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorPartialTranspose.lean::gamma",
+        "lean4/TensorPartialTranspose.lean::pairing_gamma_gamma",
+        "lean4/TensorPartialTranspose.lean::gamma_conjMap_product",
+        "lean4/TensorPartialTranspose.lean::conjMap_inverse",
+        "lean4/TensorCountermodelCones.lean::blockPositive_iff_dual_sep",
+        "lean4/TensorCountermodelCones.lean::sep_ppt",
+        "lean4/TensorCountermodelCones.lean::twisted_self_dual",
+        "lean4/TensorCountermodelCones.lean::sep_local",
+        "lean4/TensorCountermodelCones.lean::bp_local",
+        "lean4/TensorCountermodelCones.lean::twisted_local",
+        "lean4/TensorCountermodelCones.lean::twist_reversible",
+        "lean4/TensorCountermodelCones.lean::twist_trace",
+        "lean4/TensorCountermodelCones.lean::twist_path_continuous",
+        "lean4/TensorCountermodelCones.lean::binary_product_statistics_separate",
+        "lean4/TensorCountermodelCones.lean::bp_salient",
+        "lean4/TensorCountermodelWitnesses.lean::sep_fails_controlled_shift",
+        "lean4/TensorCountermodelWitnesses.lean::bp_fails_inverse_controlled_shift",
+        "lean4/TensorCountermodelWitnesses.lean::twisted_fails_ordinary_calibration",
+        "lean4/TensorCountermodelWitnesses.lean::twisted_same_classical_table",
+        "lean4/TensorCountermodelWitnesses.lean::imaginary_effect_binary",
+        "lean4/TensorCountermodelWitnesses.lean::coherent_calibration_separates",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_same_classical_table",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_controlled_shift_not_injective",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_coherent_calibration_separates",
+        "lean4/TensorCountermodelWitnesses.lean::plus_binary",
+        "lean4/TensorCountermodelWitnesses.lean::seed_normalized",
+        "lean4/TensorCountermodelEmbeddings.lean::cone_separations_all_dimensions",
+        "lean4/TensorHiddenCoordinates.lean::independent_probabilities",
+        "lean4/TensorHiddenCoordinates.lean::doubledConj_inverse",
+        "lean4/TensorHiddenCoordinates.lean::hidden_normalized_states",
+        "lean4/TensorHiddenCoordinates.lean::no_local_tomography",
+        "lean4/TensorHiddenCoordinates.lean::dimension_doubled",
+        "lean4/TensorHiddenCoordinates.lean::basis_state_normalized"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "finite complex Hermitian matrix carriers with the real trace pairing",
+        "full local positive and binary matrix tests; operational availability is not inferred",
+        "dimensions n,m>=2 for cone separations; exact two-qubit gate witnesses",
+        "supplied unitary transformations; supplied continuous paths for the continuity theorem",
+        "positive trace-one state for normalized doubled-carrier witnesses; a basis index constructs one"
+      ],
+      "bottleneck": "Countermodels delimit weakened hypotheses, not logical minimality of the sufficient package. No primitive derivation, arbitrary-GPT classification, operational saturation, or new proof of SEP closedness is claimed. The identical-qubit family classification remains external.",
+      "tags": [
+        "application-branch",
+        "TFQ-0413"
+      ],
+      "see_also": [
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+        "TENSOR-BINARY-EFFECT-INTERVAL"
+      ]
+    },
+    {
+      "id": "TENSOR-GENERATED-EFFECT-CONE",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; theorem premises and standard logical axioms are recorded in the measurement validation receipt.",
+      "statement": "The conic hull of represented available effects equals PSD for arbitrary finite n<=m with m nonzero, using the verified state cone, sound effects, all local binary product tests and calibrated local-unitary and controlled-shift pullbacks. Neither effect saturation nor finite-test saturation is required.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md",
+        "dag/research/tensor_measurement_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorEffectOrder.lean::positive_iff_pairing",
+        "lean4/TensorEffectOrder.lean::positive_ray_binary",
+        "lean4/TensorEffectCone.lean::effect_cone_eq_positive",
+        "lean4/TensorMeasurements.lean::operational_effect_cone"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "state-cone conclusion of quantum_state_cone",
+        "sound operational effects",
+        "all products of local binary effects",
+        "calibrated reversible effect pullbacks"
+      ],
+      "bottleneck": "Operational soundness, local binary product availability and reversible effect pullback closure remain explicit premises. The generated cone does not identify the available binary interval or available finite tests.",
+      "tags": [
+        "application-branch",
+        "TFQ-0414"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-BINARY-EFFECT-INTERVAL",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; theorem premises and standard logical axioms are recorded in the measurement validation receipt.",
+      "statement": "The constructed dual representation identifies functionals satisfying 0<=e(x)<=u(x) on the state cone with Hermitian matrices 0<=E<=I. Homogeneous bounds are equivalent to probabilities in [0,1] on all trace-one PSD states. Soundness plus explicit EffectSaturated identifies the available binary effects with this full interval.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md",
+        "dag/research/tensor_measurement_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorEffectOrder.lean::binary_iff_bounds",
+        "lean4/TensorEffectOrder.lean::binary_iff_interval",
+        "lean4/TensorEffectOrder.lean::binary_iff_normalized",
+        "lean4/TensorMeasurements.lean::effectRepresentation",
+        "lean4/TensorMeasurements.lean::effectRepresentation_unit",
+        "lean4/TensorMeasurements.lean::effectRepresentation_product",
+        "lean4/TensorMeasurements.lean::validEffect_iff_binary",
+        "lean4/TensorMeasurements.lean::available_effects_eq_interval"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "state-cone conclusion of quantum_state_cone",
+        "sound operational effects",
+        "EffectSaturated: every cone-bounded functional is available"
+      ],
+      "bottleneck": "EffectSaturated is a separate no-restriction premise, not a consequence of state-cone or generated-effect-cone equality. Local complex QM and the state-reconstruction assumptions remain supplied.",
+      "tags": [
+        "application-branch",
+        "TFQ-0415"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-FINITE-POVM-AVAILABILITY",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; theorem premises and standard logical axioms are recorded in the measurement validation receipt.",
+      "statement": "For any finite outcome type, sound available tests correspond to positive Hermitian families summing to I. Conversely every such POVM is available under both EffectSaturated and the separate FiniteTestSaturated premise. The end-to-end quantum_measurements theorem invokes quantum_state_cone and returns the generated cone, binary interval and finite-POVM equivalence.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md",
+        "dag/research/tensor_measurement_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorMeasurements.lean::povm_binary",
+        "lean4/TensorMeasurements.lean::test_povm_of_sound",
+        "lean4/TensorMeasurements.lean::test_iff_povm",
+        "lean4/TensorMeasurements.lean::quantum_measurements"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "state-cone conclusion of quantum_state_cone",
+        "sound available effects and finite tests",
+        "EffectSaturated",
+        "FiniteTestSaturated"
+      ],
+      "bottleneck": "FiniteTestSaturated requires jointly implementing each finite family of available effects summing to the deterministic unit. It is distinct from individual effect saturation. No availability or classification of instruments or channels is asserted.",
+      "tags": [
+        "application-branch",
+        "TFQ-0416"
+      ],
+      "see_also": []
     }
   ],
   "routes": [
@@ -7381,6 +8031,255 @@
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
+      ]
+    },
+    {
+      "id": "APP-R-DFM-GROUP-CONNECTION",
+      "inputs": [
+        "FQ-CARRIER-CONTRACT-V2"
+      ],
+      "output": "DFM-GROUP-CONNECTION",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Keep the graph, group axioms, inverse-edge convention and multiplication order explicit.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md",
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
+      ]
+    },
+    {
+      "id": "APP-R-DFM-GENERAL-GRAPH-DRESSING",
+      "inputs": [
+        "DFM-GROUP-CONNECTION"
+      ],
+      "output": "DFM-GENERAL-GRAPH-DRESSING",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Preserve the supplied-group and supplied-forest hypotheses; the Python and Rust enumerations are bounded witnesses for the general Lean theorem.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md",
+        "dag/research/finite_graph_dressing.py",
+        "dag/research/finite_graph_dressing.rs"
+      ]
+    },
+    {
+      "id": "APP-R-DFM-TREE-CHANGE",
+      "inputs": [
+        "DFM-GENERAL-GRAPH-DRESSING"
+      ],
+      "output": "DFM-TREE-CHANGE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Use the same multiplication convention in all three languages; distinguish edge residuals from conjugacy-invariant closed-loop observables.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md",
+        "dag/research/finite_graph_dressing.py",
+        "dag/research/finite_graph_dressing.rs"
+      ]
+    },
+    {
+      "id": "APP-R-DFM-HIERARCHICAL-BOREL",
+      "inputs": [
+        "DFM-TREE-CHANGE"
+      ],
+      "output": "DFM-HIERARCHICAL-BOREL",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "source": []
+    },
+    {
+      "id": "APP-R-DFM-CONTINUUM-INTERFACE",
+      "inputs": [
+        "DFM-HIERARCHICAL-BOREL",
+        "FQ-GAP-CONTINUUM-HILBERT-LIFT"
+      ],
+      "output": "DFM-CONTINUUM-INTERFACE",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "source": []
+    },
+    {
+      "id": "APP-R-MUB-EXACT-PROJECTORS",
+      "inputs": [
+        "GP-FIN-GAUSS-MATRIX-ALGEBRA",
+        "GP-IMPORT-COMPLEX-FIELD"
+      ],
+      "output": "MUB-EXACT-PROJECTORS",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Check the scalar field, adjoint, rank, resolutions and all cross-basis trace equalities before accepting a MUB witness.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md",
+        "papers/core/mub6/README.md"
+      ]
+    },
+    {
+      "id": "APP-R-MUB-PRIME-POWER-CONSTRUCTION",
+      "inputs": [
+        "MUB-EXACT-PROJECTORS"
+      ],
+      "output": "MUB-PRIME-POWER-CONSTRUCTION",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.",
+      "source": []
+    },
+    {
+      "id": "APP-R-MUB-TOMOGRAPHY-INVERSION",
+      "inputs": [
+        "MUB-EXACT-PROJECTORS"
+      ],
+      "output": "MUB-TOMOGRAPHY-INVERSION",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Mechanize the trace-inner-product dimension and reconstruction argument; constructing a complete MUB family is a separate existence obligation.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0404_mub_tomography_inversion.md",
+        "papers/core/mub6/README.md"
+      ]
+    },
+    {
+      "id": "APP-R-MUB6-GLOBAL-OBLIGATIONS",
+      "inputs": [
+        "MUB-EXACT-PROJECTORS"
+      ],
+      "output": "MUB6-GLOBAL-OBLIGATIONS",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion.",
+      "source": []
+    },
+    {
+      "id": "APP-R-FSP-SWITCHING-NORMAL-FORM",
+      "inputs": [
+        "IMPL-FSP-SWITCHING-NORMAL-FORM-NF002"
+      ],
+      "output": "FSP-SWITCHING-NORMAL-FORM",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Retain fixed labels and vertex-switching equivalence; this canonicalizer is not a normal form under arbitrary many-body basis transformations.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md",
+        "dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean"
+      ]
+    },
+    {
+      "id": "APP-R-FSP-MERON-CHARACTER-CANCELLATION",
+      "inputs": [
+        "FSP-SWITCHING-NORMAL-FORM"
+      ],
+      "output": "FSP-MERON-CHARACTER-CANCELLATION",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Supply invariant weight magnitudes, valid flip action and compatible observables before using the sign identity as a model reduction.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md",
+        "papers/core/fsp/README.md"
+      ]
+    },
+    {
+      "id": "APP-R-FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+      "inputs": [
+        "FSP-SWITCHING-NORMAL-FORM"
+      ],
+      "output": "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Prove the required determinant pairing and Hamiltonian-to-representation equality for each stated model, including boundary cases.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md",
+        "papers/core/fsp/README.md",
+        "papers/core/fsp/docs/sql_meron_hubbard.md"
+      ]
+    },
+    {
+      "id": "APP-R-FSP-EFFICIENT-SAMPLING-OBLIGATIONS",
+      "inputs": [
+        "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+        "FSP-MERON-CHARACTER-CANCELLATION"
+      ],
+      "output": "FSP-EFFICIENT-SAMPLING-OBLIGATIONS",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.",
+      "source": []
+    },
+    {
+      "id": "APP-R-TENSOR-TOMOGRAPHIC-COORDINATES",
+      "inputs": [
+        "FQ-DECLARED-QUANTUM-INTERFACE",
+        "FQ-GAP-TENSOR-UNIQUENESS"
+      ],
+      "output": "TENSOR-TOMOGRAPHIC-COORDINATES",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Lean verifies Hermitian product spanning, nondegenerate trace pairing, finite dual-frame reconstruction, injectivity, surjectivity, uniqueness, and process calibration. Local complex QM and the operational bilinear/tomography premises remain supplied. The displayed positive projector-basis formula and SEP/BP commentary are prose corollaries, not additional Lean claims.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-CONE-ORBIT-KERNEL",
+      "inputs": [
+        "TENSOR-TOMOGRAPHIC-COORDINATES"
+      ],
+      "output": "TENSOR-CONE-ORBIT-KERNEL",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The general finite-index cone kernel retains explicit OrbitData assumptions. TensorOperationalCone now instantiates its transports and reachability using the proved Schmidt controlled-shift construction; TensorComposition connects that instance to the constructed operational coordinates.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "inputs": [
+        "TENSOR-TOMOGRAPHIC-COORDINATES",
+        "TENSOR-CONE-ORBIT-KERNEL"
+      ],
+      "output": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Lean constructs complete rectangular Schmidt bases, local unitaries and one modular controlled shift, then checks the operational state cone. TFQ-0414--TFQ-0416 check the generated effect cone, binary interval and finite POVMs with explicit effect and finite-test saturation premises. Calibration and operational preservation remain supplied; primitive difference has not supplied these hypotheses.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-ASSUMPTION-COUNTERMODELS",
+      "inputs": [
+        "TENSOR-TOMOGRAPHIC-COORDINATES",
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+        "TENSOR-BINARY-EFFECT-INTERVAL"
+      ],
+      "output": "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Full-cone duality and partial-transpose covariance; exact calibrated-gate witnesses; isometric two-level embeddings; a doubled carrier with indistinguishable normalized states. Only the stated matrix and path premises are used.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "dag/research/tensor_countermodel_validation.json"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-GENERATED-EFFECT-CONE",
+      "inputs": [
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION"
+      ],
+      "output": "TENSOR-GENERATED-EFFECT-CONE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Operational soundness, local binary product availability and reversible effect pullback closure remain explicit premises. The generated cone does not identify the available binary interval or available finite tests.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-BINARY-EFFECT-INTERVAL",
+      "inputs": [
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION"
+      ],
+      "output": "TENSOR-BINARY-EFFECT-INTERVAL",
+      "status": "DERIVED_LEAN",
+      "mechanism": "EffectSaturated is a separate no-restriction premise, not a consequence of state-cone or generated-effect-cone equality. Local complex QM and the state-reconstruction assumptions remain supplied.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-FINITE-POVM-AVAILABILITY",
+      "inputs": [
+        "TENSOR-BINARY-EFFECT-INTERVAL"
+      ],
+      "output": "TENSOR-FINITE-POVM-AVAILABILITY",
+      "status": "DERIVED_LEAN",
+      "mechanism": "FiniteTestSaturated requires jointly implementing each finite family of available effects summing to the deterministic unit. It is distinct from individual effect saturation. No availability or classification of instruments or channels is asserted.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md"
       ]
     }
   ]

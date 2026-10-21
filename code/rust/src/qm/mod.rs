@@ -89,8 +89,11 @@ impl DensityOperator {
     }
 }
 
+pub mod born_effect_valuation;
+pub mod born_hermitian_valuation;
 pub mod campaigns;
 pub mod causal_prices;
+pub mod discrete_time_stone;
 pub mod domain;
 pub mod entropy_bounds;
 pub mod entropy_solver;
@@ -100,6 +103,7 @@ pub mod exact_token;
 pub mod finite_spinfoam;
 pub mod finite_witness;
 pub mod group_param;
+pub mod hilbert_lift_completion;
 pub mod legacy_suites;
 pub mod observer_functor;
 pub mod obstruction_calc;

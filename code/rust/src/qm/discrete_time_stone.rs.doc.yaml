@@ -1,0 +1,13 @@
+schema_id: finite-qm.code-companion.v1
+subject: code/rust/src/qm/discrete_time_stone.rs
+source_sha256: 38bacedfa1a67a4502ddc25c9192c95843ca7bfdef2c5aaa2d3fcbb7e992e1c5
+authority_effect: None
+purpose: Exact BigRational twin of code/python/src/qm/discrete_time_stone.py with inline tests.
+design:
+  profile: Exact rational arithmetic or kernel-checked Lean on the declared carrier; no floating point.
+  frozen_sources: Run snapshots under verification/ are immutable custody assets.
+boundaries:
+- Finite exact replay on supplied matrices; a passing test is not a general proof.
+- No topology; rational 2x2 rotations only.
+evidence:
+- dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec/README.md

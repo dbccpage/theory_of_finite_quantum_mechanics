@@ -1,0 +1,1485 @@
+{
+  "schema_version": "application_branches.v1",
+  "authority_effect": "None",
+  "stages": [
+    "DRESSING_FIELD",
+    "MUTUALLY_UNBIASED_BASES",
+    "FERMION_SIGN",
+    "TENSOR_COMPOSITION"
+  ],
+  "nf002_statement": "FSP switching normal form NF-002 on a fixed labelled finite graph with a supplied spanning forest: T1-T5, soundness and completeness of the normal form, and a duplicate-free enumeration are mechanized. normalForms_length gives length 2^numChord; normalForms_nodup and mem_normalForms_iff certify enumeration uniqueness and membership. Together with numChord_identity this records 2^(|E|-|V|+c) switching classes. It does not assert graph-isomorphism canonicalization or efficient fermionic sampling.",
+  "nf002_source": "dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean",
+  "nodes": [
+    {
+      "id": "DFM-GROUP-CONNECTION",
+      "stage": "DRESSING_FIELD",
+      "status": "DEFINITION",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "A finite multigraph with oriented edge representatives carries labels in a supplied group G; reverse traversal carries the inverse label. This admits the group and connection rather than selecting them from primitive difference.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md",
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "finite multigraph",
+        "supplied group G and group axioms"
+      ],
+      "bottleneck": "Keep the graph, group axioms, inverse-edge convention and multiplication order explicit.",
+      "tags": [
+        "application-branch",
+        "TFQ-0397"
+      ],
+      "see_also": [
+        "FQ-U1-TRANSPORT-N-TORSION",
+        "DS-QM063-HOLONOMY-COHERENT-INTENSITY"
+      ]
+    },
+    {
+      "id": "DFM-GENERAL-GRAPH-DRESSING",
+      "stage": "DRESSING_FIELD",
+      "status": "PROVED_LEAN",
+      "source_status": "New theorem checked in Lean 4.33.1; axioms printed separately.",
+      "statement": "Given a rooted spanning forest and an arbitrary supplied group, a vertex dressing neutralizes every edge iff every closed walk has identity transport. It suffices to test the fundamental chord residuals; disconnected components are handled separately.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md",
+        "dag/research/finite_graph_dressing.py",
+        "dag/research/finite_graph_dressing.rs"
+      ],
+      "lean": [
+        "lean4/FiniteGraphDressing.lean::neutralizable_iff_closed_walks_forest",
+        "lean4/FiniteGraphDressing.lean::tree_dressing_iff",
+        "lean4/FiniteGraphDressing.lean::neutralizers_constant"
+      ],
+      "rust": [
+        "dag/research/finite_graph_dressing.rs::forest_dressing"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Preserve the supplied-group and supplied-forest hypotheses; the Python and Rust enumerations are bounded witnesses for the general Lean theorem.",
+      "tags": [
+        "application-branch",
+        "TFQ-0398"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "DFM-TREE-CHANGE",
+      "stage": "DRESSING_FIELD",
+      "status": "PROVED_LEAN",
+      "source_status": "New theorem checked in Lean 4.33.1; axioms printed separately.",
+      "statement": "For any two dressings u and u prime, the change field C(v)=u prime(v)u(v) inverse intertwines the residual connections. In particular this describes two spanning-forest choices without commuting group elements.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md",
+        "dag/research/finite_graph_dressing.py",
+        "dag/research/finite_graph_dressing.rs"
+      ],
+      "lean": [
+        "lean4/FiniteGraphDressing.lean::change_dressing"
+      ],
+      "rust": [
+        "dag/research/finite_graph_dressing.rs::forest_dressing"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Use the same multiplication convention in all three languages; distinguish edge residuals from conjugacy-invariant closed-loop observables.",
+      "tags": [
+        "application-branch",
+        "TFQ-0399"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "DFM-HIERARCHICAL-BOREL",
+      "stage": "DRESSING_FIELD",
+      "status": "OPEN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "normal subgroup N and quotient action",
+        "specified incidence DGA"
+      ],
+      "bottleneck": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "tags": [
+        "application-branch",
+        "TFQ-0400"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "DFM-CONTINUUM-INTERFACE",
+      "stage": "DRESSING_FIELD",
+      "status": "OPEN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md",
+        "dag/research/electroweak_dfm_weinberg_finite_map.md",
+        "papers/ravera_dfm_dossier.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "tags": [
+        "application-branch",
+        "TFQ-0401"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "MUB-EXACT-PROJECTORS",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "DEFINITION",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "On a supplied finite-dimensional Hilbert carrier, a MUB family consists of rank-one orthogonal projector resolutions with cross-basis trace pairing 1/d. Exact arithmetic must include the required scalar extension.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md",
+        "papers/core/mub6/README.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "supplied finite-dimensional Hilbert carrier",
+        "sufficient exact scalar extension"
+      ],
+      "bottleneck": "Check the scalar field, adjoint, rank, resolutions and all cross-basis trace equalities before accepting a MUB witness.",
+      "tags": [
+        "application-branch",
+        "TFQ-0402"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "MUB-PRIME-POWER-CONSTRUCTION",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "OPEN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md",
+        "papers/core/mub6/README.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.",
+      "tags": [
+        "application-branch",
+        "TFQ-0403"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "MUB-TOMOGRAPHY-INVERSION",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "PROVED_PROSE",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Given d+1 MUB projector resolutions on a d-dimensional complex Hilbert carrier and trace-one rho, the probabilities p_bj=tr(rho P_bj) reconstruct rho as sum_bj p_bj P_bj minus I.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0404_mub_tomography_inversion.md",
+        "papers/core/mub6/README.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "complete d+1 MUB family",
+        "complex Hilbert trace inner product"
+      ],
+      "bottleneck": "Mechanize the trace-inner-product dimension and reconstruction argument; constructing a complete MUB family is a separate existence obligation.",
+      "tags": [
+        "application-branch",
+        "TFQ-0404"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "MUB6-GLOBAL-OBLIGATIONS",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "OPEN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Separate exact stated-region exclusions and conditional reductions from a global dimension-six existence or maximality theorem; the package leaves G1 open.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md",
+        "papers/core/mub6/README.md",
+        "papers/core/mub6/research/mub6_gap_registry.json"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion.",
+      "tags": [
+        "application-branch",
+        "TFQ-0405"
+      ],
+      "see_also": [
+        "FQ-GAP-TENSOR-UNIQUENESS",
+        "FQ-GAP-BORN-UNIQUENESS-GLEASON"
+      ]
+    },
+    {
+      "id": "FSP-SWITCHING-NORMAL-FORM",
+      "stage": "FERMION_SIGN",
+      "status": "PROVED_LEAN",
+      "source_status": "Local compatibility port replayed with Lean 4.33.1; enumeration length, uniqueness, membership and chord-count identity depend only on propext and Quot.sound.",
+      "statement": "For a fixed labelled finite graph and supplied spanning forest, vertex sign switching has a canonical tree-zero representative determined by chord signs. NF-002 records a duplicate-free enumeration of length 2^numChord and numChord=|E|-|V|+c.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md",
+        "dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean",
+        "lean4/SwitchingNormalForm.lean"
+      ],
+      "lean": [
+        "lean4/SwitchingNormalForm.lean::normal_sound",
+        "lean4/SwitchingNormalForm.lean::same_class_iff",
+        "lean4/SwitchingNormalForm.lean::numChord_identity",
+        "lean4/SwitchingNormalForm.lean::normalForms_length",
+        "lean4/SwitchingNormalForm.lean::normalForms_nodup",
+        "lean4/SwitchingNormalForm.lean::mem_normalForms_iff"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Retain fixed labels and vertex-switching equivalence; this canonicalizer is not a normal form under arbitrary many-body basis transformations.",
+      "tags": [
+        "application-branch",
+        "TFQ-0406"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "FSP-MERON-CHARACTER-CANCELLATION",
+      "stage": "FERMION_SIGN",
+      "status": "PROVED_LEAN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "The finite flip-orbit sign sum is zero when at least one meron flag is true, and is 2^k when all k flags are false. Weighted partition and observable reductions require additional orbit hypotheses.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md",
+        "papers/core/fsp/README.md"
+      ],
+      "lean": [
+        "lean4/MeronCharacter.lean::meron_orbit_cancels",
+        "lean4/MeronCharacter.lean::zero_meron_orbit_positive",
+        "lean4/MeronCharacter.lean::compression_preserves_partition"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "supplied Boolean flip-orbit model; not derived from graph switching"
+      ],
+      "bottleneck": "Supply invariant weight magnitudes, valid flip action and compatible observables before using the sign identity as a model reduction.",
+      "tags": [
+        "application-branch",
+        "TFQ-0407"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+      "stage": "FERMION_SIGN",
+      "status": "CONDITIONAL",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Hubbard determinant positivity is restricted to the package stated half-filled bipartite or attractive spin-balanced hypotheses; exact negative fields outside those protections remain distinct witnesses.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md",
+        "papers/core/fsp/README.md",
+        "papers/core/fsp/docs/sql_meron_hubbard.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "stated Hubbard model and protected symmetry hypotheses"
+      ],
+      "bottleneck": "Prove the required determinant pairing and Hamiltonian-to-representation equality for each stated model, including boundary cases.",
+      "tags": [
+        "application-branch",
+        "TFQ-0408"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "FSP-EFFICIENT-SAMPLING-OBLIGATIONS",
+      "stage": "FERMION_SIGN",
+      "status": "OPEN",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
+      "statement": "Canonical sign representatives, finite cancellation and nonnegative determinant weights do not establish an efficient sampler or a general fermion sign-problem solution.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md",
+        "papers/core/fsp/README.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.",
+      "tags": [
+        "application-branch",
+        "TFQ-0409"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-TOMOGRAPHIC-COORDINATES",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; checked theorem scope and remaining prose corollaries are distinguished in the derivation and tensor formalization receipt.",
+      "statement": "Independent bilinear preparations and tests with trace-factorized product probabilities and local tomography construct a unique real linear equivalence with joint Hermitian matrices for arbitrary finite local complex dimensions. The equivalence preserves products and all product tests; the deterministic product test is trace. The joint state cone is not assumed.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorTomography.lean::product_span",
+        "lean4/TensorTomography.lean::pairing_nondegenerate",
+        "lean4/TensorCoordinates.lean::tomographicEquiv",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_prepare",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_test",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_unique",
+        "lean4/TensorCoordinates.lean::product_calibration",
+        "lean4/TensorCoordinates.lean::finite_frame_calibration",
+        "lean4/TensorComposition.lean::unit_test_is_trace"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "finite local complex quantum state and effect spaces",
+        "independent preparations and tests with factorized probabilities",
+        "local tomography",
+        "mixing and linear operational extension"
+      ],
+      "bottleneck": "Lean verifies Hermitian product spanning, nondegenerate trace pairing, finite dual-frame reconstruction, injectivity, surjectivity, uniqueness, and process calibration. Local complex QM and the operational bilinear/tomography premises remain supplied. The displayed positive projector-basis formula and SEP/BP commentary are prose corollaries, not additional Lean claims.",
+      "tags": [
+        "application-branch",
+        "TFQ-0410"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-CONE-ORBIT-KERNEL",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; checked theorem scope and remaining prose corollaries are distinguished in the derivation and tensor formalization receipt.",
+      "statement": "For any finite complex matrix size, a Hermitian set containing zero and closed under addition equals PSD when seed preparations and positive seed tests are transported by preserving operations whose seed-vector orbits cover all vectors.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorConeReconstruction.lean::operational_orbit_selects_positive",
+        "lean4/TensorConeReconstruction.lean::positive_mem_of_rankOne"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "finite complex matrix and spectral theory",
+        "explicit OrbitData reachability and transport hypotheses"
+      ],
+      "bottleneck": "The general finite-index cone kernel retains explicit OrbitData assumptions. TensorOperationalCone now instantiates its transports and reachability using the proved Schmidt controlled-shift construction; TensorComposition connects that instance to the constructed operational coordinates.",
+      "tags": [
+        "application-branch",
+        "TFQ-0411"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified state-space theorem with measurement corollaries separately verified in TFQ-0414--TFQ-0416.",
+      "statement": "For arbitrary finite n<=m with m nonzero (the smaller subsystem is the control), supplied local complex QM, independent bilinear preparation/testing, local tomography, positive product tests, finite-sum state closure, and calibrated local-unitary and reversible controlled-shift preservation force the represented state cone to be PSD(nm). Tomographic coordinates, Schmidt reachability, cone equality and trace normalization are verified in Lean.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorSchmidt.lean::exists_schmidt_bases",
+        "lean4/TensorReachability.lean::exists_schmidt_coefficients",
+        "lean4/TensorReachability.lean::schmidt_reachability",
+        "lean4/TensorOperationalCone.lean::controlled_shift_selects_positive",
+        "lean4/TensorComposition.lean::quantum_state_cone",
+        "lean4/TensorComposition.lean::unit_test_is_trace"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "local complex QM and spectral theory",
+        "independent preparation, testing and convex composition",
+        "local tomography",
+        "all local unitary operations",
+        "coherently calibrated reversible controlled shift",
+        "effect and finite-test saturation for full measurement availability"
+      ],
+      "bottleneck": "Lean constructs complete rectangular Schmidt bases, local unitaries and one modular controlled shift, then checks the operational state cone. TFQ-0414--TFQ-0416 check the generated effect cone, binary interval and finite POVMs with explicit effect and finite-test saturation premises. Calibration and operational preservation remain supplied; primitive difference has not supplied these hypotheses.",
+      "tags": [
+        "application-branch",
+        "TFQ-0412"
+      ],
+      "see_also": [
+        "TENSOR-GENERATED-EFFECT-CONE",
+        "TENSOR-BINARY-EFFECT-INTERVAL",
+        "TENSOR-FINITE-POVM-AVAILABILITY"
+      ]
+    },
+    {
+      "id": "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Lean 4.33.1 with pinned Mathlib verifies the full-cone algebra, exact two-qubit calibration failures, all-dimension cone embeddings, and hidden-coordinate tomography failure. The countermodel receipt records the precise scope and standard-axiom audits.",
+      "statement": "Full SEP/BP duality, local preservation and binary-product tomography do not select PSD: exact Bell/partial-transpose separations embed into every n,m>=2. Two-qubit ordinary, twisted and dephased controlled shifts separate calibrated preservation, coherent calibration and reversibility despite matching classical tables. A doubled positive carrier has distinct normalized states with identical product statistics.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_countermodel_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorPartialTranspose.lean::gamma",
+        "lean4/TensorPartialTranspose.lean::pairing_gamma_gamma",
+        "lean4/TensorPartialTranspose.lean::gamma_conjMap_product",
+        "lean4/TensorPartialTranspose.lean::conjMap_inverse",
+        "lean4/TensorCountermodelCones.lean::blockPositive_iff_dual_sep",
+        "lean4/TensorCountermodelCones.lean::sep_ppt",
+        "lean4/TensorCountermodelCones.lean::twisted_self_dual",
+        "lean4/TensorCountermodelCones.lean::sep_local",
+        "lean4/TensorCountermodelCones.lean::bp_local",
+        "lean4/TensorCountermodelCones.lean::twisted_local",
+        "lean4/TensorCountermodelCones.lean::twist_reversible",
+        "lean4/TensorCountermodelCones.lean::twist_trace",
+        "lean4/TensorCountermodelCones.lean::twist_path_continuous",
+        "lean4/TensorCountermodelCones.lean::binary_product_statistics_separate",
+        "lean4/TensorCountermodelCones.lean::bp_salient",
+        "lean4/TensorCountermodelWitnesses.lean::sep_fails_controlled_shift",
+        "lean4/TensorCountermodelWitnesses.lean::bp_fails_inverse_controlled_shift",
+        "lean4/TensorCountermodelWitnesses.lean::twisted_fails_ordinary_calibration",
+        "lean4/TensorCountermodelWitnesses.lean::twisted_same_classical_table",
+        "lean4/TensorCountermodelWitnesses.lean::imaginary_effect_binary",
+        "lean4/TensorCountermodelWitnesses.lean::coherent_calibration_separates",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_same_classical_table",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_controlled_shift_not_injective",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_coherent_calibration_separates",
+        "lean4/TensorCountermodelWitnesses.lean::plus_binary",
+        "lean4/TensorCountermodelWitnesses.lean::seed_normalized",
+        "lean4/TensorCountermodelEmbeddings.lean::cone_separations_all_dimensions",
+        "lean4/TensorHiddenCoordinates.lean::independent_probabilities",
+        "lean4/TensorHiddenCoordinates.lean::doubledConj_inverse",
+        "lean4/TensorHiddenCoordinates.lean::hidden_normalized_states",
+        "lean4/TensorHiddenCoordinates.lean::no_local_tomography",
+        "lean4/TensorHiddenCoordinates.lean::dimension_doubled",
+        "lean4/TensorHiddenCoordinates.lean::basis_state_normalized"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "finite complex Hermitian matrix carriers with the real trace pairing",
+        "full local positive and binary matrix tests; operational availability is not inferred",
+        "dimensions n,m>=2 for cone separations; exact two-qubit gate witnesses",
+        "supplied unitary transformations; supplied continuous paths for the continuity theorem",
+        "positive trace-one state for normalized doubled-carrier witnesses; a basis index constructs one"
+      ],
+      "bottleneck": "Countermodels delimit weakened hypotheses, not logical minimality of the sufficient package. No primitive derivation, arbitrary-GPT classification, operational saturation, or new proof of SEP closedness is claimed. The identical-qubit family classification remains external.",
+      "tags": [
+        "application-branch",
+        "TFQ-0413"
+      ],
+      "see_also": [
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+        "TENSOR-BINARY-EFFECT-INTERVAL"
+      ]
+    },
+    {
+      "id": "TENSOR-GENERATED-EFFECT-CONE",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; theorem premises and standard logical axioms are recorded in the measurement validation receipt.",
+      "statement": "The conic hull of represented available effects equals PSD for arbitrary finite n<=m with m nonzero, using the verified state cone, sound effects, all local binary product tests and calibrated local-unitary and controlled-shift pullbacks. Neither effect saturation nor finite-test saturation is required.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md",
+        "dag/research/tensor_measurement_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorEffectOrder.lean::positive_iff_pairing",
+        "lean4/TensorEffectOrder.lean::positive_ray_binary",
+        "lean4/TensorEffectCone.lean::effect_cone_eq_positive",
+        "lean4/TensorMeasurements.lean::operational_effect_cone"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "state-cone conclusion of quantum_state_cone",
+        "sound operational effects",
+        "all products of local binary effects",
+        "calibrated reversible effect pullbacks"
+      ],
+      "bottleneck": "Operational soundness, local binary product availability and reversible effect pullback closure remain explicit premises. The generated cone does not identify the available binary interval or available finite tests.",
+      "tags": [
+        "application-branch",
+        "TFQ-0414"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-BINARY-EFFECT-INTERVAL",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; theorem premises and standard logical axioms are recorded in the measurement validation receipt.",
+      "statement": "The constructed dual representation identifies functionals satisfying 0<=e(x)<=u(x) on the state cone with Hermitian matrices 0<=E<=I. Homogeneous bounds are equivalent to probabilities in [0,1] on all trace-one PSD states. Soundness plus explicit EffectSaturated identifies the available binary effects with this full interval.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md",
+        "dag/research/tensor_measurement_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorEffectOrder.lean::binary_iff_bounds",
+        "lean4/TensorEffectOrder.lean::binary_iff_interval",
+        "lean4/TensorEffectOrder.lean::binary_iff_normalized",
+        "lean4/TensorMeasurements.lean::effectRepresentation",
+        "lean4/TensorMeasurements.lean::effectRepresentation_unit",
+        "lean4/TensorMeasurements.lean::effectRepresentation_product",
+        "lean4/TensorMeasurements.lean::validEffect_iff_binary",
+        "lean4/TensorMeasurements.lean::available_effects_eq_interval"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "state-cone conclusion of quantum_state_cone",
+        "sound operational effects",
+        "EffectSaturated: every cone-bounded functional is available"
+      ],
+      "bottleneck": "EffectSaturated is a separate no-restriction premise, not a consequence of state-cone or generated-effect-cone equality. Local complex QM and the state-reconstruction assumptions remain supplied.",
+      "tags": [
+        "application-branch",
+        "TFQ-0415"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-FINITE-POVM-AVAILABILITY",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "Verified with Lean 4.33.1 and pinned Mathlib; theorem premises and standard logical axioms are recorded in the measurement validation receipt.",
+      "statement": "For any finite outcome type, sound available tests correspond to positive Hermitian families summing to I. Conversely every such POVM is available under both EffectSaturated and the separate FiniteTestSaturated premise. The end-to-end quantum_measurements theorem invokes quantum_state_cone and returns the generated cone, binary interval and finite-POVM equivalence.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md",
+        "dag/research/tensor_measurement_validation.json"
+      ],
+      "lean": [
+        "lean4/TensorMeasurements.lean::povm_binary",
+        "lean4/TensorMeasurements.lean::test_povm_of_sound",
+        "lean4/TensorMeasurements.lean::test_iff_povm",
+        "lean4/TensorMeasurements.lean::quantum_measurements"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "state-cone conclusion of quantum_state_cone",
+        "sound available effects and finite tests",
+        "EffectSaturated",
+        "FiniteTestSaturated"
+      ],
+      "bottleneck": "FiniteTestSaturated requires jointly implementing each finite family of available effects summing to the deterministic unit. It is distinct from individual effect saturation. No availability or classification of instruments or channels is asserted.",
+      "tags": [
+        "application-branch",
+        "TFQ-0416"
+      ],
+      "see_also": []
+    }
+  ],
+  "routes": [
+    {
+      "id": "APP-R-DFM-GROUP-CONNECTION",
+      "inputs": [
+        "FQ-CARRIER-CONTRACT-V2"
+      ],
+      "output": "DFM-GROUP-CONNECTION",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Keep the graph, group axioms, inverse-edge convention and multiplication order explicit.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md",
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
+      ]
+    },
+    {
+      "id": "APP-R-DFM-GENERAL-GRAPH-DRESSING",
+      "inputs": [
+        "DFM-GROUP-CONNECTION"
+      ],
+      "output": "DFM-GENERAL-GRAPH-DRESSING",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Preserve the supplied-group and supplied-forest hypotheses; the Python and Rust enumerations are bounded witnesses for the general Lean theorem.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md",
+        "dag/research/finite_graph_dressing.py",
+        "dag/research/finite_graph_dressing.rs"
+      ]
+    },
+    {
+      "id": "APP-R-DFM-TREE-CHANGE",
+      "inputs": [
+        "DFM-GENERAL-GRAPH-DRESSING"
+      ],
+      "output": "DFM-TREE-CHANGE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Use the same multiplication convention in all three languages; distinguish edge residuals from conjugacy-invariant closed-loop observables.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md",
+        "dag/research/finite_graph_dressing.py",
+        "dag/research/finite_graph_dressing.rs"
+      ]
+    },
+    {
+      "id": "APP-R-DFM-HIERARCHICAL-BOREL",
+      "inputs": [
+        "DFM-TREE-CHANGE"
+      ],
+      "output": "DFM-HIERARCHICAL-BOREL",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "source": []
+    },
+    {
+      "id": "APP-R-DFM-CONTINUUM-INTERFACE",
+      "inputs": [
+        "DFM-HIERARCHICAL-BOREL",
+        "FQ-GAP-CONTINUUM-HILBERT-LIFT"
+      ],
+      "output": "DFM-CONTINUUM-INTERFACE",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "source": []
+    },
+    {
+      "id": "APP-R-MUB-EXACT-PROJECTORS",
+      "inputs": [
+        "GP-FIN-GAUSS-MATRIX-ALGEBRA",
+        "GP-IMPORT-COMPLEX-FIELD"
+      ],
+      "output": "MUB-EXACT-PROJECTORS",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Check the scalar field, adjoint, rank, resolutions and all cross-basis trace equalities before accepting a MUB witness.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md",
+        "papers/core/mub6/README.md"
+      ]
+    },
+    {
+      "id": "APP-R-MUB-PRIME-POWER-CONSTRUCTION",
+      "inputs": [
+        "MUB-EXACT-PROJECTORS"
+      ],
+      "output": "MUB-PRIME-POWER-CONSTRUCTION",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.",
+      "source": []
+    },
+    {
+      "id": "APP-R-MUB-TOMOGRAPHY-INVERSION",
+      "inputs": [
+        "MUB-EXACT-PROJECTORS"
+      ],
+      "output": "MUB-TOMOGRAPHY-INVERSION",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Mechanize the trace-inner-product dimension and reconstruction argument; constructing a complete MUB family is a separate existence obligation.",
+      "source": [
+        "dag/derivations/25_mub/tfq_0404_mub_tomography_inversion.md",
+        "papers/core/mub6/README.md"
+      ]
+    },
+    {
+      "id": "APP-R-MUB6-GLOBAL-OBLIGATIONS",
+      "inputs": [
+        "MUB-EXACT-PROJECTORS"
+      ],
+      "output": "MUB6-GLOBAL-OBLIGATIONS",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion.",
+      "source": []
+    },
+    {
+      "id": "APP-R-FSP-SWITCHING-NORMAL-FORM",
+      "inputs": [
+        "IMPL-FSP-SWITCHING-NORMAL-FORM-NF002"
+      ],
+      "output": "FSP-SWITCHING-NORMAL-FORM",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Retain fixed labels and vertex-switching equivalence; this canonicalizer is not a normal form under arbitrary many-body basis transformations.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md",
+        "dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean"
+      ]
+    },
+    {
+      "id": "APP-R-FSP-MERON-CHARACTER-CANCELLATION",
+      "inputs": [
+        "FSP-SWITCHING-NORMAL-FORM"
+      ],
+      "output": "FSP-MERON-CHARACTER-CANCELLATION",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Supply invariant weight magnitudes, valid flip action and compatible observables before using the sign identity as a model reduction.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md",
+        "papers/core/fsp/README.md"
+      ]
+    },
+    {
+      "id": "APP-R-FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+      "inputs": [
+        "FSP-SWITCHING-NORMAL-FORM"
+      ],
+      "output": "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Prove the required determinant pairing and Hamiltonian-to-representation equality for each stated model, including boundary cases.",
+      "source": [
+        "dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md",
+        "papers/core/fsp/README.md",
+        "papers/core/fsp/docs/sql_meron_hubbard.md"
+      ]
+    },
+    {
+      "id": "APP-R-FSP-EFFICIENT-SAMPLING-OBLIGATIONS",
+      "inputs": [
+        "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+        "FSP-MERON-CHARACTER-CANCELLATION"
+      ],
+      "output": "FSP-EFFICIENT-SAMPLING-OBLIGATIONS",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.",
+      "source": []
+    },
+    {
+      "id": "APP-R-TENSOR-TOMOGRAPHIC-COORDINATES",
+      "inputs": [
+        "FQ-DECLARED-QUANTUM-INTERFACE",
+        "FQ-GAP-TENSOR-UNIQUENESS"
+      ],
+      "output": "TENSOR-TOMOGRAPHIC-COORDINATES",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Lean verifies Hermitian product spanning, nondegenerate trace pairing, finite dual-frame reconstruction, injectivity, surjectivity, uniqueness, and process calibration. Local complex QM and the operational bilinear/tomography premises remain supplied. The displayed positive projector-basis formula and SEP/BP commentary are prose corollaries, not additional Lean claims.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-CONE-ORBIT-KERNEL",
+      "inputs": [
+        "TENSOR-TOMOGRAPHIC-COORDINATES"
+      ],
+      "output": "TENSOR-CONE-ORBIT-KERNEL",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The general finite-index cone kernel retains explicit OrbitData assumptions. TensorOperationalCone now instantiates its transports and reachability using the proved Schmidt controlled-shift construction; TensorComposition connects that instance to the constructed operational coordinates.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "inputs": [
+        "TENSOR-TOMOGRAPHIC-COORDINATES",
+        "TENSOR-CONE-ORBIT-KERNEL"
+      ],
+      "output": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Lean constructs complete rectangular Schmidt bases, local unitaries and one modular controlled shift, then checks the operational state cone. TFQ-0414--TFQ-0416 check the generated effect cone, binary interval and finite POVMs with explicit effect and finite-test saturation premises. Calibration and operational preservation remain supplied; primitive difference has not supplied these hypotheses.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-ASSUMPTION-COUNTERMODELS",
+      "inputs": [
+        "TENSOR-TOMOGRAPHIC-COORDINATES",
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+        "TENSOR-BINARY-EFFECT-INTERVAL"
+      ],
+      "output": "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Full-cone duality and partial-transpose covariance; exact calibrated-gate witnesses; isometric two-level embeddings; a doubled carrier with indistinguishable normalized states. Only the stated matrix and path premises are used.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "dag/research/tensor_countermodel_validation.json"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-GENERATED-EFFECT-CONE",
+      "inputs": [
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION"
+      ],
+      "output": "TENSOR-GENERATED-EFFECT-CONE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Operational soundness, local binary product availability and reversible effect pullback closure remain explicit premises. The generated cone does not identify the available binary interval or available finite tests.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-BINARY-EFFECT-INTERVAL",
+      "inputs": [
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION"
+      ],
+      "output": "TENSOR-BINARY-EFFECT-INTERVAL",
+      "status": "DERIVED_LEAN",
+      "mechanism": "EffectSaturated is a separate no-restriction premise, not a consequence of state-cone or generated-effect-cone equality. Local complex QM and the state-reconstruction assumptions remain supplied.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-FINITE-POVM-AVAILABILITY",
+      "inputs": [
+        "TENSOR-BINARY-EFFECT-INTERVAL"
+      ],
+      "output": "TENSOR-FINITE-POVM-AVAILABILITY",
+      "status": "DERIVED_LEAN",
+      "mechanism": "FiniteTestSaturated requires jointly implementing each finite family of available effects summing to the deterministic unit. It is distinct from individual effect saturation. No availability or classification of instruments or channels is asserted.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "id": "TFQ-0397",
+      "uuid": "d9c5c6b3-b3de-5324-a6f8-9ebbf561409a",
+      "local_id": "DFM-GROUP-CONNECTION",
+      "name": "Group-valued connections on a finite multigraph",
+      "stage": "DRESSING_FIELD",
+      "parent_id": "TFQ-0009",
+      "record_status": "DEFINITION",
+      "summary": "A finite multigraph with oriented edge representatives carries labels in a supplied group G; reverse traversal carries the inverse label. This admits the group and connection rather than selecting them from primitive difference.",
+      "obligation": "Keep the graph, group axioms, inverse-edge convention and multiplication order explicit.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "DFM-GROUP-CONNECTION"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md",
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
+      ],
+      "python": [
+        "dag/research/finite_graph_dressing.py"
+      ],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-0398",
+      "uuid": "11cb0b74-177b-5626-9126-05861fee78de",
+      "local_id": "DFM-GENERAL-GRAPH-DRESSING",
+      "name": "General finite-graph dressing and closed-walk holonomy",
+      "stage": "DRESSING_FIELD",
+      "parent_id": "TFQ-0397",
+      "record_status": "PROVED_LEAN",
+      "summary": "Given a rooted spanning forest and an arbitrary supplied group, a vertex dressing neutralizes every edge iff every closed walk has identity transport. It suffices to test the fundamental chord residuals; disconnected components are handled separately.",
+      "obligation": "Preserve the supplied-group and supplied-forest hypotheses; the Python and Rust enumerations are bounded witnesses for the general Lean theorem.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "DFM-GENERAL-GRAPH-DRESSING"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md",
+        "dag/research/finite_graph_dressing.py",
+        "dag/research/finite_graph_dressing.rs"
+      ],
+      "python": [
+        "dag/research/finite_graph_dressing.py"
+      ],
+      "rust": [
+        "dag/research/finite_graph_dressing.rs::forest_dressing"
+      ],
+      "lean4": [
+        "lean4/FiniteGraphDressing.lean::neutralizable_iff_closed_walks_forest",
+        "lean4/FiniteGraphDressing.lean::tree_dressing_iff",
+        "lean4/FiniteGraphDressing.lean::neutralizers_constant"
+      ]
+    },
+    {
+      "id": "TFQ-0399",
+      "uuid": "6de7cae6-16b8-5cb0-b64e-0359fb14f04d",
+      "local_id": "DFM-TREE-CHANGE",
+      "name": "Tree-change covariance of the residual connection",
+      "stage": "DRESSING_FIELD",
+      "parent_id": "TFQ-0398",
+      "record_status": "PROVED_LEAN",
+      "summary": "For any two dressings u and u prime, the change field C(v)=u prime(v)u(v) inverse intertwines the residual connections. In particular this describes two spanning-forest choices without commuting group elements.",
+      "obligation": "Use the same multiplication convention in all three languages; distinguish edge residuals from conjugacy-invariant closed-loop observables.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "DFM-TREE-CHANGE"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md",
+        "dag/research/finite_graph_dressing.py",
+        "dag/research/finite_graph_dressing.rs"
+      ],
+      "python": [
+        "dag/research/finite_graph_dressing.py"
+      ],
+      "rust": [
+        "dag/research/finite_graph_dressing.rs::forest_dressing"
+      ],
+      "lean4": [
+        "lean4/FiniteGraphDressing.lean::change_dressing"
+      ]
+    },
+    {
+      "id": "TFQ-0400",
+      "uuid": "cb25b943-66e6-550c-9490-67640907b380",
+      "local_id": "DFM-HIERARCHICAL-BOREL",
+      "name": "Hierarchical Borel dressing beyond the diamond control",
+      "stage": "DRESSING_FIELD",
+      "parent_id": "TFQ-0399",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.",
+      "obligation": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "DFM-HIERARCHICAL-BOREL"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-0401",
+      "uuid": "bc218cca-9cda-5513-aa3e-2655ca2c514b",
+      "local_id": "DFM-CONTINUUM-INTERFACE",
+      "name": "Dressing-field continuum and physical interpretation obligations",
+      "stage": "DRESSING_FIELD",
+      "parent_id": "TFQ-0400",
+      "record_status": "GAP",
+      "summary": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations.",
+      "obligation": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "DFM-CONTINUUM-INTERFACE"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md",
+        "dag/research/electroweak_dfm_weinberg_finite_map.md",
+        "papers/ravera_dfm_dossier.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-0402",
+      "uuid": "58bc42e5-4ead-503b-a19d-c85a9c012113",
+      "local_id": "MUB-EXACT-PROJECTORS",
+      "name": "Exact projector contract for mutually unbiased bases",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "parent_id": "TFQ-0315",
+      "record_status": "DEFINITION",
+      "summary": "On a supplied finite-dimensional Hilbert carrier, a MUB family consists of rank-one orthogonal projector resolutions with cross-basis trace pairing 1/d. Exact arithmetic must include the required scalar extension.",
+      "obligation": "Check the scalar field, adjoint, rank, resolutions and all cross-basis trace equalities before accepting a MUB witness.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "MUB-EXACT-PROJECTORS"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md",
+        "papers/core/mub6/README.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-0403",
+      "uuid": "b1cd2642-4f5d-5264-a58f-a17a68f2f5de",
+      "local_id": "MUB-PRIME-POWER-CONSTRUCTION",
+      "name": "Prime-power MUB construction and exact field obligations",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "parent_id": "TFQ-0402",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.",
+      "obligation": "Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "MUB-PRIME-POWER-CONSTRUCTION"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md",
+        "papers/core/mub6/README.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-0404",
+      "uuid": "e8d3329a-0bff-5c44-a5af-21a8e34fb83f",
+      "local_id": "MUB-TOMOGRAPHY-INVERSION",
+      "name": "Tomography from a supplied complete MUB family",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "parent_id": "TFQ-0402",
+      "record_status": "PROVED_PROSE",
+      "summary": "Given d+1 MUB projector resolutions on a d-dimensional complex Hilbert carrier and trace-one rho, the probabilities p_bj=tr(rho P_bj) reconstruct rho as sum_bj p_bj P_bj minus I.",
+      "obligation": "Mechanize the trace-inner-product dimension and reconstruction argument; constructing a complete MUB family is a separate existence obligation.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "MUB-TOMOGRAPHY-INVERSION"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/25_mub/tfq_0404_mub_tomography_inversion.md",
+        "papers/core/mub6/README.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-0405",
+      "uuid": "a1e856fa-cb68-5258-916d-5f1c9cfeb9f3",
+      "local_id": "MUB6-GLOBAL-OBLIGATIONS",
+      "name": "Dimension-six MUB reductions and global obligations",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "parent_id": "TFQ-0402",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "Separate exact stated-region exclusions and conditional reductions from a global dimension-six existence or maximality theorem; the package leaves G1 open.",
+      "obligation": "Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "MUB6-GLOBAL-OBLIGATIONS"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md",
+        "papers/core/mub6/README.md",
+        "papers/core/mub6/research/mub6_gap_registry.json"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-0406",
+      "uuid": "8ec73c1a-51af-544e-9006-45d6ce3e93c8",
+      "local_id": "FSP-SWITCHING-NORMAL-FORM",
+      "name": "Signed-graph switching normal form and class count",
+      "stage": "FERMION_SIGN",
+      "parent_id": "TFQ-0003",
+      "record_status": "PROVED_LEAN",
+      "summary": "For a fixed labelled finite graph and supplied spanning forest, vertex sign switching has a canonical tree-zero representative determined by chord signs. NF-002 records a duplicate-free enumeration of length 2^numChord and numChord=|E|-|V|+c.",
+      "obligation": "Retain fixed labels and vertex-switching equivalence; this canonicalizer is not a normal form under arbitrary many-body basis transformations.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "FSP-SWITCHING-NORMAL-FORM"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md",
+        "dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean",
+        "lean4/SwitchingNormalForm.lean"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": [
+        "lean4/SwitchingNormalForm.lean::normal_sound",
+        "lean4/SwitchingNormalForm.lean::same_class_iff",
+        "lean4/SwitchingNormalForm.lean::numChord_identity",
+        "lean4/SwitchingNormalForm.lean::normalForms_length",
+        "lean4/SwitchingNormalForm.lean::normalForms_nodup",
+        "lean4/SwitchingNormalForm.lean::mem_normalForms_iff"
+      ]
+    },
+    {
+      "id": "TFQ-0407",
+      "uuid": "a28e5fa0-4d9d-5b0e-8572-af5139a98de1",
+      "local_id": "FSP-MERON-CHARACTER-CANCELLATION",
+      "name": "Meron character cancellation on a supplied flip orbit",
+      "stage": "FERMION_SIGN",
+      "parent_id": "TFQ-0406",
+      "record_status": "PROVED_LEAN",
+      "summary": "The finite flip-orbit sign sum is zero when at least one meron flag is true, and is 2^k when all k flags are false. Weighted partition and observable reductions require additional orbit hypotheses.",
+      "obligation": "Supply invariant weight magnitudes, valid flip action and compatible observables before using the sign identity as a model reduction.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "FSP-MERON-CHARACTER-CANCELLATION"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md",
+        "papers/core/fsp/README.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": [
+        "lean4/MeronCharacter.lean::meron_orbit_cancels",
+        "lean4/MeronCharacter.lean::zero_meron_orbit_positive",
+        "lean4/MeronCharacter.lean::compression_preserves_partition"
+      ]
+    },
+    {
+      "id": "TFQ-0408",
+      "uuid": "bb9d9304-f838-5059-9a43-2171cb38b77c",
+      "local_id": "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+      "name": "Protected Hubbard representations and negative witnesses",
+      "stage": "FERMION_SIGN",
+      "parent_id": "TFQ-0406",
+      "record_status": "CONDITIONAL",
+      "summary": "Hubbard determinant positivity is restricted to the package stated half-filled bipartite or attractive spin-balanced hypotheses; exact negative fields outside those protections remain distinct witnesses.",
+      "obligation": "Prove the required determinant pairing and Hamiltonian-to-representation equality for each stated model, including boundary cases.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "FSP-HUBBARD-PROTECTED-REPRESENTATIONS"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md",
+        "papers/core/fsp/README.md",
+        "papers/core/fsp/docs/sql_meron_hubbard.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-0409",
+      "uuid": "fa3d9732-0513-5240-b158-86dd8cde85b0",
+      "local_id": "FSP-EFFICIENT-SAMPLING-OBLIGATIONS",
+      "name": "Efficient sampling and general FSP obligations",
+      "stage": "FERMION_SIGN",
+      "parent_id": "TFQ-0408",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "Canonical sign representatives, finite cancellation and nonnegative determinant weights do not establish an efficient sampler or a general fermion sign-problem solution.",
+      "obligation": "Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "FSP-EFFICIENT-SAMPLING-OBLIGATIONS"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md",
+        "papers/core/fsp/README.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-0410",
+      "uuid": "c1737cb8-173a-54e8-bcfa-f3efbb7422c8",
+      "local_id": "TENSOR-TOMOGRAPHIC-COORDINATES",
+      "name": "Composite coordinates from local operational statistics",
+      "stage": "TENSOR_COMPOSITION",
+      "parent_id": "TFQ-0127",
+      "record_status": "PROVED_LEAN",
+      "summary": "Independent bilinear preparations and tests with trace-factorized product probabilities and local tomography construct a unique real linear equivalence with joint Hermitian matrices for arbitrary finite local complex dimensions. The equivalence preserves products and all product tests; the deterministic product test is trace. The joint state cone is not assumed.",
+      "obligation": "Lean verifies Hermitian product spanning, nondegenerate trace pairing, finite dual-frame reconstruction, injectivity, surjectivity, uniqueness, and process calibration. Local complex QM and the operational bilinear/tomography premises remain supplied. The displayed positive projector-basis formula and SEP/BP commentary are prose corollaries, not additional Lean claims.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "TENSOR-TOMOGRAPHIC-COORDINATES"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
+      ],
+      "python": [
+        "code/python/src/qm/tensor_composition.py"
+      ],
+      "rust": [],
+      "lean4": [
+        "lean4/TensorTomography.lean::product_span",
+        "lean4/TensorTomography.lean::pairing_nondegenerate",
+        "lean4/TensorCoordinates.lean::tomographicEquiv",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_prepare",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_test",
+        "lean4/TensorCoordinates.lean::tomographicEquiv_unique",
+        "lean4/TensorCoordinates.lean::product_calibration",
+        "lean4/TensorCoordinates.lean::finite_frame_calibration",
+        "lean4/TensorComposition.lean::unit_test_is_trace"
+      ]
+    },
+    {
+      "id": "TFQ-0411",
+      "uuid": "d848f596-e2a5-5f4d-b4dd-d272fa7da721",
+      "local_id": "TENSOR-CONE-ORBIT-KERNEL",
+      "name": "Positive cone selection by preparations and transported tests",
+      "stage": "TENSOR_COMPOSITION",
+      "parent_id": "TFQ-0410",
+      "record_status": "PROVED_LEAN",
+      "summary": "For any finite complex matrix size, a Hermitian set containing zero and closed under addition equals PSD when seed preparations and positive seed tests are transported by preserving operations whose seed-vector orbits cover all vectors.",
+      "obligation": "The general finite-index cone kernel retains explicit OrbitData assumptions. TensorOperationalCone now instantiates its transports and reachability using the proved Schmidt controlled-shift construction; TensorComposition connects that instance to the constructed operational coordinates.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "TENSOR-CONE-ORBIT-KERNEL"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
+      ],
+      "python": [
+        "code/python/src/qm/tensor_composition.py"
+      ],
+      "rust": [],
+      "lean4": [
+        "lean4/TensorConeReconstruction.lean::operational_orbit_selects_positive",
+        "lean4/TensorConeReconstruction.lean::positive_mem_of_rankOne"
+      ]
+    },
+    {
+      "id": "TFQ-0412",
+      "uuid": "6cccaded-526a-5033-ad6e-bf1d0d2d86a0",
+      "local_id": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "name": "Quantum composition from a calibrated reversible controlled shift",
+      "stage": "TENSOR_COMPOSITION",
+      "parent_id": "TFQ-0411",
+      "record_status": "PROVED_LEAN",
+      "summary": "For arbitrary finite n<=m with m nonzero (the smaller subsystem is the control), supplied local complex QM, independent bilinear preparation/testing, local tomography, positive product tests, finite-sum state closure, and calibrated local-unitary and reversible controlled-shift preservation force the represented state cone to be PSD(nm). Tomographic coordinates, Schmidt reachability, cone equality and trace normalization are verified in Lean.",
+      "obligation": "Lean constructs complete rectangular Schmidt bases, local unitaries and one modular controlled shift, then checks the operational state cone. TFQ-0414--TFQ-0416 check the generated effect cone, binary interval and finite POVMs with explicit effect and finite-test saturation premises. Calibration and operational preservation remain supplied; primitive difference has not supplied these hypotheses.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_formalization_validation.json"
+      ],
+      "python": [
+        "code/python/src/qm/tensor_composition.py"
+      ],
+      "rust": [],
+      "lean4": [
+        "lean4/TensorSchmidt.lean::exists_schmidt_bases",
+        "lean4/TensorReachability.lean::exists_schmidt_coefficients",
+        "lean4/TensorReachability.lean::schmidt_reachability",
+        "lean4/TensorOperationalCone.lean::controlled_shift_selects_positive",
+        "lean4/TensorComposition.lean::quantum_state_cone",
+        "lean4/TensorComposition.lean::unit_test_is_trace"
+      ]
+    },
+    {
+      "id": "TFQ-0413",
+      "uuid": "a3dcdee6-32e4-5ed0-a614-dd0d65142ee8",
+      "local_id": "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "name": "Countermodels and the interaction assumption boundary",
+      "stage": "TENSOR_COMPOSITION",
+      "parent_id": "TFQ-0412",
+      "record_status": "PROVED_LEAN",
+      "summary": "Full SEP/BP duality, local preservation and binary-product tomography do not select PSD: exact Bell/partial-transpose separations embed into every n,m>=2. Two-qubit ordinary, twisted and dephased controlled shifts separate calibrated preservation, coherent calibration and reversibility despite matching classical tables. A doubled positive carrier has distinct normalized states with identical product statistics.",
+      "obligation": "Countermodels delimit weakened hypotheses, not logical minimality of the sufficient package. No primitive derivation, arbitrary-GPT classification, operational saturation, or new proof of SEP closedness is claimed. The identical-qubit family classification remains external.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "TENSOR-ASSUMPTION-COUNTERMODELS"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_countermodel_validation.json"
+      ],
+      "python": [
+        "code/python/src/qm/tensor_composition.py"
+      ],
+      "rust": [],
+      "lean4": [
+        "lean4/TensorPartialTranspose.lean::gamma",
+        "lean4/TensorPartialTranspose.lean::pairing_gamma_gamma",
+        "lean4/TensorPartialTranspose.lean::gamma_conjMap_product",
+        "lean4/TensorPartialTranspose.lean::conjMap_inverse",
+        "lean4/TensorCountermodelCones.lean::blockPositive_iff_dual_sep",
+        "lean4/TensorCountermodelCones.lean::sep_ppt",
+        "lean4/TensorCountermodelCones.lean::twisted_self_dual",
+        "lean4/TensorCountermodelCones.lean::sep_local",
+        "lean4/TensorCountermodelCones.lean::bp_local",
+        "lean4/TensorCountermodelCones.lean::twisted_local",
+        "lean4/TensorCountermodelCones.lean::twist_reversible",
+        "lean4/TensorCountermodelCones.lean::twist_trace",
+        "lean4/TensorCountermodelCones.lean::twist_path_continuous",
+        "lean4/TensorCountermodelCones.lean::binary_product_statistics_separate",
+        "lean4/TensorCountermodelCones.lean::bp_salient",
+        "lean4/TensorCountermodelWitnesses.lean::sep_fails_controlled_shift",
+        "lean4/TensorCountermodelWitnesses.lean::bp_fails_inverse_controlled_shift",
+        "lean4/TensorCountermodelWitnesses.lean::twisted_fails_ordinary_calibration",
+        "lean4/TensorCountermodelWitnesses.lean::twisted_same_classical_table",
+        "lean4/TensorCountermodelWitnesses.lean::imaginary_effect_binary",
+        "lean4/TensorCountermodelWitnesses.lean::coherent_calibration_separates",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_same_classical_table",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_controlled_shift_not_injective",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_coherent_calibration_separates",
+        "lean4/TensorCountermodelWitnesses.lean::plus_binary",
+        "lean4/TensorCountermodelWitnesses.lean::seed_normalized",
+        "lean4/TensorCountermodelEmbeddings.lean::cone_separations_all_dimensions",
+        "lean4/TensorHiddenCoordinates.lean::independent_probabilities",
+        "lean4/TensorHiddenCoordinates.lean::doubledConj_inverse",
+        "lean4/TensorHiddenCoordinates.lean::hidden_normalized_states",
+        "lean4/TensorHiddenCoordinates.lean::no_local_tomography",
+        "lean4/TensorHiddenCoordinates.lean::dimension_doubled",
+        "lean4/TensorHiddenCoordinates.lean::basis_state_normalized"
+      ]
+    },
+    {
+      "id": "TFQ-0414",
+      "uuid": "5869bcf8-cac2-5dc9-9017-5ffbb7f6d4fe",
+      "local_id": "TENSOR-GENERATED-EFFECT-CONE",
+      "name": "Generated operational effect cone",
+      "stage": "TENSOR_COMPOSITION",
+      "parent_id": "TFQ-0412",
+      "record_status": "PROVED_LEAN",
+      "summary": "The conic hull of represented available effects equals PSD for arbitrary finite n<=m with m nonzero, using the verified state cone, sound effects, all local binary product tests and calibrated local-unitary and controlled-shift pullbacks. Neither effect saturation nor finite-test saturation is required.",
+      "obligation": "Operational soundness, local binary product availability and reversible effect pullback closure remain explicit premises. The generated cone does not identify the available binary interval or available finite tests.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "TENSOR-GENERATED-EFFECT-CONE"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md",
+        "dag/research/tensor_measurement_validation.json"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": [
+        "lean4/TensorEffectOrder.lean::positive_iff_pairing",
+        "lean4/TensorEffectOrder.lean::positive_ray_binary",
+        "lean4/TensorEffectCone.lean::effect_cone_eq_positive",
+        "lean4/TensorMeasurements.lean::operational_effect_cone"
+      ]
+    },
+    {
+      "id": "TFQ-0415",
+      "uuid": "ad896317-3074-5bb0-8b74-2e10d864eee2",
+      "local_id": "TENSOR-BINARY-EFFECT-INTERVAL",
+      "name": "Binary effects and explicit effect saturation",
+      "stage": "TENSOR_COMPOSITION",
+      "parent_id": "TFQ-0412",
+      "record_status": "PROVED_LEAN",
+      "summary": "The constructed dual representation identifies functionals satisfying 0<=e(x)<=u(x) on the state cone with Hermitian matrices 0<=E<=I. Homogeneous bounds are equivalent to probabilities in [0,1] on all trace-one PSD states. Soundness plus explicit EffectSaturated identifies the available binary effects with this full interval.",
+      "obligation": "EffectSaturated is a separate no-restriction premise, not a consequence of state-cone or generated-effect-cone equality. Local complex QM and the state-reconstruction assumptions remain supplied.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "TENSOR-BINARY-EFFECT-INTERVAL"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md",
+        "dag/research/tensor_measurement_validation.json"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": [
+        "lean4/TensorEffectOrder.lean::binary_iff_bounds",
+        "lean4/TensorEffectOrder.lean::binary_iff_interval",
+        "lean4/TensorEffectOrder.lean::binary_iff_normalized",
+        "lean4/TensorMeasurements.lean::effectRepresentation",
+        "lean4/TensorMeasurements.lean::effectRepresentation_unit",
+        "lean4/TensorMeasurements.lean::effectRepresentation_product",
+        "lean4/TensorMeasurements.lean::validEffect_iff_binary",
+        "lean4/TensorMeasurements.lean::available_effects_eq_interval"
+      ]
+    },
+    {
+      "id": "TFQ-0416",
+      "uuid": "6a96cc36-69a4-518a-8dc8-698987f61226",
+      "local_id": "TENSOR-FINITE-POVM-AVAILABILITY",
+      "name": "Finite POVMs and separate test saturation",
+      "stage": "TENSOR_COMPOSITION",
+      "parent_id": "TFQ-0415",
+      "record_status": "PROVED_LEAN",
+      "summary": "For any finite outcome type, sound available tests correspond to positive Hermitian families summing to I. Conversely every such POVM is available under both EffectSaturated and the separate FiniteTestSaturated premise. The end-to-end quantum_measurements theorem invokes quantum_state_cone and returns the generated cone, binary interval and finite-POVM equivalence.",
+      "obligation": "FiniteTestSaturated requires jointly implementing each finite family of available effects summing to the deterministic unit. It is distinct from individual effect saturation. No availability or classification of instruments or channels is asserted.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "TENSOR-FINITE-POVM-AVAILABILITY"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md",
+        "dag/research/tensor_measurement_validation.json"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": [
+        "lean4/TensorMeasurements.lean::povm_binary",
+        "lean4/TensorMeasurements.lean::test_povm_of_sound",
+        "lean4/TensorMeasurements.lean::test_iff_povm",
+        "lean4/TensorMeasurements.lean::quantum_measurements"
+      ]
+    }
+  ],
+  "nf002_replay_source": "lean4/SwitchingNormalForm.lean",
+  "nf002_source_status": "Local compatibility port replayed with Lean 4.33.1; enumeration length, uniqueness, membership and chord-count identity depend only on propext and Quot.sound.",
+  "nf002_replay_symbols": [
+    "normal_sound",
+    "same_class_iff",
+    "numChord_identity",
+    "normalForms_length",
+    "normalForms_nodup",
+    "mem_normalForms_iff"
+  ],
+  "nf002_sealed_sha256": "dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931",
+  "tensor_uniqueness_update": {
+    "imported_structure": [
+      "local finite complex quantum state and effect spaces with trace probabilities",
+      "independent preparation, testing and convex composition",
+      "local tomography",
+      "all local unitary operations",
+      "fully coherently calibrated reversible controlled shift",
+      "effect and finite-test saturation for full measurement availability"
+    ],
+    "statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.",
+    "source_status": "The 20261019 scope audit remains a determinant obstruction on a supplied rational host. TFQ-0410--TFQ-0412 verify general Lean tomography, Schmidt reachability and operational state-cone reconstruction. TFQ-0414--TFQ-0416 verify the generated effect cone, saturated binary interval and finite POVM corollaries. TFQ-0413 verifies assumption countermodels in Lean: full-cone duality, all-dimension cone separations, exact two-qubit calibration failures and hidden-coordinate tomography failure; external classification and primitive selection remain outside scope.",
+    "bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional.",
+    "source": [
+      "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md",
+      "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+      "dag/research/tensor_composition_validation.json",
+      "dag/research/tensor_formalization_validation.json",
+      "dag/research/tensor_measurement_validation.json",
+      "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md",
+      "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md",
+      "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md",
+      "dag/research/tensor_countermodel_validation.json"
+    ],
+    "see_also": [
+      "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "TENSOR-CONE-ORBIT-KERNEL",
+      "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "TENSOR-TOMOGRAPHIC-COORDINATES",
+      "TENSOR-GENERATED-EFFECT-CONE",
+      "TENSOR-BINARY-EFFECT-INTERVAL",
+      "TENSOR-FINITE-POVM-AVAILABILITY"
+    ]
+  }
+}

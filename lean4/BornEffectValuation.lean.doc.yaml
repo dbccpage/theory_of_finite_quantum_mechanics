@@ -1,0 +1,15 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/BornEffectValuation.lean
+source_sha256: 667f6f7a73ca630a4c395a424a68398c9daebfba404d5284abe56dfdbe2955cc
+authority_effect: None
+purpose: Frozen effect-valuation interface (OrderedQUnit, EffectValuation) with the eight frozen targets
+  of run 20261020T004525Z_fable51_born kernel-checked.
+design:
+  profile: Exact rational arithmetic or kernel-checked Lean on the declared carrier; no floating point.
+  frozen_sources: Run snapshots under verification/ are immutable custody assets.
+boundaries:
+- Abstract ordered rational module; no carrier, no continuity, no Born or Gleason uniqueness claimed here.
+- The import header differs from the frozen contract.lean (targeted imports instead of import Mathlib);
+  definitions and statements are unchanged.
+evidence:
+- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md
