@@ -311,6 +311,7 @@ pub mod proposal_admission_bridge;
 
 pub mod dyadic_character_adapter;
 pub mod genesis_computation;
+pub mod genesis_tm;
 pub mod genesis_future_compression;
 pub mod genesis_questions;
 pub mod genesis_report_runtime;
