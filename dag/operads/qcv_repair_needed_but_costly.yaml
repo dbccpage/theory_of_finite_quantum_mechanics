@@ -1,0 +1,203 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: QCV-REPAIR-NEEDED-BUT-COSTLY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: The union-bound recurrence p(k+1) = a*p(k) with a >= 1 and p(0) > 0 does not tend
+    to zero; for 2 <= a <= b fault locations the certified threshold 1/pairCount(b) is at most 1/pairCount(a).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The location counts are declared; nothing here says how many repair locations a physical
+    code needs.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1317_qcv_repair_needed_but_costly.md
+  - dag/research/quantum_computation_self_obstruction.md
+  - dag/research/quantum_computation_self_obstruction_axioms.txt
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1317_qcv_repair_needed_but_costly.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1317_qcv_repair_needed_but_costly.md
+    sha256: 85ca6f259f21f925c0efd38ea3702027b3c5cd08ab24173784e32bdd918d9d82
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_qcv_repair_needed_but_costly_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: GoesToZero
+  line: 57
+  signature_excerpt: 'def GoesToZero (f : ℕ → ℚ) : Prop'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: lin
+  line: 174
+  signature_excerpt: |-
+    def lin (a p : ℚ) : ℕ → ℚ
+      | 0 => p
+      | k + 1 => a * lin a p k
+
+    theorem lin_closed (a p : ℚ) (k : ℕ) : lin a p k = a ^ k * p
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pairCount
+  line: 198
+  signature_excerpt: 'def pairCount (a : ℕ) : ℚ'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: lin_not_goesToZero
+  line: 185
+  signature_excerpt: 'theorem lin_not_goesToZero {a p : ℚ} (ha : 1 ≤ a) (hp : 0 < p) : ¬ GoesToZero (lin
+    a p)'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: lin_closed
+  line: 178
+  signature_excerpt: 'theorem lin_closed (a p : ℚ) (k : ℕ) : lin a p k = a ^ k * p'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pairCount_mono
+  line: 200
+  signature_excerpt: 'theorem pairCount_mono {a b : ℕ} (hab : a ≤ b) (ha : 1 ≤ a) : pairCount a ≤ pairCount
+    b'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: threshold_decreases_with_repair
+  line: 212
+  signature_excerpt: |-
+    theorem threshold_decreases_with_repair {a b : ℕ} (hab : a ≤ b) (ha : 2 ≤ a) :
+        1 / pairCount b ≤ 1 / pairCount a
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/QcConcatenation.lean::lin_not_goesToZero
+  availability: local
+  symbol: lin_not_goesToZero
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 185
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::lin_closed
+  availability: local
+  symbol: lin_closed
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 178
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::pairCount_mono
+  availability: local
+  symbol: pairCount_mono
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 200
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::threshold_decreases_with_repair
+  availability: local
+  symbol: threshold_decreases_with_repair
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 212
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::linear_level
+  availability: local
+  symbol: linear_level
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 175
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::pair_count
+  availability: local
+  symbol: pair_count
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 184
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

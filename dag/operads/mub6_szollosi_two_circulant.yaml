@@ -1,0 +1,326 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-SZOLLOSI-TWO-CIRCULANT
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For unit phase triples a, b with a0 a2* + a1 a0* + a2 a1* + b0 b2* + b1 b0* + b2 b1*
+    = 0, the block matrix [[A, B], [B*, -A*]] of circulants has H H* = 6I and H/sqrt 6 is unitary with
+    squared entry moduli 1/6; alpha is in both phase-sum images x + y + conj(xy) and -alpha iff some real
+    solution of the six parameter equations has first phase sum alpha.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Transport to a dephased representative, classification of arbitrary CHM(6), the source
+    cusp rank-degeneration claim, and Conjecture 3 (no quartet contains a family member) are not established.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1228_mub6_szollosi_two_circulant.md
+  - papers/core/mub6/theory_of_finite_mub6.jsonl
+  - papers/core/mub6/theory_of_finite_mub6.md
+  - papers/core/mub6/mub6.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1228_mub6_szollosi_two_circulant.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1228_mub6_szollosi_two_circulant.md
+    sha256: a6e1cf720f57cdbcd56b555b7762d24f8e6a5b7232225b15aa57766d086d6a9e
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_szollosi_two_circulant_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: PhaseTriple
+  line: 32
+  signature_excerpt: abbrev PhaseTriple
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: UnitPhases
+  line: 47
+  signature_excerpt: 'def UnitPhases (a : PhaseTriple) : Prop'
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: compatibility
+  line: 43
+  signature_excerpt: 'noncomputable def compatibility (a b : PhaseTriple) : ℂ'
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rawSix
+  line: 123
+  signature_excerpt: 'noncomputable def rawSix (a b : PhaseTriple) : Matrix (Fin 6) (Fin 6) ℂ'
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rawBlock
+  line: 49
+  signature_excerpt: 'noncomputable def rawBlock (a b : PhaseTriple) : Matrix BlockIndex BlockIndex ℂ'
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: BlockIndex
+  line: 33
+  signature_excerpt: abbrev BlockIndex
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rowCirculant
+  line: 35
+  signature_excerpt: 'noncomputable def rowCirculant (a : PhaseTriple) : Matrix (Fin 3) (Fin 3) ℂ'
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normalized
+  line: 144
+  signature_excerpt: 'noncomputable def normalized (a b : PhaseTriple) : Matrix (Fin 6) (Fin 6) ℂ'
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normalizer
+  line: 134
+  signature_excerpt: 'noncomputable def normalizer : ℂ'
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: DeltoidIntersection
+  line: 373
+  signature_excerpt: 'def DeltoidIntersection (α : ℂ) : Prop'
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: ParameterCoord
+  line: 225
+  signature_excerpt: abbrev ParameterCoord
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: parameterPolynomial
+  line: 251
+  signature_excerpt: |-
+    noncomputable def parameterPolynomial : ParameterEquation → ParameterPoly
+      | .inl i => circlePolynomial i
+      | .inr false => phaseSumRePolynomial
+      | .inr true => phaseSumImPolynomial
+
+    theorem circlePolynomial_eval (r : ParameterCoord → ℝ) (i : Fin 4) :
+        eval r (circlePolynomial i) = Complex.normSq (decodeParameters r i) - 1
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: phaseSum
+  line: 168
+  signature_excerpt: 'noncomputable def phaseSum (x y : ℂ) : ℂ'
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: decodeParameters
+  line: 229
+  signature_excerpt: 'def decodeParameters (r : ParameterCoord → ℝ) (i : Fin 4) : ℂ'
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: ParameterEquation
+  line: 227
+  signature_excerpt: abbrev ParameterEquation
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: ParameterPoly
+  line: 226
+  signature_excerpt: abbrev ParameterPoly
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: rawSix_gram
+  line: 126
+  signature_excerpt: |-
+    theorem rawSix_gram (a b : PhaseTriple) (ha : UnitPhases a) (hb : UnitPhases b)
+        (hc : compatibility a b = 0) :
+        rawSix a b * (rawSix a b).conjTranspose = (6 : ℂ) • (1 : Matrix (Fin 6) (Fin 6) ℂ)
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: normalized_unitary
+  line: 154
+  signature_excerpt: |-
+    theorem normalized_unitary (a b : PhaseTriple) (ha : UnitPhases a) (hb : UnitPhases b)
+        (hc : compatibility a b = 0) : (normalized a b).conjTranspose * normalized a b = 1
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: normalized_entry_modulus
+  line: 158
+  signature_excerpt: |-
+    theorem normalized_entry_modulus (a b : PhaseTriple) (ha : UnitPhases a) (hb : UnitPhases b)
+        (i j : Fin 6) : normalized a b i j * star (normalized a b i j) = (1/6 : ℂ)
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: parameter_covers_intersection
+  line: 377
+  signature_excerpt: |-
+    theorem parameter_covers_intersection (α : ℂ) : DeltoidIntersection α ↔
+        ∃ r : ParameterCoord → ℝ, (∀ e, eval r (parameterPolynomial e) = 0) ∧
+          phaseSum (decodeParameters r 0) (decodeParameters r 1) = α
+  source: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  source_sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: szollosiMatrix_isCH6
+  line: 309
+  signature_excerpt: |-
+    theorem szollosiMatrix_isCH6 (p : SzollosiParam) (hp : SzollosiDomain p) :
+        IsCH6 (szollosiMatrix p)
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/SzollosiTwoCirculant.lean::rawSix_gram
+  availability: local
+  symbol: rawSix_gram
+  path: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  declaration_status: declaration_found_not_proof_checked
+  line: 126
+  role: source_lead_only
+- original_ref: lean4/SzollosiTwoCirculant.lean::normalized_unitary
+  availability: local
+  symbol: normalized_unitary
+  path: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  declaration_status: declaration_found_not_proof_checked
+  line: 154
+  role: source_lead_only
+- original_ref: lean4/SzollosiTwoCirculant.lean::normalized_entry_modulus
+  availability: local
+  symbol: normalized_entry_modulus
+  path: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  declaration_status: declaration_found_not_proof_checked
+  line: 158
+  role: source_lead_only
+- original_ref: lean4/SzollosiTwoCirculant.lean::parameter_covers_intersection
+  availability: local
+  symbol: parameter_covers_intersection
+  path: lean4/SzollosiTwoCirculant.lean
+  repository: this_repository
+  sha256: 3fbccf8c7db925ebb7701725fc57562ac29df7f2dfb63a78c385d121954b60ac
+  declaration_status: declaration_found_not_proof_checked
+  line: 377
+  role: source_lead_only
+- original_ref: lean4/MasterClassification.lean::szollosiMatrix_isCH6
+  availability: local
+  symbol: szollosiMatrix_isCH6
+  path: lean4/MasterClassification.lean
+  repository: this_repository
+  sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  declaration_status: declaration_found_not_proof_checked
+  line: 309
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

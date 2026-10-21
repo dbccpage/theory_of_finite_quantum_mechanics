@@ -44,3 +44,5 @@ All proofs in `MajoranaCore` and `MajoranaGinCore` rely exclusively on construct
 - Total `sorry` declarations: `0`
 - Total open obligations: `0`
 - Status: 100% Verified Clean
+
+Replayed with Lean 4.35.0 on 2026-10-21: all 40 theorems re-audited, with the same axiom counts as above.

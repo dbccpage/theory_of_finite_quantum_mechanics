@@ -1,0 +1,171 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C6-EVAL-HAS-A-CODE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: There is a fixed Nat.Partrec.Code u with eval u (pair (encode c) n) = eval c n for
+    all codes c and inputs n, and a fixed ToPartrec code computing the same function on one natural number.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Mathlib Nat.Partrec.Code.eval_part and exists_code
+  - Mathlib Turing.ToPartrec.Code.exists_code
+  source_bottleneck: Imported infrastructure is cited, not re-derived; the codes are existence statements
+    chosen by Classical.choose.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1303_comp_c6_eval_has_a_code.md
+  - dag/research/genesis_to_universal_computation.md
+  - lean4/GenesisCompUniv.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1303_comp_c6_eval_has_a_code.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1303_comp_c6_eval_has_a_code.md
+    sha256: 4fa478c19ba6ccff8d7c05d5d2abc1b62a8daaedfc4f2d146f28bd4a1ebb1bc1
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c6_eval_has_a_code_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: univFun
+  line: 49
+  signature_excerpt: 'noncomputable def univFun : ℕ →. ℕ'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: univFun_partrec
+  line: 52
+  signature_excerpt: 'theorem univFun_partrec : Partrec univFun'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: universal_code
+  line: 62
+  signature_excerpt: |-
+    theorem universal_code :
+        ∃ u : Code, ∀ (c : Code) (n : ℕ),
+          Nat.Partrec.Code.eval u (Nat.pair (Encodable.encode c) n) = Nat.Partrec.Code.eval c n
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: univCode_exists
+  line: 69
+  signature_excerpt: |-
+    theorem univCode_exists :
+        ∃ cu : ToPartrec.Code, ∀ x : ℕ, cu.eval [x] = pure <$> univFun x
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: univCode_eval
+  line: 88
+  signature_excerpt: 'theorem univCode_eval (x : ℕ) : univCode.eval [x] = pure <$> univFun x'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisCompUniv.lean::univFun_partrec
+  availability: local
+  symbol: univFun_partrec
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 52
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::universal_code
+  availability: local
+  symbol: universal_code
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 62
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::univCode_exists
+  availability: local
+  symbol: univCode_exists
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 69
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::univCode_eval
+  availability: local
+  symbol: univCode_eval
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 88
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Mathlib Nat.Partrec.Code.eval_part and exists_code
+    - Mathlib Turing.ToPartrec.Code.exists_code
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Mathlib Nat.Partrec.Code.eval_part and exists_code
+    - Mathlib Turing.ToPartrec.Code.exists_code
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

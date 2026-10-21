@@ -1,0 +1,187 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DFM-GENERAL-GRAPH-DRESSING
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Given a rooted spanning forest and an arbitrary supplied group, a vertex dressing
+    neutralizes every edge iff every closed walk has identity transport. It suffices to test the fundamental
+    chord residuals; disconnected components are handled separately.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Preserve the supplied-group and supplied-forest hypotheses; the Python and Rust enumerations
+    are bounded witnesses for the general Lean theorem.
+  source_refs:
+  - dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md
+  - dag/research/finite_graph_dressing.py
+  - dag/research/finite_graph_dressing.rs
+  paper_refs:
+  - dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md
+    sha256: e3a07f421fee8da1b5209cad7205c85dcd2da5e0d93a57b54a57154c88fcd42c
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/dressing_field_dfm_general_graph_dressing_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: inductive
+  name: Walk
+  line: 14
+  signature_excerpt: 'inductive Walk : V → V → Type _'
+  source: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  source_sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dress
+  line: 26
+  signature_excerpt: 'def dress (U : E → G) (u : V → G) (e : E) : G'
+  source: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  source_sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: transport
+  line: 20
+  signature_excerpt: |-
+    def transport (U : E → G) : {a b : V} → Walk src dst a b → G
+      | _, _, .nil _ => 1
+      | _, _, .edge e => U e
+      | _, _, .reverse p => (transport U p)⁻¹
+      | _, _, .append p q => transport U q * transport U p
+
+    def dress (U : E → G) (u : V → G) (e : E) : G
+  source: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  source_sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: neutralizable_iff_closed_walks_forest
+  line: 79
+  signature_excerpt: |-
+    theorem neutralizable_iff_closed_walks_forest (U : E → G) (root : V → V)
+        (paths : ∀ v, Walk src dst (root v) v)
+        (edgeRoots : ∀ e, root (src e) = root (dst e)) :
+        (∃ u : V → G, ∀ e, dress src dst U u e = 1) ↔
+          ∀ v (p : Walk src dst v v), transport src dst U p = 1
+  source: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  source_sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tree_dressing_iff
+  line: 97
+  signature_excerpt: |-
+    theorem tree_dressing_iff (U : E → G) (T : V → G) :
+        (∀ e, dress src dst U (fun v => (T v)⁻¹) e = 1) ↔
+          ∀ e, U e * T (src e) = T (dst e)
+  source: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  source_sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: neutralizers_constant
+  line: 119
+  signature_excerpt: |-
+    theorem neutralizers_constant (U : E → G) (u u' : V → G)
+        (hu : ∀ e, dress src dst U u e = 1)
+        (hu' : ∀ e, dress src dst U u' e = 1)
+        {a b : V} (p : Walk src dst a b) :
+        u' b * (u b)⁻¹ = u' a * (u a)⁻¹
+  source: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  source_sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/FiniteGraphDressing.lean::neutralizable_iff_closed_walks_forest
+  availability: local
+  symbol: neutralizable_iff_closed_walks_forest
+  path: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 79
+  role: source_lead_only
+- original_ref: lean4/FiniteGraphDressing.lean::tree_dressing_iff
+  availability: local
+  symbol: tree_dressing_iff
+  path: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 97
+  role: source_lead_only
+- original_ref: lean4/FiniteGraphDressing.lean::neutralizers_constant
+  availability: local
+  symbol: neutralizers_constant
+  path: lean4/FiniteGraphDressing.lean
+  repository: this_repository
+  sha256: 23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 119
+  role: source_lead_only
+- original_ref: dag/research/finite_graph_dressing.rs::forest_dressing
+  availability: local
+  symbol: forest_dressing
+  path: dag/research/finite_graph_dressing.rs
+  repository: this_repository
+  sha256: e712f48dcd6dfc980b43b6c3962349ea2d22f92d4854548dcef60561b1705324
+  declaration_status: declaration_found_not_executed
+  line: 46
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

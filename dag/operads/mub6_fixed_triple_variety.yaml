@@ -1,0 +1,295 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-FIXED-TRIPLE-VARIETY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For a fixed triple T of complex 6x6 matrices and a candidate U in 72 real coordinates,
+    each MU residual equals tr(P_{T_a,i} P_{U,j}) - 1/6, and the real zero set of the 108 MU and 72 orthonormality
+    residuals is empty iff no U has U* U = I and |<T_a,i, U_j>|^2 = 1/6 for all a, i, j.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Emptiness is not established for any MU triple or uniformly over a family; a complete
+    seven-basis family would make the variety of its first three bases nonempty (family_triple_variety_nonempty).
+  source_refs:
+  - dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md
+  - papers/core/mub6/theory_of_finite_mub6.jsonl
+  - papers/core/mub6/theory_of_finite_mub6.md
+  - papers/core/mub6/mub6.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md
+    sha256: bd05b7e6477d568c8c7e3909e287f3612f7dd061f48078ce8277e96b048831c3
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_fixed_triple_variety_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: Triple
+  line: 31
+  signature_excerpt: abbrev Triple
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: polynomialVariety
+  line: 142
+  signature_excerpt: 'noncomputable def polynomialVariety (T : Triple) : Set (Coord → ℝ)'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: FourthBasis
+  line: 133
+  signature_excerpt: 'def FourthBasis (T : Triple) (U : Candidate) : Prop'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Candidate
+  line: 30
+  signature_excerpt: abbrev Candidate
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Coord
+  line: 29
+  signature_excerpt: abbrev Coord
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Vanishing
+  line: 129
+  signature_excerpt: 'noncomputable def Vanishing (T : Triple) (x : Coord → ℝ) : Prop'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: overlap
+  line: 62
+  signature_excerpt: 'def overlap (T : Triple) (U : Candidate) (a : Fin 3) (i j : Fin 6) : ℂ'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: muPolynomial
+  line: 53
+  signature_excerpt: 'noncomputable def muPolynomial (T : Triple) (a : Fin 3) (i j : Fin 6) : Poly'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: unitaryRePolynomial
+  line: 56
+  signature_excerpt: 'noncomputable def unitaryRePolynomial (i j : Fin 6) : Poly'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: unitaryImPolynomial
+  line: 59
+  signature_excerpt: 'noncomputable def unitaryImPolynomial (i j : Fin 6) : Poly'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Poly
+  line: 32
+  signature_excerpt: abbrev Poly
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: overlapRe
+  line: 48
+  signature_excerpt: 'noncomputable def overlapRe (T : Triple) (a : Fin 3) (i j : Fin 6) : Poly'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: overlapIm
+  line: 50
+  signature_excerpt: 'noncomputable def overlapIm (T : Triple) (a : Fin 3) (i j : Fin 6) : Poly'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: coordinates
+  line: 34
+  signature_excerpt: 'def coordinates (U : Candidate) : Coord → ℝ'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: columnProjector
+  line: 89
+  signature_excerpt: 'noncomputable def columnProjector (U : Candidate) (l : Fin 6) : Candidate'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: polynomialIdeal
+  line: 182
+  signature_excerpt: 'noncomputable def polynomialIdeal (T : Triple) : Ideal Poly'
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: polynomialVariety_eq_empty_iff
+  line: 155
+  signature_excerpt: |-
+    theorem polynomialVariety_eq_empty_iff (T : Triple) :
+        polynomialVariety T = ∅ ↔ ¬ ∃ U, FourthBasis T U
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: muPolynomial_eval_projector_trace
+  line: 108
+  signature_excerpt: |-
+    theorem muPolynomial_eval_projector_trace (T : Triple) (U : Candidate)
+        (a : Fin 3) (i j : Fin 6) :
+        (eval (coordinates U) (muPolynomial T a i j) : ℂ) =
+          Matrix.trace (columnProjector (T a) i * columnProjector U j) - (1/6 : ℂ)
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: polynomialIdeal_le_eval_kernel_iff
+  line: 185
+  signature_excerpt: |-
+    theorem polynomialIdeal_le_eval_kernel_iff (T : Triple) (x : Coord → ℝ) :
+        polynomialIdeal T ≤ RingHom.ker (eval x) ↔ Vanishing T x
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: family_triple_variety_nonempty
+  line: 224
+  signature_excerpt: |-
+    theorem family_triple_variety_nonempty (family : CompleteFamily) :
+        (polynomialVariety (familyTriple family)).Nonempty
+  source: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  source_sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/ConcreteMubPolynomials.lean::polynomialVariety_eq_empty_iff
+  availability: local
+  symbol: polynomialVariety_eq_empty_iff
+  path: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  declaration_status: declaration_found_not_proof_checked
+  line: 155
+  role: source_lead_only
+- original_ref: lean4/ConcreteMubPolynomials.lean::muPolynomial_eval_projector_trace
+  availability: local
+  symbol: muPolynomial_eval_projector_trace
+  path: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  declaration_status: declaration_found_not_proof_checked
+  line: 108
+  role: source_lead_only
+- original_ref: lean4/ConcreteMubPolynomials.lean::polynomialIdeal_le_eval_kernel_iff
+  availability: local
+  symbol: polynomialIdeal_le_eval_kernel_iff
+  path: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  declaration_status: declaration_found_not_proof_checked
+  line: 185
+  role: source_lead_only
+- original_ref: lean4/ConcreteMubPolynomials.lean::family_triple_variety_nonempty
+  availability: local
+  symbol: family_triple_variety_nonempty
+  path: lean4/ConcreteMubPolynomials.lean
+  repository: this_repository
+  sha256: bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955
+  declaration_status: declaration_found_not_proof_checked
+  line: 224
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

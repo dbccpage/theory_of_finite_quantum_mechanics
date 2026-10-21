@@ -1,0 +1,334 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-SZOLLOSI-FULLBOX-UNRESOLVED
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: On the full containing box of the 618-equation Szollosi system with zero centre and
+    the recorded 28-entry preconditioner, the emitted Jacobian rows and images match the polynomial semantics,
+    every solution is retained, the 144 raw coordinates of the additional bases are not narrowed, no coordinate
+    separates, and every residual interval contains zero.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: 'Status CONTRACTED_UNRESOLVED_BOX and UNRESOLVED_FULL_BOX: no exclusion and no root;
+    generic Rust and JSON decoding is not verified.'
+  source_refs:
+  - dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  - papers/core/mub6/mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md
+    sha256: 7abca007cbccce4d534bab45cc6674950bcfdad137cb99797e1c07669fb9d542
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_szollosi_fullbox_unresolved_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: nativeJacobian
+  line: 35
+  signature_excerpt: 'def nativeJacobian : List (List (Nat × Bounds))'
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: expectedJacobian
+  line: 4138
+  signature_excerpt: 'def expectedJacobian : List (List (Nat × Bounds))'
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nativeRetainedBox
+  line: 4128
+  signature_excerpt: 'def nativeRetainedBox (i : Nat) : Bounds'
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nativeRetained
+  line: 3674
+  signature_excerpt: 'def nativeRetained : List (Bounds)'
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: overlaps
+  line: 4231
+  signature_excerpt: 'def overlaps (a b : Bounds) : Bool'
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nativeImage
+  line: 4127
+  signature_excerpt: 'def nativeImage (i : Nat) : Bounds'
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nativeImages
+  line: 3231
+  signature_excerpt: 'def nativeImages : List (Bounds)'
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: exclusionCheck
+  line: 95
+  signature_excerpt: 'def exclusionCheck (box : Variable → Bounds) : Bool'
+  source: lean4/SzollosiIntervalExclusion.lean
+  repository: this_repository
+  source_sha256: 3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: fullBox
+  line: 108
+  signature_excerpt: 'def fullBox (v : Variable) : Bounds'
+  source: lean4/SzollosiIntervalExclusion.lean
+  repository: this_repository
+  source_sha256: 3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Bounds
+  line: 22
+  signature_excerpt: structure Bounds
+  source: lean4/SzollosiIntervalExclusion.lean
+  repository: this_repository
+  source_sha256: 3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rangeExpr
+  line: 62
+  signature_excerpt: |-
+    def rangeExpr (box : Variable → Bounds) : Expr → Bounds
+      | .constant q => Bounds.point q
+      | .input v => box v
+      | .add p q => (rangeExpr box p).add (rangeExpr box q)
+      | .mul p q => (rangeExpr box p).mul (rangeExpr box q)
+      | .neg p => (rangeExpr box p).neg
+
+    theorem expression_enclosed (box : Variable → Bounds) (r : Variable → ℝ)
+        (hr : ∀ v, (box v).Contains (r v)) (e : Expr) :
+        (rangeExpr box e).Contains (e.evalReal r)
+  source: lean4/SzollosiIntervalExclusion.lean
+  repository: this_repository
+  source_sha256: 3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Bounds.point
+  line: 28
+  signature_excerpt: 'def Bounds.point (q : Rat) : Bounds'
+  source: lean4/SzollosiIntervalExclusion.lean
+  repository: this_repository
+  source_sha256: 3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: phaseInteriorBox
+  line: 128
+  signature_excerpt: 'def phaseInteriorBox (v : Variable) : Bounds'
+  source: lean4/SzollosiIntervalExclusion.lean
+  repository: this_repository
+  source_sha256: 3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: native_jacobian_eq
+  line: 4141
+  signature_excerpt: 'theorem native_jacobian_eq : nativeJacobian = expectedJacobian'
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: solution_in_native_retained
+  line: 4216
+  signature_excerpt: |-
+    theorem solution_in_native_retained (r : Variable → ℝ)
+        (hz : ∀ e, realEval r (equationPolynomial e)=0) (i : Nat) (hi : i<440) :
+        (nativeRetainedBox i).Contains (codedPoint r i)
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: native_additional_bases_unchanged
+  line: 4227
+  signature_excerpt: |-
+    theorem native_additional_bases_unchanged :
+        (List.range 144).all (fun n =>
+          boundsKey (nativeRetainedBox (80+n)) == boundsKey (codedFullBox (80+n))) = true
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: native_images_have_no_separation
+  line: 4232
+  signature_excerpt: |-
+    theorem native_images_have_no_separation :
+        (List.range 440).all (fun i => overlaps (codedFullBox i) (nativeImage i)) = true
+  source: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  source_sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: native_full_box_unresolved
+  line: 2015
+  signature_excerpt: 'theorem native_full_box_unresolved : nativeRanges.all (fun b => !b.excludesZero)
+    = true'
+  source: lean4/SzollosiNativeReflection.lean
+  repository: this_repository
+  source_sha256: 498061caf5fb238e3999c4d5c56943d6c9e1bfae931430e4674e8dca1f278029
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: full_box_check_unresolved
+  line: 125
+  signature_excerpt: 'theorem full_box_check_unresolved : exclusionCheck fullBox = false'
+  source: lean4/SzollosiIntervalExclusion.lean
+  repository: this_repository
+  source_sha256: 3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: phase_interior_excluded
+  line: 134
+  signature_excerpt: 'theorem phase_interior_excluded : exclusionCheck phaseInteriorBox = true'
+  source: lean4/SzollosiIntervalExclusion.lean
+  repository: this_repository
+  source_sha256: 3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/SzollosiRectangularReflection.lean::native_jacobian_eq
+  availability: local
+  symbol: native_jacobian_eq
+  path: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  declaration_status: declaration_found_not_proof_checked
+  line: 4141
+  role: source_lead_only
+- original_ref: lean4/SzollosiRectangularReflection.lean::solution_in_native_retained
+  availability: local
+  symbol: solution_in_native_retained
+  path: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  declaration_status: declaration_found_not_proof_checked
+  line: 4216
+  role: source_lead_only
+- original_ref: lean4/SzollosiRectangularReflection.lean::native_additional_bases_unchanged
+  availability: local
+  symbol: native_additional_bases_unchanged
+  path: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  declaration_status: declaration_found_not_proof_checked
+  line: 4227
+  role: source_lead_only
+- original_ref: lean4/SzollosiRectangularReflection.lean::native_images_have_no_separation
+  availability: local
+  symbol: native_images_have_no_separation
+  path: lean4/SzollosiRectangularReflection.lean
+  repository: this_repository
+  sha256: 9ac0b8f2710bfd04f9674804537e08efc77a67aafc3df34ba60e64a8ab837b40
+  declaration_status: declaration_found_not_proof_checked
+  line: 4232
+  role: source_lead_only
+- original_ref: lean4/SzollosiNativeReflection.lean::native_full_box_unresolved
+  availability: local
+  symbol: native_full_box_unresolved
+  path: lean4/SzollosiNativeReflection.lean
+  repository: this_repository
+  sha256: 498061caf5fb238e3999c4d5c56943d6c9e1bfae931430e4674e8dca1f278029
+  declaration_status: declaration_found_not_proof_checked
+  line: 2015
+  role: source_lead_only
+- original_ref: lean4/SzollosiIntervalExclusion.lean::full_box_check_unresolved
+  availability: local
+  symbol: full_box_check_unresolved
+  path: lean4/SzollosiIntervalExclusion.lean
+  repository: this_repository
+  sha256: 3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f
+  declaration_status: declaration_found_not_proof_checked
+  line: 125
+  role: source_lead_only
+- original_ref: lean4/SzollosiIntervalExclusion.lean::phase_interior_excluded
+  availability: local
+  symbol: phase_interior_excluded
+  path: lean4/SzollosiIntervalExclusion.lean
+  repository: this_repository
+  sha256: 3e886199b605f2bb97cf672d9e0179e37598c3f26ae5e8ec417b1e2bd7ff4f9f
+  declaration_status: declaration_found_not_proof_checked
+  line: 134
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

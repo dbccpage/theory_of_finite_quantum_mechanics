@@ -1,0 +1,14 @@
+schema_id: finite-qm.code-companion.v1
+subject: code/python/src/qm/genesis_tm.py
+source_sha256: 121faeefcc3cc65024c1b305989ed3bf5bd224a2af7e7217df7465ea4a5c64d5
+authority_effect: None
+purpose: 'Independent Python checker of the rewriting engine, bounded decider and TM0 encoding using a dictionary tape and a position-free canonical form.'
+design:
+  profile: 'Kernel-checked Lean on the declared carrier; exact finite computation otherwise; no floating point.'
+boundaries:
+- 'Finite exact computation on explicit instances; a passing check is not a general proof.'
+- 'The identity convention and the unbounded supply of fresh blank marks are declared inputs, not derived.'
+- 'Genesis Step3 is not shown to be a word rewriting step; Mathlib computability theory is imported, not re-derived.'
+- 'No physical Church-Turing claim and no claim of a smallest general-purpose machine.'
+evidence:
+- dag/research/genesis_to_universal_computation.md

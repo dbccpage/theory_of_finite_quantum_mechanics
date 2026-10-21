@@ -1,0 +1,107 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PGW-WDP-RETENTION-PACKET
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'A difference at one exhibition does not by itself remain available at another; a
+    retention packet R = (M, u, r, ≈) with memory carrier M, update u: M × I → M, report r: M → O and
+    declared recognition comparison ≈ is a definition, not a derivation. Five finite countermodels CM1–CM5
+    separate the components in their instances (a static carrier, a blind readout, a coarse report, a
+    tolerant comparison, a lossy reset). WDP-CH03-O01, now a finite proposition: for a finite nonempty
+    carrier with total labelled deterministic updates and exact readouts or a validated report equivalence,
+    descending partition refinement computes the greatest report-respecting update congruence, its minimal
+    quotient and behavioural classification without a global chronology. WDP-CH03-O02: typed retention
+    extensions on fixed finite M, I, O form the product M^{I×M} × O^M × P(O×O), with quotient and literal-readout
+    descent under separate conditions.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Declared finite carrier, total labelled deterministic update, report map and validated report comparison
+    (assumption)
+  source_bottleneck: The O prefix on CH03-O01 and CH03-O02 is historical; Lean coverage is partial (BehavioralQuotient.lean
+    gives the greatest invariant relation and quotient laws, not finite termination of refinement), and
+    nothing here derives retention from a bare set or concerns physical memory.
+  source_refs:
+  - dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:765-786
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:809-813
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md:61
+  paper_refs: []
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins: []
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/wdp_pgw_wdp_retention_packet_definition.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/BehavioralQuotient.lean::greatest_invariant_relation
+  availability: external
+  symbol: greatest_invariant_relation
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/BehavioralQuotient.lean
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/retention.rs::compute_exact_behavioral_quotient
+  availability: external
+  symbol: compute_exact_behavioral_quotient
+  path: omega_engine/crates_rs/omega_wdp/src/retention.rs
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Declared finite carrier, total labelled deterministic update, report map and validated report comparison
+      (assumption)
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Declared finite carrier, total labelled deterministic update, report map and validated report comparison
+      (assumption)
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

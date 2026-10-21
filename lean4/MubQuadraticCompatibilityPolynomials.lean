@@ -129,7 +129,15 @@ theorem cycles_degree (a : Fin 3) (i j : I6) : DegreeLE (pCycles a i j) 2 := by
 
 theorem balance_degree (a : Fin 3) (column : Bool) (i : I6) : DegreeLE (pBalance a column i) 1 := by
   apply degree_sub _ (degree_mono six_degree (by omega))
-  cases column <;> apply degree_sum <;> intro j _ <;> exact pW_degree a _ _
+  cases column
+  · change DegreeLE (∑ j, pW a i j) 1
+    apply degree_sum
+    intro j _
+    exact pW_degree a _ _
+  · change DegreeLE (∑ j, pW a j i) 1
+    apply degree_sum
+    intro j _
+    exact pW_degree a _ _
 
 theorem compatibility_degree (e : CompatibilityEquation) : (compatibilityPolynomial e).totalDegree ≤ 2 := by
   rcases e with ⟨a,i,j,b⟩ | ⟨a,i,j,b⟩ | ⟨a,column,i,b⟩

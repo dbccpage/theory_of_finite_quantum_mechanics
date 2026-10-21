@@ -1,0 +1,130 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "dag/pfp/llm_ladder/providers.py",
+  "contract": {
+    "schema_id": "finite-qm.code-companion.v1",
+    "subject": "dag/pfp/llm_ladder/providers.py",
+    "source_sha256": "932be08bc6a65cf07fe400c56706e60cfaabfb4958a39bebd4e39deb4686adba",
+    "authority_effect": "None",
+    "contract_urn": "urn:finite-qm:pfp:llm-ladder:3c2cc0d9f26b7bbb12a3",
+    "symbols": [
+      "CallRequest",
+      "CallResult",
+      "ProviderError",
+      "extract_json",
+      "_wait_from_body",
+      "default_transport",
+      "OpenAICompatProvider",
+      "AnthropicProvider",
+      "probe_ollama",
+      "build_providers"
+    ],
+    "owned_invariants": [
+      "No paid call is dispatched before its worst case is reserved in the budget ledger.",
+      "No key value is logged, written to a record, or placed in an error; records are redacted before writing."
+    ],
+    "boundaries": [
+      "Provider calls are untrusted proposals; only host-verified entries are recorded as operad entries and no theorem is accepted.",
+      "Verification checks declaration existence, readable arity, source-consistent numerals and exact arithmetic; it does not review semantics."
+    ],
+    "evidence": [
+      "dag/pfp/llm_ladder/DESIGN.md"
+    ]
+  },
+  "current_contract": "890aeb58f319fbbd0c77a6b32f9a2da54e033d66f4af1bb26ac442a018654493",
+  "current_scoring": "fab6c8bf0e4b9e87383cb95ed722fbffc03193858053ac84f35b70690dd4af2f",
+  "contract_history": [
+    {
+      "sha256": "890aeb58f319fbbd0c77a6b32f9a2da54e033d66f4af1bb26ac442a018654493",
+      "bytes": 963,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "dag/pfp/llm_ladder/providers.py",
+        "source_sha256": "932be08bc6a65cf07fe400c56706e60cfaabfb4958a39bebd4e39deb4686adba",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:llm-ladder:3c2cc0d9f26b7bbb12a3",
+        "symbols": [
+          "CallRequest",
+          "CallResult",
+          "ProviderError",
+          "extract_json",
+          "_wait_from_body",
+          "default_transport",
+          "OpenAICompatProvider",
+          "AnthropicProvider",
+          "probe_ollama",
+          "build_providers"
+        ],
+        "owned_invariants": [
+          "No paid call is dispatched before its worst case is reserved in the budget ledger.",
+          "No key value is logged, written to a record, or placed in an error; records are redacted before writing."
+        ],
+        "boundaries": [
+          "Provider calls are untrusted proposals; only host-verified entries are recorded as operad entries and no theorem is accepted.",
+          "Verification checks declaration existence, readable arity, source-consistent numerals and exact arithmetic; it does not review semantics."
+        ],
+        "evidence": [
+          "dag/pfp/llm_ladder/DESIGN.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/pfp/llm_ladder/providers.py\nsource_sha256: 932be08bc6a65cf07fe400c56706e60cfaabfb4958a39bebd4e39deb4686adba\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:llm-ladder:3c2cc0d9f26b7bbb12a3\nsymbols:\n- CallRequest\n- CallResult\n- ProviderError\n- extract_json\n- _wait_from_body\n- default_transport\n- OpenAICompatProvider\n- AnthropicProvider\n- probe_ollama\n- build_providers\nowned_invariants:\n- No paid call is dispatched before its worst case is reserved in the budget ledger.\n- No key value is logged, written to a record, or placed in an error; records are redacted before writing.\nboundaries:\n- Provider calls are untrusted proposals; only host-verified entries are recorded as operad entries and\n  no theorem is accepted.\n- Verification checks declaration existence, readable arity, source-consistent numerals and exact arithmetic;\n  it does not review semantics.\nevidence:\n- dag/pfp/llm_ladder/DESIGN.md\n",
+      "original_paths": [
+        "dag/pfp/llm_ladder/providers.py.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "fab6c8bf0e4b9e87383cb95ed722fbffc03193858053ac84f35b70690dd4af2f",
+      "bytes": 849,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "dag/pfp/llm_ladder/providers.py",
+        "source_sha256": "932be08bc6a65cf07fe400c56706e60cfaabfb4958a39bebd4e39deb4686adba",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": "L1",
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "incomplete_no_completed_score_token",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A complete five-gate engineering-grade assessment was not performed; unit tests with mocked providers exist (test_ladder.py).",
+        "evidence": [
+          "dag/pfp/llm_ladder/DESIGN.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/pfp/llm_ladder/providers.py\nsource_sha256: 932be08bc6a65cf07fe400c56706e60cfaabfb4958a39bebd4e39deb4686adba\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: L1\nengineering_grade: null\ncomposite_score: null\nassessment_status: incomplete_no_completed_score_token\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A complete five-gate engineering-grade assessment was not performed; unit tests with mocked\n  providers exist (test_ladder.py).\nevidence:\n- dag/pfp/llm_ladder/DESIGN.md\n",
+      "original_paths": [
+        "dag/pfp/llm_ladder/providers.py.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "dag/pfp/llm_ladder/providers.py.contract.yaml": "890aeb58f319fbbd0c77a6b32f9a2da54e033d66f4af1bb26ac442a018654493",
+    "dag/pfp/llm_ladder/providers.py.score.yaml": "fab6c8bf0e4b9e87383cb95ed722fbffc03193858053ac84f35b70690dd4af2f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,158 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: TENSOR-CONE-ORBIT-KERNEL
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For any finite complex matrix size, a Hermitian set containing zero and closed under
+    addition equals PSD when seed preparations and positive seed tests are transported by preserving operations
+    whose seed-vector orbits cover all vectors.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - finite complex matrix and spectral theory
+  - explicit OrbitData reachability and transport hypotheses
+  source_bottleneck: The general finite-index cone kernel retains explicit OrbitData assumptions. TensorOperationalCone
+    now instantiates its transports and reachability using the proved Schmidt controlled-shift construction;
+    TensorComposition connects that instance to the constructed operational coordinates.
+  source_refs:
+  - dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md
+  - code/python/src/qm/tensor_composition.py
+  - code/python/tests/test_tensor_composition.py
+  - dag/research/tensor_formalization_validation.json
+  paper_refs:
+  - dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md
+    sha256: 63120a31cac72a80dc162baf4ac1782299c290aec39401e0bc428da88c399bb5
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/tensor_composition_tensor_cone_orbit_kernel_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: OrbitData
+  line: 57
+  signature_excerpt: 'structure OrbitData (K : Set (Matrix n n ℂ)) (G : Type*)'
+  source: lean4/TensorConeReconstruction.lean
+  repository: this_repository
+  source_sha256: b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rankOne
+  line: 19
+  signature_excerpt: 'def rankOne (v : n → ℂ) : Matrix n n ℂ'
+  source: lean4/TensorConeReconstruction.lean
+  repository: this_repository
+  source_sha256: b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: quadratic
+  line: 21
+  signature_excerpt: 'def quadratic (A : Matrix n n ℂ) (v : n → ℂ) : ℂ'
+  source: lean4/TensorConeReconstruction.lean
+  repository: this_repository
+  source_sha256: b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: operational_orbit_selects_positive
+  line: 72
+  signature_excerpt: |-
+    theorem operational_orbit_selects_positive
+        (K : Set (Matrix n n ℂ)) (hz : 0 ∈ K)
+        (ha : ∀ A ∈ K, ∀ B ∈ K, A + B ∈ K)
+        (hh : ∀ A ∈ K, A.IsHermitian)
+        {G : Type*} (D : OrbitData K G) :
+        K = {A | A.PosSemidef}
+  source: lean4/TensorConeReconstruction.lean
+  repository: this_repository
+  source_sha256: b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: positive_mem_of_rankOne
+  line: 25
+  signature_excerpt: |-
+    theorem positive_mem_of_rankOne
+        (K : Set (Matrix n n ℂ)) (hz : 0 ∈ K)
+        (ha : ∀ A ∈ K, ∀ B ∈ K, A + B ∈ K)
+        (hr : ∀ v : n → ℂ, rankOne v ∈ K)
+        {A : Matrix n n ℂ} (hA : A.PosSemidef) : A ∈ K
+  source: lean4/TensorConeReconstruction.lean
+  repository: this_repository
+  source_sha256: b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/TensorConeReconstruction.lean::operational_orbit_selects_positive
+  availability: local
+  symbol: operational_orbit_selects_positive
+  path: lean4/TensorConeReconstruction.lean
+  repository: this_repository
+  sha256: b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 72
+  role: source_lead_only
+- original_ref: lean4/TensorConeReconstruction.lean::positive_mem_of_rankOne
+  availability: local
+  symbol: positive_mem_of_rankOne
+  path: lean4/TensorConeReconstruction.lean
+  repository: this_repository
+  sha256: b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 25
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - finite complex matrix and spectral theory
+    - explicit OrbitData reachability and transport hypotheses
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - finite complex matrix and spectral theory
+    - explicit OrbitData reachability and transport hypotheses
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

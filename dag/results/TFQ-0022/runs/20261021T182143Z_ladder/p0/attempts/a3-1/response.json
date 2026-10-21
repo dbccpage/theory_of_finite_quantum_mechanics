@@ -1,0 +1,57 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "r_fierz_weighted",
+      "statement": "For all i,j,k,l in Fin 3, sum_a T^a_ij T^a_kl = (1/2) delta_il delta_kj - (1/6) delta_ij delta_kl, replayed exhaustively on 81 quadruples in the Rust and Python controls only",
+      "hypotheses": "Gell-Mann generators normalised with Tr(T^a T^b) = (1/2) delta_ab; indices range over Fin 3",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_scalar_slice_contraction",
+      "statement": "The scalar contraction 3*(1/2) - 1/6 equals 4/3, which is a scalar identity and not an 81-quadruple loop",
+      "relation_to_target": "auxiliary",
+      "depends_on": [],
+      "lean_skeleton": "example : (3:ℚ)*(1/2) - 1/6 = 4/3 := by norm_num",
+      "claims_proved": true,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_lean_equals_replay",
+      "claim": "The Lean scalar slice (diagonal Cartan term plus one off-diagonal pair) is the same as the exhaustive 81-quadruple replay",
+      "rejecting_invariant": "The Lean slice checks only a few scalar products and does not enumerate all 81 index quadruples, so it cannot stand in for the Rust and Python replay"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_quadruples",
+      "expr": "3*3*3*3",
+      "value": "81"
+    },
+    {
+      "id": "n_contraction",
+      "expr": "3*(1/2) - 1/6",
+      "value": "4/3"
+    }
+  ],
+  "open_obligations": [
+    "The su3_fierz_diagonal_and_offdiagonal_identities declaration is listed under @SRC but was host-refused earlier, so it is not cited",
+    "No grounded generators: the SRC declarations are checkers or unrelated effect-cone lemmas",
+    "The exhaustive 81-quadruple replay stays in the Rust and Python controls with no Lean counterpart",
+    "A Lean statement for the full Fierz identity over Fin 3 is still needed"
+  ]
+}

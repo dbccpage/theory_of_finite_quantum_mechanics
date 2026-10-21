@@ -1,0 +1,342 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: TENSOR-TOMOGRAPHIC-COORDINATES
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Independent bilinear preparations and tests with trace-factorized product probabilities
+    and local tomography construct a unique real linear equivalence with joint Hermitian matrices for
+    arbitrary finite local complex dimensions. The equivalence preserves products and all product tests;
+    the deterministic product test is trace. The joint state cone is not assumed.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - finite local complex quantum state and effect spaces
+  - independent preparations and tests with factorized probabilities
+  - local tomography
+  - mixing and linear operational extension
+  source_bottleneck: Lean verifies Hermitian product spanning, nondegenerate trace pairing, finite dual-frame
+    reconstruction, injectivity, surjectivity, uniqueness, and process calibration. Local complex QM and
+    the operational bilinear/tomography premises remain supplied. The displayed positive projector-basis
+    formula and SEP/BP commentary are prose corollaries, not additional Lean claims.
+  source_refs:
+  - dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md
+  - code/python/src/qm/tensor_composition.py
+  - code/python/tests/test_tensor_composition.py
+  - dag/research/tensor_formalization_validation.json
+  paper_refs:
+  - dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md
+    sha256: 6b362297a378d6593662c638908ac1d8793a986c32929bf4f12fe4c77ce10025
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/tensor_composition_tensor_tomographic_coordinates_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: tomographicEquiv
+  line: 116
+  signature_excerpt: 'def tomographicEquiv : V ≃ₗ[ℝ] Herm (n × m)'
+  source: lean4/TensorCoordinates.lean
+  repository: this_repository
+  source_sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Herm
+  line: 14
+  signature_excerpt: 'abbrev Herm (n : Type*)'
+  source: lean4/TensorTomography.lean
+  repository: this_repository
+  source_sha256: eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: product
+  line: 24
+  signature_excerpt: 'def product (A : Herm n) (B : Herm m) : Herm (n × m)'
+  source: lean4/TensorTomography.lean
+  repository: this_repository
+  source_sha256: eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pairing
+  line: 84
+  signature_excerpt: 'noncomputable def pairing : Herm n →ₗ[ℝ] Herm n →ₗ[ℝ] ℝ'
+  source: lean4/TensorTomography.lean
+  repository: this_repository
+  source_sha256: eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: frameTest
+  line: 27
+  signature_excerpt: |-
+    def frameTest (a : Basis ι ℝ (Herm n)) (b : Basis κ ℝ (Herm m)) (i : ι × κ) :
+        Herm (n × m) →ₗ[ℝ] ℝ
+  source: lean4/TensorCoordinates.lean
+  repository: this_repository
+  source_sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: frame
+  line: 24
+  signature_excerpt: |-
+    def frame (a : Basis ι ℝ (Herm n)) (b : Basis κ ℝ (Herm m)) (i : ι × κ) :
+        Herm (n × m)
+  source: lean4/TensorCoordinates.lean
+  repository: this_repository
+  source_sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dual
+  line: 11
+  signature_excerpt: 'def dual (a : Basis ι ℝ (Herm n)) : Basis ι ℝ (Herm n)'
+  source: lean4/TensorCoordinates.lean
+  repository: this_repository
+  source_sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: representation
+  line: 13
+  signature_excerpt: |-
+    def representation (D : TomographicData (Fin n) (Fin m) V) :
+        V ≃ₗ[ℝ] Herm (Fin n × Fin m)
+  source: lean4/TensorComposition.lean
+  repository: this_repository
+  source_sha256: f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: product_span
+  line: 64
+  signature_excerpt: |-
+    theorem product_span :
+        Submodule.span ℝ (Set.range (fun p : Herm n × Herm m => product p.1 p.2)) = ⊤
+  source: lean4/TensorTomography.lean
+  repository: this_repository
+  source_sha256: eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pairing_nondegenerate
+  line: 113
+  signature_excerpt: 'theorem pairing_nondegenerate : (pairing (n'
+  source: lean4/TensorTomography.lean
+  repository: this_repository
+  source_sha256: eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tomographicEquiv_prepare
+  line: 121
+  signature_excerpt: |-
+    theorem tomographicEquiv_prepare (A : Herm n) (B : Herm m) :
+        tomographicEquiv a b D (D.prepare A B) = product A B
+  source: lean4/TensorCoordinates.lean
+  repository: this_repository
+  source_sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tomographicEquiv_test
+  line: 124
+  signature_excerpt: |-
+    theorem tomographicEquiv_test (E : Herm n) (F : Herm m) (x : V) :
+        pairing (product E F) (tomographicEquiv a b D x) = D.test E F x
+  source: lean4/TensorCoordinates.lean
+  repository: this_repository
+  source_sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tomographicEquiv_unique
+  line: 135
+  signature_excerpt: |-
+    theorem tomographicEquiv_unique (J : V →ₗ[ℝ] Herm (n × m))
+        (hJ : ∀ E F x, pairing (product E F) (J x) = D.test E F x) :
+        J = (tomographicEquiv a b D).toLinearMap
+  source: lean4/TensorCoordinates.lean
+  repository: this_repository
+  source_sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: product_calibration
+  line: 149
+  signature_excerpt: |-
+    theorem product_calibration {W : Type*} [AddCommGroup W] [Module ℝ W]
+        (F G : Herm (n × m) →ₗ[ℝ] W)
+        (h : ∀ A B, F (product A B) = G (product A B)) : F = G
+  source: lean4/TensorCoordinates.lean
+  repository: this_repository
+  source_sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: finite_frame_calibration
+  line: 164
+  signature_excerpt: |-
+    theorem finite_frame_calibration (a : Basis ι ℝ (Herm n)) (b : Basis κ ℝ (Herm m))
+        (F G : Herm (n × m) →ₗ[ℝ] Herm (n × m))
+        (h : ∀ i j, frameTest a b i (F (frame a b j)) = frameTest a b i (G (frame a b j))) :
+        F = G
+  source: lean4/TensorCoordinates.lean
+  repository: this_repository
+  source_sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unit_test_is_trace
+  line: 95
+  signature_excerpt: |-
+    theorem unit_test_is_trace (D : TomographicData (Fin n) (Fin m) V) (x : V) :
+        D.test (1 : Herm (Fin n)) (1 : Herm (Fin m)) x = (representation D x).val.trace.re
+  source: lean4/TensorComposition.lean
+  repository: this_repository
+  source_sha256: f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/TensorTomography.lean::product_span
+  availability: local
+  symbol: product_span
+  path: lean4/TensorTomography.lean
+  repository: this_repository
+  sha256: eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
+- original_ref: lean4/TensorTomography.lean::pairing_nondegenerate
+  availability: local
+  symbol: pairing_nondegenerate
+  path: lean4/TensorTomography.lean
+  repository: this_repository
+  sha256: eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de
+  declaration_status: declaration_found_not_proof_checked
+  line: 113
+  role: source_lead_only
+- original_ref: lean4/TensorCoordinates.lean::tomographicEquiv
+  availability: local
+  symbol: tomographicEquiv
+  path: lean4/TensorCoordinates.lean
+  repository: this_repository
+  sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  declaration_status: declaration_found_not_proof_checked
+  line: 116
+  role: source_lead_only
+- original_ref: lean4/TensorCoordinates.lean::tomographicEquiv_prepare
+  availability: local
+  symbol: tomographicEquiv_prepare
+  path: lean4/TensorCoordinates.lean
+  repository: this_repository
+  sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  declaration_status: declaration_found_not_proof_checked
+  line: 121
+  role: source_lead_only
+- original_ref: lean4/TensorCoordinates.lean::tomographicEquiv_test
+  availability: local
+  symbol: tomographicEquiv_test
+  path: lean4/TensorCoordinates.lean
+  repository: this_repository
+  sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  declaration_status: declaration_found_not_proof_checked
+  line: 124
+  role: source_lead_only
+- original_ref: lean4/TensorCoordinates.lean::tomographicEquiv_unique
+  availability: local
+  symbol: tomographicEquiv_unique
+  path: lean4/TensorCoordinates.lean
+  repository: this_repository
+  sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  declaration_status: declaration_found_not_proof_checked
+  line: 135
+  role: source_lead_only
+- original_ref: lean4/TensorCoordinates.lean::product_calibration
+  availability: local
+  symbol: product_calibration
+  path: lean4/TensorCoordinates.lean
+  repository: this_repository
+  sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  declaration_status: declaration_found_not_proof_checked
+  line: 149
+  role: source_lead_only
+- original_ref: lean4/TensorCoordinates.lean::finite_frame_calibration
+  availability: local
+  symbol: finite_frame_calibration
+  path: lean4/TensorCoordinates.lean
+  repository: this_repository
+  sha256: 9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba
+  declaration_status: declaration_found_not_proof_checked
+  line: 164
+  role: source_lead_only
+- original_ref: lean4/TensorComposition.lean::unit_test_is_trace
+  availability: local
+  symbol: unit_test_is_trace
+  path: lean4/TensorComposition.lean
+  repository: this_repository
+  sha256: f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926
+  declaration_status: declaration_found_not_proof_checked
+  line: 95
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - finite local complex quantum state and effect spaces
+    - independent preparations and tests with factorized probabilities
+    - local tomography
+    - mixing and linear operational extension
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - finite local complex quantum state and effect spaces
+    - independent preparations and tests with factorized probabilities
+    - local tomography
+    - mixing and linear operational extension
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

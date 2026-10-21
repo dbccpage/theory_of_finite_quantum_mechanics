@@ -1,0 +1,296 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTH-G5C-TERMINALIZATION-CONSEQUENCE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Given an allowed class with no total decider for a validity predicate, no terminalizer
+    whose authorized bit lies in the class is both acceptance-sound and acceptance-complete, and none
+    is acceptance-sound, rejection-sound and never unresolved; a two-valued Boolean fixture is closed,
+    sound and complete.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - NoTotalDecider premise for the declared class
+  - class membership of the acceptance bit
+  source_bottleneck: The no-total-decider premise and the class membership of the acceptance bit are hypotheses
+    that no program carrier supplies yet; the result does not say that every terminalizer must return
+    unresolved, and it uses three terminal values where TFQ-0330 names five.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1335_auth_g5c_terminalization_consequence.md
+  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md
+  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md
+  - papers/foundations/authorization_incompleteness/proof_program.md
+  - papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_g5c_terminalization_update_packet.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1335_auth_g5c_terminalization_consequence.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1335_auth_g5c_terminalization_consequence.md
+    sha256: 96fd2488724e35f0dbd77a5554baaed97b29ef182412d3de3d9bd135d4b063bc
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_auth_g5c_terminalization_consequence_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: inductive
+  name: AuthorizationTerminal
+  line: 36
+  signature_excerpt: inductive AuthorizationTerminal
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: AcceptanceSound
+  line: 50
+  signature_excerpt: |-
+    def AcceptanceSound {Proposal : Type} (valid : Proposal -> Prop)
+        (terminalize : Proposal -> AuthorizationTerminal) : Prop
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: AcceptanceComplete
+  line: 55
+  signature_excerpt: |-
+    def AcceptanceComplete {Proposal : Type} (valid : Proposal -> Prop)
+        (terminalize : Proposal -> AuthorizationTerminal) : Prop
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: acceptanceBit
+  line: 45
+  signature_excerpt: |-
+    def acceptanceBit {Proposal : Type}
+        (terminalize : Proposal -> AuthorizationTerminal) : Proposal -> Bool
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: RejectionSound
+  line: 61
+  signature_excerpt: |-
+    def RejectionSound {Proposal : Type} (valid : Proposal -> Prop)
+        (terminalize : Proposal -> AuthorizationTerminal) : Prop
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: TerminalClosed
+  line: 68
+  signature_excerpt: |-
+    def TerminalClosed {Proposal : Type}
+        (terminalize : Proposal -> AuthorizationTerminal) : Prop
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: boolValidity
+  line: 148
+  signature_excerpt: 'def boolValidity (proposal : Bool) : Prop'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: boolTerminalize
+  line: 153
+  signature_excerpt: |-
+    def boolTerminalize : Bool -> AuthorizationTerminal
+      | true => .authorized
+      | false => .rejected
+
+    theorem bool_terminalization_acceptance_sound :
+        AcceptanceSound boolValidity boolTerminalize
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: acceptance_bit_decides_of_sound_complete
+  line: 81
+  signature_excerpt: |-
+    theorem acceptance_bit_decides_of_sound_complete {Proposal : Type}
+        {valid : Proposal -> Prop}
+        (terminalize : Proposal -> AuthorizationTerminal)
+        (sound : AcceptanceSound valid terminalize)
+        (complete : AcceptanceComplete valid terminalize) :
+        Decides valid (acceptanceBit terminalize)
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_total_decider_blocks_sound_complete_authorization
+  line: 99
+  signature_excerpt: |-
+    theorem no_total_decider_blocks_sound_complete_authorization
+        {Proposal : Type} {valid : Proposal -> Prop}
+        {allowed : (Proposal -> Bool) -> Prop}
+        (terminalize : Proposal -> AuthorizationTerminal)
+        (noTotalDecider : NoTotalDecider allowed valid)
+        (allowedAcceptanceBit : allowed (acceptanceBit terminalize))
+        (sound : AcceptanceSound valid terminalize)
+        (complete : AcceptanceComplete valid terminalize) : False
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: closed_two_sided_terminalization_is_acceptance_complete
+  line: 113
+  signature_excerpt: |-
+    theorem closed_two_sided_terminalization_is_acceptance_complete
+        {Proposal : Type} {valid : Proposal -> Prop}
+        (terminalize : Proposal -> AuthorizationTerminal)
+        (rejectionSound : RejectionSound valid terminalize)
+        (closed : TerminalClosed terminalize) :
+        AcceptanceComplete valid terminalize
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_total_decider_blocks_closed_two_sided_terminalization
+  line: 132
+  signature_excerpt: |-
+    theorem no_total_decider_blocks_closed_two_sided_terminalization
+        {Proposal : Type} {valid : Proposal -> Prop}
+        {allowed : (Proposal -> Bool) -> Prop}
+        (terminalize : Proposal -> AuthorizationTerminal)
+        (noTotalDecider : NoTotalDecider allowed valid)
+        (allowedAcceptanceBit : allowed (acceptanceBit terminalize))
+        (acceptanceSound : AcceptanceSound valid terminalize)
+        (rejectionSound : RejectionSound valid terminalize)
+        (closed : TerminalClosed terminalize) : False
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: finite_closed_terminalizer_remains_possible
+  line: 180
+  signature_excerpt: |-
+    theorem finite_closed_terminalizer_remains_possible :
+        AcceptanceSound boolValidity boolTerminalize ∧
+          AcceptanceComplete boolValidity boolTerminalize ∧
+          RejectionSound boolValidity boolTerminalize ∧
+          TerminalClosed boolTerminalize
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_decides_of_sound_complete
+  availability: local
+  symbol: AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_decides_of_sound_complete
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 81
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization
+  availability: local
+  symbol: AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 99
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.closed_two_sided_terminalization_is_acceptance_complete
+  availability: local
+  symbol: AuthorizationIncompleteness.TerminalAuthorizationBoundary.closed_two_sided_terminalization_is_acceptance_complete
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 113
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization
+  availability: local
+  symbol: AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 132
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible
+  availability: local
+  symbol: AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  repository: this_repository
+  sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 180
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - NoTotalDecider premise for the declared class
+    - class membership of the acceptance bit
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - NoTotalDecider premise for the declared class
+    - class membership of the acceptance bit
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

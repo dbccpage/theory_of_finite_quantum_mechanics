@@ -6,7 +6,7 @@ package gr002 where
   keywords := #["math", "simplicial", "exterior-calculus", "l1-norm", "regge-calculus"]
 
 require mathlib from git
-  "https://github.com/leanprover-community/mathlib4" @ "v4.34.0-rc1"
+  "https://github.com/leanprover-community/mathlib4" @ "v4.35.0"
 
 @[default_target]
 lean_lib GR002 where

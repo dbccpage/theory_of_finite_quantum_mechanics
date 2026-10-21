@@ -1,0 +1,295 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C1-FIRST-SEPARATION-REPLAY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: In the byte copy of the sealed event semantics, the history of two admitted data,
+    one unary form, one instance on datum 0 and the demand (0,1) replays from the empty regime to a regime
+    in which datum 0 and datum 1 are told apart by a unary instance, giving the alphabet {mark0, mark1};
+    a fixed instance.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Labelling mark0 := <> and mark1 := its first separated successor (declared)
+  - Byte copy of the sealed Regime, Event, stepE, replayE from the staged SupplyErasure.lean
+  source_bottleneck: The cost-two minimum (TFQ-0381) and the external definition of separable are not
+    re-proved here; mark0 as <> and mark1 as its first separated successor is a declared labelling.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1283_comp_c1_first_separation_replay.md
+  - dag/research/genesis_to_universal_computation.md
+  - dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1283_comp_c1_first_separation_replay.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1283_comp_c1_first_separation_replay.md
+    sha256: 27a7d05796c4abb6c46ab7354d94ffd64432114851edc754e2c0f00e000f4a49
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c1_first_separation_replay_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: firstSeparationHistory
+  line: 161
+  signature_excerpt: 'def firstSeparationHistory : List Event'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: replayE
+  line: 107
+  signature_excerpt: 'def replayE (h : List Event) (base : Regime) : Option Regime'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: emptyRegime
+  line: 117
+  signature_excerpt: 'def emptyRegime : Regime'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: firstSeparationRegime
+  line: 165
+  signature_excerpt: 'def firstSeparationRegime : Regime'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Event
+  line: 79
+  signature_excerpt: inductive Event
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Regime
+  line: 71
+  signature_excerpt: structure Regime
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: stepE
+  line: 88
+  signature_excerpt: |-
+    def stepE (r : Regime) : Event → Option Regime
+      | .supply _ => some r
+      | .admitDatum => some { r with data
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Inst
+  line: 66
+  signature_excerpt: abbrev Inst
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: insertNew
+  line: 68
+  signature_excerpt: 'def insertNew {α : Type} [DecidableEq α] (l : List α) (a : α) : List α'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: PairwiseSeparated
+  line: 144
+  signature_excerpt: 'def PairwiseSeparated (r : Regime) : Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: UnarySep
+  line: 123
+  signature_excerpt: 'def UnarySep (r : Regime) (i j : Nat) : Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Mark2.toDatum
+  line: 193
+  signature_excerpt: |-
+    def Mark2.toDatum : Mark2 → Fin firstSeparationRegime.data
+      | .mark0 => ⟨0, by decide⟩
+      | .mark1 => ⟨1, by decide⟩
+
+    theorem Mark2.toDatum_bijective : Function.Bijective Mark2.toDatum
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Mark2
+  line: 182
+  signature_excerpt: |-
+    inductive Mark2 | mark0 | mark1
+      deriving DecidableEq, Repr
+
+    instance : Fintype Mark2
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: first_separation_replay
+  line: 168
+  signature_excerpt: |-
+    theorem first_separation_replay :
+        replayE firstSeparationHistory emptyRegime = some firstSeparationRegime
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: first_separation_pairwise
+  line: 172
+  signature_excerpt: 'theorem first_separation_pairwise : PairwiseSeparated firstSeparationRegime'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Mark2.toDatum_bijective
+  line: 197
+  signature_excerpt: 'theorem Mark2.toDatum_bijective : Function.Bijective Mark2.toDatum'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisComputation.lean::first_separation_replay
+  availability: local
+  symbol: first_separation_replay
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 168
+  role: source_lead_only
+- original_ref: lean4/GenesisComputation.lean::first_separation_pairwise
+  availability: local
+  symbol: first_separation_pairwise
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 172
+  role: source_lead_only
+- original_ref: lean4/GenesisComputation.lean::firstSeparationHistory
+  availability: local
+  symbol: firstSeparationHistory
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 161
+  role: source_lead_only
+- original_ref: lean4/GenesisComputation.lean::Mark2.toDatum_bijective
+  availability: local
+  symbol: Mark2.toDatum_bijective
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 197
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::replay_e
+  availability: local
+  symbol: replay_e
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 560
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::first_separation_history
+  availability: local
+  symbol: first_separation_history
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 598
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::step_e
+  availability: local
+  symbol: step_e
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 515
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Labelling mark0 := <> and mark1 := its first separated successor (declared)
+    - Byte copy of the sealed Regime, Event, stepE, replayE from the staged SupplyErasure.lean
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Labelling mark0 := <> and mark1 := its first separated successor (declared)
+    - Byte copy of the sealed Regime, Event, stepE, replayE from the staged SupplyErasure.lean
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

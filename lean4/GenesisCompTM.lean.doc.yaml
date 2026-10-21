@@ -1,0 +1,13 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/GenesisCompTM.lean
+source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+authority_effect: None
+purpose: 'Encoding of Mathlib TM0 machines as rewriting regimes on configuration words, with forward and backward step simulation, closures, halting equivalence and the right-running unbounded example.'
+design:
+  profile: 'Kernel-checked Lean on the declared carrier; exact finite computation otherwise; no floating point.'
+boundaries:
+- 'The identity convention and the unbounded supply of fresh blank marks are declared inputs, not derived.'
+- 'Genesis Step3 is not shown to be a word rewriting step; Mathlib computability theory is imported, not re-derived.'
+- 'No physical Church-Turing claim and no claim of a smallest general-purpose machine.'
+evidence:
+- dag/research/genesis_to_universal_computation.md

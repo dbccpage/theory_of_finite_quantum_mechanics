@@ -1,0 +1,234 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-TRANSITION-ADEQUACY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: On the four configurations the identity report is adequate for markedCellContract,
+    whereas the control-outcome report is not, because haltedBlank and haltedMarked both report stay and
+    the contract separates them, so no function of the control outcome decides the contract.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: A finite adequacy example; whether any report is adequate for a semantic property
+    of arbitrary programs is not addressed.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1355_authf_transition_adequacy.md
+  - lean4/AuthIncompleteness/TapeTransition.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1355_authf_transition_adequacy.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1355_authf_transition_adequacy.md
+    sha256: fe769f13f590b8508c5a365fe727c30ebe56b52d5ed9674290bc1cd035e10bdf
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_transition_adequacy_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: AdequateFor
+  line: 76
+  signature_excerpt: |-
+    def AdequateFor {Report : Type} (report : Configuration -> Report)
+        (contract : ConfigurationContract) : Prop
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: fullConfigurationReport
+  line: 108
+  signature_excerpt: 'def fullConfigurationReport : Configuration -> Configuration'
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: markedCellContract
+  line: 97
+  signature_excerpt: 'def markedCellContract : ConfigurationContract'
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Configuration
+  line: 34
+  signature_excerpt: inductive Configuration
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: ConfigurationContract
+  line: 70
+  signature_excerpt: structure ConfigurationContract
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: transition
+  line: 50
+  signature_excerpt: 'def transition (configuration : Configuration) : TransitionResult'
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: TransitionResult
+  line: 43
+  signature_excerpt: structure TransitionResult
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: transitionControl
+  line: 66
+  signature_excerpt: 'def transitionControl (configuration : Configuration) : ControlOutcome'
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: full_configuration_report_adequate_for_marked_cell_contract
+  line: 175
+  signature_excerpt: |-
+    theorem full_configuration_report_adequate_for_marked_cell_contract :
+        AdequateFor fullConfigurationReport markedCellContract
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: full_configuration_report_admits_marked_cell_decider
+  line: 185
+  signature_excerpt: |-
+    theorem full_configuration_report_admits_marked_cell_decider :
+        ∃ decide : Configuration -> Bool,
+          ∀ configuration, decide configuration =
+            markedCellContract.accepts configuration
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: control_report_not_adequate_for_marked_cell_contract
+  line: 194
+  signature_excerpt: |-
+    theorem control_report_not_adequate_for_marked_cell_contract :
+        ¬ AdequateFor transitionControl markedCellContract
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: shared_stay_control_blocks_control_only_contract_decider
+  line: 159
+  signature_excerpt: |-
+    theorem shared_stay_control_blocks_control_only_contract_decider :
+        ¬ (∃ decide : ControlOutcome -> Bool,
+          ∀ configuration, decide (transitionControl configuration) =
+            markedCellContract.accepts configuration)
+  source: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  source_sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract
+  path: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  declaration_status: declaration_found_not_proof_checked
+  line: 175
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_admits_marked_cell_decider
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_admits_marked_cell_decider
+  path: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  declaration_status: declaration_found_not_proof_checked
+  line: 185
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract
+  path: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  declaration_status: declaration_found_not_proof_checked
+  line: 194
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider
+  path: lean4/AuthIncompleteness/TapeTransition.lean
+  repository: this_repository
+  sha256: 107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd
+  declaration_status: declaration_found_not_proof_checked
+  line: 159
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

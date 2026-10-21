@@ -17,7 +17,7 @@ import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parents[2]
-MATHLIB_SHA = '0df444a360eaa60ab8c11dca51a86af692955474'
+MATHLIB_SHA = '56a005855ea17e0b0958f73ec801ae140b0a1679'
 LEVELS = [
     ('TensorConeReconstruction', 'TensorTomography', 'TensorSchmidt'),
     ('TensorCoordinates', 'TensorReachability'),
@@ -38,7 +38,7 @@ def main():
     args = parser.parse_args()
     lean, packages = args.lean.resolve(), args.packages.resolve()
     version = subprocess.check_output([str(lean), '--version'], text=True, encoding='utf-8').strip()
-    if not re.search(r'version 4\.33\.1[, )]', version):
+    if not re.search(r'version 4\.35\.0[, )]', version):
         raise ValueError('unexpected Lean version: ' + version)
     sha = subprocess.check_output(['git', '-C', str(packages / 'mathlib'), 'rev-parse', 'HEAD'], text=True).strip()
     if sha != MATHLIB_SHA:

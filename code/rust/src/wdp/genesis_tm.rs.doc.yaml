@@ -1,0 +1,14 @@
+schema_id: finite-qm.code-companion.v1
+subject: code/rust/src/wdp/genesis_tm.rs
+source_sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+authority_effect: None
+purpose: 'Exact semi-Thue engine, bounded reachability decider with an explicit bound-exceeded verdict, TM0 to rewriting encoding with step simulation checks, Genesis event mirror, context enumeration and binary coding.'
+design:
+  profile: 'Kernel-checked Lean on the declared carrier; exact finite computation otherwise; no floating point.'
+boundaries:
+- 'Finite exact computation on explicit instances; a passing check is not a general proof.'
+- 'The identity convention and the unbounded supply of fresh blank marks are declared inputs, not derived.'
+- 'Genesis Step3 is not shown to be a word rewriting step; Mathlib computability theory is imported, not re-derived.'
+- 'No physical Church-Turing claim and no claim of a smallest general-purpose machine.'
+evidence:
+- dag/research/genesis_to_universal_computation.md

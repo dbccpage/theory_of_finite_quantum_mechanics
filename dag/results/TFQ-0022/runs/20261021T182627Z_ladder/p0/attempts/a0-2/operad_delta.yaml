@@ -1,0 +1,46 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-B18761D4C55C
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'TFQ-0022:replay_scope: The Rust and Python controls perform a weighted Fierz identity replay
+    for all 81 index quadruples, and this exhaustive loop is distinct from the Lean scalar identities
+    which do not iterate over all quadruples.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: qwen/qwen3.8-27b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0022
+counterexamples:
+- id: NEG-907B83F9ADA4
+  class: false_numeric_claim
+  claim_kind: numeric
+  claim: 'TFQ-0022:nm_indices: 8 * 31 - 244 = 81'
+  evidence: exact recomputation gives 4, not 81
+  decl_key: null
+  confidence: exact
+  model: qwen/qwen3.8-27b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0022
+open_obligations:
+- 'relation TFQ-0022:h81 unverified: no existing declaration cited'
+- 'numeric TFQ-0022:nm_bound unverified: expression not exactly evaluable'
+- 'lemma TFQ-0022:fierz_factor43 unverified: Lean elaboration skipped: installed lean 4.35.0 does not
+  match lean4/lean-toolchain 4.33.1 (toolchain check)'
+- 'lemma TFQ-0022:max_factor_lean unverified: Lean elaboration skipped: installed lean 4.35.0 does not
+  match lean4/lean-toolchain 4.33.1 (toolchain check)'
+- 'near_miss TFQ-0022:lean_full_replay unverified: semantic near miss; P4 host check decides'
+- 'near_miss TFQ-0022:authority_effect unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- expr: 3 * (1/2) - (1/6)
+  id: TFQ-0022:nm_alpha
+  value: 4/3
+  host_evidence:
+    recomputed: 4/3
+verified_lemma_statements: []

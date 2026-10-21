@@ -1,0 +1,313 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0031",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "1fa42e444770bf72558d057234e97d7b5558b988feec82cc68d04fe60b8af8d4",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0031 stage=P0 attempt=a3-1 in=1fa42e44 guided=yes\n@TARGET [OPEN] The open gap sits where the finite certificate stops. qcd_beta0_wilson_confinement_finite_map.md withholds a continuum mass-gap claim and withholds non-perturbative behavior at weak coupling as the spacing goes to zero. F002.S001 is an empty shelf: README.md says no book is admitted and GAP-F002-S001-001 stays open, and named_adjoining.yaml says the Pontryagin inventory is not a bridge theorem. Citing that shelf here is an open bridge, not a derivation. Nothing in the Creutz rows, the beta0 table, or the plan status done supplies the missing bridge. Confinement beyond the strong-coupling formulae remains a gap.\n@BOTTLENECK Leave confinement beyond the strong-coupling formulae as a gap, with F002.S001 an open bridge.\n@ASSUME none declared\n@SRC (cite as existing only from here)\n code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py::test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement def | def test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement() -> None: r = evaluate_qm221_qcd_beta0_wilson_confinement() assert r.lattice_3x\n code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py::test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio def | def test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio() -> None: r = evaluate_qm221_qcd_beta0_wilson_confinement() assert r.gluon_paramagn\n@KNOWN- (host-refused earlier; do not repeat)\n [unparseable_reply]  -- Return one JSON object and nothing else.\n [vacuous_proof] L_gap_bridge: Confinement beyond the strong-coupling formulae (continuum mass gap, weak-coupling non-perturbat -- Do not present a sorry/axiom/tautology as a proof.\n [composition_type_mismatch] G_creutz . slot 0 <- G_strong_area_law via R_area_law_creutz -- Do not compose operations whose colours do not match.\n [wrong_signature] test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement -- Do not state that arity/signature for test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement.\n [statement_drift] test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio -- Do not restate the source with numerals it does not contain.\n [wrong_signature] test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio -- Do not state that arity/signature for test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 2,
+    "known_neg_injected": 6,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "TFQ-0030",
+      "TFQ-0032",
+      "TFQ-0039"
+    ],
+    "feedback": true,
+    "index_position": 204,
+    "neg_entry_ids": [
+      "NEG-0C43DA16A442",
+      "NEG-1E6745CFFC31",
+      "NEG-246DC5FBE1EB",
+      "NEG-27D4BAF8F111",
+      "NEG-58BD0CB3DD3F",
+      "NEG-98A8D15D74CA"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

@@ -1,0 +1,127 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-COVER56-CURVATURE-PREMISE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Certified membership of a point in the stored 56-interval moduli cover is equivalent
+    to geometric membership together with a supplied curvature certificate for its triple.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The 56 stored intervals carry a depth label 64 and positive margins but no contractor
+    execution, per-cell boxes, interval Jacobians or cusp collars; the curvature certificate remains a
+    premise of conjecture3_szollosi_deltoid_closure.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  - papers/core/mub6/mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md
+    sha256: b7b327dbaada0c9e6997c09e843f24c5b422c8b20663f07400c84f4bcfd281b8
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_cover56_curvature_premise_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: CertifiedModuliPartitionCover56
+  line: 440
+  signature_excerpt: structure CertifiedModuliPartitionCover56
+  source: lean4/TargetA12SmaleSentry.lean
+  repository: this_repository
+  source_sha256: 6a4201c699a5e4a266922d0ab7ee990ac95446af61fc435c31be7c6d7c9d7497
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: CertifiedPointInCover56
+  line: 458
+  signature_excerpt: 'def CertifiedPointInCover56 (cover : CertifiedModuliPartitionCover56) (pt : GlobalPoint)
+    : Prop'
+  source: lean4/TargetA12SmaleSentry.lean
+  repository: this_repository
+  source_sha256: 6a4201c699a5e4a266922d0ab7ee990ac95446af61fc435c31be7c6d7c9d7497
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: GeometricPointInCover56
+  line: 462
+  signature_excerpt: |-
+    def GeometricPointInCover56 (cover : CertifiedModuliPartitionCover56)
+        (pt : GlobalPoint) : Prop
+  source: lean4/TargetA12SmaleSentry.lean
+  repository: this_repository
+  source_sha256: 6a4201c699a5e4a266922d0ab7ee990ac95446af61fc435c31be7c6d7c9d7497
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: certified_point_in_cover56_iff
+  line: 468
+  signature_excerpt: |-
+    theorem certified_point_in_cover56_iff
+        (cover : CertifiedModuliPartitionCover56) (pt : GlobalPoint) :
+        CertifiedPointInCover56 cover pt ↔
+          GeometricPointInCover56 cover pt ∧ HasCurvatureCertificate pt.triple
+  source: lean4/TargetA12SmaleSentry.lean
+  repository: this_repository
+  source_sha256: 6a4201c699a5e4a266922d0ab7ee990ac95446af61fc435c31be7c6d7c9d7497
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/TargetA12SmaleSentry.lean::certified_point_in_cover56_iff
+  availability: local
+  symbol: certified_point_in_cover56_iff
+  path: lean4/TargetA12SmaleSentry.lean
+  repository: this_repository
+  sha256: 6a4201c699a5e4a266922d0ab7ee990ac95446af61fc435c31be7c6d7c9d7497
+  declaration_status: declaration_found_not_proof_checked
+  line: 468
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

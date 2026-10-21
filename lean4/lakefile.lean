@@ -3,7 +3,7 @@ import Lake
 open Lake DSL
 
 require mathlib from git
-  "https://github.com/leanprover-community/mathlib4.git" @ "0df444a360eaa60ab8c11dca51a86af692955474"
+  "https://github.com/leanprover-community/mathlib4.git" @ "v4.35.0"
 
 package «FiniteQuantum» where
   version := v!"0.1.0"
@@ -17,6 +17,10 @@ lean_lib «FiniteQuantum» where
     `FiniteGraphDressing,
     `TensorConeReconstruction,
     `TensorTomography,
+    `ComplexFieldSelection,
+    `OperationalTomography,
+    `OperationalFieldSelection,
+    `OperationalFilterFamily,
     `TensorCoordinates,
     `TensorSchmidt,
     `TensorReachability,
@@ -81,6 +85,10 @@ lean_lib «FiniteQuantum» where
     `BornHermitianTraceRepresentation,
     `SectorFormUniqueness,
     `SectorFormHermitian,
+    `FiniteWignerKernel,
+    `FiniteWignerTheorem,
+    `FiniteWignerSimilarity,
+    `GaussRatAutomorphisms,
     `WeylCommutant,
     `H001ProbabilitySimplex,
     `H001Rats,
@@ -479,6 +487,9 @@ lean_lib «FiniteQuantum» where
     `FqhLaughlinBraiding,
     `FrustratedSpectrumObstruction,
     `GenesisFspBridge,
+    `GenesisComputation,
+    `GenesisCompTM,
+    `GenesisCompUniv,
     `HaltingQuotient,
     `Higher2GroupBraiding,
     `InstantonDyonGas,
@@ -507,3 +518,11 @@ lean_lib PromptL1Imports where
 
 lean_lib PromptBornBoundaries where
   roots := #[`PromptBornBoundaries]
+
+-- Recovered Authorization-Incompleteness finite models (provenance: lean4/AuthIncompleteness/*.lean headers).
+-- Not a default target: build with `lake build AuthIncompleteness`.
+lean_lib AuthIncompleteness where
+  roots := #[`AuthIncompleteness]
+
+lean_lib QcSelfObstruction where
+  roots := #[`QcConcatenation, `QcRepairQueue, `QcEntropySink, `QcSelfObstruction]

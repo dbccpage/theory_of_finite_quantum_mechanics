@@ -1,0 +1,91 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PGW-CONTEXT-FIDELITY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'A trace that starts from a declared context s′ and takes steps valid relative to
+    s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply
+    ValidTrace(τ | s). Trial 2''s Result 15 is the example, with internally consistent reasoning from
+    the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract
+    therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean
+    theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified
+    and the full replay Retracted, each right for the history it received, which the appended analysis
+    calls an information boundary rather than a reasoning failure.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: A target statement and verifier requirement with no proof and no declared trace semantics;
+    the replay certifiers listed check a claimed Genesis regime against its event history and do not define
+    ValidTrace.
+  source_refs:
+  - dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md
+  - omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:1065-1087
+  - omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:127-134
+  - omega_engine_education/documentation/000_oepregen/02_trial_record.md:120-130
+  paper_refs: []
+  source_claim_label: OPEN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins: []
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/pregenesis_pgw_context_fidelity_open.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs::certifies
+  availability: external
+  symbol: certifies
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

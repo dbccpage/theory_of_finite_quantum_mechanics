@@ -1,0 +1,102 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PGW-WDP-POINTED-APARTNESS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'WDP-CH01-P02: for a pointed relation (X, R, a, b) on a finite carrier, R(a,b) does
+    not imply a ≠ b (one-point carrier with R = {(a,a)} and b = a), a ≠ b does not imply R(a,b) (the empty
+    relation on two points), and R(a,b) with R irreflexive implies a ≠ b, since a = b would give R(a,a).
+    Irreflexivity is therefore a declared ingredient of the admitted package, not a consequence of relatedness,
+    and a carrier hosting an irreflexive related pair has at least two elements; PrimDiff.lean states
+    the same endpoint fact for an irreflexive witness. The Python census over every pointed relation on
+    carriers of size 1 to 3 counts 4674 relations, 2337 with R(a,b), 196 with R(a,b) and R irreflexive,
+    3104 with a ≠ b, and none with R irreflexive, R(a,b) and a = b.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Declared irreflexivity law on the relation R (assumption)
+  source_bottleneck: Lean pointed_relation_independence_fin gives the Fin 1 and Fin 2 countermodels and
+    the irreflexive implication over every type; the census stops at size 3, and neither the relation
+    nor the irreflexivity law is derived from <>.
+  source_refs:
+  - dag/derivations/06_wdp/tfq_0537_wdp_pointed_apartness.md
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:466-478
+  - omega_engine_education/documentation/006_oewdp/levels/level_00_admitted_cut.md:165-170
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:43-50
+  paper_refs: []
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins: []
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/wdp_pgw_wdp_pointed_apartness_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean::pointed_relation_independence_fin
+  availability: external
+  symbol: pointed_relation_independence_fin
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::GenesisAdmissionKernel
+  availability: external
+  symbol: GenesisAdmissionKernel
+  path: omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Declared irreflexivity law on the relation R (assumption)
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Declared irreflexivity law on the relation R (assumption)
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

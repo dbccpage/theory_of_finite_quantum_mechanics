@@ -1,0 +1,264 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-TAPE-CONTROL-REPORTS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: In the tape-control model with cells blank and marked and outcomes advance, stay,
+    halt, no function of the control outcome and no function of the always-unread report equals contentContract
+    on every presentation, and the read token blank is given opposite verdicts by the two supplied semantic
+    adapters.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The contract and adapters are supplied examples; the model is not the full Turing-machine
+    model.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md
+  - lean4/AuthIncompleteness/TapeControl.lean
+  - papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md
+    sha256: b4abac63ecf6e940835ffc96ed612e03bcf45fc0413ecf008c5e3714079e712b
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_tape_control_reports_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: inductive
+  name: ControlOutcome
+  line: 37
+  signature_excerpt: inductive ControlOutcome
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: controlReport
+  line: 59
+  signature_excerpt: 'def controlReport (presentation : TapeControlPresentation) : ControlOutcome'
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: contentContract
+  line: 105
+  signature_excerpt: 'def contentContract (presentation : TapeControlPresentation) : Bool'
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: TapeControlPresentation
+  line: 44
+  signature_excerpt: structure TapeControlPresentation
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: TapeCell
+  line: 31
+  signature_excerpt: inductive TapeCell
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ReadReport
+  line: 71
+  signature_excerpt: inductive ReadReport
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: readReport
+  line: 82
+  signature_excerpt: |-
+    def readReport (control : ReadControl)
+        (presentation : TapeControlPresentation) : ReadReport
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ReadControl
+  line: 64
+  signature_excerpt: inductive ReadControl
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: readCell
+  line: 77
+  signature_excerpt: 'def readCell (presentation : TapeControlPresentation) : TapeCell'
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: haltingBlankPresentation
+  line: 49
+  signature_excerpt: 'def haltingBlankPresentation : TapeControlPresentation'
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: haltingMarkedPresentation
+  line: 54
+  signature_excerpt: 'def haltingMarkedPresentation : TapeControlPresentation'
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: same_halt_control_blocks_control_only_decider
+  line: 166
+  signature_excerpt: |-
+    theorem same_halt_control_blocks_control_only_decider :
+        ¬ (∃ decide : ControlOutcome -> Bool,
+          ∀ presentation, decide (controlReport presentation) =
+            contentContract presentation)
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: unread_report_blocks_content_decider
+  line: 182
+  signature_excerpt: |-
+    theorem unread_report_blocks_content_decider :
+        ¬ (∃ decide : ReadReport -> Bool,
+          ∀ presentation, decide (readReport ReadControl.unread presentation) =
+            contentContract presentation)
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: same_read_token_allows_distinct_semantic_adapters
+  line: 149
+  signature_excerpt: |-
+    theorem same_read_token_allows_distinct_semantic_adapters :
+        blankAcceptingAdapter.decide (readCell haltingBlankPresentation) = true /\
+          blankRejectingAdapter.decide (readCell haltingBlankPresentation) = false
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: shared_halt_control_splits_content_contract
+  line: 154
+  signature_excerpt: |-
+    theorem shared_halt_control_splits_content_contract :
+        contentContract haltingBlankPresentation = true /\
+          contentContract haltingMarkedPresentation = false
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider
+  path: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  declaration_status: declaration_found_not_proof_checked
+  line: 166
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider
+  path: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  declaration_status: declaration_found_not_proof_checked
+  line: 182
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters
+  path: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  declaration_status: declaration_found_not_proof_checked
+  line: 149
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.shared_halt_control_splits_content_contract
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeControlModels.shared_halt_control_splits_content_contract
+  path: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  declaration_status: declaration_found_not_proof_checked
+  line: 154
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

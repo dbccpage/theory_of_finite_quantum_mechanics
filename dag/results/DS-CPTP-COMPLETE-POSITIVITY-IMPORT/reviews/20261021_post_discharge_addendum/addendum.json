@@ -1,0 +1,38 @@
+{
+  "schema_id": "finite-qm.pfp.post-discharge-addendum.v1",
+  "authority_effect": "None",
+  "task_id": "DS-CPTP-COMPLETE-POSITIVITY-IMPORT",
+  "added": "2026-10-21",
+  "rule": "Sealed run, review and operad files are not edited. This addendum points from the sealed record to the later artifact that changes how it is read.",
+  "items": [
+    {
+      "kind": "global_baseline_status_superseded",
+      "operad": "dag/operads/ds_cptp_complete_positivity_import.yaml",
+      "operad_latest_review_status": "reviewed_with_targeted_native_integration_global_baseline_failures_retained",
+      "operad_sealed_by_batch_manifest": [
+        "dag/results/batches/20261019T164251Z_prompts_32_51/manifest.json"
+      ],
+      "custody_repair": "dag/results/custody/20261019T174819Z_filename_repair/summary.json",
+      "custody_repair_sha256": "61ad97bc9833e78df3356128faac91d026ce3013ec4681d61d6677d042059cb8",
+      "custody_measured": {
+        "before_custody_errors": 398,
+        "after_custody_errors": 0,
+        "validated_prompts": 177
+      },
+      "note": "The retained global baseline failures of the batch 20261019T164251Z_prompts_32_51 review were 398 custody errors (177 stale prompt hashes, 220 stale paper bindings, 1 stale source pin). The custody repair of 20261019T174819Z records 0 errors on the 177-prompt validator. The historical failure receipts and the operad status text are retained as written; read the status as superseded for the baseline only. No mathematical claim of the review changes."
+    },
+    {
+      "kind": "scope_correction_not_propagated",
+      "correction": "dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/scope_review_v2.json",
+      "correction_sha256": "9b87924599ee23c21f3d5d0539f97478414502cfd88d57310a2eacb4bfd09320",
+      "operad_delta_v2": "dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/operad_delta_v2.yaml",
+      "operad_delta_v2_sha256": "04b604738d70c8dd34b10a62610e30b232ff5d78bb288164bc9e42af9a0990f1",
+      "not_updated": [
+        "dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json",
+        "dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/README.md"
+      ],
+      "finding": "The CPTP v2 carrier correction: the zero-scale rank-one carrier annotation is nonnegative rank at most one, and the negative partial-transpose witness is conditional on t > 0.",
+      "note": "review_result.json and README.md of the review state the Bell-input witness without the t > 0 condition. They are historical and unchanged; read them together with scope_review_v2.json."
+    }
+  ]
+}
