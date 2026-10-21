@@ -1,0 +1,48 @@
+{
+  "reviewed_head": "afd802ce5d82cb344d8a6453bb0026ee49e7b306",
+  "python_integer_rank": {
+    "matrix": [
+      [
+        18014398509481984,
+        18014398509481985
+      ],
+      [
+        18014398509481985,
+        18014398509481986
+      ]
+    ],
+    "determinant": -1,
+    "expected_rank": 2,
+    "actual_rank": 1,
+    "analyzer_tomographic": false
+  },
+  "ragged_product": {
+    "input": [
+      [
+        1,
+        2
+      ],
+      [
+        3
+      ]
+    ],
+    "actual": [
+      [
+        "3"
+      ],
+      [
+        "3"
+      ]
+    ],
+    "expected": "MATRIX_SHAPE error"
+  },
+  "boolean_scalar": {
+    "actual_rank": 1,
+    "expected": "SCALAR_TYPE error"
+  },
+  "rust_source": {
+    "sha256": "46d3ea27434ab02b15fea842271c475933efff62fb5ecbc5f9242df9ee3b4be2",
+    "defect": "ts.iter().zip(&ls).all(...) silently truncates; only product_filters.coordinate_operations can be emptied without changing any other original test predicate"
+  },
+  "scope": "live Python reproductions; Rust regression is added and executed separately without modifying the original candidate"
+}

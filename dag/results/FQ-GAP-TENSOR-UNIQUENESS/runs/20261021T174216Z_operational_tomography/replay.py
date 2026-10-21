@@ -1,0 +1,210 @@
+"""Replay the declared source-pinned local gates into a NEW directory.
+AuthorityEffect: None. No canonical DAG edits, provider calls, or Git writes.
+"""
+import argparse
+import concurrent.futures
+import copy
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import time
+
+RUN=Path(__file__).resolve().parent
+ROOT=RUN.parents[4]
+PREFIX=RUN.relative_to(ROOT).as_posix()
+BASE='1ea6b5a0aa9eee53d43078d6015c1d2a00435d75'
+P0_PINS_SHA='ceb0211b1ed890ecf5b8e9bf78eeff81a3c93d1819dbadc773df01cf166e0373'
+CANDIDATE_SHA='d4b6bf5933de32f14ab1be222e4fae72a85bcf4a76160b727376b5fa301a5e3f'
+CODE=(
+ 'lean4/OperationalTomography.lean','lean4/OperationalFieldSelection.lean',
+ 'lean4/lakefile.lean','lean4/lake-manifest.json','lean4/lean-toolchain',
+ 'lean4/ComplexFieldSelection.lean','lean4/BornGaussRat.lean',
+ 'lean4/TensorCoordinates.lean','lean4/TensorHiddenCoordinates.lean',
+ 'code/python/src/qm/operational_tomography.py','code/python/tests/test_operational_tomography.py',
+ 'code/python/src/qm/complex_selection.py','code/python/tests/test_complex_selection.py',
+ 'code/python/tests/conftest.py',
+ 'code/rust/src/finite_probability/operational_tomography.rs',
+ 'code/rust/src/finite_probability/complex_selection.rs',
+ 'code/rust/src/finite_probability/lib.rs','code/rust/src/finite_probability/Cargo.toml',
+ 'code/rust/Cargo.toml','code/rust/Cargo.lock',
+ 'dag/validate_derivation_dag.py','dag/sync_unified_dag.py',
+ 'dag/sync_application_branches.py','dag/sync_pregenesis_to_wdp.py',
+ 'scripts/contract_scores.py',
+)
+COMPANION_SUBJECTS=(CODE[9],CODE[10],CODE[14])
+RUN_SOURCES=('.gitignore','.gitattributes','README.md','replay.py','operad_delta.json','p0/user_request.txt',
+ 'p0/source_pins.json','p0/mission.json','p1/construction.py','p1/candidate.json',
+ 'p1/derivation.json','p3/repair.json','p5/proposed_dag_delta.json')
+HEADLINES={
+ 'OperationalTomography.'+n for n in (
+ 'Calibrated.dimension_defect','Calibrated.tomography_iff_hidden_zero','ofDualFrame',
+ 'kernel_invariant','tomography_of_irreducible','calibrated_tomography',
+ 'normalization_obstructs_irreducibility','matrix_units_irreducible',
+ 'doubled_calibrated_not_tomographic','doubled_protected_question',
+ 'protected_question_cannot_descend','ofProductFrame','product_dimension',
+ 'descent_comp','classical_filter_positive','classical_filter_subnormalized',
+ 'descent_of_test_pullback')}
+HEADLINES.add('OperationalFieldSelection.selected_parameter')
+
+
+def digest(path): return hashlib.sha256(path.read_bytes()).hexdigest()
+def write(path,obj): path.write_bytes((json.dumps(obj,indent=2)+'\n').encode())
+
+
+def required_sources():
+    if digest(RUN/'p0/source_pins.json')!=P0_PINS_SHA:
+        raise ValueError('P0_PIN_ENVELOPE')
+    original=json.loads((RUN/'p0/source_pins.json').read_bytes())['files']
+    companions={s+'.doc.yaml' for s in COMPANION_SUBJECTS}
+    companions |= {str(Path(s).with_suffix('')).replace('\\','/')+'.contract.score.yaml' for s in COMPANION_SUBJECTS}
+    return set(CODE)|set(original)|companions|{PREFIX+'/'+p for p in RUN_SOURCES}
+
+
+def verify_pins(pins):
+    if type(pins) is not dict or set(pins)!={'base_sha','candidate_sha256','files'}:
+        raise ValueError('PIN_ENVELOPE')
+    if pins['base_sha']!=BASE or pins['candidate_sha256']!=CANDIDATE_SHA:
+        raise ValueError('PIN_IDENTITY')
+    if set(pins['files'])!=required_sources():
+        raise ValueError('PIN_COVERAGE')
+    for name,sha in pins['files'].items():
+        path=(ROOT/name).resolve()
+        if not path.is_relative_to(ROOT) or type(sha) is not str or not re.fullmatch('[0-9a-f]{64}',sha) or digest(path)!=sha:
+            raise ValueError('PIN_MISMATCH:'+name)
+    original=json.loads((RUN/'p0/source_pins.json').read_bytes())
+    if original['base_sha']!=BASE or digest(RUN/'p0/user_request.txt')!=original['request_sha256']:
+        raise ValueError('REQUEST_IDENTITY')
+    for name,sha in original['files'].items():
+        if digest(ROOT/name)!=sha:
+            raise ValueError('ORIGINAL_SOURCE_CHANGED:'+name)
+    if digest(RUN/'p1/candidate.json')!=CANDIDATE_SHA:
+        raise ValueError('CANDIDATE_IDENTITY')
+
+
+def verify_operad(delta):
+    generators={g['id']:g for g in delta['add_or_refine_generators']}
+    relations={r['id'] for r in delta['add_or_refine_relations']}
+    for g in generators.values():
+        if type(g['arity']) is not int or g['arity'] != len(g['ordered_inputs']):
+            raise ValueError('OPERAD_ARITY')
+    for c in delta['checked_compositions']:
+        outer=generators[c['outer_operation']];inner=generators[c['inner_operation']]
+        slot=c['input_slot']
+        if type(slot) is not int or not 0 <= slot < outer['arity']:
+            raise ValueError('OPERAD_SLOT')
+        if inner['output'] != outer['ordered_inputs'][slot] or c['colour_match'] != inner['output']:
+            raise ValueError('OPERAD_COLOUR')
+        if not c['licensing_relations'] or not set(c['licensing_relations']) <= relations:
+            raise ValueError('OPERAD_RELATION')
+    return {'all_passed':True,'compositions':len(delta['checked_compositions']),
+            'scope':'syntactic colour and relation-reference checks; semantic equations are Lean declarations'}
+
+
+def main():
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--output',type=Path,required=True)
+    args=p.parse_args()
+    out=args.output.resolve(); out.mkdir(parents=True,exist_ok=False)
+    pins_path=RUN/'p2/source_pins.json'
+    pins_raw=pins_path.read_bytes(); pins=json.loads(pins_raw)
+    verify_pins(pins)
+    guards=[]
+    for mode in ('missing','extra','corrupt'):
+        bad=copy.deepcopy(pins); key=next(iter(bad['files']))
+        if mode=='missing': del bad['files'][key]
+        elif mode=='extra': bad['files']['../outside']='0'*64
+        else: bad['files'][key]='0'*64
+        try: verify_pins(bad)
+        except ValueError as exc: guards.append({'mode':mode,'rejected':True,'failure':str(exc)})
+        else: raise RuntimeError('PIN_GUARD_ACCEPTED:'+mode)
+    write(out/'pin_guards.json',guards)
+    delta=json.loads((RUN/'operad_delta.json').read_bytes())
+    typing=verify_operad(delta)
+    typing['mutants']=[]
+    for mode in ('arity','slot','colour','relation'):
+        bad=copy.deepcopy(delta)
+        if mode=='arity': bad['add_or_refine_generators'][0]['arity']=True
+        elif mode=='slot': bad['checked_compositions'][0]['input_slot']=True
+        elif mode=='colour': bad['add_or_refine_generators'][1]['output']='wrong'
+        else: bad['checked_compositions'][0]['licensing_relations']=['missing']
+        try: verify_operad(bad)
+        except ValueError as exc: typing['mutants'].append({'id':mode,'rejected':True,'failure':str(exc)})
+        else: raise RuntimeError('OPERAD_MUTANT_ACCEPTED:'+mode)
+    write(out/'operad_typing.json',typing)
+    tasks=[
+      ('lean',[['lake','build','OperationalTomography','OperationalFieldSelection','TensorHiddenCoordinates'],
+        ['lake','env','lean','OperationalTomography.lean'],
+        ['lake','env','lean','OperationalFieldSelection.lean']],ROOT/'lean4'),
+      ('rust',[['cargo','test','--manifest-path','code/rust/Cargo.toml','--locked','--offline','-p','tfqm_finite_probability','--lib']],ROOT),
+      ('python',[[sys.executable,'-X','utf8','-m','pytest','code/python/tests/test_operational_tomography.py','code/python/tests/test_complex_selection.py','-q','--basetemp',str(out/'pytest_tmp')]],ROOT),
+      ('candidate',[[sys.executable,'-I','-X','utf8','code/python/src/qm/operational_tomography.py',str(RUN/'p1/candidate.json')]],ROOT),
+      ('construction',[[sys.executable,'-I','-X','utf8',str(RUN/'p1/construction.py'),'--output',str(out/'reconstructed_candidate.json')]],ROOT),
+      ('dag',[[sys.executable,'-I','-X','utf8','dag/validate_derivation_dag.py','--no-files']],ROOT),
+      ('sync_unified',[[sys.executable,'-I','-X','utf8','dag/sync_unified_dag.py','--check']],ROOT),
+      ('sync_applications',[[sys.executable,'-I','-X','utf8','dag/sync_application_branches.py','--check']],ROOT),
+      ('sync_pregenesis',[[sys.executable,'-I','-X','utf8','dag/sync_pregenesis_to_wdp.py','--check']],ROOT),
+      ('contracts',[[sys.executable,'-X','utf8','scripts/contract_scores.py','check']],ROOT),
+      ('whitespace',[['git','diff','--check']],ROOT),
+    ]
+    def execute(task):
+        name,commands,cwd=task
+        env=os.environ.copy()
+        env.setdefault('CARGO_TARGET_DIR',str(ROOT.parent/'cfs-target'))
+        env.update(CARGO_PROFILE_DEV_DEBUG='0',CARGO_PROFILE_TEST_DEBUG='0',CARGO_INCREMENTAL='0')
+        started=datetime.datetime.now(datetime.timezone.utc).isoformat(); t=time.monotonic()
+        outputs=[]; steps=[]
+        for cmd in commands:
+            result=subprocess.run(cmd,cwd=cwd,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+            outputs.append(result.stdout); steps.append({'argv':cmd,'exit_code':result.returncode})
+            if result.returncode: break
+        data=b'\n'.join(outputs); (out/(name+'.log')).write_bytes(data)
+        record={'name':name,'cwd':str(cwd),'started_utc':started,'elapsed_seconds':round(time.monotonic()-t,3),
+          'steps':steps,'exit_code':steps[-1]['exit_code'],'output':name+'.log','output_sha256':hashlib.sha256(data).hexdigest()}
+        write(out/(name+'.command.json'),record)
+        print(name+': '+str(record['exit_code']),flush=True)
+        return record
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+        results=list(pool.map(execute,tasks))
+    write(out/'commands.json',results)
+    axioms={}
+    log=(out/'lean.log').read_text(encoding='utf-8',errors='replace')
+    for name,items in re.findall(r"'(Operational(?:Tomography|FieldSelection)\.[^']+)' depends on axioms: \[([^]]*)\]",log):
+        axioms[name]=[x.strip() for x in items.split(',') if x.strip()]
+    allowed={'propext','Classical.choice','Quot.sound'}
+    lean_sources='\n'.join((ROOT/s).read_text(encoding='utf-8') for s in CODE[:2])
+    audit={'expected':sorted(HEADLINES),'actual':axioms,'allowed':sorted(allowed),
+      'all_passed':set(axioms)==HEADLINES and all(set(v)<=allowed for v in axioms.values())
+        and not re.search(r'\b(sorry|admit|native_decide)\b',lean_sources)
+        and results[0]['exit_code']==0}
+    write(out/'axioms.json',audit)
+    reports=list((out/'pytest_tmp').rglob('mutations.json'))
+    mutations=json.loads(reports[0].read_bytes()) if len(reports)==1 else {'all_rejected':False,'count':0}
+    write(out/'mutations.json',mutations)
+    identical=(out/'reconstructed_candidate.json').read_bytes()==(RUN/'p1/candidate.json').read_bytes()
+    verify_pins(pins)
+    unchanged=pins_raw==pins_path.read_bytes()
+    tools={}
+    for name,cmd in [('git',['git','rev-parse','HEAD']),('python',[sys.executable,'--version']),
+        ('lean',['lake','env','lean','--version']),('rust',['rustc','--version']),
+        ('mathlib',['git','-C',str(ROOT/'lean4/.lake/packages/mathlib'),'rev-parse','HEAD'])]:
+        result=subprocess.run(cmd,cwd=ROOT/'lean4',stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        tools[name]={'argv':cmd,'exit_code':result.returncode,'output':result.stdout.decode(errors='replace').strip()}
+    write(out/'environment.json',tools)
+    passed=all(r['exit_code']==0 for r in results) and audit['all_passed'] and mutations['all_rejected'] and identical and unchanged
+    receipt={'authority_effect':'None','all_passed':passed,'base_sha':BASE,'candidate_sha256':CANDIDATE_SHA,
+      'source_pin_envelope_sha256':hashlib.sha256(pins_raw).hexdigest(),'source_count':len(pins['files']),
+      'sources_verified_before_and_after':unchanged,'construction_byte_identical':identical,
+      'headline_count':len(HEADLINES),'mutants_rejected':mutations['count'],
+      'typed_compositions_verified':typing['compositions'],'operad_mutants_rejected':len(typing['mutants']),
+      'validation_scope':'two new Lean modules, existing hidden countermodel, finite-probability Rust library, two Python modules, DAG sync and contract checks; not whole repository suite'}
+    write(out/'receipt.json',receipt)
+    print(json.dumps(receipt,indent=2),flush=True)
+    if not passed: raise SystemExit(1)
+
+
+if __name__=='__main__': main()

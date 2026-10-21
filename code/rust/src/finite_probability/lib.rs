@@ -80,3 +80,9 @@ pub mod l1_import_exact;
 
 pub mod born_boundary_exact;
 pub mod complex_selection;
+
+#[cfg(test)]
+mod operational_tomography;
+
+#[cfg(test)]
+mod operational_filters;
