@@ -121,3 +121,10 @@ The foundational synthesis monograph [`papers/foundations/theory_of_finite_quant
 8. **Chapter §8 (Asymptotics, Repair Capacity & Majorana Parity Schedules)**:
    - Formulates quantum error correction thresholds as cochain repair capacity certificates, and analyzes measurement-only parity schedules on topological Majorana arrays obeying non-Abelian Ising fusion.
 
+## 7. Master Derivation Ledger (`TFQ-0000` through `TFQ-0416`)
+
+Every single derivation step in the theory—from the bare, inert literal inscription `<>` (`TFQ-0000`) through primitive distinction, discrete cochain repair, algebraic Hilbert lifts, Cayley dynamics, entanglement, gauge theory, QED, electroweak, QCD, topological phases, to quantum gravity constraints (`TFQ-0111`), the continuum interface (`TFQ-0124`), and all application branches (`TFQ-0397`–`TFQ-0416`)—is indexed without omission in the companion master ledger:
+- [`papers/core/master_derivation_ledger.md`](./master_derivation_ledger.md)
+- [`dag/derivations/MASTER_DERIVATION_LEDGER.md`](../../dag/derivations/MASTER_DERIVATION_LEDGER.md)
+
+Each entry in the ledger links 1-to-1 to its standalone Markdown paper in `dag/derivations/` and documents its direct DAG parent, epistemic status, governing obligation, and multi-tier code and proof witnesses (Lean 4, Rust, Python).

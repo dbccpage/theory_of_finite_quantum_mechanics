@@ -1636,6 +1636,14 @@ The full structural landscape spanning the 43 discrete quantum foundation packet
 7. **§7 (Interpretations as Authority Shadows & Modal Realism Refusal)**: Enforces packet indistinguishability of interpretations and explicit refusal of modal realism on finite carriers.
 8. **§8 (Asymptotics & Parity Schedules)**: Certifies quantum error correction threshold bounds as cochain repair capacities and formalizes measurement-only Majorana parity schedules obeying non-Abelian Ising fusion.
 
+#### 13.8.11 Master derivation ledger from <> to quantum gravity: papers/core/master_derivation_ledger.md
+
+Every individual derivation step in the Theory of Finite Quantum Mechanics—from the bare inert inscription `<>` (`TFQ-0000`) through primitive difference, discrete cochain repair, algebraic Hilbert lifts, Cayley stepping, entanglement, gauge theory, QED, electroweak, QCD, topological phases, to quantum gravity constraints (`TFQ-0111`), the continuum interface (`TFQ-0124`), and all application branches (`TFQ-0397` through `TFQ-0416`)—is indexed without omission in the companion master ledger:
+- [`papers/core/master_derivation_ledger.md`](./master_derivation_ledger.md)
+- [`dag/derivations/MASTER_DERIVATION_LEDGER.md`](../../dag/derivations/MASTER_DERIVATION_LEDGER.md)
+
+Every ledger row binds directly to its standalone Markdown derivation paper in `dag/derivations/` and documents its DAG parent, epistemic status, mathematical statement, governing obligation, and multi-tier proof witnesses in Lean 4, Rust, and Python.
+
 ## References
 
 Numbers in square brackets refer to this list; it is also shipped as `docs/references.md`.

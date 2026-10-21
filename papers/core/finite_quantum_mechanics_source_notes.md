@@ -4137,6 +4137,14 @@ That document establishes the unified discrete obstruction calculus from primiti
 - **§8 (Asymptotics, Repair Capacity & Parity Schedules)**: Synthesizes `QM_101`, `QM_102`, `QM_103`, `QM_122`, `QM_212`. Formalizes quantum error-correcting code thresholds as cochain repair capacities and analyzes Majorana measurement-only parity schedules obeying non-Abelian Ising fusion.
 - **§9 (Foundational Claim Ledger & Verification Index)**: Indexes claims `002:C1` through `212:C1` with their exact Lean 4 theorems and verification tests.
 
+## 13. Master Derivation Ledger: papers/core/master_derivation_ledger.md
+
+Every individual derivation step in the Theory of Finite Quantum Mechanics—from the bare, inert literal inscription `<>` (`TFQ-0000`) through primitive difference, discrete cochain repair, algebraic Hilbert lifts, Cayley dynamics, entanglement, gauge theory, QED, electroweak, QCD, topological phases, to quantum gravity constraints (`TFQ-0111`), the continuum interface (`TFQ-0124`), and all application branches (`TFQ-0397` through `TFQ-0416`)—is indexed without omission in the companion master ledger:
+- [`papers/core/master_derivation_ledger.md`](./master_derivation_ledger.md)
+- [`dag/derivations/MASTER_DERIVATION_LEDGER.md`](../../dag/derivations/MASTER_DERIVATION_LEDGER.md)
+
+Each derivation in the ledger links 1-to-1 to its standalone Markdown paper in `dag/derivations/` and documents its direct DAG parent, epistemic status, mathematical statement, governing obligation, and multi-tier proof witnesses in Lean 4, Rust, and Python.
+
 ## References
 
 Numbered references in square brackets match the bibliography of the master paper and `docs/references.md`; some entries are cited only in the main paper.
