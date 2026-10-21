@@ -1,0 +1,59 @@
+{
+  "task_id": "TFQ-0178",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-6",
+  "input_sha256": "ef93827e90e8a3ee6bad92f2873a08abba2e6c5e21a2e48b93e54db3ca392af6",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"certificate_from_exact_only\",\"inputs\":[\"EnclosedTriple\"],\"output\":\"StatedRegionSeal\",\"arity\":1,\"carrier\":\"MUB6_stated_region\",\"ref\":{\"path\":\"code/rust/src/mub/omega_native/mub6_claim_gate.rs\",\"decl\":\"certificate_from_exact_only\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"firewall_mints_no_authority\",\"statement\":\"AUTHORITY_EFFECT of the MUB(6) firewall is None, so a stated region bit mints no authority.\",\"hypotheses\":\"mub6_firewall module stores only the line stated region.\",\"ref\":{\"path\":\"code/rust/src/mub/omega_native/mub6_firewall.rs\",\"decl\":\"AUTHORITY_EFFECT\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[],\"near_misses\":[{\"id\":\"float_handoff_bit\",\"claim\":\"A MUB(6) stated-region bit can be accepted from an f64 argument.\",\"rejecting_invariant\":\"certificate_from_exact_only discards its f64 argument, so the float cannot influence the seal.\"},{\"id\":\"global_flag_bit\",\"claim\":\"global_solution or verified_certificate set true yields a MUB(6) claim.\",\"rejecting_invariant\":\"These seal fields are documented as always false.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Formal proof that StatedRegionSeal fields mub6_equals_3, mub6_at_most_3, global_solution, verified_certificate are constantly false in the source.\",\"Verify that EnclosedTriple is the only accepted certificate input type; its declaration was not listed in @SRC.\",\"Lean skeleton for acceptance-only-from-exact-certificate lemma not yet written; no grounded proof attempted.\",\"Cited AUTHORITY_EFFECT in mub6_firewall.rs was listed in @SRC only under code/rust/src/mub/omega_native/mub6_firewall.rs; the claim that it is None was not re-grepped by the host.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "certificate_from_exact_only",
+        "inputs": [
+          "EnclosedTriple"
+        ],
+        "output": "StatedRegionSeal",
+        "arity": 1,
+        "carrier": "MUB6_stated_region",
+        "ref": {
+          "path": "code/rust/src/mub/omega_native/mub6_claim_gate.rs",
+          "decl": "certificate_from_exact_only",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "firewall_mints_no_authority",
+        "statement": "AUTHORITY_EFFECT of the MUB(6) firewall is None, so a stated region bit mints no authority.",
+        "hypotheses": "mub6_firewall module stores only the line stated region.",
+        "ref": {
+          "path": "code/rust/src/mub/omega_native/mub6_firewall.rs",
+          "decl": "AUTHORITY_EFFECT",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [],
+    "near_misses": [
+      {
+        "id": "float_handoff_bit",
+        "claim": "A MUB(6) stated-region bit can be accepted from an f64 argument.",
+        "rejecting_invariant": "certificate_from_exact_only discards its f64 argument, so the float cannot influence the seal."
+      },
+      {
+        "id": "global_flag_bit",
+        "claim": "global_solution or verified_certificate set true yields a MUB(6) claim.",
+        "rejecting_invariant": "These seal fields are documented as always false."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Formal proof that StatedRegionSeal fields mub6_equals_3, mub6_at_most_3, global_solution, verified_certificate are constantly false in the source.",
+      "Verify that EnclosedTriple is the only accepted certificate input type; its declaration was not listed in @SRC.",
+      "Lean skeleton for acceptance-only-from-exact-certificate lemma not yet written; no grounded proof attempted.",
+      "Cited AUTHORITY_EFFECT in mub6_firewall.rs was listed in @SRC only under code/rust/src/mub/omega_native/mub6_firewall.rs; the claim that it is None was not re-grepped by the host."
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-ABB095074A70
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''count_targets_with_status'', ''kind'': ''generator'', ''inputs'': [''FrontierTarget'',
+    ''TargetStatus''], ''output'': ''usize'', ''arity'': 2, ''path'': ''code/rust/src/m'
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0177
+- id: NEG-880994F727A6
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''name'': ''omega_mub_is_bookkeeping'', ''kind'': ''relation'', ''inputs'': [''omega_mub''],
+    ''output'': ''omega_mub'', ''path'': ''r:omega_mub_is_bookkeeping_not_derivation'', ''r'
+  evidence: 'relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0177
+- id: NEG-0F069FCF0E59
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''24'', ''value'': ''24'', ''source'': ''NARROWED_COORDINATES_COUNT = 24'', ''path'':
+    ''code/rust/src/mub/src/omega_native/mub6_rectangular_exclusion_solver.rs'', ''d'
+  evidence: 'numeric_claims[0]: missing id; numeric_claims[0]: unexpected source; numeric_claims[0]: unexpected
+    path'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0177
+- id: NEG-FEC7141A3A27
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''G1_open_status'', ''relation_to_target'': ''restates'', ''lean_skeleton'': ''theorem
+    G1_open : ¬(seven_mubs_exist_in_dim_6) := by admit'', ''path'': ''README:MUB('
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0177
+- id: NEG-FCDC74CEDB61
+  class: schema_violation
+  claim_kind: near_misses
+  claim: '{''name'': ''no_solver_main'', ''description'': ''R6 and R7 stay NOT_A_CERTIFICATE; main prints
+    banner without running solver'', ''path'': ''code/rust/src/mub/src/bin/mub6'
+  evidence: 'near_misses[0]: missing id; near_misses[0]: missing claim; near_misses[0]: missing rejecting_invariant'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0177
+counterexamples: []
+open_obligations:
+- Existence of seven MUBs in dimension 6 remains unresolved
+- Global count of MUB(6) configurations not established by checked reductions
+- R6/R7 do not provide a certificate for full existence proof
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

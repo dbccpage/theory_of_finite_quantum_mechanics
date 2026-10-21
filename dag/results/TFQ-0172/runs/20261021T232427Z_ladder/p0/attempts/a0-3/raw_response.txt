@@ -1,0 +1,32 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen_holonomy_loop",
+      "inputs": ["List Vertex", "Vertex"],
+      "output": "Vertex",
+      "arity": 2,
+      "carrier": "graph.rs",
+      "ref": {
+        "path": "code/rust/src/holonomy/graph.rs",
+        "decl": "CellComplex",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [],
+  "compositions": [
+    {
+      "outer": "holonomy_loop",
+      "slot": 0,
+      "inner": "vertex_path_holonomy",
+      "licensing_relation": "refuses_a_short_connection_and_a_broken_boundary"
+    }
+  ],
+  "lemmas": [],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Verify cell complex finite vertex set and closure of vertex list in graph.rs"
+  ]
+}

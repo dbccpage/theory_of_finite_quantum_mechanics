@@ -1,0 +1,63 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "path_holonomy",
+      "inputs": [
+        "Cochain1",
+        "PairList"
+      ],
+      "output": "Int",
+      "arity": 2,
+      "carrier": "Int",
+      "ref": {
+        "path": "lean4/CoboundaryHolonomy.lean",
+        "decl": "InterferenceNonL1Resource.path_holonomy",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "vertex_path_holonomy",
+      "inputs": [
+        "Cochain1",
+        "VertexList"
+      ],
+      "output": "Int",
+      "arity": 2,
+      "carrier": "Int",
+      "ref": {
+        "path": "lean4/CoboundaryHolonomy.lean",
+        "decl": "InterferenceNonL1Resource.vertex_path_holonomy",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "coboundary_triangle_zero",
+      "statement": "path_holonomy of coboundary of a 0-cochain around a triangle cycle equals 0",
+      "hypotheses": "phi : Cochain0; a b c : Vertex",
+      "ref": {
+        "path": "lean4/CoboundaryHolonomy.lean",
+        "decl": "InterferenceNonL1Resource.coboundary_triangle_holonomy_zero",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [
+    {
+      "id": "nm_wilson_trace_as_holonomy",
+      "claim": "Rust Wilson traces or HolonomyLoop construction are the same operation as the Lean path_holonomy generator",
+      "rejecting_invariant": "Rust holonomy modules are not listed as citable generators here; only the Lean definitions and the graph struct are in @SRC, and the composition with a Rust loop constructor was refused for colour mismatch"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Exact ordered product evaluation on the Rust CellComplex is not grounded: no Rust operation declaration is citable as a generator beyond the struct CellComplex, which is a struct not an operation",
+    "No continuum connection or U(1) Hilbert phase claim is made; AuthorityEffect None",
+    "Composition of vertex_path_holonomy into path_holonomy and a licensing lemma are not grounded in the listed declarations, so none are emitted",
+    "Rust test refuses_a_short_connection_and_a_broken_boundary is a checker and is not cited as a generator"
+  ]
+}

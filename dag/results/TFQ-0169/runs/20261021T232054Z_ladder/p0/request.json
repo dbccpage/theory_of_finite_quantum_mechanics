@@ -1,0 +1,317 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0169",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-5",
+  "input_sha256": "44e09d39214c754b72ff9ad44d2dba349b67f701b1e4c5b54610e8903d326c18",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0169 stage=P0 attempt=a2-5 in=44e09d39 guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] Entropy in this crate is a LogForm, not a float and not a measurement-interval kind. src/log_form.rs stores Shannon, relative, Renyi, and mutual information as rational coefficients of logarithms of primes, using unique factorization so two forms match exactly when their coefficient maps match. Enclosure returns a rational interval around that form; the interval is a bound on the logarithm, not authority to replace the form by a float. The obligation is to authorize entropy comparisons from the exact coefficient map, and to keep those rational enclosures distinct from omega_measurement interval evidence.\n@BOTTLENECK Compare finite entropies as exact rational combinations of prime logarithms, not as floats.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/rust/src/finite_probability/lib.rs | log_form | mod | pub mod log_form;\n code/rust/src/finite_probability/mod.rs | log_form | mod | pub mod log_form;\n code/rust/src/finite_probability/log_form.rs | shannon_entropy_form_with_bound | fn | pub fn shannon_entropy_form_with_bound( p: &ProbabilitySimplex, bound: u32, ) -> Result<LogForm, LogFormError>\n code/rust/src/finite_probability/log_form.rs | relative_entropy_form_with_bound | fn | pub fn relative_entropy_form_with_bound( p: &ProbabilitySimplex, q: &ProbabilitySimplex, bound: u32, ) -> Result<LogForm, LogFormError>\n code/rust/src/finite_probability/log_form.rs | renyi_entropy_form_with_bound | fn | pub fn renyi_entropy_form_with_bound( p: &ProbabilitySimplex, alpha: u32, bound: u32, ) -> Result<LogForm, LogFormError>\n code/rust/src/finite_probability/log_form.rs | shannon_entropy_form | fn | pub fn shannon_entropy_form(p: &ProbabilitySimplex) -> Result<LogForm, LogFormError>\n code/rust/src/finite_probability/log_form.rs | relative_entropy_form | fn | pub fn relative_entropy_form( p: &ProbabilitySimplex, q: &ProbabilitySimplex, ) -> Result<LogForm, LogFormError>\n code/rust/src/finite_probability/log_form.rs | renyi_entropy_form | fn | pub fn renyi_entropy_form(p: &ProbabilitySimplex, alpha: u32) -> Result<LogForm, LogFormError>\n code/rust/src/finite_probability/log_form.rs | large_coefficients_keep_the_enclosure_within_its_width | fn\n code/rust/src/finite_probability/log_form.rs | the_shannon_entropy_forms_of_the_documented_distributions_are_pinned | fn\n code/rust/src/finite_probability/log_form.rs | the_entropy_form_is_zero_exactly_for_deterministic_distributions | fn\n code/rust/src/finite_probability/log_form.rs | renyi_forms_have_their_hand_values_and_the_expected_special_cases | fn\n code/rust/src/finite_probability/log_form.rs | LogFormError | enum\n code/rust/src/finite_probability/log_form.rs | LogForm | struct\n code/rust/src/finite_probability/log_form.rs | min_entropy_form | fn\n code/rust/src/finite_probability/log_form.rs | joint_entropy_form | fn\n code/rust/src/finite_probability/log_form.rs | conditional_entropy_form | fn\n code/rust/src/finite_probability/log_form.rs | a_form_is_canonical_arithmetic_cancels_and_equal_values_have_equal_forms | fn\n code/rust/src/finite_probability/log_form.rs | the_logarithms_of_small_primes_are_enclosed_to_the_requested_width | fn\n code/rust/src/finite_probability/log_form.rs | the_enclosure_of_a_composite_by_range_reduction_agrees_with_the_sum_of_its_prime_logarithms | fn\n code/rust/src/finite_probability/log_form.rs | the_entropy_form_does_not_depend_on_the_order_of_the_masses | fn\n code/rust/src/finite_probability/log_form.rs | relative_entropy_has_its_hand_value_vanishes_on_equal_distributions_and_refuses_infinity | fn\n@KNOWN- (host-refused earlier; do not repeat)\n [schema_violation] near_misses is not an array -- Return exactly the schema; no extra or missing fields.\n [nonexistent_declaration] pub -- Do not cite pub as an existing declaration.\n [schema_violation] {'expr': '0', 'value': '0', 'context': 'deterministic_distribution_entropy_form_zero'} -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'renyi_entropy_form', 'inputs': ['ProbabilitySimplex'], 'output': 'LogForm', 'arity': 1} -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'shannon_entropy_form', 'inputs': ['ProbabilitySimplex'], 'output': 'LogForm', 'arity': 1} -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'the_entropy_form_does_not_depend_on_the_order_of_the_masses', 'relation_to_target': 'strengthens', ' -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'a_form_is_canonical_arithmetic_cancels_and_equal_values_have_equal_forms', 'relation_to_target': 're -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'the_entropy_form_is_zero_exactly_for_deterministic_distributions', 'relation_to_target': 'implies',  -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'source': 'log_form.rs', 'relation': 'logarithmic_enclosure_preserves_exact_form', 'description': 'Enclosure  -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'relative_entropy_form', 'inputs': ['ProbabilitySimplex', 'ProbabilitySimplex'], 'output': 'LogForm', -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'min_entropy_form', 'inputs': ['ProbabilitySimplex'], 'output': 'LogForm', 'arity': 1, 'path': 'code/ -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'relative_entropy_form', 'inputs': ['ProbabilitySimplex', 'ProbabilitySimplex'], 'output': 'LogForm', -- Return exactly the schema; no extra or missing fields.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 22,
+    "known_neg_injected": 12,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "L1-WDP-WITNESS-MASS"
+    ],
+    "feedback": true,
+    "index_position": 294,
+    "neg_entry_ids": [
+      "NEG-9C00FCC2C3A6",
+      "NEG-079BF38089AA",
+      "NEG-FC6E996D17F0",
+      "NEG-0B961DC000A7",
+      "NEG-5BE66A98CED3",
+      "NEG-6C41B8392029",
+      "NEG-823BF1E79BAA",
+      "NEG-82E4230D804A",
+      "NEG-986FCE6C44D6",
+      "NEG-A58A30D8396E",
+      "NEG-05BA8E99E4C9",
+      "NEG-14871155FC8E"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

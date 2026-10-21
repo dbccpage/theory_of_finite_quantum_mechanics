@@ -1,0 +1,163 @@
+add_or_refine_generators:
+- id: g_t_transform_chain
+  ordered_inputs:
+  - p
+  - q
+  output: TTransform
+  arity: 2
+  carrier: majorization_is_a_preorder_antisymmetric_exactly_up_to_permutation
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/finite_probability/majorization.rs
+    declaration: t_transform_chain
+    line: 234
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/majorization.rs
+    decl: t_transform_chain
+    kind: fn
+    line: 234
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+- id: g_doubly_stochastic_transform
+  ordered_inputs:
+  - p
+  - q
+  output: StochasticMap
+  arity: 2
+  carrier: majorization_is_a_preorder_antisymmetric_exactly_up_to_permutation
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/finite_probability/majorization.rs
+    declaration: doubly_stochastic_transform
+    line: 281
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/majorization.rs
+    decl: doubly_stochastic_transform
+    kind: fn
+    line: 281
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+add_or_refine_relations:
+- id: r_thermal_ladder_majorization_order
+  equation_or_predicate: The thermal ladder has the documented values and the ratio order is the majorization
+    order.
+  typing_conditions: ''
+  source_pins:
+  - path: code/rust/src/finite_probability/majorization.rs
+    declaration: the_thermal_ladder_has_the_documented_values_and_the_ratio_order_is_the_majorization_order
+    line: 510
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/majorization.rs
+    decl: the_thermal_ladder_has_the_documented_values_and_the_ratio_order_is_the_majorization_order
+    kind: fn
+    line: 510
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+- id: r_mixing_time_dobrushin_bound
+  equation_or_predicate: The Dobrushin coefficient bounds the total variation distance of the mixing time.
+  typing_conditions: ''
+  source_pins:
+  - path: code/rust/src/finite_probability/stochastic_map.rs
+    declaration: total_variation_contracts_by_at_most_the_dobrushin_coefficient_and_the_bound_is_tight
+    line: 1012
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/stochastic_map.rs
+    decl: total_variation_contracts_by_at_most_the_dobrushin_coefficient_and_the_bound_is_tight
+    kind: fn
+    line: 1012
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+checked_compositions: []
+failed_compositions:
+- id: NEG-BF7E427499E7
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: t_transform_chain . slot 0 <- doubly_stochastic_transform via majorization_is_a_preorder_antisymmetric_exactly_up_to_permutation
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0170
+- id: NEG-0C43DA16A442
+  class: unparseable_reply
+  claim_kind: reply
+  claim: ''
+  evidence: empty_reply (truncated at max_tokens)
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0170
+counterexamples:
+- id: NEG-A2391AAD9547
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_a_single_state_without_a_self_loop_has_no_period_and_is_not_a_chain_class_with_a_cycle: (self,
+    next) -> period_class [a_single_state_without_a_self_loop_has_no_period_and_is_not_a_chain_class_with_a_cycle]'
+  evidence: rust fn a_single_state_without_a_self_loop_has_no_period_and_is_not_a_chain_class_with_a_cycle
+    takes 0 parameters; the claim says 2
+  decl_key: a_single_state_without_a_self_loop_has_no_period_and_is_not_a_chain_class_with_a_cycle
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0170
+- id: NEG-998EF54F419C
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_the_identity_is_row_stochastic_with_ones_on_the_diagonal: (n) -> StochasticMap [the_identity_is_row_stochastic_with_ones_on_the_diagonal]'
+  evidence: rust fn the_identity_is_row_stochastic_with_ones_on_the_diagonal takes 0 parameters; the claim
+    says 1
+  decl_key: the_identity_is_row_stochastic_with_ones_on_the_diagonal
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0170
+- id: NEG-A67A76675D98
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_dobrushin_coefficient: (P) -> coefficient [dobrushin_coefficient]'
+  evidence: rust fn dobrushin_coefficient takes 0 parameters; the claim says 1
+  decl_key: dobrushin_coefficient
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0170
+open_obligations:
+- Prove majorization_implies_thermal_ladder without using sorry (claims_proved false currently).
+- 'lemma l_majorization_implies_thermal_ladder unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_11_minus_2/3_5
+  expr: 11 - 2/3*5
+  value: 23/3
+  host_evidence:
+    recomputed: 23/3
+verified_lemma_statements: []

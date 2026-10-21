@@ -1,0 +1,404 @@
+{
+  "task_id": "TFQ-0169",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-5",
+  "input_sha256": "44e09d39214c754b72ff9ad44d2dba349b67f701b1e4c5b54610e8903d326c18",
+  "candidate_sha256": "9f51b3652ccdd1134ac01fbe26b5d88015aef3d872146c40fa8d015138c0010c",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-haiku-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 1,
+    "failure_rate": 0.25,
+    "failures_by_class": {
+      "wrong_signature": 1
+    },
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:21:51Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "shannon_entropy_form",
+        "ordered_inputs": [
+          "ProbabilitySimplex"
+        ],
+        "output": "LogForm",
+        "arity": 1,
+        "carrier": "LogForm",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/finite_probability/log_form.rs",
+            "declaration": "shannon_entropy_form",
+            "line": 231
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/finite_probability/log_form.rs",
+          "decl": "shannon_entropy_form",
+          "kind": "fn",
+          "line": 231,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "relative_entropy_form",
+        "ordered_inputs": [
+          "ProbabilitySimplex",
+          "ProbabilitySimplex"
+        ],
+        "output": "LogForm",
+        "arity": 2,
+        "carrier": "LogForm",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/finite_probability/log_form.rs",
+            "declaration": "relative_entropy_form",
+            "line": 247
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/finite_probability/log_form.rs",
+          "decl": "relative_entropy_form",
+          "kind": "fn",
+          "line": 247,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "canonical_form_equality",
+        "equation_or_predicate": "Two LogForm values are equal exactly when their prime-coefficient maps are equal, after canonical arithmetic cancellation.",
+        "typing_conditions": "LogForm is stored as rational coefficients of prime logarithms.",
+        "source_pins": [
+          {
+            "path": "code/rust/src/finite_probability/log_form.rs",
+            "declaration": "a_form_is_canonical_arithmetic_cancels_and_equal_values_have_equal_forms",
+            "line": 453
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/finite_probability/log_form.rs",
+          "decl": "a_form_is_canonical_arithmetic_cancels_and_equal_values_have_equal_forms",
+          "kind": "fn",
+          "line": 453,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-5BE66A98CED3",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'shannon_entropy_form', 'inputs': ['ProbabilitySimplex'], 'output': 'LogForm', 'arity': 1}",
+        "evidence": "generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-A58A30D8396E",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'relative_entropy_form', 'inputs': ['ProbabilitySimplex', 'ProbabilitySimplex'], 'output': 'LogForm', 'arity': 2}",
+        "evidence": "generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-0B961DC000A7",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'renyi_entropy_form', 'inputs': ['ProbabilitySimplex'], 'output': 'LogForm', 'arity': 1}",
+        "evidence": "generators[2]: missing id; generators[2]: missing carrier; generators[2]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-986FCE6C44D6",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'source': 'log_form.rs', 'relation': 'logarithmic_enclosure_preserves_exact_form', 'description': 'Enclosure returns rational interval around LogForm but canno",
+        "evidence": "relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-FC6E996D17F0",
+        "class": "schema_violation",
+        "claim_kind": "numeric_claims",
+        "claim": "{'expr': '0', 'value': '0', 'context': 'deterministic_distribution_entropy_form_zero'}",
+        "evidence": "numeric_claims[0]: missing id; numeric_claims[0]: unexpected context",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-82E4230D804A",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "{'name': 'the_entropy_form_is_zero_exactly_for_deterministic_distributions', 'relation_to_target': 'implies', 'status': 'existing', 'path': 'code/rust/src/finit",
+        "evidence": "lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-6C41B8392029",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "{'name': 'the_entropy_form_does_not_depend_on_the_order_of_the_masses', 'relation_to_target': 'strengthens', 'status': 'existing', 'path': 'code/rust/src/finite",
+        "evidence": "lemmas[1]: missing id; lemmas[1]: missing statement; lemmas[1]: missing depends_on",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-823BF1E79BAA",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "{'name': 'a_form_is_canonical_arithmetic_cancels_and_equal_values_have_equal_forms', 'relation_to_target': 'restates', 'status': 'existing', 'path': 'code/rust/",
+        "evidence": "lemmas[2]: missing id; lemmas[2]: missing statement; lemmas[2]: missing depends_on",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-9C00FCC2C3A6",
+        "class": "schema_violation",
+        "claim_kind": "near_misses",
+        "claim": "near_misses is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-079BF38089AA",
+        "class": "nonexistent_declaration",
+        "claim_kind": "generator",
+        "claim": "gen_shannon_form: (ProbabilitySimplex) -> LogForm [pub fn shannon_entropy_form(p: &ProbabilitySimplex) -> Result<LogForm, LogFormError>]",
+        "evidence": "code/rust/src/finite_probability/log_form.rs has no declaration pub and none exists in the indexed sources",
+        "decl_key": "pub",
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-AFD279728BB1",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'shannon_entropy_form', 'inputs': ['ProbabilitySimplex'], 'output': 'LogForm', 'arity': 1, 'path': 'code/rust/src/finite_probability/log_form.rs', 'dec",
+        "evidence": "generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-14871155FC8E",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'relative_entropy_form', 'inputs': ['ProbabilitySimplex', 'ProbabilitySimplex'], 'output': 'LogForm', 'arity': 2, 'path': 'code/rust/src/finite_probabi",
+        "evidence": "generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-B886F439BCDE",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'renyi_entropy_form', 'inputs': ['ProbabilitySimplex', 'u32'], 'output': 'LogForm', 'arity': 2, 'path': 'code/rust/src/finite_probability/log_form.rs',",
+        "evidence": "generators[2]: missing id; generators[2]: missing carrier; generators[2]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-05BA8E99E4C9",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'min_entropy_form', 'inputs': ['ProbabilitySimplex'], 'output': 'LogForm', 'arity': 1, 'path': 'code/rust/src/finite_probability/log_form.rs', 'decl': ",
+        "evidence": "generators[3]: missing id; generators[3]: missing carrier; generators[3]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-5753B6363FD1",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'joint_entropy_form', 'inputs': ['ProbabilitySimplex', 'ProbabilitySimplex'], 'output': 'LogForm', 'arity': 2, 'path': 'code/rust/src/finite_probabilit",
+        "evidence": "generators[4]: missing id; generators[4]: missing carrier; generators[4]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-632033772436",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'source': 'shannon_entropy_form', 'relation': 'entropy_form_returns_rational_coefficients', 'target': 'LogForm'}",
+        "evidence": "relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-CE23AA031102",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'source': 'the_entropy_form_is_zero_exactly_for_deterministic_distributions', 'relation': 'zero_form_iff_deterministic', 'target': 'shannon_entropy_form'}",
+        "evidence": "relations[1]: missing id; relations[1]: missing statement; relations[1]: missing hypotheses",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-FCA5D30F574D",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'source': 'a_form_is_canonical_arithmetic_cancels_and_equal_values_have_equal_forms', 'relation': 'canonical_form_equality', 'target': 'LogForm'}",
+        "evidence": "relations[2]: missing id; relations[2]: missing statement; relations[2]: missing hypotheses",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      },
+      {
+        "id": "NEG-936102600D9D",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "{'name': 'the_shannon_entropy_forms_of_the_documented_distributions_are_pinned', 'relation_to_target': 'strengthens', 'target': 'entropy_comparison_by_coefficie",
+        "evidence": "lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0169"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-5BB89284F45A",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "renyi_entropy_form: (ProbabilitySimplex) -> LogForm [renyi_entropy_form]",
+        "evidence": "rust fn renyi_entropy_form takes 2 parameters; the claim says 1",
+        "decl_key": "renyi_entropy_form",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "TFQ-0169"
+      }
+    ],
+    "open_obligations": [
+      "Authorizing entropy comparisons from the exact coefficient map requires a proposed_new lemma linking the LogForm equality relation to the comparison predicate; not yet stated.",
+      "Keeping rational enclosures distinct from omega_measurement interval evidence needs a type-level separation lemma; no omega_measurement declaration was supplied in @SRC, so it is not grounded.",
+      "Entropy composition (joint/conditional) was not composed into generators because only the listed declarations were citable; joint_entropy_form and conditional_entropy_form are not in the grounded list for citation as existing.",
+      "No numeric claims were emitted to avoid unverified recomputation.",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

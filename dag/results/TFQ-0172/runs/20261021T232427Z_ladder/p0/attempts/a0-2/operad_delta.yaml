@@ -1,0 +1,108 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-7624955E85F6
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''vertex_path_holonomy'', ''inputs'': [''Vertex'', ''Vertex''], ''output'': ''Int'',
+    ''arity'': 2, ''path'': ''lean4/CoboundaryHolonomy.lean'', ''decl'': ''InterferenceNonL'
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0172
+- id: NEG-6DC6CE33DAFB
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''path_holonomy'', ''inputs'': [''Cochain1'', ''List (Vertex × Vertex)''], ''output'':
+    ''Int'', ''arity'': 2, ''path'': ''lean4/CoboundaryHolonomy.lean'', ''decl'': ''Inter'
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0172
+- id: NEG-71A23886A5C3
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''CellComplex'', ''inputs'': [], ''output'': ''struct'', ''arity'': 0, ''path'':
+    ''code/rust/src/holonomy/graph.rs'', ''decl'': ''CellComplex'', ''status'': ''existing''}'
+  evidence: 'generators[2]: missing id; generators[2]: missing carrier; generators[2]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0172
+- id: NEG-80FDE1EB737E
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''source'': ''coboundary_triangle_holonomy_zero'', ''target'': ''path_holonomy'', ''type'':
+    ''implies'', ''path'': ''lean4/CoboundaryHolonomy.lean'', ''decl'': ''InterferenceNonL'
+  evidence: 'relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0172
+- id: NEG-9ED8BDD8BFC7
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''source'': ''coboundary_square_holonomy_zero'', ''target'': ''path_holonomy'', ''type'': ''implies'',
+    ''path'': ''lean4/CoboundaryHolonomy.lean'', ''decl'': ''InterferenceNonL1R'
+  evidence: 'relations[1]: missing id; relations[1]: missing statement; relations[1]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0172
+- id: NEG-840AE65616C2
+  class: schema_violation
+  claim_kind: compositions
+  claim: '{''name'': ''telescoping_vertex_path'', ''outer'': ''vertex_path_holonomy'', ''inner'': ''path_holonomy'',
+    ''slot'': 1, ''licensing_relation'': ''coboundary_vertex_path_telescop'
+  evidence: 'compositions[0]: unexpected name; compositions[0]: unexpected path; compositions[0]: unexpected
+    decl'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0172
+- id: NEG-B93C9377131B
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''coboundary_closed_cycle_zero'', ''relation_to_target'': ''strengthens'', ''path'':
+    ''lean4/CoboundaryHolonomy.lean'', ''decl'': ''InterferenceNonL1Resource.coboun'
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0172
+- id: NEG-96A269687245
+  class: schema_violation
+  claim_kind: near_misses
+  claim: '{''name'': ''genesis_gauge_result'', ''path'': ''code/rust/src/wdp/lib.rs'', ''decl'': ''genesis_gauge_result'',
+    ''status'': ''existing''}'
+  evidence: 'near_misses[0]: missing id; near_misses[0]: missing claim; near_misses[0]: missing rejecting_invariant'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0172
+counterexamples: []
+open_obligations:
+- Ensure ExactMatrix values are used for transport data without promotion to U(1) phases
+- Verify HolonomyLoop construction rejects open paths in code/rust/src/majorana/holonomy.rs
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

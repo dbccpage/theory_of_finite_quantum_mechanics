@@ -1,0 +1,136 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "g_t_transform_chain",
+      "inputs": [
+        "p",
+        "q"
+      ],
+      "output": "TTransform",
+      "arity": 2,
+      "carrier": "majorization_is_a_preorder_antisymmetric_exactly_up_to_permutation",
+      "ref": {
+        "path": "code/rust/src/finite_probability/majorization.rs",
+        "decl": "t_transform_chain",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_doubly_stochastic_transform",
+      "inputs": [
+        "p",
+        "q"
+      ],
+      "output": "StochasticMap",
+      "arity": 2,
+      "carrier": "majorization_is_a_preorder_antisymmetric_exactly_up_to_permutation",
+      "ref": {
+        "path": "code/rust/src/finite_probability/majorization.rs",
+        "decl": "doubly_stochastic_transform",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_a_single_state_without_a_self_loop_has_no_period_and_is_not_a_chain_class_with_a_cycle",
+      "inputs": [
+        "self",
+        "next"
+      ],
+      "output": "period_class",
+      "arity": 2,
+      "carrier": "a_single_state_without_a_self_loop_has_no_period_and_is_not_a_chain_class_with_a_cycle",
+      "ref": {
+        "path": "code/rust/src/finite_probability/markov_chain.rs",
+        "decl": "a_single_state_without_a_self_loop_has_no_period_and_is_not_a_chain_class_with_a_cycle",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_the_identity_is_row_stochastic_with_ones_on_the_diagonal",
+      "inputs": [
+        "n"
+      ],
+      "output": "StochasticMap",
+      "arity": 1,
+      "carrier": "the_identity_is_row_stochastic_with_ones_on_the_diagonal",
+      "ref": {
+        "path": "code/rust/src/finite_probability/stochastic_map.rs",
+        "decl": "the_identity_is_row_stochastic_with_ones_on_the_diagonal",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_dobrushin_coefficient",
+      "inputs": [
+        "P"
+      ],
+      "output": "coefficient",
+      "arity": 1,
+      "carrier": "dobrushin_coefficient",
+      "ref": {
+        "path": "code/rust/src/finite_probability/stochastic_map.rs",
+        "decl": "dobrushin_coefficient",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_thermal_ladder_majorization_order",
+      "statement": "The thermal ladder has the documented values and the ratio order is the majorization order.",
+      "hypotheses": "",
+      "ref": {
+        "path": "code/rust/src/finite_probability/majorization.rs",
+        "decl": "the_thermal_ladder_has_the_documented_values_and_the_ratio_order_is_the_majorization_order",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_mixing_time_dobrushin_bound",
+      "statement": "The Dobrushin coefficient bounds the total variation distance of the mixing time.",
+      "hypotheses": "",
+      "ref": {
+        "path": "code/rust/src/finite_probability/stochastic_map.rs",
+        "decl": "total_variation_contracts_by_at_most_the_dobrushin_coefficient_and_the_bound_is_tight",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "t_transform_chain",
+      "slot": 0,
+      "inner": "doubly_stochastic_transform",
+      "licensing_relation": "majorization_is_a_preorder_antisymmetric_exactly_up_to_permutation"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "l_majorization_implies_thermal_ladder",
+      "statement": "If p majorizes q, then p is above q in the thermal ladder order.",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "r_thermal_ladder_majorization_order"
+      ],
+      "lean_skeleton": "theorem majorization_implies_thermal_ladder {p q : ProbabilityVector} (hpq: p `majorizes` q) : p `above` q in thermal_ladder := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "code/rust/src/finite_probability/majorization.rs",
+        "decl": "the_thermal_ladder_has_the_documented_values_and_the_ratio_order_is_the_majorization_order",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [
+    {
+      "id": "nc_11_minus_2/3_5",
+      "expr": "11 - 2/3*5",
+      "value": "23/3"
+    }
+  ],
+  "open_obligations": [
+    "Prove majorization_implies_thermal_ladder without using sorry (claims_proved false currently)."
+  ]
+}
