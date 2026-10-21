@@ -69,6 +69,7 @@ class DensityOperator:
 from . import domain
 from . import campaigns
 from . import entrypoints
+from . import born_normalization
 
 __all__ = [
     "QmError",
@@ -76,4 +77,5 @@ __all__ = [
     "domain",
     "campaigns",
     "entrypoints",
+    "born_normalization",
 ]
