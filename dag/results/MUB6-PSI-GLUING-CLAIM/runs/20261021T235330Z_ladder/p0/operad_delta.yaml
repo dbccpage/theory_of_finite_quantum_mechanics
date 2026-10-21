@@ -1,0 +1,99 @@
+add_or_refine_generators:
+- id: g_verify_gate
+  ordered_inputs:
+  - BasisGluingInputs
+  output: BasisGluingGateReport
+  arity: 1
+  carrier: Rust gate report over atlas inputs
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/mub/omega_native/basis_gluing_gate.rs
+    declaration: verify_basis_gluing_gate
+    line: 116
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/mub/omega_native/basis_gluing_gate.rs
+    decl: verify_basis_gluing_gate
+    kind: fn
+    line: 116
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_cert_gives_no_extension
+  equation_or_predicate: A Cert for a tuple e implies no unitary U makes all overlaps have squared norm
+    1/d (no unbiased fourth basis).
+  typing_conditions: Cert e supplied; d=6, N=18 for the d6 version
+  source_pins:
+  - path: lean4/FixedTuplePsiCertificate.lean
+    declaration: MUB.FixedTuplePsiCertificate.no_fourth_basis_of_cert_d6
+    line: 79
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FixedTuplePsiCertificate.lean
+    decl: MUB.FixedTuplePsiCertificate.no_fourth_basis_of_cert_d6
+    kind: theorem
+    line: 79
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-49A684DF3EEE
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_psi_contraction: Psi is a strict contraction on dephased 6x6 complex Hadamard matrices with
+    deficient fixed point.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB6-PSI-GLUING-CLAIM
+counterexamples:
+- id: NEG-9909ADE59BB4
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_cert_no_fourth_d6: (Cert_e_d6) -> NoFourthBasisProp_d6 [MUB.FixedTuplePsiCertificate.no_fourth_basis_of_cert_d6]'
+  evidence: lean theorem no_fourth_basis_of_cert_d6 has 3 explicit binders (3 with conclusion arrows);
+    the claim says 1 (heuristic count)
+  decl_key: MUB.FixedTuplePsiCertificate.no_fourth_basis_of_cert_d6
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB6-PSI-GLUING-CLAIM
+- id: NEG-83B2E3A4888F
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_psi_pos_of_pointwise: (PointwisePositiveDeviation) -> PsiBasisPositive [MUB.FixedTuplePsiCertificate.psi_basis_pos_of_pointwise_pos]'
+  evidence: lean theorem psi_basis_pos_of_pointwise_pos has 2 explicit binders (2 with conclusion arrows);
+    the claim says 1 (heuristic count)
+  decl_key: MUB.FixedTuplePsiCertificate.psi_basis_pos_of_pointwise_pos
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB6-PSI-GLUING-CLAIM
+open_obligations:
+- Define Psi explicitly on dephased 6x6 complex Hadamard matrices.
+- Prove a strict contraction estimate with constant below 1 (R4).
+- Show the fixed point has positive overlap deficiency.
+- Build a Cert for the glued tuple from the contraction.
+- Replace the opaque Basis type in the contract with a concrete one.
+- No composition is listed because no licensing relation is grounded.
+- 'relation r_strict_contraction unverified: no existing declaration cited'
+- 'lemma l_cert_no_fourth unverified: Lean elaboration disabled'
+- 'near_miss nm_pointwise_not_contraction unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_conditional_wall unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

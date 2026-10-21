@@ -1,0 +1,49 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R1
+  equation_or_predicate: FourierTripleLandingPremise implies NoCompleteMUB6
+  typing_conditions: 'h_landing : FourierTripleLandingPremise'
+  source_pins:
+  - path: lean4/RouteCFourierLandingBypass.lean
+    declaration: MUB6.RouteC.no_complete_mub6_of_fourier_triple_landing
+    line: 213
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/RouteCFourierLandingBypass.lean
+    decl: MUB6.RouteC.no_complete_mub6_of_fourier_triple_landing
+    kind: theorem
+    line: 213
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No concrete algebraic landing theorem or chart interpretation exists for the quadruple-to-F_6/Haagerup
+  statement.
+- FourierTripleLandingPremise remains an unproved hypothesis.
+- 'No generators grounded: all SRC declarations are theorems, defs or structures rather than typed operations
+  with known colours.'
+- Haagerup deformation family is not formalised in the cited sources.
+- Classification of all MUB quadruples up to unitary equivalence is not available.
+- 'lemma L1 unverified: Lean elaboration disabled'
+- 'lemma L2 unverified: Lean elaboration disabled'
+- 'near_miss NM1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM2 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N1
+  expr: 7*6/2
+  value: '21'
+  host_evidence:
+    recomputed: '21'
+- id: N2
+  expr: 5*4/2
+  value: '10'
+  host_evidence:
+    recomputed: '10'
+verified_lemma_statements: []

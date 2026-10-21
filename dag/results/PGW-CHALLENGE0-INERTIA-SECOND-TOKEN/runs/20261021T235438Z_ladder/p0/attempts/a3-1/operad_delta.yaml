@@ -1,0 +1,87 @@
+add_or_refine_generators:
+- id: g_empty_regime
+  ordered_inputs: []
+  output: Regime
+  arity: 0
+  carrier: GenesisCopy.Regime
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.emptyRegime
+    line: 117
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.emptyRegime
+    kind: def
+    line: 117
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_replay
+  ordered_inputs:
+  - Regime
+  - EventList
+  output: State
+  arity: 2
+  carrier: GenesisCopy.Regime x List Event -> state
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.GenesisCopy.replayE
+    line: 107
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.GenesisCopy.replayE
+    kind: def
+    line: 107
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-D891B8C3A99C
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_second_token_required: A state with two data requires admission of a second, different token'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-CHALLENGE0-INERTIA-SECOND-TOKEN
+counterexamples: []
+open_obligations:
+- genesis_underivable, underivable_of_empty, single_token_carrier_bound, second_token_required are not
+  in SRC so none cited as existing
+- No forcing predicate defined
+- Token-aware model declarations not listed in SRC
+- supply_no_op recorded under TFQ-0379, not grounded here
+- Compositions need a licensing relation grounded in existing declarations
+- 'relation r_genesis_underivable unverified: no existing declaration cited'
+- 'relation r_single_token_bound unverified: no existing declaration cited'
+- 'near_miss nm_forced_successor unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_contexts
+  expr: '0'
+  value: '0'
+  host_evidence:
+    recomputed: '0'
+- id: n_derivable
+  expr: '0'
+  value: '0'
+  host_evidence:
+    recomputed: '0'
+verified_lemma_statements: []

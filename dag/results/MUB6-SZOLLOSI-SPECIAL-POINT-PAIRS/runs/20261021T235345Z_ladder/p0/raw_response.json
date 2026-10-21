@@ -1,0 +1,105 @@
+{
+  "task_id": "MUB6-SZOLLOSI-SPECIAL-POINT-PAIRS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "97330e0541f65ad8ef12f30fe31bb8974a7c53499d77999309bfb3ae5c60b843",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_overlap\",\"inputs\":[\"Vec\",\"Vec\"],\"output\":\"Complex\",\"arity\":2,\"carrier\":\"C^6 vectors to complex inner product\",\"ref\":{\"path\":\"lean4/SzollosiCommonRays.lean\",\"decl\":\"MUB.SzollosiCommonRays.overlap\",\"status\":\"existing\"}},{\"id\":\"g_column\",\"inputs\":[\"SixMatrix\",\"Fin6\"],\"output\":\"Vec\",\"arity\":2,\"carrier\":\"6x6 complex matrices\",\"ref\":{\"path\":\"lean4/SzollosiCommonRays.lean\",\"decl\":\"MUB.SzollosiCommonRays.column\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_no_pair_implies_no_quartet\",\"statement\":\"If no two common rays have |overlap|^2 = 6 then no quartet exists\",\"hypotheses\":\"H : SixMatrix; hpair for all common rays z w\",\"ref\":{\"path\":\"lean4/SzollosiCommonRays.lean\",\"decl\":\"MUB.SzollosiCommonRays.no_quartet_of_no_unbiased_ray_pair\",\"status\":\"existing\"}}],\"compositions\":[{\"outer\":\"g_overlap\",\"slot\":0,\"inner\":\"g_column\",\"licensing_relation\":\"r_no_pair_implies_no_quartet\"}],\"lemmas\":[{\"id\":\"l_gap\",\"statement\":\"At the Szollosi point (1,-1,1,i), all 7140 pairs among the 120 represented rays satisfy ||<z,w>|^2 - 6| > 47/100\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_no_pair_implies_no_quartet\"],\"lean_skeleton\":\"theorem szollosi_gap : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_partial_set\",\"claim\":\"No unbiased pair among the 120 represented rays implies no unbiased pair among all common rays at this point\",\"rejecting_invariant\":\"Completeness of the ray set requires an independent bound on the number of complex solutions, which is not established\"},{\"id\":\"nm_family\",\"claim\":\"The result at one point extends to the whole Szollosi family\",\"rejecting_invariant\":\"One point does not cover the family\"}],\"numeric_claims\":[{\"id\":\"n_pairs\",\"expr\":\"120*119/2\",\"value\":\"7140\"}],\"open_obligations\":[\"Independent bound on number of complex solutions for completeness of the ray set\",\"No replay recorded with python-flint and PARI/GP\",\"Lean formalization of the rational parametrization and nonsingularity\",\"Extension from one point to the family\",\"Verification of the 47/100 gap for the pairs\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_overlap",
+        "inputs": [
+          "Vec",
+          "Vec"
+        ],
+        "output": "Complex",
+        "arity": 2,
+        "carrier": "C^6 vectors to complex inner product",
+        "ref": {
+          "path": "lean4/SzollosiCommonRays.lean",
+          "decl": "MUB.SzollosiCommonRays.overlap",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_column",
+        "inputs": [
+          "SixMatrix",
+          "Fin6"
+        ],
+        "output": "Vec",
+        "arity": 2,
+        "carrier": "6x6 complex matrices",
+        "ref": {
+          "path": "lean4/SzollosiCommonRays.lean",
+          "decl": "MUB.SzollosiCommonRays.column",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_no_pair_implies_no_quartet",
+        "statement": "If no two common rays have |overlap|^2 = 6 then no quartet exists",
+        "hypotheses": "H : SixMatrix; hpair for all common rays z w",
+        "ref": {
+          "path": "lean4/SzollosiCommonRays.lean",
+          "decl": "MUB.SzollosiCommonRays.no_quartet_of_no_unbiased_ray_pair",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "g_overlap",
+        "slot": 0,
+        "inner": "g_column",
+        "licensing_relation": "r_no_pair_implies_no_quartet"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "l_gap",
+        "statement": "At the Szollosi point (1,-1,1,i), all 7140 pairs among the 120 represented rays satisfy ||<z,w>|^2 - 6| > 47/100",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_no_pair_implies_no_quartet"
+        ],
+        "lean_skeleton": "theorem szollosi_gap : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_partial_set",
+        "claim": "No unbiased pair among the 120 represented rays implies no unbiased pair among all common rays at this point",
+        "rejecting_invariant": "Completeness of the ray set requires an independent bound on the number of complex solutions, which is not established"
+      },
+      {
+        "id": "nm_family",
+        "claim": "The result at one point extends to the whole Szollosi family",
+        "rejecting_invariant": "One point does not cover the family"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_pairs",
+        "expr": "120*119/2",
+        "value": "7140"
+      }
+    ],
+    "open_obligations": [
+      "Independent bound on number of complex solutions for completeness of the ray set",
+      "No replay recorded with python-flint and PARI/GP",
+      "Lean formalization of the rational parametrization and nonsingularity",
+      "Extension from one point to the family",
+      "Verification of the 47/100 gap for the pairs"
+    ]
+  }
+}

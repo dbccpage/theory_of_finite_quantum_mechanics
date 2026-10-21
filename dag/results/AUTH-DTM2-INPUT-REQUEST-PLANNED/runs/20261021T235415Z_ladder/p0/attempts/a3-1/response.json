@@ -1,0 +1,133 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_encodeMachine",
+      "inputs": [
+        "Machine"
+      ],
+      "output": "TokenList",
+      "arity": 1,
+      "carrier": "List Nat",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/TokenCode.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeMachine",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_decodeMachine",
+      "inputs": [
+        "TokenList"
+      ],
+      "output": "OptionMachine",
+      "arity": 1,
+      "carrier": "Option Machine",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/TokenCode.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_encodeRequest",
+      "inputs": [
+        "Nat",
+        "Machine",
+        "List Nat"
+      ],
+      "output": "TokenList",
+      "arity": 3,
+      "carrier": "List Nat",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "g_decodeRequest",
+      "inputs": [
+        "TokenList"
+      ],
+      "output": "OptionRequest",
+      "arity": 1,
+      "carrier": "Option (Nat x Machine x List Nat)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_machine_roundtrip",
+      "statement": "decodeMachine (encodeMachine m) = some m",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/TokenCode.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_request_roundtrip",
+      "statement": "decodeRequest (encodeRequest fuel m input) = some (fuel, m, input)",
+      "hypotheses": "input word tokens are well-formed under the chosen length framing",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_request_roundtrip",
+      "statement": "Request code round trip: decoding an encoded request returns fuel, machine and input.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r_machine_roundtrip"
+      ],
+      "lean_skeleton": "theorem decodeRequest_encodeRequest (fuel : Nat) (m : Machine) (w : List Nat) : decodeRequest (encodeRequest fuel m w) = some (fuel, m, w) := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "l_result_agreement",
+      "statement": "The code-level evaluator on an encoded request equals the bounded evaluator on fuel, machine and the declared initial input.",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "l_request_roundtrip"
+      ],
+      "lean_skeleton": "theorem evalCode_encodeRequest (fuel : Nat) (m : Machine) (w : List Nat) : evalCode (encodeRequest fuel m w) = boundedEval fuel m w := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_concat_no_length",
+      "claim": "Concatenating fuel, machine tokens and input without a length token is uniquely decodable.",
+      "rejecting_invariant": "The machine segment and input word boundary is ambiguous without the length token; the machine-code length is required."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing declaration for bounded evaluator or fuel found in SRC; name and signature unknown.",
+    "Request encoder/decoder and code-level evaluator are new and need definitions.",
+    "Seven named target theorems not listed; cannot ground.",
+    "Configuration snapshots and step-by-step trace agreement remain separate.",
+    "Compositions omitted: no licensed typed plug grounded."
+  ]
+}

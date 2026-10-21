@@ -1,0 +1,95 @@
+{
+  "task_id": "MUB6-PHI1-CIRCULATION-CLAIM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "49569a298f5d694de8f84c74075137b12e2ba6cd0a84ce4d5c637f319d180e03",
+  "candidate_sha256": "24ff853c817b743983e4078380b723e0a2332a220457ca48da0edb2abef23473",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 2,
+    "failure_rate": 0.6667,
+    "failures_by_class": {
+      "composition_type_mismatch": 2
+    },
+    "unverifiable": 9,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:53:43Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-C8CBC82DE303",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_circulation . slot 0 <- g_rephase via r_rephase_invariance",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-PHI1-CIRCULATION-CLAIM"
+      },
+      {
+        "id": "NEG-79295836762C",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_circulation . slot 0 <- g_phase_cochain via r_nerve_supplied",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-PHI1-CIRCULATION-CLAIM"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing source declarations; all refs proposed_new.",
+      "Native Phi_1 values are fixtures (G4); lower bound 0.0812 not established.",
+      "Nerve not derived from complex charts.",
+      "Need computation of Phi_1 over every closed three-basis cycle and the minimum, with exact or rigorously bounded values.",
+      "Representative choice mod 2pi (principal value in (-pi,pi]) must be fixed for the inequality to be meaningful.",
+      "generator g_phase_cochain unverified: no existing declaration cited",
+      "generator g_circulation unverified: no existing declaration cited",
+      "generator g_rephase unverified: no existing declaration cited",
+      "relation r_rephase_invariance unverified: no existing declaration cited",
+      "relation r_nerve_supplied unverified: no existing declaration cited",
+      "lemma l_rephase_invariant unverified: Lean elaboration disabled",
+      "lemma l_lower_bound unverified: Lean elaboration disabled",
+      "near_miss nm_gauge_dependent_edge unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_mod_2pi_zero unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_threshold",
+        "expr": "812/10000",
+        "value": "203/2500",
+        "host_evidence": {
+          "recomputed": "203/2500"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

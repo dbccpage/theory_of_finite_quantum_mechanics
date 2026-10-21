@@ -1,0 +1,81 @@
+{
+  "task_id": "MUB6-ROUTE-C-CONDITIONAL",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "35b4a099b55c8f148e2801372d31119cb239141689f81c2791df35ea65a4b8e4",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R1\",\"statement\":\"FourierTripleLandingPremise implies NoCompleteMUB6\",\"hypotheses\":\"FourierTripleLandingPremise (open premise); opaque Basis and is_mutually_unbiased; InFourierDitaChart with analytic soundness of the partition tree supplied\",\"ref\":{\"path\":\"lean4/RouteCFourierLandingBypass.lean\",\"decl\":\"MUB6.RouteC.no_complete_mub6_of_fourier_triple_landing\",\"status\":\"existing\"}},{\"id\":\"R2\",\"statement\":\"A landing map CompleteMUB6 -> RouteCCompleteMUBFamily implies NoCompleteMUB6\",\"hypotheses\":\"h_landing supplied as a hypothesis; no concrete interpretation of Basis\",\"ref\":{\"path\":\"lean4/RouteCFourierLandingBypass.lean\",\"decl\":\"MUB6.RouteC.no_complete_mub6_via_route_c\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L1\",\"statement\":\"FourierTripleLandingPremise -> NoCompleteMUB6, conditional on the open landing premise\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R1\"],\"lean_skeleton\":\"theorem L1 (h : MUB6.RouteC.FourierTripleLandingPremise) : MUB6.NoCompleteMUB6 := MUB6.RouteC.no_complete_mub6_of_fourier_triple_landing h\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/RouteCFourierLandingBypass.lean\",\"decl\":\"MUB6.RouteC.no_complete_mub6_of_fourier_triple_landing\",\"status\":\"existing\"}},{\"id\":\"L2\",\"statement\":\"(CompleteMUB6 -> RouteCCompleteMUBFamily) -> NoCompleteMUB6, conditional on the landing map\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R2\"],\"lean_skeleton\":\"theorem L2 (h : MUB6.CompleteMUB6 → MUB6.RouteC.RouteCCompleteMUBFamily) : MUB6.NoCompleteMUB6 := MUB6.RouteC.no_complete_mub6_via_route_c h\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/RouteCFourierLandingBypass.lean\",\"decl\":\"MUB6.RouteC.no_complete_mub6_via_route_c\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"N1\",\"claim\":\"NoCompleteMUB6 holds unconditionally from the Route C chart analysis\",\"rejecting_invariant\":\"FourierTripleLandingPremise is open and Basis is opaque; earlier unconditional Route C statements are withdrawn\"}],\"numeric_claims\":[],\"open_obligations\":[\"Discharge FourierTripleLandingPremise from concrete complex MU data\",\"Give the opaque Basis and is_mutually_unbiased a concrete interpretation\",\"Check that the namespace of NoCompleteMUB6 and CompleteMUB6 matches the Lean skeleton (not listed in SRC)\",\"No generators grounded: SRC lists no typed operations as generators\",\"Two opaque is_mutually_unbiased declarations exist (Gluing, KernelReflectionGrandUnified); identify which is used in Route C\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R1",
+        "statement": "FourierTripleLandingPremise implies NoCompleteMUB6",
+        "hypotheses": "FourierTripleLandingPremise (open premise); opaque Basis and is_mutually_unbiased; InFourierDitaChart with analytic soundness of the partition tree supplied",
+        "ref": {
+          "path": "lean4/RouteCFourierLandingBypass.lean",
+          "decl": "MUB6.RouteC.no_complete_mub6_of_fourier_triple_landing",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R2",
+        "statement": "A landing map CompleteMUB6 -> RouteCCompleteMUBFamily implies NoCompleteMUB6",
+        "hypotheses": "h_landing supplied as a hypothesis; no concrete interpretation of Basis",
+        "ref": {
+          "path": "lean4/RouteCFourierLandingBypass.lean",
+          "decl": "MUB6.RouteC.no_complete_mub6_via_route_c",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L1",
+        "statement": "FourierTripleLandingPremise -> NoCompleteMUB6, conditional on the open landing premise",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R1"
+        ],
+        "lean_skeleton": "theorem L1 (h : MUB6.RouteC.FourierTripleLandingPremise) : MUB6.NoCompleteMUB6 := MUB6.RouteC.no_complete_mub6_of_fourier_triple_landing h",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/RouteCFourierLandingBypass.lean",
+          "decl": "MUB6.RouteC.no_complete_mub6_of_fourier_triple_landing",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "L2",
+        "statement": "(CompleteMUB6 -> RouteCCompleteMUBFamily) -> NoCompleteMUB6, conditional on the landing map",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R2"
+        ],
+        "lean_skeleton": "theorem L2 (h : MUB6.CompleteMUB6 → MUB6.RouteC.RouteCCompleteMUBFamily) : MUB6.NoCompleteMUB6 := MUB6.RouteC.no_complete_mub6_via_route_c h",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/RouteCFourierLandingBypass.lean",
+          "decl": "MUB6.RouteC.no_complete_mub6_via_route_c",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "N1",
+        "claim": "NoCompleteMUB6 holds unconditionally from the Route C chart analysis",
+        "rejecting_invariant": "FourierTripleLandingPremise is open and Basis is opaque; earlier unconditional Route C statements are withdrawn"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Discharge FourierTripleLandingPremise from concrete complex MU data",
+      "Give the opaque Basis and is_mutually_unbiased a concrete interpretation",
+      "Check that the namespace of NoCompleteMUB6 and CompleteMUB6 matches the Lean skeleton (not listed in SRC)",
+      "No generators grounded: SRC lists no typed operations as generators",
+      "Two opaque is_mutually_unbiased declarations exist (Gluing, KernelReflectionGrandUnified); identify which is used in Route C"
+    ]
+  }
+}

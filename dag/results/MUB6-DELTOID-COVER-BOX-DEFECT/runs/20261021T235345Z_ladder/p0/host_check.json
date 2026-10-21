@@ -1,0 +1,130 @@
+{
+  "task_id": "MUB6-DELTOID-COVER-BOX-DEFECT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a833663bcbe33873f0fa09b7045a7cf5ae2a9c84462cbdf6617b0370a94ceb9f",
+  "candidate_sha256": "24bfe2459beb2c689cee5c1722834baa42cfad384a5ef9e017302fb08b53ce9f",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 5,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:53:55Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_canonical_candidate_box",
+        "ordered_inputs": [],
+        "output": "BasisBox",
+        "arity": 0,
+        "carrier": "candidate basis box of the deltoid cover",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs",
+            "declaration": "canonical_candidate_basis_box",
+            "line": 603
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs",
+          "decl": "canonical_candidate_basis_box",
+          "kind": "fn",
+          "line": 603,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_certify_excludes_fourth",
+        "ordered_inputs": [
+          "BasisBox"
+        ],
+        "output": "Option<NoBasisBox>",
+        "arity": 1,
+        "carrier": "exclusion certificate for a basis box",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/mub/omega_native/mub6_basis_cover.rs",
+            "declaration": "certify_basis_box_excludes_fourth",
+            "line": 44
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/mub/omega_native/mub6_basis_cover.rs",
+          "decl": "certify_basis_box_excludes_fourth",
+          "kind": "fn",
+          "line": 44,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Verify that the canonical box actually enforces |U_00|^2 >= 81/100",
+      "Formalize the unbiasedness constraint |U_00|^2 = 1/6",
+      "No existing declaration is cited for the relations; they remain proposed_new",
+      "Lean skeletons are not elaborated and contain no completed proof",
+      "relation r_box_modulus_lower_bound unverified: no existing declaration cited",
+      "relation r_unbiased_modulus unverified: no existing declaration cited",
+      "lemma l_box_empty_of_admissible unverified: Lean elaboration disabled",
+      "lemma l_margin unverified: Lean elaboration disabled",
+      "near_miss nm_subdivision unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_margin",
+        "expr": "(81/100 - 1/6)^2",
+        "value": "37249/90000",
+        "host_evidence": {
+          "recomputed": "37249/90000"
+        }
+      },
+      {
+        "id": "n_gap",
+        "expr": "81/100 - 1/6",
+        "value": "243/300 - 50/300",
+        "host_evidence": {
+          "recomputed": "193/300"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

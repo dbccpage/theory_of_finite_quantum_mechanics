@@ -1,0 +1,214 @@
+{
+  "task_id": "MUB6-SMALE-ALPHA-CLAIM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "58109f462905b5cc1e81893ea08c2c141c31d38c37281d028ca79de0ba5b8e38",
+  "candidate_sha256": "f91f2e3fef17c0452ff1022dfc995722fa8cd9363f25deef9d2049e561f66ba5",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS",
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 3,
+    "failure_rate": 0.4286,
+    "failures_by_class": {
+      "composition_type_mismatch": 1,
+      "vacuous_proof": 2
+    },
+    "unverifiable": 4,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:53:34Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_pull",
+        "ordered_inputs": [
+          "Fin386Real"
+        ],
+        "output": "CoordReal",
+        "arity": 1,
+        "carrier": "Fin 386 → ℝ to Coord → ℝ",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/MubQuadraticLiftCodedSystem.lean",
+            "declaration": "MUB.QuadraticLiftCodedSystem.pull",
+            "line": 16
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/MubQuadraticLiftCodedSystem.lean",
+          "decl": "MUB.QuadraticLiftCodedSystem.pull",
+          "kind": "def",
+          "line": 16,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_push",
+        "ordered_inputs": [
+          "CoordReal"
+        ],
+        "output": "Fin386Real",
+        "arity": 1,
+        "carrier": "Coord → ℝ to Fin 386 → ℝ",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/MubQuadraticLiftCodedSystem.lean",
+            "declaration": "MUB.QuadraticLiftCodedSystem.push",
+            "line": 17
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/MubQuadraticLiftCodedSystem.lean",
+          "decl": "MUB.QuadraticLiftCodedSystem.push",
+          "kind": "def",
+          "line": 17,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_pull_push",
+        "equation_or_predicate": "pull (push x) = x",
+        "typing_conditions": "x : Coord → ℝ",
+        "source_pins": [
+          {
+            "path": "lean4/MubQuadraticLiftCodedSystem.lean",
+            "declaration": "MUB.QuadraticLiftCodedSystem.pull_push",
+            "line": 21
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubQuadraticLiftCodedSystem.lean",
+          "decl": "MUB.QuadraticLiftCodedSystem.pull_push",
+          "kind": "theorem",
+          "line": 21,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_rename_eval",
+        "equation_or_predicate": "codedRealEval x (rename variableCode p) = realEval (pull x) p",
+        "typing_conditions": "x : Fin 386 → ℝ, p : Poly",
+        "source_pins": [
+          {
+            "path": "lean4/MubQuadraticLiftCodedSystem.lean",
+            "declaration": "MUB.QuadraticLiftCodedSystem.rename_eval",
+            "line": 26
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubQuadraticLiftCodedSystem.lean",
+          "decl": "MUB.QuadraticLiftCodedSystem.rename_eval",
+          "kind": "theorem",
+          "line": 26,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-C18A6CA7A635",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_alpha . slot 1 <- g_push via r_pull_push",
+        "evidence": "the outer generator is not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-SMALE-ALPHA-CLAIM"
+      },
+      {
+        "id": "NEG-666B8E91F3EE",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_alpha_cover: For every x in the covering set, alpha(f,x) > 1",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-SMALE-ALPHA-CLAIM"
+      },
+      {
+        "id": "NEG-B5BE13021141",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_cover_total: The covering set exhausts the candidate region in the coded 386-variable space",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-SMALE-ALPHA-CLAIM"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No alpha computation or covering set is in the checkout",
+      "Define beta, gamma and alpha for the 386-variable system",
+      "Prove that alpha > 1 excludes the quadratic convergence basin of a root, or restate the target in terms of alpha0 ≈ 0.157671",
+      "Prove the candidate set is covered",
+      "Link the Krawczyk certificates to alpha, if intended",
+      "generator g_alpha unverified: no existing declaration cited",
+      "relation r_alpha_gt_one unverified: no existing declaration cited",
+      "near_miss nm_alpha_vs_krawczyk unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_alpha_implies_no_root unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

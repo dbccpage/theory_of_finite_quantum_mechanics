@@ -1,0 +1,67 @@
+{
+  "task_id": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "ddbeb08ab009544a48fdc668355c72f2277bcbb5ca2ede31879c3bbdb00d4864",
+  "candidate_sha256": "ca3ab1dda68d267f1b1691549692c5a7d613b2486a0e2ebc26a34d77ec64b14b",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 1,
+    "failure_rate": 1.0,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 3,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:54:17Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-87050844174E",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_ABIN_cited_only: Cited, not re-proved: ABIN 1996 limitation theorem for noisy reversible computation without fresh low-entropy bits. It is recorded as an assumption only, with no proof claimed and no numbers added.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "The exact ABIN 1996 theorem statement, noise model and depth bound are not available in the sources, so they must be checked against the paper.",
+      "No existing declarations were found by the host, so every reference is proposed_new or none.",
+      "The formal Lean statement of the imported assumption is not written, and the skeleton is a placeholder.",
+      "The relationship between QCV-Q4 and the ABIN noise model is not formalized.",
+      "No generators or compositions are grounded.",
+      "relation R_ABIN_imported unverified: no existing declaration cited",
+      "near_miss NM_global_depolarizing_only unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_fresh_bits_allowed unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

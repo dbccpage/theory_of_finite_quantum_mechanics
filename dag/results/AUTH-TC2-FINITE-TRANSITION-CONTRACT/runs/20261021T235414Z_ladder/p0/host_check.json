@@ -1,0 +1,275 @@
+{
+  "task_id": "AUTH-TC2-FINITE-TRANSITION-CONTRACT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "4adafaa6dec997f4d4e7fa819f5e0be862b428491dd6adb0d9552106368355f1",
+  "candidate_sha256": "e0af9f43e5f3e4f4ea292d95c838308195c366b9a9a0075b7be10255a75eafd5",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 8,
+    "failed_total": 1,
+    "failure_rate": 0.1111,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 1,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:54:24Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_transition",
+        "ordered_inputs": [
+          "Configuration"
+        ],
+        "output": "TransitionResult",
+        "arity": 1,
+        "carrier": "Configuration (four enumerated configurations)",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+            "declaration": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transition",
+            "line": 43
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+          "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transition",
+          "kind": "def",
+          "line": 43,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_next",
+        "ordered_inputs": [
+          "Configuration"
+        ],
+        "output": "Configuration",
+        "arity": 1,
+        "carrier": "Configuration",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+            "declaration": "AuthorizationIncompleteness.TapeTransitionInvariantModels.nextConfiguration",
+            "line": 55
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+          "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.nextConfiguration",
+          "kind": "def",
+          "line": 55,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_control",
+        "ordered_inputs": [
+          "Configuration"
+        ],
+        "output": "ControlOutcome",
+        "arity": 1,
+        "carrier": "Configuration to control outcome (advance, stay, halt)",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+            "declaration": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transitionControl",
+            "line": 59
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+          "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transitionControl",
+          "kind": "def",
+          "line": 59,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_clean_preserved",
+        "equation_or_predicate": "transition preserves the supplied clean-terminal contract",
+        "typing_conditions": "supplied clean-terminal contract",
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+            "declaration": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract",
+            "line": 122
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+          "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract",
+          "kind": "theorem",
+          "line": 122,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_marked_fails",
+        "equation_or_predicate": "transition does not preserve the supplied marked-cell contract (countertrace from running-marked)",
+        "typing_conditions": "supplied marked-cell contract",
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+            "declaration": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract",
+            "line": 135
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+          "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract",
+          "kind": "theorem",
+          "line": 135,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_full_adequate",
+        "equation_or_predicate": "the full configuration report is adequate for the marked-cell contract",
+        "typing_conditions": "supplied marked-cell contract",
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+            "declaration": "AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract",
+            "line": 168
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+          "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract",
+          "kind": "theorem",
+          "line": 168,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_control_inadequate",
+        "equation_or_predicate": "the control-only report is not adequate for the marked-cell contract",
+        "typing_conditions": "supplied marked-cell contract",
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+            "declaration": "AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract",
+            "line": 187
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+          "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract",
+          "kind": "theorem",
+          "line": 187,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-81940F84D5D4",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_target_conj: Conjunction of the four relations: clean-terminal preserved, marked-cell not preserved, full report adequate, control report not adequate.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "AUTH-TC2-FINITE-TRANSITION-CONTRACT"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Replace the enumerated carrier by an actual tape and head.",
+      "State the contracts independently of the table.",
+      "Exact Lean skeleton for the conjunction is a placeholder.",
+      "No generator composition is licensed by the listed relations.",
+      "near_miss nm_control_decides unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_configs",
+        "expr": "2*2",
+        "value": "4",
+        "host_evidence": {
+          "recomputed": "4"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "7 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

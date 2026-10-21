@@ -1,0 +1,60 @@
+add_or_refine_generators:
+- id: startWord
+  ordered_inputs:
+  - Nat
+  output: Word
+  arity: 1
+  carrier: List (Sym G1 (TM1to0.Λ' M1))
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.startWord
+    line: 197
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.startWord
+    kind: def
+    line: 197
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: R_nfReach_not_computable
+  equation_or_predicate: NFReach is not a computable predicate on Nat.
+  typing_conditions: none
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.nfReach_not_computable
+    line: 315
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.nfReach_not_computable
+    kind: theorem
+    line: 315
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Prove startWord_computable (COMP-C7c), not in SRC.
+- Define BoundedReach in Lean, e.g. via reachN and wordsLE, and show it is decidable. The exact signatures
+  of reachN and wordsLE are not listed.
+- Specify halting-start-word and normal-form semantics for the uniform bound hypothesis.
+- Elaborate the lean_skeleton, which uses an undefined BoundedReach.
+- 'relation R_startWord_computable unverified: no existing declaration cited'
+- 'lemma L_no_fixed_bound unverified: Lean elaboration disabled'
+- 'near_miss NM_per_input_bound unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

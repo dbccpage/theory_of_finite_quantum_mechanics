@@ -1,0 +1,189 @@
+{
+  "task_id": "AUTHF-CARRIER-ADMISSION-GATE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "701d157883f3c80c3d7844b7d0aab18c7a4a8c9d557bd51c969c1152c4a7755c",
+  "candidate_sha256": "108a88b0e65960aa23f93214ff1322c2881d21853e3f6613c3860f220c136dc4",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 1,
+    "failure_rate": 0.2,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 2,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:54:38Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_invoke_replay_packet",
+        "ordered_inputs": [
+          "Root",
+          "ManifestPath",
+          "PrefixMap"
+        ],
+        "output": "ReplayResult",
+        "arity": 3,
+        "carrier": "replay packet dict",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/python/src/qm/auth_incompleteness/replay_packet.py",
+            "declaration": "invoke_replay_packet",
+            "line": 408
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/python/src/qm/auth_incompleteness/replay_packet.py",
+          "decl": "invoke_replay_packet",
+          "kind": "def",
+          "line": 408,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_run_formal_replay",
+        "ordered_inputs": [
+          "Packet",
+          "Toolchain",
+          "Elan"
+        ],
+        "output": "ReplayLog",
+        "arity": 3,
+        "carrier": "formal replay log string",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/python/src/qm/auth_incompleteness/replay_packet.py",
+            "declaration": "run_formal_replay",
+            "line": 441
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/python/src/qm/auth_incompleteness/replay_packet.py",
+          "decl": "run_formal_replay",
+          "kind": "def",
+          "line": 441,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_refusal_prefix",
+        "equation_or_predicate": "Any refusal of the replay packet is raised as ReplayPacketRefusal with message starting REPLAY_PACKET_REFUSED",
+        "typing_conditions": "refusal path is taken",
+        "source_pins": [
+          {
+            "path": "code/python/src/qm/auth_incompleteness/replay_packet.py",
+            "declaration": "ReplayPacketRefusal",
+            "line": 96
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/python/src/qm/auth_incompleteness/replay_packet.py",
+          "decl": "ReplayPacketRefusal",
+          "kind": "class",
+          "line": 96,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_profile_check",
+        "equation_or_predicate": "Manifest execution profile must have exactly the recorded keys before replay",
+        "typing_conditions": "manifest loaded",
+        "source_pins": [
+          {
+            "path": "code/python/src/qm/auth_incompleteness/replay_packet.py",
+            "declaration": "_check_execution_profile",
+            "line": 225
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/python/src/qm/auth_incompleteness/replay_packet.py",
+          "decl": "_check_execution_profile",
+          "kind": "def",
+          "line": 225,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-1F5536CDDE88",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_no_admission: The validator refuses any selection or admission while universality, extensionality, nontriviality and effective reduction remain open",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "AUTHF-CARRIER-ADMISSION-GATE"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "PO-022 open",
+      "PO-023 open",
+      "AIT-PACKET4 open",
+      "Freeze the carrier: universality, extensionality, nontriviality, effective reduction",
+      "Compositions not grounded: no licensing relation between generators",
+      "Lean skeleton for the lemma is a placeholder",
+      "near_miss nm_rice_early unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_partial_is_closed unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}
