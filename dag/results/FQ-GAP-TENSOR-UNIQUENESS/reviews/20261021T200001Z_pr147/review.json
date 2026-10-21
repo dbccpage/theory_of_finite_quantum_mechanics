@@ -1,0 +1,35 @@
+{
+  "authority_effect": "None",
+  "reviewed_head": "b56af2b93b7bfb5946dc526e99f697b0e8261b46",
+  "base_sha": "3b50a1a980fa8535590356a65ff82b1d682dac29",
+  "mathematics": "No defect found in the conditional theorems. No Lean proof changes.",
+  "findings": [
+    {
+      "id": "R147-01",
+      "priority": 2,
+      "subject": "code/rust/src/finite_probability/operational_filters.rs",
+      "problem": "The independent Rust checker accepted missing/empty premises and extra unconditional claims or model fields.",
+      "evidence": "attempts/red_rust.log",
+      "fix": "Typed schema denies unknown or missing fields and enforces the complete premise list."
+    },
+    {
+      "id": "R147-02",
+      "priority": 2,
+      "subject": "code/rust/src/finite_probability/operational_filters.rs",
+      "problem": "Direct JSON Value decoding silently overwrote duplicate top-level and model keys.",
+      "evidence": "attempts/red_duplicates.log",
+      "fix": "Deserialize raw bytes through typed structs before conversion to Value; regression also covers duplicate model names."
+    }
+  ],
+  "mathematical_review": [
+    "Reset irreducibility uses spanning preparations and globally separating effects, not product-effect separation.",
+    "Bounded separating effects imply faithful normalization on the positive cone; a generating cone then gives normalized preparation span.",
+    "Admission is a supplied sequential closure rule, distinct from positivity or complete positivity.",
+    "Product-effect resets annihilate the hidden kernel; algebraic circuits preserve it but need not remain subnormalized.",
+    "The nonempty coordinate index supplies nonzero observation in the product-reset equivalence.",
+    "The visible-output premise is essential; a nonzero hidden output can conceal a nonfactoring effect.",
+    "Global reset descent implies tomography under the declared calibration and separation hypotheses; no independent derivation of those hypotheses is claimed."
+  ],
+  "remaining_assumptions": "The ordered field-linear carrier, cone generation, normalization, bounded globally separating available effects, preparation availability, sequential admission, product calibration and an independent hidden-sector-excluding principle remain explicit.",
+  "historical_policy": "Original candidate, run metadata, source pins and receipts are unchanged. Current-source acceptance is the review replay and its committed-source audit."
+}
