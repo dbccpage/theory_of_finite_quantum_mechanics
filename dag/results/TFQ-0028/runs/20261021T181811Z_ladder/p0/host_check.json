@@ -1,0 +1,220 @@
+{
+  "task_id": "TFQ-0028",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "34f0c252388f011f4ba14d86a78c57cfa1a16be0b072ab737f73da1ff31ba08f",
+  "candidate_sha256": "25e2ee35322d56ff4ee90ea845f6786213839a8c3e7591322911462bc617215a",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 8,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 2,
+    "lean": {
+      "status": "skipped",
+      "reason": "installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T18:18:33Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "gen_qcdBeta0",
+        "ordered_inputs": [
+          "nc",
+          "nf"
+        ],
+        "output": "Rat",
+        "arity": 2,
+        "carrier": "FiniteQM",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQM.lean",
+            "declaration": "FiniteQM.qcdBeta0",
+            "line": 608
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.qcdBeta0",
+          "kind": "abbrev",
+          "line": 608,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_asymptotic_freedom_window",
+        "equation_or_predicate": "(4 : Rat) * suNCasimirAdjoint 3 + (-1 / 3 : Rat) * suNCasimirAdjoint 3 = 11 ∧ qcdBeta0 3 0 = 11",
+        "typing_conditions": "",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQM.lean",
+            "declaration": "FiniteQM.qcd_beta0_asymptotic_freedom_window",
+            "line": 614
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.qcd_beta0_asymptotic_freedom_window",
+          "kind": "theorem",
+          "line": 614,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-C96B5F313B8D",
+        "class": "wrong_source_location",
+        "claim_kind": "generator",
+        "claim": "operadgen::tfq0028::beta0_eval: (nat, nat) -> rat [qcd_beta0]",
+        "evidence": "no file code/python/src/qm/qcd_confinement.py::qcd_beta0; declaration qcd_beta0 exists at code/python/src/qm/qcd_confinement.py",
+        "decl_key": "qcd_beta0",
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0028"
+      },
+      {
+        "id": "NEG-FA3CFDC17181",
+        "class": "wrong_source_location",
+        "claim_kind": "generator",
+        "claim": "operadgen::tfq0028::window_window: (nat) -> window [qcd_beta0_asymptotic_freedom_window]",
+        "evidence": "no file lean4/FiniteQM.lean::FiniteQM.qcd_beta0_asymptotic_freedom_window; declaration qcd_beta0_asymptotic_freedom_window exists at lean4/FiniteQM.lean",
+        "decl_key": "qcd_beta0_asymptotic_freedom_window",
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0028"
+      },
+      {
+        "id": "NEG-799CCD05387A",
+        "class": "wrong_source_location",
+        "claim_kind": "relation",
+        "claim": "operadrel::tfq0028::nfcasimir: The rational definition of the 1-loop beta_0 in terms of N_c and n_f. [qcdBeta0]",
+        "evidence": "no file lean4/FiniteQM.lean::FiniteQM.qcdBeta0; declaration qcdBeta0 exists at lean4/FiniteQM.lean",
+        "decl_key": "qcdBeta0",
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0028"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-1297B17E98A7",
+        "class": "false_numeric_claim",
+        "claim_kind": "numeric",
+        "claim": "nc_qcd_beta0_3: 11 - 2/3 * 3 = 3",
+        "evidence": "exact recomputation gives 9, not 3",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0028"
+      },
+      {
+        "id": "NEG-72B1E892029D",
+        "class": "false_numeric_claim",
+        "claim_kind": "numeric",
+        "claim": "nc_qcd_beta0_16: 11 - 2/3 * 16 = -1/3",
+        "evidence": "exact recomputation gives 1/3, not -1/3",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0028"
+      }
+    ],
+    "open_obligations": [
+      "lemma lem_beta0_window_arithmetic unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+      "lemma lem_withheld_continuum_claims unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "nc_0_beta0",
+        "expr": "11 - (2/3)*0",
+        "value": "11",
+        "host_evidence": {
+          "recomputed": "11"
+        }
+      },
+      {
+        "id": "nc_3_beta0",
+        "expr": "11 - (2/3)*3",
+        "value": "9",
+        "host_evidence": {
+          "recomputed": "9"
+        }
+      },
+      {
+        "id": "nc_5_beta0",
+        "expr": "11 - (2/3)*5",
+        "value": "23/3",
+        "host_evidence": {
+          "recomputed": "23/3"
+        }
+      },
+      {
+        "id": "nc_6_beta0",
+        "expr": "11 - (2/3)*6",
+        "value": "7",
+        "host_evidence": {
+          "recomputed": "7"
+        }
+      },
+      {
+        "id": "nc_16_beta0",
+        "expr": "11 - (2/3)*16",
+        "value": "1/3",
+        "host_evidence": {
+          "recomputed": "1/3"
+        }
+      },
+      {
+        "id": "nc_17_beta0",
+        "expr": "11 - (2/3)*17",
+        "value": "-1/3",
+        "host_evidence": {
+          "recomputed": "-1/3"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 6 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,56 @@
+add_or_refine_generators:
+- id: g:gen_qcdBeta0
+  ordered_inputs:
+  - nc
+  - nf
+  output: beta0
+  arity: 2
+  carrier: Rat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FiniteQM.lean
+    declaration: FiniteQM.qcdBeta0
+    line: 608
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FiniteQM.lean
+    decl: FiniteQM.qcdBeta0
+    kind: abbrev
+    line: 608
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-20b
+    provider: groq
+    tier: 0
+add_or_refine_relations:
+- id: r:rel_beta0_window_eq
+  equation_or_predicate: '(4 : Rat) * suNCasimirAdjoint 3 + (-1 / 3 : Rat) * suNCasimirAdjoint 3 = 11
+    ∧ qcdBeta0 3 nf = 11 - (2/3) * nf'
+  typing_conditions: '(4 : Rat) * suNCasimirAdjoint 3 + (-1 / 3 : Rat) * suNCasimirAdjoint 3 = 11 ∧ qcdBeta0
+    3 nf = 11 - (2/3) * nf'
+  source_pins:
+  - path: lean4/FiniteQM.lean
+    declaration: FiniteQM.qcd_beta0_asymptotic_freedom_window
+    line: 614
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteQM.lean
+    decl: FiniteQM.qcd_beta0_asymptotic_freedom_window
+    kind: theorem
+    line: 614
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-20b
+    provider: groq
+    tier: 0
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- 'numeric nc_qcd_beta0_nf unverified: expression not exactly evaluable'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []
