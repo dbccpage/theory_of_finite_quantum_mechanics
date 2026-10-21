@@ -57,6 +57,7 @@ STAGE_FOLDERS = {
     'IMPLEMENTATION_SIBLING': '22_implementation_sibling', 'ENGINE_CUSTODY': '23_engine_custody',
     'DRESSING_FIELD': '24_dressing_field', 'MUTUALLY_UNBIASED_BASES': '25_mub', 'FERMION_SIGN': '26_fsp',
     'TENSOR_COMPOSITION': '27_tensor_composition', 'MAJORANA': '28_majorana',
+    'COMPUTATION': '29_computation',
 }
 # DAG stage of a record of each TFQ stage, and TFQ stage of a node of each DAG stage.
 DAG_STAGE = {stage: stage for stage in STAGE_FOLDERS}
@@ -83,7 +84,8 @@ ROUTE_STATUS = {
 }
 NEW_STAGES = ('FINITE_OBSTRUCTION', 'AUTHORIZATION', 'FINITE_HILBERT', 'FINITE_QM_INFORMATION', 'FINITE_GAUGE',
               'FINITE_QED', 'FINITE_ELECTROWEAK', 'FINITE_QCD', 'FINITE_TOPOLOGICAL', 'FINITE_QG',
-              'CONTINUUM_INTERFACE', 'IMPLEMENTATION_CORE', 'IMPLEMENTATION_SIBLING', 'ENGINE_CUSTODY', 'MAJORANA')
+              'CONTINUUM_INTERFACE', 'IMPLEMENTATION_CORE', 'IMPLEMENTATION_SIBLING', 'ENGINE_CUSTODY', 'MAJORANA',
+              'COMPUTATION')
 FORBIDDEN = ('proves', 'guarantees', 'mathematically verifies', 'fundamentally', 'true intelligence',
              'impossible', 'universal', 'flawless', 'perfectly', 'clearly', 'obviously', 'simply',
              'merely', 'weaponized')

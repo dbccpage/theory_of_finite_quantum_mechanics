@@ -34,7 +34,8 @@
     "IMPLEMENTATION_CORE",
     "IMPLEMENTATION_SIBLING",
     "ENGINE_CUSTODY",
-    "MAJORANA"
+    "MAJORANA",
+    "COMPUTATION"
   ],
   "status_legend": {
     "ADMITTED_PRIMITIVE": "posited as an input of the programme, not derived",
@@ -185,7 +186,8 @@
       "bottleneck": "The brief's identification '<> = admitted root Difference ⊔ Structure' has no derivation or definition in the Pre-Genesis/Genesis papers; they state the opposite (inert). See PG-GAP route and notes.",
       "tags": [
         "alias:FSP-DERIV-001",
-        "alias:MUB6-DERIV-001"
+        "alias:MUB6-DERIV-001",
+        "alias:COMP-A1"
       ]
     },
     {
@@ -321,7 +323,11 @@
         "Classical.choice (assumption: in Paper.lean, per its header comment)"
       ],
       "bottleneck": "Constructive version for explicitly listed histories is the Fable 04 target (PG-PREGEN-CONSTRUCTIVE-SUMMARY).",
-      "tags": []
+      "tags": [
+        "alias:AIT-1",
+        "alias:AIT-P0",
+        "alias:total_authorization_requires_adequacy"
+      ]
     },
     {
       "id": "PG-PREGEN-CONSTRUCTIVE-SUMMARY",
@@ -371,7 +377,9 @@
       ],
       "imported_structure": [],
       "bottleneck": "none (pure finite cardinality; survivor sequence example in WDP-P001-003 is a chosen ledger example, not a law).",
-      "tags": []
+      "tags": [
+        "alias:COMP-A4"
+      ]
     },
     {
       "id": "PG-REFINE-SEPARATES",
@@ -475,7 +483,9 @@
       ],
       "imported_structure": [],
       "bottleneck": "none (finite-cardinality argument).",
-      "tags": []
+      "tags": [
+        "alias:COMP-A2"
+      ]
     },
     {
       "id": "PG-CHAIN-RETRACTION",
@@ -11321,7 +11331,8 @@
       "tags": [
         "unified-dag",
         "TFQ-0217",
-        "engine_custody"
+        "engine_custody",
+        "alias:SEAL-TC-04"
       ]
     },
     {
@@ -12291,7 +12302,8 @@
       "tags": [
         "unified-dag",
         "TFQ-0330",
-        "authorization"
+        "authorization",
+        "alias:AuthorizationTerminal"
       ]
     },
     {
@@ -21633,6 +21645,2535 @@
         "source-corpus",
         "TFQ-1282",
         "MUB6-C37"
+      ]
+    },
+    {
+      "id": "COMP-C1-FIRST-SEPARATION-REPLAY",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C1a claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
+      "statement": "In the byte copy of the sealed event semantics, the history of two admitted data, one unary form, one instance on datum 0 and the demand (0,1) replays from the empty regime to a regime in which datum 0 and datum 1 are told apart by a unary instance, giving the alphabet {mark0, mark1}; a fixed instance.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1283_comp_c1_first_separation_replay.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::first_separation_replay",
+        "lean4/GenesisComputation.lean::first_separation_pairwise",
+        "lean4/GenesisComputation.lean::firstSeparationHistory",
+        "lean4/GenesisComputation.lean::Mark2.toDatum_bijective"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::replay_e",
+        "code/rust/src/wdp/genesis_tm.rs::first_separation_history",
+        "code/rust/src/wdp/genesis_tm.rs::step_e"
+      ],
+      "imported_structure": [
+        "Labelling mark0 := <> and mark1 := its first separated successor (declared)",
+        "Byte copy of the sealed Regime, Event, stepE, replayE from the staged SupplyErasure.lean"
+      ],
+      "bottleneck": "The cost-two minimum (TFQ-0381) and the external definition of separable are not re-proved here; mark0 as <> and mark1 as its first separated successor is a declared labelling.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1283",
+        "COMP-C1a"
+      ],
+      "see_also": [
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+        "PG-GEN-SUPPLY-NO-OP"
+      ]
+    },
+    {
+      "id": "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C1b claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For every n, the regime with n data, n-1 unary forms and the instances (i,[i]) is pairwise separated under the unary separation mirror UnarySep, which is decidable with Collapsed and PairwiseSeparated; two admitted marks with no form are collapsed.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1284_comp_c1_canonical_separated_alphabet.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::canonicalRegime_pairwise",
+        "lean4/GenesisComputation.lean::canonicalRegime_four_pairwise_decide",
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/GenesisComputation.lean::unarySep_iff",
+        "lean4/GenesisComputation.lean::pairwiseSeparated_iff"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::pairwise_separated",
+        "code/rust/src/wdp/genesis_tm.rs::canonical_regime",
+        "code/rust/src/wdp/genesis_tm.rs::collapsed"
+      ],
+      "imported_structure": [
+        "UnarySep as a mirror of the unary hole-only separable"
+      ],
+      "bottleneck": "UnarySep is a mirror of the hole-only unary case of the Genesis separable, not the external definition; the lift to all contexts including uniform rules is not done.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1284",
+        "COMP-C1b"
+      ],
+      "see_also": [
+        "COMP-C1-IDENTITY-CONVENTION-INPUT"
+      ]
+    },
+    {
+      "id": "COMP-C1-IDENTITY-CONVENTION-INPUT",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C1c claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION",
+      "statement": "Whether an admitted mark is a new state or one internal class with another depends on the identity convention, which is not derived; on a pairwise separated alphabet the opaque and exact-inscription conventions give the same marks, so blank, state and end marks must be admitted as separated marks or the convention declared.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1285_comp_c1_identity_convention_input.md",
+        "dag/research/genesis_to_universal_computation.md"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::separated_marks_not_collapsed",
+        "lean4/GenesisComputation.lean::IdentityConvention"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Identity convention (opaque or exact-inscription), declared"
+      ],
+      "bottleneck": "Declare the identity convention before reading any mark of a machine alphabet as a new state; nothing in this chain derives it.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1285",
+        "COMP-C1c"
+      ],
+      "see_also": [
+        "PGW-IDENTITY-CONVENTION-UNDECIDABLE"
+      ]
+    },
+    {
+      "id": "COMP-C2-WORD-REWRITING",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C2a claims DEFINITION; audited status DEFINITION",
+      "statement": "Words are lists over the marks; Step R holds between w and w2 when w = u ++ l ++ v and w2 = u ++ r ++ v for a rule l -> r of R; Reach is the reflexive-transitive closure; step_iff_plug reads a step as a rule applied under a one-hole context.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1286_comp_c2_word_rewriting.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::Step",
+        "lean4/GenesisComputation.lean::Reach",
+        "lean4/GenesisComputation.lean::Ctx.plug",
+        "lean4/GenesisComputation.lean::step_iff_plug",
+        "lean4/GenesisComputation.lean::Step.context",
+        "lean4/GenesisComputation.lean::Reach.context"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::Srs",
+        "code/rust/src/wdp/genesis_tm.rs::Rule"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The rule predicate is supplied by the regime; Genesis Step3 is a different relation (COMP-C2e).",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1286",
+        "COMP-C2a"
+      ]
+    },
+    {
+      "id": "COMP-C2-LETTER-RENAME-COMMUTES",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C2b claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For every letter map f, a step or reach on words gives a step or reach of the f-image rule predicate on the f-image words; for an injective f a reach of the image comes from a reach of the original (Reach.of_map).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1287_comp_c2_letter_rename_commutes.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::Step.map",
+        "lean4/GenesisComputation.lean::Reach.map",
+        "lean4/GenesisComputation.lean::Reach.of_map",
+        "lean4/GenesisComputation.lean::Step.exists_of_map",
+        "lean4/GenesisComputation.lean::Reach.exists_of_map"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::map_marks",
+        "code/rust/src/wdp/genesis_tm.rs::letter_map_commutes_with_steps"
+      ],
+      "imported_structure": [],
+      "bottleneck": "This is the word-side analogue of Genesis Step.rename and Reach.rename, not an instance of them.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1287",
+        "COMP-C2b"
+      ],
+      "see_also": [
+        "COMP-C2-STEP3-NOT-WORD-STEP"
+      ]
+    },
+    {
+      "id": "COMP-C2-ONE-HOLE-CONTEXTS",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C2c claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "A Genesis-style context (a slot tuple with holes, one datum plugged into every hole) has exactly one hole iff it is ofSplit u v for a unique pair of letter lists, and plugging d gives u ++ d :: v; so the one-hole contexts of arity a are the word contexts (u,v) with |u| + |v| = a - 1.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1288_comp_c2_one_hole_contexts.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::oneHole_iff_split",
+        "lean4/GenesisComputation.lean::ofSplit_injective",
+        "lean4/GenesisComputation.lean::plug1_ofSplit",
+        "lean4/GenesisComputation.lean::holes_ofSplit",
+        "lean4/GenesisComputation.lean::plug1_ofSplit_eq_plug"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::contexts",
+        "code/rust/src/wdp/genesis_tm.rs::plug1"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Genesis plugs one datum into every hole while a word rule plugs a word into one hole, which is the wider operation; the sealed regime contexts with forms and rules are not modelled.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1288",
+        "COMP-C2c"
+      ]
+    },
+    {
+      "id": "COMP-C2-CONTEXT-COUNTS-CHECKED",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C2d claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
+      "statement": "For 2 data and arity 3 there are 19 = 3^3 - 2^3 contexts with a hole and 12 = 3*2^2 with exactly one hole (decide); Rust enumerates n from 0 to 4 and a from 1 to 5, Python n from 0 to 3 and a from 1 to 4, and both match (n+1)^a - n^a and a*n^(a-1).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1289_comp_c2_context_counts_checked.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::genesis_context_count_n2_a3",
+        "lean4/GenesisComputation.lean::genesis_one_hole_count_n2_a3",
+        "lean4/GenesisComputation.lean::allCtxs"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::context_count_formula_and_one_hole_splits"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Finite ranges only; the general formula is the trunk record TFQ-0436.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1289",
+        "COMP-C2d"
+      ]
+    },
+    {
+      "id": "COMP-C2-STEP3-NOT-WORD-STEP",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C2e claims OPEN; audited status OPEN",
+      "statement": "Genesis Step3 acts on states of a finite term set, a finite assertion set and two named terms by add-term, add-assertion and identify (a non-injective merge); no word encoding of these states under which each move is a word step is proved or claimed.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Construct a word encoding of Step3 states under which addTerm, addAssertion and identify are word steps, or show that none exists.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1290",
+        "COMP-C2e"
+      ],
+      "see_also": [
+        "COMP-C2-LETTER-RENAME-COMMUTES"
+      ]
+    },
+    {
+      "id": "COMP-C3-BOUNDED-REACH-DECIDABLE",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C3a claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For k marks, a finite rule list and a length bound L, ReachB is decided by an explicit closure of at most card(wordsLE L) rounds (decideReachB_iff); the configuration space has exactly 1 + k + ... + k^L words (card_wordsLE); Step on a finite rule list is decidable (mem_succList).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1291_comp_c3_bounded_reach_decidable.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::reachB_iff",
+        "lean4/GenesisComputation.lean::decideReachB_iff",
+        "lean4/GenesisComputation.lean::card_wordsLE",
+        "lean4/GenesisComputation.lean::mem_succList",
+        "lean4/GenesisComputation.lean::reachSet_card_le",
+        "lean4/GenesisComputation.lean::rtg_iff_mem_reachN_card"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::reach_set_bounded",
+        "code/rust/src/wdp/genesis_tm.rs::decide_reach",
+        "code/rust/src/wdp/genesis_tm.rs::config_space_size",
+        "code/rust/src/wdp/genesis_tm.rs::bounded_decider_is_exact_on_a_closed_system"
+      ],
+      "imported_structure": [],
+      "bottleneck": "This decides rewriting reachability in a declared bound; the decision procedure over all Genesis contexts of the sealed regime asked by TFQ-0497 is not built (COMP-C3c).",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1291",
+        "COMP-C3a"
+      ]
+    },
+    {
+      "id": "COMP-C3-VERDICT-SOUND",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C3b claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "The three-valued verdict returns reachable only for a true Reach, returns unreachable only when the bounded search is closed so no longer path exists, and otherwise returns a witness step that leaves the bound; every Reach is a ReachB for some bound.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1292_comp_c3_verdict_sound.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::verdict_reachable_sound",
+        "lean4/GenesisComputation.lean::verdict_unreachable_sound",
+        "lean4/GenesisComputation.lean::verdict_boundExceeded_witness",
+        "lean4/GenesisComputation.lean::closed_reach",
+        "lean4/GenesisComputation.lean::reach_iff_reachB_of_closed",
+        "lean4/GenesisComputation.lean::Reach.exists_bound",
+        "lean4/GenesisComputation.lean::ReachB.reach"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::Verdict",
+        "code/rust/src/wdp/genesis_tm.rs::bounded_decider_reports_bound_exceeded",
+        "code/rust/src/wdp/genesis_tm.rs::start_outside_bound_is_refused"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Soundness only; the verdict boundExceeded does not decide the unbounded question.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1292",
+        "COMP-C3b"
+      ],
+      "see_also": [
+        "AUTH-FUEL-EXHAUSTION-TYPED-STOP",
+        "AUTH-G5C-TERMINALIZATION-CONSEQUENCE",
+        "AUTHF-TERMINAL-CLOSED-TWO-SIDED"
+      ]
+    },
+    {
+      "id": "COMP-C3-CONTEXT-DECISION-PARTIAL",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C3c claims OPEN; audited status OPEN",
+      "statement": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::unarySep_iff",
+        "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::unary_sep",
+        "code/rust/src/wdp/genesis_tm.rs::collapsed"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1293",
+        "COMP-C3c"
+      ],
+      "see_also": [
+        "PGW-CONTEXT-DECISION-PROCEDURE"
+      ]
+    },
+    {
+      "id": "COMP-C3-RUNNER-NEEDS-BLANKS",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C3d claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "The one-state machine that moves right forever reaches words of every length under the TM0 encoding, so its bounded search is closed at no bound and the bounded decider returns boundExceeded at every bound; any regime that reaches arbitrarily long words is closed at no bound.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1294_comp_c3_runner_needs_blanks.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompTM.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompTM.lean::runner_unbounded",
+        "lean4/GenesisCompTM.lean::runner_step",
+        "lean4/GenesisCompTM.lean::runner_not_closed",
+        "lean4/GenesisCompTM.lean::runner_unboundedSupply",
+        "lean4/GenesisComputation.lean::not_closed_of_unbounded",
+        "lean4/GenesisComputation.lean::closed_bounds_reach"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::right_runner",
+        "code/rust/src/wdp/genesis_tm.rs::right_runner_is_refused_by_every_bounded_decider"
+      ],
+      "imported_structure": [],
+      "bottleneck": "One concrete machine; the general statement for every general-purpose regime is conditional (COMP-C3e).",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1294",
+        "COMP-C3d"
+      ]
+    },
+    {
+      "id": "COMP-C3-NO-FIXED-BOUND",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C3e claims CONDITIONAL; audited status CONDITIONAL",
+      "statement": "If the map from an input to its start word were computable and one length bound witnessed every halting start word inside the bound, normal-form reachability would be decidable, contradicting nfReach_not_computable.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md",
+        "dag/research/genesis_to_universal_computation.md"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::reachB_iff",
+        "lean4/GenesisCompUniv.lean::nfReach_not_computable"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "startWord_computable (open lemma)"
+      ],
+      "bottleneck": "Prove startWord_computable (COMP-C7c) and state the uniform version in Lean.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1295",
+        "COMP-C3e"
+      ]
+    },
+    {
+      "id": "COMP-C4-STEPE-UNCAPPED",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C4a claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "In the byte copy of stepE, k copies of admitDatum replay to data = base.data + k, for every n a history reaches at least n data, and no event lowers the number of data; unbounded admission is permitted by the event semantics.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1296_comp_c4_stepe_uncapped.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::replay_admitDatum_replicate",
+        "lean4/GenesisComputation.lean::genesis_unbounded_admission",
+        "lean4/GenesisComputation.lean::stepE_data_mono",
+        "lean4/GenesisComputation.lean::stepE"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::step_e",
+        "code/rust/src/wdp/genesis_tm.rs::first_separation_replays_and_admission_is_uncapped"
+      ],
+      "imported_structure": [],
+      "bottleneck": "This is a statement about the copied stepE; every admitDatum is a host event and nothing here generates them.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1296",
+        "COMP-C4a"
+      ]
+    },
+    {
+      "id": "COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C4b claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION",
+      "statement": "A general-purpose rewriting regime needs words of unbounded length, which in Genesis terms is unbounded admission of fresh marks; stepE permits it but every admitDatum is a host event, closed Genesis saturates (TFQ-0451, TFQ-0487), TFQ-0482 gives unbounded sequence length over bounded state and not unbounded space, and no endogenous generator exists (TFQ-0504).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1297_comp_c4_unbounded_supply_import.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::UnboundedSupply",
+        "lean4/GenesisComputation.lean::not_closed_of_unbounded"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Unbounded admission of fresh blank marks, supplied by host events (declared, not derived)"
+      ],
+      "bottleneck": "Derive an endogenous source of unboundedly many admitted data (TFQ-0504) or keep the supply as a recorded host input.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1297",
+        "COMP-C4b"
+      ],
+      "see_also": [
+        "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
+        "PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS",
+        "QCV-FRESH-MARK-SUPPLY-BRIDGE"
+      ]
+    },
+    {
+      "id": "COMP-C4-SUPPLY-GROWTH",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C4c claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "If in s_next = s - d + b with d_n <= s_n every round has strictly more births than discharges, then the active count is at least s_0 + n after n rounds; the births are an input.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1298_comp_c4_supply_growth.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::supply_growth"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Genesis does not derive the births; this is arithmetic on the accounting identity.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1298",
+        "COMP-C4c"
+      ],
+      "see_also": [
+        "QCV-FRESH-MARK-SUPPLY-BRIDGE"
+      ]
+    },
+    {
+      "id": "COMP-C5-TM0-STEP-SIMULATION",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C5a claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For a Mathlib TM0 machine encoded on configuration words lend, left cells, q, a, right cells, rend, a machine step from a represented configuration is matched by a rewrite step to a word representing the next configuration, and every rewrite step of a represented word is the machine step; a word represents at most one configuration.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1299_comp_c5_tm0_step_simulation.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompTM.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompTM.lean::step_fwd",
+        "lean4/GenesisCompTM.lean::step_bwd",
+        "lean4/GenesisCompTM.lean::rep_exists",
+        "lean4/GenesisCompTM.lean::rep_unique",
+        "lean4/GenesisCompTM.lean::Rules",
+        "lean4/GenesisCompTM.lean::cfgWord",
+        "lean4/GenesisCompTM.lean::split_st"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::rules_of",
+        "code/rust/src/wdp/genesis_tm.rs::encode",
+        "code/rust/src/wdp/genesis_tm.rs::decode",
+        "code/rust/src/wdp/genesis_tm.rs::check_step_simulation",
+        "code/rust/src/wdp/genesis_tm.rs::tm_step"
+      ],
+      "imported_structure": [
+        "Mathlib Turing.TM0.Machine, step, Reaches, Tape, ListBlank"
+      ],
+      "bottleneck": "Machines in the TM0 form only (one write or one move per transition); representations allow blank padding at the far ends; the end rules write a fresh blank, the only place where words grow.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1299",
+        "COMP-C5a"
+      ],
+      "see_also": [
+        "AUTH-DTM0-FINITE-RULE-MACHINE",
+        "AUTHF-DTM0-RULE-MACHINE"
+      ]
+    },
+    {
+      "id": "COMP-C5-CLOSURES-HALTING",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C5b claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "Forward and backward simulation extend to the closures, and the machine halts from c iff some word reachable from a word representing c is irreducible.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1300_comp_c5_closures_halting.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompTM.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompTM.lean::reaches_fwd",
+        "lean4/GenesisCompTM.lean::reach_bwd",
+        "lean4/GenesisCompTM.lean::halts_iff",
+        "lean4/GenesisCompTM.lean::Halts",
+        "lean4/GenesisCompTM.lean::Irreducible"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Existential in the target word because a configuration has many padded representations.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1300",
+        "COMP-C5b"
+      ],
+      "see_also": [
+        "AUTHF-DTM0-SIMULATION-OPEN",
+        "AUTH-DTM2-INPUT-REQUEST-PLANNED"
+      ]
+    },
+    {
+      "id": "COMP-C5-MARK-BUDGET-RULE-LIST",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C5c claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "A machine with tape alphabet G and state type L uses |G| + |L| + 2 marks, all of which must be admitted and separated; for finite G and L the rule set is the finite list ruleList M and the bounded decider of C3 applies to it.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1301_comp_c5_mark_budget_rule_list.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompTM.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompTM.lean::card_sym",
+        "lean4/GenesisCompTM.lean::ruleList",
+        "lean4/GenesisCompTM.lean::mem_ruleList",
+        "lean4/GenesisCompTM.lean::reach_ruleList_iff",
+        "lean4/GenesisComputation.lean::canonicalRegime_pairwise"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The enumeration of marks by an equivalence with Fin is a declared choice.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1301",
+        "COMP-C5c"
+      ]
+    },
+    {
+      "id": "COMP-C5-SMALL-MACHINES-CHECKED",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C5d claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
+      "statement": "Rust: a binary incrementer on inputs 0 to 40 with 0 to 2 padding cells (steps 2c+1, value n+1), the two-state busy beaver in the TM0 form (12 steps, 4 ones), step simulation on all 3150 small configurations of that machine; Python: all 6561 two-state two-symbol TM0 machines for 20 steps from the blank tape with a different tape representation; Lean: one write-and-halt machine.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1302_comp_c5_small_machines_checked.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "code/rust/src/wdp/genesis_tm.rs"
+      ],
+      "lean": [
+        "lean4/GenesisCompTM.lean::writeOne_halts"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::incrementer",
+        "code/rust/src/wdp/genesis_tm.rs::busy_beaver_2",
+        "code/rust/src/wdp/genesis_tm.rs::incrementer_matches_machine_for_all_small_inputs",
+        "code/rust/src/wdp/genesis_tm.rs::busy_beaver_2_matches_machine",
+        "code/rust/src/wdp/genesis_tm.rs::step_simulation_holds_on_every_small_configuration"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Finite instances; they are not a proof for other machines.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1302",
+        "COMP-C5d"
+      ],
+      "see_also": [
+        "AUTHF-DTM0-FIXTURES"
+      ]
+    },
+    {
+      "id": "COMP-C6-EVAL-HAS-A-CODE",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C6a claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "There is a fixed Nat.Partrec.Code u with eval u (pair (encode c) n) = eval c n for all codes c and inputs n, and a fixed ToPartrec code computing the same function on one natural number.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1303_comp_c6_eval_has_a_code.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompUniv.lean::univFun_partrec",
+        "lean4/GenesisCompUniv.lean::universal_code",
+        "lean4/GenesisCompUniv.lean::univCode_exists",
+        "lean4/GenesisCompUniv.lean::univCode_eval"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Mathlib Nat.Partrec.Code.eval_part and exists_code",
+        "Mathlib Turing.ToPartrec.Code.exists_code"
+      ],
+      "bottleneck": "Imported infrastructure is cited, not re-derived; the codes are existence statements chosen by Classical.choose.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1303",
+        "COMP-C6a"
+      ]
+    },
+    {
+      "id": "COMP-C6-TM2-OUTPUT-FORM",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C6b claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "The fixed TM2 machine PartrecToTM2.tr, started on init of the fixed code and the paired input, evaluates to halt applied to the value of Code.eval c n exactly when that value is defined.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1304_comp_c6_tm2_output_form.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompUniv.lean::tm2_computes_eval"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Mathlib PartrecToTM2.tr_eval"
+      ],
+      "bottleneck": "TM2 level only; the corresponding output form at the TM0 level is open (COMP-C6e).",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1304",
+        "COMP-C6b"
+      ]
+    },
+    {
+      "id": "COMP-C6-TM0-HALTING-EQUIVALENCE",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C6c claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For the fixed TM0 machine M0 = TM1to0.tr (TM2to1.tr PartrecToTM2.tr) and the explicit initial configurations initCfg0, M0 halts from initCfg0 (pair (encode c) n) iff Code.eval c n is defined.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1305_comp_c6_tm0_halting_equivalence.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompUniv.lean::dom_chain",
+        "lean4/GenesisCompUniv.lean::halts_iff_dom",
+        "lean4/GenesisCompUniv.lean::halts_iff_eval_dom",
+        "lean4/GenesisCompUniv.lean::trCfg_init_gen",
+        "lean4/GenesisCompUniv.lean::initCfg0"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Mathlib TM2to1.tr_respects",
+        "Mathlib TM1to0.tr_respects",
+        "Mathlib StateTransition.tr_eval_dom"
+      ],
+      "bottleneck": "Halting form only; the TM0 output form is open (COMP-C6e).",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1305",
+        "COMP-C6c"
+      ]
+    },
+    {
+      "id": "COMP-C6-FINITE-MARKS",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C6d claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "Every word reachable from a start word of the fixed rewriting regime has its marks in the finite set markSet: two end markers, the 1250 tape marks of Bool x (K -> Option G), and the state marks of the finite set S0 given by the Mathlib tr_supports chain.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1306_comp_c6_finite_marks.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompUniv.lean::used_marks_finite",
+        "lean4/GenesisCompUniv.lean::used_state_marks_finite",
+        "lean4/GenesisCompUniv.lean::card_G1",
+        "lean4/GenesisCompUniv.lean::step_closed",
+        "lean4/GenesisCompUniv.lean::init_mem",
+        "lean4/GenesisCompUniv.lean::markSet"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Mathlib tr_supports for PartrecToTM2, TM2to1 and TM1to0"
+      ],
+      "bottleneck": "The size of S0 is not computed and the machine is not claimed small.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1306",
+        "COMP-C6d"
+      ]
+    },
+    {
+      "id": "COMP-C6-TM0-OUTPUT-FORM-OPEN",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C6e claims OPEN; audited status OPEN",
+      "statement": "The tape of the halting TM0 configuration of M0 from initCfg0 should read the value of Code.eval c n; Mathlib gives this only existentially through TM2to1.tr_eval and is not composed here.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md",
+        "dag/research/genesis_to_universal_computation.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output tape.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1307",
+        "COMP-C6e"
+      ],
+      "see_also": [
+        "COMP-C6-TM2-OUTPUT-FORM",
+        "COMP-C6-TM0-HALTING-EQUIVALENCE"
+      ]
+    },
+    {
+      "id": "COMP-C7-MACHINE-HALTING-UNDECIDABLE",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C7a claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For each n, the predicate c -> M0 halts from initCfg0 (pair (encode c) n) is not a computable predicate of the code c.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1308_comp_c7_machine_halting_undecidable.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompUniv.lean::halting_not_computable"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Mathlib ComputablePred.halting_problem"
+      ],
+      "bottleneck": "Imports the halting problem from Mathlib.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1308",
+        "COMP-C7a"
+      ],
+      "see_also": [
+        "AUTHF-MATHLIB-HALTING-BRIDGE"
+      ]
+    },
+    {
+      "id": "COMP-C7-NF-REACH-UNDECIDABLE",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C7b claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For the fixed rewriting regime Rules M0 and its explicit family of start words, the predicate that the start word of the input reaches an irreducible word is not computable, as a predicate of the code or of the natural number input.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1309_comp_c7_nf_reach_undecidable.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompUniv.lean::reach_irreducible_iff",
+        "lean4/GenesisCompUniv.lean::reach_irreducible_not_computable",
+        "lean4/GenesisCompUniv.lean::nfReach_iff",
+        "lean4/GenesisCompUniv.lean::nfReach_not_computable",
+        "lean4/GenesisCompUniv.lean::startWord_rep"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Mathlib ComputablePred.halting_problem"
+      ],
+      "bottleneck": "The statement is about the family startWord; that the input-to-start-word map is computable is not proved (COMP-C7c).",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1309",
+        "COMP-C7b"
+      ],
+      "see_also": [
+        "PGW-CONTEXT-DECISION-PROCEDURE",
+        "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+        "AUTHF-CLASS-RELATIVE-TRANSPORT",
+        "AUTH-RICE-THEOREM-IMPORT",
+        "AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+        "AUTHF-RICE-GODEL-OPEN"
+      ]
+    },
+    {
+      "id": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C7c claims CONDITIONAL; audited status CONDITIONAL",
+      "statement": "If the mark type has a Primcodable structure and startWord is computable, the normal-form reachability problem on words of the fixed regime is not a computable predicate.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ],
+      "lean": [
+        "lean4/GenesisCompUniv.lean::reach_problem_not_computable"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)"
+      ],
+      "bottleneck": "Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1310",
+        "COMP-C7c"
+      ]
+    },
+    {
+      "id": "COMP-C7-FIXED-TARGET-OPEN",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C7d claims OPEN; audited status OPEN",
+      "statement": "Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md",
+        "dag/research/genesis_to_universal_computation.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1311",
+        "COMP-C7d"
+      ],
+      "see_also": [
+        "COMP-C7-ENCODED-INSTANCE-REDUCTION"
+      ]
+    },
+    {
+      "id": "COMP-C8-BINARY-CODING",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C8a claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For any finite alphabet, the letter-by-letter fixed-width binary code of width clog 2 |alphabet| + 1 is an injective monoid homomorphism on words with the explicit decoder decodeWord (decode_encode), and the same holds with the two separated marks as the target alphabet.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1312_comp_c8_binary_coding.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ],
+      "lean": [
+        "lean4/GenesisComputation.lean::decode_encode",
+        "lean4/GenesisComputation.lean::encodeWord_injective",
+        "lean4/GenesisComputation.lean::encodeMarks_injective",
+        "lean4/GenesisComputation.lean::encodeMarks_append",
+        "lean4/GenesisComputation.lean::decodeMarks_encodeMarks",
+        "lean4/GenesisComputation.lean::bits_injective"
+      ],
+      "rust": [
+        "code/rust/src/wdp/genesis_tm.rs::encode_binary",
+        "code/rust/src/wdp/genesis_tm.rs::decode_binary",
+        "code/rust/src/wdp/genesis_tm.rs::code_width",
+        "code/rust/src/wdp/genesis_tm.rs::binary_coding_roundtrips_and_is_injective"
+      ],
+      "imported_structure": [],
+      "bottleneck": "A code is not an isomorphism of free monoids; no claim that a machine over the coded alphabet simulates a machine over the original (Mathlib TM1to1 is not used).",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1312",
+        "COMP-C8a"
+      ],
+      "see_also": [
+        "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+        "AUTHF-DTM1-ROUNDTRIP"
+      ]
+    },
+    {
+      "id": "COMP-C8-MINIMALITY-FENCE",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C8b claims OPEN; audited status OPEN",
+      "statement": "Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md",
+        "dag/research/genesis_to_universal_computation.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "State and prove in Lean the simulation of a machine over the coded alphabet by a machine over the two marks and a blank before any minimality statement.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1313",
+        "COMP-C8b"
+      ],
+      "see_also": [
+        "COMP-C8-BINARY-CODING"
+      ]
+    },
+    {
+      "id": "QCV-QUESTION-SELF-LIMITING-REPAIR",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q0 claims OPEN; audited status OPEN",
+      "statement": "Every step of a noisy quantum computation, syndrome extraction and repair included, adds residual, and repair consumes capacity while adding residual of its own; the question is whether this makes reliable completion a self-referential no-go or a threshold condition that holds only under named resource assumptions (fresh supply, net-efficient repair, bounded overhead growth, physical error below threshold).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1314_qcv_question_self_limiting_repair.md",
+        "dag/research/quantum_computation_self_obstruction.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The finite model answers the question as a threshold condition (QCV-Q1 to QCV-Q6); whether any physical system meets the named assumptions is not derived and no verdict on physical viability is given.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1314",
+        "QCV-Q0"
+      ],
+      "see_also": [
+        "MAJ-OPEN-LIEB-ROBINSON-LOCALITY",
+        "MAJ-SURFACE-SHADOW-FENCE",
+        "DS-QM102-SYNDROME-CAPACITY-BOUND",
+        "DS-QM103-SHOW-THE-PACKET-PROTOCOL"
+      ]
+    },
+    {
+      "id": "QCV-SELF-OBSTRUCTION-MODEL",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q1 claims DEFINITION; audited status DEFINITION",
+      "statement": "Backlog q(t+1) = max(0, q(t) + lam + g*mu - mu) in units of the Phi_1 repair cost, where lam is the residual generated per round by the computation, mu = kappa*r the repair rate from r fresh ancillas per round at kappa units each, and g the residual generated per unit of repair; with g = 0 this is the DS-QM101 queue; a distance-three level with a fault locations has constant c = a(a-1)/2.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/derivation_dag.json",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ],
+      "lean": [
+        "lean4/QcRepairQueue.lean::backlog",
+        "lean4/QcRepairQueue.lean::drift",
+        "lean4/QcConcatenation.lean::pairCount"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::backlog",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::pair_count"
+      ],
+      "imported_structure": [
+        "declared generation rate lam",
+        "declared self-generated fraction g of repair",
+        "declared capacity kappa per fresh ancilla",
+        "declared fresh supply r per round"
+      ],
+      "bottleneck": "lam, g, kappa and r are declared inputs; no value is derived or measured for any code, and Phi_1 of a residual is not computed here.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1315",
+        "QCV-Q1"
+      ],
+      "see_also": [
+        "PG-WDP-GROWTH-NO-REPAIR",
+        "MAJ-PHI1-SYNDROME-DECODING"
+      ]
+    },
+    {
+      "id": "QCV-NET-RATE-BACKLOG-DICHOTOMY",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q1B claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "In the QCV-Q1 model with q0 >= 0, the backlog is bounded iff lam <= (1-g)*mu; for g >= 1 and lam > 0 no mu >= 0 bounds it; for g < 1 and mu = kappa*r, with kappa > 0, it is bounded iff r >= lam/((1-g)*kappa); with r = 0 and lam > 0 it equals q0 + t*lam.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1316_qcv_net_rate_backlog_dichotomy.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ],
+      "lean": [
+        "lean4/QcRepairQueue.lean::backlog_bounded_iff",
+        "lean4/QcRepairQueue.lean::no_bounded_backlog_if_unit_gain",
+        "lean4/QcRepairQueue.lean::fresh_supply_threshold",
+        "lean4/QcRepairQueue.lean::no_supply_linear_growth",
+        "lean4/QcRepairQueue.lean::backlog_linear",
+        "lean4/QcRepairQueue.lean::backlog_le_initial"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::backlog",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::backlog_bounded_decision",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::supply_threshold"
+      ],
+      "imported_structure": [],
+      "bottleneck": "A statement inside the declared model; it does not say any code has g < 1 or that any supply r is available.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1316",
+        "QCV-Q1B"
+      ],
+      "see_also": [
+        "DS-QM061-BUILDABILITY-SET-S"
+      ]
+    },
+    {
+      "id": "QCV-REPAIR-NEEDED-BUT-COSTLY",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q1C claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "The union-bound recurrence p(k+1) = a*p(k) with a >= 1 and p(0) > 0 does not tend to zero; for 2 <= a <= b fault locations the certified threshold 1/pairCount(b) is at most 1/pairCount(a).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1317_qcv_repair_needed_but_costly.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ],
+      "lean": [
+        "lean4/QcConcatenation.lean::lin_not_goesToZero",
+        "lean4/QcConcatenation.lean::lin_closed",
+        "lean4/QcConcatenation.lean::pairCount_mono",
+        "lean4/QcConcatenation.lean::threshold_decreases_with_repair"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::linear_level",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::pair_count"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The location counts are declared; nothing here says how many repair locations a physical code needs.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1317",
+        "QCV-Q1C"
+      ]
+    },
+    {
+      "id": "QCV-IMPORT-THRESHOLD-THEOREM",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-IMP-THRESHOLD claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION",
+      "statement": "The fault-tolerance threshold theorems (Shor 1996; Aharonov and Ben-Or 1997; Kitaev 1997; Knill, Laflamme and Zurek 1998; Aliferis, Gottesman and Preskill 2006) are cited under each theorem's own noise, locality and overhead hypotheses; they are not re-proved.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md",
+        "dag/research/quantum_computation_self_obstruction.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "threshold theorems for concatenated codes under their stated noise models"
+      ],
+      "bottleneck": "Exact constants and noise hypotheses of each theorem are not reproduced; the finite recurrence in QCV-Q2 is the only part checked.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1318",
+        "QCV-IMP-THRESHOLD"
+      ],
+      "see_also": [
+        "TFQ-0152",
+        "TFQ-0048"
+      ]
+    },
+    {
+      "id": "QCV-CONCATENATION-THRESHOLD-DICHOTOMY",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q2 claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For the recurrence p(k+1) = c*p(k)^2 over Q, c*p(k) = (c*p(0))^(2^k); for c > 0 and p(0) >= 0: if c*p(0) < 1 then p(k) tends to zero with c*p(k) <= (c*p(0))^(k+1) and, for c*p(0) <= 1/2, p(k) <= (1/2)^(2^k)/c; if c*p(0) = 1 then p(k) = 1/c for all k; if c*p(0) > 1 then p(k) diverges; so p(k) tends to zero iff p(0) < 1/c.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1319_qcv_concatenation_threshold_dichotomy.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ],
+      "lean": [
+        "lean4/QcConcatenation.lean::conc_closed",
+        "lean4/QcConcatenation.lean::conc_eq_div",
+        "lean4/QcConcatenation.lean::threshold_trichotomy",
+        "lean4/QcConcatenation.lean::goesToZero_iff_below_threshold",
+        "lean4/QcConcatenation.lean::sub_bound",
+        "lean4/QcConcatenation.lean::sub_half_bound",
+        "lean4/QcConcatenation.lean::super_bound",
+        "lean4/QcConcatenation.lean::super_diverges",
+        "lean4/QcConcatenation.lean::fixed_point"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::conc",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::conc_closed_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::classify",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::first_level_below",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::first_level_above",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::half_bound_holds"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The recurrence is the hypothesis; no noise model is shown to obey it and no constant c is computed for any code.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1319",
+        "QCV-Q2"
+      ]
+    },
+    {
+      "id": "QCV-OVERHEAD-GROWTH-CRITERION",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q3 claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For p(k+1) = c(k)*p(k)^2 with c(k) >= 0, p(k) = p(0)^(2^k)*amp(k) with amp(0) = 1, amp(k+1) = c(k)*amp(k)^2, and some p(0) > 0 has p(k) tending to zero iff some M > 0 has amp(k) <= M^(2^k) for all k; the criterion holds for c(k) <= C, for c(k) <= A*B^(k+1) with A, B >= 1, for c(k) = (k+1)^2, and for c(k) <= a*b^N(k) with block size N(k+1) <= s*N(k), s < 2; it fails for c(k) >= a*b^(2^k) with a > 0, b > 1, and for c(k) >= a*b^N(k) with 2^k <= N(k), b > 1, where no positive p(0) has p(k) tending to zero.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1320_qcv_overhead_growth_criterion.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ],
+      "lean": [
+        "lean4/QcConcatenation.lean::concv_eq_amp",
+        "lean4/QcConcatenation.lean::threshold_region_iff",
+        "lean4/QcConcatenation.lean::region_empty_iff",
+        "lean4/QcConcatenation.lean::ampBounded_of_bounded",
+        "lean4/QcConcatenation.lean::bounded_overhead_goesToZero",
+        "lean4/QcConcatenation.lean::ampBounded_of_geom",
+        "lean4/QcConcatenation.lean::ampBounded_poly",
+        "lean4/QcConcatenation.lean::ampBounded_of_sizes",
+        "lean4/QcConcatenation.lean::blockExp_le",
+        "lean4/QcConcatenation.lean::dexp_not_ampBounded",
+        "lean4/QcConcatenation.lean::dexp_region_empty",
+        "lean4/QcConcatenation.lean::sizes_not_ampBounded",
+        "lean4/QcConcatenation.lean::amp_dexp_sq"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::amp",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::concv",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::amp_bound_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::amp_escape_level",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::geom_invariant_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::size_family",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::block_exp_bound_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::dexp_square_identity_holds"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The families are exact illustrations of the criterion, not claims that any physical overhead has such a form; correlated-noise strength as an exponential of block size is a declared toy.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1320",
+        "QCV-Q3"
+      ],
+      "see_also": [
+        "MAJ-OPEN-LIEB-ROBINSON-LOCALITY"
+      ]
+    },
+    {
+      "id": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-IMP-ABIN claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION",
+      "statement": "Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth; the result is cited, not re-proved or imported as a proof here.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md",
+        "dag/research/quantum_computation_self_obstruction.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "ABIN 1996 limitation theorem for noisy reversible computation"
+      ],
+      "bottleneck": "The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1321",
+        "QCV-IMP-ABIN"
+      ]
+    },
+    {
+      "id": "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q4 claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For complex matrices of any size d and the variational trace norm tn(X) = sup over unitaries U of |tr(UX)|, the global depolarizing channel satisfies tn(Delta_p(rho) - Delta_p(sigma)) = (1-p)*tn(rho - sigma) for equal-trace rho, sigma and p <= 1; along any history of unitaries V(i) with depolarizing rates p(i) in [0,1], tn(run rho - run sigma) = (product of (1-p(i)))*tn(rho - sigma), which is at most (1-p)^t*tn(rho - sigma) when every p(i) >= p, and (1-p)^t <= 1/(1+p*t).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1322_qcv_noisy_history_trace_distance_decay.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ],
+      "lean": [
+        "lean4/QcEntropySink.lean::tn",
+        "lean4/QcEntropySink.lean::tn_smul",
+        "lean4/QcEntropySink.lean::tn_conj",
+        "lean4/QcEntropySink.lean::pairingSet_bddAbove",
+        "lean4/QcEntropySink.lean::depol_dist",
+        "lean4/QcEntropySink.lean::noisyStep_dist",
+        "lean4/QcEntropySink.lean::run_dist",
+        "lean4/QcEntropySink.lean::run_dist_le",
+        "lean4/QcEntropySink.lean::decay_le_inv",
+        "lean4/QcEntropySink.lean::decay_below"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::decay_le_inv_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::depth_until_below",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::matrix_step",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::depolarize_matrix"
+      ],
+      "imported_structure": [
+        "variational trace norm equals the Schatten-1 norm (Ky Fan, cited)",
+        "global depolarizing noise at a declared rate after every step"
+      ],
+      "bottleneck": "The trace norm is the variational form, whose equality with the sum of singular values is cited; the noise is global depolarizing with a declared rate per step, not independent per-qubit noise, and the statement is about histories without fresh resets.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1322",
+        "QCV-Q4"
+      ],
+      "see_also": [
+        "QCV-FRESH-MARK-SUPPLY-BRIDGE"
+      ]
+    },
+    {
+      "id": "QCV-QUBIT-BLOCH-DECAY-EXACT",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q4B claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For rational Bloch vectors, noisy steps r -> (1-p)*R*r with rational rotations R (R^T R = 1) give sqDist(run r, run s) = (product of (1-p(i))^2)*sqDist(r, s), at most ((1-p)^2)^t*sqDist(r, s) when every p(i) in [p,1]; and (v.sigma)^2 = (v.v)*1 over the complex numbers, so the difference of two qubit states has both singular values |r-s|/2.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1323_qcv_qubit_bloch_decay_exact.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ],
+      "lean": [
+        "lean4/QcEntropySink.lean::sqDist_runB",
+        "lean4/QcEntropySink.lean::sqDist_runB_le",
+        "lean4/QcEntropySink.lean::sqDist_stepB",
+        "lean4/QcEntropySink.lean::rot_dot",
+        "lean4/QcEntropySink.lean::blochMat_sq"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::bloch_step",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::bloch_run",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::decay_identity_holds",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::pauli_part_squares_to_norm",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::bloch_of_matrix"
+      ],
+      "imported_structure": [
+        "trace norm of a Hermitian matrix is the sum of absolute eigenvalues (cited)"
+      ],
+      "bottleneck": "The identification of the qubit trace norm with the Bloch distance uses the cited eigenvalue fact; Python and Rust replays are exact on declared instances only.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1323",
+        "QCV-Q4B"
+      ]
+    },
+    {
+      "id": "QCV-CONDITIONAL-VIABILITY-CERTIFICATE",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q5 claims CONDITIONAL; audited status CONDITIONAL",
+      "statement": "If g < 1, kappa > 0, r >= lam/((1-g)*kappa), c(k) <= C, max(C,1)*p(0) < 1 and the level errors p(k) >= 0 obey p(k+1) <= c(k)*p(k)^2 whenever the backlog is bounded, then the backlog is bounded and for every L >= 0 and epsilon > 0 some level k has L*p(k) <= epsilon; with max(C,1)*p(0) <= 1/2 any k with L <= epsilon*max(C,1)*2^(2^k) works.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ],
+      "lean": [
+        "lean4/QcSelfObstruction.lean::conditional_viability",
+        "lean4/QcSelfObstruction.lean::conditional_viability_explicit",
+        "lean4/QcSelfObstruction.lean::conditional_viability_instance",
+        "lean4/QcSelfObstruction.lean::level_error_le",
+        "lean4/QcSelfObstruction.lean::explicit_level"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report",
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::level_for_failure"
+      ],
+      "imported_structure": [
+        "noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)",
+        "fresh ancillas at rate r",
+        "classical control and decoding fast enough for the syndrome",
+        "level-bounded overhead c(k) <= C"
+      ],
+      "bottleneck": "The noise recurrence is a hypothesis: independence or locality of noise, fresh ancillas, fast classical control and bounded overhead are not shown for any device; the hypotheses are only shown jointly satisfiable on declared toy numbers.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1324",
+        "QCV-Q5"
+      ],
+      "see_also": [
+        "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE"
+      ]
+    },
+    {
+      "id": "QCV-VIABILITY-NEEDS-ALL-REQUIREMENTS",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q5B claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For g < 1, kappa > 0 and c(k) >= 0, the backlog is bounded and some positive physical rate has p(k) tending to zero iff r >= lam/((1-g)*kappa) and some M > 0 has amp(k) <= M^(2^k); with no supply the backlog is unbounded, with g >= 1 it is unbounded for every supply, and a tight profile p(k+1) >= c(k)*p(k)^2 with c(k) >= a*b^(2^k), b > 1, p(0) > 0 does not tend to zero.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1325_qcv_viability_needs_all_requirements.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ],
+      "lean": [
+        "lean4/QcSelfObstruction.lean::model_viable_iff",
+        "lean4/QcSelfObstruction.lean::not_viable_without_supply",
+        "lean4/QcSelfObstruction.lean::not_viable_unit_gain",
+        "lean4/QcSelfObstruction.lean::not_viable_dexp_profile",
+        "lean4/QcSelfObstruction.lean::level_error_ge"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report"
+      ],
+      "imported_structure": [],
+      "bottleneck": "A statement about the declared model: a failed requirement shows the certificate is empty, not that a physical machine fails.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1325",
+        "QCV-Q5B"
+      ]
+    },
+    {
+      "id": "QCV-PHYSICAL-SATISFIABILITY-OPEN",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q5C claims OPEN; audited status OPEN",
+      "statement": "Whether any physical system has noise obeying the recurrence with level-bounded overhead, a fresh ancilla supply at rate r >= lam/((1-g)*kappa) and fast classical control is not established here, in either direction; the rate comparison mu_repair >= lambda_proj at scale stays open.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1326_qcv_physical_satisfiability_open.md",
+        "dag/research/quantum_computation_self_obstruction.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A named packet (code family, noise hypothesis, repair capacity, residual quotient) and a locality bound would be needed before any verdict; no claim about physical viability is made.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1326",
+        "QCV-Q5C"
+      ],
+      "see_also": [
+        "DS-QM103-SHOW-THE-PACKET-PROTOCOL",
+        "MAJ-SURFACE-SHADOW-FENCE"
+      ]
+    },
+    {
+      "id": "QCV-FRESH-MARK-SUPPLY-BRIDGE",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q6 claims DEFINITION; audited status DEFINITION",
+      "statement": "A fresh-mark supply is a stream of distinguished marks each usable once; a process consuming at least rmin > 0 marks per round completes at most B/rmin rounds from a total supply B, and a positive per-round consumption exhausts every finite supply; reliable quantum computation of unbounded length (QCV-Q1B, QCV-Q4) and Turing-complete computation in the parallel UTM branch each need such an unbounded supply.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1327_qcv_fresh_mark_supply_bridge.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ],
+      "lean": [
+        "lean4/QcRepairQueue.lean::rounds_le_budget",
+        "lean4/QcRepairQueue.lean::budget_exhausted"
+      ],
+      "rust": [
+        "code/rust/src/qm/campaigns/qc_self_obstruction.rs::rounds_upper_bound"
+      ],
+      "imported_structure": [],
+      "bottleneck": "A bridge definition only: no common theorem is proved, no map between the entropy-sink supply and the blank-tape supply of the UTM branch is defined, and that branch is not part of this checkout.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1327",
+        "QCV-Q6"
+      ],
+      "see_also": [
+        "COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+        "COMP-C4-SUPPLY-GROWTH"
+      ]
+    },
+    {
+      "id": "AUTH-TC0-TAPE-CONTROL-TYPING",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-TC0 claims proved (Lean finite model, all axiom-free); audited status COMPUTATIONALLY_CHECKED",
+      "statement": "On the fixed carrier of two halting presentations that differ only in the scanned cell (blank or marked), a control-only report does not determine the supplied content contract, an unread report does not determine it either, one read token admits two supplied semantic adapters, and one halt outcome admits two supplied terminal policies.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1328_auth_tc0_tape_control_typing.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md",
+        "papers/foundations/authorization_incompleteness/proof_program.md"
+      ],
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean::AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean::AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean::AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean::AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "supplied content contract",
+        "supplied semantic adapters",
+        "supplied terminal policies"
+      ],
+      "bottleneck": "State the same four facts for a general tape alphabet and head position; the content contract is chosen to separate the two presentations, so the result exhibits a split fiber and does not derive one.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1328",
+        "AIT-TC0"
+      ],
+      "see_also": [
+        "PGW-PREGENESIS-GRAMMAR",
+        "PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION",
+        "AUTHF-TAPE-CONTROL-REPORTS"
+      ]
+    },
+    {
+      "id": "AUTH-TC2-FINITE-TRANSITION-CONTRACT",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-TC2 claims proved, rooted target (Lean finite model, axiom-free); audited status COMPUTATIONALLY_CHECKED",
+      "statement": "In a table over the four configurations running-blank, running-marked, halted-blank and halted-marked that exposes advance, stay and halt, the supplied clean-terminal contract is preserved, the supplied marked-cell contract fails from running-marked, the identity report is adequate for the marked-cell contract, and the control-only report is not.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1329_auth_tc2_finite_transition_contract.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md",
+        "papers/foundations/authorization_incompleteness/proof_program.md"
+      ],
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "supplied clean-terminal contract",
+        "supplied marked-cell contract"
+      ],
+      "bottleneck": "Replace the enumerated carrier by an actual tape and head, and replace the contracts, which were written to produce the countertrace, by contracts stated independently of the table.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1329",
+        "AIT-TC2"
+      ],
+      "see_also": [
+        "PG-GEN-NO-RETURN",
+        "PG-GEN-ONGOING-OBSTRUCTION",
+        "AUTHF-TRANSITION-INVARIANTS"
+      ]
+    },
+    {
+      "id": "AUTH-DTM0-FINITE-RULE-MACHINE",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-DTM0 claims proved; partial carrier only; audited status DEFINITION",
+      "statement": "A machine is a designated halt state with an ordered finite rule list over natural-number states, the symbols blank and marked, and the moves left, right and stay; a step returns halted exactly when the state is the halt state, stuck when no rule matches, and otherwise applies the first matching rule; execute iterates at most the given fuel and returns halted, stuck or fuel exhausted with the last configuration.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1330_auth_dtm0_finite_rule_machine.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md",
+        "papers/foundations/authorization_incompleteness/proof_program.md",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md"
+      ],
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.step",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.step_halted_iff_declared_halt",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_executes_to_syntactic_halt"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "tape as a function from the integers to symbols, which includes tapes of infinite support",
+        "natural-number state labels without a finiteness bound",
+        "first-match lookup as the determinism convention"
+      ],
+      "bottleneck": "Relate the model to Mathlib Turing.TM0 by restricting initial tapes to finite support, splitting write-and-move rules into two steps and merging halted with stuck, then prove step simulation; no universality, extensional property or reduction is established here.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1330",
+        "AIT-DTM0"
+      ],
+      "see_also": [
+        "PGW-NO-TRANSITION-QUIESCENCE",
+        "PGW-CONTEXTS-PLUGGING-PROFILES",
+        "AUTHF-DTM0-RULE-MACHINE",
+        "COMP-C5-TM0-STEP-SIMULATION"
+      ]
+    },
+    {
+      "id": "AUTH-FUEL-EXHAUSTION-TYPED-STOP",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AUTH-PAPER-1 claims stated in prose and by a closed fixture (no separate claim id); audited status DEFINITION",
+      "statement": "A bounded evaluator has three terminal outcomes, halted, stuck and fuel exhausted; the fuel-exhausted outcome records only that the budget ended and is never read as divergence, and a looping fixture exhausts a budget of one step without any claim about whether it halts.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md",
+        "papers/foundations/authorization_incompleteness/proof_program.md"
+      ],
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean::AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Apply the same three-way typing to the declared-bound runs of the Genesis continuation: a run stopped at the guard or the bound stays unresolved, neither closed nor diverging, until a longer run or a proof decides it.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1331",
+        "AUTH-PAPER-1"
+      ],
+      "see_also": [
+        "PGW-ALPHA-LICENSE-BINDING-M1-M8",
+        "COMP-C3-VERDICT-SOUND"
+      ]
+    },
+    {
+      "id": "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-DTM1 claims proved; partial carrier only; audited status PROVED_LEAN",
+      "statement": "For every finite-rule machine, decoding the token list that encodes it (the halt-state token followed by five-token frames of state, scanned tag, next state, written tag and move tag) returns that machine, and the all-consuming decoder returns none on the empty list, a truncated frame, an invalid symbol tag and an invalid move tag in the four named fixtures.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1332_auth_dtm1_token_code_roundtrip.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm1_token_code_update_packet.md"
+      ],
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.empty_machine_code_is_rejected",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.truncated_rule_code_is_rejected",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_symbol_tag_is_rejected",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_move_tag_is_rejected"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "No converse (encoding after decoding), no source-byte format, no configuration or input encoding and no agreement between parsed code and execution is established; the token alphabet is the natural numbers, so passing to the two-symbol tape alphabet needs a prefix-code argument, since free monoids on alphabets of different sizes are not isomorphic.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1332",
+        "AIT-DTM1"
+      ],
+      "see_also": [
+        "PGW-PREGENESIS-GRAMMAR",
+        "PGW-MSSN-ALPHABET-DECLARATIONS",
+        "AUTHF-DTM1-ROUNDTRIP",
+        "COMP-C8-BINARY-CODING"
+      ]
+    },
+    {
+      "id": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-DTM2 claims planned in a producer-side update packet; absent from ledger, proof program, goals and Lean; audited status OPEN",
+      "statement": "The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1333",
+        "AIT-DTM2"
+      ],
+      "see_also": [
+        "AUTHF-DTM0-SIMULATION-OPEN",
+        "COMP-C5-CLOSURES-HALTING"
+      ]
+    },
+    {
+      "id": "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-G5a claims proved, rooted target (axiom-free); audited status PROVED_LEAN",
+      "statement": "If a map from a source predicate into proposal validity preserves the predicate exactly, and the allowed proposal deciders are closed under precomposition with that map, then a source predicate with no allowed total decider gives a proposal predicate with no allowed total decider.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+        "papers/foundations/authorization_incompleteness/proof_program.md"
+      ],
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean::AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean::AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "decision classes allowedHard and allowedProposal as arbitrary predicates on Bool-valued functions"
+      ],
+      "bottleneck": "Instantiate the allowed classes with ComputablePred on a code type, take the halting problem as the source predicate and prove closure under the reduction; the declaration supplies none of the three.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1334",
+        "AIT-G5a"
+      ],
+      "see_also": [
+        "PGW-CONTEXT-DECISION-PROCEDURE",
+        "AUTHF-CLASS-RELATIVE-TRANSPORT",
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ]
+    },
+    {
+      "id": "AUTH-G5C-TERMINALIZATION-CONSEQUENCE",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-G5c claims proved, rooted target; audited status PROVED_LEAN",
+      "statement": "Given an allowed class with no total decider for a validity predicate, no terminalizer whose authorized bit lies in the class is both acceptance-sound and acceptance-complete, and none is acceptance-sound, rejection-sound and never unresolved; a two-valued Boolean fixture is closed, sound and complete.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1335_auth_g5c_terminalization_consequence.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+        "papers/foundations/authorization_incompleteness/proof_program.md",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_g5c_terminalization_update_packet.md"
+      ],
+      "lean": [
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_decides_of_sound_complete",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.closed_two_sided_terminalization_is_acceptance_complete",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "NoTotalDecider premise for the declared class",
+        "class membership of the acceptance bit"
+      ],
+      "bottleneck": "The no-total-decider premise and the class membership of the acceptance bit are hypotheses that no program carrier supplies yet; the result does not say that every terminalizer must return unresolved, and it uses three terminal values where TFQ-0330 names five.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1335",
+        "AIT-G5c"
+      ],
+      "see_also": [
+        "PGW-GENESIS-THREE-AXIS-VERDICT",
+        "COMP-C3-VERDICT-SOUND",
+        "AUTHF-TERMINAL-CLOSED-TWO-SIDED"
+      ]
+    },
+    {
+      "id": "AUTH-G5B-CARRIER-ADMISSION-GATE",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-G5b claims defined; open; audited status DEFINITION",
+      "statement": "A program carrier is admitted for a global undecidability claim only when syntax and encodings, execution semantics, a universality witness, an extensional property, positive and negative nontriviality witnesses, an effective reduction, the split between adequacy and authorization, and replay closure are all frozen in one record.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1336_auth_g5b_carrier_admission_gate.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/computability_lift_admission.md",
+        "papers/foundations/authorization_incompleteness/proof_program.md",
+        "papers/foundations/authorization_incompleteness/goals.yaml"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "None of the eight fields is closed by the source: DTM0 and DTM1 are partial on syntax, execution and replay only, and the candidate inventory records admission as open.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1336",
+        "AIT-G5b"
+      ],
+      "see_also": [
+        "PGW-CONTEXT-DECISION-PROCEDURE",
+        "AUTHF-CARRIER-ADMISSION-GATE"
+      ]
+    },
+    {
+      "id": "AUTH-RICE-THEOREM-IMPORT",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-5 claims cited; local formalization open; audited status IMPORTED_ASSUMPTION",
+      "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "Rice theorem (Rice 1953)",
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+      ],
+      "bottleneck": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1337",
+        "AIT-5"
+      ],
+      "see_also": [
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ]
+    },
+    {
+      "id": "AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-G5 claims open; audited status OPEN",
+      "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1338_auth_g5_global_computability_lift.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/proof_program.md",
+        "papers/foundations/authorization_incompleteness/goals.yaml"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "admitted program carrier",
+        "nontrivial extensional property"
+      ],
+      "bottleneck": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1338",
+        "AIT-G5"
+      ],
+      "see_also": [
+        "AUTHF-RICE-GODEL-OPEN",
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ]
+    },
+    {
+      "id": "AUTH-BLIND-DERIVATION-PROTOCOL",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-TC1 claims design; audited status DEFINITION",
+      "statement": "A derivation run toward computation is a proposal source: its prompt, model, tools, repository state, available context and outputs are frozen, every notion is labeled input, definition, theorem, example or open assumption, each lift carries a positive witness and a failed-descent control, and literature comparison happens only after sealing; isolation records provenance and does not show novelty or validity.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1339_auth_blind_derivation_protocol.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md",
+        "papers/foundations/authorization_incompleteness/proof_program.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Apply the protocol to the Genesis to computability derivation and keep recovered material out of any run meant to be blind until that run is sealed.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1339",
+        "AIT-TC1"
+      ],
+      "see_also": [
+        "PGW-GENESIS-THREE-AXIS-VERDICT",
+        "PGW-RUNG0-INHERITANCE-REPLAY"
+      ]
+    },
+    {
+      "id": "AUTHF-DTM0-RULE-MACHINE",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-1 claims PROVED_LEAN; audited status DEFINITION",
+      "statement": "A DTM0 machine is a designated halt state with a finite, left-biased list of rows (state, scanned symbol, next state, written symbol, move) over the two-symbol alphabet blank and marked; a configuration is a state, an integer head and a total tape Int to symbol; execute runs at most the stated fuel and returns halted, stuck or fuelExhausted.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1340_authf_dtm0_rule_machine.md",
+        "lean4/AuthIncompleteness/DirectTM.lean",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.Machine",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.Rule",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.Configuration",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.StepResult",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.step",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.lookup",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.isDeclaredHalt"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "two-symbol alphabet fixed",
+        "rule-list order as the operational semantics",
+        "fuel as an externally supplied bound"
+      ],
+      "bottleneck": "The definition carries no input encoding, no unbounded-run semantics, no halting predicate and no comparison with Mathlib Turing.TM0; fuel exhaustion is a bounded-evaluator result and not non-halting.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1340",
+        "AUTHF-1"
+      ],
+      "see_also": [
+        "PG-GEN-REWRITING-COMMUTATION",
+        "AUTH-DTM0-FINITE-RULE-MACHINE",
+        "COMP-C5-TM0-STEP-SIMULATION"
+      ]
+    },
+    {
+      "id": "AUTHF-DTM0-HALT-IFF-STATE",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record step_halted_iff_declared_halt claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For every DTM0 machine and configuration, step returns halted exactly when the configuration's state equals the machine's halt state, and execute then returns halted at every fuel budget.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1341_authf_dtm0_halt_iff_state.md",
+        "lean4/AuthIncompleteness/DirectTM.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.step_halted_iff_declared_halt",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "This fixes what a declared halt means in DTM0; it is not a statement about halting of runs and selects no terminal policy.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1341",
+        "step_halted_iff_declared_halt"
+      ]
+    },
+    {
+      "id": "AUTHF-DTM0-FIXTURES",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-3 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
+      "statement": "On the three named fixtures, writeAndHaltMachine writes a mark and reaches its halt state in one transition, the empty-rule machine is stuck at its first step, and the one-row self-loop machine returns fuelExhausted with the looped configuration after one unit of fuel.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1342_authf_dtm0_fixtures.md",
+        "lean4/AuthIncompleteness/DirectTM.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_writes_mark",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_reaches_declared_halt",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_executes_to_syntactic_halt",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The self-loop result is exhaustion of one unit of fuel; no theorem says the loop never halts, and no fixture exceeds three rows.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1342",
+        "AUTHF-3"
+      ],
+      "see_also": [
+        "COMP-C5-SMALL-MACHINES-CHECKED"
+      ]
+    },
+    {
+      "id": "AUTHF-DTM1-TOKEN-GRAMMAR",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-4 claims PROVED_LEAN; audited status DEFINITION",
+      "statement": "A machine code is the halt-state token followed by complete five-token frames (state, scanned tag, next state, written tag, move tag) with tags 0 and 1 for symbols and 0, 1, 2 for moves; decodeMachine consumes the whole list and returns none on an empty list, a truncated frame or an invalid tag.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1343_authf_dtm1_token_grammar.md",
+        "lean4/AuthIncompleteness/TokenCode.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeMachine",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeRules",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeRule"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Tokens are natural numbers, not bytes; there is no configuration or input encoding and no parser-to-execution agreement.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1343",
+        "AUTHF-4"
+      ]
+    },
+    {
+      "id": "AUTHF-DTM1-ROUNDTRIP",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record decodeMachine_encodeMachine claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For every DTM0 machine m, decodeMachine (encodeMachine m) = some m, supported by the tag round trips decodeTapeSymbol_encodeTapeSymbol and decodeMove_encodeMove and the rule-list round trip decodeRules_encodeRules.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1344_authf_dtm1_roundtrip.md",
+        "lean4/AuthIncompleteness/TokenCode.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeTapeSymbol_encodeTapeSymbol",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMove_encodeMove"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Only decode after encode is stated; injectivity of decode on arbitrary lists and encode after decode are not stated.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1344",
+        "decodeMachine_encodeMachine"
+      ],
+      "see_also": [
+        "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+        "COMP-C8-BINARY-CODING"
+      ]
+    },
+    {
+      "id": "AUTHF-DTM1-MALFORMED-CODES",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record invalid_symbol_tag_is_rejected claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
+      "statement": "decodeMachine returns none on the four named lists [], [0,0,0,1], [0,0,2,1,0,0] and [0,0,0,1,0,3].",
+      "source": [
+        "dag/derivations/29_computation/tfq_1345_authf_dtm1_malformed_codes.md",
+        "lean4/AuthIncompleteness/TokenCode.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.empty_machine_code_is_rejected",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.truncated_rule_code_is_rejected",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_symbol_tag_is_rejected",
+        "lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_move_tag_is_rejected"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Four named inputs only; no theorem characterizes the full domain of decodeMachine.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1345",
+        "invalid_symbol_tag_is_rejected"
+      ]
+    },
+    {
+      "id": "AUTHF-SELF-RECEIPT-TOY",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record self_receipt_blocks_authorization claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For the one-bit Packet type with validity equal to its bit, no function from Unit to Bool satisfies authorize (receipt p) = valid p for all p, while the identity report admits such a function.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md",
+        "lean4/AuthIncompleteness/Core.lean",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/Core.lean::AuthorizationIncompleteness.self_receipt_splits_validity",
+        "lean4/AuthIncompleteness/Core.lean::AuthorizationIncompleteness.self_receipt_blocks_authorization",
+        "lean4/AuthIncompleteness/Core.lean::AuthorizationIncompleteness.complete_receipt_decides_toy_contract"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A toy instance of the split-fibre obstruction; it says nothing about receipts in general.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1346",
+        "self_receipt_blocks_authorization"
+      ]
+    },
+    {
+      "id": "AUTHF-CLASS-RELATIVE-TRANSPORT",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record no_source_decider_blocks_total_authorizer claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "Given a map from source instances to proposals that preserves the source predicate as proposal validity, and closure of the allowed proposal deciders under precomposition with that map, a source predicate with no allowed total decider yields a proposal validity predicate with no allowed total decider.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1347_authf_class_relative_transport.md",
+        "lean4/AuthIncompleteness/GlobalLift.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.Decides",
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.NoTotalDecider",
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction",
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction",
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider",
+        "lean4/AuthIncompleteness/GlobalLift.lean::AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The allowed classes and the source no-decider premise are supplied; no computability class, halting-style source theorem or Rice reduction is instantiated.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1347",
+        "no_source_decider_blocks_total_authorizer"
+      ],
+      "see_also": [
+        "PGW-CONTEXT-DECISION-PROCEDURE",
+        "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ]
+    },
+    {
+      "id": "AUTHF-MATHLIB-HALTING-BRIDGE",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record no_computable_authorizer_of_computable_reduction claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "With Computable as the allowed class on both sides, a source predicate with no computable total decider and a computable validity-preserving map give proposal validity with no computable total decider; for the source predicate that program c halts on input n this is Mathlib's ComputablePred.halting_problem.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md",
+        "lean4/AuthIncompleteness/MathlibBridge.lean",
+        "papers/foundations/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider",
+        "lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.computable_closed_under_computable_reduction",
+        "lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction",
+        "lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.halting_transport_instance"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Halting is the only source predicate instantiated; no Rice instance, no extensional property of encoded DTM0 programs and no computable reduction from DTM0 to Nat.Partrec.Code is given.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1348",
+        "no_computable_authorizer_of_computable_reduction"
+      ],
+      "see_also": [
+        "COMP-C7-MACHINE-HALTING-UNDECIDABLE"
+      ]
+    },
+    {
+      "id": "AUTHF-TERMINAL-ACCEPT-BIT",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record acceptance_bit_decides_of_sound_complete claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For a terminalizer into authorized, rejected, unresolved that is acceptance-sound and acceptance-complete for a validity predicate, the Boolean that is true exactly on authorized decides the predicate; if that Boolean lies in an allowed class with no total decider, the terminalizer cannot be both.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1349_authf_terminal_accept_bit.md",
+        "lean4/AuthIncompleteness/Terminal.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_true_iff",
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_decides_of_sound_complete",
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The no-total-decider premise and the membership of the acceptance bit in the allowed class are hypotheses; neither is discharged.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1349",
+        "acceptance_bit_decides_of_sound_complete"
+      ]
+    },
+    {
+      "id": "AUTHF-TERMINAL-CLOSED-TWO-SIDED",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record closed_two_sided_terminalization_is_acceptance_complete claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "If a terminalizer never rejects a valid proposal and never returns unresolved, every valid proposal is authorized; with an allowed acceptance bit and no allowed total decider, acceptance-soundness, rejection-soundness and closure cannot all hold.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1350_authf_terminal_closed_two_sided.md",
+        "lean4/AuthIncompleteness/Terminal.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.closed_two_sided_terminalization_is_acceptance_complete",
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The result leaves three options (an unsound acceptance, an unsound rejection, or an unresolved case) and does not say any of them must occur for a particular predicate.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1350",
+        "closed_two_sided_terminalization_is_acceptance_complete"
+      ],
+      "see_also": [
+        "COMP-C3-VERDICT-SOUND",
+        "AUTH-G5C-TERMINALIZATION-CONSEQUENCE"
+      ]
+    },
+    {
+      "id": "AUTHF-TERMINAL-BOOL-FIXTURE",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record finite_closed_terminalizer_remains_possible claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "On Bool with validity equal to the bit, the terminalizer sending true to authorized and false to rejected is acceptance-sound, acceptance-complete, rejection-sound and closed.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1351_authf_terminal_bool_fixture.md",
+        "lean4/AuthIncompleteness/Terminal.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible",
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolTerminalize",
+        "lean4/AuthIncompleteness/Terminal.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolValidity"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A decidable one-bit predicate only; it shows closed terminalization is not forbidden without a no-decider premise.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1351",
+        "finite_closed_terminalizer_remains_possible"
+      ]
+    },
+    {
+      "id": "AUTHF-TAPE-CONTROL-REPORTS",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record same_halt_control_blocks_control_only_decider claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "In the tape-control model with cells blank and marked and outcomes advance, stay, halt, no function of the control outcome and no function of the always-unread report equals contentContract on every presentation, and the read token blank is given opposite verdicts by the two supplied semantic adapters.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md",
+        "lean4/AuthIncompleteness/TapeControl.lean",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider",
+        "lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider",
+        "lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters",
+        "lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.shared_halt_control_splits_content_contract"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The contract and adapters are supplied examples; the model is not the full Turing-machine model.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1352",
+        "same_halt_control_blocks_control_only_decider"
+      ],
+      "see_also": [
+        "AUTH-TC0-TAPE-CONTROL-TYPING"
+      ]
+    },
+    {
+      "id": "AUTHF-HALT-NOT-POLICY",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record syntactic_halt_does_not_select_terminal_policy claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "In the DTM0 model, the tape-control model and the replay model, a halted or verified outcome receives different terminal values from two supplied policies: acceptHalted versus leaveAllOpen, acceptHalt versus rejectAll, and authorizeOnVerified versus leaveVerifiedOpen.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1353_authf_halt_not_policy.md",
+        "lean4/AuthIncompleteness/DirectTM.lean",
+        "lean4/AuthIncompleteness/TapeControl.lean",
+        "lean4/AuthIncompleteness/Replay.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.syntactic_halt_does_not_select_direct_machine_policy",
+        "lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.terminal_policy_is_not_selected_by_verification"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Existence of two policies only; no policy is selected or justified.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1353",
+        "syntactic_halt_does_not_select_terminal_policy"
+      ]
+    },
+    {
+      "id": "AUTHF-TRANSITION-INVARIANTS",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record transition_preserves_clean_terminal_contract claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "The four-configuration transition table maps every configuration to one that cleanTerminalContract accepts, so it preserves that contract, and it does not preserve markedCellContract because runningMarked is accepted while its successor runningBlank is not.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1354_authf_transition_invariants.md",
+        "lean4/AuthIncompleteness/TapeTransition.lean",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_output_satisfies_clean_terminal_contract"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Two supplied Boolean contracts on one finite table; nothing is said about transition systems in general.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1354",
+        "transition_preserves_clean_terminal_contract"
+      ],
+      "see_also": [
+        "AUTH-TC2-FINITE-TRANSITION-CONTRACT"
+      ]
+    },
+    {
+      "id": "AUTHF-TRANSITION-ADEQUACY",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record full_configuration_report_adequate_for_marked_cell_contract claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "On the four configurations the identity report is adequate for markedCellContract, whereas the control-outcome report is not, because haltedBlank and haltedMarked both report stay and the contract separates them, so no function of the control outcome decides the contract.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1355_authf_transition_adequacy.md",
+        "lean4/AuthIncompleteness/TapeTransition.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_admits_marked_cell_decider",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract",
+        "lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A finite adequacy example; whether any report is adequate for a semantic property of arbitrary programs is not addressed.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1355",
+        "full_configuration_report_adequate_for_marked_cell_contract"
+      ]
+    },
+    {
+      "id": "AUTHF-REPLAY-BOUND-SUBMISSION",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record replayed_status_requires_bound_submission claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "In the finite structural replay model, if replay of a receipt on an observed submission returns replayed with some outcome, then the observed submission equals the submission bound in the receipt.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1356_authf_replay_bound_submission.md",
+        "lean4/AuthIncompleteness/Replay.lean",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replayed_status_requires_bound_submission",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replay",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.issueReceipt"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Equality is structural equality of a finite record, not a digest; verifier soundness and custody are not modelled.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1356",
+        "replayed_status_requires_bound_submission"
+      ]
+    },
+    {
+      "id": "AUTHF-REPLAY-SUBSTITUTIONS",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record self_pass_cannot_authorize_invalid_content claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
+      "statement": "Under authorizeTrueRoot, verify returns contractRejected for the invalid submission that sets selfPass, returns bindingRejected for the checker, contract-version and schema-version substitutions, issues a receipt that replays the valid submission as verified, and rejects the invalid payload as a substitution.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md",
+        "lean4/AuthIncompleteness/Replay.lean"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.self_pass_cannot_authorize_invalid_content",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.checker_substitution_is_binding_rejected",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.contract_version_substitution_is_binding_rejected",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.schema_version_substitution_is_binding_rejected",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.issued_receipt_replays_exact_submission",
+        "lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replay_rejects_payload_substitution"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Six rfl facts on five named submissions; the model does not prove that every substitution is caught.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1357",
+        "self_pass_cannot_authorize_invalid_content"
+      ]
+    },
+    {
+      "id": "AUTHF-LOGICAL-EXTERNALITY",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record physical_separation_neither_needed_nor_sufficient_for_toy_authorization claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For the presentation with identity report and equal source and evaluator sites, a report-only authorization exists; for the presentation with a Unit report and distinct sites, none exists.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1358_authf_logical_externality.md",
+        "lean4/AuthIncompleteness/Externality.lean",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/Externality.lean::AuthorizationIncompleteness.LogicalExternalityModels.physical_separation_neither_needed_nor_sufficient_for_toy_authorization",
+        "lean4/AuthIncompleteness/Externality.lean::AuthorizationIncompleteness.LogicalExternalityModels.coLocatedComplete_can_authorize",
+        "lean4/AuthIncompleteness/Externality.lean::AuthorizationIncompleteness.LogicalExternalityModels.separatedCollapsed_cannot_authorize"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Site is an unused finite label; the statement carries no custody, security or independence content.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1358",
+        "physical_separation_neither_needed_nor_sufficient_for_toy_authorization"
+      ]
+    },
+    {
+      "id": "AUTHF-PD-EXTENSION-NONUNIQUE",
+      "stage": "COMPUTATION",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record primitive_interface_has_distinct_authorization_extensions claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "Over the minimal Bool analogue of a primitive difference with two unequal marks, identityExtension and rejectingExtension give different validity and terminal values at the same carrier point.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1359_authf_pd_extension_nonunique.md",
+        "lean4/AuthIncompleteness/PDModels.lean",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.primitive_interface_has_distinct_authorization_extensions",
+        "lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_validity",
+        "lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_policy",
+        "lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.boolPrimitive"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The analogue is not the J011 interface and no naturality statement about all primitive differences follows.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1359",
+        "primitive_interface_has_distinct_authorization_extensions"
+      ]
+    },
+    {
+      "id": "AUTHF-PD-QUOTIENT-BRIDGE",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record pd_quotient_split_blocks_report_only_authorization claims PROVED_LEAN; audited status OPEN",
+      "statement": "For a primitive difference P and a Bool validity that differs on some ZeroRel P class, no function on the canonical quotient report pdProj P agrees with validity everywhere; a ZeroRel-constant validity has a quotient decision.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1360_authf_pd_quotient_bridge.md",
+        "lean4/AuthIncompleteness/PDBridge.lean",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md"
+      ],
+      "lean": [
+        "lean4/AuthIncompleteness/PDBridge.lean::AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_total_decision_requires_zeroRel_constancy",
+        "lean4/AuthIncompleteness/PDBridge.lean::AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_split_blocks_report_only_authorization",
+        "lean4/AuthIncompleteness/PDBridge.lean::AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pdQuotientDecision",
+        "lean4/AuthIncompleteness/PDBridge.lean::AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_decision_if_zeroRel_constant",
+        "lean4/AuthIncompleteness/PDBridge.lean::AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.collapse_pd_blocks_report_only_authorization"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "J011 candidate quotient interface: PrimitiveDifference, ZeroRel, ResidualQuotient, pdSetoid, pdProj, collapsePD"
+      ],
+      "bottleneck": "Not built here: the file imports J011_minimal_publication, whose source is absent from this repository, so the recorded proof is unreplayed.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1360",
+        "pd_quotient_split_blocks_report_only_authorization"
+      ]
+    },
+    {
+      "id": "AUTHF-REPLAY-PACKET-PYTHON",
+      "stage": "COMPUTATION",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-23 claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
+      "statement": "A manifest binding eight artifacts by SHA-256 together with a four-row transition proposal, a contract and a leave-open policy verifies under the Python port; it finds the clean-terminal contract preserved, the marked-cell contract violated at runningMarked and haltedMarked, the control-outcome report inadequate (haltedBlank and haltedMarked share stay), the route open_due_to_inadequate_report and the terminal open, and refuses 21 tamper mutations.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1361_authf_replay_packet_python.md",
+        "code/python/src/qm/auth_incompleteness/replay_packet.py"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Evaluator correspondence to the Lean model, SHA-256 collision resistance, runtime integrity and custody remain assumptions; the PowerShell runtime pin is not reproduced and the formal replay uses Lean v4.35.0 instead of the recorded v4.32.2.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1361",
+        "AUTHF-23"
+      ]
+    },
+    {
+      "id": "AUTHF-CARRIER-ADMISSION-GATE",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-24 claims OPEN; audited status OPEN",
+      "statement": "The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses any selection or admission.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md",
+        "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json",
+        "code/python/src/qm/auth_incompleteness/carrier_candidates.py"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1362",
+        "AUTHF-24"
+      ],
+      "see_also": [
+        "AUTH-G5B-CARRIER-ADMISSION-GATE"
+      ]
+    },
+    {
+      "id": "AUTHF-RICE-GODEL-OPEN",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-25 claims OPEN; audited status OPEN",
+      "statement": "No recovered declaration states Rice's theorem, a halting-problem reduction, Goedel's second incompleteness theorem or the LLM corollary; the only link toward them is the class-relative transport with a supplied no-decider premise, which the recovery-time MathlibBridge file instantiates for halting only.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/README.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Instantiate the transport for a nontrivial extensional property of encoded programs with Mathlib's ComputablePred.rice and a computable reduction from the DTM0 carrier before any such claim.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1363",
+        "AUTHF-25"
+      ],
+      "see_also": [
+        "TFQ-0330",
+        "AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ]
+    },
+    {
+      "id": "AUTHF-DTM0-SIMULATION-OPEN",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-26 claims OPEN; audited status OPEN",
+      "statement": "DTM0 has no simulation theorem, no machine that runs encoded machines, no input or configuration encoding, no parser-to-execution agreement and no equivalence with Mathlib's Turing.TM0 or with Nat.Partrec.Code; its fuel-bounded evaluator decides only bounded runs.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1364_authf_dtm0_simulation_open.md",
+        "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A faithful comparison needs a finite-support tape restriction, the stay move split into Mathlib's move-or-write statements, and a halting predicate such as exists fuel with execute returning halted.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1364",
+        "AUTHF-26"
+      ],
+      "see_also": [
+        "COMP-C5-CLOSURES-HALTING",
+        "AUTH-DTM2-INPUT-REQUEST-PLANNED"
       ]
     }
   ],
@@ -31105,6 +33646,1175 @@
       "source": [
         "dag/derivations/25_mub/tfq_1282_mub6_empty_variety_moment_nonpsd.md",
         "papers/core/mub6/mub6_claim_ledger.md"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C1-FIRST-SEPARATION-REPLAY",
+      "inputs": [
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER",
+        "PG-GEN-COLLAPSE-AND-FIRST-SEPARATION",
+        "PG-INERT-DIAMOND"
+      ],
+      "output": "COMP-C1-FIRST-SEPARATION-REPLAY",
+      "status": "COMPUTED",
+      "mechanism": "The cost-two minimum (TFQ-0381) and the external definition of separable are not re-proved here; mark0 as <> and mark1 as its first separated successor is a declared labelling.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1283_comp_c1_first_separation_replay.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+      "inputs": [
+        "COMP-C1-FIRST-SEPARATION-REPLAY",
+        "PG-GEN-IRREFLEXIVE-DISTINCT"
+      ],
+      "output": "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+      "status": "DERIVED_LEAN",
+      "mechanism": "UnarySep is a mirror of the hole-only unary case of the Genesis separable, not the external definition; the lift to all contexts including uniform rules is not done.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1284_comp_c1_canonical_separated_alphabet.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C1-IDENTITY-CONVENTION-INPUT",
+      "inputs": [
+        "COMP-C1-FIRST-SEPARATION-REPLAY",
+        "PGW-IDENTITY-CONVENTION-UNDECIDABLE"
+      ],
+      "output": "COMP-C1-IDENTITY-CONVENTION-INPUT",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Declare the identity convention before reading any mark of a machine alphabet as a new state; nothing in this chain derives it.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1285_comp_c1_identity_convention_input.md",
+        "dag/research/genesis_to_universal_computation.md"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C2-WORD-REWRITING",
+      "inputs": [
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+        "PG-FREE-MONOID-NONISO"
+      ],
+      "output": "COMP-C2-WORD-REWRITING",
+      "status": "DERIVED_PROSE",
+      "mechanism": "The rule predicate is supplied by the regime; Genesis Step3 is a different relation (COMP-C2e).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1286_comp_c2_word_rewriting.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C2-LETTER-RENAME-COMMUTES",
+      "inputs": [
+        "COMP-C2-WORD-REWRITING",
+        "PG-GEN-REWRITING-COMMUTATION"
+      ],
+      "output": "COMP-C2-LETTER-RENAME-COMMUTES",
+      "status": "DERIVED_LEAN",
+      "mechanism": "This is the word-side analogue of Genesis Step.rename and Reach.rename, not an instance of them.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1287_comp_c2_letter_rename_commutes.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C2-ONE-HOLE-CONTEXTS",
+      "inputs": [
+        "COMP-C2-WORD-REWRITING",
+        "PGW-CONTEXTS-PLUGGING-PROFILES"
+      ],
+      "output": "COMP-C2-ONE-HOLE-CONTEXTS",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Genesis plugs one datum into every hole while a word rule plugs a word into one hole, which is the wider operation; the sealed regime contexts with forms and rules are not modelled.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1288_comp_c2_one_hole_contexts.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C2-CONTEXT-COUNTS-CHECKED",
+      "inputs": [
+        "COMP-C2-ONE-HOLE-CONTEXTS",
+        "PGW-CONTEXT-COUNT-FORMULA"
+      ],
+      "output": "COMP-C2-CONTEXT-COUNTS-CHECKED",
+      "status": "COMPUTED",
+      "mechanism": "Finite ranges only; the general formula is the trunk record TFQ-0436.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1289_comp_c2_context_counts_checked.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C2-STEP3-NOT-WORD-STEP",
+      "inputs": [
+        "COMP-C2-LETTER-RENAME-COMMUTES",
+        "PG-GEN-REWRITING-COMMUTATION"
+      ],
+      "output": "COMP-C2-STEP3-NOT-WORD-STEP",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Construct a word encoding of Step3 states under which addTerm, addAssertion and identify are word steps, or show that none exists.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C3-BOUNDED-REACH-DECIDABLE",
+      "inputs": [
+        "COMP-C2-WORD-REWRITING",
+        "PGW-RUNS-PAST-DECLARED-BOUNDS"
+      ],
+      "output": "COMP-C3-BOUNDED-REACH-DECIDABLE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "This decides rewriting reachability in a declared bound; the decision procedure over all Genesis contexts of the sealed regime asked by TFQ-0497 is not built (COMP-C3c).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1291_comp_c3_bounded_reach_decidable.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C3-VERDICT-SOUND",
+      "inputs": [
+        "COMP-C3-BOUNDED-REACH-DECIDABLE"
+      ],
+      "output": "COMP-C3-VERDICT-SOUND",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Soundness only; the verdict boundExceeded does not decide the unbounded question.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1292_comp_c3_verdict_sound.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C3-CONTEXT-DECISION-PARTIAL",
+      "inputs": [
+        "COMP-C3-BOUNDED-REACH-DECIDABLE",
+        "PGW-CONTEXT-DECISION-PROCEDURE"
+      ],
+      "output": "COMP-C3-CONTEXT-DECISION-PARTIAL",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C3-RUNNER-NEEDS-BLANKS",
+      "inputs": [
+        "COMP-C3-VERDICT-SOUND",
+        "COMP-C5-TM0-STEP-SIMULATION"
+      ],
+      "output": "COMP-C3-RUNNER-NEEDS-BLANKS",
+      "status": "DERIVED_LEAN",
+      "mechanism": "One concrete machine; the general statement for every general-purpose regime is conditional (COMP-C3e).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1294_comp_c3_runner_needs_blanks.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompTM.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C3-NO-FIXED-BOUND",
+      "inputs": [
+        "COMP-C3-RUNNER-NEEDS-BLANKS",
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "output": "COMP-C3-NO-FIXED-BOUND",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Prove startWord_computable (COMP-C7c) and state the uniform version in Lean.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md",
+        "dag/research/genesis_to_universal_computation.md"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C4-STEPE-UNCAPPED",
+      "inputs": [
+        "COMP-C1-FIRST-SEPARATION-REPLAY",
+        "PG-GEN-SUPPLY-NO-OP"
+      ],
+      "output": "COMP-C4-STEPE-UNCAPPED",
+      "status": "DERIVED_LEAN",
+      "mechanism": "This is a statement about the copied stepE; every admitDatum is a host event and nothing here generates them.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1296_comp_c4_stepe_uncapped.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+      "inputs": [
+        "COMP-C4-STEPE-UNCAPPED",
+        "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
+        "PGW-GO-LEFTOVER-UNBOUNDEDNESS",
+        "PGW-ENDOGENOUS-DEMAND-OB1"
+      ],
+      "output": "COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Derive an endogenous source of unboundedly many admitted data (TFQ-0504) or keep the supply as a recorded host input.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1297_comp_c4_unbounded_supply_import.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C4-SUPPLY-GROWTH",
+      "inputs": [
+        "COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+        "PG-DEMAND-ACCOUNTING"
+      ],
+      "output": "COMP-C4-SUPPLY-GROWTH",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Genesis does not derive the births; this is arithmetic on the accounting identity.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1298_comp_c4_supply_growth.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C5-TM0-STEP-SIMULATION",
+      "inputs": [
+        "COMP-C2-WORD-REWRITING",
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET"
+      ],
+      "output": "COMP-C5-TM0-STEP-SIMULATION",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Machines in the TM0 form only (one write or one move per transition); representations allow blank padding at the far ends; the end rules write a fresh blank, the only place where words grow.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1299_comp_c5_tm0_step_simulation.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompTM.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C5-CLOSURES-HALTING",
+      "inputs": [
+        "COMP-C5-TM0-STEP-SIMULATION"
+      ],
+      "output": "COMP-C5-CLOSURES-HALTING",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Existential in the target word because a configuration has many padded representations.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1300_comp_c5_closures_halting.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompTM.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C5-MARK-BUDGET-RULE-LIST",
+      "inputs": [
+        "COMP-C5-TM0-STEP-SIMULATION",
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET"
+      ],
+      "output": "COMP-C5-MARK-BUDGET-RULE-LIST",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The enumeration of marks by an equivalence with Fin is a declared choice.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1301_comp_c5_mark_budget_rule_list.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompTM.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C5-SMALL-MACHINES-CHECKED",
+      "inputs": [
+        "COMP-C5-CLOSURES-HALTING"
+      ],
+      "output": "COMP-C5-SMALL-MACHINES-CHECKED",
+      "status": "COMPUTED",
+      "mechanism": "Finite instances; they are not a proof for other machines.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1302_comp_c5_small_machines_checked.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "code/rust/src/wdp/genesis_tm.rs"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C6-EVAL-HAS-A-CODE",
+      "inputs": [
+        "COMP-C5-CLOSURES-HALTING"
+      ],
+      "output": "COMP-C6-EVAL-HAS-A-CODE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Imported infrastructure is cited, not re-derived; the codes are existence statements chosen by Classical.choose.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1303_comp_c6_eval_has_a_code.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C6-TM2-OUTPUT-FORM",
+      "inputs": [
+        "COMP-C6-EVAL-HAS-A-CODE"
+      ],
+      "output": "COMP-C6-TM2-OUTPUT-FORM",
+      "status": "DERIVED_LEAN",
+      "mechanism": "TM2 level only; the corresponding output form at the TM0 level is open (COMP-C6e).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1304_comp_c6_tm2_output_form.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C6-TM0-HALTING-EQUIVALENCE",
+      "inputs": [
+        "COMP-C6-TM2-OUTPUT-FORM",
+        "COMP-C5-CLOSURES-HALTING"
+      ],
+      "output": "COMP-C6-TM0-HALTING-EQUIVALENCE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Halting form only; the TM0 output form is open (COMP-C6e).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1305_comp_c6_tm0_halting_equivalence.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C6-FINITE-MARKS",
+      "inputs": [
+        "COMP-C6-TM0-HALTING-EQUIVALENCE"
+      ],
+      "output": "COMP-C6-FINITE-MARKS",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The size of S0 is not computed and the machine is not claimed small.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1306_comp_c6_finite_marks.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C6-TM0-OUTPUT-FORM-OPEN",
+      "inputs": [
+        "COMP-C6-TM0-HALTING-EQUIVALENCE"
+      ],
+      "output": "COMP-C6-TM0-OUTPUT-FORM-OPEN",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output tape.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md",
+        "dag/research/genesis_to_universal_computation.md"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C7-MACHINE-HALTING-UNDECIDABLE",
+      "inputs": [
+        "COMP-C6-TM0-HALTING-EQUIVALENCE"
+      ],
+      "output": "COMP-C7-MACHINE-HALTING-UNDECIDABLE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Imports the halting problem from Mathlib.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1308_comp_c7_machine_halting_undecidable.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C7-NF-REACH-UNDECIDABLE",
+      "inputs": [
+        "COMP-C7-MACHINE-HALTING-UNDECIDABLE",
+        "COMP-C5-CLOSURES-HALTING"
+      ],
+      "output": "COMP-C7-NF-REACH-UNDECIDABLE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The statement is about the family startWord; that the input-to-start-word map is computable is not proved (COMP-C7c).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1309_comp_c7_nf_reach_undecidable.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C7-ENCODED-INSTANCE-REDUCTION",
+      "inputs": [
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "output": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisCompUniv.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C7-FIXED-TARGET-OPEN",
+      "inputs": [
+        "COMP-C7-NF-REACH-UNDECIDABLE"
+      ],
+      "output": "COMP-C7-FIXED-TARGET-OPEN",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md",
+        "dag/research/genesis_to_universal_computation.md"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C8-BINARY-CODING",
+      "inputs": [
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+        "PG-FREE-MONOID-NONISO"
+      ],
+      "output": "COMP-C8-BINARY-CODING",
+      "status": "DERIVED_LEAN",
+      "mechanism": "A code is not an isomorphism of free monoids; no claim that a machine over the coded alphabet simulates a machine over the original (Mathlib TM1to1 is not used).",
+      "source": [
+        "dag/derivations/29_computation/tfq_1312_comp_c8_binary_coding.md",
+        "dag/research/genesis_to_universal_computation.md",
+        "lean4/GenesisComputation.lean"
+      ]
+    },
+    {
+      "id": "APP-R-COMP-C8-MINIMALITY-FENCE",
+      "inputs": [
+        "COMP-C8-BINARY-CODING",
+        "COMP-C6-FINITE-MARKS"
+      ],
+      "output": "COMP-C8-MINIMALITY-FENCE",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "State and prove in Lean the simulation of a machine over the coded alphabet by a machine over the two marks and a blank before any minimality statement.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md",
+        "dag/research/genesis_to_universal_computation.md"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-QUESTION-SELF-LIMITING-REPAIR",
+      "inputs": [
+        "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE",
+        "DS-QM102-SYNDROME-CAPACITY-BOUND",
+        "DS-QM061-BUILDABILITY-SET-S"
+      ],
+      "output": "QCV-QUESTION-SELF-LIMITING-REPAIR",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "The finite model answers the question as a threshold condition (QCV-Q1 to QCV-Q6); whether any physical system meets the named assumptions is not derived and no verdict on physical viability is given.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1314_qcv_question_self_limiting_repair.md",
+        "dag/research/quantum_computation_self_obstruction.md"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-SELF-OBSTRUCTION-MODEL",
+      "inputs": [
+        "QCV-QUESTION-SELF-LIMITING-REPAIR",
+        "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE",
+        "L1-WDP-WINDOW-PHI1-GAMMA2",
+        "DS-QM061-BUILDABILITY-SET-S"
+      ],
+      "output": "QCV-SELF-OBSTRUCTION-MODEL",
+      "status": "DERIVED_PROSE",
+      "mechanism": "lam, g, kappa and r are declared inputs; no value is derived or measured for any code, and Phi_1 of a residual is not computed here.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/derivation_dag.json"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-NET-RATE-BACKLOG-DICHOTOMY",
+      "inputs": [
+        "QCV-SELF-OBSTRUCTION-MODEL"
+      ],
+      "output": "QCV-NET-RATE-BACKLOG-DICHOTOMY",
+      "status": "DERIVED_LEAN",
+      "mechanism": "A statement inside the declared model; it does not say any code has g < 1 or that any supply r is available.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1316_qcv_net_rate_backlog_dichotomy.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-REPAIR-NEEDED-BUT-COSTLY",
+      "inputs": [
+        "QCV-SELF-OBSTRUCTION-MODEL"
+      ],
+      "output": "QCV-REPAIR-NEEDED-BUT-COSTLY",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The location counts are declared; nothing here says how many repair locations a physical code needs.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1317_qcv_repair_needed_but_costly.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-IMPORT-THRESHOLD-THEOREM",
+      "inputs": [
+        "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE"
+      ],
+      "output": "QCV-IMPORT-THRESHOLD-THEOREM",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Exact constants and noise hypotheses of each theorem are not reproduced; the finite recurrence in QCV-Q2 is the only part checked.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md",
+        "dag/research/quantum_computation_self_obstruction.md"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-CONCATENATION-THRESHOLD-DICHOTOMY",
+      "inputs": [
+        "QCV-SELF-OBSTRUCTION-MODEL",
+        "QCV-IMPORT-THRESHOLD-THEOREM"
+      ],
+      "output": "QCV-CONCATENATION-THRESHOLD-DICHOTOMY",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The recurrence is the hypothesis; no noise model is shown to obey it and no constant c is computed for any code.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1319_qcv_concatenation_threshold_dichotomy.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-OVERHEAD-GROWTH-CRITERION",
+      "inputs": [
+        "QCV-CONCATENATION-THRESHOLD-DICHOTOMY"
+      ],
+      "output": "QCV-OVERHEAD-GROWTH-CRITERION",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The families are exact illustrations of the criterion, not claims that any physical overhead has such a form; correlated-noise strength as an exponential of block size is a declared toy.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1320_qcv_overhead_growth_criterion.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
+      "inputs": [
+        "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE"
+      ],
+      "output": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md",
+        "dag/research/quantum_computation_self_obstruction.md"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY",
+      "inputs": [
+        "QCV-SELF-OBSTRUCTION-MODEL",
+        "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS"
+      ],
+      "output": "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The trace norm is the variational form, whose equality with the sum of singular values is cited; the noise is global depolarizing with a declared rate per step, not independent per-qubit noise, and the statement is about histories without fresh resets.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1322_qcv_noisy_history_trace_distance_decay.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-QUBIT-BLOCH-DECAY-EXACT",
+      "inputs": [
+        "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY"
+      ],
+      "output": "QCV-QUBIT-BLOCH-DECAY-EXACT",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The identification of the qubit trace norm with the Bloch distance uses the cited eigenvalue fact; Python and Rust replays are exact on declared instances only.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1323_qcv_qubit_bloch_decay_exact.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-CONDITIONAL-VIABILITY-CERTIFICATE",
+      "inputs": [
+        "QCV-OVERHEAD-GROWTH-CRITERION",
+        "QCV-NET-RATE-BACKLOG-DICHOTOMY",
+        "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY"
+      ],
+      "output": "QCV-CONDITIONAL-VIABILITY-CERTIFICATE",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "The noise recurrence is a hypothesis: independence or locality of noise, fresh ancillas, fast classical control and bounded overhead are not shown for any device; the hypotheses are only shown jointly satisfiable on declared toy numbers.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-VIABILITY-NEEDS-ALL-REQUIREMENTS",
+      "inputs": [
+        "QCV-CONDITIONAL-VIABILITY-CERTIFICATE"
+      ],
+      "output": "QCV-VIABILITY-NEEDS-ALL-REQUIREMENTS",
+      "status": "DERIVED_LEAN",
+      "mechanism": "A statement about the declared model: a failed requirement shows the certificate is empty, not that a physical machine fails.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1325_qcv_viability_needs_all_requirements.md",
+        "dag/research/quantum_computation_self_obstruction.md"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-PHYSICAL-SATISFIABILITY-OPEN",
+      "inputs": [
+        "QCV-CONDITIONAL-VIABILITY-CERTIFICATE",
+        "MAJ-OPEN-LIEB-ROBINSON-LOCALITY",
+        "DS-QM103-SHOW-THE-PACKET-PROTOCOL"
+      ],
+      "output": "QCV-PHYSICAL-SATISFIABILITY-OPEN",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "A named packet (code family, noise hypothesis, repair capacity, residual quotient) and a locality bound would be needed before any verdict; no claim about physical viability is made.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1326_qcv_physical_satisfiability_open.md",
+        "dag/research/quantum_computation_self_obstruction.md"
+      ]
+    },
+    {
+      "id": "APP-R-QCV-FRESH-MARK-SUPPLY-BRIDGE",
+      "inputs": [
+        "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY",
+        "QCV-NET-RATE-BACKLOG-DICHOTOMY"
+      ],
+      "output": "QCV-FRESH-MARK-SUPPLY-BRIDGE",
+      "status": "DERIVED_PROSE",
+      "mechanism": "A bridge definition only: no common theorem is proved, no map between the entropy-sink supply and the blank-tape supply of the UTM branch is defined, and that branch is not part of this checkout.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1327_qcv_fresh_mark_supply_bridge.md",
+        "dag/research/quantum_computation_self_obstruction.md",
+        "dag/research/quantum_computation_self_obstruction_axioms.txt"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-TC0-TAPE-CONTROL-TYPING",
+      "inputs": [
+        "PGW-CONTEXTS-PLUGGING-PROFILES",
+        "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT",
+        "PG-HISTORY-REPORT-CRITERION"
+      ],
+      "output": "AUTH-TC0-TAPE-CONTROL-TYPING",
+      "status": "COMPUTED",
+      "mechanism": "State the same four facts for a general tape alphabet and head position; the content contract is chosen to separate the two presentations, so the result exhibits a split fiber and does not derive one.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1328_auth_tc0_tape_control_typing.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-TC2-FINITE-TRANSITION-CONTRACT",
+      "inputs": [
+        "AUTH-TC0-TAPE-CONTROL-TYPING"
+      ],
+      "output": "AUTH-TC2-FINITE-TRANSITION-CONTRACT",
+      "status": "COMPUTED",
+      "mechanism": "Replace the enumerated carrier by an actual tape and head, and replace the contracts, which were written to produce the countertrace, by contracts stated independently of the table.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1329_auth_tc2_finite_transition_contract.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-DTM0-FINITE-RULE-MACHINE",
+      "inputs": [
+        "AUTH-TC2-FINITE-TRANSITION-CONTRACT",
+        "PG-GEN-REWRITING-COMMUTATION"
+      ],
+      "output": "AUTH-DTM0-FINITE-RULE-MACHINE",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Relate the model to Mathlib Turing.TM0 by restricting initial tapes to finite support, splitting write-and-move rules into two steps and merging halted with stuck, then prove step simulation; no universality, extensional property or reduction is established here.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1330_auth_dtm0_finite_rule_machine.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-FUEL-EXHAUSTION-TYPED-STOP",
+      "inputs": [
+        "PGW-RUNS-PAST-DECLARED-BOUNDS",
+        "AUTH-DTM0-FINITE-RULE-MACHINE"
+      ],
+      "output": "AUTH-FUEL-EXHAUSTION-TYPED-STOP",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Apply the same three-way typing to the declared-bound runs of the Genesis continuation: a run stopped at the guard or the bound stays unresolved, neither closed nor diverging, until a longer run or a proof decides it.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+      "inputs": [
+        "AUTH-DTM0-FINITE-RULE-MACHINE",
+        "PG-FREE-MONOID-NONISO"
+      ],
+      "output": "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+      "status": "DERIVED_LEAN",
+      "mechanism": "No converse (encoding after decoding), no source-byte format, no configuration or input encoding and no agreement between parsed code and execution is established; the token alphabet is the natural numbers, so passing to the two-symbol tape alphabet needs a prefix-code argument, since free monoids on alphabets of different sizes are not isomorphic.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1332_auth_dtm1_token_code_roundtrip.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-DTM2-INPUT-REQUEST-PLANNED",
+      "inputs": [
+        "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP"
+      ],
+      "output": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md",
+        "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+      "inputs": [
+        "TFQ-0330"
+      ],
+      "output": "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Instantiate the allowed classes with ComputablePred on a code type, take the halting problem as the source predicate and prove closure under the reduction; the declaration supplies none of the three.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-G5C-TERMINALIZATION-CONSEQUENCE",
+      "inputs": [
+        "TFQ-0330",
+        "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
+      ],
+      "output": "AUTH-G5C-TERMINALIZATION-CONSEQUENCE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The no-total-decider premise and the class membership of the acceptance bit are hypotheses that no program carrier supplies yet; the result does not say that every terminalizer must return unresolved, and it uses three terminal values where TFQ-0330 names five.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1335_auth_g5c_terminalization_consequence.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-G5B-CARRIER-ADMISSION-GATE",
+      "inputs": [
+        "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+        "AUTH-G5A-CLASS-RELATIVE-TRANSPORT"
+      ],
+      "output": "AUTH-G5B-CARRIER-ADMISSION-GATE",
+      "status": "DERIVED_PROSE",
+      "mechanism": "None of the eight fields is closed by the source: DTM0 and DTM1 are partial on syntax, execution and replay only, and the candidate inventory records admission as open.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1336_auth_g5b_carrier_admission_gate.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/computability_lift_admission.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-RICE-THEOREM-IMPORT",
+      "inputs": [
+        "AUTH-G5B-CARRIER-ADMISSION-GATE"
+      ],
+      "output": "AUTH-RICE-THEOREM-IMPORT",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+      "inputs": [
+        "AUTH-RICE-THEOREM-IMPORT",
+        "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+        "AUTH-G5B-CARRIER-ADMISSION-GATE"
+      ],
+      "output": "AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1338_auth_g5_global_computability_lift.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/proof_program.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTH-BLIND-DERIVATION-PROTOCOL",
+      "inputs": [
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
+      ],
+      "output": "AUTH-BLIND-DERIVATION-PROTOCOL",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Apply the protocol to the Genesis to computability derivation and keep recovered material out of any run meant to be blind until that run is sealed.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1339_auth_blind_derivation_protocol.md",
+        "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
+        "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-DTM0-RULE-MACHINE",
+      "inputs": [
+        "PG-GEN-REWRITING-COMMUTATION",
+        "PGW-CONTEXTS-PLUGGING-PROFILES"
+      ],
+      "output": "AUTHF-DTM0-RULE-MACHINE",
+      "status": "DERIVED_PROSE",
+      "mechanism": "The definition carries no input encoding, no unbounded-run semantics, no halting predicate and no comparison with Mathlib Turing.TM0; fuel exhaustion is a bounded-evaluator result and not non-halting.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1340_authf_dtm0_rule_machine.md",
+        "lean4/AuthIncompleteness/DirectTM.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-DTM0-HALT-IFF-STATE",
+      "inputs": [
+        "AUTHF-DTM0-RULE-MACHINE"
+      ],
+      "output": "AUTHF-DTM0-HALT-IFF-STATE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "This fixes what a declared halt means in DTM0; it is not a statement about halting of runs and selects no terminal policy.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1341_authf_dtm0_halt_iff_state.md",
+        "lean4/AuthIncompleteness/DirectTM.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-DTM0-FIXTURES",
+      "inputs": [
+        "AUTHF-DTM0-RULE-MACHINE",
+        "PGW-RUNS-PAST-DECLARED-BOUNDS"
+      ],
+      "output": "AUTHF-DTM0-FIXTURES",
+      "status": "COMPUTED",
+      "mechanism": "The self-loop result is exhaustion of one unit of fuel; no theorem says the loop never halts, and no fixture exceeds three rows.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1342_authf_dtm0_fixtures.md",
+        "lean4/AuthIncompleteness/DirectTM.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-DTM1-TOKEN-GRAMMAR",
+      "inputs": [
+        "AUTHF-DTM0-RULE-MACHINE",
+        "PGW-CONTEXTS-PLUGGING-PROFILES"
+      ],
+      "output": "AUTHF-DTM1-TOKEN-GRAMMAR",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Tokens are natural numbers, not bytes; there is no configuration or input encoding and no parser-to-execution agreement.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1343_authf_dtm1_token_grammar.md",
+        "lean4/AuthIncompleteness/TokenCode.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-DTM1-ROUNDTRIP",
+      "inputs": [
+        "AUTHF-DTM1-TOKEN-GRAMMAR"
+      ],
+      "output": "AUTHF-DTM1-ROUNDTRIP",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Only decode after encode is stated; injectivity of decode on arbitrary lists and encode after decode are not stated.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1344_authf_dtm1_roundtrip.md",
+        "lean4/AuthIncompleteness/TokenCode.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-DTM1-MALFORMED-CODES",
+      "inputs": [
+        "AUTHF-DTM1-TOKEN-GRAMMAR"
+      ],
+      "output": "AUTHF-DTM1-MALFORMED-CODES",
+      "status": "COMPUTED",
+      "mechanism": "Four named inputs only; no theorem characterizes the full domain of decodeMachine.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1345_authf_dtm1_malformed_codes.md",
+        "lean4/AuthIncompleteness/TokenCode.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-SELF-RECEIPT-TOY",
+      "inputs": [
+        "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER"
+      ],
+      "output": "AUTHF-SELF-RECEIPT-TOY",
+      "status": "DERIVED_LEAN",
+      "mechanism": "A toy instance of the split-fibre obstruction; it says nothing about receipts in general.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md",
+        "lean4/AuthIncompleteness/Core.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-CLASS-RELATIVE-TRANSPORT",
+      "inputs": [
+        "PGW-CONTEXT-DECISION-PROCEDURE"
+      ],
+      "output": "AUTHF-CLASS-RELATIVE-TRANSPORT",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The allowed classes and the source no-decider premise are supplied; no computability class, halting-style source theorem or Rice reduction is instantiated.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1347_authf_class_relative_transport.md",
+        "lean4/AuthIncompleteness/GlobalLift.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-MATHLIB-HALTING-BRIDGE",
+      "inputs": [
+        "AUTHF-CLASS-RELATIVE-TRANSPORT"
+      ],
+      "output": "AUTHF-MATHLIB-HALTING-BRIDGE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Halting is the only source predicate instantiated; no Rice instance, no extensional property of encoded DTM0 programs and no computable reduction from DTM0 to Nat.Partrec.Code is given.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md",
+        "lean4/AuthIncompleteness/MathlibBridge.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-TERMINAL-ACCEPT-BIT",
+      "inputs": [
+        "AUTHF-CLASS-RELATIVE-TRANSPORT",
+        "TFQ-0330"
+      ],
+      "output": "AUTHF-TERMINAL-ACCEPT-BIT",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The no-total-decider premise and the membership of the acceptance bit in the allowed class are hypotheses; neither is discharged.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1349_authf_terminal_accept_bit.md",
+        "lean4/AuthIncompleteness/Terminal.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-TERMINAL-CLOSED-TWO-SIDED",
+      "inputs": [
+        "AUTHF-TERMINAL-ACCEPT-BIT"
+      ],
+      "output": "AUTHF-TERMINAL-CLOSED-TWO-SIDED",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The result leaves three options (an unsound acceptance, an unsound rejection, or an unresolved case) and does not say any of them must occur for a particular predicate.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1350_authf_terminal_closed_two_sided.md",
+        "lean4/AuthIncompleteness/Terminal.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-TERMINAL-BOOL-FIXTURE",
+      "inputs": [
+        "AUTHF-TERMINAL-CLOSED-TWO-SIDED"
+      ],
+      "output": "AUTHF-TERMINAL-BOOL-FIXTURE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "A decidable one-bit predicate only; it shows closed terminalization is not forbidden without a no-decider premise.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1351_authf_terminal_bool_fixture.md",
+        "lean4/AuthIncompleteness/Terminal.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-TAPE-CONTROL-REPORTS",
+      "inputs": [
+        "AUTHF-DTM0-RULE-MACHINE"
+      ],
+      "output": "AUTHF-TAPE-CONTROL-REPORTS",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The contract and adapters are supplied examples; the model is not the full Turing-machine model.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md",
+        "lean4/AuthIncompleteness/TapeControl.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-HALT-NOT-POLICY",
+      "inputs": [
+        "AUTHF-DTM0-RULE-MACHINE"
+      ],
+      "output": "AUTHF-HALT-NOT-POLICY",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Existence of two policies only; no policy is selected or justified.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1353_authf_halt_not_policy.md",
+        "lean4/AuthIncompleteness/DirectTM.lean",
+        "lean4/AuthIncompleteness/TapeControl.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-TRANSITION-INVARIANTS",
+      "inputs": [
+        "AUTHF-DTM0-RULE-MACHINE"
+      ],
+      "output": "AUTHF-TRANSITION-INVARIANTS",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Two supplied Boolean contracts on one finite table; nothing is said about transition systems in general.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1354_authf_transition_invariants.md",
+        "lean4/AuthIncompleteness/TapeTransition.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-TRANSITION-ADEQUACY",
+      "inputs": [
+        "AUTHF-TRANSITION-INVARIANTS"
+      ],
+      "output": "AUTHF-TRANSITION-ADEQUACY",
+      "status": "DERIVED_LEAN",
+      "mechanism": "A finite adequacy example; whether any report is adequate for a semantic property of arbitrary programs is not addressed.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1355_authf_transition_adequacy.md",
+        "lean4/AuthIncompleteness/TapeTransition.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-REPLAY-BOUND-SUBMISSION",
+      "inputs": [
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
+      ],
+      "output": "AUTHF-REPLAY-BOUND-SUBMISSION",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Equality is structural equality of a finite record, not a digest; verifier soundness and custody are not modelled.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1356_authf_replay_bound_submission.md",
+        "lean4/AuthIncompleteness/Replay.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-REPLAY-SUBSTITUTIONS",
+      "inputs": [
+        "AUTHF-REPLAY-BOUND-SUBMISSION"
+      ],
+      "output": "AUTHF-REPLAY-SUBSTITUTIONS",
+      "status": "COMPUTED",
+      "mechanism": "Six rfl facts on five named submissions; the model does not prove that every substitution is caught.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md",
+        "lean4/AuthIncompleteness/Replay.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-LOGICAL-EXTERNALITY",
+      "inputs": [
+        "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER"
+      ],
+      "output": "AUTHF-LOGICAL-EXTERNALITY",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Site is an unused finite label; the statement carries no custody, security or independence content.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1358_authf_logical_externality.md",
+        "lean4/AuthIncompleteness/Externality.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-PD-EXTENSION-NONUNIQUE",
+      "inputs": [
+        "TFQ-0332"
+      ],
+      "output": "AUTHF-PD-EXTENSION-NONUNIQUE",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The analogue is not the J011 interface and no naturality statement about all primitive differences follows.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1359_authf_pd_extension_nonunique.md",
+        "lean4/AuthIncompleteness/PDModels.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-PD-QUOTIENT-BRIDGE",
+      "inputs": [
+        "TFQ-0332"
+      ],
+      "output": "AUTHF-PD-QUOTIENT-BRIDGE",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Not built here: the file imports J011_minimal_publication, whose source is absent from this repository, so the recorded proof is unreplayed.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1360_authf_pd_quotient_bridge.md",
+        "lean4/AuthIncompleteness/PDBridge.lean"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-REPLAY-PACKET-PYTHON",
+      "inputs": [
+        "AUTHF-TRANSITION-ADEQUACY",
+        "TFQ-0331"
+      ],
+      "output": "AUTHF-REPLAY-PACKET-PYTHON",
+      "status": "COMPUTED",
+      "mechanism": "Evaluator correspondence to the Lean model, SHA-256 collision resistance, runtime integrity and custody remain assumptions; the PowerShell runtime pin is not reproduced and the formal replay uses Lean v4.35.0 instead of the recorded v4.32.2.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1361_authf_replay_packet_python.md",
+        "code/python/src/qm/auth_incompleteness/replay_packet.py"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-CARRIER-ADMISSION-GATE",
+      "inputs": [
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
+      ],
+      "output": "AUTHF-CARRIER-ADMISSION-GATE",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md",
+        "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json",
+        "code/python/src/qm/auth_incompleteness/carrier_candidates.py"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-RICE-GODEL-OPEN",
+      "inputs": [
+        "PGW-CONTEXT-DECISION-PROCEDURE",
+        "AUTHF-CLASS-RELATIVE-TRANSPORT"
+      ],
+      "output": "AUTHF-RICE-GODEL-OPEN",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Instantiate the transport for a nontrivial extensional property of encoded programs with Mathlib's ComputablePred.rice and a computable reduction from the DTM0 carrier before any such claim.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md",
+        "papers/foundations/authorization_incompleteness/evidence/original/formal/README.md"
+      ]
+    },
+    {
+      "id": "APP-R-AUTHF-DTM0-SIMULATION-OPEN",
+      "inputs": [
+        "AUTHF-DTM0-RULE-MACHINE",
+        "PGW-RUNS-PAST-DECLARED-BOUNDS"
+      ],
+      "output": "AUTHF-DTM0-SIMULATION-OPEN",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "A faithful comparison needs a finite-support tape restriction, the stay move split into Mathlib's move-or-write statements, and a halting predicate such as exists fuel with execute returning halted.",
+      "source": [
+        "dag/derivations/29_computation/tfq_1364_authf_dtm0_simulation_open.md",
+        "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json"
       ]
     }
   ]

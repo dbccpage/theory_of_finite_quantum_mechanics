@@ -78,6 +78,7 @@ def build_ledger() -> str:
         "FERMION_SIGN",
         "TENSOR_COMPOSITION",
         "MAJORANA",
+        "COMPUTATION",
     ]
 
     records_by_stage: dict[str, list[dict]] = {s: [] for s in stages_order}
@@ -154,6 +155,7 @@ def build_ledger() -> str:
             "MUTUALLY_UNBIASED_BASES": "Exact projector MUBs, prime-power constructions, MUB(6) non-existence fences",
             "FERMION_SIGN": "Signed-graph switching normal form, meron character cancellation on flip orbits",
             "TENSOR_COMPOSITION": "Tomographic composite coordinates, operational effect cones, finite POVMs",
+            "COMPUTATION": "Separated marks to word rewriting, TM0 simulation, halting undecidability, authorization incompleteness and quantum-computation self-obstruction",
             "MAJORANA": "F2 parity schedules, residual trichotomy, syndrome completion, tetron carriers",
         }
         lines.append(f"| §{idx:02d} | `{stage}` | {len(recs)} | {desc_map.get(stage, 'Specialized domain')} | [`{first_id}`..`{last_id}`] |")
