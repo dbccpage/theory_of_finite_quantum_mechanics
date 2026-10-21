@@ -4,7 +4,13 @@
 
 **Status:** Regional Firewall Discharged via Route C (The Fourier Landing Bypass); `NoCompleteMUB6` unconditionally mechanized in Lean 4 with zero non-standard axioms.
 
+> **Correction 2026-10-21.** The statement just above is withdrawn; see `superseded_notice.md`, `../mub6.md` sections 3 and 4 and `mub6_review_and_next_derivation.md`. `no_complete_mub6_via_route_c` takes the landing hypothesis `h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily` as a premise, the cover margins it cites (37249/90000, 12133/30000) are literal fixture values rather than computed ones, and gap G1 is OPEN. The original text is kept unchanged. Separately, OpenAI's published Lean proof of N(6) <= 5 (which implies that no seven MUBs exist) is a different, imported argument; see `../documentation/mub6_master_classification_and_openai_comparative_synthesis.md` (corrected 2026-10-21) and `../documentation/openai_mub6_le5_external_import.md`. It neither rescues Route C nor shows N(6) = 3.
+
+
 The frontier diagnostics below represent the foundational rational computations and conditional Lean interfaces established prior to the discharge of the full 7-basis non-existence problem via Route C (`RouteCFourierLandingBypass.lean`). While earlier regional studies operated under the regional firewall, the complete 7-basis MUB(6) non-existence (`NoCompleteMUB6`) is now unconditionally derived.
+
+> **Correction 2026-10-21.** The statement just above is withdrawn; see `superseded_notice.md`, `../mub6.md` sections 3 and 4 and `mub6_review_and_next_derivation.md`. `no_complete_mub6_via_route_c` takes the landing hypothesis `h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily` as a premise, the cover margins it cites (37249/90000, 12133/30000) are literal fixture values rather than computed ones, and gap G1 is OPEN. The original text is kept unchanged. Separately, OpenAI's published Lean proof of N(6) <= 5 (which implies that no seven MUBs exist) is a different, imported argument; see `../documentation/mub6_master_classification_and_openai_comparative_synthesis.md` (corrected 2026-10-21) and `../documentation/openai_mub6_le5_external_import.md`. It neither rescues Route C nor shows N(6) = 3.
+
 
 ## Supported scope
 

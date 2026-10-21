@@ -1,3 +1,13 @@
+//! NOT_A_CERTIFICATE: evaluates known roots only; no cover (corrected 2026-10-21).
+//!
+//! Despite its file name this module does not produce a cover of the ray torus T^5. The evaluation runs over
+//! the 120 *known* root boxes loaded from the replay file; no complement leaves are generated and
+//! `excluded_leaves` is 0. Every receipt constructor sets `verified_sound: true` as a literal. The dimension-3
+//! "negative control" `verify_dim3_f3_unbiased_ray_pair_exists` compares the literal `3 == 3`. The tests
+//! return silently when the replay JSON is missing. The radius cover uses an asserted parameter sensitivity
+//! (`certified_parameter_sensitivity_bound` = 8000) that is not computed. Only the exact interval
+//! pair-gap computation over the 120 boxes is genuine, and only for those boxes. Ray completeness at the
+//! special point is open, and N(6)=3 remains open. Authority effect: None.
 
 use num_rational::BigRational;
 use num_traits::Zero;

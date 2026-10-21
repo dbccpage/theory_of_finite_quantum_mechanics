@@ -4,13 +4,54 @@
 > **Mandatory Epistemic Firewall**:
 > **Strict Constitutional Governance**: Zero custom axioms in Lean 4; zero floating-point arithmetic in core verification; local hermeticity (PRIME_00).
 
+> **Corrected 2026-10-21.** The comparison sections of this document (Sections 1, 2 and 3 and the
+> comparison bullet of Section 6) misdescribed OpenAI's work. The earlier text said that OpenAI used
+> a "floating-point semidefinite program (SDP) relaxation", "grid point sampling and local gradient
+> ascent", "heuristic box-pruning", and that the Lean formalization "terminated with `sorry` at the
+> critical reduction lemma" in a "single monolithic module". None of that matches the sources. Those
+> sections are rewritten below from the published papers, the published Lean tree and two independent
+> reviews. Also corrected: Section 3 listed `verify_all_receipts.py` as "12/12 passing"; that script
+> expects 11 receipts and checks digests, schemas and the zero-float policy, not mathematical
+> certificates. Section 3 listed "Exit code 0 via `lake build Mub6`"; no such build is recorded
+> (`mub6.md` section 6). The Section 4 Branch 2 wording "Certified across 56 global cells" was
+> already withdrawn on 2026-10-16 (see `../research/superseded_notice.md`) and is marked in place.
+> Sources, all opened on 2026-10-21:
+> - OpenAI release: <https://github.com/openai/math> (preprints directory and `lean/`), commit
+>   `1581d4cbdd69a0faf34b2089614fe2a814316a6a`;
+> - main paper (Theorem 1.1, N(6) = 3, computer-assisted):
+>   <https://github.com/openai/math/tree/main/preprints/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026>;
+> - companion paper (exact Fourier certificates, no seven MUBs, N(6) <= 5):
+>   <https://github.com/openai/math/tree/main/preprints/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026>;
+> - Lean scope note: <https://raw.githubusercontent.com/openai/math/main/lean/docs/266.md>;
+> - Lean challenge: <https://raw.githubusercontent.com/openai/math/main/lean/ComparatorChallenges/MUBSix.lean>;
+> - Lean solution: <https://github.com/openai/math/tree/main/lean/OAI/Analysis/MutuallyUnbiased>;
+> - independent audit: <https://github.com/JJardine919/openai-math-audit>;
+> - DeepMind `formal-conjectures` issue 6918: <https://github.com/google-deepmind/formal-conjectures/issues/6918>;
+> - clean-room re-runs: <https://github.com/maximusrufus/mub6-certified-rerun> (outward-rounded interval
+>   arithmetic) and a binary64 re-implementation by Jaswal (Zenodo).
+
 ---
 
 ## 1. Executive Summary & Epistemic Demarcation
 
 This chapter provides a rigorous comparative synthesis between two divergent approaches to the mutually unbiased bases problem in dimension six ($\text{MUB}(6)$):
 1. **Omega Engine Derivation Architecture**: A constructive, exact rational program executed across sovereign compiled Rust engines (`omega_mub`), machine-checked Lean 4 modules (`lean4/research_programs/mub6/`), and content-addressed cryptographic receipts.
-2. **OpenAI Family 266 Heuristic Search**: An empirical floating-point branch-and-bound optimization pipeline implemented in C++ (`binary64` floating point on Intel Xeon hardware), paired with an incomplete Lean 4 formalization stub (`MUBSix.lean`) that halts at an unproven `sorry`.
+2. **OpenAI Family 266** (corrected 2026-10-21): two papers and one Lean tree.
+   - The main paper (Theorem 1.1) argues that there are no four pairwise mutually unbiased bases in
+     $\mathbb{C}^6$, hence $N(6)=3$. The argument is a classification-free certified discretization:
+     a seed cover of the complex Hadamard matrices, then Stages A, B and C, then a clique search. It is
+     evaluated in `binary64` arithmetic by seven C++ files. The run is documented in the paper, but the
+     code and the run archive are not in the public repository (the `verification/` tree returns HTTP 404).
+     Its arithmetic and compiler semantics are stated as assumptions.
+   - The companion paper proves, with exact integer and rational certificates, the
+     Matolcsi-Ruzsa-Weiner Fourier-vanishing statement for every order-6 complex Hadamard matrix outside
+     Tao's cubic class, and that seven MUBs do not exist, hence $N(6)\le 5$ (via Weiner's six-to-seven
+     completion theorem).
+   - The Lean tree (`OAI.MUB6.fourier_and_family_bound`) formalizes only the companion's results, that is
+     the Fourier vanishing and the bound of at most five. Its own scope note says the selected statement
+     "does not establish the paper's upper bound of three". The `sorry` in `ComparatorChallenges/MUBSix.lean`
+     is the comparator challenge stub; the proof is `OAI.Analysis.MutuallyUnbiased.Main`, spread over about 28
+     subdirectories.
 
 
 ---
@@ -21,18 +62,33 @@ The primary structural divergence between the two programs lies in the arithmeti
 
 | Dimension | Omega Engine Architecture | OpenAI Family 266 |
 | :--- | :--- | :--- |
-| **Arithmetic Field** | Exact rationals $\mathbb{Q}$ and cyclotomic extensions $\mathbb{Q}(\zeta_{24})$ | Standard IEEE 754 `binary64` floating point |
-| **Precision Model** | Infinite-precision arbitrary size integers (`BigInt` / `BigRational`) | 53-bit mantissa with rounding error accumulation |
-| **Witness Verification** | Certificate checking with algebraic defect $\equiv 0$ | Numerical threshold testing ($\|\Delta\| < 10^{-6}$) |
-| **Positivstellensatz Solver** | Rational Stengle SOS solver over defining ideal $I_{55} \subset \mathbb{Q}[X]$ | Floating-point semidefinite program (SDP) relaxation |
-| **Curvature Margin** | Minimum strictly positive rational margin $\ge 37249/90000 > 0$ | Heuristic floating-point lower bounds subject to drift |
-| **Domain Coverage** | Exhaustive 3D dyadic bisection over $\mathbb{T}^3 \setminus U_\delta(\text{seeds})$ | Grid point sampling and local gradient ascent |
+| **Arithmetic Field** | Exact rationals $\mathbb{Q}$ and cyclotomic extensions $\mathbb{Q}(\zeta_{24})$ in the exact modules. The legacy cell receipts carry literal margins, see the 2026-10-21 notes. | Main paper: IEEE 754 `binary64`, round to nearest, no contraction or fast-math, GCC 13.3.0 `-O3 -march=native -ffp-contract=off`, with hand-proved one-sided error bounds (its Appendix A). Companion: exact integers and rationals. |
+| **Architecture** | Reduction chain of Lean equivalences to a 320/386-coordinate quadratic system, plus family-specific exclusions. No quartet domain has been excluded. | Seed cover (249,878 nine-phase balls of radius 0.032 from 151,744,086 bin pairs, Lemmas 2.4-2.10), Stage A (a 2+4 block split with a polar comparison and a cover of $U(2)$), Stage B (tangent refinement), Stage C (vector balls, O- and U-graphs, an exact bitset clique search). |
+| **Classification used** | Classification-dependent routes (open gap G1) and a classification-free route that is open. | None. The argument covers every complex Hadamard matrix and uses no Hadamard-family classification. |
+| **Witness Verification** | Exact-rational reflection for the soundness lemmas; no completed exclusion run. | Rejections carry proved necessary conditions with explicit safety margins. The recorded run: 100 native invocations, 4,470 s wall time, completed 4 October 2026. The code and archive are unreleased. |
+| **Positivstellensatz Solver** | The R7 script does not build Stengle multipliers (status `NOT_A_CERTIFICATE`). | Not used. There is no SDP and no sum-of-squares step in the main paper. The companion uses an exact mixed-moment Gram certificate. |
+| **Lean content** | Reductions and soundness lemmas; no unconditional bound on the number of MUBs. | Fourier vanishing outside Tao's class and $N(6)\le 5$ only; the bound of three is not formalized. |
+| **Independent checks** | Local replay of the companion's `verify.py` (exit 0). | Audit by JJardine919; a re-implementation of the $\le 5$ certificate in DeepMind `formal-conjectures` issue 6918 (rank tables 8871 909 897 and 46041 3429 2767 match); two clean-room reruns of the main search agree on the verdict but remain floating point. |
 
-### 2.1 The Hazard of Floating-Point Branch-and-Bound in Near-Singular Algebraic Varieties
+### 2.1 What is actually weak in OpenAI's main argument (corrected 2026-10-21)
+
+The earlier text of this section attributed heuristic pruning to OpenAI. The pruning in the paper is by
+proved necessary conditions. The real weaknesses of the bound $N(6)=3$ are different:
+- The code (`covout.cpp`, `atlas.cpp`, `stageB.cpp`, `stageC.cpp` and the others) and the run archive are
+  not released; the SHA-256 hashes in the paper's Table 2 cannot be checked.
+- Binary64 and compiler semantics (including the lowering of `pow(...,2)`) are assumptions, supported only
+  by probes and a disassembly.
+- The lemma chain of Sections 2 to 6 is on paper only. It is not formalized; the Lean tree proves only $N(6)\le 5$.
+- The paper says the evidence packet for an earlier execution (7 September 2026) was not recovered.
+
+The remainder of this section is the repository's own original argument about floating-point hazards. It
+does not describe OpenAI's pipeline.
+
+#### 2.1.1 The hazard of floating-point branch-and-bound in near-singular algebraic varieties
 In dimension 6, the complex Hadamard variety $\mathcal{H}_6$ exhibits singular cusps, deltoid boundaries, and high-codimension intersection loci. When an empirical branch-and-bound algorithm evaluates distance to the variety using double-precision floating-point arithmetic:
 - Round-off error introduces artificial non-zero residuals on true roots, potentially pruning valid branch solutions prematurely.
 - Near-singular geometry (such as the three cusps of the Szöllősi deltoid at $z \in \{3, -1 \pm 2i\}$) degrades matrix condition numbers beyond $10^8$, creating false-positive or false-negative feasibility claims.
-- The OpenAI Family 266 search relies on heuristic box-pruning with floating-point tolerances. Without an exact Lipschitz certificate computed in verified arithmetic, such pruning cannot distinguish between a narrow algebraic corridor and a genuine empty-set obstruction.
+- (Corrected 2026-10-21: the original bullet here claimed that OpenAI relies on heuristic box-pruning. It does not; see Section 2.1.) The general point stands for any search whose pruning tolerance is not tied to an exact Lipschitz certificate in verified arithmetic: such pruning cannot distinguish a narrow algebraic corridor from a genuine empty-set obstruction. OpenAI avoids this by proving its pruning lemmas by hand with explicit safety margins, under stated arithmetic assumptions.
 
 ### 2.2 Exact Rational Arithmetic in Omega Engine
 Omega Engine executes all algebraic manipulations strictly over $\mathbb{Q}$ and discrete cyclotomic roots:
@@ -42,36 +98,56 @@ Omega Engine executes all algebraic manipulations strictly over $\mathbb{Q}$ and
 
 ---
 
-## 3. Formalization Audit: 58 Lean 4 Modules vs. OpenAI's `sorry`
+## 3. Formalization Audit (corrected 2026-10-21)
 
-Formalization rigor separates machine-checked proof from speculative prose.
+Formalization rigor separates machine-checked proof from speculative prose. The earlier version of this
+section titled the comparison "58 Lean 4 Modules vs. OpenAI's `sorry`". That title and the diagram under
+it were wrong about OpenAI and overstated the repository's estate.
 
 ```text
-Formalization Architecture Comparison:
+Formalization Architecture Comparison (corrected 2026-10-21):
 ========================================================================
 Omega Engine MUB(6) Formal Estate:
-  ├── 58 compiling Lean 4 modules under lean4/research_programs/mub6/
-  ├── Axiom whitelist: Strictly [propext, Quot.sound] (or standard logic)
-  ├── Custom axioms: 0
-  ├── Incomplete proofs (`sorry` / `admit`): 0
-  ├── Compiler status: Exit code 0 via `lake build Mub6`
-  └── End-to-end receipt validation: 12/12 passing via verify_all_receipts.py
+  ├── A large set of lake roots under lean4/ (see the frontier inventory); no sorry/admit/native_decide
+  ├── Reductions and soundness lemmas. Some legacy interfaces use `opaque` declarations
+  ├── No unconditional bound on the number of MUBs of C^6 from the repository's own routes
+  ├── Build status: no MUB-specific 4.35 build receipt; `lake build Mub6` is not recorded (mub6.md section 6)
+  └── Receipt scripts: verify_all_receipts.py checks 11 receipts for digests, schemas and zero floats.
+      It does not check mathematical certificates.
 
-OpenAI Family 266 Estate:
-  ├── Single monolithic module (`MUBSix.lean`)
-  ├── Axiom dependencies: Unanalyzed
-  ├── Terminal theorem: `sorry` at final branch step
-  └── Status: Incomplete formalization; numerical search remains unmechanized
+OpenAI Family 266 Estate (Lean, https://github.com/openai/math/tree/main/lean):
+  ├── Challenge stub: ComparatorChallenges/MUBSix.lean (its `sorry` is the comparator challenge stub)
+  ├── Solution: OAI.Analysis.MutuallyUnbiased.Main, about 28 subdirectories, 3381 Lean files
+  ├── Main statement: OAI.MUB6.fourier_and_family_bound
+  │     (Fourier vanishing outside Tao's class, and every family of MUBs in C^6 has at most 5 members)
+  ├── Permitted axioms: propext, Quot.sound, Classical.choice only (no Lean.ofReduceBool, no native_decide)
+  ├── NOT formalized: the computer-assisted exclusion of four bases (N(6) = 3). Its scope note
+  │     (lean/docs/266.md) says so explicitly.
+  └── Review field in formalization.yaml: `unchecked`; no MUB6 entry
 ========================================================================
 ```
 
-### 3.1 Analysis of OpenAI's Formalization Failure
-In Family 266, OpenAI attempted to mechanize their $N(6)=3$ conjecture in Lean 4. However, bridging a numerical C++ branch-and-bound search into an interactive theorem prover requires formalizing:
-1. Exact interval arithmetic algorithms inside Lean 4.
-2. A formalized branch-and-bound tree certificate verifier.
-3. Formal proofs of the algebraic defining equations for $\mathcal{H}_6$.
-
-Faced with the computational cost of reflecting thousands of floating-point bounding boxes into Lean 4 without a verified interval kernel, the OpenAI implementation terminated with `sorry` at the critical reduction lemma. Consequently, the Family 266 formal artifact provides no verified guarantee.
+### 3.1 What OpenAI's Lean does and does not prove (corrected 2026-10-21)
+The earlier text of this subsection said that OpenAI "terminated with `sorry` at the critical reduction
+lemma" in a "single monolithic module". That is incorrect.
+- The Lean statement is a *weaker* result than the main paper: `no_seven_mutually_unbiased_bases` (an exact
+  mixed-moment Gram certificate), Weiner's completion `six_extend_to_seven`, and hence
+  `family_size_le_five` and `N6_le_five`.
+- The architecture of the main paper (seed cover, Stages A, B and C, clique search) is not formalized.
+  What remains unverified is the unreleased code, the binary64 and compiler assumptions, the Appendix A
+  rounding bounds, and the Sections 2 to 6 lemmas (polar comparison, $U(2)$ cover, Taylor remainders,
+  ellipsoid containment, tangent refinement, graph tests) as Lean statements.
+- Independent checks exist. The audit at <https://github.com/JJardine919/openai-math-audit> found the
+  released materials incomplete but no error in the lemma chain it could inspect. The DeepMind issue
+  <https://github.com/google-deepmind/formal-conjectures/issues/6918> re-implemented the $\le 5$
+  certificate exactly and matched its table sizes and ranks. Two clean-room reruns of the main search
+  (<https://github.com/maximusrufus/mub6-certified-rerun> and a binary64 rerun by Jaswal) reach the same
+  verdict, but both use floating-point interval arithmetic and neither is formalized.
+- Consequently the statement "N(6) <= 5 is kernel-checked" is true of OpenAI's Lean tree, not of anything
+  built in this repository. The bound is recorded here as an external, imported theorem (exact statement,
+  source URL, commit and license in `openai_mub6_le5_external_import.md`); `lean4/MubOpenAIBridge.lean`
+  (build pending) states the repository-type consequence conditionally on it. The statement "N(6) = 3" is
+  not established by any kernel-checked artefact and remains an external claim.
 
 ### 3.2 Omega Engine's Hermetic Mechanization
 In contrast, Omega Engine separated continuous parameter spaces into finite, algebraically certifiable domains:
@@ -129,7 +205,7 @@ The Master Classification theorem decomposes every dephased complex Hadamard mat
 
 #### Branch 2: Szöllősi Deltoid Family $B_6(\theta)$
 - **Parametrization**: 1-parameter non-affine family on the deltoid curve $\theta \in [0, 2\pi)$.
-- **Obstruction**: Certified across 56 global cells in `Conjecture3GlobalClosure.lean` and `TargetA2DeltoidCusp.lean`. The three singular deltoid cusps are desingularized via algebraic blowups, verifying a strictly positive net curvature margin:
+- **Obstruction** [withdrawn 2026-10-16, see `../research/superseded_notice.md`; the cell margins are literals and Conjecture 3 is OPEN; wording kept below for the record]: Certified across 56 global cells in `Conjecture3GlobalClosure.lean` and `TargetA2DeltoidCusp.lean`. The three singular deltoid cusps are desingularized via algebraic blowups, verifying a strictly positive net curvature margin:
 $$\epsilon_{\text{net}} = \frac{37249}{90000} - \frac{85}{9} \cdot \frac{1}{1000} = \frac{12133}{30000} > 0$$
 
 #### Branch 3: Tao Isolated Confluence $S_6 = F_3 \otimes F_2$
@@ -174,7 +250,7 @@ In accordance with our constitutional claim hygiene directives, the conclusions 
 
 ### 1. What This Supports
 - Supports the existence of hypothesis-shaped Lean rewrites in `MasterClassification.lean`, and the R7 refusal on one Karlsson sample.
-- Supports a comparison with the OpenAI Family 266 `sorry`. That comparison is not a certificate.
+- Supports a descriptive comparison with the OpenAI Family 266 release as corrected on 2026-10-21 (the earlier "`sorry`" comparison was wrong: the `sorry` is the comparator challenge stub, and OpenAI's Lean proves $N(6)\le 5$). That comparison is not a certificate.
 
 ### 2. What This Does Not Support
 - Does NOT support the unconstrained universal claim $\text{MUB}(6) = 3$ or $\text{MUB}(6) \le 3$ for arbitrary unclassified matrices outside the declared moduli varieties and certified domains.
