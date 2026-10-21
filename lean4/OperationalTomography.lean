@@ -6,7 +6,7 @@ import Mathlib.Tactic.Ring
 import Mathlib.Tactic.NormNum
 
 /-!
-Field-neutral operational tomography. Vector spaces, calibrated preparations,
+A field-neutral Schur-type reformulation of operational tomography. Vector spaces, calibrated preparations,
 observation descent, and irreducibility are supplied hypotheses. None is inferred
 from primitive difference. No quantum carrier is used in this module.
 -/
@@ -145,8 +145,8 @@ theorem kernel_invariant (M : V →ₗ[K] C) (ops : G → V →ₗ[K] V)
   change M (ops g x) = 0
   rw [descent, show M x = 0 from hx, map_zero]
 
-/-- This is a sufficient additional operational principle, not a consequence of
-calibration, positivity, no signalling, or primitive difference. -/
+/-- Schur-type kernel argument for a fixed operation family. Its hypotheses are
+not consequences of calibration, positivity, no signalling, or primitive difference. -/
 theorem tomography_of_irreducible (M : V →ₗ[K] C) (ops : G → V →ₗ[K] V)
     (localOps : G → C →ₗ[K] C)
     (descent : ∀ g x, M (ops g x) = localOps g (M x))
@@ -268,6 +268,66 @@ theorem protected_question_cannot_descend :
   norm_num [doubled] at h1 h2
   exact one_ne_zero (h1.symm.trans h2)
 
+/-- Identity observation supplies a nonvacuous calibrated model. -/
+def identityCalibration : Calibrated K V V where
+  observe := LinearMap.id
+  prepare := LinearMap.id
+  calibration := fun _ => rfl
+
+abbrev PairIndex := Fin 2 × Fin 2
+abbrev DoubledIndex := Fin 2 × PairIndex
+abbrev PairCoordinates := PairIndex → ℚ
+abbrev DoubledCoordinates := DoubledIndex → ℚ
+
+/-- Two independent classical binary coordinates, with an unobserved block bit. -/
+def doubledProduct : Calibrated ℚ DoubledCoordinates PairCoordinates where
+  observe := {
+    toFun := fun x i => x (0,i) + x (1,i)
+    map_add' := by intros; ext i; simp; ring
+    map_smul' := by intros; ext i; simp; ring }
+  prepare := {
+    toFun := fun c bi => (1/2 : ℚ) * c bi.2
+    map_add' := by intros; ext bi; simp; ring
+    map_smul' := by intros; ext bi; simp; ring }
+  calibration := by
+    intro c; ext i
+    change (1/2 : ℚ) * c i + (1/2 : ℚ) * c i = c i
+    ring
+
+/-- The same local product matrix unit acts in each hidden block. -/
+def doubledProductOps (ij : PairIndex × PairIndex) :
+    DoubledCoordinates →ₗ[ℚ] DoubledCoordinates where
+  toFun x bk := if bk.2 = ij.1 then x (bk.1,ij.2) else 0
+  map_add' x y := by ext bk; by_cases h : bk.2 = ij.1 <;> simp [h]
+  map_smul' a x := by ext bk; by_cases h : bk.2 = ij.1 <;> simp [h]
+
+theorem doubled_product_calibration (c : PairCoordinates) :
+    doubledProduct.observe (doubledProduct.prepare c) = c := doubledProduct.calibration c
+
+theorem doubled_product_descent (ij : PairIndex × PairIndex) (x : DoubledCoordinates) :
+    doubledProduct.observe (doubledProductOps ij x) = matrixUnit ij.1 ij.2 (doubledProduct.observe x) := by
+  ext k
+  by_cases h : k = ij.1 <;>
+    simp [doubledProduct, doubledProductOps, matrixUnit, LinearMap.pi_apply,
+      LinearMap.add_apply, LinearMap.proj_apply, h]
+
+def pointState (i : DoubledIndex) : DoubledCoordinates := fun k => if k = i then 1 else 0
+
+theorem doubled_product_equal_observations :
+    doubledProduct.observe (pointState (0,(0,0))) = doubledProduct.observe (pointState (1,(0,0))) := by
+  ext k
+  simp [doubledProduct, pointState, LinearMap.pi_apply, LinearMap.add_apply, LinearMap.proj_apply]
+
+theorem doubled_product_not_injective : ¬ Function.Injective doubledProduct.observe := by
+  intro h
+  have hx := congrFun (h doubled_product_equal_observations) (0,(0,0))
+  norm_num [pointState] at hx
+
+theorem doubled_product_not_irreducible : ¬ Irreducible doubledProductOps := by
+  intro h
+  exact doubled_product_not_injective (calibrated_tomography doubledProduct
+    doubledProductOps (fun ij => matrixUnit ij.1 ij.2) doubled_product_descent h)
+
 end OperationalTomography
 
 #print axioms OperationalTomography.Calibrated.dimension_defect
@@ -289,3 +349,8 @@ end OperationalTomography
 #print axioms OperationalTomography.classical_filter_subnormalized
 
 #print axioms OperationalTomography.descent_of_test_pullback
+
+#print axioms OperationalTomography.doubled_product_calibration
+#print axioms OperationalTomography.doubled_product_descent
+#print axioms OperationalTomography.doubled_product_not_injective
+#print axioms OperationalTomography.doubled_product_not_irreducible

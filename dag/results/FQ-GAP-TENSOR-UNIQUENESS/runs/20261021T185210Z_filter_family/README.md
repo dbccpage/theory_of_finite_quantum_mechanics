@@ -1,9 +1,10 @@
-# Outcome filters and the product tomography boundary
+# Construct outcome filters under stated closure rules and expose the tomography boundary
 
 Base: `lean-v4-35` at `3b50a1a980fa8535590356a65ff82b1d682dac29` (PR 144).
 AuthorityEffect: None. The canonical derivation DAG is unchanged.
 
-Selective testing followed by preparation constructs positive, subnormalized
+Under the stated closure rules, selective testing followed by preparation
+constructs positive, subnormalized
 rank-one filters. On a generating rational positive cone, bounded globally
 separating effects and available normalized preparations give an admitted
 irreducible reset family. Product-test resets also have an explicit pullback
@@ -11,6 +12,26 @@ formula, but their global irreducibility is equivalent to tomography. For global
 resets, product-observation descent already contains the missing tomography
 claim. These results identify which parts follow from operational closure and
 which part still requires an additional principle.
+
+## Claim triple
+
+1. **Construction under stated closure rules.** Available normalized positive
+   preparations, bounded globally separating effects, a generating rational cone,
+   and sequential admission construct a family with the explicit conjunction
+   **admitted ∧ positive/subnormalized ∧ irreducible** (`normalized_reset_family`).
+   These are supplied operational premises, not consequences of primitive difference.
+2. **Product closure without irreducibility.** Product-test resets descend through
+   calibrated observation, but can retain a nonzero hidden kernel. Concrete
+   orthant witnesses satisfy positivity and admission while irreducibility fails.
+3. **Tomography boundary.** Irreducibility of calibrated product resets, and descent
+   of all globally separating resets with visible normalized output, are each
+   equivalent to injectivity. They reformulate the missing separation condition.
+
+The Lean `orthant` and `canonicalAdmission` constructions instantiate the ordered
+carrier and closure rules. `orthant_reset_family` discharges their hypotheses.
+`product_reset_boundary`, `global_reset_boundary`, and
+`classical_product_reset_boundary` exhibit the negative and positive sides;
+`product_effects_not_separating` isolates the missing effect hypothesis.
 
 ## Construction from preparation and testing
 
@@ -27,7 +48,7 @@ proves positivity and u(Tx)<=u(x); `outcome_filter_comp` proves these properties
 survive sequential composition. Positive linear maps are not automatically
 classified as physically available or completely positive.
 
-## Deriving irreducibility of global resets
+## Conditional irreducibility of global resets
 
 Assume the positive cone spans V and the admitted bounded global effects
 separate V: if every e_j(x)=0, then x=0. `normalization_faithful` derives that a
@@ -108,7 +129,11 @@ an irreducible family that violates descent: a protected first-block test
 separates states with identical product coordinates. Lean additionally proves
 the scalar doubled reset kills a nonzero hidden vector and the protected reset
 cannot descend (`doubled_reset_kills_hidden`, `doubled_protected_reset_no_descent`).
-Python checks exact rational ranks and semantic/malformed-input mutations. Rust
+The 623 filter mutations and 277 inherited tomography mutations are
+**fixture-integrity checks**, not semantic refutations of all alternative models.
+Separate Python and Rust semantic tests accept valid asymmetric calibrations,
+exhibit proper invariant subspaces, and distinguish non-separating from separating
+effect families. Python computes exact rational ranks. Rust
 checks the same certificate using nonzero orthogonal Gram witnesses for the
 preparations, effects and reset operators, independently of Gaussian elimination.
 Finite full operator span is a sufficient irreducibility certificate, not its
@@ -147,3 +172,9 @@ entire finite-probability Rust library, reconstructs the candidate byte-for-byte
 and checks the DAG, synchronization, contracts and whitespace. This is a focused
 suite, not all tests in the repository. `attempts/` retains compiler repair and
 temporary-directory failure evidence. No historical run or review is resealed.
+
+
+Follow-up custody: current-source checks and the claim corrections are in
+`../../reviews/20261021T210045Z_claim_boundary_fixes/`. Historical candidate bytes,
+pin envelopes and receipts remain unchanged and can be replayed at their recorded
+commits. This README and the proof/test sources now have a new validation record.

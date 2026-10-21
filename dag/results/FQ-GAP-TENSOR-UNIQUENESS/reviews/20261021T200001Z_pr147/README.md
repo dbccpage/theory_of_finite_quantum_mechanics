@@ -44,5 +44,13 @@ historical command after these repairs; current-source acceptance is this
 review's `verified/receipt.json`, its command logs, and the staged/committed Git
 blob audit. Checks cover the Lean filter family and selection/hidden modules,
 three Python test modules, the full finite-probability Rust library, exact
-candidate reconstruction, mutation controls, DAG validation/synchronization,
+candidate reconstruction, fixture-integrity checks, DAG validation/synchronization,
 contracts and whitespace. They do not claim a whole-repository or hosted-CI run.
+
+
+Terminology correction: the historical mutation counts measure fixture integrity,
+not rejection of arbitrary alternative mathematical models. The current Schur-type
+reformulation, explicit orthant witnesses and separate semantic near-misses are
+validated in `../20261021T210045Z_claim_boundary_fixes/`. This review's receipt and
+pins remain historical, with unchanged bytes; current-source edits are not resealed
+under those earlier results.

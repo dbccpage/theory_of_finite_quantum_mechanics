@@ -312,3 +312,40 @@ fn duplicate_json_fields_are_rejected() {
         .count();
     assert_eq!(accepted, 0, "duplicate JSON fields accepted");
 }
+
+#[test]
+fn semantic_nonseparating_effects_leave_a_proper_reset_kernel() {
+    let hidden = vec![vec![q(1)], vec![q(-1)]];
+    let unit = vec![vec![q(1), q(1)]];
+    assert_eq!(mul(&unit, &hidden), vec![vec![q(0)]]);
+    assert_eq!(mul(&unit, &vec![vec![q(1)], vec![q(0)]]), eye(1));
+    for i in 0..2 {
+        let p = vec![vec![q(i64::from(i == 0))], vec![q(i64::from(i == 1))]];
+        let t = mul(&p, &unit);
+        assert_eq!(mul(&t, &hidden), vec![vec![q(0)], vec![q(0)]]);
+        for x in 0..2 {
+            assert_eq!(t.iter().map(|row| row[x].clone()).sum::<Q>(), q(1));
+        }
+    }
+}
+
+#[test]
+fn semantic_global_effects_restore_full_span_but_break_product_descent() {
+    let m = vec![vec![q(1), q(1)]];
+    let r = vec![vec![q(1) / q(3)], vec![q(2) / q(3)]];
+    assert_eq!(mul(&m, &r), eye(1));
+    let mut units = Vec::new();
+    let mut descends = true;
+    for i in 0..2 {
+        for j in 0..2 {
+            let mut t = vec![vec![q(0); 2]; 2];
+            t[i][j] = q(1);
+            let observed = mul(&m, &t);
+            descends &= observed == mul(&mul(&observed, &r), &m);
+            units.push(t.into_iter().flatten().collect::<Vec<_>>());
+        }
+    }
+    orthogonal_nonzero(&units); // four independent operators in dimension four
+    assert_eq!(units.len(), 4);
+    assert!(!descends);
+}
