@@ -14,9 +14,9 @@
     "primitive_gap": "FQ-GAP-TENSOR-UNIQUENESS remains CONDITIONAL. No primitive derivation of local QM, tomography, calibration or either saturation assumption is asserted."
   },
   "counts": {
-    "dag_nodes": 737,
-    "dag_routes": 734,
-    "master_records": 789
+    "dag_nodes": 738,
+    "dag_routes": 735,
+    "master_records": 790
   },
   "preservation": {
     "upstream_master_records_unchanged_as_data": true,
@@ -295,6 +295,21 @@
       },
       "reason": "Lean toolchain upgraded from 4.33.1 to 4.35.0 (Mathlib tag v4.35.0); the replay was re-run from dag/research/replay_tensor_measurements.py on 2026-10-21 and the whole lean_replay block is the new run output. Module sources are unchanged (sha256 identical to the previous replay).",
       "run": "branch lean-v4-35"
+    },
+    {
+      "field": "counts",
+      "previous": {
+        "dag_nodes": 737,
+        "dag_routes": 734,
+        "master_records": 789
+      },
+      "current": {
+        "dag_nodes": 738,
+        "dag_routes": 735,
+        "master_records": 790
+      },
+      "reason": "L1-IMP-TRANSITION-PROBABILITY-LAW and the route L1-R-DYNAMICS-FINITE-WIGNER were added, and L1-IMP-LINEAR-ISOMETRIC-DYNAMICS rewritten, by dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/tools/dag_update.py (the unified sync then added the new node's master record); no tensor node, route or record changed",
+      "run": "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner"
     }
   ]
 }
