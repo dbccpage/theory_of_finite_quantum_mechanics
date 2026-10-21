@@ -193,7 +193,7 @@ To contribute:
 2. Run its PFP prompt from [`dag/prompts/`](dag/prompts) through the stages in [`dag/pfp/README.md`](dag/pfp/README.md).
 3. Submit a pull request with the receipts: Lean axiom output, Rust and Python checker output, contract/score companions for every new source file, and a review record with `supports`, `does_not_support` and `narrowest_claim`. Counterexamples and precise obstructions are welcome results.
 
-<!-- TODO(author): add funding/sponsorship link -->
+Support this research: [Buy Me a Coffee](https://buymeacoffee.com/ooutwire).
 
 ## License
 
