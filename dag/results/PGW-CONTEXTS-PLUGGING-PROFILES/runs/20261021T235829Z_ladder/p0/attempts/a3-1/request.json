@@ -1,0 +1,318 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-CONTEXTS-PLUGGING-PROFILES",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a1a5cb962680946761d8c3e47706be143b9967593fdc48cdc7e222b303c21823",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-CONTEXTS-PLUGGING-PROFILES stage=P0 attempt=a3-1 in=a1a5cb96 guided=yes\n@TARGET [DEFINITION] A context is an admitted form with a slot tuple of its arity in which every filled slot names an admitted datum and at least one slot is a hole; plugging a datum fills every hole with that same datum. Derivability is membership in the admitted instances or coverage by a uniform all-tuples rule, and no other inference exists. The profile of a datum is the set of well-formed contexts whose plugging is derivable. Two data are collapsed when their profiles are equal and separable when some well-formed context is derivable for one and not the other; that is the declared sense used for every separation requirement.\n@BOTTLENECK These are declared definitions: separability means a difference in positive derivability only, and an imposed requirement records a demand for separation without making it hold.\n@ASSUME Declared derivability: admitted-instance membership or a uniform all-tuples rule, with no other inference (assumption)\n@SRC none found by the host; cite nothing as existing\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:g_controlReport (TapeControlPresentation)->ControlOutcome src=papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean | AuthorizationIncompleteness.TapeControlModels.controlReport\n g:g_readCell (TapeControlPresentation)->TapeCell src=papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean | AuthorizationIncompleteness.TapeControlModels.readCell\n r:r_same_halt_control_blocks Both presentations have the same control report (halt), so no function of the control report alone can equal t src=papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean | AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider\n r:r_unread_blocks An unread report does not determine the content contract. src=papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean | AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider\n r:r_read_token_adapters One read token admits two distinct supplied semantic adapters. src=papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean | AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters\n r:r_halt_policies One syntactic halt outcome admits two distinct supplied terminal policies. src=papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean | AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy\n g:g_ofSplit (LetterList,LetterList)->GCtx src=lean4/GenesisComputation.lean | GenesisComputation.ofSplit\n g:g_plug1 (Letter,GCtx)->LetterList src=lean4/GenesisComputation.lean | GenesisComputation.plug1\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] l_four_facts: On the fixed two-presentation carrier the four split-fiber facts hold: control-only, unread, rea -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L2: Adding uniform rules to an instance-free regime preserves collapse of all data pairs. -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L1: If there are no admitted instances, then for all data a and b, a and b are observationally collapsed. -- Do not present a sorry/axiom/tautology as a proof.\n [statement_drift] GenesisComputation.genesis_one_hole_count_n2_a3 -- Do not restate the source with numerals it does not contain.\n [vacuous_proof] L_arity_count: one-hole contexts of arity a correspond to pairs (u,v) of word contexts with |u|+|v| = a-1 -- Do not present a sorry/axiom/tautology as a proof.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 0,
+    "known_neg_injected": 5,
+    "known_pos_injected": 8,
+    "neighbours": [
+      "AUTH-TC0-TAPE-CONTROL-TYPING",
+      "AUTHF-DTM0-RULE-MACHINE",
+      "AUTHF-DTM1-TOKEN-GRAMMAR",
+      "COMP-C2-ONE-HOLE-CONTEXTS",
+      "PGW-COLLAPSE-WITHOUT-INSTANCES",
+      "PGW-COLLECTION-EXTENSIONALITY",
+      "PGW-CONTEXT-COUNT-FORMULA",
+      "PGW-REGIME-ISOMORPHISM-UNORDERED-PAIRS",
+      "PGW-RESPONSES-COSTS-MU1-MU2"
+    ],
+    "feedback": true,
+    "index_position": 754,
+    "neg_entry_ids": [
+      "NEG-CBAE51993B82",
+      "NEG-43B254E62500",
+      "NEG-CE05C746C66D",
+      "NEG-4C76C8955519",
+      "NEG-11CA18763CEA"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

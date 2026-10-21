@@ -1,0 +1,102 @@
+add_or_refine_generators:
+- id: g_init1
+  ordered_inputs:
+  - Nat
+  output: TM1Cfg
+  arity: 1
+  carrier: TM1.Cfg G1 L1 (Option Γ')
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.init1
+    line: 134
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.init1
+    kind: def
+    line: 134
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_univCode
+  ordered_inputs: []
+  output: ToPartrecCode
+  arity: 0
+  carrier: ToPartrec.Code
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.univCode
+    line: 86
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.univCode
+    kind: def
+    line: 86
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_step_closed
+  equation_or_predicate: The set of words whose marks lie in markSet is closed under one rewriting step
+    of the fixed regime.
+  typing_conditions: Mathlib tr_supports for PartrecToTM2, TM2to1 and TM1to0
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.step_closed
+    line: 250
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.step_closed
+    kind: theorem
+    line: 250
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_init_mem
+  equation_or_predicate: The start word has all its marks in markSet.
+  typing_conditions: Mathlib tr_supports for PartrecToTM2, TM2to1 and TM1to0
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.init_mem
+    line: 260
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.init_mem
+    kind: theorem
+    line: 260
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Exact statements of step_closed, init_mem, used_marks_finite and card_G1 are not shown in SRC and need
+  host check.
+- Size of S0 not computed.
+- No composition grounded; generator colour compatibility not established.
+- 'lemma l_used_marks_finite unverified: Lean elaboration disabled'
+- 'lemma l_card_G1 unverified: Lean elaboration disabled'
+- 'near_miss nm_small unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

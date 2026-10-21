@@ -1,0 +1,222 @@
+add_or_refine_generators:
+- id: g_encodeWord
+  ordered_inputs:
+  - Word
+  output: BoolWord
+  arity: 1
+  carrier: List α to List Bool
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.encodeWord
+    line: 942
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.encodeWord
+    kind: def
+    line: 942
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_decodeWord
+  ordered_inputs:
+  - BoolWord
+  output: Word
+  arity: 1
+  carrier: List Bool to List α
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.decodeWord
+    line: 987
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.decodeWord
+    kind: def
+    line: 987
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_encodeMarks
+  ordered_inputs:
+  - Word
+  output: Mark2Word
+  arity: 1
+  carrier: List α to List Mark2
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.encodeMarks
+    line: 1049
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.encodeMarks
+    kind: def
+    line: 1049
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_decodeMarks
+  ordered_inputs:
+  - Mark2Word
+  output: Word
+  arity: 1
+  carrier: List Mark2 to List α
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.decodeMarks
+    line: 1051
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.decodeMarks
+    kind: def
+    line: 1051
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_boolMark
+  ordered_inputs:
+  - Bool
+  output: Mark2
+  arity: 1
+  carrier: Bool to Mark2
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.boolMark
+    line: 1036
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.boolMark
+    kind: def
+    line: 1036
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_decode_encode
+  equation_or_predicate: decodeWord (encodeWord w) = w
+  typing_conditions: finite alphabet, width codeWidth α
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.decode_encode
+    line: 1022
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.decode_encode
+    kind: theorem
+    line: 1022
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_encodeWord_injective
+  equation_or_predicate: encodeWord is injective
+  typing_conditions: finite alphabet
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.encodeWord_injective
+    line: 1030
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.encodeWord_injective
+    kind: theorem
+    line: 1030
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_decodeMarks_encodeMarks
+  equation_or_predicate: decodeMarks (encodeMarks w) = w
+  typing_conditions: finite alphabet
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.decodeMarks_encodeMarks
+    line: 1053
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.decodeMarks_encodeMarks
+    kind: theorem
+    line: 1053
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_encodeMarks_append
+  equation_or_predicate: encodeMarks (u ++ v) = encodeMarks u ++ encodeMarks v
+  typing_conditions: finite alphabet
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.encodeMarks_append
+    line: 1064
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.encodeMarks_append
+    kind: theorem
+    line: 1064
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-E7CD6011DC55
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_marks_injective: encodeMarks is injective on words over a finite alphabet'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: COMP-C8-BINARY-CODING
+counterexamples: []
+open_obligations:
+- Exact statement of the monoid homomorphism lemma for encodeWord (append and nil) not listed in the source;
+  proposed_new
+- Exact signatures of decodeWord, decode_encode and encodeMarks not shown in the source
+- Nonempty alphabet and width edge cases for codeWidth not checked
+- 'near_miss nm_iso unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_sim unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

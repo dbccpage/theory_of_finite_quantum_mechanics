@@ -1,0 +1,112 @@
+{
+  "task_id": "PGW-ADMISSION-BEFORE-DISTINCTION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "8837b40d0a8f5d6b2ad5bcd761abda888702ddcd344f28f562faa0c7fd400d89",
+  "candidate_sha256": "13a20b33231989a7c13a08b677279d8f7f19dd5d053e932d71e1291d202e6a64",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS",
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 2,
+    "failure_rate": 0.6667,
+    "failures_by_class": {
+      "composition_type_mismatch": 1,
+      "vacuous_proof": 1
+    },
+    "unverifiable": 7,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:58:34Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R1",
+        "equation_or_predicate": "A licensed lift candidate requires replay availability, reduction and closure; a missing new carrier blocks it.",
+        "typing_conditions": "As in the host-verified source.",
+        "source_pins": [
+          {
+            "path": "lean4/PrimitiveSpineSummary.lean",
+            "declaration": "OmegaCore.PrimitiveSpineSummary.spine_lift_missing_new_carrier_blocks",
+            "line": 150
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/PrimitiveSpineSummary.lean",
+          "decl": "OmegaCore.PrimitiveSpineSummary.spine_lift_missing_new_carrier_blocks",
+          "kind": "theorem",
+          "line": 150,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-7847FF0E2C76",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_replay . slot 0 <- g_admit via rel_admit_before_distinguish",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-ADMISSION-BEFORE-DISTINCTION"
+      },
+      {
+        "id": "NEG-506E241AD367",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "lem_admission_inert: With admission only, no observable differs between a and ab, so no unique continuation is dictated.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-ADMISSION-BEFORE-DISTINCTION"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing source declaration found for admission, retention or replay generators.",
+      "Lean skeleton for lem_admission_inert is a placeholder and needs a real model of regime reaction.",
+      "The two equally minimal first additions are not formalised.",
+      "Compositions rely on proposed relations not yet verified by the host.",
+      "generator g_admit unverified: no existing declaration cited",
+      "generator g_replay unverified: no existing declaration cited",
+      "relation rel_admit_before_distinguish unverified: no existing declaration cited",
+      "relation rel_admission_alone_no_separation unverified: no existing declaration cited",
+      "lemma lem_order unverified: Lean elaboration disabled",
+      "near_miss nm_data_forced unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_admission_distinguishes unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

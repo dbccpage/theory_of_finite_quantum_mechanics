@@ -1,0 +1,65 @@
+{
+  "task_id": "COMP-C7-MACHINE-HALTING-UNDECIDABLE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "ad6e86a435555cc72f829f38a26b9a3d73deadf1eb298cfced1f4c94cd8bb7e7",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_univCode\",\"inputs\":[],\"output\":\"Code\",\"arity\":0,\"carrier\":\"ToPartrec.Code\",\"ref\":{\"path\":\"lean4/GenesisCompUniv.lean\",\"decl\":\"GenesisComputation.Universal.univCode\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_halting_not_computable\",\"statement\":\"For each n, the predicate c -> M0 halts from initCfg0 (pair (encode c) n) is not a ComputablePred on codes c.\",\"hypotheses\":\"Mathlib ComputablePred.halting_problem is assumed; reduction from the halting problem via initCfg0.\",\"ref\":{\"path\":\"lean4/GenesisCompUniv.lean\",\"decl\":\"GenesisComputation.Universal.halting_not_computable\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_halting_not_computable\",\"statement\":\"For every n, the predicate fun c => M0 halts from initCfg0 (pair (encode c) n) is not ComputablePred.\",\"relation_to_target\":\"restates\",\"depends_on\":[],\"lean_skeleton\":\"theorem l_halting_not_computable (n : ℕ) : ¬ ComputablePred (fun c : ToPartrec.Code => True) := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/GenesisCompUniv.lean\",\"decl\":\"GenesisComputation.Universal.halting_not_computable\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"nm_decidable_for_fixed_code\",\"claim\":\"For a fixed code c, halting of M0 from initCfg0 (pair (encode c) n) is not decidable, as a predicate in n.\",\"rejecting_invariant\":\"The target quantifies over the code c for fixed n. A single instance is a Boolean fact, so it is trivially computable, and the varying parameter matters.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Exact signature of initCfg0 and halting_not_computable not given in @SRC, so the lemma skeleton is a placeholder and not the real statement.\",\"The reduction from ComputablePred.halting_problem to M0 halting through the TM2->TM1->TM0 chain is not grounded.\",\"The compositions array is empty because no licensing relation is established.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_univCode",
+        "inputs": [],
+        "output": "Code",
+        "arity": 0,
+        "carrier": "ToPartrec.Code",
+        "ref": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.univCode",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_halting_not_computable",
+        "statement": "For each n, the predicate c -> M0 halts from initCfg0 (pair (encode c) n) is not a ComputablePred on codes c.",
+        "hypotheses": "Mathlib ComputablePred.halting_problem is assumed; reduction from the halting problem via initCfg0.",
+        "ref": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.halting_not_computable",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_halting_not_computable",
+        "statement": "For every n, the predicate fun c => M0 halts from initCfg0 (pair (encode c) n) is not ComputablePred.",
+        "relation_to_target": "restates",
+        "depends_on": [],
+        "lean_skeleton": "theorem l_halting_not_computable (n : ℕ) : ¬ ComputablePred (fun c : ToPartrec.Code => True) := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.halting_not_computable",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_decidable_for_fixed_code",
+        "claim": "For a fixed code c, halting of M0 from initCfg0 (pair (encode c) n) is not decidable, as a predicate in n.",
+        "rejecting_invariant": "The target quantifies over the code c for fixed n. A single instance is a Boolean fact, so it is trivially computable, and the varying parameter matters."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Exact signature of initCfg0 and halting_not_computable not given in @SRC, so the lemma skeleton is a placeholder and not the real statement.",
+      "The reduction from ComputablePred.halting_problem to M0 halting through the TM2->TM1->TM0 chain is not grounded.",
+      "The compositions array is empty because no licensing relation is established."
+    ]
+  }
+}

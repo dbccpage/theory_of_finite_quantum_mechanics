@@ -1,0 +1,133 @@
+{
+  "task_id": "COMP-C6-EVAL-HAS-A-CODE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "122ffc464d10ed851144dc3b89839c1f3ccdeb754ac2133430b85129ba7e2cfe",
+  "candidate_sha256": "b88574da35fb62b13ec38a5c4b22c2585ddcb6d72eb157998f0f2454c9e30805",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:57:41Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "univFun",
+        "ordered_inputs": [
+          "Nat"
+        ],
+        "output": "PartNat",
+        "arity": 1,
+        "carrier": "Nat ->. Nat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "declaration": "GenesisComputation.Universal.univFun",
+            "line": 49
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.univFun",
+          "kind": "def",
+          "line": 49,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "univ_eval_spec",
+        "equation_or_predicate": "There exists u : Code such that for all codes c and n, eval u (Nat.pair (encode c) n) = eval c n",
+        "typing_conditions": "none beyond Mathlib Nat.Partrec.Code infrastructure",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "declaration": "GenesisComputation.Universal.universal_code",
+            "line": 62
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.universal_code",
+          "kind": "theorem",
+          "line": 62,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "univCode_computes_univFun",
+        "equation_or_predicate": "univCode.eval [x] = pure <$> univFun x for all x",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "declaration": "GenesisComputation.Universal.univCode_eval",
+            "line": 88
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.univCode_eval",
+          "kind": "theorem",
+          "line": 88,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Link between the Nat.Partrec.Code u from universal_code and univFun is not cited explicitly; needs a bridging lemma that univFun x = eval u x",
+      "Statement of the conjunction (the same function on a single natural number via ToPartrec) is not packaged as one theorem",
+      "Lemma Lean skeletons are not elaborated by me, so claims_proved is false",
+      "lemma L_universal_code unverified: Lean elaboration disabled",
+      "lemma L_univCode_exists unverified: Lean elaboration disabled",
+      "near_miss nm_total unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

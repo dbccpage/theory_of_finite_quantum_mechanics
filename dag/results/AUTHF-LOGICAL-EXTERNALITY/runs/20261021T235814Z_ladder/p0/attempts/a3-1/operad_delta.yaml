@@ -1,0 +1,98 @@
+add_or_refine_generators:
+- id: coLocatedComplete
+  ordered_inputs: []
+  output: Presentation
+  arity: 0
+  carrier: Presentation Bool Bool Unit
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/Externality.lean
+    declaration: AuthorizationIncompleteness.LogicalExternalityModels.coLocatedComplete
+    line: 57
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Externality.lean
+    decl: AuthorizationIncompleteness.LogicalExternalityModels.coLocatedComplete
+    kind: def
+    line: 57
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: separatedCollapsed
+  ordered_inputs: []
+  output: Presentation
+  arity: 0
+  carrier: Presentation Bool Unit Bool
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/Externality.lean
+    declaration: AuthorizationIncompleteness.LogicalExternalityModels.separatedCollapsed
+    line: 75
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Externality.lean
+    decl: AuthorizationIncompleteness.LogicalExternalityModels.separatedCollapsed
+    kind: def
+    line: 75
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: coLocated_can_authorize
+  equation_or_predicate: CanAuthorize coLocatedComplete
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/Externality.lean
+    declaration: AuthorizationIncompleteness.LogicalExternalityModels.coLocatedComplete_can_authorize
+    line: 67
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Externality.lean
+    decl: AuthorizationIncompleteness.LogicalExternalityModels.coLocatedComplete_can_authorize
+    kind: theorem
+    line: 67
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: separated_cannot_authorize
+  equation_or_predicate: not CanAuthorize separatedCollapsed
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/Externality.lean
+    declaration: AuthorizationIncompleteness.LogicalExternalityModels.separatedCollapsed_cannot_authorize
+    line: 92
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Externality.lean
+    decl: AuthorizationIncompleteness.LogicalExternalityModels.separatedCollapsed_cannot_authorize
+    kind: theorem
+    line: 92
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Confirm fields of Presentation and that site equality and distinctness facts are provable by rfl/decide
+- Lean skeleton unelaborated; namespace opening needed
+- No generators with inputs exist in SRC so compositions are empty
+- 'lemma target_conjunction unverified: Lean elaboration disabled'
+- 'near_miss site_as_security unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

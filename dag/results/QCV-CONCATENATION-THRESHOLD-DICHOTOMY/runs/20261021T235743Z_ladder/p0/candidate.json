@@ -1,0 +1,236 @@
+{
+  "task_id": "QCV-CONCATENATION-THRESHOLD-DICHOTOMY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "37d626b63295cec3a27b576d50ab878cfb11bbc9286628e2e7d58fa2685b6f08",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "conc",
+          "inputs": [
+            "Q",
+            "Q",
+            "Nat"
+          ],
+          "output": "Q",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "conc_closed",
+          "equation_or_predicate": "c*conc c p k = (c*p)^(2^k)",
+          "typing_conditions": "none",
+          "source_pins": [
+            {
+              "path": "lean4/QcConcatenation.lean",
+              "declaration": "QcSelfObstruction.conc_closed",
+              "line": 39
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/QcConcatenation.lean",
+            "decl": "QcSelfObstruction.conc_closed",
+            "kind": "theorem",
+            "line": 39,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "conc_eq_div",
+          "equation_or_predicate": "conc c p k = (c*p)^(2^k)/c",
+          "typing_conditions": "c != 0",
+          "source_pins": [
+            {
+              "path": "lean4/QcConcatenation.lean",
+              "declaration": "QcSelfObstruction.conc_eq_div",
+              "line": 47
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/QcConcatenation.lean",
+            "decl": "QcSelfObstruction.conc_eq_div",
+            "kind": "theorem",
+            "line": 47,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Signatures of super_bound, super_diverges, threshold_trichotomy and goesToZero_iff_below_threshold are not listed, so the exact statements are unverified",
+        "No noise model or code constant c is shown to satisfy the recurrence",
+        "Lean skeletons are copied from the source and are not proved here",
+        "lemma goesToZero_iff unverified: no Lean skeleton; statement consistent with sources but not elaborated",
+        "lemma sub_bound unverified: Lean elaboration disabled",
+        "lemma sub_half_bound unverified: Lean elaboration disabled",
+        "lemma fixed_point unverified: Lean elaboration disabled",
+        "near_miss nm1 unverified: semantic near miss; P4 host check decides",
+        "near_miss nm2 unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "conc",
+        "ordered_inputs": [
+          "Q",
+          "Q",
+          "Nat"
+        ],
+        "output": "Q",
+        "arity": 3,
+        "carrier": "Q",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/QcConcatenation.lean",
+            "declaration": "QcSelfObstruction.conc",
+            "line": 30
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/QcConcatenation.lean",
+          "decl": "QcSelfObstruction.conc",
+          "kind": "def",
+          "line": 30,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "conc_closed",
+        "equation_or_predicate": "c*conc c p k = (c*p)^(2^k)",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/QcConcatenation.lean",
+            "declaration": "QcSelfObstruction.conc_closed",
+            "line": 39
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/QcConcatenation.lean",
+          "decl": "QcSelfObstruction.conc_closed",
+          "kind": "theorem",
+          "line": 39,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "conc_eq_div",
+        "equation_or_predicate": "conc c p k = (c*p)^(2^k)/c",
+        "typing_conditions": "c != 0",
+        "source_pins": [
+          {
+            "path": "lean4/QcConcatenation.lean",
+            "declaration": "QcSelfObstruction.conc_eq_div",
+            "line": 47
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/QcConcatenation.lean",
+          "decl": "QcSelfObstruction.conc_eq_div",
+          "kind": "theorem",
+          "line": 47,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Signatures of super_bound, super_diverges, threshold_trichotomy and goesToZero_iff_below_threshold are not listed, so the exact statements are unverified",
+      "No noise model or code constant c is shown to satisfy the recurrence",
+      "Lean skeletons are copied from the source and are not proved here",
+      "lemma goesToZero_iff unverified: no Lean skeleton; statement consistent with sources but not elaborated",
+      "lemma sub_bound unverified: Lean elaboration disabled",
+      "lemma sub_half_bound unverified: Lean elaboration disabled",
+      "lemma fixed_point unverified: Lean elaboration disabled",
+      "near_miss nm1 unverified: semantic near miss; P4 host check decides",
+      "near_miss nm2 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n1",
+        "expr": "1/(1/2)",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

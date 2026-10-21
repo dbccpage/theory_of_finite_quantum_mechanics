@@ -1,0 +1,82 @@
+{
+  "task_id": "COMP-C6-TM2-OUTPUT-FORM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "ab43dac8a09137a8634de27801b799cf4b8258ef2e1d1d65e50e38b0081949b6",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_univCode\",\"inputs\":[],\"output\":\"Code\",\"arity\":0,\"carrier\":\"ToPartrec.Code\",\"ref\":{\"path\":\"lean4/GenesisCompUniv.lean\",\"decl\":\"GenesisComputation.Universal.univCode\",\"status\":\"existing\"}},{\"id\":\"g_init2\",\"inputs\":[\"Nat\"],\"output\":\"TM2Cfg\",\"arity\":1,\"carrier\":\"TM2.Cfg (fun _ : K' => Γ') Λ' (Option Γ')\",\"ref\":{\"path\":\"lean4/GenesisCompUniv.lean\",\"decl\":\"GenesisComputation.Universal.init2\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_tm2_eval\",\"statement\":\"StateTransition.eval (TM2.step PartrecToTM2.tr) (init2 (Nat.pair (Encodable.encode c) n)) equals the halt-image of Code.eval c n (the source declaration's statement is truncated, so the right-hand side is not confirmed)\",\"hypotheses\":\"c : Code, n : ℕ; equality of Part values, so defined exactly when Code.eval c n is defined\",\"ref\":{\"path\":\"lean4/GenesisCompUniv.lean\",\"decl\":\"GenesisComputation.Universal.tm2_computes_eval\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_tm2_output_form\",\"statement\":\"For all c n, the TM2 machine PartrecToTM2.tr started at init2 (Nat.pair (encode c) n) evaluates to halt applied to the value of Code.eval c n exactly when that value is defined\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_tm2_eval\"],\"lean_skeleton\":\"theorem l_tm2_output_form (c : Code) (n : ℕ) : StateTransition.eval (TM2.step PartrecToTM2.tr) (init2 (Nat.pair (Encodable.encode c) n)) = sorry := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/GenesisCompUniv.lean\",\"decl\":\"GenesisComputation.Universal.tm2_computes_eval\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"nm_tm0\",\"claim\":\"The same output-form statement holds at the TM0 level\",\"rejecting_invariant\":\"Only TM2-level evidence exists; the TM0 form is open (COMP-C6e)\"}],\"numeric_claims\":[],\"open_obligations\":[\"The tm2_computes_eval right-hand side is truncated in @SRC, so it must be read from the file\",\"The Lean skeleton uses sorry in place of the RHS and needs to be completed\",\"Confirm that univCode is used in the init2 argument; no composition is licensed here\",\"The TM0-level output form (COMP-C6e) is not addressed\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_univCode",
+        "inputs": [],
+        "output": "Code",
+        "arity": 0,
+        "carrier": "ToPartrec.Code",
+        "ref": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.univCode",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_init2",
+        "inputs": [
+          "Nat"
+        ],
+        "output": "TM2Cfg",
+        "arity": 1,
+        "carrier": "TM2.Cfg (fun _ : K' => Γ') Λ' (Option Γ')",
+        "ref": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.init2",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_tm2_eval",
+        "statement": "StateTransition.eval (TM2.step PartrecToTM2.tr) (init2 (Nat.pair (Encodable.encode c) n)) equals the halt-image of Code.eval c n (the source declaration's statement is truncated, so the right-hand side is not confirmed)",
+        "hypotheses": "c : Code, n : ℕ; equality of Part values, so defined exactly when Code.eval c n is defined",
+        "ref": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.tm2_computes_eval",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_tm2_output_form",
+        "statement": "For all c n, the TM2 machine PartrecToTM2.tr started at init2 (Nat.pair (encode c) n) evaluates to halt applied to the value of Code.eval c n exactly when that value is defined",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_tm2_eval"
+        ],
+        "lean_skeleton": "theorem l_tm2_output_form (c : Code) (n : ℕ) : StateTransition.eval (TM2.step PartrecToTM2.tr) (init2 (Nat.pair (Encodable.encode c) n)) = sorry := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.tm2_computes_eval",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_tm0",
+        "claim": "The same output-form statement holds at the TM0 level",
+        "rejecting_invariant": "Only TM2-level evidence exists; the TM0 form is open (COMP-C6e)"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "The tm2_computes_eval right-hand side is truncated in @SRC, so it must be read from the file",
+      "The Lean skeleton uses sorry in place of the RHS and needs to be completed",
+      "Confirm that univCode is used in the init2 argument; no composition is licensed here",
+      "The TM0-level output form (COMP-C6e) is not addressed"
+    ]
+  }
+}

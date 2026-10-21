@@ -1,0 +1,96 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "boolTerminalize",
+      "inputs": [
+        "Bool"
+      ],
+      "output": "AuthorizationTerminal",
+      "arity": 1,
+      "carrier": "Bool -> AuthorizationTerminal",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/Terminal.lean",
+        "decl": "AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolTerminalize",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "acceptance_sound",
+      "statement": "AcceptanceSound boolValidity boolTerminalize",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/Terminal.lean",
+        "decl": "AuthorizationIncompleteness.TerminalAuthorizationBoundary.AcceptanceSound",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "acceptance_complete",
+      "statement": "AcceptanceComplete boolValidity boolTerminalize",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/Terminal.lean",
+        "decl": "AuthorizationIncompleteness.TerminalAuthorizationBoundary.AcceptanceComplete",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "rejection_sound",
+      "statement": "RejectionSound boolValidity boolTerminalize",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/Terminal.lean",
+        "decl": "AuthorizationIncompleteness.TerminalAuthorizationBoundary.RejectionSound",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "terminal_closed",
+      "statement": "TerminalClosed boolTerminalize",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/Terminal.lean",
+        "decl": "AuthorizationIncompleteness.TerminalAuthorizationBoundary.TerminalClosed",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "bool_fixture_closed_terminalizer",
+      "statement": "boolTerminalize is acceptance-sound, acceptance-complete, rejection-sound and closed w.r.t. boolValidity",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "acceptance_sound",
+        "acceptance_complete",
+        "rejection_sound",
+        "terminal_closed"
+      ],
+      "lean_skeleton": "theorem bool_fixture : AcceptanceSound boolValidity boolTerminalize ∧ AcceptanceComplete boolValidity boolTerminalize ∧ RejectionSound boolValidity boolTerminalize ∧ TerminalClosed boolTerminalize := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/AuthIncompleteness/Terminal.lean",
+        "decl": "AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "constant_authorized",
+      "claim": "Terminalizer sending every Bool to authorized is acceptance-sound",
+      "rejecting_invariant": "Fails acceptance soundness: false is invalid yet authorized"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "The @SRC theorem statement is truncated; the exact conjunct list (rejection-sound, closed) is unconfirmed",
+    "The definition of boolValidity body is not shown",
+    "The definition bodies of TerminalClosed and the soundness predicates are not shown",
+    "Lean skeleton uses sorry and is unelaborated"
+  ]
+}

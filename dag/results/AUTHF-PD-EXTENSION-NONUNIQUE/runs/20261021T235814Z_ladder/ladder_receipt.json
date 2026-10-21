@@ -1,0 +1,134 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "AUTHF-PD-EXTENSION-NONUNIQUE",
+  "stage": "P0",
+  "run_id": "AUTHF-PD-EXTENSION-NONUNIQUE/20261021T235814Z_ladder",
+  "finished_utc": "2026-10-21T23:58:23Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 1,
+  "free_calls": 0,
+  "paid_calls": 1,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 3,
+      "name": "sonnet",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ]
+    }
+  ],
+  "run_cap_usd": 0.12,
+  "summary": {
+    "node_id": "AUTHF-PD-EXTENSION-NONUNIQUE",
+    "run_id": "AUTHF-PD-EXTENSION-NONUNIQUE/20261021T235814Z_ladder",
+    "stage": "P0",
+    "status": "accepted",
+    "stop_reason": "accepted_at_tier_3",
+    "accepted_attempt": "a3-1",
+    "best_attempt": "a3-1",
+    "attempts": [
+      {
+        "attempt_id": "a3-1",
+        "tier": 3,
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "guided": true,
+        "known_neg_injected": 2,
+        "known_pos_injected": 3,
+        "input_sha256": "700cd57683daf53bf7328529f5f37e06e51d8652129bf1b7238ff6246c4f21c2",
+        "injected_neg_ids": [
+          "NEG-DD2ADADBFE1F",
+          "NEG-0983C97B5685"
+        ],
+        "status": "accepted",
+        "verified_total": 2,
+        "failures_total": 0,
+        "failure_rate": 0.0,
+        "failures_by_class": {},
+        "unverifiable": 2,
+        "input_tokens": 4781,
+        "output_tokens": 855,
+        "cost_microusd": 18112,
+        "request_id": "req_011CgGHjipt5Sa9MBN9WbZxR",
+        "latency_s": 6.696,
+        "stop_reason": "end_turn",
+        "served_model": "claude-sonnet-5-5",
+        "structured_mode": "json_schema",
+        "lean": "skipped",
+        "abstained": false,
+        "negative_entries": []
+      }
+    ],
+    "totals_by_tier": {
+      "3": {
+        "calls": 1,
+        "sent": 1,
+        "input_tokens": 4781,
+        "output_tokens": 855,
+        "cost_microusd": 18112,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 18112,
+    "spend_usd": 0.018112,
+    "hallucinations_by_class": {},
+    "hallucinations_by_model": {},
+    "verified": {
+      "generators": 0,
+      "relations": 2,
+      "compositions": 0,
+      "lemmas": 0,
+      "numeric": 0
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a3-1:dc7a435d",
+      "run_id": "AUTHF-PD-EXTENSION-NONUNIQUE/20261021T235814Z_ladder",
+      "attempt_id": "a3-1",
+      "tier": 3,
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "family": "anthropic",
+      "effort": "medium",
+      "max_tokens": 5000,
+      "started_utc": "2026-10-21T23:58:15Z",
+      "status": "ok",
+      "estimated_input_tokens": 4203,
+      "estimate_microusd": 58406,
+      "served_model": "claude-sonnet-5-5",
+      "input_tokens": 4781,
+      "output_tokens": 855,
+      "cost_microusd": 18112,
+      "cost_source": "price_table",
+      "request_id": "req_011CgGHjipt5Sa9MBN9WbZxR",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 6.696,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 9.065358,
+    "anthropic_cap_microusd": 59.605884,
+    "paid_other_microusd": 0.000449,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}

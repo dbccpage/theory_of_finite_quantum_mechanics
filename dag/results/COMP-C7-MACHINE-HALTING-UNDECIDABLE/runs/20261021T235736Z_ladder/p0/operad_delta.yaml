@@ -1,0 +1,60 @@
+add_or_refine_generators:
+- id: g_univCode
+  ordered_inputs: []
+  output: Code
+  arity: 0
+  carrier: ToPartrec.Code
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.univCode
+    line: 86
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.univCode
+    kind: def
+    line: 86
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_halting_not_computable
+  equation_or_predicate: For each n, the predicate c -> M0 halts from initCfg0 (pair (encode c) n) is
+    not a ComputablePred on codes c.
+  typing_conditions: Mathlib ComputablePred.halting_problem is assumed; reduction from the halting problem
+    via initCfg0.
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.halting_not_computable
+    line: 189
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.halting_not_computable
+    kind: theorem
+    line: 189
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Exact signature of initCfg0 and halting_not_computable not given in @SRC, so the lemma skeleton is a
+  placeholder and not the real statement.
+- The reduction from ComputablePred.halting_problem to M0 halting through the TM2->TM1->TM0 chain is not
+  grounded.
+- The compositions array is empty because no licensing relation is established.
+- 'lemma l_halting_not_computable unverified: Lean elaboration disabled'
+- 'near_miss nm_decidable_for_fixed_code unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

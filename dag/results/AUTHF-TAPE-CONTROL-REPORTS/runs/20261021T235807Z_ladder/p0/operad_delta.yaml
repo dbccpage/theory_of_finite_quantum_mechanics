@@ -1,0 +1,115 @@
+add_or_refine_generators:
+- id: g_controlReport
+  ordered_inputs:
+  - TapeControlPresentation
+  output: ControlOutcome
+  arity: 1
+  carrier: ControlOutcome
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/TapeControl.lean
+    declaration: AuthorizationIncompleteness.TapeControlModels.controlReport
+    line: 59
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TapeControl.lean
+    decl: AuthorizationIncompleteness.TapeControlModels.controlReport
+    kind: def
+    line: 59
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_same_read_token_distinct_adapters
+  equation_or_predicate: The read token blank is given opposite verdicts by blankAcceptingAdapter and
+    blankRejectingAdapter.
+  typing_conditions: two supplied semantic adapters
+  source_pins:
+  - path: lean4/AuthIncompleteness/TapeControl.lean
+    declaration: AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters
+    line: 149
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TapeControl.lean
+    decl: AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters
+    kind: theorem
+    line: 149
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_halt_control_splits_contract
+  equation_or_predicate: haltingBlankPresentation and haltingMarkedPresentation share the halt control
+    outcome but contentContract differs on them.
+  typing_conditions: the two supplied halting presentations
+  source_pins:
+  - path: lean4/AuthIncompleteness/TapeControl.lean
+    declaration: AuthorizationIncompleteness.TapeControlModels.shared_halt_control_splits_content_contract
+    line: 154
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TapeControl.lean
+    decl: AuthorizationIncompleteness.TapeControlModels.shared_halt_control_splits_content_contract
+    kind: theorem
+    line: 154
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-3651DC264DD1
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_no_control_decider: No function of controlReport equals contentContract on every presentation.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: AUTHF-TAPE-CONTROL-REPORTS
+- id: NEG-DE884DABB213
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_no_report_decider: No function of the always-unread report equals contentContract on every
+    presentation.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: AUTHF-TAPE-CONTROL-REPORTS
+- id: NEG-E2BA2F596878
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_adapters_split: The two adapters give opposite verdicts on read token blank.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: AUTHF-TAPE-CONTROL-REPORTS
+counterexamples: []
+open_obligations:
+- Exact statements and signatures of readCell, readReport, contentContract are not shown, so generator
+  types are unverified.
+- Lean skeletons are placeholders; real statements must be copied from the source.
+- Composition licensing not established.
+- Conjunction of the three results into the target is not formalized.
+- 'generator g_readCell unverified: no existing declaration cited'
+- 'near_miss nm_syntactic_halt_selects_policy unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_report_remembers_cell unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

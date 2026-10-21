@@ -1,0 +1,105 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: rel_bounded_iff
+  equation_or_predicate: For q0 >= 0, BacklogBounded lam g mu q0 iff lam <= (1-g)*mu
+  typing_conditions: 0 <= q0
+  source_pins:
+  - path: lean4/QcRepairQueue.lean
+    declaration: QcSelfObstruction.backlog_bounded_iff
+    line: 68
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/QcRepairQueue.lean
+    decl: QcSelfObstruction.backlog_bounded_iff
+    kind: theorem
+    line: 68
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: rel_unit_gain
+  equation_or_predicate: For lam > 0, g >= 1, mu >= 0 the backlog is not bounded
+  typing_conditions: 0 <= q0, 0 < lam, 1 <= g, 0 <= mu
+  source_pins:
+  - path: lean4/QcRepairQueue.lean
+    declaration: QcSelfObstruction.no_bounded_backlog_if_unit_gain
+    line: 87
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/QcRepairQueue.lean
+    decl: QcSelfObstruction.no_bounded_backlog_if_unit_gain
+    kind: theorem
+    line: 87
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: rel_fresh_supply
+  equation_or_predicate: For g < 1, kappa > 0, mu = kappa*r, bounded iff lam/((1-g)*kappa) <= r
+  typing_conditions: 0 <= q0, g < 1, 0 < kappa
+  source_pins:
+  - path: lean4/QcRepairQueue.lean
+    declaration: QcSelfObstruction.fresh_supply_threshold
+    line: 100
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/QcRepairQueue.lean
+    decl: QcSelfObstruction.fresh_supply_threshold
+    kind: theorem
+    line: 100
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: rel_linear
+  equation_or_predicate: If drift > 0 then backlog t = q0 + t*drift
+  typing_conditions: 0 <= q0, 0 < drift lam g mu
+  source_pins:
+  - path: lean4/QcRepairQueue.lean
+    declaration: QcSelfObstruction.backlog_linear
+    line: 51
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/QcRepairQueue.lean
+    decl: QcSelfObstruction.backlog_linear
+    kind: theorem
+    line: 51
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-B016B15F237F
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_target: Conjunction of the four target clauses, assembled from the cited theorems plus r=0
+    case.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: QCV-NET-RATE-BACKLOG-DICHOTOMY
+counterexamples: []
+open_obligations:
+- QcSelfObstruction.drift body is truncated in @SRC; unfolding to lam + g*mu - mu is unverified
+- no_bounded_backlog_if_unit_gain signature is truncated in @SRC
+- fresh_supply_threshold statement is truncated in @SRC
+- no_supply_linear_growth statement is truncated and not cited
+- Lean skeleton for r=0 case still contains sorry
+- 'No generators grounded: all cited declarations are theorems or defs for the model, not typed operations'
+- 'lemma L_r0_linear unverified: Lean elaboration disabled'
+- 'near_miss nm_unit_gain_zero_lam unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

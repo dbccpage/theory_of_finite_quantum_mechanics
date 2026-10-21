@@ -1,0 +1,100 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_startWord",
+      "inputs": [
+        "Nat"
+      ],
+      "output": "Word",
+      "arity": 1,
+      "carrier": "Nat -> Word",
+      "ref": {
+        "path": "lean4/GenesisCompUniv.lean",
+        "decl": "GenesisComputation.Universal.startWord",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_init1",
+      "inputs": [
+        "Nat"
+      ],
+      "output": "TM1.Cfg G1 L1 (Option Γ')",
+      "arity": 1,
+      "carrier": "Nat -> TM1 configuration",
+      "ref": {
+        "path": "lean4/GenesisCompUniv.lean",
+        "decl": "GenesisComputation.Universal.init1",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_initCfg0",
+      "inputs": [
+        "Nat"
+      ],
+      "output": "TM0 configuration",
+      "arity": 1,
+      "carrier": "Nat -> TM0 configuration",
+      "ref": {
+        "path": "lean4/GenesisCompUniv.lean",
+        "decl": "GenesisComputation.Universal.initCfg0",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_nfReach_not_computable",
+      "statement": "NFReach is not a computable predicate on Nat.",
+      "hypotheses": "Mathlib ComputablePred.halting_problem",
+      "ref": {
+        "path": "lean4/GenesisCompUniv.lean",
+        "decl": "GenesisComputation.Universal.nfReach_not_computable",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_halts_iff",
+      "statement": "Halts M c iff there exist w, w' with Rep c w, Reach (Rules M) w w', and Irreducible (Rules M) w'.",
+      "hypotheses": "Rep c w",
+      "ref": {
+        "path": "lean4/GenesisCompTM.lean",
+        "decl": "GenesisComputation.TMEncoding.halts_iff",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_target",
+      "statement": "The predicate n |-> start word of n reaches an irreducible word under Rules M0 is not a computable predicate on Nat.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_nfReach_not_computable"
+      ],
+      "lean_skeleton": "theorem target : ¬ ComputablePred (fun n : ℕ => NFReach n) := GenesisComputation.Universal.nfReach_not_computable",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/GenesisCompUniv.lean",
+        "decl": "GenesisComputation.Universal.reach_irreducible_not_computable",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_computable_startWord",
+      "claim": "The map n |-> startWord n is computable, so non-computability transfers to any code encoding.",
+      "rejecting_invariant": "COMP-C7c: computability of the input-to-start-word map is not proved, so it cannot be assumed."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Computability of the input-to-start-word map (COMP-C7c) is not proved.",
+    "Exact statements and signatures of NFReach, reach_irreducible_iff and reach_irreducible_not_computable were not shown, so the lemma skeleton is unchecked.",
+    "No compositions were licensed because the colour types of the start word generators were not verified."
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "PGW-FIVE-PRESENTATION-QUESTIONS",
+  "stage": "P0",
+  "run_id": "PGW-FIVE-PRESENTATION-QUESTIONS/20261021T235833Z_ladder",
+  "finished_utc": "2026-10-21T23:58:41Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 1,
+  "free_calls": 0,
+  "paid_calls": 1,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 3,
+      "name": "sonnet",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ]
+    }
+  ],
+  "run_cap_usd": 0.12,
+  "summary": {
+    "node_id": "PGW-FIVE-PRESENTATION-QUESTIONS",
+    "run_id": "PGW-FIVE-PRESENTATION-QUESTIONS/20261021T235833Z_ladder",
+    "stage": "P0",
+    "status": "not_accepted",
+    "stop_reason": "ladder_exhausted",
+    "accepted_attempt": null,
+    "best_attempt": "a3-1",
+    "attempts": [
+      {
+        "attempt_id": "a3-1",
+        "tier": 3,
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "guided": true,
+        "known_neg_injected": 1,
+        "known_pos_injected": 1,
+        "input_sha256": "e616f7bb0334acf9a010f97d0c62a35d08d0942a3a2bcc2c5daf00c26fa97cbf",
+        "injected_neg_ids": [
+          "NEG-AD39D8B27875"
+        ],
+        "status": "rejected",
+        "verified_total": 1,
+        "failures_total": 3,
+        "failure_rate": 0.75,
+        "failures_by_class": {
+          "composition_type_mismatch": 1,
+          "wrong_signature": 2
+        },
+        "unverifiable": 3,
+        "input_tokens": 4254,
+        "output_tokens": 827,
+        "cost_microusd": 16778,
+        "request_id": "req_011CgGHm58HxjbMH66UMNc4i",
+        "latency_s": 6.292,
+        "stop_reason": "end_turn",
+        "served_model": "claude-sonnet-5-5",
+        "structured_mode": "json_schema",
+        "lean": "skipped",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-F09FB35CA381",
+          "NEG-AD01D9466820",
+          "NEG-6343D1FFCB8D"
+        ]
+      }
+    ],
+    "totals_by_tier": {
+      "3": {
+        "calls": 1,
+        "sent": 1,
+        "input_tokens": 4254,
+        "output_tokens": 827,
+        "cost_microusd": 16778,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 16778,
+    "spend_usd": 0.016778,
+    "hallucinations_by_class": {
+      "composition_type_mismatch": 1,
+      "wrong_signature": 2
+    },
+    "hallucinations_by_model": {
+      "claude-sonnet-5-5": {
+        "composition_type_mismatch": 1,
+        "wrong_signature": 2
+      }
+    },
+    "verified": {
+      "generators": 0,
+      "relations": 0,
+      "compositions": 0,
+      "lemmas": 0,
+      "numeric": 1
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a3-1:256d78a2",
+      "run_id": "PGW-FIVE-PRESENTATION-QUESTIONS/20261021T235833Z_ladder",
+      "attempt_id": "a3-1",
+      "tier": 3,
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "family": "anthropic",
+      "effort": "medium",
+      "max_tokens": 5000,
+      "started_utc": "2026-10-21T23:58:33Z",
+      "status": "ok",
+      "estimated_input_tokens": 3634,
+      "estimate_microusd": 57268,
+      "served_model": "claude-sonnet-5-5",
+      "input_tokens": 4254,
+      "output_tokens": 827,
+      "cost_microusd": 16778,
+      "cost_source": "price_table",
+      "request_id": "req_011CgGHm58HxjbMH66UMNc4i",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 6.292,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 9.285152,
+    "anthropic_cap_microusd": 59.605884,
+    "paid_other_microusd": 0.000449,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}
