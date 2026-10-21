@@ -716,16 +716,22 @@ pub struct ParityFrameCheck {
     pub box_size: i64,
     pub rays: usize,
     pub orthogonal_triples: usize,
+    /// At least one orthogonal triple was found, so `all_sum_to_one` is not vacuous.
+    pub nonvacuous: bool,
+    /// `nonvacuous` and parity sums to `1` on every orthogonal triple; `false` on a box with
+    /// no orthogonal triple (the twin's `nonvacuous` key).
     pub all_sum_to_one: bool,
     /// The distinct parity values taken on the rays, ascending.
     pub values: Vec<Q>,
 }
 
-/// Parity sums to 1 on every orthogonal triple of rays in the box `|coords| ≤ n`.
+/// Parity sums to 1 on every orthogonal triple of rays in the box `|coords| ≤ n`, and there is
+/// at least one such triple.
 pub fn parity_frame_check(n: i64) -> Result<ParityFrameCheck, Error> {
     let rays = rays_in_box(n);
     let triples = orthogonal_triples(&rays);
-    let mut all_sum_to_one = true;
+    let nonvacuous = !triples.is_empty();
+    let mut all_sum_to_one = nonvacuous;
     for (u, v, w) in &triples {
         if parity(u)? + parity(v)? + parity(w)? != Q::one() {
             all_sum_to_one = false;
@@ -740,6 +746,7 @@ pub fn parity_frame_check(n: i64) -> Result<ParityFrameCheck, Error> {
         box_size: n,
         rays: rays.len(),
         orthogonal_triples: triples.len(),
+        nonvacuous,
         all_sum_to_one,
         values: values.into_iter().collect(),
     })
@@ -752,7 +759,8 @@ pub enum LinearSystemOutcome {
     Solution(Vector),
 }
 
-/// Exact Gauss–Jordan elimination on `rows · x = rhs`.
+/// Exact Gauss–Jordan elimination on `rows · x = rhs`. Refuses a system with no equations or
+/// with no unknowns (rows of zero width) as `EmptySystem`, as the twin refuses `not rows[0]`.
 pub fn solve_linear_system(rows: &[Vec<Q>], rhs: &[Q]) -> Result<LinearSystemOutcome, Error> {
     let m = rows.len();
     if m == 0 {
@@ -760,6 +768,9 @@ pub fn solve_linear_system(rows: &[Vec<Q>], rhs: &[Q]) -> Result<LinearSystemOut
     }
     same_length("solve_linear_system", m, rhs.len())?;
     let n = rows[0].len();
+    if n == 0 {
+        return Err(Error::EmptySystem);
+    }
     let mut aug: Vec<Vec<Q>> = Vec::with_capacity(m);
     for (r, b) in rows.iter().zip(rhs) {
         same_length("solve_linear_system", n, r.len())?;
@@ -1184,12 +1195,24 @@ mod tests {
     #[test]
     fn test_parity_is_a_frame_function_on_all_orthogonal_triples_in_box() {
         let c = parity_frame_check(5).unwrap();
-        assert!(c.all_sum_to_one);
+        assert!(c.nonvacuous && c.all_sum_to_one);
         assert!(c.orthogonal_triples > 10);
         assert_eq!(c.values, vec![q(0), q(1)]);
         assert_eq!(c.box_size, 5);
         assert_eq!(c.rays, rays_in_box(5).len());
         assert!(c.rays > 0);
+    }
+
+    /// A box without an orthogonal triple certifies nothing: `all_sum_to_one` is not
+    /// vacuously true.
+    #[test]
+    fn test_parity_frame_check_is_not_vacuous_on_an_empty_box() {
+        let c = parity_frame_check(0).unwrap();
+        assert_eq!(c.orthogonal_triples, 0);
+        assert!(!c.nonvacuous);
+        assert!(!c.all_sum_to_one);
+        assert_eq!(c.rays, 0);
+        assert!(c.values.is_empty());
     }
 
     #[test]
@@ -1259,6 +1282,10 @@ mod tests {
         );
         assert_eq!(parity_quadratic_system(&[[1, 1, 0]]), Err(E::NotARay));
         assert_eq!(solve_linear_system(&[], &[]), Err(E::EmptySystem));
+        // Rows of zero width are refused, not solved vacuously (neither "inconsistent" for a
+        // nonzero right-hand side nor an empty solution for a zero one).
+        assert_eq!(solve_linear_system(&[vec![]], &[q(1)]), Err(E::EmptySystem));
+        assert_eq!(solve_linear_system(&[vec![]], &[q(0)]), Err(E::EmptySystem));
         assert!(born_valuation(&Vec::new()).is_err());
         assert!(verify_gram(&identity(2), &[(q(1), vi(&[1, 0, 0]))]).is_err());
         assert!(!verify_gram(&identity(2), &[(q(-1), vi(&[1, 0]))]).unwrap());
