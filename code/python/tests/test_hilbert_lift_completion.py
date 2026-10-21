@@ -118,6 +118,17 @@ class DensityAndControlTests(unittest.TestCase):
             m.seq({-1: 1})
         with self.assertRaises(ValueError):
             m.fin_vector([0.5])
+        with self.assertRaises(ValueError):
+            m.fin_inner([1.0], [2.0])
+        with self.assertRaises(ValueError):
+            m.trunc(-1, F)
+        with self.assertRaises(ValueError):
+            m.harmonic(-1)
+        with self.assertRaises(TypeError):
+            m.CauchyCandidate(123, lambda k: k)
+        point = m.CauchyCandidate(m.harmonic, m.harmonic_modulus)
+        with self.assertRaises(ValueError):
+            point.approximant(-1)
 
 
 if __name__ == '__main__':

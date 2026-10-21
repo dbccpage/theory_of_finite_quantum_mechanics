@@ -108,12 +108,12 @@
       ]
     }
   },
-  "current_contract": "51da93f0d882d180a1cd6d5e263d9e7628b5556cf5fe697e29e0a1a817978279",
-  "current_scoring": null,
+  "current_contract": "9cd42f76c1ddcc105f17df5b2ad006ff44c50ddd06340d538220d47d69b1dfc5",
+  "current_scoring": "cbe2ee7260d088cd672f8c38970986512a8f677e7b050d4e726eaa3243dffad7",
   "contract_history": [
     {
-      "sha256": "51da93f0d882d180a1cd6d5e263d9e7628b5556cf5fe697e29e0a1a817978279",
-      "bytes": 3302,
+      "sha256": "9cd42f76c1ddcc105f17df5b2ad006ff44c50ddd06340d538220d47d69b1dfc5",
+      "bytes": 3839,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:composition_law:v0.1.0",
@@ -220,13 +220,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:composition_law:v0.1.0\ntitle: Composition Law Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: binary_operation\n  symbol: g ∘ f\n  ascii_symbol: composition_law\n  notation: g ∘ f\n  domain:\n  - 'morphisms: set of morphisms in the category'\n  - 'composition_function: partial function Mor × Mor → Mor'\n  codomain:\n    description: 'The composition law is defined on the set of morphisms in a category.\n      For morphisms f: A → B and g: B → C where cod(f) = dom(g), the composition g\n      ∘ f: A → C exists.\n\n      '\nrequirements:\n  required_structures:\n  - Composition must be defined for all composable pairs of morphisms\n  - Composition must satisfy (h ∘ g) ∘ f = h ∘ (g ∘ f) for all composable triples\n  - g ∘ f is only defined when cod(f) = dom(g)\n  - 'Composition must be deterministic: same inputs always produce same output'\nlaws:\n- 'For all composable triples f, g, h: (h ∘ g) ∘ f = h ∘ (g ∘ f)'\n- 'For f: A → B and g: B → C: dom(g ∘ f) = dom(f) = A'\n- 'For f: A → B and g: B → C: cod(g ∘ f) = cod(g) = C'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Composition triples sorted canonically\n  - Validators and composition functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- category_id does not resolve to a valid Category\n- Composable pair (f, g) has no defined composite\n- g ∘ f has domain ≠ domain(f)\n- g ∘ f has codomain ≠ codomain(g)\n- (h ∘ g) ∘ f ≠ h ∘ (g ∘ f) for some composable triple\ndoctrine:\n  summary: 'A CompositionLaw defines how morphisms compose in a category. Given f:\n    A → B and g: B → C, the composition g ∘ f: A → C is defined. The law must satisfy\n    associativity. The contract validates the composition table or function.'\n  non_role:\n  - This contract does not handle horizontal composition in 2-categories\n  - This contract does not provide composition in bicategories or weak categories\n  - This contract does not handle monoidal composition (tensor products)\nwip:\n- Should this contract be merged with Category or kept separate for modularity?\n- How to handle large categories where table representation is impractical?\n- What is the contract structure for higher composition in 2-categories?\n- Contract is closely tied to Category; modularity vs. integration trade-off\n- Function representation needed for large/infinite categories\n- Higher composition (2-categories, bicategories) requires separate contract\nrust_binding:\n  crate: omega_category_theory\n  module: finite_category_validation\n  symbols:\n  - check_composition_totality\n  - check_composition_closure\n  - check_composition_boundaries\n  - check_associativity\n  required_tests:\n  - associativity_failure_is_detected\n  - noncomposable_composition_fails\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:composition_law:v0.1.0\",\n  \"title\": \"Composition Law Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"binary_operation\",\n    \"symbol\": \"g ∘ f\",\n    \"ascii_symbol\": \"composition_law\",\n    \"notation\": \"g ∘ f\",\n    \"domain\": [\n      \"morphisms: set of morphisms in the category\",\n      \"composition_function: partial function Mor × Mor → Mor\"\n    ],\n    \"codomain\": {\n      \"description\": \"The composition law is defined on the set of morphisms in a category. For morphisms f: A → B and g: B → C where cod(f) = dom(g), the composition g ∘ f: A → C exists.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Composition must be defined for all composable pairs of morphisms\",\n      \"Composition must satisfy (h ∘ g) ∘ f = h ∘ (g ∘ f) for all composable triples\",\n      \"g ∘ f is only defined when cod(f) = dom(g)\",\n      \"Composition must be deterministic: same inputs always produce same output\"\n    ]\n  },\n  \"laws\": [\n    \"For all composable triples f, g, h: (h ∘ g) ∘ f = h ∘ (g ∘ f)\",\n    \"For f: A → B and g: B → C: dom(g ∘ f) = dom(f) = A\",\n    \"For f: A → B and g: B → C: cod(g ∘ f) = cod(g) = C\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Composition triples sorted canonically\",\n      \"Validators and composition functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"category_id does not resolve to a valid Category\",\n    \"Composable pair (f, g) has no defined composite\",\n    \"g ∘ f has domain ≠ domain(f)\",\n    \"g ∘ f has codomain ≠ codomain(g)\",\n    \"(h ∘ g) ∘ f ≠ h ∘ (g ∘ f) for some composable triple\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A CompositionLaw defines how morphisms compose in a category. Given f: A → B and g: B → C, the composition g ∘ f: A → C is defined. The law must satisfy associativity. The contract validates the composition table or function.\",\n    \"non_role\": [\n      \"This contract does not handle horizontal composition in 2-categories\",\n      \"This contract does not provide composition in bicategories or weak categories\",\n      \"This contract does not handle monoidal composition (tensor products)\"\n    ]\n  },\n  \"wip\": [\n    \"Should this contract be merged with Category or kept separate for modularity?\",\n    \"How to handle large categories where table representation is impractical?\",\n    \"What is the contract structure for higher composition in 2-categories?\",\n    \"Contract is closely tied to Category; modularity vs. integration trade-off\",\n    \"Function representation needed for large/infinite categories\",\n    \"Higher composition (2-categories, bicategories) requires separate contract\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_category_theory\",\n    \"module\": \"finite_category_validation\",\n    \"symbols\": [\n      \"check_composition_totality\",\n      \"check_composition_closure\",\n      \"check_composition_boundaries\",\n      \"check_associativity\"\n    ],\n    \"required_tests\": [\n      \"associativity_failure_is_detected\",\n      \"noncomposable_composition_fails\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_composition_law_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "cbe2ee7260d088cd672f8c38970986512a8f677e7b050d4e726eaa3243dffad7",
+      "bytes": 2227,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_composition_law_v0_1_0_contract.py",
+          "sha256": "cd9d6bc745a67a3a489b409f5368ea0fdea68b5b4eba43d98130163c06aa97cf"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-composition-law-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_composition_law_v0_1_0_contract.py\",\n    \"sha256\": \"cd9d6bc745a67a3a489b409f5368ea0fdea68b5b4eba43d98130163c06aa97cf\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-composition-law-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_composition_law_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_composition_law_v0_1_0.contract.yaml": "51da93f0d882d180a1cd6d5e263d9e7628b5556cf5fe697e29e0a1a817978279"
   },

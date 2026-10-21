@@ -46,12 +46,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "1e0dcc7ad89dfd664c56edeee777875cc5a6b3c81ea5f6449a2ead4e71f7ad2d",
-  "current_scoring": null,
+  "current_contract": "d092795ed5515ce9140e802eacbda54d883dd94d801b9b1e737128ba21ee9898",
+  "current_scoring": "0315c30388fbc161d01030ffc696a09c9ccda856ef0749338e6c38e22b86acc9",
   "contract_history": [
     {
-      "sha256": "1e0dcc7ad89dfd664c56edeee777875cc5a6b3c81ea5f6449a2ead4e71f7ad2d",
-      "bytes": 1068,
+      "sha256": "d092795ed5515ce9140e802eacbda54d883dd94d801b9b1e737128ba21ee9898",
+      "bytes": 1305,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_prompt_civilization:immunity:v1.0.0",
@@ -96,13 +96,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_prompt_civilization:immunity:v1.0.0\ntitle: 'Immunity propagation, retro-inheritance, and lineage taint.  Enforces: - F-IMMUNE-09:\n  No horizon-reset relay (origina...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_prompt_civilization\nfile: crates_rs/omega_prompt_civilization/src/immunity.rs\nmodule: immunity\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_prompt_civilization\n  module: immunity\n  file: crates_rs/omega_prompt_civilization/src/immunity.rs\nsymbols:\n- ImmunityAcquisitionV1\n- ImmunityPropagationV1\n- ImmunityEngineV1\n- compute_backward_propagation\n- compute_forward_inheritance\n- filter_armed_repertoire\n- compute_forward_taint\nowns:\n- immunity_acquisition_v1\n- immunity_propagation_v1\n- immunity_engine_v1\n- compute_backward_propagation\n- compute_forward_inheritance\n- filter_armed_repertoire\n- compute_forward_taint\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_prompt_civilization:immunity:v1.0.0\",\n  \"title\": \"Immunity propagation, retro-inheritance, and lineage taint.  Enforces: - F-IMMUNE-09: No horizon-reset relay (origina...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_prompt_civilization\",\n  \"file\": \"crates_rs/omega_prompt_civilization/src/immunity.rs\",\n  \"module\": \"immunity\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_prompt_civilization\",\n    \"module\": \"immunity\",\n    \"file\": \"crates_rs/omega_prompt_civilization/src/immunity.rs\"\n  },\n  \"symbols\": [\n    \"ImmunityAcquisitionV1\",\n    \"ImmunityPropagationV1\",\n    \"ImmunityEngineV1\",\n    \"compute_backward_propagation\",\n    \"compute_forward_inheritance\",\n    \"filter_armed_repertoire\",\n    \"compute_forward_taint\"\n  ],\n  \"owns\": [\n    \"immunity_acquisition_v1\",\n    \"immunity_propagation_v1\",\n    \"immunity_engine_v1\",\n    \"compute_backward_propagation\",\n    \"compute_forward_inheritance\",\n    \"filter_armed_repertoire\",\n    \"compute_forward_taint\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/50_os/omega_prompt_civilization_immunity.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "0315c30388fbc161d01030ffc696a09c9ccda856ef0749338e6c38e22b86acc9",
+      "bytes": 2229,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/omega_prompt_civilization_immunity_contract.py",
+          "sha256": "94afa6bbd59f1ef2add760162e9145af729e48d13d24e1b9d7eb1c5c1c7e4fa1"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:omega-prompt-civilization-immunity-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/omega_prompt_civilization_immunity_contract.py\",\n    \"sha256\": \"94afa6bbd59f1ef2add760162e9145af729e48d13d24e1b9d7eb1c5c1c7e4fa1\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:omega-prompt-civilization-immunity-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/omega_prompt_civilization_immunity_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/omega_prompt_civilization_immunity.contract.yaml": "1e0dcc7ad89dfd664c56edeee777875cc5a6b3c81ea5f6449a2ead4e71f7ad2d"
   },

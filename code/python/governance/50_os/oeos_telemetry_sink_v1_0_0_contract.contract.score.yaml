@@ -120,12 +120,12 @@
       ]
     }
   },
-  "current_contract": "ac76a41ce0008bc732fd882ef48d1999bbc69df88ef272d937c481699767c666",
-  "current_scoring": null,
+  "current_contract": "14728adb070409330768745b82e194c7374941f63632a6b9de1411c4b57efb4d",
+  "current_scoring": "a93ef1344a5af2d367646c96db1d353e82c18801fabcfb4b31d9d8c684d83ec4",
   "contract_history": [
     {
-      "sha256": "ac76a41ce0008bc732fd882ef48d1999bbc69df88ef272d937c481699767c666",
-      "bytes": 2665,
+      "sha256": "14728adb070409330768745b82e194c7374941f63632a6b9de1411c4b57efb4d",
+      "bytes": 3404,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:oeos:telemetry_sink:v1.0.0",
@@ -244,13 +244,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:telemetry_sink:v1.0.0\ntitle: Non-Authoritative Telemetry Sink\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: TelemetrySink\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations:\n    - id: TLM-INV-001\n      statement: Telemetry buffers, field sizes, and export work are bounded by a\n        declared profile.\n      verification_status: open\n    - id: TLM-INV-002\n      statement: Telemetry failure is non-authoritative and does not change mathematical,\n        evaluator, licensing, or Engine outcomes.\n      verification_status: open\n    - id: TLM-INV-003\n      statement: Redaction and payload-exclusion policies are explicit and independently\n        tested.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - TELEMETRY_BOUNDS_REFUSED\n    - TELEMETRY_EXPORT_REFUSED\n    - TELEMETRY_REDACTION_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: bounded_telemetry_event\n    type: urn:omega:oeos:type:bounded_telemetry_event:v1.0.0\n    required: true\n  outputs:\n  - name: telemetry_delivery_status\n    type: urn:omega:oeos:type:telemetry_delivery_status:v1.0.0\n    required: true\n  typed_refusals:\n  - TELEMETRY_BOUNDS_REFUSED\n  - TELEMETRY_EXPORT_REFUSED\n  - TELEMETRY_REDACTION_REFUSED\n  platform_requirements:\n  - profile: bounded_non_blocking_buffer\n    requirements:\n    - finite_ring_buffer\n    - bounded_export_deadline\n    - drop_policy_declared\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares bounded operational observability separate from authoritative\n    trace artifacts.\n  non_role:\n  - authoritative_trace\n  - decision_input\n  - control_flow_policy\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - telemetry_is_not_claimed_zero_cost\n  - telemetry_delivery_is_not_authoritative_evidence\n  invariants:\n  - emission_work_is_bounded_by_profile\n  - dropped_telemetry_never_changes_run_semantics\n  allowed_operations:\n  - enqueue_bounded_telemetry\n  - export_bounded_telemetry_batch\n  forbidden_operations:\n  - drive_control_flow_from_telemetry\n  - store_unredacted_credentials\n  - claim_telemetry_as_trace_receipt\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:telemetry_sink:v1.0.0\",\n  \"title\": \"Non-Authoritative Telemetry Sink\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"TelemetrySink\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": [\n        {\n          \"id\": \"TLM-INV-001\",\n          \"statement\": \"Telemetry buffers, field sizes, and export work are bounded by a declared profile.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"TLM-INV-002\",\n          \"statement\": \"Telemetry failure is non-authoritative and does not change mathematical, evaluator, licensing, or Engine outcomes.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"TLM-INV-003\",\n          \"statement\": \"Redaction and payload-exclusion policies are explicit and independently tested.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"TELEMETRY_BOUNDS_REFUSED\",\n        \"TELEMETRY_EXPORT_REFUSED\",\n        \"TELEMETRY_REDACTION_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"bounded_telemetry_event\",\n        \"type\": \"urn:omega:oeos:type:bounded_telemetry_event:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"telemetry_delivery_status\",\n        \"type\": \"urn:omega:oeos:type:telemetry_delivery_status:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"TELEMETRY_BOUNDS_REFUSED\",\n      \"TELEMETRY_EXPORT_REFUSED\",\n      \"TELEMETRY_REDACTION_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"bounded_non_blocking_buffer\",\n        \"requirements\": [\n          \"finite_ring_buffer\",\n          \"bounded_export_deadline\",\n          \"drop_policy_declared\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares bounded operational observability separate from authoritative trace artifacts.\",\n    \"non_role\": [\n      \"authoritative_trace\",\n      \"decision_input\",\n      \"control_flow_policy\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"telemetry_is_not_claimed_zero_cost\",\n      \"telemetry_delivery_is_not_authoritative_evidence\"\n    ],\n    \"invariants\": [\n      \"emission_work_is_bounded_by_profile\",\n      \"dropped_telemetry_never_changes_run_semantics\"\n    ],\n    \"allowed_operations\": [\n      \"enqueue_bounded_telemetry\",\n      \"export_bounded_telemetry_batch\"\n    ],\n    \"forbidden_operations\": [\n      \"drive_control_flow_from_telemetry\",\n      \"store_unredacted_credentials\",\n      \"claim_telemetry_as_trace_receipt\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/50_os/oeos_telemetry_sink_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "a93ef1344a5af2d367646c96db1d353e82c18801fabcfb4b31d9d8c684d83ec4",
+      "bytes": 2213,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/oeos_telemetry_sink_v1_0_0_contract.py",
+          "sha256": "cc82920589eac601c1fc450320d413aaf642b3fab0082e4fb18850451884a442"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:oeos-telemetry-sink-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_telemetry_sink_v1_0_0_contract.py\",\n    \"sha256\": \"cc82920589eac601c1fc450320d413aaf642b3fab0082e4fb18850451884a442\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-telemetry-sink-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_telemetry_sink_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/oeos_telemetry_sink_v1_0_0.contract.yaml": "ac76a41ce0008bc732fd882ef48d1999bbc69df88ef272d937c481699767c666"
   },

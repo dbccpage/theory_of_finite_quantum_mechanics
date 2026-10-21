@@ -101,12 +101,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "40368a72e35891849d72d8abf5e9da659b7b814fa8e370c1b1f73588b32c9376",
-  "current_scoring": null,
+  "current_contract": "fd051be5d9156817714bab340dd7845c73169572d34a1f72b9b7be79a05b33f1",
+  "current_scoring": "e6c212a990035cd659f78598311f524143c1a9334a3f67d411194f04dd46708e",
   "contract_history": [
     {
-      "sha256": "40368a72e35891849d72d8abf5e9da659b7b814fa8e370c1b1f73588b32c9376",
-      "bytes": 4137,
+      "sha256": "fd051be5d9156817714bab340dd7845c73169572d34a1f72b9b7be79a05b33f1",
+      "bytes": 4637,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:exact_conditional_quantum_information:v0.1.0",
@@ -206,13 +206,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_conditional_quantum_information:v0.1.0\ntitle: Exact mutual and conditional quantum information\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_conditional_quantum_information\n  symbol: exact_conditional_quantum_information\n  ascii_symbol: exact_conditional_quantum_information\n  notation: Exact and diagnostic mutual and conditional quantum information\n  domain:\n  - Finite exact density operators, rational spectral LogForms or isolated algebraic\n    intervals; bounded precision; the general complex matrix route is f64 diagnostic\n    and requires a finite strictly positive caller tolerance\n  codomain:\n    description: Declared finite results of omega_quantum_physics::quantum_mutual_information;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Bell conditional entropy is negative and mutual information is twice marginal entropy\n- Conditional mutual information uses actual three-party reductions\n- Araki-Lieb gaps use actual full density reductions\n- Diagnostic mutual and conditional entropy reject nonfinite and nonpositive tolerances\n  through canonical checked density configuration\n- The diagnostic caller trace tolerance controls admission without renormalization;\n  strict rejection and loose acceptance retain Bell entropy controls\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: quantum_mutual_information\n  symbols:\n  - QuantumMutualInformation::conditional_mutual_exact\n  - QuantumMutualInformation::araki_lieb_gaps\n  - QuantumMutualInformation::mutual_information_matrix\n  - QuantumMutualInformation::conditional_entropy_matrix\n  required_tests:\n  - states_channels_exact_tests::coherent_information_and_relative_entropy_use_full_operators\n  - states_channels_exact_tests::diagnostic_matrix_information_rejects_invalid_tolerances_and_retains_bell_values\n  - states_channels_exact_tests::diagnostic_matrix_information_uses_the_supplied_trace_tolerance\nnegative_tests:\n- states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage\n- states_channels_exact_tests::diagnostic_matrix_information_rejects_invalid_tolerances_and_retains_bell_values\n- states_channels_exact_tests::diagnostic_matrix_information_uses_the_supplied_trace_tolerance\ndoctrine:\n  summary: Bell conditional entropy is negative and mutual information is twice marginal\n    entropy; Conditional mutual information uses actual three-party reductions; Araki-Lieb\n    gaps use actual full density reductions; Diagnostic mutual and conditional entropy\n    reject nonfinite and nonpositive tolerances through canonical checked density\n    configuration; The diagnostic caller trace tolerance controls admission without\n    renormalization; strict rejection and loose acceptance retain Bell entropy controls.\n  non_role:\n  - No diagonal population entropy is presented as full-operator entanglement entropy\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:exact_conditional_quantum_information:v0.1.0\",\n  \"title\": \"Exact mutual and conditional quantum information\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"exact_conditional_quantum_information\",\n    \"symbol\": \"exact_conditional_quantum_information\",\n    \"ascii_symbol\": \"exact_conditional_quantum_information\",\n    \"notation\": \"Exact and diagnostic mutual and conditional quantum information\",\n    \"domain\": [\n      \"Finite exact density operators, rational spectral LogForms or isolated algebraic intervals; bounded precision; the general complex matrix route is f64 diagnostic and requires a finite strictly positive caller tolerance\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_quantum_physics::quantum_mutual_information; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Bell conditional entropy is negative and mutual information is twice marginal entropy\",\n    \"Conditional mutual information uses actual three-party reductions\",\n    \"Araki-Lieb gaps use actual full density reductions\",\n    \"Diagnostic mutual and conditional entropy reject nonfinite and nonpositive tolerances through canonical checked density configuration\",\n    \"The diagnostic caller trace tolerance controls admission without renormalization; strict rejection and loose acceptance retain Bell entropy controls\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"quantum_mutual_information\",\n    \"symbols\": [\n      \"QuantumMutualInformation::conditional_mutual_exact\",\n      \"QuantumMutualInformation::araki_lieb_gaps\",\n      \"QuantumMutualInformation::mutual_information_matrix\",\n      \"QuantumMutualInformation::conditional_entropy_matrix\"\n    ],\n    \"required_tests\": [\n      \"states_channels_exact_tests::coherent_information_and_relative_entropy_use_full_operators\",\n      \"states_channels_exact_tests::diagnostic_matrix_information_rejects_invalid_tolerances_and_retains_bell_values\",\n      \"states_channels_exact_tests::diagnostic_matrix_information_uses_the_supplied_trace_tolerance\"\n    ]\n  },\n  \"negative_tests\": [\n    \"states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage\",\n    \"states_channels_exact_tests::diagnostic_matrix_information_rejects_invalid_tolerances_and_retains_bell_values\",\n    \"states_channels_exact_tests::diagnostic_matrix_information_uses_the_supplied_trace_tolerance\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Bell conditional entropy is negative and mutual information is twice marginal entropy; Conditional mutual information uses actual three-party reductions; Araki-Lieb gaps use actual full density reductions; Diagnostic mutual and conditional entropy reject nonfinite and nonpositive tolerances through canonical checked density configuration; The diagnostic caller trace tolerance controls admission without renormalization; strict rejection and loose acceptance retain Bell entropy controls.\",\n    \"non_role\": [\n      \"No diagonal population entropy is presented as full-operator entanglement entropy\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/math_exact_conditional_quantum_information_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "e6c212a990035cd659f78598311f524143c1a9334a3f67d411194f04dd46708e",
+      "bytes": 2271,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/math_exact_conditional_quantum_information_v0_1_0_contract.py",
+          "sha256": "c6f4642642479847bcc23650201796adf3df56ccc05cb42fb2ebc3a7b8913375"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:math-exact-conditional-quantum-information-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_exact_conditional_quantum_information_v0_1_0_contract.py\",\n    \"sha256\": \"c6f4642642479847bcc23650201796adf3df56ccc05cb42fb2ebc3a7b8913375\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-exact-conditional-quantum-information-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_conditional_quantum_information_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/math_exact_conditional_quantum_information_v0_1_0.contract.yaml": "40368a72e35891849d72d8abf5e9da659b7b814fa8e370c1b1f73588b32c9376"
   },

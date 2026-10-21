@@ -57,12 +57,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "b11e893f49d87eb0808952488674f7ee583cf9513647d59266cba003f2ce45fb",
-  "current_scoring": null,
+  "current_contract": "0778eb9daedc5d4d3efee24a6e13a06c09c5fd2e298f1593d08eed078aeb8858",
+  "current_scoring": "44c7b18afc97520351be092065e8c609415ed5600978702144f1f7fcb7583b0d",
   "contract_history": [
     {
-      "sha256": "b11e893f49d87eb0808952488674f7ee583cf9513647d59266cba003f2ce45fb",
-      "bytes": 1162,
+      "sha256": "0778eb9daedc5d4d3efee24a6e13a06c09c5fd2e298f1593d08eed078aeb8858",
+      "bytes": 1458,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_certifiers:meron_certificate:v1.0.0",
@@ -118,13 +118,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_certifiers:meron_certificate:v1.0.0\ntitle: Meron Certificate Module\nkind: rust_file_contract\nstatus: active\ncrate: omega_certifiers\nfile: crates_rs/omega_certifiers/src/meron_certificate.rs\nmodule: meron_certificate\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_certifiers\n  module: meron_certificate\n  file: crates_rs/omega_certifiers/src/meron_certificate.rs\nsymbols:\n- MeronSystem\n- MeronConfig\n- amplitude\n- signed_contribution\n- MeronInvolutionPair\n- MeronCertificate\n- MeronTerminalKind\n- MeronAuthorityCeiling\n- MeronFiniteVerdict\n- exact_cancellation_finite_verdict\n- is_supported_meron_contract_id\n- is_stale_meron_artifact\n- MeronVerificationError\n- certificate_sha256_hex\n- verify_certificate_hash\n- verify_meron_certificate\n- verify_observable_compatibility\nowns:\n- meron_system\n- meron_config\n- amplitude\n- signed_contribution\n- meron_involution_pair\n- meron_certificate\n- meron_terminal_kind\n- meron_authority_ceiling\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_certifiers:meron_certificate:v1.0.0\",\n  \"title\": \"Meron Certificate Module\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_certifiers\",\n  \"file\": \"crates_rs/omega_certifiers/src/meron_certificate.rs\",\n  \"module\": \"meron_certificate\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_certifiers\",\n    \"module\": \"meron_certificate\",\n    \"file\": \"crates_rs/omega_certifiers/src/meron_certificate.rs\"\n  },\n  \"symbols\": [\n    \"MeronSystem\",\n    \"MeronConfig\",\n    \"amplitude\",\n    \"signed_contribution\",\n    \"MeronInvolutionPair\",\n    \"MeronCertificate\",\n    \"MeronTerminalKind\",\n    \"MeronAuthorityCeiling\",\n    \"MeronFiniteVerdict\",\n    \"exact_cancellation_finite_verdict\",\n    \"is_supported_meron_contract_id\",\n    \"is_stale_meron_artifact\",\n    \"MeronVerificationError\",\n    \"certificate_sha256_hex\",\n    \"verify_certificate_hash\",\n    \"verify_meron_certificate\",\n    \"verify_observable_compatibility\"\n  ],\n  \"owns\": [\n    \"meron_system\",\n    \"meron_config\",\n    \"amplitude\",\n    \"signed_contribution\",\n    \"meron_involution_pair\",\n    \"meron_certificate\",\n    \"meron_terminal_kind\",\n    \"meron_authority_ceiling\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/30_evidence/omega_certifiers_meron_certificate.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "44c7b18afc97520351be092065e8c609415ed5600978702144f1f7fcb7583b0d",
+      "bytes": 2241,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/30_evidence/omega_certifiers_meron_certificate_contract.py",
+          "sha256": "8c1f752435b01b355ea702049eac03bd30ae22bf8632e7fefe82f24863b7f1dd"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:30_evidence:omega-certifiers-meron-certificate-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/omega_certifiers_meron_certificate_contract.py\",\n    \"sha256\": \"8c1f752435b01b355ea702049eac03bd30ae22bf8632e7fefe82f24863b7f1dd\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:omega-certifiers-meron-certificate-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/omega_certifiers_meron_certificate_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/30_evidence/omega_certifiers_meron_certificate.contract.yaml": "b11e893f49d87eb0808952488674f7ee583cf9513647d59266cba003f2ce45fb"
   },

@@ -114,12 +114,12 @@
       "The mutation drop-the-rank-bound survives as an equivalent mutant: the identity always commutes, so the rank is never n^2"
     ]
   },
-  "current_contract": "a89e7e3335917bc13bf7266ee0aef3217eb8e351dcccdf120b58b518f61cb8ce",
-  "current_scoring": null,
+  "current_contract": "735a34cc0f6a8eac6b2cf50453b0db0a8e091e6dee376899061956834b79f9bd",
+  "current_scoring": "020b90e69025640e6709c8cb3ec6e00a010d4eef42992348d61472d155e4d48e",
   "contract_history": [
     {
-      "sha256": "a89e7e3335917bc13bf7266ee0aef3217eb8e351dcccdf120b58b518f61cb8ce",
-      "bytes": 4319,
+      "sha256": "735a34cc0f6a8eac6b2cf50453b0db0a8e091e6dee376899061956834b79f9bd",
+      "bytes": 4872,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:finite_commutator_obstruction:v0.1.0",
@@ -232,13 +232,75 @@
           "The mutation drop-the-rank-bound survives as an equivalent mutant: the identity always commutes, so the rank is never n^2"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_commutator_obstruction:v0.1.0\ntitle: Finite Commutator Obstruction and Weyl Irreducibility Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: algebraic_obstruction\n  symbol: Tr[Q, P] = 0 versus Tr(c I_N) = N c; commutant of {X, Z}\n  ascii_symbol: finite_commutator_obstruction\n  notation: '[Q, P] = c I_N forces c = 0 (characteristic 0); Z X = omega X Z; commutant(G)\n    = {M : [M, g] = 0 for every g in G}'\n  domain:\n  - 3 x 3 matrices over Q(zeta_24) (BasicMatrix<Cyc24>) for the obstruction checks\n  - n x n matrices over Q(zeta_24) for the commutant dimension\n  codomain:\n    description: Exact booleans for the two sides of the trace argument, and the exact\n      dimension of a commutant, computed as n^2 minus the exact rank of the linear\n      system [M, G] = 0\nrequirements:\n  required_structures:\n  - Tr[A, B] = 0 for every pair of matrices of the same size\n  - Tr(c I_3) = 3 c\n  - The commutant system has one block of n^2 equations per generator with coefficient\n    delta_ik G_lj - G_ik delta_jl on the unknown M_kl\n  - The rank is an exact rank over Q(zeta_24); there is no tolerance\n  - A generator that is not n x n is refused\nlaws:\n- No pair of 3 x 3 matrices satisfies [A, B] = c I_3 for c != 0, because the traces\n  0 and 3 c differ\n- The commutant of no generators, or of the identity, is all of M_n (dimension n^2)\n- The commutant of a diagonal matrix with distinct entries is the diagonal matrices\n  (dimension n); with eigenvalue multiplicities m_i it has dimension sum m_i^2\n- 'The shift X and the clock Z each have a commutant of dimension 3, and together\n  only the scalars commute with both (dimension 1): (X, Z) is irreducible, since X\n  and Z are unitary'\n- Z X = omega X Z, and omega I_3 is central\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact arithmetic over Q(zeta_24) only\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_quantum_physics\n  module: commutator\n  symbols:\n  - weyl_commutant_dimension_d3\n  - trace_of_scalar_d3\n  - commutator_equals_scalar_d3\n  - trace_obstructs_scalar_commutator_d3\n  - audit_commutator_obstruction_d3\n  - verify_finite_heisenberg_center_d3\n  - CommutatorObstructionReport\n  required_tests:\n  - no_pair_of_three_by_three_matrices_has_a_nonzero_scalar_commutator\n  - the_trace_of_a_scalar_matrix_is_three_times_the_scalar\n  - the_scalar_commutator_relation_does_hold_with_c_zero_exactly_for_commuting_pairs\n  - the_commutant_of_no_generators_or_of_the_identity_is_every_matrix\n  - the_commutant_of_a_diagonal_matrix_follows_its_eigenvalue_multiplicities\n  - the_shift_and_the_clock_alone_have_three_dimensional_commutants\n  - the_shift_and_clock_pair_has_only_scalars_in_its_commutant\n  - a_generator_of_the_wrong_shape_is_refused\n  - test_audit_commutator_obstruction\n  - test_heisenberg_center\nnegative_tests:\n- A generator of the wrong shape must be refused\n- A sign error or an index swap in the commutant system must be caught by the known\n  dimensions (hand mutations of both were killed)\ndoctrine:\n  summary: The obstruction to a finite canonical commutation relation is the trace;\n    the finite replacement is the Weyl relation. Irreducibility of the clock-and-shift\n    pair is checked exactly by the dimension of the commutant. The audit reports computed\n    flags and never panics.\n  non_role:\n  - Uniqueness of the irreducible representation of the Weyl relation (Stone-von Neumann\n    uniqueness is not checked)\n  - Dimensions other than 3 for the named constructors\n  - Infinite-dimensional Heisenberg pairs\nwip:\n- Only the d = 3 clock, shift and discrete position and momentum are constructed;\n  the generic commutant_dimension works in any dimension over Q(zeta_24)\n- 'The mutation drop-the-rank-bound survives as an equivalent mutant: the identity\n  always commutes, so the rank is never n^2'\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:finite_commutator_obstruction:v0.1.0\",\n  \"title\": \"Finite Commutator Obstruction and Weyl Irreducibility Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"active\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"algebraic_obstruction\",\n    \"symbol\": \"Tr[Q, P] = 0 versus Tr(c I_N) = N c; commutant of {X, Z}\",\n    \"ascii_symbol\": \"finite_commutator_obstruction\",\n    \"notation\": \"[Q, P] = c I_N forces c = 0 (characteristic 0); Z X = omega X Z; commutant(G) = {M : [M, g] = 0 for every g in G}\",\n    \"domain\": [\n      \"3 x 3 matrices over Q(zeta_24) (BasicMatrix<Cyc24>) for the obstruction checks\",\n      \"n x n matrices over Q(zeta_24) for the commutant dimension\"\n    ],\n    \"codomain\": {\n      \"description\": \"Exact booleans for the two sides of the trace argument, and the exact dimension of a commutant, computed as n^2 minus the exact rank of the linear system [M, G] = 0\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Tr[A, B] = 0 for every pair of matrices of the same size\",\n      \"Tr(c I_3) = 3 c\",\n      \"The commutant system has one block of n^2 equations per generator with coefficient delta_ik G_lj - G_ik delta_jl on the unknown M_kl\",\n      \"The rank is an exact rank over Q(zeta_24); there is no tolerance\",\n      \"A generator that is not n x n is refused\"\n    ]\n  },\n  \"laws\": [\n    \"No pair of 3 x 3 matrices satisfies [A, B] = c I_3 for c != 0, because the traces 0 and 3 c differ\",\n    \"The commutant of no generators, or of the identity, is all of M_n (dimension n^2)\",\n    \"The commutant of a diagonal matrix with distinct entries is the diagonal matrices (dimension n); with eigenvalue multiplicities m_i it has dimension sum m_i^2\",\n    \"The shift X and the clock Z each have a commutant of dimension 3, and together only the scalars commute with both (dimension 1): (X, Z) is irreducible, since X and Z are unitary\",\n    \"Z X = omega X Z, and omega I_3 is central\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Exact arithmetic over Q(zeta_24) only\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"commutator\",\n    \"symbols\": [\n      \"weyl_commutant_dimension_d3\",\n      \"trace_of_scalar_d3\",\n      \"commutator_equals_scalar_d3\",\n      \"trace_obstructs_scalar_commutator_d3\",\n      \"audit_commutator_obstruction_d3\",\n      \"verify_finite_heisenberg_center_d3\",\n      \"CommutatorObstructionReport\"\n    ],\n    \"required_tests\": [\n      \"no_pair_of_three_by_three_matrices_has_a_nonzero_scalar_commutator\",\n      \"the_trace_of_a_scalar_matrix_is_three_times_the_scalar\",\n      \"the_scalar_commutator_relation_does_hold_with_c_zero_exactly_for_commuting_pairs\",\n      \"the_commutant_of_no_generators_or_of_the_identity_is_every_matrix\",\n      \"the_commutant_of_a_diagonal_matrix_follows_its_eigenvalue_multiplicities\",\n      \"the_shift_and_the_clock_alone_have_three_dimensional_commutants\",\n      \"the_shift_and_clock_pair_has_only_scalars_in_its_commutant\",\n      \"a_generator_of_the_wrong_shape_is_refused\",\n      \"test_audit_commutator_obstruction\",\n      \"test_heisenberg_center\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A generator of the wrong shape must be refused\",\n    \"A sign error or an index swap in the commutant system must be caught by the known dimensions (hand mutations of both were killed)\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"The obstruction to a finite canonical commutation relation is the trace; the finite replacement is the Weyl relation. Irreducibility of the clock-and-shift pair is checked exactly by the dimension of the commutant. The audit reports computed flags and never panics.\",\n    \"non_role\": [\n      \"Uniqueness of the irreducible representation of the Weyl relation (Stone-von Neumann uniqueness is not checked)\",\n      \"Dimensions other than 3 for the named constructors\",\n      \"Infinite-dimensional Heisenberg pairs\"\n    ]\n  },\n  \"wip\": [\n    \"Only the d = 3 clock, shift and discrete position and momentum are constructed; the generic commutant_dimension works in any dimension over Q(zeta_24)\",\n    \"The mutation drop-the-rank-bound survives as an equivalent mutant: the identity always commutes, so the rank is never n^2\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/math_finite_commutator_obstruction_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "020b90e69025640e6709c8cb3ec6e00a010d4eef42992348d61472d155e4d48e",
+      "bytes": 2255,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/math_finite_commutator_obstruction_v0_1_0_contract.py",
+          "sha256": "22b4db8c6176ae919293774c97e9b309854dbf99adedf35be618a52e23caceed"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:math-finite-commutator-obstruction-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_finite_commutator_obstruction_v0_1_0_contract.py\",\n    \"sha256\": \"22b4db8c6176ae919293774c97e9b309854dbf99adedf35be618a52e23caceed\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-finite-commutator-obstruction-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_commutator_obstruction_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/math_finite_commutator_obstruction_v0_1_0.contract.yaml": "a89e7e3335917bc13bf7266ee0aef3217eb8e351dcccdf120b58b518f61cb8ce"
   },

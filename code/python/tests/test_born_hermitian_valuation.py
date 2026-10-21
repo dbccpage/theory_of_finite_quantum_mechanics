@@ -7,7 +7,7 @@ RHO2=[[Q(1,2),G(Q(1,4),Q(-1,4))],[G(Q(1,4),Q(1,4)),Q(1,2)]]
 RHO3=[[Q(1,2),0,G(0,Q(1,4))],[0,Q(1,4),0],[G(0,Q(-1,4)),0,Q(1,4)]]
 HERM2=[[Q(1,3),G(Q(1,6),Q(1,6))],[G(Q(1,6),Q(-1,6)),Q(1,3)]]
 SKEW2=[[Q(1,2),G(0,Q(1,4))],[0,Q(1,2)]]
-def effects2():return [m.identity(2),m.scale(Q(1,2),m.identity(2)),m.rank_one_effect([3,4*I]),m.rank_one_effect([G(1,1),1]),m.single(2,0,0),HERM2,SKEW2]
+def effects2():return [m.identity(2),m.scale(Q(1,2),m.identity(2)),m.rank_one_effect([3,4*I]),m.rank_one_effect([G(1,1),1]),m.single(2,0,0),HERM2]
 def effects3():return [m.identity(3),m.rank_one_effect([1,2*I,2]),m.rank_one_effect([2,-2,I]),m.rank_one_effect([G(1,1),G(1,-1),0]),m.single(3,1,1),m.scale(Q(1,3),m.identity(3))]
 def random_matrices(n,count,seed):
     r=random.Random(seed);g=lambda:G(Q(r.randint(-5,5),r.randint(1,4)),Q(r.randint(-5,5),r.randint(1,4)))
@@ -70,7 +70,9 @@ class ExtensionTests(unittest.TestCase):
     def test_representing_matrix_reproduces_extension_on_random_matrices(self):
         for v,n in ((m.born_valuation(RHO2),2),(m.imaginary_leak_valuation,2),(m.born_valuation(RHO3),3),(m.bad_linear_valuation,3)):
             rho=m.representing_matrix(v,n)
-            for A in random_matrices(n,6,seed=n):self.assertEqual(m.extend(v,A),m.trace_mul(rho,A).re);self.assertEqual(m.extend(v,A),Q(v(A)))
+            for A in random_matrices(n,6,seed=n):
+                H=m.hermitian_part(A)
+                self.assertEqual(m.extend(v,H),m.trace_mul(rho,H).re);self.assertEqual(m.extend(v,H),Q(v(H)))
     def test_born_certificate(self):
         for rho,n,effs in ((RHO2,2,effects2()),(RHO3,3,effects3())):
             c=m.born_certificate(m.born_valuation(rho),n,effs);self.assertTrue(c['hermitian'] and c['trace_real'] and c['psd'] and c['agrees_on_effects'] and c['psd_certificate']['reconstructs']);self.assertEqual(c['trace'],'1');self.assertEqual(c['effects_checked'],len(effs));self.assertEqual(c['rho'],[list(map(str,r)) for r in m.matrix(rho)])
@@ -78,16 +80,16 @@ class ExtensionTests(unittest.TestCase):
         effs=effects2();pairs=[(m.scale(Q(1,2),m.identity(2)),m.scale(Q(1,2),m.identity(2))),(m.rank_one_effect([3,4*I]),m.rank_one_effect([4*I,3])),(m.rank_one_effect([G(1,1),1]),m.rank_one_effect([1,G(-1,1)])),(m.single(2,0,0),m.single(2,1,1))]
         self.assertTrue(all(m.add(E,F)==m.identity(2) for E,F in pairs[1:]));self.assertEqual(m.valuation_axioms(m.born_valuation(RHO2),2,effs,pairs),{'unit':True,'nonneg':True,'additive':True})
     def test_born_valuation_is_blind_to_the_skew_part(self):
-        v=m.born_valuation(RHO2);H=m.hermitian_part(SKEW2);self.assertFalse(m.is_hermitian(SKEW2));self.assertTrue(m.is_effect(SKEW2) and m.is_effect(H));self.assertEqual(v(SKEW2),v(H));self.assertEqual(v(SKEW2),Q(7,16))
+        v=m.born_valuation(RHO2);H=m.hermitian_part(SKEW2);self.assertFalse(m.is_hermitian(SKEW2));self.assertFalse(m.is_effect(SKEW2));self.assertTrue(m.is_effect(H));self.assertTrue(m.is_quadratic_preorder_effect(SKEW2));self.assertEqual(v(SKEW2),v(H));self.assertEqual(v(SKEW2),Q(7,16))
         self.assertNotEqual(m.imaginary_leak_valuation(SKEW2),m.imaginary_leak_valuation(H));self.assertEqual((m.imaginary_leak_valuation(SKEW2),m.imaginary_leak_valuation(H)),(Q(3,4),Q(5,8)))
     def test_non_additive_control_has_inconsistent_extension(self):
         self.assertEqual(m.valuation_axioms(m.square_valuation,2,effects2(),[(m.scale(Q(1,2),m.identity(2)),m.scale(Q(1,2),m.identity(2)))]),{'unit':True,'nonneg':True,'additive':False})
         self.assertFalse(m.extension_consistency(m.square_valuation,m.identity(2),[1,2])['consistent'])
     def test_non_positive_control_has_non_psd_representative(self):
         c=m.born_certificate(m.bad_linear_valuation,3);self.assertEqual(c['trace'],'1');self.assertTrue(c['hermitian']);self.assertFalse(c['psd']);self.assertEqual(c['psd_certificate']['witness'],['0','0','1']);self.assertEqual(c['psd_certificate']['value'],'-1')
-    def test_imaginary_leak_control_is_unital_additive_but_not_hermitian_nor_psd(self):
+    def test_imaginary_leak_control_is_unital_additive_hermitian_but_not_psd(self):
         v=m.imaginary_leak_valuation;c=m.born_certificate(v,2,effects2())
-        self.assertEqual(c['rho'],[['1','0'],['-1i','0']]);self.assertFalse(c['hermitian']);self.assertEqual(c['trace'],'1');self.assertTrue(c['trace_real']);self.assertFalse(c['psd']);self.assertTrue(c['agrees_on_effects'])
+        self.assertEqual(c['rho'],[['1','1/2i'],['-1/2i','0']]);self.assertTrue(c['hermitian']);self.assertEqual(c['trace'],'1');self.assertTrue(c['trace_real']);self.assertFalse(c['psd']);self.assertTrue(c['agrees_on_effects'])
         self.assertEqual(c['psd_certificate'],{'status':'not_psd','witness':['-1/2i','1'],'value':'-1/4'});self.assertEqual(m.hermitian_part(m.representing_matrix(v,2)),[[1,G(0,Q(1,2))],[G(0,Q(-1,2)),0]])
         self.assertEqual(m.valuation_axioms(v,2,effects2(),[(m.scale(Q(1,2),m.identity(2)),m.scale(Q(1,2),m.identity(2))),(m.rank_one_effect([3,4*I]),m.rank_one_effect([4*I,3]))]),{'unit':True,'nonneg':False,'additive':True})
         witness=m.rank_one_effect([G(0,Q(-1,2)),1]);self.assertTrue(m.is_effect(witness));self.assertEqual(v(witness),Q(-1,5));self.assertEqual(v(m.rank_one_effect([3,4*I])),Q(-3,25))
@@ -98,6 +100,7 @@ class ExtensionTests(unittest.TestCase):
         for f in (lambda:m.born_certificate(v,2,[m.identity(3)]),lambda:m.valuation_axioms(v,2,[m.identity(3)],[]),lambda:m.valuation_axioms(v,2,[],[(m.identity(2),m.identity(3))]),lambda:v(m.identity(3)),lambda:m.verify_gram([[1,0],[0,0]],[(1,[1,0,5])]),lambda:m.bounded_by([[1,0],[0,100]],1,[1]),lambda:m.trace_mul(m.identity(2),m.identity(3)),lambda:m.add(m.identity(2),m.identity(3)),lambda:m.sub(m.identity(2),[[1,2,3]]),lambda:m.inner([1,2],[1]),lambda:m.mat_vec(m.identity(2),[1]),lambda:m.single(2,2,0),lambda:m.matrix([[1,2],[3]]),lambda:m.matrix([]),lambda:m.vector([]),lambda:m.rank_one_effect([0,0]),lambda:m.midpoint(m.identity(2),0),lambda:m.bad_linear_valuation(m.identity(2)),lambda:m.imaginary_leak_valuation([[1]]),lambda:m.extend(lambda E:I,m.identity(2))):
             with self.assertRaises(ValueError):f()
     def test_effect_certificate_is_consistent_with_its_parts(self):
-        for E in (m.identity(2),m.scale(2,m.identity(2)),[[1,I],[-I,0]],m.rank_one_effect([3,4*I]),SKEW2,HERM2):
+        for E in (m.identity(2),m.scale(2,m.identity(2)),[[1,I],[-I,0]],m.rank_one_effect([3,4*I]),HERM2):
             c=m.effect_certificate(E);self.assertEqual(c['is_effect'],c['lower']['status']=='psd' and c['upper']['status']=='psd');self.assertEqual(c['is_effect'],m.is_effect(E))
+        c=m.effect_certificate(SKEW2);self.assertFalse(c['is_carrier']);self.assertFalse(c['is_effect']);self.assertEqual(c['lower']['status'],'psd');self.assertEqual(c['upper']['status'],'psd')
 if __name__=='__main__':unittest.main()

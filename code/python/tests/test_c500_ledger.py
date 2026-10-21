@@ -12,4 +12,11 @@ class LedgerTests(unittest.TestCase):
     def test_duplicate_target_is_rejected(self):
         x=fixture();x['review']['targets']*=2
         with self.assertRaises(ValueError):m.summarize(x)
+    def test_malformed_records_raise_typed_error(self):
+        with self.assertRaises(ValueError):m.summarize({})
+        with self.assertRaises(ValueError):m.summarize({'review': {}, 'gap': {}})
+        bad = fixture(); bad['review']['targets'] = [{'id': 'T1'}] # missing fields
+        with self.assertRaises(ValueError):m.summarize(bad)
+        bad_score = fixture(); bad_score['review']['scores'] = [{'id': 'S1', 'resolution': 'UNKNOWN'}]
+        with self.assertRaises(ValueError):m.summarize(bad_score)
 if __name__=='__main__':unittest.main()

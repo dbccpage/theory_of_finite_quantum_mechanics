@@ -111,6 +111,15 @@ def test_end_to_end_cli_prints_zero() -> None:
     assert certified_diamond() == 0
 
 
+def test_least_ready_kahn_ordering() -> None:
+    from src.qm.dag_witnesses import _kahn
+    # Finding 4 reproduction:
+    vertices = (0, 1, 2, 3)
+    edges = ((0, 1),)
+    assert _kahn(vertices, edges) == (0, 1, 2, 3)
+
+
+
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "lean4" / "CausalOrder.lean").read_text(encoding="utf-8")

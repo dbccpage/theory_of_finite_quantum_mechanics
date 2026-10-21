@@ -141,12 +141,12 @@
       ]
     }
   },
-  "current_contract": "fe0e7b110b05d5c113a382d387f5d322deaaad389107a895435cc224c4b889a3",
-  "current_scoring": null,
+  "current_contract": "6e9013c71b2bb049f6d06072bce3c748708b0fe64af7bfc86b0e1775254a8126",
+  "current_scoring": "5eb0eec124e5a834a26fc9b89cf6838974c0d5c44ef9981d1d60da6a63f86614",
   "contract_history": [
     {
-      "sha256": "fe0e7b110b05d5c113a382d387f5d322deaaad389107a895435cc224c4b889a3",
-      "bytes": 5361,
+      "sha256": "6e9013c71b2bb049f6d06072bce3c748708b0fe64af7bfc86b0e1775254a8126",
+      "bytes": 6059,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:closure_ratio_invariant:v1.0.0",
@@ -286,13 +286,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:closure_ratio_invariant:v1.0.0\ntitle: Closure ratio invariant\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: Dimensionless scalar ratio comparing declared obstruction norm to declared\n    total reference norm.\n  symbol: γ\n  ascii_symbol: gamma_ratio\n  formula: γ = ||obs|| / ||total||\n  1. Contract metadata:\n    title: Closure ratio invariant\n    version: 0.1.0\n    object_type: scalar_ratio_invariant\n  2. Mathematical object / functional role:\n    role: Dimensionless scalar ratio comparing declared obstruction norm to declared\n      total reference norm.\n    purpose: Tracks relative obstruction magnitude under a declared quotient norm\n      and denominator.\n    non_role:\n    - Does not define Γ₂.\n    - Does not define Γ².\n    - Does not replace Φ₁.\n    - Does not classify the finite obstruction trichotomy.\n    - Does not decide admissibility.\n    - Does not issue certificates.\n    - Does not terminalize.\n    - Does not produce customer-facing claims.\n  3. Domain and codomain:\n    domain: obstruction norm and positive total reference norm over compatible quotient/carrier\n      data\n    codomain: scalar γ ∈ [0,1] when denominator bounds numerator; otherwise Invalid\n      or out-of-contract\n  4. Required structures:\n    required:\n    - obstruction_norm\n    - total_reference_norm\n    - quotient or cohomology class reference\n    - norm definition\n    - carrier/layer hash\n    - comparison mode\n    required_conditions:\n    - total_reference_norm > 0\n    - 0 <= obstruction_norm <= total_reference_norm\n    - numerator and denominator are compatible under same carrier/norm semantics\n  5. Definition:\n    ratio: γ = obstruction_norm / total_reference_norm\n    zero_case: γ = 0 iff obstruction_norm = 0; exactness follows only if obstruction_norm\n      is Φ₁ or a faithful quotient norm.\n    unit_case: γ = 1 iff obstruction_norm = total_reference_norm under declared denominator.\n    partial_case: 0 < γ < 1 iff obstruction norm is nonzero but below declared total\n      reference norm.\n  6. Laws and invariants:\n    unit_interval: γ ∈ [0,1] under declared bounded-denominator assumptions.\n    denominator_positive: total_reference_norm > 0.\n    ratio_consistency: γ equals numerator divided by denominator under declared arithmetic\n      mode.\n    conditional_coboundary_invariance: γ is invariant under coboundary shifts only\n      when numerator and denominator are quotient-invariant.\n    no_trichotomy_authority: γ does not define ExactRepair/StabilizedSurvivor/OpenObstruction.\n  7. Equality / equivalence rules:\n    scalar_equality: Exact rational equality in exact mode; tolerance equality only\n      with tolerance profile.\n    ratio_equivalence: Ratios are comparable only under same numerator definition,\n      denominator definition, carrier, norm, and comparison mode.\n  8. Replay / determinism requirements:\n    requirements:\n    - Numerator norm replay.\n    - Denominator norm replay.\n    - Division arithmetic mode replay.\n    - Carrier/norm compatibility replay.\n    - No division by zero.\n    - No NaN or infinite values.\n    - No implicit rounding.\n  9. Relationship to other Omega primitives:\n    relationships:\n      Phi1: May use Φ₁ as obstruction_norm if declared.\n      Gamma2: Not Γ₂ and does not measure closure defect unless explicitly used as\n        numerator.\n      Trichotomy: Does not replace finite obstruction trichotomy.\n      EvaluationHierarchy: Not a lexicographic key unless separately declared.\n      Q1: Often defined on quotient-class norms, but only if numerator/denominator\n        are quotient-compatible.\n  10. Rust descriptor shape:\n    sketch: \"pub struct ClosureRatioInvariantDescriptor {\\n    pub carrier_hash: String,\\n\\\n      \\    pub numerator_norm_hash: String,\\n    pub denominator_norm_hash: String,\\n\\\n      \\    pub norm_definition_hash: String,\\n    pub arithmetic_mode_hash: String,\\n\\\n      \\    pub tolerance_profile_hash: Option<String>,\\n}\\n\\npub enum ClosureRatioState\\\n      \\ {\\n    Zero,\\n    Partial,\\n    Unit,\\n    Invalid,\\n    Incomparable,\\n}\\n\"\n  11. Negative definition tests:\n    tests:\n    - total_reference_norm = 0.\n    - obstruction_norm < 0.\n    - obstruction_norm > total_reference_norm.\n    - γ outside [0,1].\n    - γ used as finite obstruction trichotomy.\n    - γ = 1 called OpenObstruction without Γ₂.\n    - γ = 0 called ExactRepair when numerator is not Φ₁ or faithful quotient norm.\n    - ratio compared across different denominator definitions.\n    - raw float division treated as exact.\n  12. Open questions / WIP status:\n    wip:\n    - Canonical denominator semantics.\n    - Whether this invariant belongs in the core Omega primitive layer or derived\n      diagnostics.\n    - Relationship to Φ₁ when Φ₁ is used as numerator.\n    - Whether ratio bands should be named without conflicting with trichotomy.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:closure_ratio_invariant:v1.0.0\",\n  \"title\": \"Closure ratio invariant\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"Dimensionless scalar ratio comparing declared obstruction norm to declared total reference norm.\",\n    \"symbol\": \"γ\",\n    \"ascii_symbol\": \"gamma_ratio\",\n    \"formula\": \"γ = ||obs|| / ||total||\",\n    \"1. Contract metadata\": {\n      \"title\": \"Closure ratio invariant\",\n      \"version\": \"0.1.0\",\n      \"object_type\": \"scalar_ratio_invariant\"\n    },\n    \"2. Mathematical object / functional role\": {\n      \"role\": \"Dimensionless scalar ratio comparing declared obstruction norm to declared total reference norm.\",\n      \"purpose\": \"Tracks relative obstruction magnitude under a declared quotient norm and denominator.\",\n      \"non_role\": [\n        \"Does not define Γ₂.\",\n        \"Does not define Γ².\",\n        \"Does not replace Φ₁.\",\n        \"Does not classify the finite obstruction trichotomy.\",\n        \"Does not decide admissibility.\",\n        \"Does not issue certificates.\",\n        \"Does not terminalize.\",\n        \"Does not produce customer-facing claims.\"\n      ]\n    },\n    \"3. Domain and codomain\": {\n      \"domain\": \"obstruction norm and positive total reference norm over compatible quotient/carrier data\",\n      \"codomain\": \"scalar γ ∈ [0,1] when denominator bounds numerator; otherwise Invalid or out-of-contract\"\n    },\n    \"4. Required structures\": {\n      \"required\": [\n        \"obstruction_norm\",\n        \"total_reference_norm\",\n        \"quotient or cohomology class reference\",\n        \"norm definition\",\n        \"carrier/layer hash\",\n        \"comparison mode\"\n      ],\n      \"required_conditions\": [\n        \"total_reference_norm > 0\",\n        \"0 <= obstruction_norm <= total_reference_norm\",\n        \"numerator and denominator are compatible under same carrier/norm semantics\"\n      ]\n    },\n    \"5. Definition\": {\n      \"ratio\": \"γ = obstruction_norm / total_reference_norm\",\n      \"zero_case\": \"γ = 0 iff obstruction_norm = 0; exactness follows only if obstruction_norm is Φ₁ or a faithful quotient norm.\",\n      \"unit_case\": \"γ = 1 iff obstruction_norm = total_reference_norm under declared denominator.\",\n      \"partial_case\": \"0 < γ < 1 iff obstruction norm is nonzero but below declared total reference norm.\"\n    },\n    \"6. Laws and invariants\": {\n      \"unit_interval\": \"γ ∈ [0,1] under declared bounded-denominator assumptions.\",\n      \"denominator_positive\": \"total_reference_norm > 0.\",\n      \"ratio_consistency\": \"γ equals numerator divided by denominator under declared arithmetic mode.\",\n      \"conditional_coboundary_invariance\": \"γ is invariant under coboundary shifts only when numerator and denominator are quotient-invariant.\",\n      \"no_trichotomy_authority\": \"γ does not define ExactRepair/StabilizedSurvivor/OpenObstruction.\"\n    },\n    \"7. Equality / equivalence rules\": {\n      \"scalar_equality\": \"Exact rational equality in exact mode; tolerance equality only with tolerance profile.\",\n      \"ratio_equivalence\": \"Ratios are comparable only under same numerator definition, denominator definition, carrier, norm, and comparison mode.\"\n    },\n    \"8. Replay / determinism requirements\": {\n      \"requirements\": [\n        \"Numerator norm replay.\",\n        \"Denominator norm replay.\",\n        \"Division arithmetic mode replay.\",\n        \"Carrier/norm compatibility replay.\",\n        \"No division by zero.\",\n        \"No NaN or infinite values.\",\n        \"No implicit rounding.\"\n      ]\n    },\n    \"9. Relationship to other Omega primitives\": {\n      \"relationships\": {\n        \"Phi1\": \"May use Φ₁ as obstruction_norm if declared.\",\n        \"Gamma2\": \"Not Γ₂ and does not measure closure defect unless explicitly used as numerator.\",\n        \"Trichotomy\": \"Does not replace finite obstruction trichotomy.\",\n        \"EvaluationHierarchy\": \"Not a lexicographic key unless separately declared.\",\n        \"Q1\": \"Often defined on quotient-class norms, but only if numerator/denominator are quotient-compatible.\"\n      }\n    },\n    \"10. Rust descriptor shape\": {\n      \"sketch\": \"pub struct ClosureRatioInvariantDescriptor {\\n    pub carrier_hash: String,\\n    pub numerator_norm_hash: String,\\n    pub denominator_norm_hash: String,\\n    pub norm_definition_hash: String,\\n    pub arithmetic_mode_hash: String,\\n    pub tolerance_profile_hash: Option<String>,\\n}\\n\\npub enum ClosureRatioState {\\n    Zero,\\n    Partial,\\n    Unit,\\n    Invalid,\\n    Incomparable,\\n}\\n\"\n    },\n    \"11. Negative definition tests\": {\n      \"tests\": [\n        \"total_reference_norm = 0.\",\n        \"obstruction_norm < 0.\",\n        \"obstruction_norm > total_reference_norm.\",\n        \"γ outside [0,1].\",\n        \"γ used as finite obstruction trichotomy.\",\n        \"γ = 1 called OpenObstruction without Γ₂.\",\n        \"γ = 0 called ExactRepair when numerator is not Φ₁ or faithful quotient norm.\",\n        \"ratio compared across different denominator definitions.\",\n        \"raw float division treated as exact.\"\n      ]\n    },\n    \"12. Open questions / WIP status\": {\n      \"wip\": [\n        \"Canonical denominator semantics.\",\n        \"Whether this invariant belongs in the core Omega primitive layer or derived diagnostics.\",\n        \"Relationship to Φ₁ when Φ₁ is used as numerator.\",\n        \"Whether ratio bands should be named without conflicting with trichotomy.\"\n      ]\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_closure_ratio_invariant_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "5eb0eec124e5a834a26fc9b89cf6838974c0d5c44ef9981d1d60da6a63f86614",
+      "bytes": 2243,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_closure_ratio_invariant_v1_0_0_contract.py",
+          "sha256": "22f6d789566aa8925927d092bb2945b01cebdcec476b2eb60841b7edee040a1b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-closure-ratio-invariant-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_closure_ratio_invariant_v1_0_0_contract.py\",\n    \"sha256\": \"22f6d789566aa8925927d092bb2945b01cebdcec476b2eb60841b7edee040a1b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-closure-ratio-invariant-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_closure_ratio_invariant_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_closure_ratio_invariant_v1_0_0.contract.yaml": "fe0e7b110b05d5c113a382d387f5d322deaaad389107a895435cc224c4b889a3"
   },

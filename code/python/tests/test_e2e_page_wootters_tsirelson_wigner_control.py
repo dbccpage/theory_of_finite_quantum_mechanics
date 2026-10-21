@@ -110,7 +110,7 @@ def test_part_c_twelve_decimal_tsirelson_enclosures() -> None:
     assert report.tsirelson_per_correlator_decimal_12 == "0.707106781186"
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'page_wootters.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'page_wootters.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

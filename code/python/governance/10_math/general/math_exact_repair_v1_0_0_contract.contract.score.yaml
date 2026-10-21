@@ -138,12 +138,12 @@
       ]
     }
   },
-  "current_contract": "349ed76ca031af60689d9f970f6faae12f8444c431bf93d4a9a04bc8ee0b4d03",
-  "current_scoring": null,
+  "current_contract": "b0683506e34a8865484708ca8d05a711d6c8327cc9cdda3341b5b19a8c803a1f",
+  "current_scoring": "aa93c5015d4af53f7226212e04b6e1402d11099a22888a139de75543c25a4478",
   "contract_history": [
     {
-      "sha256": "349ed76ca031af60689d9f970f6faae12f8444c431bf93d4a9a04bc8ee0b4d03",
-      "bytes": 3685,
+      "sha256": "b0683506e34a8865484708ca8d05a711d6c8327cc9cdda3341b5b19a8c803a1f",
+      "bytes": 4485,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:exact_repair:v1.0.0",
@@ -280,13 +280,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_repair:v1.0.0\ntitle: Exact repair (α reducing residual mass)\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: exact_repair\n  symbol: α ∈ C⁰\n  ascii_symbol: ExactRepair\n  notation: h' = ω − d₀α  (repair of representative ω)\n  domain:\n  - representative residual ω ∈ C¹\n  - 'repair map d₀ : C⁰ → C¹'\n  - repair element α ∈ C⁰\n  codomain:\n    description: A cochain α that adjusts ω by an exact coboundary/image term d₀α.\n      Exact repair of a class means Φ₁([ω]) = 0 (some α achieves residual 0).\nrequirements:\n  required_structures:\n  - C⁰, C¹, d₀\n  - α ∈ C⁰\n  - Residual transform h' = ω − d₀α well-typed in C¹\n  - Optional optimality witness when α is claimed Φ₁-minimizing\nlaws:\n- 'Repair law: applying α yields h'' = ω − d₀α ∈ C¹.'\n- 'Exact-class law: a class is exactly repairable iff ∃α with h'' = 0 (equivalently\n  Φ₁=0).'\n- 'Mass non-increase: for Φ₁ metric, Φ₁([h'']) ≤ Φ₁([ω]) with equality of class in\n  Q¹.'\n- 'Object fence: ExactRepair is a cochain α (or repair certificate), not Φ₁ itself.'\n- 'Authority law: repair success is not ActionLicense / GlobalGreen / PROVED.'\nreplay:\n  requirements:\n  - Deterministic d₀α evaluation\n  - Certificate replay when optimality claimed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_linear_algebra\n  module: exact_repair\n  symbols:\n  - ExactRepair\n  required_tests:\n  - alpha_not_in_c0_must_be_rejected\n  - repair_map_shape_mismatch_must_be_rejected\n  - nonzero_residual_cannot_claim_exact_class\nnegative_tests:\n- α not in C⁰ must be rejected\n- Repair map degree/type mismatch must be rejected\n- Claiming exact class repair with nonzero residual must be rejected\n- Repair used as authority mint must be rejected\n- Claiming PROVED / GlobalGreen / HoTT from this contract alone must be rejected\ndoctrine:\n  summary: 'Exact repair is an α ∈ C⁰ adjusting residuals by d₀α. Exact class repair\n    means Φ₁=0. Nonclaim: not authority; not PROVED; not GlobalGreen.'\n  non_role:\n  - Computing Γ₂\n  - Policy admissibility\n  - Authority / PROVED / GlobalGreen / HoTT\nwip:\n- Canonical optimal-repair certificates\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect\n    None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: METH_B4_FOC_RESIDUAL\n    severity: info\n    claim_class: '[STANDARD]'\n    detail: 'Meth B4: exact repair as α-object; link to Φ₁=0 class.'\n    recommendation: Stage-2 symbol surface audit.\n    pass: meth_b4_foc_residual\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: HAS_RS_BINDING\n    severity: low\n    claim_class: '[CODE_DEMO_RUST]'\n    detail: exact_repair module present.\n    file: omega_engine/crates_rs/omega_linear_algebra/src/exact_repair.rs\n    delta: MATCH\n  - reviewer: techne-master-of-proofs-and-derivations\n    role: PROOF_META_REVIEW\n    code: PANEL_CONSISTENT\n    severity: info\n    claim_class: '[SCOPE FENCE]'\n    detail: Not PROVED.\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:exact_repair:v1.0.0\",\n  \"title\": \"Exact repair (α reducing residual mass)\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"exact_repair\",\n    \"symbol\": \"α ∈ C⁰\",\n    \"ascii_symbol\": \"ExactRepair\",\n    \"notation\": \"h' = ω − d₀α  (repair of representative ω)\",\n    \"domain\": [\n      \"representative residual ω ∈ C¹\",\n      \"repair map d₀ : C⁰ → C¹\",\n      \"repair element α ∈ C⁰\"\n    ],\n    \"codomain\": {\n      \"description\": \"A cochain α that adjusts ω by an exact coboundary/image term d₀α. Exact repair of a class means Φ₁([ω]) = 0 (some α achieves residual 0).\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"C⁰, C¹, d₀\",\n      \"α ∈ C⁰\",\n      \"Residual transform h' = ω − d₀α well-typed in C¹\",\n      \"Optional optimality witness when α is claimed Φ₁-minimizing\"\n    ]\n  },\n  \"laws\": [\n    \"Repair law: applying α yields h' = ω − d₀α ∈ C¹.\",\n    \"Exact-class law: a class is exactly repairable iff ∃α with h' = 0 (equivalently Φ₁=0).\",\n    \"Mass non-increase: for Φ₁ metric, Φ₁([h']) ≤ Φ₁([ω]) with equality of class in Q¹.\",\n    \"Object fence: ExactRepair is a cochain α (or repair certificate), not Φ₁ itself.\",\n    \"Authority law: repair success is not ActionLicense / GlobalGreen / PROVED.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"Deterministic d₀α evaluation\",\n      \"Certificate replay when optimality claimed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"exact_repair\",\n    \"symbols\": [\n      \"ExactRepair\"\n    ],\n    \"required_tests\": [\n      \"alpha_not_in_c0_must_be_rejected\",\n      \"repair_map_shape_mismatch_must_be_rejected\",\n      \"nonzero_residual_cannot_claim_exact_class\"\n    ]\n  },\n  \"negative_tests\": [\n    \"α not in C⁰ must be rejected\",\n    \"Repair map degree/type mismatch must be rejected\",\n    \"Claiming exact class repair with nonzero residual must be rejected\",\n    \"Repair used as authority mint must be rejected\",\n    \"Claiming PROVED / GlobalGreen / HoTT from this contract alone must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Exact repair is an α ∈ C⁰ adjusting residuals by d₀α. Exact class repair means Φ₁=0. Nonclaim: not authority; not PROVED; not GlobalGreen.\",\n    \"non_role\": [\n      \"Computing Γ₂\",\n      \"Policy admissibility\",\n      \"Authority / PROVED / GlobalGreen / HoTT\"\n    ]\n  },\n  \"wip\": [\n    \"Canonical optimal-repair certificates\"\n  ],\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"METH_B4_FOC_RESIDUAL\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"Meth B4: exact repair as α-object; link to Φ₁=0 class.\",\n        \"recommendation\": \"Stage-2 symbol surface audit.\",\n        \"pass\": \"meth_b4_foc_residual\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"HAS_RS_BINDING\",\n        \"severity\": \"low\",\n        \"claim_class\": \"[CODE_DEMO_RUST]\",\n        \"detail\": \"exact_repair module present.\",\n        \"file\": \"omega_engine/crates_rs/omega_linear_algebra/src/exact_repair.rs\",\n        \"delta\": \"MATCH\"\n      },\n      {\n        \"reviewer\": \"techne-master-of-proofs-and-derivations\",\n        \"role\": \"PROOF_META_REVIEW\",\n        \"code\": \"PANEL_CONSISTENT\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[SCOPE FENCE]\",\n        \"detail\": \"Not PROVED.\"\n      }\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_exact_repair_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "aa93c5015d4af53f7226212e04b6e1402d11099a22888a139de75543c25a4478",
+      "bytes": 2221,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_exact_repair_v1_0_0_contract.py",
+          "sha256": "193a292badd517a15895156ca6e56100b1315d289d6ab1cf2c5713fbe87438a0"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-exact-repair-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_exact_repair_v1_0_0_contract.py\",\n    \"sha256\": \"193a292badd517a15895156ca6e56100b1315d289d6ab1cf2c5713fbe87438a0\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-exact-repair-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_exact_repair_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_exact_repair_v1_0_0.contract.yaml": "349ed76ca031af60689d9f970f6faae12f8444c431bf93d4a9a04bc8ee0b4d03"
   },

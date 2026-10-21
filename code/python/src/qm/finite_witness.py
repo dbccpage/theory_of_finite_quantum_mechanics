@@ -62,10 +62,16 @@ def _require_rational(value: object, role: str) -> Fraction:
     if type(value) is bool:
         raise _fail("boolean refused where a rational entry was required", role=role)
     if isinstance(value, Fraction):
-        return value
-    if type(value) is int:
-        return Fraction(value)
-    raise _fail("eigenpair entry is not an exact rational", role=role, received=type(value).__name__)
+        num, den = value.numerator, value.denominator
+    elif type(value) is int:
+        num, den = value, 1
+    else:
+        raise _fail("eigenpair entry is not an exact rational", role=role, received=type(value).__name__)
+    if type(num) is not int or type(den) is not int:
+        raise _fail("exact rational numerator and denominator must be int", role=role)
+    if num.bit_length() > 1024 or den.bit_length() > 1024:
+        raise _fail("integer exceeds 1024 bits", role=role)
+    return Fraction(num, den)
 
 
 def _require_matrix(matrix: object) -> tuple[tuple[Fraction, Fraction], tuple[Fraction, Fraction]]:
@@ -80,7 +86,10 @@ def _require_matrix(matrix: object) -> tuple[tuple[Fraction, Fraction], tuple[Fr
 
 def _require_vector(vector: object) -> tuple[Fraction, Fraction]:
     entries = _require_length(_require_tuple(vector, "vector"), 2, "vector")
-    return (_require_rational(entries[0], "vector"), _require_rational(entries[1], "vector"))
+    v = (_require_rational(entries[0], "vector"), _require_rational(entries[1], "vector"))
+    if v[0] == 0 and v[1] == 0:
+        raise _fail("zero vector cannot be an eigenvector", role="vector")
+    return v
 
 
 def _scale(eigenvalue: Fraction, component: Fraction) -> Fraction:

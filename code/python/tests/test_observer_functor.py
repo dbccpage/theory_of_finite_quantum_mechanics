@@ -66,6 +66,12 @@ def test_negative_type_failures() -> None:
         identity_failure("0", 1)
     assert text.value.parameters["received"] == "str"
 
+    with pytest.raises(ObserverFunctorError, match="1024-bit limit"):
+        identity_failure(1 << 1025, 1)
+
+    with pytest.raises(ObserverFunctorError, match="1024-bit limit"):
+        identity_failure(0, 1 << 1025)
+
 
 def test_negative_shape_failures() -> None:
     with pytest.raises(ObserverFunctorError, match="not an integer") as pair:

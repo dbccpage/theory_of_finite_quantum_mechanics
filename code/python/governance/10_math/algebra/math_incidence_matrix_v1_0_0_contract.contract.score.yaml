@@ -109,12 +109,12 @@
       ]
     }
   },
-  "current_contract": "3369268322c93eb999b4b8e0ee752d0f0cb07467cddb68388c61bc4e757278e4",
-  "current_scoring": null,
+  "current_contract": "bbb4c45b0ed5624b4459b988fdcb2e3efc58a3f8240838a49c68159b899e2594",
+  "current_scoring": "6bb13fccb173252221133a274f882d85af2615f7a785eb0d4b11d5cf61e7ed3f",
   "contract_history": [
     {
-      "sha256": "3369268322c93eb999b4b8e0ee752d0f0cb07467cddb68388c61bc4e757278e4",
-      "bytes": 3275,
+      "sha256": "bbb4c45b0ed5624b4459b988fdcb2e3efc58a3f8240838a49c68159b899e2594",
+      "bytes": 3811,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:incidence_matrix:v1.0.0",
@@ -222,13 +222,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:incidence_matrix:v1.0.0\ntitle: Incidence Matrix Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: oriented_incidence_matrix\n  symbol: B ∈ {-1,0,+1}^{m×n}\n  ascii_symbol: incidence_matrix\n  notation: B ∈ {-1,0,+1}^{m×n}\n  domain:\n  - 'rows: edges or k-cells'\n  - 'cols: vertices or (k-1)-cells'\n  - 'entries: integers from {-1, 0, +1}'\n  codomain:\n    description: 'A finite rectangular matrix with integer entries from {-1, 0, +1}.\n      Rows index edges/k-cells, columns index vertices/(k-1)-cells.\n\n      '\nrequirements:\n  required_structures:\n  - 'For each edge (source, target), matrix entry (edge_index, source) = -1 and entry\n    (edge_index, target) = +1\n\n    '\n  - All vertex indices must be in range [0, num_nodes)\n  - No edge may have source == target\n  - All matrix entries must be in {-1, 0, +1}\n  - Number of matrix rows equals number of edges\n  - Number of matrix columns equals number of vertices\n  - Edge list order determines row order (no implicit reordering)\nlaws:\n- 'For edge e = (source, target), entry (e, source) = -1 and entry (e, target) = +1,\n  all other entries in row e are 0.\n\n  '\n- No edge may connect a vertex to itself (source ≠ target)\n- Number of edges/cells and vertices/cells are finite\n- For chain complexes, B_{n-1} · B_n = 0 (d² = 0)\n- Same graph/complex yields same matrix (deterministic edge ordering)\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Edge ordering must be deterministic\n  - Same graph yields same matrix hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_linear_algebra\n  module: linear_algebra::incidence_matrix\n  symbols:\n  - incidence_matrix\n  - incidence_matrix_dmatrix\n  - IncidenceMatrixError\n  required_tests:\n  - invalid_source_rejected\n  - invalid_target_rejected\n  - self_loop_rejected_if_forbidden\nnegative_tests:\n- Edge with source >= num_nodes must be rejected\n- Edge with target >= num_nodes must be rejected\n- Edge with source == target must be rejected\n- Graph with num_nodes == 0 must be rejected\n- Entries outside {-1, 0, +1} must be rejected\n- Same graph with different ordering must be rejected\ndoctrine:\n  summary: Oriented incidence matrix for graphs and simplicial complexes. Rows represent\n    edges/higher cells, columns represent vertices/lower cells. Entries are ±1 or\n    0 indicating incidence relations. The incidence matrix encodes the boundary operator\n    and supports the boundary law d² = 0 for chain complexes.\n  non_role:\n  - Computing homology groups (separate HomologyGroup contract)\n  - Graph algorithms (shortest path, connectivity, etc.)\n  - Sparse matrix optimization (separate sparse_matrix contract)\n  - Weighted or multi-edge graphs (only simple oriented edges)\n  - Higher-dimensional incidence beyond simplicial/cubical complexes\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:incidence_matrix:v1.0.0\",\n  \"title\": \"Incidence Matrix Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"active\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"oriented_incidence_matrix\",\n    \"symbol\": \"B ∈ {-1,0,+1}^{m×n}\",\n    \"ascii_symbol\": \"incidence_matrix\",\n    \"notation\": \"B ∈ {-1,0,+1}^{m×n}\",\n    \"domain\": [\n      \"rows: edges or k-cells\",\n      \"cols: vertices or (k-1)-cells\",\n      \"entries: integers from {-1, 0, +1}\"\n    ],\n    \"codomain\": {\n      \"description\": \"A finite rectangular matrix with integer entries from {-1, 0, +1}. Rows index edges/k-cells, columns index vertices/(k-1)-cells.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"For each edge (source, target), matrix entry (edge_index, source) = -1 and entry (edge_index, target) = +1\\n\",\n      \"All vertex indices must be in range [0, num_nodes)\",\n      \"No edge may have source == target\",\n      \"All matrix entries must be in {-1, 0, +1}\",\n      \"Number of matrix rows equals number of edges\",\n      \"Number of matrix columns equals number of vertices\",\n      \"Edge list order determines row order (no implicit reordering)\"\n    ]\n  },\n  \"laws\": [\n    \"For edge e = (source, target), entry (e, source) = -1 and entry (e, target) = +1, all other entries in row e are 0.\\n\",\n    \"No edge may connect a vertex to itself (source ≠ target)\",\n    \"Number of edges/cells and vertices/cells are finite\",\n    \"For chain complexes, B_{n-1} · B_n = 0 (d² = 0)\",\n    \"Same graph/complex yields same matrix (deterministic edge ordering)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Edge ordering must be deterministic\",\n      \"Same graph yields same matrix hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"linear_algebra::incidence_matrix\",\n    \"symbols\": [\n      \"incidence_matrix\",\n      \"incidence_matrix_dmatrix\",\n      \"IncidenceMatrixError\"\n    ],\n    \"required_tests\": [\n      \"invalid_source_rejected\",\n      \"invalid_target_rejected\",\n      \"self_loop_rejected_if_forbidden\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Edge with source >= num_nodes must be rejected\",\n    \"Edge with target >= num_nodes must be rejected\",\n    \"Edge with source == target must be rejected\",\n    \"Graph with num_nodes == 0 must be rejected\",\n    \"Entries outside {-1, 0, +1} must be rejected\",\n    \"Same graph with different ordering must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Oriented incidence matrix for graphs and simplicial complexes. Rows represent edges/higher cells, columns represent vertices/lower cells. Entries are ±1 or 0 indicating incidence relations. The incidence matrix encodes the boundary operator and supports the boundary law d² = 0 for chain complexes.\",\n    \"non_role\": [\n      \"Computing homology groups (separate HomologyGroup contract)\",\n      \"Graph algorithms (shortest path, connectivity, etc.)\",\n      \"Sparse matrix optimization (separate sparse_matrix contract)\",\n      \"Weighted or multi-edge graphs (only simple oriented edges)\",\n      \"Higher-dimensional incidence beyond simplicial/cubical complexes\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/algebra/math_incidence_matrix_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "6bb13fccb173252221133a274f882d85af2615f7a785eb0d4b11d5cf61e7ed3f",
+      "bytes": 2229,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/algebra/math_incidence_matrix_v1_0_0_contract.py",
+          "sha256": "e633c9ec631ae8dd3d6d833a5126faeb20f309424a4fde5611a77a4a26666cf7"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:algebra:math-incidence-matrix-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_incidence_matrix_v1_0_0_contract.py\",\n    \"sha256\": \"e633c9ec631ae8dd3d6d833a5126faeb20f309424a4fde5611a77a4a26666cf7\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-incidence-matrix-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_incidence_matrix_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/algebra/math_incidence_matrix_v1_0_0.contract.yaml": "3369268322c93eb999b4b8e0ee752d0f0cb07467cddb68388c61bc4e757278e4"
   },

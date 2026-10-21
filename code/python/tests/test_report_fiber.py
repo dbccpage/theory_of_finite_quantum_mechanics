@@ -20,7 +20,7 @@ from pathlib import Path
 import pytest
 
 from src.linear_algebra.ordered import sum_of_squares
-from src.qm.report_fiber import ReportFiberError, main, phase_weight, relative_fiber_size
+from src.qm.report_fiber import ReportFiberError, main, phase_weight, relative_fiber_size, witness_pair_size
 
 def _probe(text: str) -> object:
     import ast as _ast
@@ -46,11 +46,23 @@ _REAL = ((1, 0), (1, 0))
 
 def test_named_fiber_has_two_distinct_vectors() -> None:
     assert relative_fiber_size() == 2
+    assert witness_pair_size() == 2
     assert relative_fiber_size(_TURNED, _REAL) == 2
+    assert witness_pair_size(_TURNED, _REAL) == 2
     assert phase_weight((0, 1)) == 1
     assert phase_weight((3, 4)) == 25
     assert phase_weight((1, 0)) == 1
     assert type(relative_fiber_size()) is int
+    assert type(witness_pair_size()) is int
+
+
+def test_oversized_integer_refusal() -> None:
+    huge = 1 << 1025
+    with pytest.raises(ReportFiberError, match="1024-bit limit"):
+        phase_weight((huge, 0))
+    with pytest.raises(ReportFiberError, match="1024-bit limit"):
+        relative_fiber_size(((huge, 0), (1, 0)), _PSI2)
+
 
 
 def test_negative_type_failures() -> None:

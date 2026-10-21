@@ -69,12 +69,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "f8698a0d820779ff26019bdd420880cf1f3b5c53174bb309420aeee72d906876",
-  "current_scoring": null,
+  "current_contract": "4821e505327bef0f0d19a9174cb9beb129e03ba6ce27d90e753684fe8315c04c",
+  "current_scoring": "6c602de56a82b82fc24b1916795c75a21e874a0948d651accc9ae5910ebd32c5",
   "contract_history": [
     {
-      "sha256": "f8698a0d820779ff26019bdd420880cf1f3b5c53174bb309420aeee72d906876",
-      "bytes": 1378,
+      "sha256": "4821e505327bef0f0d19a9174cb9beb129e03ba6ce27d90e753684fe8315c04c",
+      "bytes": 1732,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_quantum_physics:parity_context_packet:v1.0.0",
@@ -142,13 +142,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_quantum_physics:parity_context_packet:v1.0.0\ntitle: Finite parity-context packets over `F_2`.  A packet declares `n` variables,\n  `m` contexts (each a nonempty set of dist...\nkind: rust_file_contract\nstatus: active\ncrate: omega_quantum_physics\nfile: crates_rs/omega_quantum_physics/src/parity_context_packet.rs\nmodule: parity_context_packet\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_quantum_physics\n  module: parity_context_packet\n  file: crates_rs/omega_quantum_physics/src/parity_context_packet.rs\nsymbols:\n- SignedContextFamily\n- ParityPacketError\n- ImageCertificate\n- ParityAdmission\n- diagnostic_class\n- ParityContextPacket\n- new\n- from_square\n- variable_count\n- context_count\n- targets\n- all_contexts\n- incidence_counts\n- d0\n- transpose_d0\n- violations\n- rank_d0\n- quotient_dimension\n- in_image\n- certificate\n- verify_certificate\n- violation_histogram\n- satisfiable\n- is_minimally_unsatisfiable\n- context_graph\n- measurement_scenario\n- h1_dimension\n- admit_with_d1\n- verify_admission\nowns:\n- signed_context_family\n- parity_packet_error\n- image_certificate\n- parity_admission\n- diagnostic_class\n- parity_context_packet\n- new\n- from_square\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_quantum_physics:parity_context_packet:v1.0.0\",\n  \"title\": \"Finite parity-context packets over `F_2`.  A packet declares `n` variables, `m` contexts (each a nonempty set of dist...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_quantum_physics\",\n  \"file\": \"crates_rs/omega_quantum_physics/src/parity_context_packet.rs\",\n  \"module\": \"parity_context_packet\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"parity_context_packet\",\n    \"file\": \"crates_rs/omega_quantum_physics/src/parity_context_packet.rs\"\n  },\n  \"symbols\": [\n    \"SignedContextFamily\",\n    \"ParityPacketError\",\n    \"ImageCertificate\",\n    \"ParityAdmission\",\n    \"diagnostic_class\",\n    \"ParityContextPacket\",\n    \"new\",\n    \"from_square\",\n    \"variable_count\",\n    \"context_count\",\n    \"targets\",\n    \"all_contexts\",\n    \"incidence_counts\",\n    \"d0\",\n    \"transpose_d0\",\n    \"violations\",\n    \"rank_d0\",\n    \"quotient_dimension\",\n    \"in_image\",\n    \"certificate\",\n    \"verify_certificate\",\n    \"violation_histogram\",\n    \"satisfiable\",\n    \"is_minimally_unsatisfiable\",\n    \"context_graph\",\n    \"measurement_scenario\",\n    \"h1_dimension\",\n    \"admit_with_d1\",\n    \"verify_admission\"\n  ],\n  \"owns\": [\n    \"signed_context_family\",\n    \"parity_packet_error\",\n    \"image_certificate\",\n    \"parity_admission\",\n    \"diagnostic_class\",\n    \"parity_context_packet\",\n    \"new\",\n    \"from_square\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/omega_quantum_physics_parity_context_packet.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "6c602de56a82b82fc24b1916795c75a21e874a0948d651accc9ae5910ebd32c5",
+      "bytes": 2259,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/omega_quantum_physics_parity_context_packet_contract.py",
+          "sha256": "1beed411b98267747c5441fbabeaf7c62f5e6084f3bf58336e4806a5b4e6df2b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:omega-quantum-physics-parity-context-packet-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/omega_quantum_physics_parity_context_packet_contract.py\",\n    \"sha256\": \"1beed411b98267747c5441fbabeaf7c62f5e6084f3bf58336e4806a5b4e6df2b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:omega-quantum-physics-parity-context-packet-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/omega_quantum_physics_parity_context_packet_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/omega_quantum_physics_parity_context_packet.contract.yaml": "f8698a0d820779ff26019bdd420880cf1f3b5c53174bb309420aeee72d906876"
   },

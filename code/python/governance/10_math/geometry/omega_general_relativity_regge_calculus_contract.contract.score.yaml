@@ -60,12 +60,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "be6b28ef4d0443f25e807b008a4fc677f3c2425deaa8781031e25b531de24624",
-  "current_scoring": null,
+  "current_contract": "2a349d6f4fbb06f64d49a61f848fb33cfbaa1bc988d9ce276e02ed2ac59fe95b",
+  "current_scoring": "dcee4070b3c9a06df20bbfb406a8d41e1d32d6585c5f91a9f91769f3c1826355",
   "contract_history": [
     {
-      "sha256": "be6b28ef4d0443f25e807b008a4fc677f3c2425deaa8781031e25b531de24624",
-      "bytes": 1141,
+      "sha256": "2a349d6f4fbb06f64d49a61f848fb33cfbaa1bc988d9ce276e02ed2ac59fe95b",
+      "bytes": 1448,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_general_relativity:regge_calculus:v1.0.0",
@@ -124,13 +124,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_general_relativity:regge_calculus:v1.0.0\ntitle: 'Finite **2D Regge calculus** on a simplicial complex.  Combinatorial complex:\n  [`omega_homology::simplicial`] (no sepa...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_general_relativity\nfile: crates_rs/omega_general_relativity/src/regge_calculus.rs\nmodule: regge_calculus\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_general_relativity\n  module: regge_calculus\n  file: crates_rs/omega_general_relativity/src/regge_calculus.rs\nsymbols:\n- ReggeError\n- EdgeLengthMetric\n- new\n- set\n- get\n- edge_count\n- ReggeCalculus\n- try_from_spacetime\n- try_new\n- equilateral_fan\n- angle_at\n- angle_sum_at_vertex\n- deficit_at_vertex\n- vertex_deficits\n- regge_action_2d\n- degree\n- authority_fence\n- simplex_volume\n- deficit_at_edge\n- regge_action_with_lambda\nowns:\n- regge_error\n- edge_length_metric\n- new\n- set\n- get\n- edge_count\n- regge_calculus\n- try_from_spacetime\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_general_relativity:regge_calculus:v1.0.0\",\n  \"title\": \"Finite **2D Regge calculus** on a simplicial complex.  Combinatorial complex: [`omega_homology::simplicial`] (no sepa...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_general_relativity\",\n  \"file\": \"crates_rs/omega_general_relativity/src/regge_calculus.rs\",\n  \"module\": \"regge_calculus\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_general_relativity\",\n    \"module\": \"regge_calculus\",\n    \"file\": \"crates_rs/omega_general_relativity/src/regge_calculus.rs\"\n  },\n  \"symbols\": [\n    \"ReggeError\",\n    \"EdgeLengthMetric\",\n    \"new\",\n    \"set\",\n    \"get\",\n    \"edge_count\",\n    \"ReggeCalculus\",\n    \"try_from_spacetime\",\n    \"try_new\",\n    \"equilateral_fan\",\n    \"angle_at\",\n    \"angle_sum_at_vertex\",\n    \"deficit_at_vertex\",\n    \"vertex_deficits\",\n    \"regge_action_2d\",\n    \"degree\",\n    \"authority_fence\",\n    \"simplex_volume\",\n    \"deficit_at_edge\",\n    \"regge_action_with_lambda\"\n  ],\n  \"owns\": [\n    \"regge_error\",\n    \"edge_length_metric\",\n    \"new\",\n    \"set\",\n    \"get\",\n    \"edge_count\",\n    \"regge_calculus\",\n    \"try_from_spacetime\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/geometry/omega_general_relativity_regge_calculus.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "dcee4070b3c9a06df20bbfb406a8d41e1d32d6585c5f91a9f91769f3c1826355",
+      "bytes": 2253,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/geometry/omega_general_relativity_regge_calculus_contract.py",
+          "sha256": "794d7a110d8884f83396ca6473e686dee23bc4f27b2c649ba96496153d6b1885"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:geometry:omega-general-relativity-regge-calculus-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/omega_general_relativity_regge_calculus_contract.py\",\n    \"sha256\": \"794d7a110d8884f83396ca6473e686dee23bc4f27b2c649ba96496153d6b1885\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:omega-general-relativity-regge-calculus-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/omega_general_relativity_regge_calculus_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/geometry/omega_general_relativity_regge_calculus.contract.yaml": "be6b28ef4d0443f25e807b008a4fc677f3c2425deaa8781031e25b531de24624"
   },

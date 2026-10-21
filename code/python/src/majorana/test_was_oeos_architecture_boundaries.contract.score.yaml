@@ -1,0 +1,146 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/test_was_oeos_architecture_boundaries.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/test_was_oeos_architecture_boundaries.py",
+      "sha256": "9623e62554d9614323184aeaf03acfc87b279470b1d0a63df238cba905ea8631"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:test-was-oeos-architecture-boundaries:v1",
+    "role": "test checker",
+    "purpose": "Architecture fitness tests asserting OEOS/WAS/Shared-Kernel boundary laws post-PR #82. Invariants checked:",
+    "operations": {
+      "test_shared_kernel_has_no_reverse_dependencies": "shared_kernel must only depend on python stdlib and nothing else.",
+      "test_higher_operad_is_dependency_free": "higher_operad must not import from any other internal crates or engines.",
+      "test_disjoint_capabilities_share_no_class_hierarchy": "The real AgentLicense and ActionLicense types are strictly disjoint.",
+      "test_value_object_exact_type_equality_and_hashing": "Exact-type equality prevents cross-class and primitive comparisons.",
+      "test_datarecord_recursive_immutability": "DataRecord recursively freezes dictionaries and lists and hashes deterministically.",
+      "test_prompt_civilization_antiskill_types_are_canonical": "Prompt civilization AntiSkill types are verified domain classes.",
+      "test_canonical_council_path_resolution": "Council path must resolve strictly to omega_engine_governance.",
+      "test_epoch_and_cutover_settings": "Compatibility epoch is 1 and canonical_cutover is False."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "4928602c3c705028b941656fc2809a5d604521d36dea38fb9e880e42dd7f3efd",
+  "current_scoring": "61b792511186bd8f24a8735c4e7f98c860e6009f2f6ac0bc7ce7477098b63150",
+  "contract_history": [
+    {
+      "sha256": "4928602c3c705028b941656fc2809a5d604521d36dea38fb9e880e42dd7f3efd",
+      "bytes": 2655,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_was_oeos_architecture_boundaries.py",
+          "sha256": "9623e62554d9614323184aeaf03acfc87b279470b1d0a63df238cba905ea8631"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:test-was-oeos-architecture-boundaries:v1",
+        "role": "test checker",
+        "purpose": "Architecture fitness tests asserting OEOS/WAS/Shared-Kernel boundary laws post-PR #82. Invariants checked:",
+        "operations": {
+          "test_shared_kernel_has_no_reverse_dependencies": "shared_kernel must only depend on python stdlib and nothing else.",
+          "test_higher_operad_is_dependency_free": "higher_operad must not import from any other internal crates or engines.",
+          "test_disjoint_capabilities_share_no_class_hierarchy": "The real AgentLicense and ActionLicense types are strictly disjoint.",
+          "test_value_object_exact_type_equality_and_hashing": "Exact-type equality prevents cross-class and primitive comparisons.",
+          "test_datarecord_recursive_immutability": "DataRecord recursively freezes dictionaries and lists and hashes deterministically.",
+          "test_prompt_civilization_antiskill_types_are_canonical": "Prompt civilization AntiSkill types are verified domain classes.",
+          "test_canonical_council_path_resolution": "Council path must resolve strictly to omega_engine_governance.",
+          "test_epoch_and_cutover_settings": "Compatibility epoch is 1 and canonical_cutover is False."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_was_oeos_architecture_boundaries.py\",\n    \"sha256\": \"9623e62554d9614323184aeaf03acfc87b279470b1d0a63df238cba905ea8631\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-was-oeos-architecture-boundaries:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Architecture fitness tests asserting OEOS/WAS/Shared-Kernel boundary laws post-PR #82. Invariants checked:\",\n  \"operations\": {\n    \"test_shared_kernel_has_no_reverse_dependencies\": \"shared_kernel must only depend on python stdlib and nothing else.\",\n    \"test_higher_operad_is_dependency_free\": \"higher_operad must not import from any other internal crates or engines.\",\n    \"test_disjoint_capabilities_share_no_class_hierarchy\": \"The real AgentLicense and ActionLicense types are strictly disjoint.\",\n    \"test_value_object_exact_type_equality_and_hashing\": \"Exact-type equality prevents cross-class and primitive comparisons.\",\n    \"test_datarecord_recursive_immutability\": \"DataRecord recursively freezes dictionaries and lists and hashes deterministically.\",\n    \"test_prompt_civilization_antiskill_types_are_canonical\": \"Prompt civilization AntiSkill types are verified domain classes.\",\n    \"test_canonical_council_path_resolution\": \"Council path must resolve strictly to omega_engine_governance.\",\n    \"test_epoch_and_cutover_settings\": \"Compatibility epoch is 1 and canonical_cutover is False.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_was_oeos_architecture_boundaries.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "61b792511186bd8f24a8735c4e7f98c860e6009f2f6ac0bc7ce7477098b63150",
+      "bytes": 2203,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_was_oeos_architecture_boundaries.py",
+          "sha256": "9623e62554d9614323184aeaf03acfc87b279470b1d0a63df238cba905ea8631"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:test-was-oeos-architecture-boundaries:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 8,
+          "lizard_ccn": 6,
+          "weighted_control_upper_bound": 10,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_was_oeos_architecture_boundaries.py\",\n    \"sha256\": \"9623e62554d9614323184aeaf03acfc87b279470b1d0a63df238cba905ea8631\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-was-oeos-architecture-boundaries:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 10,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_was_oeos_architecture_boundaries.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

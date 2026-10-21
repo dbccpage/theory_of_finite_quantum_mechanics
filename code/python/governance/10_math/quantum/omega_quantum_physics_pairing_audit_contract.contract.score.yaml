@@ -70,12 +70,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "cdd496d658402bf813d60a32b86a3b5693cfcd6e38f12ebbe81f55e783b9d90e",
-  "current_scoring": null,
+  "current_contract": "85248c821317000a3d42e5ac671d4d8e875dd03b19d55f9097d7460380d50b45",
+  "current_scoring": "526ec1856cd2a806225ab1be174f341e6aeee648ada7d7a6775add62d3613223",
   "contract_history": [
     {
-      "sha256": "cdd496d658402bf813d60a32b86a3b5693cfcd6e38f12ebbe81f55e783b9d90e",
-      "bytes": 1309,
+      "sha256": "85248c821317000a3d42e5ac671d4d8e875dd03b19d55f9097d7460380d50b45",
+      "bytes": 1666,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_quantum_physics:pairing_audit:v1.0.0",
@@ -144,13 +144,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_quantum_physics:pairing_audit:v1.0.0\ntitle: 'The state–effect pairing audit: every candidate probability pairing is graded\n  by the same finite checks on a declared...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_quantum_physics\nfile: crates_rs/omega_quantum_physics/src/pairing_audit.rs\nmodule: pairing_audit\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_quantum_physics\n  module: pairing_audit\n  file: crates_rs/omega_quantum_physics/src/pairing_audit.rs\nsymbols:\n- PairingError\n- Pairing\n- evaluate\n- evaluate_with_limits\n- tensor_square\n- tensor_square_with_limits\n- Transport\n- PairingPacket\n- new\n- states\n- effects\n- measurements\n- pairing\n- transports\n- value\n- product_effect_rank\n- state_span_dimension\n- JointTable\n- CompositeTier\n- PairingCheck\n- PairingTerminal\n- PairingOrigin\n- PairingRow\n- audit_row\n- classical_simplex_row\n- transport_gram_row\n- square_bit_row\n- spekkens_row\n- real_rebit_row\n- complex_born_row\nowns:\n- pairing_error\n- pairing\n- evaluate\n- evaluate_with_limits\n- tensor_square\n- tensor_square_with_limits\n- transport\n- pairing_packet\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_quantum_physics:pairing_audit:v1.0.0\",\n  \"title\": \"The state–effect pairing audit: every candidate probability pairing is graded by the same finite checks on a declared...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_quantum_physics\",\n  \"file\": \"crates_rs/omega_quantum_physics/src/pairing_audit.rs\",\n  \"module\": \"pairing_audit\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"pairing_audit\",\n    \"file\": \"crates_rs/omega_quantum_physics/src/pairing_audit.rs\"\n  },\n  \"symbols\": [\n    \"PairingError\",\n    \"Pairing\",\n    \"evaluate\",\n    \"evaluate_with_limits\",\n    \"tensor_square\",\n    \"tensor_square_with_limits\",\n    \"Transport\",\n    \"PairingPacket\",\n    \"new\",\n    \"states\",\n    \"effects\",\n    \"measurements\",\n    \"pairing\",\n    \"transports\",\n    \"value\",\n    \"product_effect_rank\",\n    \"state_span_dimension\",\n    \"JointTable\",\n    \"CompositeTier\",\n    \"PairingCheck\",\n    \"PairingTerminal\",\n    \"PairingOrigin\",\n    \"PairingRow\",\n    \"audit_row\",\n    \"classical_simplex_row\",\n    \"transport_gram_row\",\n    \"square_bit_row\",\n    \"spekkens_row\",\n    \"real_rebit_row\",\n    \"complex_born_row\"\n  ],\n  \"owns\": [\n    \"pairing_error\",\n    \"pairing\",\n    \"evaluate\",\n    \"evaluate_with_limits\",\n    \"tensor_square\",\n    \"tensor_square_with_limits\",\n    \"transport\",\n    \"pairing_packet\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/omega_quantum_physics_pairing_audit.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "526ec1856cd2a806225ab1be174f341e6aeee648ada7d7a6775add62d3613223",
+      "bytes": 2243,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/omega_quantum_physics_pairing_audit_contract.py",
+          "sha256": "e6ca5bcaa76e679a948677ce31ced2f2c4a56e7e631312cad9f87d49f672aca2"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:omega-quantum-physics-pairing-audit-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/omega_quantum_physics_pairing_audit_contract.py\",\n    \"sha256\": \"e6ca5bcaa76e679a948677ce31ced2f2c4a56e7e631312cad9f87d49f672aca2\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:omega-quantum-physics-pairing-audit-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/omega_quantum_physics_pairing_audit_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/omega_quantum_physics_pairing_audit.contract.yaml": "cdd496d658402bf813d60a32b86a3b5693cfcd6e38f12ebbe81f55e783b9d90e"
   },

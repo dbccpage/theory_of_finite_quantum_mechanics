@@ -70,6 +70,12 @@ def test_negative_type_failures() -> None:
         payload_checksum((Fraction(-1, 2), Fraction(1, 2)))
     assert negative.value.parameters["received"] == "-1/2"
 
+    with pytest.raises(PacketProtocolError, match="1024-bit limit"):
+        payload_checksum((1 << 1025, 1))
+
+    with pytest.raises(PacketProtocolError, match="1024-bit limit"):
+        payload_checksum((Fraction(1 << 1025, 1), 1))
+
 
 def test_negative_shape_failures() -> None:
     with pytest.raises(PacketProtocolError, match="not an exact rational") as text:

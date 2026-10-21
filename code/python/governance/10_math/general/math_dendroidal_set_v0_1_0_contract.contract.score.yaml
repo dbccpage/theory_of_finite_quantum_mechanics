@@ -138,12 +138,12 @@
       "Boardman-Vogt tensor product of dendroidal sets"
     ]
   },
-  "current_contract": "9f619cffd42cc7cc5644ab83cc8f9115031e3222e334b65c399783f8bfb3e6d4",
-  "current_scoring": null,
+  "current_contract": "a3590987843d37af6a201b7adf903730613af2bdad37b5e1eeb1f22ea7c7c20d",
+  "current_scoring": "fb95b547ec815005581abcd2ffe1636267c39f40188e6affcd5482f92002fa14",
   "contract_history": [
     {
-      "sha256": "9f619cffd42cc7cc5644ab83cc8f9115031e3222e334b65c399783f8bfb3e6d4",
-      "bytes": 4895,
+      "sha256": "a3590987843d37af6a201b7adf903730613af2bdad37b5e1eeb1f22ea7c7c20d",
+      "bytes": 5564,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:dendroidal_set:v0.1.0",
@@ -280,13 +280,75 @@
           "Boardman-Vogt tensor product of dendroidal sets"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:dendroidal_set:v0.1.0\ntitle: Dendroidal Set and Inner Horn Filler Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: dendroidal_set\n  symbol: dSet = PSh(Omega)\n  ascii_symbol: dendroidal_set\n  notation: 'X : Omega^op -> Set, with inner horn fillers Lambda^e(T) -> X extending\n    to Omega[T] -> X'\n  domain:\n  - 'planar_tree_category: category Omega of rooted planar trees with corollas, grafting,\n    and edge contractions'\n  - 'inner_edges: internal edges connecting two vertices in a rooted tree'\n  - 'inner_horns: sub-dendroidal sets Lambda^e(T) omitting the inner edge contraction\n    face partial_e T'\n  codomain:\n    description: A dendroidal set is a presheaf on the planar tree category Omega.\n      An (infinity, 1)-operad (dendroidal quasi-category) is a dendroidal set where\n      every inner horn Lambda^e(T) admits a filler whose missing face is the operadic\n      composition along the inner edge e.\nrequirements:\n  required_structures:\n  - Planar tree representation with explicit vertices, leaf edges, root edge, and\n    inner edges.\n  - Elementary face maps: inner face (edge contraction) and outer faces (vertex removal).\n  - Inner horn structure Lambda^e(T) omitting the inner face partial_e T.\n  - Constructive inner horn filler producing the operadic composite on the missing\n    inner face.\n  - Equivalence theorem demonstrating that for linear trees, dendroidal horn filling\n    coincides with simplicial horn filling Lambda^1_2 -> Delta^2.\n  - Strictly zero floating-point arithmetic in Rust implementation.\n  - Soviet memory allocation bounds enforced via reserve_exact and OperationLimits.\n  - Deterministic content-addressed artifact hash.\nlaws:\n- 'Inner horn filling: every inner horn Lambda^e(T_graft) admits a filler matching\n  outer faces'\n- 'Composite realization: the missing inner face partial_e produced by horn filling\n  equals the operadic composite'\n- 'Simplicial reduction: for linear trees with arity 1 vertices, the dendroidal nerve\n  coincides with the simplicial nerve'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Trees serialized in canonical discrete planar order\n  - Given identical input tree and horn, produces identical artifact hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: dendroidal_set\n  symbols:\n  - PlanarTree\n  - TreeVertex\n  - TreeEdge\n  - DendroidalSet\n  - TreeInnerHorn\n  - DendroidalSet::fill_dendroidal_inner_horn\n  - DendroidalSet::verify_dendroidal_inner_horn_property\n  required_tests:\n  - test_dendroidal_set_positive_verification\n  - test_kill_mut_ds_01_missing_inner_face_mismatch\n  - test_kill_mut_ds_02_outer_face_top_mismatch\n  - test_kill_mut_ds_03_outer_face_bot_mismatch\n  - test_kill_mut_ds_04_inner_edge_boundary_mismatch\n  - test_kill_mut_ds_05_tree_cycle_violation\n  - test_kill_mut_ds_06_allocation_cap_exceeded\n  - test_register_rejects_composite_with_wrong_input_colours\n  - test_verify_rejects_composite_whose_colours_differ_from_the_tree\nlean4_binding:\n  module: HigherCategoryTheory.DendroidalSet\n  symbols:\n  - Corolla\n  - GraftedTree\n  - contractInnerEdge\n  - fillLinearDendroidalInnerHorn\n  - fillLinear_matches_top\n  - fillLinear_matches_bot\n  - fillLinear_inner_face_eq_composite\n  - dendroidal_linear_inner_horn_fills\n  - dendroidal_simplicial_nerve_agreement\nnegative_tests:\n- Missing inner face calculation mismatch (MUT-DS-01)\n- Outer face top boundary mismatch on horn filler (MUT-DS-02)\n- Outer face bot boundary mismatch on horn filler (MUT-DS-03)\n- Inner edge boundary colour mismatch (MUT-DS-04)\n- Tree graph contains cycles violating rooted tree condition (MUT-DS-05)\n- Soviet allocation limit exceeded in dendroidal solver (MUT-DS-06)\n- Composite input colours are not the graft substitution\n- Table entry whose colours differ from the contracted tree\ndoctrine:\n  summary: A dendroidal set generalizes simplicial sets from linear orders [n] to\n    trees Omega. An (infinity, 1)-operad is a dendroidal set satisfying inner horn\n    filling extensions, representing multi-ary operations composing up to coherent\n    higher homotopies.\n  non_role:\n  - Continuous topological operads with non-discrete topology\n  - Infinite-depth non-well-founded trees\n  - Inner horns on trees with more than two vertices\nwip:\n- Dendroidal complete Segal spaces\n- Boardman-Vogt tensor product of dendroidal sets\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:dendroidal_set:v0.1.0\",\n  \"title\": \"Dendroidal Set and Inner Horn Filler Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"dendroidal_set\",\n    \"symbol\": \"dSet = PSh(Omega)\",\n    \"ascii_symbol\": \"dendroidal_set\",\n    \"notation\": \"X : Omega^op -> Set, with inner horn fillers Lambda^e(T) -> X extending to Omega[T] -> X\",\n    \"domain\": [\n      \"planar_tree_category: category Omega of rooted planar trees with corollas, grafting, and edge contractions\",\n      \"inner_edges: internal edges connecting two vertices in a rooted tree\",\n      \"inner_horns: sub-dendroidal sets Lambda^e(T) omitting the inner edge contraction face partial_e T\"\n    ],\n    \"codomain\": {\n      \"description\": \"A dendroidal set is a presheaf on the planar tree category Omega. An (infinity, 1)-operad (dendroidal quasi-category) is a dendroidal set where every inner horn Lambda^e(T) admits a filler whose missing face is the operadic composition along the inner edge e.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Planar tree representation with explicit vertices, leaf edges, root edge, and inner edges.\",\n      {\n        \"Elementary face maps\": \"inner face (edge contraction) and outer faces (vertex removal).\"\n      },\n      \"Inner horn structure Lambda^e(T) omitting the inner face partial_e T.\",\n      \"Constructive inner horn filler producing the operadic composite on the missing inner face.\",\n      \"Equivalence theorem demonstrating that for linear trees, dendroidal horn filling coincides with simplicial horn filling Lambda^1_2 -> Delta^2.\",\n      \"Strictly zero floating-point arithmetic in Rust implementation.\",\n      \"Soviet memory allocation bounds enforced via reserve_exact and OperationLimits.\",\n      \"Deterministic content-addressed artifact hash.\"\n    ]\n  },\n  \"laws\": [\n    \"Inner horn filling: every inner horn Lambda^e(T_graft) admits a filler matching outer faces\",\n    \"Composite realization: the missing inner face partial_e produced by horn filling equals the operadic composite\",\n    \"Simplicial reduction: for linear trees with arity 1 vertices, the dendroidal nerve coincides with the simplicial nerve\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Trees serialized in canonical discrete planar order\",\n      \"Given identical input tree and horn, produces identical artifact hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"dendroidal_set\",\n    \"symbols\": [\n      \"PlanarTree\",\n      \"TreeVertex\",\n      \"TreeEdge\",\n      \"DendroidalSet\",\n      \"TreeInnerHorn\",\n      \"DendroidalSet::fill_dendroidal_inner_horn\",\n      \"DendroidalSet::verify_dendroidal_inner_horn_property\"\n    ],\n    \"required_tests\": [\n      \"test_dendroidal_set_positive_verification\",\n      \"test_kill_mut_ds_01_missing_inner_face_mismatch\",\n      \"test_kill_mut_ds_02_outer_face_top_mismatch\",\n      \"test_kill_mut_ds_03_outer_face_bot_mismatch\",\n      \"test_kill_mut_ds_04_inner_edge_boundary_mismatch\",\n      \"test_kill_mut_ds_05_tree_cycle_violation\",\n      \"test_kill_mut_ds_06_allocation_cap_exceeded\",\n      \"test_register_rejects_composite_with_wrong_input_colours\",\n      \"test_verify_rejects_composite_whose_colours_differ_from_the_tree\"\n    ]\n  },\n  \"lean4_binding\": {\n    \"module\": \"HigherCategoryTheory.DendroidalSet\",\n    \"symbols\": [\n      \"Corolla\",\n      \"GraftedTree\",\n      \"contractInnerEdge\",\n      \"fillLinearDendroidalInnerHorn\",\n      \"fillLinear_matches_top\",\n      \"fillLinear_matches_bot\",\n      \"fillLinear_inner_face_eq_composite\",\n      \"dendroidal_linear_inner_horn_fills\",\n      \"dendroidal_simplicial_nerve_agreement\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Missing inner face calculation mismatch (MUT-DS-01)\",\n    \"Outer face top boundary mismatch on horn filler (MUT-DS-02)\",\n    \"Outer face bot boundary mismatch on horn filler (MUT-DS-03)\",\n    \"Inner edge boundary colour mismatch (MUT-DS-04)\",\n    \"Tree graph contains cycles violating rooted tree condition (MUT-DS-05)\",\n    \"Soviet allocation limit exceeded in dendroidal solver (MUT-DS-06)\",\n    \"Composite input colours are not the graft substitution\",\n    \"Table entry whose colours differ from the contracted tree\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A dendroidal set generalizes simplicial sets from linear orders [n] to trees Omega. An (infinity, 1)-operad is a dendroidal set satisfying inner horn filling extensions, representing multi-ary operations composing up to coherent higher homotopies.\",\n    \"non_role\": [\n      \"Continuous topological operads with non-discrete topology\",\n      \"Infinite-depth non-well-founded trees\",\n      \"Inner horns on trees with more than two vertices\"\n    ]\n  },\n  \"wip\": [\n    \"Dendroidal complete Segal spaces\",\n    \"Boardman-Vogt tensor product of dendroidal sets\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_dendroidal_set_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "fb95b547ec815005581abcd2ffe1636267c39f40188e6affcd5482f92002fa14",
+      "bytes": 2225,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_dendroidal_set_v0_1_0_contract.py",
+          "sha256": "e4f67949dd50b9d0c8f6fc815d530d85572a1484f13ebb2c8dc87cd7e5110c2b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-dendroidal-set-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_dendroidal_set_v0_1_0_contract.py\",\n    \"sha256\": \"e4f67949dd50b9d0c8f6fc815d530d85572a1484f13ebb2c8dc87cd7e5110c2b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-dendroidal-set-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_dendroidal_set_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_dendroidal_set_v0_1_0.contract.yaml": "9f619cffd42cc7cc5644ab83cc8f9115031e3222e334b65c399783f8bfb3e6d4"
   },

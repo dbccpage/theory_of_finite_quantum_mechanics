@@ -1,0 +1,182 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/test_llm_turn_packets.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/test_llm_turn_packets.py",
+      "sha256": "4431b1f2e9aabd4038aa4ea1f047b085bbb7496ee879ad61e3332892ceeffd0b"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:test-llm-turn-packets:v1",
+    "role": "test checker",
+    "purpose": "Attack matrix and contract tests for llm_turn_v1 (post-review repair).",
+    "operations": {
+      "test_payload_and_envelope_round_trip_canonical_wire": "Function test_payload_and_envelope_round_trip_canonical_wire operation.",
+      "test_kill_conditions_are_round_tripped_and_bound_into_payload_identity": "Function test_kill_conditions_are_round_tripped_and_bound_into_payload_identity operation.",
+      "test_strict_payload_parser_refuses_unknown_and_missing_fields": "Function test_strict_payload_parser_refuses_unknown_and_missing_fields operation.",
+      "test_payload_wire_refuses_coerced_numeric_types": "Function test_payload_wire_refuses_coerced_numeric_types operation.",
+      "test_payload_wire_refuses_schema_family_and_alias_misbinding": "Function test_payload_wire_refuses_schema_family_and_alias_misbinding operation.",
+      "test_duplicate_json_keys_are_refused": "Function test_duplicate_json_keys_are_refused operation.",
+      "test_authority_effect_must_be_none_on_payload_and_envelope": "Function test_authority_effect_must_be_none_on_payload_and_envelope operation.",
+      "test_content_bytes_are_content_addressed_and_verified": "Function test_content_bytes_are_content_addressed_and_verified operation.",
+      "test_attach_and_evaluate_happy_path_transport_validated": "Function test_attach_and_evaluate_happy_path_transport_validated operation.",
+      "test_consequential_attach_without_reply_text_is_refused": "Function test_consequential_attach_without_reply_text_is_refused operation.",
+      "test_consequential_turn_without_machine_block_is_prose_prompt_refused": "Function test_consequential_turn_without_machine_block_is_prose_prompt_refused operation.",
+      "test_consequential_payload_cannot_weaken_required_reply_fields": "Function test_consequential_payload_cannot_weaken_required_reply_fields operation.",
+      "test_claimed_result_is_packetized_not_claim_verified": "Function test_claimed_result_is_packetized_not_claim_verified operation.",
+      "test_packet_id_absent_with_known_packet_is_refused": "Function test_packet_id_absent_with_known_packet_is_refused operation.",
+      "test_parent_absent_with_known_parent_is_refused": "Function test_parent_absent_with_known_parent_is_refused operation.",
+      "test_proposal_phase_rejects_dummy_candidate_run_root_ids": "Function test_proposal_phase_rejects_dummy_candidate_run_root_ids operation.",
+      "test_changed_reply_text_after_attach_is_refused": "Function test_changed_reply_text_after_attach_is_refused operation.",
+      "test_parse_machine_reply_block_reads_leading_fields_only": "Function test_parse_machine_reply_block_reads_leading_fields_only operation.",
+      "test_content_digest_mismatch_is_typed_refusal": "Function test_content_digest_mismatch_is_typed_refusal operation.",
+      "test_candidate_budget_exhaustion_is_typed": "Function test_candidate_budget_exhaustion_is_typed operation.",
+      "test_markdown_cannot_erase_refusals_or_add_claims": "Function test_markdown_cannot_erase_refusals_or_add_claims operation.",
+      "test_run_root_refuses_verified_proposal_terminal": "Function test_run_root_refuses_verified_proposal_terminal operation.",
+      "test_forged_transport_validated_without_evidence_is_refused": "Function test_forged_transport_validated_without_evidence_is_refused operation.",
+      "test_candidate_content_substitution_is_refused": "Function test_candidate_content_substitution_is_refused operation.",
+      "test_positive_llm_verify_without_evidence_is_refused": "Function test_positive_llm_verify_without_evidence_is_refused operation.",
+      "test_family_identity_is_not_research_or_code_change": "Function test_family_identity_is_not_research_or_code_change operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "06fad0c00a0ee9ba0c5be9a49a88b7997272f77482bfff3c6e257227100b3401",
+  "current_scoring": "e6db1360f8989266b47b43076f5197f19dc639687ff3288d28eb769285d97304",
+  "contract_history": [
+    {
+      "sha256": "06fad0c00a0ee9ba0c5be9a49a88b7997272f77482bfff3c6e257227100b3401",
+      "bytes": 5194,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_llm_turn_packets.py",
+          "sha256": "4431b1f2e9aabd4038aa4ea1f047b085bbb7496ee879ad61e3332892ceeffd0b"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:test-llm-turn-packets:v1",
+        "role": "test checker",
+        "purpose": "Attack matrix and contract tests for llm_turn_v1 (post-review repair).",
+        "operations": {
+          "test_payload_and_envelope_round_trip_canonical_wire": "Function test_payload_and_envelope_round_trip_canonical_wire operation.",
+          "test_kill_conditions_are_round_tripped_and_bound_into_payload_identity": "Function test_kill_conditions_are_round_tripped_and_bound_into_payload_identity operation.",
+          "test_strict_payload_parser_refuses_unknown_and_missing_fields": "Function test_strict_payload_parser_refuses_unknown_and_missing_fields operation.",
+          "test_payload_wire_refuses_coerced_numeric_types": "Function test_payload_wire_refuses_coerced_numeric_types operation.",
+          "test_payload_wire_refuses_schema_family_and_alias_misbinding": "Function test_payload_wire_refuses_schema_family_and_alias_misbinding operation.",
+          "test_duplicate_json_keys_are_refused": "Function test_duplicate_json_keys_are_refused operation.",
+          "test_authority_effect_must_be_none_on_payload_and_envelope": "Function test_authority_effect_must_be_none_on_payload_and_envelope operation.",
+          "test_content_bytes_are_content_addressed_and_verified": "Function test_content_bytes_are_content_addressed_and_verified operation.",
+          "test_attach_and_evaluate_happy_path_transport_validated": "Function test_attach_and_evaluate_happy_path_transport_validated operation.",
+          "test_consequential_attach_without_reply_text_is_refused": "Function test_consequential_attach_without_reply_text_is_refused operation.",
+          "test_consequential_turn_without_machine_block_is_prose_prompt_refused": "Function test_consequential_turn_without_machine_block_is_prose_prompt_refused operation.",
+          "test_consequential_payload_cannot_weaken_required_reply_fields": "Function test_consequential_payload_cannot_weaken_required_reply_fields operation.",
+          "test_claimed_result_is_packetized_not_claim_verified": "Function test_claimed_result_is_packetized_not_claim_verified operation.",
+          "test_packet_id_absent_with_known_packet_is_refused": "Function test_packet_id_absent_with_known_packet_is_refused operation.",
+          "test_parent_absent_with_known_parent_is_refused": "Function test_parent_absent_with_known_parent_is_refused operation.",
+          "test_proposal_phase_rejects_dummy_candidate_run_root_ids": "Function test_proposal_phase_rejects_dummy_candidate_run_root_ids operation.",
+          "test_changed_reply_text_after_attach_is_refused": "Function test_changed_reply_text_after_attach_is_refused operation.",
+          "test_parse_machine_reply_block_reads_leading_fields_only": "Function test_parse_machine_reply_block_reads_leading_fields_only operation.",
+          "test_content_digest_mismatch_is_typed_refusal": "Function test_content_digest_mismatch_is_typed_refusal operation.",
+          "test_candidate_budget_exhaustion_is_typed": "Function test_candidate_budget_exhaustion_is_typed operation.",
+          "test_markdown_cannot_erase_refusals_or_add_claims": "Function test_markdown_cannot_erase_refusals_or_add_claims operation.",
+          "test_run_root_refuses_verified_proposal_terminal": "Function test_run_root_refuses_verified_proposal_terminal operation.",
+          "test_forged_transport_validated_without_evidence_is_refused": "Function test_forged_transport_validated_without_evidence_is_refused operation.",
+          "test_candidate_content_substitution_is_refused": "Function test_candidate_content_substitution_is_refused operation.",
+          "test_positive_llm_verify_without_evidence_is_refused": "Function test_positive_llm_verify_without_evidence_is_refused operation.",
+          "test_family_identity_is_not_research_or_code_change": "Function test_family_identity_is_not_research_or_code_change operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_llm_turn_packets.py\",\n    \"sha256\": \"4431b1f2e9aabd4038aa4ea1f047b085bbb7496ee879ad61e3332892ceeffd0b\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-llm-turn-packets:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Attack matrix and contract tests for llm_turn_v1 (post-review repair).\",\n  \"operations\": {\n    \"test_payload_and_envelope_round_trip_canonical_wire\": \"Function test_payload_and_envelope_round_trip_canonical_wire operation.\",\n    \"test_kill_conditions_are_round_tripped_and_bound_into_payload_identity\": \"Function test_kill_conditions_are_round_tripped_and_bound_into_payload_identity operation.\",\n    \"test_strict_payload_parser_refuses_unknown_and_missing_fields\": \"Function test_strict_payload_parser_refuses_unknown_and_missing_fields operation.\",\n    \"test_payload_wire_refuses_coerced_numeric_types\": \"Function test_payload_wire_refuses_coerced_numeric_types operation.\",\n    \"test_payload_wire_refuses_schema_family_and_alias_misbinding\": \"Function test_payload_wire_refuses_schema_family_and_alias_misbinding operation.\",\n    \"test_duplicate_json_keys_are_refused\": \"Function test_duplicate_json_keys_are_refused operation.\",\n    \"test_authority_effect_must_be_none_on_payload_and_envelope\": \"Function test_authority_effect_must_be_none_on_payload_and_envelope operation.\",\n    \"test_content_bytes_are_content_addressed_and_verified\": \"Function test_content_bytes_are_content_addressed_and_verified operation.\",\n    \"test_attach_and_evaluate_happy_path_transport_validated\": \"Function test_attach_and_evaluate_happy_path_transport_validated operation.\",\n    \"test_consequential_attach_without_reply_text_is_refused\": \"Function test_consequential_attach_without_reply_text_is_refused operation.\",\n    \"test_consequential_turn_without_machine_block_is_prose_prompt_refused\": \"Function test_consequential_turn_without_machine_block_is_prose_prompt_refused operation.\",\n    \"test_consequential_payload_cannot_weaken_required_reply_fields\": \"Function test_consequential_payload_cannot_weaken_required_reply_fields operation.\",\n    \"test_claimed_result_is_packetized_not_claim_verified\": \"Function test_claimed_result_is_packetized_not_claim_verified operation.\",\n    \"test_packet_id_absent_with_known_packet_is_refused\": \"Function test_packet_id_absent_with_known_packet_is_refused operation.\",\n    \"test_parent_absent_with_known_parent_is_refused\": \"Function test_parent_absent_with_known_parent_is_refused operation.\",\n    \"test_proposal_phase_rejects_dummy_candidate_run_root_ids\": \"Function test_proposal_phase_rejects_dummy_candidate_run_root_ids operation.\",\n    \"test_changed_reply_text_after_attach_is_refused\": \"Function test_changed_reply_text_after_attach_is_refused operation.\",\n    \"test_parse_machine_reply_block_reads_leading_fields_only\": \"Function test_parse_machine_reply_block_reads_leading_fields_only operation.\",\n    \"test_content_digest_mismatch_is_typed_refusal\": \"Function test_content_digest_mismatch_is_typed_refusal operation.\",\n    \"test_candidate_budget_exhaustion_is_typed\": \"Function test_candidate_budget_exhaustion_is_typed operation.\",\n    \"test_markdown_cannot_erase_refusals_or_add_claims\": \"Function test_markdown_cannot_erase_refusals_or_add_claims operation.\",\n    \"test_run_root_refuses_verified_proposal_terminal\": \"Function test_run_root_refuses_verified_proposal_terminal operation.\",\n    \"test_forged_transport_validated_without_evidence_is_refused\": \"Function test_forged_transport_validated_without_evidence_is_refused operation.\",\n    \"test_candidate_content_substitution_is_refused\": \"Function test_candidate_content_substitution_is_refused operation.\",\n    \"test_positive_llm_verify_without_evidence_is_refused\": \"Function test_positive_llm_verify_without_evidence_is_refused operation.\",\n    \"test_family_identity_is_not_research_or_code_change\": \"Function test_family_identity_is_not_research_or_code_change operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_llm_turn_packets.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "e6db1360f8989266b47b43076f5197f19dc639687ff3288d28eb769285d97304",
+      "bytes": 2172,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_llm_turn_packets.py",
+          "sha256": "4431b1f2e9aabd4038aa4ea1f047b085bbb7496ee879ad61e3332892ceeffd0b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:test-llm-turn-packets:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 11,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 4,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_llm_turn_packets.py\",\n    \"sha256\": \"4431b1f2e9aabd4038aa4ea1f047b085bbb7496ee879ad61e3332892ceeffd0b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-llm-turn-packets:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_llm_turn_packets.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

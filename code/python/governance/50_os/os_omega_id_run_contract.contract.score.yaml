@@ -3,299 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/50_os/os_omega_id_run_contract.py",
   "contract": {
-    "schema_version": "1.0.0",
-    "contract_id": "os:omega_id_run",
-    "name": "Omega ID Run Runner",
-    "version": "1.0.0",
-    "kind": "runtime_module_contract",
-    "status": "quarantined",
-    "enforcement_status": "partially_enforced",
-    "description": "omega_id_run::run is a CODA-FOC diagnostic/deposit runner. It wires seed construction, finite cochain realization, canonical functional calls, lift-attempt delegation, checked-packet construction, verifier artifact emission, and deposit output for a single obstruction-discovery run. It does not own canonical mathematics, does not own lift policy, does not mint authority, does not certify authority, and does not prove operad generation.\n",
-    "layer": "OS",
-    "crate": "omega_id_run",
-    "module_path": "omega_id_run::run",
-    "role": "diagnostic_deposit_runner",
-    "governs": [
-      "omega_engine/crates/omega_id_run/src/run.rs"
-    ],
-    "does_not_govern": [
-      "omega_functional/**",
-      "omega_homological/**",
-      "omega_lifts/**",
-      "omega_certifiers/**",
-      "omega_replay/**",
-      "omega_pipeline/**",
-      "omega_engines/**",
-      "operators/**",
-      "meta/**"
-    ],
-    "claims": [
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/50_os/os_omega_id_run_contract.py",
+      "sha256": "509b55d16e15c5d2b7ccfa889494598921724ebb621a6f8d7260a7f7a43fd48a"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:50_os:os-omega-id-run-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for os:omega_id_run Schema Version: 1.0.0",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
       {
-        "id": "OS-RUN-NO-AUTH",
-        "description": "The runner never mints authority directly. It emits CheckedPacket/deposit artifacts for omega_replay verification and omega_certifiers terminalization.",
-        "status": "active",
-        "provenance": "Theorem II.7 / authority firewall doctrine; verify exact source citation"
-      },
-      {
-        "id": "OS-RUN-DIAGNOSTIC",
-        "description": "The runner is a diagnostic/deposit orchestration layer, not a canonical functional kernel.",
-        "status": "active",
-        "provenance": "Omega Engine crate boundary doctrine"
-      },
-      {
-        "id": "OS-RUN-DELEGATES-FUNCTIONALS",
-        "description": "Φ₁, Γ₂, R_cl, Ξ, and trichotomy are computed only by canonical functional crates.",
-        "status": "active",
-        "provenance": "omega_functional boundary"
-      },
-      {
-        "id": "OS-RUN-DELEGATES-LIFTS",
-        "description": "Lift candidates, lift verdicts, rollback, and carrier-growth policy are delegated to omega_lifts or the explicit lift boundary.",
-        "status": "active",
-        "provenance": "omega_lifts boundary"
-      },
-      {
-        "id": "OS-RUN-EMITS-CHECKED-PACKET",
-        "description": "The runner may emit CheckedPacket/deposit artifacts for independent replay and certifier verification.",
-        "status": "active",
-        "provenance": "omega_certifiers / omega_replay boundary"
-      },
-      {
-        "id": "OS-RUN-NO-OPERAD-CLAIM",
-        "description": "The runner may record generator/operator traces, but does not prove executable operad closure or generator emergence.",
-        "status": "active",
-        "provenance": "Operator OS quarantine doctrine"
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    ],
-    "rules": {
-      "authority_effect": "none",
-      "mutation": "allowed_only_for_local_run_state_and_deposit_assembly",
-      "canonical_functional_computation": "forbidden",
-      "terminalize": "forbidden",
-      "certify_authority": "forbidden",
-      "lift_policy_ownership": "forbidden",
-      "operad_claims": "forbidden",
-      "evaluator_policy_ownership": "forbidden",
-      "exactness_required_for_certified_outputs": true,
-      "checked_packet_output_allowed": true,
-      "deposit_output_allowed": true,
-      "replay_output_allowed": false
-    },
-    "allowed": [
-      "construct seed-specific run context",
-      "call omega_homological for finite cochain realization and cohomology reports",
-      "call omega_functional for verified Φ₁, Γ₂, R_cl, Ξ, and trichotomy",
-      "call omega_lifts for lift attempt records and rollback requirements",
-      "call omega_certifiers to construct CheckedPacket or closure/counterfeit artifacts",
-      "emit deposit files",
-      "emit verifier scripts or verifier inputs",
-      "emit SHA manifests",
-      "emit non-authoritative diagnostic traces",
-      "emit generator/operator shadow tape marked non-executable unless executable operator law exists"
-    ],
-    "forbidden": [
-      "compute Φ₁ locally",
-      "compute Γ₂ locally",
-      "compute R_cl locally",
-      "compute Ξ locally",
-      "classify trichotomy locally",
-      "mint CertifiedAuthority",
-      "call CertifiedAuthority::certify",
-      "call authority_from_outcome_f13",
-      "call terminalize",
-      "emit AuthorityEffect::Authorize",
-      "treat raw_residual_l1 as Φ₁",
-      "treat raw L¹/L² diagnostic mass as quotient obstruction mass",
-      "execute lift policy locally",
-      "accept lift candidates locally",
-      "rank candidates by authority",
-      "claim ExactRepair from string status",
-      "claim operad composition from string tape",
-      "claim QM derivation",
-      "claim Born derivation",
-      "hide f64 approximations inside certified exact outputs",
-      "swallow verifier failure",
-      "continue after failed d₁d₀ = 0 check"
-    ],
-    "delegation": {
-      "cochain_complex": {
-        "owner": "omega_homological",
-        "runner_may_call": true,
-        "runner_must_not_reimplement": true
-      },
-      "functionals": {
-        "owner": "omega_functional",
-        "required_calls": [
-          "Phi1Functional or verified Φ₁ certificate replay",
-          "Gamma2Functional",
-          "R_cl computation from verified Φ₁ and Γ₂",
-          "XiFunctional only as tertiary diagnostic",
-          "CertifiedExactTrichotomy"
-        ],
-        "runner_must_not_reimplement": true
-      },
-      "lifts": {
-        "owner": "omega_lifts",
-        "runner_may_record_attempts": true,
-        "runner_must_not_own_policy": true,
-        "runner_must_not_execute_hidden_lift": true
-      },
-      "certifiers": {
-        "owner": "omega_certifiers",
-        "runner_may_emit_checked_packet": true,
-        "runner_must_not_terminalize": true,
-        "runner_must_not_mint_authority": true
-      },
-      "replay": {
-        "owner": "omega_replay",
-        "replay_role": "independent_verifier",
-        "replay_mints_authority": false,
-        "notes": [
-          "Replay verifies deposits and packets.",
-          "Replay may return verification verdicts.",
-          "Replay must not be the authority minter."
-        ]
-      }
-    },
-    "outputs": {
-      "allowed": [
-        "RunResult",
-        "DiagnosticVector",
-        "CheckedPacket",
-        "ClosureCertificate",
-        "CounterfeitReport",
-        "DepositManifest",
-        "VerifierInput",
-        "VerifierScript",
-        "sha256sums",
-        "NonAuthoritativeTrace"
-      ],
-      "forbidden": [
-        "CertifiedAuthority",
-        "AuthorityEffect::Authorize",
-        "TerminalAuthority",
-        "ExecutedLift",
-        "AcceptedCandidate"
-      ]
-    },
-    "exactness": {
-      "certified_outputs_must_be_exact": true,
-      "f64_allowed_only_for": "diagnostic_display_or_non_authoritative_qm_diagnostics",
-      "raw_mass_fields_must_use_prefix": "raw_",
-      "forbidden_field_names_for_raw_mass": [
-        "phi1",
-        "obstruction_mass",
-        "quotient_mass"
-      ],
-      "required_checks": [
-        "finite dimensions",
-        "matrix dimensions",
-        "d₁d₀ = 0 exactly",
-        "verified Φ₁ certificate or exact replay",
-        "verified Γ₂ from canonical functional",
-        "trichotomy consistency",
-        "closure certificate consistency",
-        "SHA manifest integrity"
-      ]
-    },
-    "validator_requirements": {
-      "forbidden_substrings": [
-        "CertifiedAuthority::certify",
-        "authority_from_outcome_f13",
-        "mint_authority",
-        "terminalize(",
-        "exact_status: &str",
-        "seed_name: &str",
-        "classify_residual(",
-        "gamma2_l1",
-        "let phi1 = h1.iter().map",
-        "AuthorityEffect::Authorize",
-        "FullCertifier",
-        "fn guarded_strictly_improves",
-        "fn eval_adjoin_repair",
-        "fn eval_face_fill",
-        "fn eval_edge_split",
-        "fn eval_cycle_hub",
-        "fn lift_gate",
-        "PHOTON",
-        "FERMION",
-        "Higgs",
-        "operad"
-      ],
-      "required_substrings": [
-        "CheckedPacket",
-        "Gamma2Functional",
-        "Phi1Functional"
-      ],
-      "required_tests": [
-        "runner_does_not_mint_authority",
-        "runner_delegates_phi1_to_functional",
-        "runner_delegates_gamma2_to_functional",
-        "runner_rejects_failed_d1d0",
-        "runner_outputs_checked_packet",
-        "runner_delegates_lift_policy",
-        "runner_emits_non_authoritative_deposit",
-        "runner_does_not_claim_operad_closure",
-        "runner_does_not_treat_raw_l1_as_phi1"
-      ]
-    },
-    "lean_obligations": [
-      {
-        "id": "RUN-L0",
-        "theorem": "Runner orchestration does not change canonical functional semantics.",
-        "status": "needed"
-      },
-      {
-        "id": "RUN-L1",
-        "theorem": "If runner emits CheckedPacket, packet authority still requires certifier terminalization.",
-        "status": "needed"
-      },
-      {
-        "id": "RUN-L2",
-        "theorem": "Runner cannot mint authority.",
-        "status": "needed"
-      },
-      {
-        "id": "RUN-L3",
-        "theorem": "Runner trace/deposit replay preserves Φ₁, Γ₂, R_cl, Ξ, and trichotomy consistency.",
-        "status": "needed"
-      },
-      {
-        "id": "RUN-L4",
-        "theorem": "Generator/operator tape emitted by runner is not executable composition without typed apply and composition law.",
-        "status": "needed"
-      },
-      {
-        "id": "RUN-L5",
-        "theorem": "Failed d₁d₀ = 0 check prevents certified deposit emission.",
-        "status": "needed"
-      }
-    ],
-    "notes": [
-      "Do not call omega_id_run an Engine under engine.contract.yaml.",
-      "Do not call omega_id_run an operad layer.",
-      "omega_id_run is a runner/deposit orchestrator over canonical crates.",
-      "omega_replay verifies; omega_certifiers terminalizes under the sealed authority boundary.",
-      "CheckedPacket emission is not authority minting.",
-      "Deposit emission is not authority minting."
-    ],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "os:base_legacy_contract"
-      ],
-      "coalescence_mode": "compatibility_alias",
-      "coalesces_with": [
-        "urn:omega:rust:omega_id_run:omega_id_run:v1.1.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "f45fef6387f58b7fee9f6bc8756fb9ebce341c402ef191a0822285809c866f83",
-  "current_scoring": null,
+  "current_contract": "f030f072f7d8bd983c05c3b40ade79d7fb4bd76a8ce45b277a56eb98a45570c5",
+  "current_scoring": "bcbb9becaa115d03561f55dbda5699f8e950d8092ef0170e6971fbbd9e26f2a1",
   "contract_history": [
     {
-      "sha256": "f45fef6387f58b7fee9f6bc8756fb9ebce341c402ef191a0822285809c866f83",
-      "bytes": 8261,
+      "sha256": "1d0009dbdd0c3333661e377346af777cdb001a6fb361b5a68782ae64053fa306",
+      "bytes": 9926,
       "record": {
         "schema_version": "1.0.0",
         "contract_id": "os:omega_id_run",
@@ -584,13 +323,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: 1.0.0\ncontract_id: os:omega_id_run\nname: Omega ID Run Runner\nversion: 1.0.0\nkind: runtime_module_contract\nstatus: quarantined\nenforcement_status: partially_enforced\ndescription: 'omega_id_run::run is a CODA-FOC diagnostic/deposit runner. It wires\n  seed construction, finite cochain realization, canonical functional calls, lift-attempt\n  delegation, checked-packet construction, verifier artifact emission, and deposit\n  output for a single obstruction-discovery run. It does not own canonical mathematics,\n  does not own lift policy, does not mint authority, does not certify authority, and\n  does not prove operad generation.\n\n  '\nlayer: OS\ncrate: omega_id_run\nmodule_path: omega_id_run::run\nrole: diagnostic_deposit_runner\ngoverns:\n- omega_engine/crates/omega_id_run/src/run.rs\ndoes_not_govern:\n- omega_functional/**\n- omega_homological/**\n- omega_lifts/**\n- omega_certifiers/**\n- omega_replay/**\n- omega_pipeline/**\n- omega_engines/**\n- operators/**\n- meta/**\nclaims:\n- id: OS-RUN-NO-AUTH\n  description: The runner never mints authority directly. It emits CheckedPacket/deposit\n    artifacts for omega_replay verification and omega_certifiers terminalization.\n  status: active\n  provenance: Theorem II.7 / authority firewall doctrine; verify exact source citation\n- id: OS-RUN-DIAGNOSTIC\n  description: The runner is a diagnostic/deposit orchestration layer, not a canonical\n    functional kernel.\n  status: active\n  provenance: Omega Engine crate boundary doctrine\n- id: OS-RUN-DELEGATES-FUNCTIONALS\n  description: Φ₁, Γ₂, R_cl, Ξ, and trichotomy are computed only by canonical functional\n    crates.\n  status: active\n  provenance: omega_functional boundary\n- id: OS-RUN-DELEGATES-LIFTS\n  description: Lift candidates, lift verdicts, rollback, and carrier-growth policy\n    are delegated to omega_lifts or the explicit lift boundary.\n  status: active\n  provenance: omega_lifts boundary\n- id: OS-RUN-EMITS-CHECKED-PACKET\n  description: The runner may emit CheckedPacket/deposit artifacts for independent\n    replay and certifier verification.\n  status: active\n  provenance: omega_certifiers / omega_replay boundary\n- id: OS-RUN-NO-OPERAD-CLAIM\n  description: The runner may record generator/operator traces, but does not prove\n    executable operad closure or generator emergence.\n  status: active\n  provenance: Operator OS quarantine doctrine\nrules:\n  authority_effect: none\n  mutation: allowed_only_for_local_run_state_and_deposit_assembly\n  canonical_functional_computation: forbidden\n  terminalize: forbidden\n  certify_authority: forbidden\n  lift_policy_ownership: forbidden\n  operad_claims: forbidden\n  evaluator_policy_ownership: forbidden\n  exactness_required_for_certified_outputs: true\n  checked_packet_output_allowed: true\n  deposit_output_allowed: true\n  replay_output_allowed: false\nallowed:\n- construct seed-specific run context\n- call omega_homological for finite cochain realization and cohomology reports\n- call omega_functional for verified Φ₁, Γ₂, R_cl, Ξ, and trichotomy\n- call omega_lifts for lift attempt records and rollback requirements\n- call omega_certifiers to construct CheckedPacket or closure/counterfeit artifacts\n- emit deposit files\n- emit verifier scripts or verifier inputs\n- emit SHA manifests\n- emit non-authoritative diagnostic traces\n- emit generator/operator shadow tape marked non-executable unless executable operator\n  law exists\nforbidden:\n- compute Φ₁ locally\n- compute Γ₂ locally\n- compute R_cl locally\n- compute Ξ locally\n- classify trichotomy locally\n- mint CertifiedAuthority\n- call CertifiedAuthority::certify\n- call authority_from_outcome_f13\n- call terminalize\n- emit AuthorityEffect::Authorize\n- treat raw_residual_l1 as Φ₁\n- treat raw L¹/L² diagnostic mass as quotient obstruction mass\n- execute lift policy locally\n- accept lift candidates locally\n- rank candidates by authority\n- claim ExactRepair from string status\n- claim operad composition from string tape\n- claim QM derivation\n- claim Born derivation\n- hide f64 approximations inside certified exact outputs\n- swallow verifier failure\n- continue after failed d₁d₀ = 0 check\ndelegation:\n  cochain_complex:\n    owner: omega_homological\n    runner_may_call: true\n    runner_must_not_reimplement: true\n  functionals:\n    owner: omega_functional\n    required_calls:\n    - Phi1Functional or verified Φ₁ certificate replay\n    - Gamma2Functional\n    - R_cl computation from verified Φ₁ and Γ₂\n    - XiFunctional only as tertiary diagnostic\n    - CertifiedExactTrichotomy\n    runner_must_not_reimplement: true\n  lifts:\n    owner: omega_lifts\n    runner_may_record_attempts: true\n    runner_must_not_own_policy: true\n    runner_must_not_execute_hidden_lift: true\n  certifiers:\n    owner: omega_certifiers\n    runner_may_emit_checked_packet: true\n    runner_must_not_terminalize: true\n    runner_must_not_mint_authority: true\n  replay:\n    owner: omega_replay\n    replay_role: independent_verifier\n    replay_mints_authority: false\n    notes:\n    - Replay verifies deposits and packets.\n    - Replay may return verification verdicts.\n    - Replay must not be the authority minter.\noutputs:\n  allowed:\n  - RunResult\n  - DiagnosticVector\n  - CheckedPacket\n  - ClosureCertificate\n  - CounterfeitReport\n  - DepositManifest\n  - VerifierInput\n  - VerifierScript\n  - sha256sums\n  - NonAuthoritativeTrace\n  forbidden:\n  - CertifiedAuthority\n  - AuthorityEffect::Authorize\n  - TerminalAuthority\n  - ExecutedLift\n  - AcceptedCandidate\nexactness:\n  certified_outputs_must_be_exact: true\n  f64_allowed_only_for: diagnostic_display_or_non_authoritative_qm_diagnostics\n  raw_mass_fields_must_use_prefix: raw_\n  forbidden_field_names_for_raw_mass:\n  - phi1\n  - obstruction_mass\n  - quotient_mass\n  required_checks:\n  - finite dimensions\n  - matrix dimensions\n  - d₁d₀ = 0 exactly\n  - verified Φ₁ certificate or exact replay\n  - verified Γ₂ from canonical functional\n  - trichotomy consistency\n  - closure certificate consistency\n  - SHA manifest integrity\nvalidator_requirements:\n  forbidden_substrings:\n  - CertifiedAuthority::certify\n  - authority_from_outcome_f13\n  - mint_authority\n  - terminalize(\n  - 'exact_status: &str'\n  - 'seed_name: &str'\n  - classify_residual(\n  - gamma2_l1\n  - let phi1 = h1.iter().map\n  - AuthorityEffect::Authorize\n  - FullCertifier\n  - fn guarded_strictly_improves\n  - fn eval_adjoin_repair\n  - fn eval_face_fill\n  - fn eval_edge_split\n  - fn eval_cycle_hub\n  - fn lift_gate\n  - PHOTON\n  - FERMION\n  - Higgs\n  - operad\n  required_substrings:\n  - CheckedPacket\n  - Gamma2Functional\n  - Phi1Functional\n  required_tests:\n  - runner_does_not_mint_authority\n  - runner_delegates_phi1_to_functional\n  - runner_delegates_gamma2_to_functional\n  - runner_rejects_failed_d1d0\n  - runner_outputs_checked_packet\n  - runner_delegates_lift_policy\n  - runner_emits_non_authoritative_deposit\n  - runner_does_not_claim_operad_closure\n  - runner_does_not_treat_raw_l1_as_phi1\nlean_obligations:\n- id: RUN-L0\n  theorem: Runner orchestration does not change canonical functional semantics.\n  status: needed\n- id: RUN-L1\n  theorem: If runner emits CheckedPacket, packet authority still requires certifier\n    terminalization.\n  status: needed\n- id: RUN-L2\n  theorem: Runner cannot mint authority.\n  status: needed\n- id: RUN-L3\n  theorem: Runner trace/deposit replay preserves Φ₁, Γ₂, R_cl, Ξ, and trichotomy consistency.\n  status: needed\n- id: RUN-L4\n  theorem: Generator/operator tape emitted by runner is not executable composition\n    without typed apply and composition law.\n  status: needed\n- id: RUN-L5\n  theorem: Failed d₁d₀ = 0 check prevents certified deposit emission.\n  status: needed\nnotes:\n- Do not call omega_id_run an Engine under engine.contract.yaml.\n- Do not call omega_id_run an operad layer.\n- omega_id_run is a runner/deposit orchestrator over canonical crates.\n- omega_replay verifies; omega_certifiers terminalizes under the sealed authority\n  boundary.\n- CheckedPacket emission is not authority minting.\n- Deposit emission is not authority minting.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - os:base_legacy_contract\n  coalescence_mode: compatibility_alias\n  coalesces_with:\n  - urn:omega:rust:omega_id_run:omega_id_run:v1.1.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"contract_id\": \"os:omega_id_run\",\n  \"name\": \"Omega ID Run Runner\",\n  \"version\": \"1.0.0\",\n  \"kind\": \"runtime_module_contract\",\n  \"status\": \"quarantined\",\n  \"enforcement_status\": \"partially_enforced\",\n  \"description\": \"omega_id_run::run is a CODA-FOC diagnostic/deposit runner. It wires seed construction, finite cochain realization, canonical functional calls, lift-attempt delegation, checked-packet construction, verifier artifact emission, and deposit output for a single obstruction-discovery run. It does not own canonical mathematics, does not own lift policy, does not mint authority, does not certify authority, and does not prove operad generation.\\n\",\n  \"layer\": \"OS\",\n  \"crate\": \"omega_id_run\",\n  \"module_path\": \"omega_id_run::run\",\n  \"role\": \"diagnostic_deposit_runner\",\n  \"governs\": [\n    \"omega_engine/crates/omega_id_run/src/run.rs\"\n  ],\n  \"does_not_govern\": [\n    \"omega_functional/**\",\n    \"omega_homological/**\",\n    \"omega_lifts/**\",\n    \"omega_certifiers/**\",\n    \"omega_replay/**\",\n    \"omega_pipeline/**\",\n    \"omega_engines/**\",\n    \"operators/**\",\n    \"meta/**\"\n  ],\n  \"claims\": [\n    {\n      \"id\": \"OS-RUN-NO-AUTH\",\n      \"description\": \"The runner never mints authority directly. It emits CheckedPacket/deposit artifacts for omega_replay verification and omega_certifiers terminalization.\",\n      \"status\": \"active\",\n      \"provenance\": \"Theorem II.7 / authority firewall doctrine; verify exact source citation\"\n    },\n    {\n      \"id\": \"OS-RUN-DIAGNOSTIC\",\n      \"description\": \"The runner is a diagnostic/deposit orchestration layer, not a canonical functional kernel.\",\n      \"status\": \"active\",\n      \"provenance\": \"Omega Engine crate boundary doctrine\"\n    },\n    {\n      \"id\": \"OS-RUN-DELEGATES-FUNCTIONALS\",\n      \"description\": \"Φ₁, Γ₂, R_cl, Ξ, and trichotomy are computed only by canonical functional crates.\",\n      \"status\": \"active\",\n      \"provenance\": \"omega_functional boundary\"\n    },\n    {\n      \"id\": \"OS-RUN-DELEGATES-LIFTS\",\n      \"description\": \"Lift candidates, lift verdicts, rollback, and carrier-growth policy are delegated to omega_lifts or the explicit lift boundary.\",\n      \"status\": \"active\",\n      \"provenance\": \"omega_lifts boundary\"\n    },\n    {\n      \"id\": \"OS-RUN-EMITS-CHECKED-PACKET\",\n      \"description\": \"The runner may emit CheckedPacket/deposit artifacts for independent replay and certifier verification.\",\n      \"status\": \"active\",\n      \"provenance\": \"omega_certifiers / omega_replay boundary\"\n    },\n    {\n      \"id\": \"OS-RUN-NO-OPERAD-CLAIM\",\n      \"description\": \"The runner may record generator/operator traces, but does not prove executable operad closure or generator emergence.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS quarantine doctrine\"\n    }\n  ],\n  \"rules\": {\n    \"authority_effect\": \"none\",\n    \"mutation\": \"allowed_only_for_local_run_state_and_deposit_assembly\",\n    \"canonical_functional_computation\": \"forbidden\",\n    \"terminalize\": \"forbidden\",\n    \"certify_authority\": \"forbidden\",\n    \"lift_policy_ownership\": \"forbidden\",\n    \"operad_claims\": \"forbidden\",\n    \"evaluator_policy_ownership\": \"forbidden\",\n    \"exactness_required_for_certified_outputs\": true,\n    \"checked_packet_output_allowed\": true,\n    \"deposit_output_allowed\": true,\n    \"replay_output_allowed\": false\n  },\n  \"allowed\": [\n    \"construct seed-specific run context\",\n    \"call omega_homological for finite cochain realization and cohomology reports\",\n    \"call omega_functional for verified Φ₁, Γ₂, R_cl, Ξ, and trichotomy\",\n    \"call omega_lifts for lift attempt records and rollback requirements\",\n    \"call omega_certifiers to construct CheckedPacket or closure/counterfeit artifacts\",\n    \"emit deposit files\",\n    \"emit verifier scripts or verifier inputs\",\n    \"emit SHA manifests\",\n    \"emit non-authoritative diagnostic traces\",\n    \"emit generator/operator shadow tape marked non-executable unless executable operator law exists\"\n  ],\n  \"forbidden\": [\n    \"compute Φ₁ locally\",\n    \"compute Γ₂ locally\",\n    \"compute R_cl locally\",\n    \"compute Ξ locally\",\n    \"classify trichotomy locally\",\n    \"mint CertifiedAuthority\",\n    \"call CertifiedAuthority::certify\",\n    \"call authority_from_outcome_f13\",\n    \"call terminalize\",\n    \"emit AuthorityEffect::Authorize\",\n    \"treat raw_residual_l1 as Φ₁\",\n    \"treat raw L¹/L² diagnostic mass as quotient obstruction mass\",\n    \"execute lift policy locally\",\n    \"accept lift candidates locally\",\n    \"rank candidates by authority\",\n    \"claim ExactRepair from string status\",\n    \"claim operad composition from string tape\",\n    \"claim QM derivation\",\n    \"claim Born derivation\",\n    \"hide f64 approximations inside certified exact outputs\",\n    \"swallow verifier failure\",\n    \"continue after failed d₁d₀ = 0 check\"\n  ],\n  \"delegation\": {\n    \"cochain_complex\": {\n      \"owner\": \"omega_homological\",\n      \"runner_may_call\": true,\n      \"runner_must_not_reimplement\": true\n    },\n    \"functionals\": {\n      \"owner\": \"omega_functional\",\n      \"required_calls\": [\n        \"Phi1Functional or verified Φ₁ certificate replay\",\n        \"Gamma2Functional\",\n        \"R_cl computation from verified Φ₁ and Γ₂\",\n        \"XiFunctional only as tertiary diagnostic\",\n        \"CertifiedExactTrichotomy\"\n      ],\n      \"runner_must_not_reimplement\": true\n    },\n    \"lifts\": {\n      \"owner\": \"omega_lifts\",\n      \"runner_may_record_attempts\": true,\n      \"runner_must_not_own_policy\": true,\n      \"runner_must_not_execute_hidden_lift\": true\n    },\n    \"certifiers\": {\n      \"owner\": \"omega_certifiers\",\n      \"runner_may_emit_checked_packet\": true,\n      \"runner_must_not_terminalize\": true,\n      \"runner_must_not_mint_authority\": true\n    },\n    \"replay\": {\n      \"owner\": \"omega_replay\",\n      \"replay_role\": \"independent_verifier\",\n      \"replay_mints_authority\": false,\n      \"notes\": [\n        \"Replay verifies deposits and packets.\",\n        \"Replay may return verification verdicts.\",\n        \"Replay must not be the authority minter.\"\n      ]\n    }\n  },\n  \"outputs\": {\n    \"allowed\": [\n      \"RunResult\",\n      \"DiagnosticVector\",\n      \"CheckedPacket\",\n      \"ClosureCertificate\",\n      \"CounterfeitReport\",\n      \"DepositManifest\",\n      \"VerifierInput\",\n      \"VerifierScript\",\n      \"sha256sums\",\n      \"NonAuthoritativeTrace\"\n    ],\n    \"forbidden\": [\n      \"CertifiedAuthority\",\n      \"AuthorityEffect::Authorize\",\n      \"TerminalAuthority\",\n      \"ExecutedLift\",\n      \"AcceptedCandidate\"\n    ]\n  },\n  \"exactness\": {\n    \"certified_outputs_must_be_exact\": true,\n    \"f64_allowed_only_for\": \"diagnostic_display_or_non_authoritative_qm_diagnostics\",\n    \"raw_mass_fields_must_use_prefix\": \"raw_\",\n    \"forbidden_field_names_for_raw_mass\": [\n      \"phi1\",\n      \"obstruction_mass\",\n      \"quotient_mass\"\n    ],\n    \"required_checks\": [\n      \"finite dimensions\",\n      \"matrix dimensions\",\n      \"d₁d₀ = 0 exactly\",\n      \"verified Φ₁ certificate or exact replay\",\n      \"verified Γ₂ from canonical functional\",\n      \"trichotomy consistency\",\n      \"closure certificate consistency\",\n      \"SHA manifest integrity\"\n    ]\n  },\n  \"validator_requirements\": {\n    \"forbidden_substrings\": [\n      \"CertifiedAuthority::certify\",\n      \"authority_from_outcome_f13\",\n      \"mint_authority\",\n      \"terminalize(\",\n      \"exact_status: &str\",\n      \"seed_name: &str\",\n      \"classify_residual(\",\n      \"gamma2_l1\",\n      \"let phi1 = h1.iter().map\",\n      \"AuthorityEffect::Authorize\",\n      \"FullCertifier\",\n      \"fn guarded_strictly_improves\",\n      \"fn eval_adjoin_repair\",\n      \"fn eval_face_fill\",\n      \"fn eval_edge_split\",\n      \"fn eval_cycle_hub\",\n      \"fn lift_gate\",\n      \"PHOTON\",\n      \"FERMION\",\n      \"Higgs\",\n      \"operad\"\n    ],\n    \"required_substrings\": [\n      \"CheckedPacket\",\n      \"Gamma2Functional\",\n      \"Phi1Functional\"\n    ],\n    \"required_tests\": [\n      \"runner_does_not_mint_authority\",\n      \"runner_delegates_phi1_to_functional\",\n      \"runner_delegates_gamma2_to_functional\",\n      \"runner_rejects_failed_d1d0\",\n      \"runner_outputs_checked_packet\",\n      \"runner_delegates_lift_policy\",\n      \"runner_emits_non_authoritative_deposit\",\n      \"runner_does_not_claim_operad_closure\",\n      \"runner_does_not_treat_raw_l1_as_phi1\"\n    ]\n  },\n  \"lean_obligations\": [\n    {\n      \"id\": \"RUN-L0\",\n      \"theorem\": \"Runner orchestration does not change canonical functional semantics.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"RUN-L1\",\n      \"theorem\": \"If runner emits CheckedPacket, packet authority still requires certifier terminalization.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"RUN-L2\",\n      \"theorem\": \"Runner cannot mint authority.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"RUN-L3\",\n      \"theorem\": \"Runner trace/deposit replay preserves Φ₁, Γ₂, R_cl, Ξ, and trichotomy consistency.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"RUN-L4\",\n      \"theorem\": \"Generator/operator tape emitted by runner is not executable composition without typed apply and composition law.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"RUN-L5\",\n      \"theorem\": \"Failed d₁d₀ = 0 check prevents certified deposit emission.\",\n      \"status\": \"needed\"\n    }\n  ],\n  \"notes\": [\n    \"Do not call omega_id_run an Engine under engine.contract.yaml.\",\n    \"Do not call omega_id_run an operad layer.\",\n    \"omega_id_run is a runner/deposit orchestrator over canonical crates.\",\n    \"omega_replay verifies; omega_certifiers terminalizes under the sealed authority boundary.\",\n    \"CheckedPacket emission is not authority minting.\",\n    \"Deposit emission is not authority minting.\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"os:base_legacy_contract\"\n    ],\n    \"coalescence_mode\": \"compatibility_alias\",\n    \"coalesces_with\": [\n      \"urn:omega:rust:omega_id_run:omega_id_run:v1.1.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/50_os/os_omega_id_run.contract.yaml"
       ]
+    },
+    {
+      "sha256": "f030f072f7d8bd983c05c3b40ade79d7fb4bd76a8ce45b277a56eb98a45570c5",
+      "bytes": 1757,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/os_omega_id_run_contract.py",
+          "sha256": "509b55d16e15c5d2b7ccfa889494598921724ebb621a6f8d7260a7f7a43fd48a"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:50_os:os-omega-id-run-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for os:omega_id_run Schema Version: 1.0.0",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_omega_id_run_contract.py\",\n    \"sha256\": \"509b55d16e15c5d2b7ccfa889494598921724ebb621a6f8d7260a7f7a43fd48a\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:50_os:os-omega-id-run-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for os:omega_id_run Schema Version: 1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_omega_id_run_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "bcbb9becaa115d03561f55dbda5699f8e950d8092ef0170e6971fbbd9e26f2a1",
+      "bytes": 2191,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/os_omega_id_run_contract.py",
+          "sha256": "509b55d16e15c5d2b7ccfa889494598921724ebb621a6f8d7260a7f7a43fd48a"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:os-omega-id-run-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_omega_id_run_contract.py\",\n    \"sha256\": \"509b55d16e15c5d2b7ccfa889494598921724ebb621a6f8d7260a7f7a43fd48a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:os-omega-id-run-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_omega_id_run_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/os_omega_id_run.contract.yaml": "f45fef6387f58b7fee9f6bc8756fb9ebce341c402ef191a0822285809c866f83"
   },

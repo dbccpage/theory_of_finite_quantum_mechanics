@@ -3,149 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/qm_engine_validator_rules_contract.py",
   "contract": {
-    "schema_version": "omega.validator_rules.v1",
-    "rules": [
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/20_execution/qm_engine_validator_rules_contract.py",
+      "sha256": "e83a67390837dadf851322a7a0ae7076dd54019e0b413150dcf0d9e180148a66"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:20_execution:qm-engine-validator-rules-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.validator_rules.v1",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
       {
-        "id": "qm_contracts_use_file_schema",
-        "severity": "P0",
-        "applies_to": {
-          "contracts": [
-            "contracts/rust/omega_engines/quantum/*.contract.yaml"
-          ]
-        },
-        "require_fields": [
-          "schema_version",
-          "contract_id",
-          "crate",
-          "file",
-          "role",
-          "authority_effect",
-          "owns",
-          "does_not_own",
-          "must_not",
-          "forbidden_substrings",
-          "required_tests"
-        ]
-      },
-      {
-        "id": "no_qm_diagnostic_phi1",
-        "severity": "P0",
-        "applies_to": {
-          "roles": [
-            "diagnostic_residual_density_bridge",
-            "diagnostic_cycle_space_projector",
-            "process_matrix_diagnostic_engine"
-          ]
-        },
-        "forbidden_substrings": [
-          "pub phi1:",
-          " phi1: f64",
-          "let phi1 ="
-        ],
-        "required_substrings_when_file_contains": {
-          "raw_l1_mass": [
-            "raw_l1_mass"
-          ]
-        }
-      },
-      {
-        "id": "no_authority_symbols_in_qm_diagnostics",
-        "severity": "P0",
-        "applies_to": {
-          "authority_effect": "none"
-        },
-        "forbidden_substrings": [
-          "CertifiedAuthority",
-          "authority_from_outcome_f13",
-          "AuthorityEffect::Authorize",
-          "ExactRepair",
-          "terminalize("
-        ]
-      },
-      {
-        "id": "no_canonical_raw_l2_density",
-        "severity": "P0",
-        "applies_to": {
-          "files": [
-            "omega_engine/crates_rs/omega_engines/src/quantum/density_from_h1.rs"
-          ]
-        },
-        "forbidden_substrings": [
-          "CANONICAL density construction",
-          "ONLY density allowed",
-          "only density allowed"
-        ],
-        "required_substrings": [
-          "H1DensityConstruction",
-          "L1DiagonalDiagnostic",
-          "L1PhaseWitnessLift",
-          "L2RawAmplitudeDiagnostic"
-        ]
-      },
-      {
-        "id": "cycle_basis_edge_kernel",
-        "severity": "P0",
-        "applies_to": {
-          "files": [
-            "omega_engine/crates_rs/omega_engines/src/quantum/cycle_space_projector.rs"
-          ]
-        },
-        "required_tests": [
-          "cycle_basis_vectors_have_edge_dimension",
-          "cycle_basis_satisfies_incidence_kernel",
-          "rectangular_incidence_no_panic"
-        ],
-        "forbidden_substrings": [
-          "panic!"
-        ]
-      },
-      {
-        "id": "checked_qm_paths_do_not_panic",
-        "severity": "P1",
-        "applies_to": {
-          "files": [
-            "omega_engine/crates_rs/omega_engines/src/quantum/quantum_channel.rs",
-            "omega_engine/crates_rs/omega_engines/src/quantum/packed_density_operator.rs",
-            "omega_engine/crates_rs/omega_engines/src/quantum/harmonic_density.rs"
-          ]
-        },
-        "forbidden_substrings_outside_tests": [
-          "unwrap()",
-          "expect(",
-          "assert_eq!",
-          "panic!"
-        ]
-      },
-      {
-        "id": "process_matrix_diagnostic_only",
-        "severity": "P1",
-        "applies_to": {
-          "files": [
-            "omega_engine/crates_rs/omega_engines/src/quantum/process_matrix_engine.rs"
-          ]
-        },
-        "required_substrings": [
-          "AuthorityEffect::None"
-        ],
-        "forbidden_substrings": [
-          "certifies noncausal",
-          "full causal-separability solver"
-        ]
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    ],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_validator_rules:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "c246b83db849718a382418998fb846703854438ca823362bfcd3c466ebdb1d92",
-  "current_scoring": null,
+  "current_contract": "fc2f5233029be56301cef0eb20323a97b342ffb864fa19224bb011729abf78f6",
+  "current_scoring": "47ccc70fad6615b2d98d88cad9c4a41a4723c5196cba69cae5a9555cfdb00e6e",
   "contract_history": [
     {
-      "sha256": "c246b83db849718a382418998fb846703854438ca823362bfcd3c466ebdb1d92",
-      "bytes": 2471,
+      "sha256": "8038057ca745f3b1cea2be04935a3b1f72ffb190a4ea5d4aab0c7bb1d400c269",
+      "bytes": 3488,
       "record": {
         "schema_version": "omega.validator_rules.v1",
         "rules": [
@@ -284,13 +173,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.validator_rules.v1\nrules:\n- id: qm_contracts_use_file_schema\n  severity: P0\n  applies_to:\n    contracts:\n    - contracts/rust/omega_engines/quantum/*.contract.yaml\n  require_fields:\n  - schema_version\n  - contract_id\n  - crate\n  - file\n  - role\n  - authority_effect\n  - owns\n  - does_not_own\n  - must_not\n  - forbidden_substrings\n  - required_tests\n- id: no_qm_diagnostic_phi1\n  severity: P0\n  applies_to:\n    roles:\n    - diagnostic_residual_density_bridge\n    - diagnostic_cycle_space_projector\n    - process_matrix_diagnostic_engine\n  forbidden_substrings:\n  - 'pub phi1:'\n  - ' phi1: f64'\n  - let phi1 =\n  required_substrings_when_file_contains:\n    raw_l1_mass:\n    - raw_l1_mass\n- id: no_authority_symbols_in_qm_diagnostics\n  severity: P0\n  applies_to:\n    authority_effect: none\n  forbidden_substrings:\n  - CertifiedAuthority\n  - authority_from_outcome_f13\n  - AuthorityEffect::Authorize\n  - ExactRepair\n  - terminalize(\n- id: no_canonical_raw_l2_density\n  severity: P0\n  applies_to:\n    files:\n    - omega_engine/crates_rs/omega_engines/src/quantum/density_from_h1.rs\n  forbidden_substrings:\n  - CANONICAL density construction\n  - ONLY density allowed\n  - only density allowed\n  required_substrings:\n  - H1DensityConstruction\n  - L1DiagonalDiagnostic\n  - L1PhaseWitnessLift\n  - L2RawAmplitudeDiagnostic\n- id: cycle_basis_edge_kernel\n  severity: P0\n  applies_to:\n    files:\n    - omega_engine/crates_rs/omega_engines/src/quantum/cycle_space_projector.rs\n  required_tests:\n  - cycle_basis_vectors_have_edge_dimension\n  - cycle_basis_satisfies_incidence_kernel\n  - rectangular_incidence_no_panic\n  forbidden_substrings:\n  - panic!\n- id: checked_qm_paths_do_not_panic\n  severity: P1\n  applies_to:\n    files:\n    - omega_engine/crates_rs/omega_engines/src/quantum/quantum_channel.rs\n    - omega_engine/crates_rs/omega_engines/src/quantum/packed_density_operator.rs\n    - omega_engine/crates_rs/omega_engines/src/quantum/harmonic_density.rs\n  forbidden_substrings_outside_tests:\n  - unwrap()\n  - expect(\n  - assert_eq!\n  - panic!\n- id: process_matrix_diagnostic_only\n  severity: P1\n  applies_to:\n    files:\n    - omega_engine/crates_rs/omega_engines/src/quantum/process_matrix_engine.rs\n  required_substrings:\n  - AuthorityEffect::None\n  forbidden_substrings:\n  - certifies noncausal\n  - full causal-separability solver\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_validator_rules:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.validator_rules.v1\",\n  \"rules\": [\n    {\n      \"id\": \"qm_contracts_use_file_schema\",\n      \"severity\": \"P0\",\n      \"applies_to\": {\n        \"contracts\": [\n          \"contracts/rust/omega_engines/quantum/*.contract.yaml\"\n        ]\n      },\n      \"require_fields\": [\n        \"schema_version\",\n        \"contract_id\",\n        \"crate\",\n        \"file\",\n        \"role\",\n        \"authority_effect\",\n        \"owns\",\n        \"does_not_own\",\n        \"must_not\",\n        \"forbidden_substrings\",\n        \"required_tests\"\n      ]\n    },\n    {\n      \"id\": \"no_qm_diagnostic_phi1\",\n      \"severity\": \"P0\",\n      \"applies_to\": {\n        \"roles\": [\n          \"diagnostic_residual_density_bridge\",\n          \"diagnostic_cycle_space_projector\",\n          \"process_matrix_diagnostic_engine\"\n        ]\n      },\n      \"forbidden_substrings\": [\n        \"pub phi1:\",\n        \" phi1: f64\",\n        \"let phi1 =\"\n      ],\n      \"required_substrings_when_file_contains\": {\n        \"raw_l1_mass\": [\n          \"raw_l1_mass\"\n        ]\n      }\n    },\n    {\n      \"id\": \"no_authority_symbols_in_qm_diagnostics\",\n      \"severity\": \"P0\",\n      \"applies_to\": {\n        \"authority_effect\": \"none\"\n      },\n      \"forbidden_substrings\": [\n        \"CertifiedAuthority\",\n        \"authority_from_outcome_f13\",\n        \"AuthorityEffect::Authorize\",\n        \"ExactRepair\",\n        \"terminalize(\"\n      ]\n    },\n    {\n      \"id\": \"no_canonical_raw_l2_density\",\n      \"severity\": \"P0\",\n      \"applies_to\": {\n        \"files\": [\n          \"omega_engine/crates_rs/omega_engines/src/quantum/density_from_h1.rs\"\n        ]\n      },\n      \"forbidden_substrings\": [\n        \"CANONICAL density construction\",\n        \"ONLY density allowed\",\n        \"only density allowed\"\n      ],\n      \"required_substrings\": [\n        \"H1DensityConstruction\",\n        \"L1DiagonalDiagnostic\",\n        \"L1PhaseWitnessLift\",\n        \"L2RawAmplitudeDiagnostic\"\n      ]\n    },\n    {\n      \"id\": \"cycle_basis_edge_kernel\",\n      \"severity\": \"P0\",\n      \"applies_to\": {\n        \"files\": [\n          \"omega_engine/crates_rs/omega_engines/src/quantum/cycle_space_projector.rs\"\n        ]\n      },\n      \"required_tests\": [\n        \"cycle_basis_vectors_have_edge_dimension\",\n        \"cycle_basis_satisfies_incidence_kernel\",\n        \"rectangular_incidence_no_panic\"\n      ],\n      \"forbidden_substrings\": [\n        \"panic!\"\n      ]\n    },\n    {\n      \"id\": \"checked_qm_paths_do_not_panic\",\n      \"severity\": \"P1\",\n      \"applies_to\": {\n        \"files\": [\n          \"omega_engine/crates_rs/omega_engines/src/quantum/quantum_channel.rs\",\n          \"omega_engine/crates_rs/omega_engines/src/quantum/packed_density_operator.rs\",\n          \"omega_engine/crates_rs/omega_engines/src/quantum/harmonic_density.rs\"\n        ]\n      },\n      \"forbidden_substrings_outside_tests\": [\n        \"unwrap()\",\n        \"expect(\",\n        \"assert_eq!\",\n        \"panic!\"\n      ]\n    },\n    {\n      \"id\": \"process_matrix_diagnostic_only\",\n      \"severity\": \"P1\",\n      \"applies_to\": {\n        \"files\": [\n          \"omega_engine/crates_rs/omega_engines/src/quantum/process_matrix_engine.rs\"\n        ]\n      },\n      \"required_substrings\": [\n        \"AuthorityEffect::None\"\n      ],\n      \"forbidden_substrings\": [\n        \"certifies noncausal\",\n        \"full causal-separability solver\"\n      ]\n    }\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_validator_rules:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/qm_engine_validator_rules.contract.yaml"
       ]
+    },
+    {
+      "sha256": "fc2f5233029be56301cef0eb20323a97b342ffb864fa19224bb011729abf78f6",
+      "bytes": 1812,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/qm_engine_validator_rules_contract.py",
+          "sha256": "e83a67390837dadf851322a7a0ae7076dd54019e0b413150dcf0d9e180148a66"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:20_execution:qm-engine-validator-rules-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.validator_rules.v1",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/qm_engine_validator_rules_contract.py\",\n    \"sha256\": \"e83a67390837dadf851322a7a0ae7076dd54019e0b413150dcf0d9e180148a66\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:qm-engine-validator-rules-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.validator_rules.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/qm_engine_validator_rules_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "47ccc70fad6615b2d98d88cad9c4a41a4723c5196cba69cae5a9555cfdb00e6e",
+      "bytes": 2225,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/qm_engine_validator_rules_contract.py",
+          "sha256": "e83a67390837dadf851322a7a0ae7076dd54019e0b413150dcf0d9e180148a66"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:qm-engine-validator-rules-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/qm_engine_validator_rules_contract.py\",\n    \"sha256\": \"e83a67390837dadf851322a7a0ae7076dd54019e0b413150dcf0d9e180148a66\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:qm-engine-validator-rules-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/qm_engine_validator_rules_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/qm_engine_validator_rules.contract.yaml": "c246b83db849718a382418998fb846703854438ca823362bfcd3c466ebdb1d92"
   },

@@ -137,12 +137,12 @@
       ]
     }
   },
-  "current_contract": "972054882193c8196efaef5391510bd684fd454a6ccaa9e0bc90d63a4d04da02",
-  "current_scoring": null,
+  "current_contract": "007effa081d486590e76cef079e9235111902b9abae8c1d475146632f924dc4d",
+  "current_scoring": "f087e44aa0c2c57590053735965cedb0230325800464e8706282230a6e7505d0",
   "contract_history": [
     {
-      "sha256": "972054882193c8196efaef5391510bd684fd454a6ccaa9e0bc90d63a4d04da02",
-      "bytes": 2853,
+      "sha256": "007effa081d486590e76cef079e9235111902b9abae8c1d475146632f924dc4d",
+      "bytes": 3867,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:execution:health_reporting_interface:v1.0.0",
@@ -278,13 +278,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:execution:health_reporting_interface:v1.0.0\ntitle: HealthReportingInterface\nkind: execution_contract\nstatus: mathematical_wip\nlayer: 06_execution\nrole: RepresentationBoundary\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - HealthModelKernel\n    - Engine\n    - Pipeline\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: 'HealthReportingInterface exposes health report references to consumers\n    without creating\n\n    new authority. It does not prescribe action, evaluate, certify, license, execute,\n    or mutate.\n\n    '\n  non_role: &id002\n  - prescription\n  - repair\n  - evaluation\n  - certification\n  - terminal_mapping\n  - action_licensing\n  - execution\n  - mutation\n  - policy_decision\n  structural_representation:\n    raw:\n      struct_name: HealthReportView\n      fields:\n      - name: report_ref\n        type: HealthReportRef\n      - name: consumer_ref\n        type: ConsumerRef\n      - name: projection_schema_ref\n        type: SchemaRef\n      - name: view_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: EvidenceOnly\n  flow: 'HealthReport / CheckedHealthReport\n\n    -> HealthReportView\n\n    -> consumer boundary\n\n    -> Evaluator / Policy only if separately admitted\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - execute(\n    - terminalize(\n    - mutate_state\n    - authorize_transition\n    - license_transition\n    - self_certify\n    - compute_phi\n    - rank_candidates\n    - score_candidate\n  required_tests:\n  - health_reporting_view_defaults_to_evidence_only\n  - health_reporting_interface_does_not_prescribe_action\n  - health_reporting_interface_does_not_emit_decision\n  - health_reporting_interface_does_not_execute\n  - health_reporting_interface_preserves_report_refs\n  canonical_invariant: 'HealthReportingInterface exposes report references only. It\n    cannot upgrade, decide,\n\n    prescribe, license, mutate, or execute.\n\n    '\n  legacy_metadata:\n    name: HealthReportingInterface\n    source_file: non-math/06_execution/health_reporting_interface_contract.md\n    active: true\n    machine_authority: true\n    role: Reference-only consumption boundary for health reports\n    version: '2.0'\n    classification: presentation_interface\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    referenced_output_families:\n    - FactEnvelope\n    - Record\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:execution:health_reporting_interface:v1.0.0\",\n  \"title\": \"HealthReportingInterface\",\n  \"kind\": \"execution_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"06_execution\",\n  \"role\": \"RepresentationBoundary\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"HealthModelKernel\",\n        \"Engine\",\n        \"Pipeline\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"HealthReportingInterface exposes health report references to consumers without creating\\nnew authority. It does not prescribe action, evaluate, certify, license, execute, or mutate.\\n\",\n    \"non_role\": [\n      \"prescription\",\n      \"repair\",\n      \"evaluation\",\n      \"certification\",\n      \"terminal_mapping\",\n      \"action_licensing\",\n      \"execution\",\n      \"mutation\",\n      \"policy_decision\"\n    ],\n    \"structural_representation\": {\n      \"raw\": {\n        \"struct_name\": \"HealthReportView\",\n        \"fields\": [\n          {\n            \"name\": \"report_ref\",\n            \"type\": \"HealthReportRef\"\n          },\n          {\n            \"name\": \"consumer_ref\",\n            \"type\": \"ConsumerRef\"\n          },\n          {\n            \"name\": \"projection_schema_ref\",\n            \"type\": \"SchemaRef\"\n          },\n          {\n            \"name\": \"view_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      }\n    },\n    \"flow\": \"HealthReport / CheckedHealthReport\\n-> HealthReportView\\n-> consumer boundary\\n-> Evaluator / Policy only if separately admitted\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"execute(\",\n        \"terminalize(\",\n        \"mutate_state\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"self_certify\",\n        \"compute_phi\",\n        \"rank_candidates\",\n        \"score_candidate\"\n      ]\n    },\n    \"required_tests\": [\n      \"health_reporting_view_defaults_to_evidence_only\",\n      \"health_reporting_interface_does_not_prescribe_action\",\n      \"health_reporting_interface_does_not_emit_decision\",\n      \"health_reporting_interface_does_not_execute\",\n      \"health_reporting_interface_preserves_report_refs\"\n    ],\n    \"canonical_invariant\": \"HealthReportingInterface exposes report references only. It cannot upgrade, decide,\\nprescribe, license, mutate, or execute.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"HealthReportingInterface\",\n      \"source_file\": \"non-math/06_execution/health_reporting_interface_contract.md\",\n      \"active\": true,\n      \"machine_authority\": true,\n      \"role\": \"Reference-only consumption boundary for health reports\",\n      \"version\": \"2.0\",\n      \"classification\": \"presentation_interface\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"HealthModelKernel\",\n        \"Engine\",\n        \"Pipeline\"\n      ],\n      \"forbidden_authority\": [\n        \"prescription\",\n        \"repair\",\n        \"evaluation\",\n        \"certification\",\n        \"terminal_mapping\",\n        \"action_licensing\",\n        \"execution\",\n        \"mutation\",\n        \"policy_decision\"\n      ],\n      \"primary_output_family\": \"EvidenceEnvelope\",\n      \"referenced_output_families\": [\n        \"FactEnvelope\",\n        \"Record\"\n      ]\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/execution_health_reporting_interface_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "f087e44aa0c2c57590053735965cedb0230325800464e8706282230a6e7505d0",
+      "bytes": 2261,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/execution_health_reporting_interface_v1_0_0_contract.py",
+          "sha256": "343a0cbd0c483d637efe5de6aadba346d92b7e70c8168c866a94f81d15c068f7"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:execution-health-reporting-interface-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/execution_health_reporting_interface_v1_0_0_contract.py\",\n    \"sha256\": \"343a0cbd0c483d637efe5de6aadba346d92b7e70c8168c866a94f81d15c068f7\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:execution-health-reporting-interface-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/execution_health_reporting_interface_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/execution_health_reporting_interface_v1_0_0.contract.yaml": "972054882193c8196efaef5391510bd684fd454a6ccaa9e0bc90d63a4d04da02"
   },

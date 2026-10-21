@@ -61,12 +61,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "7037a379b417269f0a39bedc3a9ccaf80738d04efcacbe6878a6797a230d27bf",
-  "current_scoring": null,
+  "current_contract": "94fd7919226cdd6940a77533c1ff79bb32ac7a0346f883f1b990f46d1f6bb84b",
+  "current_scoring": "f8a4fc8ec8a03a0911991c3838265cfc4c586661388e73b0c9f82e3d50261458",
   "contract_history": [
     {
-      "sha256": "7037a379b417269f0a39bedc3a9ccaf80738d04efcacbe6878a6797a230d27bf",
-      "bytes": 1240,
+      "sha256": "94fd7919226cdd6940a77533c1ff79bb32ac7a0346f883f1b990f46d1f6bb84b",
+      "bytes": 1554,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_mub:primitive_map:v1.0.0",
@@ -126,13 +126,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_mub:primitive_map:v1.0.0\ntitle: Omega-native PrimitiveDifference map for MUB targets.  This module is intentionally\n  declarative. It binds the MUB wor...\nkind: rust_file_contract\nstatus: active\ncrate: omega_mub\nfile: crates_rs/omega_mub/src/primitive_map.rs\nmodule: primitive_map\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_mub\n  module: primitive_map\n  file: crates_rs/omega_mub/src/primitive_map.rs\nsymbols:\n- MubFormulation\n- ExactnessBoundary\n- TransformationStatus\n- PrimitiveDifferenceKind\n- Computability\n- ZeroRelKind\n- MubClaimKind\n- ClaimDisposition\n- MubObstructionClass\n- CorpusPull\n- MubCarrier\n- TransformationLedgerEntry\n- PrimitiveDifferenceSpec\n- ZeroRelDeclaration\n- ObstructionLedgerEntry\n- BenchmarkSelection\n- MubPrimitiveMap\n- MubClaimAssessment\n- first_run_primitive_map\n- assess_general_mub_n\n- assess_d6_pinned_wall\nowns:\n- mub_formulation\n- exactness_boundary\n- transformation_status\n- primitive_difference_kind\n- computability\n- zero_rel_kind\n- mub_claim_kind\n- claim_disposition\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_mub:primitive_map:v1.0.0\",\n  \"title\": \"Omega-native PrimitiveDifference map for MUB targets.  This module is intentionally declarative. It binds the MUB wor...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_mub\",\n  \"file\": \"crates_rs/omega_mub/src/primitive_map.rs\",\n  \"module\": \"primitive_map\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_mub\",\n    \"module\": \"primitive_map\",\n    \"file\": \"crates_rs/omega_mub/src/primitive_map.rs\"\n  },\n  \"symbols\": [\n    \"MubFormulation\",\n    \"ExactnessBoundary\",\n    \"TransformationStatus\",\n    \"PrimitiveDifferenceKind\",\n    \"Computability\",\n    \"ZeroRelKind\",\n    \"MubClaimKind\",\n    \"ClaimDisposition\",\n    \"MubObstructionClass\",\n    \"CorpusPull\",\n    \"MubCarrier\",\n    \"TransformationLedgerEntry\",\n    \"PrimitiveDifferenceSpec\",\n    \"ZeroRelDeclaration\",\n    \"ObstructionLedgerEntry\",\n    \"BenchmarkSelection\",\n    \"MubPrimitiveMap\",\n    \"MubClaimAssessment\",\n    \"first_run_primitive_map\",\n    \"assess_general_mub_n\",\n    \"assess_d6_pinned_wall\"\n  ],\n  \"owns\": [\n    \"mub_formulation\",\n    \"exactness_boundary\",\n    \"transformation_status\",\n    \"primitive_difference_kind\",\n    \"computability\",\n    \"zero_rel_kind\",\n    \"mub_claim_kind\",\n    \"claim_disposition\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/omega_mub_primitive_map.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "f8a4fc8ec8a03a0911991c3838265cfc4c586661388e73b0c9f82e3d50261458",
+      "bytes": 2219,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/omega_mub_primitive_map_contract.py",
+          "sha256": "4ee61f579fc8463ef09882d3636bbd17e5ee79cd88ea0cf7f3030792fae83440"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:omega-mub-primitive-map-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/omega_mub_primitive_map_contract.py\",\n    \"sha256\": \"4ee61f579fc8463ef09882d3636bbd17e5ee79cd88ea0cf7f3030792fae83440\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:omega-mub-primitive-map-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/omega_mub_primitive_map_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/omega_mub_primitive_map.contract.yaml": "7037a379b417269f0a39bedc3a9ccaf80738d04efcacbe6878a6797a230d27bf"
   },

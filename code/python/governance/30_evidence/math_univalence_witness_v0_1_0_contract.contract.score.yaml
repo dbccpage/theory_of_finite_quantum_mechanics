@@ -94,12 +94,12 @@
       "Future versions may include cubical type theory proof construction"
     ]
   },
-  "current_contract": "363b78c5cbf323fc2f29481176331409cc261674e7f531ae2771accf314310ac",
-  "current_scoring": null,
+  "current_contract": "a8303640be5df8f5b3caa766a6eba1a10c86374288310d13b514546c37b4ed52",
+  "current_scoring": "5e6e7f1dfe58bd5edc5c8a0b1f1d30788cfebe7b4fe91621d8eb4f11227bd625",
   "contract_history": [
     {
-      "sha256": "363b78c5cbf323fc2f29481176331409cc261674e7f531ae2771accf314310ac",
-      "bytes": 3158,
+      "sha256": "a8303640be5df8f5b3caa766a6eba1a10c86374288310d13b514546c37b4ed52",
+      "bytes": 3613,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:univalence_witness:v0.1.0",
@@ -192,13 +192,75 @@
           "Future versions may include cubical type theory proof construction"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:univalence_witness:v0.1.0\ntitle: Univalence Witness Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: axiom_witness\n  symbol: 'UA(U) : Π(A B : U). isEquiv(idtoeqv_{A,B})'\n  ascii_symbol: univalence_witness\n  notation: 'UA(U) : Π(A B : U). isEquiv(idtoeqv_{A,B})'\n  domain:\n  - 'universe_id: Reference to TypeUniverse artifact'\n  - 'proof_id: Reference to univalence proof artifact'\n  codomain:\n    description: 'A UnivalenceWitness consists of a reference to a TypeUniverse U\n      and a proof that for all types A, B : U, the canonical map idtoeqv : (A = B)\n      → (A ≃ B) is an equivalence.\n\n      '\nrequirements:\n  required_structures:\n  - The universe_id must resolve to a valid TypeUniverse artifact\n  - The proof_id must resolve to a valid univalence proof\n  - The proof term must be well-typed with correct univalence statement type\n  - The artifact hash is deterministic SHA-256 over contract components\nlaws:\n- 'For all A, B : U, the map (A = B) → (A ≃ B) is an equivalence'\n- The witness applies to a valid TypeUniverse\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators are content-addressed\n  - Same inputs must produce identical artifact hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- universe_id does not resolve to TypeUniverse\n- proof_id does not resolve to proof artifact\n- proof does not have univalence statement type\n- proof term is not valid univalence witness\ndoctrine:\n  summary: 'A UnivalenceWitness demonstrates that the univalence axiom holds for a\n    given universe: the canonical map from type identity to type equivalence is itself\n    an equivalence. The contract validates the universe and the univalence proof.'\n  non_role:\n  - Does not construct the univalence axiom (takes proof as input)\n  - Does not implement cubical type theory proofs\n  - Does not provide computational transport algorithms\nwip:\n- Univalence is an axiom in standard HoTT; in cubical type theory, it is provable.\n  How should we support both axiomatic and cubical approaches?\n- The computational content of univalence (transport) is complex. What level of computational\n  detail should be tracked?\n- Univalence implies function extensionality. Should we validate this implication?\n- Different model constructions (simplicial sets, cubical sets) validate univalence.\n  Should we track which model is used?\n- This contract accepts univalence proofs as inputs rather than constructing them\n- Transport along ua(e) requires careful algorithmic specification\n- The ua operation converts equivalences to paths, enabling powerful reasoning\n- Future versions may include cubical type theory proof construction\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:univalence_witness:v0.1.0\",\n  \"title\": \"Univalence Witness Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"axiom_witness\",\n    \"symbol\": \"UA(U) : Π(A B : U). isEquiv(idtoeqv_{A,B})\",\n    \"ascii_symbol\": \"univalence_witness\",\n    \"notation\": \"UA(U) : Π(A B : U). isEquiv(idtoeqv_{A,B})\",\n    \"domain\": [\n      \"universe_id: Reference to TypeUniverse artifact\",\n      \"proof_id: Reference to univalence proof artifact\"\n    ],\n    \"codomain\": {\n      \"description\": \"A UnivalenceWitness consists of a reference to a TypeUniverse U and a proof that for all types A, B : U, the canonical map idtoeqv : (A = B) → (A ≃ B) is an equivalence.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The universe_id must resolve to a valid TypeUniverse artifact\",\n      \"The proof_id must resolve to a valid univalence proof\",\n      \"The proof term must be well-typed with correct univalence statement type\",\n      \"The artifact hash is deterministic SHA-256 over contract components\"\n    ]\n  },\n  \"laws\": [\n    \"For all A, B : U, the map (A = B) → (A ≃ B) is an equivalence\",\n    \"The witness applies to a valid TypeUniverse\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators are content-addressed\",\n      \"Same inputs must produce identical artifact hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"universe_id does not resolve to TypeUniverse\",\n    \"proof_id does not resolve to proof artifact\",\n    \"proof does not have univalence statement type\",\n    \"proof term is not valid univalence witness\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A UnivalenceWitness demonstrates that the univalence axiom holds for a given universe: the canonical map from type identity to type equivalence is itself an equivalence. The contract validates the universe and the univalence proof.\",\n    \"non_role\": [\n      \"Does not construct the univalence axiom (takes proof as input)\",\n      \"Does not implement cubical type theory proofs\",\n      \"Does not provide computational transport algorithms\"\n    ]\n  },\n  \"wip\": [\n    \"Univalence is an axiom in standard HoTT; in cubical type theory, it is provable. How should we support both axiomatic and cubical approaches?\",\n    \"The computational content of univalence (transport) is complex. What level of computational detail should be tracked?\",\n    \"Univalence implies function extensionality. Should we validate this implication?\",\n    \"Different model constructions (simplicial sets, cubical sets) validate univalence. Should we track which model is used?\",\n    \"This contract accepts univalence proofs as inputs rather than constructing them\",\n    \"Transport along ua(e) requires careful algorithmic specification\",\n    \"The ua operation converts equivalences to paths, enabling powerful reasoning\",\n    \"Future versions may include cubical type theory proof construction\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/30_evidence/math_univalence_witness_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "5e6e7f1dfe58bd5edc5c8a0b1f1d30788cfebe7b4fe91621d8eb4f11227bd625",
+      "bytes": 2233,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/30_evidence/math_univalence_witness_v0_1_0_contract.py",
+          "sha256": "55a30f599790368da456fe01560edd4e522772d1bb19e7ce59bfc6d85e4e1d41"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:30_evidence:math-univalence-witness-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/math_univalence_witness_v0_1_0_contract.py\",\n    \"sha256\": \"55a30f599790368da456fe01560edd4e522772d1bb19e7ce59bfc6d85e4e1d41\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:math-univalence-witness-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/math_univalence_witness_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/30_evidence/math_univalence_witness_v0_1_0.contract.yaml": "363b78c5cbf323fc2f29481176331409cc261674e7f531ae2771accf314310ac"
   },

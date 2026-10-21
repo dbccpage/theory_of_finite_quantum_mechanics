@@ -117,7 +117,7 @@ def test_part_4_lean4_part8_parity() -> None:
         assert thm_name in text, f"Missing Lean 4 theorem {thm_name}"
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'expressibility.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'expressibility.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

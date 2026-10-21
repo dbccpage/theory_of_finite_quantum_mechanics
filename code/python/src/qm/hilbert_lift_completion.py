@@ -23,9 +23,17 @@ AUTHORITY_FENCE = ("AuthorityEffect None; not PROVED; the completion is not repr
 
 
 def _q(x):
-    if type(x) not in (int, Q):
+    if type(x) is bool or isinstance(x, float):
         raise ValueError('exact integer or Fraction entries required')
-    return Q(x)
+    if isinstance(x, (int, Q)):
+        num = x.numerator if isinstance(x, Q) else x
+        den = x.denominator if isinstance(x, Q) else 1
+        if type(num) is not int or type(den) is not int:
+            raise ValueError('exact integer or Fraction entries required')
+        if num.bit_length() > 1024 or den.bit_length() > 1024:
+            raise ValueError('integer exceeds 1024 bits')
+        return Q(num, den)
+    raise ValueError('exact integer or Fraction entries required')
 
 
 # ---------------------------------------------------------------- finite carriers (FinCarrier n)
@@ -39,7 +47,7 @@ def fin_inner(x, y):
     """finInner: the exact rational inner product at a common report size."""
     if len(x) != len(y):
         raise ValueError('equal report sizes required')
-    return sum((a * b for a, b in zip(x, y)), Q(0))
+    return sum((_q(a) * _q(b) for a, b in zip(x, y)), Q(0))
 
 
 def pad(x, m):
@@ -70,6 +78,8 @@ def of_fin(x):
 
 def trunc(n, f):
     """trunc: coordinates 0..n-1 of an exact sequence."""
+    if type(n) is not int or n < 0:
+        raise ValueError('truncation length must be a non-negative integer')
     return [f.get(i, Q(0)) for i in range(n)]
 
 
@@ -166,6 +176,8 @@ def harmonic_term(i):
 
 def harmonic(N):
     """harmonic N = sum_{i<N} (1/(i+1)) e_i."""
+    if type(N) is not int or N < 0:
+        raise ValueError('harmonic length must be a non-negative integer')
     return seq({i: harmonic_term(i) for i in range(N)})
 
 
@@ -226,20 +238,30 @@ def l1_cauchy_fails(sequence, epsilon, stage_pairs):
     return [(m, n) for m, n in stage_pairs if l1dist(sequence(m), sequence(n)) >= epsilon]
 
 
-class CauchyPoint:
-    """A point of the completion represented constructively: an exact sequence with an explicit
-    ℓ² modulus (HasModulusL2).  Nothing here claims that the limit is an exact vector."""
+class CauchyCandidate:
+    """A candidate representation of a point in the completion: an exact sequence with a supplied
+    modulus function. Successful construction does NOT certify that the sequence is Cauchy or
+    that the modulus is valid (which must be verified independently or checked on a finite window)."""
 
     def __init__(self, sequence, modulus):
+        if not callable(sequence) or not callable(modulus):
+            raise TypeError('sequence and modulus must be callable')
         self.sequence = sequence
         self.modulus = modulus
 
     def approximant(self, k):
-        """An exact vector within squared distance 1/(k+1) of every later stage."""
+        """A candidate exact vector at stage modulus(k)."""
+        if type(k) is not int or k < 0:
+            raise ValueError('k must be a non-negative integer')
         return self.sequence(self.modulus(k))
 
     def check(self, k, horizon):
+        """Check HasModulusL2 on a finite window. This verifies the window only; it does not
+        establish universal convergence of an infinite sequence."""
         return modulus_holds(self.sequence, self.modulus, k, horizon)
+
+
+CauchyPoint = CauchyCandidate
 
 
 def inner_fluctuation_sq_bound(xm, xn, ym, yn):

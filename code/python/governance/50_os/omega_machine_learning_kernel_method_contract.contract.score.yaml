@@ -38,12 +38,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "17e85b88116f43ef48c5ea518d9e1f84026c722b30398dd73b099332e3870aff",
-  "current_scoring": null,
+  "current_contract": "00daea8b8b2c7e1de923158b09914c2765543c0e2750632935b0cb29dad7cf61",
+  "current_scoring": "5eaff79b90e4c887df9b72116e28eb05e91b9d28b819d01bab7d483ba1424332",
   "contract_history": [
     {
-      "sha256": "17e85b88116f43ef48c5ea518d9e1f84026c722b30398dd73b099332e3870aff",
-      "bytes": 797,
+      "sha256": "00daea8b8b2c7e1de923158b09914c2765543c0e2750632935b0cb29dad7cf61",
+      "bytes": 994,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_machine_learning:kernel_method:v1.0.0",
@@ -80,13 +80,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_machine_learning:kernel_method:v1.0.0\ntitle: '`kernel_method` — finite dual-face object for `omega_machine_learning`.  AUTHORING_QUALITY:\n  human_llm_best_effort_slo...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_machine_learning\nfile: crates_rs/omega_machine_learning/src/kernel_method.rs\nmodule: kernel_method\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_machine_learning\n  module: kernel_method\n  file: crates_rs/omega_machine_learning/src/kernel_method.rs\nsymbols:\n- KernelMethod\n- new\n- authority_fence\nowns:\n- kernel_method\n- new\n- authority_fence\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_machine_learning:kernel_method:v1.0.0\",\n  \"title\": \"`kernel_method` — finite dual-face object for `omega_machine_learning`.  AUTHORING_QUALITY: human_llm_best_effort_slo...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_machine_learning\",\n  \"file\": \"crates_rs/omega_machine_learning/src/kernel_method.rs\",\n  \"module\": \"kernel_method\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_machine_learning\",\n    \"module\": \"kernel_method\",\n    \"file\": \"crates_rs/omega_machine_learning/src/kernel_method.rs\"\n  },\n  \"symbols\": [\n    \"KernelMethod\",\n    \"new\",\n    \"authority_fence\"\n  ],\n  \"owns\": [\n    \"kernel_method\",\n    \"new\",\n    \"authority_fence\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/50_os/omega_machine_learning_kernel_method.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "5eaff79b90e4c887df9b72116e28eb05e91b9d28b819d01bab7d483ba1424332",
+      "bytes": 2233,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/omega_machine_learning_kernel_method_contract.py",
+          "sha256": "7a409245169202b38ab0a8bbddfb63939c51b157f8243a936da8bfc2c80b3cc1"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:omega-machine-learning-kernel-method-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/omega_machine_learning_kernel_method_contract.py\",\n    \"sha256\": \"7a409245169202b38ab0a8bbddfb63939c51b157f8243a936da8bfc2c80b3cc1\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:omega-machine-learning-kernel-method-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/omega_machine_learning_kernel_method_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/omega_machine_learning_kernel_method.contract.yaml": "17e85b88116f43ef48c5ea518d9e1f84026c722b30398dd73b099332e3870aff"
   },

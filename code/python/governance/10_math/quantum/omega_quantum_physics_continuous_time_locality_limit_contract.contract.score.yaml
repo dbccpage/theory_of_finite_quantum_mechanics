@@ -48,12 +48,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "726740accde931ebfa5a0d5dfaefbe6b6140c8d6ac894c267711396bdf6371d1",
-  "current_scoring": null,
+  "current_contract": "b9cca69ff42868e50e184521e67b82016a0b6cf789c61630d89f03fa5f6d2d40",
+  "current_scoring": "8e64e5171bd0e2a9a27e438e4f53599fc71d1b9ec3394454c6274d2eba07d0d4",
   "contract_history": [
     {
-      "sha256": "726740accde931ebfa5a0d5dfaefbe6b6140c8d6ac894c267711396bdf6371d1",
-      "bytes": 1184,
+      "sha256": "b9cca69ff42868e50e184521e67b82016a0b6cf789c61630d89f03fa5f6d2d40",
+      "bytes": 1433,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_quantum_physics:continuous_time_locality_limit:v1.0.0",
@@ -100,13 +100,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_quantum_physics:continuous_time_locality_limit:v1.0.0\ntitle: Exact finite product-formula estimates and declared interaction cones. Matrix\n  estimates compute their commutators. Su...\nkind: rust_file_contract\nstatus: active\ncrate: omega_quantum_physics\nfile: crates_rs/omega_quantum_physics/src/continuous_time_locality_limit.rs\nmodule: continuous_time_locality_limit\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_quantum_physics\n  module: continuous_time_locality_limit\n  file: crates_rs/omega_quantum_physics/src/continuous_time_locality_limit.rs\nsymbols:\n- trotter_first_order_error_bound\n- trotter_second_order_error_bound\n- DeclaredInteractionGraph\n- new\n- outside_cone\n- ProductFormulaCertificate\n- ProductFormulaError\n- product_formula_bounds\nowns:\n- trotter_first_order_error_bound\n- trotter_second_order_error_bound\n- declared_interaction_graph\n- new\n- outside_cone\n- product_formula_certificate\n- product_formula_error\n- product_formula_bounds\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_quantum_physics:continuous_time_locality_limit:v1.0.0\",\n  \"title\": \"Exact finite product-formula estimates and declared interaction cones. Matrix estimates compute their commutators. Su...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_quantum_physics\",\n  \"file\": \"crates_rs/omega_quantum_physics/src/continuous_time_locality_limit.rs\",\n  \"module\": \"continuous_time_locality_limit\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"continuous_time_locality_limit\",\n    \"file\": \"crates_rs/omega_quantum_physics/src/continuous_time_locality_limit.rs\"\n  },\n  \"symbols\": [\n    \"trotter_first_order_error_bound\",\n    \"trotter_second_order_error_bound\",\n    \"DeclaredInteractionGraph\",\n    \"new\",\n    \"outside_cone\",\n    \"ProductFormulaCertificate\",\n    \"ProductFormulaError\",\n    \"product_formula_bounds\"\n  ],\n  \"owns\": [\n    \"trotter_first_order_error_bound\",\n    \"trotter_second_order_error_bound\",\n    \"declared_interaction_graph\",\n    \"new\",\n    \"outside_cone\",\n    \"product_formula_certificate\",\n    \"product_formula_error\",\n    \"product_formula_bounds\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/omega_quantum_physics_continuous_time_locality_limit.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "8e64e5171bd0e2a9a27e438e4f53599fc71d1b9ec3394454c6274d2eba07d0d4",
+      "bytes": 2277,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/omega_quantum_physics_continuous_time_locality_limit_contract.py",
+          "sha256": "1f400db0d4cd6024427bf869ecd66972de862b8413fd2a504923c9ad05502354"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:omega-quantum-physics-continuous-time-locality-limit-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/omega_quantum_physics_continuous_time_locality_limit_contract.py\",\n    \"sha256\": \"1f400db0d4cd6024427bf869ecd66972de862b8413fd2a504923c9ad05502354\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:omega-quantum-physics-continuous-time-locality-limit-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/omega_quantum_physics_continuous_time_locality_limit_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/omega_quantum_physics_continuous_time_locality_limit.contract.yaml": "726740accde931ebfa5a0d5dfaefbe6b6140c8d6ac894c267711396bdf6371d1"
   },

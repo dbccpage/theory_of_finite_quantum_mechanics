@@ -93,12 +93,12 @@
       "Integration with existing Stack contract pending"
     ]
   },
-  "current_contract": "f5d8050c52d5e669f3ab17ba4fd940ac5cd30d4ad02d44c438405b92c6eca741",
-  "current_scoring": null,
+  "current_contract": "19eae08a557a027d32907dee41e9e14f85f676429c0a1f3340739ea6c3af9a19",
+  "current_scoring": "c6e106b57cf63442e574a055036127dd434e80f2cd8917363df85a82e4306d5c",
   "contract_history": [
     {
-      "sha256": "f5d8050c52d5e669f3ab17ba4fd940ac5cd30d4ad02d44c438405b92c6eca741",
-      "bytes": 2355,
+      "sha256": "19eae08a557a027d32907dee41e9e14f85f676429c0a1f3340739ea6c3af9a19",
+      "bytes": 2831,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:stacky_groupoid:v0.1.0",
@@ -190,13 +190,75 @@
           "Integration with existing Stack contract pending"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:stacky_groupoid:v0.1.0\ntitle: StackyGroupoid Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: groupoid_in_stacks\n  symbol: G_1 ⇉ G_0 in Stacks\n  ascii_symbol: stacky_groupoid\n  notation: G_1 ⇉ G_0 in Stacks\n  domain:\n  - 'object_stack: Stack G_0'\n  - 'morphism_stack: Stack G_1'\n  - 'structure_maps: source, target, composition, identity, inverse'\n  codomain:\n    description: A pair of stacks (G_0, G_1) with structure morphisms\nrequirements:\n  required_structures:\n  - G_0 and G_1 are stacks\n  - Groupoid axioms hold (associativity, identity, inverse)\n  - Coherence conditions for 2-morphisms\n  - All artifacts are content-addressed via SHA-256\nlaws:\n- G_0 and G_1 are stacks (2-sheaves)\n- Source, target, composition, identity, inverse satisfy groupoid laws\n- Associativity and unit laws hold up to coherent 2-morphisms\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- G_0 or G_1 fails stack condition\n- Associativity, identity, or inverse laws fail\n- Coherence conditions for 2-morphisms fail\n- Structure maps are not well-defined morphisms\ndoctrine:\n  summary: A stacky groupoid is a groupoid object in stacks, providing a presentation\n    of 2-stacks and higher geometric objects.  Stacky groupoids arise in orbifold\n    theory and higher gauge theory.\n  non_role:\n  - Higher stacks beyond 2-stacks\n  - General ∞-groupoids\n  - Non-geometric stacky structures\nwip:\n- '2-stacks from stacky groupoids: formalize quotient construction'\n- 'Orbifold Euler characteristics: define and compute'\n- 'Stringy orbifold cohomology: integration with existing cohomology'\n- Morita equivalence of stacky groupoids needs full implementation\n- Proper and étale conditions require additional validators\n- Integration with existing Stack contract pending\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:stacky_groupoid:v0.1.0\",\n  \"title\": \"StackyGroupoid Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"groupoid_in_stacks\",\n    \"symbol\": \"G_1 ⇉ G_0 in Stacks\",\n    \"ascii_symbol\": \"stacky_groupoid\",\n    \"notation\": \"G_1 ⇉ G_0 in Stacks\",\n    \"domain\": [\n      \"object_stack: Stack G_0\",\n      \"morphism_stack: Stack G_1\",\n      \"structure_maps: source, target, composition, identity, inverse\"\n    ],\n    \"codomain\": {\n      \"description\": \"A pair of stacks (G_0, G_1) with structure morphisms\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"G_0 and G_1 are stacks\",\n      \"Groupoid axioms hold (associativity, identity, inverse)\",\n      \"Coherence conditions for 2-morphisms\",\n      \"All artifacts are content-addressed via SHA-256\"\n    ]\n  },\n  \"laws\": [\n    \"G_0 and G_1 are stacks (2-sheaves)\",\n    \"Source, target, composition, identity, inverse satisfy groupoid laws\",\n    \"Associativity and unit laws hold up to coherent 2-morphisms\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"G_0 or G_1 fails stack condition\",\n    \"Associativity, identity, or inverse laws fail\",\n    \"Coherence conditions for 2-morphisms fail\",\n    \"Structure maps are not well-defined morphisms\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A stacky groupoid is a groupoid object in stacks, providing a presentation of 2-stacks and higher geometric objects.  Stacky groupoids arise in orbifold theory and higher gauge theory.\",\n    \"non_role\": [\n      \"Higher stacks beyond 2-stacks\",\n      \"General ∞-groupoids\",\n      \"Non-geometric stacky structures\"\n    ]\n  },\n  \"wip\": [\n    \"2-stacks from stacky groupoids: formalize quotient construction\",\n    \"Orbifold Euler characteristics: define and compute\",\n    \"Stringy orbifold cohomology: integration with existing cohomology\",\n    \"Morita equivalence of stacky groupoids needs full implementation\",\n    \"Proper and étale conditions require additional validators\",\n    \"Integration with existing Stack contract pending\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_stacky_groupoid_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "c6e106b57cf63442e574a055036127dd434e80f2cd8917363df85a82e4306d5c",
+      "bytes": 2227,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_stacky_groupoid_v0_1_0_contract.py",
+          "sha256": "87281b1450e30e836af487f3f406df243b50af2f334b0bef9ff2447e4702ea1d"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-stacky-groupoid-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_stacky_groupoid_v0_1_0_contract.py\",\n    \"sha256\": \"87281b1450e30e836af487f3f406df243b50af2f334b0bef9ff2447e4702ea1d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-stacky-groupoid-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_stacky_groupoid_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_stacky_groupoid_v0_1_0.contract.yaml": "f5d8050c52d5e669f3ab17ba4fd940ac5cd30d4ad02d44c438405b92c6eca741"
   },

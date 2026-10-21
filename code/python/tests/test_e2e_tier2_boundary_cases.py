@@ -46,7 +46,7 @@ def test_tier2_gaussian_grid_squared_error_is_inside_the_bound():
     assert isinstance(report["error_sq"], Fraction)
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'domain' / 'primitive_difference.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'primitive_difference.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

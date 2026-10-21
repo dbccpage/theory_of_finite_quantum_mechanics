@@ -1,0 +1,152 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/mub/g1_case_verifier.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/mub/g1_case_verifier.py",
+      "sha256": "aad59cc1b57a628bbd98759349c327115a1933095cbdce98a9544c5c9a29d4f1"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:mub:g1-case-verifier:v1",
+    "role": "library",
+    "purpose": "Exact Rational G1 Case & Algebraic Branch Verifier. This module validates:",
+    "operations": {
+      "assert_no_float": "Recursively traverse data structures and assert zero float or complex values.",
+      "parse_exact_json": "Load JSON with strict rejection of float tokens.",
+      "eval_annihilated_nullstellensatz": "Evaluate the Nullstellensatz identity for the annihilated entry branch:",
+      "eval_all_ones_nullstellensatz": "Evaluate the Nullstellensatz identity for the all-ones row branch:",
+      "eval_upper_boundary_positivstellensatz": "Evaluate the Stengle Positivstellensatz SOS certificate for the upper boundary branch (x >= 2):",
+      "eval_lower_boundary_positivstellensatz": "Evaluate the Stengle Positivstellensatz SOS certificate for the lower boundary branch (x <= -2):",
+      "eval_singular_segre_positivstellensatz": "Evaluate the Stengle Positivstellensatz SOS certificate on {P_corner = 0}:",
+      "singular_segre_identity_is_minus_one": "Decide whether the singular Segre candidate equals -1 as a polynomial in (a, b, c, d).",
+      "verify_singular_segre_receipt": "Audit the Singular Segre Positivstellensatz receipt by recomputing its identity.",
+      "verify_subgap_r6_receipt": "Recompute the odd parity of alpha_2(m) = 6m - 9 for m in {0, 1, 2, 3}.",
+      "verify_case_ledger": "Audit and verify the G1 case ledger:"
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "c41aad24ae9b68a72963126d69c39a615cd16ca798814b7f712342464bfe4c4a",
+  "current_scoring": "087d444d23bcf36814325aa5a401d01e0b66f58956920c0e3370532de5894525",
+  "contract_history": [
+    {
+      "sha256": "c41aad24ae9b68a72963126d69c39a615cd16ca798814b7f712342464bfe4c4a",
+      "bytes": 2847,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/g1_case_verifier.py",
+          "sha256": "aad59cc1b57a628bbd98759349c327115a1933095cbdce98a9544c5c9a29d4f1"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:mub:g1-case-verifier:v1",
+        "role": "library",
+        "purpose": "Exact Rational G1 Case & Algebraic Branch Verifier. This module validates:",
+        "operations": {
+          "assert_no_float": "Recursively traverse data structures and assert zero float or complex values.",
+          "parse_exact_json": "Load JSON with strict rejection of float tokens.",
+          "eval_annihilated_nullstellensatz": "Evaluate the Nullstellensatz identity for the annihilated entry branch:",
+          "eval_all_ones_nullstellensatz": "Evaluate the Nullstellensatz identity for the all-ones row branch:",
+          "eval_upper_boundary_positivstellensatz": "Evaluate the Stengle Positivstellensatz SOS certificate for the upper boundary branch (x >= 2):",
+          "eval_lower_boundary_positivstellensatz": "Evaluate the Stengle Positivstellensatz SOS certificate for the lower boundary branch (x <= -2):",
+          "eval_singular_segre_positivstellensatz": "Evaluate the Stengle Positivstellensatz SOS certificate on {P_corner = 0}:",
+          "singular_segre_identity_is_minus_one": "Decide whether the singular Segre candidate equals -1 as a polynomial in (a, b, c, d).",
+          "verify_singular_segre_receipt": "Audit the Singular Segre Positivstellensatz receipt by recomputing its identity.",
+          "verify_subgap_r6_receipt": "Recompute the odd parity of alpha_2(m) = 6m - 9 for m in {0, 1, 2, 3}.",
+          "verify_case_ledger": "Audit and verify the G1 case ledger:"
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/g1_case_verifier.py\",\n    \"sha256\": \"aad59cc1b57a628bbd98759349c327115a1933095cbdce98a9544c5c9a29d4f1\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:mub:g1-case-verifier:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact Rational G1 Case & Algebraic Branch Verifier. This module validates:\",\n  \"operations\": {\n    \"assert_no_float\": \"Recursively traverse data structures and assert zero float or complex values.\",\n    \"parse_exact_json\": \"Load JSON with strict rejection of float tokens.\",\n    \"eval_annihilated_nullstellensatz\": \"Evaluate the Nullstellensatz identity for the annihilated entry branch:\",\n    \"eval_all_ones_nullstellensatz\": \"Evaluate the Nullstellensatz identity for the all-ones row branch:\",\n    \"eval_upper_boundary_positivstellensatz\": \"Evaluate the Stengle Positivstellensatz SOS certificate for the upper boundary branch (x >= 2):\",\n    \"eval_lower_boundary_positivstellensatz\": \"Evaluate the Stengle Positivstellensatz SOS certificate for the lower boundary branch (x <= -2):\",\n    \"eval_singular_segre_positivstellensatz\": \"Evaluate the Stengle Positivstellensatz SOS certificate on {P_corner = 0}:\",\n    \"singular_segre_identity_is_minus_one\": \"Decide whether the singular Segre candidate equals -1 as a polynomial in (a, b, c, d).\",\n    \"verify_singular_segre_receipt\": \"Audit the Singular Segre Positivstellensatz receipt by recomputing its identity.\",\n    \"verify_subgap_r6_receipt\": \"Recompute the odd parity of alpha_2(m) = 6m - 9 for m in {0, 1, 2, 3}.\",\n    \"verify_case_ledger\": \"Audit and verify the G1 case ledger:\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/g1_case_verifier.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "087d444d23bcf36814325aa5a401d01e0b66f58956920c0e3370532de5894525",
+      "bytes": 2168,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/g1_case_verifier.py",
+          "sha256": "aad59cc1b57a628bbd98759349c327115a1933095cbdce98a9544c5c9a29d4f1"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:mub:g1-case-verifier:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 26 <= 50 (D), nesting depth 5 <= 5 (C); Gate 5 ceiling D under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 26,
+          "lizard_ccn": 26,
+          "weighted_control_upper_bound": 31,
+          "control_nesting": 5
+        },
+        "is_complete": true,
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/g1_case_verifier.py\",\n    \"sha256\": \"aad59cc1b57a628bbd98759349c327115a1933095cbdce98a9544c5c9a29d4f1\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:mub:g1-case-verifier:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 26 <= 50 (D), nesting depth 5 <= 5 (C); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 26,\n    \"lizard_ccn\": 26,\n    \"weighted_control_upper_bound\": 31,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/g1_case_verifier.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

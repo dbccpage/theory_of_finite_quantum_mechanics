@@ -64,6 +64,7 @@ class SUNCAdjointAuditReceipt:
     involution_pairing_rate: float
     gin_quotiented_average_sign: float
     terminal_route: str
+    raw_average_sign: float = 0.0
 
 
 class SUNCAdjointSimplicialComplex:
@@ -128,6 +129,17 @@ class SUNCAdjointSimplicialComplex:
         signs = [1, 1, 1, 1, 1]
         return c1, signs
 
+    def build_adjoint_unbroken_cochain(self) -> Tuple[List[float], List[int]]:
+        """
+        Builds 1-cochain for an unbroken adjoint flux tube (R < R_break):
+        Flux spans from x_1 through s_1, s_2 to x_2 across bridge link e_1 without screening closure:
+        e_0 = 1.0, e_1 = 1.0, e_2 = 1.0, e_3 = 0.0, e_4 = 0.0.
+        Yields non-zero 2-cochain boundary curvature: Gamma_2 = ||d1 . c1|| > 0.
+        """
+        c1 = [1.0, 1.0, 1.0, 0.0, 0.0]
+        signs = [1, 1, 1, 1, 1]
+        return c1, signs
+
     def build_fundamental_open_cochain(self) -> Tuple[List[float], List[int]]:
         """
         Builds 1-cochain for an unbroken open fundamental flux tube (N-ality = 1):
@@ -188,7 +200,11 @@ class SUNCAdjointEngine:
         """
         string_breaks = tube_length_r >= self.r_break
 
-        c1_adj, signs_adj = self.simplicial.build_adjoint_broken_cochain()
+        if string_breaks:
+            c1_adj, signs_adj = self.simplicial.build_adjoint_broken_cochain()
+        else:
+            c1_adj, signs_adj = self.simplicial.build_adjoint_unbroken_cochain()
+
         adj_res = self.evaluator.evaluate_sign_packet(c1_adj, signs_adj)
         gamma_2_adj = adj_res["gamma_2_closure"]
         phi_1_adj = adj_res["phi_1_residual"]
@@ -240,8 +256,13 @@ class SUNCAdjointEngine:
             if w in pos_weights:
                 matched_pairs += min(len(pos_weights[w]), len(neg_ids))
 
+        # Raw average sign of original signed ensemble: equal w_+ and w_- cancel exactly to 0.0
+        raw_signed_sum = sum(w * s for _, w, s, _ in paths)
+        total_abs_weight = sum(w for _, w, _, _ in paths)
+        raw_average_sign = raw_signed_sum / total_abs_weight if total_abs_weight > 0 else 0.0
+
         pairing_rate = matched_pairs / total_negatives if total_negatives > 0 else 1.0
-        gin_sign = 1.0 if pairing_rate == 1.0 and gamma_2_adj < 1e-6 else 0.0
+        gin_sign = 1.0 if (pairing_rate == 1.0 and gamma_2_adj < 1e-6 and string_breaks) else 0.0
 
         return SUNCAdjointAuditReceipt(
             model_name=model_name,
@@ -255,7 +276,8 @@ class SUNCAdjointEngine:
             sign_residual_phi_1=round(phi_1_adj, 6),
             involution_pairing_rate=round(pairing_rate, 4),
             gin_quotiented_average_sign=round(gin_sign, 6),
-            terminal_route="ExactRepair" if (gamma_2_adj < 1e-6 and pairing_rate == 1.0) else "SplitBrainRefusal",
+            terminal_route="ExactRepair" if (gamma_2_adj < 1e-6 and pairing_rate == 1.0 and string_breaks) else "SplitBrainRefusal",
+            raw_average_sign=round(raw_average_sign, 6),
         )
 
     def audit_fundamental_flux_tube(

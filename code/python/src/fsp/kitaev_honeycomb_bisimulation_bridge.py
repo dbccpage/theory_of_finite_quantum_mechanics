@@ -214,7 +214,7 @@ class KitaevHoneycombBisimulationBridge:
                 parity_status = r["conservation_verdict"]
                 break
 
-        braiding_certified = True
+        braiding_certified = bool(braiding_rows)
         for b in braiding_rows:
             if b["phase_status"] != "ISING_BRAIDING_CERTIFIED":
                 braiding_certified = False

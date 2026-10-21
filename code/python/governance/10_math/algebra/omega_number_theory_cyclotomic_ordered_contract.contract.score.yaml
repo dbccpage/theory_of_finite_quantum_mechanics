@@ -70,12 +70,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "76448cfe2f2dea983952eb0e633286929011ac149f234321c490281a59413509",
-  "current_scoring": null,
+  "current_contract": "d23765bdd7235e6785878d1c0f7ed18066423e9ea1e48adcd418885cbd06fff0",
+  "current_scoring": "7aec67ff152adac34afb0e00c1424f2e0244619833368f100096b999127c7e60",
   "contract_history": [
     {
-      "sha256": "76448cfe2f2dea983952eb0e633286929011ac149f234321c490281a59413509",
-      "bytes": 1296,
+      "sha256": "d23765bdd7235e6785878d1c0f7ed18066423e9ea1e48adcd418885cbd06fff0",
+      "bytes": 1655,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_number_theory:cyclotomic_ordered:v1.0.0",
@@ -144,13 +144,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_number_theory:cyclotomic_ordered:v1.0.0\ntitle: Ordered real places and CM coordinates of finite cyclotomic fields. Arithmetic\n  delegates to the canonical rational po...\nkind: rust_file_contract\nstatus: active\ncrate: omega_number_theory\nfile: crates_rs/omega_number_theory/src/cyclotomic_ordered.rs\nmodule: cyclotomic_ordered\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_number_theory\n  module: cyclotomic_ordered\n  file: crates_rs/omega_number_theory/src/cyclotomic_ordered.rs\nsymbols:\n- CyclotomicOrderError\n- standard_real_sign\n- conductor_min_poly\n- conductor_initial_interval\n- CyclotomicRealRoot\n- new\n- refine\n- refine_to_width\n- sign_of_poly\n- bound_poly\n- f_plus_degree\n- FieldElementFPlus\n- from_i64_slice\n- rational\n- zero\n- one\n- theta\n- is_zero\n- as_cyclotomic\n- to_poly\n- sign\n- interval_bounds\n- inverse\n- try_inverse\n- xi_squared\n- FieldElementF\n- xi\n- from_cyclotomic\n- is_real\n- conjugate\nowns:\n- cyclotomic_order_error\n- standard_real_sign\n- conductor_min_poly\n- conductor_initial_interval\n- cyclotomic_real_root\n- new\n- refine\n- refine_to_width\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_number_theory:cyclotomic_ordered:v1.0.0\",\n  \"title\": \"Ordered real places and CM coordinates of finite cyclotomic fields. Arithmetic delegates to the canonical rational po...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_number_theory\",\n  \"file\": \"crates_rs/omega_number_theory/src/cyclotomic_ordered.rs\",\n  \"module\": \"cyclotomic_ordered\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_number_theory\",\n    \"module\": \"cyclotomic_ordered\",\n    \"file\": \"crates_rs/omega_number_theory/src/cyclotomic_ordered.rs\"\n  },\n  \"symbols\": [\n    \"CyclotomicOrderError\",\n    \"standard_real_sign\",\n    \"conductor_min_poly\",\n    \"conductor_initial_interval\",\n    \"CyclotomicRealRoot\",\n    \"new\",\n    \"refine\",\n    \"refine_to_width\",\n    \"sign_of_poly\",\n    \"bound_poly\",\n    \"f_plus_degree\",\n    \"FieldElementFPlus\",\n    \"from_i64_slice\",\n    \"rational\",\n    \"zero\",\n    \"one\",\n    \"theta\",\n    \"is_zero\",\n    \"as_cyclotomic\",\n    \"to_poly\",\n    \"sign\",\n    \"interval_bounds\",\n    \"inverse\",\n    \"try_inverse\",\n    \"xi_squared\",\n    \"FieldElementF\",\n    \"xi\",\n    \"from_cyclotomic\",\n    \"is_real\",\n    \"conjugate\"\n  ],\n  \"owns\": [\n    \"cyclotomic_order_error\",\n    \"standard_real_sign\",\n    \"conductor_min_poly\",\n    \"conductor_initial_interval\",\n    \"cyclotomic_real_root\",\n    \"new\",\n    \"refine\",\n    \"refine_to_width\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/algebra/omega_number_theory_cyclotomic_ordered.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "7aec67ff152adac34afb0e00c1424f2e0244619833368f100096b999127c7e60",
+      "bytes": 2249,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/algebra/omega_number_theory_cyclotomic_ordered_contract.py",
+          "sha256": "8c640226f3c6f03e7ebf4a6a32759a960f5afe332edd3330ed0b68ddbab2a0bf"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:algebra:omega-number-theory-cyclotomic-ordered-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/omega_number_theory_cyclotomic_ordered_contract.py\",\n    \"sha256\": \"8c640226f3c6f03e7ebf4a6a32759a960f5afe332edd3330ed0b68ddbab2a0bf\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:omega-number-theory-cyclotomic-ordered-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/omega_number_theory_cyclotomic_ordered_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/algebra/omega_number_theory_cyclotomic_ordered.contract.yaml": "76448cfe2f2dea983952eb0e633286929011ac149f234321c490281a59413509"
   },

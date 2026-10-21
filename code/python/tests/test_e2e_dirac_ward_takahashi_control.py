@@ -108,7 +108,7 @@ def test_gaussian_rational_qi_field_invariants() -> None:
     assert sig != mat4_identity()
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'ward_takahashi.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'ward_takahashi.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

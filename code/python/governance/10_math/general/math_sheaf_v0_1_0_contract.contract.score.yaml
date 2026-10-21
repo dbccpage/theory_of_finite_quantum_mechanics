@@ -103,12 +103,12 @@
       "Future work: sheaf morphisms, sheaf cohomology, derived functors, pushforward and pullback of sheaves.\n"
     ]
   },
-  "current_contract": "82038764f82c78b52d0e9ec3c4871198cdda7d6eb43f2aa919110c3f280c9820",
-  "current_scoring": null,
+  "current_contract": "3b1496b54a6b7fa05211d89751162bd9fb0896de23230a5ac539ee3d36c6bddb",
+  "current_scoring": "01b96235dba5649b8b67613228c1ba9f7b5d80b6cbf36277343c130079ae2328",
   "contract_history": [
     {
-      "sha256": "82038764f82c78b52d0e9ec3c4871198cdda7d6eb43f2aa919110c3f280c9820",
-      "bytes": 4090,
+      "sha256": "3b1496b54a6b7fa05211d89751162bd9fb0896de23230a5ac539ee3d36c6bddb",
+      "bytes": 4522,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:sheaf:v0.1.0",
@@ -210,13 +210,75 @@
           "Future work: sheaf morphisms, sheaf cohomology, derived functors, pushforward and pullback of sheaves.\n"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:sheaf:v0.1.0\ntitle: Sheaf\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: presheaf_with_gluing_axiom\n  symbol: 'F: Open(X)^op → C'\n  ascii_symbol: sheaf\n  notation: 'F: Open(X)^op → C'\n  domain:\n  - 'space: TopologicalSpace X'\n  - 'value_category: Category C (target category)'\n  - 'sections: F(U) for each open set U'\n  - 'restrictions: ρ_{V,U}: F(U) → F(V) for each V ⊆ U'\n  codomain:\n    description: 'A contravariant functor F: Open(X)^op → C from the category of open\n      sets of a topological space X to a value category C (e.g., Set, Ab, Ring, Mod_R),\n      satisfying locality and gluing axioms.\n\n      '\nrequirements:\n  required_structures:\n  - space_id must resolve to a valid TopologicalSpace artifact\n  - 'Sections assign an object to each open set, restrictions assign a morphism to\n    each inclusion, and presheaf axioms hold\n\n    '\n  - Sections that agree locally on a cover are equal\n  - Compatible local sections glue to a unique global section\n  - Artifact hash is deterministic and reproducible\nlaws:\n- ρ_{U,U} = id_{F(U)} for all open U\n- ρ_{W,U} = ρ_{W,V} ∘ ρ_{V,U} for all W ⊆ V ⊆ U\n- 'For each open U and cover {U_i} of U: if s, t ∈ F(U) satisfy ρ_{U_i,U}(s) = ρ_{U_i,U}(t)\n  for all i, then s = t.\n\n  '\n- 'For each open U and cover {U_i} of U: if s_i ∈ F(U_i) satisfy ρ_{U_i ∩ U_j, U_i}(s_i)\n  = ρ_{U_i ∩ U_j, U_j}(s_j) for all i, j, then there exists a unique s ∈ F(U) with\n  ρ_{U_i,U}(s) = s_i.\n\n  '\nreplay:\n  requirements:\n  - Open sets ordered canonically (as in TopologicalSpace)\n  - Restrictions enumerated in canonical order of (V, U) pairs\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- space_id does not resolve to TopologicalSpace\n- An open set U has no F(U) assigned\n- Inclusion V ⊆ U has no restriction map ρ_{V,U}\n- Restriction ρ_{U,U} is not the identity\n- ρ_{W,U} ≠ ρ_{W,V} ∘ ρ_{V,U} for some chain W ⊆ V ⊆ U\n- Distinct sections s ≠ t agree on a cover\n- Compatible local sections don't glue to global section\ndoctrine:\n  summary: 'A Sheaf is a presheaf that satisfies the gluing axiom: local sections\n    that agree on overlaps can be uniquely glued to a global section. The contract\n    defines a sheaf on a topological space (via its topology of open sets) with values\n    in a category of algebraic objects. It validates the presheaf structure and the\n    sheaf condition (locality and gluing).'\n  non_role:\n  - Sheaf cohomology (separate SheafCohomology contract)\n  - Morphisms of sheaves (natural transformations of functors)\n  - Infinite topological spaces without basis specification\n  - Category-specific morphism validation (e.g., module homomorphisms)\nwip:\n- 'The contract handles finite topological spaces where covers can be enumerated.\n  Infinite spaces require a different approach (e.g., checking on a basis).\n\n  '\n- 'The value category is treated abstractly; category-specific validation (e.g., module\n  homomorphisms) is deferred.\n\n  '\n- 'Sheaf cohomology is a separate contract (SheafCohomology).\n\n  '\n- 'Morphisms of sheaves (natural transformations of the functor) are not part of this\n  contract.\n\n  '\n- 'The constant sheaf, skyscraper sheaf, and structure sheaf are special cases identified\n  via FactEnvelopes.\n\n  '\n- 'Sheafification algorithm assumes finite covers and direct limit computation. Infinite\n  case requires careful colimit construction.\n\n  '\n- 'Future work: sheaf morphisms, sheaf cohomology, derived functors, pushforward and\n  pullback of sheaves.\n\n  '\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:sheaf:v0.1.0\",\n  \"title\": \"Sheaf\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"presheaf_with_gluing_axiom\",\n    \"symbol\": \"F: Open(X)^op → C\",\n    \"ascii_symbol\": \"sheaf\",\n    \"notation\": \"F: Open(X)^op → C\",\n    \"domain\": [\n      \"space: TopologicalSpace X\",\n      \"value_category: Category C (target category)\",\n      \"sections: F(U) for each open set U\",\n      \"restrictions: ρ_{V,U}: F(U) → F(V) for each V ⊆ U\"\n    ],\n    \"codomain\": {\n      \"description\": \"A contravariant functor F: Open(X)^op → C from the category of open sets of a topological space X to a value category C (e.g., Set, Ab, Ring, Mod_R), satisfying locality and gluing axioms.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"space_id must resolve to a valid TopologicalSpace artifact\",\n      \"Sections assign an object to each open set, restrictions assign a morphism to each inclusion, and presheaf axioms hold\\n\",\n      \"Sections that agree locally on a cover are equal\",\n      \"Compatible local sections glue to a unique global section\",\n      \"Artifact hash is deterministic and reproducible\"\n    ]\n  },\n  \"laws\": [\n    \"ρ_{U,U} = id_{F(U)} for all open U\",\n    \"ρ_{W,U} = ρ_{W,V} ∘ ρ_{V,U} for all W ⊆ V ⊆ U\",\n    \"For each open U and cover {U_i} of U: if s, t ∈ F(U) satisfy ρ_{U_i,U}(s) = ρ_{U_i,U}(t) for all i, then s = t.\\n\",\n    \"For each open U and cover {U_i} of U: if s_i ∈ F(U_i) satisfy ρ_{U_i ∩ U_j, U_i}(s_i) = ρ_{U_i ∩ U_j, U_j}(s_j) for all i, j, then there exists a unique s ∈ F(U) with ρ_{U_i,U}(s) = s_i.\\n\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"Open sets ordered canonically (as in TopologicalSpace)\",\n      \"Restrictions enumerated in canonical order of (V, U) pairs\",\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"space_id does not resolve to TopologicalSpace\",\n    \"An open set U has no F(U) assigned\",\n    \"Inclusion V ⊆ U has no restriction map ρ_{V,U}\",\n    \"Restriction ρ_{U,U} is not the identity\",\n    \"ρ_{W,U} ≠ ρ_{W,V} ∘ ρ_{V,U} for some chain W ⊆ V ⊆ U\",\n    \"Distinct sections s ≠ t agree on a cover\",\n    \"Compatible local sections don't glue to global section\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Sheaf is a presheaf that satisfies the gluing axiom: local sections that agree on overlaps can be uniquely glued to a global section. The contract defines a sheaf on a topological space (via its topology of open sets) with values in a category of algebraic objects. It validates the presheaf structure and the sheaf condition (locality and gluing).\",\n    \"non_role\": [\n      \"Sheaf cohomology (separate SheafCohomology contract)\",\n      \"Morphisms of sheaves (natural transformations of functors)\",\n      \"Infinite topological spaces without basis specification\",\n      \"Category-specific morphism validation (e.g., module homomorphisms)\"\n    ]\n  },\n  \"wip\": [\n    \"The contract handles finite topological spaces where covers can be enumerated. Infinite spaces require a different approach (e.g., checking on a basis).\\n\",\n    \"The value category is treated abstractly; category-specific validation (e.g., module homomorphisms) is deferred.\\n\",\n    \"Sheaf cohomology is a separate contract (SheafCohomology).\\n\",\n    \"Morphisms of sheaves (natural transformations of the functor) are not part of this contract.\\n\",\n    \"The constant sheaf, skyscraper sheaf, and structure sheaf are special cases identified via FactEnvelopes.\\n\",\n    \"Sheafification algorithm assumes finite covers and direct limit computation. Infinite case requires careful colimit construction.\\n\",\n    \"Future work: sheaf morphisms, sheaf cohomology, derived functors, pushforward and pullback of sheaves.\\n\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_sheaf_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "01b96235dba5649b8b67613228c1ba9f7b5d80b6cbf36277343c130079ae2328",
+      "bytes": 2207,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_sheaf_v0_1_0_contract.py",
+          "sha256": "e37f0cf68271e5b28e87eddfcb5ee74c60e4e195918652133cb99504a892c2ba"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-sheaf-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_sheaf_v0_1_0_contract.py\",\n    \"sha256\": \"e37f0cf68271e5b28e87eddfcb5ee74c60e4e195918652133cb99504a892c2ba\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-sheaf-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_sheaf_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_sheaf_v0_1_0.contract.yaml": "82038764f82c78b52d0e9ec3c4871198cdda7d6eb43f2aa919110c3f280c9820"
   },

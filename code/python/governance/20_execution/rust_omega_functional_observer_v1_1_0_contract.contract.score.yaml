@@ -3,85 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
   "contract": {
-    "schema_version": "omega.file_contract.v1",
-    "kind": "rust_file_contract",
-    "contract_id": "urn:omega:rust:omega_functional:observer:v1.1.0",
-    "title": "Observer",
-    "status": "active",
-    "crate": "omega_types",
-    "file": "crates_rs/omega_types/src/observer.rs",
-    "role": "state",
-    "authority_effect": "none",
-    "evidence_ceiling": "LocalReplay",
-    "customer_claim_allowed": false,
-    "runtime_enforcement": false,
-    "owns": [
-      "the declared observer descriptor and its kind",
-      "the three-law replay witness and the attestation that seals it"
-    ],
-    "does_not_own": [
-      "the observer map itself, which the solver or evaluator applies",
-      "proof that the three laws hold",
-      "observer identity grammar, which is omega_kernel::ObserverId"
-    ],
-    "may_call": [],
-    "must_not": [
-      "accept an unvalidated observer identity",
-      "expose the fields of VerifiedObserver",
-      "claim the three laws hold from an attestation alone"
-    ],
-    "exactness": {
-      "mode": "not_applicable",
-      "exact_constructor_required": false,
-      "approximate_modes_allowed": false
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
+      "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
     },
-    "laws": [
-      "Indexed identity law: an observer id is an omega_kernel::ObserverId, parsed and canonical. A bare String field accepted every spelling including the empty one.",
-      "Sealed attestation law: VerifiedObserver holds private fields and attest is its only constructor, so a consumer that demands the type -- observer_quotient does -- cannot be handed a bare Observer wearing the name.",
-      "Wire seal law: deserialization routes through UntrustedVerifiedObserverWire and attest, so an untrusted payload cannot bypass the private fields with unset or reused replay hashes.",
-      "Independent witness law: the three observer laws are independent, so attest requires three set, pairwise-distinct replay hashes. One replay cannot witness idempotence, repair-compatibility and lossiness at once.",
-      "Honest scope law: attest establishes that three distinct replays were recorded. It does NOT re-run the observer map, which is not stored here, so it does not establish that the laws hold. Whoever produced the replays vouches for that, and the type must not be read as more than that.",
-      "Erasure law: observers erase distinctions and never create them. Nothing in this file may add structure to a quotient.",
-      "Authority law: an attested observer carries no authority."
-    ],
-    "forbidden_substrings": [
-      "pub observer:",
-      "pub witness:",
-      "id: String",
-      "f64",
-      "unwrap_or_default"
-    ],
-    "required_substrings": [
-      "pub struct VerifiedObserver",
-      "pub fn attest",
-      "#[serde(try_from = \"UntrustedVerifiedObserverWire\")]",
-      "omega_kernel::ObserverId"
-    ],
-    "required_tests": [
-      "an_observer_id_must_be_canonical",
-      "three_distinct_replays_attest",
-      "an_unset_replay_is_refused_for_each_law",
-      "one_replay_cannot_witness_two_laws",
-      "all_three_laws_sharing_one_replay_is_refused",
-      "a_malformed_observer_id_is_refused_on_the_wire",
-      "an_observer_survives_a_serde_round_trip",
-      "an_unset_replay_cannot_deserialize_as_verified",
-      "a_reused_replay_cannot_deserialize_as_verified",
-      "a_verified_observer_survives_a_serde_round_trip"
-    ],
-    "lean_obligations": [],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:observer:v1.1.0 Schema Version: omega.file_contract.v1",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
   },
-  "current_contract": "25831f7e42367e76a5d3236911dd020b13e8465f22e291c42544adde7f274f09",
-  "current_scoring": null,
+  "current_contract": "e954f10e7a426ebd8298594f116513e8f9041e82fc687790bcfbaa04d949c17d",
+  "current_scoring": "6b7f786e026d32a38dbd24114245609d03e9208c2d0801afb9c2aa038da0c82d",
   "contract_history": [
     {
-      "sha256": "25831f7e42367e76a5d3236911dd020b13e8465f22e291c42544adde7f274f09",
-      "bytes": 2973,
+      "sha256": "99005c77e7a2197132dd5a37b626c5b99ca933849f88e1d809341f7c7d411c1f",
+      "bytes": 3318,
       "record": {
         "schema_version": "omega.file_contract.v1",
         "kind": "rust_file_contract",
@@ -156,13 +109,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_functional:observer:v1.1.0\ntitle: Observer\nstatus: active\ncrate: omega_types\nfile: crates_rs/omega_types/src/observer.rs\nrole: state\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: false\nowns:\n- the declared observer descriptor and its kind\n- the three-law replay witness and the attestation that seals it\ndoes_not_own:\n- the observer map itself, which the solver or evaluator applies\n- proof that the three laws hold\n- observer identity grammar, which is omega_kernel::ObserverId\nmay_call: []\nmust_not:\n- accept an unvalidated observer identity\n- expose the fields of VerifiedObserver\n- claim the three laws hold from an attestation alone\nexactness:\n  mode: not_applicable\n  exact_constructor_required: false\n  approximate_modes_allowed: false\nlaws:\n- 'Indexed identity law: an observer id is an omega_kernel::ObserverId, parsed and\n  canonical. A bare String field accepted every spelling including the empty one.'\n- 'Sealed attestation law: VerifiedObserver holds private fields and attest is its\n  only constructor, so a consumer that demands the type -- observer_quotient does\n  -- cannot be handed a bare Observer wearing the name.'\n- 'Wire seal law: deserialization routes through UntrustedVerifiedObserverWire and\n  attest, so an untrusted payload cannot bypass the private fields with unset or reused\n  replay hashes.'\n- 'Independent witness law: the three observer laws are independent, so attest requires\n  three set, pairwise-distinct replay hashes. One replay cannot witness idempotence,\n  repair-compatibility and lossiness at once.'\n- 'Honest scope law: attest establishes that three distinct replays were recorded.\n  It does NOT re-run the observer map, which is not stored here, so it does not establish\n  that the laws hold. Whoever produced the replays vouches for that, and the type\n  must not be read as more than that.'\n- 'Erasure law: observers erase distinctions and never create them. Nothing in this\n  file may add structure to a quotient.'\n- 'Authority law: an attested observer carries no authority.'\nforbidden_substrings:\n- 'pub observer:'\n- 'pub witness:'\n- 'id: String'\n- f64\n- unwrap_or_default\nrequired_substrings:\n- pub struct VerifiedObserver\n- pub fn attest\n- '#[serde(try_from = \"UntrustedVerifiedObserverWire\")]'\n- omega_kernel::ObserverId\nrequired_tests:\n- an_observer_id_must_be_canonical\n- three_distinct_replays_attest\n- an_unset_replay_is_refused_for_each_law\n- one_replay_cannot_witness_two_laws\n- all_three_laws_sharing_one_replay_is_refused\n- a_malformed_observer_id_is_refused_on_the_wire\n- an_observer_survives_a_serde_round_trip\n- an_unset_replay_cannot_deserialize_as_verified\n- a_reused_replay_cannot_deserialize_as_verified\n- a_verified_observer_survives_a_serde_round_trip\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.file_contract.v1\",\n  \"kind\": \"rust_file_contract\",\n  \"contract_id\": \"urn:omega:rust:omega_functional:observer:v1.1.0\",\n  \"title\": \"Observer\",\n  \"status\": \"active\",\n  \"crate\": \"omega_types\",\n  \"file\": \"crates_rs/omega_types/src/observer.rs\",\n  \"role\": \"state\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"customer_claim_allowed\": false,\n  \"runtime_enforcement\": false,\n  \"owns\": [\n    \"the declared observer descriptor and its kind\",\n    \"the three-law replay witness and the attestation that seals it\"\n  ],\n  \"does_not_own\": [\n    \"the observer map itself, which the solver or evaluator applies\",\n    \"proof that the three laws hold\",\n    \"observer identity grammar, which is omega_kernel::ObserverId\"\n  ],\n  \"may_call\": [],\n  \"must_not\": [\n    \"accept an unvalidated observer identity\",\n    \"expose the fields of VerifiedObserver\",\n    \"claim the three laws hold from an attestation alone\"\n  ],\n  \"exactness\": {\n    \"mode\": \"not_applicable\",\n    \"exact_constructor_required\": false,\n    \"approximate_modes_allowed\": false\n  },\n  \"laws\": [\n    \"Indexed identity law: an observer id is an omega_kernel::ObserverId, parsed and canonical. A bare String field accepted every spelling including the empty one.\",\n    \"Sealed attestation law: VerifiedObserver holds private fields and attest is its only constructor, so a consumer that demands the type -- observer_quotient does -- cannot be handed a bare Observer wearing the name.\",\n    \"Wire seal law: deserialization routes through UntrustedVerifiedObserverWire and attest, so an untrusted payload cannot bypass the private fields with unset or reused replay hashes.\",\n    \"Independent witness law: the three observer laws are independent, so attest requires three set, pairwise-distinct replay hashes. One replay cannot witness idempotence, repair-compatibility and lossiness at once.\",\n    \"Honest scope law: attest establishes that three distinct replays were recorded. It does NOT re-run the observer map, which is not stored here, so it does not establish that the laws hold. Whoever produced the replays vouches for that, and the type must not be read as more than that.\",\n    \"Erasure law: observers erase distinctions and never create them. Nothing in this file may add structure to a quotient.\",\n    \"Authority law: an attested observer carries no authority.\"\n  ],\n  \"forbidden_substrings\": [\n    \"pub observer:\",\n    \"pub witness:\",\n    \"id: String\",\n    \"f64\",\n    \"unwrap_or_default\"\n  ],\n  \"required_substrings\": [\n    \"pub struct VerifiedObserver\",\n    \"pub fn attest\",\n    \"#[serde(try_from = \\\"UntrustedVerifiedObserverWire\\\")]\",\n    \"omega_kernel::ObserverId\"\n  ],\n  \"required_tests\": [\n    \"an_observer_id_must_be_canonical\",\n    \"three_distinct_replays_attest\",\n    \"an_unset_replay_is_refused_for_each_law\",\n    \"one_replay_cannot_witness_two_laws\",\n    \"all_three_laws_sharing_one_replay_is_refused\",\n    \"a_malformed_observer_id_is_refused_on_the_wire\",\n    \"an_observer_survives_a_serde_round_trip\",\n    \"an_unset_replay_cannot_deserialize_as_verified\",\n    \"a_reused_replay_cannot_deserialize_as_verified\",\n    \"a_verified_observer_survives_a_serde_round_trip\"\n  ],\n  \"lean_obligations\": [],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "e954f10e7a426ebd8298594f116513e8f9041e82fc687790bcfbaa04d949c17d",
+      "bytes": 1864,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
+          "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:observer:v1.1.0 Schema Version: omega.file_contract.v1",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\",\n    \"sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:rust:omega_functional:observer:v1.1.0 Schema Version: omega.file_contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "6b7f786e026d32a38dbd24114245609d03e9208c2d0801afb9c2aa038da0c82d",
+      "bytes": 2249,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py",
+          "sha256": "ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.py\",\n    \"sha256\": \"ffa4ed9236461289ffa2144509c82ae57e7475145e2d6efaff83f2d4f2e0cb60\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:rust-omega-functional-observer-v1-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/rust_omega_functional_observer_v1_1_0.contract.yaml": "25831f7e42367e76a5d3236911dd020b13e8465f22e291c42544adde7f274f09"
   },

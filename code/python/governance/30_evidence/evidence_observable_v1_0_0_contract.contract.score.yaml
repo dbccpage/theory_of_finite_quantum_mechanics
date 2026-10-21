@@ -192,12 +192,12 @@
       ]
     }
   },
-  "current_contract": "5b6423ae3fcacac37d55e3c42a6f074880322a8a2d4faad2b0b9386fc455f159",
-  "current_scoring": null,
+  "current_contract": "48055e757618a3a5343fc4466febf7cfe3f88cbb8901bc5103be47934da11307",
+  "current_scoring": "1d08ffac984566e9603d170f1f9a32cf1690b70e648e863cc9429f397b0eb721",
   "contract_history": [
     {
-      "sha256": "5b6423ae3fcacac37d55e3c42a6f074880322a8a2d4faad2b0b9386fc455f159",
-      "bytes": 4115,
+      "sha256": "48055e757618a3a5343fc4466febf7cfe3f88cbb8901bc5103be47934da11307",
+      "bytes": 5813,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:evidence:observable:v1.0.0",
@@ -388,13 +388,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:observable:v1.0.0\ntitle: Observable\nkind: evidence_contract\nstatus: mathematical_wip\nlayer: 02_evidence\nrole: Observable\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - MeasurementKernel\n    - FunctionalMeasurementAuthority\n    - GlobalContractTaxonomy\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies: *id001\n    emits: EvidenceEnvelope\n    authority_layer: Evidence\n    replay_certificates:\n    - schema_hash\n  constraints:\n    mutation_forbidden: true\n    runtime_orchestration_forbidden: true\n    typed_output_required: true\ndoctrine:\n  summary: 'Observable extracts primitive quantities from state through declared boundaries.\n\n    It does not perform governance judgment, policy interpretation, candidate ranking,\n\n    canonical cohomological measurement emission unless admitted by Functional authority,\n\n    licensing, mutation, or execution.\n\n    '\n  non_role: &id002\n  - evaluator_judgment\n  - policy_interpretation\n  - terminal_mapping\n  - transition_authorization\n  - action_licensing\n  - state_mutation\n  - execution\n  - search_scheduling\n  - candidate_ranking\n  - evidence_authority_upgrade\n  - canonical_cohomological_measurement_emission_without_functional_admission\n  authority_defaults:\n    observable_output: EvidenceOnly\n    checked_observable_fact: FactOnly only after extraction schema, source hash, output\n      hash, and replayability are checked.\n  structural_representation:\n    raw:\n      struct_name: ObservableOutput\n      fields:\n      - name: observable_id\n        type: ObservableId\n      - name: source_ref\n        type: ArtifactRef\n      - name: output_kind\n        type: ObservableKind\n      - name: output_ref\n        type: EvidenceRef\n      - name: output_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: EvidenceOnly\n    checked:\n      struct_name: CheckedObservableOutput\n      fields:\n      - name: observable_output_ref\n        type: ObservableOutputRef\n      - name: schema_ref\n        type: SchemaRef\n      - name: replay_ref\n        type: ReplayRef\n      - name: authority_effect\n        type: AuthorityEffect\n        default: FactOnly\n  flow: 'State / ArtifactRef\n\n    -> ObservableOutput\n\n    -> MeasurementEnvelope / EvidenceEnvelope\n\n    -> MeasurementKernel / ReplayKernel\n\n    -> Evaluator\n\n    -> TerminalMapper\n\n    -> LicensingBoundary\n\n    -> Engine\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - execute(\n    - terminalize(\n    - mutate_state\n    - authorize_transition\n    - license_transition\n    - self_certify\n    - compute_phi\n    - rank_candidates\n    - score_candidate\n  required_tests:\n  - observable_output_defaults_to_evidence_only\n  - observable_does_not_rank_candidates\n  - observable_does_not_schedule_search\n  - observable_does_not_emit_action_license\n  - observable_does_not_authorize_transition\n  - observable_does_not_execute\n  - observable_requires_declared_extraction_schema\n  canonical_invariant: 'Observable extracts evidence. It does not decide, rank, schedule,\n    license, authorize,\n\n    mutate, execute, or upgrade evidence authority.\n\n    '\n  legacy_metadata:\n    name: Observable\n    source_file: non-math/02_evidence/observable_contract.md\n    active: true\n    machine_authority: true\n    role: State extraction and measurable quantity boundary\n    version: '2.0'\n    classification: evidence\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    domain_output_kind: ObservableOutput\n    referenced_output_families:\n    - EvidenceEnvelope\n    - FactEnvelope\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_evidence_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:evidence:observable:v1.0.0\",\n  \"title\": \"Observable\",\n  \"kind\": \"evidence_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"02_evidence\",\n  \"role\": \"Observable\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"MeasurementKernel\",\n        \"FunctionalMeasurementAuthority\",\n        \"GlobalContractTaxonomy\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"constitution\": {\n      \"contract_dependencies\": [\n        \"MeasurementKernel\",\n        \"FunctionalMeasurementAuthority\",\n        \"GlobalContractTaxonomy\"\n      ],\n      \"emits\": \"EvidenceEnvelope\",\n      \"authority_layer\": \"Evidence\",\n      \"replay_certificates\": [\n        \"schema_hash\"\n      ]\n    },\n    \"constraints\": {\n      \"mutation_forbidden\": true,\n      \"runtime_orchestration_forbidden\": true,\n      \"typed_output_required\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"Observable extracts primitive quantities from state through declared boundaries.\\nIt does not perform governance judgment, policy interpretation, candidate ranking,\\ncanonical cohomological measurement emission unless admitted by Functional authority,\\nlicensing, mutation, or execution.\\n\",\n    \"non_role\": [\n      \"evaluator_judgment\",\n      \"policy_interpretation\",\n      \"terminal_mapping\",\n      \"transition_authorization\",\n      \"action_licensing\",\n      \"state_mutation\",\n      \"execution\",\n      \"search_scheduling\",\n      \"candidate_ranking\",\n      \"evidence_authority_upgrade\",\n      \"canonical_cohomological_measurement_emission_without_functional_admission\"\n    ],\n    \"authority_defaults\": {\n      \"observable_output\": \"EvidenceOnly\",\n      \"checked_observable_fact\": \"FactOnly only after extraction schema, source hash, output hash, and replayability are checked.\"\n    },\n    \"structural_representation\": {\n      \"raw\": {\n        \"struct_name\": \"ObservableOutput\",\n        \"fields\": [\n          {\n            \"name\": \"observable_id\",\n            \"type\": \"ObservableId\"\n          },\n          {\n            \"name\": \"source_ref\",\n            \"type\": \"ArtifactRef\"\n          },\n          {\n            \"name\": \"output_kind\",\n            \"type\": \"ObservableKind\"\n          },\n          {\n            \"name\": \"output_ref\",\n            \"type\": \"EvidenceRef\"\n          },\n          {\n            \"name\": \"output_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      },\n      \"checked\": {\n        \"struct_name\": \"CheckedObservableOutput\",\n        \"fields\": [\n          {\n            \"name\": \"observable_output_ref\",\n            \"type\": \"ObservableOutputRef\"\n          },\n          {\n            \"name\": \"schema_ref\",\n            \"type\": \"SchemaRef\"\n          },\n          {\n            \"name\": \"replay_ref\",\n            \"type\": \"ReplayRef\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"FactOnly\"\n          }\n        ]\n      }\n    },\n    \"flow\": \"State / ArtifactRef\\n-> ObservableOutput\\n-> MeasurementEnvelope / EvidenceEnvelope\\n-> MeasurementKernel / ReplayKernel\\n-> Evaluator\\n-> TerminalMapper\\n-> LicensingBoundary\\n-> Engine\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"execute(\",\n        \"terminalize(\",\n        \"mutate_state\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"self_certify\",\n        \"compute_phi\",\n        \"rank_candidates\",\n        \"score_candidate\"\n      ]\n    },\n    \"required_tests\": [\n      \"observable_output_defaults_to_evidence_only\",\n      \"observable_does_not_rank_candidates\",\n      \"observable_does_not_schedule_search\",\n      \"observable_does_not_emit_action_license\",\n      \"observable_does_not_authorize_transition\",\n      \"observable_does_not_execute\",\n      \"observable_requires_declared_extraction_schema\"\n    ],\n    \"canonical_invariant\": \"Observable extracts evidence. It does not decide, rank, schedule, license, authorize,\\nmutate, execute, or upgrade evidence authority.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"Observable\",\n      \"source_file\": \"non-math/02_evidence/observable_contract.md\",\n      \"active\": true,\n      \"machine_authority\": true,\n      \"role\": \"State extraction and measurable quantity boundary\",\n      \"version\": \"2.0\",\n      \"classification\": \"evidence\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"MeasurementKernel\",\n        \"FunctionalMeasurementAuthority\",\n        \"GlobalContractTaxonomy\"\n      ],\n      \"forbidden_authority\": [\n        \"evaluator_judgment\",\n        \"policy_interpretation\",\n        \"terminal_mapping\",\n        \"transition_authorization\",\n        \"action_licensing\",\n        \"state_mutation\",\n        \"execution\",\n        \"search_scheduling\",\n        \"candidate_ranking\",\n        \"evidence_authority_upgrade\",\n        \"canonical_cohomological_measurement_emission_without_functional_admission\"\n      ],\n      \"primary_output_family\": \"EvidenceEnvelope\",\n      \"domain_output_kind\": \"ObservableOutput\",\n      \"referenced_output_families\": [\n        \"EvidenceEnvelope\",\n        \"FactEnvelope\"\n      ]\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/30_evidence/evidence_observable_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "1d08ffac984566e9603d170f1f9a32cf1690b70e648e863cc9429f397b0eb721",
+      "bytes": 2225,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/30_evidence/evidence_observable_v1_0_0_contract.py",
+          "sha256": "69d42956b0b2cd9dc5bbc32ef2c82f8b6718a5011c8aa677277a26f9baae14ae"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:30_evidence:evidence-observable-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/evidence_observable_v1_0_0_contract.py\",\n    \"sha256\": \"69d42956b0b2cd9dc5bbc32ef2c82f8b6718a5011c8aa677277a26f9baae14ae\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:evidence-observable-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_observable_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/30_evidence/evidence_observable_v1_0_0.contract.yaml": "5b6423ae3fcacac37d55e3c42a6f074880322a8a2d4faad2b0b9386fc455f159"
   },

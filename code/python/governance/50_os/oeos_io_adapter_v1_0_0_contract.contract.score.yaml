@@ -124,12 +124,12 @@
       ]
     }
   },
-  "current_contract": "1f457e51a4be7589946fa1edb3657fef07c2253a2d55deb3d20924e07ddb60d9",
-  "current_scoring": null,
+  "current_contract": "292901ed5e7ece4e01ae9dd2f6b6ca01c3ac3b31a761cd743d9b82b221398286",
+  "current_scoring": "8609adaa8f0002cd6c26f064f1a82c502482fb23eca4644a4b07b28f619ed8cd",
   "contract_history": [
     {
-      "sha256": "1f457e51a4be7589946fa1edb3657fef07c2253a2d55deb3d20924e07ddb60d9",
-      "bytes": 2643,
+      "sha256": "292901ed5e7ece4e01ae9dd2f6b6ca01c3ac3b31a761cd743d9b82b221398286",
+      "bytes": 3414,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:oeos:io_adapter:v1.0.0",
@@ -252,13 +252,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:io_adapter:v1.0.0\ntitle: Bounded Stream Adapter\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: IOAdapter\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:capability_guard:v1.0.0\n    proof_obligations:\n    - id: IO-INV-001\n      statement: Stream reads and writes use bounded checked loops with explicit byte\n        ceilings.\n      verification_status: open\n    - id: IO-INV-002\n      statement: Text-mode host output has an explicit strict UTF-8 encoding policy.\n      verification_status: open\n    - id: IO-INV-003\n      statement: Broken, truncated, or timed-out streams return typed refusals and\n        never silent completion.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - STREAM_BOUNDS_REFUSED\n    - STREAM_ENCODING_REFUSED\n    - STREAM_SHORT_IO_REFUSED\n    - STREAM_TIMEOUT_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: bounded_stream_request\n    type: urn:omega:oeos:type:bounded_stream_request:v1.0.0\n    required: true\n  outputs:\n  - name: exact_stream_result\n    type: urn:omega:oeos:type:exact_stream_result:v1.0.0\n    required: true\n  typed_refusals:\n  - STREAM_BOUNDS_REFUSED\n  - STREAM_ENCODING_REFUSED\n  - STREAM_SHORT_IO_REFUSED\n  - STREAM_TIMEOUT_REFUSED\n  platform_requirements:\n  - profile: portable_stream_io\n    requirements:\n    - checked_short_io_loops\n    - strict_utf8_text_mode\n    - explicit_timeout_policy\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares bounded binary and UTF-8 stream effects without interpreting the\n    payload.\n  non_role:\n  - payload_semantics\n  - authoritative_trace_generation\n  - evaluator_output\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - non_blocking_behavior_is_limited_to_a_declared_stream_profile\n  invariants:\n  - byte_limits_are_checked_before_buffer_growth\n  - partial_writes_are_retried_or_refused\n  allowed_operations:\n  - read_bounded_stream\n  - write_exact_stream_bytes\n  - flush_and_close_stream\n  forbidden_operations:\n  - unbounded_stream_read\n  - silent_encoding_replacement\n  - report_partial_write_as_complete\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:io_adapter:v1.0.0\",\n  \"title\": \"Bounded Stream Adapter\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"IOAdapter\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:oeos:capability_guard:v1.0.0\"\n      ],\n      \"proof_obligations\": [\n        {\n          \"id\": \"IO-INV-001\",\n          \"statement\": \"Stream reads and writes use bounded checked loops with explicit byte ceilings.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"IO-INV-002\",\n          \"statement\": \"Text-mode host output has an explicit strict UTF-8 encoding policy.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"IO-INV-003\",\n          \"statement\": \"Broken, truncated, or timed-out streams return typed refusals and never silent completion.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"STREAM_BOUNDS_REFUSED\",\n        \"STREAM_ENCODING_REFUSED\",\n        \"STREAM_SHORT_IO_REFUSED\",\n        \"STREAM_TIMEOUT_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"bounded_stream_request\",\n        \"type\": \"urn:omega:oeos:type:bounded_stream_request:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"exact_stream_result\",\n        \"type\": \"urn:omega:oeos:type:exact_stream_result:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"STREAM_BOUNDS_REFUSED\",\n      \"STREAM_ENCODING_REFUSED\",\n      \"STREAM_SHORT_IO_REFUSED\",\n      \"STREAM_TIMEOUT_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"portable_stream_io\",\n        \"requirements\": [\n          \"checked_short_io_loops\",\n          \"strict_utf8_text_mode\",\n          \"explicit_timeout_policy\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares bounded binary and UTF-8 stream effects without interpreting the payload.\",\n    \"non_role\": [\n      \"payload_semantics\",\n      \"authoritative_trace_generation\",\n      \"evaluator_output\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"non_blocking_behavior_is_limited_to_a_declared_stream_profile\"\n    ],\n    \"invariants\": [\n      \"byte_limits_are_checked_before_buffer_growth\",\n      \"partial_writes_are_retried_or_refused\"\n    ],\n    \"allowed_operations\": [\n      \"read_bounded_stream\",\n      \"write_exact_stream_bytes\",\n      \"flush_and_close_stream\"\n    ],\n    \"forbidden_operations\": [\n      \"unbounded_stream_read\",\n      \"silent_encoding_replacement\",\n      \"report_partial_write_as_complete\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/50_os/oeos_io_adapter_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "8609adaa8f0002cd6c26f064f1a82c502482fb23eca4644a4b07b28f619ed8cd",
+      "bytes": 2205,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/oeos_io_adapter_v1_0_0_contract.py",
+          "sha256": "dce1487568f86454cc637b374f188e055aa265001806bc4ec8c17ce89bafc12e"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:oeos-io-adapter-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_io_adapter_v1_0_0_contract.py\",\n    \"sha256\": \"dce1487568f86454cc637b374f188e055aa265001806bc4ec8c17ce89bafc12e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-io-adapter-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_io_adapter_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/oeos_io_adapter_v1_0_0.contract.yaml": "1f457e51a4be7589946fa1edb3657fef07c2253a2d55deb3d20924e07ddb60d9"
   },

@@ -52,12 +52,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "a5b73a3c22335d8dbac4dc3dd4e9efbb9a64f2ed1691a752c264304c0c1a45f8",
-  "current_scoring": null,
+  "current_contract": "65a8b357787f2eeec31a6d52821ec03ba63bf9f606f5e240b8855cd9a9ad9bd3",
+  "current_scoring": "56bba296e7cbf19c1aaa698ea1cdafd4d2c1ad304ac152f9b9572a4b07a20b51",
   "contract_history": [
     {
-      "sha256": "a5b73a3c22335d8dbac4dc3dd4e9efbb9a64f2ed1691a752c264304c0c1a45f8",
-      "bytes": 1208,
+      "sha256": "65a8b357787f2eeec31a6d52821ec03ba63bf9f606f5e240b8855cd9a9ad9bd3",
+      "bytes": 1477,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_state:delta2_closure:v1.0.0",
@@ -108,13 +108,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_state:delta2_closure:v1.0.0\ntitle: S07-004 delta2 scalar and equivariance obstruction registry.  The admitted\n  attempt preserves PL-CODA-6/12/13 as OPEN....\nkind: rust_file_contract\nstatus: active\ncrate: omega_state\nfile: crates_rs/omega_state/src/delta2_closure.rs\nmodule: delta2_closure\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_state\n  module: delta2_closure\n  file: crates_rs/omega_state/src/delta2_closure.rs\nsymbols:\n- Delta2ObligationIdV1\n- Delta2DispositionV1\n- Delta2ObligationRowV1\n- Delta2ClosurePacketV1\n- Delta2ClosureObservationV1\n- Delta2ClosureVerificationV1\n- Delta2ClosureError\n- canonical_delta2_obligations_v1\n- validate\n- delta2_obligation_registry_sha256_v1\n- delta2_closure_packet_sha256_v1\n- verify_delta2_closure_v1\nowns:\n- delta2_obligation_id_v1\n- delta2_disposition_v1\n- delta2_obligation_row_v1\n- delta2_closure_packet_v1\n- delta2_closure_observation_v1\n- delta2_closure_verification_v1\n- delta2_closure_error\n- canonical_delta2_obligations_v1\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_state:delta2_closure:v1.0.0\",\n  \"title\": \"S07-004 delta2 scalar and equivariance obstruction registry.  The admitted attempt preserves PL-CODA-6/12/13 as OPEN....\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_state\",\n  \"file\": \"crates_rs/omega_state/src/delta2_closure.rs\",\n  \"module\": \"delta2_closure\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_state\",\n    \"module\": \"delta2_closure\",\n    \"file\": \"crates_rs/omega_state/src/delta2_closure.rs\"\n  },\n  \"symbols\": [\n    \"Delta2ObligationIdV1\",\n    \"Delta2DispositionV1\",\n    \"Delta2ObligationRowV1\",\n    \"Delta2ClosurePacketV1\",\n    \"Delta2ClosureObservationV1\",\n    \"Delta2ClosureVerificationV1\",\n    \"Delta2ClosureError\",\n    \"canonical_delta2_obligations_v1\",\n    \"validate\",\n    \"delta2_obligation_registry_sha256_v1\",\n    \"delta2_closure_packet_sha256_v1\",\n    \"verify_delta2_closure_v1\"\n  ],\n  \"owns\": [\n    \"delta2_obligation_id_v1\",\n    \"delta2_disposition_v1\",\n    \"delta2_obligation_row_v1\",\n    \"delta2_closure_packet_v1\",\n    \"delta2_closure_observation_v1\",\n    \"delta2_closure_verification_v1\",\n    \"delta2_closure_error\",\n    \"canonical_delta2_obligations_v1\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/30_evidence/omega_state_delta2_closure.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "56bba296e7cbf19c1aaa698ea1cdafd4d2c1ad304ac152f9b9572a4b07a20b51",
+      "bytes": 2225,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/30_evidence/omega_state_delta2_closure_contract.py",
+          "sha256": "11bca7eb64e8e0f717d2b095b1d3b93b14c18becc062d7b33dfb1e007ac00444"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:30_evidence:omega-state-delta2-closure-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/omega_state_delta2_closure_contract.py\",\n    \"sha256\": \"11bca7eb64e8e0f717d2b095b1d3b93b14c18becc062d7b33dfb1e007ac00444\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:omega-state-delta2-closure-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/omega_state_delta2_closure_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/30_evidence/omega_state_delta2_closure.contract.yaml": "a5b73a3c22335d8dbac4dc3dd4e9efbb9a64f2ed1691a752c264304c0c1a45f8"
   },

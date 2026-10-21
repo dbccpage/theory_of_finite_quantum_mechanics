@@ -110,12 +110,12 @@
       "OPEN_OBLIGATION mechanisation: the complement parametrisation and the distortion bound are written proofs, not machine-checked; AuthorityEffect: None."
     ]
   },
-  "current_contract": "b74d99e876e7ac5679b42e754936171d3b702acef45b38a8f1e5073901f60276",
-  "current_scoring": null,
+  "current_contract": "ba8e5951c70fbb393c3a3d7aef004a5713c13d23725ba35c6f39142be9cf0fa1",
+  "current_scoring": "f0bc23fa2f76c0564028058cc95f017028f699c0cc6ca7130746530586696267",
   "contract_history": [
     {
-      "sha256": "b74d99e876e7ac5679b42e754936171d3b702acef45b38a8f1e5073901f60276",
-      "bytes": 4463,
+      "sha256": "ba8e5951c70fbb393c3a3d7aef004a5713c13d23725ba35c6f39142be9cf0fa1",
+      "bytes": 4971,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:residual_splitting:v1.0.0",
@@ -224,13 +224,75 @@
           "OPEN_OBLIGATION mechanisation: the complement parametrisation and the distortion bound are written proofs, not machine-checked; AuthorityEffect: None."
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:residual_splitting:v1.0.0\ntitle: Rational splittings of a repair image and their weighted ℓ¹ distortion\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: residual_splitting\n  symbol: ‖L_H‖_{1,w}\n  ascii_symbol: SplitDistortion\n  notation: Q^m = R ⊕ W_H, R = im d0, L_H = (N - B H) Q, Φ₁(x) ≤ ‖L_H x‖_{1,w} ≤ ‖L_H‖_{1,w}\n    Φ₁(x)\n  domain:\n  - a repair map d0, an m x k rational matrix given row-wise, with declared column\n    count k\n  - a basis B of R (m x r), a completion N (m x (m - r)) with S = [B N] invertible,\n    and S^{-1} = [U; Q]\n  - a rational parameter H (r x (m - r)) selecting the complement W_H = im(N - B H)\n  - strictly positive rational weights w on Q^m\n  codomain:\n    description: The exact weighted operator norm ‖L_H‖_{1,w} of a replayed splitting,\n      or a typed ResidualSplittingError naming the failed shape or identity.\n  definition:\n    projections: C_H = B (U + H Q) onto R; L_H = (N - B H) Q = I - C_H onto W_H along\n      R\n    operator_norm: ‖M‖_{1,w} = max_j Σ_i w_i |M_ij| / w_j; zero when m = 0\n    distortion_bound: L_H vanishes on R and x - L_H x = C_H x lies in R, so with Φ₁(x)\n      = min_a ‖x - d0 a‖_{1,w} one has Φ₁(x) ≤ ‖L_H x‖_{1,w} ≤ ‖L_H‖_{1,w} Φ₁(x).\nrequirements:\n  required_structures:\n  - Rational matrices of the declared shapes with positive denominators\n  - Strictly positive rational weights\nlaws:\n- 'Replay law: ResidualSplittingCertificate::verify recomputes S S^{-1} = I, S^{-1}\n  S = I, B = d0 F, d0 = B E, C = B (U + H Q), L = (N - B H) Q, C + L = I, C C = C\n  and L d0 = 0 before returning a norm.'\n- 'Identity refusal law: a failed identity is IdentityFails naming the identity and\n  the first failing entry; a wrong shape is Shape; a bad denominator is InvalidRational;\n  a nonpositive weight is NonPositiveWeight.'\n- 'Transport law: verify_transport checks T C = C'' T for square matrices and names\n  the first failing entry.'\n- 'Scope law: this module checks one supplied splitting and returns its distortion;\n  whether some H gives distortion at most one is decided elsewhere (omega_solvers::contractive_complement),\n  not here.'\n- 'Exactness law: all arithmetic is BigRational; there is no floating-point path and\n  no tolerance.'\n- 'Authority law: a returned norm mints no AuthorityEffect, PROVED, GlobalGreen or\n  ActionLicense.'\nreplay:\n  requirements:\n  - No external state, randomness or wall-clock\n  - Exact rational arithmetic only\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_functional\n  module: residual_splitting\n  symbols:\n  - ResidualSplittingError\n  - RowMatrix\n  - multiply\n  - weighted_l1_operator_norm\n  - splitting_from_parameter\n  - ResidualSplittingCertificate\n  - verify_transport\n  required_tests:\n  - two_dimensional_splittings_are_contractive\n  - tampered_certificates_name_the_failed_identity\n  - extreme_images\n  - weighted_norm_and_transport\nnegative_tests:\n- A certificate with any tampered matrix must be refused with IdentityFails naming\n  the failed identity\ndoctrine:\n  summary: 'residual_splitting replays a producer-supplied splitting Q^m = R ⊕ W_H\n    of a repair image R = im d0 and returns the exact weighted ℓ¹ operator norm of\n    its residual projection. The parametrisation of all complements by H and the distortion\n    bound are written proofs in the module documentation; the code checks the identities\n    of one supplied certificate. Nonclaim: not a search for a contractive complement;\n    not Φ₁ evaluation; not authority; not PROVED; not GlobalGreen.'\n  non_role:\n  - Search or feasibility decisions over H (see omega_solvers::contractive_complement)\n  - Evaluation of Φ₁ itself (see urn:omega:math:phi1:v1.0.0)\n  - Floating-point or tolerance-based linear algebra\n  - Authority minting, ActionLicense, PROVED or GlobalGreen\nwip:\n- 'OPEN_OBLIGATION mechanisation: the complement parametrisation and the distortion\n  bound are written proofs, not machine-checked; AuthorityEffect: None.'\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:residual_splitting:v1.0.0\",\n  \"title\": \"Rational splittings of a repair image and their weighted ℓ¹ distortion\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"residual_splitting\",\n    \"symbol\": \"‖L_H‖_{1,w}\",\n    \"ascii_symbol\": \"SplitDistortion\",\n    \"notation\": \"Q^m = R ⊕ W_H, R = im d0, L_H = (N - B H) Q, Φ₁(x) ≤ ‖L_H x‖_{1,w} ≤ ‖L_H‖_{1,w} Φ₁(x)\",\n    \"domain\": [\n      \"a repair map d0, an m x k rational matrix given row-wise, with declared column count k\",\n      \"a basis B of R (m x r), a completion N (m x (m - r)) with S = [B N] invertible, and S^{-1} = [U; Q]\",\n      \"a rational parameter H (r x (m - r)) selecting the complement W_H = im(N - B H)\",\n      \"strictly positive rational weights w on Q^m\"\n    ],\n    \"codomain\": {\n      \"description\": \"The exact weighted operator norm ‖L_H‖_{1,w} of a replayed splitting, or a typed ResidualSplittingError naming the failed shape or identity.\"\n    },\n    \"definition\": {\n      \"projections\": \"C_H = B (U + H Q) onto R; L_H = (N - B H) Q = I - C_H onto W_H along R\",\n      \"operator_norm\": \"‖M‖_{1,w} = max_j Σ_i w_i |M_ij| / w_j; zero when m = 0\",\n      \"distortion_bound\": \"L_H vanishes on R and x - L_H x = C_H x lies in R, so with Φ₁(x) = min_a ‖x - d0 a‖_{1,w} one has Φ₁(x) ≤ ‖L_H x‖_{1,w} ≤ ‖L_H‖_{1,w} Φ₁(x).\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Rational matrices of the declared shapes with positive denominators\",\n      \"Strictly positive rational weights\"\n    ]\n  },\n  \"laws\": [\n    \"Replay law: ResidualSplittingCertificate::verify recomputes S S^{-1} = I, S^{-1} S = I, B = d0 F, d0 = B E, C = B (U + H Q), L = (N - B H) Q, C + L = I, C C = C and L d0 = 0 before returning a norm.\",\n    \"Identity refusal law: a failed identity is IdentityFails naming the identity and the first failing entry; a wrong shape is Shape; a bad denominator is InvalidRational; a nonpositive weight is NonPositiveWeight.\",\n    \"Transport law: verify_transport checks T C = C' T for square matrices and names the first failing entry.\",\n    \"Scope law: this module checks one supplied splitting and returns its distortion; whether some H gives distortion at most one is decided elsewhere (omega_solvers::contractive_complement), not here.\",\n    \"Exactness law: all arithmetic is BigRational; there is no floating-point path and no tolerance.\",\n    \"Authority law: a returned norm mints no AuthorityEffect, PROVED, GlobalGreen or ActionLicense.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state, randomness or wall-clock\",\n      \"Exact rational arithmetic only\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_functional\",\n    \"module\": \"residual_splitting\",\n    \"symbols\": [\n      \"ResidualSplittingError\",\n      \"RowMatrix\",\n      \"multiply\",\n      \"weighted_l1_operator_norm\",\n      \"splitting_from_parameter\",\n      \"ResidualSplittingCertificate\",\n      \"verify_transport\"\n    ],\n    \"required_tests\": [\n      \"two_dimensional_splittings_are_contractive\",\n      \"tampered_certificates_name_the_failed_identity\",\n      \"extreme_images\",\n      \"weighted_norm_and_transport\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A certificate with any tampered matrix must be refused with IdentityFails naming the failed identity\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"residual_splitting replays a producer-supplied splitting Q^m = R ⊕ W_H of a repair image R = im d0 and returns the exact weighted ℓ¹ operator norm of its residual projection. The parametrisation of all complements by H and the distortion bound are written proofs in the module documentation; the code checks the identities of one supplied certificate. Nonclaim: not a search for a contractive complement; not Φ₁ evaluation; not authority; not PROVED; not GlobalGreen.\",\n    \"non_role\": [\n      \"Search or feasibility decisions over H (see omega_solvers::contractive_complement)\",\n      \"Evaluation of Φ₁ itself (see urn:omega:math:phi1:v1.0.0)\",\n      \"Floating-point or tolerance-based linear algebra\",\n      \"Authority minting, ActionLicense, PROVED or GlobalGreen\"\n    ]\n  },\n  \"wip\": [\n    \"OPEN_OBLIGATION mechanisation: the complement parametrisation and the distortion bound are written proofs, not machine-checked; AuthorityEffect: None.\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_residual_splitting_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "f0bc23fa2f76c0564028058cc95f017028f699c0cc6ca7130746530586696267",
+      "bytes": 2233,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_residual_splitting_v1_0_0_contract.py",
+          "sha256": "89d178e350d25a94d06da539a5913f7d7dad62625807f876eecd4a6b5243bcb0"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-residual-splitting-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_residual_splitting_v1_0_0_contract.py\",\n    \"sha256\": \"89d178e350d25a94d06da539a5913f7d7dad62625807f876eecd4a6b5243bcb0\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-residual-splitting-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_residual_splitting_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_residual_splitting_v1_0_0.contract.yaml": "b74d99e876e7ac5679b42e754936171d3b702acef45b38a8f1e5073901f60276"
   },

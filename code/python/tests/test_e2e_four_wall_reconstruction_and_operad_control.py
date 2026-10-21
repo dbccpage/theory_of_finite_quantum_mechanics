@@ -97,7 +97,7 @@ def test_five_stage_operad_ecology_complete() -> None:
         assert stage.anti_agent_id.startswith("ANTIAGENT_FQM_05")
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'four_wall_operad.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'four_wall_operad.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

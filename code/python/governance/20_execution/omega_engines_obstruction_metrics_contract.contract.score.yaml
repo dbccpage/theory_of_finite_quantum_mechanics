@@ -53,12 +53,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "73d8e7d65ecb105a5d43f05b6cef1b230cff7fed4270232130a9c3e809a2de4b",
-  "current_scoring": null,
+  "current_contract": "ae07e90f2b08a1a27184f129d74d16f7c0e4d4a8cae5f076598bbb922f99996f",
+  "current_scoring": "c7b54d415f92f50dcf929c6f3f05b0400ac8109f6630f8a7e3b68319d365790f",
   "contract_history": [
     {
-      "sha256": "73d8e7d65ecb105a5d43f05b6cef1b230cff7fed4270232130a9c3e809a2de4b",
-      "bytes": 1041,
+      "sha256": "ae07e90f2b08a1a27184f129d74d16f7c0e4d4a8cae5f076598bbb922f99996f",
+      "bytes": 1317,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_engines:obstruction_metrics:v1.0.0",
@@ -110,13 +110,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_engines:obstruction_metrics:v1.0.0\ntitle: Obstruction metrics types shared across the omega engine.  Extracted from `obstruction_calculus::obstruction_runtime`...\nkind: rust_file_contract\nstatus: active\ncrate: omega_engines\nfile: crates_rs/omega_engines/src/obstruction_metrics.rs\nmodule: obstruction_metrics\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_engines\n  module: obstruction_metrics\n  file: crates_rs/omega_engines/src/obstruction_metrics.rs\nsymbols:\n- ObstructionMetrics\n- new\n- with_gamma2_delta\n- with_noether_drift\n- is_finite\n- is_valid_range\n- is_valid\n- ObstructionVerdict\n- is_accepted\n- ObstructionThresholds\n- validate\n- ScoreWeights\n- obstruction_score\nowns:\n- obstruction_metrics\n- new\n- with_gamma2_delta\n- with_noether_drift\n- is_finite\n- is_valid_range\n- is_valid\n- obstruction_verdict\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_engines:obstruction_metrics:v1.0.0\",\n  \"title\": \"Obstruction metrics types shared across the omega engine.  Extracted from `obstruction_calculus::obstruction_runtime`...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_engines\",\n  \"file\": \"crates_rs/omega_engines/src/obstruction_metrics.rs\",\n  \"module\": \"obstruction_metrics\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_engines\",\n    \"module\": \"obstruction_metrics\",\n    \"file\": \"crates_rs/omega_engines/src/obstruction_metrics.rs\"\n  },\n  \"symbols\": [\n    \"ObstructionMetrics\",\n    \"new\",\n    \"with_gamma2_delta\",\n    \"with_noether_drift\",\n    \"is_finite\",\n    \"is_valid_range\",\n    \"is_valid\",\n    \"ObstructionVerdict\",\n    \"is_accepted\",\n    \"ObstructionThresholds\",\n    \"validate\",\n    \"ScoreWeights\",\n    \"obstruction_score\"\n  ],\n  \"owns\": [\n    \"obstruction_metrics\",\n    \"new\",\n    \"with_gamma2_delta\",\n    \"with_noether_drift\",\n    \"is_finite\",\n    \"is_valid_range\",\n    \"is_valid\",\n    \"obstruction_verdict\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/omega_engines_obstruction_metrics.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "c7b54d415f92f50dcf929c6f3f05b0400ac8109f6630f8a7e3b68319d365790f",
+      "bytes": 2241,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/omega_engines_obstruction_metrics_contract.py",
+          "sha256": "67665dd37a016dd5424d6389032d8a1ae9b5e32d3b57ac58ad30b496589f0891"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:omega-engines-obstruction-metrics-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/omega_engines_obstruction_metrics_contract.py\",\n    \"sha256\": \"67665dd37a016dd5424d6389032d8a1ae9b5e32d3b57ac58ad30b496589f0891\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:omega-engines-obstruction-metrics-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/omega_engines_obstruction_metrics_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/omega_engines_obstruction_metrics.contract.yaml": "73d8e7d65ecb105a5d43f05b6cef1b230cff7fed4270232130a9c3e809a2de4b"
   },

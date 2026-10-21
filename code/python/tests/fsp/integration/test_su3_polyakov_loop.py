@@ -110,3 +110,44 @@ def test_gin_mode_posting_list_resolution():
             assert len(bridge.posting_index[m]) > 0
     finally:
         bridge.close()
+
+
+def test_numerical_tolerance_and_small_hopping_disjointness():
+    """
+    Validates that unrounded float weights with an explicit tolerance policy (e.g. 1e-12)
+    correctly classify disjoint spectra at small non-zero hopping parameters (h = 1e-10),
+    resolving the artificial overlap caused by premature 8-decimal rounding.
+    Also validates that h = 0 correctly reports numerical spectral overlap.
+    """
+    bridge1 = SU3PolyakovGinBridge(in_memory=True)
+    try:
+        # At beta = 6.0 (deconfined), h = 1e-10 has a strictly positive action gap Delta S approx 5.71e-10.
+        # Under tolerance 1e-12, the weight difference exceeds tolerance, maintaining disjoint spectra.
+        model_small_h = SU3PolyakovLoopModel(beta=6.0, fermion_hopping_h=1e-10)
+        receipt_small_h = bridge1.index_polyakov_paths(
+            model_small_h,
+            model_name="SU3_Polyakov_Small_H",
+            tolerance=1e-12,
+        )
+        assert receipt_small_h.action_gap_delta_s > 0.0
+        assert receipt_small_h.is_disjoint is True
+        assert len(receipt_small_h.spectral_overlap) == 0
+    finally:
+        bridge1.close()
+
+    bridge2 = SU3PolyakovGinBridge(in_memory=True)
+    try:
+        # At h = 0.0, Delta S = 0.0, yielding identical weights and thus spectral overlap.
+        model_zero_h = SU3PolyakovLoopModel(beta=6.0, fermion_hopping_h=0.0)
+        receipt_zero_h = bridge2.index_polyakov_paths(
+            model_zero_h,
+            model_name="SU3_Polyakov_Zero_H",
+            tolerance=1e-12,
+        )
+        assert receipt_zero_h.action_gap_delta_s == 0.0
+        assert receipt_zero_h.is_disjoint is False
+        assert len(receipt_zero_h.spectral_overlap) > 0
+    finally:
+        bridge2.close()
+
+

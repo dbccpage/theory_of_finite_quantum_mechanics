@@ -202,7 +202,7 @@ def test_part_e_derivation_dag_dual_home_parity() -> None:
 
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'derivation_closure.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'derivation_closure.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

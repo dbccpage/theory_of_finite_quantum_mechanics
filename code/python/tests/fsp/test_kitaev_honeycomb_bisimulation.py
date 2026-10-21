@@ -187,3 +187,47 @@ def test_receipt_emission_and_bisimulation(clean_torus_model):
     assert receipt.terminal_route == "REPAIR"
     assert receipt.lean_bisimulation_passed is True
     assert receipt.authority_effect == "None"
+
+
+def test_pfaffian_parity_sign_flip_counterexample():
+    """Verifies that fermion parity correctly tracks true Pfaffian sign changes.
+
+    Counterexample test from audit: 2x2 lattice with Jx=0.7, Jy=1.1, Jz=1.9, kappa=0.0.
+    Initial state: Pf ≈ +1.2765 -> parity +1.
+    Flipped link_z_0_0: Pf ≈ -12.5137 -> parity -1.
+    """
+    model = KitaevHoneycombModel(
+        lattice_id="honeycomb_2x2_pfaffian_test",
+        lx=2,
+        ly=2,
+        boundary_condition="TORUS",
+        jx=0.7,
+        jy=1.1,
+        jz=1.9,
+        kappa=0.0,
+    )
+    A_init = model.compute_majorana_hamiltonian()
+    pf_init = model.compute_pfaffian(A_init)
+    assert pytest.approx(pf_init, 1e-4) == 1.2765
+    assert model.compute_fermion_parity() == 1
+
+    model.gin_index.flip_link("link_z_0_0")
+    A_flipped = model.compute_majorana_hamiltonian()
+    pf_flipped = model.compute_pfaffian(A_flipped)
+    assert pytest.approx(pf_flipped, 1e-4) == -12.5137
+    assert model.compute_fermion_parity() == -1
+
+
+def test_braid_validation_negative_controls(clean_torus_model):
+    """Verifies fail-closed input validation for vortex braiding simulation."""
+    model = clean_torus_model
+    with pytest.raises(ValueError, match="vortex_a 'nonexistent_a' not found"):
+        model.simulate_vortex_braid("nonexistent_a", "p_0_0", enclosed_parity=0)
+
+    p_first = list(model.plaquettes.keys())[0]
+    with pytest.raises(ValueError, match="vortex_b 'nonexistent_b' not found"):
+        model.simulate_vortex_braid(p_first, "nonexistent_b", enclosed_parity=0)
+
+    with pytest.raises(ValueError, match="enclosed_parity must be in {0, 1}"):
+        model.simulate_vortex_braid(p_first, p_first, enclosed_parity=99)
+

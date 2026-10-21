@@ -1,0 +1,168 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/test_decoherence_classical_limit.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/test_decoherence_classical_limit.py",
+      "sha256": "1b13500ce7cb56b33d348cd39b689b19d7a6c18b4fa87c87dad5d258d213390d"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:test-decoherence-classical-limit:v1",
+    "role": "test checker",
+    "purpose": "Bounded domain operations and invariant verification for test_decoherence_classical_limit.",
+    "operations": {
+      "ShadowState": "Class ShadowState domain record and methods.",
+      "EnvHost": "Class EnvHost domain record and methods.",
+      "env_apply": "Function env_apply operation.",
+      "recovers_classical_l1_shadow": "Function recovers_classical_l1_shadow operation.",
+      "test_residual_eq_twice_offdiag": "Function test_residual_eq_twice_offdiag operation.",
+      "test_decoherent_weight_additive": "Function test_decoherent_weight_additive operation.",
+      "test_dephase_classical": "Function test_dephase_classical operation.",
+      "test_dephase_idempotent": "Function test_dephase_idempotent operation.",
+      "test_dephase_preserves_classical_shadow": "Function test_dephase_preserves_classical_shadow operation.",
+      "test_shared_classical_shadow": "Function test_shared_classical_shadow operation.",
+      "test_dephase_collapses_coherent": "Function test_dephase_collapses_coherent operation.",
+      "test_damp_step_shrinks_off": "Function test_damp_step_shrinks_off operation.",
+      "test_damp_n_reaches_decoherent": "Function test_damp_n_reaches_decoherent operation.",
+      "test_damp_preserves_classical_shadow": "Function test_damp_preserves_classical_shadow operation.",
+      "test_env_pointer_record": "Function test_env_pointer_record operation.",
+      "test_finL1_shadow_after_pointer": "Function test_finL1_shadow_after_pointer operation.",
+      "test_finite_damping_pointer_package": "Function test_finite_damping_pointer_package operation.",
+      "test_continuum_limit_open": "Function test_continuum_limit_open operation.",
+      "test_decoherence_classical_limit_package": "Function test_decoherence_classical_limit_package operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "80effacbbb6d827a60a1f4a193e021de5b58697b2fbc095b46ffd0d5d337c17f",
+  "current_scoring": "d184f4e4c73f2ace153eb0d5f176590f2ea5712bdb4656a0ce9d99214660c26b",
+  "contract_history": [
+    {
+      "sha256": "80effacbbb6d827a60a1f4a193e021de5b58697b2fbc095b46ffd0d5d337c17f",
+      "bytes": 3296,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_decoherence_classical_limit.py",
+          "sha256": "1b13500ce7cb56b33d348cd39b689b19d7a6c18b4fa87c87dad5d258d213390d"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:test-decoherence-classical-limit:v1",
+        "role": "test checker",
+        "purpose": "Bounded domain operations and invariant verification for test_decoherence_classical_limit.",
+        "operations": {
+          "ShadowState": "Class ShadowState domain record and methods.",
+          "EnvHost": "Class EnvHost domain record and methods.",
+          "env_apply": "Function env_apply operation.",
+          "recovers_classical_l1_shadow": "Function recovers_classical_l1_shadow operation.",
+          "test_residual_eq_twice_offdiag": "Function test_residual_eq_twice_offdiag operation.",
+          "test_decoherent_weight_additive": "Function test_decoherent_weight_additive operation.",
+          "test_dephase_classical": "Function test_dephase_classical operation.",
+          "test_dephase_idempotent": "Function test_dephase_idempotent operation.",
+          "test_dephase_preserves_classical_shadow": "Function test_dephase_preserves_classical_shadow operation.",
+          "test_shared_classical_shadow": "Function test_shared_classical_shadow operation.",
+          "test_dephase_collapses_coherent": "Function test_dephase_collapses_coherent operation.",
+          "test_damp_step_shrinks_off": "Function test_damp_step_shrinks_off operation.",
+          "test_damp_n_reaches_decoherent": "Function test_damp_n_reaches_decoherent operation.",
+          "test_damp_preserves_classical_shadow": "Function test_damp_preserves_classical_shadow operation.",
+          "test_env_pointer_record": "Function test_env_pointer_record operation.",
+          "test_finL1_shadow_after_pointer": "Function test_finL1_shadow_after_pointer operation.",
+          "test_finite_damping_pointer_package": "Function test_finite_damping_pointer_package operation.",
+          "test_continuum_limit_open": "Function test_continuum_limit_open operation.",
+          "test_decoherence_classical_limit_package": "Function test_decoherence_classical_limit_package operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_decoherence_classical_limit.py\",\n    \"sha256\": \"1b13500ce7cb56b33d348cd39b689b19d7a6c18b4fa87c87dad5d258d213390d\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-decoherence-classical-limit:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Bounded domain operations and invariant verification for test_decoherence_classical_limit.\",\n  \"operations\": {\n    \"ShadowState\": \"Class ShadowState domain record and methods.\",\n    \"EnvHost\": \"Class EnvHost domain record and methods.\",\n    \"env_apply\": \"Function env_apply operation.\",\n    \"recovers_classical_l1_shadow\": \"Function recovers_classical_l1_shadow operation.\",\n    \"test_residual_eq_twice_offdiag\": \"Function test_residual_eq_twice_offdiag operation.\",\n    \"test_decoherent_weight_additive\": \"Function test_decoherent_weight_additive operation.\",\n    \"test_dephase_classical\": \"Function test_dephase_classical operation.\",\n    \"test_dephase_idempotent\": \"Function test_dephase_idempotent operation.\",\n    \"test_dephase_preserves_classical_shadow\": \"Function test_dephase_preserves_classical_shadow operation.\",\n    \"test_shared_classical_shadow\": \"Function test_shared_classical_shadow operation.\",\n    \"test_dephase_collapses_coherent\": \"Function test_dephase_collapses_coherent operation.\",\n    \"test_damp_step_shrinks_off\": \"Function test_damp_step_shrinks_off operation.\",\n    \"test_damp_n_reaches_decoherent\": \"Function test_damp_n_reaches_decoherent operation.\",\n    \"test_damp_preserves_classical_shadow\": \"Function test_damp_preserves_classical_shadow operation.\",\n    \"test_env_pointer_record\": \"Function test_env_pointer_record operation.\",\n    \"test_finL1_shadow_after_pointer\": \"Function test_finL1_shadow_after_pointer operation.\",\n    \"test_finite_damping_pointer_package\": \"Function test_finite_damping_pointer_package operation.\",\n    \"test_continuum_limit_open\": \"Function test_continuum_limit_open operation.\",\n    \"test_decoherence_classical_limit_package\": \"Function test_decoherence_classical_limit_package operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_decoherence_classical_limit.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "d184f4e4c73f2ace153eb0d5f176590f2ea5712bdb4656a0ce9d99214660c26b",
+      "bytes": 2192,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_decoherence_classical_limit.py",
+          "sha256": "1b13500ce7cb56b33d348cd39b689b19d7a6c18b4fa87c87dad5d258d213390d"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:test-decoherence-classical-limit:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 8,
+          "lizard_ccn": 3,
+          "weighted_control_upper_bound": 3,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_decoherence_classical_limit.py\",\n    \"sha256\": \"1b13500ce7cb56b33d348cd39b689b19d7a6c18b4fa87c87dad5d258d213390d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-decoherence-classical-limit:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 3,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_decoherence_classical_limit.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

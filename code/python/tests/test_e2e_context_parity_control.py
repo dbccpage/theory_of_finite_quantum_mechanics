@@ -94,7 +94,7 @@ def test_refuses_conductor_without_mu12() -> None:
         cpc.evaluate_context_parity_control(conductor=10)
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'context_parity.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'context_parity.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

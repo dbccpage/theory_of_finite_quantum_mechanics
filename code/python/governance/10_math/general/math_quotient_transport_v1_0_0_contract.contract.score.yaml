@@ -90,12 +90,12 @@
       ]
     }
   },
-  "current_contract": "dc58032c1ea1238acf08918c0025a81b584c9fdd7e1bda979decbaaa0644cddb",
-  "current_scoring": null,
+  "current_contract": "e419128348fd8cd3daddd42d4a8d27c8485d20b540434ec58e83952fc7080c9b",
+  "current_scoring": "8f5a863f2a82edc95dc5c9b305a064fcc92c034d3abeaeae1011e41a93f0834c",
   "contract_history": [
     {
-      "sha256": "dc58032c1ea1238acf08918c0025a81b584c9fdd7e1bda979decbaaa0644cddb",
-      "bytes": 3568,
+      "sha256": "e419128348fd8cd3daddd42d4a8d27c8485d20b540434ec58e83952fc7080c9b",
+      "bytes": 4013,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:quotient_transport:v1.0.0",
@@ -184,13 +184,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:quotient_transport:v1.0.0\ntitle: Quotient Transport Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:quotient_space:v1.0.0\n    - urn:omega:math:transport_loss_ledger:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: quotient_transport_morphism\n  symbol: 'pi_D: Q^1_rich -> Q^1_coarse,  iota_Lambda: Q^1_coarse -> Q^1_rich'\n  ascii_symbol: QuotientTransport\n  notation: Transport between quotient spaces under scale descent D or structural\n    lift Lambda\n  domain:\n  - 'source_quotient: Q^1_source = C^1_source / B^1_source'\n  - 'carrier_transition: declared transition map between source and target carriers'\n  codomain:\n    description: Target quotient space Q^1_target under strict DDC preservation or\n      ledgered loss.\nrequirements:\n  required_structures:\n  - Source and target cochain complexes with d_1 d_0 = 0\n  - For descent D: explicit LossLedger recording dropped dimensions and lost mass\n  - For lift Lambda: explicit license certificate and Law 4 trigger (ClosedResidual\n      or DetectorInadequate)\nlaws:\n- 'Theorem 11.6 (No Free Decrease): If a lawful step lowers Phi_1 or Gamma_2, its\n  letter is strictly D or Lambda (Ddc.no_free_decrease). Unpriced decrease is mathematically\n  impossible.'\n- 'Theorem 11.7 (Open Obstructions Need a Priced Move): From Gamma_2 > 0 and a non-terminal\n  control, a lawful tape without D and without Lambda keeps Gamma_2 > 0 and never\n  terminalizes (Ddc.open_needs_priced_move).'\n- 'DDC-L-01 (Norm Preservation Under Lift): Zero-padding lifts preserve l1 norms and\n  old inner products (Ddc.L_pad_preserves_l1).'\n- 'DDC-L-03 (Orthogonality of Lift Coordinates): Adjoined coordinates in a structural\n  lift are orthogonal to the image of the lift.'\n- 'DDC-TAPE-09 (Lift Non-Exactification): If restriction along a complex extension\n  commutes with d_0, exactness of the lifted residual implies exactness before the\n  lift (Ddc.L_cannot_exactify). Extending lifts cannot dissolve non-exact residuals\n  for free.'\n- 'DDC-D-01..04 (Descent with Loss): Descent is lossless iff dropped tail is zero;\n  positive loss requires explicit LossLedger and never yields LOSSLESS_DESCENT.'\nnegative_tests:\n- Step lowering Phi_1 or Gamma_2 under letters other than D or Lambda must be rejected.\n- Open obstruction (Gamma_2 > 0) terminalized without D or Lambda must be rejected.\n- Structural lift Lambda executed without license or Law 4 trigger must be rejected.\n- Descent D executed without LossLedger must be rejected.\n- Lift claiming to exactify a non-exact residual must be rejected.\ndoctrine:\n  summary: QuotientTransport governs all cross-carrier morphisms between quotient\n    spaces. Under DDC, information destruction must be booked in a LossLedger, and\n    carrier capacity extension requires an explicit licensed trigger.\n  symbol: QuotientTransport\n  ascii_symbol: QuotientTransport\n  operator_class_symbol: D_Lambda\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  canonical_invariant: Obstructions cannot be hidden by changing carriers without\n    cost. All quotient transport is strictly conservative or priced.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:quotient_transport:v1.0.0\",\n  \"title\": \"Quotient Transport Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"active\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:quotient_space:v1.0.0\",\n        \"urn:omega:math:transport_loss_ledger:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"quotient_transport_morphism\",\n    \"symbol\": \"pi_D: Q^1_rich -> Q^1_coarse,  iota_Lambda: Q^1_coarse -> Q^1_rich\",\n    \"ascii_symbol\": \"QuotientTransport\",\n    \"notation\": \"Transport between quotient spaces under scale descent D or structural lift Lambda\",\n    \"domain\": [\n      \"source_quotient: Q^1_source = C^1_source / B^1_source\",\n      \"carrier_transition: declared transition map between source and target carriers\"\n    ],\n    \"codomain\": {\n      \"description\": \"Target quotient space Q^1_target under strict DDC preservation or ledgered loss.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Source and target cochain complexes with d_1 d_0 = 0\",\n      {\n        \"For descent D\": \"explicit LossLedger recording dropped dimensions and lost mass\"\n      },\n      {\n        \"For lift Lambda\": \"explicit license certificate and Law 4 trigger (ClosedResidual or DetectorInadequate)\"\n      }\n    ]\n  },\n  \"laws\": [\n    \"Theorem 11.6 (No Free Decrease): If a lawful step lowers Phi_1 or Gamma_2, its letter is strictly D or Lambda (Ddc.no_free_decrease). Unpriced decrease is mathematically impossible.\",\n    \"Theorem 11.7 (Open Obstructions Need a Priced Move): From Gamma_2 > 0 and a non-terminal control, a lawful tape without D and without Lambda keeps Gamma_2 > 0 and never terminalizes (Ddc.open_needs_priced_move).\",\n    \"DDC-L-01 (Norm Preservation Under Lift): Zero-padding lifts preserve l1 norms and old inner products (Ddc.L_pad_preserves_l1).\",\n    \"DDC-L-03 (Orthogonality of Lift Coordinates): Adjoined coordinates in a structural lift are orthogonal to the image of the lift.\",\n    \"DDC-TAPE-09 (Lift Non-Exactification): If restriction along a complex extension commutes with d_0, exactness of the lifted residual implies exactness before the lift (Ddc.L_cannot_exactify). Extending lifts cannot dissolve non-exact residuals for free.\",\n    \"DDC-D-01..04 (Descent with Loss): Descent is lossless iff dropped tail is zero; positive loss requires explicit LossLedger and never yields LOSSLESS_DESCENT.\"\n  ],\n  \"negative_tests\": [\n    \"Step lowering Phi_1 or Gamma_2 under letters other than D or Lambda must be rejected.\",\n    \"Open obstruction (Gamma_2 > 0) terminalized without D or Lambda must be rejected.\",\n    \"Structural lift Lambda executed without license or Law 4 trigger must be rejected.\",\n    \"Descent D executed without LossLedger must be rejected.\",\n    \"Lift claiming to exactify a non-exact residual must be rejected.\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"QuotientTransport governs all cross-carrier morphisms between quotient spaces. Under DDC, information destruction must be booked in a LossLedger, and carrier capacity extension requires an explicit licensed trigger.\",\n    \"symbol\": \"QuotientTransport\",\n    \"ascii_symbol\": \"QuotientTransport\",\n    \"operator_class_symbol\": \"D_Lambda\",\n    \"non_role\": [\n      \"authority_minting\",\n      \"policy_decision\",\n      \"self_certification\"\n    ],\n    \"canonical_invariant\": \"Obstructions cannot be hidden by changing carriers without cost. All quotient transport is strictly conservative or priced.\"\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_quotient_transport_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "8f5a863f2a82edc95dc5c9b305a064fcc92c034d3abeaeae1011e41a93f0834c",
+      "bytes": 2233,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_quotient_transport_v1_0_0_contract.py",
+          "sha256": "38f90fae3504bc2adbf6903b55e4be2cd11747bd8481c75af05300ec631e343a"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-quotient-transport-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_quotient_transport_v1_0_0_contract.py\",\n    \"sha256\": \"38f90fae3504bc2adbf6903b55e4be2cd11747bd8481c75af05300ec631e343a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-quotient-transport-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_quotient_transport_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_quotient_transport_v1_0_0.contract.yaml": "dc58032c1ea1238acf08918c0025a81b584c9fdd7e1bda979decbaaa0644cddb"
   },

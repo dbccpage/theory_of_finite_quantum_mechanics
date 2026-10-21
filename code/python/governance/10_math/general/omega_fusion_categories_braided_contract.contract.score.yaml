@@ -70,12 +70,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "5848791dc278fd960ac4dc4aefa15310b4351cf7bc8547c244038eab539a42a4",
-  "current_scoring": null,
+  "current_contract": "14b61db5b6193f4f27c4126a560718929b723543fc3c0ebaf2f935aa15bdcaa9",
+  "current_scoring": "1a6d773963108015273bbb796f9a1434675e3a8751091a45e31e07bdec8a7064",
   "contract_history": [
     {
-      "sha256": "5848791dc278fd960ac4dc4aefa15310b4351cf7bc8547c244038eab539a42a4",
-      "bytes": 1181,
+      "sha256": "14b61db5b6193f4f27c4126a560718929b723543fc3c0ebaf2f935aa15bdcaa9",
+      "bytes": 1538,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_fusion_categories:braided:v1.0.0",
@@ -144,13 +144,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_fusion_categories:braided:v1.0.0\ntitle: 'Braided and ribbon fusion categories: R-symbols, the hexagon equations, twists,\n  the ribbon (balancing) relation, and ...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_fusion_categories\nfile: crates_rs/omega_fusion_categories/src/braided.rs\nmodule: braided\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_fusion_categories\n  module: braided\n  file: crates_rs/omega_fusion_categories/src/braided.rs\nsymbols:\n- FusionSpaceLimits\n- BraidedDefect\n- RSymbols\n- from_fn\n- get\n- entries\n- with_entry\n- HexagonForm\n- HexagonDefect\n- reads_r\n- FusionSpace\n- word\n- total\n- dimension\n- basis\n- index_of\n- BraidedFusionCategory\n- new\n- validated\n- category\n- ring\n- r_symbols\n- r_entry\n- hexagon_defects\n- first_hexagon_defect\n- validate\n- monodromy\n- is_symmetric\n- gauge_transform\n- complex_conjugate\nowns:\n- fusion_space_limits\n- braided_defect\n- r_symbols\n- from_fn\n- get\n- entries\n- with_entry\n- hexagon_form\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_fusion_categories:braided:v1.0.0\",\n  \"title\": \"Braided and ribbon fusion categories: R-symbols, the hexagon equations, twists, the ribbon (balancing) relation, and ...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_fusion_categories\",\n  \"file\": \"crates_rs/omega_fusion_categories/src/braided.rs\",\n  \"module\": \"braided\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_fusion_categories\",\n    \"module\": \"braided\",\n    \"file\": \"crates_rs/omega_fusion_categories/src/braided.rs\"\n  },\n  \"symbols\": [\n    \"FusionSpaceLimits\",\n    \"BraidedDefect\",\n    \"RSymbols\",\n    \"from_fn\",\n    \"get\",\n    \"entries\",\n    \"with_entry\",\n    \"HexagonForm\",\n    \"HexagonDefect\",\n    \"reads_r\",\n    \"FusionSpace\",\n    \"word\",\n    \"total\",\n    \"dimension\",\n    \"basis\",\n    \"index_of\",\n    \"BraidedFusionCategory\",\n    \"new\",\n    \"validated\",\n    \"category\",\n    \"ring\",\n    \"r_symbols\",\n    \"r_entry\",\n    \"hexagon_defects\",\n    \"first_hexagon_defect\",\n    \"validate\",\n    \"monodromy\",\n    \"is_symmetric\",\n    \"gauge_transform\",\n    \"complex_conjugate\"\n  ],\n  \"owns\": [\n    \"fusion_space_limits\",\n    \"braided_defect\",\n    \"r_symbols\",\n    \"from_fn\",\n    \"get\",\n    \"entries\",\n    \"with_entry\",\n    \"hexagon_form\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/omega_fusion_categories_braided.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "1a6d773963108015273bbb796f9a1434675e3a8751091a45e31e07bdec8a7064",
+      "bytes": 2235,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/omega_fusion_categories_braided_contract.py",
+          "sha256": "e089eab7c4ca24c069ed4360632ccc0d06f0b28c9b7b032d947e8f09792ad988"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:omega-fusion-categories-braided-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/omega_fusion_categories_braided_contract.py\",\n    \"sha256\": \"e089eab7c4ca24c069ed4360632ccc0d06f0b28c9b7b032d947e8f09792ad988\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:omega-fusion-categories-braided-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/omega_fusion_categories_braided_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/omega_fusion_categories_braided.contract.yaml": "5848791dc278fd960ac4dc4aefa15310b4351cf7bc8547c244038eab539a42a4"
   },
