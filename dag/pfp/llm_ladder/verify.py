@@ -709,7 +709,7 @@ class Verifier:
                     cls, evidence, key = rest
                     report.failures.append(Failure(cls, lem['id'], 'lemma', claim, evidence, key))
                     continue
-                info = rest[0]
+                info = rest[0] if status == 'ok' else None  # 'unchecked' carries a reason string, not a declaration
             skeleton = lem.get('lean_skeleton', '') or ''
             vacuous = None
             if lem.get('claims_proved'):
