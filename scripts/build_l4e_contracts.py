@@ -68,7 +68,9 @@ def compute_rust_nesting(text: str) -> tuple[int, int]:
     for line in text.splitlines():
         clean_lines.append(line.split("//")[0])
     code = "\n".join(clean_lines)
-    code = re.sub(r'"(?:\\.|[^"\\])*"', '""', code)
+    code = re.sub(r'r#".*?"#|"(?:\\.|[^"\\])*"', '""', code, flags=re.DOTALL)
+    code = re.sub(r"b?'(?:\\.|[^'\\])'", "''", code)
+    code = re.sub(r"'[A-Za-z_]\w*", "", code)
     code = re.sub(r"'(?:\\.|[^'\\])*'", "''", code)
 
     control_keywords = {"if", "match", "while", "for", "loop"}

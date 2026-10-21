@@ -22,39 +22,58 @@ pub struct DecOperators {
 }
 
 impl DecOperators {
-    pub fn new(
+    fn validate_counts(
         num_vertices: usize,
-        edges: Vec<(usize, usize)>,
-        triangles: Vec<[usize; 3]>,
-        edge_lengths: Vec<f64>,
-        star0_vertex_volumes: Vec<f64>,
-        star1_edge_volumes: Vec<f64>,
-    ) -> Result<Self, String> {
+        num_edges: usize,
+        edge_lengths_len: usize,
+        star1_len: usize,
+        star0_len: usize,
+    ) -> Result<(), String> {
         if num_vertices == 0 {
             return Err("DEC complex must have at least 1 vertex".to_string());
         }
-        if edges.len() != edge_lengths.len() {
+        if num_edges != edge_lengths_len {
             return Err(format!(
-                "Edge count mismatch: {} edges vs {} lengths",
-                edges.len(),
-                edge_lengths.len()
+                "Edge count mismatch: {num_edges} edges vs {edge_lengths_len} lengths"
             ));
         }
-        if edges.len() != star1_edge_volumes.len() {
+        if num_edges != star1_len {
             return Err(format!(
-                "Edge count mismatch: {} edges vs {} star1 dual volumes",
-                edges.len(),
-                star1_edge_volumes.len()
+                "Edge count mismatch: {num_edges} edges vs {star1_len} star1 dual volumes"
             ));
         }
-        if num_vertices != star0_vertex_volumes.len() {
+        if num_vertices != star0_len {
             return Err(format!(
-                "Vertex count mismatch: {} vertices vs {} star0 dual volumes",
-                num_vertices,
-                star0_vertex_volumes.len()
+                "Vertex count mismatch: {num_vertices} vertices vs {star0_len} star0 dual volumes"
             ));
         }
+        Ok(())
+    }
 
+    fn compute_edge_weight(u: usize, v: usize, len: f64, dual_vol: f64) -> Result<f64, String> {
+        if len <= 0.0 || !len.is_finite() {
+            return Err(format!(
+                "Invalid non-positive edge length {len} on edge ({u}, {v})"
+            ));
+        }
+        if dual_vol <= 0.0 || !dual_vol.is_finite() {
+            return Err(format!(
+                "Invalid non-positive star1 dual volume {dual_vol} on edge ({u}, {v})"
+            ));
+        }
+        let weight = dual_vol / len;
+        if !weight.is_finite() || weight <= 0.0 {
+            return Err("Hodge edge weight must be finite and positive".into());
+        }
+        Ok(weight)
+    }
+
+    fn build_edges_and_hodge(
+        num_vertices: usize,
+        edges: &[(usize, usize)],
+        edge_lengths: &[f64],
+        star1_edge_volumes: &[f64],
+    ) -> Result<(BTreeMap<(usize, usize), usize>, Vec<f64>), String> {
         let mut edge_index = BTreeMap::new();
         let mut hodge_edge_weights = Vec::with_capacity(edges.len());
 
@@ -73,28 +92,19 @@ impl DecOperators {
                 return Err(format!("Duplicate edge ({u}, {v}) in DEC operators"));
             }
 
-            let len = edge_lengths[idx];
-            if len <= 0.0 || !len.is_finite() {
-                return Err(format!(
-                    "Invalid non-positive edge length {len} on edge ({u}, {v})"
-                ));
-            }
-
-            let dual_vol = star1_edge_volumes[idx];
-            if dual_vol <= 0.0 || !dual_vol.is_finite() {
-                return Err(format!(
-                    "Invalid non-positive star1 dual volume {dual_vol} on edge ({u}, {v})"
-                ));
-            }
-
-            let weight = dual_vol / len;
-            if !weight.is_finite() || weight <= 0.0 {
-                return Err("Hodge edge weight must be finite and positive".into());
-            }
+            let weight = Self::compute_edge_weight(u, v, edge_lengths[idx], star1_edge_volumes[idx])?;
             hodge_edge_weights.push(weight);
         }
 
-        for tri in &triangles {
+        Ok((edge_index, hodge_edge_weights))
+    }
+
+    fn validate_triangles(
+        num_vertices: usize,
+        triangles: &[[usize; 3]],
+        edge_index: &BTreeMap<(usize, usize), usize>,
+    ) -> Result<(), String> {
+        for tri in triangles {
             let (u, v, w) = (tri[0], tri[1], tri[2]);
             if !(u < v && v < w) {
                 return Err(format!(
@@ -122,7 +132,10 @@ impl DecOperators {
                 ));
             }
         }
+        Ok(())
+    }
 
+    fn validate_star0_volumes(star0_vertex_volumes: &[f64]) -> Result<(), String> {
         for (v, &vol) in star0_vertex_volumes.iter().enumerate() {
             if vol <= 0.0 || !vol.is_finite() {
                 return Err(format!(
@@ -130,6 +143,34 @@ impl DecOperators {
                 ));
             }
         }
+        Ok(())
+    }
+
+    pub fn new(
+        num_vertices: usize,
+        edges: Vec<(usize, usize)>,
+        triangles: Vec<[usize; 3]>,
+        edge_lengths: Vec<f64>,
+        star0_vertex_volumes: Vec<f64>,
+        star1_edge_volumes: Vec<f64>,
+    ) -> Result<Self, String> {
+        Self::validate_counts(
+            num_vertices,
+            edges.len(),
+            edge_lengths.len(),
+            star1_edge_volumes.len(),
+            star0_vertex_volumes.len(),
+        )?;
+
+        let (edge_index, hodge_edge_weights) = Self::build_edges_and_hodge(
+            num_vertices,
+            &edges,
+            &edge_lengths,
+            &star1_edge_volumes,
+        )?;
+
+        Self::validate_triangles(num_vertices, &triangles, &edge_index)?;
+        Self::validate_star0_volumes(&star0_vertex_volumes)?;
 
         Ok(Self {
             num_vertices,

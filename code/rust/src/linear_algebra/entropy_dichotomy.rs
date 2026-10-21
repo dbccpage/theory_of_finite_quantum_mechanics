@@ -401,6 +401,29 @@ impl Eigenvalue {
     }
 }
 
+fn push_quadratic_roots(
+    values: &mut Vec<Eigenvalue>,
+    center: &Q,
+    coefficient: &Q,
+    radicand: &BigInt,
+) {
+    if radicand.is_one() {
+        values.push(Eigenvalue::rational(center - coefficient));
+        values.push(Eigenvalue::rational(center + coefficient));
+    } else {
+        values.push(Eigenvalue {
+            center: center.clone(),
+            coefficient: -coefficient,
+            radicand: radicand.clone(),
+        });
+        values.push(Eigenvalue {
+            center: center.clone(),
+            coefficient: coefficient.clone(),
+            radicand: radicand.clone(),
+        });
+    }
+}
+
 fn spectrum(a: &Matrix) -> Result<Vec<Eigenvalue>> {
     spectrum_with_budget(a, &mut RrtWorkBudget::default())
 }
@@ -438,21 +461,7 @@ fn spectrum_with_budget(a: &Matrix, candidates: &mut RrtWorkBudget) -> Result<Ve
             let delta = &center * &center - &quadratic[2];
             let (coefficient, radicand) = squarefree_root(&delta)?;
             for _ in 0..multiplicity {
-                if radicand.is_one() {
-                    values.push(Eigenvalue::rational(&center - &coefficient));
-                    values.push(Eigenvalue::rational(&center + &coefficient));
-                } else {
-                    values.push(Eigenvalue {
-                        center: center.clone(),
-                        coefficient: -&coefficient,
-                        radicand: radicand.clone(),
-                    });
-                    values.push(Eigenvalue {
-                        center: center.clone(),
-                        coefficient: coefficient.clone(),
-                        radicand: radicand.clone(),
-                    });
-                }
+                push_quadratic_roots(&mut values, &center, &coefficient, &radicand);
                 product = poly_mul(&product, &quadratic);
             }
             break;
@@ -1275,34 +1284,42 @@ pub fn external_report(interface: &Value, k: u64) -> Result<Value> {
     Ok(json!({"authority_effect":"None","schema":"c750_b01_external_v1","cases":cases}))
 }
 
-fn first_mismatch(expected: &Value, actual: &Value, path: &str) -> Option<String> {
-    match (expected, actual) {
-        (Value::Object(a), Value::Object(b)) => {
-            let keys: BTreeSet<_> = a.keys().chain(b.keys()).collect();
-            for key in keys {
-                let child = format!("{path}.{key}");
-                match (a.get(key), b.get(key)) {
-                    (Some(x), Some(y)) => {
-                        if let Some(mismatch) = first_mismatch(x, y, &child) {
-                            return Some(mismatch);
-                        }
-                    }
-                    _ => return Some(child),
-                }
-            }
-            None
-        }
-        (Value::Array(a), Value::Array(b)) => {
-            if a.len() != b.len() {
-                return Some(format!("{path}.length"));
-            }
-            for (i, (x, y)) in a.iter().zip(b).enumerate() {
-                if let Some(mismatch) = first_mismatch(x, y, &format!("{path}[{i}]")) {
+fn first_object_mismatch(
+    a: &serde_json::Map<String, Value>,
+    b: &serde_json::Map<String, Value>,
+    path: &str,
+) -> Option<String> {
+    let keys: BTreeSet<_> = a.keys().chain(b.keys()).collect();
+    for key in keys {
+        let child = format!("{path}.{key}");
+        match (a.get(key), b.get(key)) {
+            (Some(x), Some(y)) => {
+                if let Some(mismatch) = first_mismatch(x, y, &child) {
                     return Some(mismatch);
                 }
             }
-            None
+            _ => return Some(child),
         }
+    }
+    None
+}
+
+fn first_array_mismatch(a: &[Value], b: &[Value], path: &str) -> Option<String> {
+    if a.len() != b.len() {
+        return Some(format!("{path}.length"));
+    }
+    for (i, (x, y)) in a.iter().zip(b).enumerate() {
+        if let Some(mismatch) = first_mismatch(x, y, &format!("{path}[{i}]")) {
+            return Some(mismatch);
+        }
+    }
+    None
+}
+
+fn first_mismatch(expected: &Value, actual: &Value, path: &str) -> Option<String> {
+    match (expected, actual) {
+        (Value::Object(a), Value::Object(b)) => first_object_mismatch(a, b, path),
+        (Value::Array(a), Value::Array(b)) => first_array_mismatch(a, b, path),
         _ => (expected != actual).then(|| path.to_string()),
     }
 }

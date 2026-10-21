@@ -99,424 +99,486 @@ fn real2(v: &[Q]) -> M {
 fn vec2(v: &[Q]) -> M {
     qm(vec![vec![v[0].clone()], vec![v[1].clone()]])
 }
-pub fn evaluate(kind: &str, vs: &[String]) -> Vec<String> {
-    let x: Vec<Q> = vs.iter().map(|s| q(s)).collect();
-    let out: Vec<Q> = match kind {
-        "path" => {
-            let a = real2(&x);
-            let m = integer(&x[4], 0, 3) as usize;
-            let n = integer(&x[5], 0, 3) as usize;
-            let k = m + n;
-            let mut paths = vec![];
-            for i in 0..2 {
-                for j in 0..2 {
-                    let mut total = Q::zero();
-                    if k == 0 {
-                        total = if i == j { q("1") } else { q("0") };
-                    } else {
-                        for mask in 0..(1usize << (k - 1)) {
-                            let mut prev = j;
-                            let mut w = q("1");
-                            for at in 0..k {
-                                let next = if at + 1 == k { i } else { (mask >> at) & 1 };
-                                w *= &a[next][prev].0;
-                                prev = next;
-                            }
-                            total += w;
-                        }
-                    }
-                    paths.push(total);
-                }
-            }
-            let mut o = rflat(&power(&a, k));
-            o.extend(paths);
-            o.extend(rflat(&mm(&power(&a, m), &power(&a, n))));
-            o
+fn path_sum_between(a: &M, k: usize, i: usize, j: usize) -> Q {
+    if k == 0 {
+        return if i == j { q("1") } else { q("0") };
+    }
+    let mut total = Q::zero();
+    for mask in 0..(1usize << (k - 1)) {
+        let mut prev = j;
+        let mut w = q("1");
+        for at in 0..k {
+            let next = if at + 1 == k { i } else { (mask >> at) & 1 };
+            w *= &a[next][prev].0;
+            prev = next;
         }
-        "transfer" => {
-            let a = real2(&x);
-            let b = real2(&x[4..]);
-            let v = vec2(&x[8..]);
-            let f = qm(vec![x[10..12].to_vec()]);
-            [
-                mm(&a, &b),
-                mm(&mm(&a, &b), &v),
-                mm(&a, &mm(&b, &v)),
-                mm(&f, &a),
-                mm(&f, &mm(&a, &v)),
-                mm(&mm(&f, &a), &v),
-            ]
+        total += w;
+    }
+    total
+}
+
+fn eval_path(x: &[Q]) -> Vec<Q> {
+    let a = real2(x);
+    let m = integer(&x[4], 0, 3) as usize;
+    let n = integer(&x[5], 0, 3) as usize;
+    let k = m + n;
+    let mut paths = vec![];
+    for i in 0..2 {
+        for j in 0..2 {
+            paths.push(path_sum_between(&a, k, i, j));
+        }
+    }
+    let mut o = rflat(&power(&a, k));
+    o.extend(paths);
+    o.extend(rflat(&mm(&power(&a, m), &power(&a, n))));
+    o
+}
+
+fn eval_transfer(x: &[Q]) -> Vec<Q> {
+    let a = real2(x);
+    let b = real2(&x[4..]);
+    let v = vec2(&x[8..]);
+    let f = qm(vec![x[10..12].to_vec()]);
+    [
+        mm(&a, &b),
+        mm(&mm(&a, &b), &v),
+        mm(&a, &mm(&b, &v)),
+        mm(&f, &a),
+        mm(&f, &mm(&a, &v)),
+        mm(&mm(&f, &a), &v),
+    ]
+    .iter()
+    .flat_map(rflat)
+    .collect()
+}
+
+fn eval_overcount(x: &[Q]) -> Vec<Q> {
+    let (a, b, d) = (&x[0], &x[1], &x[2]);
+    let t = qm(vec![
+        vec![n(0), n(0), n(0)],
+        vec![a.clone(), n(0), n(0)],
+        vec![d.clone(), b.clone(), n(0)],
+    ]);
+    let z = ma(&ma(&eye(3), &t, 1), &mm(&t, &t), 1);
+    let zz = mm(&z, &z);
+    let mut o = rflat(&z);
+    o.extend(rflat(&zz));
+    o.extend([a * b, d.clone(), z[2][0].0.clone(), zz[2][0].0.clone()]);
+    o
+}
+
+fn eval_refinement(x: &[Q]) -> Vec<Q> {
+    let (n, m, k, u) = (&x[0], &x[1], &x[2], &x[3]);
+    vec![
+        u + m - k + n - m,
+        u + n - k,
+        k + n - k,
+        k - n,
+        (k - n).abs(),
+    ]
+}
+
+fn eval_histories(x: &[Q]) -> Vec<Q> {
+    let p = &x[0] * &x[2];
+    let q = &x[1] * &x[3];
+    vec![
+        p.clone(),
+        q.clone(),
+        &p + &q,
+        (&p + &q).pow(2),
+        p.pow(2) + q.pow(2),
+        n(2) * p * q,
+    ]
+}
+
+fn eval_held(x: &[Q]) -> Vec<Q> {
+    let (a, b) = (&x[0], &x[1]);
+    vec![
+        a * a,
+        b * b,
+        a * a,
+        b * b,
+        (a + b).pow(2),
+        (a - b).pow(2),
+        n(4) * a * b,
+    ]
+}
+
+fn eval_schrodinger(x: &[Q]) -> Vec<Q> {
+    let (h0, h1, u, v, a, b, c, d, dt, hbar) = (
+        &x[0], &x[1], &x[2], &x[3], &x[4], &x[5], &x[6], &x[7], &x[8], &x[9],
+    );
+    assert!(hbar > &n(0));
+    let h = vec![
+        vec![(h0.clone(), n(0)), (u.clone(), v.clone())],
+        vec![(u.clone(), -v), (h1.clone(), n(0))],
+    ];
+    let psi = vec![(a.clone(), b.clone()), (c.clone(), d.clone())];
+    let hp: Vec<E> = mm(&h, &psi.iter().map(|z| vec![z.clone()]).collect())
+        .into_iter()
+        .map(|r| r[0].clone())
+        .collect();
+    let der: Vec<E> = hp.iter().map(|z| (&z.1 / hbar, -&z.0 / hbar)).collect();
+    let rate = n(2)
+        * psi
             .iter()
-            .flat_map(rflat)
-            .collect()
-        }
-        "overcount" => {
-            let (a, b, d) = (&x[0], &x[1], &x[2]);
-            let t = qm(vec![
-                vec![n(0), n(0), n(0)],
-                vec![a.clone(), n(0), n(0)],
-                vec![d.clone(), b.clone(), n(0)],
-            ]);
-            let z = ma(&ma(&eye(3), &t, 1), &mm(&t, &t), 1);
-            let zz = mm(&z, &z);
-            let mut o = rflat(&z);
-            o.extend(rflat(&zz));
-            o.extend([a * b, d.clone(), z[2][0].0.clone(), zz[2][0].0.clone()]);
-            o
-        }
-        "refinement" => {
-            let (n, m, k, u) = (&x[0], &x[1], &x[2], &x[3]);
-            vec![
-                u + m - k + n - m,
-                u + n - k,
-                k + n - k,
-                k - n,
-                (k - n).abs(),
-            ]
-        }
-        "histories" => {
-            let p = &x[0] * &x[2];
-            let q = &x[1] * &x[3];
-            vec![
-                p.clone(),
-                q.clone(),
-                &p + &q,
-                (&p + &q).pow(2),
-                p.pow(2) + q.pow(2),
-                n(2) * p * q,
-            ]
-        }
-        "held" => {
-            let (a, b) = (&x[0], &x[1]);
-            vec![
-                a * a,
-                b * b,
-                a * a,
-                b * b,
-                (a + b).pow(2),
-                (a - b).pow(2),
-                n(4) * a * b,
-            ]
-        }
-        "schrodinger" => {
-            let (h0, h1, u, v, a, b, c, d, dt, hbar) = (
-                &x[0], &x[1], &x[2], &x[3], &x[4], &x[5], &x[6], &x[7], &x[8], &x[9],
-            );
-            assert!(hbar > &n(0));
-            let h = vec![
-                vec![(h0.clone(), n(0)), (u.clone(), v.clone())],
-                vec![(u.clone(), -v), (h1.clone(), n(0))],
-            ];
-            let psi = vec![(a.clone(), b.clone()), (c.clone(), d.clone())];
-            let hp: Vec<E> = mm(&h, &psi.iter().map(|z| vec![z.clone()]).collect())
-                .into_iter()
-                .map(|r| r[0].clone())
-                .collect();
-            let der: Vec<E> = hp.iter().map(|z| (&z.1 / hbar, -&z.0 / hbar)).collect();
-            let rate = n(2)
-                * psi
-                    .iter()
-                    .zip(&der)
-                    .map(|(a, b)| &a.0 * &b.0 + &a.1 * &b.1)
-                    .sum::<Q>();
-            let e: Vec<E> = psi
+            .zip(&der)
+            .map(|(a, b)| &a.0 * &b.0 + &a.1 * &b.1)
+            .sum::<Q>();
+    let e: Vec<E> = psi
+        .iter()
+        .zip(&der)
+        .map(|(a, b)| add(a, &(&b.0 * dt, &b.1 * dt)))
+        .collect();
+    let mut o: Vec<Q> = hp
+        .iter()
+        .chain(&der)
+        .flat_map(|z| [z.0.clone(), z.1.clone()])
+        .collect();
+    o.extend([rate, norm(&psi)]);
+    o.extend(e.iter().flat_map(|z| [z.0.clone(), z.1.clone()]));
+    o.extend([norm(&e), norm(&e) - norm(&psi), dt * dt * norm(&der)]);
+    o
+}
+
+fn eval_cayley(x: &[Q]) -> Vec<Q> {
+    let t = &x[0];
+    let u = cayley(t);
+    let e = qm(vec![vec![n(1), t.clone()], vec![-t, n(1)]]);
+    let a = qm(vec![vec![n(0), n(1)], vec![n(1), n(0)]]);
+    let z = qm(vec![vec![n(1), n(0)], vec![n(0), n(-1)]]);
+    let mut o: Vec<Q> = [
+        u.clone(),
+        mm(&adj(&u), &u),
+        e.clone(),
+        mm(&adj(&e), &e),
+        ma(&mm(&a, &z), &mm(&z, &a), 1),
+        mm(&a, &a),
+        mm(&z, &z),
+    ]
+    .iter()
+    .flat_map(rflat)
+    .collect();
+    o.push(n(1) + t * t);
+    o
+}
+
+fn eval_lambda(x: &[Q]) -> Vec<Q> {
+    let r = &x[0];
+    let z = (n(0), n(0));
+    let one = (r.clone(), n(0));
+    let l1 = vec![
+        vec![z.clone(), one.clone(), z.clone()],
+        vec![one.clone(), z.clone(), z.clone()],
+        vec![z.clone(); 3],
+    ];
+    let l2 = vec![
+        vec![z.clone(), (n(0), -r), z.clone()],
+        vec![(n(0), r.clone()), z.clone(), z.clone()],
+        vec![z.clone(); 3],
+    ];
+    let l3 = vec![
+        vec![one.clone(), z.clone(), z.clone()],
+        vec![z.clone(), (-r, n(0)), z.clone()],
+        vec![z.clone(); 3],
+    ];
+    let ls = vec![l1, l2, l3];
+    let comms: Vec<M> = (0..3)
+        .map(|i| {
+            ma(
+                &mm(&ls[i], &ls[(i + 1) % 3]),
+                &mm(&ls[(i + 1) % 3], &ls[i]),
+                -1,
+            )
+        })
+        .collect();
+    let rhs: Vec<M> = (0..3)
+        .map(|i| {
+            ls[(i + 2) % 3]
                 .iter()
-                .zip(&der)
-                .map(|(a, b)| add(a, &(&b.0 * dt, &b.1 * dt)))
-                .collect();
-            let mut o: Vec<Q> = hp
-                .iter()
-                .chain(&der)
-                .flat_map(|z| [z.0.clone(), z.1.clone()])
-                .collect();
-            o.extend([rate, norm(&psi)]);
-            o.extend(e.iter().flat_map(|z| [z.0.clone(), z.1.clone()]));
-            o.extend([norm(&e), norm(&e) - norm(&psi), dt * dt * norm(&der)]);
-            o
-        }
-        "cayley" => {
-            let t = &x[0];
-            let u = cayley(t);
-            let e = qm(vec![vec![n(1), t.clone()], vec![-t, n(1)]]);
-            let a = qm(vec![vec![n(0), n(1)], vec![n(1), n(0)]]);
-            let z = qm(vec![vec![n(1), n(0)], vec![n(0), n(-1)]]);
-            let mut o: Vec<Q> = [
-                u.clone(),
-                mm(&adj(&u), &u),
-                e.clone(),
-                mm(&adj(&e), &e),
-                ma(&mm(&a, &z), &mm(&z, &a), 1),
-                mm(&a, &a),
-                mm(&z, &z),
-            ]
-            .iter()
-            .flat_map(rflat)
-            .collect();
-            o.push(n(1) + t * t);
-            o
-        }
-        "lambda" => {
-            let r = &x[0];
-            let z = (n(0), n(0));
-            let one = (r.clone(), n(0));
-            let l1 = vec![
-                vec![z.clone(), one.clone(), z.clone()],
-                vec![one.clone(), z.clone(), z.clone()],
-                vec![z.clone(); 3],
-            ];
-            let l2 = vec![
-                vec![z.clone(), (n(0), -r), z.clone()],
-                vec![(n(0), r.clone()), z.clone(), z.clone()],
-                vec![z.clone(); 3],
-            ];
-            let l3 = vec![
-                vec![one.clone(), z.clone(), z.clone()],
-                vec![z.clone(), (-r, n(0)), z.clone()],
-                vec![z.clone(); 3],
-            ];
-            let ls = vec![l1, l2, l3];
-            let comms: Vec<M> = (0..3)
-                .map(|i| {
-                    ma(
-                        &mm(&ls[i], &ls[(i + 1) % 3]),
-                        &mm(&ls[(i + 1) % 3], &ls[i]),
-                        -1,
-                    )
-                })
-                .collect();
-            let rhs: Vec<M> = (0..3)
-                .map(|i| {
-                    ls[(i + 2) % 3]
-                        .iter()
-                        .map(|row| row.iter().map(|q| mul(&(n(0), n(2) * r), q, -1)).collect())
-                        .collect()
-                })
-                .collect();
-            let mut mats = ls.clone();
-            mats.extend(comms);
-            mats.extend(rhs);
-            for k in 0..2 {
-                let p = qm((0..3)
-                    .map(|i| {
-                        (0..3)
-                            .map(|j| n(if i == j && j == k { 1 } else { 0 }))
-                            .collect()
-                    })
-                    .collect());
-                mats.push(mm(&p, &p));
-            }
-            let mut o: Vec<Q> = mats.iter().flat_map(flat).collect();
-            o.extend(ls.iter().flat_map(|a| {
-                let t = tr(a);
-                [t.0, t.1]
-            }));
-            o
-        }
-        "heisenberg" => {
-            let u = cayley(&x[0]);
-            let a = qm(vec![
-                vec![x[1].clone(), x[2].clone()],
-                vec![x[2].clone(), x[3].clone()],
-            ]);
-            let psi = vec2(&x[4..]);
-            let ah = mm(&adj(&u), &mm(&a, &u));
-            let ps = mm(&u, &psi);
-            let f = mm(&adj(&ps), &mm(&a, &ps))[0][0].0.clone();
-            let g = mm(&adj(&psi), &mm(&ah, &psi))[0][0].0.clone();
-            let mut o: Vec<Q> = [ah, ps, mm(&adj(&u), &u)].iter().flat_map(rflat).collect();
-            o.extend([f, g]);
-            o
-        }
-        "decoherence" => {
-            let (a, b) = (&x[0], &x[1]);
-            vec![
-                a * a,
-                a * b,
-                a * b,
-                b * b,
-                a * a,
-                b * b,
-                n(0),
-                a * a + b * b,
-                (a + b).pow(2),
-                a + b,
-                a * a + b * b,
-            ]
-        }
-        "global" => {
-            let (a, b, c) = (&x[0], &x[1], &x[2]);
-            vec![a + c, a + n(2) * b + c, n(2) * b, a - n(2) * b + c]
-        }
-        "ccr" => {
-            let s = integer(&x[0], 1, 3) as usize;
-            let a = qm((0..s)
-                .map(|i| x[1 + i * s..1 + (i + 1) * s].to_vec())
-                .collect());
-            let at = 1 + s * s;
-            let b = qm((0..s)
-                .map(|i| x[at + i * s..at + (i + 1) * s].to_vec())
-                .collect());
-            let com = ma(&mm(&a, &b), &mm(&b, &a), -1);
-            let mut o = rflat(&com);
-            o.extend([tr(&com).0, n(s as i64) * x.last().unwrap(), n(s as i64)]);
-            o
-        }
-        "dichotomy" => {
-            let k = integer(&x[0], 1, 8);
-            let (mut a, mut b) = (BigInt::from(1), BigInt::from(0));
-            let mut ip = (n(1), n(0));
-            for _ in 0..k {
-                (a, b) = (3 * &a - 4 * &b, 4 * &a + 3 * &b);
-                ip = mul(&ip, &(n(0), n(1)), -1);
-            }
-            let den = BigInt::from(5).pow(k as u32);
-            vec![
-                Q::from_integer(a.clone()),
-                Q::from_integer(b.clone()),
-                Q::from_integer(den.clone()),
-                Q::new(a.clone(), den.clone()),
-                Q::new(b.clone(), den.clone()),
-                Q::from_integer(a.mod_floor(&5.into())),
-                Q::from_integer(b.mod_floor(&5.into())),
-                ip.0.clone(),
-                ip.1.clone(),
-                Q::new(&a * &a + &b * &b, &den * &den),
-                n(if ip == (n(1), n(0)) { 1 } else { 0 }),
-            ]
-        }
-        "stone" => return crate::structure_exact::evaluate("time", vs),
-        "everett" => {
-            assert!(
-                !x.is_empty()
-                    && x.iter().all(|q| q >= &n(0))
-                    && x.iter().cloned().sum::<Q>() == n(1)
-            );
-            let mut den = BigInt::from(1);
-            for q in &x {
-                den = den.lcm(q.denom());
-            }
-            let counts: Vec<Q> = x.iter().map(|q| q * Q::from_integer(den.clone())).collect();
-            let wp = (q("1/2"), q("1/10"));
-            let wm = (q("1/2"), q("-1/10"));
-            let poly = |w: &E| {
-                let sq = mul(w, w, 5);
-                (n(5) * sq.0 - n(5) * &w.0 + n(1), n(5) * sq.1 - n(5) * &w.1)
-            };
-            let mut o = vec![Q::from_integer(den)];
-            o.extend(counts.clone());
-            o.push(counts.into_iter().sum());
-            let p = poly(&wp);
-            let m = poly(&wm);
-            let sum = add(&wp, &wm);
-            o.extend([p.0, p.1, m.0, m.1, sum.0, sum.1, wp.0, wp.1]);
-            o
-        }
-        "embedding" => {
-            let p = (x[0].clone(), x[1].clone());
-            let qv = (x[2].clone(), x[3].clone());
-            let conductor = integer(&x[4], 3, 120);
-            let gram = vec![mul(&p, &p, 5), mul(&p, &qv, 5), mul(&qv, &qv, 5)];
-            let conjugate: Vec<E> = gram.iter().map(|z| (z.0.clone(), -&z.1)).collect();
-            let ab = mul(&gram[0], &gram[2], 5);
-            let bc = mul(&gram[1], &gram[1], 5);
-            let mut pairs = gram;
-            pairs.extend(conjugate);
-            pairs.extend([
-                (ab.0 - bc.0, ab.1 - bc.1),
-                (n(-2), n(1)),
-                (n(3), n(-1)),
-                (n(-2), n(-1)),
-                (n(3), n(1)),
-            ]);
-            let phi = (1..=conductor).filter(|i| i.gcd(&conductor) == 1).count() as i64;
-            let mut o: Vec<Q> = pairs.into_iter().flat_map(|z| [z.0, z.1]).collect();
-            o.extend([
-                n(phi),
-                n(phi) / n(2),
-                n(2),
-                n(3),
-                n(4),
-                n(5),
-                n(9),
-                q("9/4").pow(2) - n(5),
-            ]);
-            o
-        }
-        "stone_gap" => {
-            let t = integer(&x[0], 0, 16);
-            let k = integer(&x[1], -16, 16);
-            vec![
-                n((t * k).rem_euclid(4)),
-                n((t * (k + 4)).rem_euclid(4)),
-                n((t * k).rem_euclid(8)),
-                n((t * (k + 4)).rem_euclid(8)),
-                n((4 * t).rem_euclid(4)),
-            ]
-        }
-        "cptp" => {
-            let t = &x[0];
-            assert!(t >= &n(0));
-            let rho: Vec<Vec<Q>> = (0..4)
-                .map(|i| {
-                    (0..4)
-                        .map(|j| {
-                            if (i == 0 || i == 3) && (j == 0 || j == 3) {
-                                t / n(2)
-                            } else {
-                                n(0)
-                            }
-                        })
-                        .collect()
-                })
-                .collect();
-            let pt: Vec<Vec<Q>> = (0..4)
-                .map(|i| {
-                    (0..4)
-                        .map(|j| rho[2 * (i / 2) + j % 2][2 * (j / 2) + i % 2].clone())
-                        .collect()
-                })
-                .collect();
-            let v = [0, 1, -1, 0];
-            let quad: Q = (0..4)
-                .flat_map(|i| {
-                    (0..4).map({
-                        let pt = &pt;
-                        move |j| n(v[i]) * &pt[i][j] * n(v[j])
-                    })
-                })
-                .sum();
-            let mut o: Vec<Q> = rho.iter().chain(&pt).flatten().cloned().collect();
-            o.extend([
-                quad,
-                n(2),
-                (0..4).map(|i| rho[i][i].clone()).sum(),
-                (0..4).map(|i| pt[i][i].clone()).sum(),
-                n(1),
-                n(0),
-                n(0),
-                n(1),
-            ]);
-            o
-        }
-        "condition" => {
-            let s = integer(&x[0], 1, 4) as usize;
-            assert!(x.len() == 1 + 2 * s);
-            let w = &x[1..1 + s];
-            let mask = &x[1 + s..];
-            assert!(w.iter().all(|q| q >= &n(0)) && mask.iter().all(|q| q == &n(0) || q == &n(1)));
-            let mass: Q = w.iter().zip(mask).map(|(q, s)| q * s).sum();
-            assert!(mass > n(0));
-            let p: Vec<Q> = w.iter().zip(mask).map(|(q, s)| q * s / &mass).collect();
-            let mass2: Q = p.iter().zip(mask).map(|(q, s)| q * s).sum();
-            let again: Vec<Q> = p.iter().zip(mask).map(|(q, s)| q * s / &mass2).collect();
-            let mut o = vec![mass];
-            o.extend(p.clone());
-            o.extend(again);
-            o.push(p.into_iter().sum());
-            o
-        }
-        _ => panic!("unknown scoped operation"),
+                .map(|row| row.iter().map(|q| mul(&(n(0), n(2) * r), q, -1)).collect())
+                .collect()
+        })
+        .collect();
+    let mut mats = ls.clone();
+    mats.extend(comms);
+    mats.extend(rhs);
+    for k in 0..2 {
+        let p = qm((0..3)
+            .map(|i| {
+                (0..3)
+                    .map(|j| n(if i == j && j == k { 1 } else { 0 }))
+                    .collect()
+            })
+            .collect());
+        mats.push(mm(&p, &p));
+    }
+    let mut o: Vec<Q> = mats.iter().flat_map(flat).collect();
+    o.extend(ls.iter().flat_map(|a| {
+        let t = tr(a);
+        [t.0, t.1]
+    }));
+    o
+}
+
+fn eval_heisenberg(x: &[Q]) -> Vec<Q> {
+    let u = cayley(&x[0]);
+    let a = qm(vec![
+        vec![x[1].clone(), x[2].clone()],
+        vec![x[2].clone(), x[3].clone()],
+    ]);
+    let psi = vec2(&x[4..]);
+    let ah = mm(&adj(&u), &mm(&a, &u));
+    let ps = mm(&u, &psi);
+    let f = mm(&adj(&ps), &mm(&a, &ps))[0][0].0.clone();
+    let g = mm(&adj(&psi), &mm(&ah, &psi))[0][0].0.clone();
+    let mut o: Vec<Q> = [ah, ps, mm(&adj(&u), &u)].iter().flat_map(rflat).collect();
+    o.extend([f, g]);
+    o
+}
+
+fn eval_decoherence(x: &[Q]) -> Vec<Q> {
+    let (a, b) = (&x[0], &x[1]);
+    vec![
+        a * a,
+        a * b,
+        a * b,
+        b * b,
+        a * a,
+        b * b,
+        n(0),
+        a * a + b * b,
+        (a + b).pow(2),
+        a + b,
+        a * a + b * b,
+    ]
+}
+
+fn eval_global(x: &[Q]) -> Vec<Q> {
+    let (a, b, c) = (&x[0], &x[1], &x[2]);
+    vec![a + c, a + n(2) * b + c, n(2) * b, a - n(2) * b + c]
+}
+
+fn eval_ccr(x: &[Q]) -> Vec<Q> {
+    let s = integer(&x[0], 1, 3) as usize;
+    let a = qm((0..s)
+        .map(|i| x[1 + i * s..1 + (i + 1) * s].to_vec())
+        .collect());
+    let at = 1 + s * s;
+    let b = qm((0..s)
+        .map(|i| x[at + i * s..at + (i + 1) * s].to_vec())
+        .collect());
+    let com = ma(&mm(&a, &b), &mm(&b, &a), -1);
+    let mut o = rflat(&com);
+    o.extend([tr(&com).0, n(s as i64) * x.last().unwrap(), n(s as i64)]);
+    o
+}
+
+fn eval_dichotomy(x: &[Q]) -> Vec<Q> {
+    let k = integer(&x[0], 1, 8);
+    let (mut a, mut b) = (BigInt::from(1), BigInt::from(0));
+    let mut ip = (n(1), n(0));
+    for _ in 0..k {
+        (a, b) = (3 * &a - 4 * &b, 4 * &a + 3 * &b);
+        ip = mul(&ip, &(n(0), n(1)), -1);
+    }
+    let den = BigInt::from(5).pow(k as u32);
+    vec![
+        Q::from_integer(a.clone()),
+        Q::from_integer(b.clone()),
+        Q::from_integer(den.clone()),
+        Q::new(a.clone(), den.clone()),
+        Q::new(b.clone(), den.clone()),
+        Q::from_integer(a.mod_floor(&5.into())),
+        Q::from_integer(b.mod_floor(&5.into())),
+        ip.0.clone(),
+        ip.1.clone(),
+        Q::new(&a * &a + &b * &b, &den * &den),
+        n(if ip == (n(1), n(0)) { 1 } else { 0 }),
+    ]
+}
+
+fn eval_everett(x: &[Q]) -> Vec<Q> {
+    assert!(
+        !x.is_empty()
+            && x.iter().all(|q| q >= &n(0))
+            && x.iter().cloned().sum::<Q>() == n(1)
+    );
+    let mut den = BigInt::from(1);
+    for q in x {
+        den = den.lcm(q.denom());
+    }
+    let counts: Vec<Q> = x.iter().map(|q| q * Q::from_integer(den.clone())).collect();
+    let wp = (q("1/2"), q("1/10"));
+    let wm = (q("1/2"), q("-1/10"));
+    let poly = |w: &E| {
+        let sq = mul(w, w, 5);
+        (n(5) * sq.0 - n(5) * &w.0 + n(1), n(5) * sq.1 - n(5) * &w.1)
     };
+    let mut o = vec![Q::from_integer(den)];
+    o.extend(counts.clone());
+    o.push(counts.into_iter().sum());
+    let p = poly(&wp);
+    let m = poly(&wm);
+    let sum = add(&wp, &wm);
+    o.extend([p.0, p.1, m.0, m.1, sum.0, sum.1, wp.0, wp.1]);
+    o
+}
+
+fn eval_embedding(x: &[Q]) -> Vec<Q> {
+    let p = (x[0].clone(), x[1].clone());
+    let qv = (x[2].clone(), x[3].clone());
+    let conductor = integer(&x[4], 3, 120);
+    let gram = vec![mul(&p, &p, 5), mul(&p, &qv, 5), mul(&qv, &qv, 5)];
+    let conjugate: Vec<E> = gram.iter().map(|z| (z.0.clone(), -&z.1)).collect();
+    let ab = mul(&gram[0], &gram[2], 5);
+    let bc = mul(&gram[1], &gram[1], 5);
+    let mut pairs = gram;
+    pairs.extend(conjugate);
+    pairs.extend([
+        (ab.0 - bc.0, ab.1 - bc.1),
+        (n(-2), n(1)),
+        (n(3), n(-1)),
+        (n(-2), n(-1)),
+        (n(3), n(1)),
+    ]);
+    let phi = (1..=conductor).filter(|i| i.gcd(&conductor) == 1).count() as i64;
+    let mut o: Vec<Q> = pairs.into_iter().flat_map(|z| [z.0, z.1]).collect();
+    o.extend([
+        n(phi),
+        n(phi) / n(2),
+        n(2),
+        n(3),
+        n(4),
+        n(5),
+        n(9),
+        q("9/4").pow(2) - n(5),
+    ]);
+    o
+}
+
+fn eval_stone_gap(x: &[Q]) -> Vec<Q> {
+    let t = integer(&x[0], 0, 16);
+    let k = integer(&x[1], -16, 16);
+    vec![
+        n((t * k).rem_euclid(4)),
+        n((t * (k + 4)).rem_euclid(4)),
+        n((t * k).rem_euclid(8)),
+        n((t * (k + 4)).rem_euclid(8)),
+        n((4 * t).rem_euclid(4)),
+    ]
+}
+
+fn eval_cptp(x: &[Q]) -> Vec<Q> {
+    let t = &x[0];
+    assert!(t >= &n(0));
+    let rho: Vec<Vec<Q>> = (0..4)
+        .map(|i| {
+            (0..4)
+                .map(|j| {
+                    if (i == 0 || i == 3) && (j == 0 || j == 3) {
+                        t / n(2)
+                    } else {
+                        n(0)
+                    }
+                })
+                .collect()
+        })
+        .collect();
+    let pt: Vec<Vec<Q>> = (0..4)
+        .map(|i| {
+            (0..4)
+                .map(|j| rho[2 * (i / 2) + j % 2][2 * (j / 2) + i % 2].clone())
+                .collect()
+        })
+        .collect();
+    let v = [0, 1, -1, 0];
+    let quad: Q = (0..4)
+        .flat_map(|i| {
+            (0..4).map({
+                let pt = &pt;
+                move |j| n(v[i]) * &pt[i][j] * n(v[j])
+            })
+        })
+        .sum();
+    let mut o: Vec<Q> = rho.iter().chain(&pt).flatten().cloned().collect();
+    o.extend([
+        quad,
+        n(2),
+        (0..4).map(|i| rho[i][i].clone()).sum(),
+        (0..4).map(|i| pt[i][i].clone()).sum(),
+        n(1),
+        n(0),
+        n(0),
+        n(1),
+    ]);
+    o
+}
+
+fn eval_condition(x: &[Q]) -> Vec<Q> {
+    let s = integer(&x[0], 1, 4) as usize;
+    assert!(x.len() == 1 + 2 * s);
+    let w = &x[1..1 + s];
+    let mask = &x[1 + s..];
+    assert!(w.iter().all(|q| q >= &n(0)) && mask.iter().all(|q| q == &n(0) || q == &n(1)));
+    let mass: Q = w.iter().zip(mask).map(|(q, s)| q * s).sum();
+    assert!(mass > n(0));
+    let p: Vec<Q> = w.iter().zip(mask).map(|(q, s)| q * s / &mass).collect();
+    let mass2: Q = p.iter().zip(mask).map(|(q, s)| q * s).sum();
+    let again: Vec<Q> = p.iter().zip(mask).map(|(q, s)| q * s / &mass2).collect();
+    let mut o = vec![mass];
+    o.extend(p.clone());
+    o.extend(again);
+    o.push(p.into_iter().sum());
+    o
+}
+
+fn eval_trajectories(kind: &str, x: &[Q]) -> Option<Vec<Q>> {
+    match kind {
+        "path" => Some(eval_path(x)),
+        "transfer" => Some(eval_transfer(x)),
+        "overcount" => Some(eval_overcount(x)),
+        "refinement" => Some(eval_refinement(x)),
+        "histories" => Some(eval_histories(x)),
+        "held" => Some(eval_held(x)),
+        "schrodinger" => Some(eval_schrodinger(x)),
+        _ => None,
+    }
+}
+
+fn eval_algebraic_dynamics(kind: &str, x: &[Q]) -> Option<Vec<Q>> {
+    match kind {
+        "cayley" => Some(eval_cayley(x)),
+        "lambda" => Some(eval_lambda(x)),
+        "heisenberg" => Some(eval_heisenberg(x)),
+        "decoherence" => Some(eval_decoherence(x)),
+        "global" => Some(eval_global(x)),
+        "ccr" => Some(eval_ccr(x)),
+        "dichotomy" => Some(eval_dichotomy(x)),
+        _ => None,
+    }
+}
+
+fn eval_open_dynamics(kind: &str, x: &[Q]) -> Option<Vec<Q>> {
+    match kind {
+        "everett" => Some(eval_everett(x)),
+        "embedding" => Some(eval_embedding(x)),
+        "stone_gap" => Some(eval_stone_gap(x)),
+        "cptp" => Some(eval_cptp(x)),
+        "condition" => Some(eval_condition(x)),
+        _ => None,
+    }
+}
+
+pub fn evaluate(kind: &str, vs: &[String]) -> Vec<String> {
+    if kind == "stone" {
+        return crate::structure_exact::evaluate("time", vs);
+    }
+    let x: Vec<Q> = vs.iter().map(|s| q(s)).collect();
+    let out: Vec<Q> = eval_trajectories(kind, &x)
+        .or_else(|| eval_algebraic_dynamics(kind, &x))
+        .or_else(|| eval_open_dynamics(kind, &x))
+        .unwrap_or_else(|| panic!("unknown scoped operation"));
     out.iter().map(ToString::to_string).collect()
 }
 #[cfg(test)]

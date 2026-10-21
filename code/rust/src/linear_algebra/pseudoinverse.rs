@@ -12,21 +12,26 @@ pub fn pseudoinverse<F: HermitianOrdered>(
     pseudoinverse_with_limits(c, OperationLimits::UNLIMITED)
 }
 
-pub fn pseudoinverse_with_limits<F: HermitianOrdered>(
+fn charge_pseudoinverse_budget<F: HermitianOrdered>(
     c: &BasicMatrix<F>,
     limits: OperationLimits,
-) -> Result<BasicMatrix<F>, ExactFieldError> {
+) -> Result<(), ExactFieldError> {
     let span = plus(c.rows(), c.cols())?;
-    charge(
-        limits,
-        element_count(span, span)?,
-        times(100, times(times(span, span)?, span)?)?,
-    )?;
+    let span_sq = times(span, span)?;
+    let ops = times(100, times(span_sq, span)?)?;
+    charge(limits, element_count(span, span)?, ops)?;
+    Ok(())
+}
+
+fn factor_full_rank<F: HermitianOrdered>(
+    c: &BasicMatrix<F>,
+    limits: OperationLimits,
+) -> Result<Option<(BasicMatrix<F>, BasicMatrix<F>)>, ExactFieldError> {
     let reduction = rref_with_limits(c, limits)?;
     let pivots = reduction.pivot_columns();
     let rank = pivots.len();
     if rank == 0 {
-        return zeros_with_limits(c.cols(), c.rows(), limits);
+        return Ok(None);
     }
     let a = from_fn_with_limits(c.rows(), rank, limits, |r, k| {
         c.as_slice()[r * c.cols() + pivots[k]].clone()
@@ -39,24 +44,43 @@ pub fn pseudoinverse_with_limits<F: HermitianOrdered>(
             operation: "full-rank factorization",
         });
     }
-    let a_star = adjoint(&a)?;
-    let b_star = adjoint(&b)?;
-    let a_gram = multiply_with_limits(&a_star, &a, limits)?;
-    let b_gram = multiply_with_limits(&b, &b_star, limits)?;
-    let a_inverse = inverse_with_limits(&a_gram, limits)?;
-    let b_inverse = inverse_with_limits(&b_gram, limits)?;
-    let left = multiply_with_limits(&b_star, &b_inverse, limits)?;
-    let right = multiply_with_limits(&a_inverse, &a_star, limits)?;
-    let inverse = multiply_with_limits(&left, &right, limits)?;
+    Ok(Some((a, b)))
+}
+
+fn compose_pseudoinverse<F: HermitianOrdered>(
+    a: &BasicMatrix<F>,
+    b: &BasicMatrix<F>,
+    limits: OperationLimits,
+) -> Result<BasicMatrix<F>, ExactFieldError> {
+    let a_star = adjoint(a)?;
+    let b_star = adjoint(b)?;
+    let a_gram = multiply_with_limits(&a_star, a, limits)?;
+    let b_gram = multiply_with_limits(b, &b_star, limits)?;
+    let a_inv = inverse_with_limits(&a_gram, limits)?;
+    let b_inv = inverse_with_limits(&b_gram, limits)?;
+    let left = multiply_with_limits(&b_star, &b_inv, limits)?;
+    let right = multiply_with_limits(&a_inv, &a_star, limits)?;
+    multiply_with_limits(&left, &right, limits)
+}
+
+pub fn pseudoinverse_with_limits<F: HermitianOrdered>(
+    c: &BasicMatrix<F>,
+    limits: OperationLimits,
+) -> Result<BasicMatrix<F>, ExactFieldError> {
+    charge_pseudoinverse_budget(c, limits)?;
+    let Some((a, b)) = factor_full_rank(c, limits)? else {
+        return zeros_with_limits(c.cols(), c.rows(), limits);
+    };
+    let inverse = compose_pseudoinverse(&a, &b, limits)?;
     verify_penrose(c, &inverse, limits)?;
     Ok(inverse)
 }
 
-pub fn check_penrose_identities<F: HermitianOrdered>(
+fn charge_penrose_budget<F: HermitianOrdered>(
     c: &BasicMatrix<F>,
     inverse: &BasicMatrix<F>,
     limits: OperationLimits,
-) -> Result<[bool; 4], ExactFieldError> {
+) -> Result<(), ExactFieldError> {
     if inverse.shape() != (c.cols(), c.rows()) {
         return Err(ExactFieldError::CertificateRejected {
             reason: "pseudoinverse has wrong shape",
@@ -65,9 +89,19 @@ pub fn check_penrose_identities<F: HermitianOrdered>(
     let m = c.rows();
     let n = c.cols();
     let total_elements = element_count(m, n)?;
-    let total_ops = times(2, times(times(m, n)?, plus(m, n)?)?)?;
+    let mn = times(m, n)?;
+    let m_plus_n = plus(m, n)?;
+    let total_ops = times(2, times(mn, m_plus_n)?)?;
     charge(limits, total_elements, total_ops)?;
+    Ok(())
+}
 
+pub fn check_penrose_identities<F: HermitianOrdered>(
+    c: &BasicMatrix<F>,
+    inverse: &BasicMatrix<F>,
+    limits: OperationLimits,
+) -> Result<[bool; 4], ExactFieldError> {
+    charge_penrose_budget(c, inverse, limits)?;
     let cp = multiply_with_limits(c, inverse, limits)?;
     let pc = multiply_with_limits(inverse, c, limits)?;
     let eq1 = multiply_with_limits(&cp, c, limits)? == *c;

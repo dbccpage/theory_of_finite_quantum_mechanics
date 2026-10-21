@@ -205,6 +205,80 @@ pub trait ExactRowReduction<T: CheckedExactField = Rational64> {
     fn kernel_basis(&self) -> Result<RawSubspaceBasis<T>, ExactLinearAlgebraError>;
 }
 
+fn find_pivot_row<T: CheckedExactField>(
+    m: &BasicMatrix<T>,
+    pivot_row: usize,
+    col: usize,
+) -> Result<Option<usize>, ExactLinearAlgebraError> {
+    for row in pivot_row..m.rows() {
+        if !m.get(row, col)?.try_is_zero()? {
+            return Ok(Some(row));
+        }
+    }
+    Ok(None)
+}
+
+fn swap_matrix_rows<T: CheckedExactField>(
+    m: &mut BasicMatrix<T>,
+    r1: usize,
+    r2: usize,
+) -> Result<(), ExactLinearAlgebraError> {
+    if r1 != r2 {
+        for c in 0..m.cols() {
+            let tmp = m.get(r1, c)?;
+            let other = m.get(r2, c)?;
+            m.set(r1, c, other)?;
+            m.set(r2, c, tmp)?;
+        }
+    }
+    Ok(())
+}
+
+fn scale_pivot_row<T: CheckedExactField>(
+    m: &mut BasicMatrix<T>,
+    pivot_row: usize,
+    col: usize,
+) -> Result<(), ExactLinearAlgebraError> {
+    let pivot_val = m.get(pivot_row, col)?;
+    debug_assert!(!pivot_val.try_is_zero()?);
+    for c in 0..m.cols() {
+        let v = div_exact(&m.get(pivot_row, c)?, &pivot_val, pivot_row, c)?;
+        m.set(pivot_row, c, v)?;
+    }
+    Ok(())
+}
+
+fn eliminate_single_row<T: CheckedExactField>(
+    m: &mut BasicMatrix<T>,
+    row: usize,
+    pivot_row: usize,
+    col: usize,
+) -> Result<(), ExactLinearAlgebraError> {
+    let factor = m.get(row, col)?;
+    if factor.try_is_zero()? {
+        return Ok(());
+    }
+    for c in 0..m.cols() {
+        let scaled = mul_exact(&factor, &m.get(pivot_row, c)?, row, c)?;
+        let v = sub_exact(&m.get(row, c)?, &scaled, row, c)?;
+        m.set(row, c, v)?;
+    }
+    Ok(())
+}
+
+fn eliminate_matrix_rows<T: CheckedExactField>(
+    m: &mut BasicMatrix<T>,
+    pivot_row: usize,
+    col: usize,
+) -> Result<(), ExactLinearAlgebraError> {
+    for row in 0..m.rows() {
+        if row != pivot_row {
+            eliminate_single_row(m, row, pivot_row, col)?;
+        }
+    }
+    Ok(())
+}
+
 impl<T: CheckedExactField> ExactRowReduction<T> for BasicMatrix<T> {
     fn rank_and_rref(&self) -> Result<RankRref<T>, ExactLinearAlgebraError> {
         let mut m = self.clone();
@@ -212,52 +286,13 @@ impl<T: CheckedExactField> ExactRowReduction<T> for BasicMatrix<T> {
         let mut pivot_columns = Vec::new();
 
         for col in 0..m.cols() {
-            let mut found = None;
-
-            for row in pivot_row..m.rows() {
-                if !m.get(row, col)?.try_is_zero()? {
-                    found = Some(row);
-                    break;
-                }
-            }
-
-            let Some(swap_row) = found else {
+            let Some(swap_row) = find_pivot_row(&m, pivot_row, col)? else {
                 continue;
             };
 
-            if swap_row != pivot_row {
-                for c in 0..m.cols() {
-                    let tmp = m.get(pivot_row, c)?;
-                    let other = m.get(swap_row, c)?;
-                    m.set(pivot_row, c, other)?;
-                    m.set(swap_row, c, tmp)?;
-                }
-            }
-
-            let pivot_val = m.get(pivot_row, col)?;
-            debug_assert!(!pivot_val.try_is_zero()?);
-
-            for c in 0..m.cols() {
-                let v = div_exact(&m.get(pivot_row, c)?, &pivot_val, pivot_row, c)?;
-                m.set(pivot_row, c, v)?;
-            }
-
-            for row in 0..m.rows() {
-                if row == pivot_row {
-                    continue;
-                }
-
-                let factor = m.get(row, col)?;
-                if factor.try_is_zero()? {
-                    continue;
-                }
-
-                for c in 0..m.cols() {
-                    let scaled = mul_exact(&factor, &m.get(pivot_row, c)?, row, c)?;
-                    let v = sub_exact(&m.get(row, c)?, &scaled, row, c)?;
-                    m.set(row, c, v)?;
-                }
-            }
+            swap_matrix_rows(&mut m, pivot_row, swap_row)?;
+            scale_pivot_row(&mut m, pivot_row, col)?;
+            eliminate_matrix_rows(&mut m, pivot_row, col)?;
 
             pivot_columns.push(col);
             pivot_row += 1;
@@ -358,6 +393,36 @@ fn matvec<T: CheckedExactField>(
     Ok(out)
 }
 
+fn build_augmented_matrix<T: CheckedExactField>(
+    d0: &BasicMatrix<T>,
+    target: &[T],
+    rows: usize,
+    cols: usize,
+) -> Result<BasicMatrix<T>, ExactLinearAlgebraError> {
+    let mut aug_data = Vec::with_capacity(rows * (cols + 1));
+    for (row, t) in target.iter().enumerate().take(rows) {
+        for col in 0..cols {
+            aug_data.push(d0.get(row, col)?);
+        }
+        aug_data.push(t.clone());
+    }
+    Ok(BasicMatrix::from_row_major(rows, cols + 1, aug_data)?)
+}
+
+fn extract_potential<T: CheckedExactField>(
+    aug_red: &RankRref<T>,
+    cols: usize,
+) -> Result<Vec<T>, ExactLinearAlgebraError> {
+    let rref = aug_red.rref();
+    let mut potential = vec![T::zero(); cols];
+    for (pivot_row, &pcol) in aug_red.pivot_columns().iter().enumerate() {
+        if pcol < cols {
+            potential[pcol] = rref.get(pivot_row, cols)?;
+        }
+    }
+    Ok(potential)
+}
+
 pub fn solve_in_image<T: CheckedExactField>(
     d0: &BasicMatrix<T>,
     target: &[T],
@@ -372,15 +437,7 @@ pub fn solve_in_image<T: CheckedExactField>(
     }
 
     let rank_a = d0.rank()?;
-
-    let mut aug_data = Vec::with_capacity(rows * (cols + 1));
-    for (row, t) in target.iter().enumerate().take(rows) {
-        for col in 0..cols {
-            aug_data.push(d0.get(row, col)?);
-        }
-        aug_data.push(t.clone());
-    }
-    let aug = BasicMatrix::from_row_major(rows, cols + 1, aug_data)?;
+    let aug = build_augmented_matrix(d0, target, rows, cols)?;
     let aug_red = aug.rank_and_rref()?;
     let rank_augmented = aug_red.rank();
 
@@ -391,14 +448,7 @@ pub fn solve_in_image<T: CheckedExactField>(
         });
     }
 
-    let rref = aug_red.rref();
-    let mut potential = vec![T::zero(); cols];
-    for (pivot_row, &pcol) in aug_red.pivot_columns().iter().enumerate() {
-        if pcol < cols {
-            potential[pcol] = rref.get(pivot_row, cols)?;
-        }
-    }
-
+    let potential = extract_potential(&aug_red, cols)?;
     let image = matvec(d0, &potential)?;
     if image.as_slice() != target {
         return Err(ExactLinearAlgebraError::MembershipReplayInconsistent {

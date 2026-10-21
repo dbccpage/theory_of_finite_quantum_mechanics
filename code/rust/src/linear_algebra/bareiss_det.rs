@@ -177,11 +177,11 @@ pub fn dot(
     Ok(out)
 }
 
-pub fn multiply(
+fn validate_multiply_shapes_and_budget(
     a: &BasicMatrix<BigRational>,
     b: &BasicMatrix<BigRational>,
     fuel: &mut RationalBudget,
-) -> Result<BasicMatrix<BigRational>, RationalError> {
+) -> Result<usize, RationalError> {
     if a.cols() != b.rows() {
         return Err(RationalError::Shape);
     }
@@ -194,12 +194,15 @@ pub fn multiply(
     for q in a.as_slice().iter().chain(b.as_slice()) {
         fuel.rational(q)?;
     }
-    let fill = if a.cols() == 0 && count > 0 {
-        fuel.result(BigRational::zero())?
-    } else {
-        BigRational::zero()
-    };
-    let mut out = buffer(count, fill)?;
+    Ok(count)
+}
+
+fn multiply_accumulate(
+    a: &BasicMatrix<BigRational>,
+    b: &BasicMatrix<BigRational>,
+    out: &mut [BigRational],
+    fuel: &mut RationalBudget,
+) -> Result<(), RationalError> {
     for r in 0..a.rows() {
         for c in 0..b.cols() {
             for k in 0..a.cols() {
@@ -209,6 +212,22 @@ pub fn multiply(
             }
         }
     }
+    Ok(())
+}
+
+pub fn multiply(
+    a: &BasicMatrix<BigRational>,
+    b: &BasicMatrix<BigRational>,
+    fuel: &mut RationalBudget,
+) -> Result<BasicMatrix<BigRational>, RationalError> {
+    let count = validate_multiply_shapes_and_budget(a, b, fuel)?;
+    let fill = if a.cols() == 0 && count > 0 {
+        fuel.result(BigRational::zero())?
+    } else {
+        BigRational::zero()
+    };
+    let mut out = buffer(count, fill)?;
+    multiply_accumulate(a, b, &mut out, fuel)?;
     Ok(BasicMatrix::from_row_major(a.rows(), b.cols(), out)?)
 }
 
@@ -231,15 +250,13 @@ pub fn multiply_complex_parts(
     ))
 }
 
-pub fn adjoint_complex_parts(
+fn transpose_conjugate_cells(
     re: &BasicMatrix<BigRational>,
     im: &BasicMatrix<BigRational>,
+    out_re: &mut [BigRational],
+    out_im: &mut [BigRational],
     fuel: &mut RationalBudget,
-) -> Result<(BasicMatrix<BigRational>, BasicMatrix<BigRational>), RationalError> {
-    same_shape(re, im)?;
-    let count = fuel.elements(re.rows(), re.cols())?;
-    let mut out_re = buffer(count, BigRational::zero())?;
-    let mut out_im = buffer(count, BigRational::zero())?;
+) -> Result<(), RationalError> {
     for row in 0..re.rows() {
         for col in 0..re.cols() {
             let index = col * re.rows() + row;
@@ -249,6 +266,19 @@ pub fn adjoint_complex_parts(
             out_im[index] = fuel.sub(&BigRational::zero(), im.get_ref(row, col)?)?;
         }
     }
+    Ok(())
+}
+
+pub fn adjoint_complex_parts(
+    re: &BasicMatrix<BigRational>,
+    im: &BasicMatrix<BigRational>,
+    fuel: &mut RationalBudget,
+) -> Result<(BasicMatrix<BigRational>, BasicMatrix<BigRational>), RationalError> {
+    same_shape(re, im)?;
+    let count = fuel.elements(re.rows(), re.cols())?;
+    let mut out_re = buffer(count, BigRational::zero())?;
+    let mut out_im = buffer(count, BigRational::zero())?;
+    transpose_conjugate_cells(re, im, &mut out_re, &mut out_im, fuel)?;
     Ok((
         BasicMatrix::from_row_major(re.cols(), re.rows(), out_re)?,
         BasicMatrix::from_row_major(re.cols(), re.rows(), out_im)?,
@@ -328,16 +358,13 @@ pub fn multiply_vector(
     Ok(out)
 }
 
-pub fn multiply_vector_into(
+fn validate_vector_shapes_and_budget(
     a: &BasicMatrix<BigRational>,
     x: &[BigRational],
-    out: &mut [BigRational],
+    out: &[BigRational],
     fuel: &mut RationalBudget,
 ) -> Result<(), RationalError> {
-    if a.cols() != x.len() {
-        return Err(RationalError::Shape);
-    }
-    if a.rows() != out.len() {
+    if a.cols() != x.len() || a.rows() != out.len() {
         return Err(RationalError::Shape);
     }
     fuel.elements(a.rows(), a.cols())?;
@@ -346,6 +373,16 @@ pub fn multiply_vector_into(
     for q in a.as_slice().iter().chain(x) {
         fuel.rational(q)?;
     }
+    Ok(())
+}
+
+pub fn multiply_vector_into(
+    a: &BasicMatrix<BigRational>,
+    x: &[BigRational],
+    out: &mut [BigRational],
+    fuel: &mut RationalBudget,
+) -> Result<(), RationalError> {
+    validate_vector_shapes_and_budget(a, x, out, fuel)?;
     out.fill(BigRational::zero());
     for (r, y) in out.iter_mut().enumerate() {
         for (c, q) in x.iter().enumerate() {
@@ -374,16 +411,50 @@ pub(crate) fn certify_replay(
     Ok(())
 }
 
-pub fn solve(
+fn get_entry<'a>(
+    a: &'a BasicMatrix<BigRational>,
+    b: &'a [BigRational],
+    r: usize,
+    c: usize,
+    n: usize,
+) -> Result<&'a BigRational, RationalError> {
+    if c == n {
+        Ok(&b[r])
+    } else {
+        Ok(a.get_ref(r, c)?)
+    }
+}
+
+fn fill_integer_row(
     a: &BasicMatrix<BigRational>,
     b: &[BigRational],
+    r: usize,
+    n: usize,
+    width: usize,
+    grid: &mut [BigInt],
     fuel: &mut RationalBudget,
-) -> Result<RationalSolution, RationalError> {
-    let (m, n) = a.shape();
-    if b.len() != m {
-        return Err(RationalError::Shape);
+) -> Result<(), RationalError> {
+    let mut scale = BigInt::one();
+    for c in 0..width {
+        let q = get_entry(a, b, r, c, n)?;
+        scale = fuel.int_mul(&scale, q.denom())?;
     }
-    let width = n.checked_add(1).ok_or(RationalError::ElementLimit)?;
+    for c in 0..width {
+        let q = get_entry(a, b, r, c, n)?;
+        let multiple = fuel.int_div(&scale, q.denom())?;
+        grid[r * width + c] = fuel.int_mul(&multiple, q.numer())?;
+    }
+    Ok(())
+}
+
+fn build_integer_grid(
+    a: &BasicMatrix<BigRational>,
+    b: &[BigRational],
+    m: usize,
+    n: usize,
+    width: usize,
+    fuel: &mut RationalBudget,
+) -> Result<Vec<BigInt>, RationalError> {
     let count = fuel.elements(m, width)?;
     fuel.elements(n, 1)?;
     for q in a.as_slice().iter().chain(b) {
@@ -391,17 +462,40 @@ pub fn solve(
     }
     let mut grid = buffer(count, BigInt::zero())?;
     for r in 0..m {
-        let mut scale = BigInt::one();
-        for c in 0..width {
-            let q = if c == n { &b[r] } else { a.get_ref(r, c)? };
-            scale = fuel.int_mul(&scale, q.denom())?;
-        }
-        for c in 0..width {
-            let q = if c == n { &b[r] } else { a.get_ref(r, c)? };
-            let multiple = fuel.int_div(&scale, q.denom())?;
-            grid[r * width + c] = fuel.int_mul(&multiple, q.numer())?;
-        }
+        fill_integer_row(a, b, r, n, width, &mut grid, fuel)?;
     }
+    Ok(grid)
+}
+
+fn bareiss_eliminate_step(
+    grid: &mut [BigInt],
+    k: usize,
+    col: usize,
+    m: usize,
+    width: usize,
+    previous: &BigInt,
+    fuel: &mut RationalBudget,
+) -> Result<(), RationalError> {
+    let pivot = grid[k * width + col].clone();
+    for r in k + 1..m {
+        for c in col + 1..width {
+            let left = fuel.int_mul(&pivot, &grid[r * width + c])?;
+            let right = fuel.int_mul(&grid[r * width + col], &grid[k * width + c])?;
+            let numerator = fuel.int_sub(&left, &right)?;
+            grid[r * width + c] = fuel.int_div(&numerator, previous)?;
+        }
+        grid[r * width + col] = BigInt::zero();
+    }
+    Ok(())
+}
+
+fn bareiss_forward_elimination(
+    grid: &mut [BigInt],
+    m: usize,
+    n: usize,
+    width: usize,
+    fuel: &mut RationalBudget,
+) -> Result<Vec<usize>, RationalError> {
     let mut pivots = Vec::new();
     let mut previous = BigInt::one();
     for col in 0..n {
@@ -413,21 +507,23 @@ pub fn solve(
             grid.swap(k * width + c, row * width + c);
         }
         let pivot = grid[k * width + col].clone();
-        for r in k + 1..m {
-            for c in col + 1..width {
-                let left = fuel.int_mul(&pivot, &grid[r * width + c])?;
-                let right = fuel.int_mul(&grid[r * width + col], &grid[k * width + c])?;
-                let numerator = fuel.int_sub(&left, &right)?;
-                grid[r * width + c] = fuel.int_div(&numerator, &previous)?;
-            }
-            grid[r * width + col] = BigInt::zero();
-        }
+        bareiss_eliminate_step(grid, k, col, m, width, &previous, fuel)?;
         previous = pivot;
         pivots.push(col);
     }
     if (pivots.len()..m).any(|r| !grid[r * width + n].is_zero()) {
         return Err(RationalError::Inconsistent);
     }
+    Ok(pivots)
+}
+
+fn bareiss_back_substitute(
+    grid: &[BigInt],
+    pivots: &[usize],
+    n: usize,
+    width: usize,
+    fuel: &mut RationalBudget,
+) -> Result<Vec<BigRational>, RationalError> {
     let zero = fuel.result(BigRational::zero())?;
     let mut x = buffer(n, zero)?;
     for (r, &col) in pivots.iter().enumerate().rev() {
@@ -441,6 +537,22 @@ pub fn solve(
             &BigRational::from_integer(grid[r * width + col].clone()),
         )?;
     }
+    Ok(x)
+}
+
+pub fn solve(
+    a: &BasicMatrix<BigRational>,
+    b: &[BigRational],
+    fuel: &mut RationalBudget,
+) -> Result<RationalSolution, RationalError> {
+    let (m, n) = a.shape();
+    if b.len() != m {
+        return Err(RationalError::Shape);
+    }
+    let width = n.checked_add(1).ok_or(RationalError::ElementLimit)?;
+    let mut grid = build_integer_grid(a, b, m, n, width, fuel)?;
+    let pivots = bareiss_forward_elimination(&mut grid, m, n, width, fuel)?;
+    let x = bareiss_back_substitute(&grid, &pivots, n, width, fuel)?;
     certify_replay(a, &x, b, fuel)?;
     Ok(RationalSolution {
         particular: x,
@@ -564,32 +676,35 @@ mod tests {
         );
     }
 
+    fn check_small_system(m: usize, n: usize, seed: usize) {
+        let a = matrix::from_fn(m, n, |r, c| {
+            q(
+                ((seed + 7 * r + 11 * c + 3 * r * c) % 9) as i64 - 4,
+                ((r + c) % 3 + 1) as i64,
+            )
+        })
+        .unwrap();
+        let target = vec![q(2, 7); n];
+        let b = multiply_vector(&a, &target, &mut RationalBudget::new(limits())).unwrap();
+        let expected = match elimination::solve(&a, &b).unwrap() {
+            elimination::LinearSolution::Consistent { particular, .. } => particular,
+            _ => panic!("constructed consistent"),
+        };
+        assert_eq!(
+            solve(&a, &b, &mut RationalBudget::new(limits()))
+                .unwrap()
+                .particular,
+            expected,
+            "shape {m}x{n}, seed {seed}"
+        );
+    }
+
     #[test]
     fn small_singular_and_nonsingular_systems_match_rref() {
         for m in 0..=4 {
             for n in 0..=4 {
                 for seed in 0..20 {
-                    let a = matrix::from_fn(m, n, |r, c| {
-                        q(
-                            ((seed + 7 * r + 11 * c + 3 * r * c) % 9) as i64 - 4,
-                            ((r + c) % 3 + 1) as i64,
-                        )
-                    })
-                    .unwrap();
-                    let target = vec![q(2, 7); n];
-                    let b =
-                        multiply_vector(&a, &target, &mut RationalBudget::new(limits())).unwrap();
-                    let expected = match elimination::solve(&a, &b).unwrap() {
-                        elimination::LinearSolution::Consistent { particular, .. } => particular,
-                        _ => panic!("constructed consistent"),
-                    };
-                    assert_eq!(
-                        solve(&a, &b, &mut RationalBudget::new(limits()))
-                            .unwrap()
-                            .particular,
-                        expected,
-                        "shape {m}x{n}, seed {seed}"
-                    );
+                    check_small_system(m, n, seed);
                 }
             }
         }

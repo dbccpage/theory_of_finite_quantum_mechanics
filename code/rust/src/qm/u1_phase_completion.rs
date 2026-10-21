@@ -323,20 +323,16 @@ pub struct PowerInjectivityReceipt {
     pub injective_on_window: bool,
 }
 
-/// Check mod-5 idempotence `(A_n, B_n) == (3, 4) mod 5` and pairwise distinct powers on `[-max_n, max_n]`.
-pub fn certify_power_injectivity_window(
-    max_n: u32,
-) -> Result<PowerInjectivityReceipt, U1PhaseError> {
-    if !(1..=256).contains(&max_n) {
-        return Err(U1PhaseError::WindowOutOfBounds(max_n));
-    }
-    let mut mod5_ok = true;
+fn check_mod5_window(max_n: u32) -> Result<bool, U1PhaseError> {
     for n in 1..=max_n {
         if !check_gauss_step(n)? {
-            mod5_ok = false;
+            return Ok(false);
         }
     }
-    let bound = i64::from(max_n);
+    Ok(true)
+}
+
+fn check_powers_window(bound: i64) -> Result<(bool, usize, usize), U1PhaseError> {
     let neg_bound = 0i64.saturating_sub(bound);
     let mut points = Vec::new();
     let mut distinct = BTreeSet::new();
@@ -349,8 +345,19 @@ pub fn certify_power_injectivity_window(
         distinct.insert(pt.clone());
         points.push(pt);
     }
-    let tested_exponents = points.len();
-    let distinct_points = distinct.len();
+    Ok((on_circle, points.len(), distinct.len()))
+}
+
+/// Check mod-5 idempotence `(A_n, B_n) == (3, 4) mod 5` and pairwise distinct powers on `[-max_n, max_n]`.
+pub fn certify_power_injectivity_window(
+    max_n: u32,
+) -> Result<PowerInjectivityReceipt, U1PhaseError> {
+    if !(1..=256).contains(&max_n) {
+        return Err(U1PhaseError::WindowOutOfBounds(max_n));
+    }
+    let mod5_ok = check_mod5_window(max_n)?;
+    let (on_circle, tested_exponents, distinct_points) =
+        check_powers_window(i64::from(max_n))?;
     let injective_on_window = mod5_ok && on_circle && tested_exponents == distinct_points;
     Ok(PowerInjectivityReceipt {
         max_n,
@@ -801,6 +808,22 @@ pub struct ChebyshevCircleReceipt {
     pub pell_identity_holds_all_degrees: bool,
 }
 
+fn check_chebyshev_step(
+    deg: i64,
+    re: &Q,
+    im: &Q,
+    pow_re: &Q,
+    pow_im: &Q,
+) -> Result<bool, U1PhaseError> {
+    let tn = chebyshev_t(deg, re)?;
+    let un_minus_1 = chebyshev_u(deg - 1, re)?;
+    let cheb_im = im * &un_minus_1;
+    if &tn != pow_re || &cheb_im != pow_im || !is_unit_circle(&tn, &cheb_im)? {
+        return Ok(false);
+    }
+    Ok(true)
+}
+
 /// Certify that `(T_n(re), im * U_{n-1}(re))` equals `(re + i*im)^n` on `S^1(Q)` for `1 <= n <= max_n`.
 pub fn chebyshev_circle_certificate(
     re: &Q,
@@ -816,14 +839,9 @@ pub fn chebyshev_circle_certificate(
     let mut pow_re = re.clone();
     let mut pow_im = im.clone();
     let mut all_match = true;
-    let mut all_unit = true;
     for deg in 1..=(max_n as i64) {
-        let tn = chebyshev_t(deg, re)?;
-        let un_minus_1 = chebyshev_u(deg - 1, re)?;
-        let cheb_im = im * &un_minus_1;
-        if tn != pow_re || cheb_im != pow_im || !is_unit_circle(&tn, &cheb_im)? {
+        if !check_chebyshev_step(deg, re, im, &pow_re, &pow_im)? {
             all_match = false;
-            all_unit = false;
         }
         let next = circle_mul(&pow_re, &pow_im, re, im)?;
         pow_re = next.0;
@@ -833,7 +851,7 @@ pub fn chebyshev_circle_certificate(
         base_point: (re.clone(), im.clone()),
         max_n,
         chebyshev_matches_circle_powers: all_match,
-        pell_identity_holds_all_degrees: all_unit,
+        pell_identity_holds_all_degrees: all_match,
     })
 }
 
@@ -849,6 +867,44 @@ pub struct TaylorTrigEnclosureReceipt {
     pub pythagorean_defect: Q,
     pub pythagorean_defect_verified: bool,
     pub all_taylor_bounds_verified: bool,
+}
+
+fn check_taylor_enclosures(
+    c0: &Q,
+    c2: &Q,
+    c4: &Q,
+    c6: &Q,
+    s1: &Q,
+    s3: &Q,
+    s5: &Q,
+    s7: &Q,
+) -> (bool, bool) {
+    let cos_nested = c2 <= c6 && c6 <= c4 && c4 <= c0;
+    let sin_nested = s3 <= s7 && s7 <= s5 && s5 <= s1;
+    (cos_nested, sin_nested)
+}
+
+fn check_taylor_widths_and_defect(
+    c4: &Q,
+    c6: &Q,
+    s3: &Q,
+    s5: &Q,
+    s7: &Q,
+    th2: &Q,
+    th6: &Q,
+) -> (bool, bool, Q, bool) {
+    let cos_width = c4 - c6;
+    let sin_width = s5 - s7;
+    let cos_width_ok =
+        cos_width >= Q::zero() && cos_width <= Q::new(BigInt::one(), BigInt::from(720));
+    let sin_width_ok =
+        sin_width >= Q::zero() && sin_width <= Q::new(BigInt::one(), BigInt::from(5040));
+    let defect = Q::one() - (c4 * c4 + s3 * s3);
+    let defect_formula = th6 * (q(8) - th2) / q(576);
+    let defect_ok = defect == defect_formula
+        && defect >= Q::zero()
+        && defect <= Q::new(BigInt::one(), BigInt::from(72));
+    (cos_width_ok, sin_width_ok, defect, defect_ok)
 }
 
 /// Certify alternating Taylor cosine/sine enclosures and degree-6 Pythagorean defect on `0 <= theta <= 1`.
@@ -873,20 +929,12 @@ pub fn taylor_trig_enclosure_certificate(
     let s3 = &s1 - &th3 / q(6);
     let s5 = &s3 + &th5 / q(120);
     let s7 = &s5 - &th7 / q(5040);
-    let cos_nested = c2 <= c6 && c6 <= c4 && c4 <= c0;
-    let sin_nested = s3 <= s7 && s7 <= s5 && s5 <= s1;
-    let cos_width = &c4 - &c6;
-    let sin_width = &s5 - &s7;
-    let cos_width_ok =
-        cos_width >= Q::zero() && cos_width <= Q::new(BigInt::one(), BigInt::from(720));
-    let sin_width_ok =
-        sin_width >= Q::zero() && sin_width <= Q::new(BigInt::one(), BigInt::from(5040));
-    let defect = Q::one() - (&c4 * &c4 + &s3 * &s3);
-    let defect_formula = &th6 * (q(8) - &th2) / q(576);
-    let defect_ok = defect == defect_formula
-        && defect >= Q::zero()
-        && defect <= Q::new(BigInt::one(), BigInt::from(72));
+
+    let (cos_nested, sin_nested) = check_taylor_enclosures(&c0, &c2, &c4, &c6, &s1, &s3, &s5, &s7);
+    let (cos_width_ok, sin_width_ok, defect, defect_ok) =
+        check_taylor_widths_and_defect(&c4, &c6, &s3, &s5, &s7, &th2, &th6);
     let all_ok = cos_nested && sin_nested && cos_width_ok && sin_width_ok && defect_ok;
+
     Ok(TaylorTrigEnclosureReceipt {
         theta: theta.clone(),
         taylor_cos6: c6,
@@ -1031,23 +1079,18 @@ fn verify_chebyshev_2pow_steps(m_levels: u32) -> Result<bool, U1PhaseError> {
     Ok(true)
 }
 
-/// Certify the iterated quadratic half-angle tower `K_{m+1} = K_m(sqrt((1+c_m)/2))` above `u_345`.
-pub fn u345_quadratic_tower_certificate(
-    m_levels: u32,
-) -> Result<U345QuadraticTowerReceipt, U1PhaseError> {
-    if m_levels == 0 || m_levels > 6 {
-        return Err(U1PhaseError::TowerDepthOutOfBounds(m_levels));
-    }
-    let c0 = Q::new(BigInt::from(3), BigInt::from(5));
-    let s0 = Q::new(BigInt::from(4), BigInt::from(5));
-    let d0 = (Q::one() + &c0) / q(2);
+fn compute_tower_level1(c0: &Q, s0: &Q) -> (Q, Q, Q, bool, bool) {
+    let d0 = (Q::one() + c0) / q(2);
     let c1_sq = d0.clone();
-    let s1_sq = (&s0 * &s0) / (q(4) * &d0);
+    let s1_sq = (s0 * s0) / (q(4) * &d0);
     let level1_unit = &c1_sq + &s1_sq == Q::one();
-    let level1_double_re = &c1_sq - &s1_sq == c0;
-    let level1_double_im = q(4) * &c1_sq * &s1_sq == &s0 * &s0;
+    let level1_double_re = &c1_sq - &s1_sq == *c0;
+    let level1_double_im = q(4) * &c1_sq * &s1_sq == s0 * s0;
     let level1_recovers = level1_double_re && level1_double_im;
+    (d0, c1_sq, s1_sq, level1_unit, level1_recovers)
+}
 
+fn construct_level2_points() -> Result<(QuadSqrt5, Q, QuadSqrt5), U1PhaseError> {
     let d1 = QuadSqrt5::new(
         Q::new(BigInt::from(1), BigInt::from(2)),
         Q::new(BigInt::from(1), BigInt::from(5)),
@@ -1057,14 +1100,41 @@ pub fn u345_quadratic_tower_certificate(
         Q::new(BigInt::from(1), BigInt::from(2)),
         Q::new(BigInt::from(-1), BigInt::from(5)),
     )?;
+    Ok((d1, d1_norm, s2_sq))
+}
+
+fn check_level2_recovers(
+    k2_diff: &QuadSqrt5,
+    k2_prod: &QuadSqrt5,
+    s1_sq: &Q,
+) -> Result<bool, U1PhaseError> {
+    let c1_quad = QuadSqrt5::new(Q::zero(), Q::new(BigInt::from(2), BigInt::from(5)))?;
+    let four_prod = quad_mul(&QuadSqrt5::new(q(4), Q::zero())?, k2_prod)?;
+    let s1_sq_quad = QuadSqrt5::new(s1_sq.clone(), Q::zero())?;
+    Ok(k2_diff == &c1_quad && four_prod == s1_sq_quad)
+}
+
+fn compute_tower_level2(s1_sq: &Q) -> Result<(QuadSqrt5, Q, QuadSqrt5, bool, bool), U1PhaseError> {
+    let (d1, d1_norm, s2_sq) = construct_level2_points()?;
     let k2_sum = quad_add(&d1, &s2_sq)?;
     let k2_diff = quad_sub(&d1, &s2_sq)?;
     let k2_prod = quad_mul(&d1, &s2_sq)?;
     let level2_unit = k2_sum == QuadSqrt5::new(Q::one(), Q::zero())?;
-    let c1_quad = QuadSqrt5::new(Q::zero(), Q::new(BigInt::from(2), BigInt::from(5)))?;
-    let four_prod = quad_mul(&QuadSqrt5::new(q(4), Q::zero())?, &k2_prod)?;
-    let s1_sq_quad = QuadSqrt5::new(s1_sq.clone(), Q::zero())?;
-    let level2_recovers = k2_diff == c1_quad && four_prod == s1_sq_quad;
+    let level2_recovers = check_level2_recovers(&k2_diff, &k2_prod, s1_sq)?;
+    Ok((d1, d1_norm, s2_sq, level2_unit, level2_recovers))
+}
+
+/// Certify the iterated quadratic half-angle tower `K_{m+1} = K_m(sqrt((1+c_m)/2))` above `u_345`.
+pub fn u345_quadratic_tower_certificate(
+    m_levels: u32,
+) -> Result<U345QuadraticTowerReceipt, U1PhaseError> {
+    if m_levels == 0 || m_levels > 6 {
+        return Err(U1PhaseError::TowerDepthOutOfBounds(m_levels));
+    }
+    let c0 = Q::new(BigInt::from(3), BigInt::from(5));
+    let s0 = Q::new(BigInt::from(4), BigInt::from(5));
+    let (d0, c1_sq, s1_sq, level1_unit, level1_recovers) = compute_tower_level1(&c0, &s0);
+    let (d1, d1_norm, s2_sq, level2_unit, level2_recovers) = compute_tower_level2(&s1_sq)?;
 
     let cheb_2pow_ok = verify_chebyshev_2pow_steps(m_levels)?;
     let all_ok = level1_unit
@@ -1108,6 +1178,31 @@ pub struct CayleyHermitianStoneReceipt {
     pub all_cayley_stone_checks_verified: bool,
 }
 
+fn check_cayley_group_law(
+    alpha1: &Q,
+    beta1: &Q,
+    alpha2: &Q,
+    beta2: &Q,
+    t1: &Q,
+    t2: &Q,
+    norm_sq: &Q,
+) -> (bool, bool) {
+    let comp_re = alpha1 * alpha2 - beta1 * beta2 * norm_sq;
+    let comp_im = alpha1 * beta2 + beta1 * alpha2;
+    let pole_denom = Q::one() - t1 * t2 * norm_sq;
+    let south_pole_crossed = pole_denom.is_zero();
+    let group_law_ok = if south_pole_crossed {
+        comp_re == q(-1) && comp_im.is_zero()
+    } else {
+        let t_comp = (t1 + t2) / &pole_denom;
+        let denom_c = Q::one() + &t_comp * &t_comp * norm_sq;
+        let alpha_c = (Q::one() - &t_comp * &t_comp * norm_sq) / &denom_c;
+        let beta_c = (q(2) * &t_comp) / &denom_c;
+        comp_re == alpha_c && comp_im == beta_c
+    };
+    (south_pole_crossed, group_law_ok)
+}
+
 /// Certify the discrete Cayley unitary step `U_H(t) = (I - i t H)(I + i t H)^(-1)` on `2x2` Hermitian `Q(i)`.
 pub fn cayley_hermitian_stone_certificate(
     a_diag: &Q,
@@ -1133,19 +1228,8 @@ pub fn cayley_hermitian_stone_certificate(
     let resolvent_im = &alpha1 * t1 - &beta1 == -t1;
     let resolvent_ok = resolvent_re && resolvent_im;
 
-    let comp_re = &alpha1 * &alpha2 - &beta1 * &beta2 * &norm_sq;
-    let comp_im = &alpha1 * &beta2 + &beta1 * &alpha2;
-    let pole_denom = Q::one() - t1 * t2 * &norm_sq;
-    let south_pole_crossed = pole_denom.is_zero();
-    let group_law_ok = if south_pole_crossed {
-        comp_re == q(-1) && comp_im.is_zero()
-    } else {
-        let t_comp = (t1 + t2) / &pole_denom;
-        let denom_c = Q::one() + &t_comp * &t_comp * &norm_sq;
-        let alpha_c = (Q::one() - &t_comp * &t_comp * &norm_sq) / &denom_c;
-        let beta_c = (q(2) * &t_comp) / &denom_c;
-        comp_re == alpha_c && comp_im == beta_c
-    };
+    let (south_pole_crossed, group_law_ok) =
+        check_cayley_group_law(&alpha1, &beta1, &alpha2, &beta2, t1, t2, &norm_sq);
 
     let born_trace_preserved = unitarity1 && unitarity2;
     let all_ok =

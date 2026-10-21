@@ -306,67 +306,59 @@ use omega_quantum_physics::mub::spectral_lift::SpectralLiftStatus;
             .all(|control| control.error.is_none()));
     }
 
+    fn assert_exact_complete_control(
+        report: &DeepRunReport,
+        dim: usize,
+        bases: usize,
+        ortho: usize,
+        cross: usize,
+    ) {
+        assert!(report.odd_prime_power_controls.iter().any(|control| {
+            control.dimension == dim
+                && control.basis_count == bases
+                && control.status == OddPrimePowerControlStatus::ExactCompleteSet
+                && control.orthonormality_checks == ortho
+                && control.cross_unbiased_checks == cross
+        }));
+    }
+
+    fn assert_stratification_control(report: &DeepRunReport, dim: usize, bases: usize) {
+        assert!(report.dimension_stratification.iter().any(|entry| {
+            entry.dimension == dim
+                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
+                && entry.guaranteed_basis_count == Some(bases)
+        }));
+    }
+
+    fn assert_tensor_lower_control(
+        report: &DeepRunReport,
+        dim: usize,
+        guaranteed: usize,
+        complete: usize,
+    ) {
+        assert!(report.dimension_stratification.iter().any(|entry| {
+            entry.dimension == dim
+                && entry.status == DimensionAuthorityStatus::ExactTensorLowerControl
+                && entry.guaranteed_basis_count == Some(guaranteed)
+                && entry.complete_basis_count == Some(complete)
+        }));
+    }
+
     #[test]
     fn deep_run_includes_exact_d9_odd_prime_power_control() {
         let report = deep_run_report();
-        assert!(report.odd_prime_power_controls.iter().any(|control| {
-            control.dimension == 9
-                && control.basis_count == 10
-                && control.status == OddPrimePowerControlStatus::ExactCompleteSet
-                && control.orthonormality_checks == 450
-                && control.cross_unbiased_checks == 3645
-        }));
-        assert!(report.odd_prime_power_controls.iter().any(|control| {
-            control.dimension == 25
-                && control.basis_count == 26
-                && control.status == OddPrimePowerControlStatus::ExactCompleteSet
-                && control.orthonormality_checks == 26 * 25 * 26 / 2
-                && control.cross_unbiased_checks == 325 * 25 * 25
-        }));
-        assert!(report.odd_prime_power_controls.iter().any(|control| {
-            control.dimension == 27
-                && control.basis_count == 28
-                && control.status == OddPrimePowerControlStatus::ExactCompleteSet
-                && control.orthonormality_checks == 28 * 27 * 28 / 2
-                && control.cross_unbiased_checks == 378 * 27 * 27
-        }));
-        assert!(report.odd_prime_power_controls.iter().any(|control| {
-            control.dimension == 49
-                && control.basis_count == 50
-                && control.status == OddPrimePowerControlStatus::ExactCompleteSet
-                && control.orthonormality_checks == 50 * 49 * 50 / 2
-                && control.cross_unbiased_checks == 1225 * 49 * 49
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 9
-                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
-                && entry.guaranteed_basis_count == Some(10)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 25
-                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
-                && entry.guaranteed_basis_count == Some(26)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 27
-                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
-                && entry.guaranteed_basis_count == Some(28)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 49
-                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
-                && entry.guaranteed_basis_count == Some(50)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 11
-                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
-                && entry.guaranteed_basis_count == Some(12)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 13
-                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
-                && entry.guaranteed_basis_count == Some(14)
-        }));
+        assert_exact_complete_control(report, 9, 10, 450, 3645);
+        assert_exact_complete_control(report, 25, 26, 26 * 25 * 26 / 2, 325 * 25 * 25);
+        assert_exact_complete_control(report, 27, 28, 28 * 27 * 28 / 2, 378 * 27 * 27);
+        assert_exact_complete_control(report, 49, 50, 50 * 49 * 50 / 2, 1225 * 49 * 49);
+
+        assert_stratification_control(report, 9, 10);
+        assert_stratification_control(report, 25, 26);
+        assert_stratification_control(report, 27, 28);
+        assert_stratification_control(report, 49, 50);
+        assert_stratification_control(report, 11, 12);
+        assert_stratification_control(report, 13, 14);
+
         assert!(report
             .general_mub_n
             .verdict
@@ -652,44 +644,15 @@ use omega_quantum_physics::mub::spectral_lift::SpectralLiftStatus;
     #[test]
     fn deep_run_includes_dimension_stratification_gate() {
         let report = deep_run_report();
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 4
-                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
-                && entry.guaranteed_basis_count == Some(5)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 8
-                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
-                && entry.guaranteed_basis_count == Some(9)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 7
-                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
-                && entry.guaranteed_basis_count == Some(8)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 9
-                && entry.status == DimensionAuthorityStatus::ExactCompleteControl
-                && entry.guaranteed_basis_count == Some(10)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 6
-                && entry.status == DimensionAuthorityStatus::ExactTensorLowerControl
-                && entry.guaranteed_basis_count == Some(3)
-                && entry.complete_basis_count == Some(7)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 10
-                && entry.status == DimensionAuthorityStatus::ExactTensorLowerControl
-                && entry.guaranteed_basis_count == Some(3)
-                && entry.complete_basis_count == Some(11)
-        }));
-        assert!(report.dimension_stratification.iter().any(|entry| {
-            entry.dimension == 26
-                && entry.status == DimensionAuthorityStatus::ExactTensorLowerControl
-                && entry.guaranteed_basis_count == Some(3)
-                && entry.complete_basis_count == Some(27)
-        }));
+        assert_stratification_control(report, 4, 5);
+        assert_stratification_control(report, 8, 9);
+        assert_stratification_control(report, 7, 8);
+        assert_stratification_control(report, 9, 10);
+
+        assert_tensor_lower_control(report, 6, 3, 7);
+        assert_tensor_lower_control(report, 10, 3, 11);
+        assert_tensor_lower_control(report, 26, 3, 27);
+
         assert!(report
             .general_mub_n
             .verdict

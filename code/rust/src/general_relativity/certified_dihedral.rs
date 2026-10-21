@@ -36,11 +36,7 @@ impl DihedralEnclosure {
     }
 }
 
-pub fn dihedral_enclosure(
-    squared: &[[Q; 5]; 5],
-    eps: &Q,
-) -> Result<DihedralEnclosure, GeometryError> {
-    validate_precision(eps)?;
+fn validate_squared_matrix(squared: &[[Q; 5]; 5]) -> Result<(), GeometryError> {
     for i in 0..5 {
         for j in 0..5 {
             validate_rational(&squared[i][j])?;
@@ -52,25 +48,60 @@ pub fn dihedral_enclosure(
             }
         }
     }
+    Ok(())
+}
+
+fn validate_gram_positive_definite(g: &[[Q; 4]; 4]) -> Result<(), GeometryError> {
+    let m1: [[Q; 1]; 1] = [[g[0][0].clone()]];
+    if determinant(&m1).map_err(|_| GeometryError::LinearAlgebra)? <= Q::zero() {
+        return Err(GeometryError::NotEuclidean);
+    }
+    let m2: [[Q; 2]; 2] = std::array::from_fn(|i| std::array::from_fn(|j| g[i][j].clone()));
+    if determinant(&m2).map_err(|_| GeometryError::LinearAlgebra)? <= Q::zero() {
+        return Err(GeometryError::NotEuclidean);
+    }
+    let m3: [[Q; 3]; 3] = std::array::from_fn(|i| std::array::from_fn(|j| g[i][j].clone()));
+    if determinant(&m3).map_err(|_| GeometryError::LinearAlgebra)? <= Q::zero() {
+        return Err(GeometryError::NotEuclidean);
+    }
+    let m4: [[Q; 4]; 4] = std::array::from_fn(|i| std::array::from_fn(|j| g[i][j].clone()));
+    if determinant(&m4).map_err(|_| GeometryError::LinearAlgebra)? <= Q::zero() {
+        return Err(GeometryError::NotEuclidean);
+    }
+    Ok(())
+}
+
+fn compute_dihedral_bounds(disc: &Q, ab: &Q, eps: &Q) -> Result<RationalInterval, GeometryError> {
+    if ab.is_zero() {
+        return Ok(pi_enclosure(eps)?.mul_scalar(&Q::new(1.into(), 2.into())));
+    }
+    let denom = if ab > &Q::zero() { ab.clone() } else { -ab };
+    let quarter = eps / Q::from_integer(4.into());
+    let root = sqrt_enclosure(disc, &(&denom * &quarter))?;
+    let lo = atan_enclosure(&(root.lo() / &denom), &quarter)?;
+    let hi = atan_enclosure(&(root.hi() / &denom), &quarter)?;
+    let theta = RationalInterval::try_new(lo.lo().clone(), hi.hi().clone())
+        .map_err(AngleError::from)?;
+    if ab > &Q::zero() {
+        Ok(theta)
+    } else {
+        Ok(pi_enclosure(&quarter)?.sub(&theta))
+    }
+}
+
+pub fn dihedral_enclosure(
+    squared: &[[Q; 5]; 5],
+    eps: &Q,
+) -> Result<DihedralEnclosure, GeometryError> {
+    validate_precision(eps)?;
+    validate_squared_matrix(squared)?;
     let two = Q::from_integer(2.into());
     let g: [[Q; 4]; 4] = std::array::from_fn(|i| {
         std::array::from_fn(|j| {
             (&squared[0][i + 1] + &squared[0][j + 1] - &squared[i + 1][j + 1]) / &two
         })
     });
-    macro_rules! positive_minor {
-        ($n:literal) => {{
-            let minor: [[Q; $n]; $n] =
-                std::array::from_fn(|i| std::array::from_fn(|j| g[i][j].clone()));
-            if determinant(&minor).map_err(|_| GeometryError::LinearAlgebra)? <= Q::zero() {
-                return Err(GeometryError::NotEuclidean);
-            }
-        }};
-    }
-    positive_minor!(1);
-    positive_minor!(2);
-    positive_minor!(3);
-    positive_minor!(4);
+    validate_gram_positive_definite(&g)?;
     let tangent: [[Q; 2]; 2] = std::array::from_fn(|i| std::array::from_fn(|j| g[i][j].clone()));
     let v: Vec<[Q; 2]> = (2..4).map(|j| [g[0][j].clone(), g[1][j].clone()]).collect();
     let inverse_v: Vec<[Q; 2]> = v
@@ -87,22 +118,7 @@ pub fn dihedral_enclosure(
     if aa <= Q::zero() || bb <= Q::zero() || disc <= Q::zero() {
         return Err(GeometryError::NotEuclidean);
     }
-    let bounds = if ab.is_zero() {
-        pi_enclosure(eps)?.mul_scalar(&Q::new(1.into(), 2.into()))
-    } else {
-        let denom = if ab > Q::zero() { ab.clone() } else { -&ab };
-        let quarter = eps / Q::from_integer(4.into());
-        let root = sqrt_enclosure(&disc, &(&denom * &quarter))?;
-        let lo = atan_enclosure(&(root.lo() / &denom), &quarter)?;
-        let hi = atan_enclosure(&(root.hi() / &denom), &quarter)?;
-        let theta = RationalInterval::try_new(lo.lo().clone(), hi.hi().clone())
-            .map_err(AngleError::from)?;
-        if ab > Q::zero() {
-            theta
-        } else {
-            pi_enclosure(&quarter)?.sub(&theta)
-        }
-    };
+    let bounds = compute_dihedral_bounds(&disc, &ab, eps)?;
     Ok(DihedralEnclosure {
         normal_gram: [aa, bb, ab],
         bounds,

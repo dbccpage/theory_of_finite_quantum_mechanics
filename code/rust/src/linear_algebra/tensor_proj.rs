@@ -318,66 +318,104 @@ pub struct ProductReference<F> {
     product: BasicMatrix<F>,
 }
 
+fn validate_and_measure_factors<F: Field + ExactRing>(
+    factors: &[BasicMatrix<F>],
+) -> Result<(usize, usize, usize), TensorProjectorError> {
+    if factors.is_empty() {
+        return Err(TensorProjectorError::EmptySites);
+    }
+    let mut dimension = 1;
+    let mut factor_elements = 0;
+    let mut diagonal_ops = 0;
+    for (site, factor) in factors.iter().enumerate() {
+        if factor.rows() != factor.cols() {
+            return Err(TensorProjectorError::NonSquareReference {
+                site,
+                rows: factor.rows(),
+                cols: factor.cols(),
+            });
+        }
+        if factor.rows() == 0 {
+            return Err(TensorProjectorError::ZeroDimension { site });
+        }
+        dimension = element_count(dimension, factor.rows())?;
+        factor_elements = plus(factor_elements, factor.as_slice().len())?;
+        diagonal_ops = plus(diagonal_ops, factor.rows())?;
+    }
+    Ok((dimension, factor_elements, diagonal_ops))
+}
+
+fn charge_product_reference_budget(
+    factors_len: usize,
+    dimension: usize,
+    factor_elements: usize,
+    diagonal_ops: usize,
+    limits: OperationLimits,
+) -> Result<(), TensorProjectorError> {
+    let elements = element_count(dimension, dimension)?;
+    let mem = plus(elements, factor_elements)?.max(factors_len);
+    let ops = plus(diagonal_ops, times(elements, factors_len)?)?;
+    charge(limits, mem, ops)?;
+    Ok(())
+}
+
+fn collect_normalized_dimensions<F: Field + ExactRing>(
+    factors: &[BasicMatrix<F>],
+) -> Result<Vec<usize>, TensorProjectorError> {
+    let mut dimensions = reserve(factors.len())?;
+    for (site, factor) in factors.iter().enumerate() {
+        if trace(factor)? != F::one() {
+            return Err(TensorProjectorError::ReferenceNotNormalized { site });
+        }
+        dimensions.push(factor.rows());
+    }
+    Ok(dimensions)
+}
+
+fn compute_product_matrix<F: Field + ExactRing>(
+    factors: &[BasicMatrix<F>],
+    dimension: usize,
+    layout: &TensorLayout,
+    limits: OperationLimits,
+) -> Result<BasicMatrix<F>, TensorProjectorError> {
+    Ok(super::matrix::try_from_fn_with_limits(dimension, dimension, limits, |row, col| {
+        let mut value = F::one();
+        for (site, factor) in factors.iter().enumerate() {
+            let r_idx = layout.digit(row, site);
+            let c_idx = layout.digit(col, site);
+            value = value.try_mul(&factor.as_slice()[r_idx * factor.cols() + c_idx])?;
+        }
+        Ok(value)
+    })?)
+}
+
+fn clone_reference_factors<F: Field + ExactRing>(
+    factors: &[BasicMatrix<F>],
+    limits: OperationLimits,
+) -> Result<Vec<BasicMatrix<F>>, TensorProjectorError> {
+    let mut owned_factors = reserve(factors.len())?;
+    for factor in factors {
+        owned_factors.push(BasicMatrix::try_from_fn_with_limit(
+            factor.rows(),
+            factor.cols(),
+            limits.max_elements,
+            |row, col| factor.as_slice()[row * factor.cols() + col].clone(),
+        )?);
+    }
+    Ok(owned_factors)
+}
+
 impl<F: Field + ExactRing> ProductReference<F> {
     pub fn new_with_limits(
         factors: &[BasicMatrix<F>],
         limits: OperationLimits,
     ) -> Result<Self, TensorProjectorError> {
-        if factors.is_empty() {
-            return Err(TensorProjectorError::EmptySites);
-        }
-        let mut dimension = 1;
-        let mut factor_elements = 0;
-        let mut diagonal_ops = 0;
-        for (site, factor) in factors.iter().enumerate() {
-            if factor.rows() != factor.cols() {
-                return Err(TensorProjectorError::NonSquareReference {
-                    site,
-                    rows: factor.rows(),
-                    cols: factor.cols(),
-                });
-            }
-            if factor.rows() == 0 {
-                return Err(TensorProjectorError::ZeroDimension { site });
-            }
-            dimension = element_count(dimension, factor.rows())?;
-            factor_elements = plus(factor_elements, factor.as_slice().len())?;
-            diagonal_ops = plus(diagonal_ops, factor.rows())?;
-        }
-        let elements = element_count(dimension, dimension)?;
-        charge(
-            limits,
-            plus(elements, factor_elements)?.max(factors.len()),
-            plus(diagonal_ops, times(elements, factors.len())?)?,
-        )?;
-        let mut dimensions = reserve(factors.len())?;
-        for (site, factor) in factors.iter().enumerate() {
-            if trace(factor)? != F::one() {
-                return Err(TensorProjectorError::ReferenceNotNormalized { site });
-            }
-            dimensions.push(factor.rows());
-        }
+        let (dimension, factor_elements, diagonal_ops) = validate_and_measure_factors(factors)?;
+        charge_product_reference_budget(factors.len(), dimension, factor_elements, diagonal_ops, limits)?;
+        let dimensions = collect_normalized_dimensions(factors)?;
         let layout = TensorLayout::new_with_limits(&dimensions, limits)?;
-        let product =
-            super::matrix::try_from_fn_with_limits(dimension, dimension, limits, |row, col| {
-                let mut value = F::one();
-                for (site, factor) in factors.iter().enumerate() {
-                    value = value.try_mul(
-                        &factor.as_slice()
-                            [layout.digit(row, site) * factor.cols() + layout.digit(col, site)],
-                    )?;
-                }
-                Ok(value)
-            })?;
-        let mut owned_factors = reserve(factors.len())?;
-        for factor in factors {
-            owned_factors.push(BasicMatrix::try_from_fn_with_limit(
-                factor.rows(),
-                factor.cols(),
-                limits.max_elements,
-                |row, col| factor.as_slice()[row * factor.cols() + col].clone(),
-            )?);
-        }
+        let product = compute_product_matrix(factors, dimension, &layout, limits)?;
+        let owned_factors = clone_reference_factors(factors, limits)?;
         Ok(Self {
             layout,
             factors: owned_factors,
@@ -472,35 +510,30 @@ impl<F: Field + ExactRing> ProductReference<F> {
         self.inject_with_limits(&local, retained_sites, limits)
     }
 
-    fn differential_work(&self) -> Result<usize, MatrixError> {
+    fn marginal_operations(&self) -> Result<usize, MatrixError> {
         let mut marginal_ops = 0;
         for &dimension in self.layout.dimensions() {
             marginal_ops = plus(marginal_ops, times(self.layout.dimension, dimension)?)?;
         }
-        let sites = self.factors.len();
-        plus(
-            plus(
-                marginal_ops,
-                times(times(self.layout.elements, sites)?, sites)?,
-            )?,
-            plus(
-                plus(self.layout.dimension, sites)?,
-                plus(1, times(3, self.layout.elements)?)?,
-            )?,
-        )
+        Ok(marginal_ops)
     }
 
-    pub fn product_differential_with_limits(
+    fn differential_work(&self) -> Result<usize, MatrixError> {
+        let marginal_ops = self.marginal_operations()?;
+        let sites = self.factors.len();
+        let site_ops = times(times(self.layout.elements, sites)?, sites)?;
+        let head = plus(marginal_ops, site_ops)?;
+        let dim_sites = plus(self.layout.dimension, sites)?;
+        let tail_work = plus(1, times(3, self.layout.elements)?)?;
+        let tail = plus(dim_sites, tail_work)?;
+        plus(head, tail)
+    }
+
+    fn accumulate_site_partials(
         &self,
         matrix: &BasicMatrix<F>,
         limits: OperationLimits,
-    ) -> Result<BasicMatrix<F>, TensorProjectorError> {
-        self.layout.check_operator(matrix)?;
-        charge(
-            limits,
-            self.layout.elements.max(self.factors.len()),
-            self.differential_work()?,
-        )?;
+    ) -> Result<Vec<F>, TensorProjectorError> {
         let mut data = reserve(self.layout.elements)?;
         data.resize_with(self.layout.elements, F::zero);
         for site in 0..self.factors.len() {
@@ -516,6 +549,14 @@ impl<F: Field + ExactRing> ProductReference<F> {
                 }
             }
         }
+        Ok(data)
+    }
+
+    fn apply_radial_correction(
+        &self,
+        matrix: &BasicMatrix<F>,
+        data: &mut [F],
+    ) -> Result<(), TensorProjectorError> {
         let mut coefficient = F::zero();
         for _ in 1..self.factors.len() {
             coefficient = coefficient.try_add(&F::one())?;
@@ -524,6 +565,22 @@ impl<F: Field + ExactRing> ProductReference<F> {
         for (value, reference) in data.iter_mut().zip(self.product.as_slice()) {
             *value = value.try_sub(&radial.try_mul(reference)?)?;
         }
+        Ok(())
+    }
+
+    pub fn product_differential_with_limits(
+        &self,
+        matrix: &BasicMatrix<F>,
+        limits: OperationLimits,
+    ) -> Result<BasicMatrix<F>, TensorProjectorError> {
+        self.layout.check_operator(matrix)?;
+        charge(
+            limits,
+            self.layout.elements.max(self.factors.len()),
+            self.differential_work()?,
+        )?;
+        let mut data = self.accumulate_site_partials(matrix, limits)?;
+        self.apply_radial_correction(matrix, &mut data)?;
         Ok(BasicMatrix::from_row_major_with_limit(
             self.layout.dimension,
             self.layout.dimension,
@@ -572,22 +629,24 @@ impl<F: Field + ExactRing> ProductReference<F> {
         Ok(result)
     }
 
-    pub fn inclusion_exclusion_with_limits(
-        &self,
-        matrix: &BasicMatrix<F>,
-        limits: OperationLimits,
-    ) -> Result<BasicMatrix<F>, TensorProjectorError> {
-        self.layout.check_operator(matrix)?;
+    fn inclusion_exclusion_ops(&self) -> Result<(usize, usize), TensorProjectorError> {
         let exponent =
             u32::try_from(self.factors.len()).map_err(|_| MatrixError::OperationCountOverflow)?;
         let terms = 1usize
             .checked_shl(exponent)
             .ok_or(MatrixError::OperationCountOverflow)?;
-        let ops = times(
-            terms,
-            times(self.layout.elements, plus(self.factors.len(), 3)?)?,
-        )?;
-        charge(limits, self.layout.elements.max(self.factors.len()), ops)?;
+        let factor_ops = plus(self.factors.len(), 3)?;
+        let elem_factor_ops = times(self.layout.elements, factor_ops)?;
+        let ops = times(terms, elem_factor_ops)?;
+        Ok((terms, ops))
+    }
+
+    fn accumulate_inclusion_exclusion(
+        &self,
+        matrix: &BasicMatrix<F>,
+        terms: usize,
+        limits: OperationLimits,
+    ) -> Result<Vec<F>, TensorProjectorError> {
         let mut data = reserve(self.layout.elements)?;
         data.resize_with(self.layout.elements, F::zero);
         let mut retained = reserve(self.factors.len())?;
@@ -604,6 +663,18 @@ impl<F: Field + ExactRing> ProductReference<F> {
                 };
             }
         }
+        Ok(data)
+    }
+
+    pub fn inclusion_exclusion_with_limits(
+        &self,
+        matrix: &BasicMatrix<F>,
+        limits: OperationLimits,
+    ) -> Result<BasicMatrix<F>, TensorProjectorError> {
+        self.layout.check_operator(matrix)?;
+        let (terms, ops) = self.inclusion_exclusion_ops()?;
+        charge(limits, self.layout.elements.max(self.factors.len()), ops)?;
+        let data = self.accumulate_inclusion_exclusion(matrix, terms, limits)?;
         Ok(BasicMatrix::from_row_major_with_limit(
             self.layout.dimension,
             self.layout.dimension,

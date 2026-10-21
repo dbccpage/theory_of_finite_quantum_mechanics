@@ -1,6 +1,6 @@
 use crate::connection::DiscreteConnection;
 use crate::error::HolonomyError;
-use crate::graph::{CellComplex, OrientedStep};
+use crate::graph::{CellComplex, Face, OrientedStep};
 use crate::matrix::{ExactMatrix, ExactScalar};
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::smith_normal_form::smith_normal_form_checked;
@@ -70,6 +70,37 @@ struct Forest {
     discovery: Vec<usize>,
 }
 
+fn bfs_component(
+    start: usize,
+    adjacency: &[Vec<(usize, usize, i8)>],
+    visited: &mut [bool],
+    tree_edge: &mut [bool],
+    parent: &mut [Option<Link>],
+    root: &mut [usize],
+    discovery: &mut Vec<usize>,
+) {
+    visited[start] = true;
+    discovery.push(start);
+    let mut queue = VecDeque::from([start]);
+    while let Some(u) = queue.pop_front() {
+        for &(v, edge, direction) in &adjacency[u] {
+            if visited[v] {
+                continue;
+            }
+            visited[v] = true;
+            tree_edge[edge] = true;
+            parent[v] = Some(Link {
+                edge,
+                direction_from_parent: direction,
+                parent: u,
+            });
+            root[v] = start;
+            discovery.push(v);
+            queue.push_back(v);
+        }
+    }
+}
+
 fn spanning_forest(vertex_count: usize, endpoints: &[(usize, usize)]) -> Forest {
     let mut adjacency: Vec<Vec<(usize, usize, i8)>> = vec![Vec::new(); vertex_count];
     for (edge, &(source, target)) in endpoints.iter().enumerate() {
@@ -82,28 +113,16 @@ fn spanning_forest(vertex_count: usize, endpoints: &[(usize, usize)]) -> Forest 
     let mut visited = vec![false; vertex_count];
     let mut discovery = Vec::with_capacity(vertex_count);
     for start in 0..vertex_count {
-        if visited[start] {
-            continue;
-        }
-        visited[start] = true;
-        discovery.push(start);
-        let mut queue = VecDeque::from([start]);
-        while let Some(u) = queue.pop_front() {
-            for &(v, edge, direction) in &adjacency[u] {
-                if visited[v] {
-                    continue;
-                }
-                visited[v] = true;
-                tree_edge[edge] = true;
-                parent[v] = Some(Link {
-                    edge,
-                    direction_from_parent: direction,
-                    parent: u,
-                });
-                root[v] = start;
-                discovery.push(v);
-                queue.push_back(v);
-            }
+        if !visited[start] {
+            bfs_component(
+                start,
+                &adjacency,
+                &mut visited,
+                &mut tree_edge,
+                &mut parent,
+                &mut root,
+                &mut discovery,
+            );
         }
     }
     Forest {
@@ -118,6 +137,112 @@ pub fn cycle_rank(complex: &CellComplex) -> Result<usize, HolonomyError> {
     let endpoints = edge_endpoints(complex)?;
     let forest = spanning_forest(complex.vertices.len(), &endpoints);
     Ok(forest.tree_edge.iter().filter(|&&on_tree| !on_tree).count())
+}
+
+fn validate_gauge_matrices<T: ExactScalar>(
+    complex: &CellComplex,
+    gauge: &[ExactMatrix<T>],
+    dim: usize,
+) -> Result<(), HolonomyError> {
+    if gauge.len() != complex.vertices.len() {
+        return Err(HolonomyError::VertexValueCount {
+            expected: complex.vertices.len(),
+            actual: gauge.len(),
+        });
+    }
+    for g in gauge {
+        if g.rows() != dim || g.cols() != dim {
+            return Err(HolonomyError::DimensionMismatch {
+                expected: dim,
+                actual: g.rows().max(g.cols()),
+            });
+        }
+    }
+    Ok(())
+}
+
+fn compute_difference_matrix_bounds(
+    complex: &CellComplex,
+    endpoints_len: usize,
+    dim: usize,
+) -> Result<(usize, usize), HolonomyError> {
+    let rows = endpoints_len.checked_mul(dim).ok_or_else(|| {
+        HolonomyError::AllocationFailure {
+            requested: usize::MAX,
+            detail: "incidence dimension overflow".into(),
+        }
+    })?;
+    let cols = complex
+        .vertices
+        .len()
+        .checked_mul(dim)
+        .ok_or_else(|| HolonomyError::AllocationFailure {
+            requested: usize::MAX,
+            detail: "incidence dimension overflow".into(),
+        })?;
+    let entries = rows
+        .checked_mul(cols)
+        .ok_or_else(|| HolonomyError::AllocationFailure {
+            requested: usize::MAX,
+            detail: "incidence buffer overflow".into(),
+        })?;
+    if entries > complex.limits.max_operations {
+        return Err(HolonomyError::AllocationFailure {
+            requested: entries,
+            detail: "incidence operation budget".into(),
+        });
+    }
+    Ok((rows, cols))
+}
+
+fn check_laplacian_budget(
+    complex: &CellComplex,
+    cols: usize,
+    rows: usize,
+) -> Result<(), HolonomyError> {
+    let work = cols
+        .checked_mul(cols)
+        .and_then(|k| k.checked_mul(rows))
+        .ok_or_else(|| HolonomyError::AllocationFailure {
+            requested: usize::MAX,
+            detail: "Laplacian work overflow".into(),
+        })?;
+    if work > complex.limits.max_operations {
+        return Err(HolonomyError::AllocationFailure {
+            requested: work,
+            detail: "Laplacian operation budget".into(),
+        });
+    }
+    Ok(())
+}
+
+fn step_transition(
+    endpoints: &[(usize, usize)],
+    index: usize,
+    step: &OrientedStep,
+    here: usize,
+) -> Result<usize, HolonomyError> {
+    check_edge(step.edge_index, endpoints.len())?;
+    let (source, target) = endpoints[step.edge_index];
+    let (from, to) = match step.direction {
+        1 => (source, target),
+        -1 => (target, source),
+        direction => {
+            return Err(HolonomyError::InvalidStepDirection {
+                step: index,
+                direction,
+            })
+        }
+    };
+    if from != here {
+        return Err(HolonomyError::BrokenWalk {
+            step: index,
+            detail: format!(
+                "step {index} leaves vertex {from} but the walk is at vertex {here}"
+            ),
+        });
+    }
+    Ok(to)
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -289,26 +414,7 @@ impl<T: ExactScalar> EdgeConnection<T> {
         let mut transport = ExactMatrix::try_identity(self.dim)?;
         let mut here = start;
         for (index, step) in steps.iter().enumerate() {
-            check_edge(step.edge_index, endpoints.len())?;
-            let (source, target) = endpoints[step.edge_index];
-            let (from, to) = match step.direction {
-                1 => (source, target),
-                -1 => (target, source),
-                direction => {
-                    return Err(HolonomyError::InvalidStepDirection {
-                        step: index,
-                        direction,
-                    })
-                }
-            };
-            if from != here {
-                return Err(HolonomyError::BrokenWalk {
-                    step: index,
-                    detail: format!(
-                        "step {index} leaves vertex {from} but the walk is at vertex {here}"
-                    ),
-                });
-            }
+            let to = step_transition(endpoints, index, step, here)?;
             transport = self.step(*step)?.matmul(&transport)?;
             here = to;
         }
@@ -337,20 +443,7 @@ impl<T: ExactScalar> EdgeConnection<T> {
         gauge: &[ExactMatrix<T>],
     ) -> Result<Self, HolonomyError> {
         self.check_complex(complex)?;
-        if gauge.len() != complex.vertices.len() {
-            return Err(HolonomyError::VertexValueCount {
-                expected: complex.vertices.len(),
-                actual: gauge.len(),
-            });
-        }
-        for g in gauge {
-            if g.rows() != self.dim || g.cols() != self.dim {
-                return Err(HolonomyError::DimensionMismatch {
-                    expected: self.dim,
-                    actual: g.rows().max(g.cols()),
-                });
-            }
-        }
+        validate_gauge_matrices(complex, gauge, self.dim)?;
         let gauge_inverses = gauge
             .iter()
             .map(ExactMatrix::inverse)
@@ -385,32 +478,7 @@ impl<T: ExactScalar> EdgeConnection<T> {
     ) -> Result<ExactMatrix<T>, HolonomyError> {
         self.check_complex(complex)?;
         let endpoints = edge_endpoints(complex)?;
-        let rows = endpoints.len().checked_mul(self.dim).ok_or_else(|| {
-            HolonomyError::AllocationFailure {
-                requested: usize::MAX,
-                detail: "incidence dimension overflow".into(),
-            }
-        })?;
-        let cols = complex
-            .vertices
-            .len()
-            .checked_mul(self.dim)
-            .ok_or_else(|| HolonomyError::AllocationFailure {
-                requested: usize::MAX,
-                detail: "incidence dimension overflow".into(),
-            })?;
-        let entries = rows
-            .checked_mul(cols)
-            .ok_or_else(|| HolonomyError::AllocationFailure {
-                requested: usize::MAX,
-                detail: "incidence buffer overflow".into(),
-            })?;
-        if entries > complex.limits.max_operations {
-            return Err(HolonomyError::AllocationFailure {
-                requested: entries,
-                detail: "incidence operation budget".into(),
-            });
-        }
+        let (rows, cols) = compute_difference_matrix_bounds(complex, endpoints.len(), self.dim)?;
         let mut out = ExactMatrix::<T>::try_zero(rows, cols)?;
         for (edge, &(s, t)) in endpoints.iter().enumerate() {
             for i in 0..self.dim {
@@ -442,19 +510,7 @@ impl<T: ExactScalar> EdgeConnection<T> {
         }
         let d = self.covariant_difference_matrix(complex)?;
         let n = d.cols();
-        let work = n
-            .checked_mul(n)
-            .and_then(|k| k.checked_mul(d.rows()))
-            .ok_or_else(|| HolonomyError::AllocationFailure {
-                requested: usize::MAX,
-                detail: "Laplacian work overflow".into(),
-            })?;
-        if work > complex.limits.max_operations {
-            return Err(HolonomyError::AllocationFailure {
-                requested: work,
-                detail: "Laplacian operation budget".into(),
-            });
-        }
+        check_laplacian_budget(complex, n, d.rows())?;
         let mut out = ExactMatrix::try_zero(n, n)?;
         for i in 0..n {
             for j in 0..n {
@@ -706,17 +762,13 @@ pub fn tree_gauge<T: ExactScalar>(
     )
 }
 
-pub fn tree_gauge_indexed<T: ExactScalar>(
+fn compute_forest_gauge_transports<T: ExactScalar>(
     complex: &CellComplex,
     connection: &EdgeConnection<T>,
-) -> Result<TreeGauge<T>, HolonomyError> {
-    connection.check_complex(complex)?;
-    let dim = connection.dim;
-    let vertex_count = complex.vertices.len();
-    let endpoints = edge_endpoints(complex)?;
-    let forest = spanning_forest(vertex_count, &endpoints);
-
-    let identity = ExactMatrix::<T>::try_identity(dim)?;
+    forest: &Forest,
+    vertex_count: usize,
+) -> Result<(Vec<ExactMatrix<T>>, Vec<ExactMatrix<T>>), HolonomyError> {
+    let identity = ExactMatrix::<T>::try_identity(connection.dim)?;
     let mut gauge = Vec::new();
     let mut transport_from_root = Vec::new();
     check_and_reserve(&mut gauge, vertex_count, complex.limits.max_vertices)?;
@@ -745,7 +797,16 @@ pub fn tree_gauge_indexed<T: ExactScalar>(
             gauge[vertex] = gauge[link.parent].matmul(connection.step(backward)?)?;
         }
     }
+    Ok((gauge, transport_from_root))
+}
 
+fn compute_tree_gauge_residual<T: ExactScalar>(
+    complex: &CellComplex,
+    connection: &EdgeConnection<T>,
+    endpoints: &[(usize, usize)],
+    gauge: &[ExactMatrix<T>],
+    transport_from_root: &[ExactMatrix<T>],
+) -> Result<EdgeConnection<T>, HolonomyError> {
     let mut values = Vec::new();
     let mut inverses = Vec::new();
     check_and_reserve(&mut values, endpoints.len(), complex.limits.max_edges)?;
@@ -762,6 +823,26 @@ pub fn tree_gauge_indexed<T: ExactScalar>(
                 .matmul(&transport_from_root[t])?,
         );
     }
+    Ok(EdgeConnection {
+        dim: connection.dim,
+        values,
+        inverses,
+    })
+}
+
+pub fn tree_gauge_indexed<T: ExactScalar>(
+    complex: &CellComplex,
+    connection: &EdgeConnection<T>,
+) -> Result<TreeGauge<T>, HolonomyError> {
+    connection.check_complex(complex)?;
+    let dim = connection.dim;
+    let vertex_count = complex.vertices.len();
+    let endpoints = edge_endpoints(complex)?;
+    let forest = spanning_forest(vertex_count, &endpoints);
+    let (gauge, transport_from_root) =
+        compute_forest_gauge_transports(complex, connection, &forest, vertex_count)?;
+    let residual =
+        compute_tree_gauge_residual(complex, connection, &endpoints, &gauge, &transport_from_root)?;
     Ok(TreeGauge {
         dim,
         vertex_ids: complex.vertices.iter().map(|v| v.id.clone()).collect(),
@@ -769,11 +850,7 @@ pub fn tree_gauge_indexed<T: ExactScalar>(
         forest,
         gauge,
         transport_from_root,
-        residual: EdgeConnection {
-            dim,
-            values,
-            inverses,
-        },
+        residual,
     })
 }
 
@@ -782,6 +859,29 @@ pub enum GaugeEquivalence<T: ExactScalar> {
     Equivalent { gauge: Vec<ExactMatrix<T>> },
     Inequivalent { edge: usize },
     Undetermined { edge: usize },
+}
+
+fn check_cycle_holonomies_match<T: ExactScalar>(
+    fixed_a: &TreeGauge<T>,
+    fixed_b: &TreeGauge<T>,
+) -> Result<Option<Result<usize, usize>>, HolonomyError> {
+    let mut first_difference = None;
+    for (edge, residual_a) in fixed_a.cycle_holonomies() {
+        let residual_b = fixed_b.residual_value(edge)?;
+        if residual_a == *residual_b {
+            continue;
+        }
+        if residual_a.trace()? != residual_b.trace()?
+            || residual_a.determinant()? != residual_b.determinant()?
+        {
+            return Ok(Some(Err(edge)));
+        }
+        first_difference.get_or_insert(edge);
+    }
+    if let Some(edge) = first_difference {
+        return Ok(Some(Ok(edge)));
+    }
+    Ok(None)
 }
 
 pub fn gauge_equivalence<T: ExactScalar>(
@@ -797,21 +897,11 @@ pub fn gauge_equivalence<T: ExactScalar>(
     }
     let fixed_a = tree_gauge_indexed(complex, a)?;
     let fixed_b = tree_gauge_indexed(complex, b)?;
-    let mut first_difference = None;
-    for (edge, residual_a) in fixed_a.cycle_holonomies() {
-        let residual_b = fixed_b.residual_value(edge)?;
-        if residual_a == *residual_b {
-            continue;
-        }
-        if residual_a.trace()? != residual_b.trace()?
-            || residual_a.determinant()? != residual_b.determinant()?
-        {
-            return Ok(GaugeEquivalence::Inequivalent { edge });
-        }
-        first_difference.get_or_insert(edge);
-    }
-    if let Some(edge) = first_difference {
-        return Ok(GaugeEquivalence::Undetermined { edge });
+    if let Some(outcome) = check_cycle_holonomies_match(&fixed_a, &fixed_b)? {
+        return match outcome {
+            Err(edge) => Ok(GaugeEquivalence::Inequivalent { edge }),
+            Ok(edge) => Ok(GaugeEquivalence::Undetermined { edge }),
+        };
     }
     let gauge = fixed_b
         .transport_from_root
@@ -874,79 +964,72 @@ fn gcd(mut a: u64, mut b: u64) -> u64 {
     a
 }
 
-pub fn flat_cyclic_gauge_classes(
+fn accumulate_face_boundary(
+    face_index: usize,
+    face: &Face,
     complex: &CellComplex,
-    order: u64,
-) -> Result<BigUint, HolonomyError> {
-    if order == 0 {
-        return Err(HolonomyError::InvalidGroupOrder { order });
-    }
-    let endpoints = edge_endpoints(complex)?;
-    let forest = spanning_forest(complex.vertices.len(), &endpoints);
-    let off_tree: Vec<usize> = (0..endpoints.len())
-        .filter(|&e| !forest.tree_edge[e])
-        .collect();
-    let z = off_tree.len();
-    let column_of: BTreeMap<usize, usize> = off_tree
-        .iter()
-        .enumerate()
-        .map(|(column, &edge)| (edge, column))
-        .collect();
-
-    let faces = complex.faces.len();
-    let mut data = vec![BigInt::zero(); faces * z];
-    for (face_index, face) in complex.faces.iter().enumerate() {
-        let start_id =
-            face.boundary_vertices
-                .first()
-                .ok_or_else(|| HolonomyError::BoundaryCycleMismatch {
-                    face: face.id.clone(),
-                    detail: "the face lists no boundary vertices".into(),
-                })?;
-        let start =
-            *complex
-                .vertex_map
-                .get(start_id)
-                .ok_or_else(|| HolonomyError::VertexNotFound {
-                    id: start_id.clone(),
-                })?;
-        let mut here = start;
-        for (index, step) in face.boundary_edges.iter().enumerate() {
-            check_edge(step.edge_index, endpoints.len())?;
-            let (source, target) = endpoints[step.edge_index];
-            let (from, to) = match step.direction {
-                1 => (source, target),
-                -1 => (target, source),
-                direction => {
-                    return Err(HolonomyError::InvalidStepDirection {
-                        step: index,
-                        direction,
-                    })
-                }
-            };
-            if from != here {
-                return Err(HolonomyError::BrokenWalk {
+    endpoints: &[(usize, usize)],
+    column_of: &BTreeMap<usize, usize>,
+    z: usize,
+    data: &mut [BigInt],
+) -> Result<(), HolonomyError> {
+    let start_id = face
+        .boundary_vertices
+        .first()
+        .ok_or_else(|| HolonomyError::BoundaryCycleMismatch {
+            face: face.id.clone(),
+            detail: "the face lists no boundary vertices".into(),
+        })?;
+    let start = *complex
+        .vertex_map
+        .get(start_id)
+        .ok_or_else(|| HolonomyError::VertexNotFound {
+            id: start_id.clone(),
+        })?;
+    let mut here = start;
+    for (index, step) in face.boundary_edges.iter().enumerate() {
+        check_edge(step.edge_index, endpoints.len())?;
+        let (source, target) = endpoints[step.edge_index];
+        let (from, to) = match step.direction {
+            1 => (source, target),
+            -1 => (target, source),
+            direction => {
+                return Err(HolonomyError::InvalidStepDirection {
                     step: index,
-                    detail: format!(
-                        "step {index} of face '{}' leaves vertex {from} but the boundary is at \
-                         vertex {here}",
-                        face.id
-                    ),
-                });
+                    direction,
+                })
             }
-            here = to;
-            if let Some(&column) = column_of.get(&step.edge_index) {
-                data[face_index * z + column] += BigInt::from(step.direction);
-            }
-        }
-        if here != start {
-            return Err(HolonomyError::BoundaryCycleMismatch {
-                face: face.id.clone(),
-                detail: "the boundary steps do not return to the first boundary vertex".into(),
+        };
+        if from != here {
+            return Err(HolonomyError::BrokenWalk {
+                step: index,
+                detail: format!(
+                    "step {index} of face '{}' leaves vertex {from} but the boundary is at \
+                     vertex {here}",
+                    face.id
+                ),
             });
         }
+        here = to;
+        if let Some(&column) = column_of.get(&step.edge_index) {
+            data[face_index * z + column] += BigInt::from(step.direction);
+        }
     }
+    if here != start {
+        return Err(HolonomyError::BoundaryCycleMismatch {
+            face: face.id.clone(),
+            detail: "the boundary steps do not return to the first boundary vertex".into(),
+        });
+    }
+    Ok(())
+}
 
+fn compute_smith_gauge_classes(
+    faces: usize,
+    z: usize,
+    data: Vec<BigInt>,
+    order: u64,
+) -> Result<BigUint, HolonomyError> {
     let power = |exponent: usize| -> Result<BigUint, HolonomyError> {
         let exponent = u32::try_from(exponent).map_err(|_| HolonomyError::AllocationFailure {
             requested: exponent,
@@ -980,4 +1063,39 @@ pub fn flat_cyclic_gauge_classes(
         count *= BigUint::from(gcd(residue, order));
     }
     Ok(count)
+}
+
+pub fn flat_cyclic_gauge_classes(
+    complex: &CellComplex,
+    order: u64,
+) -> Result<BigUint, HolonomyError> {
+    if order == 0 {
+        return Err(HolonomyError::InvalidGroupOrder { order });
+    }
+    let endpoints = edge_endpoints(complex)?;
+    let forest = spanning_forest(complex.vertices.len(), &endpoints);
+    let off_tree: Vec<usize> = (0..endpoints.len())
+        .filter(|&e| !forest.tree_edge[e])
+        .collect();
+    let z = off_tree.len();
+    let column_of: BTreeMap<usize, usize> = off_tree
+        .iter()
+        .enumerate()
+        .map(|(column, &edge)| (edge, column))
+        .collect();
+
+    let faces = complex.faces.len();
+    let mut data = vec![BigInt::zero(); faces * z];
+    for (face_index, face) in complex.faces.iter().enumerate() {
+        accumulate_face_boundary(
+            face_index,
+            face,
+            complex,
+            &endpoints,
+            &column_of,
+            z,
+            &mut data,
+        )?;
+    }
+    compute_smith_gauge_classes(faces, z, data, order)
 }

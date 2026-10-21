@@ -107,6 +107,23 @@ where
     if bound == 0 {
         return Err(GroupError::BoundExceeded { bound });
     }
+fn try_insert_candidate<E, K: std::hash::Hash + Eq>(
+    candidate: E,
+    k: K,
+    bound: usize,
+    index: &mut HashMap<K, usize>,
+    elements: &mut Vec<E>,
+) -> Result<(), GroupError> {
+    if let std::collections::hash_map::Entry::Vacant(slot) = index.entry(k) {
+        if elements.len() == bound {
+            return Err(GroupError::BoundExceeded { bound });
+        }
+        slot.insert(elements.len());
+        elements.push(candidate);
+    }
+    Ok(())
+}
+
     let mut index: HashMap<K, usize> = HashMap::new();
     index.insert(key(&identity), 0);
     let mut elements = vec![identity];
@@ -115,13 +132,7 @@ where
         for generator in generators {
             let candidate = mul(&elements[cursor], generator);
             let k = key(&candidate);
-            if let std::collections::hash_map::Entry::Vacant(slot) = index.entry(k) {
-                if elements.len() == bound {
-                    return Err(GroupError::BoundExceeded { bound });
-                }
-                slot.insert(elements.len());
-                elements.push(candidate);
-            }
+            try_insert_candidate(candidate, k, bound, &mut index, &mut elements)?;
         }
         cursor += 1;
     }
@@ -245,16 +256,21 @@ impl<E> FiniteGroup<E> {
         })
     }
 
+    fn check_associativity_for_pair(&self, a: usize, b: usize, n: usize) -> Result<(), GroupError> {
+        let ab = self.at(a, b);
+        for c in 0..n {
+            if self.at(ab, c) != self.at(a, self.at(b, c)) {
+                return Err(GroupError::NotAssociative { a, b, c });
+            }
+        }
+        Ok(())
+    }
+
     pub fn verify_associativity(&self) -> Result<(), GroupError> {
         let n = self.order();
         for a in 0..n {
             for b in 0..n {
-                let ab = self.at(a, b);
-                for c in 0..n {
-                    if self.at(ab, c) != self.at(a, self.at(b, c)) {
-                        return Err(GroupError::NotAssociative { a, b, c });
-                    }
-                }
+                self.check_associativity_for_pair(a, b, n)?;
             }
         }
         Ok(())
@@ -854,6 +870,25 @@ fn primitive_root(p: u64) -> u64 {
         .unwrap_or(1)
 }
 
+fn eliminate_rows_mod_p(
+    m: &mut [Vec<u64>],
+    rows: usize,
+    cols: usize,
+    pivot_row: usize,
+    col: usize,
+    p: u64,
+) {
+    for r in 0..rows {
+        if r != pivot_row && m[r][col] != 0 {
+            let factor = m[r][col];
+            for c in 0..cols {
+                let sub = factor * m[pivot_row][c] % p;
+                m[r][c] = (m[r][c] + p - sub) % p;
+            }
+        }
+    }
+}
+
 fn nullspace_mod_p(a: &[Vec<u64>], cols: usize, p: u64) -> Vec<Vec<u64>> {
     let mut m: Vec<Vec<u64>> = a.to_vec();
     let rows = m.len();
@@ -871,15 +906,7 @@ fn nullspace_mod_p(a: &[Vec<u64>], cols: usize, p: u64) -> Vec<Vec<u64>> {
         for c in 0..cols {
             m[pivot_row][c] = m[pivot_row][c] * inv % p;
         }
-        for r in 0..rows {
-            if r != pivot_row && m[r][col] != 0 {
-                let factor = m[r][col];
-                for c in 0..cols {
-                    let sub = factor * m[pivot_row][c] % p;
-                    m[r][c] = (m[r][c] + p - sub) % p;
-                }
-            }
-        }
+        eliminate_rows_mod_p(&mut m, rows, cols, pivot_row, col, p);
         pivot_columns.push(col);
         pivot_row += 1;
     }
@@ -942,22 +969,268 @@ fn split_by_eigenvalues(
     (total == d).then_some(parts)
 }
 
+fn validate_character_table_limits(n: usize, k: usize, exponent: usize) -> Result<(), GroupError> {
+    if n > MAX_CHARACTER_TABLE_ORDER
+        || k > MAX_CHARACTER_TABLE_CLASSES
+        || exponent > MAX_CONDUCTOR
+    {
+        return Err(GroupError::CharacterTableTooLarge {
+            order: n,
+            classes: k,
+        });
+    }
+    Ok(())
+}
+
+fn compute_class_intersection_tensor<E>(
+    group: &FiniteGroup<E>,
+    classes: &[Vec<usize>],
+    reps: &[usize],
+    class_of: &[usize],
+    k: usize,
+) -> Vec<Vec<Vec<u64>>> {
+    let mut a = vec![vec![vec![0u64; k]; k]; k];
+    for (l, &z) in reps.iter().enumerate() {
+        for (i, class) in classes.iter().enumerate() {
+            for &x in class {
+                let y = group.at(group.inverses[x], z);
+                a[i][class_of[y]][l] += 1;
+            }
+        }
+    }
+    a
+}
+
+fn find_character_prime(n: usize, exponent: usize) -> Result<(u64, u64, u64), GroupError> {
+    let inconsistent = GroupError::CharacterTableInconsistent;
+    let mut p = 1 + exponent as u64 * ((2 * n as u64) / exponent as u64 + 1);
+    while !is_prime(p) {
+        p += exponent as u64;
+    }
+    let generator = primitive_root(p);
+    let zeta = mod_pow(generator, (p - 1) / exponent as u64, p);
+    let zeta_inverse =
+        mod_inv(zeta, p).ok_or_else(|| inconsistent("the root of unity is a unit"))?;
+    Ok((p, zeta, zeta_inverse))
+}
+
+fn compute_simultaneous_eigenspaces(
+    matrices: &[Vec<Vec<u64>>],
+    k: usize,
+    p: u64,
+) -> Result<Vec<Vec<Vec<u64>>>, GroupError> {
+    let inconsistent = GroupError::CharacterTableInconsistent;
+    let standard: Vec<Vec<u64>> = (0..k)
+        .map(|i| (0..k).map(|j| u64::from(i == j)).collect())
+        .collect();
+    let mut spaces: Vec<Vec<Vec<u64>>> = vec![standard];
+    for matrix in matrices {
+        let mut next = Vec::new();
+        for space in spaces {
+            if space.len() == 1 {
+                next.push(space);
+                continue;
+            }
+            let parts = split_by_eigenvalues(matrix, &space, k, p).ok_or_else(|| {
+                inconsistent("a class matrix did not split over the prime field")
+            })?;
+            next.extend(parts);
+        }
+        spaces = next;
+    }
+    if spaces.len() != k || spaces.iter().any(|s| s.len() != 1) {
+        return Err(inconsistent(
+            "the common eigenspaces are not one-dimensional",
+        ));
+    }
+    Ok(spaces)
+}
+
+fn reconstruct_character_value<E>(
+    group: &FiniteGroup<E>,
+    rep: usize,
+    degree: u64,
+    chi: &[u64],
+    class_of: &[usize],
+    exponent: usize,
+    p: u64,
+    zeta_inverse: u64,
+) -> Result<CyclotomicInteger, GroupError> {
+    let inconsistent = GroupError::CharacterTableInconsistent;
+    let m = group
+        .element_order(rep)
+        .expect("a class representative is an element") as u64;
+    let m_inverse = mod_inv(m % p, p)
+        .ok_or_else(|| inconsistent("the element order vanishes mod p"))?;
+    let step = exponent as u64 / m;
+    let mut terms: Vec<(usize, BigInt)> = Vec::new();
+    let mut total = 0u64;
+    for t in 0..m {
+        let mut sum = 0u64;
+        for s_power in 0..m {
+            let element = group
+                .power(rep, s_power)
+                .expect("an element power is an element");
+            let value = chi[class_of[element]];
+            sum = (sum
+                + value
+                    * mod_pow(zeta_inverse, step * t * s_power % exponent as u64, p))
+                % p;
+        }
+        let multiplicity = sum * m_inverse % p;
+        if multiplicity > degree {
+            return Err(inconsistent(
+                "an eigenvalue multiplicity exceeds the degree",
+            ));
+        }
+        total += multiplicity;
+        if multiplicity > 0 {
+            terms.push(((step * t) as usize, BigInt::from(multiplicity)));
+        }
+    }
+    if total != degree {
+        return Err(inconsistent(
+            "the eigenvalue multiplicities do not sum to the degree",
+        ));
+    }
+    CyclotomicInteger::from_formal_sum(exponent, &terms)
+        .map_err(|_| inconsistent("the value ring could not be built"))
+}
+
+fn normalize_eigenspace_vector(
+    space: &[Vec<u64>],
+    identity_class: usize,
+    p: u64,
+) -> Result<Vec<u64>, GroupError> {
+    let mut omega = space[0].clone();
+    let scale = mod_inv(omega[identity_class], p).ok_or_else(|| {
+        GroupError::CharacterTableInconsistent("a central character vanishes at the identity class")
+    })?;
+    for w in &mut omega {
+        *w = *w * scale % p;
+    }
+    Ok(omega)
+}
+
+fn compute_character_degree(
+    omega: &[u64],
+    sizes: &[u64],
+    inverse_class: &[usize],
+    order_residue: u64,
+    k: usize,
+    p: u64,
+) -> Result<u64, GroupError> {
+    let inconsistent = GroupError::CharacterTableInconsistent;
+    let mut s = 0u64;
+    for j in 0..k {
+        let size_inverse = mod_inv(sizes[j] % p, p)
+            .ok_or_else(|| inconsistent("a class size vanishes mod p"))?;
+        s = (s + omega[j] * omega[inverse_class[j]] % p * size_inverse) % p;
+    }
+    let s_inverse = mod_inv(s, p)
+        .ok_or_else(|| inconsistent("the degree formula has a vanishing denominator"))?;
+    let degree_squared = order_residue * s_inverse % p;
+    let degree = (0..)
+        .take_while(|d: &u64| d * d <= degree_squared)
+        .last()
+        .unwrap_or(0);
+    if degree == 0 || degree * degree != degree_squared {
+        return Err(inconsistent("the degree is not an integer square root"));
+    }
+    Ok(degree)
+}
+
+fn extract_character_from_eigenspace<E>(
+    group: &FiniteGroup<E>,
+    space: &[Vec<u64>],
+    identity_class: usize,
+    sizes: &[u64],
+    inverse_class: &[usize],
+    reps: &[usize],
+    class_of: &[usize],
+    order_residue: u64,
+    k: usize,
+    exponent: usize,
+    p: u64,
+    zeta_inverse: u64,
+) -> Result<IrreducibleCharacter, GroupError> {
+    let omega = normalize_eigenspace_vector(space, identity_class, p)?;
+    let degree = compute_character_degree(&omega, sizes, inverse_class, order_residue, k, p)?;
+    let chi: Vec<u64> = (0..k)
+        .map(|j| {
+            let size_inverse = mod_inv(sizes[j] % p, p).expect("checked above");
+            omega[j] * degree % p * size_inverse % p
+        })
+        .collect();
+    let mut values = Vec::with_capacity(k);
+    for &rep in reps {
+        values.push(reconstruct_character_value(
+            group,
+            rep,
+            degree,
+            &chi,
+            class_of,
+            exponent,
+            p,
+            zeta_inverse,
+        )?);
+    }
+    Ok(IrreducibleCharacter {
+        degree: degree as usize,
+        values,
+    })
+}
+
+fn sort_and_verify_characters(
+    n: usize,
+    exponent: usize,
+    classes: Vec<Vec<usize>>,
+    mut characters: Vec<IrreducibleCharacter>,
+    k: usize,
+) -> Result<CharacterTable, GroupError> {
+    let inconsistent = GroupError::CharacterTableInconsistent;
+    let trivial: Vec<CyclotomicInteger> = (0..k)
+        .map(|_| {
+            CyclotomicInteger::from_integer(exponent, BigInt::one())
+                .map_err(|_| inconsistent("the value ring could not be built"))
+        })
+        .collect::<Result<_, _>>()?;
+    characters.sort_by(|x, y| {
+        let x_trivial = x.values == trivial;
+        let y_trivial = y.values == trivial;
+        y_trivial
+            .cmp(&x_trivial)
+            .then(x.degree.cmp(&y.degree))
+            .then_with(|| {
+                let key = |c: &IrreducibleCharacter| -> Vec<Vec<BigInt>> {
+                    c.values.iter().map(|v| v.coefficients().to_vec()).collect()
+                };
+                key(x).cmp(&key(y))
+            })
+    });
+
+    let table = CharacterTable {
+        order: n,
+        exponent,
+        classes,
+        characters,
+    };
+    if !(table.degrees_square_sum_to_order() && table.verify_row_orthogonality()) {
+        return Err(inconsistent(
+            "the computed characters fail the orthogonality relations",
+        ));
+    }
+    Ok(table)
+}
+
 impl<E> FiniteGroup<E> {
     pub fn character_table(&self) -> Result<CharacterTable, GroupError> {
         let n = self.order();
         let classes = self.conjugacy_classes();
         let k = classes.len();
         let exponent = self.exponent();
-        if n > MAX_CHARACTER_TABLE_ORDER
-            || k > MAX_CHARACTER_TABLE_CLASSES
-            || exponent > MAX_CONDUCTOR
-        {
-            return Err(GroupError::CharacterTableTooLarge {
-                order: n,
-                classes: k,
-            });
-        }
-        let inconsistent = GroupError::CharacterTableInconsistent;
+        validate_character_table_limits(n, k, exponent)?;
+
         let mut class_of = vec![0usize; n];
         for (j, class) in classes.iter().enumerate() {
             for &x in class {
@@ -969,24 +1242,8 @@ impl<E> FiniteGroup<E> {
         let identity_class = class_of[self.identity];
         let inverse_class: Vec<usize> = reps.iter().map(|&r| class_of[self.inverses[r]]).collect();
 
-        let mut a = vec![vec![vec![0u64; k]; k]; k];
-        for (l, &z) in reps.iter().enumerate() {
-            for (i, class) in classes.iter().enumerate() {
-                for &x in class {
-                    let y = self.at(self.inverses[x], z);
-                    a[i][class_of[y]][l] += 1;
-                }
-            }
-        }
-
-        let mut p = 1 + exponent as u64 * ((2 * n as u64) / exponent as u64 + 1);
-        while !is_prime(p) {
-            p += exponent as u64;
-        }
-        let generator = primitive_root(p);
-        let zeta = mod_pow(generator, (p - 1) / exponent as u64, p);
-        let zeta_inverse =
-            mod_inv(zeta, p).ok_or_else(|| inconsistent("the root of unity is a unit"))?;
+        let a = compute_class_intersection_tensor(self, &classes, &reps, &class_of, k);
+        let (p, _zeta, zeta_inverse) = find_character_prime(n, exponent)?;
 
         let matrices: Vec<Vec<Vec<u64>>> = (0..k)
             .map(|i| {
@@ -995,143 +1252,28 @@ impl<E> FiniteGroup<E> {
                     .collect()
             })
             .collect();
-        let standard: Vec<Vec<u64>> = (0..k)
-            .map(|i| (0..k).map(|j| u64::from(i == j)).collect())
-            .collect();
-        let mut spaces: Vec<Vec<Vec<u64>>> = vec![standard];
-        for matrix in &matrices {
-            let mut next = Vec::new();
-            for space in spaces {
-                if space.len() == 1 {
-                    next.push(space);
-                    continue;
-                }
-                let parts = split_by_eigenvalues(matrix, &space, k, p).ok_or_else(|| {
-                    inconsistent("a class matrix did not split over the prime field")
-                })?;
-                next.extend(parts);
-            }
-            spaces = next;
-        }
-        if spaces.len() != k || spaces.iter().any(|s| s.len() != 1) {
-            return Err(inconsistent(
-                "the common eigenspaces are not one-dimensional",
-            ));
-        }
+        let spaces = compute_simultaneous_eigenspaces(&matrices, k, p)?;
 
         let order_residue = n as u64 % p;
         let mut characters = Vec::with_capacity(k);
         for space in &spaces {
-            let mut omega = space[0].clone();
-            let scale = mod_inv(omega[identity_class], p).ok_or_else(|| {
-                inconsistent("a central character vanishes at the identity class")
-            })?;
-            for w in &mut omega {
-                *w = *w * scale % p;
-            }
-            let mut s = 0u64;
-            for j in 0..k {
-                let size_inverse = mod_inv(sizes[j] % p, p)
-                    .ok_or_else(|| inconsistent("a class size vanishes mod p"))?;
-                s = (s + omega[j] * omega[inverse_class[j]] % p * size_inverse) % p;
-            }
-            let s_inverse = mod_inv(s, p)
-                .ok_or_else(|| inconsistent("the degree formula has a vanishing denominator"))?;
-            let degree_squared = order_residue * s_inverse % p;
-            let degree = (0..)
-                .take_while(|d: &u64| d * d <= degree_squared)
-                .last()
-                .unwrap_or(0);
-            if degree == 0 || degree * degree != degree_squared {
-                return Err(inconsistent("the degree is not an integer square root"));
-            }
-            let chi: Vec<u64> = (0..k)
-                .map(|j| {
-                    let size_inverse = mod_inv(sizes[j] % p, p).expect("checked above");
-                    omega[j] * degree % p * size_inverse % p
-                })
-                .collect();
-            let mut values = Vec::with_capacity(k);
-            for &rep in &reps {
-                let m = self
-                    .element_order(rep)
-                    .expect("a class representative is an element") as u64;
-                let m_inverse = mod_inv(m % p, p)
-                    .ok_or_else(|| inconsistent("the element order vanishes mod p"))?;
-                let step = exponent as u64 / m;
-                let mut terms: Vec<(usize, BigInt)> = Vec::new();
-                let mut total = 0u64;
-                for t in 0..m {
-                    let mut sum = 0u64;
-                    for s_power in 0..m {
-                        let element = self
-                            .power(rep, s_power)
-                            .expect("an element power is an element");
-                        let value = chi[class_of[element]];
-                        sum = (sum
-                            + value
-                                * mod_pow(zeta_inverse, step * t * s_power % exponent as u64, p))
-                            % p;
-                    }
-                    let multiplicity = sum * m_inverse % p;
-                    if multiplicity > degree {
-                        return Err(inconsistent(
-                            "an eigenvalue multiplicity exceeds the degree",
-                        ));
-                    }
-                    total += multiplicity;
-                    if multiplicity > 0 {
-                        terms.push(((step * t) as usize, BigInt::from(multiplicity)));
-                    }
-                }
-                if total != degree {
-                    return Err(inconsistent(
-                        "the eigenvalue multiplicities do not sum to the degree",
-                    ));
-                }
-                values.push(
-                    CyclotomicInteger::from_formal_sum(exponent, &terms)
-                        .map_err(|_| inconsistent("the value ring could not be built"))?,
-                );
-            }
-            characters.push(IrreducibleCharacter {
-                degree: degree as usize,
-                values,
-            });
+            characters.push(extract_character_from_eigenspace(
+                self,
+                space,
+                identity_class,
+                &sizes,
+                &inverse_class,
+                &reps,
+                &class_of,
+                order_residue,
+                k,
+                exponent,
+                p,
+                zeta_inverse,
+            )?);
         }
 
-        let trivial: Vec<CyclotomicInteger> = (0..k)
-            .map(|_| {
-                CyclotomicInteger::from_integer(exponent, BigInt::one())
-                    .map_err(|_| inconsistent("the value ring could not be built"))
-            })
-            .collect::<Result<_, _>>()?;
-        characters.sort_by(|x, y| {
-            let x_trivial = x.values == trivial;
-            let y_trivial = y.values == trivial;
-            y_trivial
-                .cmp(&x_trivial)
-                .then(x.degree.cmp(&y.degree))
-                .then_with(|| {
-                    let key = |c: &IrreducibleCharacter| -> Vec<Vec<BigInt>> {
-                        c.values.iter().map(|v| v.coefficients().to_vec()).collect()
-                    };
-                    key(x).cmp(&key(y))
-                })
-        });
-
-        let table = CharacterTable {
-            order: n,
-            exponent,
-            classes,
-            characters,
-        };
-        if !(table.degrees_square_sum_to_order() && table.verify_row_orthogonality()) {
-            return Err(inconsistent(
-                "the computed characters fail the orthogonality relations",
-            ));
-        }
-        Ok(table)
+        sort_and_verify_characters(n, exponent, classes, characters, k)
     }
 
     pub fn identity_class(&self) -> usize {

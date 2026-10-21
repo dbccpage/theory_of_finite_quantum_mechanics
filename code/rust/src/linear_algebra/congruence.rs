@@ -52,25 +52,34 @@ impl<F: Field + ExactRing> CongruenceDiagonalisation<F> {
             });
         }
         let product = multiply(&multiply(star, a)?, &self.transform)?;
-        for r in 0..n {
-            for c in 0..n {
-                let expected = match self.diagonal.get(r) {
-                    Some(d) if r == c => d.clone(),
-                    _ => F::zero(),
-                };
-                if *product.get_ref(r, c)? != expected {
-                    return Err(ExactFieldError::CertificateRejected {
-                        reason: "S* A S differs from the claimed diagonal",
-                    });
-                }
-            }
-        }
-        Ok(())
+        verify_diagonal_product(&product, &self.diagonal, n)
     }
 
     pub fn transform_determinant(&self) -> Result<F, ExactFieldError> {
         determinant(&self.transform)
     }
+}
+
+fn verify_diagonal_product<F: Field + ExactRing>(
+    product: &BasicMatrix<F>,
+    diagonal: &[F],
+    n: usize,
+) -> Result<(), ExactFieldError> {
+    for r in 0..n {
+        for c in 0..n {
+            let expected = if r == c {
+                diagonal.get(r).cloned().unwrap_or_else(F::zero)
+            } else {
+                F::zero()
+            };
+            if *product.get_ref(r, c)? != expected {
+                return Err(ExactFieldError::CertificateRejected {
+                    reason: "S* A S differs from the claimed diagonal",
+                });
+            }
+        }
+    }
+    Ok(())
 }
 
 impl<F: Involution> CongruenceDiagonalisation<F> {
@@ -173,56 +182,129 @@ fn add_multiple<F: Field + ExactRing>(
     Ok(())
 }
 
+fn find_diagonal_pivot<F: Field + ExactRing>(
+    m: &Grid<F>,
+    k: usize,
+    n: usize,
+) -> Result<Option<usize>, ExactFieldError> {
+    for i in (k + 1)..n {
+        if !m.at(i, i).try_is_zero()? {
+            return Ok(Some(i));
+        }
+    }
+    Ok(None)
+}
+
+enum PivotStep {
+    Ready,
+    AllZero,
+}
+
+fn prepare_pivot<F: Field + ExactRing>(
+    m: &mut Grid<F>,
+    s: &mut Grid<F>,
+    k: usize,
+    n: usize,
+    conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,
+) -> Result<PivotStep, ExactFieldError> {
+    if !m.at(k, k).try_is_zero()? {
+        return Ok(PivotStep::Ready);
+    }
+    if let Some(i) = find_diagonal_pivot(m, k, n)? {
+        swap_symmetric(m, s, k, i);
+        return Ok(PivotStep::Ready);
+    }
+    if let Some((i, j)) = first_off_diagonal(m, k, n)? {
+        let c = inverse_of("congruence diagonalisation", m.at(i, j))?;
+        add_multiple(m, s, i, j, &c, conj, k)?;
+        swap_symmetric(m, s, k, i);
+        return Ok(PivotStep::Ready);
+    }
+    Ok(PivotStep::AllZero)
+}
+
+fn eliminate_congruence_column<F: Field + ExactRing>(
+    m: &mut Grid<F>,
+    s: &mut Grid<F>,
+    k: usize,
+    n: usize,
+    inv: &F,
+    conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,
+) -> Result<(), ExactFieldError> {
+    for l in (k + 1)..n {
+        let mu = m.at(k, l).try_mul(inv)?;
+        if !mu.try_is_zero()? {
+            add_multiple(m, s, l, k, &mu.try_neg()?, conj, k)?;
+        }
+    }
+    Ok(())
+}
+
+fn charge_diagonalise(n: usize, limits: OperationLimits) -> Result<(), ExactFieldError> {
+    let square = element_count(n, n)?;
+    let ops = plus(times(4, times(square, n)?)?, times(12, square)?)?;
+    Ok(charge(limits, square, ops)?)
+}
+
+fn check_characteristic_two<F: Field + ExactRing>(n: usize) -> Result<(), ExactFieldError> {
+    if n > 0 && F::one().try_add(&F::one())?.try_is_zero()? {
+        return Err(ExactFieldError::CharacteristicTwo {
+            operation: "congruence diagonalisation",
+        });
+    }
+    Ok(())
+}
+
+fn init_congruence_grids<F: Field + ExactRing>(
+    a: &BasicMatrix<F>,
+    n: usize,
+) -> Result<(Grid<F>, Grid<F>), ExactFieldError> {
+    let m = Grid::from_matrix(a)?;
+    let s = Grid::from_fn(n, n, |r, c| {
+        Ok::<F, ExactFieldError>(if r == c { F::one() } else { F::zero() })
+    })?;
+    Ok((m, s))
+}
+
+fn congruence_step<F: Field + ExactRing>(
+    m: &mut Grid<F>,
+    s: &mut Grid<F>,
+    diagonal: &mut Vec<F>,
+    k: usize,
+    n: usize,
+    conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,
+) -> Result<bool, ExactFieldError> {
+    match prepare_pivot(m, s, k, n, conj)? {
+        PivotStep::AllZero => {
+            for _ in k..n {
+                diagonal.push(F::zero());
+            }
+            Ok(true)
+        }
+        PivotStep::Ready => {
+            let pivot = m.at(k, k).clone();
+            let inv = inverse_of("congruence diagonalisation", &pivot)?;
+            diagonal.push(pivot);
+            eliminate_congruence_column(m, s, k, n, &inv, conj)?;
+            Ok(false)
+        }
+    }
+}
+
 fn diagonalise<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     conj: &dyn Fn(&F) -> Result<F, ExactFieldError>,
     limits: OperationLimits,
 ) -> Result<CongruenceDiagonalisation<F>, ExactFieldError> {
     let n = a.rows();
-    let square = element_count(n, n)?;
-    let ops = plus(times(4, times(square, n)?)?, times(12, square)?)?;
-    charge(limits, square, ops)?;
-    if n > 0 && F::one().try_add(&F::one())?.try_is_zero()? {
-        return Err(ExactFieldError::CharacteristicTwo {
-            operation: "congruence diagonalisation",
-        });
-    }
+    charge_diagonalise(n, limits)?;
+    check_characteristic_two::<F>(n)?;
 
-    let mut m = Grid::from_matrix(a)?;
-    let mut s = Grid::from_fn(n, n, |r, c| {
-        Ok::<F, ExactFieldError>(if r == c { F::one() } else { F::zero() })
-    })?;
+    let (mut m, mut s) = init_congruence_grids(a, n)?;
     let mut diagonal: Vec<F> = reserve(n)?;
     for k in 0..n {
-        if m.at(k, k).try_is_zero()? {
-            let mut next = None;
-            for i in (k + 1)..n {
-                if !m.at(i, i).try_is_zero()? {
-                    next = Some(i);
-                    break;
-                }
-            }
-            if let Some(i) = next {
-                swap_symmetric(&mut m, &mut s, k, i);
-            } else if let Some((i, j)) = first_off_diagonal(&m, k, n)? {
-                let c = inverse_of("congruence diagonalisation", m.at(i, j))?;
-                add_multiple(&mut m, &mut s, i, j, &c, conj, k)?;
-                swap_symmetric(&mut m, &mut s, k, i);
-            } else {
-                for _ in k..n {
-                    diagonal.push(F::zero());
-                }
-                break;
-            }
-        }
-        let pivot = m.at(k, k).clone();
-        let inv = inverse_of("congruence diagonalisation", &pivot)?;
-        diagonal.push(pivot);
-        for l in (k + 1)..n {
-            let mu = m.at(k, l).try_mul(&inv)?;
-            if !mu.try_is_zero()? {
-                add_multiple(&mut m, &mut s, l, k, &mu.try_neg()?, conj, k)?;
-            }
+        if congruence_step(&mut m, &mut s, &mut diagonal, k, n, conj)? {
+            break;
         }
     }
     Ok(CongruenceDiagonalisation {
@@ -230,6 +312,7 @@ fn diagonalise<F: Field + ExactRing>(
         diagonal,
     })
 }
+
 
 #[cfg(test)]
 mod tests {

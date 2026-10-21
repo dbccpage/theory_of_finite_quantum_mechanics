@@ -128,7 +128,7 @@ pub enum HolonomyError {
 }
 
 impl HolonomyError {
-    fn precedence_group_0_to_9(&self) -> Option<usize> {
+    fn precedence_group_0_to_6(&self) -> Option<usize> {
         match self {
             HolonomyError::ResourceCountOverflow => Some(0),
             HolonomyError::AllocationFailure { .. } => Some(1),
@@ -137,32 +137,38 @@ impl HolonomyError {
             HolonomyError::VertexNotFound { .. } => Some(4),
             HolonomyError::EdgeNotFound { .. } => Some(5),
             HolonomyError::DimensionMismatch { .. } => Some(6),
-            HolonomyError::PathLengthExceeded { .. } => Some(7),
-            HolonomyError::LoopCountExceeded { .. } => Some(8),
-            HolonomyError::OperationLimitExceeded { .. } => Some(9),
             _ => None,
         }
     }
 
-    fn precedence_group_10_to_19(&self) -> Option<usize> {
+    fn precedence_group_7_to_13(&self) -> Option<usize> {
         match self {
+            HolonomyError::PathLengthExceeded { .. } => Some(7),
+            HolonomyError::LoopCountExceeded { .. } => Some(8),
+            HolonomyError::OperationLimitExceeded { .. } => Some(9),
             HolonomyError::MalformedPath { .. } => Some(10),
             HolonomyError::EmptyPath => Some(11),
             HolonomyError::DuplicateVertex { .. } => Some(12),
             HolonomyError::DuplicateEdge { .. } => Some(13),
+            _ => None,
+        }
+    }
+
+    fn precedence_group_14_to_20(&self) -> Option<usize> {
+        match self {
             HolonomyError::DuplicateFace { .. } => Some(14),
             HolonomyError::FaceNotFound { .. } => Some(15),
             HolonomyError::BoundaryCycleMismatch { .. } => Some(16),
             HolonomyError::ZeroDivision => Some(17),
             HolonomyError::NonHermitianLaplacian { .. } => Some(18),
             HolonomyError::CurvatureCommutatorViolation { .. } => Some(19),
+            HolonomyError::NegativeBound { .. } => Some(20),
             _ => None,
         }
     }
 
-    fn precedence_group_20_to_27(&self) -> Option<usize> {
+    fn precedence_group_21_to_27(&self) -> Option<usize> {
         match self {
-            HolonomyError::NegativeBound { .. } => Some(20),
             HolonomyError::SingularMatrix { .. } => Some(21),
             HolonomyError::EdgeIndexOutOfRange { .. } => Some(22),
             HolonomyError::VertexIndexOutOfRange { .. } => Some(23),
@@ -188,9 +194,10 @@ impl HolonomyError {
     }
 
     pub fn precedence_rank(&self) -> usize {
-        self.precedence_group_0_to_9()
-            .or_else(|| self.precedence_group_10_to_19())
-            .or_else(|| self.precedence_group_20_to_27())
+        self.precedence_group_0_to_6()
+            .or_else(|| self.precedence_group_7_to_13())
+            .or_else(|| self.precedence_group_14_to_20())
+            .or_else(|| self.precedence_group_21_to_27())
             .or_else(|| self.precedence_group_28_to_34())
             .unwrap_or(usize::MAX)
     }

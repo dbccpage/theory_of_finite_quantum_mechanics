@@ -102,71 +102,100 @@ fn permutations() -> [[usize; 3]; 6] {
         [2, 1, 0],
     ]
 }
+struct RegimeState {
+    d: i64,
+    flip: i64,
+    forms: Vec<i64>,
+    inst: BTreeSet<(i64, i64)>,
+    rules: BTreeSet<i64>,
+    req: BTreeSet<(i64, i64)>,
+}
+
+impl RegimeState {
+    fn new() -> Self {
+        Self {
+            d: 0,
+            flip: 0,
+            forms: Vec::new(),
+            inst: BTreeSet::new(),
+            rules: BTreeSet::new(),
+            req: BTreeSet::new(),
+        }
+    }
+
+    fn step(&mut self, op: i64, a: i64, b: i64) -> bool {
+        match op {
+            0 => true,
+            1 => {
+                self.d += 1;
+                true
+            }
+            2 => self.step_form(a),
+            3 => self.step_inst(a, b),
+            4 => self.step_rule(a),
+            5 => self.step_req(a, b),
+            6 => {
+                self.flip = 1 - self.flip;
+                true
+            }
+            _ => panic!("event code"),
+        }
+    }
+
+    fn step_form(&mut self, a: i64) -> bool {
+        if (1..=3).contains(&a) {
+            self.forms.push(a);
+            true
+        } else {
+            false
+        }
+    }
+
+    fn step_inst(&mut self, a: i64, b: i64) -> bool {
+        if (a as usize) >= self.forms.len() {
+            return false;
+        }
+        let ar = self.forms[a as usize] as u32;
+        let good = b < 4_i64.pow(ar) && (0..ar).all(|j| (b / 4_i64.pow(j)) % 4 < self.d);
+        if good {
+            self.inst.insert((a, b));
+        }
+        good
+    }
+
+    fn step_rule(&mut self, a: i64) -> bool {
+        if (a as usize) < self.forms.len() {
+            self.rules.insert(a);
+            true
+        } else {
+            false
+        }
+    }
+
+    fn step_req(&mut self, a: i64, b: i64) -> bool {
+        if a < self.d && b < self.d && a != b {
+            self.req.insert((a, b));
+            true
+        } else {
+            false
+        }
+    }
+
+    fn complexity(&self) -> i64 {
+        self.d + self.forms.len() as i64 + self.inst.len() as i64 + self.rules.len() as i64 + self.req.len() as i64
+    }
+}
+
 fn regime(h: &[(i64, i64, i64)], erase: bool) -> (Vec<i64>, Vec<i64>) {
-    let (mut d, mut flip) = (0, 0);
-    let mut forms = Vec::new();
-    let mut inst = BTreeSet::new();
-    let mut rules = BTreeSet::new();
-    let mut req = BTreeSet::new();
+    let mut state = RegimeState::new();
     let mut t = Vec::new();
     let mut failure = -1;
     for (i, &(op, a, b)) in h.iter().enumerate() {
         if erase && op == 0 {
             continue;
         }
-        let ok = match op {
-            0 => true,
-            1 => {
-                d += 1;
-                true
-            }
-            2 => {
-                if (1..=3).contains(&a) {
-                    forms.push(a);
-                    true
-                } else {
-                    false
-                }
-            }
-            3 => {
-                if (a as usize) >= forms.len() {
-                    false
-                } else {
-                    let ar = forms[a as usize] as u32;
-                    let good = b < 4_i64.pow(ar) && (0..ar).all(|j| (b / 4_i64.pow(j)) % 4 < d);
-                    if good {
-                        inst.insert((a, b));
-                    }
-                    good
-                }
-            }
-            4 => {
-                if (a as usize) < forms.len() {
-                    rules.insert(a);
-                    true
-                } else {
-                    false
-                }
-            }
-            5 => {
-                if a < d && b < d && a != b {
-                    req.insert((a, b));
-                    true
-                } else {
-                    false
-                }
-            }
-            6 => {
-                flip = 1 - flip;
-                true
-            }
-            _ => panic!("event code"),
-        };
-        t.extend([
-            d + forms.len() as i64 + inst.len() as i64 + rules.len() as i64 + req.len() as i64,
-            flip,
-            ok as i64,
-        ]);
+        let ok = state.step(op, a, b);
+        t.extend([state.complexity(), state.flip, ok as i64]);
         if !ok {
             failure = i as i64;
             break;
@@ -174,19 +203,39 @@ fn regime(h: &[(i64, i64, i64)], erase: bool) -> (Vec<i64>, Vec<i64>) {
     }
     let mut o = vec![
         failure,
-        d,
-        forms.len() as i64,
-        inst.len() as i64,
-        rules.len() as i64,
-        req.len() as i64,
-        flip,
+        state.d,
+        state.forms.len() as i64,
+        state.inst.len() as i64,
+        state.rules.len() as i64,
+        state.req.len() as i64,
+        state.flip,
     ];
-    o.extend(forms);
-    o.extend(inst.iter().flat_map(|(a, b)| [*a, *b]));
-    o.extend(rules);
-    o.extend(req.iter().flat_map(|(a, b)| [*a, *b]));
+    o.extend(state.forms);
+    o.extend(state.inst.iter().flat_map(|(a, b)| [*a, *b]));
+    o.extend(state.rules);
+    o.extend(state.req.iter().flat_map(|(a, b)| [*a, *b]));
     (t, o)
 }
+
+fn toggle_directed_edge(mut f: BTreeSet<(usize, usize)>, i: usize, j: usize) -> i64 {
+    if !f.remove(&(i, j)) {
+        f.insert((i, j));
+    }
+    mask(&f, 3)
+}
+
+fn edge_toggles(e: &BTreeSet<(usize, usize)>, t: i64) -> Vec<(i64, i64)> {
+    let mut next = Vec::new();
+    for i in 0..3usize {
+        for j in 0..3usize {
+            if i != j && (t >> i & 1 == 1) && (t >> j & 1 == 1) {
+                next.push((t, toggle_directed_edge(e.clone(), i, j)));
+            }
+        }
+    }
+    next
+}
+
 fn cost_graph(seed: i64, target_t: i64, target_e: i64) -> Vec<Q> {
     let mut initial = BTreeSet::from([(0, 1)]);
     if seed == 1 {
@@ -197,20 +246,9 @@ fn cost_graph(seed: i64, target_t: i64, target_e: i64) -> Vec<Q> {
     let mut todo = VecDeque::from([start]);
     while let Some((t, m)) = todo.pop_front() {
         let e = graph(m, 3);
-        let mut next = Vec::new();
+        let mut next = edge_toggles(&e, t);
         if t == 3 {
             next.push((7, m));
-        }
-        for i in 0..3 {
-            for j in 0..3 {
-                if i != j && t >> i & 1 == 1 && t >> j & 1 == 1 {
-                    let mut f = e.clone();
-                    if !f.remove(&(i, j)) {
-                        f.insert((i, j));
-                    }
-                    next.push((t, mask(&f, 3)));
-                }
-            }
         }
         for q in next {
             if !dist.contains_key(&q) {
@@ -240,7 +278,56 @@ fn cost_graph(seed: i64, target_t: i64, target_e: i64) -> Vec<Q> {
     out.extend(dist.iter().flat_map(|((t, m), d)| [*t, *m, *d]));
     integers(out)
 }
-fn separation() -> Vec<Q> {
+
+fn is_separated(forms: &[i64], d: i64, rule: bool, inst: &BTreeSet<Vec<i64>>) -> bool {
+    let ar = forms[0] as usize;
+    let limit = if ar == 1 { 1 } else { d };
+    for hole in 0..ar {
+        for tail in 0..limit {
+            let member = |x| {
+                let mut a = if ar == 1 { vec![] } else { vec![tail] };
+                a.insert(hole, x);
+                rule || inst.contains(&a)
+            };
+            if member(0) != member(1) {
+                return true;
+            }
+        }
+    }
+    false
+}
+
+fn evaluate_separation_seq(seq: &[i64], args: &[Vec<i64>]) -> [i64; 4] {
+    let mut forms = Vec::new();
+    let mut inst = BTreeSet::new();
+    let (mut d, mut arity, mut valid, mut rule) = (2, 0, true, false);
+    for &item in seq {
+        match item {
+            0 => d += 1,
+            1 | 2 => {
+                forms.push(item);
+                arity += item;
+            }
+            9 => rule = true,
+            _ => {
+                if forms.is_empty() {
+                    valid = false;
+                    break;
+                }
+                let a = args[item as usize - 3].clone();
+                if a.len() != forms[0] as usize {
+                    valid = false;
+                    break;
+                }
+                inst.insert(a);
+            }
+        }
+    }
+    let sep = valid && !forms.is_empty() && is_separated(&forms, d, rule, &inst);
+    [seq.len() as i64, valid as i64, sep as i64, arity]
+}
+
+fn build_separation_seqs() -> Vec<Vec<i64>> {
     let mut seqs = vec![vec![]];
     for i in 0..10 {
         seqs.push(vec![i]);
@@ -250,6 +337,11 @@ fn separation() -> Vec<Q> {
             seqs.push(vec![i, j]);
         }
     }
+    seqs
+}
+
+fn separation() -> Vec<Q> {
+    let seqs = build_separation_seqs();
     let args = [
         vec![0],
         vec![1],
@@ -258,49 +350,10 @@ fn separation() -> Vec<Q> {
         vec![1, 0],
         vec![1, 1],
     ];
-    let mut rows = Vec::new();
-    for seq in seqs {
-        let mut forms = Vec::new();
-        let mut inst = BTreeSet::new();
-        let (mut d, mut arity, mut valid, mut rule) = (2, 0, true, false);
-        for &item in &seq {
-            match item {
-                0 => d += 1,
-                1 | 2 => {
-                    forms.push(item);
-                    arity += item
-                }
-                _ if forms.is_empty() => {
-                    valid = false;
-                    break;
-                }
-                9 => rule = true,
-                _ => {
-                    let a = args[item as usize - 3].clone();
-                    if a.len() != forms[0] as usize {
-                        valid = false;
-                        break;
-                    }
-                    inst.insert(a);
-                }
-            }
-        }
-        let mut sep = false;
-        if valid && !forms.is_empty() {
-            let ar = forms[0] as usize;
-            for hole in 0..ar {
-                for tail in 0..if ar == 1 { 1 } else { d } {
-                    let member = |x| {
-                        let mut a = if ar == 1 { vec![] } else { vec![tail] };
-                        a.insert(hole, x);
-                        rule || inst.contains(&a)
-                    };
-                    sep |= member(0) != member(1);
-                }
-            }
-        }
-        rows.push([seq.len() as i64, valid as i64, sep as i64, arity]);
-    }
+    let rows: Vec<[i64; 4]> = seqs
+        .iter()
+        .map(|seq| evaluate_separation_seq(seq, &args))
+        .collect();
     let minimum = rows
         .iter()
         .filter(|r| r[1] == 1 && r[2] == 1)
@@ -326,6 +379,59 @@ fn separation() -> Vec<Q> {
     o.extend(best);
     integers(o)
 }
+
+fn step_gauge_update(
+    nv: usize,
+    par: &[Option<(usize, usize)>],
+    s: i64,
+    gauge: &mut [Option<i64>],
+) {
+    for j in 0..nv {
+        if let Some((i, k)) = par[j] {
+            if gauge[j].is_none() && gauge[i].is_some() {
+                gauge[j] = Some(gauge[i].unwrap() ^ (s >> k & 1));
+            }
+        }
+    }
+}
+
+fn compute_gauge(
+    nv: usize,
+    roots: &[usize],
+    par: &[Option<(usize, usize)>],
+    s: i64,
+) -> Vec<i64> {
+    let mut gauge = vec![None; nv];
+    for &r in roots {
+        gauge[r] = Some(0_i64);
+    }
+    while gauge.iter().any(Option::is_none) {
+        step_gauge_update(nv, par, s, &mut gauge);
+    }
+    gauge.into_iter().map(Option::unwrap).collect()
+}
+
+fn explore_bfs_tree(
+    r: usize,
+    adj: &[Vec<(usize, usize)>],
+    seen: &mut [bool],
+    par: &mut [Option<(usize, usize)>],
+    tree: &mut Vec<usize>,
+) {
+    seen[r] = true;
+    let mut todo = VecDeque::from([r]);
+    while let Some(i) = todo.pop_front() {
+        for &(j, k) in &adj[i] {
+            if !seen[j] {
+                seen[j] = true;
+                par[j] = Some((i, k));
+                tree.push(k);
+                todo.push_back(j);
+            }
+        }
+    }
+}
+
 fn normal(which: usize) -> Vec<Q> {
     let choices = [
         (3, vec![(0, 1), (1, 2), (2, 0)]),
@@ -345,45 +451,19 @@ fn normal(which: usize) -> Vec<Q> {
     let mut roots = Vec::new();
     let mut tree = Vec::new();
     for r in 0..nv {
-        if seen[r] {
-            continue;
-        }
-        roots.push(r);
-        seen[r] = true;
-        let mut todo = VecDeque::from([r]);
-        while let Some(i) = todo.pop_front() {
-            for &(j, k) in &adj[i] {
-                if !seen[j] {
-                    seen[j] = true;
-                    par[j] = Some((i, k));
-                    tree.push(k);
-                    todo.push_back(j);
-                }
-            }
+        if !seen[r] {
+            roots.push(r);
+            explore_bfs_tree(r, &adj, &mut seen, &mut par, &mut tree);
         }
     }
     let mut normals = Vec::new();
     let mut sizes = Vec::new();
     for s in 0..1_i64 << e.len() {
-        let mut gauge = vec![None; nv];
-        for &r in &roots {
-            gauge[r] = Some(0_i64);
-        }
-        while gauge.iter().any(Option::is_none) {
-            for j in 0..nv {
-                if let Some((i, k)) = par[j] {
-                    if gauge[j].is_none() {
-                        if let Some(v) = gauge[i] {
-                            gauge[j] = Some(v ^ (s >> k & 1));
-                        }
-                    }
-                }
-            }
-        }
+        let gauge = compute_gauge(nv, &roots, &par, s);
         let t = e
             .iter()
             .enumerate()
-            .map(|(k, &(i, j))| ((s >> k & 1) ^ gauge[i].unwrap() ^ gauge[j].unwrap()) << k)
+            .map(|(k, &(i, j))| ((s >> k & 1) ^ gauge[i] ^ gauge[j]) << k)
             .sum::<i64>();
         normals.push(t);
         let orbit: BTreeSet<_> = (0..1_i64 << nv)
@@ -414,428 +494,509 @@ fn normal(which: usize) -> Vec<Q> {
     out.extend(forms);
     integers(out)
 }
+fn weyl_matrix(c: i64, d: i64, w: &G) -> A {
+    (0..3)
+        .map(|i| {
+            (0..3)
+                .map(|j| {
+                    if i == (j + c) % 3 {
+                        gp(w, d * j, true)
+                    } else {
+                        g(0, 0)
+                    }
+                })
+                .collect()
+        })
+        .collect()
+}
+
+fn eval_weyl(x: &[Q]) -> Vec<Q> {
+    assert_eq!(x.len(), 11);
+    let a = int(&x[0], 0, 2);
+    let b = int(&x[1], 0, 2);
+    let a_mat: A = (0..3)
+        .map(|i| (0..3).map(|j| (x[2 + 3 * i + j].clone(), n(0))).collect())
+        .collect();
+    let w = g(0, 1);
+    let u = weyl_matrix(a, 0, &w);
+    let v = weyl_matrix(0, b, &w);
+    let comm = pm(
+        &pm(&pm(&u, &v, true), &dag(&u, true), true),
+        &dag(&v, true),
+        true,
+    );
+    let basis: Vec<_> = (0..3)
+        .flat_map(|i| (0..3).map(move |j| (i, j)))
+        .map(|(i, j)| weyl_matrix(i, j, &w))
+        .collect();
+    let coef: Vec<G> = basis
+        .iter()
+        .map(|b| {
+            let t = pm(&dag(b, true), &a_mat, true);
+            let z = (0..3).fold(g(0, 0), |s, i| ga(&s, &t[i][i]));
+            (z.0 / n(3), z.1 / n(3))
+        })
+        .collect();
+    let recovered: A = (0..3)
+        .map(|i| {
+            (0..3)
+                .map(|j| {
+                    coef.iter()
+                        .zip(&basis)
+                        .fold(g(0, 0), |s, (c, b)| ga(&s, &gm(c, &b[i][j], true)))
+                })
+                .collect()
+        })
+        .collect();
+    let gram: A = basis
+        .iter()
+        .map(|b| {
+            basis
+                .iter()
+                .map(|c| {
+                    let t = pm(&dag(b, true), c, true);
+                    (0..3).fold(g(0, 0), |s, i| ga(&s, &t[i][i]))
+                })
+                .collect()
+        })
+        .collect();
+    let phase = gp(&w, -a * b, true);
+    let mut o = pf(&comm);
+    o.extend([phase.0, phase.1]);
+    o.extend(coef.into_iter().flat_map(|z| [z.0, z.1]));
+    o.extend(pf(&recovered));
+    o.extend(pf(&gram));
+    o
+}
+
+fn eval_duality(x: &[Q]) -> Vec<Q> {
+    assert_eq!(x.len(), 2);
+    let mass = x[0].abs() + x[1].abs();
+    let vals: Vec<Q> = (-1..=1)
+        .flat_map(|u| (-1..=1).map(move |v| (u, v)))
+        .map(|(u, v)| n(u) * &x[0] + n(v) * &x[1])
+        .collect();
+    let maximum = vals.iter().max().unwrap().clone();
+    let mut o = vec![mass.clone()];
+    o.extend(vals);
+    o.extend([maximum.clone(), mass - maximum]);
+    o
+}
+
+fn eval_separation(x: &[Q]) -> Vec<Q> {
+    assert_eq!(x, vec![n(0)]);
+    separation()
+}
+
+fn eval_distinct(x: &[Q]) -> Vec<Q> {
+    let m = int(&x[0], 0, 15);
+    let mut rows = Vec::new();
+    let mut allowed = Vec::new();
+    for k in 0..16 {
+        let r = [
+            legal(&graph(k, 2)) as i64,
+            (k & 2 != 0) as i64,
+            (k & 4 != 0) as i64,
+        ];
+        if r[0] == 1 && r[1] == 1 {
+            allowed.push(k);
+        }
+        rows.extend(r);
+    }
+    let tail = rows[m as usize * 3..m as usize * 3 + 3].to_vec();
+    rows.push(allowed.len() as i64);
+    rows.extend(allowed);
+    rows.extend(tail);
+    integers(rows)
+}
+
+fn eval_regime_ops(x: &[Q]) -> Vec<Q> {
+    assert!(x.len() % 3 == 0 && x.len() <= 30);
+    let h: Vec<_> = x
+        .chunks(3)
+        .map(|z| {
+            let o = int(&z[0], 0, 6);
+            (o, int(&z[1], 0, 255), int(&z[2], 0, 255))
+        })
+        .collect();
+    let (t, o) = regime(&h, false);
+    let (te, oe) = regime(&h, true);
+    let mut v = vec![t.len() as i64, o.len() as i64];
+    v.extend(t);
+    v.extend(o);
+    v.extend([te.len() as i64, oe.len() as i64]);
+    v.extend(te);
+    v.extend(oe);
+    integers(v)
+}
+
+fn eval_fewest(x: &[Q]) -> Vec<Q> {
+    let seed = int(&x[0], 0, 1);
+    let t = int(&x[1], 3, 7);
+    assert!(t == 3 || t == 7);
+    cost_graph(seed, t, int(&x[2], 0, 511))
+}
+
+fn eval_obstruction(x: &[Q]) -> Vec<Q> {
+    let e = graph(int(&x[0], 0, 511), 3);
+    assert!(legal(&e));
+    let u = int(&x[1], 0, 2) as usize;
+    let v = int(&x[2], 0, 2) as usize;
+    assert_ne!(u, v);
+    let f: Vec<_> = (0..3).map(|i| if i == v { u } else { i }).collect();
+    let merged = image(&e, &f);
+    let mut clean = e.clone();
+    clean.remove(&(u, v));
+    clean.remove(&(v, u));
+    let left = image(&clean, &f);
+    let mut right = merged.clone();
+    right.remove(&(u, u));
+    let mut o = vec![
+        mask(&merged, 3),
+        legal(&merged) as i64,
+        (!e.contains(&(u, v)) && !e.contains(&(v, u))) as i64,
+        mask(&left, 3),
+        mask(&right, 3),
+        (left == right) as i64,
+    ];
+    for i in 0..3 {
+        for j in 0..3 {
+            let mut q = e.clone();
+            q.insert((i, j));
+            o.push(legal(&q) as i64);
+        }
+    }
+    integers(o)
+}
+
+fn eval_rename(x: &[Q]) -> Vec<Q> {
+    let e = graph(int(&x[0], 0, 511), 3);
+    let u = int(&x[1], 0, 2) as usize;
+    let v = int(&x[2], 0, 2) as usize;
+    assert_ne!(u, v);
+    let mut out = Vec::new();
+    for p in permutations() {
+        let f: Vec<_> = (0..3).map(|i| if i == v { u } else { i }).collect();
+        let g: Vec<_> = (0..3).map(|i| if i == p[v] { p[u] } else { i }).collect();
+        out.extend(p.iter().map(|z| *z as i64));
+        out.extend([
+            mask(&image(&e, &p), 3),
+            mask(&image(&image(&e, &f), &p), 3),
+            mask(&image(&image(&e, &p), &g), 3),
+            (legal(&e) == legal(&image(&e, &p))) as i64,
+        ]);
+    }
+    integers(out)
+}
+
+fn eval_sameness(x: &[Q]) -> Vec<Q> {
+    assert_eq!(x.len(), 8);
+    let v: Vec<_> = x.iter().map(|z| int(z, 0, 5)).collect();
+    let d: Vec<_> = (0..4).map(|i| v[i] - v[i + 4]).collect();
+    let normal: Vec<_> = d
+        .iter()
+        .map(|z| (*z).max(0))
+        .chain(d.iter().map(|z| (-z).max(0)))
+        .collect();
+    let tog: Vec<_> = (0..4).map(|i| v[i].min(v[i + 4])).collect();
+    let mut all = BTreeSet::new();
+    for k in 0..256 {
+        all.insert(
+            (0..4)
+                .map(|i| (k >> i & 1) - (k >> (i + 4) & 1))
+                .collect::<Vec<i64>>(),
+        );
+    }
+    let canonical: BTreeSet<_> = all
+        .iter()
+        .map(|z| {
+            let r: Vec<_> = z.iter().rev().copied().collect();
+            z.clone().min(r)
+        })
+        .collect();
+    let mut o = d.clone();
+    o.extend(normal.iter());
+    o.extend(tog.iter());
+    o.extend([
+        v.iter().sum(),
+        normal.iter().sum(),
+        2 * tog.iter().sum::<i64>(),
+        all.len() as i64,
+        canonical.len() as i64,
+    ]);
+    o.extend(d);
+    integers(o)
+}
+
+fn eval_mss0(x: &[Q]) -> Vec<Q> {
+    let s = int(&x[0], 0, 10);
+    let node = int(&x[1], 0, 10);
+    integers([(s > 0 || node == 0) as i64, 0, 0])
+}
+
+fn round_float53(v: i64) -> i64 {
+    let bits = 64 - (v as u64).leading_zeros();
+    let k = bits.saturating_sub(53);
+    let step = 1_i64 << k;
+    let (q, r) = (v / step, v % step);
+    let tie = (2 * r > step) || (2 * r == step && q % 2 == 1);
+    (q + tie as i64) * step
+}
+
+fn eval_float(x: &[Q]) -> Vec<Q> {
+    let a = int(&x[0], 0, 1_i64 << 55);
+    let b = int(&x[1], 0, 1_i64 << 55);
+    let (a1, b1) = (round_float53(a), round_float53(b));
+    integers([a - b, a1, b1, (a1 == b1) as i64, (a == b) as i64, 0])
+}
+
+fn eval_pairing(x: &[Q]) -> Vec<Q> {
+    if x.len() != 5 {
+        panic!("arity");
+    }
+    let a = &x[0];
+    let b = &x[1];
+    let d = &x[2];
+    let u = &x[3];
+    let v = &x[4];
+    assert!(
+        a + d == n(1)
+            && a >= &n(0)
+            && d >= &n(0)
+            && a * d >= b * b
+            && u * u + v * v == n(1)
+    );
+    let p = a * u * u + n(2) * b * u * v + d * v * v;
+    let de = a * u * u + d * v * v;
+    vec![
+        u * u,
+        u * v,
+        u * v,
+        v * v,
+        p.clone(),
+        de.clone(),
+        &p - de,
+        n(2) * &p * &p - p,
+        n(0),
+        n(1),
+        n(0),
+        n(1),
+        -n(1) / n(8),
+    ]
+}
+
+fn realify_c(a: Q, b: Q) -> Vec<Vec<Q>> {
+    vec![vec![a.clone(), -&b], vec![b, a]]
+}
+
+fn kron_product(a: &[Vec<Q>], b: &[Vec<Q>]) -> Vec<Vec<Q>> {
+    (0..4)
+        .map(|i| {
+            (0..4)
+                .map(|j| &a[i / 2][j / 2] * &b[i % 2][j % 2])
+                .collect()
+        })
+        .collect()
+}
+
+fn eval_realify(x: &[Q]) -> Vec<Q> {
+    if x.len() != 4 {
+        panic!("arity");
+    }
+    let a = &x[0];
+    let b = &x[1];
+    let c = &x[2];
+    let d = &x[3];
+    let aa = realify_c(a.clone(), b.clone());
+    let bb = realify_c(c.clone(), d.clone());
+    let pp = mm(&aa, &bb);
+    let cc = realify_c(a * c - b * d, a * d + b * c);
+    let m = vec![vec![n(1), n(0), n(0), n(-1)], vec![n(0), n(1), n(1), n(0)]];
+    let j = realify_c(n(0), n(1));
+    let eye = realify_c(n(1), n(0));
+    let l = kron_product(&j, &eye);
+    let h = kron_product(&eye, &j);
+    let dif: Vec<Vec<Q>> = l
+        .iter()
+        .zip(h)
+        .map(|(r, s)| r.iter().zip(s).map(|(a, b)| a - b).collect())
+        .collect();
+    let t = vec![vec![a * c], vec![a * d], vec![b * c], vec![b * d]];
+    let mut o = fl(&aa);
+    o.extend(fl(&bb));
+    o.extend(fl(&pp));
+    o.extend(fl(&cc));
+    o.extend(fl(&m));
+    o.extend(fl(&mm(&m, &dif)));
+    o.extend(fl(&mm(&m, &tr(&m))));
+    o.extend(fl(&mm(&m, &t)));
+    o
+}
+
+fn eval_amplitude(x: &[Q]) -> Vec<Q> {
+    assert_eq!(x.len(), 10);
+    let e: Vec<_> = x[..6].iter().map(|z| int(z, -8, 8)).collect();
+    let es = [
+        e[0],
+        e[1],
+        e[2],
+        e[0] + e[4] - e[3],
+        e[1] + e[5] - e[4],
+        e[2] + e[3] - e[5],
+    ];
+    let u = (n(3) / n(5), n(4) / n(5));
+    let z = (&x[6] + &x[8], &x[7] + &x[9]);
+    let t = gm(&gp(&u, e[3], false), &z, false);
+    let norm = |z: &G| &z.0 * &z.0 + &z.1 * &z.1;
+    let mut o: Vec<Q> = es
+        .iter()
+        .flat_map(|k| {
+            let z = gp(&u, *k, false);
+            [z.0, z.1]
+        })
+        .collect();
+    for k in [es[..3].iter().sum(), es[3..].iter().sum()] {
+        let z = gp(&u, k, false);
+        o.extend([z.0, z.1]);
+    }
+    o.extend([norm(&z), norm(&t), norm(&z) * norm(&z), norm(&t) * norm(&t)]);
+    for k in 1..=8 {
+        let z = gp(&g(3, 4), k, false);
+        o.extend([
+            n(z.0.to_integer().to_i64().unwrap().rem_euclid(5)),
+            n(z.1.to_integer().to_i64().unwrap().rem_euclid(5)),
+        ]);
+    }
+    o
+}
+
+fn eval_normal(x: &[Q]) -> Vec<Q> {
+    normal(int(&x[0], 0, 3) as usize)
+}
+
+fn eval_lggr(x: &[Q]) -> Vec<Q> {
+    let size = int(&x[0], 1, 6);
+    let m = int(&x[1], 0, (1 << size) - 1);
+    let mass = int(&x[2], 0, 100);
+    let counts: Vec<i64> = (0..1_i64 << size)
+        .map(|s| {
+            (0..size)
+                .filter(|i| ((s >> i & 1) ^ (s >> ((i + 1) % size) & 1)) == (m >> i & 1))
+                .count() as i64
+        })
+        .collect();
+    let sections: Vec<_> = counts
+        .iter()
+        .enumerate()
+        .filter(|(_, z)| **z == size)
+        .map(|(i, _)| i as i64)
+        .collect();
+    let parity = m.count_ones() as i64 % 2;
+    let mut o = integers([
+        parity,
+        sections.len() as i64,
+        (mass == 0 || parity == 0) as i64,
+    ]);
+    o.extend(integers(counts));
+    o.extend(integers(sections));
+    let weights: Vec<Q> = (0..8)
+        .map(|s| if s == 0 || s == 7 { n(0) } else { n(1) / n(6) })
+        .collect();
+    o.extend(weights.iter().cloned());
+    for i in 0..3 {
+        o.push(
+            (0..8)
+                .map(|s| &weights[s] * n(((s >> i & 1) ^ (s >> ((i + 1) % 3) & 1)) as i64))
+                .sum(),
+        );
+    }
+    o.push(n(2) / n(3));
+    for s in 0..8 {
+        let sat = (0..3)
+            .map(|i| (s >> i & 1) ^ (s >> ((i + 1) % 3) & 1))
+            .sum::<i64>();
+        o.push(n(2 - sat) / n(3));
+    }
+    o
+}
+
+fn eval_thymus(x: &[Q]) -> Vec<Q> {
+    let panel = int(&x[0], 0, 15);
+    let p = int(&x[1], 0, 15);
+    let e = int(&x[2], 0, 15);
+    let mut o = Vec::new();
+    for s in 0_i64..16 {
+        o.extend([
+            (s & p == 0) as i64,
+            (s & e).count_ones() as i64,
+            (s & p != 0 || s & e == 0) as i64,
+        ]);
+    }
+    let bad: Vec<_> = (0..4)
+        .filter(|i| e >> i & 1 == 1 && p >> i & 1 == 0)
+        .collect();
+    o.extend([
+        bad.is_empty() as i64,
+        bad.first().copied().unwrap_or(-1),
+        (panel & p == 0) as i64,
+        (panel & e).count_ones() as i64,
+        ((15 ^ panel) & e).count_ones() as i64,
+    ]);
+    integers(o)
+}
+
+fn eval_discrete_genesis(kind: &str, x: &[Q]) -> Option<Vec<Q>> {
+    match kind {
+        "weyl" => Some(eval_weyl(x)),
+        "duality" => Some(eval_duality(x)),
+        "separation" => Some(eval_separation(x)),
+        "distinct" => Some(eval_distinct(x)),
+        "noreturn" | "events" | "erasure" | "supply" => Some(eval_regime_ops(x)),
+        "fewest" => Some(eval_fewest(x)),
+        _ => None,
+    }
+}
+
+fn eval_combinatorial_genesis(kind: &str, x: &[Q]) -> Option<Vec<Q>> {
+    match kind {
+        "obstruction" => Some(eval_obstruction(x)),
+        "rename" => Some(eval_rename(x)),
+        "sameness" => Some(eval_sameness(x)),
+        "mss0" => Some(eval_mss0(x)),
+        "float" => Some(eval_float(x)),
+        "pairing" => Some(eval_pairing(x)),
+        _ => None,
+    }
+}
+
+fn eval_algebraic_genesis(kind: &str, x: &[Q]) -> Option<Vec<Q>> {
+    match kind {
+        "realify" => Some(eval_realify(x)),
+        "amplitude" => Some(eval_amplitude(x)),
+        "normal" => Some(eval_normal(x)),
+        "lggr" => Some(eval_lggr(x)),
+        "thymus" => Some(eval_thymus(x)),
+        _ => None,
+    }
+}
+
+fn dispatch_genesis_eval(kind: &str, x: &[Q]) -> Vec<Q> {
+    if let Some(res) = eval_discrete_genesis(kind, x) {
+        return res;
+    }
+    if let Some(res) = eval_combinatorial_genesis(kind, x) {
+        return res;
+    }
+    if let Some(res) = eval_algebraic_genesis(kind, x) {
+        return res;
+    }
+    panic!("unknown scoped operation")
+}
+
 /// Panics outside the declared bounded input grammar; intended for exact local replay.
 pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
     let x: Vec<Q> = values.iter().map(|s| parse(s)).collect();
-    let out = match kind {
-        "weyl" => {
-            assert_eq!(x.len(), 11);
-            let a = int(&x[0], 0, 2);
-            let b = int(&x[1], 0, 2);
-            let a_mat: A = (0..3)
-                .map(|i| (0..3).map(|j| (x[2 + 3 * i + j].clone(), n(0))).collect())
-                .collect();
-            let w = g(0, 1);
-            let weyl = |c: i64, d: i64| -> A {
-                (0..3)
-                    .map(|i| {
-                        (0..3)
-                            .map(|j| {
-                                if i == (j + c) % 3 {
-                                    gp(&w, d * j, true)
-                                } else {
-                                    g(0, 0)
-                                }
-                            })
-                            .collect()
-                    })
-                    .collect()
-            };
-            let u = weyl(a, 0);
-            let v = weyl(0, b);
-            let comm = pm(
-                &pm(&pm(&u, &v, true), &dag(&u, true), true),
-                &dag(&v, true),
-                true,
-            );
-            let basis: Vec<_> = (0..3)
-                .flat_map(|i| (0..3).map(move |j| (i, j)))
-                .map(|(i, j)| weyl(i, j))
-                .collect();
-            let coef: Vec<G> = basis
-                .iter()
-                .map(|b| {
-                    let t = pm(&dag(b, true), &a_mat, true);
-                    let z = (0..3).fold(g(0, 0), |s, i| ga(&s, &t[i][i]));
-                    (z.0 / n(3), z.1 / n(3))
-                })
-                .collect();
-            let recovered: A = (0..3)
-                .map(|i| {
-                    (0..3)
-                        .map(|j| {
-                            coef.iter()
-                                .zip(&basis)
-                                .fold(g(0, 0), |s, (c, b)| ga(&s, &gm(c, &b[i][j], true)))
-                        })
-                        .collect()
-                })
-                .collect();
-            let gram: A = basis
-                .iter()
-                .map(|b| {
-                    basis
-                        .iter()
-                        .map(|c| {
-                            let t = pm(&dag(b, true), c, true);
-                            (0..3).fold(g(0, 0), |s, i| ga(&s, &t[i][i]))
-                        })
-                        .collect()
-                })
-                .collect();
-            let phase = gp(&w, -a * b, true);
-            let mut o = pf(&comm);
-            o.extend([phase.0, phase.1]);
-            o.extend(coef.into_iter().flat_map(|z| [z.0, z.1]));
-            o.extend(pf(&recovered));
-            o.extend(pf(&gram));
-            o
-        }
-        "duality" => {
-            assert_eq!(x.len(), 2);
-            let mass = x[0].abs() + x[1].abs();
-            let vals: Vec<Q> = (-1..=1)
-                .flat_map(|u| (-1..=1).map(move |v| (u, v)))
-                .map(|(u, v)| n(u) * &x[0] + n(v) * &x[1])
-                .collect();
-            let maximum = vals.iter().max().unwrap().clone();
-            let mut o = vec![mass.clone()];
-            o.extend(vals);
-            o.extend([maximum.clone(), mass - maximum]);
-            o
-        }
-        "separation" => {
-            assert_eq!(x, vec![n(0)]);
-            separation()
-        }
-        "distinct" => {
-            let m = int(&x[0], 0, 15);
-            let mut rows = Vec::new();
-            let mut allowed = Vec::new();
-            for k in 0..16 {
-                let r = [
-                    legal(&graph(k, 2)) as i64,
-                    (k & 2 != 0) as i64,
-                    (k & 4 != 0) as i64,
-                ];
-                if r[0] == 1 && r[1] == 1 {
-                    allowed.push(k);
-                }
-                rows.extend(r);
-            }
-            let tail = rows[m as usize * 3..m as usize * 3 + 3].to_vec();
-            rows.push(allowed.len() as i64);
-            rows.extend(allowed);
-            rows.extend(tail);
-            integers(rows)
-        }
-        "noreturn" | "events" | "erasure" | "supply" => {
-            assert!(x.len() % 3 == 0 && x.len() <= 30);
-            let h: Vec<_> = x
-                .chunks(3)
-                .map(|z| {
-                    let o = int(&z[0], 0, 6);
-                    (o, int(&z[1], 0, 255), int(&z[2], 0, 255))
-                })
-                .collect();
-            let (t, o) = regime(&h, false);
-            let (te, oe) = regime(&h, true);
-            let mut v = vec![t.len() as i64, o.len() as i64];
-            v.extend(t);
-            v.extend(o);
-            v.extend([te.len() as i64, oe.len() as i64]);
-            v.extend(te);
-            v.extend(oe);
-            integers(v)
-        }
-        "fewest" => {
-            let seed = int(&x[0], 0, 1);
-            let t = int(&x[1], 3, 7);
-            assert!(t == 3 || t == 7);
-            cost_graph(seed, t, int(&x[2], 0, 511))
-        }
-        "obstruction" => {
-            let e = graph(int(&x[0], 0, 511), 3);
-            assert!(legal(&e));
-            let u = int(&x[1], 0, 2) as usize;
-            let v = int(&x[2], 0, 2) as usize;
-            assert_ne!(u, v);
-            let f: Vec<_> = (0..3).map(|i| if i == v { u } else { i }).collect();
-            let merged = image(&e, &f);
-            let mut clean = e.clone();
-            clean.remove(&(u, v));
-            clean.remove(&(v, u));
-            let left = image(&clean, &f);
-            let mut right = merged.clone();
-            right.remove(&(u, u));
-            let mut o = vec![
-                mask(&merged, 3),
-                legal(&merged) as i64,
-                (!e.contains(&(u, v)) && !e.contains(&(v, u))) as i64,
-                mask(&left, 3),
-                mask(&right, 3),
-                (left == right) as i64,
-            ];
-            for i in 0..3 {
-                for j in 0..3 {
-                    let mut q = e.clone();
-                    q.insert((i, j));
-                    o.push(legal(&q) as i64);
-                }
-            }
-            integers(o)
-        }
-        "rename" => {
-            let e = graph(int(&x[0], 0, 511), 3);
-            let u = int(&x[1], 0, 2) as usize;
-            let v = int(&x[2], 0, 2) as usize;
-            assert_ne!(u, v);
-            let mut out = Vec::new();
-            for p in permutations() {
-                let f: Vec<_> = (0..3).map(|i| if i == v { u } else { i }).collect();
-                let g: Vec<_> = (0..3).map(|i| if i == p[v] { p[u] } else { i }).collect();
-                out.extend(p.iter().map(|z| *z as i64));
-                out.extend([
-                    mask(&image(&e, &p), 3),
-                    mask(&image(&image(&e, &f), &p), 3),
-                    mask(&image(&image(&e, &p), &g), 3),
-                    (legal(&e) == legal(&image(&e, &p))) as i64,
-                ]);
-            }
-            integers(out)
-        }
-        "sameness" => {
-            assert_eq!(x.len(), 8);
-            let v: Vec<_> = x.iter().map(|z| int(z, 0, 5)).collect();
-            let d: Vec<_> = (0..4).map(|i| v[i] - v[i + 4]).collect();
-            let normal: Vec<_> = d
-                .iter()
-                .map(|z| (*z).max(0))
-                .chain(d.iter().map(|z| (-z).max(0)))
-                .collect();
-            let tog: Vec<_> = (0..4).map(|i| v[i].min(v[i + 4])).collect();
-            let mut all = BTreeSet::new();
-            for k in 0..256 {
-                all.insert(
-                    (0..4)
-                        .map(|i| (k >> i & 1) - (k >> (i + 4) & 1))
-                        .collect::<Vec<i64>>(),
-                );
-            }
-            let canonical: BTreeSet<_> = all
-                .iter()
-                .map(|z| {
-                    let r: Vec<_> = z.iter().rev().copied().collect();
-                    z.clone().min(r)
-                })
-                .collect();
-            let mut o = d.clone();
-            o.extend(normal.iter());
-            o.extend(tog.iter());
-            o.extend([
-                v.iter().sum(),
-                normal.iter().sum(),
-                2 * tog.iter().sum::<i64>(),
-                all.len() as i64,
-                canonical.len() as i64,
-            ]);
-            o.extend(d);
-            integers(o)
-        }
-        "mss0" => {
-            let s = int(&x[0], 0, 10);
-            let node = int(&x[1], 0, 10);
-            integers([(s > 0 || node == 0) as i64, 0, 0])
-        }
-        "float" => {
-            let a = int(&x[0], 0, 1_i64 << 55);
-            let b = int(&x[1], 0, 1_i64 << 55);
-            let round = |v: i64| {
-                let bits = 64 - (v as u64).leading_zeros();
-                let k = bits.saturating_sub(53);
-                let step = 1_i64 << k;
-                let (q, r) = (v / step, v % step);
-                (q + ((2 * r > step) || (2 * r == step && q % 2 == 1)) as i64) * step
-            };
-            let (a1, b1) = (round(a), round(b));
-            integers([a - b, a1, b1, (a1 == b1) as i64, (a == b) as i64, 0])
-        }
-        "pairing" => {
-            let [a, b, d, u, v] = x.as_slice() else {
-                panic!("arity")
-            };
-            assert!(
-                a + d == n(1)
-                    && a >= &n(0)
-                    && d >= &n(0)
-                    && a * d >= b * b
-                    && u * u + v * v == n(1)
-            );
-            let p = a * u * u + n(2) * b * u * v + d * v * v;
-            let de = a * u * u + d * v * v;
-            vec![
-                u * u,
-                u * v,
-                u * v,
-                v * v,
-                p.clone(),
-                de.clone(),
-                &p - de,
-                n(2) * &p * &p - p,
-                n(0),
-                n(1),
-                n(0),
-                n(1),
-                -n(1) / n(8),
-            ]
-        }
-        "realify" => {
-            let [a, b, c, d] = x.as_slice() else {
-                panic!("arity")
-            };
-            let r = |a: Q, b: Q| vec![vec![a.clone(), -&b], vec![b, a]];
-            let aa = r(a.clone(), b.clone());
-            let bb = r(c.clone(), d.clone());
-            let pp = mm(&aa, &bb);
-            let cc = r(a * c - b * d, a * d + b * c);
-            let m = vec![vec![n(1), n(0), n(0), n(-1)], vec![n(0), n(1), n(1), n(0)]];
-            let j = r(n(0), n(1));
-            let eye = r(n(1), n(0));
-            let kron = |a: &[Vec<Q>], b: &[Vec<Q>]| -> Vec<Vec<Q>> {
-                (0..4)
-                    .map(|i| {
-                        (0..4)
-                            .map(|j| &a[i / 2][j / 2] * &b[i % 2][j % 2])
-                            .collect()
-                    })
-                    .collect()
-            };
-            let l = kron(&j, &eye);
-            let h = kron(&eye, &j);
-            let dif: Vec<Vec<Q>> = l
-                .iter()
-                .zip(h)
-                .map(|(r, s)| r.iter().zip(s).map(|(a, b)| a - b).collect())
-                .collect();
-            let t = vec![vec![a * c], vec![a * d], vec![b * c], vec![b * d]];
-            let mut o = fl(&aa);
-            o.extend(fl(&bb));
-            o.extend(fl(&pp));
-            o.extend(fl(&cc));
-            o.extend(fl(&m));
-            o.extend(fl(&mm(&m, &dif)));
-            o.extend(fl(&mm(&m, &tr(&m))));
-            o.extend(fl(&mm(&m, &t)));
-            o
-        }
-        "amplitude" => {
-            assert_eq!(x.len(), 10);
-            let e: Vec<_> = x[..6].iter().map(|z| int(z, -8, 8)).collect();
-            let es = [
-                e[0],
-                e[1],
-                e[2],
-                e[0] + e[4] - e[3],
-                e[1] + e[5] - e[4],
-                e[2] + e[3] - e[5],
-            ];
-            let u = (n(3) / n(5), n(4) / n(5));
-            let z = (&x[6] + &x[8], &x[7] + &x[9]);
-            let t = gm(&gp(&u, e[3], false), &z, false);
-            let norm = |z: &G| &z.0 * &z.0 + &z.1 * &z.1;
-            let mut o: Vec<Q> = es
-                .iter()
-                .flat_map(|k| {
-                    let z = gp(&u, *k, false);
-                    [z.0, z.1]
-                })
-                .collect();
-            for k in [es[..3].iter().sum(), es[3..].iter().sum()] {
-                let z = gp(&u, k, false);
-                o.extend([z.0, z.1]);
-            }
-            o.extend([norm(&z), norm(&t), norm(&z) * norm(&z), norm(&t) * norm(&t)]);
-            for k in 1..=8 {
-                let z = gp(&g(3, 4), k, false);
-                o.extend([
-                    n(z.0.to_integer().to_i64().unwrap().rem_euclid(5)),
-                    n(z.1.to_integer().to_i64().unwrap().rem_euclid(5)),
-                ]);
-            }
-            o
-        }
-        "normal" => normal(int(&x[0], 0, 3) as usize),
-        "lggr" => {
-            let size = int(&x[0], 1, 6);
-            let m = int(&x[1], 0, (1 << size) - 1);
-            let mass = int(&x[2], 0, 100);
-            let counts: Vec<i64> = (0..1_i64 << size)
-                .map(|s| {
-                    (0..size)
-                        .filter(|i| ((s >> i & 1) ^ (s >> ((i + 1) % size) & 1)) == (m >> i & 1))
-                        .count() as i64
-                })
-                .collect();
-            let sections: Vec<_> = counts
-                .iter()
-                .enumerate()
-                .filter(|(_, z)| **z == size)
-                .map(|(i, _)| i as i64)
-                .collect();
-            let parity = m.count_ones() as i64 % 2;
-            let mut o = integers([
-                parity,
-                sections.len() as i64,
-                (mass == 0 || parity == 0) as i64,
-            ]);
-            o.extend(integers(counts));
-            o.extend(integers(sections));
-            let weights: Vec<Q> = (0..8)
-                .map(|s| if s == 0 || s == 7 { n(0) } else { n(1) / n(6) })
-                .collect();
-            o.extend(weights.iter().cloned());
-            for i in 0..3 {
-                o.push(
-                    (0..8)
-                        .map(|s| &weights[s] * n(((s >> i & 1) ^ (s >> ((i + 1) % 3) & 1)) as i64))
-                        .sum(),
-                );
-            }
-            o.push(n(2) / n(3));
-            for s in 0..8 {
-                let sat = (0..3)
-                    .map(|i| (s >> i & 1) ^ (s >> ((i + 1) % 3) & 1))
-                    .sum::<i64>();
-                o.push(n(2 - sat) / n(3));
-            }
-            o
-        }
-        "thymus" => {
-            let panel = int(&x[0], 0, 15);
-            let p = int(&x[1], 0, 15);
-            let e = int(&x[2], 0, 15);
-            let mut o = Vec::new();
-            for s in 0_i64..16 {
-                o.extend([
-                    (s & p == 0) as i64,
-                    (s & e).count_ones() as i64,
-                    (s & p != 0 || s & e == 0) as i64,
-                ]);
-            }
-            let bad: Vec<_> = (0..4)
-                .filter(|i| e >> i & 1 == 1 && p >> i & 1 == 0)
-                .collect();
-            o.extend([
-                bad.is_empty() as i64,
-                bad.first().copied().unwrap_or(-1),
-                (panel & p == 0) as i64,
-                (panel & e).count_ones() as i64,
-                ((15 ^ panel) & e).count_ones() as i64,
-            ]);
-            integers(o)
-        }
-        _ => panic!("unknown scoped operation"),
-    };
+    let out = dispatch_genesis_eval(kind, &x);
     out.iter().map(ToString::to_string).collect()
 }
 

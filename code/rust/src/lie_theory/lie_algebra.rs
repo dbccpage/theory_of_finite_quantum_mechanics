@@ -110,24 +110,54 @@ pub fn verify_antisymmetry<L: LieAlgebra>(algebra: &L) -> bool {
     })
 }
 
+fn jacobi_term<L: LieAlgebra>(
+    algebra: &L,
+    a: usize,
+    b: usize,
+    cc: usize,
+    e: usize,
+    n: usize,
+) -> L::Scalar {
+    let mut sum = L::Scalar::zero();
+    for d in 0..n {
+        let term1 = algebra.structure_constant(a, b, d).mul(&algebra.structure_constant(d, cc, e));
+        let term2 = algebra.structure_constant(b, cc, d).mul(&algebra.structure_constant(d, a, e));
+        let term3 = algebra.structure_constant(cc, a, d).mul(&algebra.structure_constant(d, b, e));
+        sum = sum.add(&term1).add(&term2).add(&term3);
+    }
+    sum
+}
+
+fn check_jacobi_for_triple<L: LieAlgebra>(
+    algebra: &L,
+    a: usize,
+    b: usize,
+    cc: usize,
+    n: usize,
+) -> bool {
+    for e in 0..n {
+        if !jacobi_term(algebra, a, b, cc, e, n).is_zero() {
+            return false;
+        }
+    }
+    true
+}
+
+fn check_jacobi_for_pair<L: LieAlgebra>(algebra: &L, a: usize, b: usize, n: usize) -> bool {
+    for cc in 0..n {
+        if !check_jacobi_for_triple(algebra, a, b, cc, n) {
+            return false;
+        }
+    }
+    true
+}
+
 pub fn verify_jacobi<L: LieAlgebra>(algebra: &L) -> bool {
     let n = algebra.dimension();
-    let c = |a: usize, b: usize, e: usize| algebra.structure_constant(a, b, e);
     for a in 0..n {
         for b in 0..n {
-            for cc in 0..n {
-                for e in 0..n {
-                    let mut sum = L::Scalar::zero();
-                    for d in 0..n {
-                        sum = sum
-                            .add(&c(a, b, d).mul(&c(d, cc, e)))
-                            .add(&c(b, cc, d).mul(&c(d, a, e)))
-                            .add(&c(cc, a, d).mul(&c(d, b, e)));
-                    }
-                    if !sum.is_zero() {
-                        return false;
-                    }
-                }
+            if !check_jacobi_for_pair(algebra, a, b, n) {
+                return false;
             }
         }
     }
@@ -206,11 +236,11 @@ pub fn killing_form<L: LieAlgebra>(algebra: &L) -> Result<BasicMatrix<L::Scalar>
     Ok(BasicMatrix::from_row_major(n, n, entries).map_err(ExactFieldError::from)?)
 }
 
-pub fn structure_constants_from_matrices<F: Field + ExactRing>(
+fn build_basis_system<F: Field + ExactRing>(
     basis: &[BasicMatrix<F>],
-) -> Result<StructureConstants<F>, LieAlgebraError> {
-    let n = basis.len();
-    let size = basis.first().ok_or(LieAlgebraError::Shape)?.rows();
+    n: usize,
+    size: usize,
+) -> Result<BasicMatrix<F>, LieAlgebraError> {
     if basis.iter().any(|m| m.rows() != size || m.cols() != size) {
         return Err(LieAlgebraError::Shape);
     }
@@ -222,16 +252,34 @@ pub fn structure_constants_from_matrices<F: Field + ExactRing>(
     if elimination::rank(&system)? < n {
         return Err(LieAlgebraError::DependentBasis);
     }
+    Ok(system)
+}
+
+fn solve_structure_constant_pair<F: Field + ExactRing>(
+    system: &BasicMatrix<F>,
+    m_a: &BasicMatrix<F>,
+    m_b: &BasicMatrix<F>,
+    a: usize,
+    b: usize,
+) -> Result<Vec<F>, LieAlgebraError> {
+    let commutator = mx::commutator(m_a, m_b)?;
+    match elimination::solve(system, commutator.as_slice())? {
+        LinearSolution::Consistent { particular, .. } => Ok(particular),
+        LinearSolution::Inconsistent { .. } => Err(LieAlgebraError::NotClosed { a, b }),
+    }
+}
+
+pub fn structure_constants_from_matrices<F: Field + ExactRing>(
+    basis: &[BasicMatrix<F>],
+) -> Result<StructureConstants<F>, LieAlgebraError> {
+    let n = basis.len();
+    let size = basis.first().ok_or(LieAlgebraError::Shape)?.rows();
+    let system = build_basis_system(basis, n, size)?;
     let mut table = Vec::with_capacity(n * n * n);
     for a in 0..n {
         for b in 0..n {
-            let commutator = mx::commutator(&basis[a], &basis[b])?;
-            match elimination::solve(&system, commutator.as_slice())? {
-                LinearSolution::Consistent { particular, .. } => table.extend(particular),
-                LinearSolution::Inconsistent { .. } => {
-                    return Err(LieAlgebraError::NotClosed { a, b })
-                }
-            }
+            let particular = solve_structure_constant_pair(&system, &basis[a], &basis[b], a, b)?;
+            table.extend(particular);
         }
     }
     StructureConstants::new(n, table)
@@ -278,6 +326,72 @@ fn check_complex_size<L: LieAlgebra>(algebra: &L) -> Result<usize, LieAlgebraErr
     Ok(n)
 }
 
+fn accumulate_pair_term<L: LieAlgebra>(
+    algebra: &L,
+    subset: &[usize],
+    position: usize,
+    leibniz_sign: i8,
+    a: usize,
+    b: usize,
+    rows: &[Vec<usize>],
+    col: usize,
+    num_cols: usize,
+    entries: &mut [L::Scalar],
+) {
+    let c = subset[position];
+    let coefficient = algebra.structure_constant(a, b, c).neg();
+    if coefficient.is_zero() {
+        return;
+    }
+    let mut word: Vec<usize> = subset[..position].to_vec();
+    word.push(a);
+    word.push(b);
+    word.extend_from_slice(&subset[position + 1..]);
+    let Some((sign, sorted)) = sort_word(word) else {
+        return;
+    };
+    let row = rows
+        .binary_search(&sorted)
+        .expect("a sorted (k+1)-subset is a basis index");
+    let total_sign = sign * leibniz_sign;
+    let term = if total_sign > 0 {
+        coefficient
+    } else {
+        coefficient.neg()
+    };
+    let slot = &mut entries[row * num_cols + col];
+    *slot = slot.add(&term);
+}
+
+fn process_column_position<L: LieAlgebra>(
+    algebra: &L,
+    subset: &[usize],
+    position: usize,
+    n: usize,
+    rows: &[Vec<usize>],
+    col: usize,
+    num_cols: usize,
+    entries: &mut [L::Scalar],
+) {
+    let leibniz_sign = if position % 2 == 0 { 1i8 } else { -1i8 };
+    for a in 0..n {
+        for b in (a + 1)..n {
+            accumulate_pair_term(
+                algebra,
+                subset,
+                position,
+                leibniz_sign,
+                a,
+                b,
+                rows,
+                col,
+                num_cols,
+                entries,
+            );
+        }
+    }
+}
+
 pub fn chevalley_eilenberg_differential<L: LieAlgebra>(
     algebra: &L,
     k: usize,
@@ -294,33 +408,16 @@ pub fn chevalley_eilenberg_differential<L: LieAlgebra>(
     let mut entries = vec![L::Scalar::zero(); rows.len() * columns.len()];
     for (col, subset) in columns.iter().enumerate() {
         for position in 0..k {
-            let leibniz_sign = if position % 2 == 0 { 1i8 } else { -1i8 };
-            let c = subset[position];
-            for a in 0..n {
-                for b in (a + 1)..n {
-                    let coefficient = algebra.structure_constant(a, b, c).neg();
-                    if coefficient.is_zero() {
-                        continue;
-                    }
-                    let mut word: Vec<usize> = subset[..position].to_vec();
-                    word.push(a);
-                    word.push(b);
-                    word.extend_from_slice(&subset[position + 1..]);
-                    if let Some((sign, sorted)) = sort_word(word) {
-                        let row = rows
-                            .binary_search(&sorted)
-                            .expect("a sorted (k+1)-subset is a basis index");
-                        let total_sign = sign * leibniz_sign;
-                        let term = if total_sign > 0 {
-                            coefficient.clone()
-                        } else {
-                            coefficient.neg()
-                        };
-                        let slot = &mut entries[row * columns.len() + col];
-                        *slot = slot.add(&term);
-                    }
-                }
-            }
+            process_column_position(
+                algebra,
+                subset,
+                position,
+                n,
+                &rows,
+                col,
+                columns.len(),
+                &mut entries,
+            );
         }
     }
     Ok(

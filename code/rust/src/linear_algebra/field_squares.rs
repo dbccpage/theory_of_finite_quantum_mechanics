@@ -185,28 +185,29 @@ enum Decision {
     Nonsquare(&'static str),
 }
 
-fn decide(input: &Element, d: u64) -> Result<Decision> {
+fn decide_rational_case(input: &Element, d: u64) -> Option<Decision> {
     if d == 0 {
-        return Ok(match rational_sqrt(&input.a) {
+        return Some(match rational_sqrt(&input.a) {
             Some(x) => Decision::Square(Element { a: x, b: Q::zero() }),
             None => Decision::Nonsquare("RATIONAL_NONSQUARE"),
         });
     }
     if input.b.is_zero() {
         if let Some(x) = rational_sqrt(&input.a) {
-            return Ok(Decision::Square(Element { a: x, b: Q::zero() }));
+            return Some(Decision::Square(Element { a: x, b: Q::zero() }));
         }
         if let Some(y) = rational_sqrt(&(&input.a / Q::from_integer(d.into()))) {
-            return Ok(Decision::Square(Element { a: Q::zero(), b: y }));
+            return Some(Decision::Square(Element { a: Q::zero(), b: y }));
         }
-        return Ok(Decision::Nonsquare("RATIONAL_SQUARECLASS_OUTSIDE_1_OR_D"));
+        return Some(Decision::Nonsquare("RATIONAL_SQUARECLASS_OUTSIDE_1_OR_D"));
     }
-    let Some(r) = rational_sqrt(&input.norm(d)) else {
-        return Ok(Decision::Nonsquare("NORM_NOT_RATIONAL_SQUARE"));
-    };
+    None
+}
+
+fn find_half_trace_square(input: &Element, d: u64, r: &Q) -> Result<Option<Element>> {
     for half_trace in [
-        (&input.a + &r) / Q::from_integer(2.into()),
-        (&input.a - &r) / Q::from_integer(2.into()),
+        (&input.a + r) / Q::from_integer(2.into()),
+        (&input.a - r) / Q::from_integer(2.into()),
     ] {
         if let Some(x) = rational_sqrt(&half_trace) {
             if x.is_zero() {
@@ -220,8 +221,21 @@ fn decide(input: &Element, d: u64) -> Result<Decision> {
             if root.sign(d) == Ordering::Less {
                 root = root.neg();
             }
-            return Ok(Decision::Square(root));
+            return Ok(Some(root));
         }
+    }
+    Ok(None)
+}
+
+fn decide(input: &Element, d: u64) -> Result<Decision> {
+    if let Some(decision) = decide_rational_case(input, d) {
+        return Ok(decision);
+    }
+    let Some(r) = rational_sqrt(&input.norm(d)) else {
+        return Ok(Decision::Nonsquare("NORM_NOT_RATIONAL_SQUARE"));
+    };
+    if let Some(root) = find_half_trace_square(input, d, &r)? {
+        return Ok(Decision::Square(root));
     }
     Ok(Decision::Nonsquare("NO_RATIONAL_HALF_TRACE_SQUARE"))
 }
@@ -293,11 +307,12 @@ fn negative_obstruction(input: &Element, d: u64) -> Option<&'static str> {
     Some("NO_RATIONAL_HALF_TRACE_SQUARE")
 }
 
-pub fn verify_square_certificate(n: u64, coefficients: &Value, certificate: &Value) -> Result<()> {
-    exact_json(coefficients, "coefficients")?;
-    exact_json(certificate, "certificate")?;
-    let d = radicand(n)?;
-    let input = Element::parse(coefficients, d, "coefficients")?;
+fn verify_square_cert_header(
+    n: u64,
+    d: u64,
+    input: &Element,
+    certificate: &Value,
+) -> Result<()> {
     keys(
         certificate,
         &[
@@ -333,18 +348,24 @@ pub fn verify_square_certificate(n: u64, coefficients: &Value, certificate: &Val
     }
     let certified_input =
         Element::parse(&certificate["coefficients"], d, "certificate.coefficients")?;
-    if certified_input != input {
+    if certified_input != *input {
         return Err("CERTIFICATE_BINDING_MISMATCH:coefficients".into());
     }
-    let square = certificate["is_square"]
-        .as_bool()
-        .ok_or("IS_SQUARE_BOOLEAN_REQUIRED")?;
+    Ok(())
+}
+
+fn verify_square_cert_body(
+    d: u64,
+    input: &Element,
+    certificate: &Value,
+    square: bool,
+) -> Result<()> {
     if square {
         if !certificate["obstruction"].is_null() {
             return Err("SQUARE_OBSTRUCTION_MUST_BE_NULL".into());
         }
         let root = Element::parse(&certificate["root"], d, "certificate.root")?;
-        if root.mul(&root, d) != input {
+        if root.mul(&root, d) != *input {
             return Err("SQUARE_WITNESS_PRODUCT_MISMATCH".into());
         }
         if root.sign(d) == Ordering::Less {
@@ -354,7 +375,7 @@ pub fn verify_square_certificate(n: u64, coefficients: &Value, certificate: &Val
         if !certificate["root"].is_null() {
             return Err("NONSQUARE_ROOT_MUST_BE_NULL".into());
         }
-        let obstruction = negative_obstruction(&input, d).ok_or("FALSE_NONSQUARE_CERTIFICATE")?;
+        let obstruction = negative_obstruction(input, d).ok_or("FALSE_NONSQUARE_CERTIFICATE")?;
         equal(
             &certificate["obstruction"],
             &json!(obstruction),
@@ -364,21 +385,25 @@ pub fn verify_square_certificate(n: u64, coefficients: &Value, certificate: &Val
     Ok(())
 }
 
-pub fn verify_squareclass_certificate(
-    n: u64,
-    left: &Value,
-    right: &Value,
-    certificate: &Value,
-) -> Result<()> {
-    exact_json(left, "left")?;
-    exact_json(right, "right")?;
+pub fn verify_square_certificate(n: u64, coefficients: &Value, certificate: &Value) -> Result<()> {
+    exact_json(coefficients, "coefficients")?;
     exact_json(certificate, "certificate")?;
     let d = radicand(n)?;
-    let left = Element::parse(left, d, "left")?;
-    let right = Element::parse(right, d, "right")?;
-    if left.is_zero() || right.is_zero() {
-        return Err("SQUARECLASS_ZERO_ARGUMENT".into());
-    }
+    let input = Element::parse(coefficients, d, "coefficients")?;
+    verify_square_cert_header(n, d, &input, certificate)?;
+    let square = certificate["is_square"]
+        .as_bool()
+        .ok_or("IS_SQUARE_BOOLEAN_REQUIRED")?;
+    verify_square_cert_body(d, &input, certificate, square)
+}
+
+fn verify_squareclass_cert_header(
+    n: u64,
+    d: u64,
+    left: &Element,
+    right: &Element,
+    certificate: &Value,
+) -> Result<()> {
     keys(
         certificate,
         &[
@@ -406,14 +431,24 @@ pub fn verify_squareclass_certificate(
     if conductor(&certificate["conductor"])? != n {
         return Err("CERTIFICATE_BINDING_MISMATCH:conductor".into());
     }
-    if Element::parse(&certificate["left"], d, "certificate.left")? != left {
+    if Element::parse(&certificate["left"], d, "certificate.left")? != *left {
         return Err("CERTIFICATE_BINDING_MISMATCH:left".into());
     }
-    if Element::parse(&certificate["right"], d, "certificate.right")? != right {
+    if Element::parse(&certificate["right"], d, "certificate.right")? != *right {
         return Err("CERTIFICATE_BINDING_MISMATCH:right".into());
     }
+    Ok(())
+}
+
+fn verify_squareclass_quotient_and_cert(
+    n: u64,
+    d: u64,
+    left: &Element,
+    right: &Element,
+    certificate: &Value,
+) -> Result<()> {
     let quotient = Element::parse(&certificate["quotient"], d, "certificate.quotient")?;
-    if quotient.mul(&right, d) != left {
+    if quotient.mul(right, d) != *left {
         return Err("SQUARECLASS_QUOTIENT_PRODUCT_MISMATCH".into());
     }
     verify_square_certificate(n, &quotient.wire(), &certificate["square_certificate"])?;
@@ -424,6 +459,25 @@ pub fn verify_squareclass_certificate(
         return Err("SQUARECLASS_BOOLEAN_DISAGREEMENT".into());
     }
     Ok(())
+}
+
+pub fn verify_squareclass_certificate(
+    n: u64,
+    left: &Value,
+    right: &Value,
+    certificate: &Value,
+) -> Result<()> {
+    exact_json(left, "left")?;
+    exact_json(right, "right")?;
+    exact_json(certificate, "certificate")?;
+    let d = radicand(n)?;
+    let left = Element::parse(left, d, "left")?;
+    let right = Element::parse(right, d, "right")?;
+    if left.is_zero() || right.is_zero() {
+        return Err("SQUARECLASS_ZERO_ARGUMENT".into());
+    }
+    verify_squareclass_cert_header(n, d, &left, &right, certificate)?;
+    verify_squareclass_quotient_and_cert(n, d, &left, &right, certificate)
 }
 
 fn request_operation(request: &Value) -> Result<(&str, u64)> {

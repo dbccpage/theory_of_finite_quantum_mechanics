@@ -7,7 +7,7 @@
     "AuthorityEffect": "None",
     "artifact": {
       "path": "code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.rs",
-      "sha256": "746033276323cfb9f8685c013264e33661222da122495064008609ee7c606d9d",
+      "sha256": "180bdf2161ed3191922aeff337083f680ab4eaea417877142858c454046d726f",
       "language": "Rust"
     },
     "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:verified_continuation_context_v2.rs",
@@ -373,8 +373,8 @@
       }
     ]
   },
-  "current_contract": "a55ea5d43ca9d7abb6bad860c40be440244ad6fa1ac056815f8b32cf48a4cc58",
-  "current_scoring": "eddbeed3e020d717d91757443e613998f102203eb5123b4e0266871661a968e9",
+  "current_contract": "49a7959db233cb1ec09ecf0cba19156966942a5cd885dc00dab0501499cc7f00",
+  "current_scoring": "856bc92a9708f4f8fd64d910995062e1206b7dd439b086f35e3d2a0f314ef3f6",
   "contract_history": [
     {
       "sha256": "a55ea5d43ca9d7abb6bad860c40be440244ad6fa1ac056815f8b32cf48a4cc58",
@@ -2282,6 +2282,385 @@
       "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.rs\",\n    \"sha256\": \"746033276323cfb9f8685c013264e33661222da122495064008609ee7c606d9d\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:local_green_global_red_lggr:verified_continuation_context_v2.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite local/global residual, composition, soundness and continuation evidence checks.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"V2_CONTEXT_SCHEMA\",\n      \"line\": 21,\n      \"declaration_line\": \"pub const V2_CONTEXT_SCHEMA: &str = \\\"omega.epk.verified-continuation-context.v2\\\";\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"TypedRefusal\",\n      \"line\": 25,\n      \"declaration_line\": \"pub enum TypedRefusal {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"AcceptedIntakeReceipt\",\n      \"line\": 77,\n      \"declaration_line\": \"pub struct AcceptedIntakeReceipt {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"admit\",\n      \"line\": 85,\n      \"declaration_line\": \"pub fn admit(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"run_id\",\n      \"line\": 104,\n      \"declaration_line\": \"pub fn run_id(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"candidate_digest\",\n      \"line\": 107,\n      \"declaration_line\": \"pub fn candidate_digest(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"witness_certificate\",\n      \"line\": 110,\n      \"declaration_line\": \"pub fn witness_certificate(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"next_carrier\",\n      \"line\": 113,\n      \"declaration_line\": \"pub fn next_carrier(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"has_witness\",\n      \"line\": 116,\n      \"declaration_line\": \"pub fn has_witness(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"next_carrier_declared\",\n      \"line\": 119,\n      \"declaration_line\": \"pub fn next_carrier_declared(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"TransportClaim\",\n      \"line\": 126,\n      \"declaration_line\": \"pub struct TransportClaim {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ResidualPreservationWitness\",\n      \"line\": 133,\n      \"declaration_line\": \"pub struct ResidualPreservationWitness {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"source_carrier\",\n      \"line\": 158,\n      \"declaration_line\": \"pub fn source_carrier(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"target_carrier\",\n      \"line\": 161,\n      \"declaration_line\": \"pub fn target_carrier(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"preserved\",\n      \"line\": 165,\n      \"declaration_line\": \"pub fn preserved(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"source_ngd\",\n      \"line\": 168,\n      \"declaration_line\": \"pub fn source_ngd(&self) -> f64 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"target_ngd\",\n      \"line\": 171,\n      \"declaration_line\": \"pub fn target_ngd(&self) -> f64 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"loss_ledger\",\n      \"line\": 174,\n      \"declaration_line\": \"pub fn loss_ledger(&self) -> &[String] {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RawEvidencePacket\",\n      \"line\": 181,\n      \"declaration_line\": \"pub struct RawEvidencePacket {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"AdmissionAuthority\",\n      \"line\": 199,\n      \"declaration_line\": \"pub trait AdmissionAuthority {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"GlobalEvaluatorReplay\",\n      \"line\": 203,\n      \"declaration_line\": \"pub trait GlobalEvaluatorReplay {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"CapacitySolver\",\n      \"line\": 207,\n      \"declaration_line\": \"pub trait CapacitySolver {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"TransportVerifier\",\n      \"line\": 217,\n      \"declaration_line\": \"pub trait TransportVerifier {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"RefusalStore\",\n      \"line\": 221,\n      \"declaration_line\": \"pub trait RefusalStore {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"VerifierSuite\",\n      \"line\": 225,\n      \"declaration_line\": \"pub trait VerifierSuite {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RefusingVerifierSuite\",\n      \"line\": 234,\n      \"declaration_line\": \"pub struct RefusingVerifierSuite;\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ContinuationBlockerV2\",\n      \"line\": 295,\n      \"declaration_line\": \"pub enum ContinuationBlockerV2 {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"VerifiedContinuationContextV2\",\n      \"line\": 310,\n      \"declaration_line\": \"pub struct VerifiedContinuationContextV2 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"root_digest\",\n      \"line\": 335,\n      \"declaration_line\": \"pub fn root_digest(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"run_id\",\n      \"line\": 338,\n      \"declaration_line\": \"pub fn run_id(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"metrics\",\n      \"line\": 341,\n      \"declaration_line\": \"pub fn metrics(&self) -> &EpkMetrics {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"ledger\",\n      \"line\": 344,\n      \"declaration_line\": \"pub fn ledger(&self) -> &EpkResidualLedger {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"adequacy\",\n      \"line\": 347,\n      \"declaration_line\": \"pub fn adequacy(&self) -> &DetectorAdequacyVerdict {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"defect\",\n      \"line\": 350,\n      \"declaration_line\": \"pub fn defect(&self) -> &GluingDefect {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"record_id\",\n      \"line\": 353,\n      \"declaration_line\": \"pub fn record_id(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verdict\",\n      \"line\": 356,\n      \"declaration_line\": \"pub fn verdict(&self) -> &LggrVerdict {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"provenance\",\n      \"line\": 359,\n      \"declaration_line\": \"pub fn provenance(&self) -> EvaluatorProvenance {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"preservation\",\n      \"line\": 362,\n      \"declaration_line\": \"pub fn preservation(&self) -> Option<&ResidualPreservationWitness> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"authority_effect\",\n      \"line\": 365,\n      \"declaration_line\": \"pub fn authority_effect(&self) -> AuthorityEffect {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"evidence_ceiling\",\n      \"line\": 368,\n      \"declaration_line\": \"pub fn evidence_ceiling(&self) -> EvidenceCeiling {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ContinuationDecision\",\n      \"line\": 377,\n      \"declaration_line\": \"pub struct ContinuationDecision {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"may_continue\",\n      \"line\": 383,\n      \"declaration_line\": \"pub fn may_continue(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"blockers\",\n      \"line\": 386,\n      \"declaration_line\": \"pub fn blockers(&self) -> &[ContinuationBlockerV2] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"root_digest\",\n      \"line\": 389,\n      \"declaration_line\": \"pub fn root_digest(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"authority_effect\",\n      \"line\": 392,\n      \"declaration_line\": \"pub fn authority_effect(&self) -> AuthorityEffect {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"step_terminal\",\n      \"line\": 395,\n      \"declaration_line\": \"pub fn step_terminal(&self) -> &'static str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify\",\n      \"line\": 405,\n      \"declaration_line\": \"pub fn verify(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"decide\",\n      \"line\": 644,\n      \"declaration_line\": \"pub fn decide(context: &VerifiedContinuationContextV2) -> ContinuationDecision {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ]\n}\n",
       "original_paths": [
         "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "49a7959db233cb1ec09ecf0cba19156966942a5cd885dc00dab0501499cc7f00",
+      "bytes": 11171,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.rs",
+          "sha256": "180bdf2161ed3191922aeff337083f680ab4eaea417877142858c454046d726f",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:local_green_global_red_lggr:verified_continuation_context_v2.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite local/global residual, composition, soundness and continuation evidence checks.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "V2_CONTEXT_SCHEMA",
+            "line": 21,
+            "declaration_line": "pub const V2_CONTEXT_SCHEMA: &str = \"omega.epk.verified-continuation-context.v2\";"
+          },
+          {
+            "kind": "enum",
+            "name": "TypedRefusal",
+            "line": 25,
+            "declaration_line": "pub enum TypedRefusal {"
+          },
+          {
+            "kind": "struct",
+            "name": "AcceptedIntakeReceipt",
+            "line": 77,
+            "declaration_line": "pub struct AcceptedIntakeReceipt {"
+          },
+          {
+            "kind": "fn",
+            "name": "admit",
+            "line": 85,
+            "declaration_line": "pub fn admit("
+          },
+          {
+            "kind": "fn",
+            "name": "run_id",
+            "line": 104,
+            "declaration_line": "pub fn run_id(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "candidate_digest",
+            "line": 107,
+            "declaration_line": "pub fn candidate_digest(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "witness_certificate",
+            "line": 110,
+            "declaration_line": "pub fn witness_certificate(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "next_carrier",
+            "line": 113,
+            "declaration_line": "pub fn next_carrier(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "has_witness",
+            "line": 116,
+            "declaration_line": "pub fn has_witness(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "next_carrier_declared",
+            "line": 119,
+            "declaration_line": "pub fn next_carrier_declared(&self) -> bool {"
+          },
+          {
+            "kind": "struct",
+            "name": "TransportClaim",
+            "line": 126,
+            "declaration_line": "pub struct TransportClaim {"
+          },
+          {
+            "kind": "struct",
+            "name": "ResidualPreservationWitness",
+            "line": 133,
+            "declaration_line": "pub struct ResidualPreservationWitness {"
+          },
+          {
+            "kind": "fn",
+            "name": "source_carrier",
+            "line": 158,
+            "declaration_line": "pub fn source_carrier(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "target_carrier",
+            "line": 161,
+            "declaration_line": "pub fn target_carrier(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "preserved",
+            "line": 165,
+            "declaration_line": "pub fn preserved(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "source_ngd",
+            "line": 168,
+            "declaration_line": "pub fn source_ngd(&self) -> f64 {"
+          },
+          {
+            "kind": "fn",
+            "name": "target_ngd",
+            "line": 171,
+            "declaration_line": "pub fn target_ngd(&self) -> f64 {"
+          },
+          {
+            "kind": "fn",
+            "name": "loss_ledger",
+            "line": 174,
+            "declaration_line": "pub fn loss_ledger(&self) -> &[String] {"
+          },
+          {
+            "kind": "struct",
+            "name": "RawEvidencePacket",
+            "line": 181,
+            "declaration_line": "pub struct RawEvidencePacket {"
+          },
+          {
+            "kind": "trait",
+            "name": "AdmissionAuthority",
+            "line": 199,
+            "declaration_line": "pub trait AdmissionAuthority {"
+          },
+          {
+            "kind": "trait",
+            "name": "GlobalEvaluatorReplay",
+            "line": 203,
+            "declaration_line": "pub trait GlobalEvaluatorReplay {"
+          },
+          {
+            "kind": "trait",
+            "name": "CapacitySolver",
+            "line": 207,
+            "declaration_line": "pub trait CapacitySolver {"
+          },
+          {
+            "kind": "trait",
+            "name": "TransportVerifier",
+            "line": 217,
+            "declaration_line": "pub trait TransportVerifier {"
+          },
+          {
+            "kind": "trait",
+            "name": "RefusalStore",
+            "line": 221,
+            "declaration_line": "pub trait RefusalStore {"
+          },
+          {
+            "kind": "trait",
+            "name": "VerifierSuite",
+            "line": 225,
+            "declaration_line": "pub trait VerifierSuite {"
+          },
+          {
+            "kind": "struct",
+            "name": "RefusingVerifierSuite",
+            "line": 234,
+            "declaration_line": "pub struct RefusingVerifierSuite;"
+          },
+          {
+            "kind": "enum",
+            "name": "ContinuationBlockerV2",
+            "line": 295,
+            "declaration_line": "pub enum ContinuationBlockerV2 {"
+          },
+          {
+            "kind": "struct",
+            "name": "VerifiedContinuationContextV2",
+            "line": 310,
+            "declaration_line": "pub struct VerifiedContinuationContextV2 {"
+          },
+          {
+            "kind": "fn",
+            "name": "root_digest",
+            "line": 335,
+            "declaration_line": "pub fn root_digest(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "run_id",
+            "line": 338,
+            "declaration_line": "pub fn run_id(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "metrics",
+            "line": 341,
+            "declaration_line": "pub fn metrics(&self) -> &EpkMetrics {"
+          },
+          {
+            "kind": "fn",
+            "name": "ledger",
+            "line": 344,
+            "declaration_line": "pub fn ledger(&self) -> &EpkResidualLedger {"
+          },
+          {
+            "kind": "fn",
+            "name": "adequacy",
+            "line": 347,
+            "declaration_line": "pub fn adequacy(&self) -> &DetectorAdequacyVerdict {"
+          },
+          {
+            "kind": "fn",
+            "name": "defect",
+            "line": 350,
+            "declaration_line": "pub fn defect(&self) -> &GluingDefect {"
+          },
+          {
+            "kind": "fn",
+            "name": "record_id",
+            "line": 353,
+            "declaration_line": "pub fn record_id(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "verdict",
+            "line": 356,
+            "declaration_line": "pub fn verdict(&self) -> &LggrVerdict {"
+          },
+          {
+            "kind": "fn",
+            "name": "provenance",
+            "line": 359,
+            "declaration_line": "pub fn provenance(&self) -> EvaluatorProvenance {"
+          },
+          {
+            "kind": "fn",
+            "name": "preservation",
+            "line": 362,
+            "declaration_line": "pub fn preservation(&self) -> Option<&ResidualPreservationWitness> {"
+          },
+          {
+            "kind": "fn",
+            "name": "authority_effect",
+            "line": 365,
+            "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+          },
+          {
+            "kind": "fn",
+            "name": "evidence_ceiling",
+            "line": 368,
+            "declaration_line": "pub fn evidence_ceiling(&self) -> EvidenceCeiling {"
+          },
+          {
+            "kind": "struct",
+            "name": "ContinuationDecision",
+            "line": 377,
+            "declaration_line": "pub struct ContinuationDecision {"
+          },
+          {
+            "kind": "fn",
+            "name": "may_continue",
+            "line": 383,
+            "declaration_line": "pub fn may_continue(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "blockers",
+            "line": 386,
+            "declaration_line": "pub fn blockers(&self) -> &[ContinuationBlockerV2] {"
+          },
+          {
+            "kind": "fn",
+            "name": "root_digest",
+            "line": 389,
+            "declaration_line": "pub fn root_digest(&self) -> &str {"
+          },
+          {
+            "kind": "fn",
+            "name": "authority_effect",
+            "line": 392,
+            "declaration_line": "pub fn authority_effect(&self) -> AuthorityEffect {"
+          },
+          {
+            "kind": "fn",
+            "name": "step_terminal",
+            "line": 395,
+            "declaration_line": "pub fn step_terminal(&self) -> &'static str {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify",
+            "line": 405,
+            "declaration_line": "pub fn verify("
+          },
+          {
+            "kind": "fn",
+            "name": "decide",
+            "line": 644,
+            "declaration_line": "pub fn decide(context: &VerifiedContinuationContextV2) -> ContinuationDecision {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.rs\",\n    \"sha256\": \"180bdf2161ed3191922aeff337083f680ab4eaea417877142858c454046d726f\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:local_green_global_red_lggr:verified_continuation_context_v2.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite local/global residual, composition, soundness and continuation evidence checks.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"V2_CONTEXT_SCHEMA\",\n      \"line\": 21,\n      \"declaration_line\": \"pub const V2_CONTEXT_SCHEMA: &str = \\\"omega.epk.verified-continuation-context.v2\\\";\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"TypedRefusal\",\n      \"line\": 25,\n      \"declaration_line\": \"pub enum TypedRefusal {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"AcceptedIntakeReceipt\",\n      \"line\": 77,\n      \"declaration_line\": \"pub struct AcceptedIntakeReceipt {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"admit\",\n      \"line\": 85,\n      \"declaration_line\": \"pub fn admit(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"run_id\",\n      \"line\": 104,\n      \"declaration_line\": \"pub fn run_id(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"candidate_digest\",\n      \"line\": 107,\n      \"declaration_line\": \"pub fn candidate_digest(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"witness_certificate\",\n      \"line\": 110,\n      \"declaration_line\": \"pub fn witness_certificate(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"next_carrier\",\n      \"line\": 113,\n      \"declaration_line\": \"pub fn next_carrier(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"has_witness\",\n      \"line\": 116,\n      \"declaration_line\": \"pub fn has_witness(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"next_carrier_declared\",\n      \"line\": 119,\n      \"declaration_line\": \"pub fn next_carrier_declared(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"TransportClaim\",\n      \"line\": 126,\n      \"declaration_line\": \"pub struct TransportClaim {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ResidualPreservationWitness\",\n      \"line\": 133,\n      \"declaration_line\": \"pub struct ResidualPreservationWitness {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"source_carrier\",\n      \"line\": 158,\n      \"declaration_line\": \"pub fn source_carrier(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"target_carrier\",\n      \"line\": 161,\n      \"declaration_line\": \"pub fn target_carrier(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"preserved\",\n      \"line\": 165,\n      \"declaration_line\": \"pub fn preserved(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"source_ngd\",\n      \"line\": 168,\n      \"declaration_line\": \"pub fn source_ngd(&self) -> f64 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"target_ngd\",\n      \"line\": 171,\n      \"declaration_line\": \"pub fn target_ngd(&self) -> f64 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"loss_ledger\",\n      \"line\": 174,\n      \"declaration_line\": \"pub fn loss_ledger(&self) -> &[String] {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RawEvidencePacket\",\n      \"line\": 181,\n      \"declaration_line\": \"pub struct RawEvidencePacket {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"AdmissionAuthority\",\n      \"line\": 199,\n      \"declaration_line\": \"pub trait AdmissionAuthority {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"GlobalEvaluatorReplay\",\n      \"line\": 203,\n      \"declaration_line\": \"pub trait GlobalEvaluatorReplay {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"CapacitySolver\",\n      \"line\": 207,\n      \"declaration_line\": \"pub trait CapacitySolver {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"TransportVerifier\",\n      \"line\": 217,\n      \"declaration_line\": \"pub trait TransportVerifier {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"RefusalStore\",\n      \"line\": 221,\n      \"declaration_line\": \"pub trait RefusalStore {\"\n    },\n    {\n      \"kind\": \"trait\",\n      \"name\": \"VerifierSuite\",\n      \"line\": 225,\n      \"declaration_line\": \"pub trait VerifierSuite {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RefusingVerifierSuite\",\n      \"line\": 234,\n      \"declaration_line\": \"pub struct RefusingVerifierSuite;\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"ContinuationBlockerV2\",\n      \"line\": 295,\n      \"declaration_line\": \"pub enum ContinuationBlockerV2 {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"VerifiedContinuationContextV2\",\n      \"line\": 310,\n      \"declaration_line\": \"pub struct VerifiedContinuationContextV2 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"root_digest\",\n      \"line\": 335,\n      \"declaration_line\": \"pub fn root_digest(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"run_id\",\n      \"line\": 338,\n      \"declaration_line\": \"pub fn run_id(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"metrics\",\n      \"line\": 341,\n      \"declaration_line\": \"pub fn metrics(&self) -> &EpkMetrics {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"ledger\",\n      \"line\": 344,\n      \"declaration_line\": \"pub fn ledger(&self) -> &EpkResidualLedger {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"adequacy\",\n      \"line\": 347,\n      \"declaration_line\": \"pub fn adequacy(&self) -> &DetectorAdequacyVerdict {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"defect\",\n      \"line\": 350,\n      \"declaration_line\": \"pub fn defect(&self) -> &GluingDefect {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"record_id\",\n      \"line\": 353,\n      \"declaration_line\": \"pub fn record_id(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verdict\",\n      \"line\": 356,\n      \"declaration_line\": \"pub fn verdict(&self) -> &LggrVerdict {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"provenance\",\n      \"line\": 359,\n      \"declaration_line\": \"pub fn provenance(&self) -> EvaluatorProvenance {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"preservation\",\n      \"line\": 362,\n      \"declaration_line\": \"pub fn preservation(&self) -> Option<&ResidualPreservationWitness> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"authority_effect\",\n      \"line\": 365,\n      \"declaration_line\": \"pub fn authority_effect(&self) -> AuthorityEffect {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"evidence_ceiling\",\n      \"line\": 368,\n      \"declaration_line\": \"pub fn evidence_ceiling(&self) -> EvidenceCeiling {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ContinuationDecision\",\n      \"line\": 377,\n      \"declaration_line\": \"pub struct ContinuationDecision {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"may_continue\",\n      \"line\": 383,\n      \"declaration_line\": \"pub fn may_continue(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"blockers\",\n      \"line\": 386,\n      \"declaration_line\": \"pub fn blockers(&self) -> &[ContinuationBlockerV2] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"root_digest\",\n      \"line\": 389,\n      \"declaration_line\": \"pub fn root_digest(&self) -> &str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"authority_effect\",\n      \"line\": 392,\n      \"declaration_line\": \"pub fn authority_effect(&self) -> AuthorityEffect {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"step_terminal\",\n      \"line\": 395,\n      \"declaration_line\": \"pub fn step_terminal(&self) -> &'static str {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify\",\n      \"line\": 405,\n      \"declaration_line\": \"pub fn verify(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"decide\",\n      \"line\": 644,\n      \"declaration_line\": \"pub fn decide(context: &VerifiedContinuationContextV2) -> ContinuationDecision {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.contract.score.yaml#contract"
       ]
     }
   ],
@@ -5603,6 +5982,188 @@
         }
       },
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.rs\",\n    \"sha256\": \"746033276323cfb9f8685c013264e33661222da122495064008609ee7c606d9d\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:local_green_global_red_lggr:verified-continuation-context-v2:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 26 <= 50 (D), nesting depth 2 <= 3 (A); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 26,\n    \"lizard_ccn\": 24,\n    \"weighted_control_upper_bound\": 18,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 85,\n        \"name\": \"admit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 104,\n        \"name\": \"run_id\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 107,\n        \"name\": \"candidate_digest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 110,\n        \"name\": \"witness_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 113,\n        \"name\": \"next_carrier\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 116,\n        \"name\": \"has_witness\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 119,\n        \"name\": \"next_carrier_declared\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 0,\n        \"line\": 143,\n        \"name\": \"from_measurement\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 158,\n        \"name\": \"source_carrier\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 161,\n        \"name\": \"target_carrier\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 165,\n        \"name\": \"preserved\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 168,\n        \"name\": \"source_ngd\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 171,\n        \"name\": \"target_ngd\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 174,\n        \"name\": \"loss_ledger\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 237,\n        \"name\": \"confirm_admission\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 244,\n        \"name\": \"replay_global\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 251,\n        \"name\": \"solve\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 264,\n        \"name\": \"measure_target\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 271,\n        \"name\": \"standing_refusals\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 276,\n        \"name\": \"admission\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 279,\n        \"name\": \"global_replay\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 282,\n        \"name\": \"capacity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 285,\n        \"name\": \"transport\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 288,\n        \"name\": \"refusals\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 335,\n        \"name\": \"root_digest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 338,\n        \"name\": \"run_id\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 341,\n        \"name\": \"metrics\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 344,\n        \"name\": \"ledger\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 347,\n        \"name\": \"adequacy\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 350,\n        \"name\": \"defect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 353,\n        \"name\": \"record_id\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 356,\n        \"name\": \"verdict\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 359,\n        \"name\": \"provenance\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 362,\n        \"name\": \"preservation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 365,\n        \"name\": \"authority_effect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 368,\n        \"name\": \"evidence_ceiling\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 383,\n        \"name\": \"may_continue\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 386,\n        \"name\": \"blockers\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 389,\n        \"name\": \"root_digest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 392,\n        \"name\": \"authority_effect\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 395,\n        \"name\": \"step_terminal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 26,\n        \"cognitive_upper_bound\": 18,\n        \"control_nesting\": 2,\n        \"line\": 405,\n        \"name\": \"verify\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 602,\n        \"name\": \"structural_failure_tag\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 619,\n        \"name\": \"blocker_tag\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 633,\n        \"name\": \"adequacy_kind_tag\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 1,\n        \"line\": 644,\n        \"name\": \"decide\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 26,\n        \"cognitive_upper_bound\": 18,\n        \"control_nesting\": 2,\n        \"line\": 405,\n        \"name\": \"verify\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"D\"\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 602,\n        \"name\": \"structural_failure_tag\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 1,\n        \"line\": 644,\n        \"name\": \"decide\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      }\n    ],\n    \"metric_ceiling\": \"D\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "856bc92a9708f4f8fd64d910995062e1206b7dd439b086f35e3d2a0f314ef3f6",
+      "bytes": 7518,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.rs",
+          "sha256": "180bdf2161ed3191922aeff337083f680ab4eaea417877142858c454046d726f",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:local_green_global_red_lggr:verified-continuation-context-v2:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.",
+          "G3": "Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 10,
+          "lizard_ccn": 10,
+          "weighted_control_upper_bound": 19,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.rs\",\n    \"sha256\": \"180bdf2161ed3191922aeff337083f680ab4eaea417877142858c454046d726f\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:local_green_global_red_lggr:verified-continuation-context-v2:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 10,\n    \"weighted_control_upper_bound\": 19,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.contract.score.yaml#scoring"
       ]

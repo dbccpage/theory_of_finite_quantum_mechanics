@@ -51,39 +51,50 @@ pub struct Certificate {
     pub even_assignment: Vec<i64>,
     pub even_context_sums: Vec<i64>,
 }
-pub fn certify(
-    rays: Vec<Vec<i64>>,
-    frames: Vec<Vec<usize>>,
-    raw: Matrix,
-    v: [i64; 4],
-    even_frames: Vec<Vec<usize>>,
-    even_assignment: Vec<i64>,
-) -> Result<Certificate> {
+fn validate_system(rays: &[Vec<i64>], frames: &[Vec<usize>]) -> Result<()> {
     let system =
-        FrameSystem::new(rays.clone(), frames.clone()).map_err(|_| "invalid orthogonal frames")?;
+        FrameSystem::new(rays.to_vec(), frames.to_vec()).map_err(|_| "invalid orthogonal frames")?;
     if system.dimension() != 4 {
         return Err("dimension four required");
     }
-    mx::validate(&raw)?;
-    if raw.len() != 4
-        || raw[0].len() != 4
-        || raw != mx::transpose(&raw)?
-        || raw.iter().flatten().any(|x| !x.denom().is_one())
-    {
+    Ok(())
+}
+
+fn check_matrix_shape_and_integrality(raw: &Matrix) -> Result<()> {
+    mx::validate(raw)?;
+    if raw.len() != 4 || raw[0].len() != 4 {
         return Err("integer symmetric four-matrix required");
     }
-    let denominator = mx::trace(&raw)?;
+    let transposed = mx::transpose(raw)?;
+    if raw != &transposed || raw.iter().flatten().any(|x| !x.denom().is_one()) {
+        return Err("integer symmetric four-matrix required");
+    }
+    Ok(())
+}
+
+fn normalize_raw_matrix(raw: &Matrix) -> Result<(Q, Matrix)> {
+    check_matrix_shape_and_integrality(raw)?;
+    let denominator = mx::trace(raw)?;
     if denominator <= Q::zero() {
         return Err("positive trace required");
     }
-    let h = mx::scale(&(Q::one() / &denominator), &raw)?;
+    let h = mx::scale(&(Q::one() / &denominator), raw)?;
+    Ok((denominator, h))
+}
+
+fn compute_weights_and_remainders(
+    rays: &[Vec<i64>],
+    raw: &Matrix,
+    h: &Matrix,
+    frames: &[Vec<usize>],
+) -> Result<(Vec<Q>, Vec<BigInt>, Vec<Q>)> {
     let mut weights = Vec::new();
     let mut remainders = Vec::new();
-    for r in &rays {
+    for r in rays {
         let vec: [i64; 4] = r.clone().try_into().map_err(|_| "ray shape")?;
         let norm: BigInt = r.iter().map(|x| BigInt::from(*x) * BigInt::from(*x)).sum();
-        weights.push(quadratic(&h, &vec) / Q::from_integer(norm.clone()));
-        let rawq = quadratic(&raw, &vec) * Q::from_integer(4.into());
+        weights.push(quadratic(h, &vec) / Q::from_integer(norm.clone()));
+        let rawq = quadratic(raw, &vec) * Q::from_integer(4.into());
         if !rawq.denom().is_one() {
             return Err("noninteger raw quadratic cannot be rounded");
         }
@@ -98,11 +109,14 @@ pub fn certify(
     {
         return Err("normalized nonnegative frame values required");
     }
-    let negative_value = quadratic(&h, &v);
-    if negative_value >= Q::zero() {
-        return Err("negative quadratic witness required");
-    }
-    let even_control = parity(&even_frames, even_assignment.len())?;
+    Ok((weights, remainders, frame_sums))
+}
+
+fn validate_even_control(
+    even_frames: &[Vec<usize>],
+    even_assignment: &[i64],
+) -> Result<(Parity, Vec<i64>)> {
+    let even_control = parity(even_frames, even_assignment.len())?;
     let sums: Vec<i64> = even_frames
         .iter()
         .map(|f| f.iter().map(|&i| even_assignment[i]).sum())
@@ -110,6 +124,29 @@ pub fn certify(
     if sums.iter().any(|&x| x != 1) {
         return Err("actual integer control assignment required");
     }
+    Ok((even_control, sums))
+}
+
+pub fn certify(
+    rays: Vec<Vec<i64>>,
+    frames: Vec<Vec<usize>>,
+    raw: Matrix,
+    v: [i64; 4],
+    even_frames: Vec<Vec<usize>>,
+    even_assignment: Vec<i64>,
+) -> Result<Certificate> {
+    validate_system(&rays, &frames)?;
+    let (denominator, h) = normalize_raw_matrix(&raw)?;
+    let (weights, remainders, frame_sums) =
+        compute_weights_and_remainders(&rays, &raw, &h, &frames)?;
+
+    let negative_value = quadratic(&h, &v);
+    if negative_value >= Q::zero() {
+        return Err("negative quadratic witness required");
+    }
+
+    let (even_control, sums) = validate_even_control(&even_frames, &even_assignment)?;
+
     Ok(Certificate {
         parity_main: parity(&frames, rays.len())?,
         denominator,

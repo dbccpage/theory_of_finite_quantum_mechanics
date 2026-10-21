@@ -402,10 +402,10 @@ impl ContinuationDecision {
 }
 
 
-pub fn verify(
-    packet: &RawEvidencePacket,
+fn verify_intake<'a>(
+    packet: &'a RawEvidencePacket,
     suite: &dyn VerifierSuite,
-) -> Result<VerifiedContinuationContextV2, TypedRefusal> {
+) -> Result<&'a AcceptedIntakeReceipt, TypedRefusal> {
     if packet.schema != V2_CONTEXT_SCHEMA {
         return Err(TypedRefusal::SchemaRefused {
             found: packet.schema.clone(),
@@ -424,16 +424,10 @@ pub fn verify(
         });
     }
     suite.admission().confirm_admission(intake)?;
+    Ok(intake)
+}
 
-    if packet.records.is_empty() {
-        return Err(TypedRefusal::EmptyCorpus);
-    }
-    let row = packet.selected_row;
-    let record = packet.records.get(row).ok_or(TypedRefusal::RowOutOfRange {
-        index: row,
-        len: packet.records.len(),
-    })?;
-
+fn verify_trace_ledger(packet: &RawEvidencePacket) -> Result<(), TypedRefusal> {
     for r in &packet.records {
         let l = packet
             .trace_ledger
@@ -453,7 +447,13 @@ pub fn verify(
             });
         }
     }
+    Ok(())
+}
 
+fn replay_global_traces(
+    packet: &RawEvidencePacket,
+    suite: &dyn VerifierSuite,
+) -> Result<BTreeMap<String, bool>, TypedRefusal> {
     let mut replayed_global: BTreeMap<String, bool> = BTreeMap::new();
     for r in &packet.records {
         let replayed = suite.global_replay().replay_global(r)?;
@@ -466,6 +466,127 @@ pub fn verify(
         }
         replayed_global.insert(r.composed_trace_id.clone(), replayed);
     }
+    Ok(replayed_global)
+}
+
+fn hash_preservation_witness(
+    h: &mut CanonicalHasher,
+    preservation: Option<&ResidualPreservationWitness>,
+) {
+    match preservation {
+        Some(w) => {
+            h.u8_field("preservation", 1);
+            h.str_field("preservation_source", w.source_carrier());
+            h.str_field("preservation_target", w.target_carrier());
+            h.f64_field("preservation_source_ngd", w.source_ngd());
+            h.f64_field("preservation_target_ngd", w.target_ngd());
+            h.u8_field("preservation_preserved", w.preserved() as u8);
+            h.bytes(
+                "preservation_loss_count",
+                &(w.loss_ledger().len() as u64).to_be_bytes(),
+            );
+            for l in w.loss_ledger() {
+                h.str_field("preservation_loss", l);
+            }
+        }
+        None => {
+            h.u8_field("preservation", 0);
+        }
+    }
+}
+
+fn compute_context_digest(
+    packet: &RawEvidencePacket,
+    intake: &AcceptedIntakeReceipt,
+    replayed_global: &BTreeMap<String, bool>,
+    adequacy: &DetectorAdequacyVerdict,
+    row: usize,
+    defect: &GluingDefect,
+    ledger: &EpkResidualLedger,
+    preservation: Option<&ResidualPreservationWitness>,
+    standing: &[ContinuationBlockerV2],
+) -> String {
+    let mut h = CanonicalHasher::new(V2_CONTEXT_SCHEMA);
+    h.str_field("run_id", &packet.run_id);
+    h.str_field("intake_run", intake.run_id());
+    h.str_field("intake_candidate", intake.candidate_digest());
+    h.str_field("intake_witness", intake.witness_certificate());
+    h.str_field("intake_next_carrier", intake.next_carrier());
+    for r in &packet.records {
+        h.str_field("row_id", &r.composed_trace_id);
+        h.u8_field("row_l", r.local_left_pass as u8);
+        h.u8_field("row_r", r.local_right_pass as u8);
+        h.u8_field("row_g", r.global_pass as u8);
+    }
+    for (id, g) in replayed_global {
+        h.str_field("replayed_id", id);
+        h.u8_field("replayed_val", *g as u8);
+    }
+    h.str_field("boundary", &packet.boundary.name);
+    h.str_field("adequacy_kind", adequacy_kind_tag(adequacy.kind()));
+    h.str_field("adequacy_corpus", adequacy.observed_corpus_digest());
+    h.opt_str("adequacy_declaration", adequacy.declaration_digest());
+    h.opt_f64("adequacy_capacity", adequacy.capacity_value());
+    h.opt_f64("adequacy_epsilon", adequacy.epsilon());
+    h.bytes(
+        "adequacy_failure_count",
+        &(adequacy.structural_failures().len() as u64).to_be_bytes(),
+    );
+    for f in adequacy.structural_failures() {
+        h.str_field("adequacy_failure", structural_failure_tag(f));
+    }
+    h.bytes("selected_row", &(row as u64).to_be_bytes());
+    h.i8_field("delta_eval", defect.delta_eval);
+    h.f64_field("ngd", ledger.ngd);
+    h.opt_f64("nrke", ledger.nrke);
+    hash_preservation_witness(&mut h, preservation);
+    h.f64_field("budget_remaining", packet.budget_remaining);
+    h.f64_field("delta_control", packet.delta_control);
+    h.bytes(
+        "standing_refusal_count",
+        &(standing.len() as u64).to_be_bytes(),
+    );
+    for r in standing {
+        h.str_field("standing_refusal", blocker_tag(*r));
+    }
+    h.u8_field("gtla_refusal", packet.coda_gtla_refusal as u8);
+    h.opt_str("parent_receipt", packet.parent_receipt_hash.as_deref());
+    h.finish()
+}
+
+fn resolve_preservation(
+    packet: &RawEvidencePacket,
+    suite: &dyn VerifierSuite,
+    ledger: &EpkResidualLedger,
+) -> Result<Option<ResidualPreservationWitness>, TypedRefusal> {
+    match packet.transport.as_ref() {
+        Some(claim) => {
+            let measured = suite.transport().measure_target(claim, ledger.ngd)?;
+            Ok(Some(ResidualPreservationWitness::from_measurement(
+                claim, ledger.ngd, measured,
+            )))
+        }
+        None => Ok(None),
+    }
+}
+
+pub fn verify(
+    packet: &RawEvidencePacket,
+    suite: &dyn VerifierSuite,
+) -> Result<VerifiedContinuationContextV2, TypedRefusal> {
+    let intake = verify_intake(packet, suite)?;
+
+    if packet.records.is_empty() {
+        return Err(TypedRefusal::EmptyCorpus);
+    }
+    let row = packet.selected_row;
+    let record = packet.records.get(row).ok_or(TypedRefusal::RowOutOfRange {
+        index: row,
+        len: packet.records.len(),
+    })?;
+
+    verify_trace_ledger(packet)?;
+    let replayed_global = replay_global_traces(packet, suite)?;
     let provenance = EvaluatorProvenance::Exhibited;
 
     let declaration = packet
@@ -498,83 +619,20 @@ pub fn verify(
     let verdict = classify(&defect, Some(&adequacy), provenance)
         .expect("defects from evaluator_gluing_defect are well-formed");
 
-    let preservation = match packet.transport.as_ref() {
-        Some(claim) => {
-            let measured = suite.transport().measure_target(claim, ledger.ngd)?;
-            Some(ResidualPreservationWitness::from_measurement(
-                claim, ledger.ngd, measured,
-            ))
-        }
-        None => None,
-    };
+    let preservation = resolve_preservation(packet, suite, &ledger)?;
 
     let standing = suite.refusals().standing_refusals(&packet.run_id);
-
-    let mut h = CanonicalHasher::new(V2_CONTEXT_SCHEMA);
-    h.str_field("run_id", &packet.run_id);
-    h.str_field("intake_run", intake.run_id());
-    h.str_field("intake_candidate", intake.candidate_digest());
-    h.str_field("intake_witness", intake.witness_certificate());
-    h.str_field("intake_next_carrier", intake.next_carrier());
-    for r in &packet.records {
-        h.str_field("row_id", &r.composed_trace_id);
-        h.u8_field("row_l", r.local_left_pass as u8);
-        h.u8_field("row_r", r.local_right_pass as u8);
-        h.u8_field("row_g", r.global_pass as u8);
-    }
-    for (id, g) in &replayed_global {
-        h.str_field("replayed_id", id);
-        h.u8_field("replayed_val", *g as u8);
-    }
-    h.str_field("boundary", &packet.boundary.name);
-    h.str_field("adequacy_kind", adequacy_kind_tag(adequacy.kind()));
-    h.str_field("adequacy_corpus", adequacy.observed_corpus_digest());
-    h.opt_str("adequacy_declaration", adequacy.declaration_digest());
-    h.opt_f64("adequacy_capacity", adequacy.capacity_value());
-    h.opt_f64("adequacy_epsilon", adequacy.epsilon());
-    h.bytes(
-        "adequacy_failure_count",
-        &(adequacy.structural_failures().len() as u64).to_be_bytes(),
+    let root_digest = compute_context_digest(
+        packet,
+        intake,
+        &replayed_global,
+        &adequacy,
+        row,
+        &defect,
+        &ledger,
+        preservation.as_ref(),
+        &standing,
     );
-    for f in adequacy.structural_failures() {
-        h.str_field("adequacy_failure", structural_failure_tag(f));
-    }
-    h.bytes("selected_row", &(row as u64).to_be_bytes());
-    h.i8_field("delta_eval", defect.delta_eval);
-    h.f64_field("ngd", ledger.ngd);
-    h.opt_f64("nrke", ledger.nrke);
-    match &preservation {
-        Some(w) => {
-            h.u8_field("preservation", 1);
-            h.str_field("preservation_source", w.source_carrier());
-            h.str_field("preservation_target", w.target_carrier());
-            h.f64_field("preservation_source_ngd", w.source_ngd());
-            h.f64_field("preservation_target_ngd", w.target_ngd());
-            h.u8_field("preservation_preserved", w.preserved() as u8);
-            h.bytes(
-                "preservation_loss_count",
-                &(w.loss_ledger().len() as u64).to_be_bytes(),
-            );
-            for l in w.loss_ledger() {
-                h.str_field("preservation_loss", l);
-            }
-        }
-        None => {
-            h.u8_field("preservation", 0);
-        }
-    }
-    h.f64_field("budget_remaining", packet.budget_remaining);
-    h.f64_field("delta_control", packet.delta_control);
-    h.bytes(
-        "standing_refusal_count",
-        &(standing.len() as u64).to_be_bytes(),
-    );
-    for r in &standing {
-        h.str_field("standing_refusal", blocker_tag(*r));
-    }
-    h.u8_field("gtla_refusal", packet.coda_gtla_refusal as u8);
-    h.opt_str("parent_receipt", packet.parent_receipt_hash.as_deref());
-    let root_digest = h.finish();
 
     Ok(VerifiedContinuationContextV2 {
         schema: V2_CONTEXT_SCHEMA,
@@ -599,21 +657,32 @@ pub fn verify(
     })
 }
 
-fn structural_failure_tag(f: &crate::adequacy::DetectorStructuralFailure) -> &'static str {
+fn structural_failure_core_tag(f: &crate::adequacy::DetectorStructuralFailure) -> Option<&'static str> {
     use crate::adequacy::DetectorStructuralFailure as F;
     match f {
-        F::EmptyCorpus => "EmptyCorpus",
-        F::GlobalEqualsLocalProduct => "GlobalEqualsLocalProduct",
-        F::LocalProductConstant => "LocalProductConstant",
-        F::MissingNgdWitness => "MissingNgdWitness",
-        F::MissingLrgrWitness => "MissingLrgrWitness",
-        F::CarrierClosureVacuous => "CarrierClosureVacuous",
+        F::EmptyCorpus => Some("EmptyCorpus"),
+        F::GlobalEqualsLocalProduct => Some("GlobalEqualsLocalProduct"),
+        F::LocalProductConstant => Some("LocalProductConstant"),
+        F::MissingNgdWitness => Some("MissingNgdWitness"),
+        F::MissingLrgrWitness => Some("MissingLrgrWitness"),
+        F::CarrierClosureVacuous => Some("CarrierClosureVacuous"),
+        _ => None,
+    }
+}
+
+fn structural_failure_extended_tag(f: &crate::adequacy::DetectorStructuralFailure) -> &'static str {
+    use crate::adequacy::DetectorStructuralFailure as F;
+    match f {
         F::EvaluatorConstant { .. } => "EvaluatorConstant",
         F::EvaluatorDoesNotSeparate { .. } => "EvaluatorDoesNotSeparate",
         F::ProjectionCollision { .. } => "ProjectionCollision",
         F::MissingBlindSpotDeclaration { .. } => "MissingBlindSpotDeclaration",
         _ => "OtherStructuralFailure",
     }
+}
+
+fn structural_failure_tag(f: &crate::adequacy::DetectorStructuralFailure) -> &'static str {
+    structural_failure_core_tag(f).unwrap_or_else(|| structural_failure_extended_tag(f))
 }
 
 fn blocker_tag(b: ContinuationBlockerV2) -> &'static str {
@@ -640,10 +709,10 @@ fn adequacy_kind_tag(k: DetectorAdequacyVerdictKind) -> &'static str {
     }
 }
 
-
-pub fn decide(context: &VerifiedContinuationContextV2) -> ContinuationDecision {
-    let mut blockers = Vec::new();
-
+fn collect_intake_and_adequacy_blockers(
+    context: &VerifiedContinuationContextV2,
+    blockers: &mut Vec<ContinuationBlockerV2>,
+) {
     if !context.has_witness {
         blockers.push(ContinuationBlockerV2::WitnessMissing);
     }
@@ -657,13 +726,19 @@ pub fn decide(context: &VerifiedContinuationContextV2) -> ContinuationDecision {
         Some(w) if w.preserved() => {}
         _ => blockers.push(ContinuationBlockerV2::AdapterNotPreserving),
     }
+}
+
+fn collect_runtime_blockers(
+    context: &VerifiedContinuationContextV2,
+    blockers: &mut Vec<ContinuationBlockerV2>,
+) {
     if context.provenance != EvaluatorProvenance::Exhibited {
         blockers.push(ContinuationBlockerV2::ProvenanceNotExhibited);
     }
-    if !context.budget_remaining.is_finite()
+    let budget_exhausted = !context.budget_remaining.is_finite()
         || !context.delta_control.is_finite()
-        || context.budget_remaining - context.delta_control < 0.0
-    {
+        || context.budget_remaining - context.delta_control < 0.0;
+    if budget_exhausted {
         blockers.push(ContinuationBlockerV2::BudgetExhausted);
     }
     if context.coda_gtla_refusal {
@@ -672,7 +747,12 @@ pub fn decide(context: &VerifiedContinuationContextV2) -> ContinuationDecision {
     if !context.prior_refusals.is_empty() {
         blockers.push(ContinuationBlockerV2::PriorRefusalStanding);
     }
+}
 
+pub fn decide(context: &VerifiedContinuationContextV2) -> ContinuationDecision {
+    let mut blockers = Vec::new();
+    collect_intake_and_adequacy_blockers(context, &mut blockers);
+    collect_runtime_blockers(context, &mut blockers);
     blockers.sort_unstable();
     blockers.dedup();
     ContinuationDecision {

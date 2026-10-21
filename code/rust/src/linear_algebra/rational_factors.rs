@@ -60,6 +60,32 @@ fn power(mut a: BigInt, mut n: usize) -> BigInt {
     }
     out
 }
+fn newton_integer_root(value: &BigInt, degree: usize, bits: usize) -> BigInt {
+    let mut root = BigInt::one() << ((bits - 1) / degree + 1);
+    let degree_integer = BigInt::from(degree);
+    let deg_minus_one = BigInt::from(degree - 1);
+    loop {
+        let next = (&deg_minus_one * &root + value / power(root.clone(), degree - 1)) / &degree_integer;
+        if next >= root {
+            break;
+        }
+        root = next;
+    }
+    root
+}
+
+fn check_root_bracket(value: &BigInt, degree: usize, root: BigInt) -> Result<BigInt> {
+    let root_power = power(root.clone(), degree);
+    if root_power > *value || power(&root + 1, degree) <= *value {
+        return Err("INTEGER_ROOT_BRACKET_FAILED".into());
+    }
+    if root_power == *value {
+        Ok(root)
+    } else {
+        Ok(root + 1)
+    }
+}
+
 fn ceil_integer_root(value: &BigInt, degree: usize) -> Result<BigInt> {
     if value.is_negative() || degree == 0 {
         return Err("NONNEGATIVE_INTEGER_AND_POSITIVE_ROOT_DEGREE_REQUIRED".into());
@@ -72,21 +98,8 @@ fn ceil_integer_root(value: &BigInt, degree: usize) -> Result<BigInt> {
     if degree >= bits {
         return Ok(BigInt::from(2));
     }
-    let mut root = BigInt::one() << ((bits - 1) / degree + 1);
-    let degree_integer = BigInt::from(degree);
-    loop {
-        let next = (BigInt::from(degree - 1) * &root + value / power(root.clone(), degree - 1))
-            / &degree_integer;
-        if next >= root {
-            break;
-        }
-        root = next;
-    }
-    let root_power = power(root.clone(), degree);
-    if root_power > *value || power(&root + 1, degree) <= *value {
-        return Err("INTEGER_ROOT_BRACKET_FAILED".into());
-    }
-    Ok(if root_power == *value { root } else { root + 1 })
+    let root = newton_integer_root(value, degree, bits);
+    check_root_bracket(value, degree, root)
 }
 fn verify_root_radius(p: &[BigInt], radius: &BigInt) -> Result<()> {
     if p.len() < 2 || !p.last().unwrap().is_one() || radius.is_negative() {
@@ -389,13 +402,8 @@ fn nullspace(mut matrix: Vec<Z>, prime: &BigInt) -> Result<Vec<Z>> {
     }
     Ok(basis)
 }
-fn berlekamp(p: &[BigInt], prime: &BigInt) -> Result<Vec<Z>> {
-    if !good_prime(p, prime)? {
-        return Err("BAD_REDUCTION_PRIME".into());
-    }
-    let p = freduce(p, prime);
-    let n = p.len() - 1;
-    let xp = fpow(vec![BigInt::zero(), BigInt::one()], prime, &p, prime)?;
+fn berlekamp_matrix(p: &[BigInt], prime: &BigInt, n: usize) -> Result<Vec<Vec<BigInt>>> {
+    let xp = fpow(vec![BigInt::zero(), BigInt::one()], prime, p, prime)?;
     let mut matrix = vec![vec![BigInt::zero(); n]; n];
     let mut column = vec![BigInt::one()];
     for col in 0..n {
@@ -405,33 +413,70 @@ fn berlekamp(p: &[BigInt], prime: &BigInt) -> Result<Vec<Z>> {
                 entries[col] = modulo(&(&entries[col] - 1), prime);
             }
         }
-        column = fdiv(&fmul(&column, &xp, prime), &p, prime)?.1;
+        column = fdiv(&fmul(&column, &xp, prime), p, prime)?.1;
     }
+    Ok(matrix)
+}
+
+fn split_factor_with_vector(
+    factor: Z,
+    shifted: &[BigInt],
+    prime: &BigInt,
+) -> Result<Vec<Z>> {
+    let divisor = fgcd(factor.clone(), shifted.to_vec(), prime)?;
+    if divisor.len() > 1 && divisor.len() < factor.len() {
+        let (other, remainder) = fdiv(&factor, &divisor, prime)?;
+        if !zzero(&remainder) {
+            return Err("BERLEKAMP_DIVISION_FAILED".into());
+        }
+        Ok(vec![divisor, other])
+    } else {
+        Ok(vec![factor])
+    }
+}
+
+fn refine_factors_with_scalar(
+    factors: Vec<Z>,
+    vector: &[BigInt],
+    scalar: &BigInt,
+    prime: &BigInt,
+) -> Result<Vec<Z>> {
+    let mut shifted = vector.to_vec();
+    shifted[0] = modulo(&(&shifted[0] - scalar), prime);
+    let mut next = Vec::new();
+    for factor in factors {
+        let splits = split_factor_with_vector(factor, &shifted, prime)?;
+        next.extend(splits);
+    }
+    Ok(next)
+}
+
+fn refine_factors_with_basis_vector(
+    mut factors: Vec<Z>,
+    vector: &[BigInt],
+    expected: usize,
+    prime: &BigInt,
+) -> Result<Vec<Z>> {
+    let mut scalar = BigInt::zero();
+    while &scalar < prime && factors.len() < expected {
+        factors = refine_factors_with_scalar(factors, vector, &scalar, prime)?;
+        scalar += 1;
+    }
+    Ok(factors)
+}
+
+fn berlekamp(p: &[BigInt], prime: &BigInt) -> Result<Vec<Z>> {
+    if !good_prime(p, prime)? {
+        return Err("BAD_REDUCTION_PRIME".into());
+    }
+    let p = freduce(p, prime);
+    let n = p.len() - 1;
+    let matrix = berlekamp_matrix(&p, prime, n)?;
     let basis = nullspace(matrix, prime)?;
     let expected = basis.len();
     let mut factors = vec![p.clone()];
     for vector in basis {
-        let mut scalar = BigInt::zero();
-        while &scalar < prime && factors.len() < expected {
-            let mut shifted = vector.clone();
-            shifted[0] = modulo(&(&shifted[0] - &scalar), prime);
-            let mut next = Vec::new();
-            for factor in factors {
-                let divisor = fgcd(factor.clone(), shifted.clone(), prime)?;
-                if divisor.len() > 1 && divisor.len() < factor.len() {
-                    let (other, remainder) = fdiv(&factor, &divisor, prime)?;
-                    if !zzero(&remainder) {
-                        return Err("BERLEKAMP_DIVISION_FAILED".into());
-                    }
-                    next.push(divisor);
-                    next.push(other);
-                } else {
-                    next.push(factor);
-                }
-            }
-            factors = next;
-            scalar += 1;
-        }
+        factors = refine_factors_with_basis_vector(factors, &vector, expected, prime)?;
         if factors.len() == expected {
             break;
         }
@@ -463,10 +508,7 @@ fn verify_lift(p: &[BigInt], factors: &[Z], modulus: &BigInt) -> Result<()> {
     }
     Ok(())
 }
-fn lift(p: &[BigInt], initial: &[Z], prime: &BigInt, bound: &BigInt) -> Result<(Vec<Z>, BigInt)> {
-    let mut factors = initial.to_vec();
-    let mut modulus = prime.clone();
-    verify_lift(p, &factors, &modulus)?;
+fn compute_inverses(initial: &[Z], prime: &BigInt) -> Result<Vec<Z>> {
     let mut inverses = Vec::new();
     for (i, factor) in initial.iter().enumerate() {
         let complement = initial
@@ -476,31 +518,61 @@ fn lift(p: &[BigInt], initial: &[Z], prime: &BigInt, bound: &BigInt) -> Result<(
             .fold(vec![BigInt::one()], |a, (_, b)| fmul(&a, b, prime));
         inverses.push(fpoly_inverse(&complement, factor, prime)?);
     }
+    Ok(inverses)
+}
+
+fn hensel_error(
+    p: &[BigInt],
+    factors: &[Z],
+    modulus: &BigInt,
+    next_modulus: &BigInt,
+    prime: &BigInt,
+) -> Result<Z> {
+    let product = factors
+        .iter()
+        .fold(vec![BigInt::one()], |a, b| fmul(&a, b, next_modulus));
+    let mut error = vec![BigInt::zero(); p.len().max(product.len())];
+    for (i, c) in p.iter().enumerate() {
+        error[i] += c;
+    }
+    for (i, c) in product.iter().enumerate() {
+        error[i] -= c;
+    }
+    for c in &mut error {
+        if !(&*c % modulus).is_zero() {
+            return Err("HENSEL_NONEXACT_CORRECTION".into());
+        }
+        *c = modulo(&(&*c / modulus), prime);
+    }
+    Ok(ztrim(error))
+}
+
+fn apply_hensel_corrections(
+    factors: &mut [Z],
+    initial: &[Z],
+    inverses: &[Z],
+    error: &Z,
+    modulus: &BigInt,
+    prime: &BigInt,
+) -> Result<()> {
+    for i in 0..factors.len() {
+        let correction = fdiv(&fmul(error, &inverses[i], prime), &initial[i], prime)?.1;
+        for (j, c) in correction.iter().enumerate() {
+            factors[i][j] += modulus * c;
+        }
+    }
+    Ok(())
+}
+
+fn lift(p: &[BigInt], initial: &[Z], prime: &BigInt, bound: &BigInt) -> Result<(Vec<Z>, BigInt)> {
+    let mut factors = initial.to_vec();
+    let mut modulus = prime.clone();
+    verify_lift(p, &factors, &modulus)?;
+    let inverses = compute_inverses(initial, prime)?;
     while modulus <= 2 * bound {
         let next_modulus = &modulus * prime;
-        let product = factors
-            .iter()
-            .fold(vec![BigInt::one()], |a, b| fmul(&a, b, &next_modulus));
-        let mut error = vec![BigInt::zero(); p.len().max(product.len())];
-        for (i, c) in p.iter().enumerate() {
-            error[i] += c;
-        }
-        for (i, c) in product.iter().enumerate() {
-            error[i] -= c;
-        }
-        for c in &mut error {
-            if !(&*c % &modulus).is_zero() {
-                return Err("HENSEL_NONEXACT_CORRECTION".into());
-            }
-            *c = modulo(&(&*c / &modulus), prime);
-        }
-        let error = ztrim(error);
-        for i in 0..factors.len() {
-            let correction = fdiv(&fmul(&error, &inverses[i], prime), &initial[i], prime)?.1;
-            for (j, c) in correction.iter().enumerate() {
-                factors[i][j] += &modulus * c;
-            }
-        }
+        let error = hensel_error(p, &factors, &modulus, &next_modulus, prime)?;
+        apply_hensel_corrections(&mut factors, initial, &inverses, &error, &modulus, prime)?;
         modulus = next_modulus;
         verify_lift(p, &factors, &modulus)?;
     }
@@ -668,26 +740,30 @@ fn factor(p: &[Q]) -> Result<Vec<(P, usize)>> {
     out.sort_by(|a, b| a.0.iter().rev().cmp(b.0.iter().rev()));
     Ok(out)
 }
+fn parse_canonical_rational(entry: &Value) -> Result<Q> {
+    let text = entry.as_str().ok_or("CANONICAL_RATIONAL_STRING_REQUIRED")?;
+    let (a, b) = text.split_once('/').ok_or("RATIONAL_FORMAT")?;
+    let a: BigInt = a.parse().map_err(|_| "RATIONAL_FORMAT")?;
+    let b: BigInt = b.parse().map_err(|_| "RATIONAL_FORMAT")?;
+    if b <= BigInt::zero() {
+        return Err("POSITIVE_RATIONAL_DENOMINATOR_REQUIRED".into());
+    }
+    let q = Q::new(a, b);
+    if format!("{}/{}", q.numer(), q.denom()) != text {
+        return Err("REDUCED_RATIONAL_REQUIRED".into());
+    }
+    Ok(q)
+}
+
 fn parse_coefficients(value: &Value) -> Result<P> {
     let entries = value.as_array().ok_or("COEFFICIENT_ARRAY_REQUIRED")?;
     if entries.is_empty() {
         return Err("NONEMPTY_POLYNOMIAL_REQUIRED".into());
     }
-    let mut p = Vec::new();
-    for entry in entries {
-        let text = entry.as_str().ok_or("CANONICAL_RATIONAL_STRING_REQUIRED")?;
-        let (a, b) = text.split_once('/').ok_or("RATIONAL_FORMAT")?;
-        let a: BigInt = a.parse().map_err(|_| "RATIONAL_FORMAT")?;
-        let b: BigInt = b.parse().map_err(|_| "RATIONAL_FORMAT")?;
-        if b <= BigInt::zero() {
-            return Err("POSITIVE_RATIONAL_DENOMINATOR_REQUIRED".into());
-        }
-        let q = Q::new(a, b);
-        if format!("{}/{}", q.numer(), q.denom()) != text {
-            return Err("REDUCED_RATIONAL_REQUIRED".into());
-        }
-        p.push(q);
-    }
+    let mut p = entries
+        .iter()
+        .map(parse_canonical_rational)
+        .collect::<Result<Vec<_>>>()?;
     if p[0].is_zero() {
         return Err("NONZERO_LEADING_COEFFICIENT_REQUIRED".into());
     }
@@ -723,8 +799,8 @@ pub fn evaluate_request(request: &Value) -> Result<Value> {
         "algorithm":"EXACT_BERLEKAMP_HENSEL_RECOMBINATION"}),
     )
 }
-pub fn validate_factorization(coefficients: &Value, output: &Value) -> Result<()> {
-    let input = parse_coefficients(coefficients)?;
+
+fn validate_factorization_metadata(input: &[Q], output: &Value) -> Result<P> {
     exact_fields(
         output,
         &[
@@ -751,6 +827,64 @@ pub fn validate_factorization(coefficients: &Value, output: &Value) -> Result<()
     if content[0] != *input.last().unwrap() {
         return Err("FACTORIZATION_CONTENT_MISMATCH".into());
     }
+    Ok(content)
+}
+
+fn check_factor_irreducible(polynomial: &P) -> Result<()> {
+    if qgcd(polynomial.clone(), derivative(polynomial))?.len() != 1
+        || factor_squarefree_rational(polynomial)?.len() != 1
+    {
+        return Err("REDUCIBLE_CLAIMED_FACTOR".into());
+    }
+    Ok(())
+}
+
+fn validate_factor_row(
+    row: &Value,
+    previous: &mut Option<P>,
+) -> Result<(P, usize)> {
+    exact_fields(row, &["polynomial", "multiplicity"])?;
+    let polynomial = parse_coefficients(&row["polynomial"])?;
+    if polynomial.len() < 2 || !polynomial.last().unwrap().is_one() {
+        return Err("MONIC_NONCONSTANT_FACTOR_REQUIRED".into());
+    }
+    if previous
+        .as_ref()
+        .is_some_and(|old| old.iter().rev().cmp(polynomial.iter().rev()).is_ge())
+    {
+        return Err("DISTINCT_NUMERIC_SORTED_FACTORS_REQUIRED".into());
+    }
+    *previous = Some(polynomial.clone());
+    let multiplicity = row["multiplicity"]
+        .as_u64()
+        .and_then(|x| usize::try_from(x).ok())
+        .filter(|x| *x > 0)
+        .ok_or("POSITIVE_INTEGER_MULTIPLICITY_REQUIRED")?;
+    check_factor_irreducible(&polynomial)?;
+    Ok((polynomial, multiplicity))
+}
+
+fn update_total_degree(
+    total_degree: usize,
+    poly_len: usize,
+    multiplicity: usize,
+    input_len: usize,
+) -> Result<usize> {
+    let add_deg = (poly_len - 1)
+        .checked_mul(multiplicity)
+        .ok_or("FACTORIZATION_DEGREE_MISMATCH")?;
+    let new_deg = total_degree
+        .checked_add(add_deg)
+        .ok_or("FACTORIZATION_DEGREE_MISMATCH")?;
+    if new_deg >= input_len {
+        return Err("FACTORIZATION_DEGREE_MISMATCH".into());
+    }
+    Ok(new_deg)
+}
+
+pub fn validate_factorization(coefficients: &Value, output: &Value) -> Result<()> {
+    let input = parse_coefficients(coefficients)?;
+    let content = validate_factorization_metadata(&input, output)?;
     let rows = output["factors"]
         .as_array()
         .ok_or("FACTOR_ARRAY_REQUIRED")?;
@@ -758,38 +892,8 @@ pub fn validate_factorization(coefficients: &Value, output: &Value) -> Result<()
     let mut previous: Option<P> = None;
     let mut total_degree = 0usize;
     for row in rows {
-        exact_fields(row, &["polynomial", "multiplicity"])?;
-        let polynomial = parse_coefficients(&row["polynomial"])?;
-        if polynomial.len() < 2 || !polynomial.last().unwrap().is_one() {
-            return Err("MONIC_NONCONSTANT_FACTOR_REQUIRED".into());
-        }
-        if previous
-            .as_ref()
-            .is_some_and(|old| old.iter().rev().cmp(polynomial.iter().rev()).is_ge())
-        {
-            return Err("DISTINCT_NUMERIC_SORTED_FACTORS_REQUIRED".into());
-        }
-        previous = Some(polynomial.clone());
-        let multiplicity = row["multiplicity"]
-            .as_u64()
-            .and_then(|x| usize::try_from(x).ok())
-            .filter(|x| *x > 0)
-            .ok_or("POSITIVE_INTEGER_MULTIPLICITY_REQUIRED")?;
-        total_degree = total_degree
-            .checked_add(
-                (polynomial.len() - 1)
-                    .checked_mul(multiplicity)
-                    .ok_or("FACTORIZATION_DEGREE_MISMATCH")?,
-            )
-            .ok_or("FACTORIZATION_DEGREE_MISMATCH")?;
-        if total_degree >= input.len() {
-            return Err("FACTORIZATION_DEGREE_MISMATCH".into());
-        }
-        if qgcd(polynomial.clone(), derivative(&polynomial))?.len() != 1
-            || factor_squarefree_rational(&polynomial)?.len() != 1
-        {
-            return Err("REDUCIBLE_CLAIMED_FACTOR".into());
-        }
+        let (polynomial, multiplicity) = validate_factor_row(row, &mut previous)?;
+        total_degree = update_total_degree(total_degree, polynomial.len(), multiplicity, input.len())?;
         for _ in 0..multiplicity {
             product = qmul(&product, &polynomial);
         }

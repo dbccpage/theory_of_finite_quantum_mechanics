@@ -19,7 +19,10 @@ from dataclasses import dataclass
 from typing import Dict, List, Tuple
 import numpy as np
 
-from .majorana_f2_trichotomy import build_tetron_carrier
+try:
+    from .majorana_f2_trichotomy import build_tetron_carrier
+except (ImportError, ValueError):
+    from majorana_f2_trichotomy import build_tetron_carrier
 
 
 @dataclass

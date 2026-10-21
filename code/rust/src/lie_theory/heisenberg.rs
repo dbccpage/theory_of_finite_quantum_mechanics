@@ -234,14 +234,29 @@ impl<F: ComplexField> WeylHeisenberg<F> {
         Ok(trace)
     }
 
+    fn check_commutation(&self, x: &BasicMatrix<F>, z: &BasicMatrix<F>) -> Result<bool, HeisenbergError> {
+        let zx = mx::multiply(z, x)?;
+        let xz = mx::multiply(x, z)?;
+        let wxz = mx::scale(&xz, &self.omega)?;
+        Ok(zx == wxz)
+    }
+
+    fn check_powers(&self, x: &BasicMatrix<F>, z: &BasicMatrix<F>) -> Result<bool, HeisenbergError> {
+        let d = self.dimension as u64;
+        let x_pow = mx::power(x, d)?;
+        let z_pow = mx::power(z, d)?;
+        let x_ok = mx::is_identity_matrix(&x_pow)?;
+        let z_ok = mx::is_identity_matrix(&z_pow)?;
+        Ok(x_ok && z_ok)
+    }
+
     pub fn verify_relations(&self) -> Result<bool, HeisenbergError> {
         let x = self.shift()?;
         let z = self.clock()?;
-        let zx = mx::multiply(&z, &x)?;
-        let wxz = mx::scale(&mx::multiply(&x, &z)?, &self.omega)?;
-        Ok(zx == wxz
-            && mx::is_identity_matrix(&mx::power(&x, self.dimension as u64)?)?
-            && mx::is_identity_matrix(&mx::power(&z, self.dimension as u64)?)?)
+        if !self.check_commutation(&x, &z)? {
+            return Ok(false);
+        }
+        self.check_powers(&x, &z)
     }
 
     pub fn intertwiner_from_clock_seed(
@@ -251,55 +266,129 @@ impl<F: ComplexField> WeylHeisenberg<F> {
         seed: &BasicMatrix<F>,
     ) -> Result<BasicMatrix<F>, HeisenbergError> {
         let d = self.dimension;
-        if shift.shape() != (d, d) || clock.shape() != (d, d) || seed.shape() != (d, 1) {
-            return Err(HeisenbergError::IntertwinerPremise(
-                "expected dxd operators and dx1 seed",
-            ));
-        }
         let identity = mx::identity::<F>(d)?;
-        for operator in [shift, clock] {
-            let star = dagger(operator)?;
-            if mx::multiply(&star, operator)? != identity
-                || mx::multiply(operator, &star)? != identity
-            {
-                return Err(HeisenbergError::IntertwinerPremise(
-                    "operators must be unitary",
-                ));
-            }
-        }
-        if mx::multiply(clock, shift)? != mx::scale(&mx::multiply(shift, clock)?, &self.omega)? {
-            return Err(HeisenbergError::IntertwinerPremise("ZX = omega XZ"));
-        }
-        if mx::power(shift, d as u64)? != identity {
-            return Err(HeisenbergError::IntertwinerPremise("X^d = I"));
-        }
-        if mx::multiply(clock, seed)? != *seed
-            || mx::multiply(&dagger(seed)?, seed)? != mx::identity::<F>(1)?
-        {
-            return Err(HeisenbergError::IntertwinerPremise(
-                "normalized clock eigenvector at eigenvalue one",
-            ));
-        }
-        let mut columns = Vec::with_capacity(d);
-        let mut column = seed.clone();
-        for _ in 0..d {
-            columns.push(column.clone());
-            column = mx::multiply(shift, &column)?;
-        }
-        let u = BasicMatrix::try_from_fn(d, d, |r, c| columns[c].as_slice()[r].clone())
-            .map_err(ExactFieldError::from)?;
-        let star = dagger(&u)?;
-        if mx::multiply(&star, &u)? != identity
-            || mx::multiply(&u, &star)? != identity
-            || mx::multiply(shift, &u)? != mx::multiply(&u, &self.shift()?)?
-            || mx::multiply(clock, &u)? != mx::multiply(&u, &self.clock()?)?
-        {
-            return Err(HeisenbergError::IntertwinerPremise(
-                "constructed intertwiner failed exact verification",
-            ));
-        }
+        validate_intertwiner_premises(d, &self.omega, shift, clock, seed, &identity)?;
+        let u = build_intertwiner_candidate(shift, seed, d)?;
+        let target_shift = self.shift()?;
+        let target_clock = self.clock()?;
+        verify_intertwiner_candidate(&u, shift, clock, &target_shift, &target_clock, &identity)?;
         Ok(u)
     }
+}
+
+fn validate_operator_unitary<F: ComplexField>(
+    op: &BasicMatrix<F>,
+    identity: &BasicMatrix<F>,
+) -> Result<(), HeisenbergError> {
+    let star = dagger(op)?;
+    let left = mx::multiply(&star, op)?;
+    let right = mx::multiply(op, &star)?;
+    if left != *identity || right != *identity {
+        return Err(HeisenbergError::IntertwinerPremise(
+            "operators must be unitary",
+        ));
+    }
+    Ok(())
+}
+
+fn validate_intertwiner_shapes<F: ComplexField>(
+    dim: usize,
+    shift: &BasicMatrix<F>,
+    clock: &BasicMatrix<F>,
+    seed: &BasicMatrix<F>,
+) -> Result<(), HeisenbergError> {
+    if shift.shape() != (dim, dim) || clock.shape() != (dim, dim) || seed.shape() != (dim, 1) {
+        return Err(HeisenbergError::IntertwinerPremise(
+            "expected dxd operators and dx1 seed",
+        ));
+    }
+    Ok(())
+}
+
+fn validate_weyl_relations<F: ComplexField>(
+    dim: usize,
+    omega: &F,
+    shift: &BasicMatrix<F>,
+    clock: &BasicMatrix<F>,
+    identity: &BasicMatrix<F>,
+) -> Result<(), HeisenbergError> {
+    let zx = mx::multiply(clock, shift)?;
+    let xz = mx::multiply(shift, clock)?;
+    let wxz = mx::scale(&xz, omega)?;
+    if zx != wxz {
+        return Err(HeisenbergError::IntertwinerPremise("ZX = omega XZ"));
+    }
+    if mx::power(shift, dim as u64)? != *identity {
+        return Err(HeisenbergError::IntertwinerPremise("X^d = I"));
+    }
+    Ok(())
+}
+
+fn validate_clock_eigenvector<F: ComplexField>(
+    clock: &BasicMatrix<F>,
+    seed: &BasicMatrix<F>,
+) -> Result<(), HeisenbergError> {
+    let clock_seed = mx::multiply(clock, seed)?;
+    let star = dagger(seed)?;
+    let norm = mx::multiply(&star, seed)?;
+    if clock_seed != *seed || norm != mx::identity::<F>(1)? {
+        return Err(HeisenbergError::IntertwinerPremise(
+            "normalized clock eigenvector at eigenvalue one",
+        ));
+    }
+    Ok(())
+}
+
+fn validate_intertwiner_premises<F: ComplexField>(
+    dim: usize,
+    omega: &F,
+    shift: &BasicMatrix<F>,
+    clock: &BasicMatrix<F>,
+    seed: &BasicMatrix<F>,
+    identity: &BasicMatrix<F>,
+) -> Result<(), HeisenbergError> {
+    validate_intertwiner_shapes(dim, shift, clock, seed)?;
+    validate_operator_unitary(shift, identity)?;
+    validate_operator_unitary(clock, identity)?;
+    validate_weyl_relations(dim, omega, shift, clock, identity)?;
+    validate_clock_eigenvector(clock, seed)
+}
+
+fn build_intertwiner_candidate<F: ComplexField>(
+    shift: &BasicMatrix<F>,
+    seed: &BasicMatrix<F>,
+    d: usize,
+) -> Result<BasicMatrix<F>, HeisenbergError> {
+    let mut columns = Vec::with_capacity(d);
+    let mut column = seed.clone();
+    for _ in 0..d {
+        columns.push(column.clone());
+        column = mx::multiply(shift, &column)?;
+    }
+    BasicMatrix::try_from_fn(d, d, |r, c| columns[c].as_slice()[r].clone())
+        .map_err(|e| HeisenbergError::from(ExactFieldError::from(e)))
+}
+
+fn verify_intertwiner_candidate<F: ComplexField>(
+    u: &BasicMatrix<F>,
+    shift: &BasicMatrix<F>,
+    clock: &BasicMatrix<F>,
+    target_shift: &BasicMatrix<F>,
+    target_clock: &BasicMatrix<F>,
+    identity: &BasicMatrix<F>,
+) -> Result<(), HeisenbergError> {
+    validate_operator_unitary(u, identity)?;
+    let shift_u = mx::multiply(shift, u)?;
+    let u_target_shift = mx::multiply(u, target_shift)?;
+    let clock_u = mx::multiply(clock, u)?;
+    let u_target_clock = mx::multiply(u, target_clock)?;
+
+    if shift_u != u_target_shift || clock_u != u_target_clock {
+        return Err(HeisenbergError::IntertwinerPremise(
+            "constructed intertwiner failed exact verification",
+        ));
+    }
+    Ok(())
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -440,6 +529,24 @@ impl FiniteHeisenberg {
         ))
     }
 
+    fn check_pair_action(
+        &self,
+        g: HeisenbergElement,
+        h: HeisenbergElement,
+        c: u64,
+        p: u64,
+    ) -> Result<bool, FiniteHeisenbergError> {
+        let product = self.multiply(g, h)?;
+        for x in 0..p {
+            let (y, b) = self.basis_action(h, x, c)?;
+            let (z, a) = self.basis_action(g, y, c)?;
+            if self.basis_action(product, x, c)? != (z, (a + b) % p) {
+                return Ok(false);
+            }
+        }
+        Ok(true)
+    }
+
     pub fn check_representation_law(&self, c: u64) -> Result<bool, FiniteHeisenbergError> {
         let p = self.prime;
         if c >= p {
@@ -455,13 +562,8 @@ impl FiniteHeisenberg {
             .collect();
         for &g in &elements {
             for &h in &elements {
-                let product = self.multiply(g, h)?;
-                for x in 0..p {
-                    let (y, b) = self.basis_action(h, x, c)?;
-                    let (z, a) = self.basis_action(g, y, c)?;
-                    if self.basis_action(product, x, c)? != (z, (a + b) % p) {
-                        return Ok(false);
-                    }
+                if !self.check_pair_action(g, h, c, p)? {
+                    return Ok(false);
                 }
             }
         }
