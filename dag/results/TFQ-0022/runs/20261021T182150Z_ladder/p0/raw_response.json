@@ -1,0 +1,95 @@
+{
+  "task_id": "TFQ-0022",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a4-1",
+  "input_sha256": "b93f00ccc9baf5f45a2390a663b10c7632946af0e841e39f0d2dda88b9ed7c36",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R_scalar_contraction\",\"statement\":\"Contracting the Fierz right-hand side (1/2) delta_il delta_kj - (1/6) delta_ij delta_kl over j=k on V_3 gives (3*(1/2) - 1/6) delta_il = (4/3) delta_il. This scalar contraction is what the Lean slice reports. It is not the 81-quadruple replay.\",\"hypotheses\":\"dim V = 3; summation over the contracted index j=k\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"none\"}},{\"id\":\"R_replay_scope\",\"statement\":\"The exhaustive check over all 3^4 = 81 index quadruples (i,j,k,l) of V_3 tensor V_3 is carried only by the Rust and Python controls. The Lean slice checks the diagonal Cartan contribution, one off-diagonal pair of scalar products, and the contraction to 4/3.\",\"hypotheses\":\"Lean slice does not iterate over index quadruples; AuthorityEffect on the Rust module is None\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"none\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L_contraction_value\",\"statement\":\"3*(1/2) - 1/6 = 4/3 over the rationals\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R_scalar_contraction\"],\"lean_skeleton\":\"theorem tfq0022_contraction_value : (3:ℚ) * (1/2) - 1/6 = 4/3 := by norm_num\",\"claims_proved\":true,\"ref\":{\"path\":\"\",\"decl\":\"tfq0022_contraction_value\",\"status\":\"proposed_new\"}},{\"id\":\"L_quadruple_count\",\"statement\":\"The number of index quadruples on V_3 tensor V_3 is 3^4 = 81\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R_replay_scope\"],\"lean_skeleton\":\"theorem tfq0022_quadruple_count : Fintype.card (Fin 3 × Fin 3 × Fin 3 × Fin 3) = 81 := by simp [Fintype.card_prod, Fintype.card_fin]\",\"claims_proved\":true,\"ref\":{\"path\":\"\",\"decl\":\"tfq0022_quadruple_count\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM_lean_equals_replay\",\"claim\":\"The Lean theorem su3_fierz_diagonal_and_offdiagonal_identities verifies the Fierz identity on all 81 quadruples.\",\"rejecting_invariant\":\"The Lean slice checks only the diagonal Cartan term, one off-diagonal pair of scalar products and the scalar contraction 3*(1/2)-1/6=4/3. It does not enumerate the 81 (i,j,k,l) entries, so it is not the Rust/Python exhaustive loop.\"},{\"id\":\"NM_contraction_implies_identity\",\"claim\":\"The contracted value 4/3 implies the full tensor identity entrywise.\",\"rejecting_invariant\":\"A trace or contraction loses information. Many tensors share the contraction (4/3) delta_il, so entrywise agreement needs the exhaustive replay.\"}],\"numeric_claims\":[{\"id\":\"N_contraction\",\"expr\":\"3*(1/2) - 1/6\",\"value\":\"4/3\"},{\"id\":\"N_quadruples\",\"expr\":\"3*3*3*3\",\"value\":\"81\"}],\"open_obligations\":[\"Rust and Python control modules that perform the 81-quadruple replay are not listed under @SRC/@KNOWN+, so they cannot be cited as existing declarations.\",\"The Lean slice su3_fierz_diagonal_and_offdiagonal_identities was host-refused as nonexistent, so it is not cited as existing here. Its exact location still needs to be confirmed by the host.\",\"An optional Lean decide/fin_cases proof over all 81 quadruples would be a separate, new artifact. It must not be conflated with the existing scalar slice.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R_scalar_contraction",
+        "statement": "Contracting the Fierz right-hand side (1/2) delta_il delta_kj - (1/6) delta_ij delta_kl over j=k on V_3 gives (3*(1/2) - 1/6) delta_il = (4/3) delta_il. This scalar contraction is what the Lean slice reports. It is not the 81-quadruple replay.",
+        "hypotheses": "dim V = 3; summation over the contracted index j=k",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      },
+      {
+        "id": "R_replay_scope",
+        "statement": "The exhaustive check over all 3^4 = 81 index quadruples (i,j,k,l) of V_3 tensor V_3 is carried only by the Rust and Python controls. The Lean slice checks the diagonal Cartan contribution, one off-diagonal pair of scalar products, and the contraction to 4/3.",
+        "hypotheses": "Lean slice does not iterate over index quadruples; AuthorityEffect on the Rust module is None",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L_contraction_value",
+        "statement": "3*(1/2) - 1/6 = 4/3 over the rationals",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R_scalar_contraction"
+        ],
+        "lean_skeleton": "theorem tfq0022_contraction_value : (3:ℚ) * (1/2) - 1/6 = 4/3 := by norm_num",
+        "claims_proved": true,
+        "ref": {
+          "path": "",
+          "decl": "tfq0022_contraction_value",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "L_quadruple_count",
+        "statement": "The number of index quadruples on V_3 tensor V_3 is 3^4 = 81",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R_replay_scope"
+        ],
+        "lean_skeleton": "theorem tfq0022_quadruple_count : Fintype.card (Fin 3 × Fin 3 × Fin 3 × Fin 3) = 81 := by simp [Fintype.card_prod, Fintype.card_fin]",
+        "claims_proved": true,
+        "ref": {
+          "path": "",
+          "decl": "tfq0022_quadruple_count",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_lean_equals_replay",
+        "claim": "The Lean theorem su3_fierz_diagonal_and_offdiagonal_identities verifies the Fierz identity on all 81 quadruples.",
+        "rejecting_invariant": "The Lean slice checks only the diagonal Cartan term, one off-diagonal pair of scalar products and the scalar contraction 3*(1/2)-1/6=4/3. It does not enumerate the 81 (i,j,k,l) entries, so it is not the Rust/Python exhaustive loop."
+      },
+      {
+        "id": "NM_contraction_implies_identity",
+        "claim": "The contracted value 4/3 implies the full tensor identity entrywise.",
+        "rejecting_invariant": "A trace or contraction loses information. Many tensors share the contraction (4/3) delta_il, so entrywise agreement needs the exhaustive replay."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "N_contraction",
+        "expr": "3*(1/2) - 1/6",
+        "value": "4/3"
+      },
+      {
+        "id": "N_quadruples",
+        "expr": "3*3*3*3",
+        "value": "81"
+      }
+    ],
+    "open_obligations": [
+      "Rust and Python control modules that perform the 81-quadruple replay are not listed under @SRC/@KNOWN+, so they cannot be cited as existing declarations.",
+      "The Lean slice su3_fierz_diagonal_and_offdiagonal_identities was host-refused as nonexistent, so it is not cited as existing here. Its exact location still needs to be confirmed by the host.",
+      "An optional Lean decide/fin_cases proof over all 81 quadruples would be a separate, new artifact. It must not be conflated with the existing scalar slice."
+    ]
+  }
+}

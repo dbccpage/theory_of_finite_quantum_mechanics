@@ -1,0 +1,88 @@
+{
+  "task_id": "TFQ-0022",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "050d50b21761e6549e1eaac3da189775fee7ae8fbaec39737ab7bb831dc17a5d",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "The su3_fierz_diagonal_and_offdiagonal_identities declaration is listed under @SRC but was host-refused earlier, so it is not cited",
+        "No grounded generators: the SRC declarations are checkers or unrelated effect-cone lemmas",
+        "The exhaustive 81-quadruple replay stays in the Rust and Python controls with no Lean counterpart",
+        "A Lean statement for the full Fierz identity over Fin 3 is still needed",
+        "relation r_fierz_weighted unverified: no existing declaration cited",
+        "lemma l_scalar_slice_contraction unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+        "near_miss nm_lean_equals_replay unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "The su3_fierz_diagonal_and_offdiagonal_identities declaration is listed under @SRC but was host-refused earlier, so it is not cited",
+      "No grounded generators: the SRC declarations are checkers or unrelated effect-cone lemmas",
+      "The exhaustive 81-quadruple replay stays in the Rust and Python controls with no Lean counterpart",
+      "A Lean statement for the full Fierz identity over Fin 3 is still needed",
+      "relation r_fierz_weighted unverified: no existing declaration cited",
+      "lemma l_scalar_slice_contraction unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+      "near_miss nm_lean_equals_replay unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_quadruples",
+        "expr": "3*3*3*3",
+        "value": "81",
+        "host_evidence": {
+          "recomputed": "81"
+        }
+      },
+      {
+        "id": "n_contraction",
+        "expr": "3*(1/2) - 1/6",
+        "value": "4/3",
+        "host_evidence": {
+          "recomputed": "4/3"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

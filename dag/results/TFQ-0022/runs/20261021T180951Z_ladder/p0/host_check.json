@@ -1,0 +1,66 @@
+{
+  "task_id": "TFQ-0022",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-3",
+  "input_sha256": "e057acd583ccd70c80b7eb7ebfee16524aa0241daf0c5e9a89f95c9982eeada5",
+  "candidate_sha256": "6ef616bafaca13c704e6b61c9c6f1f7de832da43ffb47e8460bceafcabcd55a4",
+  "status": "incomplete",
+  "model": "qwen/qwen3.8-27b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 1,
+    "lean": {
+      "status": "skipped",
+      "reason": "installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T18:11:16Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-0C43DA16A442",
+        "class": "unparseable_reply",
+        "claim_kind": "reply",
+        "claim": "",
+        "evidence": "empty_reply (truncated at max_tokens)",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "minimax/minimax-m3.1-flash:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0022"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Maintain the exhaustive 81-index quadruple replay of the weighted Fierz identity in the Rust and Python controls and explicitly distinct from the Lean scalar slice.",
+      "lemma lea01 unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "expr": "3*(1/2)-(1/6)",
+        "id": "num01",
+        "value": "4/3",
+        "host_evidence": {
+          "recomputed": "4/3"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

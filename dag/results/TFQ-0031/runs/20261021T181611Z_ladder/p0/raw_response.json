@@ -1,0 +1,152 @@
+{
+  "task_id": "TFQ-0031",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a4-1",
+  "input_sha256": "c9f7d435dc4401967bf163d8d55bc584a80818691ca83f7be90501e3709957e8",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"G_wilson_loop\",\"inputs\":[\"LatticeCoupling\",\"RectLoop\"],\"output\":\"WilsonLoopValue\",\"arity\":2,\"carrier\":\"finite lattice gauge configuration expectation, SU(N) Wilson action\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"G_creutz\",\"inputs\":[\"WilsonLoopValue\",\"WilsonLoopValue\",\"WilsonLoopValue\",\"WilsonLoopValue\"],\"output\":\"CreutzRatio\",\"arity\":4,\"carrier\":\"chi(R,T) = -ln[W(R,T)W(R-1,T-1)/(W(R,T-1)W(R-1,T))]\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"G_beta0\",\"inputs\":[\"NumColours\",\"NumFlavours\"],\"output\":\"Beta0Coefficient\",\"arity\":2,\"carrier\":\"rational: 11/3*N - 2/3*nf\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"R_creutz_def\",\"statement\":\"The Creutz ratio is formed from four Wilson-loop values of adjacent rectangular loops; each slot takes a WilsonLoopValue.\",\"hypotheses\":\"all four loop expectation values positive\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R_beta0_formula\",\"statement\":\"One-loop coefficient b0 = 11/3*N - 2/3*nf; asymptotic freedom iff b0 > 0.\",\"hypotheses\":\"perturbative one-loop, massless fundamental quarks\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R_part_c_check\",\"statement\":\"The finite control test for part C checks the plaquette reduction and Wilson/Creutz confinement rows of the finite evaluator only; it supplies no continuum statement.\",\"hypotheses\":\"finite lattice, strong-coupling regime\",\"ref\":{\"path\":\"code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py\",\"decl\":\"test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement\",\"status\":\"existing\"}}],\"compositions\":[{\"outer\":\"G_creutz\",\"slot\":0,\"inner\":\"G_wilson_loop\",\"licensing_relation\":\"R_creutz_def\"}],\"lemmas\":[{\"id\":\"L_beta0_pos_su3\",\"statement\":\"For N=3 and nf <= 16, the one-loop coefficient 11 - 2/3*nf is positive (asymptotic freedom at one loop). Auxiliary only; says nothing about confinement.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R_beta0_formula\"],\"lean_skeleton\":\"theorem beta0_pos_su3 (nf : ℕ) (h : nf ≤ 16) : (0:ℚ) < 11 - 2/3 * (nf:ℚ) := by\\n  sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM_strong_to_continuum\",\"claim\":\"Strong-coupling area law on the finite lattice implies confinement / mass gap in the continuum limit.\",\"rejecting_invariant\":\"Strong-coupling expansion converges only for small beta; continuum limit requires beta -> infinity. No bridge theorem: F002.S001 is empty and GAP-F002-S001-001 is open.\"},{\"id\":\"NM_shelf_as_derivation\",\"claim\":\"The Pontryagin inventory in named_adjoining.yaml provides the bridge.\",\"rejecting_invariant\":\"named_adjoining.yaml states the inventory is not a bridge theorem.\"}],\"numeric_claims\":[{\"id\":\"N_b0_nf6\",\"expr\":\"11/3*3 - 2/3*6\",\"value\":\"7\"},{\"id\":\"N_b0_nf0\",\"expr\":\"11/3*3 - 2/3*0\",\"value\":\"11\"},{\"id\":\"N_af_bound\",\"expr\":\"11*3/2\",\"value\":\"33/2\"}],\"open_obligations\":[\"Continuum mass-gap claim withheld: no bridge from finite Creutz rows to a -> 0 limit.\",\"Non-perturbative behaviour at weak coupling as spacing goes to zero: unestablished.\",\"F002.S001 shelf empty; GAP-F002-S001-001 open; citing it is an open bridge, not a derivation.\",\"Confinement beyond strong-coupling formulae remains a gap.\",\"Exact signatures/numerals of the part B/part C test functions not restated to avoid drift.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "G_wilson_loop",
+        "inputs": [
+          "LatticeCoupling",
+          "RectLoop"
+        ],
+        "output": "WilsonLoopValue",
+        "arity": 2,
+        "carrier": "finite lattice gauge configuration expectation, SU(N) Wilson action",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "G_creutz",
+        "inputs": [
+          "WilsonLoopValue",
+          "WilsonLoopValue",
+          "WilsonLoopValue",
+          "WilsonLoopValue"
+        ],
+        "output": "CreutzRatio",
+        "arity": 4,
+        "carrier": "chi(R,T) = -ln[W(R,T)W(R-1,T-1)/(W(R,T-1)W(R-1,T))]",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "G_beta0",
+        "inputs": [
+          "NumColours",
+          "NumFlavours"
+        ],
+        "output": "Beta0Coefficient",
+        "arity": 2,
+        "carrier": "rational: 11/3*N - 2/3*nf",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R_creutz_def",
+        "statement": "The Creutz ratio is formed from four Wilson-loop values of adjacent rectangular loops; each slot takes a WilsonLoopValue.",
+        "hypotheses": "all four loop expectation values positive",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R_beta0_formula",
+        "statement": "One-loop coefficient b0 = 11/3*N - 2/3*nf; asymptotic freedom iff b0 > 0.",
+        "hypotheses": "perturbative one-loop, massless fundamental quarks",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R_part_c_check",
+        "statement": "The finite control test for part C checks the plaquette reduction and Wilson/Creutz confinement rows of the finite evaluator only; it supplies no continuum statement.",
+        "hypotheses": "finite lattice, strong-coupling regime",
+        "ref": {
+          "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+          "decl": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "G_creutz",
+        "slot": 0,
+        "inner": "G_wilson_loop",
+        "licensing_relation": "R_creutz_def"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "L_beta0_pos_su3",
+        "statement": "For N=3 and nf <= 16, the one-loop coefficient 11 - 2/3*nf is positive (asymptotic freedom at one loop). Auxiliary only; says nothing about confinement.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R_beta0_formula"
+        ],
+        "lean_skeleton": "theorem beta0_pos_su3 (nf : ℕ) (h : nf ≤ 16) : (0:ℚ) < 11 - 2/3 * (nf:ℚ) := by\n  sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_strong_to_continuum",
+        "claim": "Strong-coupling area law on the finite lattice implies confinement / mass gap in the continuum limit.",
+        "rejecting_invariant": "Strong-coupling expansion converges only for small beta; continuum limit requires beta -> infinity. No bridge theorem: F002.S001 is empty and GAP-F002-S001-001 is open."
+      },
+      {
+        "id": "NM_shelf_as_derivation",
+        "claim": "The Pontryagin inventory in named_adjoining.yaml provides the bridge.",
+        "rejecting_invariant": "named_adjoining.yaml states the inventory is not a bridge theorem."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "N_b0_nf6",
+        "expr": "11/3*3 - 2/3*6",
+        "value": "7"
+      },
+      {
+        "id": "N_b0_nf0",
+        "expr": "11/3*3 - 2/3*0",
+        "value": "11"
+      },
+      {
+        "id": "N_af_bound",
+        "expr": "11*3/2",
+        "value": "33/2"
+      }
+    ],
+    "open_obligations": [
+      "Continuum mass-gap claim withheld: no bridge from finite Creutz rows to a -> 0 limit.",
+      "Non-perturbative behaviour at weak coupling as spacing goes to zero: unestablished.",
+      "F002.S001 shelf empty; GAP-F002-S001-001 open; citing it is an open bridge, not a derivation.",
+      "Confinement beyond strong-coupling formulae remains a gap.",
+      "Exact signatures/numerals of the part B/part C test functions not restated to avoid drift."
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "task_id": "TFQ-0022",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "77ede8913f63a6c0c8f2b166a93677b390dda70b074ea0fc8d789d40ebb49d69",
+  "candidate_sha256": "d492b5c6ffe62845a6954048aaa8ff196974b496523c481efdf9a156901ceb6e",
+  "status": "incomplete",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 0,
+    "failure_rate": 1.0,
+    "failures_by_class": {},
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T18:19:49Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-62F4013E50DF",
+        "class": "nonexistent_declaration",
+        "claim_kind": "relation",
+        "claim": "fierz_2d_quadruple_check: For all indices i,j,k,l in {0,1,2}: (1/2)*delta[i][l]*delta[k][j] - (1/6)*delta[i][j]*delta[k][l] = T[i][k][j][l] [fierz_2d_quadruple_check]",
+        "evidence": "no file RUST_PY_CONTROLS/e5f9f30f/fierz.py and no indexed declaration named fierz_2d_quadruple_check",
+        "decl_key": "fierz_2d_quadruple_check",
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0022"
+      },
+      {
+        "id": "NEG-59C42522D4C0",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "su3_fierz_2d_matrix . slot 1 <- fierz_2d_quadruple_check via fierz_2d_quadruple_check",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0022"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Maintain exhaustive 81-entry Fierz replay in Rust and Python controls; do not conflate with Lean scalar identity slice.",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}
