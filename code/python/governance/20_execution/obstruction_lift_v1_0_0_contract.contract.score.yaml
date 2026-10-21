@@ -1,439 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:obstruction:lift:v1.0.0",
-    "title": "Lift",
-    "kind": "obstruction_contract",
-    "status": "mathematical_wip",
-    "layer": "03_obstruction",
-    "role": "Lift",
-    "descriptor": {
-      "authority_effect": "evidence_only",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "Obstruction",
-          "Witness",
-          "CertificateKernel",
-          "Meta",
-          "Engine"
-        ],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py",
+      "sha256": "490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959"
     },
-    "doctrine": {
-      "summary": "This contract defines the Lift boundary.\n\nLift defines licensed carrier extension.\nLift does not repair, retry, adapt, search, override policy, terminalize, mutate by itself,\nor execute by itself.\n",
-      "non_role": [
-        "repair",
-        "retry",
-        "adapter conversion",
-        "operator application",
-        "search expansion",
-        "policy override",
-        "direct execution"
-      ],
-      "llm_boundary_law": {
-        "doctrine": 5,
-        "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\nauthorize transitions, execute transitions, license lifts, prove minimality, or upgrade\nevidence authority.\n\nAn LLM may propose a LiftRequest or MetaLiftContract candidate, but that proposal is\nEvidenceOnly until checked by MetaJudgment, CertificateKernel, and the Licensing boundary.\n"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py",
+        "sha256": "490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959"
       },
-      "effect_class_binding": {
-        "doctrine": 6,
-        "text": "Lift is NOT an effect-class (E/I/C/R/M). Lift is lift machinery -- it defines how the\nstructural carrier expands to internalize an irreducible obstruction. The effect-classes\nE, I, C, R, M operate within a fixed carrier; Lift changes the carrier itself.\n",
-        "operator_note": "Only E (exact repair), I (quotient isometry), C (context embedding), R (residual projection),\nand M (refused mutation) are operators. Lift is not an operator.\nSee fixed_layer_operator_algebra_contract.md.\n"
-      },
-      "classification": {
-        "subsystem": "Obstruction Resolution",
-        "role": "Licensed carrier extension (lift machinery).",
-        "classification": "Obstruction layer -- carrier expansion."
-      },
-      "core_definition": "A Lift defines exactly how the structural carrier expands to internalize an irreducible\nobstruction. It is not an arbitrary modification.\n",
-      "what_lift_is_not": [
-        "repair",
-        "retry",
-        "adapter conversion",
-        "operator application",
-        "search expansion",
-        "policy override"
-      ],
-      "what_lift_is": "A typed licensed transition schema from C_N to C_{N+1}, executable only by Engine after a\nvalid LiftLicense is present.\n",
-      "core_invariant": "No lift without inhabited LiftLicense.",
-      "lift_artifact": {
-        "description": "Every lift requires a rigorous structural derivation.",
-        "schema": {
-          "source_carrier": "C_N",
-          "target_carrier": "C_{N+1}",
-          "delta": "schema_extension",
-          "obstruction_witness": "witness_id",
-          "descent_blocked_witness": "exhaustion_witness_id",
-          "persistence_witness": "persistence_witness_id",
-          "authority_license": "license_id",
-          "cost_derivation": "eta_cost_struct",
-          "minimality_argument": "congruence_restoration_proof"
-        },
-        "artifact_envelopes": {
-          "LiftRequest": "EvidenceEnvelope",
-          "MetaLiftDecision": "DecisionEnvelope",
-          "MetaLiftContract": "EvidenceEnvelope or FactEnvelope after checking",
-          "LiftLicense": "ActionLicense",
-          "EngineAppliedLift": "Action"
-        }
-      },
-      "structural_representation": {
-        "lift_request": {
-          "struct_name": "LiftRequest",
-          "fields": [
-            {
-              "name": "request_id",
-              "type": "LiftRequestId"
-            },
-            {
-              "name": "source_carrier",
-              "type": "CarrierRef"
-            },
-            {
-              "name": "target_carrier_schema",
-              "type": "CarrierSchemaRef"
-            },
-            {
-              "name": "obstruction_ref",
-              "type": "ObstructionId"
-            },
-            {
-              "name": "requested_delta",
-              "type": "CarrierDelta"
-            },
-            {
-              "name": "witness_refs",
-              "type": "Vec<WitnessId>"
-            },
-            {
-              "name": "certificate_refs",
-              "type": "Vec<CertificateId>"
-            },
-            {
-              "name": "replay_refs",
-              "type": "Vec<ReplayRef>"
-            },
-            {
-              "name": "request_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "authority_effect",
-              "type": "AuthorityEffect",
-              "default": "EvidenceOnly"
-            }
-          ]
-        },
-        "lift_license": {
-          "struct_name": "LiftLicense",
-          "fields": [
-            {
-              "name": "license_id",
-              "type": "LiftLicenseId"
-            },
-            {
-              "name": "contract_ref",
-              "type": "MetaLiftContractId"
-            },
-            {
-              "name": "source_carrier",
-              "type": "CarrierRef"
-            },
-            {
-              "name": "target_carrier_schema",
-              "type": "CarrierSchemaRef"
-            },
-            {
-              "name": "obstruction_ref",
-              "type": "ObstructionId"
-            },
-            {
-              "name": "allowed_delta",
-              "type": "CarrierDelta"
-            },
-            {
-              "name": "authority_refs",
-              "type": "Vec<AuthorityRef>"
-            },
-            {
-              "name": "witness_refs",
-              "type": "Vec<WitnessId>"
-            },
-            {
-              "name": "certificate_refs",
-              "type": "Vec<CertificateId>"
-            },
-            {
-              "name": "replay_refs",
-              "type": "Vec<ReplayRef>"
-            },
-            {
-              "name": "expiry",
-              "type": "Option<Epoch>"
-            },
-            {
-              "name": "license_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "authority_effect",
-              "type": "AuthorityEffect",
-              "default": "AuthorizesTransition"
-            }
-          ]
-        },
-        "meta_lift_contract": {
-          "struct_name": "MetaLiftContract",
-          "fields": [
-            {
-              "name": "contract_id",
-              "type": "MetaLiftContractId"
-            },
-            {
-              "name": "source_carrier",
-              "type": "CarrierRef"
-            },
-            {
-              "name": "target_carrier_schema",
-              "type": "CarrierSchemaRef"
-            },
-            {
-              "name": "obstruction_ref",
-              "type": "ObstructionId"
-            },
-            {
-              "name": "carrier_delta",
-              "type": "CarrierDelta"
-            },
-            {
-              "name": "minimality_witness",
-              "type": "WitnessId"
-            },
-            {
-              "name": "persistence_witness",
-              "type": "WitnessId"
-            },
-            {
-              "name": "descent_blocked_witness",
-              "type": "WitnessId"
-            },
-            {
-              "name": "preservation_requirements",
-              "type": "Vec<InvariantId>"
-            },
-            {
-              "name": "forbidden_losses",
-              "type": "Vec<InvariantId>"
-            },
-            {
-              "name": "certificate_refs",
-              "type": "Vec<CertificateId>"
-            },
-            {
-              "name": "replay_refs",
-              "type": "Vec<ReplayRef>"
-            },
-            {
-              "name": "contract_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "authority_effect",
-              "type": "AuthorityEffect",
-              "default": "EvidenceOnly",
-              "promotion_condition": "checked_evidence_boundary_passed"
-            }
-          ]
-        },
-        "enums": [
-          {
-            "name": "CarrierDelta",
-            "variants": [
-              {
-                "name": "AddGenerator",
-                "fields": {
-                  "generator_kind": "GeneratorKind"
-                }
-              },
-              {
-                "name": "AddContext",
-                "fields": {
-                  "context_kind": "ContextKind"
-                }
-              },
-              {
-                "name": "AddObservable",
-                "fields": {
-                  "observable_kind": "ObservableKind"
-                }
-              },
-              {
-                "name": "AddRelation",
-                "fields": {
-                  "relation_kind": "RelationKind"
-                }
-              },
-              {
-                "name": "AddCell",
-                "fields": {
-                  "cell_kind": "CellKind"
-                }
-              },
-              {
-                "name": "AddBoundary",
-                "fields": {
-                  "boundary_kind": "BoundaryKind"
-                }
-              },
-              {
-                "name": "ChangeRepresentation",
-                "fields": {
-                  "representation_kind": "RepresentationKind"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "execution_boundary": "Lift artifacts do not execute carrier extension.\n\nOnly Engine may execute a lift, and only after a valid LiftLicense is present.\n\nRequired flow:\n  ObstructionArtifact / checked obstruction evidence\n  -> LiftRequest\n  -> MetaJudgment\n  -> MetaLiftDecision\n  -> checked MetaLiftContract\n  -> LiftLicense\n  -> Engine executes licensed lift\n  -> Trace records action\n",
-      "decision_boundary": "Lift defines licensed carrier expansion. Engine executes lift only after a valid\nLiftLicense authorizes the checked MetaLiftContract and required replay/certificate\nchecks pass.\n",
-      "forbidden_implementation_tokens": {
-        "scope": "behavior, not substring",
-        "tokens": [
-          "apply_lift_now(",
-          "execute_lift(",
-          "mutate_carrier(",
-          "override_policy(",
-          "retry_lift(",
-          "repair_via_lift",
-          "search_expansion(",
-          "PolicyDecision",
-          "TerminalEnvelope",
-          "EngineResult",
-          "ALLOW_OUTPUT",
-          "BLOCK_OUTPUT",
-          "GaugeOp",
-          "AdapterOp",
-          "ForgetfulOp",
-          "OperatorFactEnvelope",
-          "OperatorId",
-          "OperatorKind",
-          "BasisOperator",
-          "ExtendOperatorClass",
-          "ExtendEffectClass",
-          "self_license(",
-          "self_execute(",
-          "embed_license_in_contract"
-        ]
-      },
-      "required_tests": [
-        "lift_without_license_fails",
-        "lift_without_obstruction_fails",
-        "lift_without_minimality_witness_fails",
-        "lift_without_persistence_witness_fails",
-        "lift_does_not_execute",
-        "lift_does_not_mutate_carrier",
-        "lift_does_not_override_policy",
-        "lift_license_hash_is_stable",
-        "lift_request_defaults_to_evidence_only",
-        "metalift_contract_defaults_to_evidence_only",
-        "lift_license_authority_effect_is_authorizes_transition",
-        "engine_lift_action_authority_effect_is_state_transition",
-        "carrier_delta_cannot_extend_effect_class",
-        "lift_request_does_not_contain_own_license",
-        "lift_license_references_checked_contract",
-        "metalift_contract_does_not_embed_license",
-        "lift_license_authorizes_but_does_not_execute",
-        "lift_without_engine_execution_does_not_mutate_carrier",
-        "lift_requires_obstruction_witness_persistence_and_minimality_evidence",
-        "new_effect_class_requires_constitutional_amendment",
-        "no_forbidden_op_suffix_tokens"
-      ],
-      "negative_capability_tests": [
-        {
-          "name": "test_lift_without_license_fails",
-          "language": "python",
-          "code": "def test_lift_without_license_fails():\n  req = LiftRequest(\n    source_carrier=\"C0\",\n    target_carrier=\"C1\",\n    obstruction_ref=\"obs1\",\n    license_ref=None,\n  )\n  with pytest.raises(ValueError):\n    validate_lift_request(req, {})\n"
-        }
-      ],
-      "canonical_invariant": "Lift machinery separates request, decision, contract, license, and execution. LiftRequest\nis EvidenceOnly. MetaJudgment decides admissibility. MetaLiftContract describes the\ncarrier-extension schema. LiftLicense authorizes the Engine to attempt the transition.\nEngine alone executes the lift. Lift does not repair, adapt, search, override policy,\nterminalize, mutate, or execute by itself.\n",
-      "legacy_metadata": {
-        "name": "Lift",
-        "role": "Licensed carrier extension",
-        "version": "2.0",
-        "classification": "obstruction",
-        "effect_class": "none",
-        "depends_on": [
-          "Obstruction",
-          "Witness",
-          "CertificateKernel",
-          "Meta",
-          "Engine"
-        ],
-        "forbidden_authority": [
-          "repair",
-          "retry",
-          "adapter conversion",
-          "operator application",
-          "search expansion",
-          "policy override",
-          "direct execution"
-        ],
-        "primary_output_family": "EvidenceEnvelope",
-        "referenced_output_families": [
-          "DecisionEnvelope",
-          "ActionLicense",
-          "FactEnvelope",
-          "EvidenceEnvelope"
-        ],
-        "referenced_domain_kinds": [
-          "WitnessEnvelope",
-          "CertificateEnvelope"
-        ],
-        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959",
+    "subject": "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py"
   },
-  "current_contract": "80dacf845125e9afcbe57cdf1e355052d0017b64afa40de3f1eba26bb344612b",
-  "current_scoring": "7936aceaeb1e2a8495671946dfa63503c5040d2c8b3e84c3e8a45ca56ee8422a",
   "contract_history": [
     {
-      "sha256": "80dacf845125e9afcbe57cdf1e355052d0017b64afa40de3f1eba26bb344612b",
       "bytes": 13624,
+      "original_paths": [
+        "code/python/governance/20_execution/obstruction_lift_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:obstruction:lift:v1.0.0\",\n  \"title\": \"Lift\",\n  \"kind\": \"obstruction_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"03_obstruction\",\n  \"role\": \"Lift\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"Obstruction\",\n        \"Witness\",\n        \"CertificateKernel\",\n        \"Meta\",\n        \"Engine\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"This contract defines the Lift boundary.\\n\\nLift defines licensed carrier extension.\\nLift does not repair, retry, adapt, search, override policy, terminalize, mutate by itself,\\nor execute by itself.\\n\",\n    \"non_role\": [\n      \"repair\",\n      \"retry\",\n      \"adapter conversion\",\n      \"operator application\",\n      \"search expansion\",\n      \"policy override\",\n      \"direct execution\"\n    ],\n    \"llm_boundary_law\": {\n      \"doctrine\": 5,\n      \"text\": \"The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\\nauthorize transitions, execute transitions, license lifts, prove minimality, or upgrade\\nevidence authority.\\n\\nAn LLM may propose a LiftRequest or MetaLiftContract candidate, but that proposal is\\nEvidenceOnly until checked by MetaJudgment, CertificateKernel, and the Licensing boundary.\\n\"\n    },\n    \"effect_class_binding\": {\n      \"doctrine\": 6,\n      \"text\": \"Lift is NOT an effect-class (E/I/C/R/M). Lift is lift machinery -- it defines how the\\nstructural carrier expands to internalize an irreducible obstruction. The effect-classes\\nE, I, C, R, M operate within a fixed carrier; Lift changes the carrier itself.\\n\",\n      \"operator_note\": \"Only E (exact repair), I (quotient isometry), C (context embedding), R (residual projection),\\nand M (refused mutation) are operators. Lift is not an operator.\\nSee fixed_layer_operator_algebra_contract.md.\\n\"\n    },\n    \"classification\": {\n      \"subsystem\": \"Obstruction Resolution\",\n      \"role\": \"Licensed carrier extension (lift machinery).\",\n      \"classification\": \"Obstruction layer -- carrier expansion.\"\n    },\n    \"core_definition\": \"A Lift defines exactly how the structural carrier expands to internalize an irreducible\\nobstruction. It is not an arbitrary modification.\\n\",\n    \"what_lift_is_not\": [\n      \"repair\",\n      \"retry\",\n      \"adapter conversion\",\n      \"operator application\",\n      \"search expansion\",\n      \"policy override\"\n    ],\n    \"what_lift_is\": \"A typed licensed transition schema from C_N to C_{N+1}, executable only by Engine after a\\nvalid LiftLicense is present.\\n\",\n    \"core_invariant\": \"No lift without inhabited LiftLicense.\",\n    \"lift_artifact\": {\n      \"description\": \"Every lift requires a rigorous structural derivation.\",\n      \"schema\": {\n        \"source_carrier\": \"C_N\",\n        \"target_carrier\": \"C_{N+1}\",\n        \"delta\": \"schema_extension\",\n        \"obstruction_witness\": \"witness_id\",\n        \"descent_blocked_witness\": \"exhaustion_witness_id\",\n        \"persistence_witness\": \"persistence_witness_id\",\n        \"authority_license\": \"license_id\",\n        \"cost_derivation\": \"eta_cost_struct\",\n        \"minimality_argument\": \"congruence_restoration_proof\"\n      },\n      \"artifact_envelopes\": {\n        \"LiftRequest\": \"EvidenceEnvelope\",\n        \"MetaLiftDecision\": \"DecisionEnvelope\",\n        \"MetaLiftContract\": \"EvidenceEnvelope or FactEnvelope after checking\",\n        \"LiftLicense\": \"ActionLicense\",\n        \"EngineAppliedLift\": \"Action\"\n      }\n    },\n    \"structural_representation\": {\n      \"lift_request\": {\n        \"struct_name\": \"LiftRequest\",\n        \"fields\": [\n          {\n            \"name\": \"request_id\",\n            \"type\": \"LiftRequestId\"\n          },\n          {\n            \"name\": \"source_carrier\",\n            \"type\": \"CarrierRef\"\n          },\n          {\n            \"name\": \"target_carrier_schema\",\n            \"type\": \"CarrierSchemaRef\"\n          },\n          {\n            \"name\": \"obstruction_ref\",\n            \"type\": \"ObstructionId\"\n          },\n          {\n            \"name\": \"requested_delta\",\n            \"type\": \"CarrierDelta\"\n          },\n          {\n            \"name\": \"witness_refs\",\n            \"type\": \"Vec<WitnessId>\"\n          },\n          {\n            \"name\": \"certificate_refs\",\n            \"type\": \"Vec<CertificateId>\"\n          },\n          {\n            \"name\": \"replay_refs\",\n            \"type\": \"Vec<ReplayRef>\"\n          },\n          {\n            \"name\": \"request_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      },\n      \"lift_license\": {\n        \"struct_name\": \"LiftLicense\",\n        \"fields\": [\n          {\n            \"name\": \"license_id\",\n            \"type\": \"LiftLicenseId\"\n          },\n          {\n            \"name\": \"contract_ref\",\n            \"type\": \"MetaLiftContractId\"\n          },\n          {\n            \"name\": \"source_carrier\",\n            \"type\": \"CarrierRef\"\n          },\n          {\n            \"name\": \"target_carrier_schema\",\n            \"type\": \"CarrierSchemaRef\"\n          },\n          {\n            \"name\": \"obstruction_ref\",\n            \"type\": \"ObstructionId\"\n          },\n          {\n            \"name\": \"allowed_delta\",\n            \"type\": \"CarrierDelta\"\n          },\n          {\n            \"name\": \"authority_refs\",\n            \"type\": \"Vec<AuthorityRef>\"\n          },\n          {\n            \"name\": \"witness_refs\",\n            \"type\": \"Vec<WitnessId>\"\n          },\n          {\n            \"name\": \"certificate_refs\",\n            \"type\": \"Vec<CertificateId>\"\n          },\n          {\n            \"name\": \"replay_refs\",\n            \"type\": \"Vec<ReplayRef>\"\n          },\n          {\n            \"name\": \"expiry\",\n            \"type\": \"Option<Epoch>\"\n          },\n          {\n            \"name\": \"license_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"AuthorizesTransition\"\n          }\n        ]\n      },\n      \"meta_lift_contract\": {\n        \"struct_name\": \"MetaLiftContract\",\n        \"fields\": [\n          {\n            \"name\": \"contract_id\",\n            \"type\": \"MetaLiftContractId\"\n          },\n          {\n            \"name\": \"source_carrier\",\n            \"type\": \"CarrierRef\"\n          },\n          {\n            \"name\": \"target_carrier_schema\",\n            \"type\": \"CarrierSchemaRef\"\n          },\n          {\n            \"name\": \"obstruction_ref\",\n            \"type\": \"ObstructionId\"\n          },\n          {\n            \"name\": \"carrier_delta\",\n            \"type\": \"CarrierDelta\"\n          },\n          {\n            \"name\": \"minimality_witness\",\n            \"type\": \"WitnessId\"\n          },\n          {\n            \"name\": \"persistence_witness\",\n            \"type\": \"WitnessId\"\n          },\n          {\n            \"name\": \"descent_blocked_witness\",\n            \"type\": \"WitnessId\"\n          },\n          {\n            \"name\": \"preservation_requirements\",\n            \"type\": \"Vec<InvariantId>\"\n          },\n          {\n            \"name\": \"forbidden_losses\",\n            \"type\": \"Vec<InvariantId>\"\n          },\n          {\n            \"name\": \"certificate_refs\",\n            \"type\": \"Vec<CertificateId>\"\n          },\n          {\n            \"name\": \"replay_refs\",\n            \"type\": \"Vec<ReplayRef>\"\n          },\n          {\n            \"name\": \"contract_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\",\n            \"promotion_condition\": \"checked_evidence_boundary_passed\"\n          }\n        ]\n      },\n      \"enums\": [\n        {\n          \"name\": \"CarrierDelta\",\n          \"variants\": [\n            {\n              \"name\": \"AddGenerator\",\n              \"fields\": {\n                \"generator_kind\": \"GeneratorKind\"\n              }\n            },\n            {\n              \"name\": \"AddContext\",\n              \"fields\": {\n                \"context_kind\": \"ContextKind\"\n              }\n            },\n            {\n              \"name\": \"AddObservable\",\n              \"fields\": {\n                \"observable_kind\": \"ObservableKind\"\n              }\n            },\n            {\n              \"name\": \"AddRelation\",\n              \"fields\": {\n                \"relation_kind\": \"RelationKind\"\n              }\n            },\n            {\n              \"name\": \"AddCell\",\n              \"fields\": {\n                \"cell_kind\": \"CellKind\"\n              }\n            },\n            {\n              \"name\": \"AddBoundary\",\n              \"fields\": {\n                \"boundary_kind\": \"BoundaryKind\"\n              }\n            },\n            {\n              \"name\": \"ChangeRepresentation\",\n              \"fields\": {\n                \"representation_kind\": \"RepresentationKind\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    \"execution_boundary\": \"Lift artifacts do not execute carrier extension.\\n\\nOnly Engine may execute a lift, and only after a valid LiftLicense is present.\\n\\nRequired flow:\\n  ObstructionArtifact / checked obstruction evidence\\n  -> LiftRequest\\n  -> MetaJudgment\\n  -> MetaLiftDecision\\n  -> checked MetaLiftContract\\n  -> LiftLicense\\n  -> Engine executes licensed lift\\n  -> Trace records action\\n\",\n    \"decision_boundary\": \"Lift defines licensed carrier expansion. Engine executes lift only after a valid\\nLiftLicense authorizes the checked MetaLiftContract and required replay/certificate\\nchecks pass.\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"apply_lift_now(\",\n        \"execute_lift(\",\n        \"mutate_carrier(\",\n        \"override_policy(\",\n        \"retry_lift(\",\n        \"repair_via_lift\",\n        \"search_expansion(\",\n        \"PolicyDecision\",\n        \"TerminalEnvelope\",\n        \"EngineResult\",\n        \"ALLOW_OUTPUT\",\n        \"BLOCK_OUTPUT\",\n        \"GaugeOp\",\n        \"AdapterOp\",\n        \"ForgetfulOp\",\n        \"OperatorFactEnvelope\",\n        \"OperatorId\",\n        \"OperatorKind\",\n        \"BasisOperator\",\n        \"ExtendOperatorClass\",\n        \"ExtendEffectClass\",\n        \"self_license(\",\n        \"self_execute(\",\n        \"embed_license_in_contract\"\n      ]\n    },\n    \"required_tests\": [\n      \"lift_without_license_fails\",\n      \"lift_without_obstruction_fails\",\n      \"lift_without_minimality_witness_fails\",\n      \"lift_without_persistence_witness_fails\",\n      \"lift_does_not_execute\",\n      \"lift_does_not_mutate_carrier\",\n      \"lift_does_not_override_policy\",\n      \"lift_license_hash_is_stable\",\n      \"lift_request_defaults_to_evidence_only\",\n      \"metalift_contract_defaults_to_evidence_only\",\n      \"lift_license_authority_effect_is_authorizes_transition\",\n      \"engine_lift_action_authority_effect_is_state_transition\",\n      \"carrier_delta_cannot_extend_effect_class\",\n      \"lift_request_does_not_contain_own_license\",\n      \"lift_license_references_checked_contract\",\n      \"metalift_contract_does_not_embed_license\",\n      \"lift_license_authorizes_but_does_not_execute\",\n      \"lift_without_engine_execution_does_not_mutate_carrier\",\n      \"lift_requires_obstruction_witness_persistence_and_minimality_evidence\",\n      \"new_effect_class_requires_constitutional_amendment\",\n      \"no_forbidden_op_suffix_tokens\"\n    ],\n    \"negative_capability_tests\": [\n      {\n        \"name\": \"test_lift_without_license_fails\",\n        \"language\": \"python\",\n        \"code\": \"def test_lift_without_license_fails():\\n  req = LiftRequest(\\n    source_carrier=\\\"C0\\\",\\n    target_carrier=\\\"C1\\\",\\n    obstruction_ref=\\\"obs1\\\",\\n    license_ref=None,\\n  )\\n  with pytest.raises(ValueError):\\n    validate_lift_request(req, {})\\n\"\n      }\n    ],\n    \"canonical_invariant\": \"Lift machinery separates request, decision, contract, license, and execution. LiftRequest\\nis EvidenceOnly. MetaJudgment decides admissibility. MetaLiftContract describes the\\ncarrier-extension schema. LiftLicense authorizes the Engine to attempt the transition.\\nEngine alone executes the lift. Lift does not repair, adapt, search, override policy,\\nterminalize, mutate, or execute by itself.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"Lift\",\n      \"role\": \"Licensed carrier extension\",\n      \"version\": \"2.0\",\n      \"classification\": \"obstruction\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"Obstruction\",\n        \"Witness\",\n        \"CertificateKernel\",\n        \"Meta\",\n        \"Engine\"\n      ],\n      \"forbidden_authority\": [\n        \"repair\",\n        \"retry\",\n        \"adapter conversion\",\n        \"operator application\",\n        \"search expansion\",\n        \"policy override\",\n        \"direct execution\"\n      ],\n      \"primary_output_family\": \"EvidenceEnvelope\",\n      \"referenced_output_families\": [\n        \"DecisionEnvelope\",\n        \"ActionLicense\",\n        \"FactEnvelope\",\n        \"EvidenceEnvelope\"\n      ],\n      \"referenced_domain_kinds\": [\n        \"WitnessEnvelope\",\n        \"CertificateEnvelope\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:obstruction:lift:v1.0.0",
-        "title": "Lift",
-        "kind": "obstruction_contract",
-        "status": "mathematical_wip",
-        "layer": "03_obstruction",
-        "role": "Lift",
         "descriptor": {
           "authority_effect": "evidence_only",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -445,20 +60,132 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
         "doctrine": {
-          "summary": "This contract defines the Lift boundary.\n\nLift defines licensed carrier extension.\nLift does not repair, retry, adapt, search, override policy, terminalize, mutate by itself,\nor execute by itself.\n",
+          "canonical_invariant": "Lift machinery separates request, decision, contract, license, and execution. LiftRequest\nis EvidenceOnly. MetaJudgment decides admissibility. MetaLiftContract describes the\ncarrier-extension schema. LiftLicense authorizes the Engine to attempt the transition.\nEngine alone executes the lift. Lift does not repair, adapt, search, override policy,\nterminalize, mutate, or execute by itself.\n",
+          "classification": {
+            "classification": "Obstruction layer -- carrier expansion.",
+            "role": "Licensed carrier extension (lift machinery).",
+            "subsystem": "Obstruction Resolution"
+          },
+          "core_definition": "A Lift defines exactly how the structural carrier expands to internalize an irreducible\nobstruction. It is not an arbitrary modification.\n",
+          "core_invariant": "No lift without inhabited LiftLicense.",
+          "decision_boundary": "Lift defines licensed carrier expansion. Engine executes lift only after a valid\nLiftLicense authorizes the checked MetaLiftContract and required replay/certificate\nchecks pass.\n",
+          "effect_class_binding": {
+            "doctrine": 6,
+            "operator_note": "Only E (exact repair), I (quotient isometry), C (context embedding), R (residual projection),\nand M (refused mutation) are operators. Lift is not an operator.\nSee fixed_layer_operator_algebra_contract.md.\n",
+            "text": "Lift is NOT an effect-class (E/I/C/R/M). Lift is lift machinery -- it defines how the\nstructural carrier expands to internalize an irreducible obstruction. The effect-classes\nE, I, C, R, M operate within a fixed carrier; Lift changes the carrier itself.\n"
+          },
+          "execution_boundary": "Lift artifacts do not execute carrier extension.\n\nOnly Engine may execute a lift, and only after a valid LiftLicense is present.\n\nRequired flow:\n  ObstructionArtifact / checked obstruction evidence\n  -> LiftRequest\n  -> MetaJudgment\n  -> MetaLiftDecision\n  -> checked MetaLiftContract\n  -> LiftLicense\n  -> Engine executes licensed lift\n  -> Trace records action\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "apply_lift_now(",
+              "execute_lift(",
+              "mutate_carrier(",
+              "override_policy(",
+              "retry_lift(",
+              "repair_via_lift",
+              "search_expansion(",
+              "PolicyDecision",
+              "TerminalEnvelope",
+              "EngineResult",
+              "ALLOW_OUTPUT",
+              "BLOCK_OUTPUT",
+              "GaugeOp",
+              "AdapterOp",
+              "ForgetfulOp",
+              "OperatorFactEnvelope",
+              "OperatorId",
+              "OperatorKind",
+              "BasisOperator",
+              "ExtendOperatorClass",
+              "ExtendEffectClass",
+              "self_license(",
+              "self_execute(",
+              "embed_license_in_contract"
+            ]
+          },
+          "legacy_metadata": {
+            "classification": "obstruction",
+            "depends_on": [
+              "Obstruction",
+              "Witness",
+              "CertificateKernel",
+              "Meta",
+              "Engine"
+            ],
+            "effect_class": "none",
+            "forbidden_authority": [
+              "repair",
+              "retry",
+              "adapter conversion",
+              "operator application",
+              "search expansion",
+              "policy override",
+              "direct execution"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority.",
+            "name": "Lift",
+            "primary_output_family": "EvidenceEnvelope",
+            "referenced_domain_kinds": [
+              "WitnessEnvelope",
+              "CertificateEnvelope"
+            ],
+            "referenced_output_families": [
+              "DecisionEnvelope",
+              "ActionLicense",
+              "FactEnvelope",
+              "EvidenceEnvelope"
+            ],
+            "role": "Licensed carrier extension",
+            "version": "2.0"
+          },
+          "lift_artifact": {
+            "artifact_envelopes": {
+              "EngineAppliedLift": "Action",
+              "LiftLicense": "ActionLicense",
+              "LiftRequest": "EvidenceEnvelope",
+              "MetaLiftContract": "EvidenceEnvelope or FactEnvelope after checking",
+              "MetaLiftDecision": "DecisionEnvelope"
+            },
+            "description": "Every lift requires a rigorous structural derivation.",
+            "schema": {
+              "authority_license": "license_id",
+              "cost_derivation": "eta_cost_struct",
+              "delta": "schema_extension",
+              "descent_blocked_witness": "exhaustion_witness_id",
+              "minimality_argument": "congruence_restoration_proof",
+              "obstruction_witness": "witness_id",
+              "persistence_witness": "persistence_witness_id",
+              "source_carrier": "C_N",
+              "target_carrier": "C_{N+1}"
+            }
+          },
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\nauthorize transitions, execute transitions, license lifts, prove minimality, or upgrade\nevidence authority.\n\nAn LLM may propose a LiftRequest or MetaLiftContract candidate, but that proposal is\nEvidenceOnly until checked by MetaJudgment, CertificateKernel, and the Licensing boundary.\n"
+          },
+          "negative_capability_tests": [
+            {
+              "code": "def test_lift_without_license_fails():\n  req = LiftRequest(\n    source_carrier=\"C0\",\n    target_carrier=\"C1\",\n    obstruction_ref=\"obs1\",\n    license_ref=None,\n  )\n  with pytest.raises(ValueError):\n    validate_lift_request(req, {})\n",
+              "language": "python",
+              "name": "test_lift_without_license_fails"
+            }
+          ],
           "non_role": [
             "repair",
             "retry",
@@ -468,101 +195,80 @@
             "policy override",
             "direct execution"
           ],
-          "llm_boundary_law": {
-            "doctrine": 5,
-            "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\nauthorize transitions, execute transitions, license lifts, prove minimality, or upgrade\nevidence authority.\n\nAn LLM may propose a LiftRequest or MetaLiftContract candidate, but that proposal is\nEvidenceOnly until checked by MetaJudgment, CertificateKernel, and the Licensing boundary.\n"
-          },
-          "effect_class_binding": {
-            "doctrine": 6,
-            "text": "Lift is NOT an effect-class (E/I/C/R/M). Lift is lift machinery -- it defines how the\nstructural carrier expands to internalize an irreducible obstruction. The effect-classes\nE, I, C, R, M operate within a fixed carrier; Lift changes the carrier itself.\n",
-            "operator_note": "Only E (exact repair), I (quotient isometry), C (context embedding), R (residual projection),\nand M (refused mutation) are operators. Lift is not an operator.\nSee fixed_layer_operator_algebra_contract.md.\n"
-          },
-          "classification": {
-            "subsystem": "Obstruction Resolution",
-            "role": "Licensed carrier extension (lift machinery).",
-            "classification": "Obstruction layer -- carrier expansion."
-          },
-          "core_definition": "A Lift defines exactly how the structural carrier expands to internalize an irreducible\nobstruction. It is not an arbitrary modification.\n",
-          "what_lift_is_not": [
-            "repair",
-            "retry",
-            "adapter conversion",
-            "operator application",
-            "search expansion",
-            "policy override"
+          "required_tests": [
+            "lift_without_license_fails",
+            "lift_without_obstruction_fails",
+            "lift_without_minimality_witness_fails",
+            "lift_without_persistence_witness_fails",
+            "lift_does_not_execute",
+            "lift_does_not_mutate_carrier",
+            "lift_does_not_override_policy",
+            "lift_license_hash_is_stable",
+            "lift_request_defaults_to_evidence_only",
+            "metalift_contract_defaults_to_evidence_only",
+            "lift_license_authority_effect_is_authorizes_transition",
+            "engine_lift_action_authority_effect_is_state_transition",
+            "carrier_delta_cannot_extend_effect_class",
+            "lift_request_does_not_contain_own_license",
+            "lift_license_references_checked_contract",
+            "metalift_contract_does_not_embed_license",
+            "lift_license_authorizes_but_does_not_execute",
+            "lift_without_engine_execution_does_not_mutate_carrier",
+            "lift_requires_obstruction_witness_persistence_and_minimality_evidence",
+            "new_effect_class_requires_constitutional_amendment",
+            "no_forbidden_op_suffix_tokens"
           ],
-          "what_lift_is": "A typed licensed transition schema from C_N to C_{N+1}, executable only by Engine after a\nvalid LiftLicense is present.\n",
-          "core_invariant": "No lift without inhabited LiftLicense.",
-          "lift_artifact": {
-            "description": "Every lift requires a rigorous structural derivation.",
-            "schema": {
-              "source_carrier": "C_N",
-              "target_carrier": "C_{N+1}",
-              "delta": "schema_extension",
-              "obstruction_witness": "witness_id",
-              "descent_blocked_witness": "exhaustion_witness_id",
-              "persistence_witness": "persistence_witness_id",
-              "authority_license": "license_id",
-              "cost_derivation": "eta_cost_struct",
-              "minimality_argument": "congruence_restoration_proof"
-            },
-            "artifact_envelopes": {
-              "LiftRequest": "EvidenceEnvelope",
-              "MetaLiftDecision": "DecisionEnvelope",
-              "MetaLiftContract": "EvidenceEnvelope or FactEnvelope after checking",
-              "LiftLicense": "ActionLicense",
-              "EngineAppliedLift": "Action"
-            }
-          },
           "structural_representation": {
-            "lift_request": {
-              "struct_name": "LiftRequest",
-              "fields": [
-                {
-                  "name": "request_id",
-                  "type": "LiftRequestId"
-                },
-                {
-                  "name": "source_carrier",
-                  "type": "CarrierRef"
-                },
-                {
-                  "name": "target_carrier_schema",
-                  "type": "CarrierSchemaRef"
-                },
-                {
-                  "name": "obstruction_ref",
-                  "type": "ObstructionId"
-                },
-                {
-                  "name": "requested_delta",
-                  "type": "CarrierDelta"
-                },
-                {
-                  "name": "witness_refs",
-                  "type": "Vec<WitnessId>"
-                },
-                {
-                  "name": "certificate_refs",
-                  "type": "Vec<CertificateId>"
-                },
-                {
-                  "name": "replay_refs",
-                  "type": "Vec<ReplayRef>"
-                },
-                {
-                  "name": "request_hash",
-                  "type": "Hash256"
-                },
-                {
-                  "name": "authority_effect",
-                  "type": "AuthorityEffect",
-                  "default": "EvidenceOnly"
-                }
-              ]
-            },
+            "enums": [
+              {
+                "name": "CarrierDelta",
+                "variants": [
+                  {
+                    "fields": {
+                      "generator_kind": "GeneratorKind"
+                    },
+                    "name": "AddGenerator"
+                  },
+                  {
+                    "fields": {
+                      "context_kind": "ContextKind"
+                    },
+                    "name": "AddContext"
+                  },
+                  {
+                    "fields": {
+                      "observable_kind": "ObservableKind"
+                    },
+                    "name": "AddObservable"
+                  },
+                  {
+                    "fields": {
+                      "relation_kind": "RelationKind"
+                    },
+                    "name": "AddRelation"
+                  },
+                  {
+                    "fields": {
+                      "cell_kind": "CellKind"
+                    },
+                    "name": "AddCell"
+                  },
+                  {
+                    "fields": {
+                      "boundary_kind": "BoundaryKind"
+                    },
+                    "name": "AddBoundary"
+                  },
+                  {
+                    "fields": {
+                      "representation_kind": "RepresentationKind"
+                    },
+                    "name": "ChangeRepresentation"
+                  }
+                ]
+              }
+            ],
             "lift_license": {
-              "struct_name": "LiftLicense",
               "fields": [
                 {
                   "name": "license_id",
@@ -613,14 +319,60 @@
                   "type": "Hash256"
                 },
                 {
+                  "default": "AuthorizesTransition",
                   "name": "authority_effect",
-                  "type": "AuthorityEffect",
-                  "default": "AuthorizesTransition"
+                  "type": "AuthorityEffect"
                 }
-              ]
+              ],
+              "struct_name": "LiftLicense"
+            },
+            "lift_request": {
+              "fields": [
+                {
+                  "name": "request_id",
+                  "type": "LiftRequestId"
+                },
+                {
+                  "name": "source_carrier",
+                  "type": "CarrierRef"
+                },
+                {
+                  "name": "target_carrier_schema",
+                  "type": "CarrierSchemaRef"
+                },
+                {
+                  "name": "obstruction_ref",
+                  "type": "ObstructionId"
+                },
+                {
+                  "name": "requested_delta",
+                  "type": "CarrierDelta"
+                },
+                {
+                  "name": "witness_refs",
+                  "type": "Vec<WitnessId>"
+                },
+                {
+                  "name": "certificate_refs",
+                  "type": "Vec<CertificateId>"
+                },
+                {
+                  "name": "replay_refs",
+                  "type": "Vec<ReplayRef>"
+                },
+                {
+                  "name": "request_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "default": "EvidenceOnly",
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect"
+                }
+              ],
+              "struct_name": "LiftRequest"
             },
             "meta_lift_contract": {
-              "struct_name": "MetaLiftContract",
               "fields": [
                 {
                   "name": "contract_id",
@@ -675,197 +427,104 @@
                   "type": "Hash256"
                 },
                 {
-                  "name": "authority_effect",
-                  "type": "AuthorityEffect",
                   "default": "EvidenceOnly",
-                  "promotion_condition": "checked_evidence_boundary_passed"
+                  "name": "authority_effect",
+                  "promotion_condition": "checked_evidence_boundary_passed",
+                  "type": "AuthorityEffect"
                 }
-              ]
-            },
-            "enums": [
-              {
-                "name": "CarrierDelta",
-                "variants": [
-                  {
-                    "name": "AddGenerator",
-                    "fields": {
-                      "generator_kind": "GeneratorKind"
-                    }
-                  },
-                  {
-                    "name": "AddContext",
-                    "fields": {
-                      "context_kind": "ContextKind"
-                    }
-                  },
-                  {
-                    "name": "AddObservable",
-                    "fields": {
-                      "observable_kind": "ObservableKind"
-                    }
-                  },
-                  {
-                    "name": "AddRelation",
-                    "fields": {
-                      "relation_kind": "RelationKind"
-                    }
-                  },
-                  {
-                    "name": "AddCell",
-                    "fields": {
-                      "cell_kind": "CellKind"
-                    }
-                  },
-                  {
-                    "name": "AddBoundary",
-                    "fields": {
-                      "boundary_kind": "BoundaryKind"
-                    }
-                  },
-                  {
-                    "name": "ChangeRepresentation",
-                    "fields": {
-                      "representation_kind": "RepresentationKind"
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          "execution_boundary": "Lift artifacts do not execute carrier extension.\n\nOnly Engine may execute a lift, and only after a valid LiftLicense is present.\n\nRequired flow:\n  ObstructionArtifact / checked obstruction evidence\n  -> LiftRequest\n  -> MetaJudgment\n  -> MetaLiftDecision\n  -> checked MetaLiftContract\n  -> LiftLicense\n  -> Engine executes licensed lift\n  -> Trace records action\n",
-          "decision_boundary": "Lift defines licensed carrier expansion. Engine executes lift only after a valid\nLiftLicense authorizes the checked MetaLiftContract and required replay/certificate\nchecks pass.\n",
-          "forbidden_implementation_tokens": {
-            "scope": "behavior, not substring",
-            "tokens": [
-              "apply_lift_now(",
-              "execute_lift(",
-              "mutate_carrier(",
-              "override_policy(",
-              "retry_lift(",
-              "repair_via_lift",
-              "search_expansion(",
-              "PolicyDecision",
-              "TerminalEnvelope",
-              "EngineResult",
-              "ALLOW_OUTPUT",
-              "BLOCK_OUTPUT",
-              "GaugeOp",
-              "AdapterOp",
-              "ForgetfulOp",
-              "OperatorFactEnvelope",
-              "OperatorId",
-              "OperatorKind",
-              "BasisOperator",
-              "ExtendOperatorClass",
-              "ExtendEffectClass",
-              "self_license(",
-              "self_execute(",
-              "embed_license_in_contract"
-            ]
-          },
-          "required_tests": [
-            "lift_without_license_fails",
-            "lift_without_obstruction_fails",
-            "lift_without_minimality_witness_fails",
-            "lift_without_persistence_witness_fails",
-            "lift_does_not_execute",
-            "lift_does_not_mutate_carrier",
-            "lift_does_not_override_policy",
-            "lift_license_hash_is_stable",
-            "lift_request_defaults_to_evidence_only",
-            "metalift_contract_defaults_to_evidence_only",
-            "lift_license_authority_effect_is_authorizes_transition",
-            "engine_lift_action_authority_effect_is_state_transition",
-            "carrier_delta_cannot_extend_effect_class",
-            "lift_request_does_not_contain_own_license",
-            "lift_license_references_checked_contract",
-            "metalift_contract_does_not_embed_license",
-            "lift_license_authorizes_but_does_not_execute",
-            "lift_without_engine_execution_does_not_mutate_carrier",
-            "lift_requires_obstruction_witness_persistence_and_minimality_evidence",
-            "new_effect_class_requires_constitutional_amendment",
-            "no_forbidden_op_suffix_tokens"
-          ],
-          "negative_capability_tests": [
-            {
-              "name": "test_lift_without_license_fails",
-              "language": "python",
-              "code": "def test_lift_without_license_fails():\n  req = LiftRequest(\n    source_carrier=\"C0\",\n    target_carrier=\"C1\",\n    obstruction_ref=\"obs1\",\n    license_ref=None,\n  )\n  with pytest.raises(ValueError):\n    validate_lift_request(req, {})\n"
+              ],
+              "struct_name": "MetaLiftContract"
             }
-          ],
-          "canonical_invariant": "Lift machinery separates request, decision, contract, license, and execution. LiftRequest\nis EvidenceOnly. MetaJudgment decides admissibility. MetaLiftContract describes the\ncarrier-extension schema. LiftLicense authorizes the Engine to attempt the transition.\nEngine alone executes the lift. Lift does not repair, adapt, search, override policy,\nterminalize, mutate, or execute by itself.\n",
-          "legacy_metadata": {
-            "name": "Lift",
-            "role": "Licensed carrier extension",
-            "version": "2.0",
-            "classification": "obstruction",
-            "effect_class": "none",
-            "depends_on": [
-              "Obstruction",
-              "Witness",
-              "CertificateKernel",
-              "Meta",
-              "Engine"
-            ],
-            "forbidden_authority": [
-              "repair",
-              "retry",
-              "adapter conversion",
-              "operator application",
-              "search expansion",
-              "policy override",
-              "direct execution"
-            ],
-            "primary_output_family": "EvidenceEnvelope",
-            "referenced_output_families": [
-              "DecisionEnvelope",
-              "ActionLicense",
-              "FactEnvelope",
-              "EvidenceEnvelope"
-            ],
-            "referenced_domain_kinds": [
-              "WitnessEnvelope",
-              "CertificateEnvelope"
-            ],
-            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
-          }
+          },
+          "summary": "This contract defines the Lift boundary.\n\nLift defines licensed carrier extension.\nLift does not repair, retry, adapt, search, override policy, terminalize, mutate by itself,\nor execute by itself.\n",
+          "what_lift_is": "A typed licensed transition schema from C_N to C_{N+1}, executable only by Engine after a\nvalid LiftLicense is present.\n",
+          "what_lift_is_not": [
+            "repair",
+            "retry",
+            "adapter conversion",
+            "operator application",
+            "search expansion",
+            "policy override"
+          ]
         },
+        "kind": "obstruction_contract",
+        "layer": "03_obstruction",
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0"
           ]
-        }
+        },
+        "role": "Lift",
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Lift"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:obstruction:lift:v1.0.0\",\n  \"title\": \"Lift\",\n  \"kind\": \"obstruction_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"03_obstruction\",\n  \"role\": \"Lift\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"Obstruction\",\n        \"Witness\",\n        \"CertificateKernel\",\n        \"Meta\",\n        \"Engine\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"This contract defines the Lift boundary.\\n\\nLift defines licensed carrier extension.\\nLift does not repair, retry, adapt, search, override policy, terminalize, mutate by itself,\\nor execute by itself.\\n\",\n    \"non_role\": [\n      \"repair\",\n      \"retry\",\n      \"adapter conversion\",\n      \"operator application\",\n      \"search expansion\",\n      \"policy override\",\n      \"direct execution\"\n    ],\n    \"llm_boundary_law\": {\n      \"doctrine\": 5,\n      \"text\": \"The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\\nauthorize transitions, execute transitions, license lifts, prove minimality, or upgrade\\nevidence authority.\\n\\nAn LLM may propose a LiftRequest or MetaLiftContract candidate, but that proposal is\\nEvidenceOnly until checked by MetaJudgment, CertificateKernel, and the Licensing boundary.\\n\"\n    },\n    \"effect_class_binding\": {\n      \"doctrine\": 6,\n      \"text\": \"Lift is NOT an effect-class (E/I/C/R/M). Lift is lift machinery -- it defines how the\\nstructural carrier expands to internalize an irreducible obstruction. The effect-classes\\nE, I, C, R, M operate within a fixed carrier; Lift changes the carrier itself.\\n\",\n      \"operator_note\": \"Only E (exact repair), I (quotient isometry), C (context embedding), R (residual projection),\\nand M (refused mutation) are operators. Lift is not an operator.\\nSee fixed_layer_operator_algebra_contract.md.\\n\"\n    },\n    \"classification\": {\n      \"subsystem\": \"Obstruction Resolution\",\n      \"role\": \"Licensed carrier extension (lift machinery).\",\n      \"classification\": \"Obstruction layer -- carrier expansion.\"\n    },\n    \"core_definition\": \"A Lift defines exactly how the structural carrier expands to internalize an irreducible\\nobstruction. It is not an arbitrary modification.\\n\",\n    \"what_lift_is_not\": [\n      \"repair\",\n      \"retry\",\n      \"adapter conversion\",\n      \"operator application\",\n      \"search expansion\",\n      \"policy override\"\n    ],\n    \"what_lift_is\": \"A typed licensed transition schema from C_N to C_{N+1}, executable only by Engine after a\\nvalid LiftLicense is present.\\n\",\n    \"core_invariant\": \"No lift without inhabited LiftLicense.\",\n    \"lift_artifact\": {\n      \"description\": \"Every lift requires a rigorous structural derivation.\",\n      \"schema\": {\n        \"source_carrier\": \"C_N\",\n        \"target_carrier\": \"C_{N+1}\",\n        \"delta\": \"schema_extension\",\n        \"obstruction_witness\": \"witness_id\",\n        \"descent_blocked_witness\": \"exhaustion_witness_id\",\n        \"persistence_witness\": \"persistence_witness_id\",\n        \"authority_license\": \"license_id\",\n        \"cost_derivation\": \"eta_cost_struct\",\n        \"minimality_argument\": \"congruence_restoration_proof\"\n      },\n      \"artifact_envelopes\": {\n        \"LiftRequest\": \"EvidenceEnvelope\",\n        \"MetaLiftDecision\": \"DecisionEnvelope\",\n        \"MetaLiftContract\": \"EvidenceEnvelope or FactEnvelope after checking\",\n        \"LiftLicense\": \"ActionLicense\",\n        \"EngineAppliedLift\": \"Action\"\n      }\n    },\n    \"structural_representation\": {\n      \"lift_request\": {\n        \"struct_name\": \"LiftRequest\",\n        \"fields\": [\n          {\n            \"name\": \"request_id\",\n            \"type\": \"LiftRequestId\"\n          },\n          {\n            \"name\": \"source_carrier\",\n            \"type\": \"CarrierRef\"\n          },\n          {\n            \"name\": \"target_carrier_schema\",\n            \"type\": \"CarrierSchemaRef\"\n          },\n          {\n            \"name\": \"obstruction_ref\",\n            \"type\": \"ObstructionId\"\n          },\n          {\n            \"name\": \"requested_delta\",\n            \"type\": \"CarrierDelta\"\n          },\n          {\n            \"name\": \"witness_refs\",\n            \"type\": \"Vec<WitnessId>\"\n          },\n          {\n            \"name\": \"certificate_refs\",\n            \"type\": \"Vec<CertificateId>\"\n          },\n          {\n            \"name\": \"replay_refs\",\n            \"type\": \"Vec<ReplayRef>\"\n          },\n          {\n            \"name\": \"request_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      },\n      \"lift_license\": {\n        \"struct_name\": \"LiftLicense\",\n        \"fields\": [\n          {\n            \"name\": \"license_id\",\n            \"type\": \"LiftLicenseId\"\n          },\n          {\n            \"name\": \"contract_ref\",\n            \"type\": \"MetaLiftContractId\"\n          },\n          {\n            \"name\": \"source_carrier\",\n            \"type\": \"CarrierRef\"\n          },\n          {\n            \"name\": \"target_carrier_schema\",\n            \"type\": \"CarrierSchemaRef\"\n          },\n          {\n            \"name\": \"obstruction_ref\",\n            \"type\": \"ObstructionId\"\n          },\n          {\n            \"name\": \"allowed_delta\",\n            \"type\": \"CarrierDelta\"\n          },\n          {\n            \"name\": \"authority_refs\",\n            \"type\": \"Vec<AuthorityRef>\"\n          },\n          {\n            \"name\": \"witness_refs\",\n            \"type\": \"Vec<WitnessId>\"\n          },\n          {\n            \"name\": \"certificate_refs\",\n            \"type\": \"Vec<CertificateId>\"\n          },\n          {\n            \"name\": \"replay_refs\",\n            \"type\": \"Vec<ReplayRef>\"\n          },\n          {\n            \"name\": \"expiry\",\n            \"type\": \"Option<Epoch>\"\n          },\n          {\n            \"name\": \"license_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"AuthorizesTransition\"\n          }\n        ]\n      },\n      \"meta_lift_contract\": {\n        \"struct_name\": \"MetaLiftContract\",\n        \"fields\": [\n          {\n            \"name\": \"contract_id\",\n            \"type\": \"MetaLiftContractId\"\n          },\n          {\n            \"name\": \"source_carrier\",\n            \"type\": \"CarrierRef\"\n          },\n          {\n            \"name\": \"target_carrier_schema\",\n            \"type\": \"CarrierSchemaRef\"\n          },\n          {\n            \"name\": \"obstruction_ref\",\n            \"type\": \"ObstructionId\"\n          },\n          {\n            \"name\": \"carrier_delta\",\n            \"type\": \"CarrierDelta\"\n          },\n          {\n            \"name\": \"minimality_witness\",\n            \"type\": \"WitnessId\"\n          },\n          {\n            \"name\": \"persistence_witness\",\n            \"type\": \"WitnessId\"\n          },\n          {\n            \"name\": \"descent_blocked_witness\",\n            \"type\": \"WitnessId\"\n          },\n          {\n            \"name\": \"preservation_requirements\",\n            \"type\": \"Vec<InvariantId>\"\n          },\n          {\n            \"name\": \"forbidden_losses\",\n            \"type\": \"Vec<InvariantId>\"\n          },\n          {\n            \"name\": \"certificate_refs\",\n            \"type\": \"Vec<CertificateId>\"\n          },\n          {\n            \"name\": \"replay_refs\",\n            \"type\": \"Vec<ReplayRef>\"\n          },\n          {\n            \"name\": \"contract_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\",\n            \"promotion_condition\": \"checked_evidence_boundary_passed\"\n          }\n        ]\n      },\n      \"enums\": [\n        {\n          \"name\": \"CarrierDelta\",\n          \"variants\": [\n            {\n              \"name\": \"AddGenerator\",\n              \"fields\": {\n                \"generator_kind\": \"GeneratorKind\"\n              }\n            },\n            {\n              \"name\": \"AddContext\",\n              \"fields\": {\n                \"context_kind\": \"ContextKind\"\n              }\n            },\n            {\n              \"name\": \"AddObservable\",\n              \"fields\": {\n                \"observable_kind\": \"ObservableKind\"\n              }\n            },\n            {\n              \"name\": \"AddRelation\",\n              \"fields\": {\n                \"relation_kind\": \"RelationKind\"\n              }\n            },\n            {\n              \"name\": \"AddCell\",\n              \"fields\": {\n                \"cell_kind\": \"CellKind\"\n              }\n            },\n            {\n              \"name\": \"AddBoundary\",\n              \"fields\": {\n                \"boundary_kind\": \"BoundaryKind\"\n              }\n            },\n            {\n              \"name\": \"ChangeRepresentation\",\n              \"fields\": {\n                \"representation_kind\": \"RepresentationKind\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    \"execution_boundary\": \"Lift artifacts do not execute carrier extension.\\n\\nOnly Engine may execute a lift, and only after a valid LiftLicense is present.\\n\\nRequired flow:\\n  ObstructionArtifact / checked obstruction evidence\\n  -> LiftRequest\\n  -> MetaJudgment\\n  -> MetaLiftDecision\\n  -> checked MetaLiftContract\\n  -> LiftLicense\\n  -> Engine executes licensed lift\\n  -> Trace records action\\n\",\n    \"decision_boundary\": \"Lift defines licensed carrier expansion. Engine executes lift only after a valid\\nLiftLicense authorizes the checked MetaLiftContract and required replay/certificate\\nchecks pass.\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"apply_lift_now(\",\n        \"execute_lift(\",\n        \"mutate_carrier(\",\n        \"override_policy(\",\n        \"retry_lift(\",\n        \"repair_via_lift\",\n        \"search_expansion(\",\n        \"PolicyDecision\",\n        \"TerminalEnvelope\",\n        \"EngineResult\",\n        \"ALLOW_OUTPUT\",\n        \"BLOCK_OUTPUT\",\n        \"GaugeOp\",\n        \"AdapterOp\",\n        \"ForgetfulOp\",\n        \"OperatorFactEnvelope\",\n        \"OperatorId\",\n        \"OperatorKind\",\n        \"BasisOperator\",\n        \"ExtendOperatorClass\",\n        \"ExtendEffectClass\",\n        \"self_license(\",\n        \"self_execute(\",\n        \"embed_license_in_contract\"\n      ]\n    },\n    \"required_tests\": [\n      \"lift_without_license_fails\",\n      \"lift_without_obstruction_fails\",\n      \"lift_without_minimality_witness_fails\",\n      \"lift_without_persistence_witness_fails\",\n      \"lift_does_not_execute\",\n      \"lift_does_not_mutate_carrier\",\n      \"lift_does_not_override_policy\",\n      \"lift_license_hash_is_stable\",\n      \"lift_request_defaults_to_evidence_only\",\n      \"metalift_contract_defaults_to_evidence_only\",\n      \"lift_license_authority_effect_is_authorizes_transition\",\n      \"engine_lift_action_authority_effect_is_state_transition\",\n      \"carrier_delta_cannot_extend_effect_class\",\n      \"lift_request_does_not_contain_own_license\",\n      \"lift_license_references_checked_contract\",\n      \"metalift_contract_does_not_embed_license\",\n      \"lift_license_authorizes_but_does_not_execute\",\n      \"lift_without_engine_execution_does_not_mutate_carrier\",\n      \"lift_requires_obstruction_witness_persistence_and_minimality_evidence\",\n      \"new_effect_class_requires_constitutional_amendment\",\n      \"no_forbidden_op_suffix_tokens\"\n    ],\n    \"negative_capability_tests\": [\n      {\n        \"name\": \"test_lift_without_license_fails\",\n        \"language\": \"python\",\n        \"code\": \"def test_lift_without_license_fails():\\n  req = LiftRequest(\\n    source_carrier=\\\"C0\\\",\\n    target_carrier=\\\"C1\\\",\\n    obstruction_ref=\\\"obs1\\\",\\n    license_ref=None,\\n  )\\n  with pytest.raises(ValueError):\\n    validate_lift_request(req, {})\\n\"\n      }\n    ],\n    \"canonical_invariant\": \"Lift machinery separates request, decision, contract, license, and execution. LiftRequest\\nis EvidenceOnly. MetaJudgment decides admissibility. MetaLiftContract describes the\\ncarrier-extension schema. LiftLicense authorizes the Engine to attempt the transition.\\nEngine alone executes the lift. Lift does not repair, adapt, search, override policy,\\nterminalize, mutate, or execute by itself.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"Lift\",\n      \"role\": \"Licensed carrier extension\",\n      \"version\": \"2.0\",\n      \"classification\": \"obstruction\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"Obstruction\",\n        \"Witness\",\n        \"CertificateKernel\",\n        \"Meta\",\n        \"Engine\"\n      ],\n      \"forbidden_authority\": [\n        \"repair\",\n        \"retry\",\n        \"adapter conversion\",\n        \"operator application\",\n        \"search expansion\",\n        \"policy override\",\n        \"direct execution\"\n      ],\n      \"primary_output_family\": \"EvidenceEnvelope\",\n      \"referenced_output_families\": [\n        \"DecisionEnvelope\",\n        \"ActionLicense\",\n        \"FactEnvelope\",\n        \"EvidenceEnvelope\"\n      ],\n      \"referenced_domain_kinds\": [\n        \"WitnessEnvelope\",\n        \"CertificateEnvelope\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "80dacf845125e9afcbe57cdf1e355052d0017b64afa40de3f1eba26bb344612b"
+    },
+    {
+      "bytes": 1694,
       "original_paths": [
-        "code/python/governance/20_execution/obstruction_lift_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py\",\n    \"sha256\": \"490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py\",\n      \"sha256\": \"490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959\",\n  \"subject\": \"code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py",
+          "sha256": "490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py",
+            "sha256": "490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959",
+        "subject": "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py"
+      },
+      "sha256": "a9bd40d239e61dfc930a3d78828e1c41e0a98632492b16caae426f331cba1155"
     }
   ],
+  "current_contract": "a9bd40d239e61dfc930a3d78828e1c41e0a98632492b16caae426f331cba1155",
+  "current_scoring": "97f648221f6a2e38490cb687f6d3ce9d3b409c5b64580871a5b100114c3c2052",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/20_execution/obstruction_lift_v1_0_0.contract.yaml": "6c4c640c45b85351da9f3ad224b652c960c824570fc24b33a7ba5bfe3f49b1c6"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "7936aceaeb1e2a8495671946dfa63503c5040d2c8b3e84c3e8a45ca56ee8422a",
       "bytes": 2221,
+      "original_paths": [
+        "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py\",\n    \"sha256\": \"490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:obstruction-lift-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py",
           "sha256": "490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:20_execution:obstruction-lift-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -874,40 +533,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "7936aceaeb1e2a8495671946dfa63503c5040d2c8b3e84c3e8a45ca56ee8422a"
+    },
+    {
+      "bytes": 1658,
+      "original_paths": [
+        "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py\",\n    \"sha256\": \"490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py\",\n      \"sha256\": \"490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py",
+          "sha256": "490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py",
+            "sha256": "490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.py\",\n    \"sha256\": \"490998a4cd0b684da1b755b2bb0c142e999db48c9af7d30a5ef527d18e557959\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:obstruction-lift-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/obstruction_lift_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "97f648221f6a2e38490cb687f6d3ce9d3b409c5b64580871a5b100114c3c2052"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/20_execution/obstruction_lift_v1_0_0.contract.yaml": "6c4c640c45b85351da9f3ad224b652c960c824570fc24b33a7ba5bfe3f49b1c6"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

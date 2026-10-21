@@ -1,225 +1,89 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/family_category.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/family_category.rs",
-      "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c",
-      "language": "Rust"
+      "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact: literal strings,standard Rust Unicode uppercase/trim,pure enum flags and ordered data lists;no approximation.",
-      "domain": "Arbitrary raw family/lifecycle/name-map records,including duplicates,empty labels and unregistered keys.",
-      "behavior": [
-        "Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.",
-        "Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.",
-        "Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.",
-        "Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.",
-        "True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.",
-        "Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.",
-        "Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.",
-        "Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.",
-        "Delegate exact id to new with Exists, not an external activation action.",
-        "Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry.",
-        "Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.",
-        "Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.",
-        "Borrow exact identifiers of Exists rows in occurrence order, including duplicates.",
-        "True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.",
-        "Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.",
-        "Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.",
-        "Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.",
-        "Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.",
-        "Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.",
-        "Borrow exact independent propagation list in order, or empty vector if absent. No execution.",
-        "Borrow current raw family.id. Public family mutation intentionally changes future observations.",
-        "Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation."
-      ],
-      "capability": "L2 structured metadata,parsers and ordered target observations. Historical category/functor labels do not admit mathematical laws or agent references/execution."
-    },
-    "operations": {
-      "Constraint::new": {
-        "line": 52,
-        "signature": "pub fn new(id: &str, description: &str, severity: Severity) -> Self",
-        "obligation": "Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked."
-      },
-      "Severity::parse": {
-        "line": 72,
-        "signature": "pub fn parse(s: &str) -> Self",
-        "obligation": "Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized."
-      },
-      "Severity::fmt": {
-        "line": 83,
-        "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
-        "obligation": "Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low."
-      },
-      "PropagationRule::new": {
-        "line": 110,
-        "signature": "pub fn new(pattern: &str, example: &str, targets: Vec<String>) -> Self",
-        "obligation": "Store exact pattern/example and move target list unchanged, including duplicates and reserved labels."
-      },
-      "PropagationRule::targets_all": {
-        "line": 119,
-        "signature": "pub fn targets_all(&self) -> bool",
-        "obligation": "True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization."
-      },
-      "MemberStatus::parse": {
-        "line": 143,
-        "signature": "pub fn parse(s: &str) -> Self",
-        "obligation": "Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback."
-      },
-      "MemberStatus::is_active": {
-        "line": 166,
-        "signature": "pub fn is_active(&self) -> bool",
-        "obligation": "Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label."
-      },
-      "FamilyMember::new": {
-        "line": 185,
-        "signature": "pub fn new(string_id: &str, status: MemberStatus) -> Self",
-        "obligation": "Store exact String identifier and supplied lifecycle enum; no uniqueness/admission."
-      },
-      "FamilyMember::active": {
-        "line": 192,
-        "signature": "pub fn active(string_id: &str) -> Self",
-        "obligation": "Delegate exact id to new with Exists, not an external activation action."
-      },
-      "collect_targets": {
-        "line": 220,
-        "signature": "fn collect_targets<'a>(\n    candidates: impl IntoIterator<Item = &'a str>, source: &str,\n    active: &BTreeSet<&str>, seen: &mut BTreeSet<&'a str>, targets: &mut Vec<String>,\n)",
-        "obligation": "Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry."
-      },
-      "StringFamily::new": {
-        "line": 232,
-        "signature": "pub fn new(id: &str, description: &str) -> Self",
-        "obligation": "Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate."
-      },
-      "StringFamily::active_members": {
-        "line": 244,
-        "signature": "pub fn active_members(&self) -> Vec<&FamilyMember>",
-        "obligation": "Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies."
-      },
-      "StringFamily::active_member_ids": {
-        "line": 252,
-        "signature": "pub fn active_member_ids(&self) -> Vec<&str>",
-        "obligation": "Borrow exact identifiers of Exists rows in occurrence order, including duplicates."
-      },
-      "StringFamily::contains_active": {
-        "line": 261,
-        "signature": "pub fn contains_active(&self, string_id: &str) -> bool",
-        "obligation": "True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence."
-      },
-      "StringFamily::get_propagation_targets": {
-        "line": 268,
-        "signature": "pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>",
-        "obligation": "Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs."
-      },
-      "FamilyFunctor::from_family": {
-        "line": 307,
-        "signature": "pub fn from_family(family: StringFamily) -> Self",
-        "obligation": "Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission."
-      },
-      "FamilyFunctor::map_constraint": {
-        "line": 316,
-        "signature": "pub fn map_constraint(&mut self, constraint_id: &str, string: String)",
-        "obligation": "Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints."
-      },
-      "FamilyFunctor::map_propagation": {
-        "line": 324,
-        "signature": "pub fn map_propagation(&mut self, pattern: &str, string: String)",
-        "obligation": "Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed."
-      },
-      "FamilyFunctor::apply_constraint": {
-        "line": 332,
-        "signature": "pub fn apply_constraint(&self, constraint_id: &str) -> Vec<&String>",
-        "obligation": "Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking."
-      },
-      "FamilyFunctor::apply_propagation": {
-        "line": 340,
-        "signature": "pub fn apply_propagation(&self, pattern: &str) -> Vec<&String>",
-        "obligation": "Borrow exact independent propagation list in order, or empty vector if absent. No execution."
-      },
-      "FamilyFunctor::id": {
-        "line": 348,
-        "signature": "pub fn id(&self) -> &str",
-        "obligation": "Borrow current raw family.id. Public family mutation intentionally changes future observations."
-      },
-      "FamilyFunctor::get_propagation_targets": {
-        "line": 353,
-        "signature": "pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>",
-        "obligation": "Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation."
-      }
-    },
-    "invariants": [
-      "All data are raw owned strings, enums, lists and HashMaps. Historical categorical/provenance annotations are explicitly unverified analogies, not a checked category, functor, agent reference or current file/hash receipt. Constructors preserve all supplied metadata; no empty-name, duplicate-ID or family-map consistency admission is promised.",
-      "Parser semantics are exact standard Rust string operations. Severity uppercases Unicode and does not trim, then uses three exact labels with Low fallback. Status trims outer Unicode whitespace but remains case-sensitive; specialized deprecation prefix precedes general prefix. Remaining target text is copied without a second trim. Unicode/NUL/spacing and prefix-only fallbacks are explicitly pinned in native cases. No numeric casts or approximate matching.",
-      "Only Exists rows contribute active occurrences. An identifier may occur in several lifecycle states; any Exists occurrence makes source/membership active, while active lists preserve exactly those rows and their order. Borrowed sets use the same literal str equality as the old owned String scans. They do not normalize, sort output, or collapse the active occurrence list.",
-      "Target accumulation invariant:seen contains exactly previously emitted names, each emitted once and active, never the source. Candidate order is rule order then wildcard active-member order or explicit target order. A wildcard is triggered by any exact All members item and overrides explicit targets in that rule. Passing a fresh eligible candidate appends one owned output copy; rejection leaves prefix and seen unchanged. By induction, final output is the stable first eligible union. Private standard iterator clones no records and borrowed names remain valid for the immutable family borrow.",
-      "Old and new propagation observations coincide for every raw family/query:source gate unchanged;active occurrences unchanged;old linear membership/dedup and new borrowed sets implement identical predicates;both append at the same first eligible encounter. Only transient active String clones and repeated linear scans disappear. The frozen old method is secondary evidence;an independent direct status/sentinel/member oracle checks the contract.",
-      "Runtime maps are separate raw key-list stores. Registration moves one input String and appends without deduplication. Queries borrow original stored entries, not lookalike copies. Unknown keys are valid raw registrations;unknown queries are empty. HashMap iteration order is not exposed because only exact-key lookup and Vec order are observed. Public metadata can change between calls;no persistent context certificate is claimed.",
-      "The matches! site in is_active expands to one pure match with Exists=true and wildcard=false. Its expanded source branch bound remains below A ceilings;the calibrated tool records the macro as opaque and does not certify MIR. All statuses are independently exercised. Other derives and formatting are standard String/enum/Vec operations. There is no source indexing, arithmetic, unsafe, recursion or unchecked unwrap.",
-      "Lean proves raw eligible append/rejection/prefix and sequential collection laws, inactive-source/empty behavior, and exact key-list registration order. It does not prove Rust Unicode implementation, a category/functor law, agent execution or provenance. Rust parser, borrowing/set/order and metadata field refinement is reviewed separately and tested against exact native cases."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "Constraint::new": "Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.",
-      "Severity::parse": "Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.",
-      "Severity::fmt": "Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.",
-      "PropagationRule::new": "Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.",
-      "PropagationRule::targets_all": "True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.",
-      "MemberStatus::parse": "Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.",
-      "MemberStatus::is_active": "Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.",
-      "FamilyMember::new": "Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.",
-      "FamilyMember::active": "Delegate exact id to new with Exists, not an external activation action.",
-      "collect_targets": "Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry.",
-      "StringFamily::new": "Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.",
-      "StringFamily::active_members": "Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.",
-      "StringFamily::active_member_ids": "Borrow exact identifiers of Exists rows in occurrence order, including duplicates.",
-      "StringFamily::contains_active": "True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.",
-      "StringFamily::get_propagation_targets": "Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.",
-      "FamilyFunctor::from_family": "Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.",
-      "FamilyFunctor::map_constraint": "Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.",
-      "FamilyFunctor::map_propagation": "Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.",
-      "FamilyFunctor::apply_constraint": "Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.",
-      "FamilyFunctor::apply_propagation": "Borrow exact independent propagation list in order, or empty vector if absent. No execution.",
-      "FamilyFunctor::id": "Borrow current raw family.id. Public family mutation intentionally changes future observations.",
-      "FamilyFunctor::get_propagation_targets": "Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation."
-    },
-    "trust_boundary": "Rust compiler/std Unicode/string/format/HashMap/Set/Vec value and allocation semantics,private concrete iterators,Lean/Mathlib foundations. No categorical/agent/provenance authority,MIR/extraction,total byte/runtime guarantee or persistent mutable-context certificate.",
-    "assurance_limits": [
-      "Contracts pending;AuthorityEffect None.",
-      "Raw true/active/lifecycle/map labels are data;no category/functor/constraint law or action execution is checked.",
-      "Retained YAML path/hash are unverified annotations,not current provenance.",
-      "Unicode/parser and borrowed-set source refinement separate from raw list-model proof;no extracted Rust theorem.",
-      "Finite generated corpus/designated faults not every possible metadata/fault;no whole-workspace green or allocator totality."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/family_category.score.yaml",
-        "sha256": "edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba"
+        "path": "code/rust/src/category_theory/family_category.rs",
+        "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c",
+    "subject": "code/rust/src/category_theory/family_category.rs"
   },
-  "current_contract": "dbbc4ec22d34276103288ca71660838048dd55668ead84d7599e5dc4e2a31a38",
-  "current_scoring": "edbba1d46046d481f9119bbca34b281df45888440c5921f667f6cb83ede02642",
   "contract_history": [
     {
-      "sha256": "dbbc4ec22d34276103288ca71660838048dd55668ead84d7599e5dc4e2a31a38",
       "bytes": 20739,
+      "original_paths": [
+        "code/rust/src/category_theory/family_category.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/family_category.rs\",\n    \"sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact: literal strings,standard Rust Unicode uppercase/trim,pure enum flags and ordered data lists;no approximation.\",\n    \"domain\": \"Arbitrary raw family/lifecycle/name-map records,including duplicates,empty labels and unregistered keys.\",\n    \"behavior\": [\n      \"Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.\",\n      \"Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.\",\n      \"Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.\",\n      \"Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.\",\n      \"True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.\",\n      \"Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.\",\n      \"Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.\",\n      \"Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.\",\n      \"Delegate exact id to new with Exists, not an external activation action.\",\n      \"Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry.\",\n      \"Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.\",\n      \"Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.\",\n      \"Borrow exact identifiers of Exists rows in occurrence order, including duplicates.\",\n      \"True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.\",\n      \"Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.\",\n      \"Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.\",\n      \"Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.\",\n      \"Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.\",\n      \"Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.\",\n      \"Borrow exact independent propagation list in order, or empty vector if absent. No execution.\",\n      \"Borrow current raw family.id. Public family mutation intentionally changes future observations.\",\n      \"Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation.\"\n    ],\n    \"capability\": \"L2 structured metadata,parsers and ordered target observations. Historical category/functor labels do not admit mathematical laws or agent references/execution.\"\n  },\n  \"operations\": {\n    \"Constraint::new\": {\n      \"line\": 52,\n      \"signature\": \"pub fn new(id: &str, description: &str, severity: Severity) -> Self\",\n      \"obligation\": \"Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.\"\n    },\n    \"Severity::parse\": {\n      \"line\": 72,\n      \"signature\": \"pub fn parse(s: &str) -> Self\",\n      \"obligation\": \"Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.\"\n    },\n    \"Severity::fmt\": {\n      \"line\": 83,\n      \"signature\": \"fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result\",\n      \"obligation\": \"Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.\"\n    },\n    \"PropagationRule::new\": {\n      \"line\": 110,\n      \"signature\": \"pub fn new(pattern: &str, example: &str, targets: Vec<String>) -> Self\",\n      \"obligation\": \"Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.\"\n    },\n    \"PropagationRule::targets_all\": {\n      \"line\": 119,\n      \"signature\": \"pub fn targets_all(&self) -> bool\",\n      \"obligation\": \"True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.\"\n    },\n    \"MemberStatus::parse\": {\n      \"line\": 143,\n      \"signature\": \"pub fn parse(s: &str) -> Self\",\n      \"obligation\": \"Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.\"\n    },\n    \"MemberStatus::is_active\": {\n      \"line\": 166,\n      \"signature\": \"pub fn is_active(&self) -> bool\",\n      \"obligation\": \"Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.\"\n    },\n    \"FamilyMember::new\": {\n      \"line\": 185,\n      \"signature\": \"pub fn new(string_id: &str, status: MemberStatus) -> Self\",\n      \"obligation\": \"Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.\"\n    },\n    \"FamilyMember::active\": {\n      \"line\": 192,\n      \"signature\": \"pub fn active(string_id: &str) -> Self\",\n      \"obligation\": \"Delegate exact id to new with Exists, not an external activation action.\"\n    },\n    \"collect_targets\": {\n      \"line\": 220,\n      \"signature\": \"fn collect_targets<'a>(\\n    candidates: impl IntoIterator<Item = &'a str>, source: &str,\\n    active: &BTreeSet<&str>, seen: &mut BTreeSet<&'a str>, targets: &mut Vec<String>,\\n)\",\n      \"obligation\": \"Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry.\"\n    },\n    \"StringFamily::new\": {\n      \"line\": 232,\n      \"signature\": \"pub fn new(id: &str, description: &str) -> Self\",\n      \"obligation\": \"Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.\"\n    },\n    \"StringFamily::active_members\": {\n      \"line\": 244,\n      \"signature\": \"pub fn active_members(&self) -> Vec<&FamilyMember>\",\n      \"obligation\": \"Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.\"\n    },\n    \"StringFamily::active_member_ids\": {\n      \"line\": 252,\n      \"signature\": \"pub fn active_member_ids(&self) -> Vec<&str>\",\n      \"obligation\": \"Borrow exact identifiers of Exists rows in occurrence order, including duplicates.\"\n    },\n    \"StringFamily::contains_active\": {\n      \"line\": 261,\n      \"signature\": \"pub fn contains_active(&self, string_id: &str) -> bool\",\n      \"obligation\": \"True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.\"\n    },\n    \"StringFamily::get_propagation_targets\": {\n      \"line\": 268,\n      \"signature\": \"pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>\",\n      \"obligation\": \"Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.\"\n    },\n    \"FamilyFunctor::from_family\": {\n      \"line\": 307,\n      \"signature\": \"pub fn from_family(family: StringFamily) -> Self\",\n      \"obligation\": \"Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.\"\n    },\n    \"FamilyFunctor::map_constraint\": {\n      \"line\": 316,\n      \"signature\": \"pub fn map_constraint(&mut self, constraint_id: &str, string: String)\",\n      \"obligation\": \"Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.\"\n    },\n    \"FamilyFunctor::map_propagation\": {\n      \"line\": 324,\n      \"signature\": \"pub fn map_propagation(&mut self, pattern: &str, string: String)\",\n      \"obligation\": \"Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.\"\n    },\n    \"FamilyFunctor::apply_constraint\": {\n      \"line\": 332,\n      \"signature\": \"pub fn apply_constraint(&self, constraint_id: &str) -> Vec<&String>\",\n      \"obligation\": \"Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.\"\n    },\n    \"FamilyFunctor::apply_propagation\": {\n      \"line\": 340,\n      \"signature\": \"pub fn apply_propagation(&self, pattern: &str) -> Vec<&String>\",\n      \"obligation\": \"Borrow exact independent propagation list in order, or empty vector if absent. No execution.\"\n    },\n    \"FamilyFunctor::id\": {\n      \"line\": 348,\n      \"signature\": \"pub fn id(&self) -> &str\",\n      \"obligation\": \"Borrow current raw family.id. Public family mutation intentionally changes future observations.\"\n    },\n    \"FamilyFunctor::get_propagation_targets\": {\n      \"line\": 353,\n      \"signature\": \"pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>\",\n      \"obligation\": \"Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation.\"\n    }\n  },\n  \"invariants\": [\n    \"All data are raw owned strings, enums, lists and HashMaps. Historical categorical/provenance annotations are explicitly unverified analogies, not a checked category, functor, agent reference or current file/hash receipt. Constructors preserve all supplied metadata; no empty-name, duplicate-ID or family-map consistency admission is promised.\",\n    \"Parser semantics are exact standard Rust string operations. Severity uppercases Unicode and does not trim, then uses three exact labels with Low fallback. Status trims outer Unicode whitespace but remains case-sensitive; specialized deprecation prefix precedes general prefix. Remaining target text is copied without a second trim. Unicode/NUL/spacing and prefix-only fallbacks are explicitly pinned in native cases. No numeric casts or approximate matching.\",\n    \"Only Exists rows contribute active occurrences. An identifier may occur in several lifecycle states; any Exists occurrence makes source/membership active, while active lists preserve exactly those rows and their order. Borrowed sets use the same literal str equality as the old owned String scans. They do not normalize, sort output, or collapse the active occurrence list.\",\n    \"Target accumulation invariant:seen contains exactly previously emitted names, each emitted once and active, never the source. Candidate order is rule order then wildcard active-member order or explicit target order. A wildcard is triggered by any exact All members item and overrides explicit targets in that rule. Passing a fresh eligible candidate appends one owned output copy; rejection leaves prefix and seen unchanged. By induction, final output is the stable first eligible union. Private standard iterator clones no records and borrowed names remain valid for the immutable family borrow.\",\n    \"Old and new propagation observations coincide for every raw family/query:source gate unchanged;active occurrences unchanged;old linear membership/dedup and new borrowed sets implement identical predicates;both append at the same first eligible encounter. Only transient active String clones and repeated linear scans disappear. The frozen old method is secondary evidence;an independent direct status/sentinel/member oracle checks the contract.\",\n    \"Runtime maps are separate raw key-list stores. Registration moves one input String and appends without deduplication. Queries borrow original stored entries, not lookalike copies. Unknown keys are valid raw registrations;unknown queries are empty. HashMap iteration order is not exposed because only exact-key lookup and Vec order are observed. Public metadata can change between calls;no persistent context certificate is claimed.\",\n    \"The matches! site in is_active expands to one pure match with Exists=true and wildcard=false. Its expanded source branch bound remains below A ceilings;the calibrated tool records the macro as opaque and does not certify MIR. All statuses are independently exercised. Other derives and formatting are standard String/enum/Vec operations. There is no source indexing, arithmetic, unsafe, recursion or unchecked unwrap.\",\n    \"Lean proves raw eligible append/rejection/prefix and sequential collection laws, inactive-source/empty behavior, and exact key-list registration order. It does not prove Rust Unicode implementation, a category/functor law, agent execution or provenance. Rust parser, borrowing/set/order and metadata field refinement is reviewed separately and tested against exact native cases.\"\n  ],\n  \"failure_paths\": {\n    \"Constraint::new\": \"Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.\",\n    \"Severity::parse\": \"Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.\",\n    \"Severity::fmt\": \"Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.\",\n    \"PropagationRule::new\": \"Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.\",\n    \"PropagationRule::targets_all\": \"True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.\",\n    \"MemberStatus::parse\": \"Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.\",\n    \"MemberStatus::is_active\": \"Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.\",\n    \"FamilyMember::new\": \"Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.\",\n    \"FamilyMember::active\": \"Delegate exact id to new with Exists, not an external activation action.\",\n    \"collect_targets\": \"Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry.\",\n    \"StringFamily::new\": \"Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.\",\n    \"StringFamily::active_members\": \"Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.\",\n    \"StringFamily::active_member_ids\": \"Borrow exact identifiers of Exists rows in occurrence order, including duplicates.\",\n    \"StringFamily::contains_active\": \"True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.\",\n    \"StringFamily::get_propagation_targets\": \"Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.\",\n    \"FamilyFunctor::from_family\": \"Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.\",\n    \"FamilyFunctor::map_constraint\": \"Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.\",\n    \"FamilyFunctor::map_propagation\": \"Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.\",\n    \"FamilyFunctor::apply_constraint\": \"Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.\",\n    \"FamilyFunctor::apply_propagation\": \"Borrow exact independent propagation list in order, or empty vector if absent. No execution.\",\n    \"FamilyFunctor::id\": \"Borrow current raw family.id. Public family mutation intentionally changes future observations.\",\n    \"FamilyFunctor::get_propagation_targets\": \"Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation.\"\n  },\n  \"trust_boundary\": \"Rust compiler/std Unicode/string/format/HashMap/Set/Vec value and allocation semantics,private concrete iterators,Lean/Mathlib foundations. No categorical/agent/provenance authority,MIR/extraction,total byte/runtime guarantee or persistent mutable-context certificate.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffect None.\",\n    \"Raw true/active/lifecycle/map labels are data;no category/functor/constraint law or action execution is checked.\",\n    \"Retained YAML path/hash are unverified annotations,not current provenance.\",\n    \"Unicode/parser and borrowed-set source refinement separate from raw list-model proof;no extracted Rust theorem.\",\n    \"Finite generated corpus/designated faults not every possible metadata/fault;no whole-workspace green or allocator totality.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/family_category.score.yaml\",\n      \"sha256\": \"edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/family_category.rs",
-          "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c",
-          "language": "Rust"
+          "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "Contracts pending;AuthorityEffect None.",
+          "Raw true/active/lifecycle/map labels are data;no category/functor/constraint law or action execution is checked.",
+          "Retained YAML path/hash are unverified annotations,not current provenance.",
+          "Unicode/parser and borrowed-set source refinement separate from raw list-model proof;no extracted Rust theorem.",
+          "Finite generated corpus/designated faults not every possible metadata/fault;no whole-workspace green or allocator totality."
+        ],
+        "failure_paths": {
+          "Constraint::new": "Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.",
+          "FamilyFunctor::apply_constraint": "Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.",
+          "FamilyFunctor::apply_propagation": "Borrow exact independent propagation list in order, or empty vector if absent. No execution.",
+          "FamilyFunctor::from_family": "Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.",
+          "FamilyFunctor::get_propagation_targets": "Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation.",
+          "FamilyFunctor::id": "Borrow current raw family.id. Public family mutation intentionally changes future observations.",
+          "FamilyFunctor::map_constraint": "Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.",
+          "FamilyFunctor::map_propagation": "Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.",
+          "FamilyMember::active": "Delegate exact id to new with Exists, not an external activation action.",
+          "FamilyMember::new": "Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.",
+          "MemberStatus::is_active": "Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.",
+          "MemberStatus::parse": "Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.",
+          "PropagationRule::new": "Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.",
+          "PropagationRule::targets_all": "True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.",
+          "Severity::fmt": "Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.",
+          "Severity::parse": "Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.",
+          "StringFamily::active_member_ids": "Borrow exact identifiers of Exists rows in occurrence order, including duplicates.",
+          "StringFamily::active_members": "Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.",
+          "StringFamily::contains_active": "True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.",
+          "StringFamily::get_propagation_targets": "Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.",
+          "StringFamily::new": "Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.",
+          "collect_targets": "Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry."
+        },
         "formal_specification": {
-          "profile": "Exact: literal strings,standard Rust Unicode uppercase/trim,pure enum flags and ordered data lists;no approximation.",
-          "domain": "Arbitrary raw family/lifecycle/name-map records,including duplicates,empty labels and unregistered keys.",
           "behavior": [
             "Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.",
             "Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.",
@@ -244,119 +108,9 @@
             "Borrow current raw family.id. Public family mutation intentionally changes future observations.",
             "Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation."
           ],
-          "capability": "L2 structured metadata,parsers and ordered target observations. Historical category/functor labels do not admit mathematical laws or agent references/execution."
-        },
-        "operations": {
-          "Constraint::new": {
-            "line": 52,
-            "signature": "pub fn new(id: &str, description: &str, severity: Severity) -> Self",
-            "obligation": "Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked."
-          },
-          "Severity::parse": {
-            "line": 72,
-            "signature": "pub fn parse(s: &str) -> Self",
-            "obligation": "Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized."
-          },
-          "Severity::fmt": {
-            "line": 83,
-            "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
-            "obligation": "Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low."
-          },
-          "PropagationRule::new": {
-            "line": 110,
-            "signature": "pub fn new(pattern: &str, example: &str, targets: Vec<String>) -> Self",
-            "obligation": "Store exact pattern/example and move target list unchanged, including duplicates and reserved labels."
-          },
-          "PropagationRule::targets_all": {
-            "line": 119,
-            "signature": "pub fn targets_all(&self) -> bool",
-            "obligation": "True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization."
-          },
-          "MemberStatus::parse": {
-            "line": 143,
-            "signature": "pub fn parse(s: &str) -> Self",
-            "obligation": "Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback."
-          },
-          "MemberStatus::is_active": {
-            "line": 166,
-            "signature": "pub fn is_active(&self) -> bool",
-            "obligation": "Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label."
-          },
-          "FamilyMember::new": {
-            "line": 185,
-            "signature": "pub fn new(string_id: &str, status: MemberStatus) -> Self",
-            "obligation": "Store exact String identifier and supplied lifecycle enum; no uniqueness/admission."
-          },
-          "FamilyMember::active": {
-            "line": 192,
-            "signature": "pub fn active(string_id: &str) -> Self",
-            "obligation": "Delegate exact id to new with Exists, not an external activation action."
-          },
-          "collect_targets": {
-            "line": 220,
-            "signature": "fn collect_targets<'a>(\n    candidates: impl IntoIterator<Item = &'a str>, source: &str,\n    active: &BTreeSet<&str>, seen: &mut BTreeSet<&'a str>, targets: &mut Vec<String>,\n)",
-            "obligation": "Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry."
-          },
-          "StringFamily::new": {
-            "line": 232,
-            "signature": "pub fn new(id: &str, description: &str) -> Self",
-            "obligation": "Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate."
-          },
-          "StringFamily::active_members": {
-            "line": 244,
-            "signature": "pub fn active_members(&self) -> Vec<&FamilyMember>",
-            "obligation": "Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies."
-          },
-          "StringFamily::active_member_ids": {
-            "line": 252,
-            "signature": "pub fn active_member_ids(&self) -> Vec<&str>",
-            "obligation": "Borrow exact identifiers of Exists rows in occurrence order, including duplicates."
-          },
-          "StringFamily::contains_active": {
-            "line": 261,
-            "signature": "pub fn contains_active(&self, string_id: &str) -> bool",
-            "obligation": "True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence."
-          },
-          "StringFamily::get_propagation_targets": {
-            "line": 268,
-            "signature": "pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>",
-            "obligation": "Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs."
-          },
-          "FamilyFunctor::from_family": {
-            "line": 307,
-            "signature": "pub fn from_family(family: StringFamily) -> Self",
-            "obligation": "Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission."
-          },
-          "FamilyFunctor::map_constraint": {
-            "line": 316,
-            "signature": "pub fn map_constraint(&mut self, constraint_id: &str, string: String)",
-            "obligation": "Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints."
-          },
-          "FamilyFunctor::map_propagation": {
-            "line": 324,
-            "signature": "pub fn map_propagation(&mut self, pattern: &str, string: String)",
-            "obligation": "Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed."
-          },
-          "FamilyFunctor::apply_constraint": {
-            "line": 332,
-            "signature": "pub fn apply_constraint(&self, constraint_id: &str) -> Vec<&String>",
-            "obligation": "Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking."
-          },
-          "FamilyFunctor::apply_propagation": {
-            "line": 340,
-            "signature": "pub fn apply_propagation(&self, pattern: &str) -> Vec<&String>",
-            "obligation": "Borrow exact independent propagation list in order, or empty vector if absent. No execution."
-          },
-          "FamilyFunctor::id": {
-            "line": 348,
-            "signature": "pub fn id(&self) -> &str",
-            "obligation": "Borrow current raw family.id. Public family mutation intentionally changes future observations."
-          },
-          "FamilyFunctor::get_propagation_targets": {
-            "line": 353,
-            "signature": "pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>",
-            "obligation": "Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation."
-          }
+          "capability": "L2 structured metadata,parsers and ordered target observations. Historical category/functor labels do not admit mathematical laws or agent references/execution.",
+          "domain": "Arbitrary raw family/lifecycle/name-map records,including duplicates,empty labels and unregistered keys.",
+          "profile": "Exact: literal strings,standard Rust Unicode uppercase/trim,pure enum flags and ordered data lists;no approximation."
         },
         "invariants": [
           "All data are raw owned strings, enums, lists and HashMaps. Historical categorical/provenance annotations are explicitly unverified analogies, not a checked category, functor, agent reference or current file/hash receipt. Constructors preserve all supplied metadata; no empty-name, duplicate-ID or family-map consistency admission is promised.",
@@ -368,31 +122,201 @@
           "The matches! site in is_active expands to one pure match with Exists=true and wildcard=false. Its expanded source branch bound remains below A ceilings;the calibrated tool records the macro as opaque and does not certify MIR. All statuses are independently exercised. Other derives and formatting are standard String/enum/Vec operations. There is no source indexing, arithmetic, unsafe, recursion or unchecked unwrap.",
           "Lean proves raw eligible append/rejection/prefix and sequential collection laws, inactive-source/empty behavior, and exact key-list registration order. It does not prove Rust Unicode implementation, a category/functor law, agent execution or provenance. Rust parser, borrowing/set/order and metadata field refinement is reviewed separately and tested against exact native cases."
         ],
-        "failure_paths": {
-          "Constraint::new": "Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.",
-          "Severity::parse": "Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.",
-          "Severity::fmt": "Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.",
-          "PropagationRule::new": "Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.",
-          "PropagationRule::targets_all": "True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.",
-          "MemberStatus::parse": "Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.",
-          "MemberStatus::is_active": "Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.",
-          "FamilyMember::new": "Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.",
-          "FamilyMember::active": "Delegate exact id to new with Exists, not an external activation action.",
-          "collect_targets": "Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry.",
-          "StringFamily::new": "Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.",
-          "StringFamily::active_members": "Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.",
-          "StringFamily::active_member_ids": "Borrow exact identifiers of Exists rows in occurrence order, including duplicates.",
-          "StringFamily::contains_active": "True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.",
-          "StringFamily::get_propagation_targets": "Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.",
-          "FamilyFunctor::from_family": "Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.",
-          "FamilyFunctor::map_constraint": "Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.",
-          "FamilyFunctor::map_propagation": "Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.",
-          "FamilyFunctor::apply_constraint": "Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.",
-          "FamilyFunctor::apply_propagation": "Borrow exact independent propagation list in order, or empty vector if absent. No execution.",
-          "FamilyFunctor::id": "Borrow current raw family.id. Public family mutation intentionally changes future observations.",
-          "FamilyFunctor::get_propagation_targets": "Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation."
+        "open_obligations": [],
+        "operations": {
+          "Constraint::new": {
+            "line": 52,
+            "obligation": "Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.",
+            "signature": "pub fn new(id: &str, description: &str, severity: Severity) -> Self"
+          },
+          "FamilyFunctor::apply_constraint": {
+            "line": 332,
+            "obligation": "Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.",
+            "signature": "pub fn apply_constraint(&self, constraint_id: &str) -> Vec<&String>"
+          },
+          "FamilyFunctor::apply_propagation": {
+            "line": 340,
+            "obligation": "Borrow exact independent propagation list in order, or empty vector if absent. No execution.",
+            "signature": "pub fn apply_propagation(&self, pattern: &str) -> Vec<&String>"
+          },
+          "FamilyFunctor::from_family": {
+            "line": 307,
+            "obligation": "Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.",
+            "signature": "pub fn from_family(family: StringFamily) -> Self"
+          },
+          "FamilyFunctor::get_propagation_targets": {
+            "line": 353,
+            "obligation": "Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation.",
+            "signature": "pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>"
+          },
+          "FamilyFunctor::id": {
+            "line": 348,
+            "obligation": "Borrow current raw family.id. Public family mutation intentionally changes future observations.",
+            "signature": "pub fn id(&self) -> &str"
+          },
+          "FamilyFunctor::map_constraint": {
+            "line": 316,
+            "obligation": "Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.",
+            "signature": "pub fn map_constraint(&mut self, constraint_id: &str, string: String)"
+          },
+          "FamilyFunctor::map_propagation": {
+            "line": 324,
+            "obligation": "Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.",
+            "signature": "pub fn map_propagation(&mut self, pattern: &str, string: String)"
+          },
+          "FamilyMember::active": {
+            "line": 192,
+            "obligation": "Delegate exact id to new with Exists, not an external activation action.",
+            "signature": "pub fn active(string_id: &str) -> Self"
+          },
+          "FamilyMember::new": {
+            "line": 185,
+            "obligation": "Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.",
+            "signature": "pub fn new(string_id: &str, status: MemberStatus) -> Self"
+          },
+          "MemberStatus::is_active": {
+            "line": 166,
+            "obligation": "Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.",
+            "signature": "pub fn is_active(&self) -> bool"
+          },
+          "MemberStatus::parse": {
+            "line": 143,
+            "obligation": "Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.",
+            "signature": "pub fn parse(s: &str) -> Self"
+          },
+          "PropagationRule::new": {
+            "line": 110,
+            "obligation": "Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.",
+            "signature": "pub fn new(pattern: &str, example: &str, targets: Vec<String>) -> Self"
+          },
+          "PropagationRule::targets_all": {
+            "line": 119,
+            "obligation": "True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.",
+            "signature": "pub fn targets_all(&self) -> bool"
+          },
+          "Severity::fmt": {
+            "line": 83,
+            "obligation": "Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.",
+            "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result"
+          },
+          "Severity::parse": {
+            "line": 72,
+            "obligation": "Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.",
+            "signature": "pub fn parse(s: &str) -> Self"
+          },
+          "StringFamily::active_member_ids": {
+            "line": 252,
+            "obligation": "Borrow exact identifiers of Exists rows in occurrence order, including duplicates.",
+            "signature": "pub fn active_member_ids(&self) -> Vec<&str>"
+          },
+          "StringFamily::active_members": {
+            "line": 244,
+            "obligation": "Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.",
+            "signature": "pub fn active_members(&self) -> Vec<&FamilyMember>"
+          },
+          "StringFamily::contains_active": {
+            "line": 261,
+            "obligation": "True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.",
+            "signature": "pub fn contains_active(&self, string_id: &str) -> bool"
+          },
+          "StringFamily::get_propagation_targets": {
+            "line": 268,
+            "obligation": "Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.",
+            "signature": "pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>"
+          },
+          "StringFamily::new": {
+            "line": 232,
+            "obligation": "Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.",
+            "signature": "pub fn new(id: &str, description: &str) -> Self"
+          },
+          "collect_targets": {
+            "line": 220,
+            "obligation": "Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry.",
+            "signature": "fn collect_targets<'a>(\n    candidates: impl IntoIterator<Item = &'a str>, source: &str,\n    active: &BTreeSet<&str>, seen: &mut BTreeSet<&'a str>, targets: &mut Vec<String>,\n)"
+          }
         },
-        "trust_boundary": "Rust compiler/std Unicode/string/format/HashMap/Set/Vec value and allocation semantics,private concrete iterators,Lean/Mathlib foundations. No categorical/agent/provenance authority,MIR/extraction,total byte/runtime guarantee or persistent mutable-context certificate.",
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/family_category.score.yaml",
+            "sha256": "edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba"
+          }
+        ],
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": "Rust compiler/std Unicode/string/format/HashMap/Set/Vec value and allocation semantics,private concrete iterators,Lean/Mathlib foundations. No categorical/agent/provenance authority,MIR/extraction,total byte/runtime guarantee or persistent mutable-context certificate."
+      },
+      "sha256": "dbbc4ec22d34276103288ca71660838048dd55668ead84d7599e5dc4e2a31a38"
+    },
+    {
+      "bytes": 1623,
+      "original_paths": [
+        "code/rust/src/category_theory/family_category.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/family_category.rs\",\n    \"sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/family_category.rs\",\n      \"sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\",\n  \"subject\": \"code/rust/src/category_theory/family_category.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/family_category.rs",
+          "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/family_category.rs",
+            "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c",
+        "subject": "code/rust/src/category_theory/family_category.rs"
+      },
+      "sha256": "a869b293dae09fd939cf95aaa02a7c51b90565da011b8d3c3b2b24aaa21152ca"
+    }
+  ],
+  "current_contract": "a869b293dae09fd939cf95aaa02a7c51b90565da011b8d3c3b2b24aaa21152ca",
+  "current_scoring": "ef16708d85b295114d794396d915b8170b06554840016d7e827abee0af3940c8",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/family_category.rs.contract.yaml": "dbbc4ec22d34276103288ca71660838048dd55668ead84d7599e5dc4e2a31a38",
+    "code/rust/src/category_theory/family_category.rs.scoring.yaml": "6aebe5df833207c677485693d9522edd18e1064ac76acc8adba63ce599353788",
+    "code/rust/src/category_theory/family_category.score.yaml": "edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba",
+    "evidence/quality/category_homology/resume-20261019/family-previous/family_category.score.yaml": "aa1f32aa6f740d401caecfc217b901ae19e4234b80a29911b69b31dc0f962db7"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 5740,
+      "original_paths": [
+        "code/rust/src/category_theory/family_category.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/family_category.rs\"\n  language: \"Rust\"\n  sha256: \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\"\nprofile: \"Exact\"\nlevel: \"L2\"\nlevel_basis: \"Family/lifecycle records,literal parsing and ordered propagation/name-list observations;historical category/functor labels do not admit mathematical laws or agent references.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T22:12:00.026832+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:family_category\"\n  description: \"Family registry metadata, literal lifecycle parsing and ordered propagation targets. Historical category/functor terms below are descriptive record labels;no category or functor laws are checked and no AgentFunctor reference is stored. The retained YAML path/hash are unverified source annotations,not current verified provenance. AuthorityEffect: None.  --- yaml title: family_category file_name: family_category.rs file_location: ~/anomalon/anomalon_kernel/omega_core/src/ascent/lambdas/l161/family_category.rs lambda: L161 tower_address: ascent/lambdas/l161/family_category.rs status: Coal invariance_level: Tier 3 logic_system: Subobject Classifier (Omega) substrate: Rust content_hash: 3bd1bb3c1a239f3af00a393e1f69a3aa5e995a99aed068eb337783e61c842448 version: 1 ---  # Historical family/category terminology  Agent families are functors `F: Constraint -> String`. Strings are morphisms `String -> String`. Meta-Strings (autoString, cartographer, review-Strings) are natural transformations `eta: F => G` between family functors.  The runtime implementation stores String records and name-indexed lists. The following categorical analogies are not admitted mathematical structures.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T220912Z/baseline.json\", \"sha256\": \"b71df552db3826ef4f80982d346163e5d2901e18db0c45a236dca03eb38b2cc0\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T220912Z/summary.json\", \"sha256\": \"98a482fc25246c6e2870c118bb8e7e686e1cf30d085ac83788d77248efc84707\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T220912Z/mutations.json\", \"sha256\": \"46221fb7d4cf5ae27f5639c97e9e0b17ae16117c6e8f922bdc01a458b66c256c\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T220823Z-metrics/receipt.json\", \"sha256\": \"e5e81a1c7d09de1edf14a79d9baba800ee2190b424f5434fb7661efed3998b72\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T220912Z/dependency_receipt.json\", \"sha256\": \"bb4682800f3779bc2fdb3d510c2148d6be089f28e3e94f0730cb0f6253f6a079\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/family_category.json\", \"sha256\": \"91f588c4b5d703cc03f0da9dbd4bef44a6156bd441df00aae1d882b777734bd5\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 26\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 444\n  parsed_production_functions: 22\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 10\n  control_nesting: 2\n  opaque_function_macros:\n    - {\"function\": \"is_active\", \"macros\": [\"matches:167\"]}\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffect None.\"\n  - \"Raw true/active/lifecycle/map labels are data;no category/functor/constraint law or action execution is checked.\"\n  - \"Retained YAML path/hash are unverified annotations,not current provenance.\"\n  - \"Unicode/parser and borrowed-set source refinement separate from raw list-model proof;no extracted Rust theorem.\"\n  - \"Finite generated corpus/designated faults not every possible metadata/fault;no whole-workspace green or allocator totality.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/family_category.rs",
+          "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
+        },
         "assurance_limits": [
           "Contracts pending;AuthorityEffect None.",
           "Raw true/active/lifecycle/map labels are data;no category/functor/constraint law or action execution is checked.",
@@ -400,36 +324,51 @@
           "Unicode/parser and borrowed-set source refinement separate from raw list-model proof;no extracted Rust theorem.",
           "Finite generated corpus/designated faults not every possible metadata/fault;no whole-workspace green or allocator totality."
         ],
-        "review_evidence": [
+        "claim": {
+          "description": "Family registry metadata, literal lifecycle parsing and ordered propagation targets. Historical category/functor terms below are descriptive record labels;no category or functor laws are checked and no AgentFunctor reference is stored. The retained YAML path/hash are unverified source annotations,not current verified provenance. AuthorityEffect: None.  --- yaml title: family_category file_name: family_category.rs file_location: ~/anomalon/anomalon_kernel/omega_core/src/ascent/lambdas/l161/family_category.rs lambda: L161 tower_address: ascent/lambdas/l161/family_category.rs status: Coal invariance_level: Tier 3 logic_system: Subobject Classifier (Omega) substrate: Rust content_hash: 3bd1bb3c1a239f3af00a393e1f69a3aa5e995a99aed068eb337783e61c842448 version: 1 ---  # Historical family/category terminology  Agent families are functors `F: Constraint -> String`. Strings are morphisms `String -> String`. Meta-Strings (autoString, cartographer, review-Strings) are natural transformations `eta: F => G` between family functors.  The runtime implementation stores String records and name-indexed lists. The following categorical analogies are not admitted mathematical structures.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:family_category"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T22:12:00.026832+00:00",
+        "evidence": [
           {
-            "path": "code/rust/src/category_theory/family_category.score.yaml",
-            "sha256": "edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba"
+            "path": "evidence/quality/category_homology/20261019T220912Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "b71df552db3826ef4f80982d346163e5d2901e18db0c45a236dca03eb38b2cc0"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T220912Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "98a482fc25246c6e2870c118bb8e7e686e1cf30d085ac83788d77248efc84707"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T220912Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "46221fb7d4cf5ae27f5639c97e9e0b17ae16117c6e8f922bdc01a458b66c256c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T220823Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "e5e81a1c7d09de1edf14a79d9baba800ee2190b424f5434fb7661efed3998b72"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T220912Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "bb4682800f3779bc2fdb3d510c2148d6be089f28e3e94f0730cb0f6253f6a079"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/family_category.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "91f588c4b5d703cc03f0da9dbd4bef44a6156bd441df00aae1d882b777734bd5"
           }
         ],
-        "open_obligations": []
-      },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/family_category.rs\",\n    \"sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact: literal strings,standard Rust Unicode uppercase/trim,pure enum flags and ordered data lists;no approximation.\",\n    \"domain\": \"Arbitrary raw family/lifecycle/name-map records,including duplicates,empty labels and unregistered keys.\",\n    \"behavior\": [\n      \"Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.\",\n      \"Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.\",\n      \"Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.\",\n      \"Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.\",\n      \"True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.\",\n      \"Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.\",\n      \"Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.\",\n      \"Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.\",\n      \"Delegate exact id to new with Exists, not an external activation action.\",\n      \"Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry.\",\n      \"Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.\",\n      \"Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.\",\n      \"Borrow exact identifiers of Exists rows in occurrence order, including duplicates.\",\n      \"True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.\",\n      \"Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.\",\n      \"Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.\",\n      \"Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.\",\n      \"Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.\",\n      \"Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.\",\n      \"Borrow exact independent propagation list in order, or empty vector if absent. No execution.\",\n      \"Borrow current raw family.id. Public family mutation intentionally changes future observations.\",\n      \"Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation.\"\n    ],\n    \"capability\": \"L2 structured metadata,parsers and ordered target observations. Historical category/functor labels do not admit mathematical laws or agent references/execution.\"\n  },\n  \"operations\": {\n    \"Constraint::new\": {\n      \"line\": 52,\n      \"signature\": \"pub fn new(id: &str, description: &str, severity: Severity) -> Self\",\n      \"obligation\": \"Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.\"\n    },\n    \"Severity::parse\": {\n      \"line\": 72,\n      \"signature\": \"pub fn parse(s: &str) -> Self\",\n      \"obligation\": \"Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.\"\n    },\n    \"Severity::fmt\": {\n      \"line\": 83,\n      \"signature\": \"fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result\",\n      \"obligation\": \"Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.\"\n    },\n    \"PropagationRule::new\": {\n      \"line\": 110,\n      \"signature\": \"pub fn new(pattern: &str, example: &str, targets: Vec<String>) -> Self\",\n      \"obligation\": \"Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.\"\n    },\n    \"PropagationRule::targets_all\": {\n      \"line\": 119,\n      \"signature\": \"pub fn targets_all(&self) -> bool\",\n      \"obligation\": \"True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.\"\n    },\n    \"MemberStatus::parse\": {\n      \"line\": 143,\n      \"signature\": \"pub fn parse(s: &str) -> Self\",\n      \"obligation\": \"Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.\"\n    },\n    \"MemberStatus::is_active\": {\n      \"line\": 166,\n      \"signature\": \"pub fn is_active(&self) -> bool\",\n      \"obligation\": \"Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.\"\n    },\n    \"FamilyMember::new\": {\n      \"line\": 185,\n      \"signature\": \"pub fn new(string_id: &str, status: MemberStatus) -> Self\",\n      \"obligation\": \"Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.\"\n    },\n    \"FamilyMember::active\": {\n      \"line\": 192,\n      \"signature\": \"pub fn active(string_id: &str) -> Self\",\n      \"obligation\": \"Delegate exact id to new with Exists, not an external activation action.\"\n    },\n    \"collect_targets\": {\n      \"line\": 220,\n      \"signature\": \"fn collect_targets<'a>(\\n    candidates: impl IntoIterator<Item = &'a str>, source: &str,\\n    active: &BTreeSet<&str>, seen: &mut BTreeSet<&'a str>, targets: &mut Vec<String>,\\n)\",\n      \"obligation\": \"Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry.\"\n    },\n    \"StringFamily::new\": {\n      \"line\": 232,\n      \"signature\": \"pub fn new(id: &str, description: &str) -> Self\",\n      \"obligation\": \"Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.\"\n    },\n    \"StringFamily::active_members\": {\n      \"line\": 244,\n      \"signature\": \"pub fn active_members(&self) -> Vec<&FamilyMember>\",\n      \"obligation\": \"Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.\"\n    },\n    \"StringFamily::active_member_ids\": {\n      \"line\": 252,\n      \"signature\": \"pub fn active_member_ids(&self) -> Vec<&str>\",\n      \"obligation\": \"Borrow exact identifiers of Exists rows in occurrence order, including duplicates.\"\n    },\n    \"StringFamily::contains_active\": {\n      \"line\": 261,\n      \"signature\": \"pub fn contains_active(&self, string_id: &str) -> bool\",\n      \"obligation\": \"True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.\"\n    },\n    \"StringFamily::get_propagation_targets\": {\n      \"line\": 268,\n      \"signature\": \"pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>\",\n      \"obligation\": \"Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.\"\n    },\n    \"FamilyFunctor::from_family\": {\n      \"line\": 307,\n      \"signature\": \"pub fn from_family(family: StringFamily) -> Self\",\n      \"obligation\": \"Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.\"\n    },\n    \"FamilyFunctor::map_constraint\": {\n      \"line\": 316,\n      \"signature\": \"pub fn map_constraint(&mut self, constraint_id: &str, string: String)\",\n      \"obligation\": \"Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.\"\n    },\n    \"FamilyFunctor::map_propagation\": {\n      \"line\": 324,\n      \"signature\": \"pub fn map_propagation(&mut self, pattern: &str, string: String)\",\n      \"obligation\": \"Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.\"\n    },\n    \"FamilyFunctor::apply_constraint\": {\n      \"line\": 332,\n      \"signature\": \"pub fn apply_constraint(&self, constraint_id: &str) -> Vec<&String>\",\n      \"obligation\": \"Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.\"\n    },\n    \"FamilyFunctor::apply_propagation\": {\n      \"line\": 340,\n      \"signature\": \"pub fn apply_propagation(&self, pattern: &str) -> Vec<&String>\",\n      \"obligation\": \"Borrow exact independent propagation list in order, or empty vector if absent. No execution.\"\n    },\n    \"FamilyFunctor::id\": {\n      \"line\": 348,\n      \"signature\": \"pub fn id(&self) -> &str\",\n      \"obligation\": \"Borrow current raw family.id. Public family mutation intentionally changes future observations.\"\n    },\n    \"FamilyFunctor::get_propagation_targets\": {\n      \"line\": 353,\n      \"signature\": \"pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>\",\n      \"obligation\": \"Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation.\"\n    }\n  },\n  \"invariants\": [\n    \"All data are raw owned strings, enums, lists and HashMaps. Historical categorical/provenance annotations are explicitly unverified analogies, not a checked category, functor, agent reference or current file/hash receipt. Constructors preserve all supplied metadata; no empty-name, duplicate-ID or family-map consistency admission is promised.\",\n    \"Parser semantics are exact standard Rust string operations. Severity uppercases Unicode and does not trim, then uses three exact labels with Low fallback. Status trims outer Unicode whitespace but remains case-sensitive; specialized deprecation prefix precedes general prefix. Remaining target text is copied without a second trim. Unicode/NUL/spacing and prefix-only fallbacks are explicitly pinned in native cases. No numeric casts or approximate matching.\",\n    \"Only Exists rows contribute active occurrences. An identifier may occur in several lifecycle states; any Exists occurrence makes source/membership active, while active lists preserve exactly those rows and their order. Borrowed sets use the same literal str equality as the old owned String scans. They do not normalize, sort output, or collapse the active occurrence list.\",\n    \"Target accumulation invariant:seen contains exactly previously emitted names, each emitted once and active, never the source. Candidate order is rule order then wildcard active-member order or explicit target order. A wildcard is triggered by any exact All members item and overrides explicit targets in that rule. Passing a fresh eligible candidate appends one owned output copy; rejection leaves prefix and seen unchanged. By induction, final output is the stable first eligible union. Private standard iterator clones no records and borrowed names remain valid for the immutable family borrow.\",\n    \"Old and new propagation observations coincide for every raw family/query:source gate unchanged;active occurrences unchanged;old linear membership/dedup and new borrowed sets implement identical predicates;both append at the same first eligible encounter. Only transient active String clones and repeated linear scans disappear. The frozen old method is secondary evidence;an independent direct status/sentinel/member oracle checks the contract.\",\n    \"Runtime maps are separate raw key-list stores. Registration moves one input String and appends without deduplication. Queries borrow original stored entries, not lookalike copies. Unknown keys are valid raw registrations;unknown queries are empty. HashMap iteration order is not exposed because only exact-key lookup and Vec order are observed. Public metadata can change between calls;no persistent context certificate is claimed.\",\n    \"The matches! site in is_active expands to one pure match with Exists=true and wildcard=false. Its expanded source branch bound remains below A ceilings;the calibrated tool records the macro as opaque and does not certify MIR. All statuses are independently exercised. Other derives and formatting are standard String/enum/Vec operations. There is no source indexing, arithmetic, unsafe, recursion or unchecked unwrap.\",\n    \"Lean proves raw eligible append/rejection/prefix and sequential collection laws, inactive-source/empty behavior, and exact key-list registration order. It does not prove Rust Unicode implementation, a category/functor law, agent execution or provenance. Rust parser, borrowing/set/order and metadata field refinement is reviewed separately and tested against exact native cases.\"\n  ],\n  \"failure_paths\": {\n    \"Constraint::new\": \"Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked.\",\n    \"Severity::parse\": \"Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized.\",\n    \"Severity::fmt\": \"Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low.\",\n    \"PropagationRule::new\": \"Store exact pattern/example and move target list unchanged, including duplicates and reserved labels.\",\n    \"PropagationRule::targets_all\": \"True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization.\",\n    \"MemberStatus::parse\": \"Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback.\",\n    \"MemberStatus::is_active\": \"Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label.\",\n    \"FamilyMember::new\": \"Store exact String identifier and supplied lifecycle enum; no uniqueness/admission.\",\n    \"FamilyMember::active\": \"Delegate exact id to new with Exists, not an external activation action.\",\n    \"collect_targets\": \"Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry.\",\n    \"StringFamily::new\": \"Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate.\",\n    \"StringFamily::active_members\": \"Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies.\",\n    \"StringFamily::active_member_ids\": \"Borrow exact identifiers of Exists rows in occurrence order, including duplicates.\",\n    \"StringFamily::contains_active\": \"True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence.\",\n    \"StringFamily::get_propagation_targets\": \"Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs.\",\n    \"FamilyFunctor::from_family\": \"Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission.\",\n    \"FamilyFunctor::map_constraint\": \"Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints.\",\n    \"FamilyFunctor::map_propagation\": \"Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed.\",\n    \"FamilyFunctor::apply_constraint\": \"Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking.\",\n    \"FamilyFunctor::apply_propagation\": \"Borrow exact independent propagation list in order, or empty vector if absent. No execution.\",\n    \"FamilyFunctor::id\": \"Borrow current raw family.id. Public family mutation intentionally changes future observations.\",\n    \"FamilyFunctor::get_propagation_targets\": \"Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation.\"\n  },\n  \"trust_boundary\": \"Rust compiler/std Unicode/string/format/HashMap/Set/Vec value and allocation semantics,private concrete iterators,Lean/Mathlib foundations. No categorical/agent/provenance authority,MIR/extraction,total byte/runtime guarantee or persistent mutable-context certificate.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffect None.\",\n    \"Raw true/active/lifecycle/map labels are data;no category/functor/constraint law or action execution is checked.\",\n    \"Retained YAML path/hash are unverified annotations,not current provenance.\",\n    \"Unicode/parser and borrowed-set source refinement separate from raw list-model proof;no extracted Rust theorem.\",\n    \"Finite generated corpus/designated faults not every possible metadata/fault;no whole-workspace green or allocator totality.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/family_category.score.yaml\",\n      \"sha256\": \"edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/family_category.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba",
-      "bytes": 5740,
-      "record": {
-        "schema_version": "2.0.0",
-        "artifact": {
-          "path": "code/rust/src/category_theory/family_category.rs",
-          "language": "Rust",
-          "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
-        },
-        "profile": "Exact",
-        "level": "L2",
-        "level_basis": "Family/lifecycle records,literal parsing and ordered propagation/name-list observations;historical category/functor labels do not admit mathematical laws or agent references.",
-        "architecture_target": "L5",
-        "engineering_target": "A",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -437,58 +376,47 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T22:12:00.026832+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:family_category",
-          "description": "Family registry metadata, literal lifecycle parsing and ordered propagation targets. Historical category/functor terms below are descriptive record labels;no category or functor laws are checked and no AgentFunctor reference is stored. The retained YAML path/hash are unverified source annotations,not current verified provenance. AuthorityEffect: None.  --- yaml title: family_category file_name: family_category.rs file_location: ~/anomalon/anomalon_kernel/omega_core/src/ascent/lambdas/l161/family_category.rs lambda: L161 tower_address: ascent/lambdas/l161/family_category.rs status: Coal invariance_level: Tier 3 logic_system: Subobject Classifier (Omega) substrate: Rust content_hash: 3bd1bb3c1a239f3af00a393e1f69a3aa5e995a99aed068eb337783e61c842448 version: 1 ---  # Historical family/category terminology  Agent families are functors `F: Constraint -> String`. Strings are morphisms `String -> String`. Meta-Strings (autoString, cartographer, review-Strings) are natural transformations `eta: F => G` between family functors.  The runtime implementation stores String records and name-indexed lists. The following categorical analogies are not admitted mathematical structures.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Family/lifecycle records,literal parsing and ordered propagation/name-list observations;historical category/functor labels do not admit mathematical laws or agent references.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 26,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 10,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 6,
+          "opaque_function_macros": [
+            {
+              "function": "is_active",
+              "macros": [
+                "matches:167"
+              ]
+            }
+          ],
+          "parsed_production_functions": 22,
+          "physical_lines": 444,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T220912Z/baseline.json",
-            "sha256": "b71df552db3826ef4f80982d346163e5d2901e18db0c45a236dca03eb38b2cc0",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T220912Z/summary.json",
-            "sha256": "98a482fc25246c6e2870c118bb8e7e686e1cf30d085ac83788d77248efc84707",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T220912Z/mutations.json",
-            "sha256": "46221fb7d4cf5ae27f5639c97e9e0b17ae16117c6e8f922bdc01a458b66c256c",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T220823Z-metrics/receipt.json",
-            "sha256": "e5e81a1c7d09de1edf14a79d9baba800ee2190b424f5434fb7661efed3998b72",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T220912Z/dependency_receipt.json",
-            "sha256": "bb4682800f3779bc2fdb3d510c2148d6be089f28e3e94f0730cb0f6253f6a079",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/family_category.json",
-            "sha256": "91f588c4b5d703cc03f0da9dbd4bef44a6156bd441df00aae1d882b777734bd5",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -517,69 +445,37 @@
             "RR-25-24",
             "RR-26-25"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 26,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 444,
-          "parsed_production_functions": 22,
-          "max_production_ccn": 6,
-          "cognitive_complexity_upper_bound": 10,
-          "control_nesting": 2,
-          "opaque_function_macros": [
-            {
-              "function": "is_active",
-              "macros": [
-                "matches:167"
-              ]
-            }
-          ],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Contracts pending;AuthorityEffect None.",
-          "Raw true/active/lifecycle/map labels are data;no category/functor/constraint law or action execution is checked.",
-          "Retained YAML path/hash are unverified annotations,not current provenance.",
-          "Unicode/parser and borrowed-set source refinement separate from raw list-model proof;no extracted Rust theorem.",
-          "Finite generated corpus/designated faults not every possible metadata/fault;no whole-workspace green or allocator totality."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/family_category.rs\"\n  language: \"Rust\"\n  sha256: \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\"\nprofile: \"Exact\"\nlevel: \"L2\"\nlevel_basis: \"Family/lifecycle records,literal parsing and ordered propagation/name-list observations;historical category/functor labels do not admit mathematical laws or agent references.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T22:12:00.026832+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:family_category\"\n  description: \"Family registry metadata, literal lifecycle parsing and ordered propagation targets. Historical category/functor terms below are descriptive record labels;no category or functor laws are checked and no AgentFunctor reference is stored. The retained YAML path/hash are unverified source annotations,not current verified provenance. AuthorityEffect: None.  --- yaml title: family_category file_name: family_category.rs file_location: ~/anomalon/anomalon_kernel/omega_core/src/ascent/lambdas/l161/family_category.rs lambda: L161 tower_address: ascent/lambdas/l161/family_category.rs status: Coal invariance_level: Tier 3 logic_system: Subobject Classifier (Omega) substrate: Rust content_hash: 3bd1bb3c1a239f3af00a393e1f69a3aa5e995a99aed068eb337783e61c842448 version: 1 ---  # Historical family/category terminology  Agent families are functors `F: Constraint -> String`. Strings are morphisms `String -> String`. Meta-Strings (autoString, cartographer, review-Strings) are natural transformations `eta: F => G` between family functors.  The runtime implementation stores String records and name-indexed lists. The following categorical analogies are not admitted mathematical structures.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T220912Z/baseline.json\", \"sha256\": \"b71df552db3826ef4f80982d346163e5d2901e18db0c45a236dca03eb38b2cc0\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T220912Z/summary.json\", \"sha256\": \"98a482fc25246c6e2870c118bb8e7e686e1cf30d085ac83788d77248efc84707\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T220912Z/mutations.json\", \"sha256\": \"46221fb7d4cf5ae27f5639c97e9e0b17ae16117c6e8f922bdc01a458b66c256c\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T220823Z-metrics/receipt.json\", \"sha256\": \"e5e81a1c7d09de1edf14a79d9baba800ee2190b424f5434fb7661efed3998b72\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T220912Z/dependency_receipt.json\", \"sha256\": \"bb4682800f3779bc2fdb3d510c2148d6be089f28e3e94f0730cb0f6253f6a079\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/family_category.json\", \"sha256\": \"91f588c4b5d703cc03f0da9dbd4bef44a6156bd441df00aae1d882b777734bd5\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 26\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 444\n  parsed_production_functions: 22\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 10\n  control_nesting: 2\n  opaque_function_macros:\n    - {\"function\": \"is_active\", \"macros\": [\"matches:167\"]}\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffect None.\"\n  - \"Raw true/active/lifecycle/map labels are data;no category/functor/constraint law or action execution is checked.\"\n  - \"Retained YAML path/hash are unverified annotations,not current provenance.\"\n  - \"Unicode/parser and borrowed-set source refinement separate from raw list-model proof;no extracted Rust theorem.\"\n  - \"Finite generated corpus/designated faults not every possible metadata/fault;no whole-workspace green or allocator totality.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/family_category.score.yaml"
-      ]
+      "sha256": "edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba"
     },
     {
-      "sha256": "6aebe5df833207c677485693d9522edd18e1064ac76acc8adba63ce599353788",
       "bytes": 2452,
+      "original_paths": [
+        "code/rust/src/category_theory/family_category.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/family_category.rs\",\n    \"sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/family_category.score.yaml\",\n    \"sha256\": \"edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/family_category.rs.contract.yaml\",\n    \"sha256\": \"dbbc4ec22d34276103288ca71660838048dd55668ead84d7599e5dc4e2a31a38\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\",\n    \"function_count\": 22,\n    \"maxima\": {\n      \"ccn\": 6,\n      \"cognitive_upper_bound\": 10,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [\n      {\n        \"line\": 166,\n        \"name\": \"is_active\",\n        \"macros\": [\n          \"matches:167\"\n        ]\n      }\n    ],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/family_category.rs",
-          "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/family_category.rs",
+          "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/family_category.score.yaml",
+          "sha256": "edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/family_category.rs.contract.yaml",
+          "sha256": "dbbc4ec22d34276103288ca71660838048dd55668ead84d7599e5dc4e2a31a38"
+        },
         "engineering_target": "A",
-        "level": "L2",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -587,38 +483,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/family_category.score.yaml",
-          "sha256": "edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/family_category.rs.contract.yaml",
-          "sha256": "dbbc4ec22d34276103288ca71660838048dd55668ead84d7599e5dc4e2a31a38"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L2",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
         "structural_measurement": {
-          "source_sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c",
-          "function_count": 22,
-          "maxima": {
-            "ccn": 6,
-            "cognitive_upper_bound": 10,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [
-            {
-              "line": 166,
-              "name": "is_active",
-              "macros": [
-                "matches:167"
-              ]
-            }
-          ],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -633,29 +507,77 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 22,
+          "maxima": {
+            "ccn": 6,
+            "cognitive_upper_bound": 10,
+            "control_nesting": 2
+          },
+          "opaque_macros": [
+            {
+              "line": 166,
+              "macros": [
+                "matches:167"
+              ],
+              "name": "is_active"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/family_category.rs\",\n    \"sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/family_category.score.yaml\",\n    \"sha256\": \"edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/family_category.rs.contract.yaml\",\n    \"sha256\": \"dbbc4ec22d34276103288ca71660838048dd55668ead84d7599e5dc4e2a31a38\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\",\n    \"function_count\": 22,\n    \"maxima\": {\n      \"ccn\": 6,\n      \"cognitive_upper_bound\": 10,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [\n      {\n        \"line\": 166,\n        \"name\": \"is_active\",\n        \"macros\": [\n          \"matches:167\"\n        ]\n      }\n    ],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/family_category.rs.scoring.yaml"
-      ]
+      "sha256": "6aebe5df833207c677485693d9522edd18e1064ac76acc8adba63ce599353788"
     },
     {
-      "sha256": "aa1f32aa6f740d401caecfc217b901ae19e4234b80a29911b69b31dc0f962db7",
       "bytes": 4365,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/family-previous/family_category.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/family_category.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"c166610e1667880aa783d069f103ef9937c3fdbdc9b2b251e26a7ebfe3d084cb\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:family_category\"\r\n  description: \"--- yaml title: family_category file_name: family_category.rs file_location: ~/anomalon/anomalon_kernel/omega_core/src/ascent/lambdas/l161/family_category.rs lambda: L161 tower_address: ascent/lambdas/l161/family_category.rs status: Coal invariance_level: Tier 3 logic_system: Subobject Classifier (Omega) substrate: Rust content_hash: 3bd1bb3c1a239f3af00a393e1f69a3aa5e995a99aed068eb337783e61c842448 version: 1 ---  # Family Category \\u2014 String Families as Functors  Agent families are functors `F: Constraint -> String`. Strings are morphisms `String -> String`. Meta-Strings (autoString, cartographer, review-Strings) are natural transformations `eta: F => G` between family functors.  This module defines the categorical types for String families, composing with (never replacing) `AgentFunctor` from `agent_functor.rs`.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 440\r\n  parsed_production_functions: 21\r\n  max_production_ccn: 11\r\n  cognitive_complexity_upper_bound: 22\r\n  control_nesting: 4\r\n  opaque_function_macros:\r\n    - {\"function\": \"is_active\", \"macros\": [\"matches:161\"]}\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 11, \"cognitive_upper_bound\": 22, \"control_nesting\": 4, \"line\": 250, \"name\": \"get_propagation_targets\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/family_category.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/family_category.rs",
           "sha256": "c166610e1667880aa783d069f103ef9937c3fdbdc9b2b251e26a7ebfe3d084cb"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "--- yaml title: family_category file_name: family_category.rs file_location: ~/anomalon/anomalon_kernel/omega_core/src/ascent/lambdas/l161/family_category.rs lambda: L161 tower_address: ascent/lambdas/l161/family_category.rs status: Coal invariance_level: Tier 3 logic_system: Subobject Classifier (Omega) substrate: Rust content_hash: 3bd1bb3c1a239f3af00a393e1f69a3aa5e995a99aed068eb337783e61c842448 version: 1 ---  # Family Category — String Families as Functors  Agent families are functors `F: Constraint -> String`. Strings are morphisms `String -> String`. Meta-Strings (autoString, cartographer, review-Strings) are natural transformations `eta: F => G` between family functors.  This module defines the categorical types for String families, composing with (never replacing) `AgentFunctor` from `agent_functor.rs`.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:family_category"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -663,76 +585,32 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "C",
-        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:family_category",
-          "description": "--- yaml title: family_category file_name: family_category.rs file_location: ~/anomalon/anomalon_kernel/omega_core/src/ascent/lambdas/l161/family_category.rs lambda: L161 tower_address: ascent/lambdas/l161/family_category.rs status: Coal invariance_level: Tier 3 logic_system: Subobject Classifier (Omega) substrate: Rust content_hash: 3bd1bb3c1a239f3af00a393e1f69a3aa5e995a99aed068eb337783e61c842448 version: 1 ---  # Family Category — String Families as Functors  Agent families are functors `F: Constraint -> String`. Strings are morphisms `String -> String`. Meta-Strings (autoString, cartographer, review-Strings) are natural transformations `eta: F => G` between family functors.  This module defines the categorical types for String families, composing with (never replacing) `AgentFunctor` from `agent_functor.rs`.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
+          "unrun": 0
         },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 440,
-          "parsed_production_functions": 21,
-          "max_production_ccn": 11,
           "cognitive_complexity_upper_bound": 22,
           "control_nesting": 4,
-          "opaque_function_macros": [
-            {
-              "function": "is_active",
-              "macros": [
-                "matches:161"
-              ]
-            }
-          ],
+          "expanded_ast": false,
           "functions_exceeding_A": [
             {
               "ccn": 11,
@@ -743,44 +621,42 @@
               "opaque_macros": []
             }
           ],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "max_production_ccn": 11,
+          "opaque_function_macros": [
+            {
+              "function": "is_active",
+              "macros": [
+                "matches:161"
+              ]
+            }
+          ],
+          "parsed_production_functions": 21,
+          "physical_lines": 440,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "open_findings": [
-          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
-          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
-          "External path dependency source contents have not received a separate origin/content attestation.",
-          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
-        ]
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/family_category.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"c166610e1667880aa783d069f103ef9937c3fdbdc9b2b251e26a7ebfe3d084cb\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:family_category\"\r\n  description: \"--- yaml title: family_category file_name: family_category.rs file_location: ~/anomalon/anomalon_kernel/omega_core/src/ascent/lambdas/l161/family_category.rs lambda: L161 tower_address: ascent/lambdas/l161/family_category.rs status: Coal invariance_level: Tier 3 logic_system: Subobject Classifier (Omega) substrate: Rust content_hash: 3bd1bb3c1a239f3af00a393e1f69a3aa5e995a99aed068eb337783e61c842448 version: 1 ---  # Family Category \\u2014 String Families as Functors  Agent families are functors `F: Constraint -> String`. Strings are morphisms `String -> String`. Meta-Strings (autoString, cartographer, review-Strings) are natural transformations `eta: F => G` between family functors.  This module defines the categorical types for String families, composing with (never replacing) `AgentFunctor` from `agent_functor.rs`.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 440\r\n  parsed_production_functions: 21\r\n  max_production_ccn: 11\r\n  cognitive_complexity_upper_bound: 22\r\n  control_nesting: 4\r\n  opaque_function_macros:\r\n    - {\"function\": \"is_active\", \"macros\": [\"matches:161\"]}\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 11, \"cognitive_upper_bound\": 22, \"control_nesting\": 4, \"line\": 250, \"name\": \"get_propagation_targets\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/family-previous/family_category.score.yaml"
-      ]
+      "sha256": "aa1f32aa6f740d401caecfc217b901ae19e4234b80a29911b69b31dc0f962db7"
     },
     {
-      "sha256": "edbba1d46046d481f9119bbca34b281df45888440c5921f667f6cb83ede02642",
       "bytes": 5744,
+      "original_paths": [
+        "code/rust/src/category_theory/family_category.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/family_category.rs\",\n    \"sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:family-category:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 10,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T220912Z/baseline.json\",\n      \"sha256\": \"b71df552db3826ef4f80982d346163e5d2901e18db0c45a236dca03eb38b2cc0\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T220912Z/summary.json\",\n      \"sha256\": \"98a482fc25246c6e2870c118bb8e7e686e1cf30d085ac83788d77248efc84707\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T220912Z/mutations.json\",\n      \"sha256\": \"46221fb7d4cf5ae27f5639c97e9e0b17ae16117c6e8f922bdc01a458b66c256c\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T220823Z-metrics/receipt.json\",\n      \"sha256\": \"e5e81a1c7d09de1edf14a79d9baba800ee2190b424f5434fb7661efed3998b72\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T220912Z/dependency_receipt.json\",\n      \"sha256\": \"bb4682800f3779bc2fdb3d510c2148d6be089f28e3e94f0730cb0f6253f6a079\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/family_category.json\",\n      \"sha256\": \"91f588c4b5d703cc03f0da9dbd4bef44a6156bd441df00aae1d882b777734bd5\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 444,\n    \"parsed_production_functions\": 22,\n    \"max_production_ccn\": 6,\n    \"cognitive_complexity_upper_bound\": 10,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [\n      {\n        \"function\": \"is_active\",\n        \"macros\": [\n          \"matches:167\"\n        ]\n      }\n    ],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/family_category.rs",
-          "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:family-category:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -789,24 +665,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 6,
-          "lizard_ccn": 6,
-          "weighted_control_upper_bound": 10,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -814,64 +673,91 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T220912Z/baseline.json",
-            "sha256": "b71df552db3826ef4f80982d346163e5d2901e18db0c45a236dca03eb38b2cc0",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "b71df552db3826ef4f80982d346163e5d2901e18db0c45a236dca03eb38b2cc0"
           },
           {
             "path": "evidence/quality/category_homology/20261019T220912Z/summary.json",
-            "sha256": "98a482fc25246c6e2870c118bb8e7e686e1cf30d085ac83788d77248efc84707",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "98a482fc25246c6e2870c118bb8e7e686e1cf30d085ac83788d77248efc84707"
           },
           {
             "path": "evidence/quality/category_homology/20261019T220912Z/mutations.json",
-            "sha256": "46221fb7d4cf5ae27f5639c97e9e0b17ae16117c6e8f922bdc01a458b66c256c",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "46221fb7d4cf5ae27f5639c97e9e0b17ae16117c6e8f922bdc01a458b66c256c"
           },
           {
             "path": "evidence/quality/category_homology/20261019T220823Z-metrics/receipt.json",
-            "sha256": "e5e81a1c7d09de1edf14a79d9baba800ee2190b424f5434fb7661efed3998b72",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "e5e81a1c7d09de1edf14a79d9baba800ee2190b424f5434fb7661efed3998b72"
           },
           {
             "path": "evidence/quality/category_homology/20261019T220912Z/dependency_receipt.json",
-            "sha256": "bb4682800f3779bc2fdb3d510c2148d6be089f28e3e94f0730cb0f6253f6a079",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "bb4682800f3779bc2fdb3d510c2148d6be089f28e3e94f0730cb0f6253f6a079"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/family_category.json",
-            "sha256": "91f588c4b5d703cc03f0da9dbd4bef44a6156bd441df00aae1d882b777734bd5",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "91f588c4b5d703cc03f0da9dbd4bef44a6156bd441df00aae1d882b777734bd5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 6,
+          "radon_ccn": 6,
+          "weighted_control_upper_bound": 10
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 444,
-          "parsed_production_functions": 22,
-          "max_production_ccn": 6,
           "cognitive_complexity_upper_bound": 10,
           "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 6,
           "opaque_function_macros": [
             {
               "function": "is_active",
@@ -880,22 +766,69 @@
               ]
             }
           ],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "parsed_production_functions": 22,
+          "physical_lines": 444,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/family_category.rs\",\n    \"sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:family-category:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 10,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T220912Z/baseline.json\",\n      \"sha256\": \"b71df552db3826ef4f80982d346163e5d2901e18db0c45a236dca03eb38b2cc0\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T220912Z/summary.json\",\n      \"sha256\": \"98a482fc25246c6e2870c118bb8e7e686e1cf30d085ac83788d77248efc84707\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T220912Z/mutations.json\",\n      \"sha256\": \"46221fb7d4cf5ae27f5639c97e9e0b17ae16117c6e8f922bdc01a458b66c256c\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T220823Z-metrics/receipt.json\",\n      \"sha256\": \"e5e81a1c7d09de1edf14a79d9baba800ee2190b424f5434fb7661efed3998b72\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T220912Z/dependency_receipt.json\",\n      \"sha256\": \"bb4682800f3779bc2fdb3d510c2148d6be089f28e3e94f0730cb0f6253f6a079\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/family_category.json\",\n      \"sha256\": \"91f588c4b5d703cc03f0da9dbd4bef44a6156bd441df00aae1d882b777734bd5\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 444,\n    \"parsed_production_functions\": 22,\n    \"max_production_ccn\": 6,\n    \"cognitive_complexity_upper_bound\": 10,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [\n      {\n        \"function\": \"is_active\",\n        \"macros\": [\n          \"matches:167\"\n        ]\n      }\n    ],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "edbba1d46046d481f9119bbca34b281df45888440c5921f667f6cb83ede02642"
+    },
+    {
+      "bytes": 1610,
       "original_paths": [
-        "code/rust/src/category_theory/family_category.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/family_category.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/family_category.rs\",\n    \"sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/family_category.rs\",\n      \"sha256\": \"edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/family_category.rs",
+          "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/family_category.rs",
+            "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "ef16708d85b295114d794396d915b8170b06554840016d7e827abee0af3940c8"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/family_category.rs.contract.yaml": "dbbc4ec22d34276103288ca71660838048dd55668ead84d7599e5dc4e2a31a38",
-    "code/rust/src/category_theory/family_category.score.yaml": "edbe536b1d637db97e7ad72f45e53227a485c78bc2eebb5c41fa42351af949ba",
-    "code/rust/src/category_theory/family_category.rs.scoring.yaml": "6aebe5df833207c677485693d9522edd18e1064ac76acc8adba63ce599353788",
-    "evidence/quality/category_homology/resume-20261019/family-previous/family_category.score.yaml": "aa1f32aa6f740d401caecfc217b901ae19e4234b80a29911b69b31dc0f962db7"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

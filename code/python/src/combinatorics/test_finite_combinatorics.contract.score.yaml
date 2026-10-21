@@ -1,68 +1,56 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/combinatorics/test_finite_combinatorics.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
       "sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6"
     },
-    "claim": "urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1",
-    "profile": "Exact",
-    "role": "test and bounded checker",
-    "purpose": "Independent factorial, ascending-partition and polynomial checks with guarded source/self mutation accounting.",
-    "operations": {
-      "test_unit/test_integration/test_end_to_end/test_negative/test_origin": "Exercise fixed finite arithmetic, composition, invalid-domain and claim-origin cases with independent factorial and ascending-partition oracles.",
-      "test_library_mutation/test_self_mutation": "Run the declared eight finite library faults and four checker faults against a passing baseline. Reject invalid loading or unclassified infrastructure exceptions instead of counting them as kills.",
-      "witness helpers": "Expose fixed small independent values for external checker challenges; parse_exact_size refuses float/bool/non-integer inputs.",
-      "temporary modules": "Restore preexisting module bindings in finally paths, including failed candidate loads. Execution is single-threaded over the fixed declared recipes."
-    },
-    "engineering_policy": "Only the fixed small test/oracle inputs and declared finite mutation recipes are assessed. Arbitrary untrusted source execution and generic adversarial-program timeouts are outside this in-process checker.",
-    "policy_origin": "Declared engineering limits, not empirical measurements or derived physical constants.",
-    "failure_boundary": "ClaimCheckError for violated checks or unassessable candidate; unexpected oracle infrastructure errors propagate, so they cannot silently increment killed counts.",
-    "cost_model": "Fixed small factorial/partition inputs and a fixed finite recipe set; import state is restored. No arbitrary-program execution guarantee.",
-    "scope_ceiling": "Finite checker evidence, not a Lean theorem, projective-plane existence, complete mutation-space proof or process sandbox.",
-    "trust": "Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Tests may deliberately supply binary floats only as rejection probes under SCORING.md.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
-        "path": "evidence/quality/expanded_scope/20261020T212919Z-combinatorics-challenge/receipt.json",
-        "sha256": "bb66d510772989ae87c1689753759a3e1eb99a25c7f4365132e8fc78b5db61c1"
+        "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
+        "sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6"
       },
       {
-        "path": "evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json",
-        "sha256": "395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/batch2-baseline.log",
-        "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/batch2-atlas.log",
-        "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "test or verification harness",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6",
+    "subject": "code/python/src/combinatorics/test_finite_combinatorics.py"
   },
-  "current_contract": "067ebfc17714e30aee077ab449dd2e7f82b0e7a7addcbe12dce519ca7b691dfb",
-  "current_scoring": "6d33266b5e547cb96ef4588b09b2c39b800618759b94b9d2db5d6230309e8643",
   "contract_history": [
     {
-      "sha256": "1f6e978026adc1d5d887f7fac0eaaa2bc46721d6caa877163d4b30ac278b02b7",
       "bytes": 1991,
+      "original_paths": [
+        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#initial-independent-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79\"\n  },\n  \"phase\": \"initial-independent-review\",\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Historical implementation under independent defect review; later policy and capabilities are not retroactively asserted.\",\n  \"source_claims_verbatim\": \"Unit, integration, end-to-end, and mutation checks for exact counting.\\n\\nOrigin: code/rust/src/combinatorics/enumeration.rs function binomial,\\nrechecked against code/python/src/combinatorics/finite_combinatorics.py.\\nClaim: urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1\\nAuthorityEffect: None\\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/combinatorics/test_finite_combinatorics.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 6; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\\nScope Fence: The factorial quotient, the ascending partition walk, and the\\norder polynomial (q^3-1)/(q-1) are independent checks. They do not prove that\\na projective plane exists and do not prove the Weyl trace obstruction.\",\n  \"source_claims_status\": \"Captured claims, not endorsed verification or capability grades.\",\n  \"scope\": \"Captured earlier implementation only; later production contracts do not retroactively describe its behavior.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/receipt.json\",\n      \"sha256\": \"7d8d18948cc4d775820ffd47a606ee8a68e7e8ffac9b838aa209d5f33ab02645\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py\",\n      \"sha256\": \"042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
           "sha256": "042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79"
         },
-        "phase": "initial-independent-review",
-        "profile": "Exact",
-        "status": "historical_defect_review",
-        "purpose": "Historical implementation under independent defect review; later policy and capabilities are not retroactively asserted.",
-        "source_claims_verbatim": "Unit, integration, end-to-end, and mutation checks for exact counting.\n\nOrigin: code/rust/src/combinatorics/enumeration.rs function binomial,\nrechecked against code/python/src/combinatorics/finite_combinatorics.py.\nClaim: urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1\nAuthorityEffect: None\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/combinatorics/test_finite_combinatorics.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 6; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\nScope Fence: The factorial quotient, the ascending partition walk, and the\norder polynomial (q^3-1)/(q-1) are independent checks. They do not prove that\na projective plane exists and do not prove the Weyl trace obstruction.",
-        "source_claims_status": "Captured claims, not endorsed verification or capability grades.",
-        "scope": "Captured earlier implementation only; later production contracts do not retroactively describe its behavior.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/receipt.json",
@@ -72,29 +60,29 @@
             "path": "evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py",
             "sha256": "042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79"
           }
-        ]
+        ],
+        "phase": "initial-independent-review",
+        "profile": "Exact",
+        "purpose": "Historical implementation under independent defect review; later policy and capabilities are not retroactively asserted.",
+        "scope": "Captured earlier implementation only; later production contracts do not retroactively describe its behavior.",
+        "source_claims_status": "Captured claims, not endorsed verification or capability grades.",
+        "source_claims_verbatim": "Unit, integration, end-to-end, and mutation checks for exact counting.\n\nOrigin: code/rust/src/combinatorics/enumeration.rs function binomial,\nrechecked against code/python/src/combinatorics/finite_combinatorics.py.\nClaim: urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1\nAuthorityEffect: None\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/combinatorics/test_finite_combinatorics.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 6; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\nScope Fence: The factorial quotient, the ascending partition walk, and the\norder polynomial (q^3-1)/(q-1) are independent checks. They do not prove that\na projective plane exists and do not prove the Weyl trace obstruction.",
+        "status": "historical_defect_review"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79\"\n  },\n  \"phase\": \"initial-independent-review\",\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Historical implementation under independent defect review; later policy and capabilities are not retroactively asserted.\",\n  \"source_claims_verbatim\": \"Unit, integration, end-to-end, and mutation checks for exact counting.\\n\\nOrigin: code/rust/src/combinatorics/enumeration.rs function binomial,\\nrechecked against code/python/src/combinatorics/finite_combinatorics.py.\\nClaim: urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1\\nAuthorityEffect: None\\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/combinatorics/test_finite_combinatorics.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 6; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\\nScope Fence: The factorial quotient, the ascending partition walk, and the\\norder polynomial (q^3-1)/(q-1) are independent checks. They do not prove that\\na projective plane exists and do not prove the Weyl trace obstruction.\",\n  \"source_claims_status\": \"Captured claims, not endorsed verification or capability grades.\",\n  \"scope\": \"Captured earlier implementation only; later production contracts do not retroactively describe its behavior.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/receipt.json\",\n      \"sha256\": \"7d8d18948cc4d775820ffd47a606ee8a68e7e8ffac9b838aa209d5f33ab02645\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py\",\n      \"sha256\": \"042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#initial-independent-review/contract"
-      ]
+      "sha256": "1f6e978026adc1d5d887f7fac0eaaa2bc46721d6caa877163d4b30ac278b02b7"
     },
     {
-      "sha256": "6da8067ee74b5004fd696d29d8c1b17c4dfa2035fe5a500e21f897a8551771ef",
       "bytes": 1996,
+      "original_paths": [
+        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#class-callback-counterexample/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd\"\n  },\n  \"phase\": \"class-callback-counterexample\",\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Historical implementation under independent defect review; later policy and capabilities are not retroactively asserted.\",\n  \"source_claims_verbatim\": \"Unit, integration, end-to-end, and mutation checks for exact counting.\\n\\nOrigin: code/rust/src/combinatorics/enumeration.rs function binomial,\\nrechecked against code/python/src/combinatorics/finite_combinatorics.py.\\nClaim: urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1\\nAuthorityEffect: None\\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/combinatorics/test_finite_combinatorics.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 6; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\\nScope Fence: The factorial quotient, the ascending partition walk, and the\\norder polynomial (q^3-1)/(q-1) are independent checks. They do not prove that\\na projective plane exists and do not prove the Weyl trace obstruction.\",\n  \"source_claims_status\": \"Captured claims, not endorsed verification or capability grades.\",\n  \"scope\": \"Captured earlier implementation only; later production contracts do not retroactively describe its behavior.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/receipt.json\",\n      \"sha256\": \"b87ae92a69a66f980101045252cb1308c87372dfbaef488309e083fba64ad20a\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py\",\n      \"sha256\": \"959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
           "sha256": "959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd"
         },
-        "phase": "class-callback-counterexample",
-        "profile": "Exact",
-        "status": "historical_defect_review",
-        "purpose": "Historical implementation under independent defect review; later policy and capabilities are not retroactively asserted.",
-        "source_claims_verbatim": "Unit, integration, end-to-end, and mutation checks for exact counting.\n\nOrigin: code/rust/src/combinatorics/enumeration.rs function binomial,\nrechecked against code/python/src/combinatorics/finite_combinatorics.py.\nClaim: urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1\nAuthorityEffect: None\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/combinatorics/test_finite_combinatorics.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 6; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\nScope Fence: The factorial quotient, the ascending partition walk, and the\norder polynomial (q^3-1)/(q-1) are independent checks. They do not prove that\na projective plane exists and do not prove the Weyl trace obstruction.",
-        "source_claims_status": "Captured claims, not endorsed verification or capability grades.",
-        "scope": "Captured earlier implementation only; later production contracts do not retroactively describe its behavior.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/receipt.json",
@@ -104,16 +92,23 @@
             "path": "evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py",
             "sha256": "959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd"
           }
-        ]
+        ],
+        "phase": "class-callback-counterexample",
+        "profile": "Exact",
+        "purpose": "Historical implementation under independent defect review; later policy and capabilities are not retroactively asserted.",
+        "scope": "Captured earlier implementation only; later production contracts do not retroactively describe its behavior.",
+        "source_claims_status": "Captured claims, not endorsed verification or capability grades.",
+        "source_claims_verbatim": "Unit, integration, end-to-end, and mutation checks for exact counting.\n\nOrigin: code/rust/src/combinatorics/enumeration.rs function binomial,\nrechecked against code/python/src/combinatorics/finite_combinatorics.py.\nClaim: urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1\nAuthorityEffect: None\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/combinatorics/test_finite_combinatorics.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 6; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\nScope Fence: The factorial quotient, the ascending partition walk, and the\norder polynomial (q^3-1)/(q-1) are independent checks. They do not prove that\na projective plane exists and do not prove the Weyl trace obstruction.",
+        "status": "historical_defect_review"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd\"\n  },\n  \"phase\": \"class-callback-counterexample\",\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Historical implementation under independent defect review; later policy and capabilities are not retroactively asserted.\",\n  \"source_claims_verbatim\": \"Unit, integration, end-to-end, and mutation checks for exact counting.\\n\\nOrigin: code/rust/src/combinatorics/enumeration.rs function binomial,\\nrechecked against code/python/src/combinatorics/finite_combinatorics.py.\\nClaim: urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1\\nAuthorityEffect: None\\nMutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/combinatorics/test_finite_combinatorics.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 6; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.\\nScope Fence: The factorial quotient, the ascending partition walk, and the\\norder polynomial (q^3-1)/(q-1) are independent checks. They do not prove that\\na projective plane exists and do not prove the Weyl trace obstruction.\",\n  \"source_claims_status\": \"Captured claims, not endorsed verification or capability grades.\",\n  \"scope\": \"Captured earlier implementation only; later production contracts do not retroactively describe its behavior.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/receipt.json\",\n      \"sha256\": \"b87ae92a69a66f980101045252cb1308c87372dfbaef488309e083fba64ad20a\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py\",\n      \"sha256\": \"959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#class-callback-counterexample/contract"
-      ]
+      "sha256": "6da8067ee74b5004fd696d29d8c1b17c4dfa2035fe5a500e21f897a8551771ef"
     },
     {
-      "sha256": "067ebfc17714e30aee077ab449dd2e7f82b0e7a7addcbe12dce519ca7b691dfb",
       "bytes": 3277,
+      "original_paths": [
+        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#bounded-production-and-checker-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6\"\n  },\n  \"claim\": \"urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1\",\n  \"profile\": \"Exact\",\n  \"role\": \"test and bounded checker\",\n  \"purpose\": \"Independent factorial, ascending-partition and polynomial checks with guarded source/self mutation accounting.\",\n  \"operations\": {\n    \"test_unit/test_integration/test_end_to_end/test_negative/test_origin\": \"Exercise fixed finite arithmetic, composition, invalid-domain and claim-origin cases with independent factorial and ascending-partition oracles.\",\n    \"test_library_mutation/test_self_mutation\": \"Run the declared eight finite library faults and four checker faults against a passing baseline. Reject invalid loading or unclassified infrastructure exceptions instead of counting them as kills.\",\n    \"witness helpers\": \"Expose fixed small independent values for external checker challenges; parse_exact_size refuses float/bool/non-integer inputs.\",\n    \"temporary modules\": \"Restore preexisting module bindings in finally paths, including failed candidate loads. Execution is single-threaded over the fixed declared recipes.\"\n  },\n  \"engineering_policy\": \"Only the fixed small test/oracle inputs and declared finite mutation recipes are assessed. Arbitrary untrusted source execution and generic adversarial-program timeouts are outside this in-process checker.\",\n  \"policy_origin\": \"Declared engineering limits, not empirical measurements or derived physical constants.\",\n  \"failure_boundary\": \"ClaimCheckError for violated checks or unassessable candidate; unexpected oracle infrastructure errors propagate, so they cannot silently increment killed counts.\",\n  \"cost_model\": \"Fixed small factorial/partition inputs and a fixed finite recipe set; import state is restored. No arbitrary-program execution guarantee.\",\n  \"scope_ceiling\": \"Finite checker evidence, not a Lean theorem, projective-plane existence, complete mutation-space proof or process sandbox.\",\n  \"trust\": \"Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Tests may deliberately supply binary floats only as rejection probes under SCORING.md.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212919Z-combinatorics-challenge/receipt.json\",\n      \"sha256\": \"bb66d510772989ae87c1689753759a3e1eb99a25c7f4365132e8fc78b5db61c1\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json\",\n      \"sha256\": \"395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
@@ -121,184 +116,8 @@
           "sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6"
         },
         "claim": "urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1",
-        "profile": "Exact",
-        "role": "test and bounded checker",
-        "purpose": "Independent factorial, ascending-partition and polynomial checks with guarded source/self mutation accounting.",
-        "operations": {
-          "test_unit/test_integration/test_end_to_end/test_negative/test_origin": "Exercise fixed finite arithmetic, composition, invalid-domain and claim-origin cases with independent factorial and ascending-partition oracles.",
-          "test_library_mutation/test_self_mutation": "Run the declared eight finite library faults and four checker faults against a passing baseline. Reject invalid loading or unclassified infrastructure exceptions instead of counting them as kills.",
-          "witness helpers": "Expose fixed small independent values for external checker challenges; parse_exact_size refuses float/bool/non-integer inputs.",
-          "temporary modules": "Restore preexisting module bindings in finally paths, including failed candidate loads. Execution is single-threaded over the fixed declared recipes."
-        },
-        "engineering_policy": "Only the fixed small test/oracle inputs and declared finite mutation recipes are assessed. Arbitrary untrusted source execution and generic adversarial-program timeouts are outside this in-process checker.",
-        "policy_origin": "Declared engineering limits, not empirical measurements or derived physical constants.",
-        "failure_boundary": "ClaimCheckError for violated checks or unassessable candidate; unexpected oracle infrastructure errors propagate, so they cannot silently increment killed counts.",
         "cost_model": "Fixed small factorial/partition inputs and a fixed finite recipe set; import state is restored. No arbitrary-program execution guarantee.",
-        "scope_ceiling": "Finite checker evidence, not a Lean theorem, projective-plane existence, complete mutation-space proof or process sandbox.",
-        "trust": "Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Tests may deliberately supply binary floats only as rejection probes under SCORING.md.",
-        "evidence": [
-          {
-            "path": "evidence/quality/expanded_scope/20261020T212919Z-combinatorics-challenge/receipt.json",
-            "sha256": "bb66d510772989ae87c1689753759a3e1eb99a25c7f4365132e8fc78b5db61c1"
-          },
-          {
-            "path": "evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json",
-            "sha256": "395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68"
-          },
-          {
-            "path": "evidence/quality/expanded_scope/batch2-baseline.log",
-            "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
-          },
-          {
-            "path": "evidence/quality/expanded_scope/batch2-atlas.log",
-            "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
-          }
-        ]
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6\"\n  },\n  \"claim\": \"urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1\",\n  \"profile\": \"Exact\",\n  \"role\": \"test and bounded checker\",\n  \"purpose\": \"Independent factorial, ascending-partition and polynomial checks with guarded source/self mutation accounting.\",\n  \"operations\": {\n    \"test_unit/test_integration/test_end_to_end/test_negative/test_origin\": \"Exercise fixed finite arithmetic, composition, invalid-domain and claim-origin cases with independent factorial and ascending-partition oracles.\",\n    \"test_library_mutation/test_self_mutation\": \"Run the declared eight finite library faults and four checker faults against a passing baseline. Reject invalid loading or unclassified infrastructure exceptions instead of counting them as kills.\",\n    \"witness helpers\": \"Expose fixed small independent values for external checker challenges; parse_exact_size refuses float/bool/non-integer inputs.\",\n    \"temporary modules\": \"Restore preexisting module bindings in finally paths, including failed candidate loads. Execution is single-threaded over the fixed declared recipes.\"\n  },\n  \"engineering_policy\": \"Only the fixed small test/oracle inputs and declared finite mutation recipes are assessed. Arbitrary untrusted source execution and generic adversarial-program timeouts are outside this in-process checker.\",\n  \"policy_origin\": \"Declared engineering limits, not empirical measurements or derived physical constants.\",\n  \"failure_boundary\": \"ClaimCheckError for violated checks or unassessable candidate; unexpected oracle infrastructure errors propagate, so they cannot silently increment killed counts.\",\n  \"cost_model\": \"Fixed small factorial/partition inputs and a fixed finite recipe set; import state is restored. No arbitrary-program execution guarantee.\",\n  \"scope_ceiling\": \"Finite checker evidence, not a Lean theorem, projective-plane existence, complete mutation-space proof or process sandbox.\",\n  \"trust\": \"Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Tests may deliberately supply binary floats only as rejection probes under SCORING.md.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212919Z-combinatorics-challenge/receipt.json\",\n      \"sha256\": \"bb66d510772989ae87c1689753759a3e1eb99a25c7f4365132e8fc78b5db61c1\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json\",\n      \"sha256\": \"395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#bounded-production-and-checker-review/contract"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "d530373ee2be515a63c507718fa17c5365bf4f638e8429c84b82d28c3cd12e46",
-      "bytes": 1292,
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
-          "sha256": "042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79"
-        },
-        "phase": "initial-independent-review",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "profile": "Exact",
-        "level": "L3",
-        "gates": {
-          "G1": null,
-          "G2": null,
-          "G3": null,
-          "G4": "E",
-          "G5": null
-        },
-        "is_complete": false,
-        "composite_grade": null,
-        "score_token": null,
-        "grade_ceiling": "E",
-        "target_achieved": false,
-        "finding": "See source-pinned receipt: concrete callback/exit-status/error-rendering or invalid-mutant accounting counterexample; core resource-policy absences are inspected D findings.",
-        "evidence": [
-          {
-            "path": "evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/receipt.json",
-            "sha256": "7d8d18948cc4d775820ffd47a606ee8a68e7e8ffac9b838aa209d5f33ab02645"
-          },
-          {
-            "path": "evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py",
-            "sha256": "042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79"
-          }
-        ]
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79\"\n  },\n  \"phase\": \"initial-independent-review\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": \"E\",\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"grade_ceiling\": \"E\",\n  \"target_achieved\": false,\n  \"finding\": \"See source-pinned receipt: concrete callback/exit-status/error-rendering or invalid-mutant accounting counterexample; core resource-policy absences are inspected D findings.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/receipt.json\",\n      \"sha256\": \"7d8d18948cc4d775820ffd47a606ee8a68e7e8ffac9b838aa209d5f33ab02645\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py\",\n      \"sha256\": \"042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#initial-independent-review/scoring"
-      ]
-    },
-    {
-      "sha256": "2ac7d8e8202aaa97c569da4c826e2dcf88d9c8f45f2b380707a9e57acdc3ed67",
-      "bytes": 1191,
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
-          "sha256": "959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd"
-        },
-        "phase": "class-callback-counterexample",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "profile": "Exact",
-        "level": "L4",
-        "gates": {
-          "G1": null,
-          "G2": null,
-          "G3": "E",
-          "G4": "E",
-          "G5": null
-        },
-        "is_complete": false,
-        "composite_grade": null,
-        "score_token": null,
-        "grade_ceiling": "E",
-        "target_achieved": false,
-        "finding": "User __class__ callback escaped the typed scalar admission boundary.",
-        "evidence": [
-          {
-            "path": "evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/receipt.json",
-            "sha256": "b87ae92a69a66f980101045252cb1308c87372dfbaef488309e083fba64ad20a"
-          },
-          {
-            "path": "evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py",
-            "sha256": "959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd"
-          }
-        ]
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd\"\n  },\n  \"phase\": \"class-callback-counterexample\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": \"E\",\n    \"G4\": \"E\",\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"grade_ceiling\": \"E\",\n  \"target_achieved\": false,\n  \"finding\": \"User __class__ callback escaped the typed scalar admission boundary.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/receipt.json\",\n      \"sha256\": \"b87ae92a69a66f980101045252cb1308c87372dfbaef488309e083fba64ad20a\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py\",\n      \"sha256\": \"959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#class-callback-counterexample/scoring"
-      ]
-    },
-    {
-      "sha256": "6d33266b5e547cb96ef4588b09b2c39b800618759b94b9d2db5d6230309e8643",
-      "bytes": 3268,
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
-          "sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6"
-        },
-        "phase": "bounded-production-and-checker-review",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "profile": "Exact",
-        "level": "L4",
-        "level_basis": "A production test/checker boundary with independent arithmetic basis, explicit invalid/inconclusive refusal, positive baseline control, scoped source/self challenge and deterministic temporary-module restoration.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
-        },
-        "basis": {
-          "G1": "Source SHA, exact claim ID, explicit operations/policy/trust/authority ceiling; no formal spec AST equivalence or full downstream provenance proof.",
-          "G2": "Profile chosen before challenge; exact arithmetic and independent finite controls, strict scalar/container admission and explicit resource refusals. No general mathematical completeness from testing.",
-          "G3": "Expected failures have typed contexts, input and lifecycle guards are challenged, and concrete admission/callback regressions are fixed. No crash-freedom or arbitrary hostile-code isolation claim.",
-          "G4": "Passing source-bound baseline and all 9 designated valid faults killed, including the __class__ regression; source-binding checks prevent stale test imports. The complete eligible denominator and prior failed/surviving attempts remain visible. No A/A+ mutation-space claim.",
-          "G5": "Independent Radon/Lizard observations and conservative calibrated AST controls meet low-complexity ceilings. Operation-specific bounded work/copies are reviewed; no zero-allocation benchmark or formal runtime/heap proof."
-        },
-        "metrics": {
-          "radon_ccn": 6,
-          "lizard_ccn": 6,
-          "weighted_control_upper_bound": 7,
-          "control_nesting": 3
-        },
-        "mutation_outcomes": {
-          "KILLED": 9
-        },
-        "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact file revision only; the full 24-directory objective remains open.",
+        "engineering_policy": "Only the fixed small test/oracle inputs and declared finite mutation recipes are assessed. Arbitrary untrusted source execution and generic adversarial-program timeouts are outside this in-process checker.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T212919Z-combinatorics-challenge/receipt.json",
@@ -317,27 +136,299 @@
             "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
           }
         ],
+        "failure_boundary": "ClaimCheckError for violated checks or unassessable candidate; unexpected oracle infrastructure errors propagate, so they cannot silently increment killed counts.",
+        "negative_float_fixture_policy": "Tests may deliberately supply binary floats only as rejection probes under SCORING.md.",
+        "operations": {
+          "temporary modules": "Restore preexisting module bindings in finally paths, including failed candidate loads. Execution is single-threaded over the fixed declared recipes.",
+          "test_library_mutation/test_self_mutation": "Run the declared eight finite library faults and four checker faults against a passing baseline. Reject invalid loading or unclassified infrastructure exceptions instead of counting them as kills.",
+          "test_unit/test_integration/test_end_to_end/test_negative/test_origin": "Exercise fixed finite arithmetic, composition, invalid-domain and claim-origin cases with independent factorial and ascending-partition oracles.",
+          "witness helpers": "Expose fixed small independent values for external checker challenges; parse_exact_size refuses float/bool/non-integer inputs."
+        },
+        "policy_origin": "Declared engineering limits, not empirical measurements or derived physical constants.",
+        "profile": "Exact",
+        "purpose": "Independent factorial, ascending-partition and polynomial checks with guarded source/self mutation accounting.",
+        "role": "test and bounded checker",
+        "scope_ceiling": "Finite checker evidence, not a Lean theorem, projective-plane existence, complete mutation-space proof or process sandbox.",
+        "trust": "Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
+      },
+      "sha256": "067ebfc17714e30aee077ab449dd2e7f82b0e7a7addcbe12dce519ca7b691dfb"
+    },
+    {
+      "bytes": 1670,
+      "original_paths": [
+        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n      \"sha256\": \"c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"test or verification harness\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6\",\n  \"subject\": \"code/python/src/combinatorics/test_finite_combinatorics.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
+          "sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
+            "sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "test or verification harness",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6",
+        "subject": "code/python/src/combinatorics/test_finite_combinatorics.py"
+      },
+      "sha256": "9ef2e63eff2cb36d52b66c91a468360eb30bc41e6deaf141917cfd367ee9d3db"
+    }
+  ],
+  "current_contract": "9ef2e63eff2cb36d52b66c91a468360eb30bc41e6deaf141917cfd367ee9d3db",
+  "current_scoring": "729c44ef3cee546317d49b5293497952c295469a5c682d019b2acf1b1125f06a",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#bounded-production-and-checker-review/contract": "067ebfc17714e30aee077ab449dd2e7f82b0e7a7addcbe12dce519ca7b691dfb",
+    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#bounded-production-and-checker-review/scoring": "6d33266b5e547cb96ef4588b09b2c39b800618759b94b9d2db5d6230309e8643",
+    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#class-callback-counterexample/contract": "6da8067ee74b5004fd696d29d8c1b17c4dfa2035fe5a500e21f897a8551771ef",
+    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#class-callback-counterexample/scoring": "2ac7d8e8202aaa97c569da4c826e2dcf88d9c8f45f2b380707a9e57acdc3ed67",
+    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#initial-independent-review/contract": "1f6e978026adc1d5d887f7fac0eaaa2bc46721d6caa877163d4b30ac278b02b7",
+    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#initial-independent-review/scoring": "d530373ee2be515a63c507718fa17c5365bf4f638e8429c84b82d28c3cd12e46"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 1292,
+      "original_paths": [
+        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#initial-independent-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79\"\n  },\n  \"phase\": \"initial-independent-review\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": \"E\",\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"grade_ceiling\": \"E\",\n  \"target_achieved\": false,\n  \"finding\": \"See source-pinned receipt: concrete callback/exit-status/error-rendering or invalid-mutant accounting counterexample; core resource-policy absences are inspected D findings.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/receipt.json\",\n      \"sha256\": \"7d8d18948cc4d775820ffd47a606ee8a68e7e8ffac9b838aa209d5f33ab02645\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py\",\n      \"sha256\": \"042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79\"\n    }\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
+          "sha256": "042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79"
+        },
+        "composite_grade": null,
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/receipt.json",
+            "sha256": "7d8d18948cc4d775820ffd47a606ee8a68e7e8ffac9b838aa209d5f33ab02645"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T210456Z-combinatorics-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py",
+            "sha256": "042019f8a915deeda8158d7aa32b828a3d1de3e075c6a07f358cb04e535c7b79"
+          }
+        ],
+        "finding": "See source-pinned receipt: concrete callback/exit-status/error-rendering or invalid-mutant accounting counterexample; core resource-policy absences are inspected D findings.",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": "E",
+          "G5": null
+        },
+        "grade_ceiling": "E",
+        "is_complete": false,
+        "level": "L3",
+        "phase": "initial-independent-review",
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": null,
+        "target_achieved": false
+      },
+      "sha256": "d530373ee2be515a63c507718fa17c5365bf4f638e8429c84b82d28c3cd12e46"
+    },
+    {
+      "bytes": 1191,
+      "original_paths": [
+        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#class-callback-counterexample/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd\"\n  },\n  \"phase\": \"class-callback-counterexample\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": \"E\",\n    \"G4\": \"E\",\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"grade_ceiling\": \"E\",\n  \"target_achieved\": false,\n  \"finding\": \"User __class__ callback escaped the typed scalar admission boundary.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/receipt.json\",\n      \"sha256\": \"b87ae92a69a66f980101045252cb1308c87372dfbaef488309e083fba64ad20a\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py\",\n      \"sha256\": \"959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd\"\n    }\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
+          "sha256": "959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd"
+        },
+        "composite_grade": null,
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/receipt.json",
+            "sha256": "b87ae92a69a66f980101045252cb1308c87372dfbaef488309e083fba64ad20a"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/sources/code/python/src/combinatorics/test_finite_combinatorics.py",
+            "sha256": "959e4f3a86b91be1160cde92872bb4bba21767a36bd9702297da73f0f28474bd"
+          }
+        ],
+        "finding": "User __class__ callback escaped the typed scalar admission boundary.",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": "E",
+          "G4": "E",
+          "G5": null
+        },
+        "grade_ceiling": "E",
+        "is_complete": false,
+        "level": "L4",
+        "phase": "class-callback-counterexample",
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": null,
+        "target_achieved": false
+      },
+      "sha256": "2ac7d8e8202aaa97c569da4c826e2dcf88d9c8f45f2b380707a9e57acdc3ed67"
+    },
+    {
+      "bytes": 3268,
+      "original_paths": [
+        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#bounded-production-and-checker-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6\"\n  },\n  \"phase\": \"bounded-production-and-checker-review\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"A production test/checker boundary with independent arithmetic basis, explicit invalid/inconclusive refusal, positive baseline control, scoped source/self challenge and deterministic temporary-module restoration.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Source SHA, exact claim ID, explicit operations/policy/trust/authority ceiling; no formal spec AST equivalence or full downstream provenance proof.\",\n    \"G2\": \"Profile chosen before challenge; exact arithmetic and independent finite controls, strict scalar/container admission and explicit resource refusals. No general mathematical completeness from testing.\",\n    \"G3\": \"Expected failures have typed contexts, input and lifecycle guards are challenged, and concrete admission/callback regressions are fixed. No crash-freedom or arbitrary hostile-code isolation claim.\",\n    \"G4\": \"Passing source-bound baseline and all 9 designated valid faults killed, including the __class__ regression; source-binding checks prevent stale test imports. The complete eligible denominator and prior failed/surviving attempts remain visible. No A/A+ mutation-space claim.\",\n    \"G5\": \"Independent Radon/Lizard observations and conservative calibrated AST controls meet low-complexity ceilings. Operation-specific bounded work/copies are reviewed; no zero-allocation benchmark or formal runtime/heap proof.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 3\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 9\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact file revision only; the full 24-directory objective remains open.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212919Z-combinatorics-challenge/receipt.json\",\n      \"sha256\": \"bb66d510772989ae87c1689753759a3e1eb99a25c7f4365132e8fc78b5db61c1\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json\",\n      \"sha256\": \"395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    }\n  ],\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Exhaustive or formal semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and whole-process deadline evidence\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
+          "sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6"
+        },
+        "basis": {
+          "G1": "Source SHA, exact claim ID, explicit operations/policy/trust/authority ceiling; no formal spec AST equivalence or full downstream provenance proof.",
+          "G2": "Profile chosen before challenge; exact arithmetic and independent finite controls, strict scalar/container admission and explicit resource refusals. No general mathematical completeness from testing.",
+          "G3": "Expected failures have typed contexts, input and lifecycle guards are challenged, and concrete admission/callback regressions are fixed. No crash-freedom or arbitrary hostile-code isolation claim.",
+          "G4": "Passing source-bound baseline and all 9 designated valid faults killed, including the __class__ regression; source-binding checks prevent stale test imports. The complete eligible denominator and prior failed/surviving attempts remain visible. No A/A+ mutation-space claim.",
+          "G5": "Independent Radon/Lizard observations and conservative calibrated AST controls meet low-complexity ceilings. Operation-specific bounded work/copies are reviewed; no zero-allocation benchmark or formal runtime/heap proof."
+        },
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212919Z-combinatorics-challenge/receipt.json",
+            "sha256": "bb66d510772989ae87c1689753759a3e1eb99a25c7f4365132e8fc78b5db61c1"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json",
+            "sha256": "395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch2-baseline.log",
+            "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch2-atlas.log",
+            "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "A production test/checker boundary with independent arithmetic basis, explicit invalid/inconclusive refusal, positive baseline control, scoped source/self challenge and deterministic temporary-module restoration.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 6,
+          "radon_ccn": 6,
+          "weighted_control_upper_bound": 7
+        },
+        "mutation_outcomes": {
+          "KILLED": 9
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Exhaustive or formal semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and whole-process deadline evidence"
-        ]
+        ],
+        "phase": "bounded-production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact file revision only; the full 24-directory objective remains open."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6\"\n  },\n  \"phase\": \"bounded-production-and-checker-review\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"A production test/checker boundary with independent arithmetic basis, explicit invalid/inconclusive refusal, positive baseline control, scoped source/self challenge and deterministic temporary-module restoration.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Source SHA, exact claim ID, explicit operations/policy/trust/authority ceiling; no formal spec AST equivalence or full downstream provenance proof.\",\n    \"G2\": \"Profile chosen before challenge; exact arithmetic and independent finite controls, strict scalar/container admission and explicit resource refusals. No general mathematical completeness from testing.\",\n    \"G3\": \"Expected failures have typed contexts, input and lifecycle guards are challenged, and concrete admission/callback regressions are fixed. No crash-freedom or arbitrary hostile-code isolation claim.\",\n    \"G4\": \"Passing source-bound baseline and all 9 designated valid faults killed, including the __class__ regression; source-binding checks prevent stale test imports. The complete eligible denominator and prior failed/surviving attempts remain visible. No A/A+ mutation-space claim.\",\n    \"G5\": \"Independent Radon/Lizard observations and conservative calibrated AST controls meet low-complexity ceilings. Operation-specific bounded work/copies are reviewed; no zero-allocation benchmark or formal runtime/heap proof.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 3\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 9\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact file revision only; the full 24-directory objective remains open.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212919Z-combinatorics-challenge/receipt.json\",\n      \"sha256\": \"bb66d510772989ae87c1689753759a3e1eb99a25c7f4365132e8fc78b5db61c1\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json\",\n      \"sha256\": \"395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    }\n  ],\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Exhaustive or formal semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and whole-process deadline evidence\"\n  ]\n}\n",
+      "sha256": "6d33266b5e547cb96ef4588b09b2c39b800618759b94b9d2db5d6230309e8643"
+    },
+    {
+      "bytes": 1630,
       "original_paths": [
-        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#bounded-production-and-checker-review/scoring"
-      ]
+        "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n    \"sha256\": \"c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/combinatorics/test_finite_combinatorics.py\",\n      \"sha256\": \"c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
+          "sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/python/src/combinatorics/test_finite_combinatorics.py",
+            "sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "729c44ef3cee546317d49b5293497952c295469a5c682d019b2acf1b1125f06a"
     }
-  ],
-  "legacy_paths": {
-    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#initial-independent-review/contract": "1f6e978026adc1d5d887f7fac0eaaa2bc46721d6caa877163d4b30ac278b02b7",
-    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#initial-independent-review/scoring": "d530373ee2be515a63c507718fa17c5365bf4f638e8429c84b82d28c3cd12e46",
-    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#class-callback-counterexample/contract": "6da8067ee74b5004fd696d29d8c1b17c4dfa2035fe5a500e21f897a8551771ef",
-    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#class-callback-counterexample/scoring": "2ac7d8e8202aaa97c569da4c826e2dcf88d9c8f45f2b380707a9e57acdc3ed67",
-    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#bounded-production-and-checker-review/contract": "067ebfc17714e30aee077ab449dd2e7f82b0e7a7addcbe12dce519ca7b691dfb",
-    "code/python/src/combinatorics/test_finite_combinatorics.contract.score.yaml#bounded-production-and-checker-review/scoring": "6d33266b5e547cb96ef4588b09b2c39b800618759b94b9d2db5d6230309e8643"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Append-only captured failures and source-bound bounded L4 reviews; consult current source hashes and evidence scope."
+  ]
 }

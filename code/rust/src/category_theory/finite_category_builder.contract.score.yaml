@@ -1,178 +1,80 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/finite_category_builder.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/finite_category_builder.rs",
-      "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04",
-      "language": "Rust"
+      "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "domain": "Finite owned raw category declarations and caller strings; arbitrary blank/colliding names and partial/overwritten tables remain untrusted.",
-      "delivered_behavior": "Fluent raw edits, boundary-only identity_checked, ordered identity recipe, raw move-out or full fresh certificate admission. No generated-name freshness, free-category property or standalone category-law proof from builder calls.",
-      "failure": "identity_checked returns exact String refusal on foreign loop boundary; build_validated propagates the fresh report; ordinary allocator/format/map runtime contracts remain explicit."
-    },
-    "operations": {
-      "new": {
-        "signature": "pub fn new(name: &str) -> Self",
-        "obligation": "Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim."
-      },
-      "walking_arrow": {
-        "signature": "pub fn walking_arrow(name: &str, source: &str, target: &str, arrow: &str) -> Self",
-        "obligation": "Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate."
-      },
-      "object": {
-        "signature": "pub fn object(mut self, object: &str) -> Self",
-        "obligation": "Insert exact supplied object through canonical raw mutator and return owned Self."
-      },
-      "morphism": {
-        "signature": "pub fn morphism(mut self, name: &str, source: &str, target: &str) -> Self",
-        "obligation": "Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here."
-      },
-      "identity": {
-        "signature": "pub fn identity(mut self, object: &str, morphism: &str) -> Self",
-        "obligation": "Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations."
-      },
-      "identity_checked": {
-        "signature": "pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String>",
-        "obligation": "If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value."
-      },
-      "identity_object": {
-        "signature": "pub fn identity_object(mut self, object: &str) -> Self",
-        "obligation": "Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof."
-      },
-      "composition": {
-        "signature": "pub fn composition(mut self, first: &str, second: &str, composite: &str) -> Self",
-        "obligation": "Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check."
-      },
-      "path_composition": {
-        "signature": "pub fn path_composition(mut self, f: &str, g: &str, composite: &str) -> Self",
-        "obligation": "Same raw overwrite convention with argument names f,g. Preserve order g after f."
-      },
-      "identity_compositions": {
-        "signature": "pub fn identity_compositions(mut self) -> Self",
-        "obligation": "Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged."
-      },
-      "build": {
-        "signature": "pub fn build(self) -> DeclaredFiniteCategory",
-        "obligation": "Move out the exact owned raw declaration without admission. It is not a certificate."
-      },
-      "build_validated": {
-        "signature": "pub fn build_validated(self) -> Result<ValidatedFiniteCategory, ValidationReport>",
-        "obligation": "Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted."
-      }
-    },
-    "invariants": [
-      "FiniteBuilder.checked_missing/checked_existing_iff mirror None creation versus exact source=object AND target=object boundary admission. String/Option/boolean translation and precise error formatting are separately source-reviewed.",
-      "FiniteBuilder.update_self/update_other/update_shadow specify logical table insertion and last-write wins. Four completeOne cases match the two optional identity lookups in source-before-target order; complete_append binds ordered iteration. Old Vec snapshot cloned the same ascending BTreeMap values; disjoint borrowed maps cannot be mutated through the composition field, so all logical updates and their order are unchanged.",
-      "BTreeMap Entry modifies/inserts exactly the same key/value contents as the old raw set_composition, reusing existing value String capacity where available. String capacities, map layout and allocation addresses are not mathematical fields or promised compatibility. Required owned tuple keys remain copied for the existing public map API; no allocation-free overwrite guarantee is invented.",
-      "build_validated passes exact owned raw data to the existing checked finite-category constructor. Its exhaustive fresh guards, private immutable commit and FiniteCategory model realize actual finite laws on success; the raw builder does not claim those laws beforehand. ValidationInventory supplies exact report flag/typed issue behavior."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "new": "Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim.",
-      "walking_arrow": "Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate.",
-      "object": "Insert exact supplied object through canonical raw mutator and return owned Self.",
-      "morphism": "Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here.",
-      "identity": "Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations.",
-      "identity_checked": "If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value.",
-      "identity_object": "Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof.",
-      "composition": "Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check.",
-      "path_composition": "Same raw overwrite convention with argument names f,g. Preserve order g after f.",
-      "identity_compositions": "Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged.",
-      "build": "Move out the exact owned raw declaration without admission. It is not a certificate.",
-      "build_validated": "Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted."
-    },
-    "trust_boundary": {
-      "formal": "Clean pinned Lean/Mathlib models: actual finite-category admission, literal reports and raw table/loop/ordered update semantics. Explicit Rust correspondence, not extracted Rust or MIR.",
-      "runtime": "Captured rustc/std String/Vec/BTreeMap/BTreeSet contracts, format and derived Clone. Safe disjoint borrowing prevents mutation of iterated morphism/identity fields. No allocator-totality or memory-layout theorem.",
-      "scope": "Own source and current local consumers only; no external application/package or authority promotion."
-    },
-    "assurance_limits": [
-      "L2 is the delivered fluent declaration/guard capability; complete mathematical admission delegates to the separately assessed L5 certificate core.",
-      "A is scoped source/model/native evidence, not A+, measured allocation contract, Rust/MIR extraction, crash/allocator totality or full application success.",
-      "Generated names and arbitrary caller overwrites are raw recipes. String capacities, allocation addresses and map layout may change; logical names/endpoints/table contents and public signatures are preserved. Contracts pending."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/finite_category_builder.score.yaml",
-        "sha256": "199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d"
+        "path": "code/rust/src/category_theory/finite_category_builder.rs",
+        "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04",
+    "subject": "code/rust/src/category_theory/finite_category_builder.rs"
   },
-  "current_contract": "41389f1196dd1456fee1ff9cf7d16221ecdc90f9e281a8d9365f8c819427c579",
-  "current_scoring": "25f39f47c33bb47b5d11c7325961d0d9cb3d2edf5f197656bdb4b357f491b1ac",
   "contract_history": [
     {
-      "sha256": "41389f1196dd1456fee1ff9cf7d16221ecdc90f9e281a8d9365f8c819427c579",
       "bytes": 10419,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_category_builder.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.rs\",\n    \"sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Finite owned raw category declarations and caller strings; arbitrary blank/colliding names and partial/overwritten tables remain untrusted.\",\n    \"delivered_behavior\": \"Fluent raw edits, boundary-only identity_checked, ordered identity recipe, raw move-out or full fresh certificate admission. No generated-name freshness, free-category property or standalone category-law proof from builder calls.\",\n    \"failure\": \"identity_checked returns exact String refusal on foreign loop boundary; build_validated propagates the fresh report; ordinary allocator/format/map runtime contracts remain explicit.\"\n  },\n  \"operations\": {\n    \"new\": {\n      \"signature\": \"pub fn new(name: &str) -> Self\",\n      \"obligation\": \"Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim.\"\n    },\n    \"walking_arrow\": {\n      \"signature\": \"pub fn walking_arrow(name: &str, source: &str, target: &str, arrow: &str) -> Self\",\n      \"obligation\": \"Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate.\"\n    },\n    \"object\": {\n      \"signature\": \"pub fn object(mut self, object: &str) -> Self\",\n      \"obligation\": \"Insert exact supplied object through canonical raw mutator and return owned Self.\"\n    },\n    \"morphism\": {\n      \"signature\": \"pub fn morphism(mut self, name: &str, source: &str, target: &str) -> Self\",\n      \"obligation\": \"Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here.\"\n    },\n    \"identity\": {\n      \"signature\": \"pub fn identity(mut self, object: &str, morphism: &str) -> Self\",\n      \"obligation\": \"Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations.\"\n    },\n    \"identity_checked\": {\n      \"signature\": \"pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String>\",\n      \"obligation\": \"If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value.\"\n    },\n    \"identity_object\": {\n      \"signature\": \"pub fn identity_object(mut self, object: &str) -> Self\",\n      \"obligation\": \"Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof.\"\n    },\n    \"composition\": {\n      \"signature\": \"pub fn composition(mut self, first: &str, second: &str, composite: &str) -> Self\",\n      \"obligation\": \"Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check.\"\n    },\n    \"path_composition\": {\n      \"signature\": \"pub fn path_composition(mut self, f: &str, g: &str, composite: &str) -> Self\",\n      \"obligation\": \"Same raw overwrite convention with argument names f,g. Preserve order g after f.\"\n    },\n    \"identity_compositions\": {\n      \"signature\": \"pub fn identity_compositions(mut self) -> Self\",\n      \"obligation\": \"Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged.\"\n    },\n    \"build\": {\n      \"signature\": \"pub fn build(self) -> DeclaredFiniteCategory\",\n      \"obligation\": \"Move out the exact owned raw declaration without admission. It is not a certificate.\"\n    },\n    \"build_validated\": {\n      \"signature\": \"pub fn build_validated(self) -> Result<ValidatedFiniteCategory, ValidationReport>\",\n      \"obligation\": \"Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted.\"\n    }\n  },\n  \"invariants\": [\n    \"FiniteBuilder.checked_missing/checked_existing_iff mirror None creation versus exact source=object AND target=object boundary admission. String/Option/boolean translation and precise error formatting are separately source-reviewed.\",\n    \"FiniteBuilder.update_self/update_other/update_shadow specify logical table insertion and last-write wins. Four completeOne cases match the two optional identity lookups in source-before-target order; complete_append binds ordered iteration. Old Vec snapshot cloned the same ascending BTreeMap values; disjoint borrowed maps cannot be mutated through the composition field, so all logical updates and their order are unchanged.\",\n    \"BTreeMap Entry modifies/inserts exactly the same key/value contents as the old raw set_composition, reusing existing value String capacity where available. String capacities, map layout and allocation addresses are not mathematical fields or promised compatibility. Required owned tuple keys remain copied for the existing public map API; no allocation-free overwrite guarantee is invented.\",\n    \"build_validated passes exact owned raw data to the existing checked finite-category constructor. Its exhaustive fresh guards, private immutable commit and FiniteCategory model realize actual finite laws on success; the raw builder does not claim those laws beforehand. ValidationInventory supplies exact report flag/typed issue behavior.\"\n  ],\n  \"failure_paths\": {\n    \"new\": \"Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim.\",\n    \"walking_arrow\": \"Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate.\",\n    \"object\": \"Insert exact supplied object through canonical raw mutator and return owned Self.\",\n    \"morphism\": \"Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here.\",\n    \"identity\": \"Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations.\",\n    \"identity_checked\": \"If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value.\",\n    \"identity_object\": \"Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof.\",\n    \"composition\": \"Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check.\",\n    \"path_composition\": \"Same raw overwrite convention with argument names f,g. Preserve order g after f.\",\n    \"identity_compositions\": \"Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged.\",\n    \"build\": \"Move out the exact owned raw declaration without admission. It is not a certificate.\",\n    \"build_validated\": \"Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted.\"\n  },\n  \"trust_boundary\": {\n    \"formal\": \"Clean pinned Lean/Mathlib models: actual finite-category admission, literal reports and raw table/loop/ordered update semantics. Explicit Rust correspondence, not extracted Rust or MIR.\",\n    \"runtime\": \"Captured rustc/std String/Vec/BTreeMap/BTreeSet contracts, format and derived Clone. Safe disjoint borrowing prevents mutation of iterated morphism/identity fields. No allocator-totality or memory-layout theorem.\",\n    \"scope\": \"Own source and current local consumers only; no external application/package or authority promotion.\"\n  },\n  \"assurance_limits\": [\n    \"L2 is the delivered fluent declaration/guard capability; complete mathematical admission delegates to the separately assessed L5 certificate core.\",\n    \"A is scoped source/model/native evidence, not A+, measured allocation contract, Rust/MIR extraction, crash/allocator totality or full application success.\",\n    \"Generated names and arbitrary caller overwrites are raw recipes. String capacities, allocation addresses and map layout may change; logical names/endpoints/table contents and public signatures are preserved. Contracts pending.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_category_builder.score.yaml\",\n      \"sha256\": \"199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/finite_category_builder.rs",
-          "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04",
-          "language": "Rust"
+          "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "L2 is the delivered fluent declaration/guard capability; complete mathematical admission delegates to the separately assessed L5 certificate core.",
+          "A is scoped source/model/native evidence, not A+, measured allocation contract, Rust/MIR extraction, crash/allocator totality or full application success.",
+          "Generated names and arbitrary caller overwrites are raw recipes. String capacities, allocation addresses and map layout may change; logical names/endpoints/table contents and public signatures are preserved. Contracts pending."
+        ],
+        "failure_paths": {
+          "build": "Move out the exact owned raw declaration without admission. It is not a certificate.",
+          "build_validated": "Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted.",
+          "composition": "Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check.",
+          "identity": "Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations.",
+          "identity_checked": "If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value.",
+          "identity_compositions": "Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged.",
+          "identity_object": "Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof.",
+          "morphism": "Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here.",
+          "new": "Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim.",
+          "object": "Insert exact supplied object through canonical raw mutator and return owned Self.",
+          "path_composition": "Same raw overwrite convention with argument names f,g. Preserve order g after f.",
+          "walking_arrow": "Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate."
+        },
         "formal_specification": {
-          "domain": "Finite owned raw category declarations and caller strings; arbitrary blank/colliding names and partial/overwritten tables remain untrusted.",
           "delivered_behavior": "Fluent raw edits, boundary-only identity_checked, ordered identity recipe, raw move-out or full fresh certificate admission. No generated-name freshness, free-category property or standalone category-law proof from builder calls.",
+          "domain": "Finite owned raw category declarations and caller strings; arbitrary blank/colliding names and partial/overwritten tables remain untrusted.",
           "failure": "identity_checked returns exact String refusal on foreign loop boundary; build_validated propagates the fresh report; ordinary allocator/format/map runtime contracts remain explicit."
-        },
-        "operations": {
-          "new": {
-            "signature": "pub fn new(name: &str) -> Self",
-            "obligation": "Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim."
-          },
-          "walking_arrow": {
-            "signature": "pub fn walking_arrow(name: &str, source: &str, target: &str, arrow: &str) -> Self",
-            "obligation": "Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate."
-          },
-          "object": {
-            "signature": "pub fn object(mut self, object: &str) -> Self",
-            "obligation": "Insert exact supplied object through canonical raw mutator and return owned Self."
-          },
-          "morphism": {
-            "signature": "pub fn morphism(mut self, name: &str, source: &str, target: &str) -> Self",
-            "obligation": "Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here."
-          },
-          "identity": {
-            "signature": "pub fn identity(mut self, object: &str, morphism: &str) -> Self",
-            "obligation": "Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations."
-          },
-          "identity_checked": {
-            "signature": "pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String>",
-            "obligation": "If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value."
-          },
-          "identity_object": {
-            "signature": "pub fn identity_object(mut self, object: &str) -> Self",
-            "obligation": "Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof."
-          },
-          "composition": {
-            "signature": "pub fn composition(mut self, first: &str, second: &str, composite: &str) -> Self",
-            "obligation": "Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check."
-          },
-          "path_composition": {
-            "signature": "pub fn path_composition(mut self, f: &str, g: &str, composite: &str) -> Self",
-            "obligation": "Same raw overwrite convention with argument names f,g. Preserve order g after f."
-          },
-          "identity_compositions": {
-            "signature": "pub fn identity_compositions(mut self) -> Self",
-            "obligation": "Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged."
-          },
-          "build": {
-            "signature": "pub fn build(self) -> DeclaredFiniteCategory",
-            "obligation": "Move out the exact owned raw declaration without admission. It is not a certificate."
-          },
-          "build_validated": {
-            "signature": "pub fn build_validated(self) -> Result<ValidatedFiniteCategory, ValidationReport>",
-            "obligation": "Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted."
-          }
         },
         "invariants": [
           "FiniteBuilder.checked_missing/checked_existing_iff mirror None creation versus exact source=object AND target=object boundary admission. String/Option/boolean translation and precise error formatting are separately source-reviewed.",
@@ -180,60 +82,193 @@
           "BTreeMap Entry modifies/inserts exactly the same key/value contents as the old raw set_composition, reusing existing value String capacity where available. String capacities, map layout and allocation addresses are not mathematical fields or promised compatibility. Required owned tuple keys remain copied for the existing public map API; no allocation-free overwrite guarantee is invented.",
           "build_validated passes exact owned raw data to the existing checked finite-category constructor. Its exhaustive fresh guards, private immutable commit and FiniteCategory model realize actual finite laws on success; the raw builder does not claim those laws beforehand. ValidationInventory supplies exact report flag/typed issue behavior."
         ],
-        "failure_paths": {
-          "new": "Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim.",
-          "walking_arrow": "Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate.",
-          "object": "Insert exact supplied object through canonical raw mutator and return owned Self.",
-          "morphism": "Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here.",
-          "identity": "Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations.",
-          "identity_checked": "If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value.",
-          "identity_object": "Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof.",
-          "composition": "Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check.",
-          "path_composition": "Same raw overwrite convention with argument names f,g. Preserve order g after f.",
-          "identity_compositions": "Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged.",
-          "build": "Move out the exact owned raw declaration without admission. It is not a certificate.",
-          "build_validated": "Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted."
+        "open_obligations": [],
+        "operations": {
+          "build": {
+            "obligation": "Move out the exact owned raw declaration without admission. It is not a certificate.",
+            "signature": "pub fn build(self) -> DeclaredFiniteCategory"
+          },
+          "build_validated": {
+            "obligation": "Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted.",
+            "signature": "pub fn build_validated(self) -> Result<ValidatedFiniteCategory, ValidationReport>"
+          },
+          "composition": {
+            "obligation": "Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check.",
+            "signature": "pub fn composition(mut self, first: &str, second: &str, composite: &str) -> Self"
+          },
+          "identity": {
+            "obligation": "Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations.",
+            "signature": "pub fn identity(mut self, object: &str, morphism: &str) -> Self"
+          },
+          "identity_checked": {
+            "obligation": "If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value.",
+            "signature": "pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String>"
+          },
+          "identity_compositions": {
+            "obligation": "Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged.",
+            "signature": "pub fn identity_compositions(mut self) -> Self"
+          },
+          "identity_object": {
+            "obligation": "Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof.",
+            "signature": "pub fn identity_object(mut self, object: &str) -> Self"
+          },
+          "morphism": {
+            "obligation": "Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here.",
+            "signature": "pub fn morphism(mut self, name: &str, source: &str, target: &str) -> Self"
+          },
+          "new": {
+            "obligation": "Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim.",
+            "signature": "pub fn new(name: &str) -> Self"
+          },
+          "object": {
+            "obligation": "Insert exact supplied object through canonical raw mutator and return owned Self.",
+            "signature": "pub fn object(mut self, object: &str) -> Self"
+          },
+          "path_composition": {
+            "obligation": "Same raw overwrite convention with argument names f,g. Preserve order g after f.",
+            "signature": "pub fn path_composition(mut self, f: &str, g: &str, composite: &str) -> Self"
+          },
+          "walking_arrow": {
+            "obligation": "Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate.",
+            "signature": "pub fn walking_arrow(name: &str, source: &str, target: &str, arrow: &str) -> Self"
+          }
         },
-        "trust_boundary": {
-          "formal": "Clean pinned Lean/Mathlib models: actual finite-category admission, literal reports and raw table/loop/ordered update semantics. Explicit Rust correspondence, not extracted Rust or MIR.",
-          "runtime": "Captured rustc/std String/Vec/BTreeMap/BTreeSet contracts, format and derived Clone. Safe disjoint borrowing prevents mutation of iterated morphism/identity fields. No allocator-totality or memory-layout theorem.",
-          "scope": "Own source and current local consumers only; no external application/package or authority promotion."
-        },
-        "assurance_limits": [
-          "L2 is the delivered fluent declaration/guard capability; complete mathematical admission delegates to the separately assessed L5 certificate core.",
-          "A is scoped source/model/native evidence, not A+, measured allocation contract, Rust/MIR extraction, crash/allocator totality or full application success.",
-          "Generated names and arbitrary caller overwrites are raw recipes. String capacities, allocation addresses and map layout may change; logical names/endpoints/table contents and public signatures are preserved. Contracts pending."
-        ],
         "review_evidence": [
           {
             "path": "code/rust/src/category_theory/finite_category_builder.score.yaml",
             "sha256": "199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d"
           }
         ],
-        "open_obligations": []
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": {
+          "formal": "Clean pinned Lean/Mathlib models: actual finite-category admission, literal reports and raw table/loop/ordered update semantics. Explicit Rust correspondence, not extracted Rust or MIR.",
+          "runtime": "Captured rustc/std String/Vec/BTreeMap/BTreeSet contracts, format and derived Clone. Safe disjoint borrowing prevents mutation of iterated morphism/identity fields. No allocator-totality or memory-layout theorem.",
+          "scope": "Own source and current local consumers only; no external application/package or authority promotion."
+        }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.rs\",\n    \"sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Finite owned raw category declarations and caller strings; arbitrary blank/colliding names and partial/overwritten tables remain untrusted.\",\n    \"delivered_behavior\": \"Fluent raw edits, boundary-only identity_checked, ordered identity recipe, raw move-out or full fresh certificate admission. No generated-name freshness, free-category property or standalone category-law proof from builder calls.\",\n    \"failure\": \"identity_checked returns exact String refusal on foreign loop boundary; build_validated propagates the fresh report; ordinary allocator/format/map runtime contracts remain explicit.\"\n  },\n  \"operations\": {\n    \"new\": {\n      \"signature\": \"pub fn new(name: &str) -> Self\",\n      \"obligation\": \"Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim.\"\n    },\n    \"walking_arrow\": {\n      \"signature\": \"pub fn walking_arrow(name: &str, source: &str, target: &str, arrow: &str) -> Self\",\n      \"obligation\": \"Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate.\"\n    },\n    \"object\": {\n      \"signature\": \"pub fn object(mut self, object: &str) -> Self\",\n      \"obligation\": \"Insert exact supplied object through canonical raw mutator and return owned Self.\"\n    },\n    \"morphism\": {\n      \"signature\": \"pub fn morphism(mut self, name: &str, source: &str, target: &str) -> Self\",\n      \"obligation\": \"Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here.\"\n    },\n    \"identity\": {\n      \"signature\": \"pub fn identity(mut self, object: &str, morphism: &str) -> Self\",\n      \"obligation\": \"Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations.\"\n    },\n    \"identity_checked\": {\n      \"signature\": \"pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String>\",\n      \"obligation\": \"If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value.\"\n    },\n    \"identity_object\": {\n      \"signature\": \"pub fn identity_object(mut self, object: &str) -> Self\",\n      \"obligation\": \"Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof.\"\n    },\n    \"composition\": {\n      \"signature\": \"pub fn composition(mut self, first: &str, second: &str, composite: &str) -> Self\",\n      \"obligation\": \"Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check.\"\n    },\n    \"path_composition\": {\n      \"signature\": \"pub fn path_composition(mut self, f: &str, g: &str, composite: &str) -> Self\",\n      \"obligation\": \"Same raw overwrite convention with argument names f,g. Preserve order g after f.\"\n    },\n    \"identity_compositions\": {\n      \"signature\": \"pub fn identity_compositions(mut self) -> Self\",\n      \"obligation\": \"Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged.\"\n    },\n    \"build\": {\n      \"signature\": \"pub fn build(self) -> DeclaredFiniteCategory\",\n      \"obligation\": \"Move out the exact owned raw declaration without admission. It is not a certificate.\"\n    },\n    \"build_validated\": {\n      \"signature\": \"pub fn build_validated(self) -> Result<ValidatedFiniteCategory, ValidationReport>\",\n      \"obligation\": \"Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted.\"\n    }\n  },\n  \"invariants\": [\n    \"FiniteBuilder.checked_missing/checked_existing_iff mirror None creation versus exact source=object AND target=object boundary admission. String/Option/boolean translation and precise error formatting are separately source-reviewed.\",\n    \"FiniteBuilder.update_self/update_other/update_shadow specify logical table insertion and last-write wins. Four completeOne cases match the two optional identity lookups in source-before-target order; complete_append binds ordered iteration. Old Vec snapshot cloned the same ascending BTreeMap values; disjoint borrowed maps cannot be mutated through the composition field, so all logical updates and their order are unchanged.\",\n    \"BTreeMap Entry modifies/inserts exactly the same key/value contents as the old raw set_composition, reusing existing value String capacity where available. String capacities, map layout and allocation addresses are not mathematical fields or promised compatibility. Required owned tuple keys remain copied for the existing public map API; no allocation-free overwrite guarantee is invented.\",\n    \"build_validated passes exact owned raw data to the existing checked finite-category constructor. Its exhaustive fresh guards, private immutable commit and FiniteCategory model realize actual finite laws on success; the raw builder does not claim those laws beforehand. ValidationInventory supplies exact report flag/typed issue behavior.\"\n  ],\n  \"failure_paths\": {\n    \"new\": \"Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim.\",\n    \"walking_arrow\": \"Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate.\",\n    \"object\": \"Insert exact supplied object through canonical raw mutator and return owned Self.\",\n    \"morphism\": \"Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here.\",\n    \"identity\": \"Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations.\",\n    \"identity_checked\": \"If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value.\",\n    \"identity_object\": \"Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof.\",\n    \"composition\": \"Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check.\",\n    \"path_composition\": \"Same raw overwrite convention with argument names f,g. Preserve order g after f.\",\n    \"identity_compositions\": \"Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged.\",\n    \"build\": \"Move out the exact owned raw declaration without admission. It is not a certificate.\",\n    \"build_validated\": \"Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted.\"\n  },\n  \"trust_boundary\": {\n    \"formal\": \"Clean pinned Lean/Mathlib models: actual finite-category admission, literal reports and raw table/loop/ordered update semantics. Explicit Rust correspondence, not extracted Rust or MIR.\",\n    \"runtime\": \"Captured rustc/std String/Vec/BTreeMap/BTreeSet contracts, format and derived Clone. Safe disjoint borrowing prevents mutation of iterated morphism/identity fields. No allocator-totality or memory-layout theorem.\",\n    \"scope\": \"Own source and current local consumers only; no external application/package or authority promotion.\"\n  },\n  \"assurance_limits\": [\n    \"L2 is the delivered fluent declaration/guard capability; complete mathematical admission delegates to the separately assessed L5 certificate core.\",\n    \"A is scoped source/model/native evidence, not A+, measured allocation contract, Rust/MIR extraction, crash/allocator totality or full application success.\",\n    \"Generated names and arbitrary caller overwrites are raw recipes. String capacities, allocation addresses and map layout may change; logical names/endpoints/table contents and public signatures are preserved. Contracts pending.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_category_builder.score.yaml\",\n      \"sha256\": \"199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_category_builder.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
+      "sha256": "41389f1196dd1456fee1ff9cf7d16221ecdc90f9e281a8d9365f8c819427c579"
+    },
     {
-      "sha256": "199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d",
-      "bytes": 4756,
+      "bytes": 1647,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_category_builder.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.rs\",\n    \"sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_category_builder.rs\",\n      \"sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\",\n  \"subject\": \"code/rust/src/category_theory/finite_category_builder.rs\"\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "artifact": {
-          "path": "code/rust/src/category_theory/finite_category_builder.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_category_builder.rs",
           "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
         },
-        "profile": "Exact",
-        "level": "L2",
-        "level_basis": "Fluent raw declarations and a loop-boundary guard; complete law admission delegates to the canonical category certificate constructor.",
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_category_builder.rs",
+            "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04",
+        "subject": "code/rust/src/category_theory/finite_category_builder.rs"
+      },
+      "sha256": "34c8e2be12696f7b09f31b70e90f877e3b82b13ee576433cc40bfe4977085015"
+    }
+  ],
+  "current_contract": "34c8e2be12696f7b09f31b70e90f877e3b82b13ee576433cc40bfe4977085015",
+  "current_scoring": "d3bbc7c69df11382f1a3f25216d5132c405433ed9446d4a39cd2c71354fed7f2",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/finite_category_builder.rs.contract.yaml": "41389f1196dd1456fee1ff9cf7d16221ecdc90f9e281a8d9365f8c819427c579",
+    "code/rust/src/category_theory/finite_category_builder.rs.scoring.yaml": "6254cca01e13784d6c4a9bc4d3fdc2710b4f6f8327670f01f0fa9ec2d7e576ae",
+    "code/rust/src/category_theory/finite_category_builder.score.yaml": "199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d",
+    "evidence/quality/category_homology/resume-20261019/builder-previous/finite_category_builder.score.yaml": "d74ca92845a4d0d56c12088dd860817428e1e85f22f9ebcd153d09bdddee188b"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4756,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_category_builder.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_category_builder.rs\"\n  language: \"Rust\"\n  sha256: \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\"\nprofile: \"Exact\"\nlevel: \"L2\"\nlevel_basis: \"Fluent raw declarations and a loop-boundary guard; complete law admission delegates to the canonical category certificate constructor.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T17:49:47.501756+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_category_builder\"\n  description: \"Fluent raw finite-category declarations. AuthorityEffect: None.  Mutators may overwrite existing names and table entries. Generated `id_` names are a recipe, not fresh-name guarantees. `identity_checked` checks only a loop boundary; `build_validated` separately performs full admission.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T162627Z/baseline.json\", \"sha256\": \"4dd34b61afa351fe0aa3ba76e216bb1e5f1492c3f2b68184bdc3220d91284587\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T162627Z/summary.json\", \"sha256\": \"b2d1f3e6b636332a254dae5f8007da0dc39280fafbcef33a87a3a6d30c13153c\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T162627Z/mutations.json\", \"sha256\": \"3f63bec90bcb05a89fc87c65a550e02e63a88fdb238662e8a6eef3c1c4e048c2\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T162704Z-metrics/receipt.json\", \"sha256\": \"c28775aaa57d44994cdb6a16f82291bcd3b9a7bb7b997f45997d05a9971db98b\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T162627Z/dependency_receipt.json\", \"sha256\": \"a84de5628d2e9799a00f64b2457363ba47ac2d9a5f30bdb44f7f364e6b7c9756\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/functor_composition_provider_refresh/finite_category_builder.json\", \"sha256\": \"4c12d1f4d846c5f71400e3b2615b1722b34ddb488143a44592a28e681350a368\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 20\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 128\n  parsed_production_functions: 12\n  max_production_ccn: 4\n  cognitive_complexity_upper_bound: 5\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L2 is the delivered fluent declaration/guard capability; complete mathematical admission delegates to the separately assessed L5 certificate core.\"\n  - \"A is scoped source/model/native evidence, not A+, measured allocation contract, Rust/MIR extraction, crash/allocator totality or full application success.\"\n  - \"Generated names and arbitrary caller overwrites are raw recipes. String capacities, allocation addresses and map layout may change; logical names/endpoints/table contents and public signatures are preserved. Contracts pending.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
         "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_category_builder.rs",
+          "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+        },
+        "assurance_limits": [
+          "L2 is the delivered fluent declaration/guard capability; complete mathematical admission delegates to the separately assessed L5 certificate core.",
+          "A is scoped source/model/native evidence, not A+, measured allocation contract, Rust/MIR extraction, crash/allocator totality or full application success.",
+          "Generated names and arbitrary caller overwrites are raw recipes. String capacities, allocation addresses and map layout may change; logical names/endpoints/table contents and public signatures are preserved. Contracts pending."
+        ],
+        "claim": {
+          "description": "Fluent raw finite-category declarations. AuthorityEffect: None.  Mutators may overwrite existing names and table entries. Generated `id_` names are a recipe, not fresh-name guarantees. `identity_checked` checks only a loop boundary; `build_validated` separately performs full admission.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_category_builder"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T17:49:47.501756+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T162627Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "4dd34b61afa351fe0aa3ba76e216bb1e5f1492c3f2b68184bdc3220d91284587"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T162627Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "b2d1f3e6b636332a254dae5f8007da0dc39280fafbcef33a87a3a6d30c13153c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T162627Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "3f63bec90bcb05a89fc87c65a550e02e63a88fdb238662e8a6eef3c1c4e048c2"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T162704Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "c28775aaa57d44994cdb6a16f82291bcd3b9a7bb7b997f45997d05a9971db98b"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T162627Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "a84de5628d2e9799a00f64b2457363ba47ac2d9a5f30bdb44f7f364e6b7c9756"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/functor_composition_provider_refresh/finite_category_builder.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "4c12d1f4d846c5f71400e3b2615b1722b34ddb488143a44592a28e681350a368"
+          }
+        ],
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -241,58 +276,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T17:49:47.501756+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_category_builder",
-          "description": "Fluent raw finite-category declarations. AuthorityEffect: None.  Mutators may overwrite existing names and table entries. Generated `id_` names are a recipe, not fresh-name guarantees. `identity_checked` checks only a loop boundary; `build_validated` separately performs full admission.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Fluent raw declarations and a loop-boundary guard; complete law admission delegates to the canonical category certificate constructor.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 20,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 5,
+          "control_nesting": 3,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 4,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 12,
+          "physical_lines": 128,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T162627Z/baseline.json",
-            "sha256": "4dd34b61afa351fe0aa3ba76e216bb1e5f1492c3f2b68184bdc3220d91284587",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T162627Z/summary.json",
-            "sha256": "b2d1f3e6b636332a254dae5f8007da0dc39280fafbcef33a87a3a6d30c13153c",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T162627Z/mutations.json",
-            "sha256": "3f63bec90bcb05a89fc87c65a550e02e63a88fdb238662e8a6eef3c1c4e048c2",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T162704Z-metrics/receipt.json",
-            "sha256": "c28775aaa57d44994cdb6a16f82291bcd3b9a7bb7b997f45997d05a9971db98b",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T162627Z/dependency_receipt.json",
-            "sha256": "a84de5628d2e9799a00f64b2457363ba47ac2d9a5f30bdb44f7f364e6b7c9756",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/functor_composition_provider_refresh/finite_category_builder.json",
-            "sha256": "4c12d1f4d846c5f71400e3b2615b1722b34ddb488143a44592a28e681350a368",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -315,60 +332,37 @@
             "RR-19-18",
             "RR-20-19"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 20,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 128,
-          "parsed_production_functions": 12,
-          "max_production_ccn": 4,
-          "cognitive_complexity_upper_bound": 5,
-          "control_nesting": 3,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "L2 is the delivered fluent declaration/guard capability; complete mathematical admission delegates to the separately assessed L5 certificate core.",
-          "A is scoped source/model/native evidence, not A+, measured allocation contract, Rust/MIR extraction, crash/allocator totality or full application success.",
-          "Generated names and arbitrary caller overwrites are raw recipes. String capacities, allocation addresses and map layout may change; logical names/endpoints/table contents and public signatures are preserved. Contracts pending."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_category_builder.rs\"\n  language: \"Rust\"\n  sha256: \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\"\nprofile: \"Exact\"\nlevel: \"L2\"\nlevel_basis: \"Fluent raw declarations and a loop-boundary guard; complete law admission delegates to the canonical category certificate constructor.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T17:49:47.501756+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_category_builder\"\n  description: \"Fluent raw finite-category declarations. AuthorityEffect: None.  Mutators may overwrite existing names and table entries. Generated `id_` names are a recipe, not fresh-name guarantees. `identity_checked` checks only a loop boundary; `build_validated` separately performs full admission.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T162627Z/baseline.json\", \"sha256\": \"4dd34b61afa351fe0aa3ba76e216bb1e5f1492c3f2b68184bdc3220d91284587\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T162627Z/summary.json\", \"sha256\": \"b2d1f3e6b636332a254dae5f8007da0dc39280fafbcef33a87a3a6d30c13153c\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T162627Z/mutations.json\", \"sha256\": \"3f63bec90bcb05a89fc87c65a550e02e63a88fdb238662e8a6eef3c1c4e048c2\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T162704Z-metrics/receipt.json\", \"sha256\": \"c28775aaa57d44994cdb6a16f82291bcd3b9a7bb7b997f45997d05a9971db98b\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T162627Z/dependency_receipt.json\", \"sha256\": \"a84de5628d2e9799a00f64b2457363ba47ac2d9a5f30bdb44f7f364e6b7c9756\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/functor_composition_provider_refresh/finite_category_builder.json\", \"sha256\": \"4c12d1f4d846c5f71400e3b2615b1722b34ddb488143a44592a28e681350a368\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 20\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 128\n  parsed_production_functions: 12\n  max_production_ccn: 4\n  cognitive_complexity_upper_bound: 5\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L2 is the delivered fluent declaration/guard capability; complete mathematical admission delegates to the separately assessed L5 certificate core.\"\n  - \"A is scoped source/model/native evidence, not A+, measured allocation contract, Rust/MIR extraction, crash/allocator totality or full application success.\"\n  - \"Generated names and arbitrary caller overwrites are raw recipes. String capacities, allocation addresses and map layout may change; logical names/endpoints/table contents and public signatures are preserved. Contracts pending.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_category_builder.score.yaml"
-      ]
+      "sha256": "199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d"
     },
     {
-      "sha256": "6254cca01e13784d6c4a9bc4d3fdc2710b4f6f8327670f01f0fa9ec2d7e576ae",
       "bytes": 2350,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_category_builder.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.rs\",\n    \"sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.score.yaml\",\n    \"sha256\": \"199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.rs.contract.yaml\",\n    \"sha256\": \"41389f1196dd1456fee1ff9cf7d16221ecdc90f9e281a8d9365f8c819427c579\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\",\n    \"function_count\": 12,\n    \"maxima\": {\n      \"ccn\": 4,\n      \"cognitive_upper_bound\": 5,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/finite_category_builder.rs",
-          "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_category_builder.rs",
+          "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/finite_category_builder.score.yaml",
+          "sha256": "199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/finite_category_builder.rs.contract.yaml",
+          "sha256": "41389f1196dd1456fee1ff9cf7d16221ecdc90f9e281a8d9365f8c819427c579"
+        },
         "engineering_target": "A",
-        "level": "L2",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -376,30 +370,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/finite_category_builder.score.yaml",
-          "sha256": "199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/finite_category_builder.rs.contract.yaml",
-          "sha256": "41389f1196dd1456fee1ff9cf7d16221ecdc90f9e281a8d9365f8c819427c579"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L2",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
         "structural_measurement": {
-          "source_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04",
-          "function_count": 12,
-          "maxima": {
-            "ccn": 4,
-            "cognitive_upper_bound": 5,
-            "control_nesting": 3
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -414,29 +394,69 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 12,
+          "maxima": {
+            "ccn": 4,
+            "cognitive_upper_bound": 5,
+            "control_nesting": 3
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.rs\",\n    \"sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.score.yaml\",\n    \"sha256\": \"199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.rs.contract.yaml\",\n    \"sha256\": \"41389f1196dd1456fee1ff9cf7d16221ecdc90f9e281a8d9365f8c819427c579\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\",\n    \"function_count\": 12,\n    \"maxima\": {\n      \"ccn\": 4,\n      \"cognitive_upper_bound\": 5,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_category_builder.rs.scoring.yaml"
-      ]
+      "sha256": "6254cca01e13784d6c4a9bc4d3fdc2710b4f6f8327670f01f0fa9ec2d7e576ae"
     },
     {
-      "sha256": "d74ca92845a4d0d56c12088dd860817428e1e85f22f9ebcd153d09bdddee188b",
       "bytes": 3219,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/builder-previous/finite_category_builder.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_category_builder.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"7af37e90729bf85660d671eb36b69c18588258c30666f7ec9341c47fc3510911\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"A\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_category_builder\"\r\n  description: \"Ergonomic builder for declared finite categories.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 128\r\n  parsed_production_functions: 12\r\n  max_production_ccn: 4\r\n  cognitive_complexity_upper_bound: 5\r\n  control_nesting: 3\r\n  opaque_function_macros: []\r\n  functions_exceeding_A: []\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/finite_category_builder.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_category_builder.rs",
           "sha256": "7af37e90729bf85660d671eb36b69c18588258c30666f7ec9341c47fc3510911"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "Ergonomic builder for declared finite categories.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_category_builder"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -444,107 +464,61 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_category_builder",
-          "description": "Ergonomic builder for declared finite categories.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 128,
-          "parsed_production_functions": 12,
-          "max_production_ccn": 4,
-          "cognitive_complexity_upper_bound": 5,
-          "control_nesting": 3,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "unrun": 0
         },
         "open_findings": [
           "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
           "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
           "External path dependency source contents have not received a separate origin/content attestation."
-        ]
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
+        "structure": {
+          "cognitive_complexity_upper_bound": 5,
+          "control_nesting": 3,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 4,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 12,
+          "physical_lines": 128,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_category_builder.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"7af37e90729bf85660d671eb36b69c18588258c30666f7ec9341c47fc3510911\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"A\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_category_builder\"\r\n  description: \"Ergonomic builder for declared finite categories.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 128\r\n  parsed_production_functions: 12\r\n  max_production_ccn: 4\r\n  cognitive_complexity_upper_bound: 5\r\n  control_nesting: 3\r\n  opaque_function_macros: []\r\n  functions_exceeding_A: []\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/builder-previous/finite_category_builder.score.yaml"
-      ]
+      "sha256": "d74ca92845a4d0d56c12088dd860817428e1e85f22f9ebcd153d09bdddee188b"
     },
     {
-      "sha256": "25f39f47c33bb47b5d11c7325961d0d9cb3d2edf5f197656bdb4b357f491b1ac",
       "bytes": 5695,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_category_builder.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.rs\",\n    \"sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:finite-category-builder:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 5,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T162627Z/baseline.json\",\n      \"sha256\": \"4dd34b61afa351fe0aa3ba76e216bb1e5f1492c3f2b68184bdc3220d91284587\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T162627Z/summary.json\",\n      \"sha256\": \"b2d1f3e6b636332a254dae5f8007da0dc39280fafbcef33a87a3a6d30c13153c\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T162627Z/mutations.json\",\n      \"sha256\": \"3f63bec90bcb05a89fc87c65a550e02e63a88fdb238662e8a6eef3c1c4e048c2\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T162704Z-metrics/receipt.json\",\n      \"sha256\": \"c28775aaa57d44994cdb6a16f82291bcd3b9a7bb7b997f45997d05a9971db98b\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T162627Z/dependency_receipt.json\",\n      \"sha256\": \"a84de5628d2e9799a00f64b2457363ba47ac2d9a5f30bdb44f7f364e6b7c9756\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/functor_composition_provider_refresh/finite_category_builder.json\",\n      \"sha256\": \"4c12d1f4d846c5f71400e3b2615b1722b34ddb488143a44592a28e681350a368\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 128,\n    \"parsed_production_functions\": 12,\n    \"max_production_ccn\": 4,\n    \"cognitive_complexity_upper_bound\": 5,\n    \"control_nesting\": 3,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/finite_category_builder.rs",
-          "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:finite-category-builder:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -553,24 +527,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 6,
-          "lizard_ccn": 6,
-          "weighted_control_upper_bound": 5,
-          "control_nesting": 3
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -578,81 +535,155 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T162627Z/baseline.json",
-            "sha256": "4dd34b61afa351fe0aa3ba76e216bb1e5f1492c3f2b68184bdc3220d91284587",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "4dd34b61afa351fe0aa3ba76e216bb1e5f1492c3f2b68184bdc3220d91284587"
           },
           {
             "path": "evidence/quality/category_homology/20261019T162627Z/summary.json",
-            "sha256": "b2d1f3e6b636332a254dae5f8007da0dc39280fafbcef33a87a3a6d30c13153c",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "b2d1f3e6b636332a254dae5f8007da0dc39280fafbcef33a87a3a6d30c13153c"
           },
           {
             "path": "evidence/quality/category_homology/20261019T162627Z/mutations.json",
-            "sha256": "3f63bec90bcb05a89fc87c65a550e02e63a88fdb238662e8a6eef3c1c4e048c2",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "3f63bec90bcb05a89fc87c65a550e02e63a88fdb238662e8a6eef3c1c4e048c2"
           },
           {
             "path": "evidence/quality/category_homology/20261019T162704Z-metrics/receipt.json",
-            "sha256": "c28775aaa57d44994cdb6a16f82291bcd3b9a7bb7b997f45997d05a9971db98b",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "c28775aaa57d44994cdb6a16f82291bcd3b9a7bb7b997f45997d05a9971db98b"
           },
           {
             "path": "evidence/quality/category_homology/20261019T162627Z/dependency_receipt.json",
-            "sha256": "a84de5628d2e9799a00f64b2457363ba47ac2d9a5f30bdb44f7f364e6b7c9756",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "a84de5628d2e9799a00f64b2457363ba47ac2d9a5f30bdb44f7f364e6b7c9756"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/functor_composition_provider_refresh/finite_category_builder.json",
-            "sha256": "4c12d1f4d846c5f71400e3b2615b1722b34ddb488143a44592a28e681350a368",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "4c12d1f4d846c5f71400e3b2615b1722b34ddb488143a44592a28e681350a368"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 6,
+          "radon_ccn": 6,
+          "weighted_control_upper_bound": 5
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 128,
-          "parsed_production_functions": 12,
-          "max_production_ccn": 4,
           "cognitive_complexity_upper_bound": 5,
           "control_nesting": 3,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 4,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 12,
+          "physical_lines": 128,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.rs\",\n    \"sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:finite-category-builder:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 5,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T162627Z/baseline.json\",\n      \"sha256\": \"4dd34b61afa351fe0aa3ba76e216bb1e5f1492c3f2b68184bdc3220d91284587\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T162627Z/summary.json\",\n      \"sha256\": \"b2d1f3e6b636332a254dae5f8007da0dc39280fafbcef33a87a3a6d30c13153c\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T162627Z/mutations.json\",\n      \"sha256\": \"3f63bec90bcb05a89fc87c65a550e02e63a88fdb238662e8a6eef3c1c4e048c2\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T162704Z-metrics/receipt.json\",\n      \"sha256\": \"c28775aaa57d44994cdb6a16f82291bcd3b9a7bb7b997f45997d05a9971db98b\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T162627Z/dependency_receipt.json\",\n      \"sha256\": \"a84de5628d2e9799a00f64b2457363ba47ac2d9a5f30bdb44f7f364e6b7c9756\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/functor_composition_provider_refresh/finite_category_builder.json\",\n      \"sha256\": \"4c12d1f4d846c5f71400e3b2615b1722b34ddb488143a44592a28e681350a368\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 128,\n    \"parsed_production_functions\": 12,\n    \"max_production_ccn\": 4,\n    \"cognitive_complexity_upper_bound\": 5,\n    \"control_nesting\": 3,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "25f39f47c33bb47b5d11c7325961d0d9cb3d2edf5f197656bdb4b357f491b1ac"
+    },
+    {
+      "bytes": 1626,
       "original_paths": [
-        "code/rust/src/category_theory/finite_category_builder.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/finite_category_builder.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/finite_category_builder.rs\",\n    \"sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_category_builder.rs\",\n      \"sha256\": \"258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_category_builder.rs",
+          "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_category_builder.rs",
+            "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "d3bbc7c69df11382f1a3f25216d5132c405433ed9446d4a39cd2c71354fed7f2"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/finite_category_builder.rs.contract.yaml": "41389f1196dd1456fee1ff9cf7d16221ecdc90f9e281a8d9365f8c819427c579",
-    "code/rust/src/category_theory/finite_category_builder.score.yaml": "199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d",
-    "code/rust/src/category_theory/finite_category_builder.rs.scoring.yaml": "6254cca01e13784d6c4a9bc4d3fdc2710b4f6f8327670f01f0fa9ec2d7e576ae",
-    "evidence/quality/category_homology/resume-20261019/builder-previous/finite_category_builder.score.yaml": "d74ca92845a4d0d56c12088dd860817428e1e85f22f9ebcd153d09bdddee188b"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

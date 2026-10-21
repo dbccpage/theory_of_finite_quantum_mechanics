@@ -1,218 +1,114 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:cech_cochain:v1.0.0",
-    "title": "Čech Cochain",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py",
+      "sha256": "4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1"
     },
-    "math": {
-      "object_kind": "cochain",
-      "symbol": "c : N(U)_k → G",
-      "ascii_symbol": "CechCochain",
-      "notation": "c : N(U)_k → G",
-      "domain": [
-        "the nerve N(U) of a cover U = {U_i} of a space X",
-        "a non-negative degree k",
-        "an abelian coefficient group G",
-        "a map from k-simplex identifiers to elements of G"
-      ],
-      "codomain": {
-        "description": "a single validated Čech k-cochain (purely structural; emits no class)"
-      },
-      "definition": {
-        "cochain": "a function c assigning to each k-simplex of N(U) an element of G",
-        "coboundary": "delta : C^k → C^{k+1} via the alternating-sum formula",
-        "scope": "this contract is a single k-cochain; the full complex lives in Čech cohomology"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "a nerve_id resolving to a valid Nerve artifact",
-        "a degree k with 0 ≤ k ≤ max dimension of the nerve",
-        "all simplex ids being valid, sorted k-simplices of the nerve",
-        "each value being a valid element of the coefficient group",
-        "values sorted lexicographically by simplex id, each simplex at most once",
-        "a content-addressed SHA-256 hash over the canonical serialization"
-      ],
-      "compatibility": [
-        "the degree must not exceed the nerve's maximum dimension",
-        "coefficient values must belong to the declared coefficient group"
-      ]
-    },
-    "laws": {
-      "simplex_membership": "Every simplex id must be a valid, canonically-sorted k-simplex of the nerve.",
-      "coefficient_validity": "Every value is a valid element of the declared abelian coefficient group.",
-      "uniqueness": "Each simplex appears at most once in the value map.",
-      "canonical_order": "Values are sorted lexicographically by simplex id; sorted ids imply alternating signs.",
-      "descriptive_only": "A cochain is structural; it classifies nothing and confers no authority."
-    },
-    "equivalence": {
-      "artifact_equality": "Two cochains are equal iff nerve, degree, coefficient group, and canonical values hash agree.",
-      "zero_cochain": "An empty value list and an all-identity assignment are equivalent via the group identity."
-    },
-    "replay": {
-      "requirements": [
-        "no external state, randomness, or time-dependent data",
-        "simplex ids serialized as sorted tuples of 4-byte unsigned LE integers",
-        "values serialized in the coefficient group's canonical form, sorted by simplex id",
-        "deterministic SHA-256 hash over the canonical serialization"
-      ]
-    },
-    "relationships": {
-      "Nerve": "Cochains are defined on the simplices of the nerve N(U) of a cover.",
-      "CochainComplex": "Čech cochains assemble into a [[cochain_complex]] under the Čech coboundary.",
-      "CechCohomology": "Čech cohomology is the cohomology of the complex of these cochains.",
-      "Cover": "The cover U of the space X induces the nerve on which cochains live.",
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "nerve_id does not resolve to a Nerve artifact",
-      "degree exceeds the nerve's maximum dimension",
-      "simplex id references vertices not in the nerve, or has the wrong cardinality",
-      "simplex id is unsorted (e.g. (2,0,1) instead of (0,1,2))",
-      "duplicate simplex id in the value list",
-      "value not in the coefficient group (e.g. 0.5 for coefficients in Z)",
-      "value list not sorted lexicographically by simplex id",
-      "artifact hash does not match the recomputed hash"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "doctrine": {
-      "summary": "A single Čech k-cochain: an assignment of coefficient-group elements to the k-simplices of the nerve of a cover. Purely structural; confers no authority.\n",
-      "non_role": [
-        "Does not represent the full Čech cohomology complex (see the Čech cohomology contract).",
-        "Does not compute cohomology groups directly.",
-        "Does not handle cup products (a separate computation).",
-        "Does not issue certificates, terminalize, or produce customer-facing claims."
-      ]
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py",
+        "sha256": "4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "Sheaf coefficients are planned via a Sheaf artifact hash in the coefficient group id.",
-      "Zero cochain may be an empty list; the group identity handles equivalence.",
-      "Cup product will be a separate operation with a dedicated computation witness.",
-      "Alternating-sign convention is implicit in the sorted-simplex representation."
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1",
+    "subject": "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py"
   },
-  "current_contract": "80bd269fd8575e99799370a80b81d3c3d38a6f280221a27b8b4ad8a3ab15d7d9",
-  "current_scoring": "08f7ee085cd336e7a3b85df8ab0cbfc27b8916f13fb065c90886a8af842c0a24",
   "contract_history": [
     {
-      "sha256": "80bd269fd8575e99799370a80b81d3c3d38a6f280221a27b8b4ad8a3ab15d7d9",
       "bytes": 5059,
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:cech_cochain:v1.0.0\",\n  \"title\": \"Čech Cochain\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"cochain\",\n    \"symbol\": \"c : N(U)_k → G\",\n    \"ascii_symbol\": \"CechCochain\",\n    \"notation\": \"c : N(U)_k → G\",\n    \"domain\": [\n      \"the nerve N(U) of a cover U = {U_i} of a space X\",\n      \"a non-negative degree k\",\n      \"an abelian coefficient group G\",\n      \"a map from k-simplex identifiers to elements of G\"\n    ],\n    \"codomain\": {\n      \"description\": \"a single validated Čech k-cochain (purely structural; emits no class)\"\n    },\n    \"definition\": {\n      \"cochain\": \"a function c assigning to each k-simplex of N(U) an element of G\",\n      \"coboundary\": \"delta : C^k → C^{k+1} via the alternating-sum formula\",\n      \"scope\": \"this contract is a single k-cochain; the full complex lives in Čech cohomology\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"a nerve_id resolving to a valid Nerve artifact\",\n      \"a degree k with 0 ≤ k ≤ max dimension of the nerve\",\n      \"all simplex ids being valid, sorted k-simplices of the nerve\",\n      \"each value being a valid element of the coefficient group\",\n      \"values sorted lexicographically by simplex id, each simplex at most once\",\n      \"a content-addressed SHA-256 hash over the canonical serialization\"\n    ],\n    \"compatibility\": [\n      \"the degree must not exceed the nerve's maximum dimension\",\n      \"coefficient values must belong to the declared coefficient group\"\n    ]\n  },\n  \"laws\": {\n    \"simplex_membership\": \"Every simplex id must be a valid, canonically-sorted k-simplex of the nerve.\",\n    \"coefficient_validity\": \"Every value is a valid element of the declared abelian coefficient group.\",\n    \"uniqueness\": \"Each simplex appears at most once in the value map.\",\n    \"canonical_order\": \"Values are sorted lexicographically by simplex id; sorted ids imply alternating signs.\",\n    \"descriptive_only\": \"A cochain is structural; it classifies nothing and confers no authority.\"\n  },\n  \"equivalence\": {\n    \"artifact_equality\": \"Two cochains are equal iff nerve, degree, coefficient group, and canonical values hash agree.\",\n    \"zero_cochain\": \"An empty value list and an all-identity assignment are equivalent via the group identity.\"\n  },\n  \"replay\": {\n    \"requirements\": [\n      \"no external state, randomness, or time-dependent data\",\n      \"simplex ids serialized as sorted tuples of 4-byte unsigned LE integers\",\n      \"values serialized in the coefficient group's canonical form, sorted by simplex id\",\n      \"deterministic SHA-256 hash over the canonical serialization\"\n    ]\n  },\n  \"relationships\": {\n    \"Nerve\": \"Cochains are defined on the simplices of the nerve N(U) of a cover.\",\n    \"CochainComplex\": \"Čech cochains assemble into a [[cochain_complex]] under the Čech coboundary.\",\n    \"CechCohomology\": \"Čech cohomology is the cohomology of the complex of these cochains.\",\n    \"Cover\": \"The cover U of the space X induces the nerve on which cochains live.\",\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"nerve_id does not resolve to a Nerve artifact\",\n    \"degree exceeds the nerve's maximum dimension\",\n    \"simplex id references vertices not in the nerve, or has the wrong cardinality\",\n    \"simplex id is unsorted (e.g. (2,0,1) instead of (0,1,2))\",\n    \"duplicate simplex id in the value list\",\n    \"value not in the coefficient group (e.g. 0.5 for coefficients in Z)\",\n    \"value list not sorted lexicographically by simplex id\",\n    \"artifact hash does not match the recomputed hash\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A single Čech k-cochain: an assignment of coefficient-group elements to the k-simplices of the nerve of a cover. Purely structural; confers no authority.\\n\",\n    \"non_role\": [\n      \"Does not represent the full Čech cohomology complex (see the Čech cohomology contract).\",\n      \"Does not compute cohomology groups directly.\",\n      \"Does not handle cup products (a separate computation).\",\n      \"Does not issue certificates, terminalize, or produce customer-facing claims.\"\n    ]\n  },\n  \"wip\": [\n    \"Sheaf coefficients are planned via a Sheaf artifact hash in the coefficient group id.\",\n    \"Zero cochain may be an empty list; the group identity handles equivalence.\",\n    \"Cup product will be a separate operation with a dedicated computation witness.\",\n    \"Alternating-sign convention is implicit in the sorted-simplex representation.\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:cech_cochain:v1.0.0",
-        "title": "Čech Cochain",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Does not represent the full Čech cohomology complex (see the Čech cohomology contract).",
+            "Does not compute cohomology groups directly.",
+            "Does not handle cup products (a separate computation).",
+            "Does not issue certificates, terminalize, or produce customer-facing claims."
+          ],
+          "summary": "A single Čech k-cochain: an assignment of coefficient-group elements to the k-simplices of the nerve of a cover. Purely structural; confers no authority.\n"
+        },
+        "equivalence": {
+          "artifact_equality": "Two cochains are equal iff nerve, degree, coefficient group, and canonical values hash agree.",
+          "zero_cochain": "An empty value list and an all-identity assignment are equivalent via the group identity."
+        },
+        "kind": "math_contract",
+        "laws": {
+          "canonical_order": "Values are sorted lexicographically by simplex id; sorted ids imply alternating signs.",
+          "coefficient_validity": "Every value is a valid element of the declared abelian coefficient group.",
+          "descriptive_only": "A cochain is structural; it classifies nothing and confers no authority.",
+          "simplex_membership": "Every simplex id must be a valid, canonically-sorted k-simplex of the nerve.",
+          "uniqueness": "Each simplex appears at most once in the value map."
+        },
+        "layer": "math",
         "math": {
-          "object_kind": "cochain",
-          "symbol": "c : N(U)_k → G",
           "ascii_symbol": "CechCochain",
-          "notation": "c : N(U)_k → G",
+          "codomain": {
+            "description": "a single validated Čech k-cochain (purely structural; emits no class)"
+          },
+          "definition": {
+            "coboundary": "delta : C^k → C^{k+1} via the alternating-sum formula",
+            "cochain": "a function c assigning to each k-simplex of N(U) an element of G",
+            "scope": "this contract is a single k-cochain; the full complex lives in Čech cohomology"
+          },
           "domain": [
             "the nerve N(U) of a cover U = {U_i} of a space X",
             "a non-negative degree k",
             "an abelian coefficient group G",
             "a map from k-simplex identifiers to elements of G"
           ],
-          "codomain": {
-            "description": "a single validated Čech k-cochain (purely structural; emits no class)"
-          },
-          "definition": {
-            "cochain": "a function c assigning to each k-simplex of N(U) an element of G",
-            "coboundary": "delta : C^k → C^{k+1} via the alternating-sum formula",
-            "scope": "this contract is a single k-cochain; the full complex lives in Čech cohomology"
-          }
-        },
-        "requirements": {
-          "required_structures": [
-            "a nerve_id resolving to a valid Nerve artifact",
-            "a degree k with 0 ≤ k ≤ max dimension of the nerve",
-            "all simplex ids being valid, sorted k-simplices of the nerve",
-            "each value being a valid element of the coefficient group",
-            "values sorted lexicographically by simplex id, each simplex at most once",
-            "a content-addressed SHA-256 hash over the canonical serialization"
-          ],
-          "compatibility": [
-            "the degree must not exceed the nerve's maximum dimension",
-            "coefficient values must belong to the declared coefficient group"
-          ]
-        },
-        "laws": {
-          "simplex_membership": "Every simplex id must be a valid, canonically-sorted k-simplex of the nerve.",
-          "coefficient_validity": "Every value is a valid element of the declared abelian coefficient group.",
-          "uniqueness": "Each simplex appears at most once in the value map.",
-          "canonical_order": "Values are sorted lexicographically by simplex id; sorted ids imply alternating signs.",
-          "descriptive_only": "A cochain is structural; it classifies nothing and confers no authority."
-        },
-        "equivalence": {
-          "artifact_equality": "Two cochains are equal iff nerve, degree, coefficient group, and canonical values hash agree.",
-          "zero_cochain": "An empty value list and an all-identity assignment are equivalent via the group identity."
-        },
-        "replay": {
-          "requirements": [
-            "no external state, randomness, or time-dependent data",
-            "simplex ids serialized as sorted tuples of 4-byte unsigned LE integers",
-            "values serialized in the coefficient group's canonical form, sorted by simplex id",
-            "deterministic SHA-256 hash over the canonical serialization"
-          ]
-        },
-        "relationships": {
-          "Nerve": "Cochains are defined on the simplices of the nerve N(U) of a cover.",
-          "CochainComplex": "Čech cochains assemble into a [[cochain_complex]] under the Čech coboundary.",
-          "CechCohomology": "Čech cohomology is the cohomology of the complex of these cochains.",
-          "Cover": "The cover U of the space X induces the nerve on which cochains live.",
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
+          "notation": "c : N(U)_k → G",
+          "object_kind": "cochain",
+          "symbol": "c : N(U)_k → G"
         },
         "negative_tests": [
           "nerve_id does not resolve to a Nerve artifact",
@@ -224,15 +120,40 @@
           "value list not sorted lexicographically by simplex id",
           "artifact hash does not match the recomputed hash"
         ],
-        "doctrine": {
-          "summary": "A single Čech k-cochain: an assignment of coefficient-group elements to the k-simplices of the nerve of a cover. Purely structural; confers no authority.\n",
-          "non_role": [
-            "Does not represent the full Čech cohomology complex (see the Čech cohomology contract).",
-            "Does not compute cohomology groups directly.",
-            "Does not handle cup products (a separate computation).",
-            "Does not issue certificates, terminalize, or produce customer-facing claims."
+        "relationships": {
+          "CechCohomology": "Čech cohomology is the cohomology of the complex of these cochains.",
+          "CochainComplex": "Čech cochains assemble into a [[cochain_complex]] under the Čech coboundary.",
+          "Cover": "The cover U of the space X induces the nerve on which cochains live.",
+          "Nerve": "Cochains are defined on the simplices of the nerve N(U) of a cover.",
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
           ]
         },
+        "replay": {
+          "requirements": [
+            "no external state, randomness, or time-dependent data",
+            "simplex ids serialized as sorted tuples of 4-byte unsigned LE integers",
+            "values serialized in the coefficient group's canonical form, sorted by simplex id",
+            "deterministic SHA-256 hash over the canonical serialization"
+          ]
+        },
+        "requirements": {
+          "compatibility": [
+            "the degree must not exceed the nerve's maximum dimension",
+            "coefficient values must belong to the declared coefficient group"
+          ],
+          "required_structures": [
+            "a nerve_id resolving to a valid Nerve artifact",
+            "a degree k with 0 ≤ k ≤ max dimension of the nerve",
+            "all simplex ids being valid, sorted k-simplices of the nerve",
+            "each value being a valid element of the coefficient group",
+            "values sorted lexicographically by simplex id, each simplex at most once",
+            "a content-addressed SHA-256 hash over the canonical serialization"
+          ]
+        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Čech Cochain",
         "wip": [
           "Sheaf coefficients are planned via a Sheaf artifact hash in the coefficient group id.",
           "Zero cochain may be an empty list; the group identity handles equivalence.",
@@ -240,36 +161,72 @@
           "Alternating-sign convention is implicit in the sorted-simplex representation."
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:cech_cochain:v1.0.0\",\n  \"title\": \"Čech Cochain\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"cochain\",\n    \"symbol\": \"c : N(U)_k → G\",\n    \"ascii_symbol\": \"CechCochain\",\n    \"notation\": \"c : N(U)_k → G\",\n    \"domain\": [\n      \"the nerve N(U) of a cover U = {U_i} of a space X\",\n      \"a non-negative degree k\",\n      \"an abelian coefficient group G\",\n      \"a map from k-simplex identifiers to elements of G\"\n    ],\n    \"codomain\": {\n      \"description\": \"a single validated Čech k-cochain (purely structural; emits no class)\"\n    },\n    \"definition\": {\n      \"cochain\": \"a function c assigning to each k-simplex of N(U) an element of G\",\n      \"coboundary\": \"delta : C^k → C^{k+1} via the alternating-sum formula\",\n      \"scope\": \"this contract is a single k-cochain; the full complex lives in Čech cohomology\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"a nerve_id resolving to a valid Nerve artifact\",\n      \"a degree k with 0 ≤ k ≤ max dimension of the nerve\",\n      \"all simplex ids being valid, sorted k-simplices of the nerve\",\n      \"each value being a valid element of the coefficient group\",\n      \"values sorted lexicographically by simplex id, each simplex at most once\",\n      \"a content-addressed SHA-256 hash over the canonical serialization\"\n    ],\n    \"compatibility\": [\n      \"the degree must not exceed the nerve's maximum dimension\",\n      \"coefficient values must belong to the declared coefficient group\"\n    ]\n  },\n  \"laws\": {\n    \"simplex_membership\": \"Every simplex id must be a valid, canonically-sorted k-simplex of the nerve.\",\n    \"coefficient_validity\": \"Every value is a valid element of the declared abelian coefficient group.\",\n    \"uniqueness\": \"Each simplex appears at most once in the value map.\",\n    \"canonical_order\": \"Values are sorted lexicographically by simplex id; sorted ids imply alternating signs.\",\n    \"descriptive_only\": \"A cochain is structural; it classifies nothing and confers no authority.\"\n  },\n  \"equivalence\": {\n    \"artifact_equality\": \"Two cochains are equal iff nerve, degree, coefficient group, and canonical values hash agree.\",\n    \"zero_cochain\": \"An empty value list and an all-identity assignment are equivalent via the group identity.\"\n  },\n  \"replay\": {\n    \"requirements\": [\n      \"no external state, randomness, or time-dependent data\",\n      \"simplex ids serialized as sorted tuples of 4-byte unsigned LE integers\",\n      \"values serialized in the coefficient group's canonical form, sorted by simplex id\",\n      \"deterministic SHA-256 hash over the canonical serialization\"\n    ]\n  },\n  \"relationships\": {\n    \"Nerve\": \"Cochains are defined on the simplices of the nerve N(U) of a cover.\",\n    \"CochainComplex\": \"Čech cochains assemble into a [[cochain_complex]] under the Čech coboundary.\",\n    \"CechCohomology\": \"Čech cohomology is the cohomology of the complex of these cochains.\",\n    \"Cover\": \"The cover U of the space X induces the nerve on which cochains live.\",\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"nerve_id does not resolve to a Nerve artifact\",\n    \"degree exceeds the nerve's maximum dimension\",\n    \"simplex id references vertices not in the nerve, or has the wrong cardinality\",\n    \"simplex id is unsorted (e.g. (2,0,1) instead of (0,1,2))\",\n    \"duplicate simplex id in the value list\",\n    \"value not in the coefficient group (e.g. 0.5 for coefficients in Z)\",\n    \"value list not sorted lexicographically by simplex id\",\n    \"artifact hash does not match the recomputed hash\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A single Čech k-cochain: an assignment of coefficient-group elements to the k-simplices of the nerve of a cover. Purely structural; confers no authority.\\n\",\n    \"non_role\": [\n      \"Does not represent the full Čech cohomology complex (see the Čech cohomology contract).\",\n      \"Does not compute cohomology groups directly.\",\n      \"Does not handle cup products (a separate computation).\",\n      \"Does not issue certificates, terminalize, or produce customer-facing claims.\"\n    ]\n  },\n  \"wip\": [\n    \"Sheaf coefficients are planned via a Sheaf artifact hash in the coefficient group id.\",\n    \"Zero cochain may be an empty list; the group identity handles equivalence.\",\n    \"Cup product will be a separate operation with a dedicated computation witness.\",\n    \"Alternating-sign convention is implicit in the sorted-simplex representation.\"\n  ]\n}\n",
+      "sha256": "80bd269fd8575e99799370a80b81d3c3d38a6f280221a27b8b4ad8a3ab15d7d9"
+    },
+    {
+      "bytes": 1709,
       "original_paths": [
-        "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py\",\n    \"sha256\": \"4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py\",\n      \"sha256\": \"4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1\",\n  \"subject\": \"code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py",
+          "sha256": "4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py",
+            "sha256": "4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1",
+        "subject": "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py"
+      },
+      "sha256": "b199cb73e303fd3ca82de47d9aad1114faede3d1b5bccabe1cf31e0255283f4c"
     }
   ],
+  "current_contract": "b199cb73e303fd3ca82de47d9aad1114faede3d1b5bccabe1cf31e0255283f4c",
+  "current_scoring": "c08e8aa70521f83ef0077c8bbc46a9b38f259db4228e0d8c2375af141b48d6b8",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0.contract.yaml": "514e561867d6a98eb94b7708c0409bf515c204939ee56036ab646c7c32504fc8"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "08f7ee085cd336e7a3b85df8ab0cbfc27b8916f13fb065c90886a8af842c0a24",
       "bytes": 2223,
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py\",\n    \"sha256\": \"4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:math-cech-cochain-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py",
           "sha256": "4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:geometry:math-cech-cochain-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -278,40 +235,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "08f7ee085cd336e7a3b85df8ab0cbfc27b8916f13fb065c90886a8af842c0a24"
+    },
+    {
+      "bytes": 1668,
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py\",\n    \"sha256\": \"4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py\",\n      \"sha256\": \"4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py",
+          "sha256": "4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py",
+            "sha256": "4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.py\",\n    \"sha256\": \"4f464b6b463ea74ea7396b1e928e7524f3602442e28d7ef663f844cd27e500e1\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:math-cech-cochain-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "c08e8aa70521f83ef0077c8bbc46a9b38f259db4228e0d8c2375af141b48d6b8"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/geometry/math_cech_cochain_v1_0_0.contract.yaml": "514e561867d6a98eb94b7708c0409bf515c204939ee56036ab646c7c32504fc8"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

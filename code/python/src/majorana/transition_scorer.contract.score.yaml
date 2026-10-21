@@ -1,173 +1,179 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/majorana/transition_scorer.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/majorana/transition_scorer.py",
       "sha256": "4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:majorana:transition-scorer:v1",
-    "role": "library",
-    "purpose": "Bounded domain operations and invariant verification for transition_scorer.",
-    "operations": {
-      "_RustSurfaceMeta": "Class _RustSurfaceMeta domain record and methods.",
-      "_RustSurfaceObject": "Class _RustSurfaceObject domain record and methods.",
-      "ReasoningStep": "Structural mirror of Rust ``ReasoningStep``.",
-      "TransitionChannels": "Structural mirror of Rust ``TransitionChannels``.",
-      "PhiWeights": "Structural mirror of Rust ``PhiWeights``.",
-      "TransitionScore": "Structural mirror of Rust ``TransitionScore``.",
-      "phi_struct": "Structural mirror of Rust callable ``phi_struct``.",
-      "phi_numeric": "Structural mirror of Rust callable ``phi_numeric``.",
-      "phi_entropy": "Structural mirror of Rust callable ``phi_entropy``.",
-      "phi_sem": "Structural mirror of Rust callable ``phi_sem``.",
-      "score_transition": "Structural mirror of Rust callable ``score_transition``.",
-      "score_trace": "Structural mirror of Rust callable ``score_trace``.",
-      "SignedTransitionScore": "Structural mirror of Rust ``SignedTransitionScore``.",
-      "signed_phi": "Structural mirror of Rust callable ``signed_phi``.",
-      "score_trace_signed": "Structural mirror of Rust callable ``score_trace_signed``.",
-      "signed_scores_to_cochain": "Structural mirror of Rust callable ``signed_scores_to_cochain``.",
-      "gamma2_normalized": "Structural mirror of Rust callable ``gamma2_normalized``.",
-      "TraceFilterParams": "Structural mirror of Rust ``TraceFilterParams``.",
-      "accept_trace": "Structural mirror of Rust callable ``accept_trace``.",
-      "accept_trace_structural": "Structural mirror of Rust callable ``accept_trace_structural``.",
-      "TraceStructure": "Structural mirror of Rust ``TraceStructure``.",
-      "max_jump": "Structural mirror of Rust callable ``max_jump``.",
-      "sign_flips": "Structural mirror of Rust callable ``sign_flips``.",
-      "trace_structure": "Structural mirror of Rust callable ``trace_structure``.",
-      "max_abs_entry": "Structural mirror of Rust callable ``max_abs_entry``.",
-      "gamma2_smooth": "Structural mirror of Rust callable ``gamma2_smooth``.",
-      "is_boundary": "Structural mirror of Rust callable ``is_boundary``.",
-      "BoundaryAudit": "Structural mirror of Rust ``BoundaryAudit``.",
-      "boundary_audit": "Structural mirror of Rust callable ``boundary_audit``.",
-      "AlgebraicAudit": "Structural mirror of Rust ``AlgebraicAudit``.",
-      "algebraic_audit": "Structural mirror of Rust callable ``algebraic_audit``.",
-      "phase_from_delta_s": "Structural mirror of Rust callable ``phase_from_delta_s``.",
-      "valid_phase_sequence": "Structural mirror of Rust callable ``valid_phase_sequence``.",
-      "entropy_deltas_from_sbe": "Structural mirror of Rust callable ``entropy_deltas_from_sbe``.",
-      "cosine_similarity": "Structural mirror of Rust callable ``cosine_similarity``.",
-      "text_to_embedding": "Structural mirror of Rust callable ``text_to_embedding``.",
-      "semantic_similarities": "Structural mirror of Rust callable ``semantic_similarities``.",
-      "detect_task_shifts": "Structural mirror of Rust callable ``detect_task_shifts``.",
-      "valid_phase_sequence_gated": "Structural mirror of Rust callable ``valid_phase_sequence_gated``.",
-      "PhaseTransitionDecision": "Structural mirror of Rust ``PhaseTransitionDecision``."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/src/majorana/transition_scorer.py",
+        "sha256": "4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b",
+    "subject": "code/python/src/majorana/transition_scorer.py"
   },
-  "current_contract": "931048fa64b87eefd820be15b0a4ba2281d1605f7590d793253856ef6d6cc7aa",
-  "current_scoring": "161574c278876fa64a2820b7a8ea61bf53714f2f131e9ba0a85616cc1545280f",
   "contract_history": [
     {
-      "sha256": "931048fa64b87eefd820be15b0a4ba2281d1605f7590d793253856ef6d6cc7aa",
       "bytes": 4834,
+      "original_paths": [
+        "code/python/src/majorana/transition_scorer.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/transition_scorer.py\",\n    \"sha256\": \"4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:transition-scorer:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Bounded domain operations and invariant verification for transition_scorer.\",\n  \"operations\": {\n    \"_RustSurfaceMeta\": \"Class _RustSurfaceMeta domain record and methods.\",\n    \"_RustSurfaceObject\": \"Class _RustSurfaceObject domain record and methods.\",\n    \"ReasoningStep\": \"Structural mirror of Rust ``ReasoningStep``.\",\n    \"TransitionChannels\": \"Structural mirror of Rust ``TransitionChannels``.\",\n    \"PhiWeights\": \"Structural mirror of Rust ``PhiWeights``.\",\n    \"TransitionScore\": \"Structural mirror of Rust ``TransitionScore``.\",\n    \"phi_struct\": \"Structural mirror of Rust callable ``phi_struct``.\",\n    \"phi_numeric\": \"Structural mirror of Rust callable ``phi_numeric``.\",\n    \"phi_entropy\": \"Structural mirror of Rust callable ``phi_entropy``.\",\n    \"phi_sem\": \"Structural mirror of Rust callable ``phi_sem``.\",\n    \"score_transition\": \"Structural mirror of Rust callable ``score_transition``.\",\n    \"score_trace\": \"Structural mirror of Rust callable ``score_trace``.\",\n    \"SignedTransitionScore\": \"Structural mirror of Rust ``SignedTransitionScore``.\",\n    \"signed_phi\": \"Structural mirror of Rust callable ``signed_phi``.\",\n    \"score_trace_signed\": \"Structural mirror of Rust callable ``score_trace_signed``.\",\n    \"signed_scores_to_cochain\": \"Structural mirror of Rust callable ``signed_scores_to_cochain``.\",\n    \"gamma2_normalized\": \"Structural mirror of Rust callable ``gamma2_normalized``.\",\n    \"TraceFilterParams\": \"Structural mirror of Rust ``TraceFilterParams``.\",\n    \"accept_trace\": \"Structural mirror of Rust callable ``accept_trace``.\",\n    \"accept_trace_structural\": \"Structural mirror of Rust callable ``accept_trace_structural``.\",\n    \"TraceStructure\": \"Structural mirror of Rust ``TraceStructure``.\",\n    \"max_jump\": \"Structural mirror of Rust callable ``max_jump``.\",\n    \"sign_flips\": \"Structural mirror of Rust callable ``sign_flips``.\",\n    \"trace_structure\": \"Structural mirror of Rust callable ``trace_structure``.\",\n    \"max_abs_entry\": \"Structural mirror of Rust callable ``max_abs_entry``.\",\n    \"gamma2_smooth\": \"Structural mirror of Rust callable ``gamma2_smooth``.\",\n    \"is_boundary\": \"Structural mirror of Rust callable ``is_boundary``.\",\n    \"BoundaryAudit\": \"Structural mirror of Rust ``BoundaryAudit``.\",\n    \"boundary_audit\": \"Structural mirror of Rust callable ``boundary_audit``.\",\n    \"AlgebraicAudit\": \"Structural mirror of Rust ``AlgebraicAudit``.\",\n    \"algebraic_audit\": \"Structural mirror of Rust callable ``algebraic_audit``.\",\n    \"phase_from_delta_s\": \"Structural mirror of Rust callable ``phase_from_delta_s``.\",\n    \"valid_phase_sequence\": \"Structural mirror of Rust callable ``valid_phase_sequence``.\",\n    \"entropy_deltas_from_sbe\": \"Structural mirror of Rust callable ``entropy_deltas_from_sbe``.\",\n    \"cosine_similarity\": \"Structural mirror of Rust callable ``cosine_similarity``.\",\n    \"text_to_embedding\": \"Structural mirror of Rust callable ``text_to_embedding``.\",\n    \"semantic_similarities\": \"Structural mirror of Rust callable ``semantic_similarities``.\",\n    \"detect_task_shifts\": \"Structural mirror of Rust callable ``detect_task_shifts``.\",\n    \"valid_phase_sequence_gated\": \"Structural mirror of Rust callable ``valid_phase_sequence_gated``.\",\n    \"PhaseTransitionDecision\": \"Structural mirror of Rust ``PhaseTransitionDecision``.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/majorana/transition_scorer.py",
           "sha256": "4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:majorana:transition-scorer:v1",
-        "role": "library",
-        "purpose": "Bounded domain operations and invariant verification for transition_scorer.",
-        "operations": {
-          "_RustSurfaceMeta": "Class _RustSurfaceMeta domain record and methods.",
-          "_RustSurfaceObject": "Class _RustSurfaceObject domain record and methods.",
-          "ReasoningStep": "Structural mirror of Rust ``ReasoningStep``.",
-          "TransitionChannels": "Structural mirror of Rust ``TransitionChannels``.",
-          "PhiWeights": "Structural mirror of Rust ``PhiWeights``.",
-          "TransitionScore": "Structural mirror of Rust ``TransitionScore``.",
-          "phi_struct": "Structural mirror of Rust callable ``phi_struct``.",
-          "phi_numeric": "Structural mirror of Rust callable ``phi_numeric``.",
-          "phi_entropy": "Structural mirror of Rust callable ``phi_entropy``.",
-          "phi_sem": "Structural mirror of Rust callable ``phi_sem``.",
-          "score_transition": "Structural mirror of Rust callable ``score_transition``.",
-          "score_trace": "Structural mirror of Rust callable ``score_trace``.",
-          "SignedTransitionScore": "Structural mirror of Rust ``SignedTransitionScore``.",
-          "signed_phi": "Structural mirror of Rust callable ``signed_phi``.",
-          "score_trace_signed": "Structural mirror of Rust callable ``score_trace_signed``.",
-          "signed_scores_to_cochain": "Structural mirror of Rust callable ``signed_scores_to_cochain``.",
-          "gamma2_normalized": "Structural mirror of Rust callable ``gamma2_normalized``.",
-          "TraceFilterParams": "Structural mirror of Rust ``TraceFilterParams``.",
-          "accept_trace": "Structural mirror of Rust callable ``accept_trace``.",
-          "accept_trace_structural": "Structural mirror of Rust callable ``accept_trace_structural``.",
-          "TraceStructure": "Structural mirror of Rust ``TraceStructure``.",
-          "max_jump": "Structural mirror of Rust callable ``max_jump``.",
-          "sign_flips": "Structural mirror of Rust callable ``sign_flips``.",
-          "trace_structure": "Structural mirror of Rust callable ``trace_structure``.",
-          "max_abs_entry": "Structural mirror of Rust callable ``max_abs_entry``.",
-          "gamma2_smooth": "Structural mirror of Rust callable ``gamma2_smooth``.",
-          "is_boundary": "Structural mirror of Rust callable ``is_boundary``.",
-          "BoundaryAudit": "Structural mirror of Rust ``BoundaryAudit``.",
-          "boundary_audit": "Structural mirror of Rust callable ``boundary_audit``.",
-          "AlgebraicAudit": "Structural mirror of Rust ``AlgebraicAudit``.",
-          "algebraic_audit": "Structural mirror of Rust callable ``algebraic_audit``.",
-          "phase_from_delta_s": "Structural mirror of Rust callable ``phase_from_delta_s``.",
-          "valid_phase_sequence": "Structural mirror of Rust callable ``valid_phase_sequence``.",
-          "entropy_deltas_from_sbe": "Structural mirror of Rust callable ``entropy_deltas_from_sbe``.",
-          "cosine_similarity": "Structural mirror of Rust callable ``cosine_similarity``.",
-          "text_to_embedding": "Structural mirror of Rust callable ``text_to_embedding``.",
-          "semantic_similarities": "Structural mirror of Rust callable ``semantic_similarities``.",
-          "detect_task_shifts": "Structural mirror of Rust callable ``detect_task_shifts``.",
-          "valid_phase_sequence_gated": "Structural mirror of Rust callable ``valid_phase_sequence_gated``.",
-          "PhaseTransitionDecision": "Structural mirror of Rust ``PhaseTransitionDecision``."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "AlgebraicAudit": "Structural mirror of Rust ``AlgebraicAudit``.",
+          "BoundaryAudit": "Structural mirror of Rust ``BoundaryAudit``.",
+          "PhaseTransitionDecision": "Structural mirror of Rust ``PhaseTransitionDecision``.",
+          "PhiWeights": "Structural mirror of Rust ``PhiWeights``.",
+          "ReasoningStep": "Structural mirror of Rust ``ReasoningStep``.",
+          "SignedTransitionScore": "Structural mirror of Rust ``SignedTransitionScore``.",
+          "TraceFilterParams": "Structural mirror of Rust ``TraceFilterParams``.",
+          "TraceStructure": "Structural mirror of Rust ``TraceStructure``.",
+          "TransitionChannels": "Structural mirror of Rust ``TransitionChannels``.",
+          "TransitionScore": "Structural mirror of Rust ``TransitionScore``.",
+          "_RustSurfaceMeta": "Class _RustSurfaceMeta domain record and methods.",
+          "_RustSurfaceObject": "Class _RustSurfaceObject domain record and methods.",
+          "accept_trace": "Structural mirror of Rust callable ``accept_trace``.",
+          "accept_trace_structural": "Structural mirror of Rust callable ``accept_trace_structural``.",
+          "algebraic_audit": "Structural mirror of Rust callable ``algebraic_audit``.",
+          "boundary_audit": "Structural mirror of Rust callable ``boundary_audit``.",
+          "cosine_similarity": "Structural mirror of Rust callable ``cosine_similarity``.",
+          "detect_task_shifts": "Structural mirror of Rust callable ``detect_task_shifts``.",
+          "entropy_deltas_from_sbe": "Structural mirror of Rust callable ``entropy_deltas_from_sbe``.",
+          "gamma2_normalized": "Structural mirror of Rust callable ``gamma2_normalized``.",
+          "gamma2_smooth": "Structural mirror of Rust callable ``gamma2_smooth``.",
+          "is_boundary": "Structural mirror of Rust callable ``is_boundary``.",
+          "max_abs_entry": "Structural mirror of Rust callable ``max_abs_entry``.",
+          "max_jump": "Structural mirror of Rust callable ``max_jump``.",
+          "phase_from_delta_s": "Structural mirror of Rust callable ``phase_from_delta_s``.",
+          "phi_entropy": "Structural mirror of Rust callable ``phi_entropy``.",
+          "phi_numeric": "Structural mirror of Rust callable ``phi_numeric``.",
+          "phi_sem": "Structural mirror of Rust callable ``phi_sem``.",
+          "phi_struct": "Structural mirror of Rust callable ``phi_struct``.",
+          "score_trace": "Structural mirror of Rust callable ``score_trace``.",
+          "score_trace_signed": "Structural mirror of Rust callable ``score_trace_signed``.",
+          "score_transition": "Structural mirror of Rust callable ``score_transition``.",
+          "semantic_similarities": "Structural mirror of Rust callable ``semantic_similarities``.",
+          "sign_flips": "Structural mirror of Rust callable ``sign_flips``.",
+          "signed_phi": "Structural mirror of Rust callable ``signed_phi``.",
+          "signed_scores_to_cochain": "Structural mirror of Rust callable ``signed_scores_to_cochain``.",
+          "text_to_embedding": "Structural mirror of Rust callable ``text_to_embedding``.",
+          "trace_structure": "Structural mirror of Rust callable ``trace_structure``.",
+          "valid_phase_sequence": "Structural mirror of Rust callable ``valid_phase_sequence``.",
+          "valid_phase_sequence_gated": "Structural mirror of Rust callable ``valid_phase_sequence_gated``."
+        },
+        "profile": "Exact",
+        "purpose": "Bounded domain operations and invariant verification for transition_scorer.",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/transition_scorer.py\",\n    \"sha256\": \"4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:transition-scorer:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Bounded domain operations and invariant verification for transition_scorer.\",\n  \"operations\": {\n    \"_RustSurfaceMeta\": \"Class _RustSurfaceMeta domain record and methods.\",\n    \"_RustSurfaceObject\": \"Class _RustSurfaceObject domain record and methods.\",\n    \"ReasoningStep\": \"Structural mirror of Rust ``ReasoningStep``.\",\n    \"TransitionChannels\": \"Structural mirror of Rust ``TransitionChannels``.\",\n    \"PhiWeights\": \"Structural mirror of Rust ``PhiWeights``.\",\n    \"TransitionScore\": \"Structural mirror of Rust ``TransitionScore``.\",\n    \"phi_struct\": \"Structural mirror of Rust callable ``phi_struct``.\",\n    \"phi_numeric\": \"Structural mirror of Rust callable ``phi_numeric``.\",\n    \"phi_entropy\": \"Structural mirror of Rust callable ``phi_entropy``.\",\n    \"phi_sem\": \"Structural mirror of Rust callable ``phi_sem``.\",\n    \"score_transition\": \"Structural mirror of Rust callable ``score_transition``.\",\n    \"score_trace\": \"Structural mirror of Rust callable ``score_trace``.\",\n    \"SignedTransitionScore\": \"Structural mirror of Rust ``SignedTransitionScore``.\",\n    \"signed_phi\": \"Structural mirror of Rust callable ``signed_phi``.\",\n    \"score_trace_signed\": \"Structural mirror of Rust callable ``score_trace_signed``.\",\n    \"signed_scores_to_cochain\": \"Structural mirror of Rust callable ``signed_scores_to_cochain``.\",\n    \"gamma2_normalized\": \"Structural mirror of Rust callable ``gamma2_normalized``.\",\n    \"TraceFilterParams\": \"Structural mirror of Rust ``TraceFilterParams``.\",\n    \"accept_trace\": \"Structural mirror of Rust callable ``accept_trace``.\",\n    \"accept_trace_structural\": \"Structural mirror of Rust callable ``accept_trace_structural``.\",\n    \"TraceStructure\": \"Structural mirror of Rust ``TraceStructure``.\",\n    \"max_jump\": \"Structural mirror of Rust callable ``max_jump``.\",\n    \"sign_flips\": \"Structural mirror of Rust callable ``sign_flips``.\",\n    \"trace_structure\": \"Structural mirror of Rust callable ``trace_structure``.\",\n    \"max_abs_entry\": \"Structural mirror of Rust callable ``max_abs_entry``.\",\n    \"gamma2_smooth\": \"Structural mirror of Rust callable ``gamma2_smooth``.\",\n    \"is_boundary\": \"Structural mirror of Rust callable ``is_boundary``.\",\n    \"BoundaryAudit\": \"Structural mirror of Rust ``BoundaryAudit``.\",\n    \"boundary_audit\": \"Structural mirror of Rust callable ``boundary_audit``.\",\n    \"AlgebraicAudit\": \"Structural mirror of Rust ``AlgebraicAudit``.\",\n    \"algebraic_audit\": \"Structural mirror of Rust callable ``algebraic_audit``.\",\n    \"phase_from_delta_s\": \"Structural mirror of Rust callable ``phase_from_delta_s``.\",\n    \"valid_phase_sequence\": \"Structural mirror of Rust callable ``valid_phase_sequence``.\",\n    \"entropy_deltas_from_sbe\": \"Structural mirror of Rust callable ``entropy_deltas_from_sbe``.\",\n    \"cosine_similarity\": \"Structural mirror of Rust callable ``cosine_similarity``.\",\n    \"text_to_embedding\": \"Structural mirror of Rust callable ``text_to_embedding``.\",\n    \"semantic_similarities\": \"Structural mirror of Rust callable ``semantic_similarities``.\",\n    \"detect_task_shifts\": \"Structural mirror of Rust callable ``detect_task_shifts``.\",\n    \"valid_phase_sequence_gated\": \"Structural mirror of Rust callable ``valid_phase_sequence_gated``.\",\n    \"PhaseTransitionDecision\": \"Structural mirror of Rust ``PhaseTransitionDecision``.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "931048fa64b87eefd820be15b0a4ba2281d1605f7590d793253856ef6d6cc7aa"
+    },
+    {
+      "bytes": 1616,
       "original_paths": [
-        "code/python/src/majorana/transition_scorer.contract.score.yaml#contract"
-      ]
+        "code/python/src/majorana/transition_scorer.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/majorana/transition_scorer.py\",\n    \"sha256\": \"4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/majorana/transition_scorer.py\",\n      \"sha256\": \"4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b\",\n  \"subject\": \"code/python/src/majorana/transition_scorer.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/majorana/transition_scorer.py",
+          "sha256": "4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/majorana/transition_scorer.py",
+            "sha256": "4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b",
+        "subject": "code/python/src/majorana/transition_scorer.py"
+      },
+      "sha256": "df231fb859a0c665e5dc5846936f4e1f86d1334e59f98ac6700199d9e5a9c2ba"
     }
   ],
+  "current_contract": "df231fb859a0c665e5dc5846936f4e1f86d1334e59f98ac6700199d9e5a9c2ba",
+  "current_scoring": "f2b47b80bf8d047a5a6785db43667e13c0dbcaa166800282168891f0c9ad539c",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "161574c278876fa64a2820b7a8ea61bf53714f2f131e9ba0a85616cc1545280f",
       "bytes": 2202,
+      "original_paths": [
+        "code/python/src/majorana/transition_scorer.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/transition_scorer.py\",\n    \"sha256\": \"4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:transition-scorer:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 5), Lizard CCN (max 5), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 5,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/majorana/transition_scorer.py",
           "sha256": "4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:majorana:transition-scorer:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -176,35 +182,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds, Radon CCN (max 5), Lizard CCN (max 5), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models."
         },
-        "metrics": {
-          "radon_ccn": 5,
-          "lizard_ccn": 5,
-          "weighted_control_upper_bound": 4,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 5,
+          "radon_ccn": 5,
+          "weighted_control_upper_bound": 4
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "161574c278876fa64a2820b7a8ea61bf53714f2f131e9ba0a85616cc1545280f"
+    },
+    {
+      "bytes": 1606,
+      "original_paths": [
+        "code/python/src/majorana/transition_scorer.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/majorana/transition_scorer.py\",\n    \"sha256\": \"4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/majorana/transition_scorer.py\",\n      \"sha256\": \"4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/majorana/transition_scorer.py",
+          "sha256": "4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/src/majorana/transition_scorer.py",
+            "sha256": "4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/transition_scorer.py\",\n    \"sha256\": \"4380de6e58087110fbf80b6b07696327e332a124c31990ee4d338ff2a8e7a88b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:transition-scorer:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 5), Lizard CCN (max 5), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 5,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/majorana/transition_scorer.contract.score.yaml#scoring"
-      ]
+      "sha256": "f2b47b80bf8d047a5a6785db43667e13c0dbcaa166800282168891f0c9ad539c"
     }
   ]
 }

@@ -1,229 +1,269 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/validation.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/validation.rs",
-      "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62",
-      "language": "Rust"
+      "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "domain": "Non-Numeric record and callback orchestration profile selected before evaluation. Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.",
-      "delivered_behavior": "Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.",
-      "exclusions": "No mathematical result, physical derivation, proof authentication or authority promotion is inferred from report labels, callbacks or matching names."
-    },
-    "operations": {
-      "ValidationViolation::new": {
-        "signature": "pub fn new( unit: ValidationUnit, location: ValidationLocation, message: impl Into<String>, severity: ValidationSeverity, ) -> Self",
-        "obligation": "Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating."
-      },
-      "ValidationResult::pass": {
-        "signature": "pub fn pass(unit: &str) -> Self",
-        "obligation": "Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test."
-      },
-      "ValidationResult::fail": {
-        "signature": "pub fn fail(unit: &str, violations: Vec<String>) -> Self",
-        "obligation": "Store exact unit and owned message vector with passed=false, even if messages are empty."
-      },
-      "ValidationReport::new": {
-        "signature": "pub fn new(name: &str) -> Self",
-        "obligation": "Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata."
-      },
-      "ValidationReport::add": {
-        "signature": "pub fn add(&mut self, result: ValidationResult)",
-        "obligation": "Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts."
-      },
-      "ValidationReport::add_violation": {
-        "signature": "pub fn add_violation(&mut self, violation: ValidationViolation)",
-        "obligation": "Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format."
-      },
-      "ValidationReport::add_typed": {
-        "signature": "pub fn add_typed(&mut self, unit: &str, violations: Vec<ValidationViolation>)",
-        "obligation": "Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues."
-      },
-      "ValidationReport::all_passed": {
-        "signature": "pub fn all_passed(&self) -> bool",
-        "obligation": "Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates."
-      },
-      "ValidationReport::failure_count": {
-        "signature": "pub fn failure_count(&self) -> usize",
-        "obligation": "Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts."
-      },
-      "ValidationReport::violation_count": {
-        "signature": "pub fn violation_count(&self) -> usize",
-        "obligation": "Return exactly typed_violations.len(), independent of result row count and severity."
-      }
-    },
-    "invariants": [
-      "ValidationInventory models unrestricted flags/issues, exact append/projection, vacuous success, typed blockers and bounded failure counts. Rust Vec preserves list order, clones only necessary owned projections, and count cannot exceed actual Vec length. Unit Debug rendering and std allocation are separately reviewed runtime contracts.",
-      "ArrowEffects is a pure total mathematical callback value model over Reader, owned State, ordered List writer and Except. Compose associativity is proved in that model only. Rust Fn does not imply purity, termination, panic freedom or determinism. Concrete source control flow and native traces establish invocation order/short circuit and original error payloads under admitted runtime callbacks; no blanket runtime category-law or rollback theorem.",
-      "Fanout model accepts an arbitrary clone function; successful left input is clone(a) and right input is a. The non-lawful Odd clone fixture detects swapped clone/original delivery. Context rationals are opaque stored input: even raw 1/0 or 2/4 is transported without normalization or arithmetic by these combinators."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "explicit_paths": {
-        "ValidationViolation::new": "Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating.",
-        "ValidationResult::pass": "Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test.",
-        "ValidationResult::fail": "Store exact unit and owned message vector with passed=false, even if messages are empty.",
-        "ValidationReport::new": "Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata.",
-        "ValidationReport::add": "Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts.",
-        "ValidationReport::add_violation": "Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format.",
-        "ValidationReport::add_typed": "Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues.",
-        "ValidationReport::all_passed": "Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates.",
-        "ValidationReport::failure_count": "Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts.",
-        "ValidationReport::violation_count": "Return exactly typed_violations.len(), independent of result row count and severity."
-      },
-      "runtime_boundary": [
-        "No unsafe code, internal unchecked indexing, arithmetic/narrowing or recursive combinator body. Metadata methods store unrestricted data. Callback Err is propagated; callback panic/nontermination, custom Clone behavior and external side effects remain explicit caller boundaries.",
-        "Rust String/Vec/Arc allocation and ordinary Clone behavior are runtime contracts; caller-defined Into<String> conversion and Clone/Into behavior are explicit external code boundaries. No allocator-totality, verified MIR or external-effect rollback claim. Failed second callback returns no state/log value by Result type; existing external trace effects remain visible."
-      ]
-    },
-    "trust_boundary": {
-      "formal": "Pinned clean Lean/Mathlib, standard foundational axioms only. Value models are not Rust extraction; purity/totality and concrete callback effects are separated.",
-      "runtime": "Captured rustc/std, String/Vec/Arc, derived tagged data traits and anyhow error propagation. User Fn/Clone operations and allocation remain the declared boundary.",
-      "scope": "Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws."
-    },
-    "assurance_limits": [
-      "A is scoped source/model/native evidence, not A+, Rust/MIR extraction, allocator/crash totality or full application replay.",
-      "Finite fixtures do not prove arbitrary callback purity/termination or all mathematical named obligations. Public diagnostics are forgeable caller metadata; fresh concrete checkers and private certificates are separately assessed.",
-      "Two initial common-build refusals remain unrun receipts: collection inference in a removed-use mutant, then ambiguous trace fixture type. Repaired candidate and annotated trace compile in final campaign; no failed attempt is relabeled a pass. Contracts remain pending."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/validation.score.yaml",
-        "sha256": "500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73"
+        "path": "code/rust/src/category_theory/validation.rs",
+        "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62",
+    "subject": "code/rust/src/category_theory/validation.rs"
   },
-  "current_contract": "3b82e01354bca49e239d6abc1c4bb4c086974ef041d05a049ad67d3950707098",
-  "current_scoring": "eaa53b808518c8eed6fca01e08d12fadef970a78ff3dbb9192bdb212a8b347cb",
   "contract_history": [
     {
-      "sha256": "3b82e01354bca49e239d6abc1c4bb4c086974ef041d05a049ad67d3950707098",
       "bytes": 9364,
+      "original_paths": [
+        "code/rust/src/category_theory/validation.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/validation.rs\",\n    \"sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Non-Numeric record and callback orchestration profile selected before evaluation. Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.\",\n    \"delivered_behavior\": \"Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.\",\n    \"exclusions\": \"No mathematical result, physical derivation, proof authentication or authority promotion is inferred from report labels, callbacks or matching names.\"\n  },\n  \"operations\": {\n    \"ValidationViolation::new\": {\n      \"signature\": \"pub fn new( unit: ValidationUnit, location: ValidationLocation, message: impl Into<String>, severity: ValidationSeverity, ) -> Self\",\n      \"obligation\": \"Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating.\"\n    },\n    \"ValidationResult::pass\": {\n      \"signature\": \"pub fn pass(unit: &str) -> Self\",\n      \"obligation\": \"Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test.\"\n    },\n    \"ValidationResult::fail\": {\n      \"signature\": \"pub fn fail(unit: &str, violations: Vec<String>) -> Self\",\n      \"obligation\": \"Store exact unit and owned message vector with passed=false, even if messages are empty.\"\n    },\n    \"ValidationReport::new\": {\n      \"signature\": \"pub fn new(name: &str) -> Self\",\n      \"obligation\": \"Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata.\"\n    },\n    \"ValidationReport::add\": {\n      \"signature\": \"pub fn add(&mut self, result: ValidationResult)\",\n      \"obligation\": \"Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts.\"\n    },\n    \"ValidationReport::add_violation\": {\n      \"signature\": \"pub fn add_violation(&mut self, violation: ValidationViolation)\",\n      \"obligation\": \"Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format.\"\n    },\n    \"ValidationReport::add_typed\": {\n      \"signature\": \"pub fn add_typed(&mut self, unit: &str, violations: Vec<ValidationViolation>)\",\n      \"obligation\": \"Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues.\"\n    },\n    \"ValidationReport::all_passed\": {\n      \"signature\": \"pub fn all_passed(&self) -> bool\",\n      \"obligation\": \"Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates.\"\n    },\n    \"ValidationReport::failure_count\": {\n      \"signature\": \"pub fn failure_count(&self) -> usize\",\n      \"obligation\": \"Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts.\"\n    },\n    \"ValidationReport::violation_count\": {\n      \"signature\": \"pub fn violation_count(&self) -> usize\",\n      \"obligation\": \"Return exactly typed_violations.len(), independent of result row count and severity.\"\n    }\n  },\n  \"invariants\": [\n    \"ValidationInventory models unrestricted flags/issues, exact append/projection, vacuous success, typed blockers and bounded failure counts. Rust Vec preserves list order, clones only necessary owned projections, and count cannot exceed actual Vec length. Unit Debug rendering and std allocation are separately reviewed runtime contracts.\",\n    \"ArrowEffects is a pure total mathematical callback value model over Reader, owned State, ordered List writer and Except. Compose associativity is proved in that model only. Rust Fn does not imply purity, termination, panic freedom or determinism. Concrete source control flow and native traces establish invocation order/short circuit and original error payloads under admitted runtime callbacks; no blanket runtime category-law or rollback theorem.\",\n    \"Fanout model accepts an arbitrary clone function; successful left input is clone(a) and right input is a. The non-lawful Odd clone fixture detects swapped clone/original delivery. Context rationals are opaque stored input: even raw 1/0 or 2/4 is transported without normalization or arithmetic by these combinators.\"\n  ],\n  \"failure_paths\": {\n    \"explicit_paths\": {\n      \"ValidationViolation::new\": \"Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating.\",\n      \"ValidationResult::pass\": \"Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test.\",\n      \"ValidationResult::fail\": \"Store exact unit and owned message vector with passed=false, even if messages are empty.\",\n      \"ValidationReport::new\": \"Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata.\",\n      \"ValidationReport::add\": \"Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts.\",\n      \"ValidationReport::add_violation\": \"Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format.\",\n      \"ValidationReport::add_typed\": \"Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues.\",\n      \"ValidationReport::all_passed\": \"Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates.\",\n      \"ValidationReport::failure_count\": \"Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts.\",\n      \"ValidationReport::violation_count\": \"Return exactly typed_violations.len(), independent of result row count and severity.\"\n    },\n    \"runtime_boundary\": [\n      \"No unsafe code, internal unchecked indexing, arithmetic/narrowing or recursive combinator body. Metadata methods store unrestricted data. Callback Err is propagated; callback panic/nontermination, custom Clone behavior and external side effects remain explicit caller boundaries.\",\n      \"Rust String/Vec/Arc allocation and ordinary Clone behavior are runtime contracts; caller-defined Into<String> conversion and Clone/Into behavior are explicit external code boundaries. No allocator-totality, verified MIR or external-effect rollback claim. Failed second callback returns no state/log value by Result type; existing external trace effects remain visible.\"\n    ]\n  },\n  \"trust_boundary\": {\n    \"formal\": \"Pinned clean Lean/Mathlib, standard foundational axioms only. Value models are not Rust extraction; purity/totality and concrete callback effects are separated.\",\n    \"runtime\": \"Captured rustc/std, String/Vec/Arc, derived tagged data traits and anyhow error propagation. User Fn/Clone operations and allocation remain the declared boundary.\",\n    \"scope\": \"Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.\"\n  },\n  \"assurance_limits\": [\n    \"A is scoped source/model/native evidence, not A+, Rust/MIR extraction, allocator/crash totality or full application replay.\",\n    \"Finite fixtures do not prove arbitrary callback purity/termination or all mathematical named obligations. Public diagnostics are forgeable caller metadata; fresh concrete checkers and private certificates are separately assessed.\",\n    \"Two initial common-build refusals remain unrun receipts: collection inference in a removed-use mutant, then ambiguous trace fixture type. Repaired candidate and annotated trace compile in final campaign; no failed attempt is relabeled a pass. Contracts remain pending.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/validation.score.yaml\",\n      \"sha256\": \"500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/validation.rs",
-          "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62",
-          "language": "Rust"
-        },
-        "status": "source_reviewed",
-        "formal_specification": {
-          "domain": "Non-Numeric record and callback orchestration profile selected before evaluation. Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.",
-          "delivered_behavior": "Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.",
-          "exclusions": "No mathematical result, physical derivation, proof authentication or authority promotion is inferred from report labels, callbacks or matching names."
-        },
-        "operations": {
-          "ValidationViolation::new": {
-            "signature": "pub fn new( unit: ValidationUnit, location: ValidationLocation, message: impl Into<String>, severity: ValidationSeverity, ) -> Self",
-            "obligation": "Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating."
-          },
-          "ValidationResult::pass": {
-            "signature": "pub fn pass(unit: &str) -> Self",
-            "obligation": "Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test."
-          },
-          "ValidationResult::fail": {
-            "signature": "pub fn fail(unit: &str, violations: Vec<String>) -> Self",
-            "obligation": "Store exact unit and owned message vector with passed=false, even if messages are empty."
-          },
-          "ValidationReport::new": {
-            "signature": "pub fn new(name: &str) -> Self",
-            "obligation": "Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata."
-          },
-          "ValidationReport::add": {
-            "signature": "pub fn add(&mut self, result: ValidationResult)",
-            "obligation": "Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts."
-          },
-          "ValidationReport::add_violation": {
-            "signature": "pub fn add_violation(&mut self, violation: ValidationViolation)",
-            "obligation": "Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format."
-          },
-          "ValidationReport::add_typed": {
-            "signature": "pub fn add_typed(&mut self, unit: &str, violations: Vec<ValidationViolation>)",
-            "obligation": "Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues."
-          },
-          "ValidationReport::all_passed": {
-            "signature": "pub fn all_passed(&self) -> bool",
-            "obligation": "Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates."
-          },
-          "ValidationReport::failure_count": {
-            "signature": "pub fn failure_count(&self) -> usize",
-            "obligation": "Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts."
-          },
-          "ValidationReport::violation_count": {
-            "signature": "pub fn violation_count(&self) -> usize",
-            "obligation": "Return exactly typed_violations.len(), independent of result row count and severity."
-          }
-        },
-        "invariants": [
-          "ValidationInventory models unrestricted flags/issues, exact append/projection, vacuous success, typed blockers and bounded failure counts. Rust Vec preserves list order, clones only necessary owned projections, and count cannot exceed actual Vec length. Unit Debug rendering and std allocation are separately reviewed runtime contracts.",
-          "ArrowEffects is a pure total mathematical callback value model over Reader, owned State, ordered List writer and Except. Compose associativity is proved in that model only. Rust Fn does not imply purity, termination, panic freedom or determinism. Concrete source control flow and native traces establish invocation order/short circuit and original error payloads under admitted runtime callbacks; no blanket runtime category-law or rollback theorem.",
-          "Fanout model accepts an arbitrary clone function; successful left input is clone(a) and right input is a. The non-lawful Odd clone fixture detects swapped clone/original delivery. Context rationals are opaque stored input: even raw 1/0 or 2/4 is transported without normalization or arithmetic by these combinators."
-        ],
-        "failure_paths": {
-          "explicit_paths": {
-            "ValidationViolation::new": "Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating.",
-            "ValidationResult::pass": "Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test.",
-            "ValidationResult::fail": "Store exact unit and owned message vector with passed=false, even if messages are empty.",
-            "ValidationReport::new": "Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata.",
-            "ValidationReport::add": "Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts.",
-            "ValidationReport::add_violation": "Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format.",
-            "ValidationReport::add_typed": "Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues.",
-            "ValidationReport::all_passed": "Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates.",
-            "ValidationReport::failure_count": "Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts.",
-            "ValidationReport::violation_count": "Return exactly typed_violations.len(), independent of result row count and severity."
-          },
-          "runtime_boundary": [
-            "No unsafe code, internal unchecked indexing, arithmetic/narrowing or recursive combinator body. Metadata methods store unrestricted data. Callback Err is propagated; callback panic/nontermination, custom Clone behavior and external side effects remain explicit caller boundaries.",
-            "Rust String/Vec/Arc allocation and ordinary Clone behavior are runtime contracts; caller-defined Into<String> conversion and Clone/Into behavior are explicit external code boundaries. No allocator-totality, verified MIR or external-effect rollback claim. Failed second callback returns no state/log value by Result type; existing external trace effects remain visible."
-          ]
-        },
-        "trust_boundary": {
-          "formal": "Pinned clean Lean/Mathlib, standard foundational axioms only. Value models are not Rust extraction; purity/totality and concrete callback effects are separated.",
-          "runtime": "Captured rustc/std, String/Vec/Arc, derived tagged data traits and anyhow error propagation. User Fn/Clone operations and allocation remain the declared boundary.",
-          "scope": "Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws."
+          "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
         },
         "assurance_limits": [
           "A is scoped source/model/native evidence, not A+, Rust/MIR extraction, allocator/crash totality or full application replay.",
           "Finite fixtures do not prove arbitrary callback purity/termination or all mathematical named obligations. Public diagnostics are forgeable caller metadata; fresh concrete checkers and private certificates are separately assessed.",
           "Two initial common-build refusals remain unrun receipts: collection inference in a removed-use mutant, then ambiguous trace fixture type. Repaired candidate and annotated trace compile in final campaign; no failed attempt is relabeled a pass. Contracts remain pending."
         ],
+        "failure_paths": {
+          "explicit_paths": {
+            "ValidationReport::add": "Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts.",
+            "ValidationReport::add_typed": "Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues.",
+            "ValidationReport::add_violation": "Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format.",
+            "ValidationReport::all_passed": "Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates.",
+            "ValidationReport::failure_count": "Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts.",
+            "ValidationReport::new": "Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata.",
+            "ValidationReport::violation_count": "Return exactly typed_violations.len(), independent of result row count and severity.",
+            "ValidationResult::fail": "Store exact unit and owned message vector with passed=false, even if messages are empty.",
+            "ValidationResult::pass": "Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test.",
+            "ValidationViolation::new": "Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating."
+          },
+          "runtime_boundary": [
+            "No unsafe code, internal unchecked indexing, arithmetic/narrowing or recursive combinator body. Metadata methods store unrestricted data. Callback Err is propagated; callback panic/nontermination, custom Clone behavior and external side effects remain explicit caller boundaries.",
+            "Rust String/Vec/Arc allocation and ordinary Clone behavior are runtime contracts; caller-defined Into<String> conversion and Clone/Into behavior are explicit external code boundaries. No allocator-totality, verified MIR or external-effect rollback claim. Failed second callback returns no state/log value by Result type; existing external trace effects remain visible."
+          ]
+        },
+        "formal_specification": {
+          "delivered_behavior": "Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.",
+          "domain": "Non-Numeric record and callback orchestration profile selected before evaluation. Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.",
+          "exclusions": "No mathematical result, physical derivation, proof authentication or authority promotion is inferred from report labels, callbacks or matching names."
+        },
+        "invariants": [
+          "ValidationInventory models unrestricted flags/issues, exact append/projection, vacuous success, typed blockers and bounded failure counts. Rust Vec preserves list order, clones only necessary owned projections, and count cannot exceed actual Vec length. Unit Debug rendering and std allocation are separately reviewed runtime contracts.",
+          "ArrowEffects is a pure total mathematical callback value model over Reader, owned State, ordered List writer and Except. Compose associativity is proved in that model only. Rust Fn does not imply purity, termination, panic freedom or determinism. Concrete source control flow and native traces establish invocation order/short circuit and original error payloads under admitted runtime callbacks; no blanket runtime category-law or rollback theorem.",
+          "Fanout model accepts an arbitrary clone function; successful left input is clone(a) and right input is a. The non-lawful Odd clone fixture detects swapped clone/original delivery. Context rationals are opaque stored input: even raw 1/0 or 2/4 is transported without normalization or arithmetic by these combinators."
+        ],
+        "open_obligations": [],
+        "operations": {
+          "ValidationReport::add": {
+            "obligation": "Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts.",
+            "signature": "pub fn add(&mut self, result: ValidationResult)"
+          },
+          "ValidationReport::add_typed": {
+            "obligation": "Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues.",
+            "signature": "pub fn add_typed(&mut self, unit: &str, violations: Vec<ValidationViolation>)"
+          },
+          "ValidationReport::add_violation": {
+            "obligation": "Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format.",
+            "signature": "pub fn add_violation(&mut self, violation: ValidationViolation)"
+          },
+          "ValidationReport::all_passed": {
+            "obligation": "Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates.",
+            "signature": "pub fn all_passed(&self) -> bool"
+          },
+          "ValidationReport::failure_count": {
+            "obligation": "Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts.",
+            "signature": "pub fn failure_count(&self) -> usize"
+          },
+          "ValidationReport::new": {
+            "obligation": "Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata.",
+            "signature": "pub fn new(name: &str) -> Self"
+          },
+          "ValidationReport::violation_count": {
+            "obligation": "Return exactly typed_violations.len(), independent of result row count and severity.",
+            "signature": "pub fn violation_count(&self) -> usize"
+          },
+          "ValidationResult::fail": {
+            "obligation": "Store exact unit and owned message vector with passed=false, even if messages are empty.",
+            "signature": "pub fn fail(unit: &str, violations: Vec<String>) -> Self"
+          },
+          "ValidationResult::pass": {
+            "obligation": "Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test.",
+            "signature": "pub fn pass(unit: &str) -> Self"
+          },
+          "ValidationViolation::new": {
+            "obligation": "Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating.",
+            "signature": "pub fn new( unit: ValidationUnit, location: ValidationLocation, message: impl Into<String>, severity: ValidationSeverity, ) -> Self"
+          }
+        },
         "review_evidence": [
           {
             "path": "code/rust/src/category_theory/validation.score.yaml",
             "sha256": "500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73"
           }
         ],
-        "open_obligations": []
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": {
+          "formal": "Pinned clean Lean/Mathlib, standard foundational axioms only. Value models are not Rust extraction; purity/totality and concrete callback effects are separated.",
+          "runtime": "Captured rustc/std, String/Vec/Arc, derived tagged data traits and anyhow error propagation. User Fn/Clone operations and allocation remain the declared boundary.",
+          "scope": "Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws."
+        }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/validation.rs\",\n    \"sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"Non-Numeric record and callback orchestration profile selected before evaluation. Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.\",\n    \"delivered_behavior\": \"Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.\",\n    \"exclusions\": \"No mathematical result, physical derivation, proof authentication or authority promotion is inferred from report labels, callbacks or matching names.\"\n  },\n  \"operations\": {\n    \"ValidationViolation::new\": {\n      \"signature\": \"pub fn new( unit: ValidationUnit, location: ValidationLocation, message: impl Into<String>, severity: ValidationSeverity, ) -> Self\",\n      \"obligation\": \"Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating.\"\n    },\n    \"ValidationResult::pass\": {\n      \"signature\": \"pub fn pass(unit: &str) -> Self\",\n      \"obligation\": \"Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test.\"\n    },\n    \"ValidationResult::fail\": {\n      \"signature\": \"pub fn fail(unit: &str, violations: Vec<String>) -> Self\",\n      \"obligation\": \"Store exact unit and owned message vector with passed=false, even if messages are empty.\"\n    },\n    \"ValidationReport::new\": {\n      \"signature\": \"pub fn new(name: &str) -> Self\",\n      \"obligation\": \"Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata.\"\n    },\n    \"ValidationReport::add\": {\n      \"signature\": \"pub fn add(&mut self, result: ValidationResult)\",\n      \"obligation\": \"Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts.\"\n    },\n    \"ValidationReport::add_violation\": {\n      \"signature\": \"pub fn add_violation(&mut self, violation: ValidationViolation)\",\n      \"obligation\": \"Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format.\"\n    },\n    \"ValidationReport::add_typed\": {\n      \"signature\": \"pub fn add_typed(&mut self, unit: &str, violations: Vec<ValidationViolation>)\",\n      \"obligation\": \"Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues.\"\n    },\n    \"ValidationReport::all_passed\": {\n      \"signature\": \"pub fn all_passed(&self) -> bool\",\n      \"obligation\": \"Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates.\"\n    },\n    \"ValidationReport::failure_count\": {\n      \"signature\": \"pub fn failure_count(&self) -> usize\",\n      \"obligation\": \"Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts.\"\n    },\n    \"ValidationReport::violation_count\": {\n      \"signature\": \"pub fn violation_count(&self) -> usize\",\n      \"obligation\": \"Return exactly typed_violations.len(), independent of result row count and severity.\"\n    }\n  },\n  \"invariants\": [\n    \"ValidationInventory models unrestricted flags/issues, exact append/projection, vacuous success, typed blockers and bounded failure counts. Rust Vec preserves list order, clones only necessary owned projections, and count cannot exceed actual Vec length. Unit Debug rendering and std allocation are separately reviewed runtime contracts.\",\n    \"ArrowEffects is a pure total mathematical callback value model over Reader, owned State, ordered List writer and Except. Compose associativity is proved in that model only. Rust Fn does not imply purity, termination, panic freedom or determinism. Concrete source control flow and native traces establish invocation order/short circuit and original error payloads under admitted runtime callbacks; no blanket runtime category-law or rollback theorem.\",\n    \"Fanout model accepts an arbitrary clone function; successful left input is clone(a) and right input is a. The non-lawful Odd clone fixture detects swapped clone/original delivery. Context rationals are opaque stored input: even raw 1/0 or 2/4 is transported without normalization or arithmetic by these combinators.\"\n  ],\n  \"failure_paths\": {\n    \"explicit_paths\": {\n      \"ValidationViolation::new\": \"Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating.\",\n      \"ValidationResult::pass\": \"Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test.\",\n      \"ValidationResult::fail\": \"Store exact unit and owned message vector with passed=false, even if messages are empty.\",\n      \"ValidationReport::new\": \"Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata.\",\n      \"ValidationReport::add\": \"Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts.\",\n      \"ValidationReport::add_violation\": \"Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format.\",\n      \"ValidationReport::add_typed\": \"Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues.\",\n      \"ValidationReport::all_passed\": \"Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates.\",\n      \"ValidationReport::failure_count\": \"Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts.\",\n      \"ValidationReport::violation_count\": \"Return exactly typed_violations.len(), independent of result row count and severity.\"\n    },\n    \"runtime_boundary\": [\n      \"No unsafe code, internal unchecked indexing, arithmetic/narrowing or recursive combinator body. Metadata methods store unrestricted data. Callback Err is propagated; callback panic/nontermination, custom Clone behavior and external side effects remain explicit caller boundaries.\",\n      \"Rust String/Vec/Arc allocation and ordinary Clone behavior are runtime contracts; caller-defined Into<String> conversion and Clone/Into behavior are explicit external code boundaries. No allocator-totality, verified MIR or external-effect rollback claim. Failed second callback returns no state/log value by Result type; existing external trace effects remain visible.\"\n    ]\n  },\n  \"trust_boundary\": {\n    \"formal\": \"Pinned clean Lean/Mathlib, standard foundational axioms only. Value models are not Rust extraction; purity/totality and concrete callback effects are separated.\",\n    \"runtime\": \"Captured rustc/std, String/Vec/Arc, derived tagged data traits and anyhow error propagation. User Fn/Clone operations and allocation remain the declared boundary.\",\n    \"scope\": \"Caller-supplied diagnostic fields and flags, ordered projections and counts; labels do not run named checkers or certify mathematical laws.\"\n  },\n  \"assurance_limits\": [\n    \"A is scoped source/model/native evidence, not A+, Rust/MIR extraction, allocator/crash totality or full application replay.\",\n    \"Finite fixtures do not prove arbitrary callback purity/termination or all mathematical named obligations. Public diagnostics are forgeable caller metadata; fresh concrete checkers and private certificates are separately assessed.\",\n    \"Two initial common-build refusals remain unrun receipts: collection inference in a removed-use mutant, then ambiguous trace fixture type. Repaired candidate and annotated trace compile in final campaign; no failed attempt is relabeled a pass. Contracts remain pending.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/validation.score.yaml\",\n      \"sha256\": \"500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/validation.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
+      "sha256": "3b82e01354bca49e239d6abc1c4bb4c086974ef041d05a049ad67d3950707098"
+    },
     {
-      "sha256": "500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73",
-      "bytes": 4795,
+      "bytes": 1608,
+      "original_paths": [
+        "code/rust/src/category_theory/validation.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/validation.rs\",\n    \"sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/validation.rs\",\n      \"sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\",\n  \"subject\": \"code/rust/src/category_theory/validation.rs\"\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "artifact": {
-          "path": "code/rust/src/category_theory/validation.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/validation.rs",
           "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
         },
-        "profile": "Non-Numeric",
-        "level": "L2",
-        "level_basis": "Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.",
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/validation.rs",
+            "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62",
+        "subject": "code/rust/src/category_theory/validation.rs"
+      },
+      "sha256": "b563796837688430d8b81c88575f7815a7beee1df8c64082f1391627e04afeb1"
+    }
+  ],
+  "current_contract": "b563796837688430d8b81c88575f7815a7beee1df8c64082f1391627e04afeb1",
+  "current_scoring": "f8881f921a3d90c2858a209008be4e2fec3dc5a02e6067792294fb5f43303be1",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/validation.rs.contract.yaml": "3b82e01354bca49e239d6abc1c4bb4c086974ef041d05a049ad67d3950707098",
+    "code/rust/src/category_theory/validation.rs.scoring.yaml": "4576fa8ca52e6c29fa74859af26df2e9f1c270679799d492725c5c6bac4bcf57",
+    "code/rust/src/category_theory/validation.score.yaml": "500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73",
+    "evidence/quality/category_homology/resume-20261019/diagnostic-arrow-previous/validation.score.yaml": "f8e06b0cd3b512f12269cf8a901cf4a971af8f91c1f1425f9703431a3511f532"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4795,
+      "original_paths": [
+        "code/rust/src/category_theory/validation.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/validation.rs\"\n  language: \"Rust\"\n  sha256: \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\"\nprofile: \"Non-Numeric\"\nlevel: \"L2\"\nlevel_basis: \"Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T18:47:51.722531+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:validation\"\n  description: \"Diagnostic labels and caller-supplied validation results. AuthorityEffect: None.  Unit names identify obligations; this file does not execute their checkers. Reports preserve supplied flags and diagnostics, including empty reports. Public fields are metadata, not an authenticated mathematical certificate.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T161115Z/baseline.json\", \"sha256\": \"9ed886de69f20f5f41f772cf372002a8b7fdc1a2ce80e422c553cd7929411dc1\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T161115Z/summary.json\", \"sha256\": \"c092180eb0b06e9ee71ed4b16061fa421fb2b6219ddeb73081c48e39af2e191f\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T161115Z/mutations.json\", \"sha256\": \"90d3fcc97cac077169b25ce555aea1bbf580b6ff4e24c309e6e1fca655387714\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T161209Z-metrics/receipt.json\", \"sha256\": \"5c393b4dca8b141ae0a90a4b18817dff9df34b2c1534f45f1dc241503758f8c8\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T161115Z/dependency_receipt.json\", \"sha256\": \"ad118c433c2ea02f18c4c99411b65390319fa578fa515b93eabd03e1194d70ce\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/grothendieck_doc_provider_refresh/validation.json\", \"sha256\": \"826da659eb6d35610f5f4753fa7c15d97afb7d2d78b6d51557420701eb195540\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 19\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 338\n  parsed_production_functions: 10\n  max_production_ccn: 2\n  cognitive_complexity_upper_bound: 2\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"A is scoped source/model/native evidence, not A+, Rust/MIR extraction, allocator/crash totality or full application replay.\"\n  - \"Finite fixtures do not prove arbitrary callback purity/termination or all mathematical named obligations. Public diagnostics are forgeable caller metadata; fresh concrete checkers and private certificates are separately assessed.\"\n  - \"Two initial common-build refusals remain unrun receipts: collection inference in a removed-use mutant, then ambiguous trace fixture type. Repaired candidate and annotated trace compile in final campaign; no failed attempt is relabeled a pass. Contracts remain pending.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
         "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/validation.rs",
+          "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
+        },
+        "assurance_limits": [
+          "A is scoped source/model/native evidence, not A+, Rust/MIR extraction, allocator/crash totality or full application replay.",
+          "Finite fixtures do not prove arbitrary callback purity/termination or all mathematical named obligations. Public diagnostics are forgeable caller metadata; fresh concrete checkers and private certificates are separately assessed.",
+          "Two initial common-build refusals remain unrun receipts: collection inference in a removed-use mutant, then ambiguous trace fixture type. Repaired candidate and annotated trace compile in final campaign; no failed attempt is relabeled a pass. Contracts remain pending."
+        ],
+        "claim": {
+          "description": "Diagnostic labels and caller-supplied validation results. AuthorityEffect: None.  Unit names identify obligations; this file does not execute their checkers. Reports preserve supplied flags and diagnostics, including empty reports. Public fields are metadata, not an authenticated mathematical certificate.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:validation"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T18:47:51.722531+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T161115Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "9ed886de69f20f5f41f772cf372002a8b7fdc1a2ce80e422c553cd7929411dc1"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T161115Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "c092180eb0b06e9ee71ed4b16061fa421fb2b6219ddeb73081c48e39af2e191f"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T161115Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "90d3fcc97cac077169b25ce555aea1bbf580b6ff4e24c309e6e1fca655387714"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T161209Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "5c393b4dca8b141ae0a90a4b18817dff9df34b2c1534f45f1dc241503758f8c8"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T161115Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "ad118c433c2ea02f18c4c99411b65390319fa578fa515b93eabd03e1194d70ce"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/grothendieck_doc_provider_refresh/validation.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "826da659eb6d35610f5f4753fa7c15d97afb7d2d78b6d51557420701eb195540"
+          }
+        ],
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -231,58 +271,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T18:47:51.722531+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:validation",
-          "description": "Diagnostic labels and caller-supplied validation results. AuthorityEffect: None.  Unit names identify obligations; this file does not execute their checkers. Reports preserve supplied flags and diagnostics, including empty reports. Public fields are metadata, not an authenticated mathematical certificate.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 19,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Non-Numeric",
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 2,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 2,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 10,
+          "physical_lines": 338,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T161115Z/baseline.json",
-            "sha256": "9ed886de69f20f5f41f772cf372002a8b7fdc1a2ce80e422c553cd7929411dc1",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T161115Z/summary.json",
-            "sha256": "c092180eb0b06e9ee71ed4b16061fa421fb2b6219ddeb73081c48e39af2e191f",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T161115Z/mutations.json",
-            "sha256": "90d3fcc97cac077169b25ce555aea1bbf580b6ff4e24c309e6e1fca655387714",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T161209Z-metrics/receipt.json",
-            "sha256": "5c393b4dca8b141ae0a90a4b18817dff9df34b2c1534f45f1dc241503758f8c8",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T161115Z/dependency_receipt.json",
-            "sha256": "ad118c433c2ea02f18c4c99411b65390319fa578fa515b93eabd03e1194d70ce",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/grothendieck_doc_provider_refresh/validation.json",
-            "sha256": "826da659eb6d35610f5f4753fa7c15d97afb7d2d78b6d51557420701eb195540",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -304,60 +326,37 @@
             "RR-18-17",
             "RR-19-18"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 19,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 338,
-          "parsed_production_functions": 10,
-          "max_production_ccn": 2,
-          "cognitive_complexity_upper_bound": 2,
-          "control_nesting": 2,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "A is scoped source/model/native evidence, not A+, Rust/MIR extraction, allocator/crash totality or full application replay.",
-          "Finite fixtures do not prove arbitrary callback purity/termination or all mathematical named obligations. Public diagnostics are forgeable caller metadata; fresh concrete checkers and private certificates are separately assessed.",
-          "Two initial common-build refusals remain unrun receipts: collection inference in a removed-use mutant, then ambiguous trace fixture type. Repaired candidate and annotated trace compile in final campaign; no failed attempt is relabeled a pass. Contracts remain pending."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/validation.rs\"\n  language: \"Rust\"\n  sha256: \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\"\nprofile: \"Non-Numeric\"\nlevel: \"L2\"\nlevel_basis: \"Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T18:47:51.722531+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:validation\"\n  description: \"Diagnostic labels and caller-supplied validation results. AuthorityEffect: None.  Unit names identify obligations; this file does not execute their checkers. Reports preserve supplied flags and diagnostics, including empty reports. Public fields are metadata, not an authenticated mathematical certificate.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T161115Z/baseline.json\", \"sha256\": \"9ed886de69f20f5f41f772cf372002a8b7fdc1a2ce80e422c553cd7929411dc1\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T161115Z/summary.json\", \"sha256\": \"c092180eb0b06e9ee71ed4b16061fa421fb2b6219ddeb73081c48e39af2e191f\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T161115Z/mutations.json\", \"sha256\": \"90d3fcc97cac077169b25ce555aea1bbf580b6ff4e24c309e6e1fca655387714\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T161209Z-metrics/receipt.json\", \"sha256\": \"5c393b4dca8b141ae0a90a4b18817dff9df34b2c1534f45f1dc241503758f8c8\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T161115Z/dependency_receipt.json\", \"sha256\": \"ad118c433c2ea02f18c4c99411b65390319fa578fa515b93eabd03e1194d70ce\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/grothendieck_doc_provider_refresh/validation.json\", \"sha256\": \"826da659eb6d35610f5f4753fa7c15d97afb7d2d78b6d51557420701eb195540\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 19\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 338\n  parsed_production_functions: 10\n  max_production_ccn: 2\n  cognitive_complexity_upper_bound: 2\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"A is scoped source/model/native evidence, not A+, Rust/MIR extraction, allocator/crash totality or full application replay.\"\n  - \"Finite fixtures do not prove arbitrary callback purity/termination or all mathematical named obligations. Public diagnostics are forgeable caller metadata; fresh concrete checkers and private certificates are separately assessed.\"\n  - \"Two initial common-build refusals remain unrun receipts: collection inference in a removed-use mutant, then ambiguous trace fixture type. Repaired candidate and annotated trace compile in final campaign; no failed attempt is relabeled a pass. Contracts remain pending.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/validation.score.yaml"
-      ]
+      "sha256": "500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73"
     },
     {
-      "sha256": "4576fa8ca52e6c29fa74859af26df2e9f1c270679799d492725c5c6bac4bcf57",
       "bytes": 2311,
+      "original_paths": [
+        "code/rust/src/category_theory/validation.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/validation.rs\",\n    \"sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/validation.score.yaml\",\n    \"sha256\": \"500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/validation.rs.contract.yaml\",\n    \"sha256\": \"3b82e01354bca49e239d6abc1c4bb4c086974ef041d05a049ad67d3950707098\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\",\n    \"function_count\": 10,\n    \"maxima\": {\n      \"ccn\": 2,\n      \"cognitive_upper_bound\": 2,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/validation.rs",
-          "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/validation.rs",
+          "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/validation.score.yaml",
+          "sha256": "500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/validation.rs.contract.yaml",
+          "sha256": "3b82e01354bca49e239d6abc1c4bb4c086974ef041d05a049ad67d3950707098"
+        },
         "engineering_target": "A",
-        "level": "L2",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -365,30 +364,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/validation.score.yaml",
-          "sha256": "500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/validation.rs.contract.yaml",
-          "sha256": "3b82e01354bca49e239d6abc1c4bb4c086974ef041d05a049ad67d3950707098"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L2",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
         "structural_measurement": {
-          "source_sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62",
-          "function_count": 10,
-          "maxima": {
-            "ccn": 2,
-            "cognitive_upper_bound": 2,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -403,29 +388,69 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 10,
+          "maxima": {
+            "ccn": 2,
+            "cognitive_upper_bound": 2,
+            "control_nesting": 2
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/validation.rs\",\n    \"sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/validation.score.yaml\",\n    \"sha256\": \"500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/validation.rs.contract.yaml\",\n    \"sha256\": \"3b82e01354bca49e239d6abc1c4bb4c086974ef041d05a049ad67d3950707098\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\",\n    \"function_count\": 10,\n    \"maxima\": {\n      \"ccn\": 2,\n      \"cognitive_upper_bound\": 2,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/validation.rs.scoring.yaml"
-      ]
+      "sha256": "4576fa8ca52e6c29fa74859af26df2e9f1c270679799d492725c5c6bac4bcf57"
     },
     {
-      "sha256": "f8e06b0cd3b512f12269cf8a901cf4a971af8f91c1f1425f9703431a3511f532",
       "bytes": 3337,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/diagnostic-arrow-previous/validation.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/validation.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"847cf46a1c2370a8f09d647d3b27de1f629c11c19243e71a723f3f23c56bb5d5\"\r\nprofile: \"Exact\"\r\nlevel: \"L2\"\r\nlevel_basis: \"Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"A\"\r\nevaluation_timestamp: \"2026-10-18T18:59:04+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:validation\"\r\n  description: \"Validation \\u2014 cross-cutting validation unit declarations.  Maps directly to spec \\u00a74 and \\u00a710 validation unit lists. Each validation unit is a single-property checker.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/baseline.json\", \"sha256\": \"85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/summary.json\", \"sha256\": \"8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/mutations.json\", \"sha256\": \"cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 337\r\n  parsed_production_functions: 10\r\n  max_production_ccn: 2\r\n  cognitive_complexity_upper_bound: 2\r\n  control_nesting: 2\r\n  opaque_function_macros: []\r\n  functions_exceeding_A: []\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/validation.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/validation.rs",
           "sha256": "847cf46a1c2370a8f09d647d3b27de1f629c11c19243e71a723f3f23c56bb5d5"
         },
-        "profile": "Exact",
-        "level": "L2",
-        "level_basis": "Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "Validation — cross-cutting validation unit declarations.  Maps directly to spec §4 and §10 validation unit lists. Each validation unit is a single-property checker.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:validation"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:59:04+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T185904Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T185904Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T185904Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -433,107 +458,61 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-18T18:59:04+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:validation",
-          "description": "Validation — cross-cutting validation unit declarations.  Maps directly to spec §4 and §10 validation unit lists. Each validation unit is a single-property checker.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T185904Z/baseline.json",
-            "sha256": "85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T185904Z/summary.json",
-            "sha256": "8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T185904Z/mutations.json",
-            "sha256": "cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L2",
+        "level_basis": "Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 337,
-          "parsed_production_functions": 10,
-          "max_production_ccn": 2,
-          "cognitive_complexity_upper_bound": 2,
-          "control_nesting": 2,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "unrun": 0
         },
         "open_findings": [
           "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
           "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
           "External path dependency source contents have not received a separate origin/content attestation."
-        ]
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
+        "structure": {
+          "cognitive_complexity_upper_bound": 2,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 2,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 10,
+          "physical_lines": 337,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/validation.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"847cf46a1c2370a8f09d647d3b27de1f629c11c19243e71a723f3f23c56bb5d5\"\r\nprofile: \"Exact\"\r\nlevel: \"L2\"\r\nlevel_basis: \"Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"A\"\r\nevaluation_timestamp: \"2026-10-18T18:59:04+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:validation\"\r\n  description: \"Validation \\u2014 cross-cutting validation unit declarations.  Maps directly to spec \\u00a74 and \\u00a710 validation unit lists. Each validation unit is a single-property checker.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/baseline.json\", \"sha256\": \"85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/summary.json\", \"sha256\": \"8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T185904Z/mutations.json\", \"sha256\": \"cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 337\r\n  parsed_production_functions: 10\r\n  max_production_ccn: 2\r\n  cognitive_complexity_upper_bound: 2\r\n  control_nesting: 2\r\n  opaque_function_macros: []\r\n  functions_exceeding_A: []\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/diagnostic-arrow-previous/validation.score.yaml"
-      ]
+      "sha256": "f8e06b0cd3b512f12269cf8a901cf4a971af8f91c1f1425f9703431a3511f532"
     },
     {
-      "sha256": "eaa53b808518c8eed6fca01e08d12fadef970a78ff3dbb9192bdb212a8b347cb",
       "bytes": 5653,
+      "original_paths": [
+        "code/rust/src/category_theory/validation.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/validation.rs\",\n    \"sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:validation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 2 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 2,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T161115Z/baseline.json\",\n      \"sha256\": \"9ed886de69f20f5f41f772cf372002a8b7fdc1a2ce80e422c553cd7929411dc1\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T161115Z/summary.json\",\n      \"sha256\": \"c092180eb0b06e9ee71ed4b16061fa421fb2b6219ddeb73081c48e39af2e191f\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T161115Z/mutations.json\",\n      \"sha256\": \"90d3fcc97cac077169b25ce555aea1bbf580b6ff4e24c309e6e1fca655387714\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T161209Z-metrics/receipt.json\",\n      \"sha256\": \"5c393b4dca8b141ae0a90a4b18817dff9df34b2c1534f45f1dc241503758f8c8\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T161115Z/dependency_receipt.json\",\n      \"sha256\": \"ad118c433c2ea02f18c4c99411b65390319fa578fa515b93eabd03e1194d70ce\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/grothendieck_doc_provider_refresh/validation.json\",\n      \"sha256\": \"826da659eb6d35610f5f4753fa7c15d97afb7d2d78b6d51557420701eb195540\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T185904Z/baseline.json\",\n      \"sha256\": \"85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T185904Z/summary.json\",\n      \"sha256\": \"8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T185904Z/mutations.json\",\n      \"sha256\": \"cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 338,\n    \"parsed_production_functions\": 10,\n    \"max_production_ccn\": 2,\n    \"cognitive_complexity_upper_bound\": 2,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/validation.rs",
-          "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:validation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -542,24 +521,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 2 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 2,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -567,81 +529,155 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T161115Z/baseline.json",
-            "sha256": "9ed886de69f20f5f41f772cf372002a8b7fdc1a2ce80e422c553cd7929411dc1",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "9ed886de69f20f5f41f772cf372002a8b7fdc1a2ce80e422c553cd7929411dc1"
           },
           {
             "path": "evidence/quality/category_homology/20261019T161115Z/summary.json",
-            "sha256": "c092180eb0b06e9ee71ed4b16061fa421fb2b6219ddeb73081c48e39af2e191f",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "c092180eb0b06e9ee71ed4b16061fa421fb2b6219ddeb73081c48e39af2e191f"
           },
           {
             "path": "evidence/quality/category_homology/20261019T161115Z/mutations.json",
-            "sha256": "90d3fcc97cac077169b25ce555aea1bbf580b6ff4e24c309e6e1fca655387714",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "90d3fcc97cac077169b25ce555aea1bbf580b6ff4e24c309e6e1fca655387714"
           },
           {
             "path": "evidence/quality/category_homology/20261019T161209Z-metrics/receipt.json",
-            "sha256": "5c393b4dca8b141ae0a90a4b18817dff9df34b2c1534f45f1dc241503758f8c8",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "5c393b4dca8b141ae0a90a4b18817dff9df34b2c1534f45f1dc241503758f8c8"
           },
           {
             "path": "evidence/quality/category_homology/20261019T161115Z/dependency_receipt.json",
-            "sha256": "ad118c433c2ea02f18c4c99411b65390319fa578fa515b93eabd03e1194d70ce",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "ad118c433c2ea02f18c4c99411b65390319fa578fa515b93eabd03e1194d70ce"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/grothendieck_doc_provider_refresh/validation.json",
-            "sha256": "826da659eb6d35610f5f4753fa7c15d97afb7d2d78b6d51557420701eb195540",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "826da659eb6d35610f5f4753fa7c15d97afb7d2d78b6d51557420701eb195540"
           },
           {
             "path": "evidence/quality/category_homology/20261018T185904Z/baseline.json",
-            "sha256": "85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175"
           },
           {
             "path": "evidence/quality/category_homology/20261018T185904Z/summary.json",
-            "sha256": "8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864"
           },
           {
             "path": "evidence/quality/category_homology/20261018T185904Z/mutations.json",
-            "sha256": "cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 2
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 338,
-          "parsed_production_functions": 10,
-          "max_production_ccn": 2,
           "cognitive_complexity_upper_bound": 2,
           "control_nesting": 2,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 2,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 10,
+          "physical_lines": 338,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/validation.rs\",\n    \"sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:validation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 2 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 2,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T161115Z/baseline.json\",\n      \"sha256\": \"9ed886de69f20f5f41f772cf372002a8b7fdc1a2ce80e422c553cd7929411dc1\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T161115Z/summary.json\",\n      \"sha256\": \"c092180eb0b06e9ee71ed4b16061fa421fb2b6219ddeb73081c48e39af2e191f\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T161115Z/mutations.json\",\n      \"sha256\": \"90d3fcc97cac077169b25ce555aea1bbf580b6ff4e24c309e6e1fca655387714\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T161209Z-metrics/receipt.json\",\n      \"sha256\": \"5c393b4dca8b141ae0a90a4b18817dff9df34b2c1534f45f1dc241503758f8c8\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T161115Z/dependency_receipt.json\",\n      \"sha256\": \"ad118c433c2ea02f18c4c99411b65390319fa578fa515b93eabd03e1194d70ce\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/grothendieck_doc_provider_refresh/validation.json\",\n      \"sha256\": \"826da659eb6d35610f5f4753fa7c15d97afb7d2d78b6d51557420701eb195540\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T185904Z/baseline.json\",\n      \"sha256\": \"85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T185904Z/summary.json\",\n      \"sha256\": \"8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T185904Z/mutations.json\",\n      \"sha256\": \"cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 338,\n    \"parsed_production_functions\": 10,\n    \"max_production_ccn\": 2,\n    \"cognitive_complexity_upper_bound\": 2,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "eaa53b808518c8eed6fca01e08d12fadef970a78ff3dbb9192bdb212a8b347cb"
+    },
+    {
+      "bytes": 1600,
       "original_paths": [
-        "code/rust/src/category_theory/validation.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/validation.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/validation.rs\",\n    \"sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/validation.rs\",\n      \"sha256\": \"d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/validation.rs",
+          "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/validation.rs",
+            "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "f8881f921a3d90c2858a209008be4e2fec3dc5a02e6067792294fb5f43303be1"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/validation.rs.contract.yaml": "3b82e01354bca49e239d6abc1c4bb4c086974ef041d05a049ad67d3950707098",
-    "code/rust/src/category_theory/validation.score.yaml": "500947c0fb9b5c013629dc9336a4e907faac3a8f4553272859b3d3df3f7bee73",
-    "code/rust/src/category_theory/validation.rs.scoring.yaml": "4576fa8ca52e6c29fa74859af26df2e9f1c270679799d492725c5c6bac4bcf57",
-    "evidence/quality/category_homology/resume-20261019/diagnostic-arrow-previous/validation.score.yaml": "f8e06b0cd3b512f12269cf8a901cf4a971af8f91c1f1425f9703431a3511f532"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

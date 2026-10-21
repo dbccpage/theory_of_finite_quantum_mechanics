@@ -1,132 +1,159 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/tests/fsp/test_part4_review_remediations.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/tests/fsp/test_part4_review_remediations.py",
-      "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9",
-      "language": "Python"
+      "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:fsp:test-part4-review-remediations:v1",
-    "role": "test checker",
-    "purpose": "test_part4_review_remediations.py — Regression & Adversarial Verification Suite Covering Part 4 Code and Contract Review Findings.",
-    "operations": {
-      "test_ct_aux_greens_function_negative_energy_exact_magnitude": "Independent counterexample verification:",
-      "test_ct_aux_greens_function_positive_and_zero_energies": "Verifies Green's function symmetry and stability for positive and zero energies.",
-      "test_ct_aux_build_N_matrices_negative_energy_stability": "Verifies that build_N_matrices uses the stable negative-energy formulation.",
-      "test_streaming_gin_query_all_modes_intersected": "Executable counterexample verification:",
-      "test_streaming_gin_involution_weight_preservation": "Counterexample verification:",
-      "test_streaming_gin_duplicate_cancellation_prevention": "Counterexample verification:",
-      "test_streaming_gin_index_invalid_window_size": "Verifies that max_window_size <= 0 is refused with ValueError.",
-      "test_streaming_gin_index_duplicate_cfg_id": "Verifies that duplicate cfg_id is refused in active window.",
-      "test_germ_state_transition_atomicity_on_self_loop_failure": "Counterexample verification:",
-      "test_germ_state_unmarked_pair_distinct_loci": "Verifies that step_02_unmarked_pair refuses identical loci.",
-      "test_germ_automorphism_groups_use_dynamic_carriers": "Verifies that automorphism groups use the instance's carrier symbols.",
-      "test_fermionic_lattice_rejects_booleans_and_huge_envelope": "Counterexample verification:",
-      "test_discrete_fermionic_hamiltonian_rejects_bool_counts": "Verifies particle counts cannot be booleans.",
-      "test_fock_scaling_row_boolean_string_deserialization": "Counterexample verification:",
-      "test_cobordism_anomaly_refuses_non_spin_orientable": "Counterexample verification:",
-      "test_cobordism_anomaly_refuses_unrecognized_manifold_type": "Verifies that unrecognized four_manifold_type is rejected.",
-      "test_chiral_superconductor_bridge_empty_audits_fail_closed": "Counterexample verification:",
-      "test_fermion_gin_index_partner_unambiguous_and_equal_weight": "Counterexample verification:"
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, general physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/tests/fsp/test_part4_review_remediations.py",
+        "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "test or verification harness",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9",
+    "subject": "code/python/tests/fsp/test_part4_review_remediations.py"
   },
-  "current_contract": "270acac64b21edbb7f7e359a149cec9cee35e2902808213b8f4b094deeeace8f",
-  "current_scoring": "91e49c7b8d101a203aa2a5cb1f89f8eb8c76ebb6bd0366c53a43a93c645b7c85",
   "contract_history": [
     {
-      "sha256": "270acac64b21edbb7f7e359a149cec9cee35e2902808213b8f4b094deeeace8f",
       "bytes": 3660,
+      "original_paths": [
+        "code/python/tests/fsp/test_part4_review_remediations.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_part4_review_remediations.py\",\n    \"sha256\": \"ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fsp:test-part4-review-remediations:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"test_part4_review_remediations.py — Regression & Adversarial Verification Suite Covering Part 4 Code and Contract Review Findings.\",\n  \"operations\": {\n    \"test_ct_aux_greens_function_negative_energy_exact_magnitude\": \"Independent counterexample verification:\",\n    \"test_ct_aux_greens_function_positive_and_zero_energies\": \"Verifies Green's function symmetry and stability for positive and zero energies.\",\n    \"test_ct_aux_build_N_matrices_negative_energy_stability\": \"Verifies that build_N_matrices uses the stable negative-energy formulation.\",\n    \"test_streaming_gin_query_all_modes_intersected\": \"Executable counterexample verification:\",\n    \"test_streaming_gin_involution_weight_preservation\": \"Counterexample verification:\",\n    \"test_streaming_gin_duplicate_cancellation_prevention\": \"Counterexample verification:\",\n    \"test_streaming_gin_index_invalid_window_size\": \"Verifies that max_window_size <= 0 is refused with ValueError.\",\n    \"test_streaming_gin_index_duplicate_cfg_id\": \"Verifies that duplicate cfg_id is refused in active window.\",\n    \"test_germ_state_transition_atomicity_on_self_loop_failure\": \"Counterexample verification:\",\n    \"test_germ_state_unmarked_pair_distinct_loci\": \"Verifies that step_02_unmarked_pair refuses identical loci.\",\n    \"test_germ_automorphism_groups_use_dynamic_carriers\": \"Verifies that automorphism groups use the instance's carrier symbols.\",\n    \"test_fermionic_lattice_rejects_booleans_and_huge_envelope\": \"Counterexample verification:\",\n    \"test_discrete_fermionic_hamiltonian_rejects_bool_counts\": \"Verifies particle counts cannot be booleans.\",\n    \"test_fock_scaling_row_boolean_string_deserialization\": \"Counterexample verification:\",\n    \"test_cobordism_anomaly_refuses_non_spin_orientable\": \"Counterexample verification:\",\n    \"test_cobordism_anomaly_refuses_unrecognized_manifold_type\": \"Verifies that unrecognized four_manifold_type is rejected.\",\n    \"test_chiral_superconductor_bridge_empty_audits_fail_closed\": \"Counterexample verification:\",\n    \"test_fermion_gin_index_partner_unambiguous_and_equal_weight\": \"Counterexample verification:\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, general physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Python",
           "path": "code/python/tests/fsp/test_part4_review_remediations.py",
-          "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9",
-          "language": "Python"
+          "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:fsp:test-part4-review-remediations:v1",
-        "role": "test checker",
-        "purpose": "test_part4_review_remediations.py — Regression & Adversarial Verification Suite Covering Part 4 Code and Contract Review Findings.",
-        "operations": {
-          "test_ct_aux_greens_function_negative_energy_exact_magnitude": "Independent counterexample verification:",
-          "test_ct_aux_greens_function_positive_and_zero_energies": "Verifies Green's function symmetry and stability for positive and zero energies.",
-          "test_ct_aux_build_N_matrices_negative_energy_stability": "Verifies that build_N_matrices uses the stable negative-energy formulation.",
-          "test_streaming_gin_query_all_modes_intersected": "Executable counterexample verification:",
-          "test_streaming_gin_involution_weight_preservation": "Counterexample verification:",
-          "test_streaming_gin_duplicate_cancellation_prevention": "Counterexample verification:",
-          "test_streaming_gin_index_invalid_window_size": "Verifies that max_window_size <= 0 is refused with ValueError.",
-          "test_streaming_gin_index_duplicate_cfg_id": "Verifies that duplicate cfg_id is refused in active window.",
-          "test_germ_state_transition_atomicity_on_self_loop_failure": "Counterexample verification:",
-          "test_germ_state_unmarked_pair_distinct_loci": "Verifies that step_02_unmarked_pair refuses identical loci.",
-          "test_germ_automorphism_groups_use_dynamic_carriers": "Verifies that automorphism groups use the instance's carrier symbols.",
-          "test_fermionic_lattice_rejects_booleans_and_huge_envelope": "Counterexample verification:",
-          "test_discrete_fermionic_hamiltonian_rejects_bool_counts": "Verifies particle counts cannot be booleans.",
-          "test_fock_scaling_row_boolean_string_deserialization": "Counterexample verification:",
-          "test_cobordism_anomaly_refuses_non_spin_orientable": "Counterexample verification:",
-          "test_cobordism_anomaly_refuses_unrecognized_manifold_type": "Verifies that unrecognized four_manifold_type is rejected.",
-          "test_chiral_superconductor_bridge_empty_audits_fail_closed": "Counterexample verification:",
-          "test_fermion_gin_index_partner_unambiguous_and_equal_weight": "Counterexample verification:"
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, general physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "test_chiral_superconductor_bridge_empty_audits_fail_closed": "Counterexample verification:",
+          "test_cobordism_anomaly_refuses_non_spin_orientable": "Counterexample verification:",
+          "test_cobordism_anomaly_refuses_unrecognized_manifold_type": "Verifies that unrecognized four_manifold_type is rejected.",
+          "test_ct_aux_build_N_matrices_negative_energy_stability": "Verifies that build_N_matrices uses the stable negative-energy formulation.",
+          "test_ct_aux_greens_function_negative_energy_exact_magnitude": "Independent counterexample verification:",
+          "test_ct_aux_greens_function_positive_and_zero_energies": "Verifies Green's function symmetry and stability for positive and zero energies.",
+          "test_discrete_fermionic_hamiltonian_rejects_bool_counts": "Verifies particle counts cannot be booleans.",
+          "test_fermion_gin_index_partner_unambiguous_and_equal_weight": "Counterexample verification:",
+          "test_fermionic_lattice_rejects_booleans_and_huge_envelope": "Counterexample verification:",
+          "test_fock_scaling_row_boolean_string_deserialization": "Counterexample verification:",
+          "test_germ_automorphism_groups_use_dynamic_carriers": "Verifies that automorphism groups use the instance's carrier symbols.",
+          "test_germ_state_transition_atomicity_on_self_loop_failure": "Counterexample verification:",
+          "test_germ_state_unmarked_pair_distinct_loci": "Verifies that step_02_unmarked_pair refuses identical loci.",
+          "test_streaming_gin_duplicate_cancellation_prevention": "Counterexample verification:",
+          "test_streaming_gin_index_duplicate_cfg_id": "Verifies that duplicate cfg_id is refused in active window.",
+          "test_streaming_gin_index_invalid_window_size": "Verifies that max_window_size <= 0 is refused with ValueError.",
+          "test_streaming_gin_involution_weight_preservation": "Counterexample verification:",
+          "test_streaming_gin_query_all_modes_intersected": "Executable counterexample verification:"
+        },
+        "profile": "Exact",
+        "purpose": "test_part4_review_remediations.py — Regression & Adversarial Verification Suite Covering Part 4 Code and Contract Review Findings.",
+        "role": "test checker",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, general physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_part4_review_remediations.py\",\n    \"sha256\": \"ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fsp:test-part4-review-remediations:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"test_part4_review_remediations.py — Regression & Adversarial Verification Suite Covering Part 4 Code and Contract Review Findings.\",\n  \"operations\": {\n    \"test_ct_aux_greens_function_negative_energy_exact_magnitude\": \"Independent counterexample verification:\",\n    \"test_ct_aux_greens_function_positive_and_zero_energies\": \"Verifies Green's function symmetry and stability for positive and zero energies.\",\n    \"test_ct_aux_build_N_matrices_negative_energy_stability\": \"Verifies that build_N_matrices uses the stable negative-energy formulation.\",\n    \"test_streaming_gin_query_all_modes_intersected\": \"Executable counterexample verification:\",\n    \"test_streaming_gin_involution_weight_preservation\": \"Counterexample verification:\",\n    \"test_streaming_gin_duplicate_cancellation_prevention\": \"Counterexample verification:\",\n    \"test_streaming_gin_index_invalid_window_size\": \"Verifies that max_window_size <= 0 is refused with ValueError.\",\n    \"test_streaming_gin_index_duplicate_cfg_id\": \"Verifies that duplicate cfg_id is refused in active window.\",\n    \"test_germ_state_transition_atomicity_on_self_loop_failure\": \"Counterexample verification:\",\n    \"test_germ_state_unmarked_pair_distinct_loci\": \"Verifies that step_02_unmarked_pair refuses identical loci.\",\n    \"test_germ_automorphism_groups_use_dynamic_carriers\": \"Verifies that automorphism groups use the instance's carrier symbols.\",\n    \"test_fermionic_lattice_rejects_booleans_and_huge_envelope\": \"Counterexample verification:\",\n    \"test_discrete_fermionic_hamiltonian_rejects_bool_counts\": \"Verifies particle counts cannot be booleans.\",\n    \"test_fock_scaling_row_boolean_string_deserialization\": \"Counterexample verification:\",\n    \"test_cobordism_anomaly_refuses_non_spin_orientable\": \"Counterexample verification:\",\n    \"test_cobordism_anomaly_refuses_unrecognized_manifold_type\": \"Verifies that unrecognized four_manifold_type is rejected.\",\n    \"test_chiral_superconductor_bridge_empty_audits_fail_closed\": \"Counterexample verification:\",\n    \"test_fermion_gin_index_partner_unambiguous_and_equal_weight\": \"Counterexample verification:\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, general physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "270acac64b21edbb7f7e359a149cec9cee35e2902808213b8f4b094deeeace8f"
+    },
+    {
+      "bytes": 1661,
       "original_paths": [
-        "code/python/tests/fsp/test_part4_review_remediations.contract.score.yaml#contract"
-      ]
+        "code/python/tests/fsp/test_part4_review_remediations.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/fsp/test_part4_review_remediations.py\",\n    \"sha256\": \"ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/tests/fsp/test_part4_review_remediations.py\",\n      \"sha256\": \"ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"test or verification harness\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9\",\n  \"subject\": \"code/python/tests/fsp/test_part4_review_remediations.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/fsp/test_part4_review_remediations.py",
+          "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/tests/fsp/test_part4_review_remediations.py",
+            "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "test or verification harness",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9",
+        "subject": "code/python/tests/fsp/test_part4_review_remediations.py"
+      },
+      "sha256": "7b40d662052752e24ef3a3fc32568ef583f9bee9316295fe3a17e8751cac2ea5"
     }
   ],
+  "current_contract": "7b40d662052752e24ef3a3fc32568ef583f9bee9316295fe3a17e8751cac2ea5",
+  "current_scoring": "c1ef0977a79af6ce2b771bbafdbcf1f8f78c4849aadb87327be1dc702c21c0b2",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "91e49c7b8d101a203aa2a5cb1f89f8eb8c76ebb6bd0366c53a43a93c645b7c85",
       "bytes": 2210,
+      "original_paths": [
+        "code/python/tests/fsp/test_part4_review_remediations.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_part4_review_remediations.py\",\n    \"sha256\": \"ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fsp:test-part4-review-remediations:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Python semantics.\",\n    \"G3\": \"Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Python",
           "path": "code/python/tests/fsp/test_part4_review_remediations.py",
-          "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9",
-          "language": "Python"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
+          "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:fsp:test-part4-review-remediations:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -135,35 +162,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 7,
-          "lizard_ccn": 1,
-          "weighted_control_upper_bound": 4,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 1,
+          "radon_ccn": 7,
+          "weighted_control_upper_bound": 4
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline bounds"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "91e49c7b8d101a203aa2a5cb1f89f8eb8c76ebb6bd0366c53a43a93c645b7c85"
+    },
+    {
+      "bytes": 1624,
+      "original_paths": [
+        "code/python/tests/fsp/test_part4_review_remediations.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/fsp/test_part4_review_remediations.py\",\n    \"sha256\": \"ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/tests/fsp/test_part4_review_remediations.py\",\n      \"sha256\": \"ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/fsp/test_part4_review_remediations.py",
+          "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/tests/fsp/test_part4_review_remediations.py",
+            "sha256": "ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_part4_review_remediations.py\",\n    \"sha256\": \"ea9e8f6cc416ae25089b29810e75a80926ed44e13f9ceb4b76d331f66cba45f9\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fsp:test-part4-review-remediations:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Python semantics.\",\n    \"G3\": \"Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/fsp/test_part4_review_remediations.contract.score.yaml#scoring"
-      ]
+      "sha256": "c1ef0977a79af6ce2b771bbafdbcf1f8f78c4849aadb87327be1dc702c21c0b2"
     }
   ]
 }

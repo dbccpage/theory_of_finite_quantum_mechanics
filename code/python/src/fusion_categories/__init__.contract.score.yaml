@@ -1,72 +1,56 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/fusion_categories/__init__.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/fusion_categories/__init__.py",
       "sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:fusion:package-dimension-seal:v1",
-    "role": "library facade and entrypoint",
-    "purpose": "Bounded exact-integer package facade checking the selected Ising squared-dimension witness.",
-    "operations": {
-      "checked_int": "Admit only built-in integers under the local bit policy, with specific float and boolean refusals.",
-      "package_seal": "Require the provider's exact integer witness to equal 4, alongside fixed local integer consistency controls. This compares declarations and does not derive the ring laws.",
-      "main": "Print the witness with exit 0; known package/provider refusal returns 1; unavailable normal/diagnostic output returns 2."
-    },
-    "engineering_policy": "Integer components<=1024 bits. Fixed-size local operations and the bounded trusted provider. Scalar admission avoids ordinary value __class__ callbacks and arithmetic subclasses.",
-    "failure_boundary": "PackageError with invariant/role for ordinary scalar or witness failures, FusionError from provider, and explicit output-unavailable status 2.",
-    "cost_model": "Fixed local integer operations plus the declared bounded Ising provider computation. No caller-controlled allocation or iteration.",
-    "scope_ceiling": "One package witness, no ring categorification, general dimension theorem or authority promotion.",
-    "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
-        "path": "evidence/quality/expanded_scope/20261020T222442Z-fusion-challenge/receipt.json",
-        "sha256": "0edcd48af668e853f3dffa103606703d0673a92a8eb691be5cb2e3fb95b4e85a"
+        "path": "code/python/src/fusion_categories/__init__.py",
+        "sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6"
       },
       {
-        "path": "evidence/quality/expanded_scope/20261020T222456Z-source-metrics/receipt.json",
-        "sha256": "fef7481b09ba8f6904409a638df7bbcbfad29131b28e83c889ac6e65e0d06af6"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/batch4-final-baseline.log",
-        "sha256": "5c64803942a2158993e114c1022f443f06680611ec619bc5141218e2e391efdd"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/batch4-atlas.log",
-        "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
-      },
-      {
-        "path": "code/rust/quality/expanded_scope/fusion_reviews.json",
-        "sha256": "3bb5653c3aaac2c85af92c405bd7865e07817c9725e7e8ce3ddec1a057b7ff28"
-      },
-      {
-        "path": "evidence/quality/expanded_scope/20261020T222617Z-origin-review/receipt.json",
-        "sha256": "b15be9913e4728369bcf8ca1a51fe14597b8946fd358164d7a5993c1c2fd7ba5"
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "package or module entrypoint",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6",
+    "subject": "code/python/src/fusion_categories/__init__.py"
   },
-  "current_contract": "2d34523e55f7509378dc67ede39e39f2d41f1a4be54f7728cdf84de073c2f0e1",
-  "current_scoring": "3c2c6bfb86a227b306c212884d40e55a08a552468bd42b2db66e64b2f5805efc",
   "contract_history": [
     {
-      "sha256": "92f8368f10f651193cd7ae213b41c5bb28ca7fc8beb9a53b2c895a01e25867e1",
       "bytes": 1519,
+      "original_paths": [
+        "code/python/src/fusion_categories/__init__.contract.score.yaml#historical-defect-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fusion_categories/__init__.py\",\n    \"sha256\": \"947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b\"\n  },\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Earlier captured implementation only; later contracts and budgets are not retroactive.\",\n  \"source_claims_verbatim\": \"Package seal for the fusion certificate.\\n\\nOrigin: dag/theory_of_finite_qm.md section TFQ-0196.\\nClaim: urn:omega:fqm:fusion:package-dimension-seal:v1\\nAuthorityEffect: None\\nMutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/fusion_categories/test_fusion_control.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 4; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 5.\\nScope Fence: package_seal checks that the Ising global dimension squared is 4. It does not categorify the ring.\",\n  \"source_claims_status\": \"Captured claims only, not endorsed measurements, verification or capability grades.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T221225Z-fusion-before/receipt.json\",\n      \"sha256\": \"48718195ecbe38b9e513274ca449db034fc87cf6ffe7221ea49b57f4300f623d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T221225Z-fusion-before/sources/code/python/src/fusion_categories/__init__.py\",\n      \"sha256\": \"947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/fusion_categories/__init__.py",
           "sha256": "947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b"
         },
-        "profile": "Exact",
-        "status": "historical_defect_review",
-        "purpose": "Earlier captured implementation only; later contracts and budgets are not retroactive.",
-        "source_claims_verbatim": "Package seal for the fusion certificate.\n\nOrigin: dag/theory_of_finite_qm.md section TFQ-0196.\nClaim: urn:omega:fqm:fusion:package-dimension-seal:v1\nAuthorityEffect: None\nMutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/fusion_categories/test_fusion_control.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 4; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 5.\nScope Fence: package_seal checks that the Ising global dimension squared is 4. It does not categorify the ring.",
-        "source_claims_status": "Captured claims only, not endorsed measurements, verification or capability grades.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T221225Z-fusion-before/receipt.json",
@@ -76,37 +60,30 @@
             "path": "evidence/quality/expanded_scope/20261020T221225Z-fusion-before/sources/code/python/src/fusion_categories/__init__.py",
             "sha256": "947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b"
           }
-        ]
+        ],
+        "profile": "Exact",
+        "purpose": "Earlier captured implementation only; later contracts and budgets are not retroactive.",
+        "source_claims_status": "Captured claims only, not endorsed measurements, verification or capability grades.",
+        "source_claims_verbatim": "Package seal for the fusion certificate.\n\nOrigin: dag/theory_of_finite_qm.md section TFQ-0196.\nClaim: urn:omega:fqm:fusion:package-dimension-seal:v1\nAuthorityEffect: None\nMutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/fusion_categories/test_fusion_control.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 4; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 5.\nScope Fence: package_seal checks that the Ising global dimension squared is 4. It does not categorify the ring.",
+        "status": "historical_defect_review"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fusion_categories/__init__.py\",\n    \"sha256\": \"947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b\"\n  },\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Earlier captured implementation only; later contracts and budgets are not retroactive.\",\n  \"source_claims_verbatim\": \"Package seal for the fusion certificate.\\n\\nOrigin: dag/theory_of_finite_qm.md section TFQ-0196.\\nClaim: urn:omega:fqm:fusion:package-dimension-seal:v1\\nAuthorityEffect: None\\nMutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/fusion_categories/test_fusion_control.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 4; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 5.\\nScope Fence: package_seal checks that the Ising global dimension squared is 4. It does not categorify the ring.\",\n  \"source_claims_status\": \"Captured claims only, not endorsed measurements, verification or capability grades.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T221225Z-fusion-before/receipt.json\",\n      \"sha256\": \"48718195ecbe38b9e513274ca449db034fc87cf6ffe7221ea49b57f4300f623d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T221225Z-fusion-before/sources/code/python/src/fusion_categories/__init__.py\",\n      \"sha256\": \"947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/fusion_categories/__init__.contract.score.yaml#historical-defect-review/contract"
-      ]
+      "sha256": "92f8368f10f651193cd7ae213b41c5bb28ca7fc8beb9a53b2c895a01e25867e1"
     },
     {
-      "sha256": "2d34523e55f7509378dc67ede39e39f2d41f1a4be54f7728cdf84de073c2f0e1",
       "bytes": 3033,
+      "original_paths": [
+        "code/python/src/fusion_categories/__init__.contract.score.yaml#bounded-production-and-checker-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fusion_categories/__init__.py\",\n    \"sha256\": \"8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fusion:package-dimension-seal:v1\",\n  \"role\": \"library facade and entrypoint\",\n  \"purpose\": \"Bounded exact-integer package facade checking the selected Ising squared-dimension witness.\",\n  \"operations\": {\n    \"checked_int\": \"Admit only built-in integers under the local bit policy, with specific float and boolean refusals.\",\n    \"package_seal\": \"Require the provider's exact integer witness to equal 4, alongside fixed local integer consistency controls. This compares declarations and does not derive the ring laws.\",\n    \"main\": \"Print the witness with exit 0; known package/provider refusal returns 1; unavailable normal/diagnostic output returns 2.\"\n  },\n  \"engineering_policy\": \"Integer components<=1024 bits. Fixed-size local operations and the bounded trusted provider. Scalar admission avoids ordinary value __class__ callbacks and arithmetic subclasses.\",\n  \"failure_boundary\": \"PackageError with invariant/role for ordinary scalar or witness failures, FusionError from provider, and explicit output-unavailable status 2.\",\n  \"cost_model\": \"Fixed local integer operations plus the declared bounded Ising provider computation. No caller-controlled allocation or iteration.\",\n  \"scope_ceiling\": \"One package witness, no ring categorification, general dimension theorem or authority promotion.\",\n  \"trust\": \"Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222442Z-fusion-challenge/receipt.json\",\n      \"sha256\": \"0edcd48af668e853f3dffa103606703d0673a92a8eb691be5cb2e3fb95b4e85a\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222456Z-source-metrics/receipt.json\",\n      \"sha256\": \"fef7481b09ba8f6904409a638df7bbcbfad29131b28e83c889ac6e65e0d06af6\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch4-final-baseline.log\",\n      \"sha256\": \"5c64803942a2158993e114c1022f443f06680611ec619bc5141218e2e391efdd\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch4-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/fusion_reviews.json\",\n      \"sha256\": \"3bb5653c3aaac2c85af92c405bd7865e07817c9725e7e8ce3ddec1a057b7ff28\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222617Z-origin-review/receipt.json\",\n      \"sha256\": \"b15be9913e4728369bcf8ca1a51fe14597b8946fd358164d7a5993c1c2fd7ba5\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/fusion_categories/__init__.py",
           "sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:fusion:package-dimension-seal:v1",
-        "role": "library facade and entrypoint",
-        "purpose": "Bounded exact-integer package facade checking the selected Ising squared-dimension witness.",
-        "operations": {
-          "checked_int": "Admit only built-in integers under the local bit policy, with specific float and boolean refusals.",
-          "package_seal": "Require the provider's exact integer witness to equal 4, alongside fixed local integer consistency controls. This compares declarations and does not derive the ring laws.",
-          "main": "Print the witness with exit 0; known package/provider refusal returns 1; unavailable normal/diagnostic output returns 2."
-        },
-        "engineering_policy": "Integer components<=1024 bits. Fixed-size local operations and the bounded trusted provider. Scalar admission avoids ordinary value __class__ callbacks and arithmetic subclasses.",
-        "failure_boundary": "PackageError with invariant/role for ordinary scalar or witness failures, FusionError from provider, and explicit output-unavailable status 2.",
         "cost_model": "Fixed local integer operations plus the declared bounded Ising provider computation. No caller-controlled allocation or iteration.",
-        "scope_ceiling": "One package witness, no ring categorification, general dimension theorem or authority promotion.",
-        "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Integer components<=1024 bits. Fixed-size local operations and the bounded trusted provider. Scalar admission avoids ordinary value __class__ callbacks and arithmetic subclasses.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T222442Z-fusion-challenge/receipt.json",
@@ -132,45 +109,91 @@
             "path": "evidence/quality/expanded_scope/20261020T222617Z-origin-review/receipt.json",
             "sha256": "b15be9913e4728369bcf8ca1a51fe14597b8946fd358164d7a5993c1c2fd7ba5"
           }
-        ]
+        ],
+        "failure_boundary": "PackageError with invariant/role for ordinary scalar or witness failures, FusionError from provider, and explicit output-unavailable status 2.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "checked_int": "Admit only built-in integers under the local bit policy, with specific float and boolean refusals.",
+          "main": "Print the witness with exit 0; known package/provider refusal returns 1; unavailable normal/diagnostic output returns 2.",
+          "package_seal": "Require the provider's exact integer witness to equal 4, alongside fixed local integer consistency controls. This compares declarations and does not derive the ring laws."
+        },
+        "profile": "Exact",
+        "purpose": "Bounded exact-integer package facade checking the selected Ising squared-dimension witness.",
+        "role": "library facade and entrypoint",
+        "scope_ceiling": "One package witness, no ring categorification, general dimension theorem or authority promotion.",
+        "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fusion_categories/__init__.py\",\n    \"sha256\": \"8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fusion:package-dimension-seal:v1\",\n  \"role\": \"library facade and entrypoint\",\n  \"purpose\": \"Bounded exact-integer package facade checking the selected Ising squared-dimension witness.\",\n  \"operations\": {\n    \"checked_int\": \"Admit only built-in integers under the local bit policy, with specific float and boolean refusals.\",\n    \"package_seal\": \"Require the provider's exact integer witness to equal 4, alongside fixed local integer consistency controls. This compares declarations and does not derive the ring laws.\",\n    \"main\": \"Print the witness with exit 0; known package/provider refusal returns 1; unavailable normal/diagnostic output returns 2.\"\n  },\n  \"engineering_policy\": \"Integer components<=1024 bits. Fixed-size local operations and the bounded trusted provider. Scalar admission avoids ordinary value __class__ callbacks and arithmetic subclasses.\",\n  \"failure_boundary\": \"PackageError with invariant/role for ordinary scalar or witness failures, FusionError from provider, and explicit output-unavailable status 2.\",\n  \"cost_model\": \"Fixed local integer operations plus the declared bounded Ising provider computation. No caller-controlled allocation or iteration.\",\n  \"scope_ceiling\": \"One package witness, no ring categorification, general dimension theorem or authority promotion.\",\n  \"trust\": \"Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222442Z-fusion-challenge/receipt.json\",\n      \"sha256\": \"0edcd48af668e853f3dffa103606703d0673a92a8eb691be5cb2e3fb95b4e85a\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222456Z-source-metrics/receipt.json\",\n      \"sha256\": \"fef7481b09ba8f6904409a638df7bbcbfad29131b28e83c889ac6e65e0d06af6\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch4-final-baseline.log\",\n      \"sha256\": \"5c64803942a2158993e114c1022f443f06680611ec619bc5141218e2e391efdd\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch4-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/fusion_reviews.json\",\n      \"sha256\": \"3bb5653c3aaac2c85af92c405bd7865e07817c9725e7e8ce3ddec1a057b7ff28\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222617Z-origin-review/receipt.json\",\n      \"sha256\": \"b15be9913e4728369bcf8ca1a51fe14597b8946fd358164d7a5993c1c2fd7ba5\"\n    }\n  ]\n}\n",
+      "sha256": "2d34523e55f7509378dc67ede39e39f2d41f1a4be54f7728cdf84de073c2f0e1"
+    },
+    {
+      "bytes": 1631,
       "original_paths": [
-        "code/python/src/fusion_categories/__init__.contract.score.yaml#bounded-production-and-checker-review/contract"
-      ]
+        "code/python/src/fusion_categories/__init__.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/fusion_categories/__init__.py\",\n    \"sha256\": \"8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/fusion_categories/__init__.py\",\n      \"sha256\": \"8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"package or module entrypoint\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6\",\n  \"subject\": \"code/python/src/fusion_categories/__init__.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/fusion_categories/__init__.py",
+          "sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/fusion_categories/__init__.py",
+            "sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "package or module entrypoint",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6",
+        "subject": "code/python/src/fusion_categories/__init__.py"
+      },
+      "sha256": "d8313e9eeac92f5504c95a3a3529a069b3d2fb0c6510da78275f9ff229dce7e9"
     }
   ],
+  "current_contract": "d8313e9eeac92f5504c95a3a3529a069b3d2fb0c6510da78275f9ff229dce7e9",
+  "current_scoring": "00cb1fa72afaeec644b549a068754698ee93a0a0ce02b6094f7bf66af8271f76",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/src/fusion_categories/__init__.contract.score.yaml#bounded-production-and-checker-review/contract": "2d34523e55f7509378dc67ede39e39f2d41f1a4be54f7728cdf84de073c2f0e1",
+    "code/python/src/fusion_categories/__init__.contract.score.yaml#bounded-production-and-checker-review/scoring": "3c2c6bfb86a227b306c212884d40e55a08a552468bd42b2db66e64b2f5805efc",
+    "code/python/src/fusion_categories/__init__.contract.score.yaml#historical-defect-review/contract": "92f8368f10f651193cd7ae213b41c5bb28ca7fc8beb9a53b2c895a01e25867e1",
+    "code/python/src/fusion_categories/__init__.contract.score.yaml#historical-defect-review/scoring": "dc86789e645a77d1c6807c0ea27899cc1d336c8d05000e959e6a9f9a26cfde74"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "dc86789e645a77d1c6807c0ea27899cc1d336c8d05000e959e6a9f9a26cfde74",
       "bytes": 1354,
+      "original_paths": [
+        "code/python/src/fusion_categories/__init__.contract.score.yaml#historical-defect-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fusion_categories/__init__.py\",\n    \"sha256\": \"947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"historical-defect-review\",\n  \"profile\": \"Exact\",\n  \"level\": null,\n  \"level_basis\": \"No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"score_token\": null,\n  \"composite_grade\": null,\n  \"grade_ceiling\": null,\n  \"finding\": \"Earlier facade bytes preserved as unassessed context. The backend counterexamples do not automatically establish a separate executed facade defect.\",\n  \"target_achieved\": false,\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T221225Z-fusion-before/receipt.json\",\n      \"sha256\": \"48718195ecbe38b9e513274ca449db034fc87cf6ffe7221ea49b57f4300f623d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T221225Z-fusion-before/sources/code/python/src/fusion_categories/__init__.py\",\n      \"sha256\": \"947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/fusion_categories/__init__.py",
           "sha256": "947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b"
         },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "historical-defect-review",
-        "profile": "Exact",
-        "level": null,
-        "level_basis": "No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.",
-        "gates": {
-          "G1": null,
-          "G2": null,
-          "G3": null,
-          "G4": null,
-          "G5": null
-        },
-        "is_complete": false,
-        "score_token": null,
         "composite_grade": null,
-        "grade_ceiling": null,
-        "finding": "Earlier facade bytes preserved as unassessed context. The backend counterexamples do not automatically establish a separate executed facade defect.",
-        "target_achieved": false,
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T221225Z-fusion-before/receipt.json",
@@ -180,36 +203,41 @@
             "path": "evidence/quality/expanded_scope/20261020T221225Z-fusion-before/sources/code/python/src/fusion_categories/__init__.py",
             "sha256": "947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b"
           }
-        ]
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fusion_categories/__init__.py\",\n    \"sha256\": \"947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"historical-defect-review\",\n  \"profile\": \"Exact\",\n  \"level\": null,\n  \"level_basis\": \"No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"score_token\": null,\n  \"composite_grade\": null,\n  \"grade_ceiling\": null,\n  \"finding\": \"Earlier facade bytes preserved as unassessed context. The backend counterexamples do not automatically establish a separate executed facade defect.\",\n  \"target_achieved\": false,\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T221225Z-fusion-before/receipt.json\",\n      \"sha256\": \"48718195ecbe38b9e513274ca449db034fc87cf6ffe7221ea49b57f4300f623d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T221225Z-fusion-before/sources/code/python/src/fusion_categories/__init__.py\",\n      \"sha256\": \"947155f7f90e1971261eef2593267efd00fd77f3b897c9ce2d5834edcf7abd1b\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/fusion_categories/__init__.contract.score.yaml#historical-defect-review/scoring"
-      ]
-    },
-    {
-      "sha256": "3c2c6bfb86a227b306c212884d40e55a08a552468bd42b2db66e64b2f5805efc",
-      "bytes": 3697,
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/python/src/fusion_categories/__init__.py",
-          "sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6"
+        ],
+        "finding": "Earlier facade bytes preserved as unassessed context. The backend counterexamples do not automatically establish a separate executed facade defect.",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
         },
+        "grade_ceiling": null,
+        "is_complete": false,
+        "level": null,
+        "level_basis": "No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.",
+        "phase": "historical-defect-review",
         "profile": "Exact",
         "rubric": {
           "path": "SCORING.md",
           "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
         },
-        "phase": "bounded-production-and-checker-review",
-        "level": "L4",
-        "level_basis": "A deliberately small production boundary with closed scalar admission, bit refusal before arithmetic/rendering, typed composition of provider failures and explicit stdout lifecycle behavior; challenged directly rather than borrowing the provider's score.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
+        "score_token": null,
+        "target_achieved": false
+      },
+      "sha256": "dc86789e645a77d1c6807c0ea27899cc1d336c8d05000e959e6a9f9a26cfde74"
+    },
+    {
+      "bytes": 3697,
+      "original_paths": [
+        "code/python/src/fusion_categories/__init__.contract.score.yaml#bounded-production-and-checker-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fusion_categories/__init__.py\",\n    \"sha256\": \"8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"bounded-production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"A deliberately small production boundary with closed scalar admission, bit refusal before arithmetic/rendering, typed composition of provider failures and explicit stdout lifecycle behavior; challenged directly rather than borrowing the provider's score.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.\",\n    \"G2\": \"Exact profile fixed before challenge; independent finite laws/arithmetic, valid and forged inputs, shape and scalar refusals tested. No mathematical completeness claim follows from finite testing.\",\n    \"G3\": \"PackageError with invariant/role for ordinary scalar or witness failures, FusionError from provider, and explicit output-unavailable status 2. No crash-freedom or arbitrary hostile-code isolation claim.\",\n    \"G4\": \"13 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.\",\n    \"G5\": \"Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Fusion backend and facade nesting 4 explicitly cap eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 5,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 4\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 13\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only. The full 24-directory objective remains open.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222442Z-fusion-challenge/receipt.json\",\n      \"sha256\": \"0edcd48af668e853f3dffa103606703d0673a92a8eb691be5cb2e3fb95b4e85a\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222456Z-source-metrics/receipt.json\",\n      \"sha256\": \"fef7481b09ba8f6904409a638df7bbcbfad29131b28e83c889ac6e65e0d06af6\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch4-final-baseline.log\",\n      \"sha256\": \"5c64803942a2158993e114c1022f443f06680611ec619bc5141218e2e391efdd\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch4-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/fusion_reviews.json\",\n      \"sha256\": \"3bb5653c3aaac2c85af92c405bd7865e07817c9725e7e8ce3ddec1a057b7ff28\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222617Z-origin-review/receipt.json\",\n      \"sha256\": \"b15be9913e4728369bcf8ca1a51fe14597b8946fd358164d7a5993c1c2fd7ba5\"\n    }\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/fusion_categories/__init__.py",
+          "sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6"
         },
         "basis": {
           "G1": "Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.",
@@ -218,27 +246,7 @@
           "G4": "13 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.",
           "G5": "Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Fusion backend and facade nesting 4 explicitly cap eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance."
         },
-        "metrics": {
-          "radon_ccn": 5,
-          "lizard_ccn": 5,
-          "weighted_control_upper_bound": 12,
-          "control_nesting": 4
-        },
-        "mutation_outcomes": {
-          "KILLED": 13
-        },
-        "is_complete": true,
         "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only. The full 24-directory objective remains open.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline guarantees"
-        ],
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/20261020T222442Z-fusion-challenge/receipt.json",
@@ -264,20 +272,97 @@
             "path": "evidence/quality/expanded_scope/20261020T222617Z-origin-review/receipt.json",
             "sha256": "b15be9913e4728369bcf8ca1a51fe14597b8946fd358164d7a5993c1c2fd7ba5"
           }
-        ]
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "A deliberately small production boundary with closed scalar admission, bit refusal before arithmetic/rendering, typed composition of provider failures and explicit stdout lifecycle behavior; challenged directly rather than borrowing the provider's score.",
+        "metrics": {
+          "control_nesting": 4,
+          "lizard_ccn": 5,
+          "radon_ccn": 5,
+          "weighted_control_upper_bound": 12
+        },
+        "mutation_outcomes": {
+          "KILLED": 13
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "phase": "bounded-production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only. The full 24-directory objective remains open."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fusion_categories/__init__.py\",\n    \"sha256\": \"8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"bounded-production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"A deliberately small production boundary with closed scalar admission, bit refusal before arithmetic/rendering, typed composition of provider failures and explicit stdout lifecycle behavior; challenged directly rather than borrowing the provider's score.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.\",\n    \"G2\": \"Exact profile fixed before challenge; independent finite laws/arithmetic, valid and forged inputs, shape and scalar refusals tested. No mathematical completeness claim follows from finite testing.\",\n    \"G3\": \"PackageError with invariant/role for ordinary scalar or witness failures, FusionError from provider, and explicit output-unavailable status 2. No crash-freedom or arbitrary hostile-code isolation claim.\",\n    \"G4\": \"13 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.\",\n    \"G5\": \"Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Fusion backend and facade nesting 4 explicitly cap eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 5,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 4\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 13\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only. The full 24-directory objective remains open.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222442Z-fusion-challenge/receipt.json\",\n      \"sha256\": \"0edcd48af668e853f3dffa103606703d0673a92a8eb691be5cb2e3fb95b4e85a\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222456Z-source-metrics/receipt.json\",\n      \"sha256\": \"fef7481b09ba8f6904409a638df7bbcbfad29131b28e83c889ac6e65e0d06af6\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch4-final-baseline.log\",\n      \"sha256\": \"5c64803942a2158993e114c1022f443f06680611ec619bc5141218e2e391efdd\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch4-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/fusion_reviews.json\",\n      \"sha256\": \"3bb5653c3aaac2c85af92c405bd7865e07817c9725e7e8ce3ddec1a057b7ff28\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T222617Z-origin-review/receipt.json\",\n      \"sha256\": \"b15be9913e4728369bcf8ca1a51fe14597b8946fd358164d7a5993c1c2fd7ba5\"\n    }\n  ]\n}\n",
+      "sha256": "3c2c6bfb86a227b306c212884d40e55a08a552468bd42b2db66e64b2f5805efc"
+    },
+    {
+      "bytes": 1604,
       "original_paths": [
-        "code/python/src/fusion_categories/__init__.contract.score.yaml#bounded-production-and-checker-review/scoring"
-      ]
+        "code/python/src/fusion_categories/__init__.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/fusion_categories/__init__.py\",\n    \"sha256\": \"8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/fusion_categories/__init__.py\",\n      \"sha256\": \"8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/fusion_categories/__init__.py",
+          "sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/python/src/fusion_categories/__init__.py",
+            "sha256": "8dfabcf39cff6a5dc98ca8b68578440ed615042e32e7de3ddea996e0d024aef6"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "00cb1fa72afaeec644b549a068754698ee93a0a0ce02b6094f7bf66af8271f76"
     }
-  ],
-  "legacy_paths": {
-    "code/python/src/fusion_categories/__init__.contract.score.yaml#historical-defect-review/contract": "92f8368f10f651193cd7ae213b41c5bb28ca7fc8beb9a53b2c895a01e25867e1",
-    "code/python/src/fusion_categories/__init__.contract.score.yaml#historical-defect-review/scoring": "dc86789e645a77d1c6807c0ea27899cc1d336c8d05000e959e6a9f9a26cfde74",
-    "code/python/src/fusion_categories/__init__.contract.score.yaml#bounded-production-and-checker-review/contract": "2d34523e55f7509378dc67ede39e39f2d41f1a4be54f7728cdf84de073c2f0e1",
-    "code/python/src/fusion_categories/__init__.contract.score.yaml#bounded-production-and-checker-review/scoring": "3c2c6bfb86a227b306c212884d40e55a08a552468bd42b2db66e64b2f5805efc"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Append-only historical findings and individually authored source-bound reviews. No whole-scope certification follows."
+  ]
 }

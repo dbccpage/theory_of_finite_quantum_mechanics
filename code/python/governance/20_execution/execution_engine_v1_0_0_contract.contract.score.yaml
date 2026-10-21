@@ -1,473 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/execution_engine_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:execution:engine:v1.0.0",
-    "title": "Engine",
-    "kind": "execution_contract",
-    "status": "mathematical_wip",
-    "layer": "06_execution",
-    "role": "Engine",
-    "descriptor": {
-      "authority_effect": "state_transition",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "proof_obligations": [],
-        "contracts": [
-          "Evaluator",
-          "Policy",
-          "TerminalMapper",
-          "LicensingBoundary",
-          "ActionLicense",
-          "Trace",
-          "CarrierStore"
-        ]
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/20_execution/execution_engine_v1_0_0_contract.py",
+      "sha256": "de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/20_execution/execution_engine_v1_0_0_contract.py",
+        "sha256": "de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      },
-      "constitution": {
-        "contract_dependencies": [
-          "Evaluator",
-          "Policy",
-          "TerminalMapper",
-          "LicensingBoundary",
-          "ActionLicense",
-          "Trace"
-        ],
-        "emits": "Action",
-        "authority_layer": "Action",
-        "replay_certificates": [
-          "schema_hash"
-        ]
-      },
-      "constraints": {
-        "action_license_required": true
-      },
-      "runtime_state_type": "Carrier",
-      "capabilities": {
-        "forbidden": [
-          "ComputePhi",
-          "ComputeGamma",
-          "PolicyInterpretation",
-          "Evaluation",
-          "CertificateSigning",
-          "EmitCertificate"
-        ],
-        "required": []
-      },
-      "laws": {
-        "effect": "Stateful"
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "doctrine": {
-      "summary": "Engine is the uniquely authorized execution-layer mechanism by which an already licensed transition happens. Engine does not derive post-state. It validates and commits an already-computed detached transition artifact bound by a valid ActionLicense against the validated version of the licensed target carrier. ",
-      "non_role": [
-        "measurement",
-        "solution_computation",
-        "candidate_generation",
-        "domain_inference",
-        "certification",
-        "evaluation",
-        "policy_definition",
-        "solver_reimplementation",
-        "license_creation",
-        "terminal_mapping",
-        "evidence_authority_upgrade"
-      ],
-      "authority_defaults": {
-        "engine_input_license": "AuthorizesTransition",
-        "engine_action": "StateTransition",
-        "engine_trace": "Record"
-      },
-      "structural_representation": {
-        "input": {
-          "struct_name": "LicensedTransitionInput",
-          "fields": [
-            {
-              "name": "license_ref",
-              "type": "ActionLicenseId"
-            },
-            {
-              "name": "decision_ref",
-              "type": "DecisionEnvelopeRef"
-            },
-            {
-              "name": "target_state_ref",
-              "type": "StateRef"
-            },
-            {
-              "name": "expected_state_version",
-              "type": "StateVersion"
-            },
-            {
-              "name": "expected_pre_state_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "operator_ref",
-              "type": "OperatorRef"
-            },
-            {
-              "name": "proposed_state_ref",
-              "type": "ArtifactRef"
-            },
-            {
-              "name": "expected_post_state_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "precondition_refs",
-              "type": "Vec<FactEnvelopeRef>"
-            },
-            {
-              "name": "trace_parent_refs",
-              "type": "Vec<TraceId>"
-            }
-          ]
-        },
-        "output": {
-          "struct_name": "EngineAction",
-          "fields": [
-            {
-              "name": "action_id",
-              "type": "ActionId"
-            },
-            {
-              "name": "license_ref",
-              "type": "ActionLicenseId"
-            },
-            {
-              "name": "pre_state_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "post_state_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "emitted_trace_ref",
-              "type": "TraceId"
-            },
-            {
-              "name": "action_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "authority_effect",
-              "type": "AuthorityEffect",
-              "default": "StateTransition"
-            }
-          ]
-        }
-      },
-      "flow": "EvidenceEnvelope / FactEnvelope -> Evaluator / Policy -> TerminalMapper -> LicensingBoundary emits ActionLicense -> Engine executes licensed transition -> EngineAction -> TraceArtifact / Record ",
-      "forbidden_implementation_tokens": {
-        "scope": "behavior, not substring",
-        "tokens": [
-          "mutate_without_action_license",
-          "mutate_outside_licensed_target",
-          "bypass_execution_envelope",
-          "terminalize(",
-          "authorize_transition",
-          "license_transition",
-          "self_certify",
-          "compute_phi",
-          "rank_candidates",
-          "score_candidate",
-          "apply_operator"
-        ]
-      },
-      "required_tests": [
-        "engine_requires_action_license",
-        "engine_executes_only_licensed_transitions",
-        "engine_output_authority_effect_is_state_transition",
-        "engine_does_not_create_action_license",
-        "engine_does_not_evaluate_policy_internally",
-        "engine_does_not_compute_phi",
-        "engine_does_not_sign_certificate",
-        "engine_records_trace_for_each_transition",
-        "engine_license_binds_exact_transition",
-        "engine_idempotent_replay",
-        "engine_atomic_carrier_trace_commit",
-        "engine_state_version_cas_coupling",
-        "engine_does_not_derive_post_state"
-      ],
-      "canonical_invariant": "Engine executes licensed transitions only. StateTransition authority appears only on EngineAction artifacts produced from valid ActionLicense inputs. ",
-      "legacy_metadata": {
-        "normative": false,
-        "name": "Engine",
-        "source_file": "non_math/06_execution/engine_contract.md",
-        "active": true,
-        "machine_authority": true,
-        "role": "Licensed transition executor",
-        "version": "1.0.0",
-        "classification": "execution",
-        "effect_class": "StateTransition",
-        "depends_on": [
-          "Evaluator",
-          "Policy",
-          "TerminalMapper",
-          "LicensingBoundary"
-        ],
-        "forbidden_authority": [
-          "measurement",
-          "solution_computation",
-          "candidate_generation",
-          "domain_inference",
-          "certification",
-          "evaluation",
-          "policy_definition",
-          "solver_reimplementation",
-          "license_creation",
-          "terminal_mapping",
-          "evidence_authority_upgrade"
-        ],
-        "primary_output_family": "Action",
-        "referenced_output_families": [
-          "ActionLicense",
-          "DecisionEnvelope",
-          "EvidenceEnvelope",
-          "FactEnvelope",
-          "Record"
-        ]
-      },
-      "enforcement_scope": "This general doctrine is not enforced across all engines. The finite Genesis report profile has an executable license-bound committer and host CAS tests.",
-      "operator_boundary": {
-        "engine_may_implement_operator_semantics": false,
-        "engine_may_select_operator": false,
-        "engine_may_apply_operator": false,
-        "engine_may_recompute_transition": false,
-        "engine_may_commit_licensed_operator_result": true,
-        "committed_result_must_match_license": true
-      },
-      "hashing": {
-        "digest": "SHA-256",
-        "canonical_encoding": "JSON-NFC",
-        "domain_separation": "required",
-        "domains": {
-          "action_hash": "omega.engine.action.v1",
-          "descriptor_hash": "omega.engine.descriptor.v1"
-        }
-      },
-      "declared_authority_effect": "StateTransition",
-      "declared_capabilities": {
-        "forbidden": [
-          "mutate_without_action_license",
-          "mutate_outside_licensed_target",
-          "bypass_execution_envelope",
-          "ComputePhi",
-          "ComputeGamma",
-          "OperatorImplementation",
-          "OperatorSelection",
-          "OperatorApplication",
-          "CandidateGeneration",
-          "CandidateRanking",
-          "PolicyInterpretation",
-          "Evaluation",
-          "CertificateSigning",
-          "EmitCertificate"
-        ],
-        "required": []
-      },
-      "declared_constitution": {
-        "contract_dependencies": [
-          "Evaluator",
-          "Policy",
-          "TerminalMapper",
-          "LicensingBoundary"
-        ],
-        "emits": "Action",
-        "authority_layer": "Action",
-        "replay_certificates": [
-          "contract_hash",
-          "descriptor_hash"
-        ]
-      },
-      "declared_constraints": {
-        "action_license_required": true
-      },
-      "declared_laws": {
-        "effect": "Stateful"
-      },
-      "declared_runtime_state_type": "Carrier",
-      "proof_obligations": [
-        {
-          "id": "ENG-INV-001",
-          "statement": "No transition occurs without a valid ActionLicense."
-        },
-        {
-          "id": "ENG-INV-002",
-          "statement": "The ActionLicense binds the executed decision and target carrier."
-        },
-        {
-          "id": "ENG-INV-003",
-          "statement": "A refused execution produces no durable carrier mutation."
-        },
-        {
-          "id": "ENG-INV-004",
-          "statement": "Every durable transition has exactly one authoritative EngineAction."
-        },
-        {
-          "id": "ENG-INV-005",
-          "statement": "Every durable transition has a durable trace record."
-        },
-        {
-          "id": "ENG-INV-006",
-          "statement": "Pre-state and post-state hashes bind canonical carrier states."
-        },
-        {
-          "id": "ENG-INV-007",
-          "statement": "Engine cannot mint, modify, widen, or reinterpret ActionLicense authority."
-        },
-        {
-          "id": "ENG-INV-008",
-          "statement": "Engine cannot evaluate candidate merit or policy."
-        },
-        {
-          "id": "ENG-INV-009",
-          "statement": "Subclasses cannot bypass the constitutional execution envelope."
-        },
-        {
-          "id": "ENG-INV-010",
-          "statement": "Engine identity and governing contract identity are immutable during lifetime."
-        },
-        {
-          "id": "ENG-INV-011",
-          "statement": "State version conflicts fail closed before commit."
-        },
-        {
-          "id": "ENG-INV-012",
-          "statement": "Trace ancestry is preserved from input through emitted trace."
-        },
-        {
-          "id": "ENG-INV-013",
-          "statement": "The ActionLicense binds the exact transition specification executed by the Engine; no unlicensed operation or payload may influence carrier mutation."
-        },
-        {
-          "id": "ENG-INV-014",
-          "statement": "Replaying an already committed ActionLicense cannot produce a second durable StateTransition."
-        },
-        {
-          "id": "ENG-INV-015",
-          "statement": "Durable carrier mutation and authoritative transition recording are atomic or recoverably coupled; EngineRefusal implies that no carrier mutation became durable."
-        },
-        {
-          "id": "ENG-INV-016",
-          "statement": "License bindings, preconditions, and transition execution are based on the same pre-state version whose version is conditionally committed."
-        },
-        {
-          "id": "ENG-OP-001",
-          "statement": "Engine never implements or invokes Operator transformation semantics."
-        },
-        {
-          "id": "ENG-OP-002",
-          "statement": "Engine commits only a detached transition artifact exactly bound by a valid ActionLicense."
-        },
-        {
-          "id": "ENG-OP-003",
-          "statement": "Engine never computes, estimates, compares, or interprets Phi."
-        },
-        {
-          "id": "ENG-OP-004",
-          "statement": "Engine never selects, ranks, composes, or repeats Operators."
-        },
-        {
-          "id": "ENG-OP-005",
-          "statement": "Engine does not derive post-state; it validates and commits an already licensed post-state artifact."
-        }
-      ],
-      "declared_refusals": [
-        "MissingActionLicense",
-        "InvalidActionLicense",
-        "LicenseTargetMismatch",
-        "LicenseExpired",
-        "PreconditionsUnsatisfied",
-        "StateVersionMismatch",
-        "TransitionExecutionFailure",
-        "InvalidInputFormat"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_execution_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951",
+    "subject": "code/python/governance/20_execution/execution_engine_v1_0_0_contract.py"
   },
-  "current_contract": "29dfd8b9c4685ec1e935a75ce1b9bd57914a46894a2e7fbbfb9e748462aaad8b",
-  "current_scoring": "db62178f3a0455157e59404e99c461ab3e296d0b820700012fced6bd515db271",
   "contract_history": [
     {
-      "sha256": "29dfd8b9c4685ec1e935a75ce1b9bd57914a46894a2e7fbbfb9e748462aaad8b",
       "bytes": 12311,
+      "original_paths": [
+        "code/python/governance/20_execution/execution_engine_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:execution:engine:v1.0.0\",\n  \"title\": \"Engine\",\n  \"kind\": \"execution_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"06_execution\",\n  \"role\": \"Engine\",\n  \"descriptor\": {\n    \"authority_effect\": \"state_transition\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"proof_obligations\": [],\n      \"contracts\": [\n        \"Evaluator\",\n        \"Policy\",\n        \"TerminalMapper\",\n        \"LicensingBoundary\",\n        \"ActionLicense\",\n        \"Trace\",\n        \"CarrierStore\"\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"constitution\": {\n      \"contract_dependencies\": [\n        \"Evaluator\",\n        \"Policy\",\n        \"TerminalMapper\",\n        \"LicensingBoundary\",\n        \"ActionLicense\",\n        \"Trace\"\n      ],\n      \"emits\": \"Action\",\n      \"authority_layer\": \"Action\",\n      \"replay_certificates\": [\n        \"schema_hash\"\n      ]\n    },\n    \"constraints\": {\n      \"action_license_required\": true\n    },\n    \"runtime_state_type\": \"Carrier\",\n    \"capabilities\": {\n      \"forbidden\": [\n        \"ComputePhi\",\n        \"ComputeGamma\",\n        \"PolicyInterpretation\",\n        \"Evaluation\",\n        \"CertificateSigning\",\n        \"EmitCertificate\"\n      ],\n      \"required\": []\n    },\n    \"laws\": {\n      \"effect\": \"Stateful\"\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"Engine is the uniquely authorized execution-layer mechanism by which an already licensed transition happens. Engine does not derive post-state. It validates and commits an already-computed detached transition artifact bound by a valid ActionLicense against the validated version of the licensed target carrier. \",\n    \"non_role\": [\n      \"measurement\",\n      \"solution_computation\",\n      \"candidate_generation\",\n      \"domain_inference\",\n      \"certification\",\n      \"evaluation\",\n      \"policy_definition\",\n      \"solver_reimplementation\",\n      \"license_creation\",\n      \"terminal_mapping\",\n      \"evidence_authority_upgrade\"\n    ],\n    \"authority_defaults\": {\n      \"engine_input_license\": \"AuthorizesTransition\",\n      \"engine_action\": \"StateTransition\",\n      \"engine_trace\": \"Record\"\n    },\n    \"structural_representation\": {\n      \"input\": {\n        \"struct_name\": \"LicensedTransitionInput\",\n        \"fields\": [\n          {\n            \"name\": \"license_ref\",\n            \"type\": \"ActionLicenseId\"\n          },\n          {\n            \"name\": \"decision_ref\",\n            \"type\": \"DecisionEnvelopeRef\"\n          },\n          {\n            \"name\": \"target_state_ref\",\n            \"type\": \"StateRef\"\n          },\n          {\n            \"name\": \"expected_state_version\",\n            \"type\": \"StateVersion\"\n          },\n          {\n            \"name\": \"expected_pre_state_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"operator_ref\",\n            \"type\": \"OperatorRef\"\n          },\n          {\n            \"name\": \"proposed_state_ref\",\n            \"type\": \"ArtifactRef\"\n          },\n          {\n            \"name\": \"expected_post_state_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"precondition_refs\",\n            \"type\": \"Vec<FactEnvelopeRef>\"\n          },\n          {\n            \"name\": \"trace_parent_refs\",\n            \"type\": \"Vec<TraceId>\"\n          }\n        ]\n      },\n      \"output\": {\n        \"struct_name\": \"EngineAction\",\n        \"fields\": [\n          {\n            \"name\": \"action_id\",\n            \"type\": \"ActionId\"\n          },\n          {\n            \"name\": \"license_ref\",\n            \"type\": \"ActionLicenseId\"\n          },\n          {\n            \"name\": \"pre_state_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"post_state_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"emitted_trace_ref\",\n            \"type\": \"TraceId\"\n          },\n          {\n            \"name\": \"action_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"StateTransition\"\n          }\n        ]\n      }\n    },\n    \"flow\": \"EvidenceEnvelope / FactEnvelope -> Evaluator / Policy -> TerminalMapper -> LicensingBoundary emits ActionLicense -> Engine executes licensed transition -> EngineAction -> TraceArtifact / Record \",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"mutate_without_action_license\",\n        \"mutate_outside_licensed_target\",\n        \"bypass_execution_envelope\",\n        \"terminalize(\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"self_certify\",\n        \"compute_phi\",\n        \"rank_candidates\",\n        \"score_candidate\",\n        \"apply_operator\"\n      ]\n    },\n    \"required_tests\": [\n      \"engine_requires_action_license\",\n      \"engine_executes_only_licensed_transitions\",\n      \"engine_output_authority_effect_is_state_transition\",\n      \"engine_does_not_create_action_license\",\n      \"engine_does_not_evaluate_policy_internally\",\n      \"engine_does_not_compute_phi\",\n      \"engine_does_not_sign_certificate\",\n      \"engine_records_trace_for_each_transition\",\n      \"engine_license_binds_exact_transition\",\n      \"engine_idempotent_replay\",\n      \"engine_atomic_carrier_trace_commit\",\n      \"engine_state_version_cas_coupling\",\n      \"engine_does_not_derive_post_state\"\n    ],\n    \"canonical_invariant\": \"Engine executes licensed transitions only. StateTransition authority appears only on EngineAction artifacts produced from valid ActionLicense inputs. \",\n    \"legacy_metadata\": {\n      \"normative\": false,\n      \"name\": \"Engine\",\n      \"source_file\": \"non_math/06_execution/engine_contract.md\",\n      \"active\": true,\n      \"machine_authority\": true,\n      \"role\": \"Licensed transition executor\",\n      \"version\": \"1.0.0\",\n      \"classification\": \"execution\",\n      \"effect_class\": \"StateTransition\",\n      \"depends_on\": [\n        \"Evaluator\",\n        \"Policy\",\n        \"TerminalMapper\",\n        \"LicensingBoundary\"\n      ],\n      \"forbidden_authority\": [\n        \"measurement\",\n        \"solution_computation\",\n        \"candidate_generation\",\n        \"domain_inference\",\n        \"certification\",\n        \"evaluation\",\n        \"policy_definition\",\n        \"solver_reimplementation\",\n        \"license_creation\",\n        \"terminal_mapping\",\n        \"evidence_authority_upgrade\"\n      ],\n      \"primary_output_family\": \"Action\",\n      \"referenced_output_families\": [\n        \"ActionLicense\",\n        \"DecisionEnvelope\",\n        \"EvidenceEnvelope\",\n        \"FactEnvelope\",\n        \"Record\"\n      ]\n    },\n    \"enforcement_scope\": \"This general doctrine is not enforced across all engines. The finite Genesis report profile has an executable license-bound committer and host CAS tests.\",\n    \"operator_boundary\": {\n      \"engine_may_implement_operator_semantics\": false,\n      \"engine_may_select_operator\": false,\n      \"engine_may_apply_operator\": false,\n      \"engine_may_recompute_transition\": false,\n      \"engine_may_commit_licensed_operator_result\": true,\n      \"committed_result_must_match_license\": true\n    },\n    \"hashing\": {\n      \"digest\": \"SHA-256\",\n      \"canonical_encoding\": \"JSON-NFC\",\n      \"domain_separation\": \"required\",\n      \"domains\": {\n        \"action_hash\": \"omega.engine.action.v1\",\n        \"descriptor_hash\": \"omega.engine.descriptor.v1\"\n      }\n    },\n    \"declared_authority_effect\": \"StateTransition\",\n    \"declared_capabilities\": {\n      \"forbidden\": [\n        \"mutate_without_action_license\",\n        \"mutate_outside_licensed_target\",\n        \"bypass_execution_envelope\",\n        \"ComputePhi\",\n        \"ComputeGamma\",\n        \"OperatorImplementation\",\n        \"OperatorSelection\",\n        \"OperatorApplication\",\n        \"CandidateGeneration\",\n        \"CandidateRanking\",\n        \"PolicyInterpretation\",\n        \"Evaluation\",\n        \"CertificateSigning\",\n        \"EmitCertificate\"\n      ],\n      \"required\": []\n    },\n    \"declared_constitution\": {\n      \"contract_dependencies\": [\n        \"Evaluator\",\n        \"Policy\",\n        \"TerminalMapper\",\n        \"LicensingBoundary\"\n      ],\n      \"emits\": \"Action\",\n      \"authority_layer\": \"Action\",\n      \"replay_certificates\": [\n        \"contract_hash\",\n        \"descriptor_hash\"\n      ]\n    },\n    \"declared_constraints\": {\n      \"action_license_required\": true\n    },\n    \"declared_laws\": {\n      \"effect\": \"Stateful\"\n    },\n    \"declared_runtime_state_type\": \"Carrier\",\n    \"proof_obligations\": [\n      {\n        \"id\": \"ENG-INV-001\",\n        \"statement\": \"No transition occurs without a valid ActionLicense.\"\n      },\n      {\n        \"id\": \"ENG-INV-002\",\n        \"statement\": \"The ActionLicense binds the executed decision and target carrier.\"\n      },\n      {\n        \"id\": \"ENG-INV-003\",\n        \"statement\": \"A refused execution produces no durable carrier mutation.\"\n      },\n      {\n        \"id\": \"ENG-INV-004\",\n        \"statement\": \"Every durable transition has exactly one authoritative EngineAction.\"\n      },\n      {\n        \"id\": \"ENG-INV-005\",\n        \"statement\": \"Every durable transition has a durable trace record.\"\n      },\n      {\n        \"id\": \"ENG-INV-006\",\n        \"statement\": \"Pre-state and post-state hashes bind canonical carrier states.\"\n      },\n      {\n        \"id\": \"ENG-INV-007\",\n        \"statement\": \"Engine cannot mint, modify, widen, or reinterpret ActionLicense authority.\"\n      },\n      {\n        \"id\": \"ENG-INV-008\",\n        \"statement\": \"Engine cannot evaluate candidate merit or policy.\"\n      },\n      {\n        \"id\": \"ENG-INV-009\",\n        \"statement\": \"Subclasses cannot bypass the constitutional execution envelope.\"\n      },\n      {\n        \"id\": \"ENG-INV-010\",\n        \"statement\": \"Engine identity and governing contract identity are immutable during lifetime.\"\n      },\n      {\n        \"id\": \"ENG-INV-011\",\n        \"statement\": \"State version conflicts fail closed before commit.\"\n      },\n      {\n        \"id\": \"ENG-INV-012\",\n        \"statement\": \"Trace ancestry is preserved from input through emitted trace.\"\n      },\n      {\n        \"id\": \"ENG-INV-013\",\n        \"statement\": \"The ActionLicense binds the exact transition specification executed by the Engine; no unlicensed operation or payload may influence carrier mutation.\"\n      },\n      {\n        \"id\": \"ENG-INV-014\",\n        \"statement\": \"Replaying an already committed ActionLicense cannot produce a second durable StateTransition.\"\n      },\n      {\n        \"id\": \"ENG-INV-015\",\n        \"statement\": \"Durable carrier mutation and authoritative transition recording are atomic or recoverably coupled; EngineRefusal implies that no carrier mutation became durable.\"\n      },\n      {\n        \"id\": \"ENG-INV-016\",\n        \"statement\": \"License bindings, preconditions, and transition execution are based on the same pre-state version whose version is conditionally committed.\"\n      },\n      {\n        \"id\": \"ENG-OP-001\",\n        \"statement\": \"Engine never implements or invokes Operator transformation semantics.\"\n      },\n      {\n        \"id\": \"ENG-OP-002\",\n        \"statement\": \"Engine commits only a detached transition artifact exactly bound by a valid ActionLicense.\"\n      },\n      {\n        \"id\": \"ENG-OP-003\",\n        \"statement\": \"Engine never computes, estimates, compares, or interprets Phi.\"\n      },\n      {\n        \"id\": \"ENG-OP-004\",\n        \"statement\": \"Engine never selects, ranks, composes, or repeats Operators.\"\n      },\n      {\n        \"id\": \"ENG-OP-005\",\n        \"statement\": \"Engine does not derive post-state; it validates and commits an already licensed post-state artifact.\"\n      }\n    ],\n    \"declared_refusals\": [\n      \"MissingActionLicense\",\n      \"InvalidActionLicense\",\n      \"LicenseTargetMismatch\",\n      \"LicenseExpired\",\n      \"PreconditionsUnsatisfied\",\n      \"StateVersionMismatch\",\n      \"TransitionExecutionFailure\",\n      \"InvalidInputFormat\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_execution_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:execution:engine:v1.0.0",
-        "title": "Engine",
-        "kind": "execution_contract",
-        "status": "mathematical_wip",
-        "layer": "06_execution",
-        "role": "Engine",
         "descriptor": {
           "authority_effect": "state_transition",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
-          "customer_claim_allowed": false,
-          "dependencies": {
-            "proof_obligations": [],
-            "contracts": [
-              "Evaluator",
-              "Policy",
-              "TerminalMapper",
-              "LicensingBoundary",
-              "ActionLicense",
-              "Trace",
-              "CarrierStore"
-            ]
-          },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
-          },
-          "refusals": {
-            "may_emit": []
-          },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
-          },
-          "constitution": {
-            "contract_dependencies": [
-              "Evaluator",
-              "Policy",
-              "TerminalMapper",
-              "LicensingBoundary",
-              "ActionLicense",
-              "Trace"
-            ],
-            "emits": "Action",
-            "authority_layer": "Action",
-            "replay_certificates": [
-              "schema_hash"
-            ]
-          },
-          "constraints": {
-            "action_license_required": true
-          },
-          "runtime_state_type": "Carrier",
           "capabilities": {
             "forbidden": [
               "ComputePhi",
@@ -479,200 +60,62 @@
             ],
             "required": []
           },
-          "laws": {
-            "effect": "Stateful"
-          }
-        },
-        "doctrine": {
-          "summary": "Engine is the uniquely authorized execution-layer mechanism by which an already licensed transition happens. Engine does not derive post-state. It validates and commits an already-computed detached transition artifact bound by a valid ActionLicense against the validated version of the licensed target carrier. ",
-          "non_role": [
-            "measurement",
-            "solution_computation",
-            "candidate_generation",
-            "domain_inference",
-            "certification",
-            "evaluation",
-            "policy_definition",
-            "solver_reimplementation",
-            "license_creation",
-            "terminal_mapping",
-            "evidence_authority_upgrade"
-          ],
-          "authority_defaults": {
-            "engine_input_license": "AuthorizesTransition",
-            "engine_action": "StateTransition",
-            "engine_trace": "Record"
-          },
-          "structural_representation": {
-            "input": {
-              "struct_name": "LicensedTransitionInput",
-              "fields": [
-                {
-                  "name": "license_ref",
-                  "type": "ActionLicenseId"
-                },
-                {
-                  "name": "decision_ref",
-                  "type": "DecisionEnvelopeRef"
-                },
-                {
-                  "name": "target_state_ref",
-                  "type": "StateRef"
-                },
-                {
-                  "name": "expected_state_version",
-                  "type": "StateVersion"
-                },
-                {
-                  "name": "expected_pre_state_hash",
-                  "type": "Hash256"
-                },
-                {
-                  "name": "operator_ref",
-                  "type": "OperatorRef"
-                },
-                {
-                  "name": "proposed_state_ref",
-                  "type": "ArtifactRef"
-                },
-                {
-                  "name": "expected_post_state_hash",
-                  "type": "Hash256"
-                },
-                {
-                  "name": "precondition_refs",
-                  "type": "Vec<FactEnvelopeRef>"
-                },
-                {
-                  "name": "trace_parent_refs",
-                  "type": "Vec<TraceId>"
-                }
-              ]
-            },
-            "output": {
-              "struct_name": "EngineAction",
-              "fields": [
-                {
-                  "name": "action_id",
-                  "type": "ActionId"
-                },
-                {
-                  "name": "license_ref",
-                  "type": "ActionLicenseId"
-                },
-                {
-                  "name": "pre_state_hash",
-                  "type": "Hash256"
-                },
-                {
-                  "name": "post_state_hash",
-                  "type": "Hash256"
-                },
-                {
-                  "name": "emitted_trace_ref",
-                  "type": "TraceId"
-                },
-                {
-                  "name": "action_hash",
-                  "type": "Hash256"
-                },
-                {
-                  "name": "authority_effect",
-                  "type": "AuthorityEffect",
-                  "default": "StateTransition"
-                }
-              ]
-            }
-          },
-          "flow": "EvidenceEnvelope / FactEnvelope -> Evaluator / Policy -> TerminalMapper -> LicensingBoundary emits ActionLicense -> Engine executes licensed transition -> EngineAction -> TraceArtifact / Record ",
-          "forbidden_implementation_tokens": {
-            "scope": "behavior, not substring",
-            "tokens": [
-              "mutate_without_action_license",
-              "mutate_outside_licensed_target",
-              "bypass_execution_envelope",
-              "terminalize(",
-              "authorize_transition",
-              "license_transition",
-              "self_certify",
-              "compute_phi",
-              "rank_candidates",
-              "score_candidate",
-              "apply_operator"
-            ]
-          },
-          "required_tests": [
-            "engine_requires_action_license",
-            "engine_executes_only_licensed_transitions",
-            "engine_output_authority_effect_is_state_transition",
-            "engine_does_not_create_action_license",
-            "engine_does_not_evaluate_policy_internally",
-            "engine_does_not_compute_phi",
-            "engine_does_not_sign_certificate",
-            "engine_records_trace_for_each_transition",
-            "engine_license_binds_exact_transition",
-            "engine_idempotent_replay",
-            "engine_atomic_carrier_trace_commit",
-            "engine_state_version_cas_coupling",
-            "engine_does_not_derive_post_state"
-          ],
-          "canonical_invariant": "Engine executes licensed transitions only. StateTransition authority appears only on EngineAction artifacts produced from valid ActionLicense inputs. ",
-          "legacy_metadata": {
-            "normative": false,
-            "name": "Engine",
-            "source_file": "non_math/06_execution/engine_contract.md",
-            "active": true,
-            "machine_authority": true,
-            "role": "Licensed transition executor",
-            "version": "1.0.0",
-            "classification": "execution",
-            "effect_class": "StateTransition",
-            "depends_on": [
+          "constitution": {
+            "authority_layer": "Action",
+            "contract_dependencies": [
               "Evaluator",
               "Policy",
               "TerminalMapper",
-              "LicensingBoundary"
-            ],
-            "forbidden_authority": [
-              "measurement",
-              "solution_computation",
-              "candidate_generation",
-              "domain_inference",
-              "certification",
-              "evaluation",
-              "policy_definition",
-              "solver_reimplementation",
-              "license_creation",
-              "terminal_mapping",
-              "evidence_authority_upgrade"
-            ],
-            "primary_output_family": "Action",
-            "referenced_output_families": [
+              "LicensingBoundary",
               "ActionLicense",
-              "DecisionEnvelope",
-              "EvidenceEnvelope",
-              "FactEnvelope",
-              "Record"
+              "Trace"
+            ],
+            "emits": "Action",
+            "replay_certificates": [
+              "schema_hash"
             ]
           },
-          "enforcement_scope": "This general doctrine is not enforced across all engines. The finite Genesis report profile has an executable license-bound committer and host CAS tests.",
-          "operator_boundary": {
-            "engine_may_implement_operator_semantics": false,
-            "engine_may_select_operator": false,
-            "engine_may_apply_operator": false,
-            "engine_may_recompute_transition": false,
-            "engine_may_commit_licensed_operator_result": true,
-            "committed_result_must_match_license": true
+          "constraints": {
+            "action_license_required": true
           },
-          "hashing": {
-            "digest": "SHA-256",
-            "canonical_encoding": "JSON-NFC",
-            "domain_separation": "required",
-            "domains": {
-              "action_hash": "omega.engine.action.v1",
-              "descriptor_hash": "omega.engine.descriptor.v1"
-            }
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "Evaluator",
+              "Policy",
+              "TerminalMapper",
+              "LicensingBoundary",
+              "ActionLicense",
+              "Trace",
+              "CarrierStore"
+            ],
+            "proof_obligations": []
           },
+          "evidence_ceiling": "LocalReplay",
+          "laws": {
+            "effect": "Stateful"
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "runtime_enforcement": false,
+          "runtime_state_type": "Carrier",
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          }
+        },
+        "doctrine": {
+          "authority_defaults": {
+            "engine_action": "StateTransition",
+            "engine_input_license": "AuthorizesTransition",
+            "engine_trace": "Record"
+          },
+          "canonical_invariant": "Engine executes licensed transitions only. StateTransition authority appears only on EngineAction artifacts produced from valid ActionLicense inputs. ",
           "declared_authority_effect": "StateTransition",
           "declared_capabilities": {
             "forbidden": [
@@ -694,6 +137,7 @@
             "required": []
           },
           "declared_constitution": {
+            "authority_layer": "Action",
             "contract_dependencies": [
               "Evaluator",
               "Policy",
@@ -701,7 +145,6 @@
               "LicensingBoundary"
             ],
             "emits": "Action",
-            "authority_layer": "Action",
             "replay_certificates": [
               "contract_hash",
               "descriptor_hash"
@@ -713,7 +156,103 @@
           "declared_laws": {
             "effect": "Stateful"
           },
+          "declared_refusals": [
+            "MissingActionLicense",
+            "InvalidActionLicense",
+            "LicenseTargetMismatch",
+            "LicenseExpired",
+            "PreconditionsUnsatisfied",
+            "StateVersionMismatch",
+            "TransitionExecutionFailure",
+            "InvalidInputFormat"
+          ],
           "declared_runtime_state_type": "Carrier",
+          "enforcement_scope": "This general doctrine is not enforced across all engines. The finite Genesis report profile has an executable license-bound committer and host CAS tests.",
+          "flow": "EvidenceEnvelope / FactEnvelope -> Evaluator / Policy -> TerminalMapper -> LicensingBoundary emits ActionLicense -> Engine executes licensed transition -> EngineAction -> TraceArtifact / Record ",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "mutate_without_action_license",
+              "mutate_outside_licensed_target",
+              "bypass_execution_envelope",
+              "terminalize(",
+              "authorize_transition",
+              "license_transition",
+              "self_certify",
+              "compute_phi",
+              "rank_candidates",
+              "score_candidate",
+              "apply_operator"
+            ]
+          },
+          "hashing": {
+            "canonical_encoding": "JSON-NFC",
+            "digest": "SHA-256",
+            "domain_separation": "required",
+            "domains": {
+              "action_hash": "omega.engine.action.v1",
+              "descriptor_hash": "omega.engine.descriptor.v1"
+            }
+          },
+          "legacy_metadata": {
+            "active": true,
+            "classification": "execution",
+            "depends_on": [
+              "Evaluator",
+              "Policy",
+              "TerminalMapper",
+              "LicensingBoundary"
+            ],
+            "effect_class": "StateTransition",
+            "forbidden_authority": [
+              "measurement",
+              "solution_computation",
+              "candidate_generation",
+              "domain_inference",
+              "certification",
+              "evaluation",
+              "policy_definition",
+              "solver_reimplementation",
+              "license_creation",
+              "terminal_mapping",
+              "evidence_authority_upgrade"
+            ],
+            "machine_authority": true,
+            "name": "Engine",
+            "normative": false,
+            "primary_output_family": "Action",
+            "referenced_output_families": [
+              "ActionLicense",
+              "DecisionEnvelope",
+              "EvidenceEnvelope",
+              "FactEnvelope",
+              "Record"
+            ],
+            "role": "Licensed transition executor",
+            "source_file": "non_math/06_execution/engine_contract.md",
+            "version": "1.0.0"
+          },
+          "non_role": [
+            "measurement",
+            "solution_computation",
+            "candidate_generation",
+            "domain_inference",
+            "certification",
+            "evaluation",
+            "policy_definition",
+            "solver_reimplementation",
+            "license_creation",
+            "terminal_mapping",
+            "evidence_authority_upgrade"
+          ],
+          "operator_boundary": {
+            "committed_result_must_match_license": true,
+            "engine_may_apply_operator": false,
+            "engine_may_commit_licensed_operator_result": true,
+            "engine_may_implement_operator_semantics": false,
+            "engine_may_recompute_transition": false,
+            "engine_may_select_operator": false
+          },
           "proof_obligations": [
             {
               "id": "ENG-INV-001",
@@ -800,54 +339,183 @@
               "statement": "Engine does not derive post-state; it validates and commits an already licensed post-state artifact."
             }
           ],
-          "declared_refusals": [
-            "MissingActionLicense",
-            "InvalidActionLicense",
-            "LicenseTargetMismatch",
-            "LicenseExpired",
-            "PreconditionsUnsatisfied",
-            "StateVersionMismatch",
-            "TransitionExecutionFailure",
-            "InvalidInputFormat"
-          ]
+          "required_tests": [
+            "engine_requires_action_license",
+            "engine_executes_only_licensed_transitions",
+            "engine_output_authority_effect_is_state_transition",
+            "engine_does_not_create_action_license",
+            "engine_does_not_evaluate_policy_internally",
+            "engine_does_not_compute_phi",
+            "engine_does_not_sign_certificate",
+            "engine_records_trace_for_each_transition",
+            "engine_license_binds_exact_transition",
+            "engine_idempotent_replay",
+            "engine_atomic_carrier_trace_commit",
+            "engine_state_version_cas_coupling",
+            "engine_does_not_derive_post_state"
+          ],
+          "structural_representation": {
+            "input": {
+              "fields": [
+                {
+                  "name": "license_ref",
+                  "type": "ActionLicenseId"
+                },
+                {
+                  "name": "decision_ref",
+                  "type": "DecisionEnvelopeRef"
+                },
+                {
+                  "name": "target_state_ref",
+                  "type": "StateRef"
+                },
+                {
+                  "name": "expected_state_version",
+                  "type": "StateVersion"
+                },
+                {
+                  "name": "expected_pre_state_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "operator_ref",
+                  "type": "OperatorRef"
+                },
+                {
+                  "name": "proposed_state_ref",
+                  "type": "ArtifactRef"
+                },
+                {
+                  "name": "expected_post_state_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "precondition_refs",
+                  "type": "Vec<FactEnvelopeRef>"
+                },
+                {
+                  "name": "trace_parent_refs",
+                  "type": "Vec<TraceId>"
+                }
+              ],
+              "struct_name": "LicensedTransitionInput"
+            },
+            "output": {
+              "fields": [
+                {
+                  "name": "action_id",
+                  "type": "ActionId"
+                },
+                {
+                  "name": "license_ref",
+                  "type": "ActionLicenseId"
+                },
+                {
+                  "name": "pre_state_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "post_state_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "emitted_trace_ref",
+                  "type": "TraceId"
+                },
+                {
+                  "name": "action_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "default": "StateTransition",
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect"
+                }
+              ],
+              "struct_name": "EngineAction"
+            }
+          },
+          "summary": "Engine is the uniquely authorized execution-layer mechanism by which an already licensed transition happens. Engine does not derive post-state. It validates and commits an already-computed detached transition artifact bound by a valid ActionLicense against the validated version of the licensed target carrier. "
         },
+        "kind": "execution_contract",
+        "layer": "06_execution",
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0",
             "urn:omega:constitution:base_execution_contract:v1.0.0"
           ]
-        }
+        },
+        "role": "Engine",
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Engine"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:execution:engine:v1.0.0\",\n  \"title\": \"Engine\",\n  \"kind\": \"execution_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"06_execution\",\n  \"role\": \"Engine\",\n  \"descriptor\": {\n    \"authority_effect\": \"state_transition\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"proof_obligations\": [],\n      \"contracts\": [\n        \"Evaluator\",\n        \"Policy\",\n        \"TerminalMapper\",\n        \"LicensingBoundary\",\n        \"ActionLicense\",\n        \"Trace\",\n        \"CarrierStore\"\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"constitution\": {\n      \"contract_dependencies\": [\n        \"Evaluator\",\n        \"Policy\",\n        \"TerminalMapper\",\n        \"LicensingBoundary\",\n        \"ActionLicense\",\n        \"Trace\"\n      ],\n      \"emits\": \"Action\",\n      \"authority_layer\": \"Action\",\n      \"replay_certificates\": [\n        \"schema_hash\"\n      ]\n    },\n    \"constraints\": {\n      \"action_license_required\": true\n    },\n    \"runtime_state_type\": \"Carrier\",\n    \"capabilities\": {\n      \"forbidden\": [\n        \"ComputePhi\",\n        \"ComputeGamma\",\n        \"PolicyInterpretation\",\n        \"Evaluation\",\n        \"CertificateSigning\",\n        \"EmitCertificate\"\n      ],\n      \"required\": []\n    },\n    \"laws\": {\n      \"effect\": \"Stateful\"\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"Engine is the uniquely authorized execution-layer mechanism by which an already licensed transition happens. Engine does not derive post-state. It validates and commits an already-computed detached transition artifact bound by a valid ActionLicense against the validated version of the licensed target carrier. \",\n    \"non_role\": [\n      \"measurement\",\n      \"solution_computation\",\n      \"candidate_generation\",\n      \"domain_inference\",\n      \"certification\",\n      \"evaluation\",\n      \"policy_definition\",\n      \"solver_reimplementation\",\n      \"license_creation\",\n      \"terminal_mapping\",\n      \"evidence_authority_upgrade\"\n    ],\n    \"authority_defaults\": {\n      \"engine_input_license\": \"AuthorizesTransition\",\n      \"engine_action\": \"StateTransition\",\n      \"engine_trace\": \"Record\"\n    },\n    \"structural_representation\": {\n      \"input\": {\n        \"struct_name\": \"LicensedTransitionInput\",\n        \"fields\": [\n          {\n            \"name\": \"license_ref\",\n            \"type\": \"ActionLicenseId\"\n          },\n          {\n            \"name\": \"decision_ref\",\n            \"type\": \"DecisionEnvelopeRef\"\n          },\n          {\n            \"name\": \"target_state_ref\",\n            \"type\": \"StateRef\"\n          },\n          {\n            \"name\": \"expected_state_version\",\n            \"type\": \"StateVersion\"\n          },\n          {\n            \"name\": \"expected_pre_state_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"operator_ref\",\n            \"type\": \"OperatorRef\"\n          },\n          {\n            \"name\": \"proposed_state_ref\",\n            \"type\": \"ArtifactRef\"\n          },\n          {\n            \"name\": \"expected_post_state_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"precondition_refs\",\n            \"type\": \"Vec<FactEnvelopeRef>\"\n          },\n          {\n            \"name\": \"trace_parent_refs\",\n            \"type\": \"Vec<TraceId>\"\n          }\n        ]\n      },\n      \"output\": {\n        \"struct_name\": \"EngineAction\",\n        \"fields\": [\n          {\n            \"name\": \"action_id\",\n            \"type\": \"ActionId\"\n          },\n          {\n            \"name\": \"license_ref\",\n            \"type\": \"ActionLicenseId\"\n          },\n          {\n            \"name\": \"pre_state_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"post_state_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"emitted_trace_ref\",\n            \"type\": \"TraceId\"\n          },\n          {\n            \"name\": \"action_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"StateTransition\"\n          }\n        ]\n      }\n    },\n    \"flow\": \"EvidenceEnvelope / FactEnvelope -> Evaluator / Policy -> TerminalMapper -> LicensingBoundary emits ActionLicense -> Engine executes licensed transition -> EngineAction -> TraceArtifact / Record \",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"mutate_without_action_license\",\n        \"mutate_outside_licensed_target\",\n        \"bypass_execution_envelope\",\n        \"terminalize(\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"self_certify\",\n        \"compute_phi\",\n        \"rank_candidates\",\n        \"score_candidate\",\n        \"apply_operator\"\n      ]\n    },\n    \"required_tests\": [\n      \"engine_requires_action_license\",\n      \"engine_executes_only_licensed_transitions\",\n      \"engine_output_authority_effect_is_state_transition\",\n      \"engine_does_not_create_action_license\",\n      \"engine_does_not_evaluate_policy_internally\",\n      \"engine_does_not_compute_phi\",\n      \"engine_does_not_sign_certificate\",\n      \"engine_records_trace_for_each_transition\",\n      \"engine_license_binds_exact_transition\",\n      \"engine_idempotent_replay\",\n      \"engine_atomic_carrier_trace_commit\",\n      \"engine_state_version_cas_coupling\",\n      \"engine_does_not_derive_post_state\"\n    ],\n    \"canonical_invariant\": \"Engine executes licensed transitions only. StateTransition authority appears only on EngineAction artifacts produced from valid ActionLicense inputs. \",\n    \"legacy_metadata\": {\n      \"normative\": false,\n      \"name\": \"Engine\",\n      \"source_file\": \"non_math/06_execution/engine_contract.md\",\n      \"active\": true,\n      \"machine_authority\": true,\n      \"role\": \"Licensed transition executor\",\n      \"version\": \"1.0.0\",\n      \"classification\": \"execution\",\n      \"effect_class\": \"StateTransition\",\n      \"depends_on\": [\n        \"Evaluator\",\n        \"Policy\",\n        \"TerminalMapper\",\n        \"LicensingBoundary\"\n      ],\n      \"forbidden_authority\": [\n        \"measurement\",\n        \"solution_computation\",\n        \"candidate_generation\",\n        \"domain_inference\",\n        \"certification\",\n        \"evaluation\",\n        \"policy_definition\",\n        \"solver_reimplementation\",\n        \"license_creation\",\n        \"terminal_mapping\",\n        \"evidence_authority_upgrade\"\n      ],\n      \"primary_output_family\": \"Action\",\n      \"referenced_output_families\": [\n        \"ActionLicense\",\n        \"DecisionEnvelope\",\n        \"EvidenceEnvelope\",\n        \"FactEnvelope\",\n        \"Record\"\n      ]\n    },\n    \"enforcement_scope\": \"This general doctrine is not enforced across all engines. The finite Genesis report profile has an executable license-bound committer and host CAS tests.\",\n    \"operator_boundary\": {\n      \"engine_may_implement_operator_semantics\": false,\n      \"engine_may_select_operator\": false,\n      \"engine_may_apply_operator\": false,\n      \"engine_may_recompute_transition\": false,\n      \"engine_may_commit_licensed_operator_result\": true,\n      \"committed_result_must_match_license\": true\n    },\n    \"hashing\": {\n      \"digest\": \"SHA-256\",\n      \"canonical_encoding\": \"JSON-NFC\",\n      \"domain_separation\": \"required\",\n      \"domains\": {\n        \"action_hash\": \"omega.engine.action.v1\",\n        \"descriptor_hash\": \"omega.engine.descriptor.v1\"\n      }\n    },\n    \"declared_authority_effect\": \"StateTransition\",\n    \"declared_capabilities\": {\n      \"forbidden\": [\n        \"mutate_without_action_license\",\n        \"mutate_outside_licensed_target\",\n        \"bypass_execution_envelope\",\n        \"ComputePhi\",\n        \"ComputeGamma\",\n        \"OperatorImplementation\",\n        \"OperatorSelection\",\n        \"OperatorApplication\",\n        \"CandidateGeneration\",\n        \"CandidateRanking\",\n        \"PolicyInterpretation\",\n        \"Evaluation\",\n        \"CertificateSigning\",\n        \"EmitCertificate\"\n      ],\n      \"required\": []\n    },\n    \"declared_constitution\": {\n      \"contract_dependencies\": [\n        \"Evaluator\",\n        \"Policy\",\n        \"TerminalMapper\",\n        \"LicensingBoundary\"\n      ],\n      \"emits\": \"Action\",\n      \"authority_layer\": \"Action\",\n      \"replay_certificates\": [\n        \"contract_hash\",\n        \"descriptor_hash\"\n      ]\n    },\n    \"declared_constraints\": {\n      \"action_license_required\": true\n    },\n    \"declared_laws\": {\n      \"effect\": \"Stateful\"\n    },\n    \"declared_runtime_state_type\": \"Carrier\",\n    \"proof_obligations\": [\n      {\n        \"id\": \"ENG-INV-001\",\n        \"statement\": \"No transition occurs without a valid ActionLicense.\"\n      },\n      {\n        \"id\": \"ENG-INV-002\",\n        \"statement\": \"The ActionLicense binds the executed decision and target carrier.\"\n      },\n      {\n        \"id\": \"ENG-INV-003\",\n        \"statement\": \"A refused execution produces no durable carrier mutation.\"\n      },\n      {\n        \"id\": \"ENG-INV-004\",\n        \"statement\": \"Every durable transition has exactly one authoritative EngineAction.\"\n      },\n      {\n        \"id\": \"ENG-INV-005\",\n        \"statement\": \"Every durable transition has a durable trace record.\"\n      },\n      {\n        \"id\": \"ENG-INV-006\",\n        \"statement\": \"Pre-state and post-state hashes bind canonical carrier states.\"\n      },\n      {\n        \"id\": \"ENG-INV-007\",\n        \"statement\": \"Engine cannot mint, modify, widen, or reinterpret ActionLicense authority.\"\n      },\n      {\n        \"id\": \"ENG-INV-008\",\n        \"statement\": \"Engine cannot evaluate candidate merit or policy.\"\n      },\n      {\n        \"id\": \"ENG-INV-009\",\n        \"statement\": \"Subclasses cannot bypass the constitutional execution envelope.\"\n      },\n      {\n        \"id\": \"ENG-INV-010\",\n        \"statement\": \"Engine identity and governing contract identity are immutable during lifetime.\"\n      },\n      {\n        \"id\": \"ENG-INV-011\",\n        \"statement\": \"State version conflicts fail closed before commit.\"\n      },\n      {\n        \"id\": \"ENG-INV-012\",\n        \"statement\": \"Trace ancestry is preserved from input through emitted trace.\"\n      },\n      {\n        \"id\": \"ENG-INV-013\",\n        \"statement\": \"The ActionLicense binds the exact transition specification executed by the Engine; no unlicensed operation or payload may influence carrier mutation.\"\n      },\n      {\n        \"id\": \"ENG-INV-014\",\n        \"statement\": \"Replaying an already committed ActionLicense cannot produce a second durable StateTransition.\"\n      },\n      {\n        \"id\": \"ENG-INV-015\",\n        \"statement\": \"Durable carrier mutation and authoritative transition recording are atomic or recoverably coupled; EngineRefusal implies that no carrier mutation became durable.\"\n      },\n      {\n        \"id\": \"ENG-INV-016\",\n        \"statement\": \"License bindings, preconditions, and transition execution are based on the same pre-state version whose version is conditionally committed.\"\n      },\n      {\n        \"id\": \"ENG-OP-001\",\n        \"statement\": \"Engine never implements or invokes Operator transformation semantics.\"\n      },\n      {\n        \"id\": \"ENG-OP-002\",\n        \"statement\": \"Engine commits only a detached transition artifact exactly bound by a valid ActionLicense.\"\n      },\n      {\n        \"id\": \"ENG-OP-003\",\n        \"statement\": \"Engine never computes, estimates, compares, or interprets Phi.\"\n      },\n      {\n        \"id\": \"ENG-OP-004\",\n        \"statement\": \"Engine never selects, ranks, composes, or repeats Operators.\"\n      },\n      {\n        \"id\": \"ENG-OP-005\",\n        \"statement\": \"Engine does not derive post-state; it validates and commits an already licensed post-state artifact.\"\n      }\n    ],\n    \"declared_refusals\": [\n      \"MissingActionLicense\",\n      \"InvalidActionLicense\",\n      \"LicenseTargetMismatch\",\n      \"LicenseExpired\",\n      \"PreconditionsUnsatisfied\",\n      \"StateVersionMismatch\",\n      \"TransitionExecutionFailure\",\n      \"InvalidInputFormat\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_execution_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "29dfd8b9c4685ec1e935a75ce1b9bd57914a46894a2e7fbbfb9e748462aaad8b"
+    },
+    {
+      "bytes": 1694,
       "original_paths": [
-        "code/python/governance/20_execution/execution_engine_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/20_execution/execution_engine_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/execution_engine_v1_0_0_contract.py\",\n    \"sha256\": \"de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/execution_engine_v1_0_0_contract.py\",\n      \"sha256\": \"de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951\",\n  \"subject\": \"code/python/governance/20_execution/execution_engine_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/execution_engine_v1_0_0_contract.py",
+          "sha256": "de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/20_execution/execution_engine_v1_0_0_contract.py",
+            "sha256": "de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951",
+        "subject": "code/python/governance/20_execution/execution_engine_v1_0_0_contract.py"
+      },
+      "sha256": "ae2d8b1afa8e9af1fd06f47039a4a7bc36abddac4f1fc4bea43e6ddad049527b"
     }
   ],
+  "current_contract": "ae2d8b1afa8e9af1fd06f47039a4a7bc36abddac4f1fc4bea43e6ddad049527b",
+  "current_scoring": "6bea37f39db706b1153181ae7570647a40476a534e60634fc735790ab67cb4e3",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/20_execution/execution_engine_v1_0_0.contract.yaml": "73373b0345057983e08943866c872cb9465eb1e2d9cdde5188ce4b6df38fe7c3"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "db62178f3a0455157e59404e99c461ab3e296d0b820700012fced6bd515db271",
       "bytes": 2221,
+      "original_paths": [
+        "code/python/governance/20_execution/execution_engine_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/execution_engine_v1_0_0_contract.py\",\n    \"sha256\": \"de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:execution-engine-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/execution_engine_v1_0_0_contract.py",
           "sha256": "de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:20_execution:execution-engine-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -856,40 +524,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "db62178f3a0455157e59404e99c461ab3e296d0b820700012fced6bd515db271"
+    },
+    {
+      "bytes": 1658,
+      "original_paths": [
+        "code/python/governance/20_execution/execution_engine_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/execution_engine_v1_0_0_contract.py\",\n    \"sha256\": \"de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/execution_engine_v1_0_0_contract.py\",\n      \"sha256\": \"de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/execution_engine_v1_0_0_contract.py",
+          "sha256": "de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/20_execution/execution_engine_v1_0_0_contract.py",
+            "sha256": "de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/execution_engine_v1_0_0_contract.py\",\n    \"sha256\": \"de9d69eaebbc92a80e6eee1cdaba62b5f2d4fc18d7f04aa850807f8643556951\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:execution-engine-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/execution_engine_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "6bea37f39db706b1153181ae7570647a40476a534e60634fc735790ab67cb4e3"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/20_execution/execution_engine_v1_0_0.contract.yaml": "73373b0345057983e08943866c872cb9465eb1e2d9cdde5188ce4b6df38fe7c3"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1,137 +1,161 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/qm/ward_takahashi.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/qm/ward_takahashi.py",
       "sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:campaigns:ward-takahashi:v1",
-    "role": "library",
-    "purpose": "QM-215 finite-map control: Dirac/Kulish-Faddeev dressed matter and Ward-Takahashi Z_1 = Z_2. Checks over Q and Q(i):",
-    "operations": {
-      "Qi": "Exact Gaussian rational a + b*i with a, b in Q.",
-      "mat4_zero": "Function mat4_zero operation.",
-      "mat4_identity": "Function mat4_identity operation.",
-      "mat4_scale": "Function mat4_scale operation.",
-      "mat4_add": "Function mat4_add operation.",
-      "mat4_sub": "Function mat4_sub operation.",
-      "mat4_mul": "Function mat4_mul operation.",
-      "dirac_gamma_matrices": "Return the 4x4 Dirac gamma matrices (gamma^0, gamma^1, gamma^2, gamma^3) over Q(i).",
-      "check_clifford_anticommutation": "Verify {gamma^mu, gamma^nu} = 2 eta^{mu nu} I_4 for all mu, nu in {0, 1, 2, 3}.",
-      "minkowski_dot": "Return p . q = p^0 q^0 - p^1 q^1 - p^2 q^2 - p^3 q^3.",
-      "feynman_slash": "Return p_slash = p_mu gamma^mu = p^0 gamma^0 - p^1 gamma^1 - p^2 gamma^2 - p^3 gamma^3.",
-      "dirac_propagator_inverse": "Return S_F(p)^{-1} = p_slash - m I_4 in M_4(Q(i)).",
-      "dirac_propagator": "Return S_F(p) = (p_slash + m I_4) / (p^2 - m^2) in M_4(Q(i)).",
-      "spinor_bar_correlator": "Return the Dirac inner product <bar{psi}_left, psi_right> = psi_left^dagger gamma^0 psi_right.",
-      "tree_path_vertices": "Find the unique simple vertex path from start to target inside spanning tree T.",
-      "tree_dressing_field_u1": "Compute the Ravera/Dirac spanning-tree dressing field u_T[U](v) in U(1) subset Q(i).",
-      "one_loop_self_energy_integrand": "Evaluate the 1-loop fermion self-energy integrand I_Sigma(p, k) in M_4(Q(i)):",
-      "one_loop_self_energy_minus_derivative": "Evaluate the exact analytical momentum derivative -d I_Sigma(p, k) / d p_mu in M_4(Q(i))",
-      "one_loop_vertex_integrand": "Evaluate the 1-loop QED vertex integrand I_Lambda^mu(p_out, p_in; k) in M_4(Q(i)):",
-      "exp_negative_interval": "Enclose exp(x_neg) for x_neg in [-1, 0] using alternating Taylor partial sums.",
-      "DiracWardTakahashiReport": "Typed receipt for QM-215 Dirac/Kulish-Faddeev dressing & Ward-Takahashi Z_1 = Z_2 control.",
-      "evaluate_dirac_ward_takahashi_control": "Run all three parts of the QM-215 control over Q and Q(i)."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/src/qm/ward_takahashi.py",
+        "sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5",
+    "subject": "code/python/src/qm/ward_takahashi.py"
   },
-  "current_contract": "e9aa99d94f35072eedc242aa15b296cb0ba2b4265d322389492c66d139b115e9",
-  "current_scoring": "bd1b7ab820d6c4b93d5d794c96c14f540fcb66b7eadb727fc260628859759944",
   "contract_history": [
     {
-      "sha256": "e9aa99d94f35072eedc242aa15b296cb0ba2b4265d322389492c66d139b115e9",
       "bytes": 3685,
+      "original_paths": [
+        "code/python/src/qm/ward_takahashi.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/ward_takahashi.py\",\n    \"sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:ward-takahashi:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"QM-215 finite-map control: Dirac/Kulish-Faddeev dressed matter and Ward-Takahashi Z_1 = Z_2. Checks over Q and Q(i):\",\n  \"operations\": {\n    \"Qi\": \"Exact Gaussian rational a + b*i with a, b in Q.\",\n    \"mat4_zero\": \"Function mat4_zero operation.\",\n    \"mat4_identity\": \"Function mat4_identity operation.\",\n    \"mat4_scale\": \"Function mat4_scale operation.\",\n    \"mat4_add\": \"Function mat4_add operation.\",\n    \"mat4_sub\": \"Function mat4_sub operation.\",\n    \"mat4_mul\": \"Function mat4_mul operation.\",\n    \"dirac_gamma_matrices\": \"Return the 4x4 Dirac gamma matrices (gamma^0, gamma^1, gamma^2, gamma^3) over Q(i).\",\n    \"check_clifford_anticommutation\": \"Verify {gamma^mu, gamma^nu} = 2 eta^{mu nu} I_4 for all mu, nu in {0, 1, 2, 3}.\",\n    \"minkowski_dot\": \"Return p . q = p^0 q^0 - p^1 q^1 - p^2 q^2 - p^3 q^3.\",\n    \"feynman_slash\": \"Return p_slash = p_mu gamma^mu = p^0 gamma^0 - p^1 gamma^1 - p^2 gamma^2 - p^3 gamma^3.\",\n    \"dirac_propagator_inverse\": \"Return S_F(p)^{-1} = p_slash - m I_4 in M_4(Q(i)).\",\n    \"dirac_propagator\": \"Return S_F(p) = (p_slash + m I_4) / (p^2 - m^2) in M_4(Q(i)).\",\n    \"spinor_bar_correlator\": \"Return the Dirac inner product <bar{psi}_left, psi_right> = psi_left^dagger gamma^0 psi_right.\",\n    \"tree_path_vertices\": \"Find the unique simple vertex path from start to target inside spanning tree T.\",\n    \"tree_dressing_field_u1\": \"Compute the Ravera/Dirac spanning-tree dressing field u_T[U](v) in U(1) subset Q(i).\",\n    \"one_loop_self_energy_integrand\": \"Evaluate the 1-loop fermion self-energy integrand I_Sigma(p, k) in M_4(Q(i)):\",\n    \"one_loop_self_energy_minus_derivative\": \"Evaluate the exact analytical momentum derivative -d I_Sigma(p, k) / d p_mu in M_4(Q(i))\",\n    \"one_loop_vertex_integrand\": \"Evaluate the 1-loop QED vertex integrand I_Lambda^mu(p_out, p_in; k) in M_4(Q(i)):\",\n    \"exp_negative_interval\": \"Enclose exp(x_neg) for x_neg in [-1, 0] using alternating Taylor partial sums.\",\n    \"DiracWardTakahashiReport\": \"Typed receipt for QM-215 Dirac/Kulish-Faddeev dressing & Ward-Takahashi Z_1 = Z_2 control.\",\n    \"evaluate_dirac_ward_takahashi_control\": \"Run all three parts of the QM-215 control over Q and Q(i).\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/ward_takahashi.py",
           "sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:campaigns:ward-takahashi:v1",
-        "role": "library",
-        "purpose": "QM-215 finite-map control: Dirac/Kulish-Faddeev dressed matter and Ward-Takahashi Z_1 = Z_2. Checks over Q and Q(i):",
-        "operations": {
-          "Qi": "Exact Gaussian rational a + b*i with a, b in Q.",
-          "mat4_zero": "Function mat4_zero operation.",
-          "mat4_identity": "Function mat4_identity operation.",
-          "mat4_scale": "Function mat4_scale operation.",
-          "mat4_add": "Function mat4_add operation.",
-          "mat4_sub": "Function mat4_sub operation.",
-          "mat4_mul": "Function mat4_mul operation.",
-          "dirac_gamma_matrices": "Return the 4x4 Dirac gamma matrices (gamma^0, gamma^1, gamma^2, gamma^3) over Q(i).",
-          "check_clifford_anticommutation": "Verify {gamma^mu, gamma^nu} = 2 eta^{mu nu} I_4 for all mu, nu in {0, 1, 2, 3}.",
-          "minkowski_dot": "Return p . q = p^0 q^0 - p^1 q^1 - p^2 q^2 - p^3 q^3.",
-          "feynman_slash": "Return p_slash = p_mu gamma^mu = p^0 gamma^0 - p^1 gamma^1 - p^2 gamma^2 - p^3 gamma^3.",
-          "dirac_propagator_inverse": "Return S_F(p)^{-1} = p_slash - m I_4 in M_4(Q(i)).",
-          "dirac_propagator": "Return S_F(p) = (p_slash + m I_4) / (p^2 - m^2) in M_4(Q(i)).",
-          "spinor_bar_correlator": "Return the Dirac inner product <bar{psi}_left, psi_right> = psi_left^dagger gamma^0 psi_right.",
-          "tree_path_vertices": "Find the unique simple vertex path from start to target inside spanning tree T.",
-          "tree_dressing_field_u1": "Compute the Ravera/Dirac spanning-tree dressing field u_T[U](v) in U(1) subset Q(i).",
-          "one_loop_self_energy_integrand": "Evaluate the 1-loop fermion self-energy integrand I_Sigma(p, k) in M_4(Q(i)):",
-          "one_loop_self_energy_minus_derivative": "Evaluate the exact analytical momentum derivative -d I_Sigma(p, k) / d p_mu in M_4(Q(i))",
-          "one_loop_vertex_integrand": "Evaluate the 1-loop QED vertex integrand I_Lambda^mu(p_out, p_in; k) in M_4(Q(i)):",
-          "exp_negative_interval": "Enclose exp(x_neg) for x_neg in [-1, 0] using alternating Taylor partial sums.",
-          "DiracWardTakahashiReport": "Typed receipt for QM-215 Dirac/Kulish-Faddeev dressing & Ward-Takahashi Z_1 = Z_2 control.",
-          "evaluate_dirac_ward_takahashi_control": "Run all three parts of the QM-215 control over Q and Q(i)."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "DiracWardTakahashiReport": "Typed receipt for QM-215 Dirac/Kulish-Faddeev dressing & Ward-Takahashi Z_1 = Z_2 control.",
+          "Qi": "Exact Gaussian rational a + b*i with a, b in Q.",
+          "check_clifford_anticommutation": "Verify {gamma^mu, gamma^nu} = 2 eta^{mu nu} I_4 for all mu, nu in {0, 1, 2, 3}.",
+          "dirac_gamma_matrices": "Return the 4x4 Dirac gamma matrices (gamma^0, gamma^1, gamma^2, gamma^3) over Q(i).",
+          "dirac_propagator": "Return S_F(p) = (p_slash + m I_4) / (p^2 - m^2) in M_4(Q(i)).",
+          "dirac_propagator_inverse": "Return S_F(p)^{-1} = p_slash - m I_4 in M_4(Q(i)).",
+          "evaluate_dirac_ward_takahashi_control": "Run all three parts of the QM-215 control over Q and Q(i).",
+          "exp_negative_interval": "Enclose exp(x_neg) for x_neg in [-1, 0] using alternating Taylor partial sums.",
+          "feynman_slash": "Return p_slash = p_mu gamma^mu = p^0 gamma^0 - p^1 gamma^1 - p^2 gamma^2 - p^3 gamma^3.",
+          "mat4_add": "Function mat4_add operation.",
+          "mat4_identity": "Function mat4_identity operation.",
+          "mat4_mul": "Function mat4_mul operation.",
+          "mat4_scale": "Function mat4_scale operation.",
+          "mat4_sub": "Function mat4_sub operation.",
+          "mat4_zero": "Function mat4_zero operation.",
+          "minkowski_dot": "Return p . q = p^0 q^0 - p^1 q^1 - p^2 q^2 - p^3 q^3.",
+          "one_loop_self_energy_integrand": "Evaluate the 1-loop fermion self-energy integrand I_Sigma(p, k) in M_4(Q(i)):",
+          "one_loop_self_energy_minus_derivative": "Evaluate the exact analytical momentum derivative -d I_Sigma(p, k) / d p_mu in M_4(Q(i))",
+          "one_loop_vertex_integrand": "Evaluate the 1-loop QED vertex integrand I_Lambda^mu(p_out, p_in; k) in M_4(Q(i)):",
+          "spinor_bar_correlator": "Return the Dirac inner product <bar{psi}_left, psi_right> = psi_left^dagger gamma^0 psi_right.",
+          "tree_dressing_field_u1": "Compute the Ravera/Dirac spanning-tree dressing field u_T[U](v) in U(1) subset Q(i).",
+          "tree_path_vertices": "Find the unique simple vertex path from start to target inside spanning tree T."
+        },
+        "profile": "Exact",
+        "purpose": "QM-215 finite-map control: Dirac/Kulish-Faddeev dressed matter and Ward-Takahashi Z_1 = Z_2. Checks over Q and Q(i):",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/ward_takahashi.py\",\n    \"sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:ward-takahashi:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"QM-215 finite-map control: Dirac/Kulish-Faddeev dressed matter and Ward-Takahashi Z_1 = Z_2. Checks over Q and Q(i):\",\n  \"operations\": {\n    \"Qi\": \"Exact Gaussian rational a + b*i with a, b in Q.\",\n    \"mat4_zero\": \"Function mat4_zero operation.\",\n    \"mat4_identity\": \"Function mat4_identity operation.\",\n    \"mat4_scale\": \"Function mat4_scale operation.\",\n    \"mat4_add\": \"Function mat4_add operation.\",\n    \"mat4_sub\": \"Function mat4_sub operation.\",\n    \"mat4_mul\": \"Function mat4_mul operation.\",\n    \"dirac_gamma_matrices\": \"Return the 4x4 Dirac gamma matrices (gamma^0, gamma^1, gamma^2, gamma^3) over Q(i).\",\n    \"check_clifford_anticommutation\": \"Verify {gamma^mu, gamma^nu} = 2 eta^{mu nu} I_4 for all mu, nu in {0, 1, 2, 3}.\",\n    \"minkowski_dot\": \"Return p . q = p^0 q^0 - p^1 q^1 - p^2 q^2 - p^3 q^3.\",\n    \"feynman_slash\": \"Return p_slash = p_mu gamma^mu = p^0 gamma^0 - p^1 gamma^1 - p^2 gamma^2 - p^3 gamma^3.\",\n    \"dirac_propagator_inverse\": \"Return S_F(p)^{-1} = p_slash - m I_4 in M_4(Q(i)).\",\n    \"dirac_propagator\": \"Return S_F(p) = (p_slash + m I_4) / (p^2 - m^2) in M_4(Q(i)).\",\n    \"spinor_bar_correlator\": \"Return the Dirac inner product <bar{psi}_left, psi_right> = psi_left^dagger gamma^0 psi_right.\",\n    \"tree_path_vertices\": \"Find the unique simple vertex path from start to target inside spanning tree T.\",\n    \"tree_dressing_field_u1\": \"Compute the Ravera/Dirac spanning-tree dressing field u_T[U](v) in U(1) subset Q(i).\",\n    \"one_loop_self_energy_integrand\": \"Evaluate the 1-loop fermion self-energy integrand I_Sigma(p, k) in M_4(Q(i)):\",\n    \"one_loop_self_energy_minus_derivative\": \"Evaluate the exact analytical momentum derivative -d I_Sigma(p, k) / d p_mu in M_4(Q(i))\",\n    \"one_loop_vertex_integrand\": \"Evaluate the 1-loop QED vertex integrand I_Lambda^mu(p_out, p_in; k) in M_4(Q(i)):\",\n    \"exp_negative_interval\": \"Enclose exp(x_neg) for x_neg in [-1, 0] using alternating Taylor partial sums.\",\n    \"DiracWardTakahashiReport\": \"Typed receipt for QM-215 Dirac/Kulish-Faddeev dressing & Ward-Takahashi Z_1 = Z_2 control.\",\n    \"evaluate_dirac_ward_takahashi_control\": \"Run all three parts of the QM-215 control over Q and Q(i).\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "e9aa99d94f35072eedc242aa15b296cb0ba2b4265d322389492c66d139b115e9"
+    },
+    {
+      "bytes": 1589,
       "original_paths": [
-        "code/python/src/qm/ward_takahashi.contract.score.yaml#contract"
-      ]
+        "code/python/src/qm/ward_takahashi.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/qm/ward_takahashi.py\",\n    \"sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/qm/ward_takahashi.py\",\n      \"sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\",\n  \"subject\": \"code/python/src/qm/ward_takahashi.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/qm/ward_takahashi.py",
+          "sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/qm/ward_takahashi.py",
+            "sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5",
+        "subject": "code/python/src/qm/ward_takahashi.py"
+      },
+      "sha256": "d45e500ac6c3890f3da69ddb46a03ef8d1a32960dc55dd1c272a169d9a802a85"
     }
   ],
+  "current_contract": "d45e500ac6c3890f3da69ddb46a03ef8d1a32960dc55dd1c272a169d9a802a85",
+  "current_scoring": "aaa18d3570bf0e82102347ad7f83600392d0a6d57538dae8febbe83f9d8e53a9",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "0e2390cd4fcd37df05883b4ad0a3aabe208a4cf51f66618b171679e3841427c8",
       "bytes": 2196,
+      "original_paths": [
+        "code/python/src/qm/ward_takahashi.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/ward_takahashi.py\",\n    \"sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:ward-takahashi:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 22), Lizard CCN (max 22), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 22,\n    \"lizard_ccn\": 22,\n    \"weighted_control_upper_bound\": 33,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/ward_takahashi.py",
           "sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:campaigns:ward-takahashi:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -140,59 +164,59 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds, Radon CCN (max 22), Lizard CCN (max 22), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
         },
-        "metrics": {
-          "radon_ccn": 22,
-          "lizard_ccn": 22,
-          "weighted_control_upper_bound": 33,
-          "control_nesting": 4
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 4,
+          "lizard_ccn": 22,
+          "radon_ccn": 22,
+          "weighted_control_upper_bound": 33
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
-        "evidence": [
-          {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-          }
-        ]
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/ward_takahashi.py\",\n    \"sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:ward-takahashi:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 22), Lizard CCN (max 22), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 22,\n    \"lizard_ccn\": 22,\n    \"weighted_control_upper_bound\": 33,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/ward_takahashi.contract.score.yaml#scoring"
-      ]
+      "sha256": "0e2390cd4fcd37df05883b4ad0a3aabe208a4cf51f66618b171679e3841427c8"
     },
     {
-      "sha256": "bd1b7ab820d6c4b93d5d794c96c14f540fcb66b7eadb727fc260628859759944",
       "bytes": 2162,
+      "original_paths": [
+        "code/python/src/qm/ward_takahashi.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/ward_takahashi.py\",\n    \"sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:ward-takahashi:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 22 <= 50 (D), nesting depth 4 <= 4 (B); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 22,\n    \"lizard_ccn\": 22,\n    \"weighted_control_upper_bound\": 33,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/ward_takahashi.py",
           "sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "D"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:qm:ward-takahashi:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -201,35 +225,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 22 <= 50 (D), nesting depth 4 <= 4 (B); Gate 5 ceiling D under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 22,
-          "lizard_ccn": 22,
-          "weighted_control_upper_bound": 33,
-          "control_nesting": 4
+        "composite_grade": "D",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "D"
         },
         "is_complete": true,
-        "composite_grade": "D",
-        "score_token": "L4D",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 4,
+          "lizard_ccn": 22,
+          "radon_ccn": 22,
+          "weighted_control_upper_bound": 33
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4D",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "bd1b7ab820d6c4b93d5d794c96c14f540fcb66b7eadb727fc260628859759944"
+    },
+    {
+      "bytes": 1586,
+      "original_paths": [
+        "code/python/src/qm/ward_takahashi.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/qm/ward_takahashi.py\",\n    \"sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/qm/ward_takahashi.py\",\n      \"sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/qm/ward_takahashi.py",
+          "sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/src/qm/ward_takahashi.py",
+            "sha256": "2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/ward_takahashi.py\",\n    \"sha256\": \"2a481363626572542814cb7ddf4f5052374bb77efd9e736643215115f15621e5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:ward-takahashi:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 22 <= 50 (D), nesting depth 4 <= 4 (B); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 22,\n    \"lizard_ccn\": 22,\n    \"weighted_control_upper_bound\": 33,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/ward_takahashi.contract.score.yaml#scoring"
-      ]
+      "sha256": "aaa18d3570bf0e82102347ad7f83600392d0a6d57538dae8febbe83f9d8e53a9"
     }
   ]
 }

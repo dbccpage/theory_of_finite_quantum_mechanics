@@ -1,164 +1,61 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:governance:auth_interface:v1.0.0",
-    "title": "AuthInterface",
-    "kind": "governance_contract",
-    "status": "mathematical_wip",
-    "layer": "05_governance",
-    "role": "AuthInterface",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "PolicyContract",
-          "BoundaryContract"
-        ],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py",
+      "sha256": "3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py",
+        "sha256": "3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      },
-      "capabilities": {
-        "forbidden": [
-          "CertificateSigning",
-          "Terminalization"
-        ],
-        "required": []
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "doctrine": {
-      "summary": "This contract defines the authentication and authorization boundary for the system.\n\nAuthInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M).\nIt is an access-gating boundary. Auth is orthogonal to the effect-class algebra -- it\ngates access to resources, not computation. Auth must not be confused with Evaluator,\nwhich judges admissibility of evidence. Auth judges identity and permission.\n",
-      "non_role": [
-        "certification",
-        "evaluation",
-        "terminalization",
-        "execution",
-        "mutation",
-        "evidence authority creation",
-        "admissibility judgment",
-        "operator classification"
-      ],
-      "llm_boundary_law": {
-        "doctrine": 5,
-        "text": "LLM-generated content carries zero authority at this interface. LLM output is candidate\nmaterial only. No LLM output may influence identity verification, role assignment,\npermission grants, or access decisions. Auth decisions are deterministic functions of\nverified identity, declared roles, and permission grants.\n"
-      },
-      "core_definition": "The AuthInterface verifies identity, resolves declared roles, and checks permission scope\nagainst grants. It gates access to system resources. It does not judge the admissibility\nof evidence (that is the Evaluator's role), does not classify candidates (that is\ngovernance), and does not execute state transitions (that is the Engine's role).\n\nAuth answers: \"Is this requester allowed to access this resource?\"\nEvaluator answers: \"Is this evidence admissible under policy?\"\n\nThese are distinct questions. Auth must not absorb Evaluator responsibilities or vice versa.\n",
-      "certificate_authority_bound": {
-        "doctrine": 6,
-        "text": "Auth does not create certificate authority. Auth decisions confirm identity and permission\nscope. Any downstream certificate that references an auth decision inherits no additional\nauthority from the auth gate itself. Auth is a precondition for access, not a source of\nevidence authority.\n"
-      },
-      "admissibility_checklist": [
-        "Identity is verified (token, credential, or certificate-based)",
-        "Role is declared (not inferred or assumed)",
-        "Permission scope is bounded (specific resource or resource class)",
-        "Request schema validates",
-        "Auth policy is declared and versioned"
-      ],
-      "refusal_conditions": [
-        "Unverified identity (missing, expired, or invalid credential)",
-        "Undeclared role (role not present in identity claims)",
-        "Permission scope exceeds grant (requested access beyond what role allows)",
-        "Missing auth policy",
-        "Malformed auth request",
-        "Expired session or token",
-        "Identity spoofing detected",
-        "Role escalation attempt"
-      ],
-      "auth_vs_evaluator_boundary": "Auth:      gates access by identity and permission\nEvaluator: judges admissibility of evidence under policy\n\nAuth does NOT:\n  - judge evidence quality\n  - classify candidates\n  - apply evaluation policy\n  - make admissibility verdicts\n\nEvaluator does NOT:\n  - verify identity\n  - check permissions\n  - resolve roles\n  - gate resource access\n",
-      "forbidden_implementation_tokens": {
-        "scope": "behavior, not substring",
-        "tokens": [
-          "certify",
-          "evaluate",
-          "terminalize",
-          "execute",
-          "mutate",
-          "authority_upgrade",
-          "sign_certificate",
-          "create_authority",
-          "admissibility_verdict"
-        ]
-      },
-      "required_tests": [
-        "auth_rejects_unverified_identity",
-        "auth_rejects_undeclared_role",
-        "auth_rejects_scope_exceeding_grant",
-        "auth_does_not_judge_evidence_admissibility",
-        "auth_does_not_create_certificate_authority",
-        "auth_is_orthogonal_to_effect_class_algebra",
-        "auth_decision_does_not_carry_evidence_authority",
-        "auth_llm_output_carries_no_authority"
-      ],
-      "canonical_invariant": "Auth gates access by identity and permission. It is orthogonal to the effect-class\nalgebra and does not judge evidence admissibility, create certificate authority, or\nexecute state transitions.\n",
-      "legacy_metadata": {
-        "name": "AuthInterface",
-        "role": "Authentication and authorization boundary gating access to system resources",
-        "version": "1.0",
-        "classification": "governance",
-        "effect_class": "none",
-        "depends_on": [
-          "PolicyContract",
-          "BoundaryContract"
-        ],
-        "forbidden_authority": [
-          "certification",
-          "evaluation",
-          "terminalization",
-          "execution",
-          "mutation",
-          "evidence authority creation",
-          "admissibility judgment",
-          "operator classification"
-        ],
-        "primary_output_family": "DecisionEnvelope",
-        "domain_output_kind": "AuthDecision",
-        "referenced_output_families": [
-          "EvidenceEnvelope"
-        ],
-        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
-      },
-      "migration_note": "authority_effect set to none per validate_auth_interface (legacy YAML declared RequestsDecision; that was YAML->Rust drift, resolved in favor of the validator)."
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_governance_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff",
+    "subject": "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py"
   },
-  "current_contract": "118bcb06c1db9f0b34bb27faf16d3bf4852aed79f048445ee87a496954942b1b",
-  "current_scoring": "39ca45aaedb6bd6e96c1a9cab50b9cd8c7bb793673145586de11abe25a004643",
   "contract_history": [
     {
-      "sha256": "118bcb06c1db9f0b34bb27faf16d3bf4852aed79f048445ee87a496954942b1b",
       "bytes": 6273,
+      "original_paths": [
+        "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:governance:auth_interface:v1.0.0\",\n  \"title\": \"AuthInterface\",\n  \"kind\": \"governance_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"05_governance\",\n  \"role\": \"AuthInterface\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"PolicyContract\",\n        \"BoundaryContract\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"CertificateSigning\",\n        \"Terminalization\"\n      ],\n      \"required\": []\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"This contract defines the authentication and authorization boundary for the system.\\n\\nAuthInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M).\\nIt is an access-gating boundary. Auth is orthogonal to the effect-class algebra -- it\\ngates access to resources, not computation. Auth must not be confused with Evaluator,\\nwhich judges admissibility of evidence. Auth judges identity and permission.\\n\",\n    \"non_role\": [\n      \"certification\",\n      \"evaluation\",\n      \"terminalization\",\n      \"execution\",\n      \"mutation\",\n      \"evidence authority creation\",\n      \"admissibility judgment\",\n      \"operator classification\"\n    ],\n    \"llm_boundary_law\": {\n      \"doctrine\": 5,\n      \"text\": \"LLM-generated content carries zero authority at this interface. LLM output is candidate\\nmaterial only. No LLM output may influence identity verification, role assignment,\\npermission grants, or access decisions. Auth decisions are deterministic functions of\\nverified identity, declared roles, and permission grants.\\n\"\n    },\n    \"core_definition\": \"The AuthInterface verifies identity, resolves declared roles, and checks permission scope\\nagainst grants. It gates access to system resources. It does not judge the admissibility\\nof evidence (that is the Evaluator's role), does not classify candidates (that is\\ngovernance), and does not execute state transitions (that is the Engine's role).\\n\\nAuth answers: \\\"Is this requester allowed to access this resource?\\\"\\nEvaluator answers: \\\"Is this evidence admissible under policy?\\\"\\n\\nThese are distinct questions. Auth must not absorb Evaluator responsibilities or vice versa.\\n\",\n    \"certificate_authority_bound\": {\n      \"doctrine\": 6,\n      \"text\": \"Auth does not create certificate authority. Auth decisions confirm identity and permission\\nscope. Any downstream certificate that references an auth decision inherits no additional\\nauthority from the auth gate itself. Auth is a precondition for access, not a source of\\nevidence authority.\\n\"\n    },\n    \"admissibility_checklist\": [\n      \"Identity is verified (token, credential, or certificate-based)\",\n      \"Role is declared (not inferred or assumed)\",\n      \"Permission scope is bounded (specific resource or resource class)\",\n      \"Request schema validates\",\n      \"Auth policy is declared and versioned\"\n    ],\n    \"refusal_conditions\": [\n      \"Unverified identity (missing, expired, or invalid credential)\",\n      \"Undeclared role (role not present in identity claims)\",\n      \"Permission scope exceeds grant (requested access beyond what role allows)\",\n      \"Missing auth policy\",\n      \"Malformed auth request\",\n      \"Expired session or token\",\n      \"Identity spoofing detected\",\n      \"Role escalation attempt\"\n    ],\n    \"auth_vs_evaluator_boundary\": \"Auth:      gates access by identity and permission\\nEvaluator: judges admissibility of evidence under policy\\n\\nAuth does NOT:\\n  - judge evidence quality\\n  - classify candidates\\n  - apply evaluation policy\\n  - make admissibility verdicts\\n\\nEvaluator does NOT:\\n  - verify identity\\n  - check permissions\\n  - resolve roles\\n  - gate resource access\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"certify\",\n        \"evaluate\",\n        \"terminalize\",\n        \"execute\",\n        \"mutate\",\n        \"authority_upgrade\",\n        \"sign_certificate\",\n        \"create_authority\",\n        \"admissibility_verdict\"\n      ]\n    },\n    \"required_tests\": [\n      \"auth_rejects_unverified_identity\",\n      \"auth_rejects_undeclared_role\",\n      \"auth_rejects_scope_exceeding_grant\",\n      \"auth_does_not_judge_evidence_admissibility\",\n      \"auth_does_not_create_certificate_authority\",\n      \"auth_is_orthogonal_to_effect_class_algebra\",\n      \"auth_decision_does_not_carry_evidence_authority\",\n      \"auth_llm_output_carries_no_authority\"\n    ],\n    \"canonical_invariant\": \"Auth gates access by identity and permission. It is orthogonal to the effect-class\\nalgebra and does not judge evidence admissibility, create certificate authority, or\\nexecute state transitions.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"AuthInterface\",\n      \"role\": \"Authentication and authorization boundary gating access to system resources\",\n      \"version\": \"1.0\",\n      \"classification\": \"governance\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"PolicyContract\",\n        \"BoundaryContract\"\n      ],\n      \"forbidden_authority\": [\n        \"certification\",\n        \"evaluation\",\n        \"terminalization\",\n        \"execution\",\n        \"mutation\",\n        \"evidence authority creation\",\n        \"admissibility judgment\",\n        \"operator classification\"\n      ],\n      \"primary_output_family\": \"DecisionEnvelope\",\n      \"domain_output_kind\": \"AuthDecision\",\n      \"referenced_output_families\": [\n        \"EvidenceEnvelope\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    },\n    \"migration_note\": \"authority_effect set to none per validate_auth_interface (legacy YAML declared RequestsDecision; that was YAML->Rust drift, resolved in favor of the validator).\"\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_governance_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:governance:auth_interface:v1.0.0",
-        "title": "AuthInterface",
-        "kind": "governance_contract",
-        "status": "mathematical_wip",
-        "layer": "05_governance",
-        "role": "AuthInterface",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
+          "capabilities": {
+            "forbidden": [
+              "CertificateSigning",
+              "Terminalization"
+            ],
+            "required": []
+          },
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -167,46 +64,21 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
-          },
-          "refusals": {
-            "may_emit": []
-          },
+          "evidence_ceiling": "ShapeOnly",
           "operator_classes": {
             "may_support": [],
             "must_not_self_assign": true
           },
-          "capabilities": {
-            "forbidden": [
-              "CertificateSigning",
-              "Terminalization"
-            ],
-            "required": []
+          "refusals": {
+            "may_emit": []
+          },
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
         "doctrine": {
-          "summary": "This contract defines the authentication and authorization boundary for the system.\n\nAuthInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M).\nIt is an access-gating boundary. Auth is orthogonal to the effect-class algebra -- it\ngates access to resources, not computation. Auth must not be confused with Evaluator,\nwhich judges admissibility of evidence. Auth judges identity and permission.\n",
-          "non_role": [
-            "certification",
-            "evaluation",
-            "terminalization",
-            "execution",
-            "mutation",
-            "evidence authority creation",
-            "admissibility judgment",
-            "operator classification"
-          ],
-          "llm_boundary_law": {
-            "doctrine": 5,
-            "text": "LLM-generated content carries zero authority at this interface. LLM output is candidate\nmaterial only. No LLM output may influence identity verification, role assignment,\npermission grants, or access decisions. Auth decisions are deterministic functions of\nverified identity, declared roles, and permission grants.\n"
-          },
-          "core_definition": "The AuthInterface verifies identity, resolves declared roles, and checks permission scope\nagainst grants. It gates access to system resources. It does not judge the admissibility\nof evidence (that is the Evaluator's role), does not classify candidates (that is\ngovernance), and does not execute state transitions (that is the Engine's role).\n\nAuth answers: \"Is this requester allowed to access this resource?\"\nEvaluator answers: \"Is this evidence admissible under policy?\"\n\nThese are distinct questions. Auth must not absorb Evaluator responsibilities or vice versa.\n",
-          "certificate_authority_bound": {
-            "doctrine": 6,
-            "text": "Auth does not create certificate authority. Auth decisions confirm identity and permission\nscope. Any downstream certificate that references an auth decision inherits no additional\nauthority from the auth gate itself. Auth is a precondition for access, not a source of\nevidence authority.\n"
-          },
           "admissibility_checklist": [
             "Identity is verified (token, credential, or certificate-based)",
             "Role is declared (not inferred or assumed)",
@@ -214,17 +86,13 @@
             "Request schema validates",
             "Auth policy is declared and versioned"
           ],
-          "refusal_conditions": [
-            "Unverified identity (missing, expired, or invalid credential)",
-            "Undeclared role (role not present in identity claims)",
-            "Permission scope exceeds grant (requested access beyond what role allows)",
-            "Missing auth policy",
-            "Malformed auth request",
-            "Expired session or token",
-            "Identity spoofing detected",
-            "Role escalation attempt"
-          ],
           "auth_vs_evaluator_boundary": "Auth:      gates access by identity and permission\nEvaluator: judges admissibility of evidence under policy\n\nAuth does NOT:\n  - judge evidence quality\n  - classify candidates\n  - apply evaluation policy\n  - make admissibility verdicts\n\nEvaluator does NOT:\n  - verify identity\n  - check permissions\n  - resolve roles\n  - gate resource access\n",
+          "canonical_invariant": "Auth gates access by identity and permission. It is orthogonal to the effect-class\nalgebra and does not judge evidence admissibility, create certificate authority, or\nexecute state transitions.\n",
+          "certificate_authority_bound": {
+            "doctrine": 6,
+            "text": "Auth does not create certificate authority. Auth decisions confirm identity and permission\nscope. Any downstream certificate that references an auth decision inherits no additional\nauthority from the auth gate itself. Auth is a precondition for access, not a source of\nevidence authority.\n"
+          },
+          "core_definition": "The AuthInterface verifies identity, resolves declared roles, and checks permission scope\nagainst grants. It gates access to system resources. It does not judge the admissibility\nof evidence (that is the Evaluator's role), does not classify candidates (that is\ngovernance), and does not execute state transitions (that is the Engine's role).\n\nAuth answers: \"Is this requester allowed to access this resource?\"\nEvaluator answers: \"Is this evidence admissible under policy?\"\n\nThese are distinct questions. Auth must not absorb Evaluator responsibilities or vice versa.\n",
           "forbidden_implementation_tokens": {
             "scope": "behavior, not substring",
             "tokens": [
@@ -239,27 +107,14 @@
               "admissibility_verdict"
             ]
           },
-          "required_tests": [
-            "auth_rejects_unverified_identity",
-            "auth_rejects_undeclared_role",
-            "auth_rejects_scope_exceeding_grant",
-            "auth_does_not_judge_evidence_admissibility",
-            "auth_does_not_create_certificate_authority",
-            "auth_is_orthogonal_to_effect_class_algebra",
-            "auth_decision_does_not_carry_evidence_authority",
-            "auth_llm_output_carries_no_authority"
-          ],
-          "canonical_invariant": "Auth gates access by identity and permission. It is orthogonal to the effect-class\nalgebra and does not judge evidence admissibility, create certificate authority, or\nexecute state transitions.\n",
           "legacy_metadata": {
-            "name": "AuthInterface",
-            "role": "Authentication and authorization boundary gating access to system resources",
-            "version": "1.0",
             "classification": "governance",
-            "effect_class": "none",
             "depends_on": [
               "PolicyContract",
               "BoundaryContract"
             ],
+            "domain_output_kind": "AuthDecision",
+            "effect_class": "none",
             "forbidden_authority": [
               "certification",
               "evaluation",
@@ -270,52 +125,131 @@
               "admissibility judgment",
               "operator classification"
             ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority.",
+            "name": "AuthInterface",
             "primary_output_family": "DecisionEnvelope",
-            "domain_output_kind": "AuthDecision",
             "referenced_output_families": [
               "EvidenceEnvelope"
             ],
-            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+            "role": "Authentication and authorization boundary gating access to system resources",
+            "version": "1.0"
           },
-          "migration_note": "authority_effect set to none per validate_auth_interface (legacy YAML declared RequestsDecision; that was YAML->Rust drift, resolved in favor of the validator)."
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "LLM-generated content carries zero authority at this interface. LLM output is candidate\nmaterial only. No LLM output may influence identity verification, role assignment,\npermission grants, or access decisions. Auth decisions are deterministic functions of\nverified identity, declared roles, and permission grants.\n"
+          },
+          "migration_note": "authority_effect set to none per validate_auth_interface (legacy YAML declared RequestsDecision; that was YAML->Rust drift, resolved in favor of the validator).",
+          "non_role": [
+            "certification",
+            "evaluation",
+            "terminalization",
+            "execution",
+            "mutation",
+            "evidence authority creation",
+            "admissibility judgment",
+            "operator classification"
+          ],
+          "refusal_conditions": [
+            "Unverified identity (missing, expired, or invalid credential)",
+            "Undeclared role (role not present in identity claims)",
+            "Permission scope exceeds grant (requested access beyond what role allows)",
+            "Missing auth policy",
+            "Malformed auth request",
+            "Expired session or token",
+            "Identity spoofing detected",
+            "Role escalation attempt"
+          ],
+          "required_tests": [
+            "auth_rejects_unverified_identity",
+            "auth_rejects_undeclared_role",
+            "auth_rejects_scope_exceeding_grant",
+            "auth_does_not_judge_evidence_admissibility",
+            "auth_does_not_create_certificate_authority",
+            "auth_is_orthogonal_to_effect_class_algebra",
+            "auth_decision_does_not_carry_evidence_authority",
+            "auth_llm_output_carries_no_authority"
+          ],
+          "summary": "This contract defines the authentication and authorization boundary for the system.\n\nAuthInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M).\nIt is an access-gating boundary. Auth is orthogonal to the effect-class algebra -- it\ngates access to resources, not computation. Auth must not be confused with Evaluator,\nwhich judges admissibility of evidence. Auth judges identity and permission.\n"
         },
+        "kind": "governance_contract",
+        "layer": "05_governance",
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0",
             "urn:omega:constitution:base_governance_contract:v1.0.0"
           ]
-        }
+        },
+        "role": "AuthInterface",
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "AuthInterface"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:governance:auth_interface:v1.0.0\",\n  \"title\": \"AuthInterface\",\n  \"kind\": \"governance_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"05_governance\",\n  \"role\": \"AuthInterface\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"PolicyContract\",\n        \"BoundaryContract\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"CertificateSigning\",\n        \"Terminalization\"\n      ],\n      \"required\": []\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"This contract defines the authentication and authorization boundary for the system.\\n\\nAuthInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M).\\nIt is an access-gating boundary. Auth is orthogonal to the effect-class algebra -- it\\ngates access to resources, not computation. Auth must not be confused with Evaluator,\\nwhich judges admissibility of evidence. Auth judges identity and permission.\\n\",\n    \"non_role\": [\n      \"certification\",\n      \"evaluation\",\n      \"terminalization\",\n      \"execution\",\n      \"mutation\",\n      \"evidence authority creation\",\n      \"admissibility judgment\",\n      \"operator classification\"\n    ],\n    \"llm_boundary_law\": {\n      \"doctrine\": 5,\n      \"text\": \"LLM-generated content carries zero authority at this interface. LLM output is candidate\\nmaterial only. No LLM output may influence identity verification, role assignment,\\npermission grants, or access decisions. Auth decisions are deterministic functions of\\nverified identity, declared roles, and permission grants.\\n\"\n    },\n    \"core_definition\": \"The AuthInterface verifies identity, resolves declared roles, and checks permission scope\\nagainst grants. It gates access to system resources. It does not judge the admissibility\\nof evidence (that is the Evaluator's role), does not classify candidates (that is\\ngovernance), and does not execute state transitions (that is the Engine's role).\\n\\nAuth answers: \\\"Is this requester allowed to access this resource?\\\"\\nEvaluator answers: \\\"Is this evidence admissible under policy?\\\"\\n\\nThese are distinct questions. Auth must not absorb Evaluator responsibilities or vice versa.\\n\",\n    \"certificate_authority_bound\": {\n      \"doctrine\": 6,\n      \"text\": \"Auth does not create certificate authority. Auth decisions confirm identity and permission\\nscope. Any downstream certificate that references an auth decision inherits no additional\\nauthority from the auth gate itself. Auth is a precondition for access, not a source of\\nevidence authority.\\n\"\n    },\n    \"admissibility_checklist\": [\n      \"Identity is verified (token, credential, or certificate-based)\",\n      \"Role is declared (not inferred or assumed)\",\n      \"Permission scope is bounded (specific resource or resource class)\",\n      \"Request schema validates\",\n      \"Auth policy is declared and versioned\"\n    ],\n    \"refusal_conditions\": [\n      \"Unverified identity (missing, expired, or invalid credential)\",\n      \"Undeclared role (role not present in identity claims)\",\n      \"Permission scope exceeds grant (requested access beyond what role allows)\",\n      \"Missing auth policy\",\n      \"Malformed auth request\",\n      \"Expired session or token\",\n      \"Identity spoofing detected\",\n      \"Role escalation attempt\"\n    ],\n    \"auth_vs_evaluator_boundary\": \"Auth:      gates access by identity and permission\\nEvaluator: judges admissibility of evidence under policy\\n\\nAuth does NOT:\\n  - judge evidence quality\\n  - classify candidates\\n  - apply evaluation policy\\n  - make admissibility verdicts\\n\\nEvaluator does NOT:\\n  - verify identity\\n  - check permissions\\n  - resolve roles\\n  - gate resource access\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"certify\",\n        \"evaluate\",\n        \"terminalize\",\n        \"execute\",\n        \"mutate\",\n        \"authority_upgrade\",\n        \"sign_certificate\",\n        \"create_authority\",\n        \"admissibility_verdict\"\n      ]\n    },\n    \"required_tests\": [\n      \"auth_rejects_unverified_identity\",\n      \"auth_rejects_undeclared_role\",\n      \"auth_rejects_scope_exceeding_grant\",\n      \"auth_does_not_judge_evidence_admissibility\",\n      \"auth_does_not_create_certificate_authority\",\n      \"auth_is_orthogonal_to_effect_class_algebra\",\n      \"auth_decision_does_not_carry_evidence_authority\",\n      \"auth_llm_output_carries_no_authority\"\n    ],\n    \"canonical_invariant\": \"Auth gates access by identity and permission. It is orthogonal to the effect-class\\nalgebra and does not judge evidence admissibility, create certificate authority, or\\nexecute state transitions.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"AuthInterface\",\n      \"role\": \"Authentication and authorization boundary gating access to system resources\",\n      \"version\": \"1.0\",\n      \"classification\": \"governance\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"PolicyContract\",\n        \"BoundaryContract\"\n      ],\n      \"forbidden_authority\": [\n        \"certification\",\n        \"evaluation\",\n        \"terminalization\",\n        \"execution\",\n        \"mutation\",\n        \"evidence authority creation\",\n        \"admissibility judgment\",\n        \"operator classification\"\n      ],\n      \"primary_output_family\": \"DecisionEnvelope\",\n      \"domain_output_kind\": \"AuthDecision\",\n      \"referenced_output_families\": [\n        \"EvidenceEnvelope\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    },\n    \"migration_note\": \"authority_effect set to none per validate_auth_interface (legacy YAML declared RequestsDecision; that was YAML->Rust drift, resolved in favor of the validator).\"\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_governance_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "118bcb06c1db9f0b34bb27faf16d3bf4852aed79f048445ee87a496954942b1b"
+    },
+    {
+      "bytes": 1733,
       "original_paths": [
-        "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py\",\n    \"sha256\": \"3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py\",\n      \"sha256\": \"3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff\",\n  \"subject\": \"code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py",
+          "sha256": "3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py",
+            "sha256": "3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff",
+        "subject": "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py"
+      },
+      "sha256": "ac65515ef8ff71ed312b9477662f49700602a92bc03cda286615da54ca7a162f"
     }
   ],
+  "current_contract": "ac65515ef8ff71ed312b9477662f49700602a92bc03cda286615da54ca7a162f",
+  "current_scoring": "59ef45cd0b72f971dd491c05ca65f9311f3e0a57611f951e9485706d74b7e4b2",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0.contract.yaml": "c67a81d0d38ae8a6f9a28174c8a63ede13ca6b4d40bdca94f1500a7ee556b1f2"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "39ca45aaedb6bd6e96c1a9cab50b9cd8c7bb793673145586de11abe25a004643",
       "bytes": 2239,
+      "original_paths": [
+        "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py\",\n    \"sha256\": \"3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:governance-auth-interface-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py",
           "sha256": "3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:geometry:governance-auth-interface-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -324,40 +258,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "39ca45aaedb6bd6e96c1a9cab50b9cd8c7bb793673145586de11abe25a004643"
+    },
+    {
+      "bytes": 1684,
+      "original_paths": [
+        "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py\",\n    \"sha256\": \"3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py\",\n      \"sha256\": \"3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py",
+          "sha256": "3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py",
+            "sha256": "3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.py\",\n    \"sha256\": \"3079aa333b7cceca750954cb8a245bc30d954a42e38049d85ddbb1449ef6cfff\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:governance-auth-interface-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "59ef45cd0b72f971dd491c05ca65f9311f3e0a57611f951e9485706d74b7e4b2"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/geometry/governance_auth_interface_v1_0_0.contract.yaml": "c67a81d0d38ae8a6f9a28174c8a63ede13ca6b4d40bdca94f1500a7ee556b1f2"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

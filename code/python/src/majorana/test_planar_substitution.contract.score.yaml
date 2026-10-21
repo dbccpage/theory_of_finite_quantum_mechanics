@@ -1,147 +1,166 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/majorana/test_planar_substitution.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/majorana/test_planar_substitution.py",
       "sha256": "69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:majorana:test-planar-substitution:v1",
-    "role": "test checker",
-    "purpose": "Planar substitution over the skill garden's coloured operad. `EPIC-OE-OEWAS-003` deliverables 1 and 2: an evaluator for",
-    "operations": {
-      "op": "Function op operation.",
-      "garden": "Function garden operation.",
-      "test_the_garden_loads_every_skill": "Anti-vacuity, and `load_garden` refuses rather than skipping a bad skill.",
-      "test_the_colour_vocabulary_is_exactly_ten": "Matching what `EPIC-OE-OEWAS-RUST-001` pins as the estate vocabulary.",
-      "test_no_operation_declares_a_colour_outside_the_vocabulary": "Function test_no_operation_declares_a_colour_outside_the_vocabulary operation.",
-      "test_arity_is_derived_not_declared": "The fibration defect, made unrepeatable by construction.",
-      "test_the_garden_admits_the_substitutions_it_admits": "Pinned so a colour change anywhere is reported rather than absorbed.",
-      "test_a_matching_colour_composes": "Function test_a_matching_colour_composes operation.",
-      "test_substitution_is_planar_the_remaining_order_is_preserved": "phi's inputs are spliced in place, not appended.",
-      "test_substituting_a_nullary_operation_removes_the_slot": "Function test_substituting_a_nullary_operation_removes_the_slot operation.",
-      "test_a_colour_mismatch_is_refused": "Function test_a_colour_mismatch_is_refused operation.",
-      "test_a_slot_that_does_not_exist_is_refused": "Function test_a_slot_that_does_not_exist_is_refused operation.",
-      "test_a_negative_slot_is_refused": "Python would happily index -1; an operad slot is not a Python index.",
-      "test_a_boolean_slot_is_refused": "`True` is an int in Python and would silently mean slot 1.",
-      "test_a_colour_outside_the_vocabulary_is_refused_at_construction": "Function test_a_colour_outside_the_vocabulary_is_refused_at_construction operation.",
-      "test_an_unknown_target_colour_is_refused": "Function test_an_unknown_target_colour_is_refused operation.",
-      "test_is_admissible_agrees_with_substitute": "Function test_is_admissible_agrees_with_substitute operation.",
-      "test_the_two_nestings_agree_and_the_witness_is_the_composite": "The operad axiom, with the slot shift that makes it non-obvious.",
-      "test_the_witness_holds_when_psi_targets_a_later_slot": "Function test_the_witness_holds_when_psi_targets_a_later_slot operation.",
-      "test_the_witness_refuses_when_an_inner_substitution_is_inadmissible": "Function test_the_witness_refuses_when_an_inner_substitution_is_inadmissible operation.",
-      "test_associativity_holds_across_the_real_garden": "Sampled over the estate, not over a constructed triple.",
-      "test_a_missing_garden_is_refused": "Function test_a_missing_garden_is_refused operation.",
-      "test_an_empty_garden_is_refused": "An empty parse must not read as a garden with no defects.",
-      "test_a_skill_whose_arity_disagrees_with_its_sources_is_refused": "The fibration defect, caught at the boundary rather than tolerated.",
-      "test_a_skill_missing_the_operad_triple_is_refused": "Function test_a_skill_missing_the_operad_triple_is_refused operation.",
-      "test_a_well_formed_skill_loads": "The loader must be able to succeed, or its refusals prove nothing.",
-      "test_no_skill_declares_a_grade_or_layer": "Why `TwoLayerGradingValidator` is not built."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/src/majorana/test_planar_substitution.py",
+        "sha256": "69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "test or verification harness",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772",
+    "subject": "code/python/src/majorana/test_planar_substitution.py"
   },
-  "current_contract": "c01a1936af02ab0f3044b190c526852919e5b625d7ea0b240d69cb5f86c8fbd5",
-  "current_scoring": "a88e6346d96d874582ad20c5d1f55be4d28d6a0307b3c49ed897d35398843c7b",
   "contract_history": [
     {
-      "sha256": "c01a1936af02ab0f3044b190c526852919e5b625d7ea0b240d69cb5f86c8fbd5",
       "bytes": 4750,
+      "original_paths": [
+        "code/python/src/majorana/test_planar_substitution.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_planar_substitution.py\",\n    \"sha256\": \"69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-planar-substitution:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Planar substitution over the skill garden's coloured operad. `EPIC-OE-OEWAS-003` deliverables 1 and 2: an evaluator for\",\n  \"operations\": {\n    \"op\": \"Function op operation.\",\n    \"garden\": \"Function garden operation.\",\n    \"test_the_garden_loads_every_skill\": \"Anti-vacuity, and `load_garden` refuses rather than skipping a bad skill.\",\n    \"test_the_colour_vocabulary_is_exactly_ten\": \"Matching what `EPIC-OE-OEWAS-RUST-001` pins as the estate vocabulary.\",\n    \"test_no_operation_declares_a_colour_outside_the_vocabulary\": \"Function test_no_operation_declares_a_colour_outside_the_vocabulary operation.\",\n    \"test_arity_is_derived_not_declared\": \"The fibration defect, made unrepeatable by construction.\",\n    \"test_the_garden_admits_the_substitutions_it_admits\": \"Pinned so a colour change anywhere is reported rather than absorbed.\",\n    \"test_a_matching_colour_composes\": \"Function test_a_matching_colour_composes operation.\",\n    \"test_substitution_is_planar_the_remaining_order_is_preserved\": \"phi's inputs are spliced in place, not appended.\",\n    \"test_substituting_a_nullary_operation_removes_the_slot\": \"Function test_substituting_a_nullary_operation_removes_the_slot operation.\",\n    \"test_a_colour_mismatch_is_refused\": \"Function test_a_colour_mismatch_is_refused operation.\",\n    \"test_a_slot_that_does_not_exist_is_refused\": \"Function test_a_slot_that_does_not_exist_is_refused operation.\",\n    \"test_a_negative_slot_is_refused\": \"Python would happily index -1; an operad slot is not a Python index.\",\n    \"test_a_boolean_slot_is_refused\": \"`True` is an int in Python and would silently mean slot 1.\",\n    \"test_a_colour_outside_the_vocabulary_is_refused_at_construction\": \"Function test_a_colour_outside_the_vocabulary_is_refused_at_construction operation.\",\n    \"test_an_unknown_target_colour_is_refused\": \"Function test_an_unknown_target_colour_is_refused operation.\",\n    \"test_is_admissible_agrees_with_substitute\": \"Function test_is_admissible_agrees_with_substitute operation.\",\n    \"test_the_two_nestings_agree_and_the_witness_is_the_composite\": \"The operad axiom, with the slot shift that makes it non-obvious.\",\n    \"test_the_witness_holds_when_psi_targets_a_later_slot\": \"Function test_the_witness_holds_when_psi_targets_a_later_slot operation.\",\n    \"test_the_witness_refuses_when_an_inner_substitution_is_inadmissible\": \"Function test_the_witness_refuses_when_an_inner_substitution_is_inadmissible operation.\",\n    \"test_associativity_holds_across_the_real_garden\": \"Sampled over the estate, not over a constructed triple.\",\n    \"test_a_missing_garden_is_refused\": \"Function test_a_missing_garden_is_refused operation.\",\n    \"test_an_empty_garden_is_refused\": \"An empty parse must not read as a garden with no defects.\",\n    \"test_a_skill_whose_arity_disagrees_with_its_sources_is_refused\": \"The fibration defect, caught at the boundary rather than tolerated.\",\n    \"test_a_skill_missing_the_operad_triple_is_refused\": \"Function test_a_skill_missing_the_operad_triple_is_refused operation.\",\n    \"test_a_well_formed_skill_loads\": \"The loader must be able to succeed, or its refusals prove nothing.\",\n    \"test_no_skill_declares_a_grade_or_layer\": \"Why `TwoLayerGradingValidator` is not built.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/majorana/test_planar_substitution.py",
           "sha256": "69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:majorana:test-planar-substitution:v1",
-        "role": "test checker",
-        "purpose": "Planar substitution over the skill garden's coloured operad. `EPIC-OE-OEWAS-003` deliverables 1 and 2: an evaluator for",
-        "operations": {
-          "op": "Function op operation.",
-          "garden": "Function garden operation.",
-          "test_the_garden_loads_every_skill": "Anti-vacuity, and `load_garden` refuses rather than skipping a bad skill.",
-          "test_the_colour_vocabulary_is_exactly_ten": "Matching what `EPIC-OE-OEWAS-RUST-001` pins as the estate vocabulary.",
-          "test_no_operation_declares_a_colour_outside_the_vocabulary": "Function test_no_operation_declares_a_colour_outside_the_vocabulary operation.",
-          "test_arity_is_derived_not_declared": "The fibration defect, made unrepeatable by construction.",
-          "test_the_garden_admits_the_substitutions_it_admits": "Pinned so a colour change anywhere is reported rather than absorbed.",
-          "test_a_matching_colour_composes": "Function test_a_matching_colour_composes operation.",
-          "test_substitution_is_planar_the_remaining_order_is_preserved": "phi's inputs are spliced in place, not appended.",
-          "test_substituting_a_nullary_operation_removes_the_slot": "Function test_substituting_a_nullary_operation_removes_the_slot operation.",
-          "test_a_colour_mismatch_is_refused": "Function test_a_colour_mismatch_is_refused operation.",
-          "test_a_slot_that_does_not_exist_is_refused": "Function test_a_slot_that_does_not_exist_is_refused operation.",
-          "test_a_negative_slot_is_refused": "Python would happily index -1; an operad slot is not a Python index.",
-          "test_a_boolean_slot_is_refused": "`True` is an int in Python and would silently mean slot 1.",
-          "test_a_colour_outside_the_vocabulary_is_refused_at_construction": "Function test_a_colour_outside_the_vocabulary_is_refused_at_construction operation.",
-          "test_an_unknown_target_colour_is_refused": "Function test_an_unknown_target_colour_is_refused operation.",
-          "test_is_admissible_agrees_with_substitute": "Function test_is_admissible_agrees_with_substitute operation.",
-          "test_the_two_nestings_agree_and_the_witness_is_the_composite": "The operad axiom, with the slot shift that makes it non-obvious.",
-          "test_the_witness_holds_when_psi_targets_a_later_slot": "Function test_the_witness_holds_when_psi_targets_a_later_slot operation.",
-          "test_the_witness_refuses_when_an_inner_substitution_is_inadmissible": "Function test_the_witness_refuses_when_an_inner_substitution_is_inadmissible operation.",
-          "test_associativity_holds_across_the_real_garden": "Sampled over the estate, not over a constructed triple.",
-          "test_a_missing_garden_is_refused": "Function test_a_missing_garden_is_refused operation.",
-          "test_an_empty_garden_is_refused": "An empty parse must not read as a garden with no defects.",
-          "test_a_skill_whose_arity_disagrees_with_its_sources_is_refused": "The fibration defect, caught at the boundary rather than tolerated.",
-          "test_a_skill_missing_the_operad_triple_is_refused": "Function test_a_skill_missing_the_operad_triple_is_refused operation.",
-          "test_a_well_formed_skill_loads": "The loader must be able to succeed, or its refusals prove nothing.",
-          "test_no_skill_declares_a_grade_or_layer": "Why `TwoLayerGradingValidator` is not built."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "garden": "Function garden operation.",
+          "op": "Function op operation.",
+          "test_a_boolean_slot_is_refused": "`True` is an int in Python and would silently mean slot 1.",
+          "test_a_colour_mismatch_is_refused": "Function test_a_colour_mismatch_is_refused operation.",
+          "test_a_colour_outside_the_vocabulary_is_refused_at_construction": "Function test_a_colour_outside_the_vocabulary_is_refused_at_construction operation.",
+          "test_a_matching_colour_composes": "Function test_a_matching_colour_composes operation.",
+          "test_a_missing_garden_is_refused": "Function test_a_missing_garden_is_refused operation.",
+          "test_a_negative_slot_is_refused": "Python would happily index -1; an operad slot is not a Python index.",
+          "test_a_skill_missing_the_operad_triple_is_refused": "Function test_a_skill_missing_the_operad_triple_is_refused operation.",
+          "test_a_skill_whose_arity_disagrees_with_its_sources_is_refused": "The fibration defect, caught at the boundary rather than tolerated.",
+          "test_a_slot_that_does_not_exist_is_refused": "Function test_a_slot_that_does_not_exist_is_refused operation.",
+          "test_a_well_formed_skill_loads": "The loader must be able to succeed, or its refusals prove nothing.",
+          "test_an_empty_garden_is_refused": "An empty parse must not read as a garden with no defects.",
+          "test_an_unknown_target_colour_is_refused": "Function test_an_unknown_target_colour_is_refused operation.",
+          "test_arity_is_derived_not_declared": "The fibration defect, made unrepeatable by construction.",
+          "test_associativity_holds_across_the_real_garden": "Sampled over the estate, not over a constructed triple.",
+          "test_is_admissible_agrees_with_substitute": "Function test_is_admissible_agrees_with_substitute operation.",
+          "test_no_operation_declares_a_colour_outside_the_vocabulary": "Function test_no_operation_declares_a_colour_outside_the_vocabulary operation.",
+          "test_no_skill_declares_a_grade_or_layer": "Why `TwoLayerGradingValidator` is not built.",
+          "test_substituting_a_nullary_operation_removes_the_slot": "Function test_substituting_a_nullary_operation_removes_the_slot operation.",
+          "test_substitution_is_planar_the_remaining_order_is_preserved": "phi's inputs are spliced in place, not appended.",
+          "test_the_colour_vocabulary_is_exactly_ten": "Matching what `EPIC-OE-OEWAS-RUST-001` pins as the estate vocabulary.",
+          "test_the_garden_admits_the_substitutions_it_admits": "Pinned so a colour change anywhere is reported rather than absorbed.",
+          "test_the_garden_loads_every_skill": "Anti-vacuity, and `load_garden` refuses rather than skipping a bad skill.",
+          "test_the_two_nestings_agree_and_the_witness_is_the_composite": "The operad axiom, with the slot shift that makes it non-obvious.",
+          "test_the_witness_holds_when_psi_targets_a_later_slot": "Function test_the_witness_holds_when_psi_targets_a_later_slot operation.",
+          "test_the_witness_refuses_when_an_inner_substitution_is_inadmissible": "Function test_the_witness_refuses_when_an_inner_substitution_is_inadmissible operation."
+        },
+        "profile": "Exact",
+        "purpose": "Planar substitution over the skill garden's coloured operad. `EPIC-OE-OEWAS-003` deliverables 1 and 2: an evaluator for",
+        "role": "test checker",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_planar_substitution.py\",\n    \"sha256\": \"69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-planar-substitution:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Planar substitution over the skill garden's coloured operad. `EPIC-OE-OEWAS-003` deliverables 1 and 2: an evaluator for\",\n  \"operations\": {\n    \"op\": \"Function op operation.\",\n    \"garden\": \"Function garden operation.\",\n    \"test_the_garden_loads_every_skill\": \"Anti-vacuity, and `load_garden` refuses rather than skipping a bad skill.\",\n    \"test_the_colour_vocabulary_is_exactly_ten\": \"Matching what `EPIC-OE-OEWAS-RUST-001` pins as the estate vocabulary.\",\n    \"test_no_operation_declares_a_colour_outside_the_vocabulary\": \"Function test_no_operation_declares_a_colour_outside_the_vocabulary operation.\",\n    \"test_arity_is_derived_not_declared\": \"The fibration defect, made unrepeatable by construction.\",\n    \"test_the_garden_admits_the_substitutions_it_admits\": \"Pinned so a colour change anywhere is reported rather than absorbed.\",\n    \"test_a_matching_colour_composes\": \"Function test_a_matching_colour_composes operation.\",\n    \"test_substitution_is_planar_the_remaining_order_is_preserved\": \"phi's inputs are spliced in place, not appended.\",\n    \"test_substituting_a_nullary_operation_removes_the_slot\": \"Function test_substituting_a_nullary_operation_removes_the_slot operation.\",\n    \"test_a_colour_mismatch_is_refused\": \"Function test_a_colour_mismatch_is_refused operation.\",\n    \"test_a_slot_that_does_not_exist_is_refused\": \"Function test_a_slot_that_does_not_exist_is_refused operation.\",\n    \"test_a_negative_slot_is_refused\": \"Python would happily index -1; an operad slot is not a Python index.\",\n    \"test_a_boolean_slot_is_refused\": \"`True` is an int in Python and would silently mean slot 1.\",\n    \"test_a_colour_outside_the_vocabulary_is_refused_at_construction\": \"Function test_a_colour_outside_the_vocabulary_is_refused_at_construction operation.\",\n    \"test_an_unknown_target_colour_is_refused\": \"Function test_an_unknown_target_colour_is_refused operation.\",\n    \"test_is_admissible_agrees_with_substitute\": \"Function test_is_admissible_agrees_with_substitute operation.\",\n    \"test_the_two_nestings_agree_and_the_witness_is_the_composite\": \"The operad axiom, with the slot shift that makes it non-obvious.\",\n    \"test_the_witness_holds_when_psi_targets_a_later_slot\": \"Function test_the_witness_holds_when_psi_targets_a_later_slot operation.\",\n    \"test_the_witness_refuses_when_an_inner_substitution_is_inadmissible\": \"Function test_the_witness_refuses_when_an_inner_substitution_is_inadmissible operation.\",\n    \"test_associativity_holds_across_the_real_garden\": \"Sampled over the estate, not over a constructed triple.\",\n    \"test_a_missing_garden_is_refused\": \"Function test_a_missing_garden_is_refused operation.\",\n    \"test_an_empty_garden_is_refused\": \"An empty parse must not read as a garden with no defects.\",\n    \"test_a_skill_whose_arity_disagrees_with_its_sources_is_refused\": \"The fibration defect, caught at the boundary rather than tolerated.\",\n    \"test_a_skill_missing_the_operad_triple_is_refused\": \"Function test_a_skill_missing_the_operad_triple_is_refused operation.\",\n    \"test_a_well_formed_skill_loads\": \"The loader must be able to succeed, or its refusals prove nothing.\",\n    \"test_no_skill_declares_a_grade_or_layer\": \"Why `TwoLayerGradingValidator` is not built.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "c01a1936af02ab0f3044b190c526852919e5b625d7ea0b240d69cb5f86c8fbd5"
+    },
+    {
+      "bytes": 1652,
       "original_paths": [
-        "code/python/src/majorana/test_planar_substitution.contract.score.yaml#contract"
-      ]
+        "code/python/src/majorana/test_planar_substitution.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/majorana/test_planar_substitution.py\",\n    \"sha256\": \"69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/majorana/test_planar_substitution.py\",\n      \"sha256\": \"69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"test or verification harness\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772\",\n  \"subject\": \"code/python/src/majorana/test_planar_substitution.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/majorana/test_planar_substitution.py",
+          "sha256": "69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/majorana/test_planar_substitution.py",
+            "sha256": "69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "test or verification harness",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772",
+        "subject": "code/python/src/majorana/test_planar_substitution.py"
+      },
+      "sha256": "6174694f638924298b9f79238f20842752c4aa6fcdb7dd6f19766cc4b1cdacd2"
     }
   ],
+  "current_contract": "6174694f638924298b9f79238f20842752c4aa6fcdb7dd6f19766cc4b1cdacd2",
+  "current_scoring": "3d02f507006c7d722924518c5c622b8692aa7888f4cb824feedd9025e5b4f067",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "a88e6346d96d874582ad20c5d1f55be4d28d6a0307b3c49ed897d35398843c7b",
       "bytes": 2177,
+      "original_paths": [
+        "code/python/src/majorana/test_planar_substitution.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_planar_substitution.py\",\n    \"sha256\": \"69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-planar-substitution:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 16,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/majorana/test_planar_substitution.py",
           "sha256": "69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "C"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:majorana:test-planar-substitution:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -150,35 +169,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 8,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 16,
-          "control_nesting": 5
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "C"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 5,
+          "lizard_ccn": 7,
+          "radon_ccn": 8,
+          "weighted_control_upper_bound": 16
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "a88e6346d96d874582ad20c5d1f55be4d28d6a0307b3c49ed897d35398843c7b"
+    },
+    {
+      "bytes": 1620,
+      "original_paths": [
+        "code/python/src/majorana/test_planar_substitution.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/majorana/test_planar_substitution.py\",\n    \"sha256\": \"69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/majorana/test_planar_substitution.py\",\n      \"sha256\": \"69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/majorana/test_planar_substitution.py",
+          "sha256": "69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/src/majorana/test_planar_substitution.py",
+            "sha256": "69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_planar_substitution.py\",\n    \"sha256\": \"69e06845a662e6e809b3a735ca487f1fdf95806baae401930039cedcee526772\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-planar-substitution:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 16,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/majorana/test_planar_substitution.contract.score.yaml#scoring"
-      ]
+      "sha256": "3d02f507006c7d722924518c5c622b8692aa7888f4cb824feedd9025e5b4f067"
     }
   ]
 }

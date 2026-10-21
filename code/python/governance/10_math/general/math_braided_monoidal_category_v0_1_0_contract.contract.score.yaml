@@ -1,153 +1,102 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:braided_monoidal_category:v0.1.0",
-    "title": "Braided Monoidal Category Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py",
+      "sha256": "a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py",
+        "sha256": "a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "braided_monoidal_category",
-      "symbol": "(C, tensor, I, alpha, lambda, rho, beta)",
-      "ascii_symbol": "braided_monoidal_category",
-      "notation": "(C, tensorObj, unit, associator, leftUnitor, rightUnitor, braiding)",
-      "domain": [
-        "monoidal_category: underlying monoidal category structure (C, tensorObj, unit, associator, leftUnitor, rightUnitor)",
-        "tensor_product: bifunctor tensorObj on objects and tensorHom on morphisms",
-        "braiding: natural isomorphism beta_{X,Y}: tensorObj X Y -> tensorObj Y X",
-        "braiding_inverse: inverse morphism beta^{-1}_{X,Y}: tensorObj Y X -> tensorObj X Y",
-        "associator: natural isomorphism alpha_{X,Y,Z}: tensorObj (tensorObj X Y) Z -> tensorObj X (tensorObj Y Z)",
-        "left_unitor: natural isomorphism lambda_X: tensorObj unit X -> X",
-        "right_unitor: natural isomorphism rho_X: tensorObj X unit -> X",
-        "double_braiding: beta_{Y,X} o beta_{X,Y}: tensorObj X Y -> tensorObj X Y"
-      ],
-      "codomain": {
-        "description": "A braided monoidal category is a monoidal category equipped with a natural isomorphism braiding beta_{X,Y}: X tensor Y -> Y tensor X satisfying the two Mac Lane hexagon coherence axioms."
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "The underlying monoidal category must satisfy bifunctoriality and all monoidal axioms.",
-        "The associator pentagon coherence diagram and unitor triangle diagram commute.",
-        "The braiding beta must be a natural isomorphism between tensorObj X Y and tensorObj Y X.",
-        "The braiding must satisfy Hexagon Axiom 1 relating beta_{X, tensorObj Y Z} to beta_{X,Y} and beta_{X,Z}.",
-        "The braiding must satisfy Hexagon Axiom 2 relating beta_{tensorObj X Y, Z} to beta_{X,Z} and beta_{Y,Z}.",
-        "Each component beta_{X,Y} must have a two-sided inverse beta^{-1}_{X,Y}.",
-        "Artifact hash is deterministically computed from monoidal and braiding data."
-      ]
-    },
-    "laws": [
-      "Braiding naturality: comp (tensorHom f g) (braiding X2 Y2).hom = comp (braiding X1 Y1).hom (tensorHom g f)",
-      "Hexagon Axiom 1: comp (associator X Y Z).hom (comp (braiding X (tensorObj Y Z)).hom (associator Y Z X).hom) = comp (tensorHom (braiding X Y).hom (cat.id Z)) (comp (associator Y X Z).hom (tensorHom (cat.id Y) (braiding X Z).hom))",
-      "Hexagon Axiom 2: comp (associator X Y Z).inv (comp (braiding (tensorObj X Y) Z).hom (associator Z X Y).inv) = comp (tensorHom (cat.id X) (braiding Y Z).hom) (comp (associator X Z Y).inv (tensorHom (braiding X Z).hom (cat.id Y)))",
-      "Braiding isomorphism: comp (braiding X Y).hom (braiding X Y).inv = cat.id (tensorObj X Y) and comp (braiding X Y).inv (braiding X Y).hom = cat.id (tensorObj Y X)",
-      "Monoidal pentagon: comp (tensorHom (associator W X Y).hom (cat.id Z)) (comp (associator W (tensorObj X Y) Z).hom (tensorHom (cat.id W) (associator X Y Z).hom)) = comp (associator (tensorObj W X) Y Z).hom (associator W X (tensorObj Y Z)).hom",
-      "Monoidal triangle: comp (associator X unit Y).hom (tensorHom (cat.id X) (leftUnitor Y).hom) = tensorHom (rightUnitor X).hom (cat.id Y)"
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Braiding data is content-addressed",
-        "Hexagon axiom verification is deterministic"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "Invalid underlying monoidal category structure must be rejected (TriangleCoherenceViolation / PentagonCoherenceViolation)",
-      "Braiding that violates naturality must be rejected",
-      "Braiding that violates Hexagon Axiom 1 must be rejected",
-      "Braiding that violates Hexagon Axiom 2 must be rejected",
-      "Braiding that is not an invertible isomorphism must be rejected"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "A braided monoidal category is a monoidal category equipped with a natural isomorphism (braiding) beta_{X,Y}: X tensor Y -> Y tensor X satisfying the two Mac Lane hexagon coherence axioms. Braided categories encode quantum symmetry and braid group actions.",
-      "non_role": [
-        "Ribbon and pivotal structures (handled in ribbon_category contract)",
-        "Braided infinity-categories (higher categorical setting)",
-        "Fusion categories with simple objects and F-matrices (handled in fusion_category contract)",
-        "Symmetric monoidal categories (where double braiding is identity)"
-      ]
-    },
-    "wip": [
-      "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
-      "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
-      "No native implementation of this complete structure is bound by this contract."
-    ],
-    "lean_binding": {
-      "path": "lean4/research_programs/higher_category_theory/Braided.lean",
-      "symbol": "HigherCategoryTheory.BraidedCategory",
-      "scope": "algebraic_structure_with_law_fields"
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c",
+    "subject": "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py"
   },
-  "current_contract": "2462f44cd669e343aae576949cc4920c71616bf6f222f46bf4cab5ce40034916",
-  "current_scoring": "6b6033765325763e9995b9838966488b09a48bb30497ab8367aab9919ff81d9b",
   "contract_history": [
     {
-      "sha256": "2462f44cd669e343aae576949cc4920c71616bf6f222f46bf4cab5ce40034916",
       "bytes": 5715,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:braided_monoidal_category:v0.1.0\",\n  \"title\": \"Braided Monoidal Category Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"braided_monoidal_category\",\n    \"symbol\": \"(C, tensor, I, alpha, lambda, rho, beta)\",\n    \"ascii_symbol\": \"braided_monoidal_category\",\n    \"notation\": \"(C, tensorObj, unit, associator, leftUnitor, rightUnitor, braiding)\",\n    \"domain\": [\n      \"monoidal_category: underlying monoidal category structure (C, tensorObj, unit, associator, leftUnitor, rightUnitor)\",\n      \"tensor_product: bifunctor tensorObj on objects and tensorHom on morphisms\",\n      \"braiding: natural isomorphism beta_{X,Y}: tensorObj X Y -> tensorObj Y X\",\n      \"braiding_inverse: inverse morphism beta^{-1}_{X,Y}: tensorObj Y X -> tensorObj X Y\",\n      \"associator: natural isomorphism alpha_{X,Y,Z}: tensorObj (tensorObj X Y) Z -> tensorObj X (tensorObj Y Z)\",\n      \"left_unitor: natural isomorphism lambda_X: tensorObj unit X -> X\",\n      \"right_unitor: natural isomorphism rho_X: tensorObj X unit -> X\",\n      \"double_braiding: beta_{Y,X} o beta_{X,Y}: tensorObj X Y -> tensorObj X Y\"\n    ],\n    \"codomain\": {\n      \"description\": \"A braided monoidal category is a monoidal category equipped with a natural isomorphism braiding beta_{X,Y}: X tensor Y -> Y tensor X satisfying the two Mac Lane hexagon coherence axioms.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The underlying monoidal category must satisfy bifunctoriality and all monoidal axioms.\",\n      \"The associator pentagon coherence diagram and unitor triangle diagram commute.\",\n      \"The braiding beta must be a natural isomorphism between tensorObj X Y and tensorObj Y X.\",\n      \"The braiding must satisfy Hexagon Axiom 1 relating beta_{X, tensorObj Y Z} to beta_{X,Y} and beta_{X,Z}.\",\n      \"The braiding must satisfy Hexagon Axiom 2 relating beta_{tensorObj X Y, Z} to beta_{X,Z} and beta_{Y,Z}.\",\n      \"Each component beta_{X,Y} must have a two-sided inverse beta^{-1}_{X,Y}.\",\n      \"Artifact hash is deterministically computed from monoidal and braiding data.\"\n    ]\n  },\n  \"laws\": [\n    \"Braiding naturality: comp (tensorHom f g) (braiding X2 Y2).hom = comp (braiding X1 Y1).hom (tensorHom g f)\",\n    \"Hexagon Axiom 1: comp (associator X Y Z).hom (comp (braiding X (tensorObj Y Z)).hom (associator Y Z X).hom) = comp (tensorHom (braiding X Y).hom (cat.id Z)) (comp (associator Y X Z).hom (tensorHom (cat.id Y) (braiding X Z).hom))\",\n    \"Hexagon Axiom 2: comp (associator X Y Z).inv (comp (braiding (tensorObj X Y) Z).hom (associator Z X Y).inv) = comp (tensorHom (cat.id X) (braiding Y Z).hom) (comp (associator X Z Y).inv (tensorHom (braiding X Z).hom (cat.id Y)))\",\n    \"Braiding isomorphism: comp (braiding X Y).hom (braiding X Y).inv = cat.id (tensorObj X Y) and comp (braiding X Y).inv (braiding X Y).hom = cat.id (tensorObj Y X)\",\n    \"Monoidal pentagon: comp (tensorHom (associator W X Y).hom (cat.id Z)) (comp (associator W (tensorObj X Y) Z).hom (tensorHom (cat.id W) (associator X Y Z).hom)) = comp (associator (tensorObj W X) Y Z).hom (associator W X (tensorObj Y Z)).hom\",\n    \"Monoidal triangle: comp (associator X unit Y).hom (tensorHom (cat.id X) (leftUnitor Y).hom) = tensorHom (rightUnitor X).hom (cat.id Y)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Braiding data is content-addressed\",\n      \"Hexagon axiom verification is deterministic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Invalid underlying monoidal category structure must be rejected (TriangleCoherenceViolation / PentagonCoherenceViolation)\",\n    \"Braiding that violates naturality must be rejected\",\n    \"Braiding that violates Hexagon Axiom 1 must be rejected\",\n    \"Braiding that violates Hexagon Axiom 2 must be rejected\",\n    \"Braiding that is not an invertible isomorphism must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A braided monoidal category is a monoidal category equipped with a natural isomorphism (braiding) beta_{X,Y}: X tensor Y -> Y tensor X satisfying the two Mac Lane hexagon coherence axioms. Braided categories encode quantum symmetry and braid group actions.\",\n    \"non_role\": [\n      \"Ribbon and pivotal structures (handled in ribbon_category contract)\",\n      \"Braided infinity-categories (higher categorical setting)\",\n      \"Fusion categories with simple objects and F-matrices (handled in fusion_category contract)\",\n      \"Symmetric monoidal categories (where double braiding is identity)\"\n    ]\n  },\n  \"wip\": [\n    \"General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.\",\n    \"The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.\",\n    \"No native implementation of this complete structure is bound by this contract.\"\n  ],\n  \"lean_binding\": {\n    \"path\": \"lean4/research_programs/higher_category_theory/Braided.lean\",\n    \"symbol\": \"HigherCategoryTheory.BraidedCategory\",\n    \"scope\": \"algebraic_structure_with_law_fields\"\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:braided_monoidal_category:v0.1.0",
-        "title": "Braided Monoidal Category Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Ribbon and pivotal structures (handled in ribbon_category contract)",
+            "Braided infinity-categories (higher categorical setting)",
+            "Fusion categories with simple objects and F-matrices (handled in fusion_category contract)",
+            "Symmetric monoidal categories (where double braiding is identity)"
+          ],
+          "summary": "A braided monoidal category is a monoidal category equipped with a natural isomorphism (braiding) beta_{X,Y}: X tensor Y -> Y tensor X satisfying the two Mac Lane hexagon coherence axioms. Braided categories encode quantum symmetry and braid group actions."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "Braiding naturality: comp (tensorHom f g) (braiding X2 Y2).hom = comp (braiding X1 Y1).hom (tensorHom g f)",
+          "Hexagon Axiom 1: comp (associator X Y Z).hom (comp (braiding X (tensorObj Y Z)).hom (associator Y Z X).hom) = comp (tensorHom (braiding X Y).hom (cat.id Z)) (comp (associator Y X Z).hom (tensorHom (cat.id Y) (braiding X Z).hom))",
+          "Hexagon Axiom 2: comp (associator X Y Z).inv (comp (braiding (tensorObj X Y) Z).hom (associator Z X Y).inv) = comp (tensorHom (cat.id X) (braiding Y Z).hom) (comp (associator X Z Y).inv (tensorHom (braiding X Z).hom (cat.id Y)))",
+          "Braiding isomorphism: comp (braiding X Y).hom (braiding X Y).inv = cat.id (tensorObj X Y) and comp (braiding X Y).inv (braiding X Y).hom = cat.id (tensorObj Y X)",
+          "Monoidal pentagon: comp (tensorHom (associator W X Y).hom (cat.id Z)) (comp (associator W (tensorObj X Y) Z).hom (tensorHom (cat.id W) (associator X Y Z).hom)) = comp (associator (tensorObj W X) Y Z).hom (associator W X (tensorObj Y Z)).hom",
+          "Monoidal triangle: comp (associator X unit Y).hom (tensorHom (cat.id X) (leftUnitor Y).hom) = tensorHom (rightUnitor X).hom (cat.id Y)"
+        ],
+        "layer": "math",
+        "lean_binding": {
+          "path": "lean4/research_programs/higher_category_theory/Braided.lean",
+          "scope": "algebraic_structure_with_law_fields",
+          "symbol": "HigherCategoryTheory.BraidedCategory"
+        },
         "math": {
-          "object_kind": "braided_monoidal_category",
-          "symbol": "(C, tensor, I, alpha, lambda, rho, beta)",
           "ascii_symbol": "braided_monoidal_category",
-          "notation": "(C, tensorObj, unit, associator, leftUnitor, rightUnitor, braiding)",
+          "codomain": {
+            "description": "A braided monoidal category is a monoidal category equipped with a natural isomorphism braiding beta_{X,Y}: X tensor Y -> Y tensor X satisfying the two Mac Lane hexagon coherence axioms."
+          },
           "domain": [
             "monoidal_category: underlying monoidal category structure (C, tensorObj, unit, associator, leftUnitor, rightUnitor)",
             "tensor_product: bifunctor tensorObj on objects and tensorHom on morphisms",
@@ -158,9 +107,30 @@
             "right_unitor: natural isomorphism rho_X: tensorObj X unit -> X",
             "double_braiding: beta_{Y,X} o beta_{X,Y}: tensorObj X Y -> tensorObj X Y"
           ],
-          "codomain": {
-            "description": "A braided monoidal category is a monoidal category equipped with a natural isomorphism braiding beta_{X,Y}: X tensor Y -> Y tensor X satisfying the two Mac Lane hexagon coherence axioms."
-          }
+          "notation": "(C, tensorObj, unit, associator, leftUnitor, rightUnitor, braiding)",
+          "object_kind": "braided_monoidal_category",
+          "symbol": "(C, tensor, I, alpha, lambda, rho, beta)"
+        },
+        "negative_tests": [
+          "Invalid underlying monoidal category structure must be rejected (TriangleCoherenceViolation / PentagonCoherenceViolation)",
+          "Braiding that violates naturality must be rejected",
+          "Braiding that violates Hexagon Axiom 1 must be rejected",
+          "Braiding that violates Hexagon Axiom 2 must be rejected",
+          "Braiding that is not an invertible isomorphism must be rejected"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Braiding data is content-addressed",
+            "Hexagon axiom verification is deterministic"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -173,85 +143,81 @@
             "Artifact hash is deterministically computed from monoidal and braiding data."
           ]
         },
-        "laws": [
-          "Braiding naturality: comp (tensorHom f g) (braiding X2 Y2).hom = comp (braiding X1 Y1).hom (tensorHom g f)",
-          "Hexagon Axiom 1: comp (associator X Y Z).hom (comp (braiding X (tensorObj Y Z)).hom (associator Y Z X).hom) = comp (tensorHom (braiding X Y).hom (cat.id Z)) (comp (associator Y X Z).hom (tensorHom (cat.id Y) (braiding X Z).hom))",
-          "Hexagon Axiom 2: comp (associator X Y Z).inv (comp (braiding (tensorObj X Y) Z).hom (associator Z X Y).inv) = comp (tensorHom (cat.id X) (braiding Y Z).hom) (comp (associator X Z Y).inv (tensorHom (braiding X Z).hom (cat.id Y)))",
-          "Braiding isomorphism: comp (braiding X Y).hom (braiding X Y).inv = cat.id (tensorObj X Y) and comp (braiding X Y).inv (braiding X Y).hom = cat.id (tensorObj Y X)",
-          "Monoidal pentagon: comp (tensorHom (associator W X Y).hom (cat.id Z)) (comp (associator W (tensorObj X Y) Z).hom (tensorHom (cat.id W) (associator X Y Z).hom)) = comp (associator (tensorObj W X) Y Z).hom (associator W X (tensorObj Y Z)).hom",
-          "Monoidal triangle: comp (associator X unit Y).hom (tensorHom (cat.id X) (leftUnitor Y).hom) = tensorHom (rightUnitor X).hom (cat.id Y)"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "Braiding data is content-addressed",
-            "Hexagon axiom verification is deterministic"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
-        "negative_tests": [
-          "Invalid underlying monoidal category structure must be rejected (TriangleCoherenceViolation / PentagonCoherenceViolation)",
-          "Braiding that violates naturality must be rejected",
-          "Braiding that violates Hexagon Axiom 1 must be rejected",
-          "Braiding that violates Hexagon Axiom 2 must be rejected",
-          "Braiding that is not an invertible isomorphism must be rejected"
-        ],
-        "doctrine": {
-          "summary": "A braided monoidal category is a monoidal category equipped with a natural isomorphism (braiding) beta_{X,Y}: X tensor Y -> Y tensor X satisfying the two Mac Lane hexagon coherence axioms. Braided categories encode quantum symmetry and braid group actions.",
-          "non_role": [
-            "Ribbon and pivotal structures (handled in ribbon_category contract)",
-            "Braided infinity-categories (higher categorical setting)",
-            "Fusion categories with simple objects and F-matrices (handled in fusion_category contract)",
-            "Symmetric monoidal categories (where double braiding is identity)"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Braided Monoidal Category Contract",
         "wip": [
           "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
           "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
           "No native implementation of this complete structure is bound by this contract."
-        ],
-        "lean_binding": {
-          "path": "lean4/research_programs/higher_category_theory/Braided.lean",
-          "symbol": "HigherCategoryTheory.BraidedCategory",
-          "scope": "algebraic_structure_with_law_fields"
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:braided_monoidal_category:v0.1.0\",\n  \"title\": \"Braided Monoidal Category Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"braided_monoidal_category\",\n    \"symbol\": \"(C, tensor, I, alpha, lambda, rho, beta)\",\n    \"ascii_symbol\": \"braided_monoidal_category\",\n    \"notation\": \"(C, tensorObj, unit, associator, leftUnitor, rightUnitor, braiding)\",\n    \"domain\": [\n      \"monoidal_category: underlying monoidal category structure (C, tensorObj, unit, associator, leftUnitor, rightUnitor)\",\n      \"tensor_product: bifunctor tensorObj on objects and tensorHom on morphisms\",\n      \"braiding: natural isomorphism beta_{X,Y}: tensorObj X Y -> tensorObj Y X\",\n      \"braiding_inverse: inverse morphism beta^{-1}_{X,Y}: tensorObj Y X -> tensorObj X Y\",\n      \"associator: natural isomorphism alpha_{X,Y,Z}: tensorObj (tensorObj X Y) Z -> tensorObj X (tensorObj Y Z)\",\n      \"left_unitor: natural isomorphism lambda_X: tensorObj unit X -> X\",\n      \"right_unitor: natural isomorphism rho_X: tensorObj X unit -> X\",\n      \"double_braiding: beta_{Y,X} o beta_{X,Y}: tensorObj X Y -> tensorObj X Y\"\n    ],\n    \"codomain\": {\n      \"description\": \"A braided monoidal category is a monoidal category equipped with a natural isomorphism braiding beta_{X,Y}: X tensor Y -> Y tensor X satisfying the two Mac Lane hexagon coherence axioms.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The underlying monoidal category must satisfy bifunctoriality and all monoidal axioms.\",\n      \"The associator pentagon coherence diagram and unitor triangle diagram commute.\",\n      \"The braiding beta must be a natural isomorphism between tensorObj X Y and tensorObj Y X.\",\n      \"The braiding must satisfy Hexagon Axiom 1 relating beta_{X, tensorObj Y Z} to beta_{X,Y} and beta_{X,Z}.\",\n      \"The braiding must satisfy Hexagon Axiom 2 relating beta_{tensorObj X Y, Z} to beta_{X,Z} and beta_{Y,Z}.\",\n      \"Each component beta_{X,Y} must have a two-sided inverse beta^{-1}_{X,Y}.\",\n      \"Artifact hash is deterministically computed from monoidal and braiding data.\"\n    ]\n  },\n  \"laws\": [\n    \"Braiding naturality: comp (tensorHom f g) (braiding X2 Y2).hom = comp (braiding X1 Y1).hom (tensorHom g f)\",\n    \"Hexagon Axiom 1: comp (associator X Y Z).hom (comp (braiding X (tensorObj Y Z)).hom (associator Y Z X).hom) = comp (tensorHom (braiding X Y).hom (cat.id Z)) (comp (associator Y X Z).hom (tensorHom (cat.id Y) (braiding X Z).hom))\",\n    \"Hexagon Axiom 2: comp (associator X Y Z).inv (comp (braiding (tensorObj X Y) Z).hom (associator Z X Y).inv) = comp (tensorHom (cat.id X) (braiding Y Z).hom) (comp (associator X Z Y).inv (tensorHom (braiding X Z).hom (cat.id Y)))\",\n    \"Braiding isomorphism: comp (braiding X Y).hom (braiding X Y).inv = cat.id (tensorObj X Y) and comp (braiding X Y).inv (braiding X Y).hom = cat.id (tensorObj Y X)\",\n    \"Monoidal pentagon: comp (tensorHom (associator W X Y).hom (cat.id Z)) (comp (associator W (tensorObj X Y) Z).hom (tensorHom (cat.id W) (associator X Y Z).hom)) = comp (associator (tensorObj W X) Y Z).hom (associator W X (tensorObj Y Z)).hom\",\n    \"Monoidal triangle: comp (associator X unit Y).hom (tensorHom (cat.id X) (leftUnitor Y).hom) = tensorHom (rightUnitor X).hom (cat.id Y)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Braiding data is content-addressed\",\n      \"Hexagon axiom verification is deterministic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Invalid underlying monoidal category structure must be rejected (TriangleCoherenceViolation / PentagonCoherenceViolation)\",\n    \"Braiding that violates naturality must be rejected\",\n    \"Braiding that violates Hexagon Axiom 1 must be rejected\",\n    \"Braiding that violates Hexagon Axiom 2 must be rejected\",\n    \"Braiding that is not an invertible isomorphism must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A braided monoidal category is a monoidal category equipped with a natural isomorphism (braiding) beta_{X,Y}: X tensor Y -> Y tensor X satisfying the two Mac Lane hexagon coherence axioms. Braided categories encode quantum symmetry and braid group actions.\",\n    \"non_role\": [\n      \"Ribbon and pivotal structures (handled in ribbon_category contract)\",\n      \"Braided infinity-categories (higher categorical setting)\",\n      \"Fusion categories with simple objects and F-matrices (handled in fusion_category contract)\",\n      \"Symmetric monoidal categories (where double braiding is identity)\"\n    ]\n  },\n  \"wip\": [\n    \"General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.\",\n    \"The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.\",\n    \"No native implementation of this complete structure is bound by this contract.\"\n  ],\n  \"lean_binding\": {\n    \"path\": \"lean4/research_programs/higher_category_theory/Braided.lean\",\n    \"symbol\": \"HigherCategoryTheory.BraidedCategory\",\n    \"scope\": \"algebraic_structure_with_law_fields\"\n  }\n}\n",
+      "sha256": "2462f44cd669e343aae576949cc4920c71616bf6f222f46bf4cab5ce40034916"
+    },
+    {
+      "bytes": 1745,
       "original_paths": [
-        "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py\",\n    \"sha256\": \"a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py\",\n      \"sha256\": \"a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c\",\n  \"subject\": \"code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py",
+          "sha256": "a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py",
+            "sha256": "a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c",
+        "subject": "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py"
+      },
+      "sha256": "347acea45346c4e8a1112f58e1543a7ff7a3a32c4113bc8ea77c7838a75830fd"
     }
   ],
+  "current_contract": "347acea45346c4e8a1112f58e1543a7ff7a3a32c4113bc8ea77c7838a75830fd",
+  "current_scoring": "2ecbf838093206ed21ff74f736b470fea01197dd89b2ee5f4b37a0e9fce02045",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0.contract.yaml": "ed39ae63b2ad24cfdce2dbcd1a9538226b86ee5c4da59ec60b92bab7170f6be5"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "6b6033765325763e9995b9838966488b09a48bb30497ab8367aab9919ff81d9b",
       "bytes": 2247,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py\",\n    \"sha256\": \"a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-braided-monoidal-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py",
           "sha256": "a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-braided-monoidal-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -260,40 +226,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "6b6033765325763e9995b9838966488b09a48bb30497ab8367aab9919ff81d9b"
+    },
+    {
+      "bytes": 1692,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py\",\n    \"sha256\": \"a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py\",\n      \"sha256\": \"a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py",
+          "sha256": "a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py",
+            "sha256": "a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.py\",\n    \"sha256\": \"a65f9177d67698f8822999adf43644dadb7ff67deebc56a206bd8e91bc76194c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-braided-monoidal-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "2ecbf838093206ed21ff74f736b470fea01197dd89b2ee5f4b37a0e9fce02045"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_braided_monoidal_category_v0_1_0.contract.yaml": "ed39ae63b2ad24cfdce2dbcd1a9538226b86ee5c4da59ec60b92bab7170f6be5"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

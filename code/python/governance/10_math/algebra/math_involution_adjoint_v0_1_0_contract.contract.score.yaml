@@ -1,172 +1,125 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:involution_adjoint:v0.1.0",
-    "title": "Field Involution and Adjoint Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py",
+      "sha256": "2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7"
     },
-    "math": {
-      "object_kind": "field_with_involution_and_adjoint",
-      "symbol": "(F, x ↦ x̄), A† = Āᵀ, ⟨A, B⟩ = tr(A† B)",
-      "ascii_symbol": "involution_adjoint",
-      "notation": "F : Involution (a field with an involutive ring automorphism), A ∈ M_{m×n}(F)",
-      "domain": [
-        "field: F implementing Involution, a ring automorphism conjugate of order at most two",
-        "matrices: BasicMatrix<F>",
-        "vectors: slices of F"
-      ],
-      "codomain": {
-        "description": "The adjoint A† (entry (i, j) is the conjugate of A[j][i]), the exact predicates Hermitian, skew-Hermitian, unitary and normal, the Hilbert–Schmidt inner product tr(A† B), the vector inner product and the outer product |u⟩⟨v|. With the identity involution A† is the transpose and the same functions decide symmetric, skew-symmetric and orthogonal matrices.\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "An implementor of Involution must prove: conj(a+b) = conj a + conj b; conj(a·b) = conj a · conj b; conj 1 = 1; conj(conj a) = a",
-        "BigRational implements Involution as the identity",
-        "Operator predicates (is_hermitian, is_skew_hermitian, is_unitary, is_normal) return Result<bool, _> and refuse a non-square matrix as NotSquare instead of answering false",
-        "hs_inner refuses matrices of different shapes; inner_product refuses vectors of different length",
-        "outer_product has a _with_limits form charging len(u)·len(v) elements"
-      ]
-    },
-    "laws": [
-      "(A†)† = A, (A + B)† = A† + B†, (A B)† = B† A†, and (c A)† = c̄ A†",
-      "A is Hermitian iff A = A†, skew-Hermitian iff A = −A†, unitary iff A† A = I (equivalently A A† = I), normal iff A A† = A† A",
-      "Hermitian, skew-Hermitian and unitary matrices are normal",
-      "⟨A, B⟩ = Σ conj(A[i][j]) · B[i][j] = tr(A† B), conjugate-linear in A, linear in B, with ⟨B, A⟩ = conj ⟨A, B⟩",
-      "tr(|u⟩⟨v|) = ⟨v, u⟩ and (|u⟩⟨v|) w = ⟨v, w⟩ u",
-      "the Pauli matrices over Q(i) are Hermitian, unitary, square to I, and satisfy X Y = i Z, [X, Y] = 2 i Z and {X, Y} = 0"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "The involution obligations replay on a finite sample through exact_field::laws::check_involution_axioms",
-        "The hermitian violation reported by congruence diagonalisation is the first position (row, col), row <= col, in row-major order"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_linear_algebra",
-      "module": "exact_field::involution",
-      "symbols": [
-        "Involution",
-        "conjugate_entries",
-        "adjoint",
-        "is_hermitian",
-        "is_skew_hermitian",
-        "is_unitary",
-        "is_normal",
-        "hs_inner",
-        "hs_norm_squared",
-        "inner_product",
-        "outer_product"
-      ],
-      "required_tests": [
-        "predicates_refuse_non_square_input",
-        "the_hilbert_schmidt_inner_product_is_sesquilinear_and_equals_tr_a_dagger_b",
-        "inner_and_outer_products_place_the_conjugate_correctly",
-        "a_defective_involution_is_caught_and_named"
-      ]
-    },
-    "negative_tests": [
-      "is_hermitian, is_skew_hermitian, is_unitary and is_normal of a non-square matrix must be refused rather than answer false",
-      "hs_inner of matrices with different shapes must be refused with both shapes",
-      "inner_product of vectors with different lengths must be refused with both lengths, and outer_product over its element budget must be refused",
-      "a conjugation that is not additive, not multiplicative, does not fix 1, or has order larger than two must be reported by check_involution_axioms with the name of the first violated law"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py",
+        "sha256": "2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "An exact field with an involutive ring automorphism, and the adjoint, Hermitian, skew-Hermitian, unitary and normal matrices over it, plus the Hilbert–Schmidt and vector inner products and the outer product. The trait states what an implementor must prove; the predicates are exact equalities with no tolerance. It is the exact-arithmetic counterpart of complex_matrix and serves the quantum-mechanics crates, which previously kept private adjoint, Hermitian and unitary routines.",
-      "non_role": [
-        "Positive-definiteness or any ordering (see ordered_field_ldlt)",
-        "Spectral decomposition and numerical eigenvalues",
-        "Fields with a nontrivial involution that is not compatible with an order, where a Hermitian form has no signature",
-        "Noncommutative scalars such as quaternions"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "No Lean statement of the adjoint laws exists; the YAML to Lean to Rust chain for this contract is open",
-      "BigRational is the only Involution implemented in this crate; the Gaussian rational, cyclotomic and real quadratic fields implement it in the number-theory crate, outside this contract",
-      "The norm hs_norm_squared is returned as a field element; deciding its sign needs ordered_field_ldlt",
-      "partial traces and the partial transpose are not provided here (tensor::partial_trace_right is the existing Numeric-based route)"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7",
+    "subject": "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py"
   },
-  "current_contract": "e8e6f86684f56907df27ccb4e58f695f9e3ac462605982f3113a516dc164e3eb",
-  "current_scoring": "da70e13eaed55c5a7916c0684827ee34932bcd57a61c42eb65edda344a9b01c2",
   "contract_history": [
     {
-      "sha256": "e8e6f86684f56907df27ccb4e58f695f9e3ac462605982f3113a516dc164e3eb",
       "bytes": 5950,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:involution_adjoint:v0.1.0\",\n  \"title\": \"Field Involution and Adjoint Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"field_with_involution_and_adjoint\",\n    \"symbol\": \"(F, x ↦ x̄), A† = Āᵀ, ⟨A, B⟩ = tr(A† B)\",\n    \"ascii_symbol\": \"involution_adjoint\",\n    \"notation\": \"F : Involution (a field with an involutive ring automorphism), A ∈ M_{m×n}(F)\",\n    \"domain\": [\n      \"field: F implementing Involution, a ring automorphism conjugate of order at most two\",\n      \"matrices: BasicMatrix<F>\",\n      \"vectors: slices of F\"\n    ],\n    \"codomain\": {\n      \"description\": \"The adjoint A† (entry (i, j) is the conjugate of A[j][i]), the exact predicates Hermitian, skew-Hermitian, unitary and normal, the Hilbert–Schmidt inner product tr(A† B), the vector inner product and the outer product |u⟩⟨v|. With the identity involution A† is the transpose and the same functions decide symmetric, skew-symmetric and orthogonal matrices.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"An implementor of Involution must prove: conj(a+b) = conj a + conj b; conj(a·b) = conj a · conj b; conj 1 = 1; conj(conj a) = a\",\n      \"BigRational implements Involution as the identity\",\n      \"Operator predicates (is_hermitian, is_skew_hermitian, is_unitary, is_normal) return Result<bool, _> and refuse a non-square matrix as NotSquare instead of answering false\",\n      \"hs_inner refuses matrices of different shapes; inner_product refuses vectors of different length\",\n      \"outer_product has a _with_limits form charging len(u)·len(v) elements\"\n    ]\n  },\n  \"laws\": [\n    \"(A†)† = A, (A + B)† = A† + B†, (A B)† = B† A†, and (c A)† = c̄ A†\",\n    \"A is Hermitian iff A = A†, skew-Hermitian iff A = −A†, unitary iff A† A = I (equivalently A A† = I), normal iff A A† = A† A\",\n    \"Hermitian, skew-Hermitian and unitary matrices are normal\",\n    \"⟨A, B⟩ = Σ conj(A[i][j]) · B[i][j] = tr(A† B), conjugate-linear in A, linear in B, with ⟨B, A⟩ = conj ⟨A, B⟩\",\n    \"tr(|u⟩⟨v|) = ⟨v, u⟩ and (|u⟩⟨v|) w = ⟨v, w⟩ u\",\n    \"the Pauli matrices over Q(i) are Hermitian, unitary, square to I, and satisfy X Y = i Z, [X, Y] = 2 i Z and {X, Y} = 0\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"The involution obligations replay on a finite sample through exact_field::laws::check_involution_axioms\",\n      \"The hermitian violation reported by congruence diagonalisation is the first position (row, col), row <= col, in row-major order\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"exact_field::involution\",\n    \"symbols\": [\n      \"Involution\",\n      \"conjugate_entries\",\n      \"adjoint\",\n      \"is_hermitian\",\n      \"is_skew_hermitian\",\n      \"is_unitary\",\n      \"is_normal\",\n      \"hs_inner\",\n      \"hs_norm_squared\",\n      \"inner_product\",\n      \"outer_product\"\n    ],\n    \"required_tests\": [\n      \"predicates_refuse_non_square_input\",\n      \"the_hilbert_schmidt_inner_product_is_sesquilinear_and_equals_tr_a_dagger_b\",\n      \"inner_and_outer_products_place_the_conjugate_correctly\",\n      \"a_defective_involution_is_caught_and_named\"\n    ]\n  },\n  \"negative_tests\": [\n    \"is_hermitian, is_skew_hermitian, is_unitary and is_normal of a non-square matrix must be refused rather than answer false\",\n    \"hs_inner of matrices with different shapes must be refused with both shapes\",\n    \"inner_product of vectors with different lengths must be refused with both lengths, and outer_product over its element budget must be refused\",\n    \"a conjugation that is not additive, not multiplicative, does not fix 1, or has order larger than two must be reported by check_involution_axioms with the name of the first violated law\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"An exact field with an involutive ring automorphism, and the adjoint, Hermitian, skew-Hermitian, unitary and normal matrices over it, plus the Hilbert–Schmidt and vector inner products and the outer product. The trait states what an implementor must prove; the predicates are exact equalities with no tolerance. It is the exact-arithmetic counterpart of complex_matrix and serves the quantum-mechanics crates, which previously kept private adjoint, Hermitian and unitary routines.\",\n    \"non_role\": [\n      \"Positive-definiteness or any ordering (see ordered_field_ldlt)\",\n      \"Spectral decomposition and numerical eigenvalues\",\n      \"Fields with a nontrivial involution that is not compatible with an order, where a Hermitian form has no signature\",\n      \"Noncommutative scalars such as quaternions\"\n    ]\n  },\n  \"wip\": [\n    \"No Lean statement of the adjoint laws exists; the YAML to Lean to Rust chain for this contract is open\",\n    \"BigRational is the only Involution implemented in this crate; the Gaussian rational, cyclotomic and real quadratic fields implement it in the number-theory crate, outside this contract\",\n    \"The norm hs_norm_squared is returned as a field element; deciding its sign needs ordered_field_ldlt\",\n    \"partial traces and the partial transpose are not provided here (tensor::partial_trace_right is the existing Numeric-based route)\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:involution_adjoint:v0.1.0",
-        "title": "Field Involution and Adjoint Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Positive-definiteness or any ordering (see ordered_field_ldlt)",
+            "Spectral decomposition and numerical eigenvalues",
+            "Fields with a nontrivial involution that is not compatible with an order, where a Hermitian form has no signature",
+            "Noncommutative scalars such as quaternions"
+          ],
+          "summary": "An exact field with an involutive ring automorphism, and the adjoint, Hermitian, skew-Hermitian, unitary and normal matrices over it, plus the Hilbert–Schmidt and vector inner products and the outer product. The trait states what an implementor must prove; the predicates are exact equalities with no tolerance. It is the exact-arithmetic counterpart of complex_matrix and serves the quantum-mechanics crates, which previously kept private adjoint, Hermitian and unitary routines."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "(A†)† = A, (A + B)† = A† + B†, (A B)† = B† A†, and (c A)† = c̄ A†",
+          "A is Hermitian iff A = A†, skew-Hermitian iff A = −A†, unitary iff A† A = I (equivalently A A† = I), normal iff A A† = A† A",
+          "Hermitian, skew-Hermitian and unitary matrices are normal",
+          "⟨A, B⟩ = Σ conj(A[i][j]) · B[i][j] = tr(A† B), conjugate-linear in A, linear in B, with ⟨B, A⟩ = conj ⟨A, B⟩",
+          "tr(|u⟩⟨v|) = ⟨v, u⟩ and (|u⟩⟨v|) w = ⟨v, w⟩ u",
+          "the Pauli matrices over Q(i) are Hermitian, unitary, square to I, and satisfy X Y = i Z, [X, Y] = 2 i Z and {X, Y} = 0"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "field_with_involution_and_adjoint",
-          "symbol": "(F, x ↦ x̄), A† = Āᵀ, ⟨A, B⟩ = tr(A† B)",
           "ascii_symbol": "involution_adjoint",
-          "notation": "F : Involution (a field with an involutive ring automorphism), A ∈ M_{m×n}(F)",
+          "codomain": {
+            "description": "The adjoint A† (entry (i, j) is the conjugate of A[j][i]), the exact predicates Hermitian, skew-Hermitian, unitary and normal, the Hilbert–Schmidt inner product tr(A† B), the vector inner product and the outer product |u⟩⟨v|. With the identity involution A† is the transpose and the same functions decide symmetric, skew-symmetric and orthogonal matrices.\n"
+          },
           "domain": [
             "field: F implementing Involution, a ring automorphism conjugate of order at most two",
             "matrices: BasicMatrix<F>",
             "vectors: slices of F"
           ],
-          "codomain": {
-            "description": "The adjoint A† (entry (i, j) is the conjugate of A[j][i]), the exact predicates Hermitian, skew-Hermitian, unitary and normal, the Hilbert–Schmidt inner product tr(A† B), the vector inner product and the outer product |u⟩⟨v|. With the identity involution A† is the transpose and the same functions decide symmetric, skew-symmetric and orthogonal matrices.\n"
-          }
+          "notation": "F : Involution (a field with an involutive ring automorphism), A ∈ M_{m×n}(F)",
+          "object_kind": "field_with_involution_and_adjoint",
+          "symbol": "(F, x ↦ x̄), A† = Āᵀ, ⟨A, B⟩ = tr(A† B)"
+        },
+        "negative_tests": [
+          "is_hermitian, is_skew_hermitian, is_unitary and is_normal of a non-square matrix must be refused rather than answer false",
+          "hs_inner of matrices with different shapes must be refused with both shapes",
+          "inner_product of vectors with different lengths must be refused with both lengths, and outer_product over its element budget must be refused",
+          "a conjugation that is not additive, not multiplicative, does not fix 1, or has order larger than two must be reported by check_involution_axioms with the name of the first violated law"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "The involution obligations replay on a finite sample through exact_field::laws::check_involution_axioms",
+            "The hermitian violation reported by congruence diagonalisation is the first position (row, col), row <= col, in row-major order"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -177,31 +130,15 @@
             "outer_product has a _with_limits form charging len(u)·len(v) elements"
           ]
         },
-        "laws": [
-          "(A†)† = A, (A + B)† = A† + B†, (A B)† = B† A†, and (c A)† = c̄ A†",
-          "A is Hermitian iff A = A†, skew-Hermitian iff A = −A†, unitary iff A† A = I (equivalently A A† = I), normal iff A A† = A† A",
-          "Hermitian, skew-Hermitian and unitary matrices are normal",
-          "⟨A, B⟩ = Σ conj(A[i][j]) · B[i][j] = tr(A† B), conjugate-linear in A, linear in B, with ⟨B, A⟩ = conj ⟨A, B⟩",
-          "tr(|u⟩⟨v|) = ⟨v, u⟩ and (|u⟩⟨v|) w = ⟨v, w⟩ u",
-          "the Pauli matrices over Q(i) are Hermitian, unitary, square to I, and satisfy X Y = i Z, [X, Y] = 2 i Z and {X, Y} = 0"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "The involution obligations replay on a finite sample through exact_field::laws::check_involution_axioms",
-            "The hermitian violation reported by congruence diagonalisation is the first position (row, col), row <= col, in row-major order"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
         "rust_binding": {
           "crate": "omega_linear_algebra",
           "module": "exact_field::involution",
+          "required_tests": [
+            "predicates_refuse_non_square_input",
+            "the_hilbert_schmidt_inner_product_is_sesquilinear_and_equals_tr_a_dagger_b",
+            "inner_and_outer_products_place_the_conjugate_correctly",
+            "a_defective_involution_is_caught_and_named"
+          ],
           "symbols": [
             "Involution",
             "conjugate_entries",
@@ -214,29 +151,11 @@
             "hs_norm_squared",
             "inner_product",
             "outer_product"
-          ],
-          "required_tests": [
-            "predicates_refuse_non_square_input",
-            "the_hilbert_schmidt_inner_product_is_sesquilinear_and_equals_tr_a_dagger_b",
-            "inner_and_outer_products_place_the_conjugate_correctly",
-            "a_defective_involution_is_caught_and_named"
           ]
         },
-        "negative_tests": [
-          "is_hermitian, is_skew_hermitian, is_unitary and is_normal of a non-square matrix must be refused rather than answer false",
-          "hs_inner of matrices with different shapes must be refused with both shapes",
-          "inner_product of vectors with different lengths must be refused with both lengths, and outer_product over its element budget must be refused",
-          "a conjugation that is not additive, not multiplicative, does not fix 1, or has order larger than two must be reported by check_involution_axioms with the name of the first violated law"
-        ],
-        "doctrine": {
-          "summary": "An exact field with an involutive ring automorphism, and the adjoint, Hermitian, skew-Hermitian, unitary and normal matrices over it, plus the Hilbert–Schmidt and vector inner products and the outer product. The trait states what an implementor must prove; the predicates are exact equalities with no tolerance. It is the exact-arithmetic counterpart of complex_matrix and serves the quantum-mechanics crates, which previously kept private adjoint, Hermitian and unitary routines.",
-          "non_role": [
-            "Positive-definiteness or any ordering (see ordered_field_ldlt)",
-            "Spectral decomposition and numerical eigenvalues",
-            "Fields with a nontrivial involution that is not compatible with an order, where a Hermitian form has no signature",
-            "Noncommutative scalars such as quaternions"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Field Involution and Adjoint Contract",
         "wip": [
           "No Lean statement of the adjoint laws exists; the YAML to Lean to Rust chain for this contract is open",
           "BigRational is the only Involution implemented in this crate; the Gaussian rational, cyclotomic and real quadratic fields implement it in the number-theory crate, outside this contract",
@@ -244,36 +163,72 @@
           "partial traces and the partial transpose are not provided here (tensor::partial_trace_right is the existing Numeric-based route)"
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:involution_adjoint:v0.1.0\",\n  \"title\": \"Field Involution and Adjoint Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"field_with_involution_and_adjoint\",\n    \"symbol\": \"(F, x ↦ x̄), A† = Āᵀ, ⟨A, B⟩ = tr(A† B)\",\n    \"ascii_symbol\": \"involution_adjoint\",\n    \"notation\": \"F : Involution (a field with an involutive ring automorphism), A ∈ M_{m×n}(F)\",\n    \"domain\": [\n      \"field: F implementing Involution, a ring automorphism conjugate of order at most two\",\n      \"matrices: BasicMatrix<F>\",\n      \"vectors: slices of F\"\n    ],\n    \"codomain\": {\n      \"description\": \"The adjoint A† (entry (i, j) is the conjugate of A[j][i]), the exact predicates Hermitian, skew-Hermitian, unitary and normal, the Hilbert–Schmidt inner product tr(A† B), the vector inner product and the outer product |u⟩⟨v|. With the identity involution A† is the transpose and the same functions decide symmetric, skew-symmetric and orthogonal matrices.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"An implementor of Involution must prove: conj(a+b) = conj a + conj b; conj(a·b) = conj a · conj b; conj 1 = 1; conj(conj a) = a\",\n      \"BigRational implements Involution as the identity\",\n      \"Operator predicates (is_hermitian, is_skew_hermitian, is_unitary, is_normal) return Result<bool, _> and refuse a non-square matrix as NotSquare instead of answering false\",\n      \"hs_inner refuses matrices of different shapes; inner_product refuses vectors of different length\",\n      \"outer_product has a _with_limits form charging len(u)·len(v) elements\"\n    ]\n  },\n  \"laws\": [\n    \"(A†)† = A, (A + B)† = A† + B†, (A B)† = B† A†, and (c A)† = c̄ A†\",\n    \"A is Hermitian iff A = A†, skew-Hermitian iff A = −A†, unitary iff A† A = I (equivalently A A† = I), normal iff A A† = A† A\",\n    \"Hermitian, skew-Hermitian and unitary matrices are normal\",\n    \"⟨A, B⟩ = Σ conj(A[i][j]) · B[i][j] = tr(A† B), conjugate-linear in A, linear in B, with ⟨B, A⟩ = conj ⟨A, B⟩\",\n    \"tr(|u⟩⟨v|) = ⟨v, u⟩ and (|u⟩⟨v|) w = ⟨v, w⟩ u\",\n    \"the Pauli matrices over Q(i) are Hermitian, unitary, square to I, and satisfy X Y = i Z, [X, Y] = 2 i Z and {X, Y} = 0\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"The involution obligations replay on a finite sample through exact_field::laws::check_involution_axioms\",\n      \"The hermitian violation reported by congruence diagonalisation is the first position (row, col), row <= col, in row-major order\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"exact_field::involution\",\n    \"symbols\": [\n      \"Involution\",\n      \"conjugate_entries\",\n      \"adjoint\",\n      \"is_hermitian\",\n      \"is_skew_hermitian\",\n      \"is_unitary\",\n      \"is_normal\",\n      \"hs_inner\",\n      \"hs_norm_squared\",\n      \"inner_product\",\n      \"outer_product\"\n    ],\n    \"required_tests\": [\n      \"predicates_refuse_non_square_input\",\n      \"the_hilbert_schmidt_inner_product_is_sesquilinear_and_equals_tr_a_dagger_b\",\n      \"inner_and_outer_products_place_the_conjugate_correctly\",\n      \"a_defective_involution_is_caught_and_named\"\n    ]\n  },\n  \"negative_tests\": [\n    \"is_hermitian, is_skew_hermitian, is_unitary and is_normal of a non-square matrix must be refused rather than answer false\",\n    \"hs_inner of matrices with different shapes must be refused with both shapes\",\n    \"inner_product of vectors with different lengths must be refused with both lengths, and outer_product over its element budget must be refused\",\n    \"a conjugation that is not additive, not multiplicative, does not fix 1, or has order larger than two must be reported by check_involution_axioms with the name of the first violated law\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"An exact field with an involutive ring automorphism, and the adjoint, Hermitian, skew-Hermitian, unitary and normal matrices over it, plus the Hilbert–Schmidt and vector inner products and the outer product. The trait states what an implementor must prove; the predicates are exact equalities with no tolerance. It is the exact-arithmetic counterpart of complex_matrix and serves the quantum-mechanics crates, which previously kept private adjoint, Hermitian and unitary routines.\",\n    \"non_role\": [\n      \"Positive-definiteness or any ordering (see ordered_field_ldlt)\",\n      \"Spectral decomposition and numerical eigenvalues\",\n      \"Fields with a nontrivial involution that is not compatible with an order, where a Hermitian form has no signature\",\n      \"Noncommutative scalars such as quaternions\"\n    ]\n  },\n  \"wip\": [\n    \"No Lean statement of the adjoint laws exists; the YAML to Lean to Rust chain for this contract is open\",\n    \"BigRational is the only Involution implemented in this crate; the Gaussian rational, cyclotomic and real quadratic fields implement it in the number-theory crate, outside this contract\",\n    \"The norm hs_norm_squared is returned as a field element; deciding its sign needs ordered_field_ldlt\",\n    \"partial traces and the partial transpose are not provided here (tensor::partial_trace_right is the existing Numeric-based route)\"\n  ]\n}\n",
+      "sha256": "e8e6f86684f56907df27ccb4e58f695f9e3ac462605982f3113a516dc164e3eb"
+    },
+    {
+      "bytes": 1724,
       "original_paths": [
-        "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py\",\n    \"sha256\": \"2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py\",\n      \"sha256\": \"2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7\",\n  \"subject\": \"code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py",
+          "sha256": "2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py",
+            "sha256": "2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7",
+        "subject": "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py"
+      },
+      "sha256": "b62a06e852ec6932ebf752593afee15dd2b769ac7be30116c0223263c6eed483"
     }
   ],
+  "current_contract": "b62a06e852ec6932ebf752593afee15dd2b769ac7be30116c0223263c6eed483",
+  "current_scoring": "c3088ccafde58eb8d52ba84b6203263530733777609f3b22b098c96f76dba644",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0.contract.yaml": "2ad47eec0c2712487dc7de6a120d7175ad0367aba11290555b5d8d44ecc82b36"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "da70e13eaed55c5a7916c0684827ee34932bcd57a61c42eb65edda344a9b01c2",
       "bytes": 2233,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py\",\n    \"sha256\": \"2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-involution-adjoint-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py",
           "sha256": "2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:algebra:math-involution-adjoint-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -282,40 +237,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "da70e13eaed55c5a7916c0684827ee34932bcd57a61c42eb65edda344a9b01c2"
+    },
+    {
+      "bytes": 1672,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py\",\n    \"sha256\": \"2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py\",\n      \"sha256\": \"2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py",
+          "sha256": "2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py",
+            "sha256": "2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Exact",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.py\",\n    \"sha256\": \"2d9d86d248d11ddfbe9bd1a9a1b5fd69bd5ea34078b7fb4bca20e352241132a7\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-involution-adjoint-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "c3088ccafde58eb8d52ba84b6203263530733777609f3b22b098c96f76dba644"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/algebra/math_involution_adjoint_v0_1_0.contract.yaml": "2ad47eec0c2712487dc7de6a120d7175ad0367aba11290555b5d8d44ecc82b36"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

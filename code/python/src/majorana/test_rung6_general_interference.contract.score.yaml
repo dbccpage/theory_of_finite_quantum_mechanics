@@ -1,117 +1,151 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/majorana/test_rung6_general_interference.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/majorana/test_rung6_general_interference.py",
       "sha256": "8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:majorana:test-rung6-general-interference:v1",
-    "role": "test checker",
-    "purpose": "Executable Python dual for W4.4 (QMREG 51 / TOY-MECH): Rung 6 verification at general |E| — interference cross-term is non-L1.",
-    "operations": {
-      "Amplitudes": "Class Amplitudes domain record and methods.",
-      "sum_squares_int": "Lean sumSquares.",
-      "coherent_sum_sq_int": "Lean coherentSumSq.",
-      "pairwise_cross_term_sum_int": "Lean pairwiseCrossTermSum: 2 * sum_{j<k} a_j a_k.",
-      "test_cross_term_expansion_identity": "Verify |sum c_k|^2 == sum |c_k|^2 + sum_{j < k} 2 Re(c_j c_k*) for N = 4.",
-      "test_non_l1_distinguishability": "Two states with identical L1 diagonal weights yield different total readout.",
-      "test_scale_invariance_n8": "Verify Rung 6 cross-term expansion identity for N = 8 discrete sectors.",
-      "test_fin3_expansion_identity_int": "Lean expansion_identity on ampA and ampB.",
-      "test_amp_a_l1_and_cross": "Lean ampA_l1 / ampA_cross / ampA_coherent: squares=3, cross=6, coherent=9.",
-      "test_amp_b_l1_and_cross": "Lean ampB_l1 / ampB_cross / ampB_coherent: squares=3, cross=-2, coherent=1.",
-      "test_multi_sector_cross_term_non_l1": "Lean multi_sector_cross_term_non_l1: same L1 squares, different total readout.",
-      "test_multi_sector_via_complex_amplitudes": "Same Fin-3 lifts through the complex Amplitudes carrier (mutation-sensitive)."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/src/majorana/test_rung6_general_interference.py",
+        "sha256": "8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "test or verification harness",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac",
+    "subject": "code/python/src/majorana/test_rung6_general_interference.py"
   },
-  "current_contract": "3240420999def280d1289c4fd347f75718a5f20708146b119907e1f98323c80a",
-  "current_scoring": "ac5aeb2dfd3d9c01d0b7e7243f0dc369c610ae545c4d73477b63c1dda58056d4",
   "contract_history": [
     {
-      "sha256": "3240420999def280d1289c4fd347f75718a5f20708146b119907e1f98323c80a",
       "bytes": 2836,
+      "original_paths": [
+        "code/python/src/majorana/test_rung6_general_interference.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_rung6_general_interference.py\",\n    \"sha256\": \"8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-rung6-general-interference:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Executable Python dual for W4.4 (QMREG 51 / TOY-MECH): Rung 6 verification at general |E| — interference cross-term is non-L1.\",\n  \"operations\": {\n    \"Amplitudes\": \"Class Amplitudes domain record and methods.\",\n    \"sum_squares_int\": \"Lean sumSquares.\",\n    \"coherent_sum_sq_int\": \"Lean coherentSumSq.\",\n    \"pairwise_cross_term_sum_int\": \"Lean pairwiseCrossTermSum: 2 * sum_{j<k} a_j a_k.\",\n    \"test_cross_term_expansion_identity\": \"Verify |sum c_k|^2 == sum |c_k|^2 + sum_{j < k} 2 Re(c_j c_k*) for N = 4.\",\n    \"test_non_l1_distinguishability\": \"Two states with identical L1 diagonal weights yield different total readout.\",\n    \"test_scale_invariance_n8\": \"Verify Rung 6 cross-term expansion identity for N = 8 discrete sectors.\",\n    \"test_fin3_expansion_identity_int\": \"Lean expansion_identity on ampA and ampB.\",\n    \"test_amp_a_l1_and_cross\": \"Lean ampA_l1 / ampA_cross / ampA_coherent: squares=3, cross=6, coherent=9.\",\n    \"test_amp_b_l1_and_cross\": \"Lean ampB_l1 / ampB_cross / ampB_coherent: squares=3, cross=-2, coherent=1.\",\n    \"test_multi_sector_cross_term_non_l1\": \"Lean multi_sector_cross_term_non_l1: same L1 squares, different total readout.\",\n    \"test_multi_sector_via_complex_amplitudes\": \"Same Fin-3 lifts through the complex Amplitudes carrier (mutation-sensitive).\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/majorana/test_rung6_general_interference.py",
           "sha256": "8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:majorana:test-rung6-general-interference:v1",
-        "role": "test checker",
-        "purpose": "Executable Python dual for W4.4 (QMREG 51 / TOY-MECH): Rung 6 verification at general |E| — interference cross-term is non-L1.",
-        "operations": {
-          "Amplitudes": "Class Amplitudes domain record and methods.",
-          "sum_squares_int": "Lean sumSquares.",
-          "coherent_sum_sq_int": "Lean coherentSumSq.",
-          "pairwise_cross_term_sum_int": "Lean pairwiseCrossTermSum: 2 * sum_{j<k} a_j a_k.",
-          "test_cross_term_expansion_identity": "Verify |sum c_k|^2 == sum |c_k|^2 + sum_{j < k} 2 Re(c_j c_k*) for N = 4.",
-          "test_non_l1_distinguishability": "Two states with identical L1 diagonal weights yield different total readout.",
-          "test_scale_invariance_n8": "Verify Rung 6 cross-term expansion identity for N = 8 discrete sectors.",
-          "test_fin3_expansion_identity_int": "Lean expansion_identity on ampA and ampB.",
-          "test_amp_a_l1_and_cross": "Lean ampA_l1 / ampA_cross / ampA_coherent: squares=3, cross=6, coherent=9.",
-          "test_amp_b_l1_and_cross": "Lean ampB_l1 / ampB_cross / ampB_coherent: squares=3, cross=-2, coherent=1.",
-          "test_multi_sector_cross_term_non_l1": "Lean multi_sector_cross_term_non_l1: same L1 squares, different total readout.",
-          "test_multi_sector_via_complex_amplitudes": "Same Fin-3 lifts through the complex Amplitudes carrier (mutation-sensitive)."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "Amplitudes": "Class Amplitudes domain record and methods.",
+          "coherent_sum_sq_int": "Lean coherentSumSq.",
+          "pairwise_cross_term_sum_int": "Lean pairwiseCrossTermSum: 2 * sum_{j<k} a_j a_k.",
+          "sum_squares_int": "Lean sumSquares.",
+          "test_amp_a_l1_and_cross": "Lean ampA_l1 / ampA_cross / ampA_coherent: squares=3, cross=6, coherent=9.",
+          "test_amp_b_l1_and_cross": "Lean ampB_l1 / ampB_cross / ampB_coherent: squares=3, cross=-2, coherent=1.",
+          "test_cross_term_expansion_identity": "Verify |sum c_k|^2 == sum |c_k|^2 + sum_{j < k} 2 Re(c_j c_k*) for N = 4.",
+          "test_fin3_expansion_identity_int": "Lean expansion_identity on ampA and ampB.",
+          "test_multi_sector_cross_term_non_l1": "Lean multi_sector_cross_term_non_l1: same L1 squares, different total readout.",
+          "test_multi_sector_via_complex_amplitudes": "Same Fin-3 lifts through the complex Amplitudes carrier (mutation-sensitive).",
+          "test_non_l1_distinguishability": "Two states with identical L1 diagonal weights yield different total readout.",
+          "test_scale_invariance_n8": "Verify Rung 6 cross-term expansion identity for N = 8 discrete sectors."
+        },
+        "profile": "Exact",
+        "purpose": "Executable Python dual for W4.4 (QMREG 51 / TOY-MECH): Rung 6 verification at general |E| — interference cross-term is non-L1.",
+        "role": "test checker",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_rung6_general_interference.py\",\n    \"sha256\": \"8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-rung6-general-interference:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Executable Python dual for W4.4 (QMREG 51 / TOY-MECH): Rung 6 verification at general |E| — interference cross-term is non-L1.\",\n  \"operations\": {\n    \"Amplitudes\": \"Class Amplitudes domain record and methods.\",\n    \"sum_squares_int\": \"Lean sumSquares.\",\n    \"coherent_sum_sq_int\": \"Lean coherentSumSq.\",\n    \"pairwise_cross_term_sum_int\": \"Lean pairwiseCrossTermSum: 2 * sum_{j<k} a_j a_k.\",\n    \"test_cross_term_expansion_identity\": \"Verify |sum c_k|^2 == sum |c_k|^2 + sum_{j < k} 2 Re(c_j c_k*) for N = 4.\",\n    \"test_non_l1_distinguishability\": \"Two states with identical L1 diagonal weights yield different total readout.\",\n    \"test_scale_invariance_n8\": \"Verify Rung 6 cross-term expansion identity for N = 8 discrete sectors.\",\n    \"test_fin3_expansion_identity_int\": \"Lean expansion_identity on ampA and ampB.\",\n    \"test_amp_a_l1_and_cross\": \"Lean ampA_l1 / ampA_cross / ampA_coherent: squares=3, cross=6, coherent=9.\",\n    \"test_amp_b_l1_and_cross\": \"Lean ampB_l1 / ampB_cross / ampB_coherent: squares=3, cross=-2, coherent=1.\",\n    \"test_multi_sector_cross_term_non_l1\": \"Lean multi_sector_cross_term_non_l1: same L1 squares, different total readout.\",\n    \"test_multi_sector_via_complex_amplitudes\": \"Same Fin-3 lifts through the complex Amplitudes carrier (mutation-sensitive).\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "3240420999def280d1289c4fd347f75718a5f20708146b119907e1f98323c80a"
+    },
+    {
+      "bytes": 1673,
       "original_paths": [
-        "code/python/src/majorana/test_rung6_general_interference.contract.score.yaml#contract"
-      ]
+        "code/python/src/majorana/test_rung6_general_interference.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/majorana/test_rung6_general_interference.py\",\n    \"sha256\": \"8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/majorana/test_rung6_general_interference.py\",\n      \"sha256\": \"8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"test or verification harness\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac\",\n  \"subject\": \"code/python/src/majorana/test_rung6_general_interference.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/majorana/test_rung6_general_interference.py",
+          "sha256": "8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/majorana/test_rung6_general_interference.py",
+            "sha256": "8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "test or verification harness",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac",
+        "subject": "code/python/src/majorana/test_rung6_general_interference.py"
+      },
+      "sha256": "95db21af5a8ab693c28d7e5cb371c7ff1eee219b84ac39073c1736feea5de060"
     }
   ],
+  "current_contract": "95db21af5a8ab693c28d7e5cb371c7ff1eee219b84ac39073c1736feea5de060",
+  "current_scoring": "8e0d8a9d86ec2a09efe44b36f52b785c1de1049fc3dff4fe08028559b3a6a784",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "ac5aeb2dfd3d9c01d0b7e7243f0dc369c610ae545c4d73477b63c1dda58056d4",
       "bytes": 2192,
+      "original_paths": [
+        "code/python/src/majorana/test_rung6_general_interference.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_rung6_general_interference.py\",\n    \"sha256\": \"8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-rung6-general-interference:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 3,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/majorana/test_rung6_general_interference.py",
           "sha256": "8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:majorana:test-rung6-general-interference:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -120,35 +154,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 10,
-          "lizard_ccn": 3,
-          "weighted_control_upper_bound": 3,
-          "control_nesting": 2
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 3,
+          "radon_ccn": 10,
+          "weighted_control_upper_bound": 3
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "ac5aeb2dfd3d9c01d0b7e7243f0dc369c610ae545c4d73477b63c1dda58056d4"
+    },
+    {
+      "bytes": 1632,
+      "original_paths": [
+        "code/python/src/majorana/test_rung6_general_interference.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/majorana/test_rung6_general_interference.py\",\n    \"sha256\": \"8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/majorana/test_rung6_general_interference.py\",\n      \"sha256\": \"8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/majorana/test_rung6_general_interference.py",
+          "sha256": "8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/src/majorana/test_rung6_general_interference.py",
+            "sha256": "8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_rung6_general_interference.py\",\n    \"sha256\": \"8ea565373f5cff9d099f4156c4452a18ab99ab3904e4a35a1eb937a977fc17ac\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-rung6-general-interference:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 3,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/majorana/test_rung6_general_interference.contract.score.yaml#scoring"
-      ]
+      "sha256": "8e0d8a9d86ec2a09efe44b36f52b785c1de1049fc3dff4fe08028559b3a6a784"
     }
   ]
 }

@@ -1,191 +1,84 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/finite_moore.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/finite_moore.rs",
-      "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15",
-      "language": "Rust"
+      "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact retained:literal usize reports/input/state indices and finite equality partitions,no tolerance or numeric report arithmetic.",
-      "domain": "Immutable admitted nonempty total finite machines;arbitrary submitted raw chains/partitions/maps validated before indexing.",
-      "behavior": [
-        "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.",
-        "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.",
-        "Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.",
-        "Borrow exact admitted report labels immutably,including usizeMAX.",
-        "Borrow exact admitted total transition matrix immutably.",
-        "Return stored alphabet size admitted against every row.",
-        "Return report vector length,n>0,not quotient block count.",
-        "Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.",
-        "Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.",
-        "Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.",
-        "Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.",
-        "Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.",
-        "Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.",
-        "Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.",
-        "Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.",
-        "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.",
-        "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable."
-      ],
-      "capability": "L3 conservative bounded exact finite algorithm with replayable quotient records;no automatic L5 foundational/physical authority from categorical terminology."
-    },
-    "operations": {
-      "normalize": {
-        "line": 36,
-        "signature": "fn normalize<T: Ord>(signatures: impl IntoIterator<Item = T>) -> Vec<usize>",
-        "obligation": "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order."
-      },
-      "intern_signature": {
-        "line": 48,
-        "signature": "fn intern_signature(ids: &mut BTreeMap<Vec<usize>, usize>, signature: &[usize]) -> usize",
-        "obligation": "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures."
-      },
-      "new": {
-        "line": 58,
-        "signature": "pub fn new(\n        reports: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        input_count: usize,\n    ) -> Result<Self, MooreError>",
-        "obligation": "Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here."
-      },
-      "reports": {
-        "line": 85,
-        "signature": "pub fn reports(&self) -> &[usize]",
-        "obligation": "Borrow exact admitted report labels immutably,including usizeMAX."
-      },
-      "transitions": {
-        "line": 88,
-        "signature": "pub fn transitions(&self) -> &[Vec<usize>]",
-        "obligation": "Borrow exact admitted total transition matrix immutably."
-      },
-      "input_count": {
-        "line": 91,
-        "signature": "pub fn input_count(&self) -> usize",
-        "obligation": "Return stored alphabet size admitted against every row."
-      },
-      "state_count": {
-        "line": 94,
-        "signature": "pub fn state_count(&self) -> usize",
-        "obligation": "Return report vector length,n>0,not quotient block count."
-      },
-      "initial_partition": {
-        "line": 98,
-        "signature": "fn initial_partition(&self) -> Vec<usize>",
-        "obligation": "Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec."
-      },
-      "refine": {
-        "line": 102,
-        "signature": "fn refine(&self, partition: &[usize]) -> Vec<usize>",
-        "obligation": "Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices."
-      },
-      "pair_preserves": {
-        "line": 115,
-        "signature": "fn pair_preserves(&self, partition: &[usize], left: usize, right: usize) -> bool",
-        "obligation": "Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit."
-      },
-      "is_report_congruence": {
-        "line": 125,
-        "signature": "pub fn is_report_congruence(&self, partition: &[usize]) -> bool",
-        "obligation": "Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission."
-      },
-      "behavioral_quotient": {
-        "line": 140,
-        "signature": "pub fn behavioral_quotient(&self) -> MooreQuotient",
-        "obligation": "Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate."
-      },
-      "verify_quotient": {
-        "line": 182,
-        "signature": "pub fn verify_quotient(&self, receipt: &MooreQuotient) -> bool",
-        "obligation": "Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases."
-      },
-      "factor_surjective_quotient": {
-        "line": 212,
-        "signature": "pub fn factor_surjective_quotient(\n        &self,\n        target: &Self,\n        map: &[usize],\n    ) -> Result<Vec<usize>, MooreError>",
-        "obligation": "Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone."
-      },
-      "valid_quotient_map_shape": {
-        "line": 237,
-        "signature": "fn valid_quotient_map_shape(&self, target: &Self, map: &[usize]) -> bool",
-        "obligation": "Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known."
-      },
-      "preserves_quotient_at": {
-        "line": 244,
-        "signature": "fn preserves_quotient_at(&self, target: &Self, map: &[usize], state: usize) -> bool",
-        "obligation": "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch."
-      },
-      "same_behavior_set": {
-        "line": 256,
-        "signature": "pub fn same_behavior_set(&self, other: &Self) -> bool",
-        "obligation": "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable."
-      }
-    },
-    "invariants": [
-      "Immutable admitted nonempty n-state/A-input matrix with valid total target indices. Wrong partition/map lengths rejected before every public path that calls private indexing helpers. Private refine/pair/map predicates rely on these explicit guards;reports/transitions/state count never mutably exposed. Safe Vec ownership/addressability bounds report/ID counters and disjoint-union offsets;std allocation/capacity remains TCB,not guaranteed successful on every finite input.",
-      "Normalization first-seen ID invariant:map has exactly distinct keys seen so far,values0..len-1,and output prefix labels exact equal keys. Initial copied iterator emits same report values as old clone. New refinement scratch at each state exactly matches old materialized signature (prior block followed by all labeled successor blocks);Vec/slice keys have identical lexical equality/order. New intern gets existing key or copies it once on first occurrence,so by state-prefix induction every refined ID exactly equals old batch normalize for every length-valid partition,including arbitrary sparse/MAX labels. No callback or mutable input makes changed evaluation/allocation observable as semantic data.",
-      "Refinement kernel is old relation intersected with all labeled inverse images;it never merges classes. Canonical first-state labels uniquely represent each partition. Therefore a changed canonical vector strictly splits at least one old block,increasing count≤n;initial count≥1,so at mostn-1 strict changes before fixed point. Chain Vec is initialized nonempty and only grows. Canonical class IDs all appear and maxID+1≤n;representative Option slots all Some. Stable quotient independent of representative because reports homogeneous/successors class-stable;all own producer unwraps/expect/indexes follow these invariants.",
-      "Formal stable-depth relation is exactly all-word future equality:future equality is a report congruence and lies inside every finite-depth refinement;any stable depth relation is a report congruence,so implies every-word equality. Conversely every report congruence lies within future equality by word induction. This establishes greatest readout-respecting congruence/minimal behavior quotient semantics;Rust strict finite split/normalization/chain representation refined above,not extracted from Lean.",
-      "Congruence helper uses finite pair symmetry:original rejection iff same block AND (different report OR some different successor block);new pass iff different block OR (same report AND all successor blocks same). Same short-circuit observation order on pure usize data. All unordered distinct pairs suffice;arbitrary equality-class labels valid for predicate,while canonical origin/exact-step verifier disallows arbitrary overrefinement in a certificate.",
-      "Quotient checker origin,step strictness/stabilization,map binding and payload are independent obligations. Each is isolated by controls preserving other fields (including canonical quotient held while forging overrefined origin or unstable last map). Chain length itself may be arbitrary submitted data;finite scan cost reflects it. Public MooreQuotient mutation cannot alter private admitted receiver;malformed vector guards before refine guarantee fail-closed without unchecked indexing.",
-      "Surjective-map guard order and statewise predicate are Boolean complements of old refusal logic and use same finite pure iteration order. Preflight guarantees all direct map/target accesses safe. Report/update preservation lifts to every word (Lean preserving_run),so map-equal source states have equal future observations. Their canonical minimal IDs coincide;hence valid homomorphism fibers give one factor value. Surjectivity fills every factor slot,with explicit mismatch refusal retained defensively. Removing that mathematically unreachable valid-input mismatch branch was not designated as a non-equivalent fault. Lean factor_spec/factor_unique prove mathematical uniqueness on surjective fibers;native first-preimage values bind concrete implementation.",
-      "Disjoint union uses exact labels and offset target states,so future equivalence on each summand and across summands is exactly shared behavior equality. Both carriers meet same set of final classes iff every state on either side has a future-equal state on the other. Multiplicities/state names irrelevant but readout/alphabet labels literal. Actual method body unchanged;new refinement exact-output equivalence propagates to full union classification and all other existing public behavior.",
-      "Active completed direct contexts are continuation,independence,joint_carrier,trace;these own sources unchanged and will receive explicit provider-preservation refresh. Simulation has no quotient/distinguish/Moore use (source search);its only underlying machine construction path is unchanged. Actual459category tests execute current provider/consumer source. Historical own consumer mutation runs remain bound to original provider snapshots,not new-context kills."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "normalize": "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.",
-      "intern_signature": "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.",
-      "new": "Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.",
-      "reports": "Borrow exact admitted report labels immutably,including usizeMAX.",
-      "transitions": "Borrow exact admitted total transition matrix immutably.",
-      "input_count": "Return stored alphabet size admitted against every row.",
-      "state_count": "Return report vector length,n>0,not quotient block count.",
-      "initial_partition": "Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.",
-      "refine": "Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.",
-      "pair_preserves": "Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.",
-      "is_report_congruence": "Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.",
-      "behavioral_quotient": "Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.",
-      "verify_quotient": "Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.",
-      "factor_surjective_quotient": "Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.",
-      "valid_quotient_map_shape": "Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.",
-      "preserves_quotient_at": "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.",
-      "same_behavior_set": "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable."
-    },
-    "trust_boundary": "Rust compiler/std safe ownership/addressability/allocator,standard Vec/Map/Set and usize equality/order,Lean/Mathlib allowed foundation axioms. No invalid unsafe Vec metadata,extraction/MIR,total byte/runtime bound or physical semantics.",
-    "assurance_limits": [
-      "Contracts pending;AuthorityEffect None.",
-      "Formal all-word greatest-congruence/factor semantics plus separate Rust finite/canonical/refinement/storage/guard induction;no extracted program theorem.",
-      "Canonical replay is tied to this immutable labeled machine,not arbitrary report renaming or whole-workspace certification.",
-      "Finite input/counts do not guarantee allocation/capacity/time availability;submitted chain length drives checking work.",
-      "Small exhaustive domains/designated mutations do not cover every possible fault;consumer old faults remain historical provider snapshots."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/finite_moore.score.yaml",
-        "sha256": "5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6"
+        "path": "code/rust/src/category_theory/finite_moore.rs",
+        "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15",
+    "subject": "code/rust/src/category_theory/finite_moore.rs"
   },
-  "current_contract": "4dc8b2f40bfe51ef691b2bb100b2fac249f66fbd0e7e25f79b45be7336b9af7f",
-  "current_scoring": "fc6ae6cf6afb62ad665ab8b2593dc9a87059ffd1872f3be1cc5b488791c4abcb",
   "contract_history": [
     {
-      "sha256": "4dc8b2f40bfe51ef691b2bb100b2fac249f66fbd0e7e25f79b45be7336b9af7f",
       "bytes": 24530,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_moore.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_moore.rs\",\n    \"sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained:literal usize reports/input/state indices and finite equality partitions,no tolerance or numeric report arithmetic.\",\n    \"domain\": \"Immutable admitted nonempty total finite machines;arbitrary submitted raw chains/partitions/maps validated before indexing.\",\n    \"behavior\": [\n      \"Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.\",\n      \"Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.\",\n      \"Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.\",\n      \"Borrow exact admitted report labels immutably,including usizeMAX.\",\n      \"Borrow exact admitted total transition matrix immutably.\",\n      \"Return stored alphabet size admitted against every row.\",\n      \"Return report vector length,n>0,not quotient block count.\",\n      \"Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.\",\n      \"Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.\",\n      \"Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.\",\n      \"Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.\",\n      \"Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.\",\n      \"Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.\",\n      \"Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.\",\n      \"Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.\",\n      \"Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.\",\n      \"Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable.\"\n    ],\n    \"capability\": \"L3 conservative bounded exact finite algorithm with replayable quotient records;no automatic L5 foundational/physical authority from categorical terminology.\"\n  },\n  \"operations\": {\n    \"normalize\": {\n      \"line\": 36,\n      \"signature\": \"fn normalize<T: Ord>(signatures: impl IntoIterator<Item = T>) -> Vec<usize>\",\n      \"obligation\": \"Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.\"\n    },\n    \"intern_signature\": {\n      \"line\": 48,\n      \"signature\": \"fn intern_signature(ids: &mut BTreeMap<Vec<usize>, usize>, signature: &[usize]) -> usize\",\n      \"obligation\": \"Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.\"\n    },\n    \"new\": {\n      \"line\": 58,\n      \"signature\": \"pub fn new(\\n        reports: Vec<usize>,\\n        transitions: Vec<Vec<usize>>,\\n        input_count: usize,\\n    ) -> Result<Self, MooreError>\",\n      \"obligation\": \"Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.\"\n    },\n    \"reports\": {\n      \"line\": 85,\n      \"signature\": \"pub fn reports(&self) -> &[usize]\",\n      \"obligation\": \"Borrow exact admitted report labels immutably,including usizeMAX.\"\n    },\n    \"transitions\": {\n      \"line\": 88,\n      \"signature\": \"pub fn transitions(&self) -> &[Vec<usize>]\",\n      \"obligation\": \"Borrow exact admitted total transition matrix immutably.\"\n    },\n    \"input_count\": {\n      \"line\": 91,\n      \"signature\": \"pub fn input_count(&self) -> usize\",\n      \"obligation\": \"Return stored alphabet size admitted against every row.\"\n    },\n    \"state_count\": {\n      \"line\": 94,\n      \"signature\": \"pub fn state_count(&self) -> usize\",\n      \"obligation\": \"Return report vector length,n>0,not quotient block count.\"\n    },\n    \"initial_partition\": {\n      \"line\": 98,\n      \"signature\": \"fn initial_partition(&self) -> Vec<usize>\",\n      \"obligation\": \"Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.\"\n    },\n    \"refine\": {\n      \"line\": 102,\n      \"signature\": \"fn refine(&self, partition: &[usize]) -> Vec<usize>\",\n      \"obligation\": \"Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.\"\n    },\n    \"pair_preserves\": {\n      \"line\": 115,\n      \"signature\": \"fn pair_preserves(&self, partition: &[usize], left: usize, right: usize) -> bool\",\n      \"obligation\": \"Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.\"\n    },\n    \"is_report_congruence\": {\n      \"line\": 125,\n      \"signature\": \"pub fn is_report_congruence(&self, partition: &[usize]) -> bool\",\n      \"obligation\": \"Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.\"\n    },\n    \"behavioral_quotient\": {\n      \"line\": 140,\n      \"signature\": \"pub fn behavioral_quotient(&self) -> MooreQuotient\",\n      \"obligation\": \"Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.\"\n    },\n    \"verify_quotient\": {\n      \"line\": 182,\n      \"signature\": \"pub fn verify_quotient(&self, receipt: &MooreQuotient) -> bool\",\n      \"obligation\": \"Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.\"\n    },\n    \"factor_surjective_quotient\": {\n      \"line\": 212,\n      \"signature\": \"pub fn factor_surjective_quotient(\\n        &self,\\n        target: &Self,\\n        map: &[usize],\\n    ) -> Result<Vec<usize>, MooreError>\",\n      \"obligation\": \"Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.\"\n    },\n    \"valid_quotient_map_shape\": {\n      \"line\": 237,\n      \"signature\": \"fn valid_quotient_map_shape(&self, target: &Self, map: &[usize]) -> bool\",\n      \"obligation\": \"Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.\"\n    },\n    \"preserves_quotient_at\": {\n      \"line\": 244,\n      \"signature\": \"fn preserves_quotient_at(&self, target: &Self, map: &[usize], state: usize) -> bool\",\n      \"obligation\": \"Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.\"\n    },\n    \"same_behavior_set\": {\n      \"line\": 256,\n      \"signature\": \"pub fn same_behavior_set(&self, other: &Self) -> bool\",\n      \"obligation\": \"Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable.\"\n    }\n  },\n  \"invariants\": [\n    \"Immutable admitted nonempty n-state/A-input matrix with valid total target indices. Wrong partition/map lengths rejected before every public path that calls private indexing helpers. Private refine/pair/map predicates rely on these explicit guards;reports/transitions/state count never mutably exposed. Safe Vec ownership/addressability bounds report/ID counters and disjoint-union offsets;std allocation/capacity remains TCB,not guaranteed successful on every finite input.\",\n    \"Normalization first-seen ID invariant:map has exactly distinct keys seen so far,values0..len-1,and output prefix labels exact equal keys. Initial copied iterator emits same report values as old clone. New refinement scratch at each state exactly matches old materialized signature (prior block followed by all labeled successor blocks);Vec/slice keys have identical lexical equality/order. New intern gets existing key or copies it once on first occurrence,so by state-prefix induction every refined ID exactly equals old batch normalize for every length-valid partition,including arbitrary sparse/MAX labels. No callback or mutable input makes changed evaluation/allocation observable as semantic data.\",\n    \"Refinement kernel is old relation intersected with all labeled inverse images;it never merges classes. Canonical first-state labels uniquely represent each partition. Therefore a changed canonical vector strictly splits at least one old block,increasing count≤n;initial count≥1,so at mostn-1 strict changes before fixed point. Chain Vec is initialized nonempty and only grows. Canonical class IDs all appear and maxID+1≤n;representative Option slots all Some. Stable quotient independent of representative because reports homogeneous/successors class-stable;all own producer unwraps/expect/indexes follow these invariants.\",\n    \"Formal stable-depth relation is exactly all-word future equality:future equality is a report congruence and lies inside every finite-depth refinement;any stable depth relation is a report congruence,so implies every-word equality. Conversely every report congruence lies within future equality by word induction. This establishes greatest readout-respecting congruence/minimal behavior quotient semantics;Rust strict finite split/normalization/chain representation refined above,not extracted from Lean.\",\n    \"Congruence helper uses finite pair symmetry:original rejection iff same block AND (different report OR some different successor block);new pass iff different block OR (same report AND all successor blocks same). Same short-circuit observation order on pure usize data. All unordered distinct pairs suffice;arbitrary equality-class labels valid for predicate,while canonical origin/exact-step verifier disallows arbitrary overrefinement in a certificate.\",\n    \"Quotient checker origin,step strictness/stabilization,map binding and payload are independent obligations. Each is isolated by controls preserving other fields (including canonical quotient held while forging overrefined origin or unstable last map). Chain length itself may be arbitrary submitted data;finite scan cost reflects it. Public MooreQuotient mutation cannot alter private admitted receiver;malformed vector guards before refine guarantee fail-closed without unchecked indexing.\",\n    \"Surjective-map guard order and statewise predicate are Boolean complements of old refusal logic and use same finite pure iteration order. Preflight guarantees all direct map/target accesses safe. Report/update preservation lifts to every word (Lean preserving_run),so map-equal source states have equal future observations. Their canonical minimal IDs coincide;hence valid homomorphism fibers give one factor value. Surjectivity fills every factor slot,with explicit mismatch refusal retained defensively. Removing that mathematically unreachable valid-input mismatch branch was not designated as a non-equivalent fault. Lean factor_spec/factor_unique prove mathematical uniqueness on surjective fibers;native first-preimage values bind concrete implementation.\",\n    \"Disjoint union uses exact labels and offset target states,so future equivalence on each summand and across summands is exactly shared behavior equality. Both carriers meet same set of final classes iff every state on either side has a future-equal state on the other. Multiplicities/state names irrelevant but readout/alphabet labels literal. Actual method body unchanged;new refinement exact-output equivalence propagates to full union classification and all other existing public behavior.\",\n    \"Active completed direct contexts are continuation,independence,joint_carrier,trace;these own sources unchanged and will receive explicit provider-preservation refresh. Simulation has no quotient/distinguish/Moore use (source search);its only underlying machine construction path is unchanged. Actual459category tests execute current provider/consumer source. Historical own consumer mutation runs remain bound to original provider snapshots,not new-context kills.\"\n  ],\n  \"failure_paths\": {\n    \"normalize\": \"Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.\",\n    \"intern_signature\": \"Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.\",\n    \"new\": \"Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.\",\n    \"reports\": \"Borrow exact admitted report labels immutably,including usizeMAX.\",\n    \"transitions\": \"Borrow exact admitted total transition matrix immutably.\",\n    \"input_count\": \"Return stored alphabet size admitted against every row.\",\n    \"state_count\": \"Return report vector length,n>0,not quotient block count.\",\n    \"initial_partition\": \"Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.\",\n    \"refine\": \"Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.\",\n    \"pair_preserves\": \"Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.\",\n    \"is_report_congruence\": \"Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.\",\n    \"behavioral_quotient\": \"Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.\",\n    \"verify_quotient\": \"Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.\",\n    \"factor_surjective_quotient\": \"Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.\",\n    \"valid_quotient_map_shape\": \"Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.\",\n    \"preserves_quotient_at\": \"Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.\",\n    \"same_behavior_set\": \"Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable.\"\n  },\n  \"trust_boundary\": \"Rust compiler/std safe ownership/addressability/allocator,standard Vec/Map/Set and usize equality/order,Lean/Mathlib allowed foundation axioms. No invalid unsafe Vec metadata,extraction/MIR,total byte/runtime bound or physical semantics.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffect None.\",\n    \"Formal all-word greatest-congruence/factor semantics plus separate Rust finite/canonical/refinement/storage/guard induction;no extracted program theorem.\",\n    \"Canonical replay is tied to this immutable labeled machine,not arbitrary report renaming or whole-workspace certification.\",\n    \"Finite input/counts do not guarantee allocation/capacity/time availability;submitted chain length drives checking work.\",\n    \"Small exhaustive domains/designated mutations do not cover every possible fault;consumer old faults remain historical provider snapshots.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_moore.score.yaml\",\n      \"sha256\": \"5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/finite_moore.rs",
-          "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15",
-          "language": "Rust"
+          "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "Contracts pending;AuthorityEffect None.",
+          "Formal all-word greatest-congruence/factor semantics plus separate Rust finite/canonical/refinement/storage/guard induction;no extracted program theorem.",
+          "Canonical replay is tied to this immutable labeled machine,not arbitrary report renaming or whole-workspace certification.",
+          "Finite input/counts do not guarantee allocation/capacity/time availability;submitted chain length drives checking work.",
+          "Small exhaustive domains/designated mutations do not cover every possible fault;consumer old faults remain historical provider snapshots."
+        ],
+        "failure_paths": {
+          "behavioral_quotient": "Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.",
+          "factor_surjective_quotient": "Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.",
+          "initial_partition": "Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.",
+          "input_count": "Return stored alphabet size admitted against every row.",
+          "intern_signature": "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.",
+          "is_report_congruence": "Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.",
+          "new": "Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.",
+          "normalize": "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.",
+          "pair_preserves": "Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.",
+          "preserves_quotient_at": "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.",
+          "refine": "Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.",
+          "reports": "Borrow exact admitted report labels immutably,including usizeMAX.",
+          "same_behavior_set": "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable.",
+          "state_count": "Return report vector length,n>0,not quotient block count.",
+          "transitions": "Borrow exact admitted total transition matrix immutably.",
+          "valid_quotient_map_shape": "Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.",
+          "verify_quotient": "Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases."
+        },
         "formal_specification": {
-          "profile": "Exact retained:literal usize reports/input/state indices and finite equality partitions,no tolerance or numeric report arithmetic.",
-          "domain": "Immutable admitted nonempty total finite machines;arbitrary submitted raw chains/partitions/maps validated before indexing.",
           "behavior": [
             "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.",
             "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.",
@@ -205,94 +98,9 @@
             "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.",
             "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable."
           ],
-          "capability": "L3 conservative bounded exact finite algorithm with replayable quotient records;no automatic L5 foundational/physical authority from categorical terminology."
-        },
-        "operations": {
-          "normalize": {
-            "line": 36,
-            "signature": "fn normalize<T: Ord>(signatures: impl IntoIterator<Item = T>) -> Vec<usize>",
-            "obligation": "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order."
-          },
-          "intern_signature": {
-            "line": 48,
-            "signature": "fn intern_signature(ids: &mut BTreeMap<Vec<usize>, usize>, signature: &[usize]) -> usize",
-            "obligation": "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures."
-          },
-          "new": {
-            "line": 58,
-            "signature": "pub fn new(\n        reports: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        input_count: usize,\n    ) -> Result<Self, MooreError>",
-            "obligation": "Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here."
-          },
-          "reports": {
-            "line": 85,
-            "signature": "pub fn reports(&self) -> &[usize]",
-            "obligation": "Borrow exact admitted report labels immutably,including usizeMAX."
-          },
-          "transitions": {
-            "line": 88,
-            "signature": "pub fn transitions(&self) -> &[Vec<usize>]",
-            "obligation": "Borrow exact admitted total transition matrix immutably."
-          },
-          "input_count": {
-            "line": 91,
-            "signature": "pub fn input_count(&self) -> usize",
-            "obligation": "Return stored alphabet size admitted against every row."
-          },
-          "state_count": {
-            "line": 94,
-            "signature": "pub fn state_count(&self) -> usize",
-            "obligation": "Return report vector length,n>0,not quotient block count."
-          },
-          "initial_partition": {
-            "line": 98,
-            "signature": "fn initial_partition(&self) -> Vec<usize>",
-            "obligation": "Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec."
-          },
-          "refine": {
-            "line": 102,
-            "signature": "fn refine(&self, partition: &[usize]) -> Vec<usize>",
-            "obligation": "Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices."
-          },
-          "pair_preserves": {
-            "line": 115,
-            "signature": "fn pair_preserves(&self, partition: &[usize], left: usize, right: usize) -> bool",
-            "obligation": "Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit."
-          },
-          "is_report_congruence": {
-            "line": 125,
-            "signature": "pub fn is_report_congruence(&self, partition: &[usize]) -> bool",
-            "obligation": "Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission."
-          },
-          "behavioral_quotient": {
-            "line": 140,
-            "signature": "pub fn behavioral_quotient(&self) -> MooreQuotient",
-            "obligation": "Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate."
-          },
-          "verify_quotient": {
-            "line": 182,
-            "signature": "pub fn verify_quotient(&self, receipt: &MooreQuotient) -> bool",
-            "obligation": "Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases."
-          },
-          "factor_surjective_quotient": {
-            "line": 212,
-            "signature": "pub fn factor_surjective_quotient(\n        &self,\n        target: &Self,\n        map: &[usize],\n    ) -> Result<Vec<usize>, MooreError>",
-            "obligation": "Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone."
-          },
-          "valid_quotient_map_shape": {
-            "line": 237,
-            "signature": "fn valid_quotient_map_shape(&self, target: &Self, map: &[usize]) -> bool",
-            "obligation": "Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known."
-          },
-          "preserves_quotient_at": {
-            "line": 244,
-            "signature": "fn preserves_quotient_at(&self, target: &Self, map: &[usize], state: usize) -> bool",
-            "obligation": "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch."
-          },
-          "same_behavior_set": {
-            "line": 256,
-            "signature": "pub fn same_behavior_set(&self, other: &Self) -> bool",
-            "obligation": "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable."
-          }
+          "capability": "L3 conservative bounded exact finite algorithm with replayable quotient records;no automatic L5 foundational/physical authority from categorical terminology.",
+          "domain": "Immutable admitted nonempty total finite machines;arbitrary submitted raw chains/partitions/maps validated before indexing.",
+          "profile": "Exact retained:literal usize reports/input/state indices and finite equality partitions,no tolerance or numeric report arithmetic."
         },
         "invariants": [
           "Immutable admitted nonempty n-state/A-input matrix with valid total target indices. Wrong partition/map lengths rejected before every public path that calls private indexing helpers. Private refine/pair/map predicates rely on these explicit guards;reports/transitions/state count never mutably exposed. Safe Vec ownership/addressability bounds report/ID counters and disjoint-union offsets;std allocation/capacity remains TCB,not guaranteed successful on every finite input.",
@@ -305,26 +113,176 @@
           "Disjoint union uses exact labels and offset target states,so future equivalence on each summand and across summands is exactly shared behavior equality. Both carriers meet same set of final classes iff every state on either side has a future-equal state on the other. Multiplicities/state names irrelevant but readout/alphabet labels literal. Actual method body unchanged;new refinement exact-output equivalence propagates to full union classification and all other existing public behavior.",
           "Active completed direct contexts are continuation,independence,joint_carrier,trace;these own sources unchanged and will receive explicit provider-preservation refresh. Simulation has no quotient/distinguish/Moore use (source search);its only underlying machine construction path is unchanged. Actual459category tests execute current provider/consumer source. Historical own consumer mutation runs remain bound to original provider snapshots,not new-context kills."
         ],
-        "failure_paths": {
-          "normalize": "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.",
-          "intern_signature": "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.",
-          "new": "Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.",
-          "reports": "Borrow exact admitted report labels immutably,including usizeMAX.",
-          "transitions": "Borrow exact admitted total transition matrix immutably.",
-          "input_count": "Return stored alphabet size admitted against every row.",
-          "state_count": "Return report vector length,n>0,not quotient block count.",
-          "initial_partition": "Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.",
-          "refine": "Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.",
-          "pair_preserves": "Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.",
-          "is_report_congruence": "Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.",
-          "behavioral_quotient": "Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.",
-          "verify_quotient": "Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.",
-          "factor_surjective_quotient": "Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.",
-          "valid_quotient_map_shape": "Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.",
-          "preserves_quotient_at": "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.",
-          "same_behavior_set": "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable."
+        "open_obligations": [],
+        "operations": {
+          "behavioral_quotient": {
+            "line": 140,
+            "obligation": "Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.",
+            "signature": "pub fn behavioral_quotient(&self) -> MooreQuotient"
+          },
+          "factor_surjective_quotient": {
+            "line": 212,
+            "obligation": "Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.",
+            "signature": "pub fn factor_surjective_quotient(\n        &self,\n        target: &Self,\n        map: &[usize],\n    ) -> Result<Vec<usize>, MooreError>"
+          },
+          "initial_partition": {
+            "line": 98,
+            "obligation": "Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.",
+            "signature": "fn initial_partition(&self) -> Vec<usize>"
+          },
+          "input_count": {
+            "line": 91,
+            "obligation": "Return stored alphabet size admitted against every row.",
+            "signature": "pub fn input_count(&self) -> usize"
+          },
+          "intern_signature": {
+            "line": 48,
+            "obligation": "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.",
+            "signature": "fn intern_signature(ids: &mut BTreeMap<Vec<usize>, usize>, signature: &[usize]) -> usize"
+          },
+          "is_report_congruence": {
+            "line": 125,
+            "obligation": "Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.",
+            "signature": "pub fn is_report_congruence(&self, partition: &[usize]) -> bool"
+          },
+          "new": {
+            "line": 58,
+            "obligation": "Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.",
+            "signature": "pub fn new(\n        reports: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        input_count: usize,\n    ) -> Result<Self, MooreError>"
+          },
+          "normalize": {
+            "line": 36,
+            "obligation": "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.",
+            "signature": "fn normalize<T: Ord>(signatures: impl IntoIterator<Item = T>) -> Vec<usize>"
+          },
+          "pair_preserves": {
+            "line": 115,
+            "obligation": "Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.",
+            "signature": "fn pair_preserves(&self, partition: &[usize], left: usize, right: usize) -> bool"
+          },
+          "preserves_quotient_at": {
+            "line": 244,
+            "obligation": "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.",
+            "signature": "fn preserves_quotient_at(&self, target: &Self, map: &[usize], state: usize) -> bool"
+          },
+          "refine": {
+            "line": 102,
+            "obligation": "Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.",
+            "signature": "fn refine(&self, partition: &[usize]) -> Vec<usize>"
+          },
+          "reports": {
+            "line": 85,
+            "obligation": "Borrow exact admitted report labels immutably,including usizeMAX.",
+            "signature": "pub fn reports(&self) -> &[usize]"
+          },
+          "same_behavior_set": {
+            "line": 256,
+            "obligation": "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable.",
+            "signature": "pub fn same_behavior_set(&self, other: &Self) -> bool"
+          },
+          "state_count": {
+            "line": 94,
+            "obligation": "Return report vector length,n>0,not quotient block count.",
+            "signature": "pub fn state_count(&self) -> usize"
+          },
+          "transitions": {
+            "line": 88,
+            "obligation": "Borrow exact admitted total transition matrix immutably.",
+            "signature": "pub fn transitions(&self) -> &[Vec<usize>]"
+          },
+          "valid_quotient_map_shape": {
+            "line": 237,
+            "obligation": "Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.",
+            "signature": "fn valid_quotient_map_shape(&self, target: &Self, map: &[usize]) -> bool"
+          },
+          "verify_quotient": {
+            "line": 182,
+            "obligation": "Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.",
+            "signature": "pub fn verify_quotient(&self, receipt: &MooreQuotient) -> bool"
+          }
         },
-        "trust_boundary": "Rust compiler/std safe ownership/addressability/allocator,standard Vec/Map/Set and usize equality/order,Lean/Mathlib allowed foundation axioms. No invalid unsafe Vec metadata,extraction/MIR,total byte/runtime bound or physical semantics.",
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_moore.score.yaml",
+            "sha256": "5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6"
+          }
+        ],
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": "Rust compiler/std safe ownership/addressability/allocator,standard Vec/Map/Set and usize equality/order,Lean/Mathlib allowed foundation axioms. No invalid unsafe Vec metadata,extraction/MIR,total byte/runtime bound or physical semantics."
+      },
+      "sha256": "4dc8b2f40bfe51ef691b2bb100b2fac249f66fbd0e7e25f79b45be7336b9af7f"
+    },
+    {
+      "bytes": 1614,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_moore.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/finite_moore.rs\",\n    \"sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_moore.rs\",\n      \"sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\",\n  \"subject\": \"code/rust/src/category_theory/finite_moore.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_moore.rs",
+          "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_moore.rs",
+            "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15",
+        "subject": "code/rust/src/category_theory/finite_moore.rs"
+      },
+      "sha256": "f2e78d966a3dce9d42f2d8fe7cc097166b9e0839f41b5a37bb7c8ce192b78ed9"
+    }
+  ],
+  "current_contract": "f2e78d966a3dce9d42f2d8fe7cc097166b9e0839f41b5a37bb7c8ce192b78ed9",
+  "current_scoring": "8f87e9f880b23d1f3064070045f4ddfa7d223eb46a9f7f5fe01977ac5a26375e",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/finite_moore.rs.contract.yaml": "4dc8b2f40bfe51ef691b2bb100b2fac249f66fbd0e7e25f79b45be7336b9af7f",
+    "code/rust/src/category_theory/finite_moore.rs.scoring.yaml": "f38f0946f35d2140e2689ea90511cfcc9eab49bae660d473c1575242b3570978",
+    "code/rust/src/category_theory/finite_moore.score.yaml": "5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6",
+    "evidence/quality/category_homology/resume-20261019/moore-previous/finite_moore.score.yaml": "dedcb3f20f65afe95221dc054ea46ff37fbe804c9b58aca4a8a5e0397624817f"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4939,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_moore.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_moore.rs\"\n  language: \"Rust\"\n  sha256: \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:34:19.011717+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_moore\"\n  description: \"Exact finite deterministic labelled systems and their minimal report quotient.  This is finite coalgebra mathematics, independent of WDP naming/retention. Reports and input labels are caller-interned identifiers: report equality is literal equality, not a tolerance or an undeclared equivalence closure. No initial state or chronological total order is required.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T213132Z/baseline.json\", \"sha256\": \"2441141b9856ab20524e6847b48158727c279375b3de045fb2c4f28a2b9a116f\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T213132Z/summary.json\", \"sha256\": \"43598bb353281ff1f7a297c3fe5bcb8e7cc7acd4a206a43a834c773037249e49\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T213132Z/mutations.json\", \"sha256\": \"53142b0e640c579d8cbdab1c65a26dc641d01c346c7b7c0b10be6ba33c6424bc\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T213103Z-metrics/receipt.json\", \"sha256\": \"c0151e0e39606822c1a6c24254b6b1535853565b0c9fe702df43440a07c84984\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T213132Z/dependency_receipt.json\", \"sha256\": \"3a0cac0c10569557b945d1b8961fc8086c83a4255fa48c9daa9192abec1acf88\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/finite_moore.json\", \"sha256\": \"13e78b1e7271f1836801e644fe62e1644bc789c312be98177a19c4db8eeaa795\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 29\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 387\n  parsed_production_functions: 17\n  max_production_ccn: 10\n  cognitive_complexity_upper_bound: 10\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffect None.\"\n  - \"Formal all-word greatest-congruence/factor semantics plus separate Rust finite/canonical/refinement/storage/guard induction;no extracted program theorem.\"\n  - \"Canonical replay is tied to this immutable labeled machine,not arbitrary report renaming or whole-workspace certification.\"\n  - \"Finite input/counts do not guarantee allocation/capacity/time availability;submitted chain length drives checking work.\"\n  - \"Small exhaustive domains/designated mutations do not cover every possible fault;consumer old faults remain historical provider snapshots.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_moore.rs",
+          "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
+        },
         "assurance_limits": [
           "Contracts pending;AuthorityEffect None.",
           "Formal all-word greatest-congruence/factor semantics plus separate Rust finite/canonical/refinement/storage/guard induction;no extracted program theorem.",
@@ -332,36 +290,51 @@
           "Finite input/counts do not guarantee allocation/capacity/time availability;submitted chain length drives checking work.",
           "Small exhaustive domains/designated mutations do not cover every possible fault;consumer old faults remain historical provider snapshots."
         ],
-        "review_evidence": [
+        "claim": {
+          "description": "Exact finite deterministic labelled systems and their minimal report quotient.  This is finite coalgebra mathematics, independent of WDP naming/retention. Reports and input labels are caller-interned identifiers: report equality is literal equality, not a tolerance or an undeclared equivalence closure. No initial state or chronological total order is required.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_moore"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T21:34:19.011717+00:00",
+        "evidence": [
           {
-            "path": "code/rust/src/category_theory/finite_moore.score.yaml",
-            "sha256": "5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6"
+            "path": "evidence/quality/category_homology/20261019T213132Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "2441141b9856ab20524e6847b48158727c279375b3de045fb2c4f28a2b9a116f"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T213132Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "43598bb353281ff1f7a297c3fe5bcb8e7cc7acd4a206a43a834c773037249e49"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T213132Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "53142b0e640c579d8cbdab1c65a26dc641d01c346c7b7c0b10be6ba33c6424bc"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T213103Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "c0151e0e39606822c1a6c24254b6b1535853565b0c9fe702df43440a07c84984"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T213132Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "3a0cac0c10569557b945d1b8961fc8086c83a4255fa48c9daa9192abec1acf88"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/finite_moore.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "13e78b1e7271f1836801e644fe62e1644bc789c312be98177a19c4db8eeaa795"
           }
         ],
-        "open_obligations": []
-      },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_moore.rs\",\n    \"sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained:literal usize reports/input/state indices and finite equality partitions,no tolerance or numeric report arithmetic.\",\n    \"domain\": \"Immutable admitted nonempty total finite machines;arbitrary submitted raw chains/partitions/maps validated before indexing.\",\n    \"behavior\": [\n      \"Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.\",\n      \"Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.\",\n      \"Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.\",\n      \"Borrow exact admitted report labels immutably,including usizeMAX.\",\n      \"Borrow exact admitted total transition matrix immutably.\",\n      \"Return stored alphabet size admitted against every row.\",\n      \"Return report vector length,n>0,not quotient block count.\",\n      \"Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.\",\n      \"Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.\",\n      \"Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.\",\n      \"Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.\",\n      \"Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.\",\n      \"Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.\",\n      \"Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.\",\n      \"Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.\",\n      \"Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.\",\n      \"Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable.\"\n    ],\n    \"capability\": \"L3 conservative bounded exact finite algorithm with replayable quotient records;no automatic L5 foundational/physical authority from categorical terminology.\"\n  },\n  \"operations\": {\n    \"normalize\": {\n      \"line\": 36,\n      \"signature\": \"fn normalize<T: Ord>(signatures: impl IntoIterator<Item = T>) -> Vec<usize>\",\n      \"obligation\": \"Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.\"\n    },\n    \"intern_signature\": {\n      \"line\": 48,\n      \"signature\": \"fn intern_signature(ids: &mut BTreeMap<Vec<usize>, usize>, signature: &[usize]) -> usize\",\n      \"obligation\": \"Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.\"\n    },\n    \"new\": {\n      \"line\": 58,\n      \"signature\": \"pub fn new(\\n        reports: Vec<usize>,\\n        transitions: Vec<Vec<usize>>,\\n        input_count: usize,\\n    ) -> Result<Self, MooreError>\",\n      \"obligation\": \"Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.\"\n    },\n    \"reports\": {\n      \"line\": 85,\n      \"signature\": \"pub fn reports(&self) -> &[usize]\",\n      \"obligation\": \"Borrow exact admitted report labels immutably,including usizeMAX.\"\n    },\n    \"transitions\": {\n      \"line\": 88,\n      \"signature\": \"pub fn transitions(&self) -> &[Vec<usize>]\",\n      \"obligation\": \"Borrow exact admitted total transition matrix immutably.\"\n    },\n    \"input_count\": {\n      \"line\": 91,\n      \"signature\": \"pub fn input_count(&self) -> usize\",\n      \"obligation\": \"Return stored alphabet size admitted against every row.\"\n    },\n    \"state_count\": {\n      \"line\": 94,\n      \"signature\": \"pub fn state_count(&self) -> usize\",\n      \"obligation\": \"Return report vector length,n>0,not quotient block count.\"\n    },\n    \"initial_partition\": {\n      \"line\": 98,\n      \"signature\": \"fn initial_partition(&self) -> Vec<usize>\",\n      \"obligation\": \"Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.\"\n    },\n    \"refine\": {\n      \"line\": 102,\n      \"signature\": \"fn refine(&self, partition: &[usize]) -> Vec<usize>\",\n      \"obligation\": \"Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.\"\n    },\n    \"pair_preserves\": {\n      \"line\": 115,\n      \"signature\": \"fn pair_preserves(&self, partition: &[usize], left: usize, right: usize) -> bool\",\n      \"obligation\": \"Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.\"\n    },\n    \"is_report_congruence\": {\n      \"line\": 125,\n      \"signature\": \"pub fn is_report_congruence(&self, partition: &[usize]) -> bool\",\n      \"obligation\": \"Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.\"\n    },\n    \"behavioral_quotient\": {\n      \"line\": 140,\n      \"signature\": \"pub fn behavioral_quotient(&self) -> MooreQuotient\",\n      \"obligation\": \"Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.\"\n    },\n    \"verify_quotient\": {\n      \"line\": 182,\n      \"signature\": \"pub fn verify_quotient(&self, receipt: &MooreQuotient) -> bool\",\n      \"obligation\": \"Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.\"\n    },\n    \"factor_surjective_quotient\": {\n      \"line\": 212,\n      \"signature\": \"pub fn factor_surjective_quotient(\\n        &self,\\n        target: &Self,\\n        map: &[usize],\\n    ) -> Result<Vec<usize>, MooreError>\",\n      \"obligation\": \"Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.\"\n    },\n    \"valid_quotient_map_shape\": {\n      \"line\": 237,\n      \"signature\": \"fn valid_quotient_map_shape(&self, target: &Self, map: &[usize]) -> bool\",\n      \"obligation\": \"Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.\"\n    },\n    \"preserves_quotient_at\": {\n      \"line\": 244,\n      \"signature\": \"fn preserves_quotient_at(&self, target: &Self, map: &[usize], state: usize) -> bool\",\n      \"obligation\": \"Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.\"\n    },\n    \"same_behavior_set\": {\n      \"line\": 256,\n      \"signature\": \"pub fn same_behavior_set(&self, other: &Self) -> bool\",\n      \"obligation\": \"Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable.\"\n    }\n  },\n  \"invariants\": [\n    \"Immutable admitted nonempty n-state/A-input matrix with valid total target indices. Wrong partition/map lengths rejected before every public path that calls private indexing helpers. Private refine/pair/map predicates rely on these explicit guards;reports/transitions/state count never mutably exposed. Safe Vec ownership/addressability bounds report/ID counters and disjoint-union offsets;std allocation/capacity remains TCB,not guaranteed successful on every finite input.\",\n    \"Normalization first-seen ID invariant:map has exactly distinct keys seen so far,values0..len-1,and output prefix labels exact equal keys. Initial copied iterator emits same report values as old clone. New refinement scratch at each state exactly matches old materialized signature (prior block followed by all labeled successor blocks);Vec/slice keys have identical lexical equality/order. New intern gets existing key or copies it once on first occurrence,so by state-prefix induction every refined ID exactly equals old batch normalize for every length-valid partition,including arbitrary sparse/MAX labels. No callback or mutable input makes changed evaluation/allocation observable as semantic data.\",\n    \"Refinement kernel is old relation intersected with all labeled inverse images;it never merges classes. Canonical first-state labels uniquely represent each partition. Therefore a changed canonical vector strictly splits at least one old block,increasing count≤n;initial count≥1,so at mostn-1 strict changes before fixed point. Chain Vec is initialized nonempty and only grows. Canonical class IDs all appear and maxID+1≤n;representative Option slots all Some. Stable quotient independent of representative because reports homogeneous/successors class-stable;all own producer unwraps/expect/indexes follow these invariants.\",\n    \"Formal stable-depth relation is exactly all-word future equality:future equality is a report congruence and lies inside every finite-depth refinement;any stable depth relation is a report congruence,so implies every-word equality. Conversely every report congruence lies within future equality by word induction. This establishes greatest readout-respecting congruence/minimal behavior quotient semantics;Rust strict finite split/normalization/chain representation refined above,not extracted from Lean.\",\n    \"Congruence helper uses finite pair symmetry:original rejection iff same block AND (different report OR some different successor block);new pass iff different block OR (same report AND all successor blocks same). Same short-circuit observation order on pure usize data. All unordered distinct pairs suffice;arbitrary equality-class labels valid for predicate,while canonical origin/exact-step verifier disallows arbitrary overrefinement in a certificate.\",\n    \"Quotient checker origin,step strictness/stabilization,map binding and payload are independent obligations. Each is isolated by controls preserving other fields (including canonical quotient held while forging overrefined origin or unstable last map). Chain length itself may be arbitrary submitted data;finite scan cost reflects it. Public MooreQuotient mutation cannot alter private admitted receiver;malformed vector guards before refine guarantee fail-closed without unchecked indexing.\",\n    \"Surjective-map guard order and statewise predicate are Boolean complements of old refusal logic and use same finite pure iteration order. Preflight guarantees all direct map/target accesses safe. Report/update preservation lifts to every word (Lean preserving_run),so map-equal source states have equal future observations. Their canonical minimal IDs coincide;hence valid homomorphism fibers give one factor value. Surjectivity fills every factor slot,with explicit mismatch refusal retained defensively. Removing that mathematically unreachable valid-input mismatch branch was not designated as a non-equivalent fault. Lean factor_spec/factor_unique prove mathematical uniqueness on surjective fibers;native first-preimage values bind concrete implementation.\",\n    \"Disjoint union uses exact labels and offset target states,so future equivalence on each summand and across summands is exactly shared behavior equality. Both carriers meet same set of final classes iff every state on either side has a future-equal state on the other. Multiplicities/state names irrelevant but readout/alphabet labels literal. Actual method body unchanged;new refinement exact-output equivalence propagates to full union classification and all other existing public behavior.\",\n    \"Active completed direct contexts are continuation,independence,joint_carrier,trace;these own sources unchanged and will receive explicit provider-preservation refresh. Simulation has no quotient/distinguish/Moore use (source search);its only underlying machine construction path is unchanged. Actual459category tests execute current provider/consumer source. Historical own consumer mutation runs remain bound to original provider snapshots,not new-context kills.\"\n  ],\n  \"failure_paths\": {\n    \"normalize\": \"Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.\",\n    \"intern_signature\": \"Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.\",\n    \"new\": \"Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.\",\n    \"reports\": \"Borrow exact admitted report labels immutably,including usizeMAX.\",\n    \"transitions\": \"Borrow exact admitted total transition matrix immutably.\",\n    \"input_count\": \"Return stored alphabet size admitted against every row.\",\n    \"state_count\": \"Return report vector length,n>0,not quotient block count.\",\n    \"initial_partition\": \"Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.\",\n    \"refine\": \"Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.\",\n    \"pair_preserves\": \"Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.\",\n    \"is_report_congruence\": \"Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.\",\n    \"behavioral_quotient\": \"Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.\",\n    \"verify_quotient\": \"Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.\",\n    \"factor_surjective_quotient\": \"Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.\",\n    \"valid_quotient_map_shape\": \"Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.\",\n    \"preserves_quotient_at\": \"Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.\",\n    \"same_behavior_set\": \"Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable.\"\n  },\n  \"trust_boundary\": \"Rust compiler/std safe ownership/addressability/allocator,standard Vec/Map/Set and usize equality/order,Lean/Mathlib allowed foundation axioms. No invalid unsafe Vec metadata,extraction/MIR,total byte/runtime bound or physical semantics.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffect None.\",\n    \"Formal all-word greatest-congruence/factor semantics plus separate Rust finite/canonical/refinement/storage/guard induction;no extracted program theorem.\",\n    \"Canonical replay is tied to this immutable labeled machine,not arbitrary report renaming or whole-workspace certification.\",\n    \"Finite input/counts do not guarantee allocation/capacity/time availability;submitted chain length drives checking work.\",\n    \"Small exhaustive domains/designated mutations do not cover every possible fault;consumer old faults remain historical provider snapshots.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_moore.score.yaml\",\n      \"sha256\": \"5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_moore.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6",
-      "bytes": 4939,
-      "record": {
-        "schema_version": "2.0.0",
-        "artifact": {
-          "path": "code/rust/src/category_theory/finite_moore.rs",
-          "language": "Rust",
-          "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
-        },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
-        "engineering_target": "A",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -369,58 +342,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T21:34:19.011717+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_moore",
-          "description": "Exact finite deterministic labelled systems and their minimal report quotient.  This is finite coalgebra mathematics, independent of WDP naming/retention. Reports and input labels are caller-interned identifiers: report equality is literal equality, not a tolerance or an undeclared equivalence closure. No initial state or chronological total order is required.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 29,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 10,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 10,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 17,
+          "physical_lines": 387,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T213132Z/baseline.json",
-            "sha256": "2441141b9856ab20524e6847b48158727c279375b3de045fb2c4f28a2b9a116f",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T213132Z/summary.json",
-            "sha256": "43598bb353281ff1f7a297c3fe5bcb8e7cc7acd4a206a43a834c773037249e49",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T213132Z/mutations.json",
-            "sha256": "53142b0e640c579d8cbdab1c65a26dc641d01c346c7b7c0b10be6ba33c6424bc",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T213103Z-metrics/receipt.json",
-            "sha256": "c0151e0e39606822c1a6c24254b6b1535853565b0c9fe702df43440a07c84984",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T213132Z/dependency_receipt.json",
-            "sha256": "3a0cac0c10569557b945d1b8961fc8086c83a4255fa48c9daa9192abec1acf88",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/finite_moore.json",
-            "sha256": "13e78b1e7271f1836801e644fe62e1644bc789c312be98177a19c4db8eeaa795",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -452,62 +407,37 @@
             "RR-28-27",
             "RR-29-28"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 29,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 387,
-          "parsed_production_functions": 17,
-          "max_production_ccn": 10,
-          "cognitive_complexity_upper_bound": 10,
-          "control_nesting": 2,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Contracts pending;AuthorityEffect None.",
-          "Formal all-word greatest-congruence/factor semantics plus separate Rust finite/canonical/refinement/storage/guard induction;no extracted program theorem.",
-          "Canonical replay is tied to this immutable labeled machine,not arbitrary report renaming or whole-workspace certification.",
-          "Finite input/counts do not guarantee allocation/capacity/time availability;submitted chain length drives checking work.",
-          "Small exhaustive domains/designated mutations do not cover every possible fault;consumer old faults remain historical provider snapshots."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_moore.rs\"\n  language: \"Rust\"\n  sha256: \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:34:19.011717+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_moore\"\n  description: \"Exact finite deterministic labelled systems and their minimal report quotient.  This is finite coalgebra mathematics, independent of WDP naming/retention. Reports and input labels are caller-interned identifiers: report equality is literal equality, not a tolerance or an undeclared equivalence closure. No initial state or chronological total order is required.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T213132Z/baseline.json\", \"sha256\": \"2441141b9856ab20524e6847b48158727c279375b3de045fb2c4f28a2b9a116f\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T213132Z/summary.json\", \"sha256\": \"43598bb353281ff1f7a297c3fe5bcb8e7cc7acd4a206a43a834c773037249e49\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T213132Z/mutations.json\", \"sha256\": \"53142b0e640c579d8cbdab1c65a26dc641d01c346c7b7c0b10be6ba33c6424bc\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T213103Z-metrics/receipt.json\", \"sha256\": \"c0151e0e39606822c1a6c24254b6b1535853565b0c9fe702df43440a07c84984\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T213132Z/dependency_receipt.json\", \"sha256\": \"3a0cac0c10569557b945d1b8961fc8086c83a4255fa48c9daa9192abec1acf88\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/finite_moore.json\", \"sha256\": \"13e78b1e7271f1836801e644fe62e1644bc789c312be98177a19c4db8eeaa795\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 29\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 387\n  parsed_production_functions: 17\n  max_production_ccn: 10\n  cognitive_complexity_upper_bound: 10\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffect None.\"\n  - \"Formal all-word greatest-congruence/factor semantics plus separate Rust finite/canonical/refinement/storage/guard induction;no extracted program theorem.\"\n  - \"Canonical replay is tied to this immutable labeled machine,not arbitrary report renaming or whole-workspace certification.\"\n  - \"Finite input/counts do not guarantee allocation/capacity/time availability;submitted chain length drives checking work.\"\n  - \"Small exhaustive domains/designated mutations do not cover every possible fault;consumer old faults remain historical provider snapshots.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_moore.score.yaml"
-      ]
+      "sha256": "5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6"
     },
     {
-      "sha256": "f38f0946f35d2140e2689ea90511cfcc9eab49bae660d473c1575242b3570978",
       "bytes": 2319,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_moore.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_moore.rs\",\n    \"sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_moore.score.yaml\",\n    \"sha256\": \"5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_moore.rs.contract.yaml\",\n    \"sha256\": \"4dc8b2f40bfe51ef691b2bb100b2fac249f66fbd0e7e25f79b45be7336b9af7f\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\",\n    \"function_count\": 17,\n    \"maxima\": {\n      \"ccn\": 10,\n      \"cognitive_upper_bound\": 10,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/finite_moore.rs",
-          "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_moore.rs",
+          "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/finite_moore.score.yaml",
+          "sha256": "5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/finite_moore.rs.contract.yaml",
+          "sha256": "4dc8b2f40bfe51ef691b2bb100b2fac249f66fbd0e7e25f79b45be7336b9af7f"
+        },
         "engineering_target": "A",
-        "level": "L3",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -515,30 +445,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/finite_moore.score.yaml",
-          "sha256": "5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/finite_moore.rs.contract.yaml",
-          "sha256": "4dc8b2f40bfe51ef691b2bb100b2fac249f66fbd0e7e25f79b45be7336b9af7f"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L3",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
         "structural_measurement": {
-          "source_sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15",
-          "function_count": 17,
-          "maxima": {
-            "ccn": 10,
-            "cognitive_upper_bound": 10,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -553,29 +469,69 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 17,
+          "maxima": {
+            "ccn": 10,
+            "cognitive_upper_bound": 10,
+            "control_nesting": 2
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_moore.rs\",\n    \"sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_moore.score.yaml\",\n    \"sha256\": \"5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_moore.rs.contract.yaml\",\n    \"sha256\": \"4dc8b2f40bfe51ef691b2bb100b2fac249f66fbd0e7e25f79b45be7336b9af7f\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\",\n    \"function_count\": 17,\n    \"maxima\": {\n      \"ccn\": 10,\n      \"cognitive_upper_bound\": 10,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_moore.rs.scoring.yaml"
-      ]
+      "sha256": "f38f0946f35d2140e2689ea90511cfcc9eab49bae660d473c1575242b3570978"
     },
     {
-      "sha256": "dedcb3f20f65afe95221dc054ea46ff37fbe804c9b58aca4a8a5e0397624817f",
       "bytes": 3974,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/moore-previous/finite_moore.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_moore.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"07e0868f7bcd45c1829ebcb822866faa74bf303d4fc99926e75ae72382f535b9\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"B\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_moore\"\r\n  description: \"Exact finite deterministic labelled systems and their minimal report quotient.  This is finite coalgebra mathematics, independent of WDP naming/retention. Reports and input labels are caller-interned identifiers: report equality is literal equality, not a tolerance or an undeclared equivalence closure. No initial state or chronological total order is required.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 371\r\n  parsed_production_functions: 13\r\n  max_production_ccn: 11\r\n  cognitive_complexity_upper_bound: 12\r\n  control_nesting: 4\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 7, \"cognitive_upper_bound\": 9, \"control_nesting\": 4, \"line\": 106, \"name\": \"is_report_congruence\", \"opaque_macros\": []}\r\n    - {\"ccn\": 11, \"cognitive_upper_bound\": 12, \"control_nesting\": 3, \"line\": 203, \"name\": \"factor_surjective_quotient\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative B ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/finite_moore.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_moore.rs",
           "sha256": "07e0868f7bcd45c1829ebcb822866faa74bf303d4fc99926e75ae72382f535b9"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "Exact finite deterministic labelled systems and their minimal report quotient.  This is finite coalgebra mathematics, independent of WDP naming/retention. Reports and input labels are caller-interned identifiers: report equality is literal equality, not a tolerance or an undeclared equivalence closure. No initial state or chronological total order is required.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_moore"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -583,69 +539,32 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "B",
-        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_moore",
-          "description": "Exact finite deterministic labelled systems and their minimal report quotient.  This is finite coalgebra mathematics, independent of WDP naming/retention. Reports and input labels are caller-interned identifiers: report equality is literal equality, not a tolerance or an undeclared equivalence closure. No initial state or chronological total order is required.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
+          "unrun": 0
         },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative B ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 371,
-          "parsed_production_functions": 13,
-          "max_production_ccn": 11,
           "cognitive_complexity_upper_bound": 12,
           "control_nesting": 4,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [
             {
               "ccn": 7,
@@ -664,44 +583,35 @@
               "opaque_macros": []
             }
           ],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "max_production_ccn": 11,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 13,
+          "physical_lines": 371,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "open_findings": [
-          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
-          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
-          "External path dependency source contents have not received a separate origin/content attestation.",
-          "Declared source metrics impose a conservative B ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
-        ]
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_moore.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"07e0868f7bcd45c1829ebcb822866faa74bf303d4fc99926e75ae72382f535b9\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"B\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_moore\"\r\n  description: \"Exact finite deterministic labelled systems and their minimal report quotient.  This is finite coalgebra mathematics, independent of WDP naming/retention. Reports and input labels are caller-interned identifiers: report equality is literal equality, not a tolerance or an undeclared equivalence closure. No initial state or chronological total order is required.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 371\r\n  parsed_production_functions: 13\r\n  max_production_ccn: 11\r\n  cognitive_complexity_upper_bound: 12\r\n  control_nesting: 4\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 7, \"cognitive_upper_bound\": 9, \"control_nesting\": 4, \"line\": 106, \"name\": \"is_report_congruence\", \"opaque_macros\": []}\r\n    - {\"ccn\": 11, \"cognitive_upper_bound\": 12, \"control_nesting\": 3, \"line\": 203, \"name\": \"factor_surjective_quotient\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative B ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/moore-previous/finite_moore.score.yaml"
-      ]
+      "sha256": "dedcb3f20f65afe95221dc054ea46ff37fbe804c9b58aca4a8a5e0397624817f"
     },
     {
-      "sha256": "fc6ae6cf6afb62ad665ab8b2593dc9a87059ffd1872f3be1cc5b488791c4abcb",
       "bytes": 5630,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_moore.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_moore.rs\",\n    \"sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:finite-moore:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 10,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T213132Z/baseline.json\",\n      \"sha256\": \"2441141b9856ab20524e6847b48158727c279375b3de045fb2c4f28a2b9a116f\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T213132Z/summary.json\",\n      \"sha256\": \"43598bb353281ff1f7a297c3fe5bcb8e7cc7acd4a206a43a834c773037249e49\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T213132Z/mutations.json\",\n      \"sha256\": \"53142b0e640c579d8cbdab1c65a26dc641d01c346c7b7c0b10be6ba33c6424bc\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T213103Z-metrics/receipt.json\",\n      \"sha256\": \"c0151e0e39606822c1a6c24254b6b1535853565b0c9fe702df43440a07c84984\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T213132Z/dependency_receipt.json\",\n      \"sha256\": \"3a0cac0c10569557b945d1b8961fc8086c83a4255fa48c9daa9192abec1acf88\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/finite_moore.json\",\n      \"sha256\": \"13e78b1e7271f1836801e644fe62e1644bc789c312be98177a19c4db8eeaa795\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 387,\n    \"parsed_production_functions\": 17,\n    \"max_production_ccn\": 10,\n    \"cognitive_complexity_upper_bound\": 10,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/finite_moore.rs",
-          "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:finite-moore:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -710,24 +620,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 10,
-          "lizard_ccn": 9,
-          "weighted_control_upper_bound": 10,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -735,81 +628,155 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T213132Z/baseline.json",
-            "sha256": "2441141b9856ab20524e6847b48158727c279375b3de045fb2c4f28a2b9a116f",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "2441141b9856ab20524e6847b48158727c279375b3de045fb2c4f28a2b9a116f"
           },
           {
             "path": "evidence/quality/category_homology/20261019T213132Z/summary.json",
-            "sha256": "43598bb353281ff1f7a297c3fe5bcb8e7cc7acd4a206a43a834c773037249e49",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "43598bb353281ff1f7a297c3fe5bcb8e7cc7acd4a206a43a834c773037249e49"
           },
           {
             "path": "evidence/quality/category_homology/20261019T213132Z/mutations.json",
-            "sha256": "53142b0e640c579d8cbdab1c65a26dc641d01c346c7b7c0b10be6ba33c6424bc",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "53142b0e640c579d8cbdab1c65a26dc641d01c346c7b7c0b10be6ba33c6424bc"
           },
           {
             "path": "evidence/quality/category_homology/20261019T213103Z-metrics/receipt.json",
-            "sha256": "c0151e0e39606822c1a6c24254b6b1535853565b0c9fe702df43440a07c84984",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "c0151e0e39606822c1a6c24254b6b1535853565b0c9fe702df43440a07c84984"
           },
           {
             "path": "evidence/quality/category_homology/20261019T213132Z/dependency_receipt.json",
-            "sha256": "3a0cac0c10569557b945d1b8961fc8086c83a4255fa48c9daa9192abec1acf88",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "3a0cac0c10569557b945d1b8961fc8086c83a4255fa48c9daa9192abec1acf88"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/finite_moore.json",
-            "sha256": "13e78b1e7271f1836801e644fe62e1644bc789c312be98177a19c4db8eeaa795",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "13e78b1e7271f1836801e644fe62e1644bc789c312be98177a19c4db8eeaa795"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 9,
+          "radon_ccn": 10,
+          "weighted_control_upper_bound": 10
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 387,
-          "parsed_production_functions": 17,
-          "max_production_ccn": 10,
           "cognitive_complexity_upper_bound": 10,
           "control_nesting": 2,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 10,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 17,
+          "physical_lines": 387,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_moore.rs\",\n    \"sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:finite-moore:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 10,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T213132Z/baseline.json\",\n      \"sha256\": \"2441141b9856ab20524e6847b48158727c279375b3de045fb2c4f28a2b9a116f\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T213132Z/summary.json\",\n      \"sha256\": \"43598bb353281ff1f7a297c3fe5bcb8e7cc7acd4a206a43a834c773037249e49\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T213132Z/mutations.json\",\n      \"sha256\": \"53142b0e640c579d8cbdab1c65a26dc641d01c346c7b7c0b10be6ba33c6424bc\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T213103Z-metrics/receipt.json\",\n      \"sha256\": \"c0151e0e39606822c1a6c24254b6b1535853565b0c9fe702df43440a07c84984\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T213132Z/dependency_receipt.json\",\n      \"sha256\": \"3a0cac0c10569557b945d1b8961fc8086c83a4255fa48c9daa9192abec1acf88\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/finite_moore.json\",\n      \"sha256\": \"13e78b1e7271f1836801e644fe62e1644bc789c312be98177a19c4db8eeaa795\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 387,\n    \"parsed_production_functions\": 17,\n    \"max_production_ccn\": 10,\n    \"cognitive_complexity_upper_bound\": 10,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "fc6ae6cf6afb62ad665ab8b2593dc9a87059ffd1872f3be1cc5b488791c4abcb"
+    },
+    {
+      "bytes": 1604,
       "original_paths": [
-        "code/rust/src/category_theory/finite_moore.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/finite_moore.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/finite_moore.rs\",\n    \"sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_moore.rs\",\n      \"sha256\": \"c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_moore.rs",
+          "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_moore.rs",
+            "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "8f87e9f880b23d1f3064070045f4ddfa7d223eb46a9f7f5fe01977ac5a26375e"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/finite_moore.rs.contract.yaml": "4dc8b2f40bfe51ef691b2bb100b2fac249f66fbd0e7e25f79b45be7336b9af7f",
-    "code/rust/src/category_theory/finite_moore.score.yaml": "5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6",
-    "code/rust/src/category_theory/finite_moore.rs.scoring.yaml": "f38f0946f35d2140e2689ea90511cfcc9eab49bae660d473c1575242b3570978",
-    "evidence/quality/category_homology/resume-20261019/moore-previous/finite_moore.score.yaml": "dedcb3f20f65afe95221dc054ea46ff37fbe804c9b58aca4a8a5e0397624817f"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }
