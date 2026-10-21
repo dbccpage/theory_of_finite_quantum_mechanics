@@ -1,0 +1,99 @@
+schema_version: 1
+problem_id: UQM-08
+title: The attractive delta-function bound state
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  state: psi(x)=sqrt(kappa) exp(-kappa |x|), kappa=mg/hbar^2
+  energy: E=-mg^2/(2hbar^2)
+  fixture: kappa=2; E=-2; |psi(0)|^2=2
+derivation:
+- step: 1
+  explanation: Away from zero, a bound state has negative energy E=-hbar^2 kappa^2/(2m). Decay at both
+    infinities and continuity require psi=A exp(-kappa |x|).
+- step: 2
+  explanation: Integrate the stationary equation over a shrinking interval around zero. The bounded energy
+    integral vanishes, leaving psi prime(0+)-psi prime(0-)=-2mg psi(0)/hbar^2.
+- step: 3
+  explanation: The right derivative is -kappa A and the left derivative is +kappa A. Thus -2kappa A=-2mg
+    A/hbar^2. A nonzero state gives kappa=mg/hbar^2, fixing exactly one positive decay constant.
+- step: 4
+  explanation: Normalization requires 2 A^2 integral_0^infinity exp(-2kappa x)dx=A^2/kappa=1. Choose positive
+    A=sqrt(kappa); other global phases are equivalent.
+- step: 5
+  explanation: An odd decaying solution would have zero value at the origin. Continuity would force its
+    exterior coefficients to vanish, so there is no second bound state. For the given units the energy
+    is -2 and the jump divided by A is -4 on both sides.
+- step: 6
+  explanation: The exact program checks the algebra after adopting the jump boundary condition. It neither
+    approximates a delta distribution on a grid nor proves the self-adjoint extension theory behind that
+    condition.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Derive kappa from g rather than supplying the answer independently.
+    - Use the same kappa in the energy and jump residual.
+    - Interpret amplitude_squared as a density with inverse-length units.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          m=hbar=q(1); g=q(2); kappa=m*g/(hbar*hbar)
+          energy=-hbar*hbar*kappa*kappa/(2*m)
+          return {"kappa":str(kappa),"energy":str(energy),"amplitude_squared":str(kappa),
+                  "jump_residual_over_A":str(-2*kappa+2*m*g/(hbar*hbar)),"normalization":str(kappa/kappa)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Keep m,hbar and g in the formula even for this unit fixture.
+    - Use exact rational products for the negative bound energy.
+    - The normalization output checks the integrated formula, not a sampled numerical integral.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let m=q(1); let hbar=q(1); let g=q(2); let k=&m*&g/(&hbar*&hbar);
+          let energy=-&hbar*&hbar*&k*&k/(q(2)*&m);
+          json!({"kappa":k.to_string(),"energy":energy.to_string(),"amplitude_squared":k.to_string(),
+              "jump_residual_over_A":(q(-2)*&k+q(2)*&m*&g/(&hbar*&hbar)).to_string(),"normalization":(&k/&k).to_string()})
+      }
+verification:
+  expected_outputs:
+    kappa: '2'
+    energy: '-2'
+    amplitude_squared: '2'
+    jump_residual_over_A: '0'
+    normalization: '1'
+  computational_scope: Exact energy, normalization coefficient and derivative-jump algebra at the stated
+    parameters.
+  not_established:
+  - The distributional integral, operator domain and uniqueness argument are not formalized by this calculation.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- The derivative jumps; the wavefunction does not.
+- 'The sign of g matters: a repulsive delta has no bound state of this form.'
+improvement_target:
+  gap: Point interactions currently enter as analytic boundary data.
+  acceptance_criterion: Add a documented boundary-condition representation and verify its matching equations
+    before using grid surrogates.

@@ -1,0 +1,67 @@
+{
+  "code/python/src/finite_probability/simplex.py": {
+    "level": "L3",
+    "level_basis": "Bounded-domain exact distribution and stochastic-map algorithms; no production resource budget or immutable state envelope has been established.",
+    "purpose": "Exact finite rational distributions, convex mixtures, expectations, total variation and row-stochastic pushforwards.",
+    "operations": {
+      "ProbabilitySimplex": "Require a nonempty list/tuple of nonnegative admitted rationals summing exactly to one; label must be str.",
+      "ProbabilitySimplex.uniform": "Positive integer n; return n equal masses 1/n.",
+      "ProbabilitySimplex.dirac": "Positive integer n and 0 <= index < n; return the corresponding unit vector.",
+      "ProbabilitySimplex.total_variation_distance": "Equal dimensions; return one half of sum of coordinate absolute differences.",
+      "ProbabilitySimplex.mixture": "Equal dimensions and rational weight in [0,1]; form weight*self + (1-weight)*other and re-admit the result.",
+      "ProbabilitySimplex.expectation": "One admitted rational value per coordinate; return the exact dot product.",
+      "StochasticMap": "Nonempty rectangular matrix whose rows are admitted probability vectors.",
+      "StochasticMap.apply": "Distribution width equals row count; push forward by exact row-weighted sums and re-admit the output.",
+      "half_simplex_mass": "Check the two weights of uniform(2) are 1/2 and sum to one. This is a finite witness, not a Lean theorem extraction."
+    },
+    "failures": "SimplexError carries invariant and parameter data for ordinary scalar/shape/mass failures. Index protocol and object-state mutation require separate failure review.",
+    "limits": ["No process-memory, coefficient bit-length or operation budget", "Private probability storage and public stochastic dimensions are mutable", "Python indexing/slicing and subclassed containers have not received a complete G3 review", "No Rust-to-Python or Lean extraction equivalence claimed"]
+  },
+  "code/python/src/bin/__init__.py": {
+    "level": "L2",
+    "level_basis": "A fixed-arity exact polynomial utility and one named ray witness, with standard boundary guards; no L4 application architecture is delivered by this file.",
+    "purpose": "Evaluate P2 on an admitted exact triple and check the named Pythagorean ray's P2, P4 and P22 values.",
+    "operations": {
+      "ray_power_two": "Accept exactly three rational/int amplitudes in a tuple; None selects (3/5,4/5,0); return x^2+y^2+z^2.",
+      "bin_two_square": "On the fixed ray check P2=1, P4=337/625, P22=144/625 and P4=1-2*P22; return P2.",
+      "main": "Print the fixed witness and return zero only for unit P2."
+    },
+    "failures": "BinWitnessError exposes invariant and parameters for ordinary type, tuple-size and named-witness refusals.",
+    "limits": ["Not a proof of FiniteQM.lean", "No theorem about all rays or Born-rule uniqueness", "No coefficient-size or hostile-container resource guarantee"]
+  },
+  "code/python/src/bin/entropy_cli.py": {
+    "level": "L2",
+    "level_basis": "Straightforward rational vector validation and sum-of-squares procedures, not a production entropy service.",
+    "purpose": "Compute exact collision probability for a nonempty normalized rational probability tuple and a fixed pure/fair separator.",
+    "operations": {
+      "collision_probability": "Require a nonempty tuple of admitted nonnegative rationals with total exactly one; return sum of squared masses.",
+      "parity_gap": "Compute collision(1,0)-collision(1/2,1/2), require exactly 1/2, and return the gap.",
+      "main": "Print the fixed gap and return zero only for 1/2."
+    },
+    "failures": "ParityError exposes invariant and parameters for ordinary shape, scalar, sign, mass and fixed-gap refusals.",
+    "limits": ["No logarithmic entropy or general spectral-entropy theorem", "No proof of the six-import census or Baker/Galois claims", "No vector-length, coefficient-size or process-memory budget"]
+  },
+  "code/python/src/finite_probability/__init__.py": {
+    "level": "L2",
+    "level_basis": "Standard fixed integer-pair arithmetic and a small separator witness; this does not constitute a production-level subsystem.",
+    "purpose": "Evaluate integer mass for a Bool weight pair and check the named point, signed and doubled separators.",
+    "operations": {
+      "integer_mass": "Require a tuple with exactly two built-in int weights; reject bool and float; return their sum, including signed inputs.",
+      "scaled_simplex_witness": "Check point (1,0) is nonnegative with mass one; signed (-1,2) has mass one but not nonnegativity; double (1,1) has mass two; self-gap of point is zero.",
+      "main": "Print the point mass and return zero for one."
+    },
+    "failures": "ScaledSimplexError exposes invariant and parameters for ordinary input and named-separator failures.",
+    "limits": ["Not a rational probability-simplex constructor", "Not a canonical metric selection", "Full class/container override failure behavior remains to be assessed"]
+  },
+  "code/python/src/bin/finite_cli.py": {
+    "level": "L2",
+    "level_basis": "A trace witness utility and re-exported CLI dispatcher, without independent production lifecycle enforcement.",
+    "purpose": "Compute the trace of the exact identity matrix of a nonnegative integer dimension before dispatch.",
+    "operations": {
+      "cli_identity_trace": "Require a built-in nonnegative int size, build ExactMatrix.identity(size), admit its diagonal scalars and require trace equals the size.",
+      "main": "Re-export src.qm.cli.main. This review does not certify the dispatcher's complete command surface."
+    },
+    "failures": "CliTraceError covers local ordinary size and trace refusals. Imported matrix/provider failures need a separate composition audit.",
+    "limits": ["No dimension or memory budget", "ExactMatrix and qm.cli are declared external-to-file trust boundaries", "Internal diagonal Fraction-subclass admission has not been shown reachable from the public size-only API", "No arbitrary-matrix trace or continuum obstruction theorem is established"]
+  }
+}

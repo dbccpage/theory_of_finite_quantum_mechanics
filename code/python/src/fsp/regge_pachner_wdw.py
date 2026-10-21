@@ -288,8 +288,19 @@ class ReggeWheelerDeWittEngine:
 
         d_res = linprog(-omega, A_eq=D_joint.T, b_eq=np.zeros(n_cols), bounds=[(-1, 1)] * n_rows, method="highs")
 
-        primal_obj = float(p_res.fun) if p_res.success else 0.0
-        dual_obj = float(-d_res.fun) if d_res.success else 0.0
+        if not p_res.success or not d_res.success:
+            return {
+                "num_vertices": n_v,
+                "num_edges": n_e,
+                "primal_obj": float("inf"),
+                "dual_obj": float("-inf"),
+                "duality_gap": float("inf"),
+                "is_closed": False,
+                "status": f"OPTIMIZER_FAILED: primal={p_res.status}, dual={d_res.status}",
+            }
+
+        primal_obj = float(p_res.fun)
+        dual_obj = float(-d_res.fun)
         gap = abs(primal_obj - dual_obj)
 
         return {
@@ -298,7 +309,8 @@ class ReggeWheelerDeWittEngine:
             "primal_obj": primal_obj,
             "dual_obj": dual_obj,
             "duality_gap": gap,
-            "is_closed": (primal_obj < 1e-7),
+            "is_closed": (primal_obj < 1e-7 and gap < 1e-5),
+            "status": "CONVERGED",
         }
 
     def audit_pachner_surgery(

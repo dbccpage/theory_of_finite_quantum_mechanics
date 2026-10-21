@@ -49,12 +49,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "fd2b0edfa8a9933e8b9c5d55fd0daebc8a62077f9ddee766eb11fbffbe60f400",
-  "current_scoring": null,
+  "current_contract": "330cb90a857efbead895e89a0b0b75436e17e11c659597036588b0aa2a6d9019",
+  "current_scoring": "abe3b322651c1d3a0443ba5dbf4f09a210c9f1495be5ff87f1a4db86af59942c",
   "contract_history": [
     {
-      "sha256": "fd2b0edfa8a9933e8b9c5d55fd0daebc8a62077f9ddee766eb11fbffbe60f400",
-      "bytes": 943,
+      "sha256": "330cb90a857efbead895e89a0b0b75436e17e11c659597036588b0aa2a6d9019",
+      "bytes": 1197,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_quantum_physics:r_matrix:v1.0.0",
@@ -102,13 +102,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_quantum_physics:r_matrix:v1.0.0\ntitle: Exact exchange matrices on tensor products and fusion spaces. A fusion exchange\n  need not act on a carrier of dimensio...\nkind: rust_file_contract\nstatus: active\ncrate: omega_quantum_physics\nfile: crates_rs/omega_quantum_physics/src/r_matrix.rs\nmodule: r_matrix\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_quantum_physics\n  module: r_matrix\n  file: crates_rs/omega_quantum_physics/src/r_matrix.rs\nsymbols:\n- RMatrix\n- try_new\n- hecke\n- from_fusion_channels\n- matrix\n- is_unitary\n- braid_relation_holds\n- hecke_quadratic_holds\n- authority_fence\nowns:\n- r_matrix\n- try_new\n- hecke\n- from_fusion_channels\n- matrix\n- is_unitary\n- braid_relation_holds\n- hecke_quadratic_holds\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_quantum_physics:r_matrix:v1.0.0\",\n  \"title\": \"Exact exchange matrices on tensor products and fusion spaces. A fusion exchange need not act on a carrier of dimensio...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_quantum_physics\",\n  \"file\": \"crates_rs/omega_quantum_physics/src/r_matrix.rs\",\n  \"module\": \"r_matrix\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"r_matrix\",\n    \"file\": \"crates_rs/omega_quantum_physics/src/r_matrix.rs\"\n  },\n  \"symbols\": [\n    \"RMatrix\",\n    \"try_new\",\n    \"hecke\",\n    \"from_fusion_channels\",\n    \"matrix\",\n    \"is_unitary\",\n    \"braid_relation_holds\",\n    \"hecke_quadratic_holds\",\n    \"authority_fence\"\n  ],\n  \"owns\": [\n    \"r_matrix\",\n    \"try_new\",\n    \"hecke\",\n    \"from_fusion_channels\",\n    \"matrix\",\n    \"is_unitary\",\n    \"braid_relation_holds\",\n    \"hecke_quadratic_holds\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/omega_quantum_physics_r_matrix.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "abe3b322651c1d3a0443ba5dbf4f09a210c9f1495be5ff87f1a4db86af59942c",
+      "bytes": 2233,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/omega_quantum_physics_r_matrix_contract.py",
+          "sha256": "c973eb6aa46390da38a65cbe3a8fec792ddf3b838e366e7589035d5989d064b0"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:omega-quantum-physics-r-matrix-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/omega_quantum_physics_r_matrix_contract.py\",\n    \"sha256\": \"c973eb6aa46390da38a65cbe3a8fec792ddf3b838e366e7589035d5989d064b0\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:omega-quantum-physics-r-matrix-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/omega_quantum_physics_r_matrix_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/omega_quantum_physics_r_matrix.contract.yaml": "fd2b0edfa8a9933e8b9c5d55fd0daebc8a62077f9ddee766eb11fbffbe60f400"
   },

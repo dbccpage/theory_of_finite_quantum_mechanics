@@ -3,62 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/engine_obstruction_runtime_engine_file_v1_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.file_contract.v1",
-    "contract_id": "urn:omega:engine:obstruction_runtime_engine:file:v1.0.0",
-    "title": "Obstruction Runtime Engine",
-    "crate": "omega_engines",
-    "file": "omega_engine/crates/omega_engines/src/obstruction_runtime.rs",
-    "role": "obstruction_runtime_environment",
-    "status": "active_provisional",
-    "authority_effect": "none",
-    "customer_claim_allowed": false,
-    "runtime_enforcement": "required",
-    "owns": [
-      "obstruction_execution_pipeline",
-      "defect_accumulation_logging"
-    ],
-    "does_not_own": [
-      "global_proof_verifier",
-      "authority"
-    ],
-    "may_call": [
-      "omega_engine_core"
-    ],
-    "must_not": [
-      "claim complete proof resolution",
-      "mint authority"
-    ],
-    "exactness": {
-      "numeric_mode": "runtime_execution_records",
-      "exact_certificate_allowed": false
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/20_execution/engine_obstruction_runtime_engine_file_v1_0_0_contract.py",
+      "sha256": "8cd84e06dd63adc8dfb7c74d3d3550e4c9f35d6da66f8ac3e1f72411d7060207"
     },
-    "forbidden_substrings": [
-      "CertifiedAuthority",
-      "AuthorityEffect::Authorize"
-    ],
-    "required_substrings": [
-      "AuthorityEffect::None"
-    ],
-    "required_tests": [
-      "test_obstruction_runtime_execution"
-    ],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_file_contract:file:v1.0.0"
-      ],
-      "coalescence_mode": "specializes",
-      "coalesces_with": [
-        "urn:omega:execution:engine:v1.0.0"
-      ]
-    }
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:20_execution:engine-obstruction-runtime-engine-file-v1-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:engine:obstruction_runtime_engine:file:v1.0.0 Schema Version: omega.file_contract.v1",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
   },
-  "current_contract": "4d543d9b8cdf9e3a9b00eca1bc90cfdd1ad700e8b09a5a2a4a5c76db7dac029a",
-  "current_scoring": null,
+  "current_contract": "44d5096a046149d92a0275427a2bb5918e9c3d5f567fb259c181e1c724a20c31",
+  "current_scoring": "5c67f8a01a2dd2c84487b630436d82ca9a21b37cc41437459057c415171bdcbd",
   "contract_history": [
     {
-      "sha256": "4d543d9b8cdf9e3a9b00eca1bc90cfdd1ad700e8b09a5a2a4a5c76db7dac029a",
-      "bytes": 1064,
+      "sha256": "e27a8ae632160f26f0cd8c8c35c03378701fb706012d59d34ad0e071d505d7d8",
+      "bytes": 1338,
       "record": {
         "schema_version": "omega.file_contract.v1",
         "contract_id": "urn:omega:engine:obstruction_runtime_engine:file:v1.0.0",
@@ -110,13 +86,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.file_contract.v1\ncontract_id: urn:omega:engine:obstruction_runtime_engine:file:v1.0.0\ntitle: Obstruction Runtime Engine\ncrate: omega_engines\nfile: omega_engine/crates/omega_engines/src/obstruction_runtime.rs\nrole: obstruction_runtime_environment\nstatus: active_provisional\nauthority_effect: none\ncustomer_claim_allowed: false\nruntime_enforcement: required\nowns:\n- obstruction_execution_pipeline\n- defect_accumulation_logging\ndoes_not_own:\n- global_proof_verifier\n- authority\nmay_call:\n- omega_engine_core\nmust_not:\n- claim complete proof resolution\n- mint authority\nexactness:\n  numeric_mode: runtime_execution_records\n  exact_certificate_allowed: false\nforbidden_substrings:\n- CertifiedAuthority\n- AuthorityEffect::Authorize\nrequired_substrings:\n- AuthorityEffect::None\nrequired_tests:\n- test_obstruction_runtime_execution\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n  coalescence_mode: specializes\n  coalesces_with:\n  - urn:omega:execution:engine:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.file_contract.v1\",\n  \"contract_id\": \"urn:omega:engine:obstruction_runtime_engine:file:v1.0.0\",\n  \"title\": \"Obstruction Runtime Engine\",\n  \"crate\": \"omega_engines\",\n  \"file\": \"omega_engine/crates/omega_engines/src/obstruction_runtime.rs\",\n  \"role\": \"obstruction_runtime_environment\",\n  \"status\": \"active_provisional\",\n  \"authority_effect\": \"none\",\n  \"customer_claim_allowed\": false,\n  \"runtime_enforcement\": \"required\",\n  \"owns\": [\n    \"obstruction_execution_pipeline\",\n    \"defect_accumulation_logging\"\n  ],\n  \"does_not_own\": [\n    \"global_proof_verifier\",\n    \"authority\"\n  ],\n  \"may_call\": [\n    \"omega_engine_core\"\n  ],\n  \"must_not\": [\n    \"claim complete proof resolution\",\n    \"mint authority\"\n  ],\n  \"exactness\": {\n    \"numeric_mode\": \"runtime_execution_records\",\n    \"exact_certificate_allowed\": false\n  },\n  \"forbidden_substrings\": [\n    \"CertifiedAuthority\",\n    \"AuthorityEffect::Authorize\"\n  ],\n  \"required_substrings\": [\n    \"AuthorityEffect::None\"\n  ],\n  \"required_tests\": [\n    \"test_obstruction_runtime_execution\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_file_contract:file:v1.0.0\"\n    ],\n    \"coalescence_mode\": \"specializes\",\n    \"coalesces_with\": [\n      \"urn:omega:execution:engine:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/engine_obstruction_runtime_engine_file_v1_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "44d5096a046149d92a0275427a2bb5918e9c3d5f567fb259c181e1c724a20c31",
+      "bytes": 1888,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/engine_obstruction_runtime_engine_file_v1_0_0_contract.py",
+          "sha256": "8cd84e06dd63adc8dfb7c74d3d3550e4c9f35d6da66f8ac3e1f72411d7060207"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:20_execution:engine-obstruction-runtime-engine-file-v1-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:engine:obstruction_runtime_engine:file:v1.0.0 Schema Version: omega.file_contract.v1",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/engine_obstruction_runtime_engine_file_v1_0_0_contract.py\",\n    \"sha256\": \"8cd84e06dd63adc8dfb7c74d3d3550e4c9f35d6da66f8ac3e1f72411d7060207\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:engine-obstruction-runtime-engine-file-v1-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:engine:obstruction_runtime_engine:file:v1.0.0 Schema Version: omega.file_contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/engine_obstruction_runtime_engine_file_v1_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "5c67f8a01a2dd2c84487b630436d82ca9a21b37cc41437459057c415171bdcbd",
+      "bytes": 2265,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/engine_obstruction_runtime_engine_file_v1_0_0_contract.py",
+          "sha256": "8cd84e06dd63adc8dfb7c74d3d3550e4c9f35d6da66f8ac3e1f72411d7060207"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:engine-obstruction-runtime-engine-file-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/engine_obstruction_runtime_engine_file_v1_0_0_contract.py\",\n    \"sha256\": \"8cd84e06dd63adc8dfb7c74d3d3550e4c9f35d6da66f8ac3e1f72411d7060207\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:engine-obstruction-runtime-engine-file-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/engine_obstruction_runtime_engine_file_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/engine_obstruction_runtime_engine_file_v1_0_0.contract.yaml": "4d543d9b8cdf9e3a9b00eca1bc90cfdd1ad700e8b09a5a2a4a5c76db7dac029a"
   },

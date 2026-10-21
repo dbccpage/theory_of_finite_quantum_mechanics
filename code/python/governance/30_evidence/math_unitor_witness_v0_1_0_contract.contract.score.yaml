@@ -125,12 +125,12 @@
       ]
     }
   },
-  "current_contract": "97b51e90cd2d9ba725c6ebb20cea1dd0f871227a84936b0b85076184b9081c77",
-  "current_scoring": null,
+  "current_contract": "f4358c3c74652ba2c2739215a6d714c2f29b0c9fc5f72cbcb74e22b5e2d852a1",
+  "current_scoring": "b882e8ec318d752916d84d9a81d1e3f2ecbca3fe3e52b3fe9c85f1f7c085de21",
   "contract_history": [
     {
-      "sha256": "97b51e90cd2d9ba725c6ebb20cea1dd0f871227a84936b0b85076184b9081c77",
-      "bytes": 4619,
+      "sha256": "f4358c3c74652ba2c2739215a6d714c2f29b0c9fc5f72cbcb74e22b5e2d852a1",
+      "bytes": 5203,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:unitor_witness:v0.1.0",
@@ -254,13 +254,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:unitor_witness:v0.1.0\ntitle: UnitorWitness Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: witness-record\n  symbol: W_unitor(A, lambda_A) or W_unitor(A, rho_A)\n  ascii_symbol: unitor_witness\n  notation: W_unitor(A, lambda_A) or W_unitor(A, rho_A)\n  domain:\n  - 'object_hash: SHA-256 hash of the object A'\n  - 'unit_object_hash: SHA-256 hash of the monoidal unit I'\n  - 'monoidal_structure_hash: SHA-256 hash of the monoidal category structure'\n  - 'unitor_direction: left | right'\n  - 'forward_map_hash: SHA-256 hash of lambda_A or rho_A'\n  - 'inverse_map_hash: SHA-256 hash of lambda_A^{-1} or rho_A^{-1}'\n  - 'composition_identity_hash: SHA-256 hash proving forward . inverse = id'\n  - 'inverse_composition_identity_hash: SHA-256 hash proving inverse . forward = id'\n  - 'triangle_identity_witness_hash: SHA-256 hash of triangle identity check (optional)'\n  codomain:\n    description: 'A structured record containing the object identifier, the unitor\n      direction (left or right), the forward map, the inverse map, composition identity\n      proofs, and triangle identity coherence data.\n\n      '\nrequirements:\n  required_structures:\n  - Unitor direction must be exactly 'left' or 'right'\n  - Domain and codomain of the forward map match the expected tensor product with\n    the unit\n  - forward . inverse = id on the codomain\n  - inverse . forward = id on the domain\n  - Triangle identity coherence condition is satisfied (when witnessing both left\n    and right)\n  - Witness hash is deterministic from inputs\nlaws:\n- 'The unitor map is an isomorphism: forward . inverse = id and inverse . forward\n  = id'\n- Domain of left unitor is I tensor A, codomain is A (vice versa for right)\n- The triangle identity relating associator, left unitor, and right unitor holds\n- The witness is consistent with the natural transformation structure at object A\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - No random numbers\n  - No wall-clock data\n  - No network calls\n  - All map and composition data are fixed byte arrays\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Reject unitor direction that is not 'left' or 'right'\n- Reject witness where domain/codomain do not match monoidal structure\n- Reject witness where forward . inverse does not yield identity\n- Reject witness where triangle identity fails\n- Reject witness that claims policy approval or terminal success\n- Reject witness with invalid SHA-256 hash format\ndoctrine:\n  summary: 'UnitorWitness records verifiable evidence that the left or right unitor\n    isomorphism of a monoidal category holds for a given object A. The left unitor\n    lambda_A : I tensor A -> A and the right unitor rho_A : A tensor I -> A are natural\n    isomorphisms required by the monoidal structure. This witness captures the map,\n    its inverse, the composition checks (lambda_A composed with lambda_A^{-1} = id,\n    and vice versa), and the triangle identity coherence condition. It is purely structural\n    and confers no authority.'\n  non_role:\n  - Does not classify admissibility\n  - Does not emit policy decisions\n  - Does not emit certificates\n  - Does not terminalize operations\n  - Does not produce customer-facing claims\n  - Does not define the monoidal category itself (see MonoidalCategory contract)\n  - Does not verify naturality across all objects (only witnesses one object at a\n    time)\nwip:\n- Should the triangle identity witness be mandatory or optional?\n- Extend to bicategorical unitors (lax/oplax)?\n- Define interaction with Pentagon identity witness for associator\n- Currently witnesses one object at a time; naturality across all objects is not checked\n- Triangle identity verification requires associator data from a separate contract\n- May need parametrization over different monoidal structures (strict, non-strict)\n- Consider adding support for symmetric monoidal unitors\nrust_binding:\n  crate: omega_higher_category_theory\n  module: bicategory\n  symbols:\n  - Invertible2Cell\n  - FiniteBicategory\n  - Bicategory\n  required_tests:\n  - test_invertibility_violation_caught\n  - test_triangle_coherence_verified\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:unitor_witness:v0.1.0\",\n  \"title\": \"UnitorWitness Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"witness-record\",\n    \"symbol\": \"W_unitor(A, lambda_A) or W_unitor(A, rho_A)\",\n    \"ascii_symbol\": \"unitor_witness\",\n    \"notation\": \"W_unitor(A, lambda_A) or W_unitor(A, rho_A)\",\n    \"domain\": [\n      \"object_hash: SHA-256 hash of the object A\",\n      \"unit_object_hash: SHA-256 hash of the monoidal unit I\",\n      \"monoidal_structure_hash: SHA-256 hash of the monoidal category structure\",\n      \"unitor_direction: left | right\",\n      \"forward_map_hash: SHA-256 hash of lambda_A or rho_A\",\n      \"inverse_map_hash: SHA-256 hash of lambda_A^{-1} or rho_A^{-1}\",\n      \"composition_identity_hash: SHA-256 hash proving forward . inverse = id\",\n      \"inverse_composition_identity_hash: SHA-256 hash proving inverse . forward = id\",\n      \"triangle_identity_witness_hash: SHA-256 hash of triangle identity check (optional)\"\n    ],\n    \"codomain\": {\n      \"description\": \"A structured record containing the object identifier, the unitor direction (left or right), the forward map, the inverse map, composition identity proofs, and triangle identity coherence data.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Unitor direction must be exactly 'left' or 'right'\",\n      \"Domain and codomain of the forward map match the expected tensor product with the unit\",\n      \"forward . inverse = id on the codomain\",\n      \"inverse . forward = id on the domain\",\n      \"Triangle identity coherence condition is satisfied (when witnessing both left and right)\",\n      \"Witness hash is deterministic from inputs\"\n    ]\n  },\n  \"laws\": [\n    \"The unitor map is an isomorphism: forward . inverse = id and inverse . forward = id\",\n    \"Domain of left unitor is I tensor A, codomain is A (vice versa for right)\",\n    \"The triangle identity relating associator, left unitor, and right unitor holds\",\n    \"The witness is consistent with the natural transformation structure at object A\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"No random numbers\",\n      \"No wall-clock data\",\n      \"No network calls\",\n      \"All map and composition data are fixed byte arrays\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Reject unitor direction that is not 'left' or 'right'\",\n    \"Reject witness where domain/codomain do not match monoidal structure\",\n    \"Reject witness where forward . inverse does not yield identity\",\n    \"Reject witness where triangle identity fails\",\n    \"Reject witness that claims policy approval or terminal success\",\n    \"Reject witness with invalid SHA-256 hash format\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"UnitorWitness records verifiable evidence that the left or right unitor isomorphism of a monoidal category holds for a given object A. The left unitor lambda_A : I tensor A -> A and the right unitor rho_A : A tensor I -> A are natural isomorphisms required by the monoidal structure. This witness captures the map, its inverse, the composition checks (lambda_A composed with lambda_A^{-1} = id, and vice versa), and the triangle identity coherence condition. It is purely structural and confers no authority.\",\n    \"non_role\": [\n      \"Does not classify admissibility\",\n      \"Does not emit policy decisions\",\n      \"Does not emit certificates\",\n      \"Does not terminalize operations\",\n      \"Does not produce customer-facing claims\",\n      \"Does not define the monoidal category itself (see MonoidalCategory contract)\",\n      \"Does not verify naturality across all objects (only witnesses one object at a time)\"\n    ]\n  },\n  \"wip\": [\n    \"Should the triangle identity witness be mandatory or optional?\",\n    \"Extend to bicategorical unitors (lax/oplax)?\",\n    \"Define interaction with Pentagon identity witness for associator\",\n    \"Currently witnesses one object at a time; naturality across all objects is not checked\",\n    \"Triangle identity verification requires associator data from a separate contract\",\n    \"May need parametrization over different monoidal structures (strict, non-strict)\",\n    \"Consider adding support for symmetric monoidal unitors\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"bicategory\",\n    \"symbols\": [\n      \"Invertible2Cell\",\n      \"FiniteBicategory\",\n      \"Bicategory\"\n    ],\n    \"required_tests\": [\n      \"test_invertibility_violation_caught\",\n      \"test_triangle_coherence_verified\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/30_evidence/math_unitor_witness_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "b882e8ec318d752916d84d9a81d1e3f2ecbca3fe3e52b3fe9c85f1f7c085de21",
+      "bytes": 2225,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/30_evidence/math_unitor_witness_v0_1_0_contract.py",
+          "sha256": "918e019407046456068a64eaced6c4e2553c456b74e7c0a46bc50ec734c6b5d2"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:30_evidence:math-unitor-witness-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/math_unitor_witness_v0_1_0_contract.py\",\n    \"sha256\": \"918e019407046456068a64eaced6c4e2553c456b74e7c0a46bc50ec734c6b5d2\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:math-unitor-witness-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/math_unitor_witness_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/30_evidence/math_unitor_witness_v0_1_0.contract.yaml": "97b51e90cd2d9ba725c6ebb20cea1dd0f871227a84936b0b85076184b9081c77"
   },

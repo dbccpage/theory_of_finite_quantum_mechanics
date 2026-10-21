@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "review_type": "self-review",
+  "initial_pr_head": "dac0430de2e34bf8630a74360c2b678811815b5f",
+  "base_included": "a47c5f964a2f0f4abeb77a9fab657e32d922e7ef",
+  "findings": [
+    {
+      "priority": "P2",
+      "finding": "A source reference could pass when the symbol occurred only in a comment.",
+      "repair": "Bind Python references through the AST and Rust/Lean references to declaration lines after removing comments.",
+      "validation": "Regression cases reject Python, Rust and Lean comment-only mentions. Full replay resolves all real references."
+    },
+    {
+      "priority": "P2",
+      "finding": "Hash-bound teaching artifacts could change line endings on a Windows checkout.",
+      "repair": "Write LF explicitly and add scoped problem_sets/.gitattributes rules.",
+      "validation": "The staged blob audit compares receipt hashes with the exact Git blobs."
+    }
+  ],
+  "reviewed_mathematics": [
+    "Normalization and units",
+    "Boundary matching and flux metric",
+    "Finite Fock cutoff defect",
+    "Perturbative approximation and residual",
+    "Degenerate Stark block validity boundary",
+    "Sudden-expansion exceptional mode and form-domain energy",
+    "Bell partial trace and YY sign",
+    "Continuum versus executable scope"
+  ],
+  "verifier_regression_tests_passed": 5,
+  "paired_execution": {
+    "python": 25,
+    "rust": 25,
+    "named_values_each": 129,
+    "parity": true
+  },
+  "lean_scope": "Existing FiniteQM.lean and Superposition.lean compiled; no universal continuum proof is claimed.",
+  "remaining_blocking_findings": [],
+  "verification_sha256": "cf8e83468ae44889ccff8ffdb979dc938a93bdbac45052ba0f7b65513cde7ecb"
+}

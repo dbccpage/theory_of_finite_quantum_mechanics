@@ -70,12 +70,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "4ca7db1e686ce141f4349a9f73a3362d2023636114cda53c9a6787a8c8b3226d",
-  "current_scoring": null,
+  "current_contract": "e4873e4240ce5ce20c6953ee18488fe992d79ae52b5e8d8ff1fece04ad7f3069",
+  "current_scoring": "20c9a114aceb5932981a15d8ea1d60b321fe15a85327a3172bdb14b0ec655d93",
   "contract_history": [
     {
-      "sha256": "4ca7db1e686ce141f4349a9f73a3362d2023636114cda53c9a6787a8c8b3226d",
-      "bytes": 1133,
+      "sha256": "e4873e4240ce5ce20c6953ee18488fe992d79ae52b5e8d8ff1fece04ad7f3069",
+      "bytes": 1494,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_wdp:ddc:v1.0.0",
@@ -144,13 +144,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_wdp:ddc:v1.0.0\ntitle: Mod Module\nkind: rust_file_contract\nstatus: active\ncrate: omega_wdp\nfile: crates_rs/omega_wdp/src/ddc/mod.rs\nmodule: ddc\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_wdp\n  module: ddc\n  file: crates_rs/omega_wdp/src/ddc/mod.rs\nsymbols:\n- LambdaAlgebraError\n- FaceLambda\n- OrientedEdge\n- new\n- OrientedTriangle\n- FiniteWindow\n- FiniteWindowScan\n- checked_diagnostic_from_quotient\n- edges\n- faces\n- Boundary1\n- Cochain1\n- coefficients\n- checked_coefficient\n- coefficient\n- checked_add_term\n- checked_set_term\n- checked_merge\n- checked_reverse\n- checked_scale\n- checked_closure_defect\n- checked_gamma2\n- checked_l1_tension\n- checked_primitive_difference\n- checked_scan_c1\n- checked_scan\n- Cochain0\n- from_values\n- value\n- set\nowns:\n- lambda_algebra_error\n- face_lambda\n- oriented_edge\n- new\n- oriented_triangle\n- finite_window\n- finite_window_scan\n- checked_diagnostic_from_quotient\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_wdp:ddc:v1.0.0\",\n  \"title\": \"Mod Module\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_wdp\",\n  \"file\": \"crates_rs/omega_wdp/src/ddc/mod.rs\",\n  \"module\": \"ddc\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_wdp\",\n    \"module\": \"ddc\",\n    \"file\": \"crates_rs/omega_wdp/src/ddc/mod.rs\"\n  },\n  \"symbols\": [\n    \"LambdaAlgebraError\",\n    \"FaceLambda\",\n    \"OrientedEdge\",\n    \"new\",\n    \"OrientedTriangle\",\n    \"FiniteWindow\",\n    \"FiniteWindowScan\",\n    \"checked_diagnostic_from_quotient\",\n    \"edges\",\n    \"faces\",\n    \"Boundary1\",\n    \"Cochain1\",\n    \"coefficients\",\n    \"checked_coefficient\",\n    \"coefficient\",\n    \"checked_add_term\",\n    \"checked_set_term\",\n    \"checked_merge\",\n    \"checked_reverse\",\n    \"checked_scale\",\n    \"checked_closure_defect\",\n    \"checked_gamma2\",\n    \"checked_l1_tension\",\n    \"checked_primitive_difference\",\n    \"checked_scan_c1\",\n    \"checked_scan\",\n    \"Cochain0\",\n    \"from_values\",\n    \"value\",\n    \"set\"\n  ],\n  \"owns\": [\n    \"lambda_algebra_error\",\n    \"face_lambda\",\n    \"oriented_edge\",\n    \"new\",\n    \"oriented_triangle\",\n    \"finite_window\",\n    \"finite_window_scan\",\n    \"checked_diagnostic_from_quotient\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/omega_wdp_ddc.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "20c9a114aceb5932981a15d8ea1d60b321fe15a85327a3172bdb14b0ec655d93",
+      "bytes": 2201,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/omega_wdp_ddc_contract.py",
+          "sha256": "4a8a8b5fe41ca932d1e8e38615a88ebfc6122a4a02d7279cdbc17ca88fe2100f"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:omega-wdp-ddc-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/omega_wdp_ddc_contract.py\",\n    \"sha256\": \"4a8a8b5fe41ca932d1e8e38615a88ebfc6122a4a02d7279cdbc17ca88fe2100f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:omega-wdp-ddc-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/omega_wdp_ddc_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/omega_wdp_ddc.contract.yaml": "4ca7db1e686ce141f4349a9f73a3362d2023636114cda53c9a6787a8c8b3226d"
   },

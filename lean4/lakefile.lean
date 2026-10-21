@@ -39,6 +39,14 @@ lean_lib «FiniteQuantum» where
     `NoSignallingCore,
     `U1AngleAddition,
     `U1TorsionExclusion,
+    `U1PythagoreanObstruction,
+    `U1PowerMapInjectivity,
+    `U1CayleyProjectiveCircle,
+    `U1CyclotomicTorsionTower,
+    `U1CauchyCircleCompletion,
+    `U1ChebyshevCauchyBridge,
+    `U1QuadraticTowerAndCayleyStone,
+    `U1PhaseSynthesis,
     `RotationGroups,
     `LorentzBoost,
     `BoostComposition,
@@ -71,6 +79,8 @@ lean_lib «FiniteQuantum» where
     `BornHermitianCarrier,
     `BornHermitianPsdDecomposition,
     `BornHermitianTraceRepresentation,
+    `SectorFormUniqueness,
+    `SectorFormHermitian,
     `WeylCommutant,
     `H001ProbabilitySimplex,
     `H001Rats,
@@ -483,6 +493,9 @@ lean_lib «FiniteQuantum» where
     `ReggePachnerWdw,
     `regge_wdw_core,
     -- Majorana formalization modules
+    `MajoranaF2Trichotomy,
+    `MajoranaMZM,
+    `MajoranaTransferBounds,
     `MajoranaCore
   ]
 

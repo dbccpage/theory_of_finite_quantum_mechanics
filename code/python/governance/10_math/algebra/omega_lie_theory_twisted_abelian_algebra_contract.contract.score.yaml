@@ -56,12 +56,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "d5e4e3507ad8cee8539f2e79ad71d2adde58121874cbfb2b819e8e65183d7fb1",
-  "current_scoring": null,
+  "current_contract": "adfc34b1012090f050a42a54d966bb6b120b63b008fcae10eec7eb44b33bd68f",
+  "current_scoring": "49f98a4528a54f4f362e20072be52d21de2aec148fdc8b89b0b4b047a9c0263b",
   "contract_history": [
     {
-      "sha256": "d5e4e3507ad8cee8539f2e79ad71d2adde58121874cbfb2b819e8e65183d7fb1",
-      "bytes": 1090,
+      "sha256": "adfc34b1012090f050a42a54d966bb6b120b63b008fcae10eec7eb44b33bd68f",
+      "bytes": 1379,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_lie_theory:twisted_abelian_algebra:v1.0.0",
@@ -116,13 +116,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_lie_theory:twisted_abelian_algebra:v1.0.0\ntitle: A finite abelian group with a fully checked normalized unitary 2-cocycle.  u_g\n  u_h = alpha(g,h) u_(gh). Scalars and m...\nkind: rust_file_contract\nstatus: active\ncrate: omega_lie_theory\nfile: crates_rs/omega_lie_theory/src/twisted_abelian_algebra.rs\nmodule: twisted_abelian_algebra\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_lie_theory\n  module: twisted_abelian_algebra\n  file: crates_rs/omega_lie_theory/src/twisted_abelian_algebra.rs\nsymbols:\n- TwistedAlgebraError\n- ComplexBlockProfile\n- TwistedAbelianAlgebra\n- new\n- group\n- center_basis\n- phase\n- commutator_phase\n- basis_product\n- basis_star\n- complex_block_profile\n- basis\n- multiply\n- star\n- trace\n- left_regular\nowns:\n- twisted_algebra_error\n- complex_block_profile\n- twisted_abelian_algebra\n- new\n- group\n- center_basis\n- phase\n- commutator_phase\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_lie_theory:twisted_abelian_algebra:v1.0.0\",\n  \"title\": \"A finite abelian group with a fully checked normalized unitary 2-cocycle.  u_g u_h = alpha(g,h) u_(gh). Scalars and m...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_lie_theory\",\n  \"file\": \"crates_rs/omega_lie_theory/src/twisted_abelian_algebra.rs\",\n  \"module\": \"twisted_abelian_algebra\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_lie_theory\",\n    \"module\": \"twisted_abelian_algebra\",\n    \"file\": \"crates_rs/omega_lie_theory/src/twisted_abelian_algebra.rs\"\n  },\n  \"symbols\": [\n    \"TwistedAlgebraError\",\n    \"ComplexBlockProfile\",\n    \"TwistedAbelianAlgebra\",\n    \"new\",\n    \"group\",\n    \"center_basis\",\n    \"phase\",\n    \"commutator_phase\",\n    \"basis_product\",\n    \"basis_star\",\n    \"complex_block_profile\",\n    \"basis\",\n    \"multiply\",\n    \"star\",\n    \"trace\",\n    \"left_regular\"\n  ],\n  \"owns\": [\n    \"twisted_algebra_error\",\n    \"complex_block_profile\",\n    \"twisted_abelian_algebra\",\n    \"new\",\n    \"group\",\n    \"center_basis\",\n    \"phase\",\n    \"commutator_phase\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/algebra/omega_lie_theory_twisted_abelian_algebra.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "49f98a4528a54f4f362e20072be52d21de2aec148fdc8b89b0b4b047a9c0263b",
+      "bytes": 2253,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/algebra/omega_lie_theory_twisted_abelian_algebra_contract.py",
+          "sha256": "3f3097dffdcaf6563a99c99f9c0ce71ed0c5c3d56e2c40893054f5c20e7222ce"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:algebra:omega-lie-theory-twisted-abelian-algebra-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/omega_lie_theory_twisted_abelian_algebra_contract.py\",\n    \"sha256\": \"3f3097dffdcaf6563a99c99f9c0ce71ed0c5c3d56e2c40893054f5c20e7222ce\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:omega-lie-theory-twisted-abelian-algebra-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/omega_lie_theory_twisted_abelian_algebra_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/algebra/omega_lie_theory_twisted_abelian_algebra.contract.yaml": "d5e4e3507ad8cee8539f2e79ad71d2adde58121874cbfb2b819e8e65183d7fb1"
   },

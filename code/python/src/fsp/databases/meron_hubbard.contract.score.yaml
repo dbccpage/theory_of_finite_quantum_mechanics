@@ -1,0 +1,188 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/fsp/databases/meron_hubbard.sql",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/fsp/databases/meron_hubbard.sql",
+      "sha256": "2e772cb9eccd510aed828b5f71438dddef7ead99a26bd99f3009039888b07c49"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:fsp:meron-hubbard:v1",
+    "role": "database schema",
+    "purpose": "Artifact meron_hubbard.sql",
+    "operations": {
+      "bit": "Relational table bit with STRICT column definitions and constraints.",
+      "experiment_metadata": "Relational table experiment_metadata with STRICT column definitions and constraints.",
+      "meron_parameter": "Relational table meron_parameter with STRICT column definitions and constraints.",
+      "meron_node": "Relational table meron_node with STRICT column definitions and constraints.",
+      "meron_plaquette": "Relational table meron_plaquette with STRICT column definitions and constraints.",
+      "meron_graph": "Relational table meron_graph with STRICT column definitions and constraints.",
+      "meron_edge": "Relational table meron_edge with STRICT column definitions and constraints.",
+      "meron_component": "Relational table meron_component with STRICT column definitions and constraints.",
+      "meron_orientation": "Relational table meron_orientation with STRICT column definitions and constraints.",
+      "meron_state": "Relational table meron_state with STRICT column definitions and constraints.",
+      "meron_configuration": "Relational table meron_configuration with STRICT column definitions and constraints.",
+      "hubbard_basis": "Relational table hubbard_basis with STRICT column definitions and constraints.",
+      "hubbard_hamiltonian": "Relational table hubbard_hamiltonian with STRICT column definitions and constraints.",
+      "scalar_matrix": "Relational table scalar_matrix with STRICT column definitions and constraints.",
+      "dq_parameter": "Relational table dq_parameter with STRICT column definitions and constraints.",
+      "dq_site": "Relational table dq_site with STRICT column definitions and constraints.",
+      "dq_field": "Relational table dq_field with STRICT column definitions and constraints.",
+      "dq_kinetic": "Relational table dq_kinetic with STRICT column definitions and constraints.",
+      "dq_product": "Relational table dq_product with STRICT column definitions and constraints.",
+      "dq_next": "Relational table dq_next with STRICT column definitions and constraints.",
+      "dq_determinant": "Relational table dq_determinant with STRICT column definitions and constraints.",
+      "meron_cluster_sign": "Relational view meron_cluster_sign defining projection and join queries.",
+      "meron_invalid_character": "Relational view meron_invalid_character defining projection and join queries.",
+      "meron_orbit": "Relational view meron_orbit defining projection and join queries.",
+      "meron_cluster_amplitude": "Relational view meron_cluster_amplitude defining projection and join queries.",
+      "meron_staggered": "Relational view meron_staggered defining projection and join queries.",
+      "meron_squared_orbit": "Relational view meron_squared_orbit defining projection and join queries.",
+      "dq_weight": "Relational view dq_weight defining projection and join queries.",
+      "dq_number": "Relational view dq_number defining projection and join queries."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "SQLite STRICT mode and CHECK constraints refuse malformed rows, nullable keys, or invalid types.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "8621b6d9d921295e557298bbe2f7bacee777ec97b452725a02aafabe4e8ca7b2",
+  "current_scoring": "8522350327840c538c0e1123d71afcf3b317a52743e23cf0e9bd7d036bae8e04",
+  "contract_history": [
+    {
+      "sha256": "8621b6d9d921295e557298bbe2f7bacee777ec97b452725a02aafabe4e8ca7b2",
+      "bytes": 4441,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/fsp/databases/meron_hubbard.sql",
+          "sha256": "2e772cb9eccd510aed828b5f71438dddef7ead99a26bd99f3009039888b07c49"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:fsp:meron-hubbard:v1",
+        "role": "database schema",
+        "purpose": "Artifact meron_hubbard.sql",
+        "operations": {
+          "bit": "Relational table bit with STRICT column definitions and constraints.",
+          "experiment_metadata": "Relational table experiment_metadata with STRICT column definitions and constraints.",
+          "meron_parameter": "Relational table meron_parameter with STRICT column definitions and constraints.",
+          "meron_node": "Relational table meron_node with STRICT column definitions and constraints.",
+          "meron_plaquette": "Relational table meron_plaquette with STRICT column definitions and constraints.",
+          "meron_graph": "Relational table meron_graph with STRICT column definitions and constraints.",
+          "meron_edge": "Relational table meron_edge with STRICT column definitions and constraints.",
+          "meron_component": "Relational table meron_component with STRICT column definitions and constraints.",
+          "meron_orientation": "Relational table meron_orientation with STRICT column definitions and constraints.",
+          "meron_state": "Relational table meron_state with STRICT column definitions and constraints.",
+          "meron_configuration": "Relational table meron_configuration with STRICT column definitions and constraints.",
+          "hubbard_basis": "Relational table hubbard_basis with STRICT column definitions and constraints.",
+          "hubbard_hamiltonian": "Relational table hubbard_hamiltonian with STRICT column definitions and constraints.",
+          "scalar_matrix": "Relational table scalar_matrix with STRICT column definitions and constraints.",
+          "dq_parameter": "Relational table dq_parameter with STRICT column definitions and constraints.",
+          "dq_site": "Relational table dq_site with STRICT column definitions and constraints.",
+          "dq_field": "Relational table dq_field with STRICT column definitions and constraints.",
+          "dq_kinetic": "Relational table dq_kinetic with STRICT column definitions and constraints.",
+          "dq_product": "Relational table dq_product with STRICT column definitions and constraints.",
+          "dq_next": "Relational table dq_next with STRICT column definitions and constraints.",
+          "dq_determinant": "Relational table dq_determinant with STRICT column definitions and constraints.",
+          "meron_cluster_sign": "Relational view meron_cluster_sign defining projection and join queries.",
+          "meron_invalid_character": "Relational view meron_invalid_character defining projection and join queries.",
+          "meron_orbit": "Relational view meron_orbit defining projection and join queries.",
+          "meron_cluster_amplitude": "Relational view meron_cluster_amplitude defining projection and join queries.",
+          "meron_staggered": "Relational view meron_staggered defining projection and join queries.",
+          "meron_squared_orbit": "Relational view meron_squared_orbit defining projection and join queries.",
+          "dq_weight": "Relational view dq_weight defining projection and join queries.",
+          "dq_number": "Relational view dq_number defining projection and join queries."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "SQLite STRICT mode and CHECK constraints refuse malformed rows, nullable keys, or invalid types.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fsp/databases/meron_hubbard.sql\",\n    \"sha256\": \"2e772cb9eccd510aed828b5f71438dddef7ead99a26bd99f3009039888b07c49\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fsp:meron-hubbard:v1\",\n  \"role\": \"database schema\",\n  \"purpose\": \"Artifact meron_hubbard.sql\",\n  \"operations\": {\n    \"bit\": \"Relational table bit with STRICT column definitions and constraints.\",\n    \"experiment_metadata\": \"Relational table experiment_metadata with STRICT column definitions and constraints.\",\n    \"meron_parameter\": \"Relational table meron_parameter with STRICT column definitions and constraints.\",\n    \"meron_node\": \"Relational table meron_node with STRICT column definitions and constraints.\",\n    \"meron_plaquette\": \"Relational table meron_plaquette with STRICT column definitions and constraints.\",\n    \"meron_graph\": \"Relational table meron_graph with STRICT column definitions and constraints.\",\n    \"meron_edge\": \"Relational table meron_edge with STRICT column definitions and constraints.\",\n    \"meron_component\": \"Relational table meron_component with STRICT column definitions and constraints.\",\n    \"meron_orientation\": \"Relational table meron_orientation with STRICT column definitions and constraints.\",\n    \"meron_state\": \"Relational table meron_state with STRICT column definitions and constraints.\",\n    \"meron_configuration\": \"Relational table meron_configuration with STRICT column definitions and constraints.\",\n    \"hubbard_basis\": \"Relational table hubbard_basis with STRICT column definitions and constraints.\",\n    \"hubbard_hamiltonian\": \"Relational table hubbard_hamiltonian with STRICT column definitions and constraints.\",\n    \"scalar_matrix\": \"Relational table scalar_matrix with STRICT column definitions and constraints.\",\n    \"dq_parameter\": \"Relational table dq_parameter with STRICT column definitions and constraints.\",\n    \"dq_site\": \"Relational table dq_site with STRICT column definitions and constraints.\",\n    \"dq_field\": \"Relational table dq_field with STRICT column definitions and constraints.\",\n    \"dq_kinetic\": \"Relational table dq_kinetic with STRICT column definitions and constraints.\",\n    \"dq_product\": \"Relational table dq_product with STRICT column definitions and constraints.\",\n    \"dq_next\": \"Relational table dq_next with STRICT column definitions and constraints.\",\n    \"dq_determinant\": \"Relational table dq_determinant with STRICT column definitions and constraints.\",\n    \"meron_cluster_sign\": \"Relational view meron_cluster_sign defining projection and join queries.\",\n    \"meron_invalid_character\": \"Relational view meron_invalid_character defining projection and join queries.\",\n    \"meron_orbit\": \"Relational view meron_orbit defining projection and join queries.\",\n    \"meron_cluster_amplitude\": \"Relational view meron_cluster_amplitude defining projection and join queries.\",\n    \"meron_staggered\": \"Relational view meron_staggered defining projection and join queries.\",\n    \"meron_squared_orbit\": \"Relational view meron_squared_orbit defining projection and join queries.\",\n    \"dq_weight\": \"Relational view dq_weight defining projection and join queries.\",\n    \"dq_number\": \"Relational view dq_number defining projection and join queries.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"SQLite STRICT mode and CHECK constraints refuse malformed rows, nullable keys, or invalid types.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/fsp/databases/meron_hubbard.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8522350327840c538c0e1123d71afcf3b317a52743e23cf0e9bd7d036bae8e04",
+      "bytes": 2153,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/fsp/databases/meron_hubbard.sql",
+          "sha256": "2e772cb9eccd510aed828b5f71438dddef7ead99a26bd99f3009039888b07c49"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:fsp:meron-hubbard:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "SQLite STRICT mode and CHECK constraints refuse malformed rows, nullable keys, or invalid types.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 1), Lizard CCN (max 1), and shallow nesting depth (max 0 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 1,
+          "lizard_ccn": 1,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 0
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fsp/databases/meron_hubbard.sql\",\n    \"sha256\": \"2e772cb9eccd510aed828b5f71438dddef7ead99a26bd99f3009039888b07c49\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fsp:meron-hubbard:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"SQLite STRICT mode and CHECK constraints refuse malformed rows, nullable keys, or invalid types.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 1), Lizard CCN (max 1), and shallow nesting depth (max 0 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 1,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 0\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/fsp/databases/meron_hubbard.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

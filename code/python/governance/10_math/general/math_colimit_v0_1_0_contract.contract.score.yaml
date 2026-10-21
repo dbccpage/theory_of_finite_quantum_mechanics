@@ -109,12 +109,12 @@
       ]
     }
   },
-  "current_contract": "a90fd948e86ff785c3eeeb55558b3d05197a4b27220865d360e35c756fb92a77",
-  "current_scoring": null,
+  "current_contract": "67755f124d9c0a832d138cdee7a427a99cf22029bfcf3e7eba7ab28e4c37b4bb",
+  "current_scoring": "ad4fc86dafde31859e59090e146fce2e96999fa3b89835e44e45d68540b3fbc3",
   "contract_history": [
     {
-      "sha256": "a90fd948e86ff785c3eeeb55558b3d05197a4b27220865d360e35c756fb92a77",
-      "bytes": 3399,
+      "sha256": "67755f124d9c0a832d138cdee7a427a99cf22029bfcf3e7eba7ab28e4c37b4bb",
+      "bytes": 3925,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:colimit:v0.1.0",
@@ -222,13 +222,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:colimit:v0.1.0\ntitle: Colimit Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: universal_cocone\n  symbol: colim D or lim→ D\n  ascii_symbol: colimit\n  notation: colim D or lim→ D\n  domain:\n  - 'diagram: Functor D: J → C'\n  - 'colimit_object: Object L in C'\n  - 'coprojections: Family {ι_j: D(j) → L | j ∈ Ob(J)}'\n  codomain:\n    description: 'A colimit consists of: - A diagram D: J → C (source functor) - An\n      object L in C (the colimit object) - For each j ∈ Ob(J), a morphism ι_j: D(j)\n      → L (coprojections)\n\n      '\nrequirements:\n  required_structures:\n  - 'The diagram D: J → C must be a valid functor'\n  - L must be an object in category C\n  - Each ι_j must be a morphism D(j) → L in C\n  - 'For all morphisms f: j → k in J, ι_k ∘ D(f) = ι_j'\n  - Any cocone factors uniquely through L\nlaws:\n- 'For every morphism f: j → k in J, ι_k ∘ D(f) = ι_j'\n- 'For any cocone (M, μ_j: D(j) → M), there exists a unique morphism u: L → M such\n  that u ∘ ι_j = μ_j for all j ∈ Ob(J)\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Coprojections indexed by J's objects in canonical order\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- diagram_id does not resolve\n- colimit_object_id does not resolve\n- ι_j does not have codomain L\n- 'ι_k ∘ D(f) ≠ ι_j for some f: j → k'\n- Another cocone cannot factor through L uniquely\ndoctrine:\n  summary: 'A Colimit of a diagram D: J → C is a universal cocone under D. It consists\n    of an object L (the colimit) and morphisms ι_j: D(j) → L (the coprojections) such\n    that any other cocone factors uniquely through L. The contract validates the cocone\n    and universality.'\n  non_role:\n  - Does not provide specific colimit constructions (coproduct, pushout, etc.)\n  - Does not compute colimits automatically, only validates given cocones\n  - Does not handle large colimits (requires small diagrams)\nwip:\n- Dual to Limit; same verification issues apply\n- How to efficiently verify universal property for large cocones?\n- Should coproducts, initial objects, coequalizers, pushouts be separate contracts\n  or special cases?\n- How to handle filtered colimits with special properties in specific categories?\n- Performance considerations for colimit computations in large diagrams\n- Coproducts, initial objects, coequalizers, pushouts are special cases of colimits\n- Filtered colimits have special properties in many categories (e.g., commute with\n  finite limits in Set)\n- Universal property verification may require computational oracle for general categories\n- Consider caching factorization results for repeated cocone queries\nrust_binding:\n  crate: omega_category_theory\n  module: limits_colimits\n  symbols:\n  - Colimit\n  required_tests:\n  - validate_ok\n  - validate_rejects_bad_cocone\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:colimit:v0.1.0\",\n  \"title\": \"Colimit Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"universal_cocone\",\n    \"symbol\": \"colim D or lim→ D\",\n    \"ascii_symbol\": \"colimit\",\n    \"notation\": \"colim D or lim→ D\",\n    \"domain\": [\n      \"diagram: Functor D: J → C\",\n      \"colimit_object: Object L in C\",\n      \"coprojections: Family {ι_j: D(j) → L | j ∈ Ob(J)}\"\n    ],\n    \"codomain\": {\n      \"description\": \"A colimit consists of: - A diagram D: J → C (source functor) - An object L in C (the colimit object) - For each j ∈ Ob(J), a morphism ι_j: D(j) → L (coprojections)\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The diagram D: J → C must be a valid functor\",\n      \"L must be an object in category C\",\n      \"Each ι_j must be a morphism D(j) → L in C\",\n      \"For all morphisms f: j → k in J, ι_k ∘ D(f) = ι_j\",\n      \"Any cocone factors uniquely through L\"\n    ]\n  },\n  \"laws\": [\n    \"For every morphism f: j → k in J, ι_k ∘ D(f) = ι_j\",\n    \"For any cocone (M, μ_j: D(j) → M), there exists a unique morphism u: L → M such that u ∘ ι_j = μ_j for all j ∈ Ob(J)\\n\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Coprojections indexed by J's objects in canonical order\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"diagram_id does not resolve\",\n    \"colimit_object_id does not resolve\",\n    \"ι_j does not have codomain L\",\n    \"ι_k ∘ D(f) ≠ ι_j for some f: j → k\",\n    \"Another cocone cannot factor through L uniquely\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Colimit of a diagram D: J → C is a universal cocone under D. It consists of an object L (the colimit) and morphisms ι_j: D(j) → L (the coprojections) such that any other cocone factors uniquely through L. The contract validates the cocone and universality.\",\n    \"non_role\": [\n      \"Does not provide specific colimit constructions (coproduct, pushout, etc.)\",\n      \"Does not compute colimits automatically, only validates given cocones\",\n      \"Does not handle large colimits (requires small diagrams)\"\n    ]\n  },\n  \"wip\": [\n    \"Dual to Limit; same verification issues apply\",\n    \"How to efficiently verify universal property for large cocones?\",\n    \"Should coproducts, initial objects, coequalizers, pushouts be separate contracts or special cases?\",\n    \"How to handle filtered colimits with special properties in specific categories?\",\n    \"Performance considerations for colimit computations in large diagrams\",\n    \"Coproducts, initial objects, coequalizers, pushouts are special cases of colimits\",\n    \"Filtered colimits have special properties in many categories (e.g., commute with finite limits in Set)\",\n    \"Universal property verification may require computational oracle for general categories\",\n    \"Consider caching factorization results for repeated cocone queries\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_category_theory\",\n    \"module\": \"limits_colimits\",\n    \"symbols\": [\n      \"Colimit\"\n    ],\n    \"required_tests\": [\n      \"validate_ok\",\n      \"validate_rejects_bad_cocone\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_colimit_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "ad4fc86dafde31859e59090e146fce2e96999fa3b89835e44e45d68540b3fbc3",
+      "bytes": 2211,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_colimit_v0_1_0_contract.py",
+          "sha256": "b6c5f429256ee185be0056d32eb1e103c5021137cc2381354184c93102fec0e5"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-colimit-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_colimit_v0_1_0_contract.py\",\n    \"sha256\": \"b6c5f429256ee185be0056d32eb1e103c5021137cc2381354184c93102fec0e5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-colimit-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_colimit_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_colimit_v0_1_0.contract.yaml": "a90fd948e86ff785c3eeeb55558b3d05197a4b27220865d360e35c756fb92a77"
   },

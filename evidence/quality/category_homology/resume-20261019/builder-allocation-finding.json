@@ -1,8 +1,0 @@
-{
-  "AuthorityEffect": "None",
-  "subject": "code/rust/src/category_theory/finite_category_builder.rs",
-  "subject_sha256": "7af37e90729bf85660d671eb36b69c18588258c30666f7ec9341c47fc3510911",
-  "finding": "G5 B: identity_compositions clones every complete three-string morphism into a temporary Vec, then clones each identity name before the owned composition-key/value copies. Disjoint field borrowing can eliminate these temporary records/names; public owned tuple-key lookup storage remains a separate declared cost.",
-  "evidence": "Literal source/cost trace, not an allocation benchmark.",
-  "status": "repair_pending"
-}

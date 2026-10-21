@@ -1,0 +1,103 @@
+schema_version: 1
+problem_id: UQM-02
+title: Free Gaussian wave packet and uncertainty
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  initial: <x>=0; <p>=hbar k0; Var(x)=sigma^2; Var(p)=hbar^2/(4 sigma^2)
+  time: <x(t)>=hbar k0 t/m; Var(x(t))=sigma^2+hbar^2 t^2/(4m^2 sigma^2)
+  fixture: <x>=3; <p>=3/2; Var(x)=2; Var(p)=1/4; (Delta x Delta p)^2=1/2
+derivation:
+- step: 1
+  explanation: Taking the modulus squared removes exp(i k0 x). The Gaussian integral integral exp[-x^2/(2
+    sigma^2)] dx=sqrt(2 pi sigma^2) cancels the normalization factor. Oddness gives <x>=0 and differentiating
+    the Gaussian integral gives <x^2>=sigma^2.
+- step: 2
+  explanation: 'Differentiate psi: p psi=(hbar k0+i hbar x/(2 sigma^2)) psi. The odd term integrates to
+    zero, leaving <p>=hbar k0. The norm of (p-<p>)psi gives Var(p)=hbar^2 <x^2>/(4 sigma^4)=hbar^2/(4
+    sigma^2).'
+- step: 3
+  explanation: Thus Delta x Delta p=hbar/2 initially. Boundary terms vanish because the wavefunction decays
+    rapidly. This is a continuum statement about integrals and operator domains, not a finite-matrix canonical
+    commutation identity.
+- step: 4
+  explanation: For the free Hamiltonian, the Heisenberg equations give p(t)=p(0) and x(t)=x(0)+t p(0)/m.
+    The mean therefore moves with velocity hbar k0/m.
+- step: 5
+  explanation: Expanding the variance gives Var(x(t))=Var(x(0))+(t/m)^2 Var(p)+(t/m)<{x-<x>,p-<p>}>. The
+    last term vanishes initially for this unchirped Gaussian, yielding the stated spreading law.
+- step: 6
+  explanation: At the specified parameters the spreading contribution is 1, hence Var(x)=2. Var(p) stays
+    1/4 and the squared uncertainty product becomes 1/2. A nonzero position-momentum covariance develops
+    with time; this explains why the simple Heisenberg product need not remain minimal.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Construct all physical inputs with q, including k0=3/2.
+    - Compute the fixed momentum variance before inserting it into the position variance.
+    - Report the squared uncertainty product to avoid approximating a square root.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          hbar=m=sigma=q(1); k0=q(3,2); t=q(2)
+          vp=hbar*hbar/(4*sigma*sigma)
+          vx=sigma*sigma+t*t*vp/(m*m)
+          return {"mean_x":str(hbar*k0*t/m),"mean_p":str(hbar*k0),
+                  "variance_x":str(vx),"variance_p":str(vp),"uncertainty_product_squared":str(vx*vp)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Use the existing Q scalar through q/qr; every division has a positive denominator.
+    - Reuse vp in the propagation law so the conserved quantity is visible.
+    - Return dimensionless numbers in the specified units; restore hbar and m using the analytic formula.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let hbar=q(1); let m=q(1); let sigma=q(1); let k0=qr(3,2).unwrap(); let t=q(2);
+          let vp=&hbar*&hbar/(q(4)*&sigma*&sigma);
+          let vx=&sigma*&sigma+&t*&t*&vp/(&m*&m);
+          json!({"mean_x":(&hbar*&k0*&t/&m).to_string(),"mean_p":(&hbar*&k0).to_string(),
+              "variance_x":vx.to_string(),"variance_p":vp.to_string(),"uncertainty_product_squared":(&vx*&vp).to_string()})
+      }
+verification:
+  expected_outputs:
+    mean_x: '3'
+    mean_p: 3/2
+    variance_x: '2'
+    variance_p: 1/4
+    uncertainty_product_squared: 1/2
+  computational_scope: Exact evaluation of the derived moment formulas at one parameter set.
+  not_established:
+  - Gaussian integration, unbounded-operator domains and the free propagator are analytic inputs, not
+    machine-verified here.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- sigma is the standard deviation of |psi|^2, not its exponent denominator.
+- A free packet spreads even when its mean momentum is zero.
+improvement_target:
+  gap: No continuum Gaussian integral or propagation theorem is invoked by the runtime.
+  acceptance_criterion: A future certified integration layer should establish normalization and moments
+    before numerical sampling is used as evidence.

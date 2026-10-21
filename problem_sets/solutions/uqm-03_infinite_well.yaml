@@ -1,0 +1,122 @@
+schema_version: 1
+problem_id: UQM-03
+title: Infinite square well and a finite Dirichlet model
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  continuum: psi_n=sqrt(2/L) sin(n pi x/L); E_n=hbar^2 pi^2 n^2/(2mL^2), n=1,2,...
+  middle_half: 1/2+1/pi
+  finite: spec(D)={2-sqrt(2),2,2+sqrt(2)}; trace=6; det=4; D(1,0,-1)=2(1,0,-1)
+derivation:
+- step: 1
+  explanation: Inside the well the stationary equation is psi double-prime + k^2 psi=0. Its sine-cosine
+    solution obeys psi(0)=0 only when the cosine coefficient vanishes. The second wall imposes sin(kL)=0,
+    so k=n pi/L with positive integer n.
+- step: 2
+  explanation: The integral of sin^2(n pi x/L) over the well is L/2. Choose the real normalization sqrt(2/L);
+    multiplying by an overall phase changes no measurement. Substitution gives the n^2 energy sequence.
+- step: 3
+  explanation: Integrate (2/L) sin^2(pi x/L) using x/L-sin(2 pi x/L)/(2 pi). At the two endpoints the
+    sine values are -1 and +1. Their difference produces P=1/2+1/pi, which is larger than one half because
+    the ground density peaks at the center.
+- step: 4
+  explanation: Replacing -psi double-prime by (2 psi_j-psi_{j-1}-psi_{j+1})/h^2 gives D. The zero endpoint
+    values are boundary data, not additional dynamical sites. Physical units enter through hbar^2/(2m
+    h^2).
+- step: 5
+  explanation: The polynomial det(lambda I-D)=(lambda-2)[(lambda-2)^2-2] gives the three eigenvalues.
+    Direct multiplication sends (1,0,-1) to (2,0,-2). The other modes are proportional to (1,sqrt(2),1)
+    and (1,-sqrt(2),1).
+- step: 6
+  explanation: For N interior sites the eigenvalues are 4 sin^2(n pi/[2(N+1)]). Only after h=L/(N+1) tends
+    to zero at fixed mode n does the scaled eigenvalue tend to (n pi/L)^2. The three-site check alone
+    is not a convergence proof.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    - path: code/python/src/linear_algebra/matrix.py
+      symbols:
+      - ExactMatrix
+    - path: code/python/src/qm/textbook_problems.py
+      symbols:
+      - solve_q58_infinite_square_well
+    walkthrough:
+    - Build the actual matrix with ExactMatrix and use its determinant and vector multiplication.
+    - Cross-check the determinant against the existing Q58 receipt.
+    - 'Keep 1/pi symbolic: the last two fields encode 1/2+1/pi rather than a floating approximation.'
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      from src.linear_algebra.matrix import ExactMatrix
+      from src.qm.textbook_problems import solve_q58_infinite_square_well
+      def solve():
+          d=ExactMatrix.from_rows([[2,-1,0],[-1,2,-1],[0,-1,2]])
+          v=[q(1),q(0),q(-1)]; dv=d.mul_vec(v)
+          receipt=solve_q58_infinite_square_well()
+          assert receipt["det_l3"] == str(d.determinant())
+          residual=sum((dv[i]-2*v[i])**2 for i in range(3))
+          return {"trace":str(sum(d.get(i,i) for i in range(3))),"determinant":str(d.determinant()),
+                  "middle_mode_residual":str(residual),"ground_probability_constant":str(q(1,2)),"inverse_pi_coefficient":str(q(1))}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Represent each displayed matrix entry using the existing exact Q scalar.
+    - Expand the three row dot products and the tridiagonal determinant explicitly as the derivation instructs.
+    - Square and sum the eigenvector residual entries; zero means all three equations hold over Q.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let d=[[q(2),q(-1),q(0)],[q(-1),q(2),q(-1)],[q(0),q(-1),q(2)]];
+          let v=[q(1),q(0),q(-1)]; let mut residual=q(0);
+          for i in 0..3 { let mut value=q(0); for j in 0..3 {value += &d[i][j]*&v[j];}
+              let delta=value-q(2)*&v[i]; residual += &delta*&delta; }
+          let det=&d[0][0]*(&d[1][1]*&d[2][2]-&d[1][2]*&d[2][1])-&d[0][1]*(&d[1][0]*&d[2][2]);
+          let trace=&d[0][0]+&d[1][1]+&d[2][2];
+          json!({"trace":trace.to_string(),"determinant":det.to_string(),"middle_mode_residual":residual.to_string(),
+              "ground_probability_constant":qr(1,2).unwrap().to_string(),"inverse_pi_coefficient":q(1).to_string()})
+      }
+verification:
+  expected_outputs:
+    trace: '6'
+    determinant: '4'
+    middle_mode_residual: '0'
+    ground_probability_constant: 1/2
+    inverse_pi_coefficient: '1'
+  computational_scope: The actual finite matrix determinant, trace and middle eigenvector are checked;
+    the continuum probability is stored as two exact symbolic coefficients.
+  not_established:
+  - The continuum integral and N-to-infinity limit are explained, not evaluated by the rational code.
+  - The coefficient outputs alone do not independently verify the integral.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: existing_theorem_referenced
+  references:
+  - path: lean4/FiniteQM.lean
+    symbol: dirichlet_square_well_laplacian_and_sturm_nodes
+    scope: Fixed rational trace, determinant, mode equations and quadratic-extension component identities
+      for this three-site witness; no continuum convergence theorem.
+  boundary: The cited statement supports only the scope written above. The verification report records
+    compilation separately from the analytic solution.
+common_pitfalls:
+- Do not identify a three-site eigenvalue with pi^2.
+- The zero vector at n=0 is not a normalized ground state.
+improvement_target:
+  gap: There is no continuum-limit error certificate in this example.
+  acceptance_criterion: Extend the existing finite Dirichlet implementation with a bound on the fixed-mode
+    error as h tends to zero.

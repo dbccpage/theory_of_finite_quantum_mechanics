@@ -32,12 +32,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "f561529b29c94d86092598e4d49ab2e75c553036bbafe04932040365796a65fc",
-  "current_scoring": null,
+  "current_contract": "743172be01486737294889eefc24942b6581d86db257452e124c48eaee143232",
+  "current_scoring": "fc952406c3afd78c090d36a31f16cc6b70dd6a0cef437db649ae02e822dc7e84",
   "contract_history": [
     {
-      "sha256": "f561529b29c94d86092598e4d49ab2e75c553036bbafe04932040365796a65fc",
-      "bytes": 794,
+      "sha256": "743172be01486737294889eefc24942b6581d86db257452e124c48eaee143232",
+      "bytes": 963,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_symbol_game:bin_verify_wall_functionals:v1.0.0",
@@ -68,13 +68,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_symbol_game:bin_verify_wall_functionals:v1.0.0\ntitle: Replay only the exact functional claims in an omega_id_run wall deposit.  This\n  is designed to pair with independent s...\nkind: rust_file_contract\nstatus: active\ncrate: omega_symbol_game\nfile: crates_rs/omega_symbol_game/src/bin/verify_wall_functionals.rs\nmodule: bin::verify_wall_functionals\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_symbol_game\n  module: bin::verify_wall_functionals\n  file: crates_rs/omega_symbol_game/src/bin/verify_wall_functionals.rs\nsymbols: []\nowns:\n- bin_verify_wall_functionals\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_symbol_game:bin_verify_wall_functionals:v1.0.0\",\n  \"title\": \"Replay only the exact functional claims in an omega_id_run wall deposit.  This is designed to pair with independent s...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_symbol_game\",\n  \"file\": \"crates_rs/omega_symbol_game/src/bin/verify_wall_functionals.rs\",\n  \"module\": \"bin::verify_wall_functionals\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_symbol_game\",\n    \"module\": \"bin::verify_wall_functionals\",\n    \"file\": \"crates_rs/omega_symbol_game/src/bin/verify_wall_functionals.rs\"\n  },\n  \"symbols\": [],\n  \"owns\": [\n    \"bin_verify_wall_functionals\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/omega_symbol_game_bin_verify_wall_functionals.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "fc952406c3afd78c090d36a31f16cc6b70dd6a0cef437db649ae02e822dc7e84",
+      "bytes": 2265,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/omega_symbol_game_bin_verify_wall_functionals_contract.py",
+          "sha256": "682b33b684c4e9f0beefcdf08609dd5e1a517c0e003820ae5d679c423248864c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:omega-symbol-game-bin-verify-wall-functionals-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/omega_symbol_game_bin_verify_wall_functionals_contract.py\",\n    \"sha256\": \"682b33b684c4e9f0beefcdf08609dd5e1a517c0e003820ae5d679c423248864c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:omega-symbol-game-bin-verify-wall-functionals-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/omega_symbol_game_bin_verify_wall_functionals_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/omega_symbol_game_bin_verify_wall_functionals.contract.yaml": "f561529b29c94d86092598e4d49ab2e75c553036bbafe04932040365796a65fc"
   },

@@ -31,14 +31,10 @@ pub struct HamiltonianConstraintReport {
     pub is_satisfied: bool,
 }
 
-pub fn evaluate_hamiltonian_constraints(
+fn compute_vertex_volumes(
     slice: &SpatialSlice3D,
-    momenta: &BTreeMap<(usize, usize), f64>,
-    lambda: f64,
-    tolerance: f64,
-) -> Result<HamiltonianConstraintReport, ReggeError> {
+) -> Result<(BTreeSet<usize>, BTreeMap<usize, f64>, f64), ReggeError> {
     let get_len = |u: usize, v: usize| slice.metric.get(u, v).ok();
-
     let mut vertex_set = BTreeSet::new();
     for tet in &slice.tetrahedra {
         for &v in tet {
@@ -64,20 +60,36 @@ pub fn evaluate_hamiltonian_constraints(
         }
     }
 
+    Ok((vertex_set, vertex_dual_vol, total_vol))
+}
+
+fn compute_edge_angle_sum(
+    u: usize,
+    v: usize,
+    tetrahedra: &[[usize; 4]],
+    get_len: impl Fn(usize, usize) -> Option<f64>,
+) -> Result<(usize, f64), ReggeError> {
+    let mut total_angle = 0.0;
+    let mut incident_tets = 0;
+    for tet in tetrahedra {
+        if tet.contains(&u) && tet.contains(&v) {
+            incident_tets += 1;
+            let theta = tetrahedron_dihedral_angle_at_edge(tet, (u, v), &get_len)
+                .map_err(ReggeError::Computation)?;
+            total_angle += theta;
+        }
+    }
+    Ok((incident_tets, total_angle))
+}
+
+fn compute_edge_deficits(
+    slice: &SpatialSlice3D,
+) -> Result<BTreeMap<(usize, usize), f64>, ReggeError> {
+    let get_len = |u: usize, v: usize| slice.metric.get(u, v).ok();
     let mut edge_deficits = BTreeMap::new();
     for &(u, v) in &slice.edges {
-        let mut total_angle = 0.0;
-        let mut incident_tets = 0;
-
-        for tet in &slice.tetrahedra {
-            if tet.contains(&u) && tet.contains(&v) {
-                incident_tets += 1;
-                let theta = tetrahedron_dihedral_angle_at_edge(tet, (u, v), get_len)
-                    .map_err(ReggeError::Computation)?;
-                total_angle += theta;
-            }
-        }
-
+        let (incident_tets, total_angle) =
+            compute_edge_angle_sum(u, v, &slice.tetrahedra, get_len)?;
         if incident_tets > 0 {
             let target = if incident_tets >= 3 {
                 2.0 * std::f64::consts::PI
@@ -88,6 +100,62 @@ pub fn evaluate_hamiltonian_constraints(
             edge_deficits.insert((u, v), deficit);
         }
     }
+    Ok(edge_deficits)
+}
+
+fn evaluate_vertex_constraint(
+    v: usize,
+    v_vol: f64,
+    slice: &SpatialSlice3D,
+    momenta: &BTreeMap<(usize, usize), f64>,
+    edge_deficits: &BTreeMap<(usize, usize), f64>,
+    lambda: f64,
+) -> Result<VertexHamiltonianConstraint, ReggeError> {
+    let incident_edges: Vec<(usize, usize)> = slice
+        .edges
+        .iter()
+        .copied()
+        .filter(|&(e1, e2)| e1 == v || e2 == v)
+        .collect();
+
+    let mut sum_pi_sq = 0.0;
+    let mut sum_pi = 0.0;
+    for &e in &incident_edges {
+        let pi = momenta.get(&e).copied().unwrap_or(0.0);
+        sum_pi_sq += pi * pi;
+        sum_pi += pi;
+    }
+
+    let kinetic = (1.0 / v_vol) * (sum_pi_sq - 0.5 * sum_pi * sum_pi);
+
+    let mut curv = 0.0;
+    for &e in &incident_edges {
+        let len = slice.metric.get(e.0, e.1)?;
+        let eps = edge_deficits.get(&e).copied().unwrap_or(0.0);
+        curv += 0.5 * len * eps;
+    }
+
+    let cosmo = 2.0 * lambda * v_vol;
+    let residual = kinetic - curv + cosmo;
+
+    Ok(VertexHamiltonianConstraint {
+        vertex: v,
+        kinetic_term: kinetic,
+        curvature_potential: curv,
+        cosmological_potential: cosmo,
+        residual,
+        dual_volume: v_vol,
+    })
+}
+
+pub fn evaluate_hamiltonian_constraints(
+    slice: &SpatialSlice3D,
+    momenta: &BTreeMap<(usize, usize), f64>,
+    lambda: f64,
+    tolerance: f64,
+) -> Result<HamiltonianConstraintReport, ReggeError> {
+    let (vertex_set, vertex_dual_vol, total_vol) = compute_vertex_volumes(slice)?;
+    let edge_deficits = compute_edge_deficits(slice)?;
 
     let mut vertex_constraints = BTreeMap::new();
     let mut max_res: f64 = 0.0;
@@ -98,55 +166,18 @@ pub fn evaluate_hamiltonian_constraints(
 
     for &v in &vertex_set {
         let v_vol = vertex_dual_vol.get(&v).copied().unwrap_or(1e-12).max(1e-12);
+        let vc = evaluate_vertex_constraint(v, v_vol, slice, momenta, &edge_deficits, lambda)?;
 
-        let incident_edges: Vec<(usize, usize)> = slice
-            .edges
-            .iter()
-            .copied()
-            .filter(|&(e1, e2)| e1 == v || e2 == v)
-            .collect();
-
-        let mut sum_pi_sq = 0.0;
-        let mut sum_pi = 0.0;
-        for &e in &incident_edges {
-            let pi = momenta.get(&e).copied().unwrap_or(0.0);
-            sum_pi_sq += pi * pi;
-            sum_pi += pi;
-        }
-
-        let kinetic = (1.0 / v_vol) * (sum_pi_sq - 0.5 * sum_pi * sum_pi);
-
-        let mut curv = 0.0;
-        for &e in &incident_edges {
-            let len = slice.metric.get(e.0, e.1)?;
-            let eps = edge_deficits.get(&e).copied().unwrap_or(0.0);
-            curv += 0.5 * len * eps;
-        }
-
-        let cosmo = 2.0 * lambda * v_vol;
-        let residual = kinetic - curv + cosmo;
-
-        let abs_r = residual.abs();
+        let abs_r = vc.residual.abs();
         if abs_r > max_res {
             max_res = abs_r;
         }
-        sum_sq_res += residual * residual;
+        sum_sq_res += vc.residual * vc.residual;
+        total_kin += vc.kinetic_term;
+        total_curv += vc.curvature_potential;
+        total_cosmo += vc.cosmological_potential;
 
-        total_kin += kinetic;
-        total_curv += curv;
-        total_cosmo += cosmo;
-
-        vertex_constraints.insert(
-            v,
-            VertexHamiltonianConstraint {
-                vertex: v,
-                kinetic_term: kinetic,
-                curvature_potential: curv,
-                cosmological_potential: cosmo,
-                residual,
-                dual_volume: v_vol,
-            },
-        );
+        vertex_constraints.insert(v, vc);
     }
 
     let n = vertex_set.len().max(1);

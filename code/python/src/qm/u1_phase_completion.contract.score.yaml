@@ -1,0 +1,561 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/u1_phase_completion.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/u1_phase_completion.py",
+      "sha256": "17fa9469e5bec4b64f7bcef9b5bc5301a962786e8bb1e71096ece4b3a17e9fe4"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:qm:u1-phase-completion:v1",
+    "role": "library",
+    "purpose": "Exact rational Cayley circle parameterization, 5-adic half-angle obstruction, Gaussian power injectivity, quadratic half-angle restoration, cyclotomic torsion",
+    "operations": {
+      "is_unit_circle": "Return True when (re, im) lies on the rational unit circle re^2 + im^2 == 1.",
+      "circle_mul": "Multiply two points on S^1(Q) via Gaussian multiplication.",
+      "affine_cayley": "Map rational parameter t to ((1 - t^2)/(1 + t^2), 2t/(1 + t^2)) on S^1(Q).",
+      "inverse_cayley": "Invert the affine Cayley map via im / (re + 1); refuses (-1, 0) and non-unit points.",
+      "affine_cayley_mul_param": "Return (t1 + t2)/(1 - t1*t2) when t1*t2 != 1, or None at the south-pole collision.",
+      "projective_cayley": "Map homogeneous coordinates [u : v] in P^1(Q) to S^1(Q), sending [0 : 1] to (-1, 0).",
+      "inverse_projective_cayley": "Map every point of S^1(Q) to a representative [u : v] in P^1(Q).",
+      "projective_mul": "Multiply homogeneous projective coordinates via (u1*u2 - v1*v2, u1*v2 + v1*u2).",
+      "five_adic_valuation": "Factor nonzero integer n = 5^v5 * unit_part with unit_part % 5 != 0.",
+      "certify_four_fifths_not_square": "Certify (num/den)^2 != 4/5 via 5-adic valuation parity on 5*num^2 vs 4*den^2.",
+      "certify_u345_no_rational_sqrt": "Certify that no (re, im) in Q^2 satisfies both (re + i*im)^2 = (3 + 4i)/5 and re^2 + im^2 = 1.",
+      "gauss_pow_34": "Compute exact integer coordinates (A_n, B_n) of (3 + 4i)^n for n >= 0.",
+      "u345_power": "Compute exact rational coordinates of ((3 + 4i)/5)^k for any integer k.",
+      "certify_power_injectivity_window": "Check mod-5 idempotence (A_n, B_n) == (3, 4) mod 5 and pairwise distinct powers on [-max_n, max_n].",
+      "QuadSqrt5": "Element a + b*sqrt(5) of the real quadratic extension Q(sqrt(5)).",
+      "CircleQuadSqrt5": "Element re + i*im in Q(sqrt(5))(i).",
+      "quad_add": "Return x + y in Q(sqrt(5)).",
+      "quad_sub": "Return x - y in Q(sqrt(5)).",
+      "quad_mul": "Return x * y in Q(sqrt(5)) using (sqrt(5))^2 = 5.",
+      "quad_conj": "Return the Galois conjugate a - b*sqrt(5).",
+      "quad_norm": "Return the field norm N(a + b*sqrt(5)) = a^2 - 5*b^2.",
+      "quad_inv": "Return the multiplicative inverse in Q(sqrt(5)); refuses 0 + 0*sqrt(5).",
+      "circle_quad_mul": "Multiply two elements in Q(sqrt(5))(i).",
+      "circle_quad_norm_sq": "Return re^2 + im^2 in Q(sqrt(5)).",
+      "u345_quad_sqrt_certificate": "Certify that w = (2/5*sqrt(5), 1/5*sqrt(5)) in S^1(Q(sqrt(5))) satisfies w^2 = (3/5, 4/5).",
+      "refine_torsion_phase": "Refine a_index mod n_level to (k_factor * a_index) mod (k_factor * n_level) in Q/Z.",
+      "divide_rat_phase_mod_one": "Return the m_divisor distinct m-th division phases of q_phase in Q/Z cap [0, 1).",
+      "fourth_roots_haar_certificate": "Evaluate 1/4 * sum_{j=0}^3 i^(j * character_power) over mu_4 in Q(i).",
+      "torsion_grid_cover_certificate": "Certify that q_phase in [0, 1] lies within 1/n_grid of k/n_grid for k = floor(n_grid * q_phase).",
+      "dyadic_sqrt5_interval_step": "Bisect a rational interval [lo, hi] bracketing sqrt(5) and map to half-angle cosine 2*sqrt(5)/5.",
+      "negative_controls_certificate": "Certify the 3 rival / boundary failure modes for FQ-GAP-U1-CIRCLE.",
+      "chebyshev_t": "Evaluate the Chebyshev polynomial T_n(x) of the first kind over Q.",
+      "chebyshev_u": "Evaluate the Chebyshev polynomial U_n(x) of the second kind over Q.",
+      "chebyshev_circle_certificate": "Certify that (T_n(re), im * U_{n-1}(re)) equals (re + i*im)^n on S^1(Q) for 1 <= n <= max_n.",
+      "taylor_trig_enclosure_certificate": "Certify alternating Taylor cosine/sine enclosures and degree-6 Pythagorean defect on 0 <= theta <= 1.",
+      "cayley_dyadic_approx_certificate": "Subdivide theta by 2^(k+1), apply Cayley map, and square k_depth times on S^1(Q).",
+      "hermitian_qi_born_certificate": "Certify 4D Hermitian Q(i) rank-1 projectors, sigma_y orthogonality, and Born inner-product modulus squared.",
+      "u345_quadratic_tower_certificate": "Certify the iterated real quadratic square-root tower K_{m+1} = K_m(sqrt((1+c_m)/2)) for 2^m-divisions of u345.",
+      "cayley_hermitian_stone_certificate": "Certify the discrete Cayley unitary step U_H(t) = (I - i t H)(I + i t H)^{-1} on TracelessHerm2Qi."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "75f0a90f74b8d580fcf45b755c53e9645d11dd554d49c020e62a29a551547ad8",
+  "current_scoring": "553f8bfadc2b88f7891d3a927039910f39fa2a3bc6c4aed67248999dced07c55",
+  "contract_history": [
+    {
+      "sha256": "5f9b612a547881d56e2929abeff506a63be0a15cef1d80acd5a4c91e8dc6df66",
+      "bytes": 1398,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/python/src/qm/u1_phase_completion.py",
+        "source_sha256": "a778c5988d93a9e35f164f7cf14f2a72c73c54c1580cafcbd67ca32194fbfe4c",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:u1-phase-completion:a778c5988d93a9e35f16",
+        "symbols": [
+          "_check_gauss_step",
+          "_mod_one",
+          "_pow_i",
+          "_q",
+          "_z",
+          "affine_cayley",
+          "affine_cayley_mul_param",
+          "certify_four_fifths_not_square",
+          "certify_power_injectivity_window",
+          "certify_u345_no_rational_sqrt",
+          "circle_mul",
+          "circle_quad_mul",
+          "circle_quad_norm_sq",
+          "divide_rat_phase_mod_one",
+          "dyadic_sqrt5_interval_step",
+          "five_adic_valuation",
+          "fourth_roots_haar_certificate",
+          "gauss_pow_34",
+          "inverse_cayley",
+          "inverse_projective_cayley",
+          "is_unit_circle",
+          "negative_controls_certificate",
+          "projective_cayley",
+          "projective_mul",
+          "quad_add",
+          "quad_conj",
+          "quad_inv",
+          "quad_mul",
+          "quad_norm",
+          "quad_sub",
+          "refine_torsion_phase",
+          "torsion_grid_cover_certificate",
+          "u345_power",
+          "u345_quad_sqrt_certificate"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "boundaries": [
+          "Finite exact replay of the kernel-checked statements on supplied inputs; a passing check is not a general proof."
+        ],
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/u1_phase_completion.py\nsource_sha256: a778c5988d93a9e35f164f7cf14f2a72c73c54c1580cafcbd67ca32194fbfe4c\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:u1-phase-completion:a778c5988d93a9e35f16\nsymbols:\n- _check_gauss_step\n- _mod_one\n- _pow_i\n- _q\n- _z\n- affine_cayley\n- affine_cayley_mul_param\n- certify_four_fifths_not_square\n- certify_power_injectivity_window\n- certify_u345_no_rational_sqrt\n- circle_mul\n- circle_quad_mul\n- circle_quad_norm_sq\n- divide_rat_phase_mod_one\n- dyadic_sqrt5_interval_step\n- five_adic_valuation\n- fourth_roots_haar_certificate\n- gauss_pow_34\n- inverse_cayley\n- inverse_projective_cayley\n- is_unit_circle\n- negative_controls_certificate\n- projective_cayley\n- projective_mul\n- quad_add\n- quad_conj\n- quad_inv\n- quad_mul\n- quad_norm\n- quad_sub\n- refine_torsion_phase\n- torsion_grid_cover_certificate\n- u345_power\n- u345_quad_sqrt_certificate\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied inputs; a passing check is not a general\n  proof.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/python/src/qm/u1_phase_completion.py.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "d73fb6b11260a2d0f162716735bd01459e55b5dfd91f32d4d6d7b794b4192747",
+      "bytes": 1560,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/python/src/qm/u1_phase_completion.py",
+        "source_sha256": "754bbf7f8415e030d8b22408cc2ca0a7ce8a02378001c578879afc444e061228",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:u1-phase-completion:754bbf7f8415e030d8b2",
+        "symbols": [
+          "_check_gauss_step",
+          "_mod_one",
+          "_pow_i",
+          "_q",
+          "_z",
+          "affine_cayley",
+          "affine_cayley_mul_param",
+          "cayley_dyadic_approx_certificate",
+          "certify_four_fifths_not_square",
+          "certify_power_injectivity_window",
+          "certify_u345_no_rational_sqrt",
+          "chebyshev_circle_certificate",
+          "chebyshev_t",
+          "chebyshev_u",
+          "circle_mul",
+          "circle_quad_mul",
+          "circle_quad_norm_sq",
+          "divide_rat_phase_mod_one",
+          "dyadic_sqrt5_interval_step",
+          "five_adic_valuation",
+          "fourth_roots_haar_certificate",
+          "gauss_pow_34",
+          "hermitian_qi_born_certificate",
+          "inverse_cayley",
+          "inverse_projective_cayley",
+          "is_unit_circle",
+          "negative_controls_certificate",
+          "projective_cayley",
+          "projective_mul",
+          "quad_add",
+          "quad_conj",
+          "quad_inv",
+          "quad_mul",
+          "quad_norm",
+          "quad_sub",
+          "refine_torsion_phase",
+          "taylor_trig_enclosure_certificate",
+          "torsion_grid_cover_certificate",
+          "u345_power",
+          "u345_quad_sqrt_certificate"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "boundaries": [
+          "Finite exact replay of the kernel-checked statements on supplied inputs; a passing check is not a general proof."
+        ],
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/u1_phase_completion.py\nsource_sha256: 754bbf7f8415e030d8b22408cc2ca0a7ce8a02378001c578879afc444e061228\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:u1-phase-completion:754bbf7f8415e030d8b2\nsymbols:\n- _check_gauss_step\n- _mod_one\n- _pow_i\n- _q\n- _z\n- affine_cayley\n- affine_cayley_mul_param\n- cayley_dyadic_approx_certificate\n- certify_four_fifths_not_square\n- certify_power_injectivity_window\n- certify_u345_no_rational_sqrt\n- chebyshev_circle_certificate\n- chebyshev_t\n- chebyshev_u\n- circle_mul\n- circle_quad_mul\n- circle_quad_norm_sq\n- divide_rat_phase_mod_one\n- dyadic_sqrt5_interval_step\n- five_adic_valuation\n- fourth_roots_haar_certificate\n- gauss_pow_34\n- hermitian_qi_born_certificate\n- inverse_cayley\n- inverse_projective_cayley\n- is_unit_circle\n- negative_controls_certificate\n- projective_cayley\n- projective_mul\n- quad_add\n- quad_conj\n- quad_inv\n- quad_mul\n- quad_norm\n- quad_sub\n- refine_torsion_phase\n- taylor_trig_enclosure_certificate\n- torsion_grid_cover_certificate\n- u345_power\n- u345_quad_sqrt_certificate\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied inputs; a passing check is not a general\n  proof.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/python/src/qm/u1_phase_completion.py.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "2c85a4650ae87939bf41047bca7302b65cd565b44618a14a22ec5877036bebd5",
+      "bytes": 1833,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/python/src/qm/u1_phase_completion.py",
+        "source_sha256": "17fa9469e5bec4b64f7bcef9b5bc5301a962786e8bb1e71096ece4b3a17e9fe4",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:u1-phase-completion:17fa9469e5bec4b64f7b",
+        "symbols": [
+          "_cayley_step_mat",
+          "_check_gauss_step",
+          "_mat2_dagger",
+          "_mat2_mul",
+          "_mod_one",
+          "_pow_i",
+          "_q",
+          "_qi_add",
+          "_qi_conj",
+          "_qi_mul",
+          "_qi_sub",
+          "_tower_add",
+          "_tower_circle_sq",
+          "_tower_mul",
+          "_tower_neg",
+          "_tower_of_rat",
+          "_tower_one",
+          "_tower_sub",
+          "_tower_zero",
+          "_z",
+          "affine_cayley",
+          "affine_cayley_mul_param",
+          "cayley_dyadic_approx_certificate",
+          "cayley_hermitian_stone_certificate",
+          "certify_four_fifths_not_square",
+          "certify_power_injectivity_window",
+          "certify_u345_no_rational_sqrt",
+          "chebyshev_circle_certificate",
+          "chebyshev_t",
+          "chebyshev_u",
+          "circle_mul",
+          "circle_quad_mul",
+          "circle_quad_norm_sq",
+          "divide_rat_phase_mod_one",
+          "dyadic_sqrt5_interval_step",
+          "five_adic_valuation",
+          "fourth_roots_haar_certificate",
+          "gauss_pow_34",
+          "hermitian_qi_born_certificate",
+          "inverse_cayley",
+          "inverse_projective_cayley",
+          "is_unit_circle",
+          "negative_controls_certificate",
+          "projective_cayley",
+          "projective_mul",
+          "quad_add",
+          "quad_conj",
+          "quad_inv",
+          "quad_mul",
+          "quad_norm",
+          "quad_sub",
+          "refine_torsion_phase",
+          "taylor_trig_enclosure_certificate",
+          "torsion_grid_cover_certificate",
+          "u345_power",
+          "u345_quad_sqrt_certificate",
+          "u345_quadratic_tower_certificate"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "boundaries": [
+          "Finite exact replay of the kernel-checked statements on supplied inputs; a passing check is not a general proof."
+        ],
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/u1_phase_completion.py\nsource_sha256: 17fa9469e5bec4b64f7bcef9b5bc5301a962786e8bb1e71096ece4b3a17e9fe4\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:u1-phase-completion:17fa9469e5bec4b64f7b\nsymbols:\n- _cayley_step_mat\n- _check_gauss_step\n- _mat2_dagger\n- _mat2_mul\n- _mod_one\n- _pow_i\n- _q\n- _qi_add\n- _qi_conj\n- _qi_mul\n- _qi_sub\n- _tower_add\n- _tower_circle_sq\n- _tower_mul\n- _tower_neg\n- _tower_of_rat\n- _tower_one\n- _tower_sub\n- _tower_zero\n- _z\n- affine_cayley\n- affine_cayley_mul_param\n- cayley_dyadic_approx_certificate\n- cayley_hermitian_stone_certificate\n- certify_four_fifths_not_square\n- certify_power_injectivity_window\n- certify_u345_no_rational_sqrt\n- chebyshev_circle_certificate\n- chebyshev_t\n- chebyshev_u\n- circle_mul\n- circle_quad_mul\n- circle_quad_norm_sq\n- divide_rat_phase_mod_one\n- dyadic_sqrt5_interval_step\n- five_adic_valuation\n- fourth_roots_haar_certificate\n- gauss_pow_34\n- hermitian_qi_born_certificate\n- inverse_cayley\n- inverse_projective_cayley\n- is_unit_circle\n- negative_controls_certificate\n- projective_cayley\n- projective_mul\n- quad_add\n- quad_conj\n- quad_inv\n- quad_mul\n- quad_norm\n- quad_sub\n- refine_torsion_phase\n- taylor_trig_enclosure_certificate\n- torsion_grid_cover_certificate\n- u345_power\n- u345_quad_sqrt_certificate\n- u345_quadratic_tower_certificate\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied inputs; a passing check is not a general\n  proof.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/python/src/qm/u1_phase_completion.py.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "75f0a90f74b8d580fcf45b755c53e9645d11dd554d49c020e62a29a551547ad8",
+      "bytes": 5747,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/u1_phase_completion.py",
+          "sha256": "17fa9469e5bec4b64f7bcef9b5bc5301a962786e8bb1e71096ece4b3a17e9fe4"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:u1-phase-completion:v1",
+        "role": "library",
+        "purpose": "Exact rational Cayley circle parameterization, 5-adic half-angle obstruction, Gaussian power injectivity, quadratic half-angle restoration, cyclotomic torsion",
+        "operations": {
+          "is_unit_circle": "Return True when (re, im) lies on the rational unit circle re^2 + im^2 == 1.",
+          "circle_mul": "Multiply two points on S^1(Q) via Gaussian multiplication.",
+          "affine_cayley": "Map rational parameter t to ((1 - t^2)/(1 + t^2), 2t/(1 + t^2)) on S^1(Q).",
+          "inverse_cayley": "Invert the affine Cayley map via im / (re + 1); refuses (-1, 0) and non-unit points.",
+          "affine_cayley_mul_param": "Return (t1 + t2)/(1 - t1*t2) when t1*t2 != 1, or None at the south-pole collision.",
+          "projective_cayley": "Map homogeneous coordinates [u : v] in P^1(Q) to S^1(Q), sending [0 : 1] to (-1, 0).",
+          "inverse_projective_cayley": "Map every point of S^1(Q) to a representative [u : v] in P^1(Q).",
+          "projective_mul": "Multiply homogeneous projective coordinates via (u1*u2 - v1*v2, u1*v2 + v1*u2).",
+          "five_adic_valuation": "Factor nonzero integer n = 5^v5 * unit_part with unit_part % 5 != 0.",
+          "certify_four_fifths_not_square": "Certify (num/den)^2 != 4/5 via 5-adic valuation parity on 5*num^2 vs 4*den^2.",
+          "certify_u345_no_rational_sqrt": "Certify that no (re, im) in Q^2 satisfies both (re + i*im)^2 = (3 + 4i)/5 and re^2 + im^2 = 1.",
+          "gauss_pow_34": "Compute exact integer coordinates (A_n, B_n) of (3 + 4i)^n for n >= 0.",
+          "u345_power": "Compute exact rational coordinates of ((3 + 4i)/5)^k for any integer k.",
+          "certify_power_injectivity_window": "Check mod-5 idempotence (A_n, B_n) == (3, 4) mod 5 and pairwise distinct powers on [-max_n, max_n].",
+          "QuadSqrt5": "Element a + b*sqrt(5) of the real quadratic extension Q(sqrt(5)).",
+          "CircleQuadSqrt5": "Element re + i*im in Q(sqrt(5))(i).",
+          "quad_add": "Return x + y in Q(sqrt(5)).",
+          "quad_sub": "Return x - y in Q(sqrt(5)).",
+          "quad_mul": "Return x * y in Q(sqrt(5)) using (sqrt(5))^2 = 5.",
+          "quad_conj": "Return the Galois conjugate a - b*sqrt(5).",
+          "quad_norm": "Return the field norm N(a + b*sqrt(5)) = a^2 - 5*b^2.",
+          "quad_inv": "Return the multiplicative inverse in Q(sqrt(5)); refuses 0 + 0*sqrt(5).",
+          "circle_quad_mul": "Multiply two elements in Q(sqrt(5))(i).",
+          "circle_quad_norm_sq": "Return re^2 + im^2 in Q(sqrt(5)).",
+          "u345_quad_sqrt_certificate": "Certify that w = (2/5*sqrt(5), 1/5*sqrt(5)) in S^1(Q(sqrt(5))) satisfies w^2 = (3/5, 4/5).",
+          "refine_torsion_phase": "Refine a_index mod n_level to (k_factor * a_index) mod (k_factor * n_level) in Q/Z.",
+          "divide_rat_phase_mod_one": "Return the m_divisor distinct m-th division phases of q_phase in Q/Z cap [0, 1).",
+          "fourth_roots_haar_certificate": "Evaluate 1/4 * sum_{j=0}^3 i^(j * character_power) over mu_4 in Q(i).",
+          "torsion_grid_cover_certificate": "Certify that q_phase in [0, 1] lies within 1/n_grid of k/n_grid for k = floor(n_grid * q_phase).",
+          "dyadic_sqrt5_interval_step": "Bisect a rational interval [lo, hi] bracketing sqrt(5) and map to half-angle cosine 2*sqrt(5)/5.",
+          "negative_controls_certificate": "Certify the 3 rival / boundary failure modes for FQ-GAP-U1-CIRCLE.",
+          "chebyshev_t": "Evaluate the Chebyshev polynomial T_n(x) of the first kind over Q.",
+          "chebyshev_u": "Evaluate the Chebyshev polynomial U_n(x) of the second kind over Q.",
+          "chebyshev_circle_certificate": "Certify that (T_n(re), im * U_{n-1}(re)) equals (re + i*im)^n on S^1(Q) for 1 <= n <= max_n.",
+          "taylor_trig_enclosure_certificate": "Certify alternating Taylor cosine/sine enclosures and degree-6 Pythagorean defect on 0 <= theta <= 1.",
+          "cayley_dyadic_approx_certificate": "Subdivide theta by 2^(k+1), apply Cayley map, and square k_depth times on S^1(Q).",
+          "hermitian_qi_born_certificate": "Certify 4D Hermitian Q(i) rank-1 projectors, sigma_y orthogonality, and Born inner-product modulus squared.",
+          "u345_quadratic_tower_certificate": "Certify the iterated real quadratic square-root tower K_{m+1} = K_m(sqrt((1+c_m)/2)) for 2^m-divisions of u345.",
+          "cayley_hermitian_stone_certificate": "Certify the discrete Cayley unitary step U_H(t) = (I - i t H)(I + i t H)^{-1} on TracelessHerm2Qi."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/u1_phase_completion.py\",\n    \"sha256\": \"17fa9469e5bec4b64f7bcef9b5bc5301a962786e8bb1e71096ece4b3a17e9fe4\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:u1-phase-completion:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact rational Cayley circle parameterization, 5-adic half-angle obstruction, Gaussian power injectivity, quadratic half-angle restoration, cyclotomic torsion\",\n  \"operations\": {\n    \"is_unit_circle\": \"Return True when (re, im) lies on the rational unit circle re^2 + im^2 == 1.\",\n    \"circle_mul\": \"Multiply two points on S^1(Q) via Gaussian multiplication.\",\n    \"affine_cayley\": \"Map rational parameter t to ((1 - t^2)/(1 + t^2), 2t/(1 + t^2)) on S^1(Q).\",\n    \"inverse_cayley\": \"Invert the affine Cayley map via im / (re + 1); refuses (-1, 0) and non-unit points.\",\n    \"affine_cayley_mul_param\": \"Return (t1 + t2)/(1 - t1*t2) when t1*t2 != 1, or None at the south-pole collision.\",\n    \"projective_cayley\": \"Map homogeneous coordinates [u : v] in P^1(Q) to S^1(Q), sending [0 : 1] to (-1, 0).\",\n    \"inverse_projective_cayley\": \"Map every point of S^1(Q) to a representative [u : v] in P^1(Q).\",\n    \"projective_mul\": \"Multiply homogeneous projective coordinates via (u1*u2 - v1*v2, u1*v2 + v1*u2).\",\n    \"five_adic_valuation\": \"Factor nonzero integer n = 5^v5 * unit_part with unit_part % 5 != 0.\",\n    \"certify_four_fifths_not_square\": \"Certify (num/den)^2 != 4/5 via 5-adic valuation parity on 5*num^2 vs 4*den^2.\",\n    \"certify_u345_no_rational_sqrt\": \"Certify that no (re, im) in Q^2 satisfies both (re + i*im)^2 = (3 + 4i)/5 and re^2 + im^2 = 1.\",\n    \"gauss_pow_34\": \"Compute exact integer coordinates (A_n, B_n) of (3 + 4i)^n for n >= 0.\",\n    \"u345_power\": \"Compute exact rational coordinates of ((3 + 4i)/5)^k for any integer k.\",\n    \"certify_power_injectivity_window\": \"Check mod-5 idempotence (A_n, B_n) == (3, 4) mod 5 and pairwise distinct powers on [-max_n, max_n].\",\n    \"QuadSqrt5\": \"Element a + b*sqrt(5) of the real quadratic extension Q(sqrt(5)).\",\n    \"CircleQuadSqrt5\": \"Element re + i*im in Q(sqrt(5))(i).\",\n    \"quad_add\": \"Return x + y in Q(sqrt(5)).\",\n    \"quad_sub\": \"Return x - y in Q(sqrt(5)).\",\n    \"quad_mul\": \"Return x * y in Q(sqrt(5)) using (sqrt(5))^2 = 5.\",\n    \"quad_conj\": \"Return the Galois conjugate a - b*sqrt(5).\",\n    \"quad_norm\": \"Return the field norm N(a + b*sqrt(5)) = a^2 - 5*b^2.\",\n    \"quad_inv\": \"Return the multiplicative inverse in Q(sqrt(5)); refuses 0 + 0*sqrt(5).\",\n    \"circle_quad_mul\": \"Multiply two elements in Q(sqrt(5))(i).\",\n    \"circle_quad_norm_sq\": \"Return re^2 + im^2 in Q(sqrt(5)).\",\n    \"u345_quad_sqrt_certificate\": \"Certify that w = (2/5*sqrt(5), 1/5*sqrt(5)) in S^1(Q(sqrt(5))) satisfies w^2 = (3/5, 4/5).\",\n    \"refine_torsion_phase\": \"Refine a_index mod n_level to (k_factor * a_index) mod (k_factor * n_level) in Q/Z.\",\n    \"divide_rat_phase_mod_one\": \"Return the m_divisor distinct m-th division phases of q_phase in Q/Z cap [0, 1).\",\n    \"fourth_roots_haar_certificate\": \"Evaluate 1/4 * sum_{j=0}^3 i^(j * character_power) over mu_4 in Q(i).\",\n    \"torsion_grid_cover_certificate\": \"Certify that q_phase in [0, 1] lies within 1/n_grid of k/n_grid for k = floor(n_grid * q_phase).\",\n    \"dyadic_sqrt5_interval_step\": \"Bisect a rational interval [lo, hi] bracketing sqrt(5) and map to half-angle cosine 2*sqrt(5)/5.\",\n    \"negative_controls_certificate\": \"Certify the 3 rival / boundary failure modes for FQ-GAP-U1-CIRCLE.\",\n    \"chebyshev_t\": \"Evaluate the Chebyshev polynomial T_n(x) of the first kind over Q.\",\n    \"chebyshev_u\": \"Evaluate the Chebyshev polynomial U_n(x) of the second kind over Q.\",\n    \"chebyshev_circle_certificate\": \"Certify that (T_n(re), im * U_{n-1}(re)) equals (re + i*im)^n on S^1(Q) for 1 <= n <= max_n.\",\n    \"taylor_trig_enclosure_certificate\": \"Certify alternating Taylor cosine/sine enclosures and degree-6 Pythagorean defect on 0 <= theta <= 1.\",\n    \"cayley_dyadic_approx_certificate\": \"Subdivide theta by 2^(k+1), apply Cayley map, and square k_depth times on S^1(Q).\",\n    \"hermitian_qi_born_certificate\": \"Certify 4D Hermitian Q(i) rank-1 projectors, sigma_y orthogonality, and Born inner-product modulus squared.\",\n    \"u345_quadratic_tower_certificate\": \"Certify the iterated real quadratic square-root tower K_{m+1} = K_m(sqrt((1+c_m)/2)) for 2^m-divisions of u345.\",\n    \"cayley_hermitian_stone_certificate\": \"Certify the discrete Cayley unitary step U_H(t) = (I - i t H)(I + i t H)^{-1} on TracelessHerm2Qi.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/u1_phase_completion.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "f9564c4cc555fda4886dab394411365d6811e5e3293cc0458df53ccd77f53302",
+      "bytes": 923,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/python/src/qm/u1_phase_completion.py",
+        "source_sha256": "a778c5988d93a9e35f164f7cf14f2a72c73c54c1580cafcbd67ca32194fbfe4c",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": null,
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "formal_scoring_not_performed",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/u1_phase_completion.py\nsource_sha256: a778c5988d93a9e35f164f7cf14f2a72c73c54c1580cafcbd67ca32194fbfe4c\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/python/src/qm/u1_phase_completion.py.score.yaml"
+      ]
+    },
+    {
+      "sha256": "8fd48c3426c67c193ff2c2d472c29807859d4de69821d7512582005b6d3ab0b8",
+      "bytes": 923,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/python/src/qm/u1_phase_completion.py",
+        "source_sha256": "754bbf7f8415e030d8b22408cc2ca0a7ce8a02378001c578879afc444e061228",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": null,
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "formal_scoring_not_performed",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/u1_phase_completion.py\nsource_sha256: 754bbf7f8415e030d8b22408cc2ca0a7ce8a02378001c578879afc444e061228\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/python/src/qm/u1_phase_completion.py.score.yaml"
+      ]
+    },
+    {
+      "sha256": "7a043ab105c809084295d3aedc637343ff78dcf80eff486edb32df0a8badd18b",
+      "bytes": 923,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/python/src/qm/u1_phase_completion.py",
+        "source_sha256": "17fa9469e5bec4b64f7bcef9b5bc5301a962786e8bb1e71096ece4b3a17e9fe4",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": null,
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "formal_scoring_not_performed",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/u1_phase_completion.py\nsource_sha256: 17fa9469e5bec4b64f7bcef9b5bc5301a962786e8bb1e71096ece4b3a17e9fe4\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/python/src/qm/u1_phase_completion.py.score.yaml"
+      ]
+    },
+    {
+      "sha256": "553f8bfadc2b88f7891d3a927039910f39fa2a3bc6c4aed67248999dced07c55",
+      "bytes": 2199,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/u1_phase_completion.py",
+          "sha256": "17fa9469e5bec4b64f7bcef9b5bc5301a962786e8bb1e71096ece4b3a17e9fe4"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:u1-phase-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 13), Lizard CCN (max 13), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 13,
+          "lizard_ccn": 13,
+          "weighted_control_upper_bound": 12,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/u1_phase_completion.py\",\n    \"sha256\": \"17fa9469e5bec4b64f7bcef9b5bc5301a962786e8bb1e71096ece4b3a17e9fe4\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:u1-phase-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 13), Lizard CCN (max 13), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 13,\n    \"lizard_ccn\": 13,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/u1_phase_completion.contract.score.yaml#scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/python/src/qm/u1_phase_completion.py.contract.yaml": "2c85a4650ae87939bf41047bca7302b65cd565b44618a14a22ec5877036bebd5",
+    "code/python/src/qm/u1_phase_completion.py.score.yaml": "7a043ab105c809084295d3aedc637343ff78dcf80eff486edb32df0a8badd18b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

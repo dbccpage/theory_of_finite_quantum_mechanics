@@ -1,0 +1,110 @@
+schema_version: 1
+problem_id: UQM-01
+title: Normalize a state and predict an energy measurement
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  state: ((1+i)|0>+2|1>)/sqrt(6)
+  probabilities: P(0)=1/3; P(3 epsilon)=2/3
+  moments: <H>=2 epsilon; Var(H)=2 epsilon^2
+  survival: P_return(t)=5/9+(4/9)cos(3 epsilon t/hbar); P_return(pi phase)=1/9
+derivation:
+- step: 1
+  explanation: Orthogonality removes cross terms in <chi|chi>. The norm squared is |1+i|^2+|2|^2=2+4=6,
+    so division by sqrt(6) normalizes the vector. The global phase of that normalization has no observable
+    effect.
+- step: 2
+  explanation: 'The spectral projector |j><j| selects one coefficient. Divide its squared modulus by 6:
+    p0=2/6=1/3 and p1=4/6=2/3. Their sum is one; amplitudes themselves must not be added to make a probability.'
+- step: 3
+  explanation: Use the probability distribution to form <H>/epsilon=0*p0+3*p1=2 and <H^2>/epsilon^2=0+9*p1=6.
+    Subtract the square of the mean to obtain Var(H)/epsilon^2=6-4=2.
+- step: 4
+  explanation: Time evolution multiplies energy coefficients by exp(-i E_j t/hbar). The overlap with the
+    initial normalized state is A(t)=p0+p1 exp(-i theta), theta=3 epsilon t/hbar. Initial relative phases
+    cancel in this particular return amplitude.
+- step: 5
+  explanation: Expanding A* A gives p0^2+p1^2+2 p0 p1 cos(theta). At theta=pi the amplitude is p0-p1=-1/3,
+    hence its squared modulus is 1/9. The state returns completely at theta=2 pi.
+- step: 6
+  explanation: The exact code never approximates sqrt(6) or pi. It works with unnormalized amplitudes
+    and a specified phase -1, so the reported probability and moments are exact under the stated measurement
+    model.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    - path: code/python/src/qm/born_ray.py
+      symbols:
+      - born_weights
+      - normalize
+    walkthrough:
+    - born_weights forms the two squared moduli and normalize divides by their exact total.
+    - Use the normalized weights for both moments; retain epsilon only in the interpretation.
+    - Evaluate the phase-pi overlap before squaring it.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      from src.qm.born_ray import born_weights, normalize
+      def solve():
+          p0, p1 = normalize(born_weights([(1, 1), (2, 0)]))
+          mean = 3*p1
+          variance = 9*p1 - mean*mean
+          return {"p0": str(p0), "p1": str(p1), "mean_over_epsilon": str(mean),
+                  "variance_over_epsilon2": str(variance), "return_at_pi": str((p0-p1)**2)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - GaussianRational::norm_sq computes the same weights from actual complex amplitudes.
+    - q constructs integer energies without floating conversion.
+    - Keep rational temporaries for the mean, variance and return amplitude, then serialize at the boundary.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let a = G::from_integers(1,1); let b = G::from_integers(2,0);
+          let total = a.norm_sq()+b.norm_sq();
+          let p0 = a.norm_sq()/&total; let p1 = b.norm_sq()/&total;
+          let mean = q(3)*&p1; let variance = q(9)*&p1-&mean*&mean;
+          let ret = (&p0-&p1)*(&p0-&p1);
+          json!({"p0":p0.to_string(),"p1":p1.to_string(),"mean_over_epsilon":mean.to_string(),
+              "variance_over_epsilon2":variance.to_string(),"return_at_pi":ret.to_string()})
+      }
+verification:
+  expected_outputs:
+    p0: 1/3
+    p1: 2/3
+    mean_over_epsilon: '2'
+    variance_over_epsilon2: '2'
+    return_at_pi: 1/9
+  computational_scope: Exact Born normalization, energy moments and one rational phase value of the return
+    probability.
+  not_established:
+  - No continuous-time exponential or general spectral theorem is proved by this fixture.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- Normalize squared moduli, not coefficients.
+- Energy variance is <H^2>-<H>^2, not <H^2>-<H>.
+improvement_target:
+  gap: A reusable energy-distribution interface is not exercised here.
+  acceptance_criterion: Add tests for arbitrary exact projectors and degenerate eigenspaces before promoting
+    this to a general spectral measurement API.

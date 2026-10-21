@@ -1,0 +1,103 @@
+schema_version: 1
+problem_id: UQM-19
+title: Two identical particles in a box
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  bosons: Psi_B=phi1(x1)phi1(x2); E_B=2E1
+  fermions: Psi_F=[phi1(x1)phi2(x2)-phi2(x1)phi1(x2)]/sqrt(2); E_F=5E1
+  coincidence: Psi_F(x,x)=0; the bosonic wavefunction need not vanish at coincidence.
+derivation:
+- step: 1
+  explanation: The one-particle energies are n^2 E1. For noninteracting particles a product of orbitals
+    has the sum of their one-particle energies. Exchange symmetry restricts which products or combinations
+    are physical.
+- step: 2
+  explanation: Bosons require a symmetric total state. Placing both particles in phi1 gives an already
+    symmetric normalized product with energy 2E1. No extra factor sqrt(2) is inserted for two identical
+    occupied orbitals.
+- step: 3
+  explanation: For spin-polarized fermions the spin state is symmetric, so the spatial state must be antisymmetric.
+    Attempting to put both particles in phi1 makes the antisymmetrized state zero. The lowest admissible
+    pair is n=1 and n=2.
+- step: 4
+  explanation: Let A=phi1(x1)phi2(x2) and B=phi2(x1)phi1(x2). Their norms are one and their overlap is
+    zero by orbital orthogonality. Therefore (A-B)/sqrt(2) has norm one and energy (1+4)E1=5E1.
+- step: 5
+  explanation: At x1=x2 the two products agree and cancel. This node is a consequence of antisymmetry
+    and does not require a repulsive potential. The energy difference 3E1 likewise comes from the occupation
+    constraint.
+- step: 6
+  explanation: The code checks the normalized antisymmetric coefficient ray and the additive energies.
+    It does not model interactions, fermions with different spin states, or a spatial two-body differential
+    solver.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Reuse GaussianRational norm and addition for the antisymmetric coefficients.
+    - Use the n squared spectrum from the analytic well solution.
+    - The coincidence output is the coefficient cancellation factor, not a probability density integral.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          e1,e2=q(1),q(4); coefficients=[G(1),G(-1)]
+          norm=sum(a.norm_sq() for a in coefficients)
+          coincident=(coefficients[0]+coefficients[1]).norm_sq()/norm
+          return {"boson_energy_over_E1":str(2*e1),"fermion_energy_over_E1":str(e1+e2),
+                  "energy_gap_over_E1":str(e2-e1),"determinant_norm_squared":str(norm),"coincidence_factor":str(coincident)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Compute the unnormalized determinant norm from two orthogonal coefficients.
+    - Use checked complex addition for the coincidence cancellation.
+    - Report energies in the shared E1 scale.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let e1=q(1); let e2=q(4); let a=G::from_integers(1,0); let b=G::from_integers(-1,0);
+          let norm=a.norm_sq()+b.norm_sq(); let coincidence=a.try_add(&b).unwrap().norm_sq()/&norm;
+          json!({"boson_energy_over_E1":(q(2)*&e1).to_string(),"fermion_energy_over_E1":(&e1+&e2).to_string(),
+              "energy_gap_over_E1":(&e2-&e1).to_string(),"determinant_norm_squared":norm.to_string(),"coincidence_factor":coincidence.to_string()})
+      }
+verification:
+  expected_outputs:
+    boson_energy_over_E1: '2'
+    fermion_energy_over_E1: '5'
+    energy_gap_over_E1: '3'
+    determinant_norm_squared: '2'
+    coincidence_factor: '0'
+  computational_scope: Exact occupation energies and antisymmetric coefficient cancellation, assuming
+    orthonormal box orbitals.
+  not_established:
+  - The spin-statistics postulate and spatial orbital integrals are not proved by the scalar check.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- Opposite-spin fermions can occupy the same spatial orbital; that is a different setup.
+- Do not divide an already normalized double-occupied boson product by sqrt(2).
+improvement_target:
+  gap: A general symmetrized occupation-state interface is not exercised.
+  acceptance_criterion: Verify occupation multiplicities and norm factors against explicit tensor-product
+    states before adding many particles.

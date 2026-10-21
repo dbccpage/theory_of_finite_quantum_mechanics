@@ -1,0 +1,320 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/majorana_fock_algebra.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/majorana_fock_algebra.py",
+      "sha256": "762b2601988a361b69ff1fcd117a0f6c90318fe65f5f8081785c6d41fb8c62a2"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:finite-fock-occupation:v1",
+    "role": "exact bounded occupation-matrix provider",
+    "operations": {
+      "GaussianRat": "Owned exact Fraction pair; addition/subtraction/product and zero test use exact Gaussian rational arithmetic. Reinitialization, subclasses, float/bool and overriding numeric values refuse.",
+      "FockCarrier": "1..5 modes, first mode most significant bit, odd gamma=Z...ZX and even gamma=Z...ZY with Y|0>=i|1>. c=(odd+i even)/2 lowers occupation; number is the occupied-bit projector; parity is (-1)^popcount.",
+      "braid_unitary": "For adjacent gamma indices, (1+i)/2 times (I+gamma_(a+1) gamma_a); finite unitarity/braid/remote commutation checks cover modes 1..3. No complete representation theorem inferred.",
+      "first_anticommutation_failure": "Fully admit a built-in family of equal-sized square Gaussian matrices, then return the first one-based failed pair or None. Empty families and 0x0 matrices satisfy equations vacuously; None does not certify a nonzero or faithful representation.",
+      "restrict_to_sector": "Require the carrier dimension, a built-in boolean selector and zero cross-parity blocks before returning a detached sector matrix. Refuse sector-mixing operators."
+    },
+    "engineering_policy": "Carrier modes<=5, matrix dimension<=32, family length<=32 and CAR product bound family*(family+1)*dimension^3<=4000000. Gaussian components use the shared 1024-bit stored rational policy. Declared limits are not empirical physics values.",
+    "failure_boundary": "MajoranaError for invalid scalar/container/shape/index/sector/resource values. Immutable exact scalars and carrier, detached returned matrices, no external handles or writes. A resource refusal may occur during exact arithmetic before a result is returned; inputs remain unchanged.",
+    "cost_model": "Matrices use O(4^m) entries with m<=5; sparse gamma generation still returns dense matrices. CAR and braid products have finite cubic dimension cost; CAR explicitly preflights relation products. Fraction operations remain exact and refuse component growth beyond the stored bound.",
+    "scope_ceiling": "Python finite exact local model with a named Rust owner as origin, not a compiled cross-language equivalence receipt. No native host execution, arbitrary mode counts, continuum field, faithful-representation proof or device certification.",
+    "origin": "Exact pre-repair workspace source snapshot and literal source origin annotation retained in the historical contract. Fock names the Rust owner; this run does not compile or prove cross-language equivalence.",
+    "trust": "Pinned provider/test and rubric bytes, CPython 3.14 and installed SymPy/Fraction semantics. Closed built-in/canonical types avoid ordinary user hooks. Other conftest/provider transitive code, OS/interpreter state, hostile metaclasses, deliberate reflection, monkeypatching, hostile concurrent mutation and host exhaustion are not independently certified or sandboxed.",
+    "negative_float_fixture_policy": "Binary floats are used only in deliberate rejection or detached-export probes; no admitted exact arithmetic uses them.",
+    "evidence": [
+      {
+        "path": "evidence/quality/expanded_scope/20261020T233919Z-majorana-challenge/receipt.json",
+        "sha256": "3a77fe22970507f5373a00a27389a2c2132838edff60538bd938532d13959cf6"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/20261020T234424Z-majorana-followup-challenge/receipt.json",
+        "sha256": "a134386f99288db8f5d5b84e5502756d95a0f80e3d32650c8472a9ad55e5be7b"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch6-challenge-review.json",
+        "sha256": "614d17a0a704ba90a797752d715651f7aa502c6af928f41c3017840aedc80659"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/20261020T233818Z-source-metrics/receipt.json",
+        "sha256": "1f3e41048fb8b90981e5f506737bcc1f139f28bcb54f2eda950009c0f1ba4e81"
+      },
+      {
+        "path": "code/rust/quality/expanded_scope/batch6_reviews.json",
+        "sha256": "0104d03327734d4ccdf0ebefce40fa92db9b910eb29392443a4dd1bcd642dacf"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch6-baseline.log",
+        "sha256": "8cf8cf88d5b99f6a5463c4ab6243a928f8cb45e5fab08619364db466be95f1bd"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch6-atlas.log",
+        "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch6-atlas-tests.log",
+        "sha256": "c4d888a77ba954af95da107de571af4a17d4351614495c025dc891c730242c4d"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/20261020T231621Z-majorana-collection/receipt.json",
+        "sha256": "1c48634b39b278871fca5792abee179cd197a135d7218afed58320e7c6315316"
+      }
+    ]
+  },
+  "current_contract": "63deb71b3183e08f92ed96c26590da51f5bcd9f4e47808ce3553d8c629c489d4",
+  "current_scoring": "9a2d84fde880615aa1951b9b85eccfccb75a56f713349d44fce806650b3c210c",
+  "contract_history": [
+    {
+      "sha256": "a3009e6031f0434b4796671dd0e03d8b873db3b92c5f23b9d3b2c456ca3bb3d3",
+      "bytes": 1288,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/majorana_fock_algebra.py",
+          "sha256": "e3b7e4fcb412bd51543a75b46ea4c2d8a0c26236f2abe52d1b29bd5c418113f3"
+        },
+        "profile": "Exact",
+        "purpose": "Historical pre-repair implementation under independent checks; later policies and capabilities are not retroactive.",
+        "captured_claims_verbatim": "Majorana operators on finite fermionic Fock space, over Q(i).\n\nAuthorityEffect: None.",
+        "claims_status": "Captured source claims, not endorsed scores or proof receipts.",
+        "finding": "The original lowering matrix raises vacuum and independent c-dagger-c disagrees with the declared occupied number projector. Original number_operator accepts bool and negative labels or leaks raw shift errors. Exact before-repair matrices and outcomes are retained.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231517Z-majorana-before/sources/code/python/src/majorana/majorana_fock_algebra.py",
+            "sha256": "e3b7e4fcb412bd51543a75b46ea4c2d8a0c26236f2abe52d1b29bd5c418113f3"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231517Z-majorana-before/receipt.json",
+            "sha256": "5a9df3e3b56f4193250df1bd187aa491919c41982874f227f8fadb7f0064e11e"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/majorana_fock_algebra.py\",\n    \"sha256\": \"e3b7e4fcb412bd51543a75b46ea4c2d8a0c26236f2abe52d1b29bd5c418113f3\"\n  },\n  \"profile\": \"Exact\",\n  \"purpose\": \"Historical pre-repair implementation under independent checks; later policies and capabilities are not retroactive.\",\n  \"captured_claims_verbatim\": \"Majorana operators on finite fermionic Fock space, over Q(i).\\n\\nAuthorityEffect: None.\",\n  \"claims_status\": \"Captured source claims, not endorsed scores or proof receipts.\",\n  \"finding\": \"The original lowering matrix raises vacuum and independent c-dagger-c disagrees with the declared occupied number projector. Original number_operator accepts bool and negative labels or leaks raw shift errors. Exact before-repair matrices and outcomes are retained.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231517Z-majorana-before/sources/code/python/src/majorana/majorana_fock_algebra.py\",\n      \"sha256\": \"e3b7e4fcb412bd51543a75b46ea4c2d8a0c26236f2abe52d1b29bd5c418113f3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231517Z-majorana-before/receipt.json\",\n      \"sha256\": \"5a9df3e3b56f4193250df1bd187aa491919c41982874f227f8fadb7f0064e11e\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/majorana_fock_algebra.contract.score.yaml#historical-before-majorana-repair/contract"
+      ]
+    },
+    {
+      "sha256": "63deb71b3183e08f92ed96c26590da51f5bcd9f4e47808ce3553d8c629c489d4",
+      "bytes": 5003,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/majorana_fock_algebra.py",
+          "sha256": "762b2601988a361b69ff1fcd117a0f6c90318fe65f5f8081785c6d41fb8c62a2"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:finite-fock-occupation:v1",
+        "role": "exact bounded occupation-matrix provider",
+        "operations": {
+          "GaussianRat": "Owned exact Fraction pair; addition/subtraction/product and zero test use exact Gaussian rational arithmetic. Reinitialization, subclasses, float/bool and overriding numeric values refuse.",
+          "FockCarrier": "1..5 modes, first mode most significant bit, odd gamma=Z...ZX and even gamma=Z...ZY with Y|0>=i|1>. c=(odd+i even)/2 lowers occupation; number is the occupied-bit projector; parity is (-1)^popcount.",
+          "braid_unitary": "For adjacent gamma indices, (1+i)/2 times (I+gamma_(a+1) gamma_a); finite unitarity/braid/remote commutation checks cover modes 1..3. No complete representation theorem inferred.",
+          "first_anticommutation_failure": "Fully admit a built-in family of equal-sized square Gaussian matrices, then return the first one-based failed pair or None. Empty families and 0x0 matrices satisfy equations vacuously; None does not certify a nonzero or faithful representation.",
+          "restrict_to_sector": "Require the carrier dimension, a built-in boolean selector and zero cross-parity blocks before returning a detached sector matrix. Refuse sector-mixing operators."
+        },
+        "engineering_policy": "Carrier modes<=5, matrix dimension<=32, family length<=32 and CAR product bound family*(family+1)*dimension^3<=4000000. Gaussian components use the shared 1024-bit stored rational policy. Declared limits are not empirical physics values.",
+        "failure_boundary": "MajoranaError for invalid scalar/container/shape/index/sector/resource values. Immutable exact scalars and carrier, detached returned matrices, no external handles or writes. A resource refusal may occur during exact arithmetic before a result is returned; inputs remain unchanged.",
+        "cost_model": "Matrices use O(4^m) entries with m<=5; sparse gamma generation still returns dense matrices. CAR and braid products have finite cubic dimension cost; CAR explicitly preflights relation products. Fraction operations remain exact and refuse component growth beyond the stored bound.",
+        "scope_ceiling": "Python finite exact local model with a named Rust owner as origin, not a compiled cross-language equivalence receipt. No native host execution, arbitrary mode counts, continuum field, faithful-representation proof or device certification.",
+        "origin": "Exact pre-repair workspace source snapshot and literal source origin annotation retained in the historical contract. Fock names the Rust owner; this run does not compile or prove cross-language equivalence.",
+        "trust": "Pinned provider/test and rubric bytes, CPython 3.14 and installed SymPy/Fraction semantics. Closed built-in/canonical types avoid ordinary user hooks. Other conftest/provider transitive code, OS/interpreter state, hostile metaclasses, deliberate reflection, monkeypatching, hostile concurrent mutation and host exhaustion are not independently certified or sandboxed.",
+        "negative_float_fixture_policy": "Binary floats are used only in deliberate rejection or detached-export probes; no admitted exact arithmetic uses them.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T233919Z-majorana-challenge/receipt.json",
+            "sha256": "3a77fe22970507f5373a00a27389a2c2132838edff60538bd938532d13959cf6"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T234424Z-majorana-followup-challenge/receipt.json",
+            "sha256": "a134386f99288db8f5d5b84e5502756d95a0f80e3d32650c8472a9ad55e5be7b"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-challenge-review.json",
+            "sha256": "614d17a0a704ba90a797752d715651f7aa502c6af928f41c3017840aedc80659"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T233818Z-source-metrics/receipt.json",
+            "sha256": "1f3e41048fb8b90981e5f506737bcc1f139f28bcb54f2eda950009c0f1ba4e81"
+          },
+          {
+            "path": "code/rust/quality/expanded_scope/batch6_reviews.json",
+            "sha256": "0104d03327734d4ccdf0ebefce40fa92db9b910eb29392443a4dd1bcd642dacf"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-baseline.log",
+            "sha256": "8cf8cf88d5b99f6a5463c4ab6243a928f8cb45e5fab08619364db466be95f1bd"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-atlas.log",
+            "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-atlas-tests.log",
+            "sha256": "c4d888a77ba954af95da107de571af4a17d4351614495c025dc891c730242c4d"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231621Z-majorana-collection/receipt.json",
+            "sha256": "1c48634b39b278871fca5792abee179cd197a135d7218afed58320e7c6315316"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/majorana_fock_algebra.py\",\n    \"sha256\": \"762b2601988a361b69ff1fcd117a0f6c90318fe65f5f8081785c6d41fb8c62a2\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:finite-fock-occupation:v1\",\n  \"role\": \"exact bounded occupation-matrix provider\",\n  \"operations\": {\n    \"GaussianRat\": \"Owned exact Fraction pair; addition/subtraction/product and zero test use exact Gaussian rational arithmetic. Reinitialization, subclasses, float/bool and overriding numeric values refuse.\",\n    \"FockCarrier\": \"1..5 modes, first mode most significant bit, odd gamma=Z...ZX and even gamma=Z...ZY with Y|0>=i|1>. c=(odd+i even)/2 lowers occupation; number is the occupied-bit projector; parity is (-1)^popcount.\",\n    \"braid_unitary\": \"For adjacent gamma indices, (1+i)/2 times (I+gamma_(a+1) gamma_a); finite unitarity/braid/remote commutation checks cover modes 1..3. No complete representation theorem inferred.\",\n    \"first_anticommutation_failure\": \"Fully admit a built-in family of equal-sized square Gaussian matrices, then return the first one-based failed pair or None. Empty families and 0x0 matrices satisfy equations vacuously; None does not certify a nonzero or faithful representation.\",\n    \"restrict_to_sector\": \"Require the carrier dimension, a built-in boolean selector and zero cross-parity blocks before returning a detached sector matrix. Refuse sector-mixing operators.\"\n  },\n  \"engineering_policy\": \"Carrier modes<=5, matrix dimension<=32, family length<=32 and CAR product bound family*(family+1)*dimension^3<=4000000. Gaussian components use the shared 1024-bit stored rational policy. Declared limits are not empirical physics values.\",\n  \"failure_boundary\": \"MajoranaError for invalid scalar/container/shape/index/sector/resource values. Immutable exact scalars and carrier, detached returned matrices, no external handles or writes. A resource refusal may occur during exact arithmetic before a result is returned; inputs remain unchanged.\",\n  \"cost_model\": \"Matrices use O(4^m) entries with m<=5; sparse gamma generation still returns dense matrices. CAR and braid products have finite cubic dimension cost; CAR explicitly preflights relation products. Fraction operations remain exact and refuse component growth beyond the stored bound.\",\n  \"scope_ceiling\": \"Python finite exact local model with a named Rust owner as origin, not a compiled cross-language equivalence receipt. No native host execution, arbitrary mode counts, continuum field, faithful-representation proof or device certification.\",\n  \"origin\": \"Exact pre-repair workspace source snapshot and literal source origin annotation retained in the historical contract. Fock names the Rust owner; this run does not compile or prove cross-language equivalence.\",\n  \"trust\": \"Pinned provider/test and rubric bytes, CPython 3.14 and installed SymPy/Fraction semantics. Closed built-in/canonical types avoid ordinary user hooks. Other conftest/provider transitive code, OS/interpreter state, hostile metaclasses, deliberate reflection, monkeypatching, hostile concurrent mutation and host exhaustion are not independently certified or sandboxed.\",\n  \"negative_float_fixture_policy\": \"Binary floats are used only in deliberate rejection or detached-export probes; no admitted exact arithmetic uses them.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T233919Z-majorana-challenge/receipt.json\",\n      \"sha256\": \"3a77fe22970507f5373a00a27389a2c2132838edff60538bd938532d13959cf6\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T234424Z-majorana-followup-challenge/receipt.json\",\n      \"sha256\": \"a134386f99288db8f5d5b84e5502756d95a0f80e3d32650c8472a9ad55e5be7b\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-challenge-review.json\",\n      \"sha256\": \"614d17a0a704ba90a797752d715651f7aa502c6af928f41c3017840aedc80659\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T233818Z-source-metrics/receipt.json\",\n      \"sha256\": \"1f3e41048fb8b90981e5f506737bcc1f139f28bcb54f2eda950009c0f1ba4e81\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch6_reviews.json\",\n      \"sha256\": \"0104d03327734d4ccdf0ebefce40fa92db9b910eb29392443a4dd1bcd642dacf\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-baseline.log\",\n      \"sha256\": \"8cf8cf88d5b99f6a5463c4ab6243a928f8cb45e5fab08619364db466be95f1bd\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-atlas-tests.log\",\n      \"sha256\": \"c4d888a77ba954af95da107de571af4a17d4351614495c025dc891c730242c4d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231621Z-majorana-collection/receipt.json\",\n      \"sha256\": \"1c48634b39b278871fca5792abee179cd197a135d7218afed58320e7c6315316\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/majorana_fock_algebra.contract.score.yaml#bounded-majorana-source-review/contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "78e09751c9f344ddb08afe543c557285e14c74c14bda26c137773e3f9cdccb5d",
+      "bytes": 1314,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/majorana_fock_algebra.py",
+          "sha256": "e3b7e4fcb412bd51543a75b46ea4c2d8a0c26236f2abe52d1b29bd5c418113f3"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "level": "L3",
+        "gates": {
+          "G1": null,
+          "G2": "E",
+          "G3": "E",
+          "G4": null,
+          "G5": null
+        },
+        "is_complete": false,
+        "composite_grade": null,
+        "score_token": null,
+        "target_achieved": false,
+        "grade_ceiling": "E",
+        "finding": "The original lowering matrix raises vacuum and independent c-dagger-c disagrees with the declared occupied number projector. Original number_operator accepts bool and negative labels or leaks raw shift errors. Exact before-repair matrices and outcomes are retained.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231517Z-majorana-before/sources/code/python/src/majorana/majorana_fock_algebra.py",
+            "sha256": "e3b7e4fcb412bd51543a75b46ea4c2d8a0c26236f2abe52d1b29bd5c418113f3"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231517Z-majorana-before/receipt.json",
+            "sha256": "5a9df3e3b56f4193250df1bd187aa491919c41982874f227f8fadb7f0064e11e"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/majorana_fock_algebra.py\",\n    \"sha256\": \"e3b7e4fcb412bd51543a75b46ea4c2d8a0c26236f2abe52d1b29bd5c418113f3\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": \"E\",\n    \"G3\": \"E\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"target_achieved\": false,\n  \"grade_ceiling\": \"E\",\n  \"finding\": \"The original lowering matrix raises vacuum and independent c-dagger-c disagrees with the declared occupied number projector. Original number_operator accepts bool and negative labels or leaks raw shift errors. Exact before-repair matrices and outcomes are retained.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231517Z-majorana-before/sources/code/python/src/majorana/majorana_fock_algebra.py\",\n      \"sha256\": \"e3b7e4fcb412bd51543a75b46ea4c2d8a0c26236f2abe52d1b29bd5c418113f3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231517Z-majorana-before/receipt.json\",\n      \"sha256\": \"5a9df3e3b56f4193250df1bd187aa491919c41982874f227f8fadb7f0064e11e\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/majorana_fock_algebra.contract.score.yaml#historical-before-majorana-repair/scoring"
+      ]
+    },
+    {
+      "sha256": "9a2d84fde880615aa1951b9b85eccfccb75a56f713349d44fce806650b3c210c",
+      "bytes": 4418,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/majorana_fock_algebra.py",
+          "sha256": "762b2601988a361b69ff1fcd117a0f6c90318fe65f5f8081785c6d41fb8c62a2"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "level": "L4",
+        "level_basis": "A bounded finite matrix API with explicit occupation/Jordan-Wigner conventions, closed Gaussian component admission, immutable carrier/scalar construction, index and shape preflight, a separately bounded relation checker and parity-preserving sector restriction. Its finite ownership and refusal design delivers the capability; the Hilbert/Fock terminology alone does not.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Literal claim URN, authority ceiling, current subject/dependency pins, retained origin bytes and reviewed exported signatures. No full downstream/AST equivalence or external provenance attestation.",
+          "G2": "Exact profile fixed before checks; independent Fraction-pair matrix arithmetic, adjacent-swap blade oracle, occupation action and valid/invalid canonical values. Finite laws and resource/type boundaries only; no exhaustive theorem inferred.",
+          "G3": "MajoranaError for invalid scalar/container/shape/index/sector/resource values. Immutable exact scalars and carrier, detached returned matrices, no external handles or writes. A resource refusal may occur during exact arithmetic before a result is returned; inputs remain unchanged.",
+          "G4": "15 unique valid designated candidate-byte faults resolved KILLED against passing source-bound baselines. Original raw survivors and invalid site retained, with current replays and candidate bindings. Systematic finite negative/composition checks support C, not complete error-space, provider deployment or alternate-checker assurance.",
+          "G5": "Observed CCN 9/9, conservative control upper bound 12 and nesting 4; B ceiling from nesting. Bounded polynomial matrix work; no runtime or heap benchmark claim."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 9,
+          "weighted_control_upper_bound": 12,
+          "control_nesting": 4
+        },
+        "mutation_outcomes": {
+          "KILLED": 15
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source only; full 24-directory objective remains open.",
+        "open_higher_grade_findings": [
+          "Full downstream/provider provenance",
+          "Exhaustive or formal semantic/failure assurance",
+          "Alternate independent harness replay",
+          "Measured peak-memory and wall-clock guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T233919Z-majorana-challenge/receipt.json",
+            "sha256": "3a77fe22970507f5373a00a27389a2c2132838edff60538bd938532d13959cf6"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T234424Z-majorana-followup-challenge/receipt.json",
+            "sha256": "a134386f99288db8f5d5b84e5502756d95a0f80e3d32650c8472a9ad55e5be7b"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-challenge-review.json",
+            "sha256": "614d17a0a704ba90a797752d715651f7aa502c6af928f41c3017840aedc80659"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T233818Z-source-metrics/receipt.json",
+            "sha256": "1f3e41048fb8b90981e5f506737bcc1f139f28bcb54f2eda950009c0f1ba4e81"
+          },
+          {
+            "path": "code/rust/quality/expanded_scope/batch6_reviews.json",
+            "sha256": "0104d03327734d4ccdf0ebefce40fa92db9b910eb29392443a4dd1bcd642dacf"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-baseline.log",
+            "sha256": "8cf8cf88d5b99f6a5463c4ab6243a928f8cb45e5fab08619364db466be95f1bd"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-atlas.log",
+            "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-atlas-tests.log",
+            "sha256": "c4d888a77ba954af95da107de571af4a17d4351614495c025dc891c730242c4d"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231621Z-majorana-collection/receipt.json",
+            "sha256": "1c48634b39b278871fca5792abee179cd197a135d7218afed58320e7c6315316"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/majorana_fock_algebra.py\",\n    \"sha256\": \"762b2601988a361b69ff1fcd117a0f6c90318fe65f5f8081785c6d41fb8c62a2\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L4\",\n  \"level_basis\": \"A bounded finite matrix API with explicit occupation/Jordan-Wigner conventions, closed Gaussian component admission, immutable carrier/scalar construction, index and shape preflight, a separately bounded relation checker and parity-preserving sector restriction. Its finite ownership and refusal design delivers the capability; the Hilbert/Fock terminology alone does not.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Literal claim URN, authority ceiling, current subject/dependency pins, retained origin bytes and reviewed exported signatures. No full downstream/AST equivalence or external provenance attestation.\",\n    \"G2\": \"Exact profile fixed before checks; independent Fraction-pair matrix arithmetic, adjacent-swap blade oracle, occupation action and valid/invalid canonical values. Finite laws and resource/type boundaries only; no exhaustive theorem inferred.\",\n    \"G3\": \"MajoranaError for invalid scalar/container/shape/index/sector/resource values. Immutable exact scalars and carrier, detached returned matrices, no external handles or writes. A resource refusal may occur during exact arithmetic before a result is returned; inputs remain unchanged.\",\n    \"G4\": \"15 unique valid designated candidate-byte faults resolved KILLED against passing source-bound baselines. Original raw survivors and invalid site retained, with current replays and candidate bindings. Systematic finite negative/composition checks support C, not complete error-space, provider deployment or alternate-checker assurance.\",\n    \"G5\": \"Observed CCN 9/9, conservative control upper bound 12 and nesting 4; B ceiling from nesting. Bounded polynomial matrix work; no runtime or heap benchmark claim.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 4\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 15\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source only; full 24-directory objective remains open.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream/provider provenance\",\n    \"Exhaustive or formal semantic/failure assurance\",\n    \"Alternate independent harness replay\",\n    \"Measured peak-memory and wall-clock guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T233919Z-majorana-challenge/receipt.json\",\n      \"sha256\": \"3a77fe22970507f5373a00a27389a2c2132838edff60538bd938532d13959cf6\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T234424Z-majorana-followup-challenge/receipt.json\",\n      \"sha256\": \"a134386f99288db8f5d5b84e5502756d95a0f80e3d32650c8472a9ad55e5be7b\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-challenge-review.json\",\n      \"sha256\": \"614d17a0a704ba90a797752d715651f7aa502c6af928f41c3017840aedc80659\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T233818Z-source-metrics/receipt.json\",\n      \"sha256\": \"1f3e41048fb8b90981e5f506737bcc1f139f28bcb54f2eda950009c0f1ba4e81\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch6_reviews.json\",\n      \"sha256\": \"0104d03327734d4ccdf0ebefce40fa92db9b910eb29392443a4dd1bcd642dacf\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-baseline.log\",\n      \"sha256\": \"8cf8cf88d5b99f6a5463c4ab6243a928f8cb45e5fab08619364db466be95f1bd\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-atlas-tests.log\",\n      \"sha256\": \"c4d888a77ba954af95da107de571af4a17d4351614495c025dc891c730242c4d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231621Z-majorana-collection/receipt.json\",\n      \"sha256\": \"1c48634b39b278871fca5792abee179cd197a135d7218afed58320e7c6315316\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/majorana_fock_algebra.contract.score.yaml#bounded-majorana-source-review/scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/python/src/majorana/majorana_fock_algebra.contract.score.yaml#historical-before-majorana-repair/contract": "a3009e6031f0434b4796671dd0e03d8b873db3b92c5f23b9d3b2c456ca3bb3d3",
+    "code/python/src/majorana/majorana_fock_algebra.contract.score.yaml#historical-before-majorana-repair/scoring": "78e09751c9f344ddb08afe543c557285e14c74c14bda26c137773e3f9cdccb5d",
+    "code/python/src/majorana/majorana_fock_algebra.contract.score.yaml#bounded-majorana-source-review/contract": "63deb71b3183e08f92ed96c26590da51f5bcd9f4e47808ce3553d8c629c489d4",
+    "code/python/src/majorana/majorana_fock_algebra.contract.score.yaml#bounded-majorana-source-review/scoring": "9a2d84fde880615aa1951b9b85eccfccb75a56f713349d44fce806650b3c210c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Append-only captured defects and individually authored bounded reviews; no whole-package or full-scope certification."
+}

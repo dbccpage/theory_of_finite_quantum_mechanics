@@ -1,0 +1,95 @@
+schema_version: 1
+problem_id: UQM-16
+title: Larmor precession in a static field
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  spinor: (exp(-i omega t/2), exp(i omega t/2))/sqrt(2)
+  bloch: (cos(omega t),sin(omega t),0)
+  fixture: P(+x)=4/5; P(-x)=1/5; <Sy>/hbar=2/5; <Sz>=0
+derivation:
+- step: 1
+  explanation: The two z basis states have energies plus and minus hbar omega/2. Acting with exp(-iHt/hbar)
+    gives opposite phases on their initially equal coefficients.
+- step: 2
+  explanation: Remove the common exp(-i omega t/2) phase. The ray is represented by (1,exp(i omega t))/sqrt(2).
+    This makes the relative phase and its sign visible.
+- step: 3
+  explanation: For a,b the Pauli coherence is a* b. Here it equals exp(i omega t)/2, yielding x=cos(omega
+    t), y=sin(omega t), z=0. Multiplication by hbar/2 restores physical spin expectations.
+- step: 4
+  explanation: The +x overlap is (1+exp(i omega t))/2. Its squared modulus is (1+cos(omega t))/2. At the
+    chosen rational point on the unit circle this is 4/5, leaving 1/5 for -x.
+- step: 5
+  explanation: The code checks a normalized relative phase by using the unnormalized ray (1,phase), whose
+    squared norm is two. The sign of precession follows the stated H; a negative gyromagnetic coefficient
+    may change a physical field convention.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Create the actual complex phase and verify its norm.
+    - Form the return amplitude with GaussianRational division.
+    - Use the imaginary phase component to recover the y spin mean.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          phase=G(q(3,5),q(4,5)); amp=(G(1)+phase)/G(2)
+          return {"phase_norm":str(phase.norm_sq()),"bloch_x":str(phase.real),"bloch_y":str(phase.imag),
+                  "p_plus_x":str(amp.norm_sq()),"p_minus_x":str(1-amp.norm_sq()),"mean_Sy_over_hbar":str(phase.imag/2)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Use checked complex addition and division from the existing scalar module.
+    - Compute both outcome probabilities from the same amplitude.
+    - Keep the Hamiltonian sign documented in the problem definition.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let phase=G::new(qr(3,5).unwrap(),qr(4,5).unwrap()).unwrap();
+          let amp=G::from_integers(1,0).try_add(&phase).unwrap().try_div(&G::from_integers(2,0)).unwrap();
+          json!({"phase_norm":phase.norm_sq().to_string(),"bloch_x":phase.real().to_string(),"bloch_y":phase.imag().to_string(),
+              "p_plus_x":amp.norm_sq().to_string(),"p_minus_x":(q(1)-amp.norm_sq()).to_string(),"mean_Sy_over_hbar":(phase.imag()/q(2)).to_string()})
+      }
+verification:
+  expected_outputs:
+    phase_norm: '1'
+    bloch_x: 3/5
+    bloch_y: 4/5
+    p_plus_x: 4/5
+    p_minus_x: 1/5
+    mean_Sy_over_hbar: 2/5
+  computational_scope: Exact relative-phase norm, interference probability and spin expectation at one
+    rational circle point.
+  not_established:
+  - No continuous-time exponential evaluator or magnetic field calibration is used.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- A global phase does not cause precession; the relative phase does.
+- Check the sign convention in H before choosing the direction of rotation.
+improvement_target:
+  gap: A rational phase point does not supply a certified time-to-phase map.
+  acceptance_criterion: Integrate an existing certified phase representation and expose its time error
+    separately from amplitude arithmetic.

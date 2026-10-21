@@ -101,12 +101,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "a261892a7816cda259d627a8203da39d0649a243676fe1b5e5f836109cb87b37",
-  "current_scoring": null,
+  "current_contract": "54aa9762e450f5e2fc6c721d708d93c97a7495a8a57e67015ffc426f216a3385",
+  "current_scoring": "cda76ead26ac3a36203aaf85a92f4f1d957c72fa4e37db6b0cd7aed8399c1c73",
   "contract_history": [
     {
-      "sha256": "a261892a7816cda259d627a8203da39d0649a243676fe1b5e5f836109cb87b37",
-      "bytes": 3099,
+      "sha256": "54aa9762e450f5e2fc6c721d708d93c97a7495a8a57e67015ffc426f216a3385",
+      "bytes": 3619,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:exact_exchange_statistics:v0.1.0",
@@ -206,13 +206,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_exchange_statistics:v0.1.0\ntitle: Exact Finite Exchange Statistics\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_exchange_statistics\n  symbol: exact_exchange_statistics\n  ascii_symbol: exact_exchange_statistics\n  notation: Exact Finite Exchange Statistics\n  domain:\n  - Declared permutations of at most 4096 entries\n  - Symmetric/alternating projectors with 1<=n<=6 and d^n<=128\n  - Canonical budgeted residue-root helpers for u64 moduli\n  codomain:\n    description: Declared finite results of omega_quantum_physics::pair_exchange_characters;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Permutation characters are trivial or the exact cycle-parity sign\n- The averaged symmetric/alternating tensor actions are self-adjoint idempotents\n- Their ranks agree with binomial(d+n-1,n) and binomial(d,n)\n- The zero-fold tensor carrier has dimension one, including d=0\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: pair_exchange_characters\n  symbols:\n  - ExchangeError\n  - permutation_character\n  - exchange_projector\n  - exchange_sector_dimension\n  - exchange_characters_mod\n  - alternating_fixed_values_mod\n  required_tests:\n  - spin_intertwiners_and_exchange_projectors_preserve_exact_sector_dimensions\nnegative_tests:\n- Duplicate/out-of-range permutation entries and oversized tensor carriers are refused\n- Alternating sectors vanish when n>d; residue zero-divisor exceptions remain explicit\ndoctrine:\n  summary: Permutation characters are trivial or the exact cycle-parity sign; The\n    averaged symmetric/alternating tensor actions are self-adjoint idempotents; Their\n    ranks agree with binomial(d+n-1,n) and binomial(d,n); The zero-fold tensor carrier\n    has dimension one, including d=0.\n  non_role:\n  - No braid-group statistics or general Young-symmetrizer decomposition\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:exact_exchange_statistics:v0.1.0\",\n  \"title\": \"Exact Finite Exchange Statistics\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"exact_exchange_statistics\",\n    \"symbol\": \"exact_exchange_statistics\",\n    \"ascii_symbol\": \"exact_exchange_statistics\",\n    \"notation\": \"Exact Finite Exchange Statistics\",\n    \"domain\": [\n      \"Declared permutations of at most 4096 entries\",\n      \"Symmetric/alternating projectors with 1<=n<=6 and d^n<=128\",\n      \"Canonical budgeted residue-root helpers for u64 moduli\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_quantum_physics::pair_exchange_characters; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Permutation characters are trivial or the exact cycle-parity sign\",\n    \"The averaged symmetric/alternating tensor actions are self-adjoint idempotents\",\n    \"Their ranks agree with binomial(d+n-1,n) and binomial(d,n)\",\n    \"The zero-fold tensor carrier has dimension one, including d=0\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"pair_exchange_characters\",\n    \"symbols\": [\n      \"ExchangeError\",\n      \"permutation_character\",\n      \"exchange_projector\",\n      \"exchange_sector_dimension\",\n      \"exchange_characters_mod\",\n      \"alternating_fixed_values_mod\"\n    ],\n    \"required_tests\": [\n      \"spin_intertwiners_and_exchange_projectors_preserve_exact_sector_dimensions\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Duplicate/out-of-range permutation entries and oversized tensor carriers are refused\",\n    \"Alternating sectors vanish when n>d; residue zero-divisor exceptions remain explicit\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Permutation characters are trivial or the exact cycle-parity sign; The averaged symmetric/alternating tensor actions are self-adjoint idempotents; Their ranks agree with binomial(d+n-1,n) and binomial(d,n); The zero-fold tensor carrier has dimension one, including d=0.\",\n    \"non_role\": [\n      \"No braid-group statistics or general Young-symmetrizer decomposition\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/math_exact_exchange_statistics_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "cda76ead26ac3a36203aaf85a92f4f1d957c72fa4e37db6b0cd7aed8399c1c73",
+      "bytes": 2247,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/math_exact_exchange_statistics_v0_1_0_contract.py",
+          "sha256": "20febab578c2fd8fed4f90c37096baa412aeed998bc3b17038346ef5df94c3ef"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:math-exact-exchange-statistics-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_exact_exchange_statistics_v0_1_0_contract.py\",\n    \"sha256\": \"20febab578c2fd8fed4f90c37096baa412aeed998bc3b17038346ef5df94c3ef\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-exact-exchange-statistics-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_exchange_statistics_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/math_exact_exchange_statistics_v0_1_0.contract.yaml": "a261892a7816cda259d627a8203da39d0649a243676fe1b5e5f836109cb87b37"
   },

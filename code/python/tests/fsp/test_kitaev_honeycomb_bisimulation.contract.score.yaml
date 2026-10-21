@@ -1,0 +1,258 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py",
+      "sha256": "26a6d1c85e7e8e1170c0e563369604cd0fdc10d44a203d847d33cbedc9b91571"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:fsp:test-kitaev-honeycomb-bisimulation:v1",
+    "role": "test checker",
+    "purpose": "test_kitaev_honeycomb_bisimulation.py — Pytest suite for 2D Honeycomb Kitaev Spin Liquid.",
+    "operations": {
+      "clean_torus_model": "Function clean_torus_model operation.",
+      "test_honeycomb_lattice_construction": "Function test_honeycomb_lattice_construction operation.",
+      "test_gin_index_inverted_postings": "Function test_gin_index_inverted_postings operation.",
+      "test_vortex_free_ground_state": "Function test_vortex_free_ground_state operation.",
+      "test_vortex_pair_creation_and_parity": "Function test_vortex_pair_creation_and_parity operation.",
+      "test_nonabelian_ising_braiding_phases": "Function test_nonabelian_ising_braiding_phases operation.",
+      "test_odd_flux_anomaly_negative_control": "Function test_odd_flux_anomaly_negative_control operation.",
+      "test_fermion_parity_flip_negative_control": "Function test_fermion_parity_flip_negative_control operation.",
+      "test_gauge_projector_violation_negative_control": "Function test_gauge_projector_violation_negative_control operation.",
+      "test_receipt_emission_and_bisimulation": "Function test_receipt_emission_and_bisimulation operation.",
+      "test_pfaffian_parity_sign_flip_counterexample": "Verifies that fermion parity correctly tracks true Pfaffian sign changes.",
+      "test_braid_validation_negative_controls": "Verifies fail-closed input validation for vortex braiding simulation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "2b7b5af37d0552976bc64e21c0ac1621425a71e10c6a837cdd900f80dea74071",
+  "current_scoring": "c1faaa83e8ec3d8a7240a533d7e24e29a40fb224d03adac41f3c4cd07aaf3dbc",
+  "contract_history": [
+    {
+      "sha256": "e64ed2a177a4e58e418594884753eb76ecbbbad79ec8762e238c62c031bc2b6f",
+      "bytes": 2669,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py",
+          "sha256": "72b9338652f9d55d82c79cf08c3fd36422f0bafd70ca1af1a3c05dcf0034bbd7"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:fsp:test-kitaev-honeycomb-bisimulation:v1",
+        "role": "test checker",
+        "purpose": "test_kitaev_honeycomb_bisimulation.py — Pytest suite for 2D Honeycomb Kitaev Spin Liquid.",
+        "operations": {
+          "clean_torus_model": "Function clean_torus_model operation.",
+          "test_honeycomb_lattice_construction": "Function test_honeycomb_lattice_construction operation.",
+          "test_gin_index_inverted_postings": "Function test_gin_index_inverted_postings operation.",
+          "test_vortex_free_ground_state": "Function test_vortex_free_ground_state operation.",
+          "test_vortex_pair_creation_and_parity": "Function test_vortex_pair_creation_and_parity operation.",
+          "test_nonabelian_ising_braiding_phases": "Function test_nonabelian_ising_braiding_phases operation.",
+          "test_odd_flux_anomaly_negative_control": "Function test_odd_flux_anomaly_negative_control operation.",
+          "test_fermion_parity_flip_negative_control": "Function test_fermion_parity_flip_negative_control operation.",
+          "test_gauge_projector_violation_negative_control": "Function test_gauge_projector_violation_negative_control operation.",
+          "test_receipt_emission_and_bisimulation": "Function test_receipt_emission_and_bisimulation operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py\",\n    \"sha256\": \"72b9338652f9d55d82c79cf08c3fd36422f0bafd70ca1af1a3c05dcf0034bbd7\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fsp:test-kitaev-honeycomb-bisimulation:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"test_kitaev_honeycomb_bisimulation.py — Pytest suite for 2D Honeycomb Kitaev Spin Liquid.\",\n  \"operations\": {\n    \"clean_torus_model\": \"Function clean_torus_model operation.\",\n    \"test_honeycomb_lattice_construction\": \"Function test_honeycomb_lattice_construction operation.\",\n    \"test_gin_index_inverted_postings\": \"Function test_gin_index_inverted_postings operation.\",\n    \"test_vortex_free_ground_state\": \"Function test_vortex_free_ground_state operation.\",\n    \"test_vortex_pair_creation_and_parity\": \"Function test_vortex_pair_creation_and_parity operation.\",\n    \"test_nonabelian_ising_braiding_phases\": \"Function test_nonabelian_ising_braiding_phases operation.\",\n    \"test_odd_flux_anomaly_negative_control\": \"Function test_odd_flux_anomaly_negative_control operation.\",\n    \"test_fermion_parity_flip_negative_control\": \"Function test_fermion_parity_flip_negative_control operation.\",\n    \"test_gauge_projector_violation_negative_control\": \"Function test_gauge_projector_violation_negative_control operation.\",\n    \"test_receipt_emission_and_bisimulation\": \"Function test_receipt_emission_and_bisimulation operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "2b7b5af37d0552976bc64e21c0ac1621425a71e10c6a837cdd900f80dea74071",
+      "bytes": 2919,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py",
+          "sha256": "26a6d1c85e7e8e1170c0e563369604cd0fdc10d44a203d847d33cbedc9b91571"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:fsp:test-kitaev-honeycomb-bisimulation:v1",
+        "role": "test checker",
+        "purpose": "test_kitaev_honeycomb_bisimulation.py — Pytest suite for 2D Honeycomb Kitaev Spin Liquid.",
+        "operations": {
+          "clean_torus_model": "Function clean_torus_model operation.",
+          "test_honeycomb_lattice_construction": "Function test_honeycomb_lattice_construction operation.",
+          "test_gin_index_inverted_postings": "Function test_gin_index_inverted_postings operation.",
+          "test_vortex_free_ground_state": "Function test_vortex_free_ground_state operation.",
+          "test_vortex_pair_creation_and_parity": "Function test_vortex_pair_creation_and_parity operation.",
+          "test_nonabelian_ising_braiding_phases": "Function test_nonabelian_ising_braiding_phases operation.",
+          "test_odd_flux_anomaly_negative_control": "Function test_odd_flux_anomaly_negative_control operation.",
+          "test_fermion_parity_flip_negative_control": "Function test_fermion_parity_flip_negative_control operation.",
+          "test_gauge_projector_violation_negative_control": "Function test_gauge_projector_violation_negative_control operation.",
+          "test_receipt_emission_and_bisimulation": "Function test_receipt_emission_and_bisimulation operation.",
+          "test_pfaffian_parity_sign_flip_counterexample": "Verifies that fermion parity correctly tracks true Pfaffian sign changes.",
+          "test_braid_validation_negative_controls": "Verifies fail-closed input validation for vortex braiding simulation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py\",\n    \"sha256\": \"26a6d1c85e7e8e1170c0e563369604cd0fdc10d44a203d847d33cbedc9b91571\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fsp:test-kitaev-honeycomb-bisimulation:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"test_kitaev_honeycomb_bisimulation.py — Pytest suite for 2D Honeycomb Kitaev Spin Liquid.\",\n  \"operations\": {\n    \"clean_torus_model\": \"Function clean_torus_model operation.\",\n    \"test_honeycomb_lattice_construction\": \"Function test_honeycomb_lattice_construction operation.\",\n    \"test_gin_index_inverted_postings\": \"Function test_gin_index_inverted_postings operation.\",\n    \"test_vortex_free_ground_state\": \"Function test_vortex_free_ground_state operation.\",\n    \"test_vortex_pair_creation_and_parity\": \"Function test_vortex_pair_creation_and_parity operation.\",\n    \"test_nonabelian_ising_braiding_phases\": \"Function test_nonabelian_ising_braiding_phases operation.\",\n    \"test_odd_flux_anomaly_negative_control\": \"Function test_odd_flux_anomaly_negative_control operation.\",\n    \"test_fermion_parity_flip_negative_control\": \"Function test_fermion_parity_flip_negative_control operation.\",\n    \"test_gauge_projector_violation_negative_control\": \"Function test_gauge_projector_violation_negative_control operation.\",\n    \"test_receipt_emission_and_bisimulation\": \"Function test_receipt_emission_and_bisimulation operation.\",\n    \"test_pfaffian_parity_sign_flip_counterexample\": \"Verifies that fermion parity correctly tracks true Pfaffian sign changes.\",\n    \"test_braid_validation_negative_controls\": \"Verifies fail-closed input validation for vortex braiding simulation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "1a6c56c8f7ea9de936a5495128917b57d6a79d80d1b8ef9797a8bc51c7f5a579",
+      "bytes": 2216,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py",
+          "sha256": "72b9338652f9d55d82c79cf08c3fd36422f0bafd70ca1af1a3c05dcf0034bbd7"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:fsp:test-kitaev-honeycomb-bisimulation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 12), Lizard CCN (max 5), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 12,
+          "lizard_ccn": 5,
+          "weighted_control_upper_bound": 3,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py\",\n    \"sha256\": \"72b9338652f9d55d82c79cf08c3fd36422f0bafd70ca1af1a3c05dcf0034bbd7\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fsp:test-kitaev-honeycomb-bisimulation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 12), Lizard CCN (max 5), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 12,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "c1faaa83e8ec3d8a7240a533d7e24e29a40fb224d03adac41f3c4cd07aaf3dbc",
+      "bytes": 2190,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py",
+          "sha256": "26a6d1c85e7e8e1170c0e563369604cd0fdc10d44a203d847d33cbedc9b91571"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:fsp:test-kitaev-honeycomb-bisimulation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 12 <= 15 (B), nesting depth 1 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 12,
+          "lizard_ccn": 5,
+          "weighted_control_upper_bound": 3,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py\",\n    \"sha256\": \"26a6d1c85e7e8e1170c0e563369604cd0fdc10d44a203d847d33cbedc9b91571\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fsp:test-kitaev-honeycomb-bisimulation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 12 <= 15 (B), nesting depth 1 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 12,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

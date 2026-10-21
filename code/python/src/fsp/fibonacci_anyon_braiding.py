@@ -4,6 +4,19 @@ fibonacci_anyon_braiding.py — Non-Abelian Fibonacci Anyon Braiding, Pentagon E
 AuthorityEffect: None.
 Reference: sealed-derivation-v1 (3100c4e)
 
+Claim Hygiene:
+1. What this supports:
+   - Numerical representation of Fibonacci fusion category data, F-matrix, R-matrix, and Artin braid generators sigma_1, sigma_2 on 3 anyons.
+   - Verification of Mac Lane pentagon equation and Artin braid relation to floating-point precision (< 10^-15).
+   - Numerical evaluation of commutator norm, holonomy curvature, and quantum state leakage under 1D scalar projection.
+2. What this does not support:
+   - General proof of fermion sign problem obstruction for arbitrary lattices or physical fermionic ensembles.
+   - Universal obstruction to any possible sign-cancellation involution outside the tested 2D representation.
+3. Narrowest defensible claim:
+   - In this 2-dimensional non-Abelian Fibonacci representation, the braid generators do not commute, produce state leakage under 1D projection, and fail to commute with the tested non-trivial involution.
+4. Next test needed:
+   - Connect anyonic braid representations to microscopic lattice models and higher-dimensional multi-anyon fusion spaces.
+
 Mechanizes:
 1. Fibonacci Anyon Fusion Category and Quantum Dimensions:
    - Simple objects: Vacuum 1, Anyon tau.
@@ -30,13 +43,12 @@ Mechanizes:
    - Any attempt to map non-abelian qubit states into a 1D scalar mode posting list
      via projection P_0 = |0><0| induces non-vanishing quantum state leakage:
        L_leak(sigma_2) = 1 - |<0| sigma_2 |0>|^2 = |<1| sigma_2 |0>|^2 = phi^-1 = (sqrt(5)-1)/2 approx 0.618034 > 0.
-6. Schur's Lemma Obstruction to Exact Involution Pairing Xi:
-   - Because the braid representation of Fibonacci anyons is irreducible (dense in SU(2)),
-     by Schur's Lemma only scalar multiples of identity commute with all braid generators.
-   - No non-trivial involution Xi (with Xi^2 = I and eigenvalues +-1) commutes with both sigma_1 and sigma_2.
+6. Schur's Lemma Diagnostic for Involution Pairing:
+   - In this 2D representation, braid generators act irreducibly on the qubit subspace.
+   - Tested non-trivial involution Xi fails to commute with both sigma_1 and sigma_2.
    - Defect mass Phi_1 = ||[sigma_1, sigma_2]||_F + L_leak > 0.
    - Under Boundary-Quotient Normal Form (BQNF), non-contractible holonomy (Gamma_2 > 0)
-     with uncancelled defect mass routes deterministically to TerminalRoute.OpenSignObstruction.
+     with uncancelled defect mass routes to TerminalRoute.OpenSignObstruction.
 7. Generalized Inverted Index (GIN) Mode Posting Lists:
    - Indexes vacuum channel |0>, anyon channel |1>, braid loops sigma_1, sigma_2, and
      commutator cycle gamma_comm into relational SQLite schemas.
@@ -339,7 +351,10 @@ class FibonacciAnyonBraidingEngine:
 
         phi_1 = round(comm_norm + leakage, 6)
 
-        terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value
+        if is_obstructed or not is_contractible or phi_1 > 1e-4:
+            terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value
+        else:
+            terminal_route = TerminalRoute.EXACT_REPAIR.value
 
         c = self.conn.cursor()
         c.execute("SELECT COALESCE(MAX(cfg_id), 0) FROM FermionConfigurations;")

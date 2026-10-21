@@ -1,0 +1,354 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/quantum_protocols.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/quantum_protocols.py",
+      "sha256": "34114f414e31c4b02a5aec3759d33d6a48fe8277c5a45192242386236d9d0519"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:qm:quantum-protocols:v1",
+    "role": "library",
+    "purpose": "Discrete quantum information protocols, nonlocality, and Wigner negativity. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
+    "operations": {
+      "evaluate_discrete_pythagorean_bell_chsh": "Loop 4: Refutes local realism using exact rational Pythagorean measurement bases.",
+      "derive_bell_singlet_correlation": "Loop 4: Derives Bell correlation from singlet state vector and Pauli observables.",
+      "evaluate_pell_pythagorean_tsirelson_convergence": "Loop 5: Evaluates the sequence of primitive Pythagorean triples converging to the Tsirelson bound.",
+      "evaluate_clifford_pauli_conjugations": "Loop 6: Verifies exact Clifford group normalizer action on the single-qubit Pauli group.",
+      "evaluate_t_gate_orbit_departure": "Loop 6: Demonstrates that the non-Clifford T-gate strictly departs from the Pauli group.",
+      "build_qutrit_phase_point_operators": "Loop 7: Constructs the 9 discrete Gross phase-point operators on qutrit phase space F_3 x F_3.",
+      "evaluate_qutrit_discrete_wigner": "Loop 7: Evaluates the discrete Wigner distribution of a qutrit state.",
+      "simulate_discrete_quantum_teleportation": "Loop 11: Simulates the standard 3-qubit quantum teleportation protocol with exact recovery.",
+      "simulate_discrete_superdense_coding": "Loop 12: Simulates the superdense coding protocol transmitting 2 classical bits via 1 qubit."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "261a7d87da5200e618aad0b13844621d7a84f8bf664303c2cc5cce25b0c2d826",
+  "current_scoring": "61eac7019a3ea8ee83d9f08d3c4c32b0625a1cfe2ccbd19b8406fe6583fda39b",
+  "contract_history": [
+    {
+      "sha256": "d84303b54c5b1ee94a13b1aeee4ca478496fe312b3122cab22a2aa8ba3864edb",
+      "bytes": 2902,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/quantum_protocols.py",
+          "sha256": "dea4155cecd3647db3f6865ba6c98ba740eea1ba405fa73954299e0b2d877562"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:quantum-protocols:v1",
+        "role": "library",
+        "purpose": "Discrete quantum information protocols, nonlocality, and Wigner negativity. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
+        "operations": {
+          "evaluate_discrete_pythagorean_bell_chsh": "Loop 4: Refutes local realism using exact rational Pythagorean measurement bases.",
+          "derive_bell_singlet_correlation": "Loop 4: Derives Bell correlation from singlet state vector and Pauli observables.",
+          "evaluate_pell_pythagorean_tsirelson_convergence": "Loop 5: Evaluates the sequence of primitive Pythagorean triples converging to the Tsirelson bound.",
+          "evaluate_clifford_pauli_conjugations": "Loop 6: Verifies exact Clifford group normalizer action on the single-qubit Pauli group.",
+          "evaluate_t_gate_orbit_departure": "Loop 6: Demonstrates that the non-Clifford T-gate strictly departs from the Pauli group.",
+          "build_qutrit_phase_point_operators": "Loop 7: Constructs the 9 discrete Gross phase-point operators on qutrit phase space F_3 x F_3.",
+          "evaluate_qutrit_discrete_wigner": "Loop 7: Evaluates the discrete Wigner distribution of a qutrit state.",
+          "simulate_discrete_quantum_teleportation": "Loop 11: Simulates the standard 3-qubit quantum teleportation protocol with exact recovery.",
+          "simulate_discrete_superdense_coding": "Loop 12: Simulates the superdense coding protocol transmitting 2 classical bits via 1 qubit."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/quantum_protocols.py\",\n    \"sha256\": \"dea4155cecd3647db3f6865ba6c98ba740eea1ba405fa73954299e0b2d877562\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:quantum-protocols:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Discrete quantum information protocols, nonlocality, and Wigner negativity. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"evaluate_discrete_pythagorean_bell_chsh\": \"Loop 4: Refutes local realism using exact rational Pythagorean measurement bases.\",\n    \"derive_bell_singlet_correlation\": \"Loop 4: Derives Bell correlation from singlet state vector and Pauli observables.\",\n    \"evaluate_pell_pythagorean_tsirelson_convergence\": \"Loop 5: Evaluates the sequence of primitive Pythagorean triples converging to the Tsirelson bound.\",\n    \"evaluate_clifford_pauli_conjugations\": \"Loop 6: Verifies exact Clifford group normalizer action on the single-qubit Pauli group.\",\n    \"evaluate_t_gate_orbit_departure\": \"Loop 6: Demonstrates that the non-Clifford T-gate strictly departs from the Pauli group.\",\n    \"build_qutrit_phase_point_operators\": \"Loop 7: Constructs the 9 discrete Gross phase-point operators on qutrit phase space F_3 x F_3.\",\n    \"evaluate_qutrit_discrete_wigner\": \"Loop 7: Evaluates the discrete Wigner distribution of a qutrit state.\",\n    \"simulate_discrete_quantum_teleportation\": \"Loop 11: Simulates the standard 3-qubit quantum teleportation protocol with exact recovery.\",\n    \"simulate_discrete_superdense_coding\": \"Loop 12: Simulates the superdense coding protocol transmitting 2 classical bits via 1 qubit.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/quantum_protocols.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "7759175e8c6e4ab14fd436ec6791979782b1c3b179574f3ad6d97fb50cf416ea",
+      "bytes": 2895,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/quantum_protocols.py",
+          "sha256": "6076bae87137f1d75bff9ddeea02a9624675efebfe28566db9015630ad1449c8"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:quantum-protocols:v1",
+        "role": "library",
+        "purpose": "Discrete quantum information protocols, nonlocality, and Wigner negativity. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
+        "operations": {
+          "evaluate_discrete_pythagorean_bell_chsh": "Loop 4: Refutes local realism using exact rational Pythagorean measurement bases.",
+          "derive_bell_singlet_correlation": "Loop 4: Derives Bell correlation from singlet state vector and Pauli observables.",
+          "evaluate_pell_pythagorean_tsirelson_convergence": "Loop 5: Evaluates the sequence of primitive Pythagorean triples converging to the Tsirelson bound.",
+          "evaluate_clifford_pauli_conjugations": "Loop 6: Verifies exact Clifford group normalizer action on the single-qubit Pauli group.",
+          "evaluate_t_gate_orbit_departure": "Loop 6: Demonstrates that the non-Clifford T-gate strictly departs from the Pauli group.",
+          "build_qutrit_phase_point_operators": "Loop 7: Constructs the 9 discrete Gross phase-point operators on qutrit phase space F_3 x F_3.",
+          "evaluate_qutrit_discrete_wigner": "Loop 7: Evaluates the discrete Wigner distribution of a qutrit state.",
+          "simulate_discrete_quantum_teleportation": "Loop 11: Simulates the standard 3-qubit quantum teleportation protocol with exact recovery.",
+          "simulate_discrete_superdense_coding": "Loop 12: Simulates the superdense coding protocol transmitting 2 classical bits via 1 qubit."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/quantum_protocols.py\",\n    \"sha256\": \"6076bae87137f1d75bff9ddeea02a9624675efebfe28566db9015630ad1449c8\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:quantum-protocols:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Discrete quantum information protocols, nonlocality, and Wigner negativity. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"evaluate_discrete_pythagorean_bell_chsh\": \"Loop 4: Refutes local realism using exact rational Pythagorean measurement bases.\",\n    \"derive_bell_singlet_correlation\": \"Loop 4: Derives Bell correlation from singlet state vector and Pauli observables.\",\n    \"evaluate_pell_pythagorean_tsirelson_convergence\": \"Loop 5: Evaluates the sequence of primitive Pythagorean triples converging to the Tsirelson bound.\",\n    \"evaluate_clifford_pauli_conjugations\": \"Loop 6: Verifies exact Clifford group normalizer action on the single-qubit Pauli group.\",\n    \"evaluate_t_gate_orbit_departure\": \"Loop 6: Demonstrates that the non-Clifford T-gate strictly departs from the Pauli group.\",\n    \"build_qutrit_phase_point_operators\": \"Loop 7: Constructs the 9 discrete Gross phase-point operators on qutrit phase space F_3 x F_3.\",\n    \"evaluate_qutrit_discrete_wigner\": \"Loop 7: Evaluates the discrete Wigner distribution of a qutrit state.\",\n    \"simulate_discrete_quantum_teleportation\": \"Loop 11: Simulates the standard 3-qubit quantum teleportation protocol with exact recovery.\",\n    \"simulate_discrete_superdense_coding\": \"Loop 12: Simulates the superdense coding protocol transmitting 2 classical bits via 1 qubit.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/quantum_protocols.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "261a7d87da5200e618aad0b13844621d7a84f8bf664303c2cc5cce25b0c2d826",
+      "bytes": 2895,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/quantum_protocols.py",
+          "sha256": "34114f414e31c4b02a5aec3759d33d6a48fe8277c5a45192242386236d9d0519"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:quantum-protocols:v1",
+        "role": "library",
+        "purpose": "Discrete quantum information protocols, nonlocality, and Wigner negativity. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
+        "operations": {
+          "evaluate_discrete_pythagorean_bell_chsh": "Loop 4: Refutes local realism using exact rational Pythagorean measurement bases.",
+          "derive_bell_singlet_correlation": "Loop 4: Derives Bell correlation from singlet state vector and Pauli observables.",
+          "evaluate_pell_pythagorean_tsirelson_convergence": "Loop 5: Evaluates the sequence of primitive Pythagorean triples converging to the Tsirelson bound.",
+          "evaluate_clifford_pauli_conjugations": "Loop 6: Verifies exact Clifford group normalizer action on the single-qubit Pauli group.",
+          "evaluate_t_gate_orbit_departure": "Loop 6: Demonstrates that the non-Clifford T-gate strictly departs from the Pauli group.",
+          "build_qutrit_phase_point_operators": "Loop 7: Constructs the 9 discrete Gross phase-point operators on qutrit phase space F_3 x F_3.",
+          "evaluate_qutrit_discrete_wigner": "Loop 7: Evaluates the discrete Wigner distribution of a qutrit state.",
+          "simulate_discrete_quantum_teleportation": "Loop 11: Simulates the standard 3-qubit quantum teleportation protocol with exact recovery.",
+          "simulate_discrete_superdense_coding": "Loop 12: Simulates the superdense coding protocol transmitting 2 classical bits via 1 qubit."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/quantum_protocols.py\",\n    \"sha256\": \"34114f414e31c4b02a5aec3759d33d6a48fe8277c5a45192242386236d9d0519\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:quantum-protocols:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Discrete quantum information protocols, nonlocality, and Wigner negativity. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"evaluate_discrete_pythagorean_bell_chsh\": \"Loop 4: Refutes local realism using exact rational Pythagorean measurement bases.\",\n    \"derive_bell_singlet_correlation\": \"Loop 4: Derives Bell correlation from singlet state vector and Pauli observables.\",\n    \"evaluate_pell_pythagorean_tsirelson_convergence\": \"Loop 5: Evaluates the sequence of primitive Pythagorean triples converging to the Tsirelson bound.\",\n    \"evaluate_clifford_pauli_conjugations\": \"Loop 6: Verifies exact Clifford group normalizer action on the single-qubit Pauli group.\",\n    \"evaluate_t_gate_orbit_departure\": \"Loop 6: Demonstrates that the non-Clifford T-gate strictly departs from the Pauli group.\",\n    \"build_qutrit_phase_point_operators\": \"Loop 7: Constructs the 9 discrete Gross phase-point operators on qutrit phase space F_3 x F_3.\",\n    \"evaluate_qutrit_discrete_wigner\": \"Loop 7: Evaluates the discrete Wigner distribution of a qutrit state.\",\n    \"simulate_discrete_quantum_teleportation\": \"Loop 11: Simulates the standard 3-qubit quantum teleportation protocol with exact recovery.\",\n    \"simulate_discrete_superdense_coding\": \"Loop 12: Simulates the superdense coding protocol transmitting 2 classical bits via 1 qubit.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/quantum_protocols.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "a0fd76c3bddb44cec2ab231bc05717f3f421501d0fd0f83861f7e54f79b8beca",
+      "bytes": 2202,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/quantum_protocols.py",
+          "sha256": "dea4155cecd3647db3f6865ba6c98ba740eea1ba405fa73954299e0b2d877562"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:quantum-protocols:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 15), Lizard CCN (max 14), and shallow nesting depth (max 5 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 15,
+          "lizard_ccn": 14,
+          "weighted_control_upper_bound": 26,
+          "control_nesting": 5
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/quantum_protocols.py\",\n    \"sha256\": \"dea4155cecd3647db3f6865ba6c98ba740eea1ba405fa73954299e0b2d877562\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:quantum-protocols:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 15), Lizard CCN (max 14), and shallow nesting depth (max 5 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 15,\n    \"lizard_ccn\": 14,\n    \"weighted_control_upper_bound\": 26,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/quantum_protocols.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "fb39026e82c0431016c9955843c8a41940c379eaeb2c4b64ab79354045074105",
+      "bytes": 2168,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/quantum_protocols.py",
+          "sha256": "6076bae87137f1d75bff9ddeea02a9624675efebfe28566db9015630ad1449c8"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "C"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:quantum-protocols:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 15 <= 15 (B), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 15,
+          "lizard_ccn": 14,
+          "weighted_control_upper_bound": 26,
+          "control_nesting": 5
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/quantum_protocols.py\",\n    \"sha256\": \"6076bae87137f1d75bff9ddeea02a9624675efebfe28566db9015630ad1449c8\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:quantum-protocols:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 15 <= 15 (B), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 15,\n    \"lizard_ccn\": 14,\n    \"weighted_control_upper_bound\": 26,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/quantum_protocols.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "61eac7019a3ea8ee83d9f08d3c4c32b0625a1cfe2ccbd19b8406fe6583fda39b",
+      "bytes": 2168,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/quantum_protocols.py",
+          "sha256": "34114f414e31c4b02a5aec3759d33d6a48fe8277c5a45192242386236d9d0519"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "C"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:quantum-protocols:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 15 <= 15 (B), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 15,
+          "lizard_ccn": 14,
+          "weighted_control_upper_bound": 26,
+          "control_nesting": 5
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/quantum_protocols.py\",\n    \"sha256\": \"34114f414e31c4b02a5aec3759d33d6a48fe8277c5a45192242386236d9d0519\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:quantum-protocols:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 15 <= 15 (B), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 15,\n    \"lizard_ccn\": 14,\n    \"weighted_control_upper_bound\": 26,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/quantum_protocols.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

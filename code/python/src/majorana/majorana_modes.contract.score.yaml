@@ -1,0 +1,326 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/majorana_modes.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/majorana_modes.py",
+      "sha256": "5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:car-nilpotency-witness:v1",
+    "role": "production finite Clifford provider and local CAR seal",
+    "operations": {
+      "MajoranaMonomial": "A sorted distinct basis set of nonnegative mode labels; constructor ordering is not ordered-word multiplication. multiply computes inversion parity and symmetric difference, returning an exact sign and a bounded new blade.",
+      "MajoranaOperator": "Own a cleaned private read-only rational term table; terms returns a detached editable dictionary. Addition and multiplication return new admitted values, never modify the inputs. Missing/default terms creates zero; explicit None refuses.",
+      "relations": "commutator=AB-BA, anticommutator=AB+BA. scalar_value returns the identity coefficient and does not assert scalarity. kitaev_chain_parity is the raw ordered gamma word, not Hermitian physical parity without the (-i)^N factor.",
+      "seal": "car_nilpotency_witness checks the stated one-fermion-mode 2x2 nilpotency/occupation relations. main returns 0 for the printed witness, 1 for a typed domain refusal and 2 for a failed normal or diagnostic write."
+    },
+    "engineering_policy": "1024-bit input labels and stored rational components, blade degree<=256, terms<=4096, pairs<=65536, sum-of-pair-degrees<=1000000, accumulation components<=8192 bits. Raw parity sites<=128, checked before allocation. Limits are engineering declarations, not physical constants.",
+    "failure_boundary": "MajoranaError on admitted domain/type/resource refusals, before committing constructors and without modifying operands. Built-in tuple/dict and int/Fraction boundaries avoid value __class__, iterator and arithmetic overrides. Deliberate object.__setattr__, hostile metaclass/interpreter state and externally constructed diagnostic mappings are outside the boundary.",
+    "cost_model": "For blade degrees d,e, bisect crossings O(e log d), set/sort O((d+e) log(d+e)); operator products visit admitted term pairs under the pair/degree-work envelope. Arithmetic work and stored coefficients have separate bit guards; output term checks precede accumulation-buffer insertion. No peak-heap or wall-clock measurement.",
+    "scope_ceiling": "Finite rational Clifford computations and a tiny CAR witness; no braid-image theorem, device, topological index, native equivalence, real completion or exhaustive algebra proof.",
+    "origin": "Exact pre-repair workspace source snapshot and literal source origin annotation retained in the historical contract. Fock names the Rust owner; this run does not compile or prove cross-language equivalence.",
+    "trust": "Pinned provider/test and rubric bytes, CPython 3.14 and installed SymPy/Fraction semantics. Closed built-in/canonical types avoid ordinary user hooks. Other conftest/provider transitive code, OS/interpreter state, hostile metaclasses, deliberate reflection, monkeypatching, hostile concurrent mutation and host exhaustion are not independently certified or sandboxed.",
+    "negative_float_fixture_policy": "Binary floats are used only in deliberate rejection or detached-export probes; no admitted exact arithmetic uses them.",
+    "evidence": [
+      {
+        "path": "evidence/quality/expanded_scope/20261020T233919Z-majorana-challenge/receipt.json",
+        "sha256": "3a77fe22970507f5373a00a27389a2c2132838edff60538bd938532d13959cf6"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/20261020T234424Z-majorana-followup-challenge/receipt.json",
+        "sha256": "a134386f99288db8f5d5b84e5502756d95a0f80e3d32650c8472a9ad55e5be7b"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch6-challenge-review.json",
+        "sha256": "614d17a0a704ba90a797752d715651f7aa502c6af928f41c3017840aedc80659"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/20261020T233818Z-source-metrics/receipt.json",
+        "sha256": "1f3e41048fb8b90981e5f506737bcc1f139f28bcb54f2eda950009c0f1ba4e81"
+      },
+      {
+        "path": "code/rust/quality/expanded_scope/batch6_reviews.json",
+        "sha256": "0104d03327734d4ccdf0ebefce40fa92db9b910eb29392443a4dd1bcd642dacf"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch6-baseline.log",
+        "sha256": "8cf8cf88d5b99f6a5463c4ab6243a928f8cb45e5fab08619364db466be95f1bd"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch6-atlas.log",
+        "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch6-atlas-tests.log",
+        "sha256": "c4d888a77ba954af95da107de571af4a17d4351614495c025dc891c730242c4d"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/20261020T231621Z-majorana-collection/receipt.json",
+        "sha256": "1c48634b39b278871fca5792abee179cd197a135d7218afed58320e7c6315316"
+      }
+    ]
+  },
+  "current_contract": "b5a2836300da15a4378a44ea55becb10e87e513ed19c1e4013bb6e8876dc254d",
+  "current_scoring": "f2e304026ced3000b57c72bfb43ead346c75ff37944b77efd848af75e6cec038",
+  "contract_history": [
+    {
+      "sha256": "7e96520f04941ce769196e2ced4dfbc93ef403017e69728f60c1ea72a98512bd",
+      "bytes": 2226,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/majorana_modes.py",
+          "sha256": "2b24d57e94393af39b8d66a0da0ecf72a62a50c33648cb5687940c2e6a9dd5a6"
+        },
+        "profile": "Exact",
+        "purpose": "Historical pre-repair implementation under independent checks; later policies and capabilities are not retroactive.",
+        "captured_claims_verbatim": "Majorana monomials and the two-mode CAR nilpotency identity.\n\nOrigin: lean4/FiniteQM.lean theorem car_clifford_nilpotency_and_occupation_projector.\nThe annihilation matrix is [[0, 1], [0, 0]] and its transpose is creation.\nClaim: urn:omega:fqm:majorana:car-nilpotency-witness:v1\nAuthorityEffect: None\nMutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/majorana/test_majorana_control.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 7; AST Sonar cognitive complexity max 6; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 7.\nScope Fence: car_nilpotency_witness checks c^2 = 0, (c dagger)^2 = 0,\n{c, c dagger} = I, and n = c dagger c is a rank-one projector. Majorana\nmonomials use gamma_i^2 = 1 and anticommutation for i distinct. This file\ndoes not prove a braid-group image or a Kitaev-chain topological index.",
+        "claims_status": "Captured source claims, not endorsed scores or proof receipts.",
+        "finding": "Sealed-source replay permits a public term export to inject float and permits monomial reinitialization to change its hash. These are actual recorded custody/exactness failures, not inferred from missing tests.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231517Z-majorana-before/sources/code/python/src/majorana/majorana_modes.py",
+            "sha256": "2b24d57e94393af39b8d66a0da0ecf72a62a50c33648cb5687940c2e6a9dd5a6"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231517Z-majorana-before/receipt.json",
+            "sha256": "5a9df3e3b56f4193250df1bd187aa491919c41982874f227f8fadb7f0064e11e"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T233101Z-majorana-checker-before/sealed-mode-alias-replay.json",
+            "sha256": "fbdacecfb181e0f09507e80796f988d7a54984725806edcf2c5545a31b9ef7da"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/majorana_modes.py\",\n    \"sha256\": \"2b24d57e94393af39b8d66a0da0ecf72a62a50c33648cb5687940c2e6a9dd5a6\"\n  },\n  \"profile\": \"Exact\",\n  \"purpose\": \"Historical pre-repair implementation under independent checks; later policies and capabilities are not retroactive.\",\n  \"captured_claims_verbatim\": \"Majorana monomials and the two-mode CAR nilpotency identity.\\n\\nOrigin: lean4/FiniteQM.lean theorem car_clifford_nilpotency_and_occupation_projector.\\nThe annihilation matrix is [[0, 1], [0, 0]] and its transpose is creation.\\nClaim: urn:omega:fqm:majorana:car-nilpotency-witness:v1\\nAuthorityEffect: None\\nMutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/majorana/test_majorana_control.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 7; AST Sonar cognitive complexity max 6; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 7.\\nScope Fence: car_nilpotency_witness checks c^2 = 0, (c dagger)^2 = 0,\\n{c, c dagger} = I, and n = c dagger c is a rank-one projector. Majorana\\nmonomials use gamma_i^2 = 1 and anticommutation for i distinct. This file\\ndoes not prove a braid-group image or a Kitaev-chain topological index.\",\n  \"claims_status\": \"Captured source claims, not endorsed scores or proof receipts.\",\n  \"finding\": \"Sealed-source replay permits a public term export to inject float and permits monomial reinitialization to change its hash. These are actual recorded custody/exactness failures, not inferred from missing tests.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231517Z-majorana-before/sources/code/python/src/majorana/majorana_modes.py\",\n      \"sha256\": \"2b24d57e94393af39b8d66a0da0ecf72a62a50c33648cb5687940c2e6a9dd5a6\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231517Z-majorana-before/receipt.json\",\n      \"sha256\": \"5a9df3e3b56f4193250df1bd187aa491919c41982874f227f8fadb7f0064e11e\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T233101Z-majorana-checker-before/sealed-mode-alias-replay.json\",\n      \"sha256\": \"fbdacecfb181e0f09507e80796f988d7a54984725806edcf2c5545a31b9ef7da\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/majorana_modes.contract.score.yaml#historical-before-majorana-repair/contract"
+      ]
+    },
+    {
+      "sha256": "b5a2836300da15a4378a44ea55becb10e87e513ed19c1e4013bb6e8876dc254d",
+      "bytes": 4991,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/majorana_modes.py",
+          "sha256": "5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:car-nilpotency-witness:v1",
+        "role": "production finite Clifford provider and local CAR seal",
+        "operations": {
+          "MajoranaMonomial": "A sorted distinct basis set of nonnegative mode labels; constructor ordering is not ordered-word multiplication. multiply computes inversion parity and symmetric difference, returning an exact sign and a bounded new blade.",
+          "MajoranaOperator": "Own a cleaned private read-only rational term table; terms returns a detached editable dictionary. Addition and multiplication return new admitted values, never modify the inputs. Missing/default terms creates zero; explicit None refuses.",
+          "relations": "commutator=AB-BA, anticommutator=AB+BA. scalar_value returns the identity coefficient and does not assert scalarity. kitaev_chain_parity is the raw ordered gamma word, not Hermitian physical parity without the (-i)^N factor.",
+          "seal": "car_nilpotency_witness checks the stated one-fermion-mode 2x2 nilpotency/occupation relations. main returns 0 for the printed witness, 1 for a typed domain refusal and 2 for a failed normal or diagnostic write."
+        },
+        "engineering_policy": "1024-bit input labels and stored rational components, blade degree<=256, terms<=4096, pairs<=65536, sum-of-pair-degrees<=1000000, accumulation components<=8192 bits. Raw parity sites<=128, checked before allocation. Limits are engineering declarations, not physical constants.",
+        "failure_boundary": "MajoranaError on admitted domain/type/resource refusals, before committing constructors and without modifying operands. Built-in tuple/dict and int/Fraction boundaries avoid value __class__, iterator and arithmetic overrides. Deliberate object.__setattr__, hostile metaclass/interpreter state and externally constructed diagnostic mappings are outside the boundary.",
+        "cost_model": "For blade degrees d,e, bisect crossings O(e log d), set/sort O((d+e) log(d+e)); operator products visit admitted term pairs under the pair/degree-work envelope. Arithmetic work and stored coefficients have separate bit guards; output term checks precede accumulation-buffer insertion. No peak-heap or wall-clock measurement.",
+        "scope_ceiling": "Finite rational Clifford computations and a tiny CAR witness; no braid-image theorem, device, topological index, native equivalence, real completion or exhaustive algebra proof.",
+        "origin": "Exact pre-repair workspace source snapshot and literal source origin annotation retained in the historical contract. Fock names the Rust owner; this run does not compile or prove cross-language equivalence.",
+        "trust": "Pinned provider/test and rubric bytes, CPython 3.14 and installed SymPy/Fraction semantics. Closed built-in/canonical types avoid ordinary user hooks. Other conftest/provider transitive code, OS/interpreter state, hostile metaclasses, deliberate reflection, monkeypatching, hostile concurrent mutation and host exhaustion are not independently certified or sandboxed.",
+        "negative_float_fixture_policy": "Binary floats are used only in deliberate rejection or detached-export probes; no admitted exact arithmetic uses them.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T233919Z-majorana-challenge/receipt.json",
+            "sha256": "3a77fe22970507f5373a00a27389a2c2132838edff60538bd938532d13959cf6"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T234424Z-majorana-followup-challenge/receipt.json",
+            "sha256": "a134386f99288db8f5d5b84e5502756d95a0f80e3d32650c8472a9ad55e5be7b"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-challenge-review.json",
+            "sha256": "614d17a0a704ba90a797752d715651f7aa502c6af928f41c3017840aedc80659"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T233818Z-source-metrics/receipt.json",
+            "sha256": "1f3e41048fb8b90981e5f506737bcc1f139f28bcb54f2eda950009c0f1ba4e81"
+          },
+          {
+            "path": "code/rust/quality/expanded_scope/batch6_reviews.json",
+            "sha256": "0104d03327734d4ccdf0ebefce40fa92db9b910eb29392443a4dd1bcd642dacf"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-baseline.log",
+            "sha256": "8cf8cf88d5b99f6a5463c4ab6243a928f8cb45e5fab08619364db466be95f1bd"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-atlas.log",
+            "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-atlas-tests.log",
+            "sha256": "c4d888a77ba954af95da107de571af4a17d4351614495c025dc891c730242c4d"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231621Z-majorana-collection/receipt.json",
+            "sha256": "1c48634b39b278871fca5792abee179cd197a135d7218afed58320e7c6315316"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/majorana_modes.py\",\n    \"sha256\": \"5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:car-nilpotency-witness:v1\",\n  \"role\": \"production finite Clifford provider and local CAR seal\",\n  \"operations\": {\n    \"MajoranaMonomial\": \"A sorted distinct basis set of nonnegative mode labels; constructor ordering is not ordered-word multiplication. multiply computes inversion parity and symmetric difference, returning an exact sign and a bounded new blade.\",\n    \"MajoranaOperator\": \"Own a cleaned private read-only rational term table; terms returns a detached editable dictionary. Addition and multiplication return new admitted values, never modify the inputs. Missing/default terms creates zero; explicit None refuses.\",\n    \"relations\": \"commutator=AB-BA, anticommutator=AB+BA. scalar_value returns the identity coefficient and does not assert scalarity. kitaev_chain_parity is the raw ordered gamma word, not Hermitian physical parity without the (-i)^N factor.\",\n    \"seal\": \"car_nilpotency_witness checks the stated one-fermion-mode 2x2 nilpotency/occupation relations. main returns 0 for the printed witness, 1 for a typed domain refusal and 2 for a failed normal or diagnostic write.\"\n  },\n  \"engineering_policy\": \"1024-bit input labels and stored rational components, blade degree<=256, terms<=4096, pairs<=65536, sum-of-pair-degrees<=1000000, accumulation components<=8192 bits. Raw parity sites<=128, checked before allocation. Limits are engineering declarations, not physical constants.\",\n  \"failure_boundary\": \"MajoranaError on admitted domain/type/resource refusals, before committing constructors and without modifying operands. Built-in tuple/dict and int/Fraction boundaries avoid value __class__, iterator and arithmetic overrides. Deliberate object.__setattr__, hostile metaclass/interpreter state and externally constructed diagnostic mappings are outside the boundary.\",\n  \"cost_model\": \"For blade degrees d,e, bisect crossings O(e log d), set/sort O((d+e) log(d+e)); operator products visit admitted term pairs under the pair/degree-work envelope. Arithmetic work and stored coefficients have separate bit guards; output term checks precede accumulation-buffer insertion. No peak-heap or wall-clock measurement.\",\n  \"scope_ceiling\": \"Finite rational Clifford computations and a tiny CAR witness; no braid-image theorem, device, topological index, native equivalence, real completion or exhaustive algebra proof.\",\n  \"origin\": \"Exact pre-repair workspace source snapshot and literal source origin annotation retained in the historical contract. Fock names the Rust owner; this run does not compile or prove cross-language equivalence.\",\n  \"trust\": \"Pinned provider/test and rubric bytes, CPython 3.14 and installed SymPy/Fraction semantics. Closed built-in/canonical types avoid ordinary user hooks. Other conftest/provider transitive code, OS/interpreter state, hostile metaclasses, deliberate reflection, monkeypatching, hostile concurrent mutation and host exhaustion are not independently certified or sandboxed.\",\n  \"negative_float_fixture_policy\": \"Binary floats are used only in deliberate rejection or detached-export probes; no admitted exact arithmetic uses them.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T233919Z-majorana-challenge/receipt.json\",\n      \"sha256\": \"3a77fe22970507f5373a00a27389a2c2132838edff60538bd938532d13959cf6\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T234424Z-majorana-followup-challenge/receipt.json\",\n      \"sha256\": \"a134386f99288db8f5d5b84e5502756d95a0f80e3d32650c8472a9ad55e5be7b\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-challenge-review.json\",\n      \"sha256\": \"614d17a0a704ba90a797752d715651f7aa502c6af928f41c3017840aedc80659\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T233818Z-source-metrics/receipt.json\",\n      \"sha256\": \"1f3e41048fb8b90981e5f506737bcc1f139f28bcb54f2eda950009c0f1ba4e81\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch6_reviews.json\",\n      \"sha256\": \"0104d03327734d4ccdf0ebefce40fa92db9b910eb29392443a4dd1bcd642dacf\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-baseline.log\",\n      \"sha256\": \"8cf8cf88d5b99f6a5463c4ab6243a928f8cb45e5fab08619364db466be95f1bd\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-atlas-tests.log\",\n      \"sha256\": \"c4d888a77ba954af95da107de571af4a17d4351614495c025dc891c730242c4d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231621Z-majorana-collection/receipt.json\",\n      \"sha256\": \"1c48634b39b278871fca5792abee179cd197a135d7218afed58320e7c6315316\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/majorana_modes.contract.score.yaml#bounded-majorana-source-review/contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "13f08620023e1de0aa9920f08a5edd7d218c0e23dc96ddc16211414cfa5e77a8",
+      "bytes": 1461,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/majorana_modes.py",
+          "sha256": "2b24d57e94393af39b8d66a0da0ecf72a62a50c33648cb5687940c2e6a9dd5a6"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "level": "L3",
+        "gates": {
+          "G1": null,
+          "G2": "E",
+          "G3": "E",
+          "G4": null,
+          "G5": null
+        },
+        "is_complete": false,
+        "composite_grade": null,
+        "score_token": null,
+        "target_achieved": false,
+        "grade_ceiling": "E",
+        "finding": "Sealed-source replay permits a public term export to inject float and permits monomial reinitialization to change its hash. These are actual recorded custody/exactness failures, not inferred from missing tests.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231517Z-majorana-before/sources/code/python/src/majorana/majorana_modes.py",
+            "sha256": "2b24d57e94393af39b8d66a0da0ecf72a62a50c33648cb5687940c2e6a9dd5a6"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231517Z-majorana-before/receipt.json",
+            "sha256": "5a9df3e3b56f4193250df1bd187aa491919c41982874f227f8fadb7f0064e11e"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T233101Z-majorana-checker-before/sealed-mode-alias-replay.json",
+            "sha256": "fbdacecfb181e0f09507e80796f988d7a54984725806edcf2c5545a31b9ef7da"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/majorana_modes.py\",\n    \"sha256\": \"2b24d57e94393af39b8d66a0da0ecf72a62a50c33648cb5687940c2e6a9dd5a6\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": \"E\",\n    \"G3\": \"E\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"target_achieved\": false,\n  \"grade_ceiling\": \"E\",\n  \"finding\": \"Sealed-source replay permits a public term export to inject float and permits monomial reinitialization to change its hash. These are actual recorded custody/exactness failures, not inferred from missing tests.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231517Z-majorana-before/sources/code/python/src/majorana/majorana_modes.py\",\n      \"sha256\": \"2b24d57e94393af39b8d66a0da0ecf72a62a50c33648cb5687940c2e6a9dd5a6\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231517Z-majorana-before/receipt.json\",\n      \"sha256\": \"5a9df3e3b56f4193250df1bd187aa491919c41982874f227f8fadb7f0064e11e\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T233101Z-majorana-checker-before/sealed-mode-alias-replay.json\",\n      \"sha256\": \"fbdacecfb181e0f09507e80796f988d7a54984725806edcf2c5545a31b9ef7da\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/majorana_modes.contract.score.yaml#historical-before-majorana-repair/scoring"
+      ]
+    },
+    {
+      "sha256": "f2e304026ced3000b57c72bfb43ead346c75ff37944b77efd848af75e6cec038",
+      "bytes": 4453,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/majorana_modes.py",
+          "sha256": "5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "level": "L4",
+        "level_basis": "An owned immutable sparse exact-Clifford API with closed scalar/blade admission, constructor and reinitialization custody, bounded multiplication work and storage, detached exports, typed refusals and a fallible status-bearing seal. The level follows these implemented boundaries, not the Majorana topic or the 2x2 theorem title.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Literal claim URN, authority ceiling, current subject/dependency pins, retained origin bytes and reviewed exported signatures. No full downstream/AST equivalence or external provenance attestation.",
+          "G2": "Exact profile fixed before checks; independent Fraction-pair matrix arithmetic, adjacent-swap blade oracle, occupation action and valid/invalid canonical values. Finite laws and resource/type boundaries only; no exhaustive theorem inferred.",
+          "G3": "MajoranaError on admitted domain/type/resource refusals, before committing constructors and without modifying operands. Built-in tuple/dict and int/Fraction boundaries avoid value __class__, iterator and arithmetic overrides. Deliberate object.__setattr__, hostile metaclass/interpreter state and externally constructed diagnostic mappings are outside the boundary.",
+          "G4": "22 unique valid designated candidate-byte faults resolved KILLED against passing source-bound baselines. Original raw survivors and invalid site retained, with current replays and candidate bindings. Systematic finite negative/composition checks support C, not complete error-space, provider deployment or alternate-checker assurance.",
+          "G5": "Observed CCN 7/7, conservative weighted-control upper bound 12 and nesting 4. Nesting caps G5 at B. The observer is calibrated, not a claim of Sonar conformance."
+        },
+        "metrics": {
+          "radon_ccn": 7,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 12,
+          "control_nesting": 4
+        },
+        "mutation_outcomes": {
+          "KILLED": 22
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source only; full 24-directory objective remains open.",
+        "open_higher_grade_findings": [
+          "Full downstream/provider provenance",
+          "Exhaustive or formal semantic/failure assurance",
+          "Alternate independent harness replay",
+          "Measured peak-memory and wall-clock guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T233919Z-majorana-challenge/receipt.json",
+            "sha256": "3a77fe22970507f5373a00a27389a2c2132838edff60538bd938532d13959cf6"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T234424Z-majorana-followup-challenge/receipt.json",
+            "sha256": "a134386f99288db8f5d5b84e5502756d95a0f80e3d32650c8472a9ad55e5be7b"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-challenge-review.json",
+            "sha256": "614d17a0a704ba90a797752d715651f7aa502c6af928f41c3017840aedc80659"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T233818Z-source-metrics/receipt.json",
+            "sha256": "1f3e41048fb8b90981e5f506737bcc1f139f28bcb54f2eda950009c0f1ba4e81"
+          },
+          {
+            "path": "code/rust/quality/expanded_scope/batch6_reviews.json",
+            "sha256": "0104d03327734d4ccdf0ebefce40fa92db9b910eb29392443a4dd1bcd642dacf"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-baseline.log",
+            "sha256": "8cf8cf88d5b99f6a5463c4ab6243a928f8cb45e5fab08619364db466be95f1bd"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-atlas.log",
+            "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch6-atlas-tests.log",
+            "sha256": "c4d888a77ba954af95da107de571af4a17d4351614495c025dc891c730242c4d"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T231621Z-majorana-collection/receipt.json",
+            "sha256": "1c48634b39b278871fca5792abee179cd197a135d7218afed58320e7c6315316"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/majorana_modes.py\",\n    \"sha256\": \"5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L4\",\n  \"level_basis\": \"An owned immutable sparse exact-Clifford API with closed scalar/blade admission, constructor and reinitialization custody, bounded multiplication work and storage, detached exports, typed refusals and a fallible status-bearing seal. The level follows these implemented boundaries, not the Majorana topic or the 2x2 theorem title.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Literal claim URN, authority ceiling, current subject/dependency pins, retained origin bytes and reviewed exported signatures. No full downstream/AST equivalence or external provenance attestation.\",\n    \"G2\": \"Exact profile fixed before checks; independent Fraction-pair matrix arithmetic, adjacent-swap blade oracle, occupation action and valid/invalid canonical values. Finite laws and resource/type boundaries only; no exhaustive theorem inferred.\",\n    \"G3\": \"MajoranaError on admitted domain/type/resource refusals, before committing constructors and without modifying operands. Built-in tuple/dict and int/Fraction boundaries avoid value __class__, iterator and arithmetic overrides. Deliberate object.__setattr__, hostile metaclass/interpreter state and externally constructed diagnostic mappings are outside the boundary.\",\n    \"G4\": \"22 unique valid designated candidate-byte faults resolved KILLED against passing source-bound baselines. Original raw survivors and invalid site retained, with current replays and candidate bindings. Systematic finite negative/composition checks support C, not complete error-space, provider deployment or alternate-checker assurance.\",\n    \"G5\": \"Observed CCN 7/7, conservative weighted-control upper bound 12 and nesting 4. Nesting caps G5 at B. The observer is calibrated, not a claim of Sonar conformance.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 4\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 22\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source only; full 24-directory objective remains open.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream/provider provenance\",\n    \"Exhaustive or formal semantic/failure assurance\",\n    \"Alternate independent harness replay\",\n    \"Measured peak-memory and wall-clock guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T233919Z-majorana-challenge/receipt.json\",\n      \"sha256\": \"3a77fe22970507f5373a00a27389a2c2132838edff60538bd938532d13959cf6\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T234424Z-majorana-followup-challenge/receipt.json\",\n      \"sha256\": \"a134386f99288db8f5d5b84e5502756d95a0f80e3d32650c8472a9ad55e5be7b\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-challenge-review.json\",\n      \"sha256\": \"614d17a0a704ba90a797752d715651f7aa502c6af928f41c3017840aedc80659\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T233818Z-source-metrics/receipt.json\",\n      \"sha256\": \"1f3e41048fb8b90981e5f506737bcc1f139f28bcb54f2eda950009c0f1ba4e81\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch6_reviews.json\",\n      \"sha256\": \"0104d03327734d4ccdf0ebefce40fa92db9b910eb29392443a4dd1bcd642dacf\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-baseline.log\",\n      \"sha256\": \"8cf8cf88d5b99f6a5463c4ab6243a928f8cb45e5fab08619364db466be95f1bd\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch6-atlas-tests.log\",\n      \"sha256\": \"c4d888a77ba954af95da107de571af4a17d4351614495c025dc891c730242c4d\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T231621Z-majorana-collection/receipt.json\",\n      \"sha256\": \"1c48634b39b278871fca5792abee179cd197a135d7218afed58320e7c6315316\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/majorana_modes.contract.score.yaml#bounded-majorana-source-review/scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/python/src/majorana/majorana_modes.contract.score.yaml#historical-before-majorana-repair/contract": "7e96520f04941ce769196e2ced4dfbc93ef403017e69728f60c1ea72a98512bd",
+    "code/python/src/majorana/majorana_modes.contract.score.yaml#historical-before-majorana-repair/scoring": "13f08620023e1de0aa9920f08a5edd7d218c0e23dc96ddc16211414cfa5e77a8",
+    "code/python/src/majorana/majorana_modes.contract.score.yaml#bounded-majorana-source-review/contract": "b5a2836300da15a4378a44ea55becb10e87e513ed19c1e4013bb6e8876dc254d",
+    "code/python/src/majorana/majorana_modes.contract.score.yaml#bounded-majorana-source-review/scoring": "f2e304026ced3000b57c72bfb43ead346c75ff37944b77efd848af75e6cec038"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Append-only captured defects and individually authored bounded reviews; no whole-package or full-scope certification."
+}

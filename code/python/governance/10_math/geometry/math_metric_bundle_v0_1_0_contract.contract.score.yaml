@@ -101,12 +101,12 @@
       "customer_claim_allowed is false"
     ]
   },
-  "current_contract": "f81cd62dbf77be92ea82ff06a862ae7ae5f3a46e7d8f0615141d619ba0fbfa9d",
-  "current_scoring": null,
+  "current_contract": "f51c35c8e0f353605dca7245f825926833c50d27a0f9e8217209cf0b5bf3631f",
+  "current_scoring": "26f1078fdf10552c273ced423e934629d0e4214e68a5ba9879fa096da094f1e2",
   "contract_history": [
     {
-      "sha256": "f81cd62dbf77be92ea82ff06a862ae7ae5f3a46e7d8f0615141d619ba0fbfa9d",
-      "bytes": 4400,
+      "sha256": "f51c35c8e0f353605dca7245f825926833c50d27a0f9e8217209cf0b5bf3631f",
+      "bytes": 4856,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:metric_bundle:v0.1.0",
@@ -206,13 +206,75 @@
           "customer_claim_allowed is false"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:metric_bundle:v0.1.0\ntitle: MetricBundle Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: fiber_bundle_with_metric\n  symbol: (E, π, B, {g_b}) where g_b is inner product on fiber π⁻¹(b)\n  ascii_symbol: metric_bundle\n  notation: (E, π, B, {g_b}) where g_b is inner product on fiber π⁻¹(b)\n  domain:\n  - 'fiber_bundle: FiberBundle artifact'\n  - 'inner_products: Ordered list of InnerProduct artifacts'\n  - 'field: Common field identifier'\n  codomain:\n    description: 'A FiberBundle artifact with an ordered list of InnerProduct artifacts,\n      one for each fiber, in sorted order by base point.\n\n      '\nrequirements:\n  required_structures:\n  - FiberBundle artifact and all InnerProduct artifacts must exist\n  - Number of inner products equals number of fibers\n  - Each InnerProduct's carrier matches the corresponding fiber\n  - All InnerProduct artifacts use the same field as the bundle\n  - StructureArtifact hash matches SHA-256 of canonical serialization\nlaws:\n- Each fiber has exactly one inner product defined on it\n- Each InnerProduct's carrier space matches its fiber's vector space\n- All inner products use the same field as the bundle\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Ordering fixed by sorted base points\n  - Serialization is concatenation of 32-byte IDs\n  - All validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- fiber_bundle_id does not resolve\n- Bundle has 5 base points, but inner_product_ids contains 4 entries\n- InnerProduct has basis_hash not matching fiber's codomain_basis_hash\n- InnerProduct is 3-dimensional, but fiber has dimension 2\n- InnerProduct uses field GF(2), while bundle is over GF(3)\n- One of the inner_product_ids is not a valid artifact hash\n- 'inner_product_ids are given in a different order (not sorted by base point). The\n  hash computed will differ, or carrier_matching_validator will detect that the InnerProduct''s\n  carrier hash doesn''t match the corresponding fiber at that index.\n\n  '\ndoctrine:\n  summary: A MetricBundle is a vector bundle where each fiber is equipped with an\n    inner product (a smoothly varying non-degenerate bilinear form on the fibers).  In\n    this contract, a MetricBundle is represented by a FiberBundle together with a\n    choice of an InnerProduct artifact for each fiber.  The contract verifies that\n    each inner product is defined on exactly that fiber's vector space (i.e., it carries\n    the same basis hash, dimension, and field).  No curvature, signature, or smoothness\n    conditions are enforced; those belong to separate FactEnvelopes.\n  non_role:\n  - Smoothness or continuity conditions (belongs to SmoothMetricBundle)\n  - Signature verification (positive definiteness belongs in FactEnvelopes)\n  - Curvature computations (belongs to Connection contract)\n  - Metric compatibility with connections (separate structure)\nwip:\n- 'The contract treats each inner product independently; no smoothness or continuity\n  condition is enforced.  A future SmoothMetricBundle contract could use a CoordinateExpression\n  to enforce differentiability.\n\n  '\n- 'The inner products are assumed to be given as artifacts.  In practice, they might\n  be generated from a metric tensor field expression; that generation is a ComputationWitness.\n\n  '\n- 'The signature and positive-definiteness are not part of the structure; they can\n  be expressed as FactEnvelopes (e.g., \"each inner product is positive definite\")\n  using the is_positive_definite property from the InnerProduct contract.\n\n  '\n- 'The relationship to the Connection contract: a MetricBundle with a compatible connection\n  (metric compatibility) would be a separate structure combining both.\n\n  '\n- Status set to mathematical_wip due to unresolved design questions\n- authority_effect is 'none' - this is a pure mathematical contract\n- customer_claim_allowed is false\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:metric_bundle:v0.1.0\",\n  \"title\": \"MetricBundle Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"fiber_bundle_with_metric\",\n    \"symbol\": \"(E, π, B, {g_b}) where g_b is inner product on fiber π⁻¹(b)\",\n    \"ascii_symbol\": \"metric_bundle\",\n    \"notation\": \"(E, π, B, {g_b}) where g_b is inner product on fiber π⁻¹(b)\",\n    \"domain\": [\n      \"fiber_bundle: FiberBundle artifact\",\n      \"inner_products: Ordered list of InnerProduct artifacts\",\n      \"field: Common field identifier\"\n    ],\n    \"codomain\": {\n      \"description\": \"A FiberBundle artifact with an ordered list of InnerProduct artifacts, one for each fiber, in sorted order by base point.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"FiberBundle artifact and all InnerProduct artifacts must exist\",\n      \"Number of inner products equals number of fibers\",\n      \"Each InnerProduct's carrier matches the corresponding fiber\",\n      \"All InnerProduct artifacts use the same field as the bundle\",\n      \"StructureArtifact hash matches SHA-256 of canonical serialization\"\n    ]\n  },\n  \"laws\": [\n    \"Each fiber has exactly one inner product defined on it\",\n    \"Each InnerProduct's carrier space matches its fiber's vector space\",\n    \"All inner products use the same field as the bundle\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Ordering fixed by sorted base points\",\n      \"Serialization is concatenation of 32-byte IDs\",\n      \"All validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"fiber_bundle_id does not resolve\",\n    \"Bundle has 5 base points, but inner_product_ids contains 4 entries\",\n    \"InnerProduct has basis_hash not matching fiber's codomain_basis_hash\",\n    \"InnerProduct is 3-dimensional, but fiber has dimension 2\",\n    \"InnerProduct uses field GF(2), while bundle is over GF(3)\",\n    \"One of the inner_product_ids is not a valid artifact hash\",\n    \"inner_product_ids are given in a different order (not sorted by base point). The hash computed will differ, or carrier_matching_validator will detect that the InnerProduct's carrier hash doesn't match the corresponding fiber at that index.\\n\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A MetricBundle is a vector bundle where each fiber is equipped with an inner product (a smoothly varying non-degenerate bilinear form on the fibers).  In this contract, a MetricBundle is represented by a FiberBundle together with a choice of an InnerProduct artifact for each fiber.  The contract verifies that each inner product is defined on exactly that fiber's vector space (i.e., it carries the same basis hash, dimension, and field).  No curvature, signature, or smoothness conditions are enforced; those belong to separate FactEnvelopes.\",\n    \"non_role\": [\n      \"Smoothness or continuity conditions (belongs to SmoothMetricBundle)\",\n      \"Signature verification (positive definiteness belongs in FactEnvelopes)\",\n      \"Curvature computations (belongs to Connection contract)\",\n      \"Metric compatibility with connections (separate structure)\"\n    ]\n  },\n  \"wip\": [\n    \"The contract treats each inner product independently; no smoothness or continuity condition is enforced.  A future SmoothMetricBundle contract could use a CoordinateExpression to enforce differentiability.\\n\",\n    \"The inner products are assumed to be given as artifacts.  In practice, they might be generated from a metric tensor field expression; that generation is a ComputationWitness.\\n\",\n    \"The signature and positive-definiteness are not part of the structure; they can be expressed as FactEnvelopes (e.g., \\\"each inner product is positive definite\\\") using the is_positive_definite property from the InnerProduct contract.\\n\",\n    \"The relationship to the Connection contract: a MetricBundle with a compatible connection (metric compatibility) would be a separate structure combining both.\\n\",\n    \"Status set to mathematical_wip due to unresolved design questions\",\n    \"authority_effect is 'none' - this is a pure mathematical contract\",\n    \"customer_claim_allowed is false\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/geometry/math_metric_bundle_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "26f1078fdf10552c273ced423e934629d0e4214e68a5ba9879fa096da094f1e2",
+      "bytes": 2225,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/geometry/math_metric_bundle_v0_1_0_contract.py",
+          "sha256": "24e5c73aaa6192aaccd83ec05692c26a53b23070b11e273f6757b84ae3768a50"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:geometry:math-metric-bundle-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/math_metric_bundle_v0_1_0_contract.py\",\n    \"sha256\": \"24e5c73aaa6192aaccd83ec05692c26a53b23070b11e273f6757b84ae3768a50\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:math-metric-bundle-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_metric_bundle_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/geometry/math_metric_bundle_v0_1_0.contract.yaml": "f81cd62dbf77be92ea82ff06a862ae7ae5f3a46e7d8f0615141d619ba0fbfa9d"
   },

@@ -106,12 +106,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "31aa8bd732be927ea9b9c45106c487fa894028ce97c19625e1ed8368f70cb5f9",
-  "current_scoring": null,
+  "current_contract": "9142722d5c10b999eba843831befdec1c8cc15b9d34eb2645dcd667084ddfbe3",
+  "current_scoring": "309b6d7823a0e0892afcd33a321cb9950f10c9ce932303198514808b3461899d",
   "contract_history": [
     {
-      "sha256": "31aa8bd732be927ea9b9c45106c487fa894028ce97c19625e1ed8368f70cb5f9",
-      "bytes": 4026,
+      "sha256": "9142722d5c10b999eba843831befdec1c8cc15b9d34eb2645dcd667084ddfbe3",
+      "bytes": 4545,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:stabilizer_code_distance:v0.1.0",
@@ -216,13 +216,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:stabilizer_code_distance:v0.1.0\ntitle: Exact Stabilizer Codes, States and Coding Bounds\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: stabilizer_code_distance\n  symbol: stabilizer_code_distance\n  ascii_symbol: stabilizer_code_distance\n  notation: Exact Stabilizer Codes, States and Coding Bounds\n  domain:\n  - Finite symplectic F2 Pauli data, with separate phase-free code and signed pure-state\n    carriers.\n  - Declared finite weight-search and enumeration bounds.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::stabilizer_code_distance;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Code dimension uses the independent stabilizer rank; logical pairs have the canonical\n  symplectic form.\n- Minimum-weight logical operators exclude stabilizers and determine the reported\n  exact distance.\n- A signed pure stabilizer state rejects minus identity and has subset entropy rank(restriction_A(G))-|A|,\n  equivalently |A|-rank(the stabilizers wholly supported in A).\n- Stabilizer and normalizer enumerators obey the quantum MacWilliams transform; Singleton\n  and conditional nondegenerate Hamming bounds are exact.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: stabilizer_code_distance\n  symbols:\n  - StabilizerCode\n  - SignedStabilizerState\n  required_tests:\n  - shor_code_is_9_1_3\n  - five_qubit_code_is_5_1_3\n  - dependent_generators_use_the_rank\n  - stabilizers_are_excluded_from_the_search\n  - refusals_are_typed\n  - correction_radius_needs_a_product_closed_alphabet\n  - large_weight_classes_are_refused\n  - signed_stabilizer_states_refuse_minus_identity_and_compute_bell_entropy\n  - five_qubit_weight_enumerators_obey_macwilliams_and_coding_bounds\n  - macwilliams_recurrence_matches_full_pauli_weight_counts_beyond_small_code_search\nnegative_tests:\n- Noncommuting generators, invalid Pauli alphabets, inconsistent signed phases and\n  exhausted weight searches are refused.\n- A phase-free code is not rejected solely for lacking a signed minus-identity test.\ndoctrine:\n  summary: Code dimension uses the independent stabilizer rank; logical pairs have\n    the canonical symplectic form.; Minimum-weight logical operators exclude stabilizers\n    and determine the reported exact distance.; A signed pure stabilizer state rejects\n    minus identity and has subset entropy rank(restriction_A(G))-|A|, equivalently\n    |A|-rank(the stabilizers wholly supported in A).; Stabilizer and normalizer enumerators\n    obey the quantum MacWilliams transform; Singleton and conditional nondegenerate\n    Hamming bounds are exact..\n  non_role:\n  - No PROVED, GlobalGreen, customer claim, or operational authority.\n  - No extension beyond the declared finite carrier and exact computation budgets.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:stabilizer_code_distance:v0.1.0\",\n  \"title\": \"Exact Stabilizer Codes, States and Coding Bounds\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"stabilizer_code_distance\",\n    \"symbol\": \"stabilizer_code_distance\",\n    \"ascii_symbol\": \"stabilizer_code_distance\",\n    \"notation\": \"Exact Stabilizer Codes, States and Coding Bounds\",\n    \"domain\": [\n      \"Finite symplectic F2 Pauli data, with separate phase-free code and signed pure-state carriers.\",\n      \"Declared finite weight-search and enumeration bounds.\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_quantum_physics::stabilizer_code_distance; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Code dimension uses the independent stabilizer rank; logical pairs have the canonical symplectic form.\",\n    \"Minimum-weight logical operators exclude stabilizers and determine the reported exact distance.\",\n    \"A signed pure stabilizer state rejects minus identity and has subset entropy rank(restriction_A(G))-|A|, equivalently |A|-rank(the stabilizers wholly supported in A).\",\n    \"Stabilizer and normalizer enumerators obey the quantum MacWilliams transform; Singleton and conditional nondegenerate Hamming bounds are exact.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"stabilizer_code_distance\",\n    \"symbols\": [\n      \"StabilizerCode\",\n      \"SignedStabilizerState\"\n    ],\n    \"required_tests\": [\n      \"shor_code_is_9_1_3\",\n      \"five_qubit_code_is_5_1_3\",\n      \"dependent_generators_use_the_rank\",\n      \"stabilizers_are_excluded_from_the_search\",\n      \"refusals_are_typed\",\n      \"correction_radius_needs_a_product_closed_alphabet\",\n      \"large_weight_classes_are_refused\",\n      \"signed_stabilizer_states_refuse_minus_identity_and_compute_bell_entropy\",\n      \"five_qubit_weight_enumerators_obey_macwilliams_and_coding_bounds\",\n      \"macwilliams_recurrence_matches_full_pauli_weight_counts_beyond_small_code_search\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Noncommuting generators, invalid Pauli alphabets, inconsistent signed phases and exhausted weight searches are refused.\",\n    \"A phase-free code is not rejected solely for lacking a signed minus-identity test.\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Code dimension uses the independent stabilizer rank; logical pairs have the canonical symplectic form.; Minimum-weight logical operators exclude stabilizers and determine the reported exact distance.; A signed pure stabilizer state rejects minus identity and has subset entropy rank(restriction_A(G))-|A|, equivalently |A|-rank(the stabilizers wholly supported in A).; Stabilizer and normalizer enumerators obey the quantum MacWilliams transform; Singleton and conditional nondegenerate Hamming bounds are exact..\",\n    \"non_role\": [\n      \"No PROVED, GlobalGreen, customer claim, or operational authority.\",\n      \"No extension beyond the declared finite carrier and exact computation budgets.\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/math_stabilizer_code_distance_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "309b6d7823a0e0892afcd33a321cb9950f10c9ce932303198514808b3461899d",
+      "bytes": 2245,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/math_stabilizer_code_distance_v0_1_0_contract.py",
+          "sha256": "78d5ad4b262f6a778461a0ab2f71c78d4f68631005440a7feab2f6be9d0f8a2b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:math-stabilizer-code-distance-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_stabilizer_code_distance_v0_1_0_contract.py\",\n    \"sha256\": \"78d5ad4b262f6a778461a0ab2f71c78d4f68631005440a7feab2f6be9d0f8a2b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-stabilizer-code-distance-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_stabilizer_code_distance_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/math_stabilizer_code_distance_v0_1_0.contract.yaml": "31aa8bd732be927ea9b9c45106c487fa894028ce97c19625e1ed8368f70cb5f9"
   },

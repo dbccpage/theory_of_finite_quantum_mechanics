@@ -58,4 +58,21 @@ class ExactControls(unittest.TestCase):
     def test_bad_domains(self):
         for kind,values in [('weyl',[3,0]+[0]*9),('separation',[1]),('distinct',[16]),('fewest',[0,3,1]),('obstruction',[1,0,1]),('rename',[0,0,0]),('sameness',[6]*8),('mss0',[-1,0]),('float',[-1,0]),('pairing',[1,1,0,1,0]),('amplitude',[9]+[0]*9),('normal',[4]),('lggr',[0,0,1]),('thymus',[16,0,0])]:
             with self.subTest(kind=kind),self.assertRaises(ValueError):m.evaluate(kind,list(map(str,values)))
+    def test_negative_power_general_inverse(self):
+        self.assertEqual(m.power(m.pair(2, 0), -1), (Q(1, 2), Q(0, 1)))
+        self.assertEqual(m.power(m.pair(3, 4), -1), (Q(3, 25), Q(-4, 25)))
+        with self.assertRaises(ZeroDivisionError):
+            m.power(m.pair(0, 0), -1)
+    def test_exact_admission_policies(self):
+        with self.assertRaises(TypeError):
+            m.evaluate('duality', [0.5, 1])
+        with self.assertRaises(TypeError):
+            m.evaluate('duality', [True, 1])
+        with self.assertRaises(ValueError):
+            m.evaluate('duality', [1 << 1025, 1])
+    def test_matrix_incompatible_dimensions_refused(self):
+        with self.assertRaises(ValueError):
+            m.mm([[1, 2, 3]], [[1], [2]])
+        with self.assertRaises(ValueError):
+            m.pm([[m.pair(1, 0), m.pair(2, 0)]], [[m.pair(1, 0)]])
 if __name__=='__main__':unittest.main()

@@ -115,7 +115,8 @@ class SU3SimplicialYJunction:
             d0=self.d0,
             d1=self.d1,
         )
-        assert self.complex.check_nilpotence(), "Nilpotence d1 . d0 == 0 failed on Y-junction complex."
+        if not self.complex.check_nilpotence():
+            raise ValueError("Nilpotence d1 . d0 == 0 failed on Y-junction complex.")
 
         sq3 = math.sqrt(3.0)
         self.weights = {
@@ -132,20 +133,32 @@ class SU3SimplicialYJunction:
         dy = va[1] - vb[1]
         return math.sqrt(dx * dx + dy * dy)
 
-    def build_baryon_cochain(self) -> Tuple[List[float], List[int]]:
+    def evaluate_cartan_projection(self, color: str, h_vector: Tuple[float, float]) -> float:
+        """Evaluates Cartan weight projection <mu_color, H> for color in {'R', 'G', 'B'}."""
+        w = self.weights[color]
+        return w[0] * h_vector[0] + w[1] * h_vector[1]
+
+    def build_baryon_cochain(
+        self,
+        h_probe: Optional[Tuple[float, float]] = None,
+    ) -> Tuple[List[float], List[int]]:
         """
         Builds 1-cochain for the 3-quark baryon Y-junction:
-        Spokes carry the 3 distinct color fluxes with norms proportional to root separations.
-        Spoke 0 (Red): carrying flux magnitude from junction.
-        Spoke 1 (Green).
-        Spoke 2 (Blue).
+        Spokes carry the 3 distinct color fluxes evaluated from the SU(3) Cartan weights
+        along a declared Cartan probe vector H = (0.5, 1.5 * sqrt(3)).
+        Spoke 0 (Red):   <mu_R, H> = 0.5 * 0.5 + (0.5 / sqrt(3)) * (1.5 * sqrt(3)) = 0.25 + 0.75 = 1.0.
+        Spoke 1 (Green): <mu_G, H> = -0.5 * 0.5 + (0.5 / sqrt(3)) * (1.5 * sqrt(3)) = -0.25 + 0.75 = 0.5.
+        Spoke 2 (Blue):  <mu_B, H> = 0.0 * 0.5 + (-1.0 / sqrt(3)) * (1.5 * sqrt(3)) = 0.0 - 1.5 = -1.5.
+        Note that sum of spoke fluxes = 1.0 + 0.5 - 1.5 = 0.0, satisfying color singlet closure at the junction J.
         Perimeter links are bare (0.0).
         """
-        r_g = self.evaluate_cartan_root_diff("R", "G")
-        g_b = self.evaluate_cartan_root_diff("G", "B")
-        b_r = self.evaluate_cartan_root_diff("B", "R")
+        sq3 = math.sqrt(3.0)
+        h = h_probe if h_probe is not None else (0.5, 1.5 * sq3)
+        spoke_r = round(self.evaluate_cartan_projection("R", h), 6)
+        spoke_g = round(self.evaluate_cartan_projection("G", h), 6)
+        spoke_b = round(self.evaluate_cartan_projection("B", h), 6)
 
-        c1 = [1.0, 0.5, -1.5, 0.0, 0.0, 0.0]
+        c1 = [spoke_r, spoke_g, spoke_b, 0.0, 0.0, 0.0]
         signs = [1, -1, 1, 1, 1, 1]
         return c1, signs
 

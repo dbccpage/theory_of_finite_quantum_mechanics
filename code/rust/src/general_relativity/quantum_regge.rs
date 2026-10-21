@@ -189,7 +189,7 @@ pub fn bridge_regge_to_quantum_cech(deficit_angle: f64) -> ReggeCechQuantumBridg
 }
 
 use crate::dec_laplacian::DecOperators;
-use crate::regge_4d::ReggeTriangulation4D;
+use crate::regge_4d::{HingeTriangle4D, ReggeTriangulation4D};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct WheelerDeWittDecVertexResult {
@@ -215,6 +215,91 @@ pub struct WheelerDeWittDecReport {
     pub is_constraint_satisfied: bool,
 }
 
+fn validate_wdw_params(
+    triangulation: &ReggeTriangulation4D,
+    n: usize,
+    psi_len: usize,
+    hbar: f64,
+    lambda_param: f64,
+    tolerance: f64,
+) -> Result<(), String> {
+    if !hbar.is_finite()
+        || hbar < 0.0
+        || !lambda_param.is_finite()
+        || !tolerance.is_finite()
+        || tolerance < 0.0
+        || triangulation.complex.num_vertices() != n
+    {
+        return Err("invalid parameters or incompatible triangulation".into());
+    }
+    if psi_len != n {
+        return Err(format!(
+            "Wavefunctional vector length {psi_len} != num_vertices {n}"
+        ));
+    }
+    Ok(())
+}
+
+fn accumulate_hinge_curvatures(
+    hinges: &[HingeTriangle4D],
+    n: usize,
+) -> Result<(Vec<f64>, Vec<f64>), String> {
+    let mut interior_curv_pot = vec![0.0; n];
+    let mut boundary_curv_pot = vec![0.0; n];
+    for h in hinges {
+        if h.triangle.iter().any(|&v| v >= n)
+            || !h.area.is_finite()
+            || h.area <= 0.0
+            || !h.deficit_angle.is_finite()
+        {
+            return Err("invalid hinge geometry".into());
+        }
+        let h_contrib = h.area * h.deficit_angle;
+        let target = if h.is_interior {
+            &mut interior_curv_pot
+        } else {
+            &mut boundary_curv_pot
+        };
+        for &v in &h.triangle {
+            target[v] += h_contrib;
+        }
+    }
+    Ok((interior_curv_pot, boundary_curv_pot))
+}
+
+fn compute_wdw_vertex(
+    v: usize,
+    m_v: f64,
+    lap_val: f64,
+    c_pot: f64,
+    b_pot: f64,
+    psi_v: f64,
+    hbar: f64,
+    lambda_param: f64,
+) -> Result<WheelerDeWittDecVertexResult, String> {
+    let kinetic = -(hbar * hbar) / (2.0 * m_v) * lap_val;
+    let cosmo_pot = -lambda_param * m_v;
+    let total_pot = c_pot + cosmo_pot;
+    let res = kinetic + total_pot * psi_v;
+
+    if !res.is_finite() || !b_pot.is_finite() {
+        return Err("constraint arithmetic is non-finite".into());
+    }
+
+    Ok(WheelerDeWittDecVertexResult {
+        vertex: v,
+        mass_measure: m_v,
+        dec_laplacian_val: lap_val,
+        kinetic_term: kinetic,
+        curvature_potential: c_pot,
+        boundary_curvature_potential: b_pot,
+        cosmological_potential: cosmo_pot,
+        total_potential: total_pot,
+        wavefunctional_val: psi_v,
+        residual: res,
+    })
+}
+
 pub fn evaluate_wheeler_dewitt_against_dec_laplacian(
     triangulation: &ReggeTriangulation4D,
     dec: &DecOperators,
@@ -225,50 +310,11 @@ pub fn evaluate_wheeler_dewitt_against_dec_laplacian(
 ) -> Result<WheelerDeWittDecReport, String> {
     dec.validate()?;
     let n = dec.num_vertices;
-    if !hbar.is_finite()
-        || hbar < 0.0
-        || !lambda_param.is_finite()
-        || !tolerance.is_finite()
-        || tolerance < 0.0
-        || triangulation.complex.num_vertices() != n
-    {
-        return Err("invalid parameters or incompatible triangulation".into());
-    }
-    if psi.len() != n {
-        return Err(format!(
-            "Wavefunctional vector length {} != num_vertices {}",
-            psi.len(),
-            n
-        ));
-    }
+    validate_wdw_params(triangulation, n, psi.len(), hbar, lambda_param, tolerance)?;
 
     let dec_lap = dec.laplacian_0form(psi)?;
-
-    let mut interior_curv_pot = vec![0.0; n];
-    let mut boundary_curv_pot = vec![0.0; n];
-    for h in &triangulation.hinges {
-        if h.triangle.iter().any(|&v| v >= n)
-            || !h.area.is_finite()
-            || h.area <= 0.0
-            || !h.deficit_angle.is_finite()
-        {
-            return Err("invalid hinge geometry".into());
-        }
-        let h_contrib = h.area * h.deficit_angle;
-        if h.is_interior {
-            for &v in &h.triangle {
-                if v < n {
-                    interior_curv_pot[v] += h_contrib;
-                }
-            }
-        } else {
-            for &v in &h.triangle {
-                if v < n {
-                    boundary_curv_pot[v] += h_contrib;
-                }
-            }
-        }
-    }
+    let (interior_curv_pot, boundary_curv_pot) =
+        accumulate_hinge_curvatures(&triangulation.hinges, n)?;
 
     let mut vertex_results = Vec::with_capacity(n);
     let mut sum_sq_res = 0.0;
@@ -277,37 +323,23 @@ pub fn evaluate_wheeler_dewitt_against_dec_laplacian(
     for v in 0..n {
         let m_v = dec.hodge.star0_vertex_volumes[v];
         let lap_val = dec_lap[v];
+        let vr = compute_wdw_vertex(
+            v,
+            m_v,
+            lap_val,
+            interior_curv_pot[v],
+            boundary_curv_pot[v],
+            psi[v],
+            hbar,
+            lambda_param,
+        )?;
 
-        let kinetic = -(hbar * hbar) / (2.0 * m_v) * lap_val;
-
-        let c_pot = interior_curv_pot[v];
-        let b_pot = boundary_curv_pot[v];
-        let cosmo_pot = -lambda_param * m_v;
-        let total_pot = c_pot + cosmo_pot;
-
-        let res = kinetic + total_pot * psi[v];
-
-        if !res.is_finite() || !b_pot.is_finite() {
-            return Err("constraint arithmetic is non-finite".into());
-        }
-        let abs_res = res.abs();
+        let abs_res = vr.residual.abs();
         if abs_res > max_res {
             max_res = abs_res;
         }
-        sum_sq_res += res * res;
-
-        vertex_results.push(WheelerDeWittDecVertexResult {
-            vertex: v,
-            mass_measure: m_v,
-            dec_laplacian_val: lap_val,
-            kinetic_term: kinetic,
-            curvature_potential: c_pot,
-            boundary_curvature_potential: b_pot,
-            cosmological_potential: cosmo_pot,
-            total_potential: total_pot,
-            wavefunctional_val: psi[v],
-            residual: res,
-        });
+        sum_sq_res += vr.residual * vr.residual;
+        vertex_results.push(vr);
     }
 
     if !sum_sq_res.is_finite() {

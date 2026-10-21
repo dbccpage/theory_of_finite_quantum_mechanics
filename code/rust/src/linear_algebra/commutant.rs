@@ -3,12 +3,10 @@ use super::{elimination, matrix};
 use crate::linear_algebra::basic_matrix::{BasicMatrix, OperationLimits};
 use crate::linear_algebra::scalars::{ExactRing, Field};
 
-fn system<F: Field + ExactRing>(
+fn validate_generator_shapes<F: Field + ExactRing>(
     n: usize,
     generators: &[BasicMatrix<F>],
-    limits: OperationLimits,
-) -> Result<BasicMatrix<F>, ExactFieldError> {
-    let vars = element_count(n, n)?;
+) -> Result<(), ExactFieldError> {
     for g in generators {
         if g.shape() != (n, n) {
             return Err(ExactFieldError::ShapeMismatch {
@@ -18,28 +16,55 @@ fn system<F: Field + ExactRing>(
             });
         }
     }
-    let rows = times(generators.len(), vars)?;
+    Ok(())
+}
+
+fn charge_system_budget(
+    rows: usize,
+    vars: usize,
+    limits: OperationLimits,
+) -> Result<(), ExactFieldError> {
     let elements = element_count(rows, vars)?;
-    let work = plus(
-        times(2, elements)?,
-        times(2, times(rows, times(vars, vars)?)?)?,
-    )?;
+    let row_var_sq = times(rows, times(vars, vars)?)?;
+    let work = plus(times(2, elements)?, times(2, row_var_sq)?)?;
     charge(limits, elements, work)?;
+    Ok(())
+}
+
+fn commutant_cell_entry<F: Field + ExactRing>(
+    g: &BasicMatrix<F>,
+    n: usize,
+    equation: usize,
+    c: usize,
+) -> Result<F, ExactFieldError> {
+    let (i, j) = (equation / n, equation % n);
+    let (k, l) = (c / n, c % n);
+    let mut value = F::zero();
+    if i == k {
+        value = value.try_add(&g.as_slice()[l * n + j])?;
+    }
+    if j == l {
+        value = value.try_sub(&g.as_slice()[i * n + k])?;
+    }
+    Ok(value)
+}
+
+fn system<F: Field + ExactRing>(
+    n: usize,
+    generators: &[BasicMatrix<F>],
+    limits: OperationLimits,
+) -> Result<BasicMatrix<F>, ExactFieldError> {
+    let vars = element_count(n, n)?;
+    validate_generator_shapes(n, generators)?;
+    let rows = times(generators.len(), vars)?;
+    charge_system_budget(rows, vars, limits)?;
     matrix::try_from_fn_with_limits(rows, vars, limits, |r, c| {
         let g = &generators[r / vars];
         let equation = r % vars;
-        let (i, j) = (equation / n, equation % n);
-        let (k, l) = (c / n, c % n);
-        let mut value = F::zero();
-        if i == k {
-            value = value.try_add(&g.as_slice()[l * n + j])?;
-        }
-        if j == l {
-            value = value.try_sub(&g.as_slice()[i * n + k])?;
-        }
-        Ok(value)
+        commutant_cell_entry(g, n, equation, c)
     })
 }
+
 pub fn commutant_dimension_with_limits<F: Field + ExactRing>(
     n: usize,
     generators: &[BasicMatrix<F>],
@@ -53,24 +78,111 @@ pub fn commutant_dimension_with_limits<F: Field + ExactRing>(
     let equations = system(n, generators, limits)?;
     Ok(vars - elimination::rank_with_limits(&equations, limits)?)
 }
+
+fn basis_element_total(
+    vars: usize,
+    equation_elements: usize,
+    kernel_elements: usize,
+) -> Result<usize, ExactFieldError> {
+    let stored_basis = element_count(vars, vars)?;
+    let total = plus(
+        plus(plus(stored_basis, equation_elements)?, kernel_elements)?,
+        stored_basis,
+    )?;
+    Ok(total)
+}
+
+fn basis_budget_elements(
+    rows: usize,
+    vars: usize,
+    equation_elements: usize,
+) -> Result<(usize, usize, usize), ExactFieldError> {
+    let row_var_sq = times(rows, times(vars, vars)?)?;
+    let construction_ops = plus(times(2, equation_elements)?, times(2, row_var_sq)?)?;
+    let kernel_elements = equation_elements.max(element_count(vars, vars)?);
+    let kernel_ops = elimination::reduction_cost(rows, vars)?;
+    let elements = basis_element_total(vars, equation_elements, kernel_elements)?;
+    Ok((elements, construction_ops, kernel_ops))
+}
+
+fn basis_replay_ops(
+    n: usize,
+    vars: usize,
+    generators: usize,
+) -> Result<usize, ExactFieldError> {
+    let n_cubed = times(n, times(n, n)?)?;
+    let var_n3 = times(vars, n_cubed)?;
+    let gen_work = times(generators, var_n3)?;
+    let res = times(4, gen_work)?;
+    Ok(res)
+}
+
 fn combined_basis_budget(n: usize, generators: usize) -> Result<(usize, usize), ExactFieldError> {
     let vars = element_count(n, n)?;
     let rows = times(generators, vars)?;
     let equation_elements = element_count(rows, vars)?;
-    let construction_ops = plus(
-        times(2, equation_elements)?,
-        times(2, times(rows, times(vars, vars)?)?)?,
-    )?;
-    let kernel_elements = equation_elements.max(element_count(vars, vars)?);
-    let kernel_ops = elimination::reduction_cost(rows, vars)?;
-    let stored_basis = element_count(vars, vars)?;
-    let replay_ops = times(4, times(generators, times(vars, times(n, times(n, n)?)?)?)?)?;
-    let elements = plus(
-        plus(plus(stored_basis, equation_elements)?, kernel_elements)?,
-        stored_basis,
-    )?;
+    let (elements, construction_ops, kernel_ops) = basis_budget_elements(rows, vars, equation_elements)?;
+    let replay_ops = basis_replay_ops(n, vars, generators)?;
     let ops = plus(plus(construction_ops, kernel_ops)?, replay_ops)?;
     Ok((elements, ops))
+}
+
+fn charge_initial_basis_budget(
+    n: usize,
+    gen_count: usize,
+    limits: OperationLimits,
+) -> Result<(), ExactFieldError> {
+    let (elements, ops) = combined_basis_budget(n, gen_count)?;
+    charge(limits, elements, ops)?;
+    let vars = element_count(n, n)?;
+    charge(limits, times(vars, vars)?, 0)?;
+    Ok(())
+}
+
+fn charge_vector_replay_budget(
+    n: usize,
+    gen_count: usize,
+    vec_count: usize,
+    limits: OperationLimits,
+) -> Result<(), ExactFieldError> {
+    let vars = element_count(n, n)?;
+    let n_cubed = times(n, times(n, n)?)?;
+    let vec_n3 = times(vec_count, n_cubed)?;
+    let total_ops = times(4, times(gen_count, vec_n3)?)?;
+    charge(limits, times(vec_count, vars)?, total_ops)?;
+    Ok(())
+}
+
+fn verify_matrix_commutes<F: Field + ExactRing>(
+    value: &BasicMatrix<F>,
+    generators: &[BasicMatrix<F>],
+    limits: OperationLimits,
+) -> Result<(), ExactFieldError> {
+    for g in generators {
+        if matrix::multiply_with_limits(value, g, limits)?
+            != matrix::multiply_with_limits(g, value, limits)?
+        {
+            return Err(ExactFieldError::ReplayFailed {
+                operation: "commutant basis",
+            });
+        }
+    }
+    Ok(())
+}
+
+fn assemble_and_verify_basis<F: Field + ExactRing>(
+    n: usize,
+    generators: &[BasicMatrix<F>],
+    vectors: Vec<Vec<F>>,
+    limits: OperationLimits,
+) -> Result<Vec<BasicMatrix<F>>, ExactFieldError> {
+    let mut basis = super::reserve(vectors.len())?;
+    for vector in vectors {
+        let value = BasicMatrix::from_row_major(n, n, vector)?;
+        verify_matrix_commutes(&value, generators, limits)?;
+        basis.push(value);
+    }
+    Ok(basis)
 }
 
 pub fn commutant_basis_with_limits<F: Field + ExactRing>(
@@ -78,38 +190,11 @@ pub fn commutant_basis_with_limits<F: Field + ExactRing>(
     generators: &[BasicMatrix<F>],
     limits: OperationLimits,
 ) -> Result<Vec<BasicMatrix<F>>, ExactFieldError> {
-    let (elements, ops) = combined_basis_budget(n, generators.len())?;
-    charge(limits, elements, ops)?;
-    let vars = element_count(n, n)?;
-    charge(limits, times(vars, vars)?, 0)?;
+    charge_initial_basis_budget(n, generators.len(), limits)?;
     let equations = system(n, generators, limits)?;
     let vectors = elimination::kernel_basis_with_limits(&equations, limits)?;
-    charge(
-        limits,
-        times(vectors.len(), vars)?,
-        times(
-            4,
-            times(
-                generators.len(),
-                times(vectors.len(), times(n, times(n, n)?)?)?,
-            )?,
-        )?,
-    )?;
-    let mut basis = super::reserve(vectors.len())?;
-    for vector in vectors {
-        let value = BasicMatrix::from_row_major(n, n, vector)?;
-        for g in generators {
-            if matrix::multiply_with_limits(&value, g, limits)?
-                != matrix::multiply_with_limits(g, &value, limits)?
-            {
-                return Err(ExactFieldError::ReplayFailed {
-                    operation: "commutant basis",
-                });
-            }
-        }
-        basis.push(value);
-    }
-    Ok(basis)
+    charge_vector_replay_budget(n, generators.len(), vectors.len(), limits)?;
+    assemble_and_verify_basis(n, generators, vectors, limits)
 }
 #[cfg(test)]
 mod tests {

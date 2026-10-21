@@ -3,9 +3,38 @@ from fractions import Fraction as Q
 from itertools import product
 def need(ok):
     if not ok:raise ValueError('outside declared boundary domain')
-def integer(q,lo,hi):need(q.denominator==1 and lo<=q<=hi);return int(q)
-def bits(v):return [integer(q,0,1) for q in v]
-def mm(a,b):return [[sum(x*y for x,y in zip(r,c)) for c in zip(*b)] for r in a]
+def _exact_scalar(val):
+    if isinstance(val, (bool, float)):
+        raise ValueError('outside declared boundary domain')
+    if isinstance(val, int):
+        need(val.bit_length() <= 1024)
+        return Q(val)
+    if isinstance(val, Q):
+        need(val.numerator.bit_length() <= 1024 and val.denominator.bit_length() <= 1024)
+        return val
+    if isinstance(val, str):
+        try:
+            q = Q(val)
+            need(q.numerator.bit_length() <= 1024 and q.denominator.bit_length() <= 1024)
+            return q
+        except Exception:
+            raise ValueError('outside declared boundary domain')
+    raise ValueError('outside declared boundary domain')
+def integer(q,lo,hi):
+    scalar = _exact_scalar(q)
+    need(scalar.denominator==1 and lo<=scalar<=hi)
+    return int(scalar)
+def bits(v):
+    need(isinstance(v, (list, tuple)))
+    return [integer(q,0,1) for q in v]
+def mm(a,b):
+    need(isinstance(a, list) and isinstance(b, list) and len(a) > 0 and len(b) > 0)
+    cols_a = len(a[0])
+    need(all(isinstance(r, list) and len(r) == cols_a for r in a))
+    cols_b = len(b[0])
+    need(all(isinstance(r, list) and len(r) == cols_b for r in b))
+    need(cols_a == len(b))
+    return [[sum(x*y for x,y in zip(r,c)) for c in zip(*b)] for r in a]
 def tr(a):return list(map(list,zip(*a)))
 def flat(a):return [q for r in a for q in r]
 def trace(a):return sum(a[i][i] for i in range(len(a)))
@@ -35,7 +64,8 @@ def proxy_fields(k):
     verdict=[int(local==joint),int(I3==0),int(any(q!=0 for q in flat(comm))),int(trace(rho)==1 and min(probes)>=0),int(orth==eye(2) and det==1)]
     return [local,joint,I3]+flat(A)+flat(B)+flat(rho)+flat(T)+flat(comm)+probes+flat(orth)+[det]+verdict
 def evaluate(kind,values):
-    x=list(map(Q,values))
+    need(isinstance(values, (list, tuple)))
+    x=[_exact_scalar(v) for v in values]
     if kind=='registry':
         need(len(x)==9);caps=[integer(q,0,15) for q in x[:7]];a,b=x[7:];need(a>=0 and b>=0);v=[int(c==15) for c in caps];out=v+[sum(v),a,min(a,b),a-min(a,b)]
     elif kind=='uniqueness':

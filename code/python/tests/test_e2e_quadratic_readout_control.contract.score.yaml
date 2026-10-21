@@ -1,0 +1,362 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/test_e2e_quadratic_readout_control.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/test_e2e_quadratic_readout_control.py",
+      "sha256": "7e6b85527cc36272af3430b405c420004acbb2a961cb1a62a0d4001778f8e562"
+    },
+    "profile": "Exact",
+    "claim": "quadratic_readout_control certificate locked by exact checks in this file",
+    "role": "test checker",
+    "purpose": "Exact tests for the QM-208 finite map: quadratic readout, Sorkin selection, interference. Unit, integration, and negative tests.",
+    "operations": {
+      "control": "Function control operation.",
+      "test_phase_blind_monomials_are_exactly_the_diagonal": "Function test_phase_blind_monomials_are_exactly_the_diagonal operation.",
+      "test_sorkin_i3_selects_beta_zero_on_the_grid": "Function test_sorkin_i3_selects_beta_zero_on_the_grid operation.",
+      "test_quartic_term_breaks_sorkin_on_the_unit_triple": "Function test_quartic_term_breaks_sorkin_on_the_unit_triple operation.",
+      "test_two_report_interference_is_born_weight_times_holonomy": "Function test_two_report_interference_is_born_weight_times_holonomy operation.",
+      "test_quadratic_interferes_where_l1_is_additive": "Function test_quadratic_interferes_where_l1_is_additive operation.",
+      "test_amplitudes_live_in_finite_extensions": "Function test_amplitudes_live_in_finite_extensions operation.",
+      "test_ledger_has_three_layers": "Function test_ledger_has_three_layers operation.",
+      "test_negative_refusals": "Function test_negative_refusals operation.",
+      "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+      "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "29e515a755c249eb93c27c0793677bfdd4bc74dd81a04b14e787b3fb52870d42",
+  "current_scoring": "e67a676b19b882e502ed73a412dad520e797dd0b3dc49f6e6beb901e738e3e7f",
+  "contract_history": [
+    {
+      "sha256": "844e52a3049e3bb9fb1686ab6311d9fa4ba86871e49c8455a192ba822af08aa3",
+      "bytes": 2936,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_quadratic_readout_control.py",
+          "sha256": "b50ff6a76dc702778f70a1ef821e729d2eba52cd82fe51a30cf79b1c91503626"
+        },
+        "profile": "Exact",
+        "claim": "quadratic_readout_control certificate locked by exact checks in this file",
+        "role": "test checker",
+        "purpose": "Exact tests for the QM-208 finite map: quadratic readout, Sorkin selection, interference. Unit, integration, and negative tests.",
+        "operations": {
+          "control": "Function control operation.",
+          "test_phase_blind_monomials_are_exactly_the_diagonal": "Function test_phase_blind_monomials_are_exactly_the_diagonal operation.",
+          "test_sorkin_i3_selects_beta_zero_on_the_grid": "Function test_sorkin_i3_selects_beta_zero_on_the_grid operation.",
+          "test_quartic_term_breaks_sorkin_on_the_unit_triple": "Function test_quartic_term_breaks_sorkin_on_the_unit_triple operation.",
+          "test_two_report_interference_is_born_weight_times_holonomy": "Function test_two_report_interference_is_born_weight_times_holonomy operation.",
+          "test_quadratic_interferes_where_l1_is_additive": "Function test_quadratic_interferes_where_l1_is_additive operation.",
+          "test_amplitudes_live_in_finite_extensions": "Function test_amplitudes_live_in_finite_extensions operation.",
+          "test_ledger_has_three_layers": "Function test_ledger_has_three_layers operation.",
+          "test_negative_refusals": "Function test_negative_refusals operation.",
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_quadratic_readout_control.py\",\n    \"sha256\": \"b50ff6a76dc702778f70a1ef821e729d2eba52cd82fe51a30cf79b1c91503626\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"quadratic_readout_control certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Exact tests for the QM-208 finite map: quadratic readout, Sorkin selection, interference. Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"control\": \"Function control operation.\",\n    \"test_phase_blind_monomials_are_exactly_the_diagonal\": \"Function test_phase_blind_monomials_are_exactly_the_diagonal operation.\",\n    \"test_sorkin_i3_selects_beta_zero_on_the_grid\": \"Function test_sorkin_i3_selects_beta_zero_on_the_grid operation.\",\n    \"test_quartic_term_breaks_sorkin_on_the_unit_triple\": \"Function test_quartic_term_breaks_sorkin_on_the_unit_triple operation.\",\n    \"test_two_report_interference_is_born_weight_times_holonomy\": \"Function test_two_report_interference_is_born_weight_times_holonomy operation.\",\n    \"test_quadratic_interferes_where_l1_is_additive\": \"Function test_quadratic_interferes_where_l1_is_additive operation.\",\n    \"test_amplitudes_live_in_finite_extensions\": \"Function test_amplitudes_live_in_finite_extensions operation.\",\n    \"test_ledger_has_three_layers\": \"Function test_ledger_has_three_layers operation.\",\n    \"test_negative_refusals\": \"Function test_negative_refusals operation.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_quadratic_readout_control.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "8c59db63780fd8d84269faac2c375f93b4c17ed1288921473d88172450ceeb31",
+      "bytes": 2936,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_quadratic_readout_control.py",
+          "sha256": "a640b169f6a894da44a9b49a4b5aa48a30808349a83c76049955cc23e1b173d8"
+        },
+        "profile": "Exact",
+        "claim": "quadratic_readout_control certificate locked by exact checks in this file",
+        "role": "test checker",
+        "purpose": "Exact tests for the QM-208 finite map: quadratic readout, Sorkin selection, interference. Unit, integration, and negative tests.",
+        "operations": {
+          "control": "Function control operation.",
+          "test_phase_blind_monomials_are_exactly_the_diagonal": "Function test_phase_blind_monomials_are_exactly_the_diagonal operation.",
+          "test_sorkin_i3_selects_beta_zero_on_the_grid": "Function test_sorkin_i3_selects_beta_zero_on_the_grid operation.",
+          "test_quartic_term_breaks_sorkin_on_the_unit_triple": "Function test_quartic_term_breaks_sorkin_on_the_unit_triple operation.",
+          "test_two_report_interference_is_born_weight_times_holonomy": "Function test_two_report_interference_is_born_weight_times_holonomy operation.",
+          "test_quadratic_interferes_where_l1_is_additive": "Function test_quadratic_interferes_where_l1_is_additive operation.",
+          "test_amplitudes_live_in_finite_extensions": "Function test_amplitudes_live_in_finite_extensions operation.",
+          "test_ledger_has_three_layers": "Function test_ledger_has_three_layers operation.",
+          "test_negative_refusals": "Function test_negative_refusals operation.",
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_quadratic_readout_control.py\",\n    \"sha256\": \"a640b169f6a894da44a9b49a4b5aa48a30808349a83c76049955cc23e1b173d8\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"quadratic_readout_control certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Exact tests for the QM-208 finite map: quadratic readout, Sorkin selection, interference. Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"control\": \"Function control operation.\",\n    \"test_phase_blind_monomials_are_exactly_the_diagonal\": \"Function test_phase_blind_monomials_are_exactly_the_diagonal operation.\",\n    \"test_sorkin_i3_selects_beta_zero_on_the_grid\": \"Function test_sorkin_i3_selects_beta_zero_on_the_grid operation.\",\n    \"test_quartic_term_breaks_sorkin_on_the_unit_triple\": \"Function test_quartic_term_breaks_sorkin_on_the_unit_triple operation.\",\n    \"test_two_report_interference_is_born_weight_times_holonomy\": \"Function test_two_report_interference_is_born_weight_times_holonomy operation.\",\n    \"test_quadratic_interferes_where_l1_is_additive\": \"Function test_quadratic_interferes_where_l1_is_additive operation.\",\n    \"test_amplitudes_live_in_finite_extensions\": \"Function test_amplitudes_live_in_finite_extensions operation.\",\n    \"test_ledger_has_three_layers\": \"Function test_ledger_has_three_layers operation.\",\n    \"test_negative_refusals\": \"Function test_negative_refusals operation.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_quadratic_readout_control.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "29e515a755c249eb93c27c0793677bfdd4bc74dd81a04b14e787b3fb52870d42",
+      "bytes": 2936,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_quadratic_readout_control.py",
+          "sha256": "7e6b85527cc36272af3430b405c420004acbb2a961cb1a62a0d4001778f8e562"
+        },
+        "profile": "Exact",
+        "claim": "quadratic_readout_control certificate locked by exact checks in this file",
+        "role": "test checker",
+        "purpose": "Exact tests for the QM-208 finite map: quadratic readout, Sorkin selection, interference. Unit, integration, and negative tests.",
+        "operations": {
+          "control": "Function control operation.",
+          "test_phase_blind_monomials_are_exactly_the_diagonal": "Function test_phase_blind_monomials_are_exactly_the_diagonal operation.",
+          "test_sorkin_i3_selects_beta_zero_on_the_grid": "Function test_sorkin_i3_selects_beta_zero_on_the_grid operation.",
+          "test_quartic_term_breaks_sorkin_on_the_unit_triple": "Function test_quartic_term_breaks_sorkin_on_the_unit_triple operation.",
+          "test_two_report_interference_is_born_weight_times_holonomy": "Function test_two_report_interference_is_born_weight_times_holonomy operation.",
+          "test_quadratic_interferes_where_l1_is_additive": "Function test_quadratic_interferes_where_l1_is_additive operation.",
+          "test_amplitudes_live_in_finite_extensions": "Function test_amplitudes_live_in_finite_extensions operation.",
+          "test_ledger_has_three_layers": "Function test_ledger_has_three_layers operation.",
+          "test_negative_refusals": "Function test_negative_refusals operation.",
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_quadratic_readout_control.py\",\n    \"sha256\": \"7e6b85527cc36272af3430b405c420004acbb2a961cb1a62a0d4001778f8e562\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"quadratic_readout_control certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Exact tests for the QM-208 finite map: quadratic readout, Sorkin selection, interference. Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"control\": \"Function control operation.\",\n    \"test_phase_blind_monomials_are_exactly_the_diagonal\": \"Function test_phase_blind_monomials_are_exactly_the_diagonal operation.\",\n    \"test_sorkin_i3_selects_beta_zero_on_the_grid\": \"Function test_sorkin_i3_selects_beta_zero_on_the_grid operation.\",\n    \"test_quartic_term_breaks_sorkin_on_the_unit_triple\": \"Function test_quartic_term_breaks_sorkin_on_the_unit_triple operation.\",\n    \"test_two_report_interference_is_born_weight_times_holonomy\": \"Function test_two_report_interference_is_born_weight_times_holonomy operation.\",\n    \"test_quadratic_interferes_where_l1_is_additive\": \"Function test_quadratic_interferes_where_l1_is_additive operation.\",\n    \"test_amplitudes_live_in_finite_extensions\": \"Function test_amplitudes_live_in_finite_extensions operation.\",\n    \"test_ledger_has_three_layers\": \"Function test_ledger_has_three_layers operation.\",\n    \"test_negative_refusals\": \"Function test_negative_refusals operation.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_quadratic_readout_control.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "86e75951a39e0c5d0bff279af7fc8da9a5b7217567a16875bbb065bf0ab383f0",
+      "bytes": 2228,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_quadratic_readout_control.py",
+          "sha256": "b50ff6a76dc702778f70a1ef821e729d2eba52cd82fe51a30cf79b1c91503626"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN quadratic_readout_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 8), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 8,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_quadratic_readout_control.py\",\n    \"sha256\": \"b50ff6a76dc702778f70a1ef821e729d2eba52cd82fe51a30cf79b1c91503626\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN quadratic_readout_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 8), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_quadratic_readout_control.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "6f30eb0d02cf071314c97bf49e9123031d7d25f995dce608439e5a6f321df8f9",
+      "bytes": 2202,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_quadratic_readout_control.py",
+          "sha256": "a640b169f6a894da44a9b49a4b5aa48a30808349a83c76049955cc23e1b173d8"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN quadratic_readout_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 8,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_quadratic_readout_control.py\",\n    \"sha256\": \"a640b169f6a894da44a9b49a4b5aa48a30808349a83c76049955cc23e1b173d8\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN quadratic_readout_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_quadratic_readout_control.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "e67a676b19b882e502ed73a412dad520e797dd0b3dc49f6e6beb901e738e3e7f",
+      "bytes": 2202,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_quadratic_readout_control.py",
+          "sha256": "7e6b85527cc36272af3430b405c420004acbb2a961cb1a62a0d4001778f8e562"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN quadratic_readout_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 8,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_quadratic_readout_control.py\",\n    \"sha256\": \"7e6b85527cc36272af3430b405c420004acbb2a961cb1a62a0d4001778f8e562\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN quadratic_readout_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_quadratic_readout_control.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

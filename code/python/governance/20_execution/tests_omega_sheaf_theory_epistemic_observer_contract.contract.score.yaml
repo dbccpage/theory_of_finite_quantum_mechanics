@@ -32,12 +32,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "5d996e1c5e8b26b3258b3677d8429b71f09f4d3560070150b0138fb4b9a1fb17",
-  "current_scoring": null,
+  "current_contract": "c1d5f03cbcd5061c8ef7d7b4da647d7ff24ac54d35535865dd1a1046b1cc7835",
+  "current_scoring": "4d385c548165ac75293b35a1bfbebcc9582b22bf00eff49628a0a2a2042e6482",
   "contract_history": [
     {
-      "sha256": "5d996e1c5e8b26b3258b3677d8429b71f09f4d3560070150b0138fb4b9a1fb17",
-      "bytes": 786,
+      "sha256": "c1d5f03cbcd5061c8ef7d7b4da647d7ff24ac54d35535865dd1a1046b1cc7835",
+      "bytes": 955,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:tests:omega_sheaf_theory_epistemic_observer:v1.0.0",
@@ -68,13 +68,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:tests:omega_sheaf_theory_epistemic_observer:v1.0.0\ntitle: Fixture-driven tests of `omega_sheaf_theory::epistemic_observer`.  The fixtures\n  in `fixtures/epistemic_no_go/empirica...\nkind: rust_test_contract\nstatus: active\ncrate: tests\nfile: crates_rs/tests/omega_sheaf_theory/epistemic_observer.rs\nmodule: omega_sheaf_theory::epistemic_observer\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: tests\n  module: omega_sheaf_theory::epistemic_observer\n  file: crates_rs/tests/omega_sheaf_theory/epistemic_observer.rs\nsymbols: []\nowns:\n- omega_sheaf_theory_epistemic_observer\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:tests:omega_sheaf_theory_epistemic_observer:v1.0.0\",\n  \"title\": \"Fixture-driven tests of `omega_sheaf_theory::epistemic_observer`.  The fixtures in `fixtures/epistemic_no_go/empirica...\",\n  \"kind\": \"rust_test_contract\",\n  \"status\": \"active\",\n  \"crate\": \"tests\",\n  \"file\": \"crates_rs/tests/omega_sheaf_theory/epistemic_observer.rs\",\n  \"module\": \"omega_sheaf_theory::epistemic_observer\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"tests\",\n    \"module\": \"omega_sheaf_theory::epistemic_observer\",\n    \"file\": \"crates_rs/tests/omega_sheaf_theory/epistemic_observer.rs\"\n  },\n  \"symbols\": [],\n  \"owns\": [\n    \"omega_sheaf_theory_epistemic_observer\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/tests_omega_sheaf_theory_epistemic_observer.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "4d385c548165ac75293b35a1bfbebcc9582b22bf00eff49628a0a2a2042e6482",
+      "bytes": 2247,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/tests_omega_sheaf_theory_epistemic_observer_contract.py",
+          "sha256": "34f361d757d3aa8e97dd5f7fe0de632121dcc0c08e16d62c7267f2d3a7c77e28"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:tests-omega-sheaf-theory-epistemic-observer-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/tests_omega_sheaf_theory_epistemic_observer_contract.py\",\n    \"sha256\": \"34f361d757d3aa8e97dd5f7fe0de632121dcc0c08e16d62c7267f2d3a7c77e28\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:tests-omega-sheaf-theory-epistemic-observer-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/tests_omega_sheaf_theory_epistemic_observer_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/tests_omega_sheaf_theory_epistemic_observer.contract.yaml": "5d996e1c5e8b26b3258b3677d8429b71f09f4d3560070150b0138fb4b9a1fb17"
   },

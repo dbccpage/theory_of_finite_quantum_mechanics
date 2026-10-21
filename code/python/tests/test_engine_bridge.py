@@ -38,7 +38,7 @@ def _all_hold(flags: tuple[bool, ...]) -> bool:
     return True
 
 
-_MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "campaigns" / "engine_bridge.py"
+_MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "engine_bridge.py"
 _Q = Fraction
 _STATE = (_Q(3, 5), _Q(4, 5))
 _VALUE = _Q(-7, 25)

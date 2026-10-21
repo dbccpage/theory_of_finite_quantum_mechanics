@@ -1,0 +1,358 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/norm_frontier.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/norm_frontier.py",
+      "sha256": "3843a84529204096bbba65b3534598cee106dc596b68616590529b762dc8f80f"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:qm:norm-frontier:v1",
+    "role": "library",
+    "purpose": "Campaign C500 Block 02: Norm-Indexed Approximation Frontier. Implements:",
+    "operations": {
+      "ExactRationalMatrix": "d x d square matrix with Gaussian rational entries.",
+      "ccr_residual_exact": "Compute exact residual R_lambda(Q, P) = QP - PQ - lambda * I.",
+      "verify_ccr_defect_lower_bounds": "Verify that for ANY pair Q, P in M_d, the CCR defect is strictly lower bounded:",
+      "phase_distance_on_circle": "Compute geodesic distance on R/Z: dist_{S^1}(theta1, theta2) = min_{k in Z} |theta1 - theta2 - k|.",
+      "nearest_root_of_unity": "Find a in {0, ..., d-1} minimizing dist_{S^1}(theta, a/d) in exact discrete arithmetic.",
+      "continued_fraction_convergents": "Compute continued fraction convergents p_k / q_k for a rational or real number.",
+      "compute_weyl_phase_approximation_schedule": "Compute exact phase approximation error along a chosen dimension schedule.",
+      "compute_bott_index_witness": "Principal-log winding index for the fixed clock/shift pair.",
+      "cross_norm_promotion_counterexample_table": "Demonstrate how rank normalization changes apparent convergence:",
+      "generate_canonical_block02_receipt": "Generate the deterministic canonical receipt for Campaign C500 Block 02."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "0c49c7a2c31d251a6756a6b525cc118e78af5ec161b82067208094cabf5f6edd",
+  "current_scoring": "b023f8223fe3a1d93544dd42a3743a621bd64cabacda67bf5cc1d7e46d745c7a",
+  "contract_history": [
+    {
+      "sha256": "c5863a083e9eba4bbb94c916155c6dad0958ed524773cf7850c06292ad14b6b5",
+      "bytes": 2728,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/norm_frontier.py",
+          "sha256": "02d2d7863d1444613f4d3b94f43cfc29e00469f5d75475caba593494970dbc0c"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:norm-frontier:v1",
+        "role": "library",
+        "purpose": "Campaign C500 Block 02: Norm-Indexed Approximation Frontier. Implements:",
+        "operations": {
+          "ExactRationalMatrix": "d x d square matrix with Gaussian rational entries.",
+          "ccr_residual_exact": "Compute exact residual R_lambda(Q, P) = QP - PQ - lambda * I.",
+          "verify_ccr_defect_lower_bounds": "Verify that for ANY pair Q, P in M_d, the CCR defect is strictly lower bounded:",
+          "phase_distance_on_circle": "Compute geodesic distance on R/Z: dist_{S^1}(theta1, theta2) = min_{k in Z} |theta1 - theta2 - k|.",
+          "nearest_root_of_unity": "Find a in {0, ..., d-1} minimizing dist_{S^1}(theta, a/d) in exact discrete arithmetic.",
+          "continued_fraction_convergents": "Compute continued fraction convergents p_k / q_k for a rational or real number.",
+          "compute_weyl_phase_approximation_schedule": "Compute exact phase approximation error along a chosen dimension schedule.",
+          "compute_bott_index_witness": "Principal-log winding index for the fixed clock/shift pair.",
+          "cross_norm_promotion_counterexample_table": "Demonstrate how rank normalization changes apparent convergence:",
+          "generate_canonical_block02_receipt": "Generate the deterministic canonical receipt for Campaign C500 Block 02."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/norm_frontier.py\",\n    \"sha256\": \"02d2d7863d1444613f4d3b94f43cfc29e00469f5d75475caba593494970dbc0c\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:norm-frontier:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Campaign C500 Block 02: Norm-Indexed Approximation Frontier. Implements:\",\n  \"operations\": {\n    \"ExactRationalMatrix\": \"d x d square matrix with Gaussian rational entries.\",\n    \"ccr_residual_exact\": \"Compute exact residual R_lambda(Q, P) = QP - PQ - lambda * I.\",\n    \"verify_ccr_defect_lower_bounds\": \"Verify that for ANY pair Q, P in M_d, the CCR defect is strictly lower bounded:\",\n    \"phase_distance_on_circle\": \"Compute geodesic distance on R/Z: dist_{S^1}(theta1, theta2) = min_{k in Z} |theta1 - theta2 - k|.\",\n    \"nearest_root_of_unity\": \"Find a in {0, ..., d-1} minimizing dist_{S^1}(theta, a/d) in exact discrete arithmetic.\",\n    \"continued_fraction_convergents\": \"Compute continued fraction convergents p_k / q_k for a rational or real number.\",\n    \"compute_weyl_phase_approximation_schedule\": \"Compute exact phase approximation error along a chosen dimension schedule.\",\n    \"compute_bott_index_witness\": \"Principal-log winding index for the fixed clock/shift pair.\",\n    \"cross_norm_promotion_counterexample_table\": \"Demonstrate how rank normalization changes apparent convergence:\",\n    \"generate_canonical_block02_receipt\": \"Generate the deterministic canonical receipt for Campaign C500 Block 02.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/norm_frontier.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "9e4e4faea605f66f0e767d7f0d42e259bdf36dfe2d2802fb7a7bdacbe5bafcfa",
+      "bytes": 2721,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/norm_frontier.py",
+          "sha256": "036997461ee0ee245952f3854304e0044ae2125db2f8783958b4f3cbbc4c2eea"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:norm-frontier:v1",
+        "role": "library",
+        "purpose": "Campaign C500 Block 02: Norm-Indexed Approximation Frontier. Implements:",
+        "operations": {
+          "ExactRationalMatrix": "d x d square matrix with Gaussian rational entries.",
+          "ccr_residual_exact": "Compute exact residual R_lambda(Q, P) = QP - PQ - lambda * I.",
+          "verify_ccr_defect_lower_bounds": "Verify that for ANY pair Q, P in M_d, the CCR defect is strictly lower bounded:",
+          "phase_distance_on_circle": "Compute geodesic distance on R/Z: dist_{S^1}(theta1, theta2) = min_{k in Z} |theta1 - theta2 - k|.",
+          "nearest_root_of_unity": "Find a in {0, ..., d-1} minimizing dist_{S^1}(theta, a/d) in exact discrete arithmetic.",
+          "continued_fraction_convergents": "Compute continued fraction convergents p_k / q_k for a rational or real number.",
+          "compute_weyl_phase_approximation_schedule": "Compute exact phase approximation error along a chosen dimension schedule.",
+          "compute_bott_index_witness": "Principal-log winding index for the fixed clock/shift pair.",
+          "cross_norm_promotion_counterexample_table": "Demonstrate how rank normalization changes apparent convergence:",
+          "generate_canonical_block02_receipt": "Generate the deterministic canonical receipt for Campaign C500 Block 02."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/norm_frontier.py\",\n    \"sha256\": \"036997461ee0ee245952f3854304e0044ae2125db2f8783958b4f3cbbc4c2eea\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:norm-frontier:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Campaign C500 Block 02: Norm-Indexed Approximation Frontier. Implements:\",\n  \"operations\": {\n    \"ExactRationalMatrix\": \"d x d square matrix with Gaussian rational entries.\",\n    \"ccr_residual_exact\": \"Compute exact residual R_lambda(Q, P) = QP - PQ - lambda * I.\",\n    \"verify_ccr_defect_lower_bounds\": \"Verify that for ANY pair Q, P in M_d, the CCR defect is strictly lower bounded:\",\n    \"phase_distance_on_circle\": \"Compute geodesic distance on R/Z: dist_{S^1}(theta1, theta2) = min_{k in Z} |theta1 - theta2 - k|.\",\n    \"nearest_root_of_unity\": \"Find a in {0, ..., d-1} minimizing dist_{S^1}(theta, a/d) in exact discrete arithmetic.\",\n    \"continued_fraction_convergents\": \"Compute continued fraction convergents p_k / q_k for a rational or real number.\",\n    \"compute_weyl_phase_approximation_schedule\": \"Compute exact phase approximation error along a chosen dimension schedule.\",\n    \"compute_bott_index_witness\": \"Principal-log winding index for the fixed clock/shift pair.\",\n    \"cross_norm_promotion_counterexample_table\": \"Demonstrate how rank normalization changes apparent convergence:\",\n    \"generate_canonical_block02_receipt\": \"Generate the deterministic canonical receipt for Campaign C500 Block 02.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/norm_frontier.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "0c49c7a2c31d251a6756a6b525cc118e78af5ec161b82067208094cabf5f6edd",
+      "bytes": 2721,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/norm_frontier.py",
+          "sha256": "3843a84529204096bbba65b3534598cee106dc596b68616590529b762dc8f80f"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:norm-frontier:v1",
+        "role": "library",
+        "purpose": "Campaign C500 Block 02: Norm-Indexed Approximation Frontier. Implements:",
+        "operations": {
+          "ExactRationalMatrix": "d x d square matrix with Gaussian rational entries.",
+          "ccr_residual_exact": "Compute exact residual R_lambda(Q, P) = QP - PQ - lambda * I.",
+          "verify_ccr_defect_lower_bounds": "Verify that for ANY pair Q, P in M_d, the CCR defect is strictly lower bounded:",
+          "phase_distance_on_circle": "Compute geodesic distance on R/Z: dist_{S^1}(theta1, theta2) = min_{k in Z} |theta1 - theta2 - k|.",
+          "nearest_root_of_unity": "Find a in {0, ..., d-1} minimizing dist_{S^1}(theta, a/d) in exact discrete arithmetic.",
+          "continued_fraction_convergents": "Compute continued fraction convergents p_k / q_k for a rational or real number.",
+          "compute_weyl_phase_approximation_schedule": "Compute exact phase approximation error along a chosen dimension schedule.",
+          "compute_bott_index_witness": "Principal-log winding index for the fixed clock/shift pair.",
+          "cross_norm_promotion_counterexample_table": "Demonstrate how rank normalization changes apparent convergence:",
+          "generate_canonical_block02_receipt": "Generate the deterministic canonical receipt for Campaign C500 Block 02."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/norm_frontier.py\",\n    \"sha256\": \"3843a84529204096bbba65b3534598cee106dc596b68616590529b762dc8f80f\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:norm-frontier:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Campaign C500 Block 02: Norm-Indexed Approximation Frontier. Implements:\",\n  \"operations\": {\n    \"ExactRationalMatrix\": \"d x d square matrix with Gaussian rational entries.\",\n    \"ccr_residual_exact\": \"Compute exact residual R_lambda(Q, P) = QP - PQ - lambda * I.\",\n    \"verify_ccr_defect_lower_bounds\": \"Verify that for ANY pair Q, P in M_d, the CCR defect is strictly lower bounded:\",\n    \"phase_distance_on_circle\": \"Compute geodesic distance on R/Z: dist_{S^1}(theta1, theta2) = min_{k in Z} |theta1 - theta2 - k|.\",\n    \"nearest_root_of_unity\": \"Find a in {0, ..., d-1} minimizing dist_{S^1}(theta, a/d) in exact discrete arithmetic.\",\n    \"continued_fraction_convergents\": \"Compute continued fraction convergents p_k / q_k for a rational or real number.\",\n    \"compute_weyl_phase_approximation_schedule\": \"Compute exact phase approximation error along a chosen dimension schedule.\",\n    \"compute_bott_index_witness\": \"Principal-log winding index for the fixed clock/shift pair.\",\n    \"cross_norm_promotion_counterexample_table\": \"Demonstrate how rank normalization changes apparent convergence:\",\n    \"generate_canonical_block02_receipt\": \"Generate the deterministic canonical receipt for Campaign C500 Block 02.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/norm_frontier.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "d43c64461a431083d1f37f20c9782bb5b44c90df033bf088de88ac4b64aa0bd2",
+      "bytes": 2190,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/norm_frontier.py",
+          "sha256": "02d2d7863d1444613f4d3b94f43cfc29e00469f5d75475caba593494970dbc0c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:norm-frontier:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 9), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 9,
+          "weighted_control_upper_bound": 16,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/norm_frontier.py\",\n    \"sha256\": \"02d2d7863d1444613f4d3b94f43cfc29e00469f5d75475caba593494970dbc0c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:norm-frontier:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 9), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 16,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/norm_frontier.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "45f037e883b41a607880fe9b99e359cf4eee9b40ff13f14b2109f1e12fc7f772",
+      "bytes": 2157,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/norm_frontier.py",
+          "sha256": "036997461ee0ee245952f3854304e0044ae2125db2f8783958b4f3cbbc4c2eea"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:norm-frontier:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 9 <= 10 (A), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 9,
+          "weighted_control_upper_bound": 16,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/norm_frontier.py\",\n    \"sha256\": \"036997461ee0ee245952f3854304e0044ae2125db2f8783958b4f3cbbc4c2eea\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:norm-frontier:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 9 <= 10 (A), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 16,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/norm_frontier.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "b023f8223fe3a1d93544dd42a3743a621bd64cabacda67bf5cc1d7e46d745c7a",
+      "bytes": 2157,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/norm_frontier.py",
+          "sha256": "3843a84529204096bbba65b3534598cee106dc596b68616590529b762dc8f80f"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:norm-frontier:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 9 <= 10 (A), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 9,
+          "weighted_control_upper_bound": 16,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/norm_frontier.py\",\n    \"sha256\": \"3843a84529204096bbba65b3534598cee106dc596b68616590529b762dc8f80f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:norm-frontier:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 9 <= 10 (A), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 16,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/norm_frontier.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

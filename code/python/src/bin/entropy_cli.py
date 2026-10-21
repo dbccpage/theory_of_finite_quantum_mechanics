@@ -8,7 +8,7 @@ and theorem fq_embedding_relativity_and_entropy_baker_dichotomy_closure
 Claim: urn:omega:fqm:entropy:cli-collision-gap:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/tests/test_entropy_cli.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 6; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 6.
+Gate 5: use the source-bound measurements in the companion history.
 Scope Fence: collision_probability sums squares of the rational weights it is
 given after checking nonnegativity and unit mass. The cited theorems are a
 Nat purity dichotomy and an integer 2-outcome deficit. They do not prove the
@@ -21,6 +21,11 @@ from __future__ import annotations
 
 from fractions import Fraction
 from typing import Mapping
+
+# Declared engineering policies; a refusal never rounds a probability.
+MAX_OUTCOMES = 4096
+MAX_SCALAR_BITS = 1024
+MAX_WORK_BITS = 8192
 
 _PURE: tuple[object, ...] = (1, 0)
 _FAIR: tuple[object, ...] = (Fraction(1, 2), Fraction(1, 2))
@@ -43,8 +48,12 @@ def _fail(invariant: str, **parameters: object) -> ParityError:
 
 
 def _require_tuple(weights: object) -> tuple[object, ...]:
-    if isinstance(weights, (str, bytes)) or not isinstance(weights, tuple):
+    if issubclass(type(weights), (str, bytes)) or not issubclass(type(weights), tuple):
         raise _fail("parity weights are not a tuple", received=type(weights).__name__)
+    if type(weights) is not tuple:
+        raise _fail("parity container subclass refused", received=type(weights).__name__)
+    if len(weights) > MAX_OUTCOMES:
+        raise _fail("parity vector budget exceeded", limit=MAX_OUTCOMES)
     return tuple(weights)
 
 
@@ -55,19 +64,31 @@ def _require_nonempty(weights: tuple[object, ...]) -> tuple[object, ...]:
 
 
 def _require_weight(value: object, index: int) -> Fraction:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the parity boundary", index=index, received="float")
     if type(value) is bool:
         raise _fail("boolean refused where a rational weight was required", index=index)
-    if isinstance(value, Fraction):
+    if type(value) is Fraction:
         weight = value
     elif type(value) is int:
+        _require_bits(value, MAX_SCALAR_BITS, "weight", index)
         weight = Fraction(value)
     else:
         raise _fail("parity weight is not an exact rational", index=index, received=type(value).__name__)
+    _require_fraction_bits(weight, MAX_SCALAR_BITS, "weight", index)
     if weight < 0:
         raise _fail("parity weight is negative", index=index, received=str(weight))
     return weight
+
+
+def _require_bits(value: int, limit: int, role: str, index: int = -1) -> None:
+    if value.bit_length() > limit:
+        raise _fail("parity scalar bit budget exceeded", role=role, index=index, bits=value.bit_length(), limit=limit)
+
+
+def _require_fraction_bits(value: Fraction, limit: int, role: str, index: int = -1) -> None:
+    _require_bits(value.numerator, limit, role, index)
+    _require_bits(value.denominator, limit, role, index)
 
 
 def _collect_weights(weights: tuple[object, ...]) -> tuple[Fraction, ...]:
@@ -81,6 +102,7 @@ def _sum_mass(weights: tuple[Fraction, ...]) -> Fraction:
     total = Fraction(0)
     for weight in weights:
         total += weight
+        _require_fraction_bits(total, MAX_WORK_BITS, "mass sum")
     return total
 
 
@@ -93,6 +115,7 @@ def _collision(weights: tuple[Fraction, ...]) -> Fraction:
     total = Fraction(0)
     for weight in weights:
         total += weight * weight
+        _require_fraction_bits(total, MAX_WORK_BITS, "collision sum")
     return total
 
 
@@ -112,8 +135,14 @@ def parity_gap() -> Fraction:
 
 
 def main() -> int:
-    gap = parity_gap()
-    print(gap)
+    try:
+        gap = parity_gap()
+    except ParityError:
+        return 1
+    try:
+        print(gap)
+    except (OSError, ValueError):
+        return 2
     if gap == Fraction(1, 2):
         return 0
     return 1

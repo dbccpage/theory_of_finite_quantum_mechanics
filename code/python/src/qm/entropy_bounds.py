@@ -61,11 +61,16 @@ def _require_weight(value: object, index: int) -> Fraction:
     if type(value) is bool:
         raise _fail("boolean refused where a rational weight was required", index=index)
     if isinstance(value, Fraction):
-        weight = value
+        num, den = value.numerator, value.denominator
     elif type(value) is int:
-        weight = Fraction(value)
+        num, den = value, 1
     else:
         raise _fail("collision weight is not an exact rational", index=index, received=type(value).__name__)
+    if type(num) is not int or type(den) is not int:
+        raise _fail("exact rational numerator and denominator must be int", index=index)
+    if num.bit_length() > 1024 or den.bit_length() > 1024:
+        raise _fail("integer exceeds 1024 bits", index=index)
+    weight = Fraction(num, den)
     if weight < 0:
         raise _fail("collision weight is negative", index=index, received=str(weight))
     return weight

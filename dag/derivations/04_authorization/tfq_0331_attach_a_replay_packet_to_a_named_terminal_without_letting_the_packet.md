@@ -41,6 +41,7 @@ In accordance with strict constructive principles:
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
 - [TFQ-0332](tfq_0332_hold_the_paper_0_report_erasure_boundary_as_a_supplied_factorization_and_leave.md)
+- [TFQ-0505](tfq_0505_alpha_license_binding_m1_m8.md)
 
 ---
 

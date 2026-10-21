@@ -237,14 +237,13 @@ impl EnrichedCategory {
         Ok(())
     }
 
-    pub fn check_unitality(&self, a: &str, b: &str) -> Result<(), HigherCategoryError> {
-        let hom_ab = self.get_hom_object(a, b)?;
-        let id_hom_ab = self
-            .v_identities
-            .get(&hom_ab)
-            .cloned()
-            .unwrap_or_else(|| format!("id_{hom_ab}"));
-
+    fn check_left_unitality(
+        &self,
+        a: &str,
+        b: &str,
+        hom_ab: &str,
+        id_hom_ab: &str,
+    ) -> Result<(), HigherCategoryError> {
         let j_b = self
             .units
             .get(b)
@@ -255,7 +254,7 @@ impl EnrichedCategory {
 
         let j_b_tensor_id = self
             .v_tensor_mor
-            .get(&(j_b.morphism_id.clone(), id_hom_ab.clone()))
+            .get(&(j_b.morphism_id.clone(), id_hom_ab.to_string()))
             .cloned()
             .unwrap_or_else(|| format!("{} tensor {}", j_b.morphism_id, id_hom_ab));
 
@@ -272,7 +271,11 @@ impl EnrichedCategory {
             .cloned()
             .unwrap_or_else(|| format!("{} . {}", comp_abb.morphism_id, j_b_tensor_id));
 
-        let lambda = self.left_unitors.get(&hom_ab).cloned().unwrap_or_else(|| format!("lambda_{hom_ab}"));
+        let lambda = self
+            .left_unitors
+            .get(hom_ab)
+            .cloned()
+            .unwrap_or_else(|| format!("lambda_{hom_ab}"));
 
         if left_composite != lambda {
             return Err(HigherCategoryError::EnrichedUnitMismatch {
@@ -282,7 +285,16 @@ impl EnrichedCategory {
                 ),
             });
         }
+        Ok(())
+    }
 
+    fn check_right_unitality(
+        &self,
+        a: &str,
+        b: &str,
+        hom_ab: &str,
+        id_hom_ab: &str,
+    ) -> Result<(), HigherCategoryError> {
         let j_a = self
             .units
             .get(a)
@@ -293,7 +305,7 @@ impl EnrichedCategory {
 
         let id_tensor_j_a = self
             .v_tensor_mor
-            .get(&(id_hom_ab.clone(), j_a.morphism_id.clone()))
+            .get(&(id_hom_ab.to_string(), j_a.morphism_id.clone()))
             .cloned()
             .unwrap_or_else(|| format!("{} tensor {}", id_hom_ab, j_a.morphism_id));
 
@@ -310,7 +322,11 @@ impl EnrichedCategory {
             .cloned()
             .unwrap_or_else(|| format!("{} . {}", comp_aab.morphism_id, id_tensor_j_a));
 
-        let rho = self.right_unitors.get(&hom_ab).cloned().unwrap_or_else(|| format!("rho_{hom_ab}"));
+        let rho = self
+            .right_unitors
+            .get(hom_ab)
+            .cloned()
+            .unwrap_or_else(|| format!("rho_{hom_ab}"));
 
         if right_composite != rho {
             return Err(HigherCategoryError::EnrichedUnitMismatch {
@@ -320,8 +336,105 @@ impl EnrichedCategory {
                 ),
             });
         }
-
         Ok(())
+    }
+
+    pub fn check_unitality(&self, a: &str, b: &str) -> Result<(), HigherCategoryError> {
+        let hom_ab = self.get_hom_object(a, b)?;
+        let id_hom_ab = self
+            .v_identities
+            .get(&hom_ab)
+            .cloned()
+            .unwrap_or_else(|| format!("id_{hom_ab}"));
+
+        self.check_left_unitality(a, b, &hom_ab, &id_hom_ab)?;
+        self.check_right_unitality(a, b, &hom_ab, &id_hom_ab)?;
+        Ok(())
+    }
+
+    fn compute_associativity_lhs(
+        &self,
+        a: &str,
+        b: &str,
+        c: &str,
+        d: &str,
+        hom_ab: &str,
+        hom_bc: &str,
+        hom_cd: &str,
+        id_ab: &str,
+    ) -> Result<String, HigherCategoryError> {
+        let c_bcd = &self
+            .compositions
+            .get(&(b.to_string(), c.to_string(), d.to_string()))
+            .ok_or_else(|| HigherCategoryError::OneCellNotFound {
+                id: format!("c({b}, {c}, {d})"),
+            })?
+            .morphism_id;
+
+        let c_abd = &self
+            .compositions
+            .get(&(a.to_string(), b.to_string(), d.to_string()))
+            .ok_or_else(|| HigherCategoryError::OneCellNotFound {
+                id: format!("c({a}, {b}, {d})"),
+            })?
+            .morphism_id;
+
+        let t1 = self
+            .v_tensor_mor
+            .get(&(c_bcd.clone(), id_ab.to_string()))
+            .cloned()
+            .unwrap_or_else(|| format!("{c_bcd} tensor id"));
+        let p1_comp = self
+            .v_compose
+            .get(&(c_abd.clone(), t1.clone()))
+            .cloned()
+            .unwrap_or_else(|| format!("{c_abd} . {t1}"));
+        let alpha = self
+            .associators
+            .get(&(hom_cd.to_string(), hom_bc.to_string(), hom_ab.to_string()))
+            .cloned()
+            .unwrap_or_else(|| "alpha".to_string());
+        Ok(self
+            .v_compose
+            .get(&(p1_comp.clone(), alpha.clone()))
+            .cloned()
+            .unwrap_or_else(|| format!("{p1_comp} . {alpha}")))
+    }
+
+    fn compute_associativity_rhs(
+        &self,
+        a: &str,
+        b: &str,
+        c: &str,
+        d: &str,
+        id_cd: &str,
+    ) -> Result<String, HigherCategoryError> {
+        let c_abc = &self
+            .compositions
+            .get(&(a.to_string(), b.to_string(), c.to_string()))
+            .ok_or_else(|| HigherCategoryError::OneCellNotFound {
+                id: format!("c({a}, {b}, {c})"),
+            })?
+            .morphism_id;
+
+        let c_acd = &self
+            .compositions
+            .get(&(a.to_string(), c.to_string(), d.to_string()))
+            .ok_or_else(|| HigherCategoryError::OneCellNotFound {
+                id: format!("c({a}, {c}, {d})"),
+            })?
+            .morphism_id;
+
+        let t2 = self
+            .v_tensor_mor
+            .get(&(id_cd.to_string(), c_abc.clone()))
+            .cloned()
+            .unwrap_or_else(|| format!("id tensor {c_abc}"));
+        Ok(self
+            .v_compose
+            .get(&(c_acd.clone(), t2.clone()))
+            .cloned()
+            .unwrap_or_else(|| format!("{c_acd} . {t2}")))
     }
 
     pub fn check_associativity(
@@ -335,32 +448,21 @@ impl EnrichedCategory {
         let hom_bc = self.get_hom_object(b, c)?;
         let hom_cd = self.get_hom_object(c, d)?;
 
-        let id_ab = self.v_identities.get(&hom_ab).cloned().unwrap_or_else(|| format!("id_{hom_ab}"));
-        let id_cd = self.v_identities.get(&hom_cd).cloned().unwrap_or_else(|| format!("id_{hom_cd}"));
+        let id_ab = self
+            .v_identities
+            .get(&hom_ab)
+            .cloned()
+            .unwrap_or_else(|| format!("id_{hom_ab}"));
+        let id_cd = self
+            .v_identities
+            .get(&hom_cd)
+            .cloned()
+            .unwrap_or_else(|| format!("id_{hom_cd}"));
 
-        let c_bcd = &self.compositions.get(&(b.to_string(), c.to_string(), d.to_string())).ok_or_else(|| {
-            HigherCategoryError::OneCellNotFound { id: format!("c({b}, {c}, {d})") }
-        })?.morphism_id;
-
-        let c_abc = &self.compositions.get(&(a.to_string(), b.to_string(), c.to_string())).ok_or_else(|| {
-            HigherCategoryError::OneCellNotFound { id: format!("c({a}, {b}, {c})") }
-        })?.morphism_id;
-
-        let c_abd = &self.compositions.get(&(a.to_string(), b.to_string(), d.to_string())).ok_or_else(|| {
-            HigherCategoryError::OneCellNotFound { id: format!("c({a}, {b}, {d})") }
-        })?.morphism_id;
-
-        let c_acd = &self.compositions.get(&(a.to_string(), c.to_string(), d.to_string())).ok_or_else(|| {
-            HigherCategoryError::OneCellNotFound { id: format!("c({a}, {c}, {d})") }
-        })?.morphism_id;
-
-        let t1 = self.v_tensor_mor.get(&(c_bcd.clone(), id_ab)).cloned().unwrap_or_else(|| format!("{c_bcd} tensor id"));
-        let p1_comp = self.v_compose.get(&(c_abd.clone(), t1.clone())).cloned().unwrap_or_else(|| format!("{c_abd} . {t1}"));
-        let alpha = self.associators.get(&(hom_cd, hom_bc, hom_ab)).cloned().unwrap_or_else(|| "alpha".to_string());
-        let lhs = self.v_compose.get(&(p1_comp.clone(), alpha.clone())).cloned().unwrap_or_else(|| format!("{p1_comp} . {alpha}"));
-
-        let t2 = self.v_tensor_mor.get(&(id_cd, c_abc.clone())).cloned().unwrap_or_else(|| format!("id tensor {c_abc}"));
-        let rhs = self.v_compose.get(&(c_acd.clone(), t2.clone())).cloned().unwrap_or_else(|| format!("{c_acd} . {t2}"));
+        let lhs = self.compute_associativity_lhs(
+            a, b, c, d, &hom_ab, &hom_bc, &hom_cd, &id_ab,
+        )?;
+        let rhs = self.compute_associativity_rhs(a, b, c, d, &id_cd)?;
 
         if lhs != rhs {
             return Err(HigherCategoryError::EnrichedAssociativityViolation {

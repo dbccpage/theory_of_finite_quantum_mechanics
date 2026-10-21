@@ -64,12 +64,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "6a515e684ec9c2e72e025b92932434369f52e5c8023b023a2c223fe238bd726c",
-  "current_scoring": null,
+  "current_contract": "2172d098ddd9e96b0ee1ac8c7dab6fb52d95706b8319e580312e327b7016df59",
+  "current_scoring": "99dfc52ecfcae57c4719b20b79f831e1e31e3afb1bc49db9e0bcd8ceec75940b",
   "contract_history": [
     {
-      "sha256": "6a515e684ec9c2e72e025b92932434369f52e5c8023b023a2c223fe238bd726c",
-      "bytes": 1137,
+      "sha256": "2172d098ddd9e96b0ee1ac8c7dab6fb52d95706b8319e580312e327b7016df59",
+      "bytes": 1466,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_symbol_game_runtime:packets:v1.0.0",
@@ -132,13 +132,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_symbol_game_runtime:packets:v1.0.0\ntitle: Candidate packets, host round records, and frontier state.  Merge spec sections\n  6.3–6.5. The separation those section...\nkind: rust_file_contract\nstatus: active\ncrate: omega_symbol_game_runtime\nfile: crates_rs/omega_symbol_game_runtime/src/packets.rs\nmodule: packets\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_symbol_game_runtime\n  module: packets\n  file: crates_rs/omega_symbol_game_runtime/src/packets.rs\nsymbols:\n- SealError\n- MoveKind\n- as_str\n- Finding\n- Obligation\n- CandidateMovePacket\n- new\n- authority_effect\n- ParseResult\n- Disposition\n- LocalReplayStatus\n- RoundRecord\n- seal\n- canonical_digest\n- StopReason\n- Budget\n- is_exhausted\n- spend_round\n- FrontierState\n- root\n- successor\n- open_obligations\n- classify_stop\n- TerminalProposal\nowns:\n- seal_error\n- move_kind\n- as_str\n- finding\n- obligation\n- candidate_move_packet\n- new\n- authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_symbol_game_runtime:packets:v1.0.0\",\n  \"title\": \"Candidate packets, host round records, and frontier state.  Merge spec sections 6.3–6.5. The separation those section...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_symbol_game_runtime\",\n  \"file\": \"crates_rs/omega_symbol_game_runtime/src/packets.rs\",\n  \"module\": \"packets\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_symbol_game_runtime\",\n    \"module\": \"packets\",\n    \"file\": \"crates_rs/omega_symbol_game_runtime/src/packets.rs\"\n  },\n  \"symbols\": [\n    \"SealError\",\n    \"MoveKind\",\n    \"as_str\",\n    \"Finding\",\n    \"Obligation\",\n    \"CandidateMovePacket\",\n    \"new\",\n    \"authority_effect\",\n    \"ParseResult\",\n    \"Disposition\",\n    \"LocalReplayStatus\",\n    \"RoundRecord\",\n    \"seal\",\n    \"canonical_digest\",\n    \"StopReason\",\n    \"Budget\",\n    \"is_exhausted\",\n    \"spend_round\",\n    \"FrontierState\",\n    \"root\",\n    \"successor\",\n    \"open_obligations\",\n    \"classify_stop\",\n    \"TerminalProposal\"\n  ],\n  \"owns\": [\n    \"seal_error\",\n    \"move_kind\",\n    \"as_str\",\n    \"finding\",\n    \"obligation\",\n    \"candidate_move_packet\",\n    \"new\",\n    \"authority_effect\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/omega_symbol_game_runtime_packets.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "99dfc52ecfcae57c4719b20b79f831e1e31e3afb1bc49db9e0bcd8ceec75940b",
+      "bytes": 2241,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/omega_symbol_game_runtime_packets_contract.py",
+          "sha256": "c0a0b7238c6b6d2a5e61107d578c98071ea0f8fe93eee6b3bcd58b57a86f1f59"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:omega-symbol-game-runtime-packets-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/omega_symbol_game_runtime_packets_contract.py\",\n    \"sha256\": \"c0a0b7238c6b6d2a5e61107d578c98071ea0f8fe93eee6b3bcd58b57a86f1f59\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:omega-symbol-game-runtime-packets-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/omega_symbol_game_runtime_packets_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/omega_symbol_game_runtime_packets.contract.yaml": "6a515e684ec9c2e72e025b92932434369f52e5c8023b023a2c223fe238bd726c"
   },

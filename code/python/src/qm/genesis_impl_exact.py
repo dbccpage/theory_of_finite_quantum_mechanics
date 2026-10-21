@@ -5,26 +5,67 @@ from collections import deque
 
 def need(p):
     if not p:raise ValueError('outside admitted finite domain')
+def _admit_exact_scalar(v, max_bits=1024) -> Q:
+    if type(v) is bool:
+        raise TypeError("Boolean unadmitted on exact path")
+    if isinstance(v, float):
+        raise TypeError("Float unadmitted on exact path")
+    if isinstance(v, (int, Q)):
+        num = v.numerator if isinstance(v, Q) else v
+        den = v.denominator if isinstance(v, Q) else 1
+        if type(num) is not int or type(den) is not int:
+            raise TypeError("Scalar numerator and denominator must be int")
+        if num.bit_length() > max_bits or den.bit_length() > max_bits:
+            raise ValueError(f"Integer exceeds {max_bits} bits")
+        return Q(num, den)
+    if isinstance(v, str):
+        f = Q(v)
+        if f.numerator.bit_length() > max_bits or f.denominator.bit_length() > max_bits:
+            raise ValueError(f"Integer exceeds {max_bits} bits")
+        return Q(f.numerator, f.denominator)
+    raise TypeError(f"Unadmitted scalar type: {type(v)}")
+
 def I(v,l,h):need(v.denominator==1 and l<=v<=h);return int(v)
-def pair(a,b):return (Q(a),Q(b))
+def pair(a,b):return (_admit_exact_scalar(a),_admit_exact_scalar(b))
 def add(z,w):return (z[0]+w[0],z[1]+w[1])
 def neg(z):return (-z[0],-z[1])
 def mul(z,w,cycl=False):
     a,b=z;c,d=w;return (a*c-b*d,a*d+b*c-(b*d if cycl else 0))
 def star(z,cycl=False):return (z[0]-(z[1] if cycl else 0),-z[1])
+def inv(z,cycl=False):
+    s=star(z,cycl)
+    norm=mul(z,s,cycl)[0]
+    if norm==0:raise ZeroDivisionError('cannot invert zero element')
+    return (s[0]/norm,s[1]/norm)
 def power(z,k,cycl=False):
-    if k<0:return power(star(z,cycl),-k,cycl)
+    if k<0:return power(inv(z,cycl),-k,cycl)
     o=pair(1,0)
     for _ in range(k):o=mul(o,z,cycl)
     return o
-def pm(A,B,cycl=False):return [[sum_pair(mul(A[i][k],B[k][j],cycl) for k in range(len(B))) for j in range(len(B[0]))] for i in range(len(A))]
+def pm(A,B,cycl=False):
+    if not A or not B or not A[0] or not B[0]:
+        raise ValueError('empty matrix unadmitted')
+    k=len(A[0])
+    if any(len(row)!=k for row in A):raise ValueError('ragged matrix A')
+    if len(B)!=k:raise ValueError(f'incompatible matrix dimensions: {k} vs {len(B)}')
+    n=len(B[0])
+    if any(len(row)!=n for row in B):raise ValueError('ragged matrix B')
+    return [[sum_pair(mul(A[i][p],B[p][j],cycl) for p in range(k)) for j in range(n)] for i in range(len(A))]
 def sum_pair(v):
     o=pair(0,0)
     for z in v:o=add(o,z)
     return o
 def dagger(A,cycl=False):return [[star(A[j][i],cycl) for j in range(len(A))] for i in range(len(A[0]))]
 def pf(A):return [v for row in A for z in row for v in z]
-def mm(A,B):return [[sum(a*b for a,b in zip(row,col)) for col in zip(*B)] for row in A]
+def mm(A,B):
+    if not A or not B or not A[0] or not B[0]:
+        raise ValueError('empty matrix unadmitted')
+    k=len(A[0])
+    if any(len(row)!=k for row in A):raise ValueError('ragged matrix A')
+    if len(B)!=k:raise ValueError(f'incompatible matrix dimensions: {k} vs {len(B)}')
+    n=len(B[0])
+    if any(len(row)!=n for row in B):raise ValueError('ragged matrix B')
+    return [[sum(A[i][p]*B[p][j] for p in range(k)) for j in range(n)] for i in range(len(A))]
 def flat(A):return [v for r in A for v in r]
 def tr(A):return list(map(list,zip(*A)))
 def graph(mask,n=3):return {(i,j) for i in range(n) for j in range(n) if mask>>(n*i+j)&1}
@@ -127,7 +168,7 @@ def normal_graph(which):
     return [n,len(E),len(roots),beta,len(forms),2**beta]+tree+[-1]+normals+sizes+forms
 
 def evaluate(kind,values):
-    x=list(map(Q,values))
+    x=[_admit_exact_scalar(v) for v in values]
     if kind=='weyl':
         need(len(x)==11);a,b=[I(z,0,2) for z in x[:2]];A=[[pair(x[2+3*i+j],0) for j in range(3)] for i in range(3)];w=pair(0,1)
         def W(c,d):return [[power(w,d*j,True) if i==(j+c)%3 else pair(0,0) for j in range(3)] for i in range(3)]

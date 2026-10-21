@@ -6,7 +6,7 @@ floating-point conversion).
 Claim: urn:omega:fqm:fusion:exact-ring-control:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/fusion_categories/test_fusion_control.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 7; AST Sonar cognitive complexity max 6; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 7.
+Gate 5: use source-bound measurements in the companion history.
 Scope Fence: Ising, Fibonacci, toric-code, and Rep(S3) tables are checked
 as based rings with an exact dimension homomorphism into Q or Q(sqrt(d)).
 This file does not categorify those rings, does not supply F-symbols, and
@@ -22,6 +22,13 @@ from typing import Mapping, Sequence
 
 MAX_RANK: int = 32
 MAX_FUSION_WORD: int = 1 << 14
+# Declared engineering admission/work policies, not fusion-theoretic constants.
+MAX_INPUT_BITS = 1024
+MAX_WORK_BITS = 8192
+MAX_DISCRIMINANT = 1_000_000
+MAX_LABEL_CHARACTERS = 256
+MAX_GROUP_FACTORS = 5  # every factor >= 2 and group order <= 32
+MAX_LAW_PRODUCTS = 2_000_000
 
 
 class FusionError(ValueError):
@@ -40,25 +47,47 @@ def _fail(invariant: str, **parameters: object) -> FusionError:
 
 
 def _require_int(value: object, role: str) -> int:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the fusion boundary", role=role, received="float")
-    if isinstance(value, bool):
+    if type(value) is bool:
         raise _fail("boolean refused where an integer was required", role=role)
-    if isinstance(value, int):
+    if type(value) is int:
+        _require_bits(value, role)
         return value
     raise _fail("value is not an integer", role=role, received=type(value).__name__)
 
 
 def _require_fraction(value: object, role: str) -> Fraction:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the fusion boundary", role=role, received="float")
-    if isinstance(value, bool):
+    if type(value) is bool:
         raise _fail("boolean refused where a rational was required", role=role)
-    if isinstance(value, Fraction):
+    if type(value) is Fraction:
+        _require_bits(value.numerator, role)
+        _require_bits(value.denominator, role)
         return value
-    if isinstance(value, int):
+    if type(value) is int:
+        _require_bits(value, role)
         return Fraction(value)
     raise _fail("value is not an exact rational", role=role, received=type(value).__name__)
+
+
+def _require_bits(value: int, role: str, limit: int = MAX_INPUT_BITS) -> None:
+    if value.bit_length() > limit:
+        raise _fail("integer bit budget exceeded", role=role, bits=value.bit_length(), limit=limit)
+
+
+def _require_sequence(value: object, role: str, limit: int) -> tuple:
+    if type(value) not in (list, tuple):
+        raise _fail("expected built-in finite sequence", role=role, received=type(value).__name__)
+    if len(value) > limit:
+        raise _fail("sequence entry budget exceeded", role=role, limit=limit)
+    return tuple(value)
+
+
+def _operation_budget(products: int, role: str) -> None:
+    if products > MAX_LAW_PRODUCTS:
+        raise _fail("operation product budget exceeded", role=role, products=products, limit=MAX_LAW_PRODUCTS)
 
 
 def _absorb(radical: Fraction, disc: int) -> tuple[Fraction, int]:
@@ -78,13 +107,17 @@ def _absorb(radical: Fraction, disc: int) -> tuple[Fraction, int]:
 def _canonicalize(real: Fraction, radical: Fraction, disc: int) -> tuple[Fraction, Fraction, int]:
     if disc <= 0:
         raise _fail("quadratic discriminant is not positive", disc=disc)
+    if disc > MAX_DISCRIMINANT:
+        raise _fail("quadratic discriminant budget exceeded", limit=MAX_DISCRIMINANT)
+    if radical == 0:
+        return real, Fraction(0), 1
     reduced_radical, reduced_disc = _absorb(radical, disc)
     if reduced_disc == 1:
         return real + reduced_radical, Fraction(0), 1
     return real, reduced_radical, reduced_disc
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, slots=True, init=False)
 class QuadraticRational:
     """Exact element a + b * sqrt(disc) of a quadratic field."""
 
@@ -92,14 +125,21 @@ class QuadraticRational:
     b: Fraction
     disc: int
 
-    def __post_init__(self) -> None:
-        real = _require_fraction(self.a, "quadratic real part")
-        radical = _require_fraction(self.b, "quadratic radical part")
-        disc = _require_int(self.disc, "quadratic discriminant")
+    def __init__(self, a: object, b: object, disc: object) -> None:
+        if hasattr(self, "a"):
+            raise _fail("quadratic value already initialized")
+        real = _require_fraction(a, "quadratic real part")
+        radical = _require_fraction(b, "quadratic radical part")
+        disc = _require_int(disc, "quadratic discriminant")
         canonical = _canonicalize(real, radical, disc)
+        _require_fraction(canonical[0], "canonical real part")
+        _require_fraction(canonical[1], "canonical radical part")
         object.__setattr__(self, "a", canonical[0])
         object.__setattr__(self, "b", canonical[1])
         object.__setattr__(self, "disc", canonical[2])
+
+    def __init_subclass__(cls, **kwargs: object) -> None:
+        raise TypeError("QuadraticRational does not admit subclasses")
 
     def scale_int(self, factor: object) -> QuadraticRational:
         number = _require_int(factor, "scale")
@@ -107,16 +147,18 @@ class QuadraticRational:
 
     def __add__(self, other: QuadraticRational) -> QuadraticRational:
         left, right = _align(self, other)
-        return QuadraticRational(left.a + right.a, left.b + right.b, left.disc)
+        disc = right.disc if left.b == 0 else left.disc
+        return QuadraticRational(left.a + right.a, left.b + right.b, disc)
 
     def __mul__(self, other: QuadraticRational) -> QuadraticRational:
         left, right = _align(self, other)
         real = left.a * right.a + left.b * right.b * left.disc
         radical = left.a * right.b + left.b * right.a
-        return QuadraticRational(real, radical, left.disc)
+        disc = right.disc if left.b == 0 else left.disc
+        return QuadraticRational(real, radical, disc)
 
     def __eq__(self, other: object) -> bool:
-        if not isinstance(other, QuadraticRational):
+        if type(other) is not QuadraticRational:
             return False
         return self.a == other.a and self.b == other.b and self.disc == other.disc
 
@@ -125,12 +167,14 @@ class QuadraticRational:
 
 
 def _align(left: QuadraticRational, right: QuadraticRational) -> tuple[QuadraticRational, QuadraticRational]:
+    if type(left) is not QuadraticRational or type(right) is not QuadraticRational:
+        raise _fail("quadratic operation requires admitted values")
     if left.disc == right.disc:
         return left, right
     if left.b == 0:
-        return QuadraticRational(left.a, Fraction(0), right.disc), right
+        return left, right
     if right.b == 0:
-        return left, QuadraticRational(right.a, Fraction(0), left.disc)
+        return left, right
     raise _fail("quadratic discriminants differ", left=left.disc, right=right.disc)
 
 
@@ -154,13 +198,23 @@ class RingDefect:
     labels: tuple[int, ...] = ()
 
 
+@dataclass(frozen=True, slots=True, init=False, eq=False)
 class AbelianGroup:
     """Finite abelian group Z_{m_1} x ... x Z_{m_r} in mixed radix."""
 
+    _moduli: tuple[int, ...]
+    _order: int
+
     def __init__(self, moduli: Sequence[object]) -> None:
+        if hasattr(self, "_moduli"):
+            raise _fail("group already initialized")
         parsed = _parse_moduli(moduli)
-        self._moduli = parsed
-        self._order = _group_order(parsed)
+        order = _group_order(parsed)
+        object.__setattr__(self, "_moduli", parsed)
+        object.__setattr__(self, "_order", order)
+
+    def __init_subclass__(cls, **kwargs: object) -> None:
+        raise TypeError("AbelianGroup does not admit subclasses")
 
     @property
     def moduli(self) -> list[int]:
@@ -189,8 +243,7 @@ class AbelianGroup:
 
 
 def _parse_moduli(moduli: Sequence[object]) -> tuple[int, ...]:
-    if isinstance(moduli, (str, bytes)) or not isinstance(moduli, (list, tuple)):
-        raise _fail("moduli are not a sequence", received=type(moduli).__name__)
+    moduli = _require_sequence(moduli, "moduli", MAX_GROUP_FACTORS)
     if len(moduli) == 0:
         raise _fail("moduli are empty")
     parsed: list[int] = []
@@ -225,6 +278,7 @@ def _digits(label: int, moduli: tuple[int, ...]) -> list[int]:
 
 
 def _label_from_digits(digits: Sequence[object], moduli: tuple[int, ...]) -> int:
+    digits = _require_sequence(digits, "digits", MAX_GROUP_FACTORS)
     if len(digits) != len(moduli):
         raise _fail("digit width does not match the moduli", width=len(digits), moduli=len(moduli))
     label = 0
@@ -253,15 +307,26 @@ def _component_neg(digits: list[int], moduli: tuple[int, ...]) -> list[int]:
     return negated
 
 
+@dataclass(frozen=True, slots=True, init=False, eq=False)
 class FusionTable:
     """Declared fusion table N_{ab}^c. Ring laws are not yet enforced."""
 
+    _rank: int
+    _n: tuple[int, ...]
+    _names: tuple[str, ...]
+
     def __init__(self, rank: object, multiplicities: Sequence[object], names: Sequence[object] | None = None) -> None:
+        if hasattr(self, "_rank"):
+            raise _fail("fusion table already initialized")
         width = _require_rank(rank)
         flat = _parse_multiplicities(multiplicities, width)
-        self._rank = width
-        self._n = flat
-        self._names = _parse_names(names, width)
+        labels = _parse_names(names, width)
+        object.__setattr__(self, "_rank", width)
+        object.__setattr__(self, "_n", flat)
+        object.__setattr__(self, "_names", labels)
+
+    def __init_subclass__(cls, **kwargs: object) -> None:
+        raise TypeError("FusionTable does not admit subclasses")
 
     @classmethod
     def from_3d(cls, tensor: Sequence[object], names: Sequence[object] | None = None) -> FusionTable:
@@ -283,6 +348,7 @@ class FusionTable:
         return self._n[(a * self._rank + b) * self._rank + c]
 
     def first_defect(self) -> RingDefect | None:
+        _operation_budget(2 * self.rank ** 5, "fusion laws")
         defect = _unit_defect(self)
         if defect is not None:
             return defect
@@ -306,8 +372,7 @@ def _require_rank(rank: object) -> int:
 
 
 def _parse_multiplicities(multiplicities: Sequence[object], rank: int) -> tuple[int, ...]:
-    if isinstance(multiplicities, (str, bytes)) or not isinstance(multiplicities, (list, tuple)):
-        raise _fail("multiplicities are not a sequence", received=type(multiplicities).__name__)
+    multiplicities = _require_sequence(multiplicities, "multiplicities", MAX_RANK ** 3)
     expected = rank * rank * rank
     if len(multiplicities) != expected:
         raise _fail("multiplicity width is not rank cubed", expected=expected, received=len(multiplicities))
@@ -327,8 +392,7 @@ def _multiplicity_at(item: object, index: int) -> int:
 def _parse_names(names: Sequence[object] | None, rank: int) -> tuple[str, ...]:
     if names is None:
         return tuple(str(index) for index in range(rank))
-    if isinstance(names, (str, bytes)) or not isinstance(names, (list, tuple)):
-        raise _fail("names are not a sequence", received=type(names).__name__)
+    names = _require_sequence(names, "names", MAX_RANK)
     if len(names) != rank:
         raise _fail("name width is not the rank", expected=rank, received=len(names))
     parsed: list[str] = []
@@ -338,15 +402,16 @@ def _parse_names(names: Sequence[object] | None, rank: int) -> tuple[str, ...]:
 
 
 def _name_at(item: object, index: int) -> str:
-    if not isinstance(item, str) or item == "":
+    if type(item) is not str or item == "":
         raise _fail("fusion name is not a non-empty string", index=index, received=type(item).__name__)
+    if len(item) > MAX_LABEL_CHARACTERS:
+        raise _fail("fusion name length budget exceeded", index=index, limit=MAX_LABEL_CHARACTERS)
     return item
 
 
 def _flatten_tensor(tensor: Sequence[object]) -> tuple[list[int], int]:
-    if isinstance(tensor, (str, bytes)) or not isinstance(tensor, (list, tuple)):
-        raise _fail("fusion tensor is not a sequence", received=type(tensor).__name__)
-    rank = len(tensor)
+    tensor = _require_sequence(tensor, "tensor", MAX_RANK)
+    rank = _require_rank(len(tensor))
     flat: list[int] = []
     for plane in tensor:
         flat.extend(_flatten_plane(plane, rank))
@@ -354,8 +419,7 @@ def _flatten_tensor(tensor: Sequence[object]) -> tuple[list[int], int]:
 
 
 def _flatten_plane(plane: object, rank: int) -> list[int]:
-    if isinstance(plane, (str, bytes)) or not isinstance(plane, (list, tuple)):
-        raise _fail("fusion plane is not a sequence", received=type(plane).__name__)
+    plane = _require_sequence(plane, "plane", MAX_RANK)
     if len(plane) != rank:
         raise _fail("fusion tensor is not cubic", expected=rank, received=len(plane))
     flat: list[int] = []
@@ -365,8 +429,7 @@ def _flatten_plane(plane: object, rank: int) -> list[int]:
 
 
 def _flatten_row(row: object, rank: int) -> list[int]:
-    if isinstance(row, (str, bytes)) or not isinstance(row, (list, tuple)):
-        raise _fail("fusion row is not a sequence", received=type(row).__name__)
+    row = _require_sequence(row, "row", MAX_RANK)
     if len(row) != rank:
         raise _fail("fusion tensor is not cubic", expected=rank, received=len(row))
     return [_require_int(item, "multiplicity") for item in row]
@@ -527,17 +590,31 @@ def _reciprocal_at(table: FusionTable, duals: dict[int, int], labels: tuple[int,
     return table.n(out, duals[right], left) == value
 
 
+@dataclass(frozen=True, slots=True, init=False, eq=False)
 class FusionRing:
     """A based ring whose structure constants passed the fusion laws."""
 
+    _table: FusionTable
+    _rank: int
+    _duals: tuple[int, ...]
+    _vector: tuple[QuadraticRational, ...] | None
+
     def __init__(self, table: FusionTable) -> None:
+        if hasattr(self, "_table"):
+            raise _fail("fusion ring already initialized")
+        if type(table) is not FusionTable:
+            raise _fail("fusion ring requires an admitted table")
         defect = table.first_defect()
         if defect is not None:
             raise _fail("fusion table failed a ring law", defect=defect.defect_type, detail=defect.message)
-        self._table = table
-        self._rank = table.rank
-        self._duals = _dual_tuple(table)
-        self._vector: tuple[QuadraticRational, ...] | None = None
+        duals = _dual_tuple(table)
+        object.__setattr__(self, "_table", table)
+        object.__setattr__(self, "_rank", table.rank)
+        object.__setattr__(self, "_duals", duals)
+        object.__setattr__(self, "_vector", None)
+
+    def __init_subclass__(cls, **kwargs: object) -> None:
+        raise TypeError("FusionRing does not admit subclasses")
 
     @property
     def table(self) -> FusionTable:
@@ -566,6 +643,7 @@ class FusionRing:
         origin = _label_index(start, self._rank, "start")
         end = _label_index(target, self._rank, "target")
         factors = _parse_word(word, self._rank)
+        _operation_budget(len(factors) * self.rank ** 2, "fusion paths")
         state = _basis_state(self._rank, origin)
         for factor in factors:
             state = _fusion_step(self, factor, state)
@@ -583,7 +661,7 @@ class FusionRing:
 
     def _dimension_vector(self) -> tuple[QuadraticRational, ...]:
         if self._vector is None:
-            self._vector = _certified_dimensions(self._table)
+            object.__setattr__(self, "_vector", _certified_dimensions(self._table))
         return self._vector
 
     @classmethod
@@ -640,8 +718,7 @@ def _fusion_row(ring: FusionRing, label: int, right: int) -> list[int]:
 
 
 def _parse_word(word: Sequence[object], rank: int) -> tuple[int, ...]:
-    if isinstance(word, (str, bytes)) or not isinstance(word, (list, tuple)):
-        raise _fail("fusion word is not a sequence", received=type(word).__name__)
+    word = _require_sequence(word, "fusion word", MAX_FUSION_WORD)
     if len(word) > MAX_FUSION_WORD:
         raise _fail("fusion word exceeds MAX_FUSION_WORD", length=len(word), max_word=MAX_FUSION_WORD)
     return tuple(_label_index(item, rank, f"word[{index}]") for index, item in enumerate(word))
@@ -665,6 +742,7 @@ def _accumulate(ring: FusionRing, factor: int, source: int, weight: int, nxt: li
         return
     for target in range(len(nxt)):
         nxt[target] += weight * ring.n(factor, source, target)
+        _require_bits(nxt[target], "fusion path count", MAX_WORK_BITS)
 
 
 def _group_tensor(group: AbelianGroup) -> tuple[tuple[tuple[int, ...], ...], ...]:
@@ -795,8 +873,13 @@ def main() -> int:
     try:
         print(ising_global_dimension_rational())
     except FusionError as error:
-        print(f"{error.invariant}")
+        try:
+            print(f"{error.invariant}")
+        except (OSError, ValueError):
+            return 2
         return 1
+    except (OSError, ValueError):
+        return 2
     return 0
 
 

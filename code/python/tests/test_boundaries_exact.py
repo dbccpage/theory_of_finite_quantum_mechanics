@@ -49,4 +49,17 @@ class BoundaryChecks(unittest.TestCase):
     def test_bad_domains(self):
         for kind,x in [('registry',[12,9,11,11,7,10,16,7,5]),('survival',[1,2,0]),('relative',[1,1,1,0,1,0,0]),('threshold',[1,2,0,33,1,1,1,1,1]),('syndrome',[2]),('packet',[1,1,1,1,0,0,1]),('q8',[0,0,0,8,0]),('parity',[64]),('born',[0,0,0]),('synthesis',[4]),('proxy',[5]),('torsion',[0]+[0]*9)]:
             with self.subTest(kind=kind),self.assertRaises(ValueError):m.evaluate(kind,list(map(str,x)))
+    def test_exact_admission_enforcement(self):
+        # Finding 1 reproductions
+        with self.assertRaises(ValueError):
+            m.evaluate('registry', [True, 9, 11, 11, 7, 10, 15, 7, 5])
+        with self.assertRaises(ValueError):
+            m.evaluate('registry', [12, 9, 11, 11, 7, 10, 15.0, 7, 5])
+        with self.assertRaises(ValueError):
+            m.evaluate('registry', [12, 9, 11, 11, 7, 10, 15, 2**1026, 5])
+        with self.assertRaises(ValueError):
+            m.bits([0.5])
+        with self.assertRaises(ValueError):
+            m.mm([[1, 2]], [[3]])
 if __name__=='__main__':unittest.main()
+

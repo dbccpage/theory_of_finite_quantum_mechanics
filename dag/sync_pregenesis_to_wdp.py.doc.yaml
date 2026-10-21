@@ -1,0 +1,15 @@
+schema_id: finite-qm.code-companion.v1
+subject: dag/sync_pregenesis_to_wdp.py
+source_sha256: 29dd254c878db27ff6006acbdbc43d2aa331db650e98f79f43ec5aab4158f09a
+authority_effect: None
+purpose: Render the pre-genesis to WDP fragment into derivation papers, JSONL records, DAG nodes and routes,
+  and the owned index sections; --check, --lint and --merge modes.
+design:
+  profile: Standard-library Python over JSON and Markdown text; no floating point.
+  frozen_sources: Custody-pinned papers and external checkouts are read, never written.
+boundaries:
+- Writes no custody-pinned paper; synchronization establishes no mathematical claim.
+- Statuses are copied from the fragment; no status is promoted by rendering.
+evidence:
+- dag/derivations/PREGENESIS_TO_WDP_ROUTE.md
+- dag/fragments/pregenesis_to_wdp.json

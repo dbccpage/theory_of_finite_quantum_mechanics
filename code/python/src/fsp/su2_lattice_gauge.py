@@ -69,6 +69,7 @@ class SU2SpectrumAuditReceipt:
     uncancelled_defect_mass: float
     gin_quotiented_average_sign: float
     terminal_route: str
+    tolerance: float = 1e-12
 
 
 class SU2LatticePlaquetteModel:
@@ -150,8 +151,8 @@ class SU2LatticePlaquetteModel:
                         "flux_sector": q,
                         "link_spins": links,
                         "occupied_modes": set(occ),
-                        "total_energy": round(e_total, 6),
-                        "abs_weight": round(weight, 8),
+                        "total_energy": float(e_total),
+                        "abs_weight": float(weight),
                         "parity": net_sign,
                     })
                     path_id += 1
@@ -187,23 +188,25 @@ class SU2GinBridge:
         model: SU2LatticePlaquetteModel,
         beta: float = 1.0,
         model_name: str = "SU2_Lattice_Plaquette",
+        tolerance: float = 1e-12,
     ) -> SU2SpectrumAuditReceipt:
         """
         Indexes SU(2) gauge-matter paths into GIN mode posting lists and analyzes
-        the spectral overlap between positive and negative weight supports.
+        the spectral overlap between positive and negative weight supports under
+        a declared numerical tolerance.
         """
         paths = model.generate_gauge_matter_paths(beta=beta)
         total_modes = 8
 
         c = self.conn.cursor()
-        pos_weights: Set[float] = set()
-        neg_weights: Set[float] = set()
+        pos_raw: List[float] = []
+        neg_raw: List[float] = []
         pos_by_weight: Dict[float, List[int]] = defaultdict(list)
         neg_by_weight: Dict[float, List[int]] = defaultdict(list)
 
         for p in paths:
             cid = p["path_id"]
-            w = p["abs_weight"]
+            w = float(p["abs_weight"])
             s = p["parity"]
             occ = p["occupied_modes"]
 
@@ -223,33 +226,45 @@ class SU2GinBridge:
                 if is_occ:
                     self.posting_index[m].add(cid)
 
-            w_key = round(w, 8)
+            w_display = round(w, 10)
             if s > 0:
-                pos_weights.add(w_key)
-                pos_by_weight[w_key].append(cid)
+                pos_raw.append(w)
+                pos_by_weight[w_display].append(cid)
             else:
-                neg_weights.add(w_key)
-                neg_by_weight[w_key].append(cid)
+                neg_raw.append(w)
+                neg_by_weight[w_display].append(cid)
 
         self.conn.commit()
 
-        overlap = sorted(list(pos_weights.intersection(neg_weights)))
+        # Tolerance-based spectral matching between positive and negative weight sets
+        overlap_pos: Set[float] = set()
+        matched_pairs = 0
+        used_pos: Set[int] = set()
+        for i_neg, w_neg in enumerate(neg_raw):
+            best_match: Optional[int] = None
+            best_dist = tolerance + 1.0
+            for i_pos, w_pos in enumerate(pos_raw):
+                dist = abs(w_pos - w_neg)
+                if dist <= tolerance and i_pos not in used_pos:
+                    if dist < best_dist:
+                        best_match = i_pos
+                        best_dist = dist
+            if best_match is not None:
+                used_pos.add(best_match)
+                overlap_pos.add(round(pos_raw[best_match], 10))
+                matched_pairs += 1
+
+        overlap = sorted(list(overlap_pos))
         is_disjoint = len(overlap) == 0
 
         e_q0 = model.evaluate_magnetic_flux_energy(0)
         e_q1 = model.evaluate_magnetic_flux_energy(1)
         delta_s = abs(e_q1 - e_q0)
 
-        matched_pairs = 0
-        total_negatives = sum(len(l) for l in neg_by_weight.values())
-        total_positives = sum(len(l) for l in pos_by_weight.values())
-
-        if not is_disjoint:
-            for w in overlap:
-                pairs = min(len(pos_by_weight[w]), len(neg_by_weight[w]))
-                matched_pairs += pairs
-
+        total_positives = len(pos_raw)
+        total_negatives = len(neg_raw)
         unpartnered_negatives = total_negatives - matched_pairs
+
         raw_sum = sum(p["abs_weight"] * p["parity"] for p in paths)
         abs_sum = sum(p["abs_weight"] for p in paths)
         raw_sign = raw_sum / abs_sum if abs_sum > 0 else 0.0
@@ -275,12 +290,13 @@ class SU2GinBridge:
             flux_sectors_present=[0, 1],
             positive_weight_count=total_positives,
             negative_weight_count=total_negatives,
-            positive_weight_support=sorted(list(pos_weights)),
-            negative_weight_support=sorted(list(neg_weights)),
+            positive_weight_support=sorted(list(set(round(w, 10) for w in pos_raw))),
+            negative_weight_support=sorted(list(set(round(w, 10) for w in neg_raw))),
             spectral_overlap=overlap,
             is_disjoint=is_disjoint,
             action_gap_delta_s=round(delta_s, 6),
             uncancelled_defect_mass=round(uncancelled_mass, 8),
             gin_quotiented_average_sign=round(quotiented_sign, 6),
             terminal_route=terminal_route,
+            tolerance=tolerance,
         )

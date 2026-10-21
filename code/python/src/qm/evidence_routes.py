@@ -49,6 +49,8 @@ def _require_int(value: object, role: str) -> int:
     if type(value) is bool:
         raise _fail("boolean refused where an integer entry was required", role=role)
     if type(value) is int:
+        if value.bit_length() > 1024:
+            raise _fail("integer exceeds 1024 bits", role=role)
         return value
     raise _fail("matrix entry is not an integer", role=role, received=type(value).__name__)
 

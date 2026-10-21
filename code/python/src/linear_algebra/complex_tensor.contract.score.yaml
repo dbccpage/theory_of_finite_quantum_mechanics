@@ -1,0 +1,140 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/linear_algebra/complex_tensor.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/linear_algebra/complex_tensor.py",
+      "sha256": "7bd9c7c8be7f1791f607d9cf53041a1dde910dd1e1477c8dff8bffe3b7ca695c"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:linear-algebra:kronecker-mixed-product:v1",
+    "role": "library",
+    "purpose": "Kronecker product over Q and the mixed-product law. comment states that entry (i·p + k, j·q + l) of a ⊗ b is a[i][j]·b[k][l],",
+    "operations": {
+      "TensorError": "One violated Kronecker invariant, with the measured parameters.",
+      "kronecker": "Return a ⊗ b with entry (i·p + k, j·q + l) equal to a[i][j]·b[k][l].",
+      "mixed_product_defect": "Sum of absolute entries of (A ⊗ B)(C ⊗ D) − (AC) ⊗ (BD).",
+      "trace_product_defect": "Absolute value of tr(A ⊗ B) − tr(A) tr(B).",
+      "witness_block_entry": "Entry (2, 1) of the fixed 2×3 ⊗ 3×2 block. It is computed, not stored."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "ca066c35fa10ad962305ca8d37dceae101c26dd541ca08e243006a50212ce32e",
+  "current_scoring": "d97999c42e715301a591c90498d9571a28fef4e31671437ab25ce8cb959405fc",
+  "contract_history": [
+    {
+      "sha256": "ca066c35fa10ad962305ca8d37dceae101c26dd541ca08e243006a50212ce32e",
+      "bytes": 2145,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/linear_algebra/complex_tensor.py",
+          "sha256": "7bd9c7c8be7f1791f607d9cf53041a1dde910dd1e1477c8dff8bffe3b7ca695c"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:linear-algebra:kronecker-mixed-product:v1",
+        "role": "library",
+        "purpose": "Kronecker product over Q and the mixed-product law. comment states that entry (i·p + k, j·q + l) of a ⊗ b is a[i][j]·b[k][l],",
+        "operations": {
+          "TensorError": "One violated Kronecker invariant, with the measured parameters.",
+          "kronecker": "Return a ⊗ b with entry (i·p + k, j·q + l) equal to a[i][j]·b[k][l].",
+          "mixed_product_defect": "Sum of absolute entries of (A ⊗ B)(C ⊗ D) − (AC) ⊗ (BD).",
+          "trace_product_defect": "Absolute value of tr(A ⊗ B) − tr(A) tr(B).",
+          "witness_block_entry": "Entry (2, 1) of the fixed 2×3 ⊗ 3×2 block. It is computed, not stored."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/linear_algebra/complex_tensor.py\",\n    \"sha256\": \"7bd9c7c8be7f1791f607d9cf53041a1dde910dd1e1477c8dff8bffe3b7ca695c\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:linear-algebra:kronecker-mixed-product:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Kronecker product over Q and the mixed-product law. comment states that entry (i·p + k, j·q + l) of a ⊗ b is a[i][j]·b[k][l],\",\n  \"operations\": {\n    \"TensorError\": \"One violated Kronecker invariant, with the measured parameters.\",\n    \"kronecker\": \"Return a ⊗ b with entry (i·p + k, j·q + l) equal to a[i][j]·b[k][l].\",\n    \"mixed_product_defect\": \"Sum of absolute entries of (A ⊗ B)(C ⊗ D) − (AC) ⊗ (BD).\",\n    \"trace_product_defect\": \"Absolute value of tr(A ⊗ B) − tr(A) tr(B).\",\n    \"witness_block_entry\": \"Entry (2, 1) of the fixed 2×3 ⊗ 3×2 block. It is computed, not stored.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/linear_algebra/complex_tensor.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "d97999c42e715301a591c90498d9571a28fef4e31671437ab25ce8cb959405fc",
+      "bytes": 2217,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/linear_algebra/complex_tensor.py",
+          "sha256": "7bd9c7c8be7f1791f607d9cf53041a1dde910dd1e1477c8dff8bffe3b7ca695c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:linear-algebra:kronecker-mixed-product:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 5), Lizard CCN (max 5), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 5,
+          "lizard_ccn": 5,
+          "weighted_control_upper_bound": 4,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/linear_algebra/complex_tensor.py\",\n    \"sha256\": \"7bd9c7c8be7f1791f607d9cf53041a1dde910dd1e1477c8dff8bffe3b7ca695c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:linear-algebra:kronecker-mixed-product:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 5), Lizard CCN (max 5), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 5,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/linear_algebra/complex_tensor.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

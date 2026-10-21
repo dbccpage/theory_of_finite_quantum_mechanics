@@ -8,6 +8,45 @@ pub struct CoherenceReport {
     pub triangles_verified: usize,
 }
 
+fn compute_pentagon_path_a<B: Bicategory>(
+    bicat: &B,
+    f: &B::OneCell,
+    g: &B::OneCell,
+    h: &B::OneCell,
+    k: &B::OneCell,
+) -> Result<B::TwoCell, HigherCategoryError> {
+    let id_f_2 = bicat.id_2(f)?;
+    let id_k_2 = bicat.id_2(k)?;
+    let alpha_k_h_g = bicat.associator(g, h, k)?.forward;
+    let alpha_h_g_f = bicat.associator(f, g, h)?.forward;
+    let h_circ_g = bicat.compose_1(g, h)?;
+    let alpha_k_hg_f = bicat.associator(f, &h_circ_g, k)?.forward;
+
+    let step_a1 = bicat.compose_2_horizontal(&id_f_2, &alpha_k_h_g)?;
+    let step_a2 = alpha_k_hg_f;
+    let step_a3 = bicat.compose_2_horizontal(&alpha_h_g_f, &id_k_2)?;
+
+    let path_a_12 = bicat.compose_2_vertical(&step_a1, &step_a2)?;
+    bicat.compose_2_vertical(&path_a_12, &step_a3)
+}
+
+fn compute_pentagon_path_b<B: Bicategory>(
+    bicat: &B,
+    f: &B::OneCell,
+    g: &B::OneCell,
+    h: &B::OneCell,
+    k: &B::OneCell,
+) -> Result<B::TwoCell, HigherCategoryError> {
+    let g_circ_f = bicat.compose_1(f, g)?;
+    let k_circ_h = bicat.compose_1(h, k)?;
+    let alpha_kh_g_f = bicat.associator(f, g, &k_circ_h)?.forward;
+    let alpha_k_h_gf = bicat.associator(&g_circ_f, h, k)?.forward;
+
+    let step_b1 = alpha_kh_g_f;
+    let step_b2 = alpha_k_h_gf;
+    bicat.compose_2_vertical(&step_b1, &step_b2)
+}
+
 pub fn check_pentagon_coherence<B: Bicategory>(
     bicat: &B,
     f: &B::OneCell,
@@ -15,30 +54,8 @@ pub fn check_pentagon_coherence<B: Bicategory>(
     h: &B::OneCell,
     k: &B::OneCell,
 ) -> Result<(), HigherCategoryError> {
-    let id_f_2 = bicat.id_2(f)?;
-    let id_k_2 = bicat.id_2(k)?;
-
-    let alpha_k_h_g = bicat.associator(g, h, k)?.forward;
-    let alpha_h_g_f = bicat.associator(f, g, h)?.forward;
-
-    let h_circ_g = bicat.compose_1(g, h)?;
-    let g_circ_f = bicat.compose_1(f, g)?;
-    let k_circ_h = bicat.compose_1(h, k)?;
-
-    let alpha_k_hg_f = bicat.associator(f, &h_circ_g, k)?.forward;
-    let alpha_kh_g_f = bicat.associator(f, g, &k_circ_h)?.forward;
-    let alpha_k_h_gf = bicat.associator(&g_circ_f, h, k)?.forward;
-
-    let step_a1 = bicat.compose_2_horizontal(&id_f_2, &alpha_k_h_g)?;
-    let step_a2 = alpha_k_hg_f;
-    let step_a3 = bicat.compose_2_horizontal(&alpha_h_g_f, &id_k_2)?;
-
-    let path_a_12 = bicat.compose_2_vertical(&step_a1, &step_a2)?;
-    let path_a = bicat.compose_2_vertical(&path_a_12, &step_a3)?;
-
-    let step_b1 = alpha_kh_g_f;
-    let step_b2 = alpha_k_h_gf;
-    let path_b = bicat.compose_2_vertical(&step_b1, &step_b2)?;
+    let path_a = compute_pentagon_path_a(bicat, f, g, h, k)?;
+    let path_b = compute_pentagon_path_b(bicat, f, g, h, k)?;
 
     if path_a == path_b {
         Ok(())
@@ -81,13 +98,11 @@ pub fn check_triangle_coherence<B: Bicategory>(
     }
 }
 
-pub fn verify_bicategory_coherence<B: Bicategory>(
+fn count_verified_triangles<B: Bicategory>(
     bicat: &B,
     one_cells: &[B::OneCell],
-) -> Result<CoherenceReport, HigherCategoryError> {
+) -> Result<usize, HigherCategoryError> {
     let mut triangles = 0usize;
-    let mut pentagons = 0usize;
-
     for f in one_cells {
         for g in one_cells {
             if bicat.target_0_of_1(f)? == bicat.source_0_of_1(g)? {
@@ -96,24 +111,58 @@ pub fn verify_bicategory_coherence<B: Bicategory>(
             }
         }
     }
+    Ok(triangles)
+}
+
+fn verify_pentagons_for_h<B: Bicategory>(
+    bicat: &B,
+    one_cells: &[B::OneCell],
+    f: &B::OneCell,
+    g: &B::OneCell,
+    h: &B::OneCell,
+) -> Result<usize, HigherCategoryError> {
+    let mut count = 0usize;
+    for k in one_cells {
+        if bicat.target_0_of_1(h)? != bicat.source_0_of_1(k)? {
+            continue;
+        }
+        check_pentagon_coherence(bicat, f, g, h, k)?;
+        count = count.saturating_add(1);
+    }
+    Ok(count)
+}
+
+fn verify_pentagons_for_fg<B: Bicategory>(
+    bicat: &B,
+    one_cells: &[B::OneCell],
+    f: &B::OneCell,
+    g: &B::OneCell,
+) -> Result<usize, HigherCategoryError> {
+    let mut count = 0usize;
+    for h in one_cells {
+        if bicat.target_0_of_1(g)? != bicat.source_0_of_1(h)? {
+            continue;
+        }
+        let delta = verify_pentagons_for_h(bicat, one_cells, f, g, h)?;
+        count = count.saturating_add(delta);
+    }
+    Ok(count)
+}
+
+pub fn verify_bicategory_coherence<B: Bicategory>(
+    bicat: &B,
+    one_cells: &[B::OneCell],
+) -> Result<CoherenceReport, HigherCategoryError> {
+    let triangles = count_verified_triangles(bicat, one_cells)?;
+    let mut pentagons = 0usize;
 
     for f in one_cells {
         for g in one_cells {
             if bicat.target_0_of_1(f)? != bicat.source_0_of_1(g)? {
                 continue;
             }
-            for h in one_cells {
-                if bicat.target_0_of_1(g)? != bicat.source_0_of_1(h)? {
-                    continue;
-                }
-                for k in one_cells {
-                    if bicat.target_0_of_1(h)? != bicat.source_0_of_1(k)? {
-                        continue;
-                    }
-                    check_pentagon_coherence(bicat, f, g, h, k)?;
-                    pentagons = pentagons.saturating_add(1);
-                }
-            }
+            let delta = verify_pentagons_for_fg(bicat, one_cells, f, g)?;
+            pentagons = pentagons.saturating_add(delta);
         }
     }
 

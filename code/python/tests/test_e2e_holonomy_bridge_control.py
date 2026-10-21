@@ -155,7 +155,7 @@ def test_control_refuses_conductor_without_mu12() -> None:
         hbc.evaluate_holonomy_bridge_control(conductor=8)
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'holonomy_bridge.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'holonomy_bridge.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

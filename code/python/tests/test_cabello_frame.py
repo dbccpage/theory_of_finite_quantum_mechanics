@@ -20,6 +20,13 @@ class FrameTests(unittest.TestCase):
         rays=[[1,0],[0,1],[1,1]];rho=frame.tomography(rays,[Q(0),Q(1),Q(3,2)])
         self.assertEqual(rho,((Q(0),Q(1)),(Q(1),Q(1))))
         self.assertEqual(frame.quadratic(rho,[1,-1]),-1)
+    def test_combinatorial_budget_enforcement(self):
+        # Finding 5 reproductions: radius ceiling and ray dimension limits
+        with self.assertRaises(ValueError):
+            frame.certify([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]], [[0,1,2,3]], 100, 11)
+        with self.assertRaises(ValueError):
+            frame.system([[1]*17], [[0]])
 
 
 if __name__=='__main__':unittest.main()
+

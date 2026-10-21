@@ -109,7 +109,7 @@ fn partial_factor(
 }
 
 impl CheckedSelfReference {
-    pub fn new(data: SelfReferenceData) -> Result<Self, SelfReferenceError> {
+    fn validate_carrier(data: &SelfReferenceData) -> Result<(), SelfReferenceError> {
         let n = data.sigma.len();
         if n == 0
             || data.accessible_count == 0
@@ -119,8 +119,12 @@ impl CheckedSelfReference {
         {
             return Err(SelfReferenceError::InvalidCarrier);
         }
-        if data.presentation.len() != data.accessible_count
-            || data.sigma.iter().any(|&a| a >= data.accessible_count)
+        Ok(())
+    }
+
+    fn validate_maps(data: &SelfReferenceData) -> Result<(), SelfReferenceError> {
+        let n = data.sigma.len();
+        let invalid_lengths = data.presentation.len() != data.accessible_count
             || [
                 data.reports.len(),
                 data.provenance.len(),
@@ -129,7 +133,9 @@ impl CheckedSelfReference {
                 data.target.len(),
             ]
             .iter()
-            .any(|&len| len != n)
+            .any(|&len| len != n);
+        if invalid_lengths
+            || data.sigma.iter().any(|&a| a >= data.accessible_count)
             || data.context.iter().chain(&data.later).any(|&x| x >= n)
             || data
                 .reports
@@ -149,6 +155,10 @@ impl CheckedSelfReference {
         {
             return Err(SelfReferenceError::InvalidMap);
         }
+        Ok(())
+    }
+
+    fn validate_evidence(data: &SelfReferenceData) -> Result<(), SelfReferenceError> {
         for candidate in data.provenance.iter().flatten() {
             if candidate.source_observer >= data.observer_count
                 || candidate.target_observer >= data.observer_count
@@ -159,13 +169,44 @@ impl CheckedSelfReference {
                 return Err(SelfReferenceError::InvalidEvidence);
             }
         }
+        Ok(())
+    }
+
+    pub fn new(data: SelfReferenceData) -> Result<Self, SelfReferenceError> {
+        Self::validate_carrier(&data)?;
+        Self::validate_maps(&data)?;
+        Self::validate_evidence(&data)?;
         Ok(Self { data })
     }
+
     pub fn data(&self) -> &SelfReferenceData {
         &self.data
     }
+
     pub fn point_count(&self) -> usize {
         self.data.sigma.len()
+    }
+
+    fn verify_linkage(&self, x: usize, report: Option<usize>) -> bool {
+        let d = &self.data;
+        match (report, &d.provenance[x]) {
+            (Some(r), Some(p)) => {
+                p.source_observer == d.observer_id
+                    && p.target_observer == d.observer_id
+                    && p.captured_accessible == d.sigma[x]
+                    && p.reaccessed_accessible == d.sigma[x]
+                    && p.reported_value == r
+                    && d.generation.contains(&(d.sigma[x], r))
+            }
+            _ => false,
+        }
+    }
+
+    fn check_comparison(&self, report: Option<usize>, target: Option<usize>) -> bool {
+        match (report, target, &self.data.protocol) {
+            (Some(r), Some(b), Some(protocol)) => protocol.domain.contains(&(r, b)),
+            _ => false,
+        }
     }
 
     /// Exact per-state criteria for manuscript R1/R2/R3 under these bridges.
@@ -176,24 +217,11 @@ impl CheckedSelfReference {
         let d = &self.data;
         let report = d.reports[x];
         let linkage_provided = report.is_some() && d.provenance[x].is_some();
-        let linkage_verified = match (report, &d.provenance[x]) {
-            (Some(r), Some(p)) => {
-                p.source_observer == d.observer_id
-                    && p.target_observer == d.observer_id
-                    && p.captured_accessible == d.sigma[x]
-                    && p.reaccessed_accessible == d.sigma[x]
-                    && p.reported_value == r
-                    && d.generation.contains(&(d.sigma[x], r))
-            }
-            _ => false,
-        };
+        let linkage_verified = self.verify_linkage(x, report);
         let transported_report = d.reports[d.context[x]];
         let stability_available = report.is_some() && transported_report.is_some();
         let target = d.target[d.later[x]];
-        let comparison_available = match (report, target, &d.protocol) {
-            (Some(r), Some(b), Some(protocol)) => protocol.domain.contains(&(r, b)),
-            _ => false,
-        };
+        let comparison_available = self.check_comparison(report, target);
         Ok(SelfReferencePoint {
             report_available: report.is_some(),
             linkage_provided,

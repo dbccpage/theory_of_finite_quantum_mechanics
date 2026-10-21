@@ -93,6 +93,29 @@ class TestSignSql(unittest.TestCase):
         self.assertEqual(row[cols.index("rung_name")], "wheeler_dewitt_boundary")
         self.assertIn("PP/021", row[cols.index("source")])
 
+    def test_q2_q3_edge_cases_empty_presentation_and_zero_mass(self) -> None:
+        # Create an isolated connection with an empty presentation and a zero-mass presentation
+        import sqlite3
+        conn = sqlite3.connect(":memory:")
+        schema_text = (run_sign_sql.BASE / "schema.sql").read_text(encoding="utf-8")
+        conn.executescript(schema_text)
+        conn.execute("INSERT INTO systems VALUES(1, 'edge_system', 'Test Edge')")
+        conn.execute("INSERT INTO presentations VALUES(1, 1, 'empty_pres', 'basis1', 'Empty presentation')")
+        conn.execute("INSERT INTO presentations VALUES(2, 1, 'zero_mass', 'basis2', 'All Zeros')")
+        conn.execute("INSERT INTO paths VALUES(1, 1, 'path1', 'Test path')")
+        conn.execute("INSERT INTO path_weights VALUES(1, 2, 0, 1)")
+
+        cols_q2, rows_q2 = run_sign_sql.run_query(conn, self.queries["q2"])
+        zero_row = next(r for r in rows_q2 if r[cols_q2.index("presentation")] == "zero_mass")
+        self.assertEqual(zero_row[cols_q2.index("severity_status")], "undefined_zero_mass")
+
+        cols_q3, rows_q3 = run_sign_sql.run_query(conn, self.queries["q3"])
+        empty_row = next(r for r in rows_q3 if r[cols_q3.index("presentation")] == "empty_pres")
+        # An empty presentation without paths must not be classified as sign-free
+        self.assertEqual(empty_row[cols_q3.index("all_weights_nonnegative")], 0)
+        conn.close()
+
 
 if __name__ == "__main__":
     unittest.main()
+

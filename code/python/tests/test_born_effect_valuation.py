@@ -55,7 +55,9 @@ class RationalSphereTests(unittest.TestCase):
         self.assertTrue(m.is_ray((3,4,0)) and m.is_ray((1,2,2)) and m.is_ray((0,0,1)));self.assertFalse(m.is_ray((2,0,0)));self.assertFalse(m.is_ray((1,1,0)))
         self.assertEqual((m.parity((0,4,3)),m.parity((0,3,4)),m.parity((2,2,1))),(1,0,1))
     def test_parity_is_a_frame_function_on_all_orthogonal_triples_in_box(self):
-        c=m.parity_frame_check(5);self.assertTrue(c['all_sum_to_one']);self.assertGreater(c['orthogonal_triples'],10);self.assertEqual(c['values'],['0','1'])
+        c=m.parity_frame_check(5);self.assertTrue(c['nonvacuous'] and c['all_sum_to_one']);self.assertGreater(c['orthogonal_triples'],10);self.assertEqual(c['values'],['0','1'])
+    def test_parity_frame_check_is_not_vacuously_true(self):
+        c=m.parity_frame_check(0);self.assertEqual((c['orthogonal_triples'],c['nonvacuous'],c['all_sum_to_one']),(0,False,False))
     def test_parity_has_no_quadratic_representative(self):
         c=m.parity_quadratic_system(m.PARITY_WITNESS_RAYS);self.assertEqual(c['status'],'inconsistent')
         self.assertEqual(m.parity_quadratic_system(m.PARITY_WITNESS_RAYS[:5])['status'],'solution')

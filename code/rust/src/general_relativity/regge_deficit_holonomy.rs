@@ -103,6 +103,35 @@ pub struct DeclaredHingeStar {
     dihedral_turns: Vec<BigRational>,
 }
 impl DeclaredHingeStar {
+    fn validate_chamber_cycle(chamber_cycle: &[usize], n_turns: usize) -> Result<(), ReggeTurnRefusal> {
+        if n_turns < 3
+            || chamber_cycle.len() != n_turns + 1
+            || chamber_cycle.first() != chamber_cycle.last()
+            || chamber_cycle.iter().any(|&vertex| vertex >= MAX_GAUGE_DIMENSION)
+        {
+            return Err(ReggeTurnRefusal::InvalidHingeCycle);
+        }
+        let distinct: BTreeSet<_> = chamber_cycle.iter().take(n_turns).copied().collect();
+        if distinct.len() != n_turns {
+            return Err(ReggeTurnRefusal::InvalidHingeCycle);
+        }
+        Ok(())
+    }
+
+    fn validate_dihedral_turns(dihedral_turns: &[BigRational]) -> Result<(), ReggeTurnRefusal> {
+        if dihedral_turns.iter().any(|turn| !canonical(turn)) {
+            return Err(ReggeTurnRefusal::NonCanonicalRational("dihedral turns"));
+        }
+        let half = BigRational::new(1.into(), 2.into());
+        if dihedral_turns
+            .iter()
+            .any(|turn| turn <= &BigRational::zero() || turn >= &half)
+        {
+            return Err(ReggeTurnRefusal::DihedralTurnRange);
+        }
+        Ok(())
+    }
+
     pub fn try_new(
         hinge: usize,
         chamber_cycle: Option<Vec<usize>>,
@@ -116,33 +145,8 @@ impl DeclaredHingeStar {
         {
             return Err(ReggeTurnRefusal::Budget);
         }
-        if dihedral_turns.len() < 3
-            || chamber_cycle.len() != dihedral_turns.len() + 1
-            || chamber_cycle.first() != chamber_cycle.last()
-            || chamber_cycle
-                .iter()
-                .any(|&vertex| vertex >= MAX_GAUGE_DIMENSION)
-        {
-            return Err(ReggeTurnRefusal::InvalidHingeCycle);
-        }
-        let distinct: BTreeSet<_> = chamber_cycle
-            .iter()
-            .take(dihedral_turns.len())
-            .copied()
-            .collect();
-        if distinct.len() != dihedral_turns.len() {
-            return Err(ReggeTurnRefusal::InvalidHingeCycle);
-        }
-        if dihedral_turns.iter().any(|turn| !canonical(turn)) {
-            return Err(ReggeTurnRefusal::NonCanonicalRational("dihedral turns"));
-        }
-        let half = BigRational::new(1.into(), 2.into());
-        if dihedral_turns
-            .iter()
-            .any(|turn| turn <= &BigRational::zero() || turn >= &half)
-        {
-            return Err(ReggeTurnRefusal::DihedralTurnRange);
-        }
+        Self::validate_chamber_cycle(&chamber_cycle, dihedral_turns.len())?;
+        Self::validate_dihedral_turns(&dihedral_turns)?;
         Ok(Self {
             hinge,
             chamber_cycle,
@@ -170,18 +174,14 @@ pub struct DeclaredReggeTurnComplex {
     d2: BasicMatrix<BigRational>,
 }
 impl DeclaredReggeTurnComplex {
-    pub fn try_new(
-        source: Option<GaugeSource>,
-        quotient: &RationalGaugeQuotient,
-        d2: Option<BasicMatrix<BigRational>>,
-        limits: OperationLimits,
-    ) -> Result<Self, ReggeTurnRefusal> {
-        let source = source.ok_or(ReggeTurnRefusal::MissingSource)?;
-        let d2 = d2.ok_or(ReggeTurnRefusal::MissingData("d2"))?;
+    fn validate_d2_matrix(
+        d2: &BasicMatrix<BigRational>,
+        dim2: usize,
+    ) -> Result<(), ReggeTurnRefusal> {
         if d2.rows() > MAX_GAUGE_DIMENSION {
             return Err(ReggeTurnRefusal::Budget);
         }
-        if quotient.dimensions()[2] == 0 || d2.cols() != quotient.dimensions()[2] {
+        if dim2 == 0 || d2.cols() != dim2 {
             return Err(ReggeTurnRefusal::Shape("d2/hinge carrier"));
         }
         if d2.as_slice().iter().any(|value| !canonical(value)) {
@@ -192,6 +192,18 @@ impl DeclaredReggeTurnComplex {
         }) {
             return Err(ReggeTurnRefusal::NonIntegralIncidence);
         }
+        Ok(())
+    }
+
+    pub fn try_new(
+        source: Option<GaugeSource>,
+        quotient: &RationalGaugeQuotient,
+        d2: Option<BasicMatrix<BigRational>>,
+        limits: OperationLimits,
+    ) -> Result<Self, ReggeTurnRefusal> {
+        let source = source.ok_or(ReggeTurnRefusal::MissingSource)?;
+        let d2 = d2.ok_or(ReggeTurnRefusal::MissingData("d2"))?;
+        Self::validate_d2_matrix(&d2, quotient.dimensions()[2])?;
         quotient.replay_chain_law(limits)?;
         let product = d2
             .checked_mul_with_limits(quotient.d1(), limits)
@@ -228,16 +240,11 @@ impl DeclaredReggeTurnComplex {
         Ok(())
     }
 
-    pub fn evaluate(
-        &self,
-        stars: Option<&[DeclaredHingeStar]>,
-        representative: Option<&[BigRational]>,
+    fn validate_evaluate_budget(
+        stars: &[DeclaredHingeStar],
+        hinges: usize,
         limits: OperationLimits,
-    ) -> Result<ReggeDeficitReceipt, ReggeTurnRefusal> {
-        let stars = stars.ok_or(ReggeTurnRefusal::MissingData("hinge stars"))?;
-        let representative =
-            representative.ok_or(ReggeTurnRefusal::MissingData("connection cochain"))?;
-        let hinges = self.quotient.dimensions()[2];
+    ) -> Result<(), ReggeTurnRefusal> {
         if stars.len() > hinges {
             return Err(ReggeTurnRefusal::Shape("hinge stars"));
         }
@@ -254,8 +261,14 @@ impl DeclaredReggeTurnComplex {
         {
             return Err(ReggeTurnRefusal::Budget);
         }
-        self.replay_curvature_law(limits)?;
-        let curvature = self.quotient.curvature(representative, limits)?;
+        Ok(())
+    }
+
+    fn collect_star_deficits(
+        stars: &[DeclaredHingeStar],
+        hinges: usize,
+        curvature: &[BigRational],
+    ) -> Result<Vec<BigRational>, ReggeTurnRefusal> {
         let mut seen = BTreeSet::new();
         let mut deficits = vec![BigRational::zero(); hinges];
         for star in stars {
@@ -276,6 +289,23 @@ impl DeclaredReggeTurnComplex {
         if let Some(missing) = (0..hinges).find(|hinge| !seen.contains(hinge)) {
             return Err(ReggeTurnRefusal::MissingHinge(missing));
         }
+        Ok(deficits)
+    }
+
+    pub fn evaluate(
+        &self,
+        stars: Option<&[DeclaredHingeStar]>,
+        representative: Option<&[BigRational]>,
+        limits: OperationLimits,
+    ) -> Result<ReggeDeficitReceipt, ReggeTurnRefusal> {
+        let stars = stars.ok_or(ReggeTurnRefusal::MissingData("hinge stars"))?;
+        let representative =
+            representative.ok_or(ReggeTurnRefusal::MissingData("connection cochain"))?;
+        let hinges = self.quotient.dimensions()[2];
+        Self::validate_evaluate_budget(stars, hinges, limits)?;
+        self.replay_curvature_law(limits)?;
+        let curvature = self.quotient.curvature(representative, limits)?;
+        let deficits = Self::collect_star_deficits(stars, hinges, &curvature)?;
         let holonomy_turns = deficits.iter().cloned().map(RationalTurn::new).collect();
         Ok(ReggeDeficitReceipt {
             context: self.clone(),
@@ -289,15 +319,11 @@ impl DeclaredReggeTurnComplex {
         })
     }
 
-    pub fn boundary_holonomy(
+    fn compute_boundary_cycle(
         &self,
-        deficit: &ReggeDeficitReceipt,
-        three_chain: Option<&[BigInt]>,
+        three_chain: &[BigInt],
         limits: OperationLimits,
-    ) -> Result<BoundaryTurnReceipt, ReggeTurnRefusal> {
-        deficit.replay(self, limits)?;
-        let three_chain =
-            three_chain.ok_or(ReggeTurnRefusal::MissingData("integral three-chain"))?;
+    ) -> Result<Vec<BigRational>, ReggeTurnRefusal> {
         if three_chain.len() != self.d2.rows() {
             return Err(ReggeTurnRefusal::Shape("integral three-chain"));
         }
@@ -330,6 +356,33 @@ impl DeclaredReggeTurnComplex {
         if cycle_boundary.iter().any(|value| !value.is_zero()) {
             return Err(ReggeTurnRefusal::Replay("boundary cycle"));
         }
+        Ok(cycle)
+    }
+
+    fn extract_integral_boundary_cycle(
+        cycle: &[BigRational],
+    ) -> Result<Vec<BigInt>, ReggeTurnRefusal> {
+        cycle
+            .iter()
+            .map(|value| {
+                if !value.denom().is_one() {
+                    return Err(ReggeTurnRefusal::Replay("integral boundary cycle"));
+                }
+                Ok(value.numer().clone())
+            })
+            .collect()
+    }
+
+    pub fn boundary_holonomy(
+        &self,
+        deficit: &ReggeDeficitReceipt,
+        three_chain: Option<&[BigInt]>,
+        limits: OperationLimits,
+    ) -> Result<BoundaryTurnReceipt, ReggeTurnRefusal> {
+        deficit.replay(self, limits)?;
+        let three_chain =
+            three_chain.ok_or(ReggeTurnRefusal::MissingData("integral three-chain"))?;
+        let cycle = self.compute_boundary_cycle(three_chain, limits)?;
         let curvature_pairing = pair(&cycle, &deficit.curvature, limits)?;
         let deficit_pairing = pair(&cycle, &deficit.deficits, limits)?;
         let holonomy = RationalTurn::new(deficit_pairing.clone());
@@ -338,15 +391,7 @@ impl DeclaredReggeTurnComplex {
                 "oriented modulo-turn boundary identity",
             ));
         }
-        let boundary_cycle = cycle
-            .iter()
-            .map(|value| {
-                if !value.denom().is_one() {
-                    return Err(ReggeTurnRefusal::Replay("integral boundary cycle"));
-                }
-                Ok(value.numer().clone())
-            })
-            .collect::<Result<Vec<_>, _>>()?;
+        let boundary_cycle = Self::extract_integral_boundary_cycle(&cycle)?;
         Ok(BoundaryTurnReceipt {
             deficit: deficit.clone(),
             three_chain: three_chain.to_vec(),
@@ -496,24 +541,45 @@ impl So4EdgeTransport {
     }
 }
 
-pub fn ordered_so4_boundary(
-    source: Option<GaugeSource>,
-    edges: Option<&[So4EdgeTransport]>,
-    loops: Option<&[Vec<OrientedSo4Step>]>,
+fn validate_so4_dimension_bounds(
+    edges_len: usize,
+    loops_len: usize,
+    steps: usize,
     common_basepoint: usize,
-    limits: OperationLimits,
-) -> Result<So4BoundaryReceipt, ReggeTurnRefusal> {
-    let source = source.ok_or(ReggeTurnRefusal::MissingSource)?;
-    let edges = edges.ok_or(ReggeTurnRefusal::MissingData("SO4 edges"))?;
-    let loops = loops.ok_or(ReggeTurnRefusal::MissingData("SO4 boundary loops"))?;
+) -> Result<(), ReggeTurnRefusal> {
+    if edges_len > MAX_GAUGE_DIMENSION || loops_len > MAX_GAUGE_DIMENSION {
+        return Err(ReggeTurnRefusal::Budget);
+    }
+    if steps > 4096 || common_basepoint >= MAX_GAUGE_DIMENSION {
+        return Err(ReggeTurnRefusal::Budget);
+    }
+    Ok(())
+}
+
+fn validate_so4_inputs_nonempty(
+    edges: &[So4EdgeTransport],
+    loops: &[Vec<OrientedSo4Step>],
+) -> Result<(), ReggeTurnRefusal> {
     if edges.is_empty() || loops.is_empty() || loops.iter().any(Vec::is_empty) {
         return Err(ReggeTurnRefusal::MissingData("nonempty SO4 boundary word"));
     }
+    Ok(())
+}
+
+fn validate_so4_boundary_budget(
+    edges: &[So4EdgeTransport],
+    loops: &[Vec<OrientedSo4Step>],
+    common_basepoint: usize,
+    limits: OperationLimits,
+) -> Result<(), ReggeTurnRefusal> {
+    validate_so4_inputs_nonempty(edges, loops)?;
     let steps = loops.iter().try_fold(0usize, |count, face| {
         count
             .checked_add(face.len())
             .ok_or(ReggeTurnRefusal::Budget)
     })?;
+    validate_so4_dimension_bounds(edges.len(), loops.len(), steps, common_basepoint)?;
+
     let multiplications = steps
         .checked_add(loops.len())
         .ok_or(ReggeTurnRefusal::Budget)?;
@@ -522,18 +588,20 @@ pub fn ordered_so4_boundary(
         .and_then(|count| count.checked_add(1))
         .and_then(|count| count.checked_mul(16))
         .ok_or(ReggeTurnRefusal::Budget)?;
-    if edges.len() > MAX_GAUGE_DIMENSION
-        || loops.len() > MAX_GAUGE_DIMENSION
-        || steps > 4096
-        || matrix_elements > limits.max_elements
-        || multiplications
-            .checked_mul(128)
-            .ok_or(ReggeTurnRefusal::Budget)?
-            > limits.max_scalar_ops
-        || common_basepoint >= MAX_GAUGE_DIMENSION
-    {
+    let scalar_ops = multiplications
+        .checked_mul(128)
+        .ok_or(ReggeTurnRefusal::Budget)?;
+    if matrix_elements > limits.max_elements || scalar_ops > limits.max_scalar_ops {
         return Err(ReggeTurnRefusal::Budget);
     }
+    Ok(())
+}
+
+fn verify_so4_word_cancellation(
+    edges: &[So4EdgeTransport],
+    loops: &[Vec<OrientedSo4Step>],
+    common_basepoint: usize,
+) -> Result<(), ReggeTurnRefusal> {
     let mut stack: Vec<OrientedSo4Step> = Vec::new();
     for face in loops {
         let mut vertex = common_basepoint;
@@ -565,6 +633,13 @@ pub fn ordered_so4_boundary(
     if !stack.is_empty() {
         return Err(ReggeTurnRefusal::UncancelledBoundaryWord);
     }
+    Ok(())
+}
+
+fn compute_so4_face_holonomies(
+    edges: &[So4EdgeTransport],
+    loops: &[Vec<OrientedSo4Step>],
+) -> Result<So4, ReggeTurnRefusal> {
     let mut face_holonomies = Vec::new();
     for face in loops {
         let mut transitions = Vec::new();
@@ -583,6 +658,24 @@ pub fn ordered_so4_boundary(
     if !ordered_product.is_identity() {
         return Err(ReggeTurnRefusal::Replay("SO4 ordered product"));
     }
+    Ok(ordered_product)
+}
+
+pub fn ordered_so4_boundary(
+    source: Option<GaugeSource>,
+    edges: Option<&[So4EdgeTransport]>,
+    loops: Option<&[Vec<OrientedSo4Step>]>,
+    common_basepoint: usize,
+    limits: OperationLimits,
+) -> Result<So4BoundaryReceipt, ReggeTurnRefusal> {
+    let source = source.ok_or(ReggeTurnRefusal::MissingSource)?;
+    let edges = edges.ok_or(ReggeTurnRefusal::MissingData("SO4 edges"))?;
+    let loops = loops.ok_or(ReggeTurnRefusal::MissingData("SO4 boundary loops"))?;
+
+    validate_so4_boundary_budget(edges, loops, common_basepoint, limits)?;
+    verify_so4_word_cancellation(edges, loops, common_basepoint)?;
+    let ordered_product = compute_so4_face_holonomies(edges, loops)?;
+
     Ok(So4BoundaryReceipt {
         source,
         edges: edges.to_vec(),

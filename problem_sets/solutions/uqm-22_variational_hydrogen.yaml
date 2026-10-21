@@ -1,0 +1,103 @@
+schema_version: 1
+problem_id: UQM-22
+title: Variational estimate for the hydrogen ground state
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  functional: E(alpha)=alpha^2/2-alpha=-1/2+(alpha-1)^2/2
+  minimum: alpha=1; E=-1/2 Hartree, equal to the exact ground energy
+  fixture: E(3/4)=-15/32; excess above -1/2 is 1/32 Hartree
+derivation:
+- step: 1
+  explanation: The volume element is 4pi r^2 dr. Using integral_0^infinity r^n exp(-beta r)dr=n!/beta^(n+1),
+    the norm is 4alpha^3 * 2/(2alpha)^3=1. Omitting the r^2 factor would normalize a different problem.
+- step: 2
+  explanation: Use the kinetic quadratic form T=one_half integral |gradient psi|^2 d^3x. Since the radial
+    derivative is -alpha psi, normalization immediately gives T=alpha^2/2. Boundary terms are controlled
+    by regularity and exponential decay.
+- step: 3
+  explanation: For the potential, <1/r>=4alpha^3 integral_0^infinity r exp(-2alpha r)dr=alpha. Thus V=-alpha
+    and E(alpha)=alpha^2/2-alpha.
+- step: 4
+  explanation: 'Complete the square: E=-1/2+(alpha-1)^2/2. The second term is nonnegative and vanishes
+    at alpha=1, which lies in the allowed domain. This proves the minimum within the entire trial family
+    without a numerical optimizer.'
+- step: 5
+  explanation: The variational principle says every trial expectation bounds the true ground energy from
+    above. Here the optimizing trial is the actual hydrogen ground wavefunction, so equality holds. A
+    generic trial family need not contain the true ground state.
+- step: 6
+  explanation: At alpha=3/4, T=9/32 and V=-3/4, giving -15/32. The excess above -1/2 is 1/32. The code
+    checks this square-completion residual and the arithmetic, while the integrals and variational principle
+    remain analytic inputs.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Compute kinetic and potential terms separately so units and signs are visible.
+    - Compare the gap with the completed-square expression.
+    - Evaluate the optimum independently at alpha=1.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          alpha=q(3,4); kinetic=alpha*alpha/2; potential=-alpha; energy=kinetic+potential
+          gap=energy+q(1,2)
+          return {"kinetic":str(kinetic),"potential":str(potential),"trial_energy":str(energy),
+                  "gap":str(gap),"square_completion_residual":str(gap-(alpha-1)**2/2),"optimal_energy":str(q(1,2)-1)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Use existing rational scalars for the trial parameter.
+    - Keep the energy components and excess energy as separate outputs.
+    - The zero residual is a pointwise algebra check; the nonnegative-square argument supplies the general
+      minimization.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let a=qr(3,4).unwrap(); let kinetic=&a*&a/q(2); let potential=-&a; let energy=&kinetic+&potential;
+          let gap=&energy+qr(1,2).unwrap(); let delta=&a-q(1);
+          json!({"kinetic":kinetic.to_string(),"potential":potential.to_string(),"trial_energy":energy.to_string(),
+              "gap":gap.to_string(),"square_completion_residual":(&gap-&delta*&delta/q(2)).to_string(),"optimal_energy":(qr(1,2).unwrap()-q(1)).to_string()})
+      }
+verification:
+  expected_outputs:
+    kinetic: 9/32
+    potential: -3/4
+    trial_energy: -15/32
+    gap: 1/32
+    square_completion_residual: '0'
+    optimal_energy: -1/2
+  computational_scope: Exact trial-energy evaluation and square-completion identity at one rational alpha.
+  not_established:
+  - The continuum integrals, operator-domain conditions and general variational theorem are not checked
+    in Lean here.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- An upper bound to a negative ground energy is a less negative number.
+- Normalization must use the three-dimensional radial measure.
+improvement_target:
+  gap: The integral reductions and global positivity proof are not executable certificates.
+  acceptance_criterion: Formalize those ingredients before marking a general continuum variational calculation
+    as verified.

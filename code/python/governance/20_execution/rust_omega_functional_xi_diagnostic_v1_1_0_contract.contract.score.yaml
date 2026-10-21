@@ -3,43 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/rust_omega_functional_xi_diagnostic_v1_1_0_contract.py",
   "contract": {
-    "schema_version": "omega.file_contract.v1",
-    "contract_id": "urn:omega:rust:omega_functional:xi_diagnostic:v1.1.0",
-    "title": "XiDiagnostic",
-    "status": "active",
-    "crate": "omega_types",
-    "file": "crates_rs/omega_types/src/xi_diagnostic.rs",
-    "role": "utility",
-    "authority_effect": "none",
-    "evidence_ceiling": "LocalReplay",
-    "customer_claim_allowed": false,
-    "runtime_enforcement": false,
-    "owns": [],
-    "does_not_own": [],
-    "may_call": [],
-    "must_not": [],
-    "exactness": {
-      "mode": "not_applicable",
-      "exact_constructor_required": false,
-      "approximate_modes_allowed": false
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/20_execution/rust_omega_functional_xi_diagnostic_v1_1_0_contract.py",
+      "sha256": "6d1d3ff0a49fd18ca401f9bb0767a9aa798de2400166096b5adcc259dda5e955"
     },
-    "forbidden_substrings": [],
-    "required_substrings": [],
-    "required_tests": [],
-    "lean_obligations": [],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_file_contract:file:v1.0.0"
-      ]
-    }
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:20_execution:rust-omega-functional-xi-diagnostic-v1-1-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:xi_diagnostic:v1.1.0 Schema Version: omega.file_contract.v1",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
   },
-  "current_contract": "40dae4ac5b5776b3d669b2378cb5617183af3ff9fb2125e77f863b42360715ca",
-  "current_scoring": null,
+  "current_contract": "16cc9f5bacbbcfaa7f716f571129fed169855fdedfa195e4409b500d464529e7",
+  "current_scoring": "ab5d994a3ca2696dc8b017d02355a387313fde5fe462bc9bcfa49cd41cf68cab",
   "contract_history": [
     {
-      "sha256": "40dae4ac5b5776b3d669b2378cb5617183af3ff9fb2125e77f863b42360715ca",
-      "bytes": 708,
+      "sha256": "62bc4278286ebf28ec0080566b3eb457a6d4ad791d8cefa808b60babf8d3ea2e",
+      "bytes": 883,
       "record": {
         "schema_version": "omega.file_contract.v1",
         "contract_id": "urn:omega:rust:omega_functional:xi_diagnostic:v1.1.0",
@@ -72,13 +67,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.file_contract.v1\ncontract_id: urn:omega:rust:omega_functional:xi_diagnostic:v1.1.0\ntitle: XiDiagnostic\nstatus: active\ncrate: omega_types\nfile: crates_rs/omega_types/src/xi_diagnostic.rs\nrole: utility\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: false\nowns: []\ndoes_not_own: []\nmay_call: []\nmust_not: []\nexactness:\n  mode: not_applicable\n  exact_constructor_required: false\n  approximate_modes_allowed: false\nforbidden_substrings: []\nrequired_substrings: []\nrequired_tests: []\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.file_contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_functional:xi_diagnostic:v1.1.0\",\n  \"title\": \"XiDiagnostic\",\n  \"status\": \"active\",\n  \"crate\": \"omega_types\",\n  \"file\": \"crates_rs/omega_types/src/xi_diagnostic.rs\",\n  \"role\": \"utility\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"customer_claim_allowed\": false,\n  \"runtime_enforcement\": false,\n  \"owns\": [],\n  \"does_not_own\": [],\n  \"may_call\": [],\n  \"must_not\": [],\n  \"exactness\": {\n    \"mode\": \"not_applicable\",\n    \"exact_constructor_required\": false,\n    \"approximate_modes_allowed\": false\n  },\n  \"forbidden_substrings\": [],\n  \"required_substrings\": [],\n  \"required_tests\": [],\n  \"lean_obligations\": [],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_file_contract:file:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/rust_omega_functional_xi_diagnostic_v1_1_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "16cc9f5bacbbcfaa7f716f571129fed169855fdedfa195e4409b500d464529e7",
+      "bytes": 1879,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/rust_omega_functional_xi_diagnostic_v1_1_0_contract.py",
+          "sha256": "6d1d3ff0a49fd18ca401f9bb0767a9aa798de2400166096b5adcc259dda5e955"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:20_execution:rust-omega-functional-xi-diagnostic-v1-1-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:xi_diagnostic:v1.1.0 Schema Version: omega.file_contract.v1",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_xi_diagnostic_v1_1_0_contract.py\",\n    \"sha256\": \"6d1d3ff0a49fd18ca401f9bb0767a9aa798de2400166096b5adcc259dda5e955\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:rust-omega-functional-xi-diagnostic-v1-1-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:rust:omega_functional:xi_diagnostic:v1.1.0 Schema Version: omega.file_contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_functional_xi_diagnostic_v1_1_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "ab5d994a3ca2696dc8b017d02355a387313fde5fe462bc9bcfa49cd41cf68cab",
+      "bytes": 2259,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/rust_omega_functional_xi_diagnostic_v1_1_0_contract.py",
+          "sha256": "6d1d3ff0a49fd18ca401f9bb0767a9aa798de2400166096b5adcc259dda5e955"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:rust-omega-functional-xi-diagnostic-v1-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_xi_diagnostic_v1_1_0_contract.py\",\n    \"sha256\": \"6d1d3ff0a49fd18ca401f9bb0767a9aa798de2400166096b5adcc259dda5e955\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:rust-omega-functional-xi-diagnostic-v1-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_functional_xi_diagnostic_v1_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/rust_omega_functional_xi_diagnostic_v1_1_0.contract.yaml": "40dae4ac5b5776b3d669b2378cb5617183af3ff9fb2125e77f863b42360715ca"
   },

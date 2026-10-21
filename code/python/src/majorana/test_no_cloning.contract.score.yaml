@@ -1,0 +1,176 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/test_no_cloning.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/test_no_cloning.py",
+      "sha256": "240a12c80066fc3941cbd227852bd3c7226a8f17bb0c02d6ff01f3a4b5ec75f9"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:test-no-cloning:v1",
+    "role": "test checker",
+    "purpose": "Bounded domain operations and invariant verification for test_no_cloning.",
+    "operations": {
+      "BitWeight": "Class BitWeight domain record and methods.",
+      "JointWeight": "Class JointWeight domain record and methods.",
+      "classical_clone": "Independent product clone of a classical residual weight table.",
+      "test_classical_clone_marginals_pure0": "Function test_classical_clone_marginals_pure0 operation.",
+      "test_classical_clone_fair_mixed": "Function test_classical_clone_fair_mixed operation.",
+      "test_classical_clone_exists_for_all": "Function test_classical_clone_exists_for_all operation.",
+      "Amp2": "Class Amp2 domain record and methods.",
+      "AmpJoint": "Class AmpJoint domain record and methods.",
+      "product_amp": "Function product_amp operation.",
+      "basis_cloner": "CNOT-style computational-basis copy into blank register (toy total map).",
+      "test_basis_cloner_ok_on_computational_basis": "Function test_basis_cloner_ok_on_computational_basis operation.",
+      "test_basis_cloner_fails_on_plus": "Function test_basis_cloner_fails_on_plus operation.",
+      "test_linear_lift_no_clone_witness": "Function test_linear_lift_no_clone_witness operation.",
+      "ImportStatus": "Class ImportStatus domain record and methods.",
+      "test_import_status_packaging": "Function test_import_status_packaging operation.",
+      "test_no_cloning_package": "Function test_no_cloning_package operation.",
+      "amp_joint_add": "Function amp_joint_add operation.",
+      "joint_pop": "Function joint_pop operation.",
+      "test_plus_blank_splits_as_basis_products": "Function test_plus_blank_splits_as_basis_products operation.",
+      "test_basis_cloner_linear": "Function test_basis_cloner_linear operation.",
+      "test_linear_forced_image_neq_product_clone": "Function test_linear_forced_image_neq_product_clone operation.",
+      "test_cloner_pop_neq_independent_clone_pop": "Function test_cloner_pop_neq_independent_clone_pop operation.",
+      "test_no_cloning_linearity_obstruction_package": "Function test_no_cloning_linearity_obstruction_package operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "5a0c457ced327c516347740287ce92f4517529cd0d655eb6dc856e44cd39a47a",
+  "current_scoring": "45b536d5045f44f48faa505dfdd4b8ed4f1b9dc3ad5548afb72f7005d3026e0f",
+  "contract_history": [
+    {
+      "sha256": "5a0c457ced327c516347740287ce92f4517529cd0d655eb6dc856e44cd39a47a",
+      "bytes": 3582,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_no_cloning.py",
+          "sha256": "240a12c80066fc3941cbd227852bd3c7226a8f17bb0c02d6ff01f3a4b5ec75f9"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:test-no-cloning:v1",
+        "role": "test checker",
+        "purpose": "Bounded domain operations and invariant verification for test_no_cloning.",
+        "operations": {
+          "BitWeight": "Class BitWeight domain record and methods.",
+          "JointWeight": "Class JointWeight domain record and methods.",
+          "classical_clone": "Independent product clone of a classical residual weight table.",
+          "test_classical_clone_marginals_pure0": "Function test_classical_clone_marginals_pure0 operation.",
+          "test_classical_clone_fair_mixed": "Function test_classical_clone_fair_mixed operation.",
+          "test_classical_clone_exists_for_all": "Function test_classical_clone_exists_for_all operation.",
+          "Amp2": "Class Amp2 domain record and methods.",
+          "AmpJoint": "Class AmpJoint domain record and methods.",
+          "product_amp": "Function product_amp operation.",
+          "basis_cloner": "CNOT-style computational-basis copy into blank register (toy total map).",
+          "test_basis_cloner_ok_on_computational_basis": "Function test_basis_cloner_ok_on_computational_basis operation.",
+          "test_basis_cloner_fails_on_plus": "Function test_basis_cloner_fails_on_plus operation.",
+          "test_linear_lift_no_clone_witness": "Function test_linear_lift_no_clone_witness operation.",
+          "ImportStatus": "Class ImportStatus domain record and methods.",
+          "test_import_status_packaging": "Function test_import_status_packaging operation.",
+          "test_no_cloning_package": "Function test_no_cloning_package operation.",
+          "amp_joint_add": "Function amp_joint_add operation.",
+          "joint_pop": "Function joint_pop operation.",
+          "test_plus_blank_splits_as_basis_products": "Function test_plus_blank_splits_as_basis_products operation.",
+          "test_basis_cloner_linear": "Function test_basis_cloner_linear operation.",
+          "test_linear_forced_image_neq_product_clone": "Function test_linear_forced_image_neq_product_clone operation.",
+          "test_cloner_pop_neq_independent_clone_pop": "Function test_cloner_pop_neq_independent_clone_pop operation.",
+          "test_no_cloning_linearity_obstruction_package": "Function test_no_cloning_linearity_obstruction_package operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_no_cloning.py\",\n    \"sha256\": \"240a12c80066fc3941cbd227852bd3c7226a8f17bb0c02d6ff01f3a4b5ec75f9\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-no-cloning:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Bounded domain operations and invariant verification for test_no_cloning.\",\n  \"operations\": {\n    \"BitWeight\": \"Class BitWeight domain record and methods.\",\n    \"JointWeight\": \"Class JointWeight domain record and methods.\",\n    \"classical_clone\": \"Independent product clone of a classical residual weight table.\",\n    \"test_classical_clone_marginals_pure0\": \"Function test_classical_clone_marginals_pure0 operation.\",\n    \"test_classical_clone_fair_mixed\": \"Function test_classical_clone_fair_mixed operation.\",\n    \"test_classical_clone_exists_for_all\": \"Function test_classical_clone_exists_for_all operation.\",\n    \"Amp2\": \"Class Amp2 domain record and methods.\",\n    \"AmpJoint\": \"Class AmpJoint domain record and methods.\",\n    \"product_amp\": \"Function product_amp operation.\",\n    \"basis_cloner\": \"CNOT-style computational-basis copy into blank register (toy total map).\",\n    \"test_basis_cloner_ok_on_computational_basis\": \"Function test_basis_cloner_ok_on_computational_basis operation.\",\n    \"test_basis_cloner_fails_on_plus\": \"Function test_basis_cloner_fails_on_plus operation.\",\n    \"test_linear_lift_no_clone_witness\": \"Function test_linear_lift_no_clone_witness operation.\",\n    \"ImportStatus\": \"Class ImportStatus domain record and methods.\",\n    \"test_import_status_packaging\": \"Function test_import_status_packaging operation.\",\n    \"test_no_cloning_package\": \"Function test_no_cloning_package operation.\",\n    \"amp_joint_add\": \"Function amp_joint_add operation.\",\n    \"joint_pop\": \"Function joint_pop operation.\",\n    \"test_plus_blank_splits_as_basis_products\": \"Function test_plus_blank_splits_as_basis_products operation.\",\n    \"test_basis_cloner_linear\": \"Function test_basis_cloner_linear operation.\",\n    \"test_linear_forced_image_neq_product_clone\": \"Function test_linear_forced_image_neq_product_clone operation.\",\n    \"test_cloner_pop_neq_independent_clone_pop\": \"Function test_cloner_pop_neq_independent_clone_pop operation.\",\n    \"test_no_cloning_linearity_obstruction_package\": \"Function test_no_cloning_linearity_obstruction_package operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_no_cloning.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "45b536d5045f44f48faa505dfdd4b8ed4f1b9dc3ad5548afb72f7005d3026e0f",
+      "bytes": 2158,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_no_cloning.py",
+          "sha256": "240a12c80066fc3941cbd227852bd3c7226a8f17bb0c02d6ff01f3a4b5ec75f9"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:test-no-cloning:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 8,
+          "lizard_ccn": 4,
+          "weighted_control_upper_bound": 3,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_no_cloning.py\",\n    \"sha256\": \"240a12c80066fc3941cbd227852bd3c7226a8f17bb0c02d6ff01f3a4b5ec75f9\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-no-cloning:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 4,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_no_cloning.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

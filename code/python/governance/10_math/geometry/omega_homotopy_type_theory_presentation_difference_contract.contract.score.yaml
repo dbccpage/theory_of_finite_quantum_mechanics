@@ -62,12 +62,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "d3b75ab68476007084b004d49967f4d21d833094b3159e72958b1f5874638cfd",
-  "current_scoring": null,
+  "current_contract": "4e672249c62bac2294568dbf0015d825226ae496d55ab5d27c5cf1a665d326f6",
+  "current_scoring": "9256f536e23d9270e620fcc8c84aa29c0de1d48255b0027e7846719514d2719e",
   "contract_history": [
     {
-      "sha256": "d3b75ab68476007084b004d49967f4d21d833094b3159e72958b1f5874638cfd",
-      "bytes": 1265,
+      "sha256": "4e672249c62bac2294568dbf0015d825226ae496d55ab5d27c5cf1a665d326f6",
+      "bytes": 1584,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_homotopy_type_theory:presentation_difference:v1.0.0",
@@ -128,13 +128,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_homotopy_type_theory:presentation_difference:v1.0.0\ntitle: Finite presentation-to-Primitive-Difference reference model.  Rust face of\n  `omega_engine/kernel/presentation_differen...\nkind: rust_file_contract\nstatus: active\ncrate: omega_homotopy_type_theory\nfile: crates_rs/omega_homotopy_type_theory/src/presentation_difference.rs\nmodule: presentation_difference\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_homotopy_type_theory\n  module: presentation_difference\n  file: crates_rs/omega_homotopy_type_theory/src/presentation_difference.rs\nsymbols:\n- Profile\n- Pair\n- PresentationDifferenceError\n- canonical_sha256\n- ExtensionEffect\n- QuestionV1\n- new\n- to_canonical\n- PresentationV1\n- canonical_id\n- point_index\n- profile\n- zero_related\n- partition\n- class_count\n- DemandV1\n- ActiveObstructionV1\n- ExtensionEvaluationV1\n- accepted\n- active_obstruction\n- question_is_derived_from_parent\n- evaluate_extension\nowns:\n- profile\n- pair\n- presentation_difference_error\n- canonical_sha256\n- extension_effect\n- question_v1\n- new\n- to_canonical\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_homotopy_type_theory:presentation_difference:v1.0.0\",\n  \"title\": \"Finite presentation-to-Primitive-Difference reference model.  Rust face of `omega_engine/kernel/presentation_differen...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_homotopy_type_theory\",\n  \"file\": \"crates_rs/omega_homotopy_type_theory/src/presentation_difference.rs\",\n  \"module\": \"presentation_difference\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_homotopy_type_theory\",\n    \"module\": \"presentation_difference\",\n    \"file\": \"crates_rs/omega_homotopy_type_theory/src/presentation_difference.rs\"\n  },\n  \"symbols\": [\n    \"Profile\",\n    \"Pair\",\n    \"PresentationDifferenceError\",\n    \"canonical_sha256\",\n    \"ExtensionEffect\",\n    \"QuestionV1\",\n    \"new\",\n    \"to_canonical\",\n    \"PresentationV1\",\n    \"canonical_id\",\n    \"point_index\",\n    \"profile\",\n    \"zero_related\",\n    \"partition\",\n    \"class_count\",\n    \"DemandV1\",\n    \"ActiveObstructionV1\",\n    \"ExtensionEvaluationV1\",\n    \"accepted\",\n    \"active_obstruction\",\n    \"question_is_derived_from_parent\",\n    \"evaluate_extension\"\n  ],\n  \"owns\": [\n    \"profile\",\n    \"pair\",\n    \"presentation_difference_error\",\n    \"canonical_sha256\",\n    \"extension_effect\",\n    \"question_v1\",\n    \"new\",\n    \"to_canonical\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/geometry/omega_homotopy_type_theory_presentation_difference.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "9256f536e23d9270e620fcc8c84aa29c0de1d48255b0027e7846719514d2719e",
+      "bytes": 2275,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/geometry/omega_homotopy_type_theory_presentation_difference_contract.py",
+          "sha256": "abd2d02430d8325edcd9f5734d74c33eabe271dad6d13c01c842a6cf249da630"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:geometry:omega-homotopy-type-theory-presentation-difference-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/omega_homotopy_type_theory_presentation_difference_contract.py\",\n    \"sha256\": \"abd2d02430d8325edcd9f5734d74c33eabe271dad6d13c01c842a6cf249da630\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:omega-homotopy-type-theory-presentation-difference-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/omega_homotopy_type_theory_presentation_difference_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/geometry/omega_homotopy_type_theory_presentation_difference.contract.yaml": "d3b75ab68476007084b004d49967f4d21d833094b3159e72958b1f5874638cfd"
   },

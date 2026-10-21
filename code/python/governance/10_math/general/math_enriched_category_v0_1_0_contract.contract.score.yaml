@@ -114,12 +114,12 @@
       "Verification of unit morphism coherence under Woland mutation MUT-P2-06"
     ]
   },
-  "current_contract": "3a3617c4f718217056205bc9b531ccddd2d5f5fca058323925bc604d0c6b363f",
-  "current_scoring": null,
+  "current_contract": "e07d1799ab66a1213943c0b6c2d4ce2088a1ba831c2b154897573b43e0a02dbd",
+  "current_scoring": "c4b954899119c08a7fe0c87f8e7e1878a736835958367ad97ef8fd7629fb3d7e",
   "contract_history": [
     {
-      "sha256": "3a3617c4f718217056205bc9b531ccddd2d5f5fca058323925bc604d0c6b363f",
-      "bytes": 4316,
+      "sha256": "e07d1799ab66a1213943c0b6c2d4ce2088a1ba831c2b154897573b43e0a02dbd",
+      "bytes": 4892,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:enriched_category:v0.1.0",
@@ -232,13 +232,75 @@
           "Verification of unit morphism coherence under Woland mutation MUT-P2-06"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:enriched_category:v0.1.0\ntitle: Enriched Category Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: enriched_category\n  symbol: C_V = (Ob, Hom_V, \\circ, j)\n  ascii_symbol: enriched_category\n  notation: C enriched over (V, \\otimes, I, \\alpha, \\lambda, \\rho)\n  domain:\n  - 'monoidal_base: monoidal category (V, \\otimes, I, \\alpha, \\lambda, \\rho) providing\n    hom-objects and tensor product'\n  - 'objects: (Obj : Type u) collection of object identifiers in C'\n  - 'hom_objects: (C(X, Y) \\in Ob(V)) hom-object in V for each pair of objects'\n  - 'composition_morphism: (\\circ_{X,Y,Z} : C(Y, Z) \\otimes C(X, Y) -> C(X, Z)) morphism\n    in V'\n  - 'unit_morphism: (j_X : I -> C(X, X)) morphism in V from monoidal unit I'\n  - 'associativity_diagram: commutativity of \\circ \\circ (id \\otimes \\circ) \\circ\n    \\alpha = \\circ \\circ (\\circ \\otimes id)'\n  - 'unit_diagrams: commutativity of \\circ \\circ (id \\otimes j) = \\rho and \\circ \\circ\n    (j \\otimes id) = \\lambda'\n  codomain:\n    description: 'A category C enriched over a monoidal category V is a collection\n      of objects Ob(C) together with a hom-object C(X, Y) \\in V for every pair of\n      objects, composition morphisms \\circ_{X,Y,Z}: C(Y, Z) \\otimes C(X, Y) -> C(X,\n      Z) in V, and unit morphisms j_X: I -> C(X, X) in V satisfying enriched associativity\n      and unit diagrams.'\nrequirements:\n  required_structures:\n  - Enriching category V is a valid monoidal category satisfying pentagon and triangle\n    coherence.\n  - Every pair of objects X, Y has a valid hom-object C(X, Y) in Ob(V).\n  - Composition morphism \\circ_{X,Y,Z} has domain C(Y, Z) \\otimes C(X, Y) and codomain\n    C(X, Z) in V.\n  - Unit morphism j_X has domain I and codomain C(X, X) in V.\n  - Enriched associativity diagram commutes strictly in V for all object quadruples.\n  - Enriched left and right unit diagrams commute strictly in V for all object pairs.\n  - Structure hash is deterministically content-addressed.\nlaws:\n- 'Enriched associativity: \\circ_{X,Y,W} \\circ (id \\otimes \\circ_{X,Y,Z}) \\circ \\alpha\n  = \\circ_{X,Z,W} \\circ (\\circ_{Z,Y,W} \\otimes id)'\n- 'Enriched left unit: \\circ_{X,Y,Y} \\circ (j_Y \\otimes id) = \\lambda_{C(X,Y)}'\n- 'Enriched right unit: \\circ_{X,X,Y} \\circ (id \\otimes j_X) = \\rho_{C(X,Y)}'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Hom-objects, morphisms, and unit maps serialized in canonical order\n  - Content-addressed deterministic evaluation\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: enriched\n  symbols:\n  - EnrichedCategory\n  - HomObject\n  - EnrichedComposition\n  - EnrichedUnit\n  required_tests:\n  - test_enriched_associativity_diagram\n  - test_enriched_category_lifecycle_and_unitality\n  - test_kill_mut_p2_06_enriched_unit_morphism_mismatch\nnegative_tests:\n- Monoidal base category V does not resolve or lacks unit/associator\n- Composition morphism has invalid domain/codomain in V\n- Unit morphism j_X tampered or has invalid codomain (EnrichedUnitMorphismMismatch\n  / MUT-P2-06)\n- Enriched associativity diagram fails to commute in V\n- Enriched unit diagrams fail to commute in V\ndoctrine:\n  summary: An EnrichedCategory replaces set-theoretic hom-sets with objects of a monoidal\n    category V. Composition is a morphism in V and units are morphisms from the monoidal\n    unit I. When V = Set it yields ordinary categories; V = Cat yields 2-categories;\n    V = Ch yields DG categories.\n  non_role:\n  - Enriched functors and enriched natural transformations (separate contracts)\n  - Enriched model categories\n  - Non-monoidal base categories\nwip:\n- Enriched category formalization in Lean 4 (Enriched.lean)\n- Rust discrete matrix/algebraic models of enriched categories\n- Verification of unit morphism coherence under Woland mutation MUT-P2-06\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:enriched_category:v0.1.0\",\n  \"title\": \"Enriched Category Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"enriched_category\",\n    \"symbol\": \"C_V = (Ob, Hom_V, \\\\circ, j)\",\n    \"ascii_symbol\": \"enriched_category\",\n    \"notation\": \"C enriched over (V, \\\\otimes, I, \\\\alpha, \\\\lambda, \\\\rho)\",\n    \"domain\": [\n      \"monoidal_base: monoidal category (V, \\\\otimes, I, \\\\alpha, \\\\lambda, \\\\rho) providing hom-objects and tensor product\",\n      \"objects: (Obj : Type u) collection of object identifiers in C\",\n      \"hom_objects: (C(X, Y) \\\\in Ob(V)) hom-object in V for each pair of objects\",\n      \"composition_morphism: (\\\\circ_{X,Y,Z} : C(Y, Z) \\\\otimes C(X, Y) -> C(X, Z)) morphism in V\",\n      \"unit_morphism: (j_X : I -> C(X, X)) morphism in V from monoidal unit I\",\n      \"associativity_diagram: commutativity of \\\\circ \\\\circ (id \\\\otimes \\\\circ) \\\\circ \\\\alpha = \\\\circ \\\\circ (\\\\circ \\\\otimes id)\",\n      \"unit_diagrams: commutativity of \\\\circ \\\\circ (id \\\\otimes j) = \\\\rho and \\\\circ \\\\circ (j \\\\otimes id) = \\\\lambda\"\n    ],\n    \"codomain\": {\n      \"description\": \"A category C enriched over a monoidal category V is a collection of objects Ob(C) together with a hom-object C(X, Y) \\\\in V for every pair of objects, composition morphisms \\\\circ_{X,Y,Z}: C(Y, Z) \\\\otimes C(X, Y) -> C(X, Z) in V, and unit morphisms j_X: I -> C(X, X) in V satisfying enriched associativity and unit diagrams.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Enriching category V is a valid monoidal category satisfying pentagon and triangle coherence.\",\n      \"Every pair of objects X, Y has a valid hom-object C(X, Y) in Ob(V).\",\n      \"Composition morphism \\\\circ_{X,Y,Z} has domain C(Y, Z) \\\\otimes C(X, Y) and codomain C(X, Z) in V.\",\n      \"Unit morphism j_X has domain I and codomain C(X, X) in V.\",\n      \"Enriched associativity diagram commutes strictly in V for all object quadruples.\",\n      \"Enriched left and right unit diagrams commute strictly in V for all object pairs.\",\n      \"Structure hash is deterministically content-addressed.\"\n    ]\n  },\n  \"laws\": [\n    \"Enriched associativity: \\\\circ_{X,Y,W} \\\\circ (id \\\\otimes \\\\circ_{X,Y,Z}) \\\\circ \\\\alpha = \\\\circ_{X,Z,W} \\\\circ (\\\\circ_{Z,Y,W} \\\\otimes id)\",\n    \"Enriched left unit: \\\\circ_{X,Y,Y} \\\\circ (j_Y \\\\otimes id) = \\\\lambda_{C(X,Y)}\",\n    \"Enriched right unit: \\\\circ_{X,X,Y} \\\\circ (id \\\\otimes j_X) = \\\\rho_{C(X,Y)}\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Hom-objects, morphisms, and unit maps serialized in canonical order\",\n      \"Content-addressed deterministic evaluation\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"enriched\",\n    \"symbols\": [\n      \"EnrichedCategory\",\n      \"HomObject\",\n      \"EnrichedComposition\",\n      \"EnrichedUnit\"\n    ],\n    \"required_tests\": [\n      \"test_enriched_associativity_diagram\",\n      \"test_enriched_category_lifecycle_and_unitality\",\n      \"test_kill_mut_p2_06_enriched_unit_morphism_mismatch\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Monoidal base category V does not resolve or lacks unit/associator\",\n    \"Composition morphism has invalid domain/codomain in V\",\n    \"Unit morphism j_X tampered or has invalid codomain (EnrichedUnitMorphismMismatch / MUT-P2-06)\",\n    \"Enriched associativity diagram fails to commute in V\",\n    \"Enriched unit diagrams fail to commute in V\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"An EnrichedCategory replaces set-theoretic hom-sets with objects of a monoidal category V. Composition is a morphism in V and units are morphisms from the monoidal unit I. When V = Set it yields ordinary categories; V = Cat yields 2-categories; V = Ch yields DG categories.\",\n    \"non_role\": [\n      \"Enriched functors and enriched natural transformations (separate contracts)\",\n      \"Enriched model categories\",\n      \"Non-monoidal base categories\"\n    ]\n  },\n  \"wip\": [\n    \"Enriched category formalization in Lean 4 (Enriched.lean)\",\n    \"Rust discrete matrix/algebraic models of enriched categories\",\n    \"Verification of unit morphism coherence under Woland mutation MUT-P2-06\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_enriched_category_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "c4b954899119c08a7fe0c87f8e7e1878a736835958367ad97ef8fd7629fb3d7e",
+      "bytes": 2231,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_enriched_category_v0_1_0_contract.py",
+          "sha256": "4da17b6b299d47b7f224232cdb2312fb5e2267335f946f46b0dff85b1461ac2c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-enriched-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_enriched_category_v0_1_0_contract.py\",\n    \"sha256\": \"4da17b6b299d47b7f224232cdb2312fb5e2267335f946f46b0dff85b1461ac2c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-enriched-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_enriched_category_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_enriched_category_v0_1_0.contract.yaml": "3a3617c4f718217056205bc9b531ccddd2d5f5fca058323925bc604d0c6b363f"
   },

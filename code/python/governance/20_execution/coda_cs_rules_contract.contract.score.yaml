@@ -3,80 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/coda_cs_rules_contract.py",
   "contract": {
-    "paper_identity": "CODA-CS",
-    "legacy_file_identity": "004_gttc.md",
-    "canonical_version": "v1.0",
-    "authority_effect": "None",
-    "layer": "Layer 3 (CS — Continuum Shadow)",
-    "primitives": {
-      "shadow_tower": "Cofinal finite shadow tower (Lambda_0, A_lambda)",
-      "shadow_projection": "pi_lambda : X -> A_lambda with F_{lambda mu} o pi_lambda = pi_mu",
-      "query_projection": "q_lambda(X) = q o pi_lambda",
-      "query_relative_authority": "Auth_kappa(X; q)",
-      "certificate_compatibility": "Compat_chi(X, Lambda_0)"
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/20_execution/coda_cs_rules_contract.py",
+      "sha256": "be26686899e43bff62854d0c3467b3de6b48ae69a3bbab098210ef9419a25c5f"
     },
-    "equations": {
-      "shadow_projection_compatibility": {
-        "latex": "F_{\\lambda\\mu} \\circ \\pi_\\lambda = \\pi_\\mu \\quad (\\forall \\lambda \\le \\mu)",
-        "description": "Compatibility condition for shadow projections across cofiltered transitions"
-      },
-      "query_relative_authority_definition": {
-        "latex": "\\mathsf{Auth}_{\\kappa}(X;\\, q) := \\Sigma(\\Lambda_0:\\mathsf{CofinalSubcat}(\\Lambda)) \\left[ \\prod_{\\lambda\\in\\Lambda_0}\\mathsf{Auth}_\\lambda(q_\\lambda(X)) \\times \\mathsf{Compat}_\\chi(X,\\Lambda_0) \\right]",
-        "description": "Dependent pair type defining authority for a continuum query over a cofinal shadow family"
-      },
-      "certificate_compatibility_definition": {
-        "latex": "\\mathsf{Compat}_\\chi(X, \\Lambda_0) := \\prod_{\\lambda \\le \\mu} \\Sigma(\\chi_{\\lambda\\mu}) \\times \\prod_{\\lambda \\le \\mu \\le \\nu} \\mathsf{Paste}_\\chi(\\lambda, \\mu, \\nu, \\chi_{\\lambda\\mu}, \\chi_{\\mu\\nu}, \\chi_{\\lambda\\nu})",
-        "description": "Pairwise certificates and triple pasting coherence across shadow tower"
-      },
-      "renormalized_shadow_transport_law": {
-        "latex": "\\tau_\\mu V_\\mu D_\\mu(q_\\mu(R_{\\lambda\\mu}A_\\lambda)) = \\rho_{\\lambda\\mu} \\left( \\tau_\\lambda V_\\lambda D_\\lambda(q_\\lambda(A_\\lambda)) \\right)",
-        "description": "GTTC-R1 terminal-refinement equivariance condition across scale transitions"
-      },
-      "continuum_residual_interface": {
-        "latex": "\\operatorname{Resid}_\\Lambda([\\delta]) := \\tau_{\\mathrm{res}}(\\operatorname{cofib}(c_{\\Lambda, [\\delta]}))",
-        "description": "Handoff mapping non-absorbed shadow coherence defects into CODA-A cofiber terminals"
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:20_execution:coda-cs-rules-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.contract.v1",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    },
-    "enforcement_rules": [
-      {
-        "id": "CS-RULE-001",
-        "name": "Finite-Shadow Discipline",
-        "statement": "Continuum limits or tower coherence alone do not construct authority: X in Omega_kappa does not imply Auth_kappa(X; q)."
-      },
-      {
-        "id": "CS-RULE-002",
-        "name": "Query-Relative Authority Scoping",
-        "statement": "Authority is strictly query-relative. Authorizing query q does not grant object-level authority over X."
-      },
-      {
-        "id": "CS-RULE-003",
-        "name": "Cofinal Authorized Support Requirement",
-        "statement": "Every admitted continuum query must factor through a cofinal family of authorized finite shadows."
-      },
-      {
-        "id": "CS-RULE-004",
-        "name": "Typed Refusal Protocol",
-        "statement": "Tower failure must return typed refusal (NoFiniteShadow, NoCofinalAuthorizedShadow, ShadowCoherenceFailure, UnreflectedContinuumClaim, TransportViolation, BudgetUnknown, NoTerminal)."
-      }
-    ],
-    "claim_discipline": {
-      "supports": "Supports query-relative authorization of continuum models through cofinal finite shadow profiles.",
-      "does_not_support": "Does not support unreflected continuum claims, infinite-horizon authority without finite shadows, or global green status.",
-      "narrowest_defensible_claim": "Verifies profile factorization and cofinal shadow certificate pasting for specific declared queries.",
-      "next_test_needed": "Automated verification of cofinal shadow profile factorization for multi-scale grid queries."
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "685f016d7649114c3f2628c9c30c3e1d8427a7cd01bfbdfcc7c36e49dc4b3a65",
-  "current_scoring": null,
+  "current_contract": "0bef2f90fa634b7825fb7c66612f07ba3e6e774ec412516b2011e257216dc8fe",
+  "current_scoring": "e605771be267a9b47dcaf86f797120a958c5827a2e3a4e5236bbf274ea8651fc",
   "contract_history": [
     {
-      "sha256": "685f016d7649114c3f2628c9c30c3e1d8427a7cd01bfbdfcc7c36e49dc4b3a65",
-      "bytes": 3420,
+      "sha256": "aca4db16c7a662830c08964683b115041dc8c9e01769cb35da465775c75b9497",
+      "bytes": 3865,
       "record": {
         "paper_identity": "CODA-CS",
         "legacy_file_identity": "004_gttc.md",
@@ -146,13 +104,110 @@
           ]
         }
       },
-      "raw_utf8": "paper_identity: CODA-CS\nlegacy_file_identity: 004_gttc.md\ncanonical_version: v1.0\nauthority_effect: None\nlayer: Layer 3 (CS — Continuum Shadow)\nprimitives:\n  shadow_tower: Cofinal finite shadow tower (Lambda_0, A_lambda)\n  shadow_projection: 'pi_lambda : X -> A_lambda with F_{lambda mu} o pi_lambda = pi_mu'\n  query_projection: q_lambda(X) = q o pi_lambda\n  query_relative_authority: Auth_kappa(X; q)\n  certificate_compatibility: Compat_chi(X, Lambda_0)\nequations:\n  shadow_projection_compatibility:\n    latex: F_{\\lambda\\mu} \\circ \\pi_\\lambda = \\pi_\\mu \\quad (\\forall \\lambda \\le \\mu)\n    description: Compatibility condition for shadow projections across cofiltered\n      transitions\n  query_relative_authority_definition:\n    latex: \\mathsf{Auth}_{\\kappa}(X;\\, q) := \\Sigma(\\Lambda_0:\\mathsf{CofinalSubcat}(\\Lambda))\n      \\left[ \\prod_{\\lambda\\in\\Lambda_0}\\mathsf{Auth}_\\lambda(q_\\lambda(X)) \\times\n      \\mathsf{Compat}_\\chi(X,\\Lambda_0) \\right]\n    description: Dependent pair type defining authority for a continuum query over\n      a cofinal shadow family\n  certificate_compatibility_definition:\n    latex: \\mathsf{Compat}_\\chi(X, \\Lambda_0) := \\prod_{\\lambda \\le \\mu} \\Sigma(\\chi_{\\lambda\\mu})\n      \\times \\prod_{\\lambda \\le \\mu \\le \\nu} \\mathsf{Paste}_\\chi(\\lambda, \\mu, \\nu,\n      \\chi_{\\lambda\\mu}, \\chi_{\\mu\\nu}, \\chi_{\\lambda\\nu})\n    description: Pairwise certificates and triple pasting coherence across shadow\n      tower\n  renormalized_shadow_transport_law:\n    latex: \\tau_\\mu V_\\mu D_\\mu(q_\\mu(R_{\\lambda\\mu}A_\\lambda)) = \\rho_{\\lambda\\mu}\n      \\left( \\tau_\\lambda V_\\lambda D_\\lambda(q_\\lambda(A_\\lambda)) \\right)\n    description: GTTC-R1 terminal-refinement equivariance condition across scale transitions\n  continuum_residual_interface:\n    latex: \\operatorname{Resid}_\\Lambda([\\delta]) := \\tau_{\\mathrm{res}}(\\operatorname{cofib}(c_{\\Lambda,\n      [\\delta]}))\n    description: Handoff mapping non-absorbed shadow coherence defects into CODA-A\n      cofiber terminals\nenforcement_rules:\n- id: CS-RULE-001\n  name: Finite-Shadow Discipline\n  statement: 'Continuum limits or tower coherence alone do not construct authority:\n    X in Omega_kappa does not imply Auth_kappa(X; q).'\n- id: CS-RULE-002\n  name: Query-Relative Authority Scoping\n  statement: Authority is strictly query-relative. Authorizing query q does not grant\n    object-level authority over X.\n- id: CS-RULE-003\n  name: Cofinal Authorized Support Requirement\n  statement: Every admitted continuum query must factor through a cofinal family of\n    authorized finite shadows.\n- id: CS-RULE-004\n  name: Typed Refusal Protocol\n  statement: Tower failure must return typed refusal (NoFiniteShadow, NoCofinalAuthorizedShadow,\n    ShadowCoherenceFailure, UnreflectedContinuumClaim, TransportViolation, BudgetUnknown,\n    NoTerminal).\nclaim_discipline:\n  supports: Supports query-relative authorization of continuum models through cofinal\n    finite shadow profiles.\n  does_not_support: Does not support unreflected continuum claims, infinite-horizon\n    authority without finite shadows, or global green status.\n  narrowest_defensible_claim: Verifies profile factorization and cofinal shadow certificate\n    pasting for specific declared queries.\n  next_test_needed: Automated verification of cofinal shadow profile factorization\n    for multi-scale grid queries.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"paper_identity\": \"CODA-CS\",\n  \"legacy_file_identity\": \"004_gttc.md\",\n  \"canonical_version\": \"v1.0\",\n  \"authority_effect\": \"None\",\n  \"layer\": \"Layer 3 (CS — Continuum Shadow)\",\n  \"primitives\": {\n    \"shadow_tower\": \"Cofinal finite shadow tower (Lambda_0, A_lambda)\",\n    \"shadow_projection\": \"pi_lambda : X -> A_lambda with F_{lambda mu} o pi_lambda = pi_mu\",\n    \"query_projection\": \"q_lambda(X) = q o pi_lambda\",\n    \"query_relative_authority\": \"Auth_kappa(X; q)\",\n    \"certificate_compatibility\": \"Compat_chi(X, Lambda_0)\"\n  },\n  \"equations\": {\n    \"shadow_projection_compatibility\": {\n      \"latex\": \"F_{\\\\lambda\\\\mu} \\\\circ \\\\pi_\\\\lambda = \\\\pi_\\\\mu \\\\quad (\\\\forall \\\\lambda \\\\le \\\\mu)\",\n      \"description\": \"Compatibility condition for shadow projections across cofiltered transitions\"\n    },\n    \"query_relative_authority_definition\": {\n      \"latex\": \"\\\\mathsf{Auth}_{\\\\kappa}(X;\\\\, q) := \\\\Sigma(\\\\Lambda_0:\\\\mathsf{CofinalSubcat}(\\\\Lambda)) \\\\left[ \\\\prod_{\\\\lambda\\\\in\\\\Lambda_0}\\\\mathsf{Auth}_\\\\lambda(q_\\\\lambda(X)) \\\\times \\\\mathsf{Compat}_\\\\chi(X,\\\\Lambda_0) \\\\right]\",\n      \"description\": \"Dependent pair type defining authority for a continuum query over a cofinal shadow family\"\n    },\n    \"certificate_compatibility_definition\": {\n      \"latex\": \"\\\\mathsf{Compat}_\\\\chi(X, \\\\Lambda_0) := \\\\prod_{\\\\lambda \\\\le \\\\mu} \\\\Sigma(\\\\chi_{\\\\lambda\\\\mu}) \\\\times \\\\prod_{\\\\lambda \\\\le \\\\mu \\\\le \\\\nu} \\\\mathsf{Paste}_\\\\chi(\\\\lambda, \\\\mu, \\\\nu, \\\\chi_{\\\\lambda\\\\mu}, \\\\chi_{\\\\mu\\\\nu}, \\\\chi_{\\\\lambda\\\\nu})\",\n      \"description\": \"Pairwise certificates and triple pasting coherence across shadow tower\"\n    },\n    \"renormalized_shadow_transport_law\": {\n      \"latex\": \"\\\\tau_\\\\mu V_\\\\mu D_\\\\mu(q_\\\\mu(R_{\\\\lambda\\\\mu}A_\\\\lambda)) = \\\\rho_{\\\\lambda\\\\mu} \\\\left( \\\\tau_\\\\lambda V_\\\\lambda D_\\\\lambda(q_\\\\lambda(A_\\\\lambda)) \\\\right)\",\n      \"description\": \"GTTC-R1 terminal-refinement equivariance condition across scale transitions\"\n    },\n    \"continuum_residual_interface\": {\n      \"latex\": \"\\\\operatorname{Resid}_\\\\Lambda([\\\\delta]) := \\\\tau_{\\\\mathrm{res}}(\\\\operatorname{cofib}(c_{\\\\Lambda, [\\\\delta]}))\",\n      \"description\": \"Handoff mapping non-absorbed shadow coherence defects into CODA-A cofiber terminals\"\n    }\n  },\n  \"enforcement_rules\": [\n    {\n      \"id\": \"CS-RULE-001\",\n      \"name\": \"Finite-Shadow Discipline\",\n      \"statement\": \"Continuum limits or tower coherence alone do not construct authority: X in Omega_kappa does not imply Auth_kappa(X; q).\"\n    },\n    {\n      \"id\": \"CS-RULE-002\",\n      \"name\": \"Query-Relative Authority Scoping\",\n      \"statement\": \"Authority is strictly query-relative. Authorizing query q does not grant object-level authority over X.\"\n    },\n    {\n      \"id\": \"CS-RULE-003\",\n      \"name\": \"Cofinal Authorized Support Requirement\",\n      \"statement\": \"Every admitted continuum query must factor through a cofinal family of authorized finite shadows.\"\n    },\n    {\n      \"id\": \"CS-RULE-004\",\n      \"name\": \"Typed Refusal Protocol\",\n      \"statement\": \"Tower failure must return typed refusal (NoFiniteShadow, NoCofinalAuthorizedShadow, ShadowCoherenceFailure, UnreflectedContinuumClaim, TransportViolation, BudgetUnknown, NoTerminal).\"\n    }\n  ],\n  \"claim_discipline\": {\n    \"supports\": \"Supports query-relative authorization of continuum models through cofinal finite shadow profiles.\",\n    \"does_not_support\": \"Does not support unreflected continuum claims, infinite-horizon authority without finite shadows, or global green status.\",\n    \"narrowest_defensible_claim\": \"Verifies profile factorization and cofinal shadow certificate pasting for specific declared queries.\",\n    \"next_test_needed\": \"Automated verification of cofinal shadow profile factorization for multi-scale grid queries.\"\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/coda_cs_rules.contract.yaml"
       ]
+    },
+    {
+      "sha256": "0bef2f90fa634b7825fb7c66612f07ba3e6e774ec412516b2011e257216dc8fe",
+      "bytes": 1781,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/coda_cs_rules_contract.py",
+          "sha256": "be26686899e43bff62854d0c3467b3de6b48ae69a3bbab098210ef9419a25c5f"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:20_execution:coda-cs-rules-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.contract.v1",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/coda_cs_rules_contract.py\",\n    \"sha256\": \"be26686899e43bff62854d0c3467b3de6b48ae69a3bbab098210ef9419a25c5f\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:coda-cs-rules-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/coda_cs_rules_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "e605771be267a9b47dcaf86f797120a958c5827a2e3a4e5236bbf274ea8651fc",
+      "bytes": 2201,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/coda_cs_rules_contract.py",
+          "sha256": "be26686899e43bff62854d0c3467b3de6b48ae69a3bbab098210ef9419a25c5f"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:coda-cs-rules-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/coda_cs_rules_contract.py\",\n    \"sha256\": \"be26686899e43bff62854d0c3467b3de6b48ae69a3bbab098210ef9419a25c5f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:coda-cs-rules-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/coda_cs_rules_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/coda_cs_rules.contract.yaml": "685f016d7649114c3f2628c9c30c3e1d8427a7cd01bfbdfcc7c36e49dc4b3a65"
   },

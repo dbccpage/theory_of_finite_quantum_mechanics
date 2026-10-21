@@ -44,7 +44,11 @@ SELECT
     ABS(SUM(w.num))                      AS ratio_num,    -- exact severity numerator
     SUM(ABS(w.num))                      AS ratio_den,    -- exact severity denominator
     ROUND(CAST(ABS(SUM(w.num)) AS REAL) / SUM(ABS(w.num)), 6)
-                                         AS ratio_real    -- display only; the fraction is the claim
+                                         AS ratio_real,   -- display only; the fraction is the claim
+    CASE
+        WHEN SUM(ABS(w.num)) = 0 THEN 'undefined_zero_mass'
+        ELSE 'defined'
+    END                                  AS severity_status -- explicit classification for 0/0 mass
 FROM presentations p
 JOIN path_weights w ON w.presentation_id = p.presentation_id
 GROUP BY p.presentation_id
@@ -57,21 +61,32 @@ ORDER BY p.label;
 -- over declared rows only — it is not a solver, and finding such a
 -- presentation in general is exactly what Troyer-Wiese price as NP-hard
 -- (external literature; not derived here).
+-- Note: A presentation must be nonempty (contain at least one path) to be sign-free.
 SELECT
     s.name  AS system_name,
     p.label AS presentation,
-    NOT EXISTS (
-        SELECT 1 FROM path_weights w
-        WHERE w.presentation_id = p.presentation_id AND w.num < 0
-    )       AS all_weights_nonnegative,   -- 1 = this presentation is sign-free as written
+    (
+        EXISTS (
+            SELECT 1 FROM path_weights w
+            WHERE w.presentation_id = p.presentation_id
+        )
+        AND NOT EXISTS (
+            SELECT 1 FROM path_weights w
+            WHERE w.presentation_id = p.presentation_id AND w.num < 0
+        )
+    )       AS all_weights_nonnegative,   -- 1 = presentation has paths and every weight is nonnegative
     EXISTS (
         SELECT 1 FROM presentations p2
         WHERE p2.system_id = s.system_id
+          AND EXISTS (
+              SELECT 1 FROM path_weights w1
+              WHERE w1.presentation_id = p2.presentation_id
+          )
           AND NOT EXISTS (
               SELECT 1 FROM path_weights w2
               WHERE w2.presentation_id = p2.presentation_id AND w2.num < 0
           )
-    )       AS sign_free_presentation_exists  -- 1 = the system HAS a stored sign-free writing
+    )       AS sign_free_presentation_exists  -- 1 = the system HAS a stored nonempty sign-free writing
 FROM systems s
 JOIN presentations p ON p.system_id = s.system_id
 ORDER BY s.name, p.label;

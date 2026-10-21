@@ -3,86 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.contract.v2",
-    "contract_id": "urn:omega:packet:symbol_game:py_functional_receipt:v1.0.0",
-    "title": "Functional Receipt (Python)",
-    "kind": "packet_contract",
-    "layer": "40_packets",
-    "role": "PacketSpecification",
-    "status": "active",
-    "council_owner": "L3_logos_techne",
-    "descriptor": {
-      "authority_effect": "None",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": true,
-      "clean_architecture_layer": "domain",
-      "refusals": {
-        "may_emit": [
-          "FW-UNKNOWN-FIELD",
-          "FW-DUPLICATE-KEY"
-        ]
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0_contract.py",
+      "sha256": "4f28ef504de220eb1165204973968c3404a7593a838a501c1ad9afd3a0148537"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:40_packets:packet-symbol-game-py-functional-receipt-v1-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:packet:symbol_game:py_functional_receipt:v1.0.0 Schema Version: omega.contract.v2",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    },
-    "doctrine": {
-      "summary": "The domain's hold on a Rust-issued FunctionalReceiptV1: Phi1, Gamma2 and the diagnostic class from omega_functional, with the digest binding them to the request that asked.",
-      "invariants": [
-        "The domain computes none of these values; the native adapter parses them from a receipt the OEOS seam already bound to its request.",
-        "Every value is an exact Fraction; a float is refused at construction.",
-        "second_stage_repairs is carried, not assumed: only receipts whose Gamma2 is the FOC quotient with a2 = 0 are admitted."
-      ],
-      "non_roles": [
-        "authority_source",
-        "promotion_granter"
-      ],
-      "required_negative_capabilities": [
-        "no_self_certification",
-        "no_implicit_authority_upgrade"
-      ]
-    },
-    "structure": {
-      "language": "python",
-      "python_module": "omega_engine_pfp.domain.value_objects.functional_receipt",
-      "python_type": "FunctionalReceipt",
-      "form": "dataclass",
-      "fields": [
-        {
-          "name": "input_digest"
-        },
-        {
-          "name": "phi1"
-        },
-        {
-          "name": "gamma2"
-        },
-        {
-          "name": "diagnostic_class"
-        },
-        {
-          "name": "dual_witness"
-        },
-        {
-          "name": "primal_residual"
-        },
-        {
-          "name": "second_stage_repairs"
-        },
-        {
-          "name": "authority_effect"
-        }
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "58b9eb195b46027e20a8ff6b00e58c81c257494937c51c3d03c61c83907a50b2",
-  "current_scoring": null,
+  "current_contract": "4e1e1d51c324f9b53c7d5501d9e8ac1504f68782f5350c0c25a75b629aee4312",
+  "current_scoring": "b180a7c3f174ace0ad4a7a3c091bcaba7d6044e74dfad106b0373811b8aa36e9",
   "contract_history": [
     {
-      "sha256": "58b9eb195b46027e20a8ff6b00e58c81c257494937c51c3d03c61c83907a50b2",
-      "bytes": 1594,
+      "sha256": "57312d71a9608bbc5d114bf71fad219a8a7fbf37925fb5bad02a5c4479a6a520",
+      "bytes": 2069,
       "record": {
         "schema_version": "omega.contract.v2",
         "contract_id": "urn:omega:packet:symbol_game:py_functional_receipt:v1.0.0",
@@ -158,13 +110,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:py_functional_receipt:v1.0.0\ntitle: Functional Receipt (Python)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: 'The domain''s hold on a Rust-issued FunctionalReceiptV1: Phi1, Gamma2\n    and the diagnostic class from omega_functional, with the digest binding them to\n    the request that asked.'\n  invariants:\n  - The domain computes none of these values; the native adapter parses them from\n    a receipt the OEOS seam already bound to its request.\n  - Every value is an exact Fraction; a float is refused at construction.\n  - 'second_stage_repairs is carried, not assumed: only receipts whose Gamma2 is the\n    FOC quotient with a2 = 0 are admitted.'\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: python\n  python_module: omega_engine_pfp.domain.value_objects.functional_receipt\n  python_type: FunctionalReceipt\n  form: dataclass\n  fields:\n  - name: input_digest\n  - name: phi1\n  - name: gamma2\n  - name: diagnostic_class\n  - name: dual_witness\n  - name: primal_residual\n  - name: second_stage_repairs\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v2\",\n  \"contract_id\": \"urn:omega:packet:symbol_game:py_functional_receipt:v1.0.0\",\n  \"title\": \"Functional Receipt (Python)\",\n  \"kind\": \"packet_contract\",\n  \"layer\": \"40_packets\",\n  \"role\": \"PacketSpecification\",\n  \"status\": \"active\",\n  \"council_owner\": \"L3_logos_techne\",\n  \"descriptor\": {\n    \"authority_effect\": \"None\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": true,\n    \"clean_architecture_layer\": \"domain\",\n    \"refusals\": {\n      \"may_emit\": [\n        \"FW-UNKNOWN-FIELD\",\n        \"FW-DUPLICATE-KEY\"\n      ]\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"The domain's hold on a Rust-issued FunctionalReceiptV1: Phi1, Gamma2 and the diagnostic class from omega_functional, with the digest binding them to the request that asked.\",\n    \"invariants\": [\n      \"The domain computes none of these values; the native adapter parses them from a receipt the OEOS seam already bound to its request.\",\n      \"Every value is an exact Fraction; a float is refused at construction.\",\n      \"second_stage_repairs is carried, not assumed: only receipts whose Gamma2 is the FOC quotient with a2 = 0 are admitted.\"\n    ],\n    \"non_roles\": [\n      \"authority_source\",\n      \"promotion_granter\"\n    ],\n    \"required_negative_capabilities\": [\n      \"no_self_certification\",\n      \"no_implicit_authority_upgrade\"\n    ]\n  },\n  \"structure\": {\n    \"language\": \"python\",\n    \"python_module\": \"omega_engine_pfp.domain.value_objects.functional_receipt\",\n    \"python_type\": \"FunctionalReceipt\",\n    \"form\": \"dataclass\",\n    \"fields\": [\n      {\n        \"name\": \"input_digest\"\n      },\n      {\n        \"name\": \"phi1\"\n      },\n      {\n        \"name\": \"gamma2\"\n      },\n      {\n        \"name\": \"diagnostic_class\"\n      },\n      {\n        \"name\": \"dual_witness\"\n      },\n      {\n        \"name\": \"primal_residual\"\n      },\n      {\n        \"name\": \"second_stage_repairs\"\n      },\n      {\n        \"name\": \"authority_effect\"\n      }\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "4e1e1d51c324f9b53c7d5501d9e8ac1504f68782f5350c0c25a75b629aee4312",
+      "bytes": 1885,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0_contract.py",
+          "sha256": "4f28ef504de220eb1165204973968c3404a7593a838a501c1ad9afd3a0148537"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:40_packets:packet-symbol-game-py-functional-receipt-v1-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:packet:symbol_game:py_functional_receipt:v1.0.0 Schema Version: omega.contract.v2",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0_contract.py\",\n    \"sha256\": \"4f28ef504de220eb1165204973968c3404a7593a838a501c1ad9afd3a0148537\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:40_packets:packet-symbol-game-py-functional-receipt-v1-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:packet:symbol_game:py_functional_receipt:v1.0.0 Schema Version: omega.contract.v2\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "b180a7c3f174ace0ad4a7a3c091bcaba7d6044e74dfad106b0373811b8aa36e9",
+      "bytes": 2265,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0_contract.py",
+          "sha256": "4f28ef504de220eb1165204973968c3404a7593a838a501c1ad9afd3a0148537"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:40_packets:packet-symbol-game-py-functional-receipt-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0_contract.py\",\n    \"sha256\": \"4f28ef504de220eb1165204973968c3404a7593a838a501c1ad9afd3a0148537\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:packet-symbol-game-py-functional-receipt-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0.contract.yaml": "58b9eb195b46027e20a8ff6b00e58c81c257494937c51c3d03c61c83907a50b2"
   },

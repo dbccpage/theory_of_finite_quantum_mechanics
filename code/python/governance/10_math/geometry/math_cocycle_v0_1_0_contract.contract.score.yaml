@@ -116,12 +116,12 @@
       "Cohomology class representatives are not yet tracked"
     ]
   },
-  "current_contract": "9baf9052c6f37d7bc922caa704eafbf9b8271467113c7a8236e8aadbdda650c2",
-  "current_scoring": null,
+  "current_contract": "19bf6d9f663ec26c9810d2c9f11b7920b468234178d90a7d75db0dec1151a35e",
+  "current_scoring": "95a3e3b71e7e926fd365279d35f1d5e6523fae44fa7108a48ee59256c398a7bb",
   "contract_history": [
     {
-      "sha256": "9baf9052c6f37d7bc922caa704eafbf9b8271467113c7a8236e8aadbdda650c2",
-      "bytes": 3433,
+      "sha256": "19bf6d9f663ec26c9810d2c9f11b7920b468234178d90a7d75db0dec1151a35e",
+      "bytes": 4002,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:cocycle:v0.1.0",
@@ -236,13 +236,75 @@
           "Cohomology class representatives are not yet tracked"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:cocycle:v0.1.0\ntitle: Cocycle Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: cochain_with_property\n  symbol: 'α ∈ Z^n(C^•) where Z^n = ker(δ_n : C^n → C^{n+1})'\n  ascii_symbol: cocycle\n  notation: 'α ∈ Z^n(C^•) where Z^n = ker(δ_n : C^n → C^{n+1})'\n  domain:\n  - 'cochain_element: α ∈ C^n'\n  - 'cochain_complex: C^• with coboundary maps δ^•'\n  - 'degree: n ∈ ℤ'\n  - 'coefficient_domain: R (ring or field)'\n  - 'zero_element: 0 ∈ C^{n+1}'\n  codomain:\n    description: 'The carrier is a cochain α ∈ C^n where C^n is the n-th cochain group\n      of a cochain complex (C^•, δ^•), and α satisfies the cocycle condition δ_n(α)\n      = 0.\n\n      '\nrequirements:\n  required_structures:\n  - δ_n(α) = 0\n  - α ∈ C^n\n  - δ_n maps C^n to C^{n+1}\n  - degree(α) = n where α ∈ C^n\n  - All input hashes are valid and match expected structure\nlaws:\n- δ_n(α) = 0\n- α ∈ C^n\n- degree(α) = n\n- 'δ_n : C^n → C^{n+1} is the correct coboundary map for degree n'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Coboundary computation must be deterministic and reproducible\n  - Same inputs must produce same zero-witness hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_homology\n  module: cocycle\n  symbols:\n  - Cocycle\n  required_tests:\n  - try_cocycle_rejects_nonzero_coboundary\n  - try_cocycle_rejects_degree_mismatch\n  - try_cocycle_rejects_coefficient_length_mismatch\nnegative_tests:\n- Reject cochain α where δ_n(α) ≠ 0\n- Reject cochain not in C^n\n- Reject coboundary map with incorrect source or target degree\n- Reject cochain with mismatched coefficient domain\n- Reject artifact attempting to claim authority or admissibility\n- Reject artifact attempting to emit certificates\ndoctrine:\n  summary: 'A cocycle is a cochain α in a cochain complex C^n such that the coboundary\n    map δ_n applied to α yields zero: δ_n(α) = 0. Cocycles are closed cochains and\n    serve as representatives for cohomology classes and obstruction classes in homological\n    algebra and obstruction theory.'\n  non_role:\n  - This contract does not define cohomology classes themselves\n  - Coboundary elements (non-closed cochains) are excluded\n  - This contract does not handle Cech cocycle specializations yet\n  - Group cohomology and Lie algebra cohomology require separate contracts\n  - This contract does not compute cohomology group structure\nwip:\n- Define Cech cocycle specializations separately\n- Should group cohomology cocycles have a separate contract?\n- How should cocycle representatives be tracked across cohomology classes?\n- Should we enforce compatibility with de Rham or singular cocycles?\n- Initial version covers general cocycles in abstract cochain complexes\n- Cech cocycles will require additional geometric data\n- May need separate contracts for group cohomology, Lie algebra cohomology\n- Cohomology class representatives are not yet tracked\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:cocycle:v0.1.0\",\n  \"title\": \"Cocycle Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"cochain_with_property\",\n    \"symbol\": \"α ∈ Z^n(C^•) where Z^n = ker(δ_n : C^n → C^{n+1})\",\n    \"ascii_symbol\": \"cocycle\",\n    \"notation\": \"α ∈ Z^n(C^•) where Z^n = ker(δ_n : C^n → C^{n+1})\",\n    \"domain\": [\n      \"cochain_element: α ∈ C^n\",\n      \"cochain_complex: C^• with coboundary maps δ^•\",\n      \"degree: n ∈ ℤ\",\n      \"coefficient_domain: R (ring or field)\",\n      \"zero_element: 0 ∈ C^{n+1}\"\n    ],\n    \"codomain\": {\n      \"description\": \"The carrier is a cochain α ∈ C^n where C^n is the n-th cochain group of a cochain complex (C^•, δ^•), and α satisfies the cocycle condition δ_n(α) = 0.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"δ_n(α) = 0\",\n      \"α ∈ C^n\",\n      \"δ_n maps C^n to C^{n+1}\",\n      \"degree(α) = n where α ∈ C^n\",\n      \"All input hashes are valid and match expected structure\"\n    ]\n  },\n  \"laws\": [\n    \"δ_n(α) = 0\",\n    \"α ∈ C^n\",\n    \"degree(α) = n\",\n    \"δ_n : C^n → C^{n+1} is the correct coboundary map for degree n\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Coboundary computation must be deterministic and reproducible\",\n      \"Same inputs must produce same zero-witness hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_homology\",\n    \"module\": \"cocycle\",\n    \"symbols\": [\n      \"Cocycle\"\n    ],\n    \"required_tests\": [\n      \"try_cocycle_rejects_nonzero_coboundary\",\n      \"try_cocycle_rejects_degree_mismatch\",\n      \"try_cocycle_rejects_coefficient_length_mismatch\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Reject cochain α where δ_n(α) ≠ 0\",\n    \"Reject cochain not in C^n\",\n    \"Reject coboundary map with incorrect source or target degree\",\n    \"Reject cochain with mismatched coefficient domain\",\n    \"Reject artifact attempting to claim authority or admissibility\",\n    \"Reject artifact attempting to emit certificates\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A cocycle is a cochain α in a cochain complex C^n such that the coboundary map δ_n applied to α yields zero: δ_n(α) = 0. Cocycles are closed cochains and serve as representatives for cohomology classes and obstruction classes in homological algebra and obstruction theory.\",\n    \"non_role\": [\n      \"This contract does not define cohomology classes themselves\",\n      \"Coboundary elements (non-closed cochains) are excluded\",\n      \"This contract does not handle Cech cocycle specializations yet\",\n      \"Group cohomology and Lie algebra cohomology require separate contracts\",\n      \"This contract does not compute cohomology group structure\"\n    ]\n  },\n  \"wip\": [\n    \"Define Cech cocycle specializations separately\",\n    \"Should group cohomology cocycles have a separate contract?\",\n    \"How should cocycle representatives be tracked across cohomology classes?\",\n    \"Should we enforce compatibility with de Rham or singular cocycles?\",\n    \"Initial version covers general cocycles in abstract cochain complexes\",\n    \"Cech cocycles will require additional geometric data\",\n    \"May need separate contracts for group cohomology, Lie algebra cohomology\",\n    \"Cohomology class representatives are not yet tracked\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/geometry/math_cocycle_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "95a3e3b71e7e926fd365279d35f1d5e6523fae44fa7108a48ee59256c398a7bb",
+      "bytes": 2213,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/geometry/math_cocycle_v0_1_0_contract.py",
+          "sha256": "cef0c0cc382ea14dbc50091940e03858714d32abe7c8409498bb67854ab7db44"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:geometry:math-cocycle-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/math_cocycle_v0_1_0_contract.py\",\n    \"sha256\": \"cef0c0cc382ea14dbc50091940e03858714d32abe7c8409498bb67854ab7db44\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:math-cocycle-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_cocycle_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/geometry/math_cocycle_v0_1_0.contract.yaml": "9baf9052c6f37d7bc922caa704eafbf9b8271467113c7a8236e8aadbdda650c2"
   },

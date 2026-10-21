@@ -1,0 +1,116 @@
+schema_version: 1
+problem_id: UQM-07
+title: Tunneling through a rectangular barrier
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  general: T=[1+V0^2 sinh^2(kappa a)/(4E(V0-E))]^-1
+  matched: T=sech^2(ln 2)=16/25; R=9/25
+  matrix: M=[[5/4,-3i/4],[3i/4,5/4]], J=diag(1,-1); M dagger J M=J
+derivation:
+- step: 1
+  explanation: In the three regions use traveling waves, growing/decaying exponentials, then traveling
+    waves. Continuity of psi and psi prime at both faces eliminates the two interior coefficients and
+    gives T inverse =1+[(k^2+kappa^2)^2/(4k^2 kappa^2)] sinh^2(kappa a).
+- step: 2
+  explanation: Using k^2=2mE/hbar^2 and kappa^2=2m(V0-E)/hbar^2 turns the prefactor into V0^2/[4E(V0-E)].
+    At E=V0/2 this equals one, so T=1/cosh^2(kappa a).
+- step: 3
+  explanation: Because exp(ln 2)=2, cosh(ln 2)=(2+1/2)/2=5/4 and sinh(ln 2)=(2-1/2)/2=3/4. Therefore T=16/25
+    and R=tanh^2(ln 2)=9/25.
+- step: 4
+  explanation: Choose a face-amplitude convention with [A_L+,A_L-]^T=M[A_R+,A_R-]^T and M=[[c,-i s],[i
+    s,c]]. With no incidence from the right, t=1/c and r=i s/c, so their squared moduli reproduce the
+    probabilities.
+- step: 5
+  explanation: Right-minus-left flux is proportional to v dagger J v. The diagonal conditions in M dagger
+    J M are c^2-s^2=1 and its negative, while the off-diagonal condition vanishes. This is the needed
+    conservation property; an arbitrary determinant-one matrix alone does not guarantee it.
+- step: 6
+  explanation: The Python calculation multiplies the full complex matrices. Rust evaluates the same entries
+    using the existing Gaussian-rational operations. Both checks avoid hyperbolic floating arithmetic
+    by using the exact values already derived.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    - path: code/python/src/linear_algebra/matrix.py
+      symbols:
+      - ExactMatrix
+    walkthrough:
+    - Use GaussianRational entries and ExactMatrix.adjoint for the actual flux identity.
+    - Sum squared moduli of all defect entries.
+    - Calculate R and T from c and s, then check their sum.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      from src.linear_algebra.matrix import ExactMatrix
+      def solve():
+          c,s=q(5,4),q(3,4)
+          M=ExactMatrix.from_rows([[G(c),G(0,-s)],[G(0,s),G(c)]])
+          J=ExactMatrix.from_rows([[G(1),G(0)],[G(0),G(-1)]])
+          defect=M.adjoint()*J*M-J
+          residual=sum(defect.get(i,j).norm_sq() for i in range(2) for j in range(2))
+          T=1/(c*c); R=s*s/(c*c)
+          return {"T":str(T),"R":str(R),"flux":str(T+R),"metric_residual":str(residual)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Use the existing involution and multiplication methods for the off-diagonal flux equation.
+    - Both diagonal defects have the same squared size and the off-diagonal defects are conjugates.
+    - Serialize the exact defect norm alongside R and T.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let c=qr(5,4).unwrap(); let s=qr(3,4).unwrap();
+          let a=G::new(c.clone(),q(0)).unwrap(); let b=G::new(q(0),-&s).unwrap();
+          let cc=G::new(q(0),s.clone()).unwrap();
+          let off=a.try_conj().unwrap().try_mul(&b).unwrap().try_sub(&cc.try_conj().unwrap().try_mul(&a).unwrap()).unwrap();
+          let diag=&c*&c-&s*&s-q(1);
+          let residual=q(2)*&diag*&diag+q(2)*off.norm_sq();
+          let t=q(1)/(&c*&c); let r=&s*&s/(&c*&c);
+          json!({"T":t.to_string(),"R":r.to_string(),"flux":(&t+&r).to_string(),"metric_residual":residual.to_string()})
+      }
+verification:
+  expected_outputs:
+    T: 16/25
+    R: 9/25
+    flux: '1'
+    metric_residual: '0'
+  computational_scope: Exact matched-barrier probabilities and the full flux-metric defect for the displayed
+    complex matrix.
+  not_established:
+  - General boundary elimination and the exponential identity are analytic inputs.
+  - This check does not establish flux conservation for every SL(2) matrix.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: existing_theorem_referenced
+  references:
+  - path: lean4/FiniteQM.lean
+    symbol: potential_barrier_transfer_matrix_and_flux_conservation
+    scope: A fixed real 5/4,3/4 transfer witness and its rational probabilities. The complex flux-metric
+      computation here is additional executable evidence.
+  boundary: The cited statement supports only the scope written above. The verification report records
+    compilation separately from the analytic solution.
+common_pitfalls:
+- The exterior phase of t depends on the chosen reference planes.
+- An exponentially small interior amplitude does not imply exactly zero transmission.
+improvement_target:
+  gap: A parameterized barrier matcher with certified transcendental evaluation is still needed.
+  acceptance_criterion: Verify boundary conditions, flux metric and threshold limits across E<V0, E=V0
+    and E>V0.

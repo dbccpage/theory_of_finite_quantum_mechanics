@@ -1,0 +1,366 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/test_isolated_certificates.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/test_isolated_certificates.py",
+      "sha256": "717cc255d72c3926ed2e11b3e65eb0cfe4064aa6d152fdd64374d991ddbfaf23"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:qm:isolated-certificate-suite:v1",
+    "role": "test checker",
+    "purpose": "Isolated exact certificates for the qm slice. (5 * 5 - 3 * 3 = 16).",
+    "operations": {
+      "WitnessError": "One violated witness invariant, with the measured parameters.",
+      "Certificate": "Class Certificate domain record and methods.",
+      "witness_identity": "5 * 5 - 3 * 3, the numerator checked by boost_hyperbolic_identity.",
+      "test_witness_identity_matches_lean": "Function test_witness_identity_matches_lean operation.",
+      "test_certificates_match_locked_values": "Function test_certificates_match_locked_values operation.",
+      "test_negative_probes": "Function test_negative_probes operation.",
+      "test_domain_negatives": "Function test_domain_negatives operation.",
+      "test_integration_across_certificates": "Function test_integration_across_certificates operation.",
+      "test_end_to_end_cli": "Function test_end_to_end_cli operation.",
+      "test_origins_resolve": "Function test_origins_resolve operation.",
+      "test_mutation_kills": "Function test_mutation_kills operation.",
+      "test_witness_mutation_kills": "Function test_witness_mutation_kills operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "ce2487fa42152eb7f8605c430bf790d7ef6e3fa814a1334fb7d85cea5d796f93",
+  "current_scoring": "9c6e8734b38adc89f10841dcc3d200a1ab3fedf923ffbba420a32717be178ff7",
+  "contract_history": [
+    {
+      "sha256": "bf6b0be73f67cfa1850a73f61d9f16cec11c362b60ba3f472c5615b600414c64",
+      "bytes": 2605,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/test_isolated_certificates.py",
+          "sha256": "0abf0206a50efd21b7996b520eaa44b444c05914e6eaf89d0a6f080ddd9aa843"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:isolated-certificate-suite:v1",
+        "role": "test checker",
+        "purpose": "Isolated exact certificates for the qm slice. (5 * 5 - 3 * 3 = 16).",
+        "operations": {
+          "WitnessError": "One violated witness invariant, with the measured parameters.",
+          "Certificate": "Class Certificate domain record and methods.",
+          "witness_identity": "5 * 5 - 3 * 3, the numerator checked by boost_hyperbolic_identity.",
+          "test_witness_identity_matches_lean": "Function test_witness_identity_matches_lean operation.",
+          "test_certificates_match_locked_values": "Function test_certificates_match_locked_values operation.",
+          "test_negative_probes": "Function test_negative_probes operation.",
+          "test_domain_negatives": "Function test_domain_negatives operation.",
+          "test_integration_across_certificates": "Function test_integration_across_certificates operation.",
+          "test_end_to_end_cli": "Function test_end_to_end_cli operation.",
+          "test_origins_resolve": "Function test_origins_resolve operation.",
+          "test_mutation_kills": "Function test_mutation_kills operation.",
+          "test_witness_mutation_kills": "Function test_witness_mutation_kills operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/test_isolated_certificates.py\",\n    \"sha256\": \"0abf0206a50efd21b7996b520eaa44b444c05914e6eaf89d0a6f080ddd9aa843\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:isolated-certificate-suite:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Isolated exact certificates for the qm slice. (5 * 5 - 3 * 3 = 16).\",\n  \"operations\": {\n    \"WitnessError\": \"One violated witness invariant, with the measured parameters.\",\n    \"Certificate\": \"Class Certificate domain record and methods.\",\n    \"witness_identity\": \"5 * 5 - 3 * 3, the numerator checked by boost_hyperbolic_identity.\",\n    \"test_witness_identity_matches_lean\": \"Function test_witness_identity_matches_lean operation.\",\n    \"test_certificates_match_locked_values\": \"Function test_certificates_match_locked_values operation.\",\n    \"test_negative_probes\": \"Function test_negative_probes operation.\",\n    \"test_domain_negatives\": \"Function test_domain_negatives operation.\",\n    \"test_integration_across_certificates\": \"Function test_integration_across_certificates operation.\",\n    \"test_end_to_end_cli\": \"Function test_end_to_end_cli operation.\",\n    \"test_origins_resolve\": \"Function test_origins_resolve operation.\",\n    \"test_mutation_kills\": \"Function test_mutation_kills operation.\",\n    \"test_witness_mutation_kills\": \"Function test_witness_mutation_kills operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/test_isolated_certificates.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "863588fe1ff15301f56b26fe7dfe199cc8dff774cd5437849aadcfac13315d6f",
+      "bytes": 2605,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/test_isolated_certificates.py",
+          "sha256": "1d9dba8181f6ab7173f801874985e6154d017501e572c21fc48125db8349c174"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:isolated-certificate-suite:v1",
+        "role": "test checker",
+        "purpose": "Isolated exact certificates for the qm slice. (5 * 5 - 3 * 3 = 16).",
+        "operations": {
+          "WitnessError": "One violated witness invariant, with the measured parameters.",
+          "Certificate": "Class Certificate domain record and methods.",
+          "witness_identity": "5 * 5 - 3 * 3, the numerator checked by boost_hyperbolic_identity.",
+          "test_witness_identity_matches_lean": "Function test_witness_identity_matches_lean operation.",
+          "test_certificates_match_locked_values": "Function test_certificates_match_locked_values operation.",
+          "test_negative_probes": "Function test_negative_probes operation.",
+          "test_domain_negatives": "Function test_domain_negatives operation.",
+          "test_integration_across_certificates": "Function test_integration_across_certificates operation.",
+          "test_end_to_end_cli": "Function test_end_to_end_cli operation.",
+          "test_origins_resolve": "Function test_origins_resolve operation.",
+          "test_mutation_kills": "Function test_mutation_kills operation.",
+          "test_witness_mutation_kills": "Function test_witness_mutation_kills operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/test_isolated_certificates.py\",\n    \"sha256\": \"1d9dba8181f6ab7173f801874985e6154d017501e572c21fc48125db8349c174\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:isolated-certificate-suite:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Isolated exact certificates for the qm slice. (5 * 5 - 3 * 3 = 16).\",\n  \"operations\": {\n    \"WitnessError\": \"One violated witness invariant, with the measured parameters.\",\n    \"Certificate\": \"Class Certificate domain record and methods.\",\n    \"witness_identity\": \"5 * 5 - 3 * 3, the numerator checked by boost_hyperbolic_identity.\",\n    \"test_witness_identity_matches_lean\": \"Function test_witness_identity_matches_lean operation.\",\n    \"test_certificates_match_locked_values\": \"Function test_certificates_match_locked_values operation.\",\n    \"test_negative_probes\": \"Function test_negative_probes operation.\",\n    \"test_domain_negatives\": \"Function test_domain_negatives operation.\",\n    \"test_integration_across_certificates\": \"Function test_integration_across_certificates operation.\",\n    \"test_end_to_end_cli\": \"Function test_end_to_end_cli operation.\",\n    \"test_origins_resolve\": \"Function test_origins_resolve operation.\",\n    \"test_mutation_kills\": \"Function test_mutation_kills operation.\",\n    \"test_witness_mutation_kills\": \"Function test_witness_mutation_kills operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/test_isolated_certificates.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "ce2487fa42152eb7f8605c430bf790d7ef6e3fa814a1334fb7d85cea5d796f93",
+      "bytes": 2605,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/test_isolated_certificates.py",
+          "sha256": "717cc255d72c3926ed2e11b3e65eb0cfe4064aa6d152fdd64374d991ddbfaf23"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:isolated-certificate-suite:v1",
+        "role": "test checker",
+        "purpose": "Isolated exact certificates for the qm slice. (5 * 5 - 3 * 3 = 16).",
+        "operations": {
+          "WitnessError": "One violated witness invariant, with the measured parameters.",
+          "Certificate": "Class Certificate domain record and methods.",
+          "witness_identity": "5 * 5 - 3 * 3, the numerator checked by boost_hyperbolic_identity.",
+          "test_witness_identity_matches_lean": "Function test_witness_identity_matches_lean operation.",
+          "test_certificates_match_locked_values": "Function test_certificates_match_locked_values operation.",
+          "test_negative_probes": "Function test_negative_probes operation.",
+          "test_domain_negatives": "Function test_domain_negatives operation.",
+          "test_integration_across_certificates": "Function test_integration_across_certificates operation.",
+          "test_end_to_end_cli": "Function test_end_to_end_cli operation.",
+          "test_origins_resolve": "Function test_origins_resolve operation.",
+          "test_mutation_kills": "Function test_mutation_kills operation.",
+          "test_witness_mutation_kills": "Function test_witness_mutation_kills operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/test_isolated_certificates.py\",\n    \"sha256\": \"717cc255d72c3926ed2e11b3e65eb0cfe4064aa6d152fdd64374d991ddbfaf23\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:isolated-certificate-suite:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Isolated exact certificates for the qm slice. (5 * 5 - 3 * 3 = 16).\",\n  \"operations\": {\n    \"WitnessError\": \"One violated witness invariant, with the measured parameters.\",\n    \"Certificate\": \"Class Certificate domain record and methods.\",\n    \"witness_identity\": \"5 * 5 - 3 * 3, the numerator checked by boost_hyperbolic_identity.\",\n    \"test_witness_identity_matches_lean\": \"Function test_witness_identity_matches_lean operation.\",\n    \"test_certificates_match_locked_values\": \"Function test_certificates_match_locked_values operation.\",\n    \"test_negative_probes\": \"Function test_negative_probes operation.\",\n    \"test_domain_negatives\": \"Function test_domain_negatives operation.\",\n    \"test_integration_across_certificates\": \"Function test_integration_across_certificates operation.\",\n    \"test_end_to_end_cli\": \"Function test_end_to_end_cli operation.\",\n    \"test_origins_resolve\": \"Function test_origins_resolve operation.\",\n    \"test_mutation_kills\": \"Function test_mutation_kills operation.\",\n    \"test_witness_mutation_kills\": \"Function test_witness_mutation_kills operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/test_isolated_certificates.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "0ddfba3f954f7ef252d0f8b29c179042a6af48bcf027fbc84a9dbbaf7a76a5e4",
+      "bytes": 2197,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/test_isolated_certificates.py",
+          "sha256": "0abf0206a50efd21b7996b520eaa44b444c05914e6eaf89d0a6f080ddd9aa843"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:isolated-certificate-suite:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 8), Lizard CCN (max 10), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 8,
+          "lizard_ccn": 10,
+          "weighted_control_upper_bound": 15,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/test_isolated_certificates.py\",\n    \"sha256\": \"0abf0206a50efd21b7996b520eaa44b444c05914e6eaf89d0a6f080ddd9aa843\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:isolated-certificate-suite:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 8), Lizard CCN (max 10), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 10,\n    \"weighted_control_upper_bound\": 15,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/test_isolated_certificates.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "fa3fb7a0f802c1f76a9239963a0965216469197402fd6209def9b197dc2a5767",
+      "bytes": 2172,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/test_isolated_certificates.py",
+          "sha256": "1d9dba8181f6ab7173f801874985e6154d017501e572c21fc48125db8349c174"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:isolated-certificate-suite:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 12 <= 15 (B), nesting depth 3 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 12,
+          "lizard_ccn": 12,
+          "weighted_control_upper_bound": 18,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/test_isolated_certificates.py\",\n    \"sha256\": \"1d9dba8181f6ab7173f801874985e6154d017501e572c21fc48125db8349c174\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:isolated-certificate-suite:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 12 <= 15 (B), nesting depth 3 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 12,\n    \"lizard_ccn\": 12,\n    \"weighted_control_upper_bound\": 18,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/test_isolated_certificates.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "9c6e8734b38adc89f10841dcc3d200a1ab3fedf923ffbba420a32717be178ff7",
+      "bytes": 2172,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/test_isolated_certificates.py",
+          "sha256": "717cc255d72c3926ed2e11b3e65eb0cfe4064aa6d152fdd64374d991ddbfaf23"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:isolated-certificate-suite:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 12 <= 15 (B), nesting depth 3 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 12,
+          "lizard_ccn": 12,
+          "weighted_control_upper_bound": 18,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/test_isolated_certificates.py\",\n    \"sha256\": \"717cc255d72c3926ed2e11b3e65eb0cfe4064aa6d152fdd64374d991ddbfaf23\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:isolated-certificate-suite:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 12 <= 15 (B), nesting depth 3 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 12,\n    \"lizard_ccn\": 12,\n    \"weighted_control_upper_bound\": 18,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/test_isolated_certificates.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

@@ -64,12 +64,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "b02e41bb1e87940f849887ef621f7ea06d81d167d65e704f8569c9c92cf081a5",
-  "current_scoring": null,
+  "current_contract": "edacb8ca9289e33c81024aa9ece73609e209458ebabbbcab6fe3c93399a8bd73",
+  "current_scoring": "1331cac2b2ca3ee2f86f7c260f5efc63516f1a64dc278cc6d09d4ae7fe68f086",
   "contract_history": [
     {
-      "sha256": "b02e41bb1e87940f849887ef621f7ea06d81d167d65e704f8569c9c92cf081a5",
-      "bytes": 1278,
+      "sha256": "edacb8ca9289e33c81024aa9ece73609e209458ebabbbcab6fe3c93399a8bd73",
+      "bytes": 1608,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_higher_category_theory:derived:v1.0.0",
@@ -132,13 +132,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_higher_category_theory:derived:v1.0.0\ntitle: Derived Categories and Mapping Cones.  Provides chain complexes, chain maps,\n  mapping cones $C(f) = Y \\oplus X[1]$, bl...\nkind: rust_file_contract\nstatus: active\ncrate: omega_higher_category_theory\nfile: crates_rs/omega_higher_category_theory/src/derived.rs\nmodule: derived\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_higher_category_theory\n  module: derived\n  file: crates_rs/omega_higher_category_theory/src/derived.rs\nsymbols:\n- ChainComplex\n- new\n- add_generator\n- set_differential\n- differential_of\n- apply_differential_to_terms\n- check_nilpotence\n- ChainMap\n- set_component\n- apply_to_gen\n- apply_to_terms\n- check_commutes_with_differential\n- ConeDifferentialMatrix\n- MappingCone\n- construct\n- QuasiIsomorphism\n- DerivedCategory\n- with_limits\n- add_complex\n- add_chain_map\n- construct_mapping_cone\n- check_cone_nilpotence\n- validate_all\n- content_hash\nowns:\n- chain_complex\n- new\n- add_generator\n- set_differential\n- differential_of\n- apply_differential_to_terms\n- check_nilpotence\n- chain_map\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_higher_category_theory:derived:v1.0.0\",\n  \"title\": \"Derived Categories and Mapping Cones.  Provides chain complexes, chain maps, mapping cones $C(f) = Y \\\\oplus X[1]$, bl...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_higher_category_theory\",\n  \"file\": \"crates_rs/omega_higher_category_theory/src/derived.rs\",\n  \"module\": \"derived\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"derived\",\n    \"file\": \"crates_rs/omega_higher_category_theory/src/derived.rs\"\n  },\n  \"symbols\": [\n    \"ChainComplex\",\n    \"new\",\n    \"add_generator\",\n    \"set_differential\",\n    \"differential_of\",\n    \"apply_differential_to_terms\",\n    \"check_nilpotence\",\n    \"ChainMap\",\n    \"set_component\",\n    \"apply_to_gen\",\n    \"apply_to_terms\",\n    \"check_commutes_with_differential\",\n    \"ConeDifferentialMatrix\",\n    \"MappingCone\",\n    \"construct\",\n    \"QuasiIsomorphism\",\n    \"DerivedCategory\",\n    \"with_limits\",\n    \"add_complex\",\n    \"add_chain_map\",\n    \"construct_mapping_cone\",\n    \"check_cone_nilpotence\",\n    \"validate_all\",\n    \"content_hash\"\n  ],\n  \"owns\": [\n    \"chain_complex\",\n    \"new\",\n    \"add_generator\",\n    \"set_differential\",\n    \"differential_of\",\n    \"apply_differential_to_terms\",\n    \"check_nilpotence\",\n    \"chain_map\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/geometry/omega_higher_category_theory_derived.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "1331cac2b2ca3ee2f86f7c260f5efc63516f1a64dc278cc6d09d4ae7fe68f086",
+      "bytes": 2247,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/geometry/omega_higher_category_theory_derived_contract.py",
+          "sha256": "32f5fb710facf2cb1e30c753326e6f28924e0046758c2788cc3218fc7f860f7f"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:geometry:omega-higher-category-theory-derived-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/omega_higher_category_theory_derived_contract.py\",\n    \"sha256\": \"32f5fb710facf2cb1e30c753326e6f28924e0046758c2788cc3218fc7f860f7f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:omega-higher-category-theory-derived-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/omega_higher_category_theory_derived_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/geometry/omega_higher_category_theory_derived.contract.yaml": "b02e41bb1e87940f849887ef621f7ea06d81d167d65e704f8569c9c92cf081a5"
   },

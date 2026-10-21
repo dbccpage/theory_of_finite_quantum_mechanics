@@ -99,12 +99,12 @@
       "May need integration with derived category contract for cohomology"
     ]
   },
-  "current_contract": "5e5fa090efa21fbec0cd8c14c18c7c73fe1da6befcc90017f43c1d5fb9456c37",
-  "current_scoring": null,
+  "current_contract": "bd6d288fe598a7fa6b702742c11407bd5a247c09b432340b96479cc9a8049d99",
+  "current_scoring": "ea1084fe5403eb4af8cd8ae288e76b6b724e619b56378227229ed83d2e72118b",
   "contract_history": [
     {
-      "sha256": "5e5fa090efa21fbec0cd8c14c18c7c73fe1da6befcc90017f43c1d5fb9456c37",
-      "bytes": 3305,
+      "sha256": "bd6d288fe598a7fa6b702742c11407bd5a247c09b432340b96479cc9a8049d99",
+      "bytes": 3785,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:hypercover:v0.1.0",
@@ -202,13 +202,75 @@
           "May need integration with derived category contract for cohomology"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:hypercover:v0.1.0\ntitle: Hypercover\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: simplicial_object_with_covering_property\n  symbol: U_• → X in site (C, J)\n  ascii_symbol: hypercover\n  notation: U_• → X in site (C, J)\n  domain:\n  - 'base_object: X in category C'\n  - 'simplicial_levels: U_n for n ≥ 0'\n  - 'face_maps: d_i: U_n → U_{n-1}'\n  - 'degeneracy_maps: s_i: U_n → U_{n+1}'\n  - 'covering_maps: U_{n+1} → (cosk_n U_•)_{n+1}'\n  codomain:\n    description: 'Simplicial object U_• in a site (C, J) with U_n objects at each\n      level, face maps d_i: U_n → U_{n-1}, degeneracy maps s_i: U_n → U_{n+1}, and\n      a map U₀ → X to the base object.\n\n      '\nrequirements:\n  required_structures:\n  - The map U₀ → X must be a covering in the site J\n  - For all n ≥ 0, U_{n+1} → (cosk_n U_•)_{n+1} is a covering\n  - Face and degeneracy maps satisfy simplicial relations\n  - Artifact hash is SHA-256 over canonical serialized data\nlaws:\n- U₀ → X is a covering in J\n- U_• satisfies simplicial identities (face/degeneracy relations)\n- For each n ≥ 0, U_{n+1} → (cosk_n U_•)_{n+1} is a covering\nreplay:\n  requirements:\n  - Simplicial data serialized in canonical order\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- site_id does not resolve to a valid Site\n- base_object_id does not resolve to object in category\n- Face/degeneracy relations fail simplicial identities\n- U₀ → X is not a covering in J(X)\n- U_{n+1} → cosk_n fails to cover at some level n\ndoctrine:\n  summary: 'A Hypercover is a simplicial object U_• → X in a site that refines coverings\n    at each level: U₀ → X is a covering, U₁ → U₀ ×_X U₀ is a covering of the intersection,\n    and so on. Hypercovers compute cohomology and provide resolution of sheaves. The\n    contract validates the hypercover axioms. # Section 1: description'\n  non_role:\n  - Not responsible for constructing specific hypercovers for given sites\n  - Does not implement cohomology computation algorithms\n  - Does not provide descent theory beyond validation\n  - Not a general simplicial object validator (only hypercover axioms)\nwip:\n- Hypercovers compute sheaf cohomology via homotopy limit - how to integrate?\n- Verdier's hypercovering theorem relates hypercover cohomology to derived functor\n  cohomology - implementation path?\n- In ∞-topos, hypercovers are colimit diagrams - higher category theory integration?\n- Contract defines validation structure but cohomology computation deferred\n- Bounded vs unbounded hypercovers both supported via truncation_level\n- Coskeleton computation is deterministic and content-addressed\n- May need integration with derived category contract for cohomology\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:hypercover:v0.1.0\",\n  \"title\": \"Hypercover\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"simplicial_object_with_covering_property\",\n    \"symbol\": \"U_• → X in site (C, J)\",\n    \"ascii_symbol\": \"hypercover\",\n    \"notation\": \"U_• → X in site (C, J)\",\n    \"domain\": [\n      \"base_object: X in category C\",\n      \"simplicial_levels: U_n for n ≥ 0\",\n      \"face_maps: d_i: U_n → U_{n-1}\",\n      \"degeneracy_maps: s_i: U_n → U_{n+1}\",\n      \"covering_maps: U_{n+1} → (cosk_n U_•)_{n+1}\"\n    ],\n    \"codomain\": {\n      \"description\": \"Simplicial object U_• in a site (C, J) with U_n objects at each level, face maps d_i: U_n → U_{n-1}, degeneracy maps s_i: U_n → U_{n+1}, and a map U₀ → X to the base object.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The map U₀ → X must be a covering in the site J\",\n      \"For all n ≥ 0, U_{n+1} → (cosk_n U_•)_{n+1} is a covering\",\n      \"Face and degeneracy maps satisfy simplicial relations\",\n      \"Artifact hash is SHA-256 over canonical serialized data\"\n    ]\n  },\n  \"laws\": [\n    \"U₀ → X is a covering in J\",\n    \"U_• satisfies simplicial identities (face/degeneracy relations)\",\n    \"For each n ≥ 0, U_{n+1} → (cosk_n U_•)_{n+1} is a covering\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"Simplicial data serialized in canonical order\",\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"site_id does not resolve to a valid Site\",\n    \"base_object_id does not resolve to object in category\",\n    \"Face/degeneracy relations fail simplicial identities\",\n    \"U₀ → X is not a covering in J(X)\",\n    \"U_{n+1} → cosk_n fails to cover at some level n\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Hypercover is a simplicial object U_• → X in a site that refines coverings at each level: U₀ → X is a covering, U₁ → U₀ ×_X U₀ is a covering of the intersection, and so on. Hypercovers compute cohomology and provide resolution of sheaves. The contract validates the hypercover axioms. # Section 1: description\",\n    \"non_role\": [\n      \"Not responsible for constructing specific hypercovers for given sites\",\n      \"Does not implement cohomology computation algorithms\",\n      \"Does not provide descent theory beyond validation\",\n      \"Not a general simplicial object validator (only hypercover axioms)\"\n    ]\n  },\n  \"wip\": [\n    \"Hypercovers compute sheaf cohomology via homotopy limit - how to integrate?\",\n    \"Verdier's hypercovering theorem relates hypercover cohomology to derived functor cohomology - implementation path?\",\n    \"In ∞-topos, hypercovers are colimit diagrams - higher category theory integration?\",\n    \"Contract defines validation structure but cohomology computation deferred\",\n    \"Bounded vs unbounded hypercovers both supported via truncation_level\",\n    \"Coskeleton computation is deterministic and content-addressed\",\n    \"May need integration with derived category contract for cohomology\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_hypercover_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "ea1084fe5403eb4af8cd8ae288e76b6b724e619b56378227229ed83d2e72118b",
+      "bytes": 2217,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_hypercover_v0_1_0_contract.py",
+          "sha256": "85b24114cb5decc9978cc5162ea68c5422ce48bd93b30e3820e7209ec84dd377"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-hypercover-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_hypercover_v0_1_0_contract.py\",\n    \"sha256\": \"85b24114cb5decc9978cc5162ea68c5422ce48bd93b30e3820e7209ec84dd377\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-hypercover-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_hypercover_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_hypercover_v0_1_0.contract.yaml": "5e5fa090efa21fbec0cd8c14c18c7c73fe1da6befcc90017f43c1d5fb9456c37"
   },

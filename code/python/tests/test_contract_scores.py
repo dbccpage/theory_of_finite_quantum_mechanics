@@ -160,3 +160,16 @@ def test_four_alias_writer_and_archive_copy_create_only_combined_files(repo, mon
     combined = ["lib.contract.score.yaml", "previous/lib.contract.score.yaml"]
     monkeypatch.setattr(store.subprocess, "check_output", lambda *a, **kw: ("\0".join(combined) + "\0").encode())
     store.check()
+
+
+def test_export_v2_deterministic_canonical_schema(repo, monkeypatch):
+    source, files = prepare(repo, monkeypatch)
+    store.migrate(apply=True)
+    doc_path = repo / "code/agent_functor.contract.score.yaml"
+    v2 = store.export_v2(doc_path)
+    assert v2["schema_version"] == "2.0.0"
+    assert v2["artifact"]["path"] == "code/agent_functor.rs"
+    assert v2["artifact"]["language"] == "Rust"
+    assert "evaluation_timestamp" in v2
+    assert v2["is_complete"] is False
+    assert v2["score_token"] is None

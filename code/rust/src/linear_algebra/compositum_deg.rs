@@ -198,6 +198,51 @@ struct Leaf {
     discriminant: Value,
     group: Option<String>,
 }
+fn validate_quadratic_leaf(
+    n: u64,
+    d: u64,
+    factor: &Factor,
+    certificate: &Value,
+) -> Result<(u64, Value, Option<String>)> {
+    keys(
+        certificate,
+        &["kind", "discriminant", "discriminant_square"],
+    )?;
+    let delta = quadratic_discriminant(&factor.polynomial, d)?;
+    if certificate["kind"] != "IRREDUCIBLE_QUADRATIC" || certificate["discriminant"] != delta {
+        return Err("QUADRATIC_LEAF_DISCRIMINANT_MISMATCH".into());
+    }
+    squares::verify_square_certificate(n, &delta, &certificate["discriminant_square"])?;
+    if certificate["discriminant_square"]["is_square"].as_bool() != Some(false) {
+        return Err("QUADRATIC_LEAF_MUST_BE_NONSQUARE".into());
+    }
+    Ok((2, delta, None))
+}
+
+fn validate_higher_degree_leaf(
+    n: u64,
+    factor: &Factor,
+    certificate: &Value,
+) -> Result<(u64, Value, Option<String>)> {
+    irreducible::validate_splitting_degree(n, &factor.polynomial, certificate)?;
+    let deg = integer(&certificate["degree_over_real_field"])?;
+    let disc = certificate["discriminant"].clone();
+    let group = certificate["galois_group"]
+        .as_str()
+        .ok_or("GALOIS_GROUP_STRING_REQUIRED")?
+        .to_string();
+    Ok((deg, disc, Some(group)))
+}
+
+fn check_leaf_factor_match(factor: &Factor, row: &Value) -> Result<()> {
+    if integer(&row["factor_index"])? != factor.index as u64
+        || integer(&row["polynomial_degree"])? != factor.degree as u64
+    {
+        return Err("FACTOR_LEAF_INDEX_OR_DEGREE_MISMATCH".into());
+    }
+    Ok(())
+}
+
 fn validate_leaf(n: u64, d: u64, factor: &Factor, row: &Value) -> Result<Leaf> {
     keys(
         row,
@@ -208,38 +253,12 @@ fn validate_leaf(n: u64, d: u64, factor: &Factor, row: &Value) -> Result<Leaf> {
             "certificate",
         ],
     )?;
-    if integer(&row["factor_index"])? != factor.index as u64
-        || integer(&row["polynomial_degree"])? != factor.degree as u64
-    {
-        return Err("FACTOR_LEAF_INDEX_OR_DEGREE_MISMATCH".into());
-    }
+    check_leaf_factor_match(factor, row)?;
     let certificate = &row["certificate"];
     let (degree, discriminant, group) = if factor.degree == 2 {
-        keys(
-            certificate,
-            &["kind", "discriminant", "discriminant_square"],
-        )?;
-        let delta = quadratic_discriminant(&factor.polynomial, d)?;
-        if certificate["kind"] != "IRREDUCIBLE_QUADRATIC" || certificate["discriminant"] != delta {
-            return Err("QUADRATIC_LEAF_DISCRIMINANT_MISMATCH".into());
-        }
-        squares::verify_square_certificate(n, &delta, &certificate["discriminant_square"])?;
-        if certificate["discriminant_square"]["is_square"].as_bool() != Some(false) {
-            return Err("QUADRATIC_LEAF_MUST_BE_NONSQUARE".into());
-        }
-        (2, delta, None)
+        validate_quadratic_leaf(n, d, factor, certificate)?
     } else {
-        irreducible::validate_splitting_degree(n, &factor.polynomial, certificate)?;
-        (
-            integer(&certificate["degree_over_real_field"])?,
-            certificate["discriminant"].clone(),
-            Some(
-                certificate["galois_group"]
-                    .as_str()
-                    .ok_or("GALOIS_GROUP_STRING_REQUIRED")?
-                    .to_string(),
-            ),
-        )
+        validate_higher_degree_leaf(n, factor, certificate)?
     };
     if integer(&row["degree_over_real_field"])? != degree {
         return Err("LEAF_SPLITTING_DEGREE_MISMATCH".into());
@@ -312,13 +331,31 @@ fn intersection_certificate(n: u64, leaves: &[Leaf]) -> Result<Value> {
         "left_discriminant":left,"right_discriminant":right,"squareclass_certificate":certificate,"intersection_degree":degree}),
     )
 }
-fn validate_intersection(n: u64, leaves: &[Leaf], certificate: &Value) -> Result<u64> {
-    if leaves.len() < 2 {
-        if !certificate.is_null() {
-            return Err("UNUSED_INTERSECTION_MUST_BE_NULL".into());
+fn validate_intersection_squareclass(
+    n: u64,
+    leaves: &[Leaf],
+    supplied: &Value,
+    left: &Value,
+    right: &Value,
+) -> Result<Option<bool>> {
+    if leaves[1].group.as_deref() == Some("C3") {
+        if !supplied.is_null() {
+            return Err("CYCLIC_CUBIC_SQUARECLASS_MUST_BE_NULL".into());
         }
-        return Ok(1);
+        Ok(None)
+    } else {
+        squares::verify_squareclass_certificate(n, left, right, supplied)?;
+        let same = supplied["same_squareclass"]
+            .as_bool()
+            .ok_or("SQUARECLASS_BOOLEAN_REQUIRED")?;
+        Ok(Some(same))
     }
+}
+
+fn validate_intersection_header<'a>(
+    leaves: &'a [Leaf],
+    certificate: &Value,
+) -> Result<(&'a Value, &'a Value)> {
     keys(
         certificate,
         &[
@@ -330,29 +367,27 @@ fn validate_intersection(n: u64, leaves: &[Leaf], certificate: &Value) -> Result
             "intersection_degree",
         ],
     )?;
-    if integer_list(&certificate["factor_indices"])?
-        != vec![leaves[0].index as u64, leaves[1].index as u64]
-    {
+    let expected = vec![leaves[0].index as u64, leaves[1].index as u64];
+    if integer_list(&certificate["factor_indices"])? != expected {
         return Err("INTERSECTION_FACTOR_INDICES_MISMATCH".into());
     }
     let (left, right) = (&leaves[0].discriminant, &leaves[1].discriminant);
     if certificate["left_discriminant"] != *left || certificate["right_discriminant"] != *right {
         return Err("INTERSECTION_DISCRIMINANT_BINDING_MISMATCH".into());
     }
-    let supplied = &certificate["squareclass_certificate"];
-    let same = if leaves[1].group.as_deref() == Some("C3") {
-        if !supplied.is_null() {
-            return Err("CYCLIC_CUBIC_SQUARECLASS_MUST_BE_NULL".into());
+    Ok((left, right))
+}
+
+fn validate_intersection(n: u64, leaves: &[Leaf], certificate: &Value) -> Result<u64> {
+    if leaves.len() < 2 {
+        if !certificate.is_null() {
+            return Err("UNUSED_INTERSECTION_MUST_BE_NULL".into());
         }
-        None
-    } else {
-        squares::verify_squareclass_certificate(n, left, right, supplied)?;
-        Some(
-            supplied["same_squareclass"]
-                .as_bool()
-                .ok_or("SQUARECLASS_BOOLEAN_REQUIRED")?,
-        )
-    };
+        return Ok(1);
+    }
+    let (left, right) = validate_intersection_header(leaves, certificate)?;
+    let supplied = &certificate["squareclass_certificate"];
+    let same = validate_intersection_squareclass(n, leaves, supplied, left, right)?;
     let (rule, degree) = intersection_rule(leaves, same)?;
     if certificate["rule"] != rule {
         return Err("INTERSECTION_RULE_MISMATCH".into());
@@ -402,7 +437,38 @@ pub fn compositum_splitting_degree(n: u64, coefficients: &Value) -> Result<Value
         "degree_over_real_field":composite_degree(&leaves,intersection_degree)?,"algorithm":ALGORITHM,"scope":SCOPE}),
     )
 }
-pub fn validate_compositum_degree(n: u64, coefficients: &Value, certificate: &Value) -> Result<()> {
+fn validate_compositum_metadata(n: u64, d: u64, name: &str, cert: &Value) -> Result<()> {
+    if cert["schema"] != SCHEMA
+        || cert["authority_effect"] != "None"
+        || cert["algorithm"] != ALGORITHM
+        || cert["scope"] != SCOPE
+        || cert["coefficient_field"] != name
+    {
+        return Err("COMPOSITUM_METADATA_MISMATCH".into());
+    }
+    if integer(&cert["conductor"])? != n || integer(&cert["real_generator_radicand"])? != d {
+        return Err("COMPOSITUM_METADATA_MISMATCH".into());
+    }
+    Ok(())
+}
+
+fn validate_factors_and_pattern(cert: &Value, factors: &[Factor]) -> Result<()> {
+    let factor_indices: Vec<u64> = factors.iter().map(|f| f.index as u64).collect();
+    if integer_list(&cert["nonlinear_factor_indices"])? != factor_indices {
+        return Err("NONLINEAR_FACTOR_INDICES_MISMATCH".into());
+    }
+    let degrees: Vec<u64> = factors.iter().map(|f| f.degree as u64).collect();
+    if integer_list(&cert["degree_pattern"])? != degrees {
+        return Err("DEGREE_PATTERN_MISMATCH".into());
+    }
+    Ok(())
+}
+
+fn validate_compositum_preconditions(
+    n: u64,
+    coefficients: &Value,
+    certificate: &Value,
+) -> Result<u64> {
     let (d, name) = admitted(n, coefficients)?;
     exact_json(certificate)?;
     keys(
@@ -424,45 +490,48 @@ pub fn validate_compositum_degree(n: u64, coefficients: &Value, certificate: &Va
             "scope",
         ],
     )?;
-    if certificate["schema"] != SCHEMA
-        || certificate["authority_effect"] != "None"
-        || certificate["algorithm"] != ALGORITHM
-        || certificate["scope"] != SCOPE
-        || integer(&certificate["conductor"])? != n
-        || integer(&certificate["real_generator_radicand"])? != d
-        || certificate["coefficient_field"] != name
-    {
-        return Err("COMPOSITUM_METADATA_MISMATCH".into());
-    }
+    validate_compositum_metadata(n, d, &name, certificate)?;
     if certificate["coefficients"] != *coefficients {
         return Err("COMPOSITUM_INPUT_BINDING_MISMATCH".into());
     }
+    Ok(d)
+}
+
+pub fn validate_compositum_degree(n: u64, coefficients: &Value, certificate: &Value) -> Result<()> {
+    let d = validate_compositum_preconditions(n, coefficients, certificate)?;
     factors::validate_factorization(n, coefficients, &certificate["factorization"])?;
     let factors = nonlinear(&certificate["factorization"])?;
-    if integer_list(&certificate["nonlinear_factor_indices"])?
-        != factors.iter().map(|f| f.index as u64).collect::<Vec<_>>()
-    {
-        return Err("NONLINEAR_FACTOR_INDICES_MISMATCH".into());
-    }
-    if integer_list(&certificate["degree_pattern"])?
-        != factors.iter().map(|f| f.degree as u64).collect::<Vec<_>>()
-    {
-        return Err("DEGREE_PATTERN_MISMATCH".into());
-    }
-    let rows = certificate["factor_certificates"]
+    validate_factors_and_pattern(certificate, &factors)?;
+    let leaves = validate_leaves(n, d, &factors, &certificate["factor_certificates"])?;
+    let intersection = validate_intersection(n, &leaves, &certificate["intersection_certificate"])?;
+    check_compositum_splitting_degree(certificate, &leaves, intersection)
+}
+
+fn validate_leaves(
+    n: u64,
+    d: u64,
+    factors: &[Factor],
+    cert_rows: &Value,
+) -> Result<Vec<Leaf>> {
+    let rows = cert_rows
         .as_array()
         .ok_or("FACTOR_CERTIFICATE_ARRAY_REQUIRED")?;
     if rows.len() != factors.len() {
         return Err("FACTOR_CERTIFICATE_CENSUS_MISMATCH".into());
     }
-    let leaves = factors
+    factors
         .iter()
         .zip(rows)
         .map(|(f, c)| validate_leaf(n, d, f, c))
-        .collect::<Result<Vec<_>>>()?;
-    let intersection = validate_intersection(n, &leaves, &certificate["intersection_certificate"])?;
-    if integer(&certificate["degree_over_real_field"])? != composite_degree(&leaves, intersection)?
-    {
+        .collect::<Result<Vec<_>>>()
+}
+
+fn check_compositum_splitting_degree(
+    certificate: &Value,
+    leaves: &[Leaf],
+    intersection: u64,
+) -> Result<()> {
+    if integer(&certificate["degree_over_real_field"])? != composite_degree(leaves, intersection)? {
         return Err("COMPOSITUM_SPLITTING_DEGREE_MISMATCH".into());
     }
     Ok(())
@@ -476,7 +545,18 @@ pub fn evaluate_request(request: &Value) -> Result<Value> {
     compositum_splitting_degree(integer(&request["conductor"])?, &request["coefficients"])
 }
 
-#[cfg(test)]
+fn pairwise_cross_numerator(terms: &[Q]) -> BigInt {
+    let mut numerator = BigInt::zero();
+    for (i, a) in terms.iter().enumerate() {
+        for (j, b) in terms.iter().enumerate() {
+            if i != j {
+                numerator += a.numer() * b.denom();
+            }
+        }
+    }
+    numerator
+}
+
 pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
     let terms = terms
         .as_array()
@@ -485,14 +565,7 @@ pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
         .map(rational)
         .collect::<Result<Vec<_>>>()?;
     if self_join {
-        let mut numerator = BigInt::zero();
-        for (i, a) in terms.iter().enumerate() {
-            for (j, b) in terms.iter().enumerate() {
-                if i != j {
-                    numerator += a.numer() * b.denom();
-                }
-            }
-        }
+        let numerator = pairwise_cross_numerator(&terms);
         return Ok(json!(qwire(&Q::from_integer(numerator))));
     }
     Ok(sum(&terms

@@ -114,52 +114,106 @@ pub struct SignedTransportCertificate {
     pub outcome: SignedTransportOutcome,
 }
 
+fn validate_forest_dimensions(forest: &ForestGauge, n: usize) -> Result<(), SignedTransportError> {
+    if forest.roots.len() != n || forest.paths.len() != n || forest.gauge_parities.len() != n {
+        return Err(SignedTransportError("forest/gauge carrier mismatch"));
+    }
+    Ok(())
+}
+
+fn check_vertex_path_validity(
+    forest: &ForestGauge,
+    v: usize,
+    root: usize,
+    n: usize,
+) -> bool {
+    let path = &forest.paths[v];
+    root < n
+        && path.first() == Some(&root)
+        && path.last() == Some(&v)
+        && forest.roots[root] == root
+        && forest.paths[root] == [root]
+        && path.iter().copied().collect::<BTreeSet<_>>().len() == path.len()
+}
+
+fn verify_vertex_path(
+    graph: &SignedCoefficientGraph,
+    forest: &ForestGauge,
+    v: usize,
+    n: usize,
+) -> Result<(), SignedTransportError> {
+    let root = forest.roots[v];
+    let path = &forest.paths[v];
+    if !check_vertex_path_validity(forest, v, root, n) {
+        return Err(SignedTransportError("invalid root or spanning-forest path"));
+    }
+    let parity = graph.walk_parity(path)?;
+    if forest.gauge_parities[v] != forest.gauge_parities[root] ^ parity {
+        return Err(SignedTransportError(
+            "path gauge does not realize its transport",
+        ));
+    }
+    for (index, &node) in path.iter().enumerate() {
+        if forest.roots[node] != root || forest.paths[node] != path[..=index] {
+            return Err(SignedTransportError(
+                "paths do not form a prefix-consistent forest",
+            ));
+        }
+    }
+    Ok(())
+}
+
+fn verify_edge_compatibilities(
+    graph: &SignedCoefficientGraph,
+    forest: &ForestGauge,
+    n: usize,
+) -> Result<(), SignedTransportError> {
+    for a in 0..n {
+        for b in a + 1..n {
+            let Some(parity) = graph.edge_parity(a, b) else {
+                continue;
+            };
+            if forest.roots[a] != forest.roots[b]
+                || forest.gauge_parities[a] ^ forest.gauge_parities[b] != parity
+            {
+                return Err(SignedTransportError(
+                    "gauge omits or fails an original edge",
+                ));
+            }
+        }
+    }
+    Ok(())
+}
+
 fn verify_forest(
     graph: &SignedCoefficientGraph,
     forest: &ForestGauge,
 ) -> Result<(), SignedTransportError> {
     let n = graph.dimension();
-    if forest.roots.len() != n || forest.paths.len() != n || forest.gauge_parities.len() != n {
-        return Err(SignedTransportError("forest/gauge carrier mismatch"));
-    }
+    validate_forest_dimensions(forest, n)?;
     for v in 0..n {
-        let root = forest.roots[v];
-        let path = &forest.paths[v];
-        if root >= n
-            || path.first() != Some(&root)
-            || path.last() != Some(&v)
-            || forest.roots[root] != root
-            || forest.paths[root] != vec![root]
-            || path.iter().copied().collect::<BTreeSet<_>>().len() != path.len()
-        {
-            return Err(SignedTransportError("invalid root or spanning-forest path"));
-        }
-        let parity = graph.walk_parity(path)?;
-        if forest.gauge_parities[v] != forest.gauge_parities[root] ^ parity {
-            return Err(SignedTransportError(
-                "path gauge does not realize its transport",
-            ));
-        }
-        for (index, &node) in path.iter().enumerate() {
-            if forest.roots[node] != root || forest.paths[node] != path[..=index] {
-                return Err(SignedTransportError(
-                    "paths do not form a prefix-consistent forest",
-                ));
-            }
-        }
+        verify_vertex_path(graph, forest, v, n)?;
     }
-    for a in 0..n {
-        for b in a + 1..n {
-            if let Some(parity) = graph.edge_parity(a, b) {
-                if forest.roots[a] != forest.roots[b]
-                    || forest.gauge_parities[a] ^ forest.gauge_parities[b] != parity
-                {
-                    return Err(SignedTransportError(
-                        "gauge omits or fails an original edge",
-                    ));
-                }
-            }
-        }
+    verify_edge_compatibilities(graph, forest, n)?;
+    Ok(())
+}
+
+fn verify_negative_cycle(
+    graph: &SignedCoefficientGraph,
+    walk: &[usize],
+) -> Result<(), SignedTransportError> {
+    let simple_closed = walk.len() >= 4
+        && walk.first() == walk.last()
+        && walk[..walk.len() - 1]
+            .iter()
+            .copied()
+            .collect::<BTreeSet<_>>()
+            .len()
+            == walk.len() - 1;
+    if !simple_closed || !graph.walk_parity(walk)? {
+        return Err(SignedTransportError(
+            "not an actual simple negative closed transport cycle",
+        ));
     }
     Ok(())
 }
@@ -173,23 +227,7 @@ impl SignedTransportCertificate {
         }
         match &self.outcome {
             SignedTransportOutcome::Gauge(f) => verify_forest(graph, f),
-            SignedTransportOutcome::NegativeCycle(walk) => {
-                if walk.len() < 4
-                    || walk.first() != walk.last()
-                    || walk[..walk.len() - 1]
-                        .iter()
-                        .copied()
-                        .collect::<BTreeSet<_>>()
-                        .len()
-                        != walk.len() - 1
-                    || !graph.walk_parity(walk)?
-                {
-                    return Err(SignedTransportError(
-                        "not an actual simple negative closed transport cycle",
-                    ));
-                }
-                Ok(())
-            }
+            SignedTransportOutcome::NegativeCycle(walk) => verify_negative_cycle(graph, walk),
         }
     }
 }
@@ -200,6 +238,36 @@ fn conflict_cycle(left: &[usize], right: &[usize]) -> Vec<usize> {
     cycle.extend_from_slice(&right[shared..]);
     cycle.push(*left.last().expect("nonempty root path"));
     cycle
+}
+
+fn explore_component(
+    graph: &SignedCoefficientGraph,
+    root: usize,
+    forest: &mut ForestGauge,
+    n: usize,
+) -> Option<Vec<usize>> {
+    forest.roots[root] = root;
+    forest.paths[root] = vec![root];
+    let mut queue = VecDeque::from([root]);
+    while let Some(a) = queue.pop_front() {
+        for b in 0..n {
+            let Some(parity) = graph.edge_parity(a, b) else {
+                continue;
+            };
+            let required = forest.gauge_parities[a] ^ parity;
+            if forest.roots[b] == usize::MAX {
+                forest.roots[b] = root;
+                forest.gauge_parities[b] = required;
+                let mut path = forest.paths[a].clone();
+                path.push(b);
+                forest.paths[b] = path;
+                queue.push_back(b);
+            } else if forest.gauge_parities[b] != required {
+                return Some(conflict_cycle(&forest.paths[a], &forest.paths[b]));
+            }
+        }
+    }
+    None
 }
 
 pub fn certify_signed_transport(graph: &SignedCoefficientGraph) -> SignedTransportCertificate {
@@ -213,32 +281,11 @@ pub fn certify_signed_transport(graph: &SignedCoefficientGraph) -> SignedTranspo
         if forest.roots[root] != usize::MAX {
             continue;
         }
-        forest.roots[root] = root;
-        forest.paths[root] = vec![root];
-        let mut queue = VecDeque::from([root]);
-        while let Some(a) = queue.pop_front() {
-            for b in 0..n {
-                let Some(parity) = graph.edge_parity(a, b) else {
-                    continue;
-                };
-                let required = forest.gauge_parities[a] ^ parity;
-                if forest.roots[b] == usize::MAX {
-                    forest.roots[b] = root;
-                    forest.gauge_parities[b] = required;
-                    let mut path = forest.paths[a].clone();
-                    path.push(b);
-                    forest.paths[b] = path;
-                    queue.push_back(b);
-                } else if forest.gauge_parities[b] != required {
-                    return SignedTransportCertificate {
-                        original_coefficients: graph.canonical_coefficients(),
-                        outcome: SignedTransportOutcome::NegativeCycle(conflict_cycle(
-                            &forest.paths[a],
-                            &forest.paths[b],
-                        )),
-                    };
-                }
-            }
+        if let Some(cycle) = explore_component(graph, root, &mut forest, n) {
+            return SignedTransportCertificate {
+                original_coefficients: graph.canonical_coefficients(),
+                outcome: SignedTransportOutcome::NegativeCycle(cycle),
+            };
         }
     }
     SignedTransportCertificate {

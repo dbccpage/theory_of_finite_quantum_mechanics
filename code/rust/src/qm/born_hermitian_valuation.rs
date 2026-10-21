@@ -8,8 +8,9 @@
 //! `code/python/src/qm/born_hermitian_valuation.py`:
 //!
 //! * Hermitian PSD certification by a Gram (`L D L*`) decomposition `E = Σ_k d_k w_k w_k*`
-//!   with real pivots `d_k ≥ 0`, or an exact negative witness `x` with `x* E x < 0` lifted
-//!   through the conjugate unit lower factor;
+//!   with real pivots `d_k ≥ 0`, or an exact negative witness `x` with `x* E x < 0`, both
+//!   read off the crate's [`hermitian_ldl`] (the crate's one Hermitian `L D L*`; the rational
+//!   twin reads the symmetric [`ldlt`](crate::linear_algebra::ordered::ldlt) the same way);
 //! * effects `0 ≤ E ≤ I` in the Hermitian-form preorder (unit = identity) and the rank-one
 //!   effects `x x* / (x·x)`;
 //! * the order-unit bound `⌈Σ(|re a_ij| + |im a_ij|)⌉` and the midpoint extension
@@ -27,20 +28,20 @@
 //! The `*`-algebra and its order are supplied; only the form of the valuation is derived.
 //! No Gleason theorem is proved. AuthorityEffect: None.
 //!
-//! Scalars: the module carries its own plain-operator Gaussian rational [`Gq`] (public
-//! canonical-`Q` parts, admitted at every public entry point exactly as the twin admits raw
-//! `Q` entries), with lossless conversions to and from the crate's
-//! [`GaussianRational`], whose `Result`-valued trait arithmetic would otherwise obscure the
-//! Hermitian elimination. The two agree on products, conjugates, norms and inverses (tested).
-
-use std::fmt;
-use std::ops::{Add, Mul, Neg, Sub};
+//! Scalars: the crate's [`GaussianRational`] (canonical parts by construction, `Result`-valued
+//! `Semiring`/`Ring`/`Involution` arithmetic). A refused scalar operation surfaces as the
+//! typed `Scalar` error, a refused matrix operation as `LinearAlgebra`; nothing panics on
+//! caller data.
 
 use num_bigint::BigInt;
-use num_traits::{One, Signed, Zero};
+use num_traits::{Signed, Zero};
 
-use crate::linear_algebra::scalars::{validate_rational, RationalConstructionError};
-use crate::linear_algebra::{q, GaussianRational, Q};
+use crate::linear_algebra::basic_matrix::BasicMatrix;
+use crate::linear_algebra::ordered::{hermitian_ldl, LdltOutcome};
+use crate::linear_algebra::scalars::{
+    validate_rational, Involution, RationalConstructionError, Ring, ScalarError, Semiring,
+};
+use crate::linear_algebra::{q, ExactFieldError, GaussianRational, Q};
 
 pub const AUTHORITY_FENCE: &str = "AuthorityEffect None; not PROVED; no Gleason theorem is proved; \
      the matrix algebra and its order are supplied, only the form of the valuation is derived; \
@@ -52,204 +53,14 @@ pub const PROVENANCE: &str = "Hermitian twin over the Gaussian rationals of the 
      module code/rust/src/qm/born_effect_valuation.rs.";
 
 // ============================================================================
-// Gaussian rationals with plain operators
-// ============================================================================
-
-/// A Gaussian rational `re + im·i` with exact rational parts. The parts are raw `Q` values
-/// exactly as the rational twin's matrix entries are; every public matrix or vector entry
-/// point re-admits them through [`matrix`] / [`vector`] (`InexactEntry` on a non-canonical
-/// part).
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Gq {
-    pub re: Q,
-    pub im: Q,
-}
-
-impl Gq {
-    pub fn new(re: Q, im: Q) -> Self {
-        Self { re, im }
-    }
-
-    /// The real Gaussian rational `re + 0·i`.
-    pub fn real(re: Q) -> Self {
-        Self {
-            re,
-            im: Q::zero(),
-        }
-    }
-
-    pub fn from_integers(re: i64, im: i64) -> Self {
-        Self {
-            re: q(re),
-            im: q(im),
-        }
-    }
-
-    pub fn zero() -> Self {
-        Self::from_integers(0, 0)
-    }
-
-    pub fn one() -> Self {
-        Self::from_integers(1, 0)
-    }
-
-    /// The imaginary unit.
-    pub fn i() -> Self {
-        Self::from_integers(0, 1)
-    }
-
-    pub fn conj(&self) -> Self {
-        Self {
-            re: self.re.clone(),
-            im: -&self.im,
-        }
-    }
-
-    /// `re² + im²`.
-    pub fn norm_sq(&self) -> Q {
-        &self.re * &self.re + &self.im * &self.im
-    }
-
-    pub fn is_zero(&self) -> bool {
-        self.re.is_zero() && self.im.is_zero()
-    }
-
-    pub fn is_real(&self) -> bool {
-        self.im.is_zero()
-    }
-
-    /// `self / rhs = self · conj(rhs) / |rhs|²`; refuses a zero divisor.
-    pub fn try_div(&self, rhs: &Gq) -> Result<Gq, BornHermitianValuationError> {
-        let n = rhs.norm_sq();
-        if n.is_zero() {
-            return Err(BornHermitianValuationError::DivisionByZero);
-        }
-        Ok(&(self * &rhs.conj()) * &n.recip())
-    }
-}
-
-macro_rules! gq_binop {
-    ($trait:ident, $method:ident, |$a:ident, $b:ident| $body:expr) => {
-        impl $trait<&Gq> for &Gq {
-            type Output = Gq;
-            fn $method(self, rhs: &Gq) -> Gq {
-                let ($a, $b) = (self, rhs);
-                $body
-            }
-        }
-        impl $trait<Gq> for &Gq {
-            type Output = Gq;
-            fn $method(self, rhs: Gq) -> Gq {
-                self.$method(&rhs)
-            }
-        }
-        impl $trait<&Gq> for Gq {
-            type Output = Gq;
-            fn $method(self, rhs: &Gq) -> Gq {
-                (&self).$method(rhs)
-            }
-        }
-        impl $trait for Gq {
-            type Output = Gq;
-            fn $method(self, rhs: Gq) -> Gq {
-                (&self).$method(&rhs)
-            }
-        }
-    };
-}
-
-gq_binop!(Add, add, |a, b| Gq {
-    re: &a.re + &b.re,
-    im: &a.im + &b.im,
-});
-gq_binop!(Sub, sub, |a, b| Gq {
-    re: &a.re - &b.re,
-    im: &a.im - &b.im,
-});
-gq_binop!(Mul, mul, |a, b| Gq {
-    re: &a.re * &b.re - &a.im * &b.im,
-    im: &a.re * &b.im + &a.im * &b.re,
-});
-
-/// Scaling by a rational.
-impl Mul<&Q> for &Gq {
-    type Output = Gq;
-    fn mul(self, rhs: &Q) -> Gq {
-        Gq {
-            re: &self.re * rhs,
-            im: &self.im * rhs,
-        }
-    }
-}
-
-impl Neg for &Gq {
-    type Output = Gq;
-    fn neg(self) -> Gq {
-        Gq {
-            re: -&self.re,
-            im: -&self.im,
-        }
-    }
-}
-
-impl Neg for Gq {
-    type Output = Gq;
-    fn neg(self) -> Gq {
-        -&self
-    }
-}
-
-/// `re`, `im i`, or `re±|im|i`, as the Python twin's `repr`.
-impl fmt::Display for Gq {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        if self.im.is_zero() {
-            write!(f, "{}", self.re)
-        } else if self.re.is_zero() {
-            write!(f, "{}i", self.im)
-        } else {
-            let sign = if self.im.is_positive() { "+" } else { "-" };
-            write!(f, "{}{}{}i", self.re, sign, self.im.abs())
-        }
-    }
-}
-
-impl From<&GaussianRational> for Gq {
-    fn from(g: &GaussianRational) -> Self {
-        Self::new(g.real().clone(), g.imag().clone())
-    }
-}
-
-impl From<GaussianRational> for Gq {
-    fn from(g: GaussianRational) -> Self {
-        Self::from(&g)
-    }
-}
-
-/// The crate scalar admits only canonical parts, so the conversion is fallible on a raw
-/// non-canonical part (and lossless otherwise).
-impl TryFrom<&Gq> for GaussianRational {
-    type Error = RationalConstructionError;
-    fn try_from(g: &Gq) -> Result<Self, Self::Error> {
-        GaussianRational::new(g.re.clone(), g.im.clone())
-    }
-}
-
-impl TryFrom<Gq> for GaussianRational {
-    type Error = RationalConstructionError;
-    fn try_from(g: Gq) -> Result<Self, Self::Error> {
-        Self::try_from(&g)
-    }
-}
-
-// ============================================================================
 // Types and errors
 // ============================================================================
 
 /// A Gaussian-rational matrix as rows; every public entry point re-admits it through
 /// [`matrix`].
-pub type Matrix = Vec<Vec<Gq>>;
+pub type Matrix = Vec<Vec<GaussianRational>>;
 /// A Gaussian-rational vector; every public entry point re-admits it through [`vector`].
-pub type Vector = Vec<Gq>;
+pub type Vector = Vec<GaussianRational>;
 /// A real-valued valuation on Gaussian-rational matrices, refusing (never panicking on) a
 /// matrix outside its domain. The Born valuation [`born_valuation`] and the three controls
 /// [`square_valuation`], [`bad_linear_valuation`] and [`imaginary_leak_valuation`] all have
@@ -288,41 +99,55 @@ pub enum BornHermitianValuationError {
     NonPositiveBound,
     #[error("effects and effect pairs with effect sums required")]
     NotAnEffect,
-    #[error("division by zero Gaussian rational")]
-    DivisionByZero,
+    #[error("scalar arithmetic refused: {0}")]
+    Scalar(#[from] ScalarError),
+    #[error("linear algebra: {0}")]
+    LinearAlgebra(#[from] ExactFieldError),
 }
 
 type Error = BornHermitianValuationError;
 
 // ============================================================================
-// Exact-input admission and the *-algebra (supplied, not derived)
+// Scalars, exact-input admission and the *-algebra (supplied, not derived)
 // ============================================================================
 
-fn validate_gq(x: &Gq) -> Result<(), Error> {
-    validate_rational(&x.re)?;
-    validate_rational(&x.im)?;
-    Ok(())
+fn g_zero() -> GaussianRational {
+    GaussianRational::from_integers(0, 0)
 }
 
-/// Admit a nonempty square matrix of canonical Gaussian rationals.
-pub fn matrix(rows: &[Vec<Gq>]) -> Result<Matrix, Error> {
+fn g_one() -> GaussianRational {
+    GaussianRational::from_integers(1, 0)
+}
+
+/// The imaginary unit.
+fn g_i() -> GaussianRational {
+    GaussianRational::from_integers(0, 1)
+}
+
+/// `x + 0·i`; refuses a non-canonical `x`.
+pub fn from_real(x: &Q) -> Result<GaussianRational, Error> {
+    Ok(GaussianRational::new(x.clone(), q(0))?)
+}
+
+/// Admit a nonempty square matrix of Gaussian rationals.
+pub fn matrix(rows: &[Vec<GaussianRational>]) -> Result<Matrix, Error> {
     let n = rows.len();
     if n == 0 || rows.iter().any(|r| r.len() != n) {
         return Err(Error::NonSquareMatrix);
     }
     for x in rows.iter().flatten() {
-        validate_gq(x)?;
+        x.validate()?;
     }
     Ok(rows.to_vec())
 }
 
-/// Admit a nonempty vector of canonical Gaussian rationals.
-pub fn vector(xs: &[Gq]) -> Result<Vector, Error> {
+/// Admit a nonempty vector of Gaussian rationals.
+pub fn vector(xs: &[GaussianRational]) -> Result<Vector, Error> {
     if xs.is_empty() {
         return Err(Error::EmptyVector);
     }
     for x in xs {
-        validate_gq(x)?;
+        x.validate()?;
     }
     Ok(xs.to_vec())
 }
@@ -348,31 +173,25 @@ fn same_shape(operation: &'static str, a: &Matrix, b: &Matrix) -> Result<(), Err
 }
 
 fn half() -> Q {
-    Q::new(BigInt::one(), BigInt::from(2))
+    Q::new(BigInt::from(1), BigInt::from(2))
 }
 
 fn zeros(n: usize) -> Matrix {
-    vec![vec![Gq::zero(); n]; n]
-}
-
-fn unit_vector(n: usize, p: usize) -> Vector {
-    (0..n)
-        .map(|i| if i == p { Gq::one() } else { Gq::zero() })
-        .collect()
+    vec![vec![g_zero(); n]; n]
 }
 
 pub fn identity(n: usize) -> Matrix {
     (0..n)
         .map(|i| {
             (0..n)
-                .map(|j| if i == j { Gq::one() } else { Gq::zero() })
+                .map(|j| if i == j { g_one() } else { g_zero() })
                 .collect()
         })
         .collect()
 }
 
 /// `c·E_ij`, the matrix unit of dimension `n` scaled by `c` (the twin's `single(n,i,j,c)`).
-pub fn single(n: usize, i: usize, j: usize, c: &Gq) -> Result<Matrix, Error> {
+pub fn single(n: usize, i: usize, j: usize, c: &GaussianRational) -> Result<Matrix, Error> {
     for index in [i, j] {
         if index >= n {
             return Err(Error::IndexOutOfRange {
@@ -381,110 +200,151 @@ pub fn single(n: usize, i: usize, j: usize, c: &Gq) -> Result<Matrix, Error> {
             });
         }
     }
-    validate_gq(c)?;
+    c.validate()?;
     Ok((0..n)
         .map(|r| {
             (0..n)
-                .map(|k| if r == i && k == j { c.clone() } else { Gq::zero() })
+                .map(|k| if r == i && k == j { c.clone() } else { g_zero() })
                 .collect()
         })
         .collect())
 }
 
+/// Entrywise `op` on two matrices already known to share a shape.
+fn entrywise(
+    a: &Matrix,
+    b: &Matrix,
+    op: impl Fn(&GaussianRational, &GaussianRational) -> Result<GaussianRational, ScalarError>,
+) -> Result<Matrix, Error> {
+    a.iter()
+        .zip(b)
+        .map(|(ra, rb)| {
+            ra.iter()
+                .zip(rb)
+                .map(|(x, y)| op(x, y).map_err(Error::from))
+                .collect::<Result<Vector, Error>>()
+        })
+        .collect()
+}
+
 pub fn add(a: &Matrix, b: &Matrix) -> Result<Matrix, Error> {
     same_shape("add", a, b)?;
-    Ok(a.iter()
-        .zip(b)
-        .map(|(ra, rb)| ra.iter().zip(rb).map(|(x, y)| x + y).collect())
-        .collect())
+    entrywise(a, b, |x, y| x.try_add(y))
 }
 
 pub fn sub(a: &Matrix, b: &Matrix) -> Result<Matrix, Error> {
     same_shape("sub", a, b)?;
-    Ok(a.iter()
-        .zip(b)
-        .map(|(ra, rb)| ra.iter().zip(rb).map(|(x, y)| x - y).collect())
-        .collect())
+    entrywise(a, b, |x, y| x.try_sub(y))
 }
 
-pub fn scale(c: &Gq, a: &Matrix) -> Matrix {
+/// `c·A`.
+pub fn scale(c: &GaussianRational, a: &Matrix) -> Result<Matrix, Error> {
     a.iter()
-        .map(|r| r.iter().map(|x| c * x).collect())
+        .map(|r| {
+            r.iter()
+                .map(|x| c.try_mul(x).map_err(Error::from))
+                .collect::<Result<Vector, Error>>()
+        })
         .collect()
 }
 
 /// `A*`, the conjugate transpose of an admitted square matrix.
-pub fn adjoint(a: &Matrix) -> Matrix {
+pub fn adjoint(a: &Matrix) -> Result<Matrix, Error> {
     let cols = a.iter().map(Vec::len).min().unwrap_or(0);
     (0..cols)
-        .map(|j| a.iter().map(|r| r[j].conj()).collect())
+        .map(|j| {
+            a.iter()
+                .map(|r| r[j].try_conj().map_err(Error::from))
+                .collect::<Result<Vector, Error>>()
+        })
         .collect()
 }
 
-pub fn mat_vec(a: &Matrix, x: &[Gq]) -> Result<Vector, Error> {
+/// `Σ r_i x_i`, bilinear.
+fn dot(r: &[GaussianRational], x: &[GaussianRational]) -> Result<GaussianRational, Error> {
+    let mut acc = g_zero();
+    for (p, v) in r.iter().zip(x) {
+        acc = acc.try_add(&p.try_mul(v)?)?;
+    }
+    Ok(acc)
+}
+
+pub fn mat_vec(a: &Matrix, x: &[GaussianRational]) -> Result<Vector, Error> {
     a.iter()
         .map(|r| {
             same_length("mat_vec", r.len(), x.len())?;
-            Ok(r.iter().zip(x).fold(Gq::zero(), |acc, (p, v)| acc + p * v))
+            dot(r, x)
         })
         .collect()
 }
 
 /// `Σ conj(x_i) y_i`, conjugate-linear in the first slot.
-pub fn inner(x: &[Gq], y: &[Gq]) -> Result<Gq, Error> {
+pub fn inner(x: &[GaussianRational], y: &[GaussianRational]) -> Result<GaussianRational, Error> {
     same_length("inner", x.len(), y.len())?;
-    Ok(x.iter()
-        .zip(y)
-        .fold(Gq::zero(), |acc, (a, b)| acc + a.conj() * b))
+    let mut acc = g_zero();
+    for (a, b) in x.iter().zip(y) {
+        acc = acc.try_add(&a.try_conj()?.try_mul(b)?)?;
+    }
+    Ok(acc)
 }
 
 /// `x y*`, with entries `x_i conj(y_j)`.
-pub fn outer(x: &[Gq], y: &[Gq]) -> Matrix {
-    x.iter()
-        .map(|a| y.iter().map(|b| a * b.conj()).collect())
-        .collect()
+pub fn outer(x: &[GaussianRational], y: &[GaussianRational]) -> Result<Matrix, Error> {
+    let mut out = Vec::with_capacity(x.len());
+    for a in x {
+        let mut row = Vec::with_capacity(y.len());
+        for b in y {
+            row.push(a.try_mul(&b.try_conj()?)?);
+        }
+        out.push(row);
+    }
+    Ok(out)
 }
 
-pub fn trace(a: &Matrix) -> Gq {
-    a.iter()
-        .enumerate()
-        .filter_map(|(i, r)| r.get(i))
-        .fold(Gq::zero(), |acc, x| acc + x)
+pub fn trace(a: &Matrix) -> Result<GaussianRational, Error> {
+    let mut acc = g_zero();
+    for (i, r) in a.iter().enumerate() {
+        if let Some(x) = r.get(i) {
+            acc = acc.try_add(x)?;
+        }
+    }
+    Ok(acc)
 }
 
 /// `trace(A B) = Σ_ij A_ij B_ji`; both matrices must be `n × n`.
-pub fn trace_mul(a: &Matrix, b: &Matrix) -> Result<Gq, Error> {
+pub fn trace_mul(a: &Matrix, b: &Matrix) -> Result<GaussianRational, Error> {
     let n = a.len();
     same_length("trace_mul", n, b.len())?;
     for r in a.iter().chain(b) {
         same_length("trace_mul", n, r.len())?;
     }
-    let mut acc = Gq::zero();
+    let mut acc = g_zero();
     for i in 0..n {
         for j in 0..n {
-            acc = acc + &a[i][j] * &b[j][i];
+            acc = acc.try_add(&a[i][j].try_mul(&b[j][i])?)?;
         }
     }
     Ok(acc)
 }
 
 /// `x* A x = Σ conj(x_i) (A x)_i`.
-pub fn hermitian_form(a: &Matrix, x: &[Gq]) -> Result<Gq, Error> {
+pub fn hermitian_form(a: &Matrix, x: &[GaussianRational]) -> Result<GaussianRational, Error> {
     inner(x, &mat_vec(a, x)?)
 }
 
 /// `re(x* A x)`, the Hermitian form of the Hermitian part of `A`.
-pub fn re_hermitian_form(a: &Matrix, x: &[Gq]) -> Result<Q, Error> {
-    Ok(hermitian_form(a, x)?.re)
+pub fn re_hermitian_form(a: &Matrix, x: &[GaussianRational]) -> Result<Q, Error> {
+    Ok(hermitian_form(a, x)?.real().clone())
 }
 
+/// `A == A*`.
 pub fn is_hermitian(a: &Matrix) -> bool {
-    *a == adjoint(a)
+    adjoint(a).is_ok_and(|adj| adj == *a)
 }
 
 /// `(A + A*)/2`.
 pub fn hermitian_part(a: &Matrix) -> Result<Matrix, Error> {
-    Ok(scale(&Gq::real(half()), &add(a, &adjoint(a))?))
+    scale(&from_real(&half())?, &add(a, &adjoint(a)?)?)
 }
 
 // ============================================================================
@@ -500,72 +360,53 @@ pub enum GramDecomposition {
     NotPsd { witness: Vector },
 }
 
-/// Solve `L* x = y` on the pivoted coordinates: `x_k = −Σ_{i>k} conj(w_k[i]) x_i` for the
-/// recorded terms `(k, d_k, w_k)` in reverse order, so that `x* E x` reduces to the form on
-/// the unpivoted coordinates of `y`.
-fn lift_witness(terms: &[(usize, Q, Vector)], mut x: Vector) -> Vector {
-    for (k, _, w) in terms.iter().rev() {
-        let acc = w
-            .iter()
-            .zip(&x)
-            .skip(k + 1)
-            .fold(Gq::zero(), |acc, (wi, xi)| acc + wi.conj() * xi);
-        if let Some(slot) = x.get_mut(*k) {
-            *slot = -acc;
-        }
-    }
-    x
+fn to_basic(e: &Matrix) -> Result<BasicMatrix<GaussianRational>, Error> {
+    let n = e.len();
+    let data: Vec<GaussianRational> = e.iter().flatten().cloned().collect();
+    Ok(BasicMatrix::from_row_major(n, n, data).map_err(ExactFieldError::from)?)
 }
 
 /// Gram terms `(d_k, w_k)` with `E == Σ d_k w_k w_k*` and real `d_k ≥ 0`, or a witness `x`
-/// with `x* E x < 0`. Refuses a non-Hermitian matrix.
+/// with `x* E x < 0`. Refuses a non-Hermitian matrix. The terms are read off the crate's exact
+/// [`hermitian_ldl`]: `d_k` is the `k`-th (real) pivot and `w_k` the `k`-th column of the unit
+/// lower factor; a zero pivot with a zero Schur column contributes no term.
 ///
-/// A negative pivot `E_pp < 0` is witnessed by the lifted `e_p`. A zero pivot with a nonzero
-/// off-diagonal `c = E_jp` is witnessed by the lifted `e_p + s·e_j`, whose form is
-/// `2·re(conj(c)·s) + |s|²·m` with `m = E_jj`; `s = −t·c` gives `|c|²·t·(t·m − 2) < 0` for
-/// `t = 1` (`m ≤ 0`) or `t = 1/m` (`m > 0`), exactly as the Python twin.
+/// Witnesses. A negative pivot `d_p < 0` is witnessed by the solution `x` of `L* x = e_p`,
+/// with `x* E x = d_p`, exactly as the Python twin. A zero pivot whose Schur column has a
+/// nonzero entry `c` in row `j` (Schur diagonal `m`) is witnessed by the crate's solution of
+/// `L* x = −(m+1)/(2c)·e_p + e_j`, whose form is exactly `−1`; the twin instead lifts
+/// `e_p − t·c·e_j` (`t = 1` for `m ≤ 0`, else `1/m`) with form `|c|²·t·(t·m − 2)`. Both are
+/// exact negative directions; the tests pin the crate's vectors and replay the twin's.
 pub fn gram_decomposition(e: &Matrix) -> Result<GramDecomposition, Error> {
     let e = matrix(e)?;
     if !is_hermitian(&e) {
         return Err(Error::NotHermitian);
     }
     let n = e.len();
-    let mut m = e;
-    let mut terms: Vec<(usize, Q, Vector)> = Vec::new();
-    for p in 0..n {
-        let piv = m[p][p].re.clone();
-        if piv < Q::zero() {
-            return Ok(GramDecomposition::NotPsd {
-                witness: lift_witness(&terms, unit_vector(n, p)),
-            });
-        }
-        if piv.is_zero() {
-            for j in (p + 1)..n {
-                let c = m[j][p].clone();
-                if !c.is_zero() {
-                    let mm = m[j][j].re.clone();
-                    let t = if mm <= Q::zero() {
-                        Q::one()
-                    } else {
-                        mm.recip()
-                    };
-                    let mut y = unit_vector(n, p);
-                    y[j] = -(&c * &t);
-                    return Ok(GramDecomposition::NotPsd {
-                        witness: lift_witness(&terms, y),
-                    });
+    let factor = hermitian_ldl(&to_basic(&e)?)?;
+    match factor.outcome() {
+        LdltOutcome::PositiveSemidefinite => {
+            let lower = factor.unit_lower();
+            let mut terms = Vec::new();
+            for (k, pivot) in factor.pivots().iter().enumerate() {
+                if pivot.try_is_zero()? {
+                    continue;
                 }
+                let mut w = Vec::with_capacity(n);
+                for i in 0..n {
+                    w.push(lower.get(i, k).map_err(ExactFieldError::from)?);
+                }
+                terms.push((pivot.real().clone(), w));
             }
-            continue;
+            Ok(GramDecomposition::Psd { terms })
         }
-        let inverse = piv.recip();
-        let w: Vector = (0..n).map(|i| &m[i][p] * &inverse).collect();
-        m = sub(&m, &scale(&Gq::real(piv.clone()), &outer(&w, &w)))?;
-        terms.push((p, piv, w));
+        LdltOutcome::NegativePivot { witness, .. }
+        | LdltOutcome::ZeroPivotWithNonzeroColumn { witness, .. } => {
+            Ok(GramDecomposition::NotPsd {
+                witness: witness.clone(),
+            })
+        }
     }
-    Ok(GramDecomposition::Psd {
-        terms: terms.into_iter().map(|(_, d, w)| (d, w)).collect(),
-    })
 }
 
 /// `true` when every `d_k ≥ 0` and `Σ d_k w_k w_k* == E` exactly; a witness of the wrong
@@ -578,10 +419,10 @@ pub fn verify_gram(e: &Matrix, terms: &[(Q, Vector)]) -> Result<bool, Error> {
         validate_rational(d)?;
         let w = vector(w)?;
         same_length("verify_gram", n, w.len())?;
-        if d < &Q::zero() {
+        if d < &q(0) {
             return Ok(false);
         }
-        s = add(&s, &scale(&Gq::real(d.clone()), &outer(&w, &w)))?;
+        s = add(&s, &scale(&from_real(d)?, &outer(&w, &w)?)?)?;
     }
     Ok(s == e)
 }
@@ -656,13 +497,13 @@ pub fn effect_certificate(e: &Matrix) -> Result<EffectCertificate, Error> {
 }
 
 /// `x x* / (x·x)`, the projector onto the ray of `x`.
-pub fn rank_one_effect(x: &[Gq]) -> Result<Matrix, Error> {
+pub fn rank_one_effect(x: &[GaussianRational]) -> Result<Matrix, Error> {
     let x = vector(x)?;
-    let nrm = inner(&x, &x)?.re;
+    let nrm = inner(&x, &x)?.real().clone();
     if nrm.is_zero() {
         return Err(Error::ZeroVector);
     }
-    Ok(scale(&Gq::real(nrm.recip()), &outer(&x, &x)))
+    scale(&from_real(&nrm.recip())?, &outer(&x, &x)?)
 }
 
 // ============================================================================
@@ -675,17 +516,17 @@ pub fn order_unit_bound(a: &Matrix) -> Result<BigInt, Error> {
     let total = a
         .iter()
         .flatten()
-        .fold(Q::zero(), |acc, x| acc + x.re.abs() + x.im.abs());
+        .fold(q(0), |acc, x| acc + x.real().abs() + x.imag().abs());
     Ok(total.ceil().to_integer())
 }
 
 /// `−t·(x·x) ≤ re(x* A x) ≤ t·(x·x)`.
-pub fn bounded_by(a: &Matrix, t: &Q, x: &[Gq]) -> Result<bool, Error> {
+pub fn bounded_by(a: &Matrix, t: &Q, x: &[GaussianRational]) -> Result<bool, Error> {
     let a = matrix(a)?;
     validate_rational(t)?;
     let x = vector(x)?;
     let form = re_hermitian_form(&a, &x)?;
-    let s = t * inner(&x, &x)?.re;
+    let s = t * inner(&x, &x)?.real();
     Ok(-s.clone() <= form && form <= s)
 }
 
@@ -693,14 +534,14 @@ pub fn bounded_by(a: &Matrix, t: &Q, x: &[Gq]) -> Result<bool, Error> {
 pub fn midpoint(a: &Matrix, t: &Q) -> Result<Matrix, Error> {
     let a = matrix(a)?;
     validate_rational(t)?;
-    if t <= &Q::zero() {
+    if t <= &q(0) {
         return Err(Error::NonPositiveBound);
     }
     let two_t = t + t;
-    Ok(scale(
-        &Gq::real(two_t.recip()),
-        &add(&a, &scale(&Gq::real(t.clone()), &identity(a.len())))?,
-    ))
+    scale(
+        &from_real(&two_t.recip())?,
+        &add(&a, &scale(&from_real(t)?, &identity(a.len()))?)?,
+    )
 }
 
 fn evaluate(valuation: Valuation<'_>, e: &Matrix) -> Result<Q, Error> {
@@ -718,7 +559,7 @@ pub fn extend(valuation: Valuation<'_>, a: &Matrix, t: Option<&Q>) -> Result<Q, 
             validate_rational(t)?;
             t.clone()
         }
-        None => Q::from_integer(order_unit_bound(&a)? + BigInt::one()),
+        None => Q::from_integer(order_unit_bound(&a)? + BigInt::from(1)),
     };
     let value = evaluate(valuation, &midpoint(&a, &t)?)?;
     let two_t = &t + &t;
@@ -759,9 +600,9 @@ pub fn representing_matrix(valuation: Valuation<'_>, n: usize) -> Result<Matrix,
     for j in 0..n {
         let mut row = Vec::with_capacity(n);
         for i in 0..n {
-            let along_one = extend(valuation, &single(n, i, j, &Gq::one())?, None)?;
-            let along_i = extend(valuation, &single(n, i, j, &Gq::i())?, None)?;
-            row.push(Gq::new(along_one, -along_i));
+            let along_one = extend(valuation, &single(n, i, j, &g_one())?, None)?;
+            let along_i = extend(valuation, &single(n, i, j, &g_i())?, None)?;
+            row.push(GaussianRational::new(along_one, -along_i)?);
         }
         rho.push(row);
     }
@@ -773,7 +614,7 @@ pub fn representing_matrix(valuation: Valuation<'_>, n: usize) -> Result<Matrix,
 pub fn born_valuation(rho: &Matrix) -> Result<BoxedValuation, Error> {
     let rho = matrix(rho)?;
     Ok(Box::new(move |e: &Matrix| {
-        Ok(trace_mul(&rho, &matrix(e)?)?.re)
+        Ok(trace_mul(&rho, &matrix(e)?)?.real().clone())
     }))
 }
 
@@ -815,10 +656,10 @@ pub fn valuation_axioms(
         }
         sums.push((e, f, s));
     }
-    let unit = evaluate(valuation, &identity(n))? == Q::one();
+    let unit = evaluate(valuation, &identity(n))? == q(1);
     let mut nonneg = true;
     for e in &effects {
-        if evaluate(valuation, e)? < Q::zero() {
+        if evaluate(valuation, e)? < q(0) {
             nonneg = false;
             break;
         }
@@ -841,7 +682,7 @@ pub fn valuation_axioms(
 pub struct BornCertificate {
     pub rho: Matrix,
     pub hermitian: bool,
-    pub trace: Gq,
+    pub trace: GaussianRational,
     pub trace_real: bool,
     pub psd: bool,
     pub psd_certificate: PsdCertificate,
@@ -865,15 +706,15 @@ pub fn born_certificate(
     let psd_certificate = psd_certificate(&rho)?;
     let mut agrees_on_effects = true;
     for e in &effects {
-        if trace_mul(&rho, e)?.re != evaluate(valuation, e)? {
+        if trace_mul(&rho, e)?.real() != &evaluate(valuation, e)? {
             agrees_on_effects = false;
             break;
         }
     }
-    let tr = trace(&rho);
+    let tr = trace(&rho)?;
     Ok(BornCertificate {
         hermitian: is_hermitian(&rho),
-        trace_real: tr.is_real(),
+        trace_real: tr.imag().is_zero(),
         trace: tr,
         psd: psd_certificate.is_psd(),
         psd_certificate,
@@ -891,7 +732,7 @@ pub fn born_certificate(
 /// non-square matrix.
 pub fn square_valuation(e: &Matrix) -> Result<Q, Error> {
     let e = matrix(e)?;
-    Ok(&e[0][0].re * &e[0][0].re)
+    Ok(e[0][0].real() * e[0][0].real())
 }
 
 /// Control: `E ↦ 2·re(E_00) − re(E_22)`, real-linear with unit value 1 but not positive.
@@ -899,7 +740,7 @@ pub fn square_valuation(e: &Matrix) -> Result<Q, Error> {
 pub fn bad_linear_valuation(e: &Matrix) -> Result<Q, Error> {
     let e = matrix(e)?;
     same_length("bad_linear_valuation", 3, e.len())?;
-    Ok(q(2) * &e[0][0].re - &e[2][2].re)
+    Ok(q(2) * e[0][0].real() - e[2][2].real())
 }
 
 /// Control: `E ↦ re(E_00) + im(E_01)`, unital and real-linear, but it reads the
@@ -914,28 +755,32 @@ pub fn imaginary_leak_valuation(e: &Matrix) -> Result<Q, Error> {
             got: e.len(),
         });
     }
-    Ok(&e[0][0].re + &e[0][1].im)
+    Ok(e[0][0].real() + e[0][1].imag())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::linear_algebra::basic_matrix::BasicMatrix;
     use crate::linear_algebra::ordered::hermitian_is_positive_semidefinite;
-    use crate::linear_algebra::scalars::{qr, Field, Involution, Ring, Semiring};
+    use crate::linear_algebra::scalars::{qr, Field};
 
     fn fr(n: i64, d: i64) -> Q {
         qr(n, d).expect("nonzero fixture denominator")
     }
 
     /// `re + im·i` from integer parts.
-    fn gi(re: i64, im: i64) -> Gq {
-        Gq::from_integers(re, im)
+    fn gi(re: i64, im: i64) -> GaussianRational {
+        GaussianRational::from_integers(re, im)
     }
 
     /// `(a/b) + (c/d)·i`.
-    fn gf(a: i64, b: i64, c: i64, d: i64) -> Gq {
-        Gq::new(fr(a, b), fr(c, d))
+    fn gf(a: i64, b: i64, c: i64, d: i64) -> GaussianRational {
+        GaussianRational::new(fr(a, b), fr(c, d)).expect("canonical fixture parts")
+    }
+
+    /// `x + 0·i` for a canonical fixture rational.
+    fn re(x: &Q) -> GaussianRational {
+        from_real(x).expect("canonical fixture rational")
     }
 
     fn mi(rows: &[&[(i64, i64)]]) -> Matrix {
@@ -949,7 +794,11 @@ mod tests {
     }
 
     fn unit(n: usize, i: usize, j: usize) -> Matrix {
-        single(n, i, j, &Gq::one()).unwrap()
+        single(n, i, j, &gi(1, 0)).unwrap()
+    }
+
+    fn scaled(c: &GaussianRational, a: &Matrix) -> Matrix {
+        scale(c, a).unwrap()
     }
 
     fn mat_mul(a: &Matrix, b: &Matrix) -> Matrix {
@@ -957,7 +806,13 @@ mod tests {
         (0..n)
             .map(|i| {
                 (0..n)
-                    .map(|j| (0..n).fold(Gq::zero(), |acc, k| acc + &a[i][k] * &b[k][j]))
+                    .map(|j| {
+                        let mut acc = gi(0, 0);
+                        for k in 0..n {
+                            acc = acc.try_add(&a[i][k].try_mul(&b[k][j]).unwrap()).unwrap();
+                        }
+                        acc
+                    })
                     .collect()
             })
             .collect()
@@ -974,9 +829,9 @@ mod tests {
     /// RHO3 = [[1/2, 0, 1/4i], [0, 1/4, 0], [−1/4i, 0, 1/4]].
     fn rho3() -> Matrix {
         vec![
-            vec![gf(1, 2, 0, 1), Gq::zero(), gf(0, 1, 1, 4)],
-            vec![Gq::zero(), gf(1, 4, 0, 1), Gq::zero()],
-            vec![gf(0, 1, -1, 4), Gq::zero(), gf(1, 4, 0, 1)],
+            vec![gf(1, 2, 0, 1), gi(0, 0), gf(0, 1, 1, 4)],
+            vec![gi(0, 0), gf(1, 4, 0, 1), gi(0, 0)],
+            vec![gf(0, 1, -1, 4), gi(0, 0), gf(1, 4, 0, 1)],
         ]
     }
 
@@ -992,14 +847,14 @@ mod tests {
     fn skew2() -> Matrix {
         vec![
             vec![gf(1, 2, 0, 1), gf(0, 1, 1, 4)],
-            vec![Gq::zero(), gf(1, 2, 0, 1)],
+            vec![gi(0, 0), gf(1, 2, 0, 1)],
         ]
     }
 
     fn effects2() -> Vec<Matrix> {
         vec![
             identity(2),
-            scale(&Gq::real(fr(1, 2)), &identity(2)),
+            scaled(&re(&fr(1, 2)), &identity(2)),
             rank_one_effect(&vi(&[(3, 0), (0, 4)])).unwrap(),
             rank_one_effect(&vi(&[(1, 1), (1, 0)])).unwrap(),
             unit(2, 0, 0),
@@ -1015,7 +870,7 @@ mod tests {
             rank_one_effect(&vi(&[(2, 0), (-2, 0), (0, 1)])).unwrap(),
             rank_one_effect(&vi(&[(1, 1), (1, -1), (0, 0)])).unwrap(),
             unit(3, 1, 1),
-            scale(&Gq::real(fr(1, 3)), &identity(3)),
+            scaled(&re(&fr(1, 3)), &identity(3)),
         ]
     }
 
@@ -1038,7 +893,7 @@ mod tests {
                             .map(|_| {
                                 let re = fr(next(-5, 5), next(1, 4));
                                 let im = fr(next(-5, 5), next(1, 4));
-                                Gq::new(re, im)
+                                GaussianRational::new(re, im).expect("canonical parts")
                             })
                             .collect()
                     })
@@ -1049,97 +904,59 @@ mod tests {
 
     // ------------------------------------------------------------------ Gaussian scalars
 
+    /// The crate scalar's exact arithmetic on the twin's fixtures (the twin's `repr` has no
+    /// counterpart: the crate scalar prints through `Debug`).
     #[test]
-    fn test_gaussian_arithmetic_and_display() {
+    fn test_gaussian_arithmetic() {
         let a = gf(3, 5, 4, 5);
-        assert_eq!(a.to_string(), "3/5+4/5i");
-        assert_eq!(
-            [
-                Gq::i().to_string(),
-                gi(2, 0).to_string(),
-                gf(0, 1, -1, 2).to_string(),
-                gf(1, 4, -1, 4).to_string()
-            ],
-            ["1i", "2", "-1/2i", "1/4-1/4i"]
-        );
-        assert_eq!(Gq::i() * Gq::i(), gi(-1, 0));
-        assert_eq!(&a * &a.conj(), Gq::one());
+        let i = gi(0, 1);
+        assert_eq!(i.try_mul(&i).unwrap(), gi(-1, 0));
+        assert_eq!(a.try_mul(&a.try_conj().unwrap()).unwrap(), gi(1, 0));
         assert_eq!(a.norm_sq(), q(1));
         assert_eq!(gi(1, 2).try_div(&gi(3, 4)).unwrap(), gf(11, 25, 2, 25));
-        assert_eq!(Gq::one().try_div(&Gq::i()).unwrap(), -Gq::i());
-        assert_eq!(gi(2, 0) - Gq::i(), gi(2, -1));
-        assert_eq!(&Gq::i() * &fr(1, 2), gf(0, 1, 1, 2));
+        assert_eq!(gi(1, 0).try_div(&i).unwrap(), gi(0, -1));
+        assert_eq!(gi(2, 0).try_sub(&i).unwrap(), gi(2, -1));
+        assert_eq!(i.try_mul(&re(&fr(1, 2))).unwrap(), gf(0, 1, 1, 2));
+        let sum = [i.clone(), gi(1, 0), i.clone()]
+            .iter()
+            .fold(gi(0, 0), |acc, x| acc.try_add(x).unwrap());
+        assert_eq!(sum, gi(1, 2));
+        assert!(gi(0, 0).try_is_zero().unwrap() && !i.try_is_zero().unwrap());
+        assert!(gi(2, 0).imag().is_zero() && !i.imag().is_zero());
+        assert_ne!(i, gi(1, 0));
         assert_eq!(
-            [Gq::i(), Gq::one(), Gq::i()]
-                .iter()
-                .fold(Gq::zero(), |acc, x| acc + x),
-            gi(1, 2)
+            gi(1, 0).try_div(&gi(0, 0)),
+            Err(ScalarError::DivisionByZero)
         );
-        assert!(Gq::zero().is_zero() && !Gq::i().is_zero());
-        assert!(gi(2, 0).is_real() && !Gq::i().is_real());
-        assert_ne!(Gq::i(), Gq::one());
+        assert_eq!(from_real(&fr(1, 2)).unwrap(), gf(1, 2, 0, 1));
         assert_eq!(
-            Gq::one().try_div(&Gq::zero()),
-            Err(BornHermitianValuationError::DivisionByZero)
-        );
-    }
-
-    /// The local plain-operator scalar agrees with the crate's `GaussianRational` on
-    /// products, conjugates, norms and inverses, and converts losslessly both ways.
-    #[test]
-    fn test_gq_agrees_with_gaussian_rational() {
-        let samples = [
-            gi(1, 2),
-            gi(3, 4),
-            gf(3, 5, 4, 5),
-            gf(-1, 2, 7, 3),
-            Gq::i(),
-            gi(-2, 0),
-        ];
-        for a in &samples {
-            let ga = GaussianRational::try_from(a).unwrap();
-            assert_eq!(Gq::from(&ga), *a);
-            assert_eq!(Gq::from(ga.try_conj().unwrap()), a.conj());
-            assert_eq!(ga.norm_sq(), a.norm_sq());
-            assert_eq!(
-                Gq::from(ga.try_inv().unwrap()),
-                Gq::one().try_div(a).unwrap()
-            );
-            for b in &samples {
-                let gb = GaussianRational::try_from(b).unwrap();
-                assert_eq!(Gq::from(ga.try_mul(&gb).unwrap()), a * b);
-                assert_eq!(Gq::from(ga.try_add(&gb).unwrap()), a + b);
-                assert_eq!(Gq::from(ga.try_sub(&gb).unwrap()), a - b);
-                assert_eq!(
-                    Gq::from(ga.try_div(&gb).unwrap()),
-                    a.try_div(b).unwrap()
-                );
-            }
-        }
-        let raw = Gq::new(Q::new_raw(BigInt::from(2), BigInt::from(4)), q(0));
-        assert_eq!(
-            GaussianRational::try_from(raw),
-            Err(RationalConstructionError::NonReduced)
+            from_real(&Q::new_raw(BigInt::from(2), BigInt::from(4))),
+            Err(BornHermitianValuationError::InexactEntry(
+                RationalConstructionError::NonReduced
+            ))
         );
     }
 
     #[test]
     fn test_matrix_helpers() {
         let a = mi(&[&[(1, 0), (2, 3)], &[(0, -1), (4, 0)]]);
-        assert_eq!(adjoint(&a), mi(&[&[(1, 0), (0, 1)], &[(2, -3), (4, 0)]]));
+        assert_eq!(
+            adjoint(&a).unwrap(),
+            mi(&[&[(1, 0), (0, 1)], &[(2, -3), (4, 0)]])
+        );
         assert!(!is_hermitian(&a));
         assert!(is_hermitian(&hermitian_part(&a).unwrap()));
         assert!(is_hermitian(&rho2()) && is_hermitian(&rho3()));
         assert_eq!(
             inner(&vi(&[(1, 0), (0, 1)]), &vi(&[(0, 1), (1, 0)])).unwrap(),
-            Gq::zero()
+            gi(0, 0)
         );
-        assert_eq!(inner(&vi(&[(0, 1)]), &vi(&[(0, 1)])).unwrap(), Gq::one());
+        assert_eq!(inner(&vi(&[(0, 1)]), &vi(&[(0, 1)])).unwrap(), gi(1, 0));
         assert_eq!(
-            outer(&vi(&[(1, 0), (0, 1)]), &vi(&[(1, 0), (0, 1)])),
+            outer(&vi(&[(1, 0), (0, 1)]), &vi(&[(1, 0), (0, 1)])).unwrap(),
             mi(&[&[(1, 0), (0, -1)], &[(0, 1), (1, 0)]])
         );
-        assert_eq!(trace(&rho2()), Gq::one());
+        assert_eq!(trace(&rho2()).unwrap(), gi(1, 0));
         assert_eq!(
             trace_mul(&rho2(), &unit(2, 0, 1)).unwrap(),
             gf(1, 4, 1, 4)
@@ -1150,9 +967,10 @@ mod tests {
         );
         assert_eq!(re_hermitian_form(&a, &vi(&[(1, 0), (0, 1)])).unwrap(), q(1));
         assert_eq!(
-            single(2, 0, 1, &Gq::i()).unwrap(),
+            single(2, 0, 1, &gi(0, 1)).unwrap(),
             mi(&[&[(0, 0), (0, 1)], &[(0, 0), (0, 0)]])
         );
+        assert_eq!(sub(&identity(2), &identity(2)).unwrap(), zeros(2));
     }
 
     // ------------------------------------------------------------------ Gram
@@ -1178,30 +996,42 @@ mod tests {
             psd_certificate(&rho2()).unwrap(),
             PsdCertificate::Psd {
                 terms: vec![
-                    (fr(1, 2), vec![Gq::one(), gf(1, 2, 1, 2)]),
-                    (fr(1, 4), vec![Gq::zero(), Gq::one()]),
+                    (fr(1, 2), vec![gi(1, 0), gf(1, 2, 1, 2)]),
+                    (fr(1, 4), vec![gi(0, 0), gi(1, 0)]),
                 ],
                 reconstructs: true,
             }
         );
     }
 
+    /// Negative-pivot witnesses coincide with the Python twin's table (the lifted unit
+    /// vectors). Zero-pivot witnesses are the crate's `x·e_p + e_j` with `x = −(m+1)/(2c)`
+    /// and form exactly `−1`, where the twin lifts `e_p − t·c·e_j` (form `|c|²·t·(t·m − 2)`):
+    /// the crate's vector and value are pinned exactly, the twin's replays as a second
+    /// negative direction.
     #[test]
     fn test_negative_witness_is_exact() {
-        let cases: Vec<(Matrix, Vector, Gq)> = vec![
+        // (matrix, crate witness, its form value, twin witness, its form value)
+        let cases: Vec<(Matrix, Vector, GaussianRational, Vector, GaussianRational)> = vec![
             (
                 mi(&[&[(0, 0), (1, 0)], &[(1, 0), (0, 0)]]),
+                vec![gf(-1, 2, 0, 1), gi(1, 0)],
+                gi(-1, 0),
                 vi(&[(1, 0), (-1, 0)]),
                 gi(-2, 0),
             ),
             (
                 mi(&[&[(0, 0), (0, 1)], &[(0, -1), (0, 0)]]),
+                vec![gf(0, 1, -1, 2), gi(1, 0)],
+                gi(-1, 0),
                 vi(&[(1, 0), (0, 1)]),
                 gi(-2, 0),
             ),
             (
                 mi(&[&[(0, 0), (1, 1)], &[(1, -1), (2, 0)]]),
-                vec![Gq::one(), gf(-1, 2, 1, 2)],
+                vec![gf(-3, 4, -3, 4), gi(1, 0)],
+                gi(-1, 0),
+                vec![gi(1, 0), gf(-1, 2, 1, 2)],
                 gi(-1, 0),
             ),
             (
@@ -1210,6 +1040,8 @@ mod tests {
                     &[(0, 0), (0, 0), (0, 2)],
                     &[(0, 0), (0, -2), (1, 0)],
                 ]),
+                vec![gi(0, 0), gf(0, 1, -1, 2), gi(1, 0)],
+                gi(-1, 0),
                 vi(&[(0, 0), (1, 0), (0, 2)]),
                 gi(-4, 0),
             ),
@@ -1217,9 +1049,13 @@ mod tests {
                 mi(&[&[(1, 0), (0, 2)], &[(0, -2), (1, 0)]]),
                 vi(&[(0, -2), (1, 0)]),
                 gi(-3, 0),
+                vi(&[(0, -2), (1, 0)]),
+                gi(-3, 0),
             ),
             (
                 mi(&[&[(-1, 0), (0, 0)], &[(0, 0), (1, 0)]]),
+                vi(&[(1, 0), (0, 0)]),
+                gi(-1, 0),
                 vi(&[(1, 0), (0, 0)]),
                 gi(-1, 0),
             ),
@@ -1227,26 +1063,32 @@ mod tests {
                 mi(&[&[(1, 0), (1, -1)], &[(1, 1), (1, 0)]]),
                 vi(&[(-1, 1), (1, 0)]),
                 gi(-1, 0),
+                vi(&[(-1, 1), (1, 0)]),
+                gi(-1, 0),
             ),
         ];
-        for (e, x, value) in cases {
+        for (e, x, value, twin, twin_value) in cases {
             let GramDecomposition::NotPsd { witness } = gram_decomposition(&e).unwrap() else {
                 panic!("expected not_psd for {e:?}");
             };
             assert_eq!(witness, vector(&x).unwrap());
             assert_eq!(hermitian_form(&e, &witness).unwrap(), value);
-            assert!(value.is_real() && value.re < q(0));
+            assert!(value.imag().is_zero() && value.real() < &q(0));
+            assert_eq!(hermitian_form(&e, &twin).unwrap(), twin_value);
+            assert!(twin_value.imag().is_zero() && twin_value.real() < &q(0));
             let PsdCertificate::NotPsd { witness: w, value: v } = psd_certificate(&e).unwrap()
             else {
                 panic!("expected a witness for {e:?}");
             };
             assert_eq!(w, witness);
-            assert_eq!(v, value.re);
+            assert_eq!(&v, value.real());
         }
     }
 
-    /// Zero pivot with off-diagonal `c` and lower diagonal `m`: witness `[1, −t·c]` with
-    /// `t = 1` (`m ≤ 0`) or `1/m`, and form `|c|²·t·(t·m − 2)`.
+    /// Zero pivot with off-diagonal `c` and lower diagonal `m` (`E = [[0, c̄], [c, m]]`): the
+    /// crate's witness is `[x, 1]` with `x = −(m+1)/(2c)` and form exactly `−1`; the twin's
+    /// `[1, −t·c]` (`t = 1` for `m ≤ 0`, else `1/m`) has form `|c|²·t·(t·m − 2) < 0` and
+    /// replays as a second negative direction.
     #[test]
     fn test_zero_pivot_witness_formula() {
         for (c, mm) in [
@@ -1256,16 +1098,22 @@ mod tests {
             (gf(2, 3, -1, 5), fr(7, 3)),
         ] {
             let e = vec![
-                vec![Gq::zero(), c.conj()],
-                vec![c.clone(), Gq::real(mm.clone())],
+                vec![gi(0, 0), c.try_conj().unwrap()],
+                vec![c.clone(), re(&mm)],
             ];
-            let t = if mm <= q(0) { q(1) } else { mm.recip() };
             let GramDecomposition::NotPsd { witness } = gram_decomposition(&e).unwrap() else {
                 panic!("expected not_psd for {e:?}");
             };
-            assert_eq!(witness, vec![Gq::one(), -(&c * &t)]);
+            let x = re(&-(&mm + q(1)))
+                .try_div(&gi(2, 0).try_mul(&c).unwrap())
+                .unwrap();
+            assert_eq!(witness, vec![x, gi(1, 0)]);
+            assert_eq!(hermitian_form(&e, &witness).unwrap(), gi(-1, 0));
+            let t = if mm <= q(0) { q(1) } else { mm.recip() };
+            let twin = vec![gi(1, 0), c.try_mul(&re(&t)).unwrap().try_neg().unwrap()];
             let expected = c.norm_sq() * &t * (&t * &mm - q(2));
-            assert_eq!(hermitian_form(&e, &witness).unwrap(), Gq::real(expected));
+            assert!(expected < q(0));
+            assert_eq!(hermitian_form(&e, &twin).unwrap(), re(&expected));
         }
     }
 
@@ -1291,8 +1139,8 @@ mod tests {
         );
     }
 
-    /// Two independent exact routes agree: the Gram-based `is_psd` and the crate's Hermitian
-    /// congruence inertia on `BasicMatrix<GaussianRational>`; every witness replays.
+    /// Two exact routes of the crate agree: the Gram route through the unpivoted
+    /// `hermitian_ldl` and the pivoted Hermitian congruence inertia; every witness replays.
     #[test]
     fn test_is_psd_agrees_with_hermitian_inertia_and_witnesses_replay() {
         let samples = [
@@ -1320,16 +1168,9 @@ mod tests {
         let (mut psd_count, mut not_psd_count) = (0, 0);
         for e in samples {
             let h = hermitian_part(&e).unwrap();
-            let n = h.len();
-            let data: Vec<GaussianRational> = h
-                .iter()
-                .flatten()
-                .map(|x| GaussianRational::try_from(x).unwrap())
-                .collect();
-            let basic = BasicMatrix::from_row_major(n, n, data).unwrap();
             assert_eq!(
                 is_psd(&e).unwrap(),
-                hermitian_is_positive_semidefinite(&basic).unwrap(),
+                hermitian_is_positive_semidefinite(&to_basic(&h).unwrap()).unwrap(),
                 "{e:?}"
             );
             match psd_certificate(&e).unwrap() {
@@ -1344,7 +1185,7 @@ mod tests {
                 PsdCertificate::NotPsd { witness, value } => {
                     not_psd_count += 1;
                     assert_eq!(re_hermitian_form(&e, &witness).unwrap(), value);
-                    assert_eq!(hermitian_form(&h, &witness).unwrap(), Gq::real(value.clone()));
+                    assert_eq!(hermitian_form(&h, &witness).unwrap(), re(&value));
                     assert!(value < q(0));
                 }
             }
@@ -1359,7 +1200,7 @@ mod tests {
         for e in effects2().into_iter().chain(effects3()) {
             assert!(is_effect(&e).unwrap(), "{e:?}");
         }
-        assert!(!is_effect(&scale(&gi(2, 0), &identity(2))).unwrap());
+        assert!(!is_effect(&scaled(&gi(2, 0), &identity(2))).unwrap());
         assert!(!is_effect(&mi(&[&[(1, 0), (0, 1)], &[(0, -1), (0, 0)]])).unwrap());
         assert!(!is_effect(&mi(&[&[(1, 0), (0, 1)], &[(0, -1), (1, 0)]])).unwrap());
     }
@@ -1385,7 +1226,7 @@ mod tests {
         for (x, p) in cases {
             let e = rank_one_effect(&x).unwrap();
             assert_eq!(e, p);
-            assert_eq!(trace(&e), Gq::one());
+            assert_eq!(trace(&e).unwrap(), gi(1, 0));
             assert!(is_hermitian(&e));
             assert_eq!(mat_mul(&e, &e), e);
         }
@@ -1419,8 +1260,8 @@ mod tests {
             for a in [
                 identity(n),
                 unit(n, 0, 1),
-                single(n, 0, 1, &Gq::i()).unwrap(),
-                sub(&unit(n, 0, 0), &scale(&gi(3, 1), &identity(n))).unwrap(),
+                single(n, 0, 1, &gi(0, 1)).unwrap(),
+                sub(&unit(n, 0, 0), &scaled(&gi(3, 1), &identity(n))).unwrap(),
             ] {
                 let c = extension_consistency(&v, &a, &bounds).unwrap();
                 assert!(c.consistent, "{a:?}");
@@ -1428,7 +1269,7 @@ mod tests {
                 assert_eq!(c.values.len(), 4);
                 assert_eq!(
                     extend(&v, &a, None).unwrap(),
-                    trace_mul(&rho, &a).unwrap().re
+                    trace_mul(&rho, &a).unwrap().real().clone()
                 );
             }
             assert_eq!(representing_matrix(&v, n).unwrap(), rho);
@@ -1448,7 +1289,10 @@ mod tests {
         for (v, n) in cases {
             let rho = representing_matrix(v, n).unwrap();
             for a in random_matrices(n, 6, n as u64) {
-                assert_eq!(extend(v, &a, None).unwrap(), trace_mul(&rho, &a).unwrap().re);
+                assert_eq!(
+                    extend(v, &a, None).unwrap(),
+                    trace_mul(&rho, &a).unwrap().real().clone()
+                );
                 assert_eq!(extend(v, &a, None).unwrap(), v(&a).unwrap());
             }
         }
@@ -1467,7 +1311,7 @@ mod tests {
                     ..
                 }
             ));
-            assert_eq!(c.trace, Gq::one());
+            assert_eq!(c.trace, gi(1, 0));
             assert_eq!(c.effects_checked, effs.len());
             assert_eq!(c.rho, rho);
         }
@@ -1478,8 +1322,8 @@ mod tests {
         let v = born_valuation(&rho2()).unwrap();
         let pairs = vec![
             (
-                scale(&Gq::real(fr(1, 2)), &identity(2)),
-                scale(&Gq::real(fr(1, 2)), &identity(2)),
+                scaled(&re(&fr(1, 2)), &identity(2)),
+                scaled(&re(&fr(1, 2)), &identity(2)),
             ),
             (
                 rank_one_effect(&vi(&[(3, 0), (0, 4)])).unwrap(),
@@ -1528,8 +1372,8 @@ mod tests {
     #[test]
     fn test_non_additive_control_has_inconsistent_extension() {
         let pairs = vec![(
-            scale(&Gq::real(fr(1, 2)), &identity(2)),
-            scale(&Gq::real(fr(1, 2)), &identity(2)),
+            scaled(&re(&fr(1, 2)), &identity(2)),
+            scaled(&re(&fr(1, 2)), &identity(2)),
         )];
         assert_eq!(
             valuation_axioms(&square_valuation, 2, &effects2(), &pairs).unwrap(),
@@ -1547,7 +1391,7 @@ mod tests {
     #[test]
     fn test_non_positive_control_has_non_psd_representative() {
         let c = born_certificate(&bad_linear_valuation, 3, &[]).unwrap();
-        assert_eq!(c.trace, Gq::one());
+        assert_eq!(c.trace, gi(1, 0));
         assert!(c.trace_real && c.hermitian && !c.psd);
         assert_eq!(
             c.rho,
@@ -1572,7 +1416,7 @@ mod tests {
         let c = born_certificate(v, 2, &effects2()).unwrap();
         assert_eq!(c.rho, mi(&[&[(1, 0), (0, 0)], &[(0, -1), (0, 0)]]));
         assert!(!c.hermitian);
-        assert_eq!(c.trace, Gq::one());
+        assert_eq!(c.trace, gi(1, 0));
         assert!(c.trace_real);
         assert!(!c.psd);
         assert!(c.agrees_on_effects);
@@ -1580,21 +1424,21 @@ mod tests {
         assert_eq!(
             c.psd_certificate,
             PsdCertificate::NotPsd {
-                witness: vec![gf(0, 1, -1, 2), Gq::one()],
+                witness: vec![gf(0, 1, -1, 2), gi(1, 0)],
                 value: fr(-1, 4)
             }
         );
         assert_eq!(
             hermitian_part(&representing_matrix(v, 2).unwrap()).unwrap(),
             vec![
-                vec![Gq::one(), gf(0, 1, 1, 2)],
-                vec![gf(0, 1, -1, 2), Gq::zero()],
+                vec![gi(1, 0), gf(0, 1, 1, 2)],
+                vec![gf(0, 1, -1, 2), gi(0, 0)],
             ]
         );
         let pairs = vec![
             (
-                scale(&Gq::real(fr(1, 2)), &identity(2)),
-                scale(&Gq::real(fr(1, 2)), &identity(2)),
+                scaled(&re(&fr(1, 2)), &identity(2)),
+                scaled(&re(&fr(1, 2)), &identity(2)),
             ),
             (
                 rank_one_effect(&vi(&[(3, 0), (0, 4)])).unwrap(),
@@ -1609,7 +1453,7 @@ mod tests {
                 additive: true
             }
         );
-        let witness = rank_one_effect(&[gf(0, 1, -1, 2), Gq::one()]).unwrap();
+        let witness = rank_one_effect(&[gf(0, 1, -1, 2), gi(1, 0)]).unwrap();
         assert!(is_effect(&witness).unwrap());
         assert_eq!(v(&witness).unwrap(), fr(-1, 5));
         assert_eq!(
@@ -1622,10 +1466,10 @@ mod tests {
     fn test_unit_cannot_be_dropped() {
         let rho = rho2();
         let v = |e: &Matrix| -> Result<Q, BornHermitianValuationError> {
-            Ok(trace_mul(&rho, &matrix(e)?)?.re * q(2))
+            Ok(trace_mul(&rho, &matrix(e)?)?.real() * q(2))
         };
         let c = born_certificate(&v, 2, &[]).unwrap();
-        assert_ne!(c.trace, Gq::one());
+        assert_ne!(c.trace, gi(1, 0));
         // Without the unit axiom the extension is bound-dependent: L(A) = 2·re(trace(ρ₂A)) + t,
         // and each unit direction uses t = order_unit_bound + 1 = 2, so
         // ρ_ji = (2·re ρ_ji + 2) − i·(−2·im ρ_ji + 2) = 2ρ_ji + 2 − 2i and trace ρ = 6 − 4i.
@@ -1640,7 +1484,7 @@ mod tests {
     fn test_effect_certificate_is_consistent_with_its_parts() {
         for e in [
             identity(2),
-            scale(&gi(2, 0), &identity(2)),
+            scaled(&gi(2, 0), &identity(2)),
             mi(&[&[(1, 0), (0, 1)], &[(0, -1), (0, 0)]]),
             rank_one_effect(&vi(&[(3, 0), (0, 4)])).unwrap(),
             skew2(),
@@ -1724,7 +1568,7 @@ mod tests {
             Err(E::DimensionMismatch { .. })
         ));
         assert_eq!(
-            single(2, 2, 0, &Gq::one()),
+            single(2, 2, 0, &gi(1, 0)),
             Err(E::IndexOutOfRange {
                 index: 2,
                 dimension: 2
@@ -1766,26 +1610,35 @@ mod tests {
             extend(&raw_valued, &identity(2), None),
             Err(E::InexactEntry(RationalConstructionError::NonReduced))
         );
-        let raw = Gq::new(Q::new_raw(BigInt::from(2), BigInt::from(4)), q(0));
+        // The twin's non-canonical matrix entries are unconstructible here: the crate scalar
+        // refuses them at construction, and every rational parameter is re-admitted.
+        let raw = Q::new_raw(BigInt::from(2), BigInt::from(4));
         assert_eq!(
-            matrix(&[vec![raw.clone()]]),
+            GaussianRational::new(raw.clone(), q(0)),
+            Err(RationalConstructionError::NonReduced)
+        );
+        assert_eq!(
+            GaussianRational::new(q(0), Q::new_raw(BigInt::from(1), BigInt::from(-2))),
+            Err(RationalConstructionError::NegativeDenominator)
+        );
+        assert_eq!(
+            midpoint(&identity(2), &raw),
             Err(E::InexactEntry(RationalConstructionError::NonReduced))
         );
         assert_eq!(
-            vector(&[raw.clone()]),
+            bounded_by(&identity(2), &raw, &vi(&[(1, 0), (0, 0)])),
             Err(E::InexactEntry(RationalConstructionError::NonReduced))
         );
         assert_eq!(
-            single(2, 0, 0, &raw),
+            verify_gram(&identity(2), &[(raw.clone(), vi(&[(1, 0), (0, 0)]))]),
             Err(E::InexactEntry(RationalConstructionError::NonReduced))
         );
-        let raw_imag = Gq::new(q(0), Q::new_raw(BigInt::from(1), BigInt::from(-2)));
         assert_eq!(
-            matrix(&[vec![raw_imag]]),
-            Err(E::InexactEntry(RationalConstructionError::NegativeDenominator))
+            extend(&v, &identity(2), Some(&raw)),
+            Err(E::InexactEntry(RationalConstructionError::NonReduced))
         );
         assert_eq!(
-            valuation_axioms(&v, 2, &[scale(&gi(2, 0), &identity(2))], &[]),
+            valuation_axioms(&v, 2, &[scaled(&gi(2, 0), &identity(2))], &[]),
             Err(E::NotAnEffect)
         );
         assert_eq!(
@@ -1833,7 +1686,7 @@ mod tests {
             Err(E::NonSquareMatrix)
         );
         assert_eq!(
-            square_valuation(&scale(&Gq::real(fr(1, 2)), &identity(2))),
+            square_valuation(&scaled(&re(&fr(1, 2)), &identity(2))),
             Ok(fr(1, 4))
         );
         assert_eq!(bad_linear_valuation(&Vec::new()), Err(E::NonSquareMatrix));

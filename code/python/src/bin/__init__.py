@@ -7,7 +7,7 @@ that file.
 Claim: urn:omega:fqm:bin:pythagorean-ray:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/tests/test_bin_witness.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 4; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 5.
+Gate 5: use the source-bound measurements in the companion history.
 Scope Fence: ray_power_two returns P2 for one exact rational triple.
 bin_two_square checks the four conjuncts on (3/5, 4/5, 0) and returns
 P2, which is 1. This file does not check the standard basis ray or the
@@ -18,6 +18,9 @@ from __future__ import annotations
 
 from fractions import Fraction
 from typing import Mapping
+
+# Declared engineering policy, not a physical or mathematical constant.
+MAX_SCALAR_BITS = 1024
 
 _RAY: tuple[object, ...] = (Fraction(3, 5), Fraction(4, 5), Fraction(0))
 _UNIT = Fraction(1)
@@ -41,8 +44,10 @@ def _fail(invariant: str, **parameters: object) -> BinWitnessError:
 
 
 def _require_tuple(amplitudes: object) -> tuple[object, ...]:
-    if isinstance(amplitudes, (str, bytes)) or not isinstance(amplitudes, tuple):
+    if issubclass(type(amplitudes), (str, bytes)) or not issubclass(type(amplitudes), tuple):
         raise _fail("ray amplitudes are not a tuple", received=type(amplitudes).__name__)
+    if type(amplitudes) is not tuple:
+        raise _fail("ray container subclass refused", received=type(amplitudes).__name__)
     return tuple(amplitudes)
 
 
@@ -53,22 +58,31 @@ def _require_three(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
 
 
 def _require_amplitude(value: object, index: int) -> Fraction:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the ray boundary", index=index, received="float")
     if type(value) is bool:
         raise _fail("boolean refused where a rational amplitude was required", index=index)
-    if isinstance(value, Fraction):
+    if type(value) is Fraction:
+        _require_bits(value.numerator, index)
+        _require_bits(value.denominator, index)
         return value
     if type(value) is int:
+        _require_bits(value, index)
         return Fraction(value)
     raise _fail("ray amplitude is not an exact rational", index=index, received=type(value).__name__)
 
 
+def _require_bits(value: int, index: int) -> None:
+    if value.bit_length() > MAX_SCALAR_BITS:
+        raise _fail("ray scalar bit budget exceeded", index=index, bits=value.bit_length(), limit=MAX_SCALAR_BITS)
+
+
 def _collect(amplitudes: tuple[object, ...]) -> tuple[Fraction, Fraction, Fraction]:
-    collected: list[Fraction] = []
-    for index, value in enumerate(amplitudes):
-        collected.append(_require_amplitude(value, index))
-    return (collected[0], collected[1], collected[2])
+    return (
+        _require_amplitude(amplitudes[0], 0),
+        _require_amplitude(amplitudes[1], 1),
+        _require_amplitude(amplitudes[2], 2),
+    )
 
 
 def _parsed(amplitudes: object) -> tuple[Fraction, Fraction, Fraction]:
@@ -121,8 +135,14 @@ def bin_two_square() -> Fraction:
 
 
 def main() -> int:
-    value = bin_two_square()
-    print(value)
+    try:
+        value = bin_two_square()
+    except BinWitnessError:
+        return 1
+    try:
+        print(value)
+    except (OSError, ValueError):
+        return 2
     if value == _UNIT:
         return 0
     return 1

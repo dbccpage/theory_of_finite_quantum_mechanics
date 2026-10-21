@@ -99,7 +99,7 @@ def test_negative_refusals() -> None:
         qrc.evaluate_quadratic_readout_control(conductor=10)
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'quadratic_readout.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'quadratic_readout.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

@@ -39,20 +39,25 @@ fn degenerate_pentatope() -> ManifoldError {
     }
 }
 
+fn grid_point_from_index(mut idx: usize) -> [i64; 4] {
+    let x3 = (idx % 3) as i64;
+    idx /= 3;
+    let x2 = (idx % 3) as i64;
+    idx /= 3;
+    let x1 = (idx % 3) as i64;
+    idx /= 3;
+    let x0 = (idx % 3) as i64;
+    [x0, x1, x2, x3]
+}
+
 fn reference_paths() -> Vec<[[i64; 4]; 5]> {
     let permutations = lex_permutations_4([0, 1, 2, 3]);
     let mut paths = Vec::with_capacity(16);
-    for x0 in 0_i64..=2 {
-        for x1 in 0_i64..=2 {
-            for x2 in 0_i64..=2 {
-                for x3 in 0_i64..=2 {
-                    let start = [x0, x1, x2, x3];
-                    for permutation in &permutations {
-                        if let Some(path) = admissible_path(start, permutation) {
-                            paths.push(path);
-                        }
-                    }
-                }
+    for idx in 0..81 {
+        let start = grid_point_from_index(idx);
+        for permutation in &permutations {
+            if let Some(path) = admissible_path(start, permutation) {
+                paths.push(path);
             }
         }
     }

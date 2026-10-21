@@ -5,7 +5,7 @@ FactorizationCertificate, rechecked against code/python/src/category_theory/__in
 Claim: urn:omega:fqm:category:exported-arrow-decoder-test-certificate:v1
 AuthorityEffect: None
 Mutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/category_theory/test_arrow_decoder.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 6; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.
+Gate 5: use source-bound measurements in the companion history.
 Scope Fence: arrow_decoder_size is checked on one arrow and one three-point
 report. It does not classify finite categories.
 """
@@ -25,11 +25,19 @@ _EXECUTOR = "code/python/src/category_theory/test_arrow_decoder.py"
 _LIBRARY = Path(__file__).resolve().parent / "__init__.py"
 _PACKAGE = "src.category_theory"
 _Mutant = tuple[str, str, str]
+_ABSENT = object()
 _REPORT: dict[int, int] = {0: 10, 1: 10, 2: 20}
 _QUERY: dict[int, int] = {0: 1, 1: 1, 2: 0}
 
 
-class ClaimCheckError(ValueError):
+def _restore_module(name: str, previous: object) -> None:
+    if previous is _ABSENT:
+        sys.modules.pop(name, None)
+    else:
+        sys.modules[name] = previous
+
+
+class ClaimCheckError(Exception):
     """One violated decoder-check invariant, with the measured parameters."""
 
     def __init__(self, invariant: str, parameters: Mapping[str, object] | None = None) -> None:
@@ -55,7 +63,7 @@ def _float_probe(text: str) -> object:
 
 def parse_exact_label(value: object) -> int:
     """Refuse float and bool before an exact label is accepted."""
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the public boundary", received="float")
     if type(value) is bool or type(value) is not int:
         raise _fail("label is not an exact integer", received=type(value).__name__)
@@ -129,9 +137,11 @@ def _load(source: str, name: str, file_path: str) -> dict[str, object]:
 
 
 def _safe_holds(namespace: dict[str, object]) -> bool:
+    law_error = namespace.get("CategoryLawError")
+    admitted = (ClaimCheckError, law_error) if isinstance(law_error, type) and issubclass(law_error, BaseException) else (ClaimCheckError,)
     try:
         _holds(namespace)
-    except Exception:
+    except admitted:
         return False
     return True
 
@@ -142,24 +152,26 @@ def _one_mutant(source: str, mutant: _Mutant, name: str, file_path: str, safe: C
     if count != 1:
         raise _fail("mutant anchor is not unique", name=label, count=count)
     survived = True
+    previous = sys.modules.get(name, _ABSENT)
     try:
         survived = safe(_load(source.replace(old, new, 1), name, file_path))
     except ClaimCheckError:
         raise
-    except Exception:
-        survived = False
+    except Exception as error:
+        raise _fail("candidate could not be assessed; not counted as a kill", name=label, error=type(error).__name__) from error
     finally:
-        sys.modules.pop(name, None)
+        _restore_module(name, previous)
     if survived:
         raise _fail("mutant survived the oracle", name=label)
 
 
 def _kill_count(source: str, mutants: tuple[_Mutant, ...], file_path: str, stem: str, holds: Callable[[dict[str, object]], None], safe: Callable[[dict[str, object]], bool]) -> int:
     name = stem + "_baseline"
+    previous = sys.modules.get(name, _ABSENT)
     try:
         holds(_load(source, name, file_path))
     finally:
-        sys.modules.pop(name, None)
+        _restore_module(name, previous)
     index = 0
     for mutant in mutants:
         _one_mutant(source, mutant, f"{stem}_{index}", file_path, safe)
@@ -178,7 +190,7 @@ def witness_width() -> int:
 
 
 def witness_sources() -> int:
-    return 13
+    return len(_REPORT)
 
 
 def witness_guard() -> str:
@@ -190,7 +202,8 @@ def witness_guard() -> str:
 
 
 def witness_points() -> int:
-    return 17
+    """The number of distinct report values in the declared three-source map."""
+    return len(set(_REPORT.values()))
 
 
 def _self_holds(namespace: dict[str, object]) -> None:
@@ -198,7 +211,7 @@ def _self_holds(namespace: dict[str, object]) -> None:
     sources = _callable(namespace, "witness_sources")
     guard = _callable(namespace, "witness_guard")
     points = _callable(namespace, "witness_points")
-    if width() != 2 or sources() != 13 or points() != 17:
+    if width() != 2 or sources() != 3 or points() != 2:
         raise _fail("decoder witness drifted", got=width())
     if guard() != "float refused at the public boundary":
         raise _fail("guard witness drifted", got=guard())
@@ -207,7 +220,7 @@ def _self_holds(namespace: dict[str, object]) -> None:
 def _safe_self(namespace: dict[str, object]) -> bool:
     try:
         _self_holds(namespace)
-    except Exception:
+    except ClaimCheckError:
         return False
     return True
 
@@ -219,8 +232,8 @@ def _anchor(left: str, right: str) -> str:
 _LIBRARY_MUTANTS: tuple[_Mutant, ...] = (
     (
         "float admitted",
-        '    if isinstance(value, float):\n        raise _fail("float refused at the public boundary", role=role, received="float")\n',
-        "    if isinstance(value, float):\n        return\n",
+        '    if issubclass(type(value), float):\n        raise _fail("float refused at the public boundary", role=role, received="float")\n',
+        "    if issubclass(type(value), float):\n        return\n",
     ),
     (
         "boolean admitted",
@@ -241,8 +254,8 @@ _LIBRARY_MUTANTS: tuple[_Mutant, ...] = (
 
 _SELF_MUTANTS: tuple[_Mutant, ...] = (
     ("width witness shifted", _anchor("return len(factor_report_query(_REPORT, ", "_QUERY))"), _anchor("return len(", "_REPORT)")),
-    ("source witness shifted", _anchor("return ", "13"), _anchor("return ", "17")),
-    ("point witness shifted", _anchor("return ", "17"), _anchor("return ", "13")),
+    ("source witness shifted", _anchor("return len(_RE", "PORT)"), _anchor("return len(_RE", "PORT) + 1")),
+    ("point witness shifted", _anchor("return len(set(_REPORT.", "values()))"), _anchor("return len(set(_REPORT.", "values())) + 1")),
     ("guard witness silenced", _anchor("return exc.", "invariant"), _anchor('return "', "admitted" + '"')),
 )
 

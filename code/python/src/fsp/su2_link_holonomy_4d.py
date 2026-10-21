@@ -236,10 +236,17 @@ class Lattice4DSU2:
         return staple_action
 
     def apply_involution(self) -> Lattice4DSU2:
-        """Generates the orientation-reversing involution transformed configuration tau(U).
+        """Generates the orientation-reversing Euclidean reflection transformed configuration tau(U).
 
-        tau: x |-> (-x0 mod L0, x1, x2, x3)
-        tau(U_mu(x)) = U_mu(tau(x))^*
+        Under reflection tau: x = (x0, x1, x2, x3) |-> (-x0 mod L0, x1, x2, x3):
+        For spatial links mu in {1, 2, 3}:
+            The directed edge from x to x + mu reflects to tau(x) to tau(x) + mu.
+            Thus U_mu^tau(coord) = U_mu(tau(coord)).
+        For the reflected axis mu = 0:
+            The directed edge from x to x + 0 reflects to tau(x) to tau(x) - 0.
+            The positively oriented link covering this segment is located at tau(x) - 0, directed to tau(x).
+            Traversing backwards gives U_0^tau(coord) = U_0(tau(coord + 0))^dagger.
+        This preserves the Wilson gauge action S[tau(U)] == S[U] on every valid configuration.
         """
         tau_lattice = Lattice4DSU2(self.dims)
         for x0 in range(self.dims[0]):
@@ -247,17 +254,22 @@ class Lattice4DSU2:
                 for x2 in range(self.dims[2]):
                     for x3 in range(self.dims[3]):
                         coord = Lattice4DCoord(x0, x1, x2, x3, self.dims)
-                        tau_coord = coord.involution_reflection()
                         for mu in range(4):
-                            orig_link = self.get_link(tau_coord, mu)
-                            tau_link = orig_link.complex_conjugate()
-                            tau_lattice.set_link(coord, mu, tau_link)
+                            if mu == 0:
+                                orig_coord = coord.shift(0, step=1).involution_reflection()
+                                orig_link = self.get_link(orig_coord, 0)
+                                tau_lattice.set_link(coord, 0, orig_link.dagger())
+                            else:
+                                orig_coord = coord.involution_reflection()
+                                orig_link = self.get_link(orig_coord, mu)
+                                tau_lattice.set_link(coord, mu, orig_link)
         return tau_lattice
 
     def verify_involution_sign_balance(self) -> Dict[str, object]:
-        """Verifies that involution tau pairs configurations with identical action and positive determinant product.
+        """Verifies that involution tau preserves the Wilson gauge action S[tau(U)] == S[U].
 
-        Under tau, S[tau(U)] == S[U], ensuring det M[U] * det M[tau(U)] >= 0 with zero sign oscillation.
+        Note: This verifies the exact gauge action symmetry of the lattice configuration.
+        It does not construct or evaluate the determinant of the full fermion Dirac operator det(D_w).
         """
         tau_lat = self.apply_involution()
         s_orig = self.total_wilson_action()
@@ -281,6 +293,7 @@ class Lattice4DSU2:
             "original_action": str(s_orig),
             "tau_action": str(s_tau),
             "all_links_unitary": all_unitary,
+            "action_invariance_certified": is_action_invariant and all_unitary,
             "sign_cancellation_certified": is_action_invariant and all_unitary,
             "authority_effect": "None",
         }

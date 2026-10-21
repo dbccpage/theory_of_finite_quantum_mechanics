@@ -68,6 +68,12 @@ def test_negative_type_failures() -> None:
         face_obstruction(("0", 1, 2))
     assert text.value.parameters["received"] == "str"
 
+    with pytest.raises(ObstructionError, match="1024-bit limit"):
+        face_obstruction((1 << 1025, 1, 2))
+
+    with pytest.raises(ObstructionError, match="1024-bit limit"):
+        face_obstruction((Fraction(1 << 1025, 1), 1, 2))
+
 
 def test_negative_shape_failures() -> None:
     with pytest.raises(ObstructionError, match="not three") as short:

@@ -55,12 +55,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "038633fdfd0d1f78dfde7e2e2cb26428bde4777bfc3e933b0a3d3ffd144d730c",
-  "current_scoring": null,
+  "current_contract": "05f3393fc9fc53b86c9b852322bd6587384140c31bbad21980ac6a55e47dd698",
+  "current_scoring": "8f58beb6989618ca7378a6de175cd531b37022b72731da0e8369dccd37b10edc",
   "contract_history": [
     {
-      "sha256": "038633fdfd0d1f78dfde7e2e2cb26428bde4777bfc3e933b0a3d3ffd144d730c",
-      "bytes": 884,
+      "sha256": "05f3393fc9fc53b86c9b852322bd6587384140c31bbad21980ac6a55e47dd698",
+      "bytes": 1166,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_ooutwire_primitives:regime:v1.0.0",
@@ -114,13 +114,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_ooutwire_primitives:regime:v1.0.0\ntitle: 'Sort 3 — **Regime**: admitted state, and nothing else.  Crate boundary: coda-carrier.  Source:\n  `code/derivation/model...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_ooutwire_primitives\nfile: crates_rs/omega_ooutwire_primitives/src/regime.rs\nmodule: regime\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_ooutwire_primitives\n  module: regime\n  file: crates_rs/omega_ooutwire_primitives/src/regime.rs\nsymbols:\n- FormId\n- Args\n- Inst\n- new\n- Regime\n- data\n- forms\n- insts\n- rules\n- reqs\n- genesis\n- n_data\n- n_forms\n- marks\n- has_mark\nowns:\n- form_id\n- args\n- inst\n- new\n- regime\n- data\n- forms\n- insts\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_ooutwire_primitives:regime:v1.0.0\",\n  \"title\": \"Sort 3 — **Regime**: admitted state, and nothing else.  Crate boundary: coda-carrier.  Source: `code/derivation/model...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_ooutwire_primitives\",\n  \"file\": \"crates_rs/omega_ooutwire_primitives/src/regime.rs\",\n  \"module\": \"regime\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_ooutwire_primitives\",\n    \"module\": \"regime\",\n    \"file\": \"crates_rs/omega_ooutwire_primitives/src/regime.rs\"\n  },\n  \"symbols\": [\n    \"FormId\",\n    \"Args\",\n    \"Inst\",\n    \"new\",\n    \"Regime\",\n    \"data\",\n    \"forms\",\n    \"insts\",\n    \"rules\",\n    \"reqs\",\n    \"genesis\",\n    \"n_data\",\n    \"n_forms\",\n    \"marks\",\n    \"has_mark\"\n  ],\n  \"owns\": [\n    \"form_id\",\n    \"args\",\n    \"inst\",\n    \"new\",\n    \"regime\",\n    \"data\",\n    \"forms\",\n    \"insts\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/40_packets/omega_ooutwire_primitives_regime.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "8f58beb6989618ca7378a6de175cd531b37022b72731da0e8369dccd37b10edc",
+      "bytes": 2235,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/omega_ooutwire_primitives_regime_contract.py",
+          "sha256": "04331c5a17ad6f0512cab9f012854100b56976c67369c3a4f61a5308fac8c5ab"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:40_packets:omega-ooutwire-primitives-regime-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/omega_ooutwire_primitives_regime_contract.py\",\n    \"sha256\": \"04331c5a17ad6f0512cab9f012854100b56976c67369c3a4f61a5308fac8c5ab\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:omega-ooutwire-primitives-regime-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/omega_ooutwire_primitives_regime_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/40_packets/omega_ooutwire_primitives_regime.contract.yaml": "038633fdfd0d1f78dfde7e2e2cb26428bde4777bfc3e933b0a3d3ffd144d730c"
   },

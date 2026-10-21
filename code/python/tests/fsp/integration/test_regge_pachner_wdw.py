@@ -146,3 +146,27 @@ def test_gin_mode_posting_list_indexing():
             assert 1 in engine.posting_index[m]
     finally:
         engine.close()
+
+
+def test_lp_optimizer_failure_fails_closed(monkeypatch):
+    """Verifies that an optimizer failure in solve_direct_sum_wdw_lp fails closed.
+
+    Regression test for audit finding: failure to solve constraints must NOT report is_closed = True.
+    """
+    import src.fsp.regge_pachner_wdw as rpw
+
+    class MockFailedResult:
+        success = False
+        status = 2
+        fun = 0.0
+
+    monkeypatch.setattr(rpw, "linprog", lambda *args, **kwargs: MockFailedResult())
+
+    manifold = Simplicial4DManifold()
+    res = ReggeWheelerDeWittEngine.solve_direct_sum_wdw_lp(manifold, curvature_regime="Flat")
+
+    assert res["is_closed"] is False
+    assert "OPTIMIZER_FAILED" in res["status"]
+    assert res["primal_obj"] == float("inf")
+    assert res["duality_gap"] == float("inf")
+

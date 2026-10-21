@@ -56,7 +56,7 @@ struct Root {
     upper: Q,
 }
 
-fn isolate(radical: &[Element], limit: usize) -> Result<(Vec<Root>, usize)> {
+fn extract_endpoints(radical: &[Element]) -> Result<(Vec<Element>, Vec<Root>)> {
     let n = radical[0].n;
     let mut interior = radical.to_vec();
     let mut roots = Vec::new();
@@ -72,47 +72,100 @@ fn isolate(radical: &[Element], limit: usize) -> Result<(Vec<Root>, usize)> {
             });
         }
     }
-    let mut used = 0;
-    if interior.len() > 1 {
-        let sequence = sturm(&interior)?;
-        let total = root_count(&sequence, &Q::zero(), &Q::one())?;
-        if total != interior.len() - 1 {
-            return Err("SPECTRAL_ROOT_REAL_CENSUS_FAILED".into());
-        }
-        let mut pending = vec![(Q::zero(), Q::one(), total)];
-        while let Some((lower, upper, count)) = pending.pop() {
-            if count == 0 {
-                continue;
-            }
-            if count == 1 && lower > Q::zero() {
-                roots.push(Root { lower, upper });
-                continue;
-            }
-            if used >= limit {
-                return Err(format!("REFUSED_IMPLEMENTATION_RESOURCE_LIMIT:spectral_root_sturm_subdivisions:{used}/{limit}"));
-            }
-            used += 1;
-            let midpoint = (&lower + &upper) / rat(2, 1);
-            let exact = eval(&interior, &midpoint).is_zero();
-            let left = root_count(&sequence, &lower, &midpoint)?;
-            let right = root_count(&sequence, &midpoint, &upper)?;
-            if left + right + usize::from(exact) != count {
-                return Err("SPECTRAL_ROOT_SUBDIVISION_CENSUS_FAILED".into());
-            }
-            if exact {
-                roots.push(Root {
-                    lower: midpoint.clone(),
-                    upper: midpoint.clone(),
-                });
-            }
-            if right > 0 {
-                pending.push((midpoint.clone(), upper, right));
-            }
-            if left > 0 {
-                pending.push((lower, midpoint, left));
-            }
-        }
+    Ok((interior, roots))
+}
+
+struct IntervalStep {
+    exact: bool,
+    midpoint: Q,
+    left: usize,
+    right: usize,
+}
+
+fn subdivide_interval(
+    sequence: &[Polynomial],
+    interior: &[Element],
+    lower: &Q,
+    upper: &Q,
+    count: usize,
+) -> Result<IntervalStep> {
+    let midpoint = (lower + upper) / rat(2, 1);
+    let exact = eval(interior, &midpoint).is_zero();
+    let left = root_count(sequence, lower, &midpoint)?;
+    let right = root_count(sequence, &midpoint, upper)?;
+    if left + right + usize::from(exact) != count {
+        return Err("SPECTRAL_ROOT_SUBDIVISION_CENSUS_FAILED".into());
     }
+    Ok(IntervalStep {
+        exact,
+        midpoint,
+        left,
+        right,
+    })
+}
+
+fn push_subdivision_results(
+    step: IntervalStep,
+    lower: Q,
+    upper: Q,
+    roots: &mut Vec<Root>,
+    pending: &mut Vec<(Q, Q, usize)>,
+) {
+    if step.exact {
+        roots.push(Root {
+            lower: step.midpoint.clone(),
+            upper: step.midpoint.clone(),
+        });
+    }
+    if step.right > 0 {
+        pending.push((step.midpoint.clone(), upper, step.right));
+    }
+    if step.left > 0 {
+        pending.push((lower, step.midpoint, step.left));
+    }
+}
+
+fn initial_sturm_total(interior: &[Element]) -> Result<(Vec<Polynomial>, usize)> {
+    let sequence = sturm(interior)?;
+    let total = root_count(&sequence, &Q::zero(), &Q::one())?;
+    if total != interior.len() - 1 {
+        return Err("SPECTRAL_ROOT_REAL_CENSUS_FAILED".into());
+    }
+    Ok((sequence, total))
+}
+
+fn bisect_interior_roots(
+    interior: &[Element],
+    roots: &mut Vec<Root>,
+    limit: usize,
+) -> Result<usize> {
+    if interior.len() <= 1 {
+        return Ok(0);
+    }
+    let (sequence, total) = initial_sturm_total(interior)?;
+    let mut pending = vec![(Q::zero(), Q::one(), total)];
+    let mut used = 0;
+    while let Some((lower, upper, count)) = pending.pop() {
+        if count == 0 {
+            continue;
+        }
+        if count == 1 && lower > Q::zero() {
+            roots.push(Root { lower, upper });
+            continue;
+        }
+        if used >= limit {
+            return Err(format!("REFUSED_IMPLEMENTATION_RESOURCE_LIMIT:spectral_root_sturm_subdivisions:{used}/{limit}"));
+        }
+        used += 1;
+        let step = subdivide_interval(&sequence, interior, &lower, &upper, count)?;
+        push_subdivision_results(step, lower, upper, roots, &mut pending);
+    }
+    Ok(used)
+}
+
+fn isolate(radical: &[Element], limit: usize) -> Result<(Vec<Root>, usize)> {
+    let (interior, mut roots) = extract_endpoints(radical)?;
+    let used = bisect_interior_roots(&interior, &mut roots, limit)?;
     roots.sort_by(|a, b| (&a.lower, &a.upper).cmp(&(&b.lower, &b.upper)));
     if roots.len() != radical.len() - 1 {
         return Err("SPECTRAL_ROOT_DISTINCT_CENSUS_FAILED".into());
@@ -218,9 +271,7 @@ fn rational(value: &Value, path: &str) -> Result<Q> {
     Ok(q)
 }
 
-pub fn verify_output(input: &Value, proposed: &Value) -> Result<()> {
-    reject_float(proposed, "spectral_output")?;
-    let data = AlgebraicData::from_input(input)?;
+fn verify_output_header(proposed: &Value, data: &AlgebraicData) -> Result<()> {
     keys(
         proposed,
         &[
@@ -266,89 +317,132 @@ pub fn verify_output(input: &Value, proposed: &Value) -> Result<()> {
         &proposed["squarefree_radical"],
         &wire(&data.radical),
         "squarefree_radical",
+    )
+}
+
+fn validate_root_record(record: &Value, radical_wire: &Value) -> Result<Root> {
+    keys(
+        record,
+        &[
+            "kind",
+            "defining_polynomial",
+            "lower",
+            "upper",
+            "endpoint_convention",
+            "distinct_root_count",
+            "multiplicity",
+        ],
+        "spectrum_row",
     )?;
-    let records = proposed["spectrum"]
-        .as_array()
-        .ok_or("SPECTRAL_ARRAY_REQUIRED:spectrum")?;
+    equal(
+        &record["defining_polynomial"],
+        radical_wire,
+        "defining_polynomial",
+    )?;
+    if count(&record["distinct_root_count"], "distinct_root_count")? != 1 {
+        return Err("SPECTRAL_ROOT_COUNT_MUST_BE_ONE".into());
+    }
+    let root = Root {
+        lower: rational(&record["lower"], "lower")?,
+        upper: rational(&record["upper"], "upper")?,
+    };
+    if root.lower < Q::zero() || root.upper > Q::one() || root.lower > root.upper {
+        return Err("SPECTRAL_ROOT_ENDPOINT_DOMAIN".into());
+    }
+    Ok(root)
+}
+
+fn validate_root_kind_and_count(
+    record: &Value,
+    root: &Root,
+    radical: &[Element],
+    sequence: &[Polynomial],
+) -> Result<bool> {
+    let singleton = root.lower == root.upper;
+    if singleton {
+        equal(&record["kind"], &json!("EXACT_RATIONAL_ROOT"), "root_kind")?;
+        equal(
+            &record["endpoint_convention"],
+            &json!("SINGLETON"),
+            "endpoint_convention",
+        )?;
+        if !eval(radical, &root.lower).is_zero() {
+            return Err("SPECTRAL_SINGLETON_NOT_ROOT".into());
+        }
+    } else {
+        equal(
+            &record["kind"],
+            &json!("EXACT_REAL_ALGEBRAIC_ROOT"),
+            "root_kind",
+        )?;
+        equal(
+            &record["endpoint_convention"],
+            &json!("OPEN"),
+            "endpoint_convention",
+        )?;
+        if root_count(sequence, &root.lower, &root.upper)? != 1 {
+            return Err("SPECTRAL_OPEN_ROOT_COUNT_NOT_ONE".into());
+        }
+    }
+    Ok(singleton)
+}
+
+fn check_root_ordering(previous: Option<&Root>, root: &Root, singleton: bool) -> Result<()> {
+    if let Some(old) = previous {
+        if old.upper > root.lower
+            || (old.lower == old.upper && singleton && old.lower == root.lower)
+        {
+            return Err("SPECTRAL_ROOTS_OVERLAP_OR_UNORDERED".into());
+        }
+    }
+    Ok(())
+}
+
+fn process_spectrum_record(
+    record: &Value,
+    radical_wire: &Value,
+    radical: &[Element],
+    sequence: &[Polynomial],
+    factors: &[(Polynomial, usize)],
+    previous: Option<&Root>,
+) -> Result<(Root, usize)> {
+    let root = validate_root_record(record, radical_wire)?;
+    let singleton = validate_root_kind_and_count(record, &root, radical, sequence)?;
+    check_root_ordering(previous, &root, singleton)?;
+    let m = count(&record["multiplicity"], "multiplicity")?;
+    if m != multiplicity(&root, factors)? {
+        return Err("SPECTRAL_ROOT_MULTIPLICITY_MISMATCH".into());
+    }
+    Ok((root, m))
+}
+
+fn verify_spectrum(records: &[Value], data: &AlgebraicData) -> Result<()> {
     if records.len() != data.radical.len() - 1 {
         return Err("SPECTRAL_ROOT_DISTINCT_CENSUS_FAILED".into());
     }
     let sequence = sturm(&data.radical)?;
+    let radical_wire = wire(&data.radical);
     let mut weighted = 0;
     let mut previous: Option<Root> = None;
     for record in records {
-        keys(
+        let (root, m) = process_spectrum_record(
             record,
-            &[
-                "kind",
-                "defining_polynomial",
-                "lower",
-                "upper",
-                "endpoint_convention",
-                "distinct_root_count",
-                "multiplicity",
-            ],
-            "spectrum_row",
+            &radical_wire,
+            &data.radical,
+            &sequence,
+            &data.factors,
+            previous.as_ref(),
         )?;
-        equal(
-            &record["defining_polynomial"],
-            &wire(&data.radical),
-            "defining_polynomial",
-        )?;
-        if count(&record["distinct_root_count"], "distinct_root_count")? != 1 {
-            return Err("SPECTRAL_ROOT_COUNT_MUST_BE_ONE".into());
-        }
-        let root = Root {
-            lower: rational(&record["lower"], "lower")?,
-            upper: rational(&record["upper"], "upper")?,
-        };
-        if root.lower < Q::zero() || root.upper > Q::one() || root.lower > root.upper {
-            return Err("SPECTRAL_ROOT_ENDPOINT_DOMAIN".into());
-        }
-        let singleton = root.lower == root.upper;
-        if singleton {
-            equal(&record["kind"], &json!("EXACT_RATIONAL_ROOT"), "root_kind")?;
-            equal(
-                &record["endpoint_convention"],
-                &json!("SINGLETON"),
-                "endpoint_convention",
-            )?;
-            if !eval(&data.radical, &root.lower).is_zero() {
-                return Err("SPECTRAL_SINGLETON_NOT_ROOT".into());
-            }
-        } else {
-            equal(
-                &record["kind"],
-                &json!("EXACT_REAL_ALGEBRAIC_ROOT"),
-                "root_kind",
-            )?;
-            equal(
-                &record["endpoint_convention"],
-                &json!("OPEN"),
-                "endpoint_convention",
-            )?;
-            if root_count(&sequence, &root.lower, &root.upper)? != 1 {
-                return Err("SPECTRAL_OPEN_ROOT_COUNT_NOT_ONE".into());
-            }
-        }
-        if let Some(old) = &previous {
-            if old.upper > root.lower
-                || (old.lower == old.upper && singleton && old.lower == root.lower)
-            {
-                return Err("SPECTRAL_ROOTS_OVERLAP_OR_UNORDERED".into());
-            }
-        }
-        let m = count(&record["multiplicity"], "multiplicity")?;
-        if m != multiplicity(&root, &data.factors)? {
-            return Err("SPECTRAL_ROOT_MULTIPLICITY_MISMATCH".into());
-        }
         weighted += m;
         previous = Some(root);
     }
     if weighted != data.dimension {
         return Err("SPECTRAL_ROOT_WEIGHTED_CENSUS_FAILED".into());
     }
-    let resource = &proposed["resource"];
+    Ok(())
+}
+
+fn verify_spectral_resource(resource: &Value, radical: &[Element]) -> Result<()> {
     keys(
         resource,
         &["kind", "sturm_subdivisions", "sturm_subdivision_limit"],
@@ -367,10 +461,21 @@ pub fn verify_output(input: &Value, proposed: &Value) -> Result<()> {
         return Err("SPECTRAL_RESOURCE_LIMIT_MISMATCH".into());
     }
     let claimed = count(&resource["sturm_subdivisions"], "sturm_subdivisions")?;
-    if claimed > LIMIT || claimed != isolate(&data.radical, LIMIT)?.1 {
+    if claimed > LIMIT || claimed != isolate(radical, LIMIT)?.1 {
         return Err("SPECTRAL_RESOURCE_USAGE_MISMATCH".into());
     }
     Ok(())
+}
+
+pub fn verify_output(input: &Value, proposed: &Value) -> Result<()> {
+    reject_float(proposed, "spectral_output")?;
+    let data = AlgebraicData::from_input(input)?;
+    verify_output_header(proposed, &data)?;
+    let records = proposed["spectrum"]
+        .as_array()
+        .ok_or("SPECTRAL_ARRAY_REQUIRED:spectrum")?;
+    verify_spectrum(records, &data)?;
+    verify_spectral_resource(&proposed["resource"], &data.radical)
 }
 
 fn fixtures(interface: &Value) -> Result<&Vec<Value>> {
@@ -399,9 +504,7 @@ pub fn report(interface: &Value) -> Result<Value> {
     Ok(json!({"authority_effect":"None","schema":"ordered_real_polynomial_roots_v1","cases":cases}))
 }
 
-pub fn verify_report(interface: &Value, proposed: &Value) -> Result<()> {
-    reject_float(proposed, "spectral_report")?;
-    let inputs = fixtures(interface)?;
+fn verify_report_header(proposed: &Value) -> Result<()> {
     keys(proposed, &["authority_effect", "schema", "cases"], "report")?;
     equal(
         &proposed["authority_effect"],
@@ -412,7 +515,13 @@ pub fn verify_report(interface: &Value, proposed: &Value) -> Result<()> {
         &proposed["schema"],
         &json!("ordered_real_polynomial_roots_v1"),
         "schema",
-    )?;
+    )
+}
+
+pub fn verify_report(interface: &Value, proposed: &Value) -> Result<()> {
+    reject_float(proposed, "spectral_report")?;
+    let inputs = fixtures(interface)?;
+    verify_report_header(proposed)?;
     let cases = proposed["cases"]
         .as_array()
         .ok_or("SPECTRAL_ARRAY_REQUIRED:cases")?;

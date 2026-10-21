@@ -3,54 +3,56 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/src/qm/discrete_time_stone.py",
   "contract": {
-    "schema_id": "finite-qm.code-companion.v1",
-    "subject": "code/python/src/qm/discrete_time_stone.py",
-    "source_sha256": "a2b55f4d0b4dda49c4ad976cebd3feddd08d9426ee3853204da193d2a0093558",
-    "authority_effect": "None",
-    "contract_urn": "urn:finite-qm:pfp:born-effect-valuation:a2b55f4d0b4dda49c4ad",
-    "symbols": [
-      "_int",
-      "_q",
-      "_strs",
-      "commutant_half_step_candidates",
-      "det",
-      "discrete_evolution",
-      "half_step",
-      "has_rational_half_step",
-      "identity",
-      "irreducible_char_poly",
-      "is_orthogonal",
-      "is_rational_square",
-      "matrix2",
-      "mul",
-      "neg",
-      "no_rational_half_step_certificate",
-      "qparam_necessary_roots",
-      "rational_sqrt",
-      "rotation",
-      "rotation_order",
-      "rotation_point",
-      "specification",
-      "square_root_pairs",
-      "trace",
-      "transpose",
-      "zero",
-      "zpow"
-    ],
-    "owned_invariants": [
-      "Only the literal definitions and the declared exact replay contract of this source are claimed.",
-      "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
-    ],
-    "boundaries": [
-      "Finite exact replay on supplied matrices; a passing check is not a general proof.",
-      "No topology; rational 2x2 rotations only."
-    ],
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/discrete_time_stone.py",
+      "sha256": "a2b55f4d0b4dda49c4ad976cebd3feddd08d9426ee3853204da193d2a0093558"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:qm:discrete-time-stone:v1",
+    "role": "library",
+    "purpose": "Discrete time on the finite carrier: the Z-action k -> U^k of one rational rotation step, and the exact obstruction to a Q-parameter group through it. Replays in exact rational arithmetic the Lean specification",
+    "operations": {
+      "matrix2": "Function matrix2 operation.",
+      "identity": "Function identity operation.",
+      "zero": "Function zero operation.",
+      "mul": "Function mul operation.",
+      "transpose": "Function transpose operation.",
+      "neg": "Function neg operation.",
+      "trace": "Function trace operation.",
+      "det": "Function det operation.",
+      "is_orthogonal": "Function is_orthogonal operation.",
+      "rotation": "[[c,-s],[s,c]] for a rational point (c,s) of the unit circle; any other (c,s) is refused.",
+      "rotation_point": "(c,s) with R == rotation(c,s); refuses every other matrix.",
+      "zpow": "R^k for an integer k; R^-1 = R^T, so a negative k needs an orthogonal R (refused otherwise). Lean: discreteEvolution, discreteEvolution_neg.",
+      "discrete_evolution": "The exact Z-orbit U^k, -kmax <= k <= kmax, of one orthogonal step U = R: every power is orthogonal (U^k^T U^k = I), U^i U^j = U^(i+j) on the window, and U^-k = (U^k)^T. Lean: discreteEvolution_add, discreteEvolution_zero, discreteEvolution_neg, R345_pow_orthogonal.",
+      "rational_sqrt": "The nonnegative rational r with r^2 = x, or None (negative x included); decided by math.isqrt on the reduced numerator and denominator. Lean: four_fifths_not_rat_square via four_fifths_den and nat_mul_self_ne_five.",
+      "is_rational_square": "Function is_rational_square operation.",
+      "half_step": "The rational rotations V with V^2 = rotation(c,s): None unless (1+c)/2 is a rational square p^2, and then exactly the pair +-rotation(p, s/(2p)) (with s/(2p) read as 1 when p = 0: rotation(-1,0) = rotation(0,+-1)^2). Lean: no_rational_half_step for R345.",
+      "has_rational_half_step": "Function has_rational_half_step operation.",
+      "qparam_necessary_roots": "A Q-parameter group U with U(1) = R restricts to k -> R^k on Z and needs U(1/m) with U(1/m)^m = R. For a rational rotation R and m = 2^j this is decided exactly by iterating half_step on every branch: either the 2^j rational m-th roots (as circle points) or the depth and the rotation at which no rational square root exists. Lean: QParamGroup, U_eq_discreteEvolution, U_inv_nat, roots_of_all_orders.",
+      "irreducible_char_poly": "x^2 - tr(R) x + det(R) is irreducible over Q iff tr(R)^2 - 4 det(R) is not a rational square.",
+      "commutant_half_step_candidates": "Every V with V^2 = R commutes with R; when the characteristic polynomial of R is irreducible the commutant is Q[R] = span{I,J} with J = R - (tr R/2) I and J^2 = kappa I, kappa = (tr R)^2/4 - det R. For V = pI + rJ: V^2 = R <=> p^2 + kappa r^2 = tr R/2 and 2pr = 1 <=> p^2 = (tr R/2 +- sqrt(det R))/2 and r = 1/(2p). Returns the candidate values of p^2 and every rational square root V of R, each replayed as V V = R (for a rotation, p^2 = (1+c)/2: the half-angle criterion, independent of the rotation structure). Lean: the commutation step of no_rational_half_step (V R345 = R345 V forces V = [[p,-r],[r,p]]).",
+      "no_rational_half_step_certificate": "For R = rotation(c,s): V = [[p,-r],[r,p]] (the commutant form) squares to R iff p^2 - r^2 = c and 2pr = s, which forces p^2 + r^2 = 1 and p^2 = (1+c)/2; the required square is reported with its exact decision. For R345 it is 4/5, not a rational square. Lean: no_rational_half_step, four_fifths_not_rat_square.",
+      "square_root_pairs": "With U = V V: (-V)(-V) = U as well and -V != V whenever V != 0, so a square root of a step is never unique. Lean: sq_root_neg, neg_ne_self_of_ne_zero, half_step_not_unique, matrix_half_step_not_unique.",
+      "rotation_order": "The least k in 1..max_k with rotation(c,s)^k = I, or None; rotation(0,1) has order 4 while R345 never returns on any finite window. Lean: U1PowerMapInjectivity.u345_infinite_order (cited by the specification); kernel: fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction.",
+      "specification": "What node FQ-GAP-STONE-CONTINUOUS-TIME specifies, what this module derives, and what stays open; nothing here is a theorem about a continuum. Lean: QParamGroup, no_qparam_group_through_R345, and the open obligation in the module header."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
     "evidence": [
-      "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec/README.md"
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
     ]
   },
-  "current_contract": "ee1517fcfc61992cdf498f01bb8d0ac6e0d1ec28f56331669869eaac4a3c290f",
-  "current_scoring": "126ba2d0896df574f28c2f891db57420685506f18b01499263a506b21d93fbb7",
+  "current_contract": "936f066dfead7c81190289ec94afeb549cc61b7a2ef47aa0372f68402c9e5730",
+  "current_scoring": "0b0c65b2376a66c5a65ce53727870f58bfd333ed73dbde6f40e152deb71a864d",
   "contract_history": [
     {
       "sha256": "ee1517fcfc61992cdf498f01bb8d0ac6e0d1ec28f56331669869eaac4a3c290f",
@@ -106,6 +108,63 @@
       "original_paths": [
         "code/python/src/qm/discrete_time_stone.py.contract.yaml"
       ]
+    },
+    {
+      "sha256": "936f066dfead7c81190289ec94afeb549cc61b7a2ef47aa0372f68402c9e5730",
+      "bytes": 5819,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/discrete_time_stone.py",
+          "sha256": "a2b55f4d0b4dda49c4ad976cebd3feddd08d9426ee3853204da193d2a0093558"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:discrete-time-stone:v1",
+        "role": "library",
+        "purpose": "Discrete time on the finite carrier: the Z-action k -> U^k of one rational rotation step, and the exact obstruction to a Q-parameter group through it. Replays in exact rational arithmetic the Lean specification",
+        "operations": {
+          "matrix2": "Function matrix2 operation.",
+          "identity": "Function identity operation.",
+          "zero": "Function zero operation.",
+          "mul": "Function mul operation.",
+          "transpose": "Function transpose operation.",
+          "neg": "Function neg operation.",
+          "trace": "Function trace operation.",
+          "det": "Function det operation.",
+          "is_orthogonal": "Function is_orthogonal operation.",
+          "rotation": "[[c,-s],[s,c]] for a rational point (c,s) of the unit circle; any other (c,s) is refused.",
+          "rotation_point": "(c,s) with R == rotation(c,s); refuses every other matrix.",
+          "zpow": "R^k for an integer k; R^-1 = R^T, so a negative k needs an orthogonal R (refused otherwise). Lean: discreteEvolution, discreteEvolution_neg.",
+          "discrete_evolution": "The exact Z-orbit U^k, -kmax <= k <= kmax, of one orthogonal step U = R: every power is orthogonal (U^k^T U^k = I), U^i U^j = U^(i+j) on the window, and U^-k = (U^k)^T. Lean: discreteEvolution_add, discreteEvolution_zero, discreteEvolution_neg, R345_pow_orthogonal.",
+          "rational_sqrt": "The nonnegative rational r with r^2 = x, or None (negative x included); decided by math.isqrt on the reduced numerator and denominator. Lean: four_fifths_not_rat_square via four_fifths_den and nat_mul_self_ne_five.",
+          "is_rational_square": "Function is_rational_square operation.",
+          "half_step": "The rational rotations V with V^2 = rotation(c,s): None unless (1+c)/2 is a rational square p^2, and then exactly the pair +-rotation(p, s/(2p)) (with s/(2p) read as 1 when p = 0: rotation(-1,0) = rotation(0,+-1)^2). Lean: no_rational_half_step for R345.",
+          "has_rational_half_step": "Function has_rational_half_step operation.",
+          "qparam_necessary_roots": "A Q-parameter group U with U(1) = R restricts to k -> R^k on Z and needs U(1/m) with U(1/m)^m = R. For a rational rotation R and m = 2^j this is decided exactly by iterating half_step on every branch: either the 2^j rational m-th roots (as circle points) or the depth and the rotation at which no rational square root exists. Lean: QParamGroup, U_eq_discreteEvolution, U_inv_nat, roots_of_all_orders.",
+          "irreducible_char_poly": "x^2 - tr(R) x + det(R) is irreducible over Q iff tr(R)^2 - 4 det(R) is not a rational square.",
+          "commutant_half_step_candidates": "Every V with V^2 = R commutes with R; when the characteristic polynomial of R is irreducible the commutant is Q[R] = span{I,J} with J = R - (tr R/2) I and J^2 = kappa I, kappa = (tr R)^2/4 - det R. For V = pI + rJ: V^2 = R <=> p^2 + kappa r^2 = tr R/2 and 2pr = 1 <=> p^2 = (tr R/2 +- sqrt(det R))/2 and r = 1/(2p). Returns the candidate values of p^2 and every rational square root V of R, each replayed as V V = R (for a rotation, p^2 = (1+c)/2: the half-angle criterion, independent of the rotation structure). Lean: the commutation step of no_rational_half_step (V R345 = R345 V forces V = [[p,-r],[r,p]]).",
+          "no_rational_half_step_certificate": "For R = rotation(c,s): V = [[p,-r],[r,p]] (the commutant form) squares to R iff p^2 - r^2 = c and 2pr = s, which forces p^2 + r^2 = 1 and p^2 = (1+c)/2; the required square is reported with its exact decision. For R345 it is 4/5, not a rational square. Lean: no_rational_half_step, four_fifths_not_rat_square.",
+          "square_root_pairs": "With U = V V: (-V)(-V) = U as well and -V != V whenever V != 0, so a square root of a step is never unique. Lean: sq_root_neg, neg_ne_self_of_ne_zero, half_step_not_unique, matrix_half_step_not_unique.",
+          "rotation_order": "The least k in 1..max_k with rotation(c,s)^k = I, or None; rotation(0,1) has order 4 while R345 never returns on any finite window. Lean: U1PowerMapInjectivity.u345_infinite_order (cited by the specification); kernel: fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction.",
+          "specification": "What node FQ-GAP-STONE-CONTINUOUS-TIME specifies, what this module derives, and what stays open; nothing here is a theorem about a continuum. Lean: QParamGroup, no_qparam_group_through_R345, and the open obligation in the module header."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/discrete_time_stone.py\",\n    \"sha256\": \"a2b55f4d0b4dda49c4ad976cebd3feddd08d9426ee3853204da193d2a0093558\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:discrete-time-stone:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Discrete time on the finite carrier: the Z-action k -> U^k of one rational rotation step, and the exact obstruction to a Q-parameter group through it. Replays in exact rational arithmetic the Lean specification\",\n  \"operations\": {\n    \"matrix2\": \"Function matrix2 operation.\",\n    \"identity\": \"Function identity operation.\",\n    \"zero\": \"Function zero operation.\",\n    \"mul\": \"Function mul operation.\",\n    \"transpose\": \"Function transpose operation.\",\n    \"neg\": \"Function neg operation.\",\n    \"trace\": \"Function trace operation.\",\n    \"det\": \"Function det operation.\",\n    \"is_orthogonal\": \"Function is_orthogonal operation.\",\n    \"rotation\": \"[[c,-s],[s,c]] for a rational point (c,s) of the unit circle; any other (c,s) is refused.\",\n    \"rotation_point\": \"(c,s) with R == rotation(c,s); refuses every other matrix.\",\n    \"zpow\": \"R^k for an integer k; R^-1 = R^T, so a negative k needs an orthogonal R (refused otherwise). Lean: discreteEvolution, discreteEvolution_neg.\",\n    \"discrete_evolution\": \"The exact Z-orbit U^k, -kmax <= k <= kmax, of one orthogonal step U = R: every power is orthogonal (U^k^T U^k = I), U^i U^j = U^(i+j) on the window, and U^-k = (U^k)^T. Lean: discreteEvolution_add, discreteEvolution_zero, discreteEvolution_neg, R345_pow_orthogonal.\",\n    \"rational_sqrt\": \"The nonnegative rational r with r^2 = x, or None (negative x included); decided by math.isqrt on the reduced numerator and denominator. Lean: four_fifths_not_rat_square via four_fifths_den and nat_mul_self_ne_five.\",\n    \"is_rational_square\": \"Function is_rational_square operation.\",\n    \"half_step\": \"The rational rotations V with V^2 = rotation(c,s): None unless (1+c)/2 is a rational square p^2, and then exactly the pair +-rotation(p, s/(2p)) (with s/(2p) read as 1 when p = 0: rotation(-1,0) = rotation(0,+-1)^2). Lean: no_rational_half_step for R345.\",\n    \"has_rational_half_step\": \"Function has_rational_half_step operation.\",\n    \"qparam_necessary_roots\": \"A Q-parameter group U with U(1) = R restricts to k -> R^k on Z and needs U(1/m) with U(1/m)^m = R. For a rational rotation R and m = 2^j this is decided exactly by iterating half_step on every branch: either the 2^j rational m-th roots (as circle points) or the depth and the rotation at which no rational square root exists. Lean: QParamGroup, U_eq_discreteEvolution, U_inv_nat, roots_of_all_orders.\",\n    \"irreducible_char_poly\": \"x^2 - tr(R) x + det(R) is irreducible over Q iff tr(R)^2 - 4 det(R) is not a rational square.\",\n    \"commutant_half_step_candidates\": \"Every V with V^2 = R commutes with R; when the characteristic polynomial of R is irreducible the commutant is Q[R] = span{I,J} with J = R - (tr R/2) I and J^2 = kappa I, kappa = (tr R)^2/4 - det R. For V = pI + rJ: V^2 = R <=> p^2 + kappa r^2 = tr R/2 and 2pr = 1 <=> p^2 = (tr R/2 +- sqrt(det R))/2 and r = 1/(2p). Returns the candidate values of p^2 and every rational square root V of R, each replayed as V V = R (for a rotation, p^2 = (1+c)/2: the half-angle criterion, independent of the rotation structure). Lean: the commutation step of no_rational_half_step (V R345 = R345 V forces V = [[p,-r],[r,p]]).\",\n    \"no_rational_half_step_certificate\": \"For R = rotation(c,s): V = [[p,-r],[r,p]] (the commutant form) squares to R iff p^2 - r^2 = c and 2pr = s, which forces p^2 + r^2 = 1 and p^2 = (1+c)/2; the required square is reported with its exact decision. For R345 it is 4/5, not a rational square. Lean: no_rational_half_step, four_fifths_not_rat_square.\",\n    \"square_root_pairs\": \"With U = V V: (-V)(-V) = U as well and -V != V whenever V != 0, so a square root of a step is never unique. Lean: sq_root_neg, neg_ne_self_of_ne_zero, half_step_not_unique, matrix_half_step_not_unique.\",\n    \"rotation_order\": \"The least k in 1..max_k with rotation(c,s)^k = I, or None; rotation(0,1) has order 4 while R345 never returns on any finite window. Lean: U1PowerMapInjectivity.u345_infinite_order (cited by the specification); kernel: fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction.\",\n    \"specification\": \"What node FQ-GAP-STONE-CONTINUOUS-TIME specifies, what this module derives, and what stays open; nothing here is a theorem about a continuum. Lean: QParamGroup, no_qparam_group_through_R345, and the open obligation in the module header.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/discrete_time_stone.contract.score.yaml#contract"
+      ]
     }
   ],
   "scoring_history": [
@@ -152,6 +211,67 @@
       "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/discrete_time_stone.py\nsource_sha256: a2b55f4d0b4dda49c4ad976cebd3feddd08d9426ee3853204da193d2a0093558\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec/README.md\n",
       "original_paths": [
         "code/python/src/qm/discrete_time_stone.py.score.yaml"
+      ]
+    },
+    {
+      "sha256": "0b0c65b2376a66c5a65ce53727870f58bfd333ed73dbde6f40e152deb71a864d",
+      "bytes": 2199,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/discrete_time_stone.py",
+          "sha256": "a2b55f4d0b4dda49c4ad976cebd3feddd08d9426ee3853204da193d2a0093558"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:discrete-time-stone:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 14), Lizard CCN (max 14), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 14,
+          "lizard_ccn": 14,
+          "weighted_control_upper_bound": 21,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/discrete_time_stone.py\",\n    \"sha256\": \"a2b55f4d0b4dda49c4ad976cebd3feddd08d9426ee3853204da193d2a0093558\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:discrete-time-stone:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 14), Lizard CCN (max 14), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 14,\n    \"lizard_ccn\": 14,\n    \"weighted_control_upper_bound\": 21,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/discrete_time_stone.contract.score.yaml#scoring"
       ]
     }
   ],

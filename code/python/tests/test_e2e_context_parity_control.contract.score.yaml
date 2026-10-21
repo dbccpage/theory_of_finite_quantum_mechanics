@@ -1,0 +1,358 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/test_e2e_context_parity_control.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/test_e2e_context_parity_control.py",
+      "sha256": "66216c327f104725ec1a8afc71aad390bff10aca3615f20dc80bfd4c8d0a7e59"
+    },
+    "profile": "Exact",
+    "claim": "context_parity_control certificate locked by exact checks in this file",
+    "role": "test checker",
+    "purpose": "Exact tests for the QM-209 finite map: context parity and Weyl commutator holonomy. Unit, integration, and negative tests.",
+    "operations": {
+      "control": "Function control operation.",
+      "test_unit_peres_mermin_cokernel_is_the_total_parity": "Function test_unit_peres_mermin_cokernel_is_the_total_parity operation.",
+      "test_flipping_one_context_sign_removes_the_obstruction": "Function test_flipping_one_context_sign_removes_the_obstruction operation.",
+      "test_negative_f2_elimination_on_a_small_system": "Function test_negative_f2_elimination_on_a_small_system operation.",
+      "test_weyl_commutator_holonomy_table": "Function test_weyl_commutator_holonomy_table operation.",
+      "test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none": "Function test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none operation.",
+      "test_ledger_has_three_layers": "Function test_ledger_has_three_layers operation.",
+      "test_refuses_conductor_without_mu12": "Function test_refuses_conductor_without_mu12 operation.",
+      "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+      "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "e9f84ea4fbd328c6c667b63b7d44aa5d8da871ac8a40eec66603eae373e28960",
+  "current_scoring": "5d87972827b3d808dec30f6229c14057190dc3e25f62908cd8397cd94b80e7bf",
+  "contract_history": [
+    {
+      "sha256": "4b986843d431bf23902885608eb1cb8dae9c8be950db0543121cc6d6616dcd61",
+      "bytes": 2846,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_context_parity_control.py",
+          "sha256": "87d80758b494e989cd1a2b8a45d69f85cc013b7a63cba967dad79c74ef0b8cfd"
+        },
+        "profile": "Exact",
+        "claim": "context_parity_control certificate locked by exact checks in this file",
+        "role": "test checker",
+        "purpose": "Exact tests for the QM-209 finite map: context parity and Weyl commutator holonomy. Unit, integration, and negative tests.",
+        "operations": {
+          "control": "Function control operation.",
+          "test_unit_peres_mermin_cokernel_is_the_total_parity": "Function test_unit_peres_mermin_cokernel_is_the_total_parity operation.",
+          "test_flipping_one_context_sign_removes_the_obstruction": "Function test_flipping_one_context_sign_removes_the_obstruction operation.",
+          "test_negative_f2_elimination_on_a_small_system": "Function test_negative_f2_elimination_on_a_small_system operation.",
+          "test_weyl_commutator_holonomy_table": "Function test_weyl_commutator_holonomy_table operation.",
+          "test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none": "Function test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none operation.",
+          "test_ledger_has_three_layers": "Function test_ledger_has_three_layers operation.",
+          "test_refuses_conductor_without_mu12": "Function test_refuses_conductor_without_mu12 operation.",
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_context_parity_control.py\",\n    \"sha256\": \"87d80758b494e989cd1a2b8a45d69f85cc013b7a63cba967dad79c74ef0b8cfd\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"context_parity_control certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Exact tests for the QM-209 finite map: context parity and Weyl commutator holonomy. Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"control\": \"Function control operation.\",\n    \"test_unit_peres_mermin_cokernel_is_the_total_parity\": \"Function test_unit_peres_mermin_cokernel_is_the_total_parity operation.\",\n    \"test_flipping_one_context_sign_removes_the_obstruction\": \"Function test_flipping_one_context_sign_removes_the_obstruction operation.\",\n    \"test_negative_f2_elimination_on_a_small_system\": \"Function test_negative_f2_elimination_on_a_small_system operation.\",\n    \"test_weyl_commutator_holonomy_table\": \"Function test_weyl_commutator_holonomy_table operation.\",\n    \"test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none\": \"Function test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none operation.\",\n    \"test_ledger_has_three_layers\": \"Function test_ledger_has_three_layers operation.\",\n    \"test_refuses_conductor_without_mu12\": \"Function test_refuses_conductor_without_mu12 operation.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_context_parity_control.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "eca50560a1dbf544284f3cf298102af260f8a86dfde9b396132995d187ba7759",
+      "bytes": 2846,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_context_parity_control.py",
+          "sha256": "229d866305647377d17b604b208afadbda5635c44ddc145398b350a72b6a2600"
+        },
+        "profile": "Exact",
+        "claim": "context_parity_control certificate locked by exact checks in this file",
+        "role": "test checker",
+        "purpose": "Exact tests for the QM-209 finite map: context parity and Weyl commutator holonomy. Unit, integration, and negative tests.",
+        "operations": {
+          "control": "Function control operation.",
+          "test_unit_peres_mermin_cokernel_is_the_total_parity": "Function test_unit_peres_mermin_cokernel_is_the_total_parity operation.",
+          "test_flipping_one_context_sign_removes_the_obstruction": "Function test_flipping_one_context_sign_removes_the_obstruction operation.",
+          "test_negative_f2_elimination_on_a_small_system": "Function test_negative_f2_elimination_on_a_small_system operation.",
+          "test_weyl_commutator_holonomy_table": "Function test_weyl_commutator_holonomy_table operation.",
+          "test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none": "Function test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none operation.",
+          "test_ledger_has_three_layers": "Function test_ledger_has_three_layers operation.",
+          "test_refuses_conductor_without_mu12": "Function test_refuses_conductor_without_mu12 operation.",
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_context_parity_control.py\",\n    \"sha256\": \"229d866305647377d17b604b208afadbda5635c44ddc145398b350a72b6a2600\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"context_parity_control certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Exact tests for the QM-209 finite map: context parity and Weyl commutator holonomy. Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"control\": \"Function control operation.\",\n    \"test_unit_peres_mermin_cokernel_is_the_total_parity\": \"Function test_unit_peres_mermin_cokernel_is_the_total_parity operation.\",\n    \"test_flipping_one_context_sign_removes_the_obstruction\": \"Function test_flipping_one_context_sign_removes_the_obstruction operation.\",\n    \"test_negative_f2_elimination_on_a_small_system\": \"Function test_negative_f2_elimination_on_a_small_system operation.\",\n    \"test_weyl_commutator_holonomy_table\": \"Function test_weyl_commutator_holonomy_table operation.\",\n    \"test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none\": \"Function test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none operation.\",\n    \"test_ledger_has_three_layers\": \"Function test_ledger_has_three_layers operation.\",\n    \"test_refuses_conductor_without_mu12\": \"Function test_refuses_conductor_without_mu12 operation.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_context_parity_control.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "e9f84ea4fbd328c6c667b63b7d44aa5d8da871ac8a40eec66603eae373e28960",
+      "bytes": 2846,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_context_parity_control.py",
+          "sha256": "66216c327f104725ec1a8afc71aad390bff10aca3615f20dc80bfd4c8d0a7e59"
+        },
+        "profile": "Exact",
+        "claim": "context_parity_control certificate locked by exact checks in this file",
+        "role": "test checker",
+        "purpose": "Exact tests for the QM-209 finite map: context parity and Weyl commutator holonomy. Unit, integration, and negative tests.",
+        "operations": {
+          "control": "Function control operation.",
+          "test_unit_peres_mermin_cokernel_is_the_total_parity": "Function test_unit_peres_mermin_cokernel_is_the_total_parity operation.",
+          "test_flipping_one_context_sign_removes_the_obstruction": "Function test_flipping_one_context_sign_removes_the_obstruction operation.",
+          "test_negative_f2_elimination_on_a_small_system": "Function test_negative_f2_elimination_on_a_small_system operation.",
+          "test_weyl_commutator_holonomy_table": "Function test_weyl_commutator_holonomy_table operation.",
+          "test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none": "Function test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none operation.",
+          "test_ledger_has_three_layers": "Function test_ledger_has_three_layers operation.",
+          "test_refuses_conductor_without_mu12": "Function test_refuses_conductor_without_mu12 operation.",
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_context_parity_control.py\",\n    \"sha256\": \"66216c327f104725ec1a8afc71aad390bff10aca3615f20dc80bfd4c8d0a7e59\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"context_parity_control certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Exact tests for the QM-209 finite map: context parity and Weyl commutator holonomy. Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"control\": \"Function control operation.\",\n    \"test_unit_peres_mermin_cokernel_is_the_total_parity\": \"Function test_unit_peres_mermin_cokernel_is_the_total_parity operation.\",\n    \"test_flipping_one_context_sign_removes_the_obstruction\": \"Function test_flipping_one_context_sign_removes_the_obstruction operation.\",\n    \"test_negative_f2_elimination_on_a_small_system\": \"Function test_negative_f2_elimination_on_a_small_system operation.\",\n    \"test_weyl_commutator_holonomy_table\": \"Function test_weyl_commutator_holonomy_table operation.\",\n    \"test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none\": \"Function test_holonomy_is_conjugation_invariant_and_diagonal_frames_give_none operation.\",\n    \"test_ledger_has_three_layers\": \"Function test_ledger_has_three_layers operation.\",\n    \"test_refuses_conductor_without_mu12\": \"Function test_refuses_conductor_without_mu12 operation.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_context_parity_control.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "403a1da9717c4a47533397519d83bb91c47aeb9a1eab2f6c54cd7765eeae9a58",
+      "bytes": 2224,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_context_parity_control.py",
+          "sha256": "87d80758b494e989cd1a2b8a45d69f85cc013b7a63cba967dad79c74ef0b8cfd"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN context_parity_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 11,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_context_parity_control.py\",\n    \"sha256\": \"87d80758b494e989cd1a2b8a45d69f85cc013b7a63cba967dad79c74ef0b8cfd\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN context_parity_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_context_parity_control.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "243ed963020c975a00b99bd445f49331ea8185f9b33001d41630e23617bdff66",
+      "bytes": 2198,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_context_parity_control.py",
+          "sha256": "229d866305647377d17b604b208afadbda5635c44ddc145398b350a72b6a2600"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN context_parity_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 11,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_context_parity_control.py\",\n    \"sha256\": \"229d866305647377d17b604b208afadbda5635c44ddc145398b350a72b6a2600\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN context_parity_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_context_parity_control.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "5d87972827b3d808dec30f6229c14057190dc3e25f62908cd8397cd94b80e7bf",
+      "bytes": 2198,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_context_parity_control.py",
+          "sha256": "66216c327f104725ec1a8afc71aad390bff10aca3615f20dc80bfd4c8d0a7e59"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN context_parity_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 11,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_context_parity_control.py\",\n    \"sha256\": \"66216c327f104725ec1a8afc71aad390bff10aca3615f20dc80bfd4c8d0a7e59\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN context_parity_control certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_context_parity_control.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

@@ -234,13 +234,13 @@ def test_tier2_fsp_cochain_complex_negative_dimensions_rejection():
 
 def test_tier2_majorana_fock_carrier_mode_extremes():
     """FEAT-MAJ-B01: Verify FockCarrier mode limits and rejection outside [1, MAX_MODES]."""
-    with pytest.raises(MajoranaError, match="outside 1..="):
+    with pytest.raises(MajoranaError, match=r"outside (1\.\.=|declared range)"):
         FockCarrier(0)
 
-    with pytest.raises(MajoranaError, match="outside 1..="):
+    with pytest.raises(MajoranaError, match=r"outside (1\.\.=|declared range)"):
         FockCarrier(-1)
 
-    with pytest.raises(MajoranaError, match="outside 1..="):
+    with pytest.raises(MajoranaError, match=r"outside (1\.\.=|declared range)"):
         FockCarrier(MAX_MODES + 1)
 
     # Boundary valid carrier at MAX_MODES
@@ -253,10 +253,10 @@ def test_tier2_majorana_fock_carrier_generator_index_out_of_bounds():
     """FEAT-MAJ-B02: Verify majorana_generator rejection of indices outside [1, 2*modes]."""
     carrier = FockCarrier(2)  # 2 modes -> 4 Majorana generators {1, 2, 3, 4}
 
-    with pytest.raises(MajoranaError, match="Majorana index .* outside"):
+    with pytest.raises(MajoranaError, match=r"(Majorana index .* outside|outside declared range)"):
         carrier.majorana_generator(0)
 
-    with pytest.raises(MajoranaError, match="Majorana index .* outside"):
+    with pytest.raises(MajoranaError, match=r"(Majorana index .* outside|outside declared range)"):
         carrier.majorana_generator(5)
 
 

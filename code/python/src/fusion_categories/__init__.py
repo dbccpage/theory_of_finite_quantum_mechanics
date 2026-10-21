@@ -4,7 +4,7 @@ Origin: dag/theory_of_finite_qm.md section TFQ-0196.
 Claim: urn:omega:fqm:fusion:package-dimension-seal:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/fusion_categories/test_fusion_control.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 4; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 5.
+Gate 5: use source-bound measurements in the companion history.
 Scope Fence: package_seal checks that the Ising global dimension squared is 4. It does not categorify the ring.
 """
 
@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from typing import Mapping
 
-from .fusion_ring import FusionError, ising_global_dimension_rational
+from .fusion_ring import MAX_INPUT_BITS, FusionError, ising_global_dimension_rational
 
 
 class PackageError(ValueError):
@@ -31,11 +31,13 @@ def _fail(invariant: str, **parameters: object) -> PackageError:
 
 
 def _require_int(value: object, role: str) -> int:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the package boundary", role=role, received="float")
-    if isinstance(value, bool):
+    if type(value) is bool:
         raise _fail("boolean refused where an integer was required", role=role)
-    if isinstance(value, int):
+    if type(value) is int:
+        if value.bit_length() > MAX_INPUT_BITS:
+            raise _fail("integer bit budget exceeded", role=role, limit=MAX_INPUT_BITS)
         return value
     raise _fail("value is not an integer", role=role, received=type(value).__name__)
 
@@ -76,8 +78,13 @@ def main() -> int:
     try:
         print(package_seal())
     except (PackageError, FusionError) as error:
-        print(error.invariant)
+        try:
+            print(error.invariant)
+        except (OSError, ValueError):
+            return 2
         return 1
+    except (OSError, ValueError):
+        return 2
     return 0
 
 

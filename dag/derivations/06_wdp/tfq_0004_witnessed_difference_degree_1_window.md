@@ -36,6 +36,8 @@ In accordance with strict constructive principles:
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
 - [TFQ-0005](../07_l1_emergence/tfq_0005_declared_l1_sector_weights.md)
+- [TFQ-0546](tfq_0546_wdp_exact_sequence_h1_q1.md)
+- [TFQ-0549](tfq_0549_wdp_degree_k_torsion_balance.md)
 
 ---
 

@@ -358,45 +358,12 @@ fn adjunction_violation(
     )
 }
 
-pub fn validate_declared_adjunction(
+fn validate_triangle_left(
     adj: &DeclaredFiniteAdjunction,
     base: &DeclaredFiniteCategory,
     lifted: &DeclaredFiniteCategory,
-) -> ValidationReport {
-    let mut report = ValidationReport::new(&adj.name);
-    let mut left = adj.left.clone();
-    left.name = adj.left_functor.clone();
-    left.source_category = base.name.clone();
-    left.target_category = lifted.name.clone();
-    left.object_map = adj.left_ob_map.clone();
-    left.morphism_map = adj.left_mor_map.clone();
-
-    let mut right = adj.right.clone();
-    right.name = adj.right_functor.clone();
-    right.source_category = lifted.name.clone();
-    right.target_category = base.name.clone();
-    right.object_map = adj.right_ob_map.clone();
-    right.morphism_map = adj.right_mor_map.clone();
-
-    // 1. L is a valid functor Base → Lifted
-    let left_report = validate_functor_between(&left, base, lifted);
-    for res in left_report.results {
-        report.add(res);
-    }
-    for violation in left_report.typed_violations {
-        report.add_violation(violation);
-    }
-
-    // 2. R is a valid functor Lifted → Base
-    let right_report = validate_functor_between(&right, lifted, base);
-    for res in right_report.results {
-        report.add(res);
-    }
-    for violation in right_report.typed_violations {
-        report.add_violation(violation);
-    }
-
-    // 3. Triangle left
+    left: &DeclaredFiniteFunctor,
+) -> Vec<ValidationViolation> {
     let mut tl_violations = Vec::new();
     for a in base.object_names() {
         let Some(la) = left.on_object(a) else {
@@ -442,9 +409,15 @@ pub fn validate_declared_adjunction(
             )),
         }
     }
-    report.add_typed("triangle_left", tl_violations);
+    tl_violations
+}
 
-    // 4. Triangle right
+fn validate_triangle_right(
+    adj: &DeclaredFiniteAdjunction,
+    base: &DeclaredFiniteCategory,
+    lifted: &DeclaredFiniteCategory,
+    right: &DeclaredFiniteFunctor,
+) -> Vec<ValidationViolation> {
     let mut tr_violations = Vec::new();
     for b in lifted.object_names() {
         let Some(rb) = right.on_object(b) else {
@@ -490,6 +463,53 @@ pub fn validate_declared_adjunction(
             )),
         }
     }
+    tr_violations
+}
+
+pub fn validate_declared_adjunction(
+    adj: &DeclaredFiniteAdjunction,
+    base: &DeclaredFiniteCategory,
+    lifted: &DeclaredFiniteCategory,
+) -> ValidationReport {
+    let mut report = ValidationReport::new(&adj.name);
+    let mut left = adj.left.clone();
+    left.name = adj.left_functor.clone();
+    left.source_category = base.name.clone();
+    left.target_category = lifted.name.clone();
+    left.object_map = adj.left_ob_map.clone();
+    left.morphism_map = adj.left_mor_map.clone();
+
+    let mut right = adj.right.clone();
+    right.name = adj.right_functor.clone();
+    right.source_category = lifted.name.clone();
+    right.target_category = base.name.clone();
+    right.object_map = adj.right_ob_map.clone();
+    right.morphism_map = adj.right_mor_map.clone();
+
+    // 1. L is a valid functor Base → Lifted
+    let left_report = validate_functor_between(&left, base, lifted);
+    for res in left_report.results {
+        report.add(res);
+    }
+    for violation in left_report.typed_violations {
+        report.add_violation(violation);
+    }
+
+    // 2. R is a valid functor Lifted → Base
+    let right_report = validate_functor_between(&right, lifted, base);
+    for res in right_report.results {
+        report.add(res);
+    }
+    for violation in right_report.typed_violations {
+        report.add_violation(violation);
+    }
+
+    // 3. Triangle left
+    let tl_violations = validate_triangle_left(adj, base, lifted, &left);
+    report.add_typed("triangle_left", tl_violations);
+
+    // 4. Triangle right
+    let tr_violations = validate_triangle_right(adj, base, lifted, &right);
     report.add_typed("triangle_right", tr_violations);
 
     report

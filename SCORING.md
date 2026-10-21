@@ -345,7 +345,7 @@ When software pipelines compose multiple language components (e.g. SQL data $\to
     },
     "score_token": {
       "type": ["string", "null"],
-      "pattern": "^(L[1-5](E|D|C|B|A\\+?)|null)$"
+      "pattern": "^L[1-5](E|D|C|B|A\\+?)$"
     },
     "is_complete": { "type": "boolean" },
     "grade_ceiling": {

@@ -7,12 +7,13 @@ use thiserror::Error;
 
 use crate::braid_group::{BraidRelationDefect, DEFAULT_BRAID_LIMITS};
 use crate::error::FusionError;
-use crate::fusion_category::{CategoryDefect, FSymbols, FusionCategory, Gauge};
+use crate::fusion_category::{CategoryDefect, FBlock, FSymbols, FusionCategory, Gauge};
 use crate::fusion_ring::FusionRing;
 use crate::scalar::{sign_of, FusionScalar};
 use linear_algebra::backend::basic_matrix::OperationLimits;
 use linear_algebra::exact_field::matrix;
-use omega_number_theory::algebraic_real::RealAlgebraic;
+use omega_number_theory::algebraic_real::{IsolatedRoot, RealAlgebraic};
+use omega_number_theory::quadratic::QuadraticNumber;
 
 pub const MAX_FUSION_SPACE: usize = 1 << 16;
 
@@ -89,6 +90,28 @@ pub struct RSymbols<K> {
 }
 
 impl<K: FusionScalar> RSymbols<K> {
+    fn collect_r_symbols_for_pair(
+        ring: &FusionRing,
+        a: usize,
+        b: usize,
+        value: &mut impl FnMut([usize; 3]) -> K,
+        r: &mut BTreeMap<[usize; 3], K>,
+    ) -> Result<(), FusionError> {
+        for c in 0..ring.rank() {
+            if ring.n(a, b, c) == 0 {
+                continue;
+            }
+            let entry = value([a, b, c]);
+            if entry.is_zero() {
+                return Err(FusionError::Braided(BraidedDefect::RZero {
+                    labels: [a, b, c],
+                }));
+            }
+            r.insert([a, b, c], entry);
+        }
+        Ok(())
+    }
+
     pub fn from_fn(
         ring: &FusionRing,
         mut value: impl FnMut([usize; 3]) -> K,
@@ -97,17 +120,7 @@ impl<K: FusionScalar> RSymbols<K> {
         let mut r = BTreeMap::new();
         for a in 0..n {
             for b in 0..n {
-                for c in 0..n {
-                    if ring.n(a, b, c) > 0 {
-                        let entry = value([a, b, c]);
-                        if entry.is_zero() {
-                            return Err(FusionError::Braided(BraidedDefect::RZero {
-                                labels: [a, b, c],
-                            }));
-                        }
-                        r.insert([a, b, c], entry);
-                    }
-                }
+                Self::collect_r_symbols_for_pair(ring, a, b, &mut value, &mut r)?;
             }
         }
         Ok(Self { rank: n, r })
@@ -212,8 +225,7 @@ pub struct BraidedFusionCategory<K> {
 }
 
 impl<K: FusionScalar> BraidedFusionCategory<K> {
-    pub fn new(category: FusionCategory<K>, r: RSymbols<K>) -> Result<Self, FusionError> {
-        let ring = category.ring();
+    fn check_ring_commutativity(ring: &FusionRing) -> Result<(), FusionError> {
         let n = ring.rank();
         for left in 0..n {
             for right in left + 1..n {
@@ -225,11 +237,26 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
                 }
             }
         }
-        if let Some(labels) = category.singular_blocks().first() {
-            return Err(FusionError::Category(CategoryDefect::BlockSingular {
-                labels: *labels,
-            }));
+        Ok(())
+    }
+
+    fn validate_r_entry(
+        entry: Option<&K>,
+        is_allowed: bool,
+        labels: [usize; 3],
+    ) -> Result<(), FusionError> {
+        match (entry, is_allowed) {
+            (None, true) => Err(FusionError::Braided(BraidedDefect::RMissing { labels })),
+            (Some(_), false) => Err(FusionError::Braided(BraidedDefect::RUnexpected { labels })),
+            (Some(e), true) if e.is_zero() => {
+                Err(FusionError::Braided(BraidedDefect::RZero { labels }))
+            }
+            _ => Ok(()),
         }
+    }
+
+    fn validate_r_symbols(ring: &FusionRing, r: &RSymbols<K>) -> Result<(), FusionError> {
+        let n = ring.rank();
         if r.rank != n {
             return Err(FusionError::ListLength {
                 what: "R-symbol labels",
@@ -241,23 +268,22 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
             for b in 0..n {
                 for c in 0..n {
                     let labels = [a, b, c];
-                    match (r.get(labels), ring.n(a, b, c) > 0) {
-                        (None, true) => {
-                            return Err(FusionError::Braided(BraidedDefect::RMissing { labels }));
-                        }
-                        (Some(_), false) => {
-                            return Err(FusionError::Braided(BraidedDefect::RUnexpected {
-                                labels,
-                            }));
-                        }
-                        (Some(entry), true) if entry.is_zero() => {
-                            return Err(FusionError::Braided(BraidedDefect::RZero { labels }));
-                        }
-                        _ => {}
-                    }
+                    Self::validate_r_entry(r.get(labels), ring.n(a, b, c) > 0, labels)?;
                 }
             }
         }
+        Ok(())
+    }
+
+    pub fn new(category: FusionCategory<K>, r: RSymbols<K>) -> Result<Self, FusionError> {
+        let ring = category.ring();
+        Self::check_ring_commutativity(ring)?;
+        if let Some(labels) = category.singular_blocks().first() {
+            return Err(FusionError::Category(CategoryDefect::BlockSingular {
+                labels: *labels,
+            }));
+        }
+        Self::validate_r_symbols(ring, &r)?;
         Ok(Self { category, r })
     }
 
@@ -298,38 +324,86 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         self.hexagon_scan(form, true).into_iter().next()
     }
 
+    fn scan_hexagon_block(
+        &self,
+        form: HexagonForm,
+        [a, b, c, d]: [usize; 4],
+        block: &FBlock<K>,
+        targets: &[usize],
+        stop_at_first: bool,
+        defects: &mut Vec<HexagonDefect<K>>,
+    ) -> bool {
+        for &e in block.rows() {
+            for &g in targets {
+                let lhs = self.hexagon_lhs(form, [a, b, c, d], e, g);
+                let rhs = self.hexagon_rhs(form, [a, b, c, d], e, g, block.cols());
+                if lhs == rhs {
+                    continue;
+                }
+                defects.push(HexagonDefect {
+                    form,
+                    labels: [a, b, c, d, e, g],
+                    lhs,
+                    rhs,
+                });
+                if stop_at_first {
+                    return true;
+                }
+            }
+        }
+        false
+    }
+
+    fn scan_hexagon_for_c(
+        &self,
+        form: HexagonForm,
+        a: usize,
+        b: usize,
+        c: usize,
+        n: usize,
+        stop_at_first: bool,
+        defects: &mut Vec<HexagonDefect<K>>,
+    ) -> bool {
+        let ring = self.ring();
+        for d in 0..n {
+            let Some(block) = self.category.f_symbols().block([a, b, c, d]) else {
+                continue;
+            };
+            let targets: Vec<usize> = (0..n)
+                .filter(|&g| ring.n(a, c, g) > 0 && ring.n(g, b, d) > 0)
+                .collect();
+            if self.scan_hexagon_block(form, [a, b, c, d], block, &targets, stop_at_first, defects) {
+                return true;
+            }
+        }
+        false
+    }
+
+    fn scan_hexagon_for_b(
+        &self,
+        form: HexagonForm,
+        a: usize,
+        b: usize,
+        n: usize,
+        stop_at_first: bool,
+        defects: &mut Vec<HexagonDefect<K>>,
+    ) -> bool {
+        for c in 0..n {
+            if self.scan_hexagon_for_c(form, a, b, c, n, stop_at_first, defects) {
+                return true;
+            }
+        }
+        false
+    }
+
     fn hexagon_scan(&self, form: HexagonForm, stop_at_first: bool) -> Vec<HexagonDefect<K>> {
         let ring = self.ring();
         let n = ring.rank();
         let mut defects = Vec::new();
         for a in 0..n {
             for b in 0..n {
-                for c in 0..n {
-                    for d in 0..n {
-                        let Some(block) = self.category.f_symbols().block([a, b, c, d]) else {
-                            continue;
-                        };
-                        let targets: Vec<usize> = (0..n)
-                            .filter(|&g| ring.n(a, c, g) > 0 && ring.n(g, b, d) > 0)
-                            .collect();
-                        for &e in block.rows() {
-                            for &g in &targets {
-                                let lhs = self.hexagon_lhs(form, [a, b, c, d], e, g);
-                                let rhs = self.hexagon_rhs(form, [a, b, c, d], e, g, block.cols());
-                                if lhs != rhs {
-                                    defects.push(HexagonDefect {
-                                        form,
-                                        labels: [a, b, c, d, e, g],
-                                        lhs,
-                                        rhs,
-                                    });
-                                    if stop_at_first {
-                                        return defects;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                if self.scan_hexagon_for_b(form, a, b, n, stop_at_first, &mut defects) {
+                    return defects;
                 }
             }
         }
@@ -460,32 +534,83 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         self.fusion_space_with_limits(word, total, FusionSpaceLimits::default())
     }
 
-    pub fn fusion_space_with_limits(
-        &self,
-        word: &[usize],
-        total: usize,
-        limits: FusionSpaceLimits,
-    ) -> Result<FusionSpace, FusionError> {
-        charge_braid(
-            "materialized fusion strands",
-            word.len() as u128,
-            limits.max_strands,
-        )?;
-        let ring = self.ring();
-        let rank = ring.rank();
+    fn validate_fusion_labels(word: &[usize], total: usize, rank: usize) -> Result<(), FusionError> {
         for &label in word.iter().chain(std::iter::once(&total)) {
             if label >= rank {
                 return Err(FusionError::Label { label, rank });
             }
         }
-        let n = word.len();
-        let mut basis: Vec<Vec<usize>> = Vec::new();
-        let mut work = n as u128;
+        Ok(())
+    }
+
+    fn extend_fusion_path(
+        path: &[usize],
+        c: usize,
+        limits: &FusionSpaceLimits,
+        work: &mut u128,
+        next: &mut Vec<(Vec<usize>, usize)>,
+    ) -> Result<(), FusionError> {
+        let count = next.len() as u128 + 1;
+        charge_braid("fusion space dimension", count, limits.max_paths)?;
+        charge_braid(
+            "fusion path labels",
+            count * (path.len() as u128 + 1),
+            limits.max_path_labels,
+        )?;
+        *work = work
+            .checked_add(path.len() as u128 + 1)
+            .ok_or(FusionError::Overflow {
+                context: "fusion path extension work",
+            })?;
         charge_braid(
             "fusion path extension work",
-            work,
+            *work,
             limits.max_extension_work,
         )?;
+        let mut extended = path.to_vec();
+        extended.push(c);
+        next.push((extended, c));
+        Ok(())
+    }
+
+    fn extend_partial_paths(
+        partial: &[(Vec<usize>, usize)],
+        label: usize,
+        ring: &FusionRing,
+        limits: &FusionSpaceLimits,
+        work: &mut u128,
+    ) -> Result<Vec<(Vec<usize>, usize)>, FusionError> {
+        let rank = ring.rank();
+        let mut next = Vec::new();
+        for (path, x) in partial {
+            *work = work
+                .checked_add(rank as u128)
+                .ok_or(FusionError::Overflow {
+                    context: "fusion path extension work",
+                })?;
+            charge_braid(
+                "fusion path extension work",
+                *work,
+                limits.max_extension_work,
+            )?;
+            for c in 0..rank {
+                if ring.n(*x, label, c) > 0 {
+                    Self::extend_fusion_path(path, c, limits, work, &mut next)?;
+                }
+            }
+        }
+        Ok(next)
+    }
+
+    fn build_fusion_basis(
+        word: &[usize],
+        total: usize,
+        ring: &FusionRing,
+        limits: &FusionSpaceLimits,
+        work: &mut u128,
+    ) -> Result<Vec<Vec<usize>>, FusionError> {
+        let n = word.len();
+        let mut basis: Vec<Vec<usize>> = Vec::new();
         match n {
             0 => {
                 if total == ring.unit() {
@@ -502,44 +627,7 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
                 let mut partial: Vec<(Vec<usize>, usize)> = vec![(Vec::new(), first)];
                 for step in 2..n {
                     let label = word.get(step - 1).copied().unwrap_or(0);
-                    let mut next = Vec::new();
-                    for (path, x) in &partial {
-                        work = work
-                            .checked_add(rank as u128)
-                            .ok_or(FusionError::Overflow {
-                                context: "fusion path extension work",
-                            })?;
-                        charge_braid(
-                            "fusion path extension work",
-                            work,
-                            limits.max_extension_work,
-                        )?;
-                        for c in 0..rank {
-                            if ring.n(*x, label, c) > 0 {
-                                let count = next.len() as u128 + 1;
-                                charge_braid("fusion space dimension", count, limits.max_paths)?;
-                                charge_braid(
-                                    "fusion path labels",
-                                    count * (path.len() as u128 + 1),
-                                    limits.max_path_labels,
-                                )?;
-                                work = work.checked_add(path.len() as u128 + 1).ok_or(
-                                    FusionError::Overflow {
-                                        context: "fusion path extension work",
-                                    },
-                                )?;
-                                charge_braid(
-                                    "fusion path extension work",
-                                    work,
-                                    limits.max_extension_work,
-                                )?;
-                                let mut extended = path.clone();
-                                extended.push(c);
-                                next.push((extended, c));
-                            }
-                        }
-                    }
-                    partial = next;
+                    partial = Self::extend_partial_paths(&partial, label, ring, limits, work)?;
                 }
                 let last = word.get(n - 1).copied().unwrap_or(0);
                 for (path, x) in partial {
@@ -549,6 +637,30 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
                 }
             }
         }
+        Ok(basis)
+    }
+
+    pub fn fusion_space_with_limits(
+        &self,
+        word: &[usize],
+        total: usize,
+        limits: FusionSpaceLimits,
+    ) -> Result<FusionSpace, FusionError> {
+        charge_braid(
+            "materialized fusion strands",
+            word.len() as u128,
+            limits.max_strands,
+        )?;
+        let ring = self.ring();
+        Self::validate_fusion_labels(word, total, ring.rank())?;
+        let n = word.len();
+        let mut work = n as u128;
+        charge_braid(
+            "fusion path extension work",
+            work,
+            limits.max_extension_work,
+        )?;
+        let mut basis = Self::build_fusion_basis(word, total, ring, &limits, &mut work)?;
         charge_braid(
             "fusion space dimension",
             basis.len() as u128,
@@ -588,20 +700,132 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         self.braid_matrix_using_path_budget(space, i, limits, &mut path_work)
     }
 
-    fn braid_matrix_using_path_budget(
+    fn fill_braid_matrix_col_i1(
+        &self,
+        space: &FusionSpace,
+        target: &FusionSpace,
+        path: &[usize],
+        column: usize,
+        a: usize,
+        b: usize,
+        n: usize,
+        matrix: &mut BasicMatrix<K>,
+    ) -> Result<(), FusionError> {
+        let x2 = space
+            .charge(path, 2)
+            .ok_or(FusionError::Label { label: 2, rank: n })?;
+        let row = target.index_of(path).ok_or(FusionError::Inconsistent {
+            context: "a fusion path of the word is missing from the exchanged word",
+        })?;
+        let entry = self.r.get([a, b, x2]).ok_or(FusionError::Braided(
+            BraidedDefect::RMissing { labels: [a, b, x2] },
+        ))?;
+        matrix.set(row, column, entry.clone())?;
+        Ok(())
+    }
+
+    fn compute_braid_general_entry(
+        source_block: &FBlock<K>,
+        target_inverse: &FBlock<K>,
+        r_symbols: &RSymbols<K>,
+        e: usize,
+        e_prime: usize,
+        a: usize,
+        b: usize,
+    ) -> K {
+        let mut entry = K::zero();
+        for &f in source_block.cols() {
+            let Some(f_e_f) = source_block.entry(e, f) else {
+                continue;
+            };
+            let Some(r_f) = r_symbols.get([a, b, f]) else {
+                continue;
+            };
+            let Some(inv) = target_inverse.entry(f, e_prime) else {
+                continue;
+            };
+            entry = entry.add(&f_e_f.mul(r_f).mul(inv));
+        }
+        entry
+    }
+
+    fn get_braid_blocks(
+        &self,
+        space: &FusionSpace,
+        path: &[usize],
+        i: usize,
+        a: usize,
+        b: usize,
+        n: usize,
+    ) -> Result<(usize, &FBlock<K>, &FBlock<K>), FusionError> {
+        let missing = |labels: [usize; 4]| FusionError::Category(CategoryDefect::BlockMissing { labels });
+        let p = space.charge(path, i - 1).ok_or(FusionError::Label {
+            label: i - 1,
+            rank: n,
+        })?;
+        let e = space
+            .charge(path, i)
+            .ok_or(FusionError::Label { label: i, rank: n })?;
+        let r = space.charge(path, i + 1).ok_or(FusionError::Label {
+            label: i + 1,
+            rank: n,
+        })?;
+        let source_block = self
+            .category
+            .f_symbols()
+            .block([p, a, b, r])
+            .ok_or_else(|| missing([p, a, b, r]))?;
+        let target_inverse = self
+            .category
+            .f_inverse_block([p, b, a, r])
+            .ok_or_else(|| missing([p, b, a, r]))?;
+        Ok((e, source_block, target_inverse))
+    }
+
+    fn fill_braid_matrix_col_general(
+        &self,
+        space: &FusionSpace,
+        target: &FusionSpace,
+        path: &[usize],
+        column: usize,
+        i: usize,
+        a: usize,
+        b: usize,
+        n: usize,
+        matrix: &mut BasicMatrix<K>,
+    ) -> Result<(), FusionError> {
+        let (e, source_block, target_inverse) =
+            self.get_braid_blocks(space, path, i, a, b, n)?;
+        for &e_prime in target_inverse.cols() {
+            let entry = Self::compute_braid_general_entry(
+                source_block,
+                target_inverse,
+                &self.r,
+                e,
+                e_prime,
+                a,
+                b,
+            );
+            let mut new_path = path.to_vec();
+            if let Some(slot) = new_path.get_mut(i - 2) {
+                *slot = e_prime;
+            }
+            let row = target
+                .index_of(&new_path)
+                .ok_or(FusionError::Inconsistent {
+                    context: "an exchanged fusion path is missing from the exchanged word",
+                })?;
+            matrix.set(row, column, entry)?;
+        }
+        Ok(())
+    }
+
+    fn prepare_braid_target(
         &self,
         space: &FusionSpace,
         i: usize,
-        limits: OperationLimits,
         path_work: &mut usize,
-    ) -> Result<(FusionSpace, BasicMatrix<K>), FusionError> {
-        let n = space.word.len();
-        if i == 0 || i >= n {
-            return Err(FusionError::Label {
-                label: i,
-                rank: n.saturating_sub(1),
-            });
-        }
+    ) -> Result<FusionSpace, FusionError> {
         let source = self.fusion_space_with_limits(
             space.word(),
             space.total(),
@@ -627,10 +851,46 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
             },
         )?;
         *path_work -= target.extension_work;
+        Ok(target)
+    }
+
+    fn populate_braid_matrix_columns(
+        &self,
+        space: &FusionSpace,
+        target: &FusionSpace,
+        i: usize,
+        a: usize,
+        b: usize,
+        n: usize,
+        matrix: &mut BasicMatrix<K>,
+    ) -> Result<(), FusionError> {
+        for (column, path) in space.basis.iter().enumerate() {
+            if i == 1 {
+                self.fill_braid_matrix_col_i1(space, target, path, column, a, b, n, matrix)?;
+            } else {
+                self.fill_braid_matrix_col_general(space, target, path, column, i, a, b, n, matrix)?;
+            }
+        }
+        Ok(())
+    }
+
+    fn braid_matrix_using_path_budget(
+        &self,
+        space: &FusionSpace,
+        i: usize,
+        limits: OperationLimits,
+        path_work: &mut usize,
+    ) -> Result<(FusionSpace, BasicMatrix<K>), FusionError> {
+        let n = space.word.len();
+        if i == 0 || i >= n {
+            return Err(FusionError::Label {
+                label: i,
+                rank: n.saturating_sub(1),
+            });
+        }
+        let target = self.prepare_braid_target(space, i, path_work)?;
         let a = space.word.get(i - 1).copied().unwrap_or(0);
         let b = space.word.get(i).copied().unwrap_or(0);
-        let missing =
-            |labels: [usize; 4]| FusionError::Category(CategoryDefect::BlockMissing { labels });
         charge_braid(
             "braid matrix entries",
             target.dimension() as u128 * space.dimension() as u128,
@@ -643,77 +903,113 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
         )?;
         let mut matrix =
             matrix::zeros_with_limits::<K>(target.dimension(), space.dimension(), limits)?;
-        for (column, path) in space.basis.iter().enumerate() {
-            if i == 1 {
-                let x2 = space
-                    .charge(path, 2)
-                    .ok_or(FusionError::Label { label: 2, rank: n })?;
-                let row = target.index_of(path).ok_or(FusionError::Inconsistent {
-                    context: "a fusion path of the word is missing from the exchanged word",
-                })?;
-                let entry = self.r.get([a, b, x2]).ok_or(FusionError::Braided(
-                    BraidedDefect::RMissing { labels: [a, b, x2] },
-                ))?;
-                matrix.set(row, column, entry.clone())?;
-                continue;
-            }
-            let p = space.charge(path, i - 1).ok_or(FusionError::Label {
-                label: i - 1,
-                rank: n,
-            })?;
-            let e = space
-                .charge(path, i)
-                .ok_or(FusionError::Label { label: i, rank: n })?;
-            let r = space.charge(path, i + 1).ok_or(FusionError::Label {
-                label: i + 1,
-                rank: n,
-            })?;
-            let source_block = self
-                .category
-                .f_symbols()
-                .block([p, a, b, r])
-                .ok_or_else(|| missing([p, a, b, r]))?;
-            let target_inverse = self
-                .category
-                .f_inverse_block([p, b, a, r])
-                .ok_or_else(|| missing([p, b, a, r]))?;
-            for &e_prime in target_inverse.cols() {
-                let mut entry = K::zero();
-                for &f in source_block.cols() {
-                    let Some(f_e_f) = source_block.entry(e, f) else {
-                        continue;
-                    };
-                    let Some(r_f) = self.r.get([a, b, f]) else {
-                        continue;
-                    };
-                    let Some(inv) = target_inverse.entry(f, e_prime) else {
-                        continue;
-                    };
-                    entry = entry.add(&f_e_f.mul(r_f).mul(inv));
-                }
-                let mut new_path = path.clone();
-                if let Some(slot) = new_path.get_mut(i - 2) {
-                    *slot = e_prime;
-                }
-                let row = target
-                    .index_of(&new_path)
-                    .ok_or(FusionError::Inconsistent {
-                        context: "an exchanged fusion path is missing from the exchanged word",
-                    })?;
-                matrix.set(row, column, entry)?;
-            }
-        }
+        self.populate_braid_matrix_columns(space, &target, i, a, b, n, &mut matrix)?;
         Ok((target, matrix))
     }
 
-    pub fn braid_relation_defects_on_word(
+    fn compute_braid_side_matrix(
         &self,
-        word: &[usize],
-        total: usize,
-    ) -> Result<Vec<BraidRelationDefect>, FusionError> {
-        let space = self.fusion_space(word, total)?;
-        let n = word.len();
-        let mut path_work = FusionSpaceLimits::default().max_extension_work - space.extension_work;
+        space: &FusionSpace,
+        indices: [usize; 3],
+        path_work: &mut usize,
+    ) -> Result<(FusionSpace, BasicMatrix<K>), FusionError> {
+        let (s1, m1) = self.braid_matrix_using_path_budget(
+            space,
+            indices[0],
+            DEFAULT_BRAID_LIMITS,
+            path_work,
+        )?;
+        let (s2, m2) = self.braid_matrix_using_path_budget(
+            &s1,
+            indices[1],
+            DEFAULT_BRAID_LIMITS,
+            path_work,
+        )?;
+        let (s3, m3) = self.braid_matrix_using_path_budget(
+            &s2,
+            indices[2],
+            DEFAULT_BRAID_LIMITS,
+            path_work,
+        )?;
+        let prod = matrix::multiply_with_limits(
+            &m3,
+            &matrix::multiply_with_limits(&m2, &m1, DEFAULT_BRAID_LIMITS)?,
+            DEFAULT_BRAID_LIMITS,
+        )
+        .map_err(FusionError::from)?;
+        Ok((s3, prod))
+    }
+
+    fn check_braid_step(
+        &self,
+        space: &FusionSpace,
+        i: usize,
+        path_work: &mut usize,
+    ) -> Result<Option<BraidRelationDefect>, FusionError> {
+        let (a3, left) = self.compute_braid_side_matrix(space, [i, i + 1, i], path_work)?;
+        let (b3, right) = self.compute_braid_side_matrix(space, [i + 1, i, i + 1], path_work)?;
+        if a3.word() != b3.word() {
+            return Err(FusionError::Inconsistent {
+                context: "the two sides of a braid relation end in different words",
+            });
+        }
+        if left != right {
+            Ok(Some(BraidRelationDefect::Braid { i: i - 1 }))
+        } else {
+            Ok(None)
+        }
+    }
+
+    fn check_far_commutation_step(
+        &self,
+        space: &FusionSpace,
+        i: usize,
+        j: usize,
+        path_work: &mut usize,
+    ) -> Result<Option<BraidRelationDefect>, FusionError> {
+        let (x1, p1) = self.braid_matrix_using_path_budget(
+            space,
+            i,
+            DEFAULT_BRAID_LIMITS,
+            path_work,
+        )?;
+        let (x2, p2) = self.braid_matrix_using_path_budget(
+            &x1,
+            j,
+            DEFAULT_BRAID_LIMITS,
+            path_work,
+        )?;
+        let (y1, q1) = self.braid_matrix_using_path_budget(
+            space,
+            j,
+            DEFAULT_BRAID_LIMITS,
+            path_work,
+        )?;
+        let (y2, q2) = self.braid_matrix_using_path_budget(
+            &y1,
+            i,
+            DEFAULT_BRAID_LIMITS,
+            path_work,
+        )?;
+        if x2.word() != y2.word() {
+            return Err(FusionError::Inconsistent {
+                context: "the two sides of a commutation relation end in different words",
+            });
+        }
+        if matrix::multiply_with_limits(&p2, &p1, DEFAULT_BRAID_LIMITS)?
+            != matrix::multiply_with_limits(&q2, &q1, DEFAULT_BRAID_LIMITS)?
+        {
+            Ok(Some(BraidRelationDefect::Far { i: i - 1, j: j - 1 }))
+        } else {
+            Ok(None)
+        }
+    }
+
+    fn charge_braid_word_budget(
+        ring_rank: usize,
+        n: usize,
+        dim: usize,
+    ) -> Result<(), FusionError> {
         let pairs = n
             .saturating_sub(1)
             .checked_pow(2)
@@ -726,104 +1022,61 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
             .ok_or(FusionError::Overflow {
                 context: "braid relation count",
             })?;
-        braid_product_work(space.dimension(), products, DEFAULT_BRAID_LIMITS)?;
-        let d = space.dimension() as u128;
+        braid_product_work(dim, products, DEFAULT_BRAID_LIMITS)?;
+        let d = dim as u128;
         let coefficient_work =
-            (6 * n as u128 + 2 * pairs as u128) * 3 * d * (self.ring().rank() as u128).pow(2);
+            (6 * n as u128 + 2 * pairs as u128) * 3 * d * (ring_rank as u128).pow(2);
         charge_braid(
             "braid relation aggregate scalar work",
             2 * products as u128 * d.pow(3) + coefficient_work,
             DEFAULT_BRAID_LIMITS.max_scalar_ops,
-        )?;
-        let mut defects = Vec::new();
-        for i in 1..n.saturating_sub(1) {
-            let (a1, m1) = self.braid_matrix_using_path_budget(
-                &space,
-                i,
-                DEFAULT_BRAID_LIMITS,
-                &mut path_work,
-            )?;
-            let (a2, m2) = self.braid_matrix_using_path_budget(
-                &a1,
-                i + 1,
-                DEFAULT_BRAID_LIMITS,
-                &mut path_work,
-            )?;
-            let (a3, m3) =
-                self.braid_matrix_using_path_budget(&a2, i, DEFAULT_BRAID_LIMITS, &mut path_work)?;
-            let (b1, n1) = self.braid_matrix_using_path_budget(
-                &space,
-                i + 1,
-                DEFAULT_BRAID_LIMITS,
-                &mut path_work,
-            )?;
-            let (b2, n2) =
-                self.braid_matrix_using_path_budget(&b1, i, DEFAULT_BRAID_LIMITS, &mut path_work)?;
-            let (b3, n3) = self.braid_matrix_using_path_budget(
-                &b2,
-                i + 1,
-                DEFAULT_BRAID_LIMITS,
-                &mut path_work,
-            )?;
-            if a3.word() != b3.word() {
-                return Err(FusionError::Inconsistent {
-                    context: "the two sides of a braid relation end in different words",
-                });
-            }
-            let left = matrix::multiply_with_limits(
-                &m3,
-                &matrix::multiply_with_limits(&m2, &m1, DEFAULT_BRAID_LIMITS)?,
-                DEFAULT_BRAID_LIMITS,
-            )
-            .map_err(FusionError::from)?;
-            let right = matrix::multiply_with_limits(
-                &n3,
-                &matrix::multiply_with_limits(&n2, &n1, DEFAULT_BRAID_LIMITS)?,
-                DEFAULT_BRAID_LIMITS,
-            )
-            .map_err(FusionError::from)?;
-            if left != right {
-                defects.push(BraidRelationDefect::Braid { i: i - 1 });
-            }
-        }
+        )
+    }
+
+    fn collect_far_commutation_defects(
+        &self,
+        space: &FusionSpace,
+        n: usize,
+        path_work: &mut usize,
+        defects: &mut Vec<BraidRelationDefect>,
+    ) -> Result<(), FusionError> {
         for i in 1..n {
             for j in (i + 2)..n {
-                let (x1, p1) = self.braid_matrix_using_path_budget(
-                    &space,
-                    i,
-                    DEFAULT_BRAID_LIMITS,
-                    &mut path_work,
-                )?;
-                let (x2, p2) = self.braid_matrix_using_path_budget(
-                    &x1,
-                    j,
-                    DEFAULT_BRAID_LIMITS,
-                    &mut path_work,
-                )?;
-                let (y1, q1) = self.braid_matrix_using_path_budget(
-                    &space,
-                    j,
-                    DEFAULT_BRAID_LIMITS,
-                    &mut path_work,
-                )?;
-                let (y2, q2) = self.braid_matrix_using_path_budget(
-                    &y1,
-                    i,
-                    DEFAULT_BRAID_LIMITS,
-                    &mut path_work,
-                )?;
-                if x2.word() != y2.word() {
-                    return Err(FusionError::Inconsistent {
-                        context: "the two sides of a commutation relation end in different words",
-                    });
-                }
-                if matrix::multiply_with_limits(&p2, &p1, DEFAULT_BRAID_LIMITS)?
-                    != matrix::multiply_with_limits(&q2, &q1, DEFAULT_BRAID_LIMITS)?
-                {
-                    defects.push(BraidRelationDefect::Far { i: i - 1, j: j - 1 });
+                if let Some(defect) = self.check_far_commutation_step(space, i, j, path_work)? {
+                    defects.push(defect);
                 }
             }
         }
+        Ok(())
+    }
+
+    fn collect_braid_defects(
+        &self,
+        space: &FusionSpace,
+        n: usize,
+        path_work: &mut usize,
+        defects: &mut Vec<BraidRelationDefect>,
+    ) -> Result<(), FusionError> {
+        for i in 1..n.saturating_sub(1) {
+            if let Some(defect) = self.check_braid_step(space, i, path_work)? {
+                defects.push(defect);
+            }
+        }
+        Ok(())
+    }
+
+    pub fn braid_relation_defects_on_word(
+        &self,
+        word: &[usize],
+        total: usize,
+    ) -> Result<Vec<BraidRelationDefect>, FusionError> {
+        let space = self.fusion_space(word, total)?;
+        let n = word.len();
+        let mut path_work = FusionSpaceLimits::default().max_extension_work - space.extension_work;
+        Self::charge_braid_word_budget(self.ring().rank(), n, space.dimension())?;
+        let mut defects = Vec::new();
+        self.collect_braid_defects(&space, n, &mut path_work, &mut defects)?;
+        self.collect_far_commutation_defects(&space, n, &mut path_work, &mut defects)?;
         Ok(defects)
     }
 
@@ -913,18 +1166,11 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         Ok(twists)
     }
 
-    pub fn try_new(
-        braided: BraidedFusionCategory<K>,
-        dimensions: Vec<K>,
-    ) -> Result<Self, FusionError> {
-        braided.validate()?;
-        braided.category.verify_dimensions(&dimensions)?;
-        let twists = Self::compute_twists(&braided, &dimensions)?;
-        let ring = braided.ring();
+    fn verify_twists_dual_invariance(
+        ring: &FusionRing,
+        twists: &[K],
+    ) -> Result<(), FusionError> {
         let n = ring.rank();
-        if twists.first() != Some(&K::one()) {
-            return Err(FusionError::Braided(BraidedDefect::TwistOfUnit));
-        }
         for a in 0..n {
             let twist = twists
                 .get(a)
@@ -939,6 +1185,13 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
                 }));
             }
         }
+        Ok(())
+    }
+
+    fn verify_ribbon_relations(
+        braided: &BraidedFusionCategory<K>,
+        twists: &[K],
+    ) -> Result<(), FusionError> {
         for (&[a, b, c], _) in braided.r.entries() {
             let (Some(ta), Some(tb), Some(tc)) = (twists.get(a), twists.get(b), twists.get(c))
             else {
@@ -952,6 +1205,22 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
                 }));
             }
         }
+        Ok(())
+    }
+
+    pub fn try_new(
+        braided: BraidedFusionCategory<K>,
+        dimensions: Vec<K>,
+    ) -> Result<Self, FusionError> {
+        braided.validate()?;
+        braided.category.verify_dimensions(&dimensions)?;
+        let twists = Self::compute_twists(&braided, &dimensions)?;
+        let ring = braided.ring();
+        if twists.first() != Some(&K::one()) {
+            return Err(FusionError::Braided(BraidedDefect::TwistOfUnit));
+        }
+        Self::verify_twists_dual_invariance(ring, &twists)?;
+        Self::verify_ribbon_relations(&braided, &twists)?;
         Ok(Self {
             braided,
             dimensions,
@@ -1006,43 +1275,57 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
             .fold(K::zero(), |acc, (d, theta)| acc.add(&d.mul(d).mul(theta)))
     }
 
+    fn check_quadratic_fp_dimension(
+        d: &K,
+        surd: &QuadraticNumber,
+    ) -> Result<bool, FusionError> {
+        let annihilates = omega_number_theory::scalar::evaluate_integer_polynomial(
+            &surd.minimal_polynomial(),
+            d,
+        )
+        .map_err(FusionError::from)?
+        .is_zero();
+        let offset = d.sub(&K::from_rational(surd.rational_part()));
+        let wanted = if surd.sqrt_part().is_positive() {
+            Ordering::Greater
+        } else {
+            Ordering::Less
+        };
+        Ok(annihilates && sign_of(&offset)? == wanted)
+    }
+
+    fn check_root_fp_dimension(
+        d: &K,
+        root: &IsolatedRoot,
+    ) -> Result<bool, FusionError> {
+        let interval = root.isolating_interval()?;
+        let annihilates = omega_number_theory::scalar::evaluate_integer_polynomial(
+            root.polynomial(),
+            d,
+        )
+        .map_err(FusionError::from)?
+        .is_zero();
+        let above_lower =
+            sign_of(&d.sub(&K::from_rational(interval.lo())))? == Ordering::Greater;
+        let at_most_upper =
+            sign_of(&K::from_rational(interval.hi()).sub(d))? != Ordering::Less;
+        Ok(annihilates && above_lower && at_most_upper)
+    }
+
+    fn check_fp_dimension_agreement(d: &K, alg: RealAlgebraic) -> Result<bool, FusionError> {
+        match alg {
+            RealAlgebraic::Rational(q) => Ok(*d == K::from_rational(&q)),
+            RealAlgebraic::Quadratic(surd) => Self::check_quadratic_fp_dimension(d, &surd),
+            RealAlgebraic::Root(root) => Self::check_root_fp_dimension(d, &root),
+        }
+    }
+
     pub fn dimensions_are_frobenius_perron(&self) -> Result<bool, FusionError> {
         let ring = self.ring();
         for a in 0..ring.rank() {
             let d = self.dimension(a)?;
-            let agrees = match ring.frobenius_perron_dimension(a)? {
-                RealAlgebraic::Rational(q) => *d == K::from_rational(&q),
-                RealAlgebraic::Quadratic(surd) => {
-                    let annihilates = omega_number_theory::scalar::evaluate_integer_polynomial(
-                        &surd.minimal_polynomial(),
-                        d,
-                    )
-                    .map_err(FusionError::from)?
-                    .is_zero();
-                    let offset = d.sub(&K::from_rational(surd.rational_part()));
-                    let wanted = if surd.sqrt_part().is_positive() {
-                        Ordering::Greater
-                    } else {
-                        Ordering::Less
-                    };
-                    annihilates && sign_of(&offset)? == wanted
-                }
-                RealAlgebraic::Root(root) => {
-                    let interval = root.isolating_interval()?;
-                    let annihilates = omega_number_theory::scalar::evaluate_integer_polynomial(
-                        root.polynomial(),
-                        d,
-                    )
-                    .map_err(FusionError::from)?
-                    .is_zero();
-                    let above_lower =
-                        sign_of(&d.sub(&K::from_rational(interval.lo())))? == Ordering::Greater;
-                    let at_most_upper =
-                        sign_of(&K::from_rational(interval.hi()).sub(d))? != Ordering::Less;
-                    annihilates && above_lower && at_most_upper
-                }
-            };
-            if !agrees {
+            let alg = ring.frobenius_perron_dimension(a)?;
+            if !Self::check_fp_dimension_agreement(d, alg)? {
                 return Ok(false);
             }
         }

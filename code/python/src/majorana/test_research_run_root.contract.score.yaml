@@ -1,0 +1,160 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/test_research_run_root.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/test_research_run_root.py",
+      "sha256": "ac196fd4561df17099158ecf81b9a96738c29f5cb284bd8e387dd299265e0b97"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:test-research-run-root:v1",
+    "role": "test checker",
+    "purpose": "Adversarial tests for the semantic research run-root boundary.",
+    "operations": {
+      "test_strict_roundtrip_writer_and_artifact_verification": "Function test_strict_roundtrip_writer_and_artifact_verification operation.",
+      "test_optional_protocol_media_cannot_usurp_required_packet": "Function test_optional_protocol_media_cannot_usurp_required_packet operation.",
+      "test_terminal_profile_source_and_obligation_laundering_fail_closed": "Function test_terminal_profile_source_and_obligation_laundering_fail_closed operation.",
+      "test_native_trace_hash_chain_is_recomputed": "Function test_native_trace_hash_chain_is_recomputed operation.",
+      "test_occurrence_uuid_timestamp_and_path_do_not_change_semantic_root": "Function test_occurrence_uuid_timestamp_and_path_do_not_change_semantic_root operation.",
+      "test_occurrence_value_cannot_erase_matching_semantic_value": "Function test_occurrence_value_cannot_erase_matching_semantic_value operation.",
+      "test_each_semantic_mutation_changes_the_chain_root": "Function test_each_semantic_mutation_changes_the_chain_root operation.",
+      "test_nonfinite_residuals_fail_closed": "Function test_nonfinite_residuals_fail_closed operation.",
+      "test_missing_changed_and_dangling_artifacts_fail_closed": "Function test_missing_changed_and_dangling_artifacts_fail_closed operation.",
+      "test_rehashed_trace_substitution_cannot_detach_semantic_root": "Function test_rehashed_trace_substitution_cannot_detach_semantic_root operation.",
+      "test_packet_intake_and_run_root_cross_bindings_are_replayed": "Function test_packet_intake_and_run_root_cross_bindings_are_replayed operation.",
+      "test_rehashed_intake_receipt_must_match_each_packet_source": "Function test_rehashed_intake_receipt_must_match_each_packet_source operation.",
+      "test_order_duplicates_unknown_fields_and_unsorted_refusals_are_rejected": "Function test_order_duplicates_unknown_fields_and_unsorted_refusals_are_rejected operation.",
+      "test_builder_sorts_refusal_codes_and_success_refusal_roots_are_distinct": "Function test_builder_sorts_refusal_codes_and_success_refusal_roots_are_distinct operation.",
+      "test_trace_unknown_fields_and_duplicate_json_keys_fail_closed": "Function test_trace_unknown_fields_and_duplicate_json_keys_fail_closed operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "b12a0273b844402ffe7def55921212896a43ebea7e3da46416e5af63d7c49fd7",
+  "current_scoring": "80e97ad68d86d81a6c817d47163413309e048123440a2596b8e1b658e6aabc24",
+  "contract_history": [
+    {
+      "sha256": "b12a0273b844402ffe7def55921212896a43ebea7e3da46416e5af63d7c49fd7",
+      "bytes": 3814,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_research_run_root.py",
+          "sha256": "ac196fd4561df17099158ecf81b9a96738c29f5cb284bd8e387dd299265e0b97"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:test-research-run-root:v1",
+        "role": "test checker",
+        "purpose": "Adversarial tests for the semantic research run-root boundary.",
+        "operations": {
+          "test_strict_roundtrip_writer_and_artifact_verification": "Function test_strict_roundtrip_writer_and_artifact_verification operation.",
+          "test_optional_protocol_media_cannot_usurp_required_packet": "Function test_optional_protocol_media_cannot_usurp_required_packet operation.",
+          "test_terminal_profile_source_and_obligation_laundering_fail_closed": "Function test_terminal_profile_source_and_obligation_laundering_fail_closed operation.",
+          "test_native_trace_hash_chain_is_recomputed": "Function test_native_trace_hash_chain_is_recomputed operation.",
+          "test_occurrence_uuid_timestamp_and_path_do_not_change_semantic_root": "Function test_occurrence_uuid_timestamp_and_path_do_not_change_semantic_root operation.",
+          "test_occurrence_value_cannot_erase_matching_semantic_value": "Function test_occurrence_value_cannot_erase_matching_semantic_value operation.",
+          "test_each_semantic_mutation_changes_the_chain_root": "Function test_each_semantic_mutation_changes_the_chain_root operation.",
+          "test_nonfinite_residuals_fail_closed": "Function test_nonfinite_residuals_fail_closed operation.",
+          "test_missing_changed_and_dangling_artifacts_fail_closed": "Function test_missing_changed_and_dangling_artifacts_fail_closed operation.",
+          "test_rehashed_trace_substitution_cannot_detach_semantic_root": "Function test_rehashed_trace_substitution_cannot_detach_semantic_root operation.",
+          "test_packet_intake_and_run_root_cross_bindings_are_replayed": "Function test_packet_intake_and_run_root_cross_bindings_are_replayed operation.",
+          "test_rehashed_intake_receipt_must_match_each_packet_source": "Function test_rehashed_intake_receipt_must_match_each_packet_source operation.",
+          "test_order_duplicates_unknown_fields_and_unsorted_refusals_are_rejected": "Function test_order_duplicates_unknown_fields_and_unsorted_refusals_are_rejected operation.",
+          "test_builder_sorts_refusal_codes_and_success_refusal_roots_are_distinct": "Function test_builder_sorts_refusal_codes_and_success_refusal_roots_are_distinct operation.",
+          "test_trace_unknown_fields_and_duplicate_json_keys_fail_closed": "Function test_trace_unknown_fields_and_duplicate_json_keys_fail_closed operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_research_run_root.py\",\n    \"sha256\": \"ac196fd4561df17099158ecf81b9a96738c29f5cb284bd8e387dd299265e0b97\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-research-run-root:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Adversarial tests for the semantic research run-root boundary.\",\n  \"operations\": {\n    \"test_strict_roundtrip_writer_and_artifact_verification\": \"Function test_strict_roundtrip_writer_and_artifact_verification operation.\",\n    \"test_optional_protocol_media_cannot_usurp_required_packet\": \"Function test_optional_protocol_media_cannot_usurp_required_packet operation.\",\n    \"test_terminal_profile_source_and_obligation_laundering_fail_closed\": \"Function test_terminal_profile_source_and_obligation_laundering_fail_closed operation.\",\n    \"test_native_trace_hash_chain_is_recomputed\": \"Function test_native_trace_hash_chain_is_recomputed operation.\",\n    \"test_occurrence_uuid_timestamp_and_path_do_not_change_semantic_root\": \"Function test_occurrence_uuid_timestamp_and_path_do_not_change_semantic_root operation.\",\n    \"test_occurrence_value_cannot_erase_matching_semantic_value\": \"Function test_occurrence_value_cannot_erase_matching_semantic_value operation.\",\n    \"test_each_semantic_mutation_changes_the_chain_root\": \"Function test_each_semantic_mutation_changes_the_chain_root operation.\",\n    \"test_nonfinite_residuals_fail_closed\": \"Function test_nonfinite_residuals_fail_closed operation.\",\n    \"test_missing_changed_and_dangling_artifacts_fail_closed\": \"Function test_missing_changed_and_dangling_artifacts_fail_closed operation.\",\n    \"test_rehashed_trace_substitution_cannot_detach_semantic_root\": \"Function test_rehashed_trace_substitution_cannot_detach_semantic_root operation.\",\n    \"test_packet_intake_and_run_root_cross_bindings_are_replayed\": \"Function test_packet_intake_and_run_root_cross_bindings_are_replayed operation.\",\n    \"test_rehashed_intake_receipt_must_match_each_packet_source\": \"Function test_rehashed_intake_receipt_must_match_each_packet_source operation.\",\n    \"test_order_duplicates_unknown_fields_and_unsorted_refusals_are_rejected\": \"Function test_order_duplicates_unknown_fields_and_unsorted_refusals_are_rejected operation.\",\n    \"test_builder_sorts_refusal_codes_and_success_refusal_roots_are_distinct\": \"Function test_builder_sorts_refusal_codes_and_success_refusal_roots_are_distinct operation.\",\n    \"test_trace_unknown_fields_and_duplicate_json_keys_fail_closed\": \"Function test_trace_unknown_fields_and_duplicate_json_keys_fail_closed operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_research_run_root.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "80e97ad68d86d81a6c817d47163413309e048123440a2596b8e1b658e6aabc24",
+      "bytes": 2172,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_research_run_root.py",
+          "sha256": "ac196fd4561df17099158ecf81b9a96738c29f5cb284bd8e387dd299265e0b97"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:test-research-run-root:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 6 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 6,
+          "lizard_ccn": 5,
+          "weighted_control_upper_bound": 7,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_research_run_root.py\",\n    \"sha256\": \"ac196fd4561df17099158ecf81b9a96738c29f5cb284bd8e387dd299265e0b97\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-research-run-root:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 6 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_research_run_root.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

@@ -101,12 +101,12 @@
       "Zero object behavior needs explicit policy declaration"
     ]
   },
-  "current_contract": "a09de4708e23c0baafac074e7a244e3671157f2670b71e5b9c765b7b26cf2121",
-  "current_scoring": null,
+  "current_contract": "8ce605a402e347b4b92553bb4ba21f1c0093a2dba600879ac518e4124202c7ab",
+  "current_scoring": "51f5fbf17d89dbc676aabcc4ded276bf6b9177772aca3cb0562f588abcc7d5a9",
   "contract_history": [
     {
-      "sha256": "a09de4708e23c0baafac074e7a244e3671157f2670b71e5b9c765b7b26cf2121",
-      "bytes": 3591,
+      "sha256": "8ce605a402e347b4b92553bb4ba21f1c0093a2dba600879ac518e4124202c7ab",
+      "bytes": 4075,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:direct_sum:v0.1.0",
@@ -206,13 +206,75 @@
           "Zero object behavior needs explicit policy declaration"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:direct_sum:v0.1.0\ntitle: DirectSum Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: vector_space\n  symbol: V₁ ⊕ V₂ ⊕ ... ⊕ Vₙ\n  ascii_symbol: direct_sum\n  notation: V₁ ⊕ V₂ ⊕ ... ⊕ Vₙ\n  domain:\n  - 'component_spaces: finite list of vector spaces over same field K'\n  - 'elements: tuples (v₁, v₂, ..., vₙ)'\n  codomain:\n    description: 'The carrier is the Cartesian product V₁ × V₂ × ... × Vₙ of the component\n      vector spaces. Elements are tuples (v₁, v₂, ..., vₙ) where vᵢ ∈ Vᵢ.\n\n      '\nrequirements:\n  required_structures:\n  - Component list must be non-empty unless zero-object policy declared\n  - All component vector spaces must be over the same field\n  - Output dimension must equal sum of component dimensions\n  - Output basis must match declared concatenation policy\n  - All component and output hashes must be consistent\nlaws:\n- All component vector spaces must be over the same field K\n- dim(V₁ ⊕ V₂ ⊕ ... ⊕ Vₙ) = dim(V₁) + dim(V₂) + ... + dim(Vₙ)\n- 'If Bᵢ is a basis for Vᵢ, then B₁ ∪ B₂ ∪ ... ∪ Bₙ (concatenated) forms a basis for\n  the direct sum\n\n  '\n- 'For each i, there exists a canonical injection ιᵢ: Vᵢ → V₁ ⊕ ... ⊕ Vₙ given by\n  ιᵢ(vᵢ) = (0, ..., 0, vᵢ, 0, ..., 0)\n\n  '\n- 'For each i, there exists a canonical projection πᵢ: V₁ ⊕ ... ⊕ Vₙ → Vᵢ given by\n  πᵢ((v₁, ..., vₙ)) = vᵢ\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Same ordered component list produces identical output\n  - Same concatenation policy produces identical basis hash\n  - Component order matters for determinism\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Reject empty component list unless zero object policy declared\n- Reject components over different fields\n- Reject output dimension not equal to sum of components\n- Reject output basis not matching concatenation policy\n- Reject artifact claiming authority or admissibility\ndoctrine:\n  summary: DirectSum is the finite-dimensional vector space formed by the external\n    direct sum of a finite list of vector spaces over the same field. It combines\n    independent carriers and provides canonical injections and projections for use\n    in block matrices, chain groups, decompositions, biproduct examples, and separability\n    operations.\n  non_role:\n  - Internal direct sums (these may be a separate contract)\n  - Infinite direct sums or infinite-dimensional spaces\n  - Direct sums of modules over rings (only vector spaces over fields)\n  - Policy decisions or authority conferral\nwip:\n- Decide whether internal direct sums are a separate contract\n- Define zero-dimensional direct-sum behavior\n- Should we support infinite direct sums in a future version?\n- Policy for component reordering and its effect on basis ordering\n- Contract migrated from markdown to YAML format 2026-05-25\n- Component ordering matters for basis concatenation and determinism\n- Canonical injections and projections are structurally enforced\n- Zero object behavior needs explicit policy declaration\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:direct_sum:v0.1.0\",\n  \"title\": \"DirectSum Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"vector_space\",\n    \"symbol\": \"V₁ ⊕ V₂ ⊕ ... ⊕ Vₙ\",\n    \"ascii_symbol\": \"direct_sum\",\n    \"notation\": \"V₁ ⊕ V₂ ⊕ ... ⊕ Vₙ\",\n    \"domain\": [\n      \"component_spaces: finite list of vector spaces over same field K\",\n      \"elements: tuples (v₁, v₂, ..., vₙ)\"\n    ],\n    \"codomain\": {\n      \"description\": \"The carrier is the Cartesian product V₁ × V₂ × ... × Vₙ of the component vector spaces. Elements are tuples (v₁, v₂, ..., vₙ) where vᵢ ∈ Vᵢ.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Component list must be non-empty unless zero-object policy declared\",\n      \"All component vector spaces must be over the same field\",\n      \"Output dimension must equal sum of component dimensions\",\n      \"Output basis must match declared concatenation policy\",\n      \"All component and output hashes must be consistent\"\n    ]\n  },\n  \"laws\": [\n    \"All component vector spaces must be over the same field K\",\n    \"dim(V₁ ⊕ V₂ ⊕ ... ⊕ Vₙ) = dim(V₁) + dim(V₂) + ... + dim(Vₙ)\",\n    \"If Bᵢ is a basis for Vᵢ, then B₁ ∪ B₂ ∪ ... ∪ Bₙ (concatenated) forms a basis for the direct sum\\n\",\n    \"For each i, there exists a canonical injection ιᵢ: Vᵢ → V₁ ⊕ ... ⊕ Vₙ given by ιᵢ(vᵢ) = (0, ..., 0, vᵢ, 0, ..., 0)\\n\",\n    \"For each i, there exists a canonical projection πᵢ: V₁ ⊕ ... ⊕ Vₙ → Vᵢ given by πᵢ((v₁, ..., vₙ)) = vᵢ\\n\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Same ordered component list produces identical output\",\n      \"Same concatenation policy produces identical basis hash\",\n      \"Component order matters for determinism\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Reject empty component list unless zero object policy declared\",\n    \"Reject components over different fields\",\n    \"Reject output dimension not equal to sum of components\",\n    \"Reject output basis not matching concatenation policy\",\n    \"Reject artifact claiming authority or admissibility\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"DirectSum is the finite-dimensional vector space formed by the external direct sum of a finite list of vector spaces over the same field. It combines independent carriers and provides canonical injections and projections for use in block matrices, chain groups, decompositions, biproduct examples, and separability operations.\",\n    \"non_role\": [\n      \"Internal direct sums (these may be a separate contract)\",\n      \"Infinite direct sums or infinite-dimensional spaces\",\n      \"Direct sums of modules over rings (only vector spaces over fields)\",\n      \"Policy decisions or authority conferral\"\n    ]\n  },\n  \"wip\": [\n    \"Decide whether internal direct sums are a separate contract\",\n    \"Define zero-dimensional direct-sum behavior\",\n    \"Should we support infinite direct sums in a future version?\",\n    \"Policy for component reordering and its effect on basis ordering\",\n    \"Contract migrated from markdown to YAML format 2026-05-25\",\n    \"Component ordering matters for basis concatenation and determinism\",\n    \"Canonical injections and projections are structurally enforced\",\n    \"Zero object behavior needs explicit policy declaration\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/algebra/math_direct_sum_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "51f5fbf17d89dbc676aabcc4ded276bf6b9177772aca3cb0562f588abcc7d5a9",
+      "bytes": 2217,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/algebra/math_direct_sum_v0_1_0_contract.py",
+          "sha256": "f41fec0710b63b70dc7828809a68e01f0222120740e78c3e5710bdf3d9f13f4b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:algebra:math-direct-sum-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_direct_sum_v0_1_0_contract.py\",\n    \"sha256\": \"f41fec0710b63b70dc7828809a68e01f0222120740e78c3e5710bdf3d9f13f4b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-direct-sum-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_direct_sum_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/algebra/math_direct_sum_v0_1_0.contract.yaml": "a09de4708e23c0baafac074e7a244e3671157f2670b71e5b9c765b7b26cf2121"
   },

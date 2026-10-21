@@ -135,12 +135,12 @@
       ]
     }
   },
-  "current_contract": "b0659c1a653ae342b1922c37e38c5504079686a505f25581094a4c4aa9d9675b",
-  "current_scoring": null,
+  "current_contract": "78600076ab4dc0de5ffc18ed8d298d8c6633c33fe7caf03d513c47bd9886583f",
+  "current_scoring": "a9ca071d89cc967b8febac11406d462584481dde051c3588db2040b48a850334",
   "contract_history": [
     {
-      "sha256": "b0659c1a653ae342b1922c37e38c5504079686a505f25581094a4c4aa9d9675b",
-      "bytes": 4222,
+      "sha256": "78600076ab4dc0de5ffc18ed8d298d8c6633c33fe7caf03d513c47bd9886583f",
+      "bytes": 4940,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:scalar:v0.1.0",
@@ -274,13 +274,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:scalar:v0.1.0\ntitle: Scalar Contract (field element as K^1)\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: field_element_as_1d_vector\n  symbol: s ∈ K ≅ K^1\n  ascii_symbol: scalar\n  notation: s as the unique coordinate of an element of the 1-dimensional space K\n  domain:\n  - field K\n  - dimension 1\n  - canonical basis [1_K]\n  codomain:\n    description: An element of field K, optionally viewed as a 1×1 matrix / 1-dimensional\n      vector over K.\nrequirements:\n  required_structures:\n  - Declared dimension is 1 when using the K^1 view\n  - Value is a valid element of K\n  - Field identity is consistent across operations\n  - 0 has no multiplicative inverse\nlaws:\n- 'Element law: s ∈ K.'\n- 'One-dim law: as a vector, dim=1 and basis is canonical [1_K].'\n- 'Field ops: + and · are the field operations of K.'\n- 'Inverse law: s^{-1} defined only for s ≠ 0.'\n- 'Authority law: no PROVED/GlobalGreen/HoTT from this contract alone.'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No wall-clock dependence\n  - Canonical field element encoding when serialized\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_linear_algebra\n  module: scalars\n  symbols:\n  - Semiring\n  - Ring\n  - Field\n  required_tests:\n  - z5_is_exact_field\nnegative_tests:\n- Dimension ≠ 1 under K^1 view must be rejected\n- Value not in K must be rejected\n- invert(0) must error\n- Operations across different field identities must be rejected\n- Artifact claiming PROVED/GlobalGreen/HoTT from this contract alone must be rejected\ndoctrine:\n  binding_review_20261014: zero, one, add and mul are Semiring requirements; try_inv\n    is a Field requirement. Bind the actual traits, not nonexistent top-level functions.\n    Trait declarations alone do not establish the field laws of every implementation.\n  summary: 'Scalar is an element of a field K, optionally as the unique coordinate\n    of K^1. Atomic value type for products and scaling. Nonclaim: does not claim PROVED;\n    does not claim GlobalGreen; does not claim HoTT discharge.'\n  non_role:\n  - Ordered-field positivity facts (separate)\n  - Floating-point rounding policy\n  - Authority / PROVED / GlobalGreen / HoTT discharge\nwip:\n- Whether a scalar is a special case of Vector(n=1) or a distinct primitive remains\n  open.\n- No Scalar newtype is defined in omega_linear_algebra::scalars; dim=1 is not a type-level\n  witness here.\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect\n    None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: METH_B1_LINEAR_ALGEBRA\n    severity: info\n    claim_class: '[STANDARD]'\n    detail: 'B1 meth: clarified K^1 view and inverse law; relationship URNs omega-normalized;\n      Agent-1 added thin Scalar<K: Field> newtype with DIM=1 and try_inv None at zero.'\n    recommendation: Continue object-specific meth; align code under ADR-007a after\n      YAML settles. Not PROVED; not GlobalGreen; not LEAN4.\n    pass: b1_linear_algebra_meth\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: SHAPE_METHOD_SURFACE_MATCH\n    severity: info\n    claim_class: '[CODE_DEMO_RUST]'\n    file: omega_engine/crates/omega_linear_algebra/src/scalars.rs\n    detail: 'rust_binding → omega_linear_algebra::scalars::Scalar<K: Field> with DIM=1,\n      field ops, try_inv None at zero. Inverse law MATCH. Ordered-field / float policy\n      ε. AuthorityEffect None; not PROVED / GlobalGreen.\n\n      '\n    delta: MATCH_SHAPE\n    residual_epsilon: K^1 vs Vector(n=1) object fence open; no runtime field-identity\n      tags\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:scalar:v0.1.0\",\n  \"title\": \"Scalar Contract (field element as K^1)\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"field_element_as_1d_vector\",\n    \"symbol\": \"s ∈ K ≅ K^1\",\n    \"ascii_symbol\": \"scalar\",\n    \"notation\": \"s as the unique coordinate of an element of the 1-dimensional space K\",\n    \"domain\": [\n      \"field K\",\n      \"dimension 1\",\n      \"canonical basis [1_K]\"\n    ],\n    \"codomain\": {\n      \"description\": \"An element of field K, optionally viewed as a 1×1 matrix / 1-dimensional vector over K.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared dimension is 1 when using the K^1 view\",\n      \"Value is a valid element of K\",\n      \"Field identity is consistent across operations\",\n      \"0 has no multiplicative inverse\"\n    ]\n  },\n  \"laws\": [\n    \"Element law: s ∈ K.\",\n    \"One-dim law: as a vector, dim=1 and basis is canonical [1_K].\",\n    \"Field ops: + and · are the field operations of K.\",\n    \"Inverse law: s^{-1} defined only for s ≠ 0.\",\n    \"Authority law: no PROVED/GlobalGreen/HoTT from this contract alone.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No wall-clock dependence\",\n      \"Canonical field element encoding when serialized\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"scalars\",\n    \"symbols\": [\n      \"Semiring\",\n      \"Ring\",\n      \"Field\"\n    ],\n    \"required_tests\": [\n      \"z5_is_exact_field\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Dimension ≠ 1 under K^1 view must be rejected\",\n    \"Value not in K must be rejected\",\n    \"invert(0) must error\",\n    \"Operations across different field identities must be rejected\",\n    \"Artifact claiming PROVED/GlobalGreen/HoTT from this contract alone must be rejected\"\n  ],\n  \"doctrine\": {\n    \"binding_review_20261014\": \"zero, one, add and mul are Semiring requirements; try_inv is a Field requirement. Bind the actual traits, not nonexistent top-level functions. Trait declarations alone do not establish the field laws of every implementation.\",\n    \"summary\": \"Scalar is an element of a field K, optionally as the unique coordinate of K^1. Atomic value type for products and scaling. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge.\",\n    \"non_role\": [\n      \"Ordered-field positivity facts (separate)\",\n      \"Floating-point rounding policy\",\n      \"Authority / PROVED / GlobalGreen / HoTT discharge\"\n    ]\n  },\n  \"wip\": [\n    \"Whether a scalar is a special case of Vector(n=1) or a distinct primitive remains open.\",\n    \"No Scalar newtype is defined in omega_linear_algebra::scalars; dim=1 is not a type-level witness here.\"\n  ],\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"METH_B1_LINEAR_ALGEBRA\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"B1 meth: clarified K^1 view and inverse law; relationship URNs omega-normalized; Agent-1 added thin Scalar<K: Field> newtype with DIM=1 and try_inv None at zero.\",\n        \"recommendation\": \"Continue object-specific meth; align code under ADR-007a after YAML settles. Not PROVED; not GlobalGreen; not LEAN4.\",\n        \"pass\": \"b1_linear_algebra_meth\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"SHAPE_METHOD_SURFACE_MATCH\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[CODE_DEMO_RUST]\",\n        \"file\": \"omega_engine/crates/omega_linear_algebra/src/scalars.rs\",\n        \"detail\": \"rust_binding → omega_linear_algebra::scalars::Scalar<K: Field> with DIM=1, field ops, try_inv None at zero. Inverse law MATCH. Ordered-field / float policy ε. AuthorityEffect None; not PROVED / GlobalGreen.\\n\",\n        \"delta\": \"MATCH_SHAPE\",\n        \"residual_epsilon\": \"K^1 vs Vector(n=1) object fence open; no runtime field-identity tags\"\n      }\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_scalar_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "a9ca071d89cc967b8febac11406d462584481dde051c3588db2040b48a850334",
+      "bytes": 2209,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_scalar_v0_1_0_contract.py",
+          "sha256": "ca0e869ff65c098dd76d0a5371e34b1d4cf3bf9e7fd198b4ed6999298496f872"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-scalar-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_scalar_v0_1_0_contract.py\",\n    \"sha256\": \"ca0e869ff65c098dd76d0a5371e34b1d4cf3bf9e7fd198b4ed6999298496f872\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-scalar-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_scalar_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_scalar_v0_1_0.contract.yaml": "b0659c1a653ae342b1922c37e38c5504079686a505f25581094a4c4aa9d9675b"
   },

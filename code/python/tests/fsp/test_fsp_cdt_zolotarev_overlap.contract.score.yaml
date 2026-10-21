@@ -1,0 +1,146 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/fsp/test_fsp_cdt_zolotarev_overlap.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/fsp/test_fsp_cdt_zolotarev_overlap.py",
+      "sha256": "99e10fdc93679dff2cd0426ece23bd39d73b091ad7780fc93bb8146c87d856de"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:fsp:test-fsp-cdt-zolotarev-overlap:v1",
+    "role": "test checker",
+    "purpose": "Unit and integration tests for Rational Zolotarev and Lanczos Overlap Dirac Operators on 4D CDT. Tests:",
+    "operations": {
+      "test_lean4_zolotarev_theorems": "Validates that Lean 4 Section 18 compiles and defines all Zolotarev theorems.",
+      "test_yaml_contract_schema": "Validates that nf.physics.cdt_zolotarev_overlap.yaml conforms to normal form schema.",
+      "test_zolotarev_minimax_error_and_gw_bound": "Validates Zolotarev rational minimax approximation error and GW residual bound.",
+      "test_rational_overlap_dirac_exact_gw_residual": "Validates that rational overlap Dirac operator satisfies GW relation within 1e-8.",
+      "test_multishift_cg_simultaneous_convergence": "Validates that multi-shift CG solves all shifted systems simultaneously.",
+      "test_lanczos_sign_approximation_convergence": "Validates Lanczos sign projection approximation against exact matrix sign function.",
+      "test_spectral_stiffening_and_low_mode_deflation": "Validates detection of spectral stiffening obstruction and resolution via deflation.",
+      "test_sqlite_relational_views_and_subcubic_benchmark": "Validates ViewCdtZolotarevAudit relational query and sub-cubic benchmark logging."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "ea17358cd90a4e016d07df4af17d26ded01257bb86e48bad40b74da50eab5887",
+  "current_scoring": "144b1d2d5864f1b365ddde529b2acf694fe6f41e37010bc40efbda857423d18e",
+  "contract_history": [
+    {
+      "sha256": "ea17358cd90a4e016d07df4af17d26ded01257bb86e48bad40b74da50eab5887",
+      "bytes": 2714,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_fsp_cdt_zolotarev_overlap.py",
+          "sha256": "99e10fdc93679dff2cd0426ece23bd39d73b091ad7780fc93bb8146c87d856de"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:fsp:test-fsp-cdt-zolotarev-overlap:v1",
+        "role": "test checker",
+        "purpose": "Unit and integration tests for Rational Zolotarev and Lanczos Overlap Dirac Operators on 4D CDT. Tests:",
+        "operations": {
+          "test_lean4_zolotarev_theorems": "Validates that Lean 4 Section 18 compiles and defines all Zolotarev theorems.",
+          "test_yaml_contract_schema": "Validates that nf.physics.cdt_zolotarev_overlap.yaml conforms to normal form schema.",
+          "test_zolotarev_minimax_error_and_gw_bound": "Validates Zolotarev rational minimax approximation error and GW residual bound.",
+          "test_rational_overlap_dirac_exact_gw_residual": "Validates that rational overlap Dirac operator satisfies GW relation within 1e-8.",
+          "test_multishift_cg_simultaneous_convergence": "Validates that multi-shift CG solves all shifted systems simultaneously.",
+          "test_lanczos_sign_approximation_convergence": "Validates Lanczos sign projection approximation against exact matrix sign function.",
+          "test_spectral_stiffening_and_low_mode_deflation": "Validates detection of spectral stiffening obstruction and resolution via deflation.",
+          "test_sqlite_relational_views_and_subcubic_benchmark": "Validates ViewCdtZolotarevAudit relational query and sub-cubic benchmark logging."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_fsp_cdt_zolotarev_overlap.py\",\n    \"sha256\": \"99e10fdc93679dff2cd0426ece23bd39d73b091ad7780fc93bb8146c87d856de\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fsp:test-fsp-cdt-zolotarev-overlap:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Unit and integration tests for Rational Zolotarev and Lanczos Overlap Dirac Operators on 4D CDT. Tests:\",\n  \"operations\": {\n    \"test_lean4_zolotarev_theorems\": \"Validates that Lean 4 Section 18 compiles and defines all Zolotarev theorems.\",\n    \"test_yaml_contract_schema\": \"Validates that nf.physics.cdt_zolotarev_overlap.yaml conforms to normal form schema.\",\n    \"test_zolotarev_minimax_error_and_gw_bound\": \"Validates Zolotarev rational minimax approximation error and GW residual bound.\",\n    \"test_rational_overlap_dirac_exact_gw_residual\": \"Validates that rational overlap Dirac operator satisfies GW relation within 1e-8.\",\n    \"test_multishift_cg_simultaneous_convergence\": \"Validates that multi-shift CG solves all shifted systems simultaneously.\",\n    \"test_lanczos_sign_approximation_convergence\": \"Validates Lanczos sign projection approximation against exact matrix sign function.\",\n    \"test_spectral_stiffening_and_low_mode_deflation\": \"Validates detection of spectral stiffening obstruction and resolution via deflation.\",\n    \"test_sqlite_relational_views_and_subcubic_benchmark\": \"Validates ViewCdtZolotarevAudit relational query and sub-cubic benchmark logging.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_fsp_cdt_zolotarev_overlap.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "144b1d2d5864f1b365ddde529b2acf694fe6f41e37010bc40efbda857423d18e",
+      "bytes": 2208,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_fsp_cdt_zolotarev_overlap.py",
+          "sha256": "99e10fdc93679dff2cd0426ece23bd39d73b091ad7780fc93bb8146c87d856de"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:fsp:test-fsp-cdt-zolotarev-overlap:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 12), Lizard CCN (max 2), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 12,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_fsp_cdt_zolotarev_overlap.py\",\n    \"sha256\": \"99e10fdc93679dff2cd0426ece23bd39d73b091ad7780fc93bb8146c87d856de\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fsp:test-fsp-cdt-zolotarev-overlap:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 12), Lizard CCN (max 2), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 12,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_fsp_cdt_zolotarev_overlap.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

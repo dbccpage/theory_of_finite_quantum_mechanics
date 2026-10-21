@@ -4,7 +4,7 @@ Origin: lean4/FiniteQM.lean theorem car_clifford_nilpotency_and_occupation_proje
 Claim: urn:omega:fqm:majorana:car-nilpotency-witness:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/majorana/test_majorana_control.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 4; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 6.
+Gate 5: use source-bound observations in the companion history.
 Scope Fence: The harness falsifies the CAR nilpotency certificate and its own integer checks.
 """
 
@@ -22,6 +22,17 @@ from typing import Mapping
 import pytest
 
 pytest.importorskip("src")
+
+from src.majorana.majorana_modes import MAX_INTEGER_BITS
+
+_ABSENT = object()
+
+
+def _restore_module(name: str, previous: object) -> None:
+    if previous is _ABSENT:
+        sys.modules.pop(name, None)
+    else:
+        sys.modules[name] = previous
 
 
 class CheckError(Exception):
@@ -46,11 +57,13 @@ def _demand(flag: bool, invariant: str, **parameters: object) -> None:
 
 
 def _require_int(value: object, role: str) -> int:
-    if isinstance(value, float) is True:
+    if issubclass(type(value), float):
         raise _fail("float refused at the harness boundary", role=role, received="float")
-    if isinstance(value, bool) is True:
+    if type(value) is bool:
         raise _fail("boolean refused where an integer was required", role=role)
-    if isinstance(value, int):
+    if type(value) is int:
+        if value.bit_length() > MAX_INTEGER_BITS:
+            raise _fail("integer bit budget exceeded", role=role, limit=MAX_INTEGER_BITS)
         return value
     raise _fail("value is not an integer", role=role, received=type(value).__name__)
 
@@ -167,29 +180,28 @@ def _killed_one(
         raise _fail("mutant site is not unique", name=title, count=count)
     if not callable(oracle):
         raise _fail("oracle is not callable")
+    previous = sys.modules.get(name, _ABSENT)
     try:
         try:
             namespace = _load(source.replace(old, new, 1), name, package)
-        except Exception:
-            return True
-        try:
-            return oracle(namespace) is False
-        except Exception:
-            return True
+        except Exception as error:
+            raise _fail("candidate could not be assessed; not counted as a kill", error=type(error).__name__) from error
+        return oracle(namespace) is False
     finally:
-        sys.modules.pop(name, None)
+        _restore_module(name, previous)
 
 
 def _require_baseline(source: str, package: str, label: str, oracle: object) -> None:
     if not callable(oracle):
         raise _fail("oracle is not callable")
     name = f"baseline_{label}"
+    previous = sys.modules.get(name, _ABSENT)
     try:
         namespace = _load(source, name, package)
         if oracle(namespace) is not True:
             raise _fail("baseline oracle failed", label=label)
     finally:
-        sys.modules.pop(name, None)
+        _restore_module(name, previous)
 
 
 def _kill_all(
@@ -218,15 +230,15 @@ def _record(killed: int, source: str) -> None:
         raise _fail("kill count is not recorded in the harness", killed=killed)
 
 
-HARNESS_MUTANTS: tuple[tuple[str, tuple[str, ...], tuple[str, ...]], ...] = (
-    ("float", ("if isinstance(value, float) ", "is True:"), ("if False and isinstance(value, float) ", "is True:")),
-    ("bool", ("if isinstance(value, bool) ", "is True:"), ("if False and isinstance(value, bool) ", "is True:")),
-    ("sum", ("return left ", "+ right"), ("return left ", "- right")),
-    ("gap", ("return left ", "- right"), ("return left ", "+ right")),
-    ("product", ("return left ", "* right"), ("return left ", "+ right")),
-    ("sum compare", ("if total ", "!= 4:"), ("if total ", "== 4:")),
-    ("gap compare", ("if gap ", "!= 4:"), ("if gap ", "== 4:")),
-    ("product compare", ("if product ", "!= 6:"), ("if product ", "== 6:")),
+HARNESS_MUTANTS: tuple = (
+    ('float', ('if issubclass(typ', 'e(value), float):\n'), ('if False and issubclas', 's(type(value), float):\n')),
+    ('bool', ('if type(valu', 'e) is bool:\n'), ('if False and type', '(value) is bool:\n')),
+    ('sum', ('return lef', 't + right\n'), ('return lef', 't - right\n')),
+    ('gap', ('return lef', 't - right\n'), ('return lef', 't + right\n')),
+    ('product', ('return lef', 't * right\n'), ('return lef', 't + right\n')),
+    ('sum compare', ('if tota', 'l != 4:\n'), ('if tota', 'l == 4:\n')),
+    ('gap compare', ('if gap', ' != 4:\n'), ('if gap', ' == 4:\n')),
+    ('product compare', ('if produ', 'ct != 6:\n'), ('if produ', 'ct == 6:\n')),
 )
 
 
@@ -279,8 +291,8 @@ ORIGIN_MARKER = 'theorem car_clifford_nilpotency_and_occupation_projector'
 CLAIM = 'urn:omega:fqm:majorana:car-nilpotency-witness:v1'
 EXPECTED = 0
 
-LIBRARY_MUTANTS: tuple[tuple[str, tuple[str, ...], tuple[str, ...]], ...] = (
-    ('float', ('    if isinstance(value, float):\n        raise _fail("float refused at the Majorana boundary", role=role, received="f', 'loat")\n    if isinstance(value, bool):\n        raise _fail("boolean refused where an integer was required", role=role)'), ('    if False and isinstance(value, float):\n        raise _fail("float refused at the Majorana boundary", role=role, receiv', 'ed="float")\n    if isinstance(value, bool):\n        raise _fail("boolean refused where an integer was required", role=role)')),
+LIBRARY_MUTANTS: tuple = (
+    ('float', ('    if issubclass(type(value), float):\n        raise _fail("float refused at the Majorana boundary", role=role, receiv', 'ed="float")\n    if type(value) is bool:\n        raise _fail("boolean refused where an integer was required", role=role)'), ('    if False and issubclass(type(value), float):\n        raise _fail("float refused at the Majorana boundary", role=role, r', 'eceived="float")\n    if type(value) is bool:\n        raise _fail("boolean refused where an integer was required", role=role)')),
     ('bool', ('        raise _fail("boolean refused wh', 'ere an integer was required", role=role)'), ('        re', 'turn value')),
     ('annihilate', ('if _mat_mul(annihilate', ', annihilate) != zero:'), ('if _mat_mul(annihilate', ', annihilate) == zero:')),
     ('create', ('if _mat_mul(create', ', create) != zero:'), ('if _mat_mul(create', ', create) == zero:')),
@@ -290,9 +302,9 @@ LIBRARY_MUTANTS: tuple[tuple[str, tuple[str, ...], tuple[str, ...]], ...] = (
     ('det', ('if determi', 'nant != 0:'), ('if determi', 'nant == 0:')),
 )
 
-PACKAGE_MUTANTS: tuple[tuple[str, tuple[str, ...], tuple[str, ...]], ...] = (
-    ('float guard', ('if isinstance(', 'value, float):'), ('if False and isinst', 'ance(value, float):')),
-    ('bool guard', ('if isinstance', '(value, bool):'), ('if False and isins', 'tance(value, bool):')),
+PACKAGE_MUTANTS: tuple = (
+    ('float guard', ('if issubclass(typ', 'e(value), float):'), ('if False and issubclas', 's(type(value), float):')),
+    ('bool guard', ('if type(val', 'ue) is bool:'), ('if False and typ', 'e(value) is bool:')),
     ('seal compare', ('if valu', 'e != 0:'), ('if valu', 'e == 0:')),
     ('sum', ('return le', 'ft + right'), ('return le', 'ft - right')),
     ('gap', ('return le', 'ft - right'), ('return le', 'ft + right')),

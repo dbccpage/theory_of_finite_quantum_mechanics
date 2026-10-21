@@ -5,11 +5,28 @@ in the result folder; no native number certifies Baker's cited hypothesis.
 """
 from fractions import Fraction as Q
 from math import lcm
-def certify(spectrum,terms):
-    if type(terms) is not int or not 1<=terms<=256:raise ValueError('explicit positive finite series budget <=256 required')
-    if not spectrum or any(type(x) not in (int,Q) for x in spectrum):raise ValueError('exact nonempty spectrum required')
-    p=list(map(Q,spectrum))
-    if min(p)<0 or sum(p)!=1:raise ValueError('nonnegative normalized spectrum required')
+def _admit_exact_scalar(x, max_bits=1024) -> Q:
+    if type(x) is bool or isinstance(x, float):
+        raise ValueError("unadmitted float or boolean on exact path")
+    if isinstance(x, (int, Q)):
+        num = x.numerator if isinstance(x, Q) else x
+        den = x.denominator if isinstance(x, Q) else 1
+        if type(num) is not int or type(den) is not int:
+            raise ValueError("scalar numerator and denominator must be int")
+        if num.bit_length() > max_bits or den.bit_length() > max_bits:
+            raise ValueError(f"integer exceeds {max_bits} bits")
+        return Q(num, den)
+    raise ValueError(f"unadmitted scalar type: {type(x)}")
+
+
+def certify(spectrum, terms):
+    if type(terms) is not int or not 1 <= terms <= 256:
+        raise ValueError("explicit positive finite series budget <=256 required")
+    if not spectrum or len(spectrum) > 256:
+        raise ValueError("exact nonempty spectrum <=256 entries required")
+    p = [_admit_exact_scalar(x) for x in spectrum]
+    if min(p) < 0 or sum(p) != 1:
+        raise ValueError("nonnegative normalized spectrum required")
     d=lcm(*(x.denominator for x in p));weights=[int(x*d) for x in p];purity=sum(x*x for x in p);bounds=[]
     for x in p:
         if x==0:bounds.append({'mode':'zero_weight','t':'0','partial':'0','tail':'0','lower':'0','upper':'0'});continue

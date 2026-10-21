@@ -1,0 +1,51 @@
+{
+  "code/python/src/fusion_categories/fusion_ring.py": {
+    "module": "src.fusion_categories.fusion_ring",
+    "claim": "urn:omega:fqm:fusion:exact-ring-control:v1",
+    "role": "library",
+    "purpose": "Owned finite commutative based-ring presentations, exact quadratic values and bounded law/path/dimension controls.",
+    "operations": {
+      "QuadraticRational": "Canonical built-in rational a+b*sqrt(d) with positive d: absorb square factors, represent every rational with d=1, and preserve the non-rational operand's field for mixed arithmetic. Reject mismatched non-rational fields and unadmitted operands. Immutable, hash-coherent, no reinitialization or subclassing.",
+      "AbelianGroup": "Nonempty mixed-radix product with moduli>=2 and order<=32. Return detached digits/moduli, exact addition and inverse; admit only built-in finite sequences and bounded built-in integers.",
+      "FusionTable": "Own rank-cubed nonnegative integer constants and bounded display names. Constructor admits presentations without asserting ring laws. Law checking returns the first unit, commutativity, associativity, duality or reciprocity defect, or an explicit work-budget refusal.",
+      "FusionRing": "Admit only a checked immutable FusionTable. Own validated rank/duals and a private dimension cache; no reinitialization/subclassing. Return detached fusion matrices and exact path counts.",
+      "dimensions": "Search positive integer dimension vectors with entries<=6 only in rank<=4, then the rank-two quadratic family and the fixed Ising table; check multiplicativity before returning. Unsupported tables refuse, rather than inventing a dimension certificate.",
+      "witness_and_main": "The Ising squared global dimension is exactly 4. The entrypoint returns 0 for success, 1 for a fusion refusal and 2 for unavailable normal or diagnostic output."
+    },
+    "policy": "Rank<=32; word length<=16384; group factors<=5; input and stored quadratic components<=1024 bits; discriminant<=1000000 before trial division; names<=256 characters. Preflight bounds of 2*r^5 law products and len(word)*r^2 path products must each be<=2000000. Path accumulator components<=8192 bits. All are declared engineering policies; a rank-admitted table can still exceed the law-check budget.",
+    "failure": "FusionError with phase/shape/bit context for invalid ordinary scalars/containers/fields, quotas, invalid tables, unsupported dimensions or reinitialization. State commits after validation, and returned lists do not mutate owned tables. Oversized intermediate arithmetic refuses after exact temporary construction; no rounding. Output IO failures return 2.",
+    "level_basis": "Production craft around exact ring semantics: canonical equality/hash discipline, closed admission, immutable presentations and validated wrappers, typed unsupported-certificate refusal, preflight computational envelopes, bounded exact path growth and owned output lifecycle.",
+    "cost": "Canonical square absorption uses bounded trial division under d<=1000000. Table input/storage O(r^3), law verification O(r^5), path count O(length*r^2), with explicit product limits. Integer dimension search is bounded by 6^(r-1)*O(r^3) at r<=4; larger unsupported families refuse. No wall-clock/peak-memory proof.",
+    "ceiling": "Finite commutative based-ring and selected exact dimension controls only. No categorification, F/R symbols, anyon Hilbert space, continuum SU(2), complete dimension solver or general mathematical proof.",
+    "historical_gates": {"G2": "E", "G3": "E"},
+    "historical_finding": "Captured integer subclass gives float group order 0.5, equal rational values compare unequal across discriminants, a hashable quadratic value can be reinitialized, and a validated ring's table can be mutated."
+  },
+  "code/python/src/fusion_categories/__init__.py": {
+    "module": "src.fusion_categories",
+    "claim": "urn:omega:fqm:fusion:package-dimension-seal:v1",
+    "role": "library facade and entrypoint",
+    "purpose": "Bounded exact-integer package facade checking the selected Ising squared-dimension witness.",
+    "operations": {"checked_int": "Admit only built-in integers under the local bit policy, with specific float and boolean refusals.", "package_seal": "Require the provider's exact integer witness to equal 4, alongside fixed local integer consistency controls. This compares declarations and does not derive the ring laws.", "main": "Print the witness with exit 0; known package/provider refusal returns 1; unavailable normal/diagnostic output returns 2."},
+    "policy": "Integer components<=1024 bits. Fixed-size local operations and the bounded trusted provider. Scalar admission avoids ordinary value __class__ callbacks and arithmetic subclasses.",
+    "failure": "PackageError with invariant/role for ordinary scalar or witness failures, FusionError from provider, and explicit output-unavailable status 2.",
+    "level_basis": "A deliberately small production boundary with closed scalar admission, bit refusal before arithmetic/rendering, typed composition of provider failures and explicit stdout lifecycle behavior; challenged directly rather than borrowing the provider's score.",
+    "cost": "Fixed local integer operations plus the declared bounded Ising provider computation. No caller-controlled allocation or iteration.",
+    "ceiling": "One package witness, no ring categorification, general dimension theorem or authority promotion.",
+    "historical_gates": {},
+    "historical_finding": "Earlier facade bytes preserved as unassessed context. The backend counterexamples do not automatically establish a separate executed facade defect."
+  },
+  "code/python/src/fusion_categories/test_fusion_control.py": {
+    "module": "src.fusion_categories.test_fusion_control",
+    "claim": "urn:omega:fqm:fusion:exact-ring-control:v1",
+    "role": "test checker",
+    "purpose": "Independent fixed integer/dimension controls and honest source/self fault checks with explicit import-state custody.",
+    "operations": {"oracles": "Compare the fixed Ising provider to 4, mixed-radix group identities and exact refusal messages; test package/library output and check the cited origin marker. Local arithmetic controls are finite fixtures, not additional mathematical derivations.", "mutation_checks": "Require a unique mutation site, distinguish assessed semantic rejection from syntax/import/infrastructure refusal, and restore any prior module binding in both baseline and candidate paths. Candidate targets include line boundaries so their descriptions cannot falsely duplicate source sites."},
+    "policy": "Fixed fixtures and three lists of eight legacy faults; separate external challenge records additional boundary/accounting faults under process deadlines. Only built-in integers<=1024 bits admitted in checker scalar controls.",
+    "failure": "CheckError for expected mismatches; malformed/unassessable candidates explicitly refuse without kill credit. Unexpected oracle errors propagate. Module imports restore prior bindings in finally.",
+    "level_basis": "Production checker outcome and lifecycle discipline with independent finite arithmetic, closed scalar admission, input/source-site checks, explicit refusal of false kills and challenged import-state restoration.",
+    "cost": "Fixed oracle work plus source-copy/import work per fixed mutation. No arbitrary candidate sandbox or exhaustive mutation-space claim.",
+    "ceiling": "Finite Ising/package/checker controls only. No categorification, general fusion theorem or independent alternate checker certification.",
+    "historical_gates": {"G4": "E"},
+    "historical_finding": "Captured syntax-invalid source is returned as killed by the old helper. The later ambiguous-site failures are retained as refusals, not kills."
+  }
+}

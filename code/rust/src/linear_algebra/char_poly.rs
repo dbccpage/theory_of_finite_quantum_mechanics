@@ -14,58 +14,102 @@ pub fn characteristic_polynomial<F: Field + ExactRing>(
     characteristic_polynomial_with_limits(a, OperationLimits::UNLIMITED)
 }
 
+fn submatrix_vector_mul<F: Field + ExactRing>(
+    data: &[F],
+    n: usize,
+    k: usize,
+    s: usize,
+    v: &[F],
+) -> Result<Vec<F>, ExactFieldError> {
+    let mut next: Vec<F> = reserve(s - 1)?;
+    for i in 0..(s - 1) {
+        let mut sum = F::zero();
+        for (idx, vi) in v.iter().enumerate() {
+            let entry = &data[(k + 1 + i) * n + (k + 1 + idx)];
+            sum = sum.try_add(&entry.try_mul(vi)?)?;
+        }
+        next.push(sum);
+    }
+    Ok(next)
+}
+
+fn toeplitz_step<F: Field + ExactRing>(
+    data: &[F],
+    n: usize,
+    k: usize,
+    s: usize,
+    v: &mut Vec<F>,
+    j: usize,
+) -> Result<F, ExactFieldError> {
+    let mut acc = F::zero();
+    for (idx, vi) in v.iter().enumerate() {
+        let entry = &data[k * n + (k + 1 + idx)];
+        acc = acc.try_add(&entry.try_mul(vi)?)?;
+    }
+    if j + 1 < s - 1 {
+        *v = submatrix_vector_mul(data, n, k, s, v)?;
+    }
+    Ok(acc.try_neg()?)
+}
+
+fn build_toeplitz_vector<F: Field + ExactRing>(
+    data: &[F],
+    n: usize,
+    k: usize,
+    s: usize,
+) -> Result<Vec<F>, ExactFieldError> {
+    let mut toeplitz: Vec<F> = reserve(s + 1)?;
+    toeplitz.push(F::one());
+    toeplitz.push(data[k * n + k].try_neg()?);
+    let mut v: Vec<F> = reserve(s - 1)?;
+    for i in 0..(s - 1) {
+        v.push(data[(k + 1 + i) * n + k].clone());
+    }
+    for j in 0..(s - 1) {
+        let term = toeplitz_step(data, n, k, s, &mut v, j)?;
+        toeplitz.push(term);
+    }
+    Ok(toeplitz)
+}
+
+fn convolve_toeplitz_poly<F: Field + ExactRing>(
+    toeplitz: &[F],
+    poly: &[F],
+    s: usize,
+) -> Result<Vec<F>, ExactFieldError> {
+    let mut next_poly: Vec<F> = reserve(s + 1)?;
+    for i in 0..=s {
+        let mut acc = F::zero();
+        for j in 0..s.min(i + 1) {
+            acc = acc.try_add(&toeplitz[i - j].try_mul(&poly[j])?)?;
+        }
+        next_poly.push(acc);
+    }
+    Ok(next_poly)
+}
+
+fn charge_char_poly(n: usize, limits: OperationLimits) -> Result<(), ExactFieldError> {
+    let square = element_count(n, n)?;
+    let coefficients = plus(n, 1)?;
+    let cube = times(square, n)?;
+    let ops = plus(times(2, times(cube, n)?)?, times(4, cube)?)?;
+    Ok(charge(limits, plus(square, coefficients)?, ops)?)
+}
+
 pub fn characteristic_polynomial_with_limits<F: Field + ExactRing>(
     a: &BasicMatrix<F>,
     limits: OperationLimits,
 ) -> Result<Vec<F>, ExactFieldError> {
     let n = require_square("characteristic_polynomial", a)?;
-    let square = element_count(n, n)?;
-    let coefficients = plus(n, 1)?;
-    let cube = times(square, n)?;
-    let ops = plus(times(2, times(cube, n)?)?, times(4, cube)?)?;
-    charge(limits, plus(square, coefficients)?, ops)?;
+    charge_char_poly(n, limits)?;
 
     let data = a.as_slice();
-    let at = |r: usize, c: usize| &data[r * n + c];
-
     let mut poly: Vec<F> = reserve(1)?;
     poly.push(F::one());
     for k in (0..n).rev() {
         let s = n - k;
-        let mut toeplitz: Vec<F> = reserve(s + 1)?;
-        toeplitz.push(F::one());
-        toeplitz.push(at(k, k).try_neg()?);
-        let mut v: Vec<F> = reserve(s - 1)?;
-        for i in 0..(s - 1) {
-            v.push(at(k + 1 + i, k).clone());
-        }
-        for j in 0..(s - 1) {
-            let mut acc = F::zero();
-            for (idx, vi) in v.iter().enumerate() {
-                acc = acc.try_add(&at(k, k + 1 + idx).try_mul(vi)?)?;
-            }
-            toeplitz.push(acc.try_neg()?);
-            if j + 1 < s - 1 {
-                let mut next: Vec<F> = reserve(s - 1)?;
-                for i in 0..(s - 1) {
-                    let mut sum = F::zero();
-                    for (idx, vi) in v.iter().enumerate() {
-                        sum = sum.try_add(&at(k + 1 + i, k + 1 + idx).try_mul(vi)?)?;
-                    }
-                    next.push(sum);
-                }
-                v = next;
-            }
-        }
-        let mut next_poly: Vec<F> = reserve(s + 1)?;
-        for i in 0..=s {
-            let mut acc = F::zero();
-            for j in 0..s.min(i + 1) {
-                acc = acc.try_add(&toeplitz[i - j].try_mul(&poly[j])?)?;
-            }
-            next_poly.push(acc);
-        }
-        poly = next_poly;
+        let toeplitz = build_toeplitz_vector(data, n, k, s)?;
+        poly = convolve_toeplitz_poly(&toeplitz, &poly, s)?;
     }
     poly.reverse();
     Ok(poly)
@@ -78,6 +122,31 @@ pub fn evaluate_polynomial_at_matrix<F: Field + ExactRing>(
     evaluate_polynomial_at_matrix_with_limits(coefficients, a, OperationLimits::UNLIMITED)
 }
 
+fn horners_matrix_step<F: Field + ExactRing>(
+    acc: &BasicMatrix<F>,
+    a: &BasicMatrix<F>,
+    coeff: &F,
+    n: usize,
+) -> Result<BasicMatrix<F>, ExactFieldError> {
+    let product = multiply_with_limits(acc, a, OperationLimits::UNLIMITED)?;
+    BasicMatrix::try_from_fn_result::<_, ExactFieldError>(n, n, |r, col| {
+        let entry = product.get_ref(r, col)?;
+        Ok(if r == col {
+            entry.try_add(coeff)?
+        } else {
+            entry.clone()
+        })
+    })
+}
+
+fn charge_eval_poly(n: usize, terms: usize, limits: OperationLimits) -> Result<usize, ExactFieldError> {
+    let square = element_count(n, n)?;
+    let products = times(terms.saturating_sub(1), times(2, times(square, n)?)?)?;
+    let ops = plus(products, times(terms, times(2, square)?)?)?;
+    charge(limits, square, ops)?;
+    Ok(square)
+}
+
 pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(
     coefficients: &[F],
     a: &BasicMatrix<F>,
@@ -85,11 +154,7 @@ pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(
 ) -> Result<BasicMatrix<F>, ExactFieldError> {
     let n = require_square("evaluate_polynomial_at_matrix", a)?;
     super::validate_values(coefficients)?;
-    let square = element_count(n, n)?;
-    let terms = coefficients.len();
-    let products = times(terms.saturating_sub(1), times(2, times(square, n)?)?)?;
-    let ops = plus(products, times(terms, times(2, square)?)?)?;
-    charge(limits, square, ops)?;
+    let _square = charge_eval_poly(n, coefficients.len(), limits)?;
 
     let mut remaining = coefficients.iter().rev();
     let Some(leading) = remaining.next() else {
@@ -99,15 +164,7 @@ pub fn evaluate_polynomial_at_matrix_with_limits<F: Field + ExactRing>(
         Ok(if r == c { leading.clone() } else { F::zero() })
     })?;
     for c in remaining {
-        let product = multiply_with_limits(&acc, a, OperationLimits::UNLIMITED)?;
-        acc = BasicMatrix::try_from_fn_result::<_, ExactFieldError>(n, n, |r, col| {
-            let entry = product.get_ref(r, col)?;
-            Ok(if r == col {
-                entry.try_add(c)?
-            } else {
-                entry.clone()
-            })
-        })?;
+        acc = horners_matrix_step(&acc, a, c, n)?;
     }
     Ok(acc)
 }
@@ -118,24 +175,62 @@ pub fn minimal_polynomial<F: Field + ExactRing>(
     minimal_polynomial_with_limits(a, OperationLimits::UNLIMITED)
 }
 
-pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
-    a: &BasicMatrix<F>,
-    limits: OperationLimits,
-) -> Result<Vec<F>, ExactFieldError> {
-    let n = require_square("minimal_polynomial", a)?;
-    if n == 0 {
-        charge(limits, 1, 0)?;
-        let mut one = reserve(1)?;
-        one.push(F::one());
-        return Ok(one);
-    }
-    let square = element_count(n, n)?;
-    let mut ops = times(n, times(2, times(square, n)?)?)?;
+fn total_reduction_cost(n: usize, square: usize) -> Result<usize, ExactFieldError> {
+    let mut ops = 0;
     for k in 1..=n {
         ops = plus(ops, reduction_cost(square, plus(k, 1)?)?)?;
     }
-    charge(limits, element_count(square, plus(n, 1)?)?, ops)?;
+    Ok(ops)
+}
 
+fn charge_minimal_polynomial(
+    n: usize,
+    square: usize,
+    limits: OperationLimits,
+) -> Result<(), ExactFieldError> {
+    let mult_ops = times(n, times(2, times(square, n)?)?)?;
+    let red_ops = total_reduction_cost(n, square)?;
+    let total_ops = plus(mult_ops, red_ops)?;
+    Ok(charge(limits, element_count(square, plus(n, 1)?)?, total_ops)?)
+}
+
+fn check_krylov_step<F: Field + ExactRing>(
+    columns: &[Vec<F>],
+    power: &BasicMatrix<F>,
+    square: usize,
+    k: usize,
+) -> Result<Option<Vec<F>>, ExactFieldError> {
+    let mut grid = Grid::from_fn(square, k + 1, |r, c| {
+        Ok::<F, ExactFieldError>(if c < k {
+            columns[c][r].clone()
+        } else {
+            power.as_slice()[r].clone()
+        })
+    })?;
+    let pivots = reduce_to_rref(&mut grid)?;
+    if pivots.last() != Some(&k) {
+        let mut coefficients: Vec<F> = reserve(k + 1)?;
+        for i in 0..k {
+            coefficients.push(grid.at(i, k).try_neg()?);
+        }
+        coefficients.push(F::one());
+        return Ok(Some(coefficients));
+    }
+    Ok(None)
+}
+
+fn empty_minimal_poly<F: Field + ExactRing>(limits: OperationLimits) -> Result<Vec<F>, ExactFieldError> {
+    charge(limits, 1, 0)?;
+    let mut one = reserve(1)?;
+    one.push(F::one());
+    Ok(one)
+}
+
+fn compute_krylov_minimal_poly<F: Field + ExactRing>(
+    a: &BasicMatrix<F>,
+    n: usize,
+    square: usize,
+) -> Result<Vec<F>, ExactFieldError> {
     let mut columns: Vec<Vec<F>> = reserve(n)?;
     let mut power = identity::<F>(n)?;
     let mut first: Vec<F> = reserve(square)?;
@@ -143,21 +238,8 @@ pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
     columns.push(first);
     for k in 1..=n {
         power = multiply_with_limits(&power, a, OperationLimits::UNLIMITED)?;
-        let mut grid = Grid::from_fn(square, k + 1, |r, c| {
-            Ok::<F, ExactFieldError>(if c < k {
-                columns[c][r].clone()
-            } else {
-                power.as_slice()[r].clone()
-            })
-        })?;
-        let pivots = reduce_to_rref(&mut grid)?;
-        if pivots.last() != Some(&k) {
-            let mut coefficients: Vec<F> = reserve(k + 1)?;
-            for i in 0..k {
-                coefficients.push(grid.at(i, k).try_neg()?);
-            }
-            coefficients.push(F::one());
-            return Ok(coefficients);
+        if let Some(coeffs) = check_krylov_step(&columns, &power, square, k)? {
+            return Ok(coeffs);
         }
         let mut next: Vec<F> = reserve(square)?;
         next.extend_from_slice(power.as_slice());
@@ -166,6 +248,19 @@ pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
     Err(ExactFieldError::ReplayFailed {
         operation: "minimal_polynomial",
     })
+}
+
+pub fn minimal_polynomial_with_limits<F: Field + ExactRing>(
+    a: &BasicMatrix<F>,
+    limits: OperationLimits,
+) -> Result<Vec<F>, ExactFieldError> {
+    let n = require_square("minimal_polynomial", a)?;
+    if n == 0 {
+        return empty_minimal_poly(limits);
+    }
+    let square = element_count(n, n)?;
+    charge_minimal_polynomial(n, square, limits)?;
+    compute_krylov_minimal_poly(a, n, square)
 }
 
 pub fn is_nilpotent<F: Field + ExactRing>(a: &BasicMatrix<F>) -> Result<bool, ExactFieldError> {
@@ -286,24 +381,26 @@ mod tests {
         }
     }
 
+    fn make_unitriangular(s: &mut BasicMatrix<BigRational>, n: usize) {
+        for r in 0..n {
+            for c in 0..n {
+                let v = match c.cmp(&r) {
+                    std::cmp::Ordering::Equal => q(1, 1),
+                    std::cmp::Ordering::Less => s.get(r, c).unwrap(),
+                    std::cmp::Ordering::Greater => q(0, 1),
+                };
+                s.set(r, c, v).unwrap();
+            }
+        }
+    }
+
     #[test]
     fn the_polynomial_is_a_similarity_invariant() {
         let mut rng = Rng::new(221);
         for n in 2..=4usize {
             let a = random_matrix(&mut rng, n, n, 3);
             let mut s = random_matrix(&mut rng, n, n, 2);
-            for r in 0..n {
-                for c in 0..n {
-                    let v = if r == c {
-                        q(1, 1)
-                    } else if c < r {
-                        s.get(r, c).unwrap()
-                    } else {
-                        q(0, 1)
-                    };
-                    s.set(r, c, v).unwrap();
-                }
-            }
+            make_unitriangular(&mut s, n);
             let similar = multiply(&multiply(&s, &a).unwrap(), &inverse(&s).unwrap()).unwrap();
             assert_eq!(
                 characteristic_polynomial(&similar).unwrap(),
@@ -619,6 +716,15 @@ mod tests {
         assert!(!is_idempotent(&swap).unwrap());
     }
 
+    fn strictly_upper_triangular(mut m: BasicMatrix<BigRational>, n: usize) -> BasicMatrix<BigRational> {
+        for r in 0..n {
+            for c in 0..=r {
+                m.set(r, c, q(0, 1)).unwrap();
+            }
+        }
+        m
+    }
+
     #[test]
     fn nilpotency_agrees_with_the_characteristic_polynomial_criterion() {
         let mut rng = Rng::new(241);
@@ -626,13 +732,7 @@ mod tests {
             for trial in 0..4 {
                 let raw = random_matrix(&mut rng, n, n, 3);
                 let candidate = if trial % 2 == 0 {
-                    let mut upper = raw.clone();
-                    for r in 0..n {
-                        for c in 0..=r {
-                            upper.set(r, c, q(0, 1)).unwrap();
-                        }
-                    }
-                    upper
+                    strictly_upper_triangular(raw, n)
                 } else {
                     raw
                 };

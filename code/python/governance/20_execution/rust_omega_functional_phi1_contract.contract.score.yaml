@@ -3,104 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/rust_omega_functional_phi1_contract.py",
   "contract": {
-    "schema_version": "1.0.0",
-    "contract_id": "rust:omega_functional:phi1",
-    "kind": "rust_file_contract",
-    "name": "Phi1 — weighted-l1 quotient-distance projection observable",
-    "version": "1.0.0",
-    "crate": "omega_functional",
-    "file": "omega_engine/crates_rs/omega_functional/src/phi1.rs",
-    "module_path": "omega_functional::phi1",
-    "role": "phi1_projection_observable",
-    "status": "active",
-    "authority_effect": "EvidenceOnly",
-    "transition_authority": "none",
-    "description": "Phi1([omega]) = min_alpha ||omega - d0 alpha||_{1,w}: the exact weighted-l1 distance from a C^1 cochain omega to the coboundary space im(d0), certified by an LP primal-dual pair (ExactPhi1Certificate: achiever alpha + primal residual + im(d0)-annihilating dual witness, with reported value = weighted primal-residual norm = dual pairing). Phi1 is the quantitative refinement of the cochain Zero predicate: Phi1 = 0 iff omega is a coboundary. Exact over BigRational. Computed in the calculate layer (omega_functional); it mints no authority.\n",
-    "lean_anchor": {
-      "file": "lean4/original_lean_20260809/finite_cochain_complex.lean",
-      "repointed_from": "omega_engine/lean4/…/OmegaCosmology/Primitives/FiniteCochainComplex.lean (never present in this repository)",
-      "in_tree_build": "None. The file is not a root of any Lake package in this repository, and its imports primitive_difference, «lg006_pointed_obstruction_classifier» and «lg006_primitive_obstruction_pipeline» do not resolve here.\n",
-      "replay": "2026-09-29 scratch replay, not committed: Lean 4.34.0 + Mathlib v4.34.0, the three imports rewritten to PrimitiveDifference / PointedObstructionClassifier / PrimitiveObstructionPipeline from omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean4/, body unchanged; exit 0. Every OmegaCore name below elaborates; PHI1-L0..L3 print axioms [propext, Classical.choice, Quot.sound].\n",
-      "modeled_definitions": [
-        "wl1 (weighted l1 objective)",
-        "phi1Residuals (the achievable-residual family {||omega - d0 alpha||_{1,w} | alpha})",
-        "IsPhi1 (v in the family AND a lower bound for it = what a primal-dual certificate establishes)"
-      ],
-      "orientation": "Phi1(omega) = min over alpha of wl1 w (omega - d0 alpha), weights w > 0"
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/20_execution/rust_omega_functional_phi1_contract.py",
+      "sha256": "14ffb09b9ce82cdfc361812fc52cba2b6c3488fa99cd41b848a670fe0e3b4d74"
     },
-    "owns": [
-      "phi1_weighted_l1_quotient_distance",
-      "exact_primal_dual_phi1_certificate"
-    ],
-    "does_not_own": [
-      "gamma2 (closure charge)",
-      "trichotomy",
-      "exact_image_membership (omega_linear_algebra::image_kernel / the cochain Zero predicate)",
-      "authority_minting",
-      "lift_policy",
-      "operad_generation"
-    ],
-    "lean_obligations": [
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:20_execution:rust-omega-functional-phi1-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for rust:omega_functional:phi1 Schema Version: 1.0.0",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
       {
-        "id": "PHI1-L0",
-        "theorem": "Phi1 is well-defined as the minimum of the achievable weighted-l1 residual family: the value is unique.",
-        "lean_name": "OmegaCore.isPhi1_unique",
-        "status": "proved_in_lean",
-        "axioms": "[propext, Classical.choice, Quot.sound]"
-      },
-      {
-        "id": "PHI1-L1",
-        "theorem": "Phi1 >= 0 (weights >= 0).",
-        "lean_name": "OmegaCore.isPhi1_nonneg",
-        "status": "proved_in_lean",
-        "axioms": "[propext, Classical.choice, Quot.sound]"
-      },
-      {
-        "id": "PHI1-L2",
-        "theorem": "Phi1 descends to the residual quotient C^1/im(d0): the value depends only on the class [omega] (the projection observable descends -- Paper 001), via class-invariance of the residual family.",
-        "lean_name": "OmegaCore.isPhi1_descends",
-        "status": "proved_in_lean",
-        "axioms": "[propext, Classical.choice, Quot.sound]"
-      },
-      {
-        "id": "PHI1-L3",
-        "theorem": "Phi1 = 0 iff omega is a coboundary (weights > 0), i.e. iff (cochainDifference C).Zero omega -- ties Phi1 to CPD-L1.",
-        "lean_name": "OmegaCore.isPhi1_zero_iff_cochain_zero",
-        "status": "proved_in_lean",
-        "axioms": "[propext, Classical.choice, Quot.sound]"
-      },
-      {
-        "id": "PHI1-L4",
-        "theorem": "A verified ExactPhi1Certificate's primal-dual data witnesses IsPhi1: the im(d0)-annihilating dual witness gives the weak-duality lower bound, so reported value = min.",
-        "lean_name": "OmegaCore.Phi1Certificate.isMinimum_of_certificate",
-        "lean_source": "lean4/original_lean_20260809/phi1_primal_dual_certificate.lean",
-        "lean_source_sha256": "f9a23f807e1d71b8e805868b6be2795db51a7d0d8bdb6fc69101cdbc99047223",
-        "status": "proved_in_lean_generic",
-        "prior_status": "rust_verified (lean_name rust_verified_not_yet_in_lean)",
-        "axioms": "[propext, Classical.choice, Quot.sound]",
-        "scope": "Certificate => minimum only, stated generically. For any Fintype index E and any map d : A -> (E -> Q): if dualPair phi (d b) = 0 for every b, |phi e| <= w e for every e, and dualPair phi (omega - d alpha) = wl1 w (omega - d alpha), then wl1 w (omega - d alpha) lies in {wl1 w (omega - d b) | b} and is a lower bound for it. The one inequality is dualPair_le_wl1 (<phi, r> <= sum_e w_e |r_e| when |phi| <= w). Not attainment; not minimum => certificate.\n",
-        "pending": "Instantiating E := Fin C.c1_dim, A := Fin C.c0_dim -> Q, d := C.d0 gives OmegaCore.IsPhi1 C w omega (wl1 w (omega - C.d0 alpha)) by definitional unfolding. That corollary (isPhi1_of_certificate) is not committed; the source file records it as an obligation. It was checked only in the 2026-09-29 scratch replay of lean_anchor.file.\n",
-        "replay": "2026-09-29: the committed bytes (sha above) compile standalone with Lean 4.34.0 + Mathlib v4.34.0 (lake env lean, exit 0). The file is not a root of any Lake package in this repository.\n",
-        "note": "Verified Rust-side (unchanged): the verifier checks primal residual = omega - d0 alpha, dual annihilates im(d0), and value = weighted primal norm = dual pairing (LP strong duality)."
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    ],
-    "notes": [
-      "Phi1 is the quantitative refinement of image membership: Phi1=0 recovers the cochain Zero predicate (CPD-L1).",
-      "Exactness in the Rust certificate path is BigRational (theorem-grade); the Lean anchor is generic over the cochain rationals (Fin n -> Q).",
-      "Do not claim authority, operads, or physics from Phi1 -- it is a diagnostic quotient-distance value."
-    ],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "d755504d8996cdb3fa260f1db3ef73445bd95cbea25bdcd11a0231a6e548e9ff",
-  "current_scoring": null,
+  "current_contract": "ce3979bc4884c9d2e81c5d0929832b5be41ec7e10eb44e41063a3c59108b6990",
+  "current_scoring": "a354013bee4ed188fa04f4822b25c4017f1684ff1087bae0e1037a480dd8b113",
   "contract_history": [
     {
-      "sha256": "d755504d8996cdb3fa260f1db3ef73445bd95cbea25bdcd11a0231a6e548e9ff",
-      "bytes": 5801,
+      "sha256": "f5716b236e7d2e398ba8f8829c907ae04f1a553719909307ce5f1cde2bbc7de6",
+      "bytes": 6256,
       "record": {
         "schema_version": "1.0.0",
         "contract_id": "rust:omega_functional:phi1",
@@ -194,13 +128,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: 1.0.0\ncontract_id: rust:omega_functional:phi1\nkind: rust_file_contract\nname: Phi1 — weighted-l1 quotient-distance projection observable\nversion: 1.0.0\ncrate: omega_functional\nfile: omega_engine/crates_rs/omega_functional/src/phi1.rs\nmodule_path: omega_functional::phi1\nrole: phi1_projection_observable\nstatus: active\nauthority_effect: EvidenceOnly\ntransition_authority: none\ndescription: 'Phi1([omega]) = min_alpha ||omega - d0 alpha||_{1,w}: the exact weighted-l1\n  distance from a C^1 cochain omega to the coboundary space im(d0), certified by an\n  LP primal-dual pair (ExactPhi1Certificate: achiever alpha + primal residual + im(d0)-annihilating\n  dual witness, with reported value = weighted primal-residual norm = dual pairing).\n  Phi1 is the quantitative refinement of the cochain Zero predicate: Phi1 = 0 iff\n  omega is a coboundary. Exact over BigRational. Computed in the calculate layer (omega_functional);\n  it mints no authority.\n\n  '\nlean_anchor:\n  file: lean4/original_lean_20260809/finite_cochain_complex.lean\n  repointed_from: omega_engine/lean4/…/OmegaCosmology/Primitives/FiniteCochainComplex.lean\n    (never present in this repository)\n  in_tree_build: 'None. The file is not a root of any Lake package in this repository,\n    and its imports primitive_difference, «lg006_pointed_obstruction_classifier» and\n    «lg006_primitive_obstruction_pipeline» do not resolve here.\n\n    '\n  replay: '2026-09-29 scratch replay, not committed: Lean 4.34.0 + Mathlib v4.34.0,\n    the three imports rewritten to PrimitiveDifference / PointedObstructionClassifier\n    / PrimitiveObstructionPipeline from omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean4/,\n    body unchanged; exit 0. Every OmegaCore name below elaborates; PHI1-L0..L3 print\n    axioms [propext, Classical.choice, Quot.sound].\n\n    '\n  modeled_definitions:\n  - wl1 (weighted l1 objective)\n  - phi1Residuals (the achievable-residual family {||omega - d0 alpha||_{1,w} | alpha})\n  - IsPhi1 (v in the family AND a lower bound for it = what a primal-dual certificate\n    establishes)\n  orientation: Phi1(omega) = min over alpha of wl1 w (omega - d0 alpha), weights w\n    > 0\nowns:\n- phi1_weighted_l1_quotient_distance\n- exact_primal_dual_phi1_certificate\ndoes_not_own:\n- gamma2 (closure charge)\n- trichotomy\n- exact_image_membership (omega_linear_algebra::image_kernel / the cochain Zero predicate)\n- authority_minting\n- lift_policy\n- operad_generation\nlean_obligations:\n- id: PHI1-L0\n  theorem: 'Phi1 is well-defined as the minimum of the achievable weighted-l1 residual\n    family: the value is unique.'\n  lean_name: OmegaCore.isPhi1_unique\n  status: proved_in_lean\n  axioms: '[propext, Classical.choice, Quot.sound]'\n- id: PHI1-L1\n  theorem: Phi1 >= 0 (weights >= 0).\n  lean_name: OmegaCore.isPhi1_nonneg\n  status: proved_in_lean\n  axioms: '[propext, Classical.choice, Quot.sound]'\n- id: PHI1-L2\n  theorem: 'Phi1 descends to the residual quotient C^1/im(d0): the value depends only\n    on the class [omega] (the projection observable descends -- Paper 001), via class-invariance\n    of the residual family.'\n  lean_name: OmegaCore.isPhi1_descends\n  status: proved_in_lean\n  axioms: '[propext, Classical.choice, Quot.sound]'\n- id: PHI1-L3\n  theorem: Phi1 = 0 iff omega is a coboundary (weights > 0), i.e. iff (cochainDifference\n    C).Zero omega -- ties Phi1 to CPD-L1.\n  lean_name: OmegaCore.isPhi1_zero_iff_cochain_zero\n  status: proved_in_lean\n  axioms: '[propext, Classical.choice, Quot.sound]'\n- id: PHI1-L4\n  theorem: 'A verified ExactPhi1Certificate''s primal-dual data witnesses IsPhi1:\n    the im(d0)-annihilating dual witness gives the weak-duality lower bound, so reported\n    value = min.'\n  lean_name: OmegaCore.Phi1Certificate.isMinimum_of_certificate\n  lean_source: lean4/original_lean_20260809/phi1_primal_dual_certificate.lean\n  lean_source_sha256: f9a23f807e1d71b8e805868b6be2795db51a7d0d8bdb6fc69101cdbc99047223\n  status: proved_in_lean_generic\n  prior_status: rust_verified (lean_name rust_verified_not_yet_in_lean)\n  axioms: '[propext, Classical.choice, Quot.sound]'\n  scope: 'Certificate => minimum only, stated generically. For any Fintype index E\n    and any map d : A -> (E -> Q): if dualPair phi (d b) = 0 for every b, |phi e|\n    <= w e for every e, and dualPair phi (omega - d alpha) = wl1 w (omega - d alpha),\n    then wl1 w (omega - d alpha) lies in {wl1 w (omega - d b) | b} and is a lower\n    bound for it. The one inequality is dualPair_le_wl1 (<phi, r> <= sum_e w_e |r_e|\n    when |phi| <= w). Not attainment; not minimum => certificate.\n\n    '\n  pending: 'Instantiating E := Fin C.c1_dim, A := Fin C.c0_dim -> Q, d := C.d0 gives\n    OmegaCore.IsPhi1 C w omega (wl1 w (omega - C.d0 alpha)) by definitional unfolding.\n    That corollary (isPhi1_of_certificate) is not committed; the source file records\n    it as an obligation. It was checked only in the 2026-09-29 scratch replay of lean_anchor.file.\n\n    '\n  replay: '2026-09-29: the committed bytes (sha above) compile standalone with Lean\n    4.34.0 + Mathlib v4.34.0 (lake env lean, exit 0). The file is not a root of any\n    Lake package in this repository.\n\n    '\n  note: 'Verified Rust-side (unchanged): the verifier checks primal residual = omega\n    - d0 alpha, dual annihilates im(d0), and value = weighted primal norm = dual pairing\n    (LP strong duality).'\nnotes:\n- 'Phi1 is the quantitative refinement of image membership: Phi1=0 recovers the cochain\n  Zero predicate (CPD-L1).'\n- Exactness in the Rust certificate path is BigRational (theorem-grade); the Lean\n  anchor is generic over the cochain rationals (Fin n -> Q).\n- Do not claim authority, operads, or physics from Phi1 -- it is a diagnostic quotient-distance\n  value.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"contract_id\": \"rust:omega_functional:phi1\",\n  \"kind\": \"rust_file_contract\",\n  \"name\": \"Phi1 — weighted-l1 quotient-distance projection observable\",\n  \"version\": \"1.0.0\",\n  \"crate\": \"omega_functional\",\n  \"file\": \"omega_engine/crates_rs/omega_functional/src/phi1.rs\",\n  \"module_path\": \"omega_functional::phi1\",\n  \"role\": \"phi1_projection_observable\",\n  \"status\": \"active\",\n  \"authority_effect\": \"EvidenceOnly\",\n  \"transition_authority\": \"none\",\n  \"description\": \"Phi1([omega]) = min_alpha ||omega - d0 alpha||_{1,w}: the exact weighted-l1 distance from a C^1 cochain omega to the coboundary space im(d0), certified by an LP primal-dual pair (ExactPhi1Certificate: achiever alpha + primal residual + im(d0)-annihilating dual witness, with reported value = weighted primal-residual norm = dual pairing). Phi1 is the quantitative refinement of the cochain Zero predicate: Phi1 = 0 iff omega is a coboundary. Exact over BigRational. Computed in the calculate layer (omega_functional); it mints no authority.\\n\",\n  \"lean_anchor\": {\n    \"file\": \"lean4/original_lean_20260809/finite_cochain_complex.lean\",\n    \"repointed_from\": \"omega_engine/lean4/…/OmegaCosmology/Primitives/FiniteCochainComplex.lean (never present in this repository)\",\n    \"in_tree_build\": \"None. The file is not a root of any Lake package in this repository, and its imports primitive_difference, «lg006_pointed_obstruction_classifier» and «lg006_primitive_obstruction_pipeline» do not resolve here.\\n\",\n    \"replay\": \"2026-09-29 scratch replay, not committed: Lean 4.34.0 + Mathlib v4.34.0, the three imports rewritten to PrimitiveDifference / PointedObstructionClassifier / PrimitiveObstructionPipeline from omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean4/, body unchanged; exit 0. Every OmegaCore name below elaborates; PHI1-L0..L3 print axioms [propext, Classical.choice, Quot.sound].\\n\",\n    \"modeled_definitions\": [\n      \"wl1 (weighted l1 objective)\",\n      \"phi1Residuals (the achievable-residual family {||omega - d0 alpha||_{1,w} | alpha})\",\n      \"IsPhi1 (v in the family AND a lower bound for it = what a primal-dual certificate establishes)\"\n    ],\n    \"orientation\": \"Phi1(omega) = min over alpha of wl1 w (omega - d0 alpha), weights w > 0\"\n  },\n  \"owns\": [\n    \"phi1_weighted_l1_quotient_distance\",\n    \"exact_primal_dual_phi1_certificate\"\n  ],\n  \"does_not_own\": [\n    \"gamma2 (closure charge)\",\n    \"trichotomy\",\n    \"exact_image_membership (omega_linear_algebra::image_kernel / the cochain Zero predicate)\",\n    \"authority_minting\",\n    \"lift_policy\",\n    \"operad_generation\"\n  ],\n  \"lean_obligations\": [\n    {\n      \"id\": \"PHI1-L0\",\n      \"theorem\": \"Phi1 is well-defined as the minimum of the achievable weighted-l1 residual family: the value is unique.\",\n      \"lean_name\": \"OmegaCore.isPhi1_unique\",\n      \"status\": \"proved_in_lean\",\n      \"axioms\": \"[propext, Classical.choice, Quot.sound]\"\n    },\n    {\n      \"id\": \"PHI1-L1\",\n      \"theorem\": \"Phi1 >= 0 (weights >= 0).\",\n      \"lean_name\": \"OmegaCore.isPhi1_nonneg\",\n      \"status\": \"proved_in_lean\",\n      \"axioms\": \"[propext, Classical.choice, Quot.sound]\"\n    },\n    {\n      \"id\": \"PHI1-L2\",\n      \"theorem\": \"Phi1 descends to the residual quotient C^1/im(d0): the value depends only on the class [omega] (the projection observable descends -- Paper 001), via class-invariance of the residual family.\",\n      \"lean_name\": \"OmegaCore.isPhi1_descends\",\n      \"status\": \"proved_in_lean\",\n      \"axioms\": \"[propext, Classical.choice, Quot.sound]\"\n    },\n    {\n      \"id\": \"PHI1-L3\",\n      \"theorem\": \"Phi1 = 0 iff omega is a coboundary (weights > 0), i.e. iff (cochainDifference C).Zero omega -- ties Phi1 to CPD-L1.\",\n      \"lean_name\": \"OmegaCore.isPhi1_zero_iff_cochain_zero\",\n      \"status\": \"proved_in_lean\",\n      \"axioms\": \"[propext, Classical.choice, Quot.sound]\"\n    },\n    {\n      \"id\": \"PHI1-L4\",\n      \"theorem\": \"A verified ExactPhi1Certificate's primal-dual data witnesses IsPhi1: the im(d0)-annihilating dual witness gives the weak-duality lower bound, so reported value = min.\",\n      \"lean_name\": \"OmegaCore.Phi1Certificate.isMinimum_of_certificate\",\n      \"lean_source\": \"lean4/original_lean_20260809/phi1_primal_dual_certificate.lean\",\n      \"lean_source_sha256\": \"f9a23f807e1d71b8e805868b6be2795db51a7d0d8bdb6fc69101cdbc99047223\",\n      \"status\": \"proved_in_lean_generic\",\n      \"prior_status\": \"rust_verified (lean_name rust_verified_not_yet_in_lean)\",\n      \"axioms\": \"[propext, Classical.choice, Quot.sound]\",\n      \"scope\": \"Certificate => minimum only, stated generically. For any Fintype index E and any map d : A -> (E -> Q): if dualPair phi (d b) = 0 for every b, |phi e| <= w e for every e, and dualPair phi (omega - d alpha) = wl1 w (omega - d alpha), then wl1 w (omega - d alpha) lies in {wl1 w (omega - d b) | b} and is a lower bound for it. The one inequality is dualPair_le_wl1 (<phi, r> <= sum_e w_e |r_e| when |phi| <= w). Not attainment; not minimum => certificate.\\n\",\n      \"pending\": \"Instantiating E := Fin C.c1_dim, A := Fin C.c0_dim -> Q, d := C.d0 gives OmegaCore.IsPhi1 C w omega (wl1 w (omega - C.d0 alpha)) by definitional unfolding. That corollary (isPhi1_of_certificate) is not committed; the source file records it as an obligation. It was checked only in the 2026-09-29 scratch replay of lean_anchor.file.\\n\",\n      \"replay\": \"2026-09-29: the committed bytes (sha above) compile standalone with Lean 4.34.0 + Mathlib v4.34.0 (lake env lean, exit 0). The file is not a root of any Lake package in this repository.\\n\",\n      \"note\": \"Verified Rust-side (unchanged): the verifier checks primal residual = omega - d0 alpha, dual annihilates im(d0), and value = weighted primal norm = dual pairing (LP strong duality).\"\n    }\n  ],\n  \"notes\": [\n    \"Phi1 is the quantitative refinement of image membership: Phi1=0 recovers the cochain Zero predicate (CPD-L1).\",\n    \"Exactness in the Rust certificate path is BigRational (theorem-grade); the Lean anchor is generic over the cochain rationals (Fin n -> Q).\",\n    \"Do not claim authority, operads, or physics from Phi1 -- it is a diagnostic quotient-distance value.\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/rust_omega_functional_phi1.contract.yaml"
       ]
+    },
+    {
+      "sha256": "ce3979bc4884c9d2e81c5d0929832b5be41ec7e10eb44e41063a3c59108b6990",
+      "bytes": 1804,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/rust_omega_functional_phi1_contract.py",
+          "sha256": "14ffb09b9ce82cdfc361812fc52cba2b6c3488fa99cd41b848a670fe0e3b4d74"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:20_execution:rust-omega-functional-phi1-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for rust:omega_functional:phi1 Schema Version: 1.0.0",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_phi1_contract.py\",\n    \"sha256\": \"14ffb09b9ce82cdfc361812fc52cba2b6c3488fa99cd41b848a670fe0e3b4d74\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:rust-omega-functional-phi1-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for rust:omega_functional:phi1 Schema Version: 1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_functional_phi1_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "a354013bee4ed188fa04f4822b25c4017f1684ff1087bae0e1037a480dd8b113",
+      "bytes": 2227,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/rust_omega_functional_phi1_contract.py",
+          "sha256": "14ffb09b9ce82cdfc361812fc52cba2b6c3488fa99cd41b848a670fe0e3b4d74"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:rust-omega-functional-phi1-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_functional_phi1_contract.py\",\n    \"sha256\": \"14ffb09b9ce82cdfc361812fc52cba2b6c3488fa99cd41b848a670fe0e3b4d74\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:rust-omega-functional-phi1-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_functional_phi1_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/rust_omega_functional_phi1.contract.yaml": "d755504d8996cdb3fa260f1db3ef73445bd95cbea25bdcd11a0231a6e548e9ff"
   },

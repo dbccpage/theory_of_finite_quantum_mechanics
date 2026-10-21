@@ -1,0 +1,154 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/hard_invariants.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/hard_invariants.py",
+      "sha256": "c958312d53722f2bcaa6ec42a66b359f008d9226a8f5255ea5431049984e626f"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:hard-invariants:v1",
+    "role": "library",
+    "purpose": "HARD invariant battery for repair-capacity / LGGR / packet-wall demos.",
+    "operations": {
+      "stock_complexes": "Function stock_complexes operation.",
+      "inv1_all_stock_complexes_satisfy_d1_d0_zero": "Function inv1_all_stock_complexes_satisfy_d1_d0_zero operation.",
+      "inv1_broken_boundary_refuses_terminalize": "Function inv1_broken_boundary_refuses_terminalize operation.",
+      "inv2_torus_exhibits_closed_residual_auth_none": "Function inv2_torus_exhibits_closed_residual_auth_none operation.",
+      "inv3_repair_capacity_matches_a_hand_table": "Function inv3_repair_capacity_matches_a_hand_table operation.",
+      "inv4_exact_is_not_lggr_and_open_is_not_lggr": "Function inv4_exact_is_not_lggr_and_open_is_not_lggr operation.",
+      "inv4_lggr_local_green_global_red_on_torus": "Function inv4_lggr_local_green_global_red_on_torus operation.",
+      "inv5_weight_zero_always_exact_on_all_stock": "Function inv5_weight_zero_always_exact_on_all_stock operation.",
+      "inv6_single_edge_open_on_torus_and_planar": "Function inv6_single_edge_open_on_torus_and_planar operation.",
+      "inv7_every_receipt_authority_effect_is_exactly_none": "Function inv7_every_receipt_authority_effect_is_exactly_none operation.",
+      "inv8_incomplete_packet_refuses": "Function inv8_incomplete_packet_refuses operation.",
+      "run_all_hard_invariants": "Function run_all_hard_invariants operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "87247f4df7427fb2d9a277a151c10bf7e556387d339e040bcc2b8178a7a570df",
+  "current_scoring": "86f8c19c4dcd6ccd8d0900491f6ee6f5f5769206050b31f1fa1150309ce33797",
+  "contract_history": [
+    {
+      "sha256": "87247f4df7427fb2d9a277a151c10bf7e556387d339e040bcc2b8178a7a570df",
+      "bytes": 2901,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/hard_invariants.py",
+          "sha256": "c958312d53722f2bcaa6ec42a66b359f008d9226a8f5255ea5431049984e626f"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:hard-invariants:v1",
+        "role": "library",
+        "purpose": "HARD invariant battery for repair-capacity / LGGR / packet-wall demos.",
+        "operations": {
+          "stock_complexes": "Function stock_complexes operation.",
+          "inv1_all_stock_complexes_satisfy_d1_d0_zero": "Function inv1_all_stock_complexes_satisfy_d1_d0_zero operation.",
+          "inv1_broken_boundary_refuses_terminalize": "Function inv1_broken_boundary_refuses_terminalize operation.",
+          "inv2_torus_exhibits_closed_residual_auth_none": "Function inv2_torus_exhibits_closed_residual_auth_none operation.",
+          "inv3_repair_capacity_matches_a_hand_table": "Function inv3_repair_capacity_matches_a_hand_table operation.",
+          "inv4_exact_is_not_lggr_and_open_is_not_lggr": "Function inv4_exact_is_not_lggr_and_open_is_not_lggr operation.",
+          "inv4_lggr_local_green_global_red_on_torus": "Function inv4_lggr_local_green_global_red_on_torus operation.",
+          "inv5_weight_zero_always_exact_on_all_stock": "Function inv5_weight_zero_always_exact_on_all_stock operation.",
+          "inv6_single_edge_open_on_torus_and_planar": "Function inv6_single_edge_open_on_torus_and_planar operation.",
+          "inv7_every_receipt_authority_effect_is_exactly_none": "Function inv7_every_receipt_authority_effect_is_exactly_none operation.",
+          "inv8_incomplete_packet_refuses": "Function inv8_incomplete_packet_refuses operation.",
+          "run_all_hard_invariants": "Function run_all_hard_invariants operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/hard_invariants.py\",\n    \"sha256\": \"c958312d53722f2bcaa6ec42a66b359f008d9226a8f5255ea5431049984e626f\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:hard-invariants:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"HARD invariant battery for repair-capacity / LGGR / packet-wall demos.\",\n  \"operations\": {\n    \"stock_complexes\": \"Function stock_complexes operation.\",\n    \"inv1_all_stock_complexes_satisfy_d1_d0_zero\": \"Function inv1_all_stock_complexes_satisfy_d1_d0_zero operation.\",\n    \"inv1_broken_boundary_refuses_terminalize\": \"Function inv1_broken_boundary_refuses_terminalize operation.\",\n    \"inv2_torus_exhibits_closed_residual_auth_none\": \"Function inv2_torus_exhibits_closed_residual_auth_none operation.\",\n    \"inv3_repair_capacity_matches_a_hand_table\": \"Function inv3_repair_capacity_matches_a_hand_table operation.\",\n    \"inv4_exact_is_not_lggr_and_open_is_not_lggr\": \"Function inv4_exact_is_not_lggr_and_open_is_not_lggr operation.\",\n    \"inv4_lggr_local_green_global_red_on_torus\": \"Function inv4_lggr_local_green_global_red_on_torus operation.\",\n    \"inv5_weight_zero_always_exact_on_all_stock\": \"Function inv5_weight_zero_always_exact_on_all_stock operation.\",\n    \"inv6_single_edge_open_on_torus_and_planar\": \"Function inv6_single_edge_open_on_torus_and_planar operation.\",\n    \"inv7_every_receipt_authority_effect_is_exactly_none\": \"Function inv7_every_receipt_authority_effect_is_exactly_none operation.\",\n    \"inv8_incomplete_packet_refuses\": \"Function inv8_incomplete_packet_refuses operation.\",\n    \"run_all_hard_invariants\": \"Function run_all_hard_invariants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/hard_invariants.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "86f8c19c4dcd6ccd8d0900491f6ee6f5f5769206050b31f1fa1150309ce33797",
+      "bytes": 2198,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/hard_invariants.py",
+          "sha256": "c958312d53722f2bcaa6ec42a66b359f008d9226a8f5255ea5431049984e626f"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:hard-invariants:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 4), Lizard CCN (max 4), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 4,
+          "lizard_ccn": 4,
+          "weighted_control_upper_bound": 5,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/hard_invariants.py\",\n    \"sha256\": \"c958312d53722f2bcaa6ec42a66b359f008d9226a8f5255ea5431049984e626f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:hard-invariants:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 4), Lizard CCN (max 4), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 4,\n    \"lizard_ccn\": 4,\n    \"weighted_control_upper_bound\": 5,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/hard_invariants.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

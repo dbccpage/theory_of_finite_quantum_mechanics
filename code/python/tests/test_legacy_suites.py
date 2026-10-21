@@ -67,6 +67,12 @@ def test_negative_type_failures() -> None:
         polynomial_gap(("3/5", Fraction(4, 5), 0))
     assert text.value.parameters["received"] == "str"
 
+    with pytest.raises(LegacySuiteError, match="1024-bit limit"):
+        polynomial_gap((1 << 1025, 0, 0))
+
+    with pytest.raises(LegacySuiteError, match="1024-bit limit"):
+        polynomial_gap((Fraction(1 << 1025, 1), 0, 0))
+
 
 def test_negative_shape_failures() -> None:
     with pytest.raises(LegacySuiteError, match="not three") as short:

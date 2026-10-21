@@ -104,12 +104,12 @@
       ]
     }
   },
-  "current_contract": "2082a94da957e660ca8b50ac3cceb3ed40592beef3c348485798395d393c3aa1",
-  "current_scoring": null,
+  "current_contract": "afcbe645c7c56a037a43ae1134076a24e0f1ba6c395469813b43c6cd73c6765e",
+  "current_scoring": "bc83b0584693c35e4a6056aa74c53826d94e2868665b727616dd7a13ac405a22",
   "contract_history": [
     {
-      "sha256": "2082a94da957e660ca8b50ac3cceb3ed40592beef3c348485798395d393c3aa1",
-      "bytes": 4815,
+      "sha256": "afcbe645c7c56a037a43ae1134076a24e0f1ba6c395469813b43c6cd73c6765e",
+      "bytes": 5257,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:governance:council_decision:v1.0.0",
@@ -212,13 +212,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:governance:council_decision:v1.0.0\ntitle: CouncilDecision\nkind: governance_contract\nstatus: mathematical_wip\nlayer: 05_governance\nrole: Policy\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - AuthInterface\n    - PolicyContract\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  capabilities:\n    forbidden:\n    - CertificateSigning\n    - Terminalization\n    required: []\ndoctrine:\n  binding_review_20261014: The declared Rust crate/module is absent from the active\n    Cargo workspace. Withdraw this realization binding; the retained specification\n    has no executable implementation credit from it.\n  summary: 'A CouncilDecision is the unit of deliberative governance: a council, meeting\n    on its declared cadence, accepts evidence and resolves a motion into a decision.\n    A decision is credit-bearing ONLY when it carries (1) a QuorumWitness with quorum\n    met, (2) an EvidenceBundle (no evidence ⇒ no credit), and (3) a citation of the\n    omega_contract it is taken under (C8 — a decision with no governing contract is\n    unrouted authority and is refused). Blackrod witnesses a meeting but never votes\n    and never counts toward quorum; enforcement is Blackrod''s, deliberation the council''s.\n    A council decision confers NO math-layer terminal authority (authority_effect:\n    none); terminal authority arrives only via Pi-sharp + IsAuth, Anomalon-rooted.\n    The decision is governance, not computation.\n\n    '\n  mathematical_role: 'The MeetingCat morphism `deliberate : Motion(seconded, evidenced)\n    → Decision` is defined only when the quorum witness is present and quorum_met\n    holds; a credit-bearing (Approved) decision in its image must factor through both\n    an EvidenceBundle reference and a contract citation, else it is rejected by validate_decision.\n    Acceptance of a guardian''s report (e.g. Pontius Pilate''s contract↔code verdict)\n    is such a decision: the verdict is the evidence; the council''s act is to accept\n    and route it, never to certify integrity that the verdict did not establish.\n\n    '\n  non_role:\n  - Minting or upgrading math-layer authority (arrives only via Pi-sharp + IsAuth)\n  - Signing or wrapping certificates\n  - Terminalizing or executing an operator\n  - Enforcing its own decisions (that is Blackrod's role)\n  - Granting credit without an evidence path\n  - Approving a decision with no cited governing contract\n  llm_boundary_law:\n    doctrine: 5\n    text: 'LLM-generated content carries zero authority in a council decision. LLM\n      output (e.g. a Retinue performance, an advisory draft) is candidate/diagnostic\n      material only; it may inform deliberation but never constitutes evidence authority,\n      quorum, or the decision itself. Decisions are functions of present members,\n      witnessed quorum, and cited evidence + contract.\n\n      '\n  authority_boundary:\n    may:\n    - Resolve a seconded, evidenced motion into a decision under a cited contract\n    - Record dissent, minutes, and action items\n    - Route action items to Blackrod (enforcement) without voting power transfer\n    must_not:\n    - Mint, upgrade, or launder math-layer authority\n    - Grant credit without an evidence bundle\n    - Approve without a QuorumWitness (quorum_met)\n    - Approve without citing the governing omega_contract (C8)\n    - Certify a property the submitted evidence did not establish\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - mint_authority\n    - terminalize(\n    - sign_certificate\n    - certify_now(\n    - waive_evidence\n    - waive_quorum\n    - blackrod_votes\n  required_tests:\n  - council_decision_requires_quorum_witness\n  - council_decision_requires_evidence_bundle\n  - council_decision_requires_cited_contract\n  - council_decision_confers_no_math_authority\n  - blackrod_witnesses_but_never_votes_or_counts_to_quorum\n  canonical_invariant: 'A CouncilDecision is credit-bearing only with quorum + evidence\n    + a cited governing contract; it confers no math-layer authority, is witnessed\n    (not voted) by Blackrod, and never certifies a property its evidence did not establish.\n\n    '\n  references:\n  - omega_engine/crates/anomalon_councils/councils/council_governance.md\n  - omega_engine/crates/anomalon_councils/src/governance/meeting.rs (validate_decision,\n    C8)\n  - omega_engine/crates/anomalon_councils/councils/councils.yaml (Rule Prime 0-0)\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_governance_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:governance:council_decision:v1.0.0\",\n  \"title\": \"CouncilDecision\",\n  \"kind\": \"governance_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"05_governance\",\n  \"role\": \"Policy\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"AuthInterface\",\n        \"PolicyContract\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"CertificateSigning\",\n        \"Terminalization\"\n      ],\n      \"required\": []\n    }\n  },\n  \"doctrine\": {\n    \"binding_review_20261014\": \"The declared Rust crate/module is absent from the active Cargo workspace. Withdraw this realization binding; the retained specification has no executable implementation credit from it.\",\n    \"summary\": \"A CouncilDecision is the unit of deliberative governance: a council, meeting on its declared cadence, accepts evidence and resolves a motion into a decision. A decision is credit-bearing ONLY when it carries (1) a QuorumWitness with quorum met, (2) an EvidenceBundle (no evidence ⇒ no credit), and (3) a citation of the omega_contract it is taken under (C8 — a decision with no governing contract is unrouted authority and is refused). Blackrod witnesses a meeting but never votes and never counts toward quorum; enforcement is Blackrod's, deliberation the council's. A council decision confers NO math-layer terminal authority (authority_effect: none); terminal authority arrives only via Pi-sharp + IsAuth, Anomalon-rooted. The decision is governance, not computation.\\n\",\n    \"mathematical_role\": \"The MeetingCat morphism `deliberate : Motion(seconded, evidenced) → Decision` is defined only when the quorum witness is present and quorum_met holds; a credit-bearing (Approved) decision in its image must factor through both an EvidenceBundle reference and a contract citation, else it is rejected by validate_decision. Acceptance of a guardian's report (e.g. Pontius Pilate's contract↔code verdict) is such a decision: the verdict is the evidence; the council's act is to accept and route it, never to certify integrity that the verdict did not establish.\\n\",\n    \"non_role\": [\n      \"Minting or upgrading math-layer authority (arrives only via Pi-sharp + IsAuth)\",\n      \"Signing or wrapping certificates\",\n      \"Terminalizing or executing an operator\",\n      \"Enforcing its own decisions (that is Blackrod's role)\",\n      \"Granting credit without an evidence path\",\n      \"Approving a decision with no cited governing contract\"\n    ],\n    \"llm_boundary_law\": {\n      \"doctrine\": 5,\n      \"text\": \"LLM-generated content carries zero authority in a council decision. LLM output (e.g. a Retinue performance, an advisory draft) is candidate/diagnostic material only; it may inform deliberation but never constitutes evidence authority, quorum, or the decision itself. Decisions are functions of present members, witnessed quorum, and cited evidence + contract.\\n\"\n    },\n    \"authority_boundary\": {\n      \"may\": [\n        \"Resolve a seconded, evidenced motion into a decision under a cited contract\",\n        \"Record dissent, minutes, and action items\",\n        \"Route action items to Blackrod (enforcement) without voting power transfer\"\n      ],\n      \"must_not\": [\n        \"Mint, upgrade, or launder math-layer authority\",\n        \"Grant credit without an evidence bundle\",\n        \"Approve without a QuorumWitness (quorum_met)\",\n        \"Approve without citing the governing omega_contract (C8)\",\n        \"Certify a property the submitted evidence did not establish\"\n      ]\n    },\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"mint_authority\",\n        \"terminalize(\",\n        \"sign_certificate\",\n        \"certify_now(\",\n        \"waive_evidence\",\n        \"waive_quorum\",\n        \"blackrod_votes\"\n      ]\n    },\n    \"required_tests\": [\n      \"council_decision_requires_quorum_witness\",\n      \"council_decision_requires_evidence_bundle\",\n      \"council_decision_requires_cited_contract\",\n      \"council_decision_confers_no_math_authority\",\n      \"blackrod_witnesses_but_never_votes_or_counts_to_quorum\"\n    ],\n    \"canonical_invariant\": \"A CouncilDecision is credit-bearing only with quorum + evidence + a cited governing contract; it confers no math-layer authority, is witnessed (not voted) by Blackrod, and never certifies a property its evidence did not establish.\\n\",\n    \"references\": [\n      \"omega_engine/crates/anomalon_councils/councils/council_governance.md\",\n      \"omega_engine/crates/anomalon_councils/src/governance/meeting.rs (validate_decision, C8)\",\n      \"omega_engine/crates/anomalon_councils/councils/councils.yaml (Rule Prime 0-0)\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_governance_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/governance_council_decision_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "bc83b0584693c35e4a6056aa74c53826d94e2868665b727616dd7a13ac405a22",
+      "bytes": 2243,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/governance_council_decision_v1_0_0_contract.py",
+          "sha256": "345a93d7b3b02ca66311469678d97c97f01438702a6f12f8301f09c038062892"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:governance-council-decision-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/governance_council_decision_v1_0_0_contract.py\",\n    \"sha256\": \"345a93d7b3b02ca66311469678d97c97f01438702a6f12f8301f09c038062892\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:governance-council-decision-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/governance_council_decision_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/governance_council_decision_v1_0_0.contract.yaml": "2082a94da957e660ca8b50ac3cceb3ed40592beef3c348485798395d393c3aa1"
   },

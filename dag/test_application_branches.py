@@ -24,7 +24,8 @@ def test_branches_have_resolved_papers_parents_and_local_source_symbols():
     f = fragment()
     records = [json.loads(line) for line in (ROOT / 'dag/theory_of_finite_qm.jsonl').read_text(encoding='utf-8').splitlines()]
     ids = {r['id'] for r in records}
-    assert len(ids) == len(records) == 397 + len(f["records"])
+    pregenesis_to_wdp = json.loads((ROOT / 'dag/fragments/pregenesis_to_wdp.json').read_text(encoding='utf-8'))
+    assert len(ids) == len(records) == 397 + len(pregenesis_to_wdp['records']) + len(f["records"])
     papers = list((ROOT / 'dag/derivations').rglob('tfq_*.md'))
     paper_ids = ['TFQ-' + re.match(r'tfq_(\d{4})_', p.name)[1] for p in papers]
     assert len(paper_ids) == len(set(paper_ids)) == len(records)

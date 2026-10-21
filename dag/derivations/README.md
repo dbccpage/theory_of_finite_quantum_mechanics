@@ -8,7 +8,7 @@ Every paper declares its parent prerequisites, mathematical statement, exact rat
 
 ## Table of Contents by Stage
 
-### PREGENESIS (22 derivations)
+### PREGENESIS (35 derivations)
 
 Folder: [`01_pregenesis/`](./01_pregenesis/)
 
@@ -36,8 +36,21 @@ Folder: [`01_pregenesis/`](./01_pregenesis/)
 | [`TFQ-0393`](./01_pregenesis/tfq_0393_admitted_root_coproduct.md) | admitted-root-coproduct | `SOURCE_RECORD` | [`TFQ-0392`](./01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md) |
 | [`TFQ-0394`](./01_pregenesis/tfq_0394_primitive_axiom_list_underived.md) | primitive-axiom-list-underived | `OPEN_OBLIGATION` | [`TFQ-0393`](./01_pregenesis/tfq_0393_admitted_root_coproduct.md) |
 | [`TFQ-0395`](./01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md) | law-bearing-cut-not-two-marks | `OPEN_OBLIGATION` | [`TFQ-0394`](./01_pregenesis/tfq_0394_primitive_axiom_list_underived.md) |
+| [`TFQ-0417`](./01_pregenesis/tfq_0417_pregenesis_grammar.md) | pregenesis-grammar | `DEFINITION` | [`TFQ-0362`](./01_pregenesis/tfq_0362_four_host_conditions.md) |
+| [`TFQ-0418`](./01_pregenesis/tfq_0418_no_transition_quiescence.md) | no-transition-quiescence | `DEFINITION` | [`TFQ-0417`](./01_pregenesis/tfq_0417_pregenesis_grammar.md) |
+| [`TFQ-0419`](./01_pregenesis/tfq_0419_successor_not_unique.md) | successor-not-unique | `SOURCE_RECORD` | [`TFQ-0418`](./01_pregenesis/tfq_0418_no_transition_quiescence.md) |
+| [`TFQ-0420`](./01_pregenesis/tfq_0420_repetition_needs_structure.md) | repetition-needs-structure | `SOURCE_RECORD` | [`TFQ-0419`](./01_pregenesis/tfq_0419_successor_not_unique.md) |
+| [`TFQ-0421`](./01_pregenesis/tfq_0421_observational_equivalence.md) | observational-equivalence | `DEFINITION` | [`TFQ-0362`](./01_pregenesis/tfq_0362_four_host_conditions.md) |
+| [`TFQ-0422`](./01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) | presentation-not-expressive-lift | `CONDITIONAL` | [`TFQ-0421`](./01_pregenesis/tfq_0421_observational_equivalence.md) |
+| [`TFQ-0423`](./01_pregenesis/tfq_0423_identity_convention_undecidable.md) | identity-convention-undecidable | `SOURCE_RECORD` | [`TFQ-0422`](./01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) |
+| [`TFQ-0424`](./01_pregenesis/tfq_0424_absence_of_rule_not_identification.md) | absence-of-rule-not-identification | `SOURCE_RECORD` | [`TFQ-0423`](./01_pregenesis/tfq_0423_identity_convention_undecidable.md) |
+| [`TFQ-0425`](./01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md) | forced-separation-lift-not-unique | `SOURCE_RECORD` | [`TFQ-0424`](./01_pregenesis/tfq_0424_absence_of_rule_not_identification.md) |
+| [`TFQ-0426`](./01_pregenesis/tfq_0426_replay_necessity.md) | replay-necessity | `PROVED_LEAN` | [`TFQ-0364`](./01_pregenesis/tfq_0364_three_trial_record_bound.md) |
+| [`TFQ-0427`](./01_pregenesis/tfq_0427_context_fidelity.md) | context-fidelity | `OPEN_OBLIGATION` | [`TFQ-0426`](./01_pregenesis/tfq_0426_replay_necessity.md) |
+| [`TFQ-0428`](./01_pregenesis/tfq_0428_admission_before_distinction.md) | admission-before-distinction | `SOURCE_RECORD` | [`TFQ-0364`](./01_pregenesis/tfq_0364_three_trial_record_bound.md) |
+| [`TFQ-0429`](./01_pregenesis/tfq_0429_bundled_extension_refused.md) | bundled-extension-refused | `SOURCE_RECORD` | [`TFQ-0428`](./01_pregenesis/tfq_0428_admission_before_distinction.md) |
 
-### GENESIS (17 derivations)
+### GENESIS (92 derivations)
 
 Folder: [`02_genesis/`](./02_genesis/)
 
@@ -60,6 +73,81 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0390`](./02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md) | rewriting-and-persistence-reconcile | `OPEN_OBLIGATION` | [`TFQ-0389`](./02_genesis/tfq_0389_fewest_changes_formula.md) |
 | [`TFQ-0391`](./02_genesis/tfq_0391_sameness_refinement_ledgers.md) | sameness-refinement-ledgers | `OPEN_OBLIGATION` | [`TFQ-0390`](./02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md) |
 | [`TFQ-0396`](./02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md) | sealed-tag-to-carrier-gap | `GAP` | [`TFQ-0395`](./01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md) |
+| [`TFQ-0430`](./02_genesis/tfq_0430_metatheory_object_language_split.md) | metatheory-object-language-split | `DEFINITION` | [`TFQ-0002`](./02_genesis/tfq_0002_genesis_regime_events_as_a_separate_admission_record.md) |
+| [`TFQ-0431`](./02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md) | regime-isomorphism-unordered-pairs | `DEFINITION` | [`TFQ-0430`](./02_genesis/tfq_0430_metatheory_object_language_split.md) |
+| [`TFQ-0432`](./02_genesis/tfq_0432_challenge0_inertia_second_token.md) | challenge0-inertia-second-token | `PROVED_LEAN` | [`TFQ-0430`](./02_genesis/tfq_0430_metatheory_object_language_split.md) |
+| [`TFQ-0433`](./02_genesis/tfq_0433_contexts_plugging_profiles.md) | contexts-plugging-profiles | `DEFINITION` | [`TFQ-0431`](./02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md) |
+| [`TFQ-0434`](./02_genesis/tfq_0434_collapse_without_instances.md) | collapse-without-instances | `PROVED_LEAN` | [`TFQ-0433`](./02_genesis/tfq_0433_contexts_plugging_profiles.md) |
+| [`TFQ-0435`](./02_genesis/tfq_0435_challenge2_admitted_but_collapsed.md) | challenge2-admitted-but-collapsed | `PROVED_LEAN` | [`TFQ-0380`](./02_genesis/tfq_0380_readings_left_unselected.md) |
+| [`TFQ-0436`](./02_genesis/tfq_0436_context_count_formula.md) | context-count-formula | `PROVED_LEAN` | [`TFQ-0433`](./02_genesis/tfq_0433_contexts_plugging_profiles.md) |
+| [`TFQ-0437`](./02_genesis/tfq_0437_collection_extensionality.md) | collection-extensionality | `PROVED_LEAN` | [`TFQ-0433`](./02_genesis/tfq_0433_contexts_plugging_profiles.md) |
+| [`TFQ-0438`](./02_genesis/tfq_0438_responses_costs_mu1_mu2.md) | responses-costs-mu1-mu2 | `DEFINITION` | [`TFQ-0433`](./02_genesis/tfq_0433_contexts_plugging_profiles.md) |
+| [`TFQ-0439`](./02_genesis/tfq_0439_challenge3_current_regime_fails.md) | challenge3-current-regime-fails | `PROVED_LEAN` | [`TFQ-0435`](./02_genesis/tfq_0435_challenge2_admitted_but_collapsed.md) |
+| [`TFQ-0440`](./02_genesis/tfq_0440_mu1_minimum_not_unique_l.md) | mu1-minimum-not-unique-l | `PROVED_LEAN` | [`TFQ-0439`](./02_genesis/tfq_0439_challenge3_current_regime_fails.md) |
+| [`TFQ-0441`](./02_genesis/tfq_0441_mu1_arity_indexed_tie_family.md) | mu1-arity-indexed-tie-family | `PROVED_LEAN` | [`TFQ-0440`](./02_genesis/tfq_0440_mu1_minimum_not_unique_l.md) |
+| [`TFQ-0442`](./02_genesis/tfq_0442_bounded_tie_census.md) | bounded-tie-census | `SOURCE_RECORD` | [`TFQ-0440`](./02_genesis/tfq_0440_mu1_minimum_not_unique_l.md) |
+| [`TFQ-0443`](./02_genesis/tfq_0443_challenge_source_policies.md) | challenge-source-policies | `DEFINITION` | [`TFQ-0382`](./02_genesis/tfq_0382_refined_minimum_class.md) |
+| [`TFQ-0444`](./02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md) | orbit-branching-repairs-least-pair | `PROVED_LEAN` | [`TFQ-0443`](./02_genesis/tfq_0443_challenge_source_policies.md) |
+| [`TFQ-0445`](./02_genesis/tfq_0445_response_existence_mark_progress.md) | response-existence-mark-progress | `PROVED_LEAN` | [`TFQ-0444`](./02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md) |
+| [`TFQ-0446`](./02_genesis/tfq_0446_pruning_lemmas_cost_two.md) | pruning-lemmas-cost-two | `PROVED_LEAN` | [`TFQ-0445`](./02_genesis/tfq_0445_response_existence_mark_progress.md) |
+| [`TFQ-0447`](./02_genesis/tfq_0447_count_invariance_transport.md) | count-invariance-transport | `PROVED_LEAN` | [`TFQ-0444`](./02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md) |
+| [`TFQ-0448`](./02_genesis/tfq_0448_branch_trees_and_roles.md) | branch-trees-and-roles | `SOURCE_RECORD` | [`TFQ-0446`](./02_genesis/tfq_0446_pruning_lemmas_cost_two.md) |
+| [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) | closed-baseline-terminates | `SOURCE_RECORD` | [`TFQ-0383`](./02_genesis/tfq_0383_closure_round_inequality.md) |
+| [`TFQ-0450`](./02_genesis/tfq_0450_policy_endpoint_all_separated.md) | policy-endpoint-all-separated | `PROVED_LEAN` | [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) |
+| [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) | no-endogenous-demand-generator | `SOURCE_RECORD` | [`TFQ-0450`](./02_genesis/tfq_0450_policy_endpoint_all_separated.md) |
+| [`TFQ-0452`](./02_genesis/tfq_0452_identity_is_index_not_profile.md) | identity-is-index-not-profile | `SOURCE_RECORD` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
+| [`TFQ-0453`](./02_genesis/tfq_0453_minimal_or_initial_refused.md) | minimal-or-initial-refused | `SOURCE_RECORD` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
+| [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) | sealed-terminal-statement | `SOURCE_RECORD` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
+| [`TFQ-0455`](./02_genesis/tfq_0455_d2_initial_pointed.md) | d2-initial-pointed | `PROVED_LEAN` | [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) |
+| [`TFQ-0456`](./02_genesis/tfq_0456_five_presentation_questions.md) | five-presentation-questions | `DEFINITION` | [`TFQ-0455`](./02_genesis/tfq_0455_d2_initial_pointed.md) |
+| [`TFQ-0457`](./02_genesis/tfq_0457_quotient_retention.md) | quotient-retention | `PROVED_LEAN` | [`TFQ-0456`](./02_genesis/tfq_0456_five_presentation_questions.md) |
+| [`TFQ-0458`](./02_genesis/tfq_0458_faithful_descent_round_trip.md) | faithful-descent-round-trip | `PROVED_LEAN` | [`TFQ-0457`](./02_genesis/tfq_0457_quotient_retention.md) |
+| [`TFQ-0459`](./02_genesis/tfq_0459_canonical_key_classification.md) | canonical-key-classification | `PROVED_LEAN` | [`TFQ-0431`](./02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md) |
+| [`TFQ-0460`](./02_genesis/tfq_0460_incidence_construction_betti.md) | incidence-construction-betti | `SOURCE_RECORD` | [`TFQ-0455`](./02_genesis/tfq_0455_d2_initial_pointed.md) |
+| [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) | genesis-three-axis-verdict | `SOURCE_RECORD` | [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) |
+| [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) | rung0-inheritance-replay | `SOURCE_RECORD` | [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) |
+| [`TFQ-0463`](./02_genesis/tfq_0463_rung1_stream_as_response.md) | rung1-stream-as-response | `OPEN_OBLIGATION` | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) |
+| [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) | rung2a-stake-declared-label | `SOURCE_RECORD` | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) |
+| [`TFQ-0465`](./02_genesis/tfq_0465_rung2b_stake_menu.md) | rung2b-stake-menu | `SOURCE_RECORD` | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) |
+| [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) | rung3-first-demand-index | `SOURCE_RECORD` | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) |
+| [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) | rung4-index-up-to-isomorphism | `SOURCE_RECORD` | [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) |
+| [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) | rung5-symmetry-along-history | `SOURCE_RECORD` | [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) |
+| [`TFQ-0469`](./02_genesis/tfq_0469_rung6_succession_element_count.md) | rung6-succession-element-count | `SOURCE_RECORD` | [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) |
+| [`TFQ-0470`](./02_genesis/tfq_0470_rung7_duration_under_changing.md) | rung7-duration-under-changing | `SOURCE_RECORD` | [`TFQ-0469`](./02_genesis/tfq_0469_rung6_succession_element_count.md) |
+| [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) | rung8-element-count-across-iso | `SOURCE_RECORD` | [`TFQ-0470`](./02_genesis/tfq_0470_rung7_duration_under_changing.md) |
+| [`TFQ-0472`](./02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) | rung9-two-ness-observational-classes | `SOURCE_RECORD` | [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) |
+| [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) | rung10-responder-adjacency-reach | `SOURCE_RECORD` | [`TFQ-0472`](./02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) |
+| [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) | c1-engine-class-144 | `SOURCE_RECORD` | [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) |
+| [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) | c2-run-forward-every-history | `PROVED_LEAN` | [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) |
+| [`TFQ-0476`](./02_genesis/tfq_0476_forced_census_column.md) | forced-census-column | `SOURCE_RECORD` | [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) |
+| [`TFQ-0477`](./02_genesis/tfq_0477_go_reach_ceiling.md) | go-reach-ceiling | `PROVED_LEAN` | [`TFQ-0389`](./02_genesis/tfq_0389_fewest_changes_formula.md) |
+| [`TFQ-0478`](./02_genesis/tfq_0478_go_contraction_step2_step3.md) | go-contraction-step2-step3 | `PROVED_LEAN` | [`TFQ-0477`](./02_genesis/tfq_0477_go_reach_ceiling.md) |
+| [`TFQ-0479`](./02_genesis/tfq_0479_go_multiplicity_monotone.md) | go-multiplicity-monotone | `PROVED_LEAN` | [`TFQ-0478`](./02_genesis/tfq_0478_go_contraction_step2_step3.md) |
+| [`TFQ-0480`](./02_genesis/tfq_0480_go_two_relations_swap.md) | go-two-relations-swap | `PROVED_LEAN` | [`TFQ-0479`](./02_genesis/tfq_0479_go_multiplicity_monotone.md) |
+| [`TFQ-0481`](./02_genesis/tfq_0481_go_admission_gate.md) | go-admission-gate | `SOURCE_RECORD` | [`TFQ-0480`](./02_genesis/tfq_0480_go_two_relations_swap.md) |
+| [`TFQ-0482`](./02_genesis/tfq_0482_go_leftover_unboundedness.md) | go-leftover-unboundedness | `PROVED_LEAN` | [`TFQ-0481`](./02_genesis/tfq_0481_go_admission_gate.md) |
+| [`TFQ-0483`](./02_genesis/tfq_0483_go_h1_cancellation_excess.md) | go-h1-cancellation-excess | `PROVED_LEAN` | [`TFQ-0482`](./02_genesis/tfq_0482_go_leftover_unboundedness.md) |
+| [`TFQ-0484`](./02_genesis/tfq_0484_go_h2_state_raising_gauge.md) | go-h2-state-raising-gauge | `SOURCE_RECORD` | [`TFQ-0483`](./02_genesis/tfq_0483_go_h1_cancellation_excess.md) |
+| [`TFQ-0485`](./02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md) | go-h3-twin-fills-holonomy | `PROVED_LEAN` | [`TFQ-0484`](./02_genesis/tfq_0484_go_h2_state_raising_gauge.md) |
+| [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) | genesis-freeze-endpoint-ledger | `SOURCE_RECORD` | [`TFQ-0476`](./02_genesis/tfq_0476_forced_census_column.md) |
+| [`TFQ-0487`](./02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md) | endogenous-demands-exogenous-payments | `SOURCE_RECORD` | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) |
+| [`TFQ-0488`](./02_genesis/tfq_0488_declared_challenge_import_per_level.md) | declared-challenge-import-per-level | `DEFINITION` | [`TFQ-0487`](./02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md) |
+| [`TFQ-0489`](./02_genesis/tfq_0489_typed_requirement_kinds.md) | typed-requirement-kinds | `DEFINITION` | [`TFQ-0488`](./02_genesis/tfq_0488_declared_challenge_import_per_level.md) |
+| [`TFQ-0490`](./02_genesis/tfq_0490_k_item_delta_grammar.md) | k-item-delta-grammar | `OPEN_OBLIGATION` | [`TFQ-0488`](./02_genesis/tfq_0488_declared_challenge_import_per_level.md) |
+| [`TFQ-0491`](./02_genesis/tfq_0491_capability_stage_counter.md) | capability-stage-counter | `DEFINITION` | [`TFQ-0488`](./02_genesis/tfq_0488_declared_challenge_import_per_level.md) |
+| [`TFQ-0492`](./02_genesis/tfq_0492_candidate_extension_generator.md) | candidate-extension-generator | `DEFINITION` | [`TFQ-0488`](./02_genesis/tfq_0488_declared_challenge_import_per_level.md) |
+| [`TFQ-0493`](./02_genesis/tfq_0493_four_gate_active_obstruction.md) | four-gate-active-obstruction | `DEFINITION` | [`TFQ-0492`](./02_genesis/tfq_0492_candidate_extension_generator.md) |
+| [`TFQ-0494`](./02_genesis/tfq_0494_stage_change_contract_proposal_record.md) | stage-change-contract-proposal-record | `SOURCE_RECORD` | [`TFQ-0493`](./02_genesis/tfq_0493_four_gate_active_obstruction.md) |
+| [`TFQ-0495`](./02_genesis/tfq_0495_genesis_to_sn_crosswalk.md) | genesis-to-sn-crosswalk | `DEFINITION` | [`TFQ-0494`](./02_genesis/tfq_0494_stage_change_contract_proposal_record.md) |
+| [`TFQ-0496`](./02_genesis/tfq_0496_responder_in_lean.md) | responder-in-lean | `OPEN_OBLIGATION` | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) |
+| [`TFQ-0497`](./02_genesis/tfq_0497_context_decision_procedure.md) | context-decision-procedure | `OPEN_OBLIGATION` | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) |
+| [`TFQ-0498`](./02_genesis/tfq_0498_declared_input_floor.md) | declared-input-floor | `OPEN_OBLIGATION` | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) |
+| [`TFQ-0499`](./02_genesis/tfq_0499_python_lean_carrier_bridge.md) | python-lean-carrier-bridge | `OPEN_OBLIGATION` | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) |
+| [`TFQ-0500`](./02_genesis/tfq_0500_isomorphism_soundness_in_lean.md) | isomorphism-soundness-in-lean | `OPEN_OBLIGATION` | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) |
+| [`TFQ-0501`](./02_genesis/tfq_0501_runs_past_declared_bounds.md) | runs-past-declared-bounds | `OPEN_OBLIGATION` | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) |
+| [`TFQ-0502`](./02_genesis/tfq_0502_stream_at_four_items.md) | stream-at-four-items | `OPEN_OBLIGATION` | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) |
+| [`TFQ-0503`](./02_genesis/tfq_0503_driver_b_seventh_event.md) | driver-b-seventh-event | `OPEN_OBLIGATION` | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) |
+| [`TFQ-0504`](./02_genesis/tfq_0504_endogenous_demand_ob1.md) | endogenous-demand-ob1 | `OPEN_OBLIGATION` | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) |
 
 ### FINITE_OBSTRUCTION (9 derivations)
 
@@ -77,7 +165,7 @@ Folder: [`03_finite_obstruction/`](./03_finite_obstruction/)
 | [`TFQ-0325`](./03_finite_obstruction/tfq_0325_do_not_treat_the_primitive_difference_walk_as_paper_0_and_do.md) | Do not treat the Primitive Difference walk as Paper 0, and do | `OPEN_OBLIGATION` | [`TFQ-0324`](./03_finite_obstruction/tfq_0324_distinguish_a_fiber_preserving_descended_map_from_a_selected_representative_and_retain_the.md) |
 | [`TFQ-0326`](./03_finite_obstruction/tfq_0326_import_the_finite_obstruction_host_only_after_the_2_truncated_cochain_quotient_and.md) | Import the finite obstruction host only after the 2-truncated cochain, quotient, and | `OPEN_OBLIGATION` | [`TFQ-0325`](./03_finite_obstruction/tfq_0325_do_not_treat_the_primitive_difference_walk_as_paper_0_and_do.md) |
 
-### AUTHORIZATION (6 derivations)
+### AUTHORIZATION (11 derivations)
 
 Folder: [`04_authorization/`](./04_authorization/)
 
@@ -89,8 +177,13 @@ Folder: [`04_authorization/`](./04_authorization/)
 | [`TFQ-0330`](./04_authorization/tfq_0330_terminalize_only_as_authorized_rejected_unresolved_refused_or_not_admitted_and_do.md) | Terminalize only as authorized, rejected, unresolved, refused, or not admitted, and do | `OPEN_OBLIGATION` | [`TFQ-0329`](./04_authorization/tfq_0329_keep_authorization_free_of_a_forced_external_host_and_keep_the_seven_flag.md) |
 | [`TFQ-0331`](./04_authorization/tfq_0331_attach_a_replay_packet_to_a_named_terminal_without_letting_the_packet.md) | Attach a replay packet to a named terminal without letting the packet | `SOURCE_RECORD` | [`TFQ-0330`](./04_authorization/tfq_0330_terminalize_only_as_authorized_rejected_unresolved_refused_or_not_admitted_and_do.md) |
 | [`TFQ-0332`](./04_authorization/tfq_0332_hold_the_paper_0_report_erasure_boundary_as_a_supplied_factorization_and_leave.md) | Hold the Paper 0 report-erasure boundary as a supplied factorization, and leave | `OPEN_OBLIGATION` | [`TFQ-0331`](./04_authorization/tfq_0331_attach_a_replay_packet_to_a_named_terminal_without_letting_the_packet.md) |
+| [`TFQ-0505`](./04_authorization/tfq_0505_alpha_license_binding_m1_m8.md) | alpha-license-binding-m1-m8 | `SOURCE_RECORD` | [`TFQ-0331`](./04_authorization/tfq_0331_attach_a_replay_packet_to_a_named_terminal_without_letting_the_packet.md) |
+| [`TFQ-0506`](./04_authorization/tfq_0506_pfp_tripartite_law.md) | pfp-tripartite-law | `DEFINITION` | [`TFQ-0505`](./04_authorization/tfq_0505_alpha_license_binding_m1_m8.md) |
+| [`TFQ-0507`](./04_authorization/tfq_0507_pfp_carrier_origin_nilpotency.md) | pfp-carrier-origin-nilpotency | `PROVED_LEAN` | [`TFQ-0506`](./04_authorization/tfq_0506_pfp_tripartite_law.md) |
+| [`TFQ-0508`](./04_authorization/tfq_0508_pfp_stealth_cochain_phi1_gamma2.md) | pfp-stealth-cochain-phi1-gamma2 | `DEFINITION` | [`TFQ-0507`](./04_authorization/tfq_0507_pfp_carrier_origin_nilpotency.md) |
+| [`TFQ-0509`](./04_authorization/tfq_0509_pfp_c4_certificate.md) | pfp-c4-certificate | `SOURCE_RECORD` | [`TFQ-0508`](./04_authorization/tfq_0508_pfp_stealth_cochain_phi1_gamma2.md) |
 
-### MSSN_SN (8 derivations)
+### MSSN_SN (34 derivations)
 
 Folder: [`05_mssn_sn/`](./05_mssn_sn/)
 
@@ -104,8 +197,34 @@ Folder: [`05_mssn_sn/`](./05_mssn_sn/)
 | [`TFQ-0338`](./05_mssn_sn/tfq_0338_descend_a_question_to_the_realized_report_image_exactly_when_it_is.md) | Descend a question to the realized report image exactly when it is | `SOURCE_RECORD` | [`TFQ-0337`](./05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md) |
 | [`TFQ-0341`](./05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md) | Refuse unrestricted old-image recovery and the advertised SnCarrier cardinalities until a | `OPEN_OBLIGATION` | [`TFQ-0335`](./05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md) |
 | [`TFQ-0342`](./05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md) | Do not treat Genesis events or S(n) maps as obligation-monoid morphisms until | `GAP` | [`TFQ-0341`](./05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md) |
+| [`TFQ-0510`](./05_mssn_sn/tfq_0510_sn_two_boxed_laws.md) | sn-two-boxed-laws | `DEFINITION` | [`TFQ-0495`](./02_genesis/tfq_0495_genesis_to_sn_crosswalk.md) |
+| [`TFQ-0511`](./05_mssn_sn/tfq_0511_sn0_ground_inertia.md) | sn0-ground-inertia | `PROVED_LEAN` | [`TFQ-0510`](./05_mssn_sn/tfq_0510_sn_two_boxed_laws.md) |
+| [`TFQ-0512`](./05_mssn_sn/tfq_0512_sn1_supply_not_admission.md) | sn1-supply-not-admission | `SOURCE_RECORD` | [`TFQ-0511`](./05_mssn_sn/tfq_0511_sn0_ground_inertia.md) |
+| [`TFQ-0513`](./05_mssn_sn/tfq_0513_sn2_opaque_collapse.md) | sn2-opaque-collapse | `SOURCE_RECORD` | [`TFQ-0512`](./05_mssn_sn/tfq_0512_sn1_supply_not_admission.md) |
+| [`TFQ-0514`](./05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md) | sn3-cost-two-unary-mark | `SOURCE_RECORD` | [`TFQ-0513`](./05_mssn_sn/tfq_0513_sn2_opaque_collapse.md) |
+| [`TFQ-0515`](./05_mssn_sn/tfq_0515_sn_endpoint_lemma.md) | sn-endpoint-lemma | `PROVED_LEAN` | [`TFQ-0514`](./05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md) |
+| [`TFQ-0516`](./05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md) | sn4-policy-closure-cycle-space | `SOURCE_RECORD` | [`TFQ-0514`](./05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md) |
+| [`TFQ-0517`](./05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md) | sn5-continuation-recorded-request | `SOURCE_RECORD` | [`TFQ-0516`](./05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md) |
+| [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) | sn-off-image-refusal-proposal | `SOURCE_RECORD` | [`TFQ-0517`](./05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md) |
+| [`TFQ-0519`](./05_mssn_sn/tfq_0519_sn_protected_answer_transport.md) | sn-protected-answer-transport | `OPEN_OBLIGATION` | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) |
+| [`TFQ-0520`](./05_mssn_sn/tfq_0520_sn_postnikov_refusal.md) | sn-postnikov-refusal | `SOURCE_RECORD` | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) |
+| [`TFQ-0521`](./05_mssn_sn/tfq_0521_sn_representation_quotient.md) | sn-representation-quotient | `SOURCE_RECORD` | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) |
+| [`TFQ-0522`](./05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md) | sn-e08-weighted-l1-duality | `SOURCE_RECORD` | [`TFQ-0516`](./05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md) |
+| [`TFQ-0523`](./05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md) | sn-e12-circulation-functional | `SOURCE_RECORD` | [`TFQ-0522`](./05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md) |
+| [`TFQ-0524`](./05_mssn_sn/tfq_0524_sn_e18_l1_ties_l2_center.md) | sn-e18-l1-ties-l2-center | `SOURCE_RECORD` | [`TFQ-0522`](./05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md) |
+| [`TFQ-0525`](./05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md) | sn-e19-torsion-erased-over-q | `SOURCE_RECORD` | [`TFQ-0523`](./05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md) |
+| [`TFQ-0526`](./05_mssn_sn/tfq_0526_sn_e20_observer_completion.md) | sn-e20-observer-completion | `SOURCE_RECORD` | [`TFQ-0523`](./05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md) |
+| [`TFQ-0527`](./05_mssn_sn/tfq_0527_sn_e21_repair_rank.md) | sn-e21-repair-rank | `SOURCE_RECORD` | [`TFQ-0523`](./05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md) |
+| [`TFQ-0528`](./05_mssn_sn/tfq_0528_mssn_atlas_not_derivation.md) | mssn-atlas-not-derivation | `DEFINITION` | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) |
+| [`TFQ-0529`](./05_mssn_sn/tfq_0529_mssn_ascent_triad.md) | mssn-ascent-triad | `DEFINITION` | [`TFQ-0528`](./05_mssn_sn/tfq_0528_mssn_atlas_not_derivation.md) |
+| [`TFQ-0530`](./05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md) | mssn-alphabet-declarations | `DEFINITION` | [`TFQ-0529`](./05_mssn_sn/tfq_0529_mssn_ascent_triad.md) |
+| [`TFQ-0531`](./05_mssn_sn/tfq_0531_mssn_many_readings.md) | mssn-many-readings | `DEFINITION` | [`TFQ-0530`](./05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md) |
+| [`TFQ-0532`](./05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md) | mssn-syntax-not-decoding | `DEFINITION` | [`TFQ-0531`](./05_mssn_sn/tfq_0531_mssn_many_readings.md) |
+| [`TFQ-0533`](./05_mssn_sn/tfq_0533_mssn_rows_1_to_6_specified.md) | mssn-rows-1-to-6-specified | `SOURCE_RECORD` | [`TFQ-0532`](./05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md) |
+| [`TFQ-0534`](./05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md) | mssn-circulation-obstruction | `PROVED_LEAN` | [`TFQ-0533`](./05_mssn_sn/tfq_0533_mssn_rows_1_to_6_specified.md) |
+| [`TFQ-0535`](./05_mssn_sn/tfq_0535_mssn_l1_cuts_hodge_rows.md) | mssn-l1-cuts-hodge-rows | `SOURCE_RECORD` | [`TFQ-0534`](./05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md) |
 
-### WDP (10 derivations)
+### WDP (33 derivations)
 
 Folder: [`06_wdp/`](./06_wdp/)
 
@@ -121,6 +240,29 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0347`](./06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md) | Keep ExactClass, ClosedResidual, and ActiveClosureFailure off the routing terminal, and leave | `OPEN_OBLIGATION` | [`TFQ-0345`](./06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md) |
 | [`TFQ-0348`](./06_wdp/tfq_0348_certify_a_rational_phi1_value_by_a_bounded_circulation_that_meets_a.md) | Certify a rational Phi1 value by a bounded circulation that meets a | `SOURCE_RECORD` | [`TFQ-0345`](./06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md) |
 | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) | Supply the admitted cut (X, E, tau, K) as data, and do | `SOURCE_RECORD` | [`TFQ-0343`](./06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md) |
+| [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) | wdp-failed-sameness | `SOURCE_RECORD` | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) |
+| [`TFQ-0537`](./06_wdp/tfq_0537_wdp_pointed_apartness.md) | wdp-pointed-apartness | `PROVED_LEAN` | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) |
+| [`TFQ-0538`](./06_wdp/tfq_0538_wdp_quotient_defect_root_p.md) | wdp-quotient-defect-root-p | `DEFINITION` | [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) |
+| [`TFQ-0539`](./06_wdp/tfq_0539_wdp_seven_witness_roles.md) | wdp-seven-witness-roles | `DEFINITION` | [`TFQ-0538`](./06_wdp/tfq_0538_wdp_quotient_defect_root_p.md) |
+| [`TFQ-0540`](./06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md) | wdp-asymmetry-injection-ledger | `DEFINITION` | [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) |
+| [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) | wdp-retention-packet | `DEFINITION` | [`TFQ-0539`](./06_wdp/tfq_0539_wdp_seven_witness_roles.md) |
+| [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) | wdp-graph-cochain-host | `DEFINITION` | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) |
+| [`TFQ-0543`](./06_wdp/tfq_0543_wdp_incidence_orientation_transport.md) | wdp-incidence-orientation-transport | `OPEN_OBLIGATION` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
+| [`TFQ-0544`](./06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md) | wdp-phi-well-defined-l1-duality | `CONDITIONAL` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
+| [`TFQ-0545`](./06_wdp/tfq_0545_wdp_closure_needs_degree.md) | wdp-closure-needs-degree | `DEFINITION` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
+| [`TFQ-0546`](./06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md) | wdp-exact-sequence-h1-q1 | `PROVED_LEAN` | [`TFQ-0004`](./06_wdp/tfq_0004_witnessed_difference_degree_1_window.md) |
+| [`TFQ-0547`](./06_wdp/tfq_0547_wdp_trichotomy_bounds.md) | wdp-trichotomy-bounds | `SOURCE_RECORD` | [`TFQ-0546`](./06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md) |
+| [`TFQ-0548`](./06_wdp/tfq_0548_wdp_filled_triangle.md) | wdp-filled-triangle | `PROVED_LEAN` | [`TFQ-0348`](./06_wdp/tfq_0348_certify_a_rational_phi1_value_by_a_bounded_circulation_that_meets_a.md) |
+| [`TFQ-0549`](./06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md) | wdp-degree-k-torsion-balance | `SOURCE_RECORD` | [`TFQ-0004`](./06_wdp/tfq_0004_witnessed_difference_degree_1_window.md) |
+| [`TFQ-0550`](./06_wdp/tfq_0550_wdp_succession_strict_order.md) | wdp-succession-strict-order | `DEFINITION` | [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) |
+| [`TFQ-0551`](./06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md) | wdp-duration-exactness-period-witness | `DEFINITION` | [`TFQ-0550`](./06_wdp/tfq_0550_wdp_succession_strict_order.md) |
+| [`TFQ-0552`](./06_wdp/tfq_0552_wdp_finite_valuations.md) | wdp-finite-valuations | `DEFINITION` | [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) |
+| [`TFQ-0553`](./06_wdp/tfq_0553_wdp_observer_quotient_passivity.md) | wdp-observer-quotient-passivity | `DEFINITION` | [`TFQ-0339`](./06_wdp/tfq_0339_preserve_a_protected_answer_exactly_on_report_fibers_and_do_not_derive.md) |
+| [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) | wdp-genesis-bridges-ledger | `SOURCE_RECORD` | [`TFQ-0553`](./06_wdp/tfq_0553_wdp_observer_quotient_passivity.md) |
+| [`TFQ-0555`](./06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md) | wdp-bridge-ongoing-to-window | `OPEN_OBLIGATION` | [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) |
+| [`TFQ-0556`](./06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md) | wdp-bridge-report-fiber-observer | `CONDITIONAL` | [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) |
+| [`TFQ-0557`](./06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md) | wdp-synthesis-trunk-tiers | `SOURCE_RECORD` | [`TFQ-0556`](./06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md) |
+| [`TFQ-0558`](./06_wdp/tfq_0558_wdp_handoff_to_l1.md) | wdp-handoff-to-l1 | `OPEN_OBLIGATION` | [`TFQ-0557`](./06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md) |
 
 ### L1_EMERGENCE (12 derivations)
 
@@ -565,6 +707,22 @@ Folder: [`23_engine_custody/`](./23_engine_custody/)
 | [`TFQ-0231`](./23_engine_custody/tfq_0231_python_runtime_landings_are_surveys.md) | Python runtime landings are surveys | `SOURCE_RECORD` | [`TFQ-0230`](./23_engine_custody/tfq_0230_the_finite_qm_deposit_is_a_cited_corpus.md) |
 | [`TFQ-0232`](./23_engine_custody/tfq_0232_runtime_crate_catalogs_are_not_theorems.md) | Runtime-crate catalogs are not theorems | `SOURCE_RECORD` | [`TFQ-0231`](./23_engine_custody/tfq_0231_python_runtime_landings_are_surveys.md) |
 | [`TFQ-0233`](./23_engine_custody/tfq_0233_engine_use_notes_keep_leftover_marks.md) | Engine use notes keep leftover marks | `OPEN_OBLIGATION` | [`TFQ-0232`](./23_engine_custody/tfq_0232_runtime_crate_catalogs_are_not_theorems.md) |
+
+<!-- pregenesis-to-wdp:pinned-children:begin -->
+
+### Pre-genesis to WDP route
+
+The [route index](./PREGENESIS_TO_WDP_ROUTE.md) lists every paper from `<>` through Genesis, its expansion, S(n), MSS-N and WDP in reading order.
+
+### Children recorded for custody-pinned papers
+
+Section 4 of a custody-pinned paper is not rewritten. These children name it as parent.
+
+| Pinned parent | Child |
+|---|---|
+| [`TFQ-0389`](./02_genesis/tfq_0389_fewest_changes_formula.md) | [`TFQ-0477`](./02_genesis/tfq_0477_go_reach_ceiling.md) |
+
+<!-- pregenesis-to-wdp:pinned-children:end -->
 
 <!-- application-branches: generated from fragments/application_branches.json -->
 

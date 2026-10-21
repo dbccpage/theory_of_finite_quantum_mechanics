@@ -1,0 +1,104 @@
+schema_version: 1
+problem_id: UQM-25
+title: Mach-Zehnder interference and loss of coherence
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  coherent: A0=(1+exp(i phi))/2; A1=(1-exp(i phi))/2; P0=(1+cos phi)/2; P1=(1-cos phi)/2
+  fixture: P0=4/5; P1=1/5
+  dephased: P0=P1=1/2 independent of phi
+derivation:
+- step: 1
+  explanation: The first B sends |0> to (|0>+|1>)/sqrt(2). The phase element multiplies only the second
+    path, producing (1,exp(i phi))/sqrt(2). Both path populations remain one half.
+- step: 2
+  explanation: The second B adds and subtracts the two incoming amplitudes. Its normalization combines
+    with the first to give output amplitudes (1+exp(i phi))/2 and (1-exp(i phi))/2.
+- step: 3
+  explanation: Expanding their squared moduli gives (1+cos phi)/2 and (1-cos phi)/2. The cross terms have
+    opposite signs and cancel in the total probability, while redistributing intensity between ports.
+- step: 4
+  explanation: At the rational unit phase 3/5+4i/5 the probabilities are 4/5 and 1/5. At phi=0 the chosen
+    convention makes port zero bright; at phi=pi it makes port one bright.
+- step: 5
+  explanation: Before the second B, complete dephasing replaces the pure density matrix by diag(1/2,1/2)=I/2.
+    Any unitary preserves this matrix, so both ports are equally likely and the phase dependence disappears.
+- step: 6
+  explanation: The existing Lean interference theorem expands a square of two integer real amplitudes.
+    It explains the algebraic origin of a cross term, but it is not itself a theorem about this full complex,
+    normalized interferometer. The complex code provides the concrete calculation here.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Construct the complex phase and both amplitudes with existing Gaussian arithmetic.
+    - Take squared moduli only after adding the paths.
+    - For dephasing, add the two exclusive path contributions as probabilities.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          phase=G(q(3,5),q(4,5)); a0=(G(1)+phase)/G(2); a1=(G(1)-phase)/G(2)
+          p0,p1=a0.norm_sq(),a1.norm_sq()
+          dephased=q(1,2)*q(1,2)+q(1,2)*q(1,2)
+          return {"phase_norm":str(phase.norm_sq()),"coherent_p0":str(p0),"coherent_p1":str(p1),
+                  "total":str(p0+p1),"dephased_p0":str(dephased),"dephased_p1":str(dephased)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Use existing checked addition, subtraction and division on GaussianRational.
+    - Reuse the same phase in both output ports.
+    - Compare coherent amplitude addition with incoherent probability addition.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let phase=G::new(qr(3,5).unwrap(),qr(4,5).unwrap()).unwrap(); let one=G::from_integers(1,0); let two=G::from_integers(2,0);
+          let a0=one.try_add(&phase).unwrap().try_div(&two).unwrap(); let a1=one.try_sub(&phase).unwrap().try_div(&two).unwrap();
+          let p0=a0.norm_sq(); let p1=a1.norm_sq(); let half=qr(1,2).unwrap(); let dephased=&half*&half+&half*&half;
+          json!({"phase_norm":phase.norm_sq().to_string(),"coherent_p0":p0.to_string(),"coherent_p1":p1.to_string(),
+              "total":(&p0+&p1).to_string(),"dephased_p0":dephased.to_string(),"dephased_p1":dephased.to_string()})
+      }
+verification:
+  expected_outputs:
+    phase_norm: '1'
+    coherent_p0: 4/5
+    coherent_p1: 1/5
+    total: '1'
+    dephased_p0: 1/2
+    dephased_p1: 1/2
+  computational_scope: Exact complex amplitude propagation for one phase and the fully dephased port probabilities.
+  not_established:
+  - The physical dephasing process and arbitrary continuous phase control are model assumptions.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: existing_theorem_referenced
+  references:
+  - path: lean4/Superposition.lean
+    symbol: beam_splitter_interference_expansion
+    scope: An integer real-amplitude identity (c0+c1)^2=c0^2+c1^2+2c0c1. It does not establish normalized
+      complex interferometer dynamics.
+  boundary: The cited statement supports only the scope written above. The verification report records
+    compilation separately from the analytic solution.
+common_pitfalls:
+- Adding path probabilities before recombination erases interference.
+- Changing beam-splitter phase conventions can interchange bright and dark port labels.
+improvement_target:
+  gap: A parameterized coherence channel is not exercised by the scalar example.
+  acceptance_criterion: Extend the existing channel tools to test intermediate coherence factors and verify
+    complete positivity and trace preservation.

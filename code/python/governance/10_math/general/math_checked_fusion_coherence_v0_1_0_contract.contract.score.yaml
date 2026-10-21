@@ -98,12 +98,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "31035d73bffcbfd96c7cf936b3c3fe7caca376f6359a4645fcb190a3b46fdb25",
-  "current_scoring": null,
+  "current_contract": "c01d691e64c9a5dea082633ec0abe1f70e2c28b304d3de4f4ecbdfbedf360152",
+  "current_scoring": "1985cad29014e9e801d0fc888151bb5fd43915dc8de3d6dbe9570b4dd987c03f",
   "contract_history": [
     {
-      "sha256": "31035d73bffcbfd96c7cf936b3c3fe7caca376f6359a4645fcb190a3b46fdb25",
-      "bytes": 3507,
+      "sha256": "c01d691e64c9a5dea082633ec0abe1f70e2c28b304d3de4f4ecbdfbedf360152",
+      "bytes": 3990,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:checked_fusion_coherence:v0.1.0",
@@ -200,13 +200,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:checked_fusion_coherence:v0.1.0\ntitle: Bounded Exact Fusion Coherence\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: checked_fusion_coherence\n  symbol: checked_fusion_coherence\n  ascii_symbol: checked_fusion_coherence\n  notation: Bounded Exact Fusion Coherence\n  domain:\n  - A checked multiplicity-free fusion ring and exact associator coefficients, within\n    explicit aggregate storage and replay limits.\n  codomain:\n    description: Declared finite results of omega_fusion_categories::fusion_category;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Every pentagon matrix element on admissible four-fold fusion paths is checked exactly;\n  all other label tuples have both sides zero.\n- Full label traversal, F/inverse storage, possible defect records, pentagon scalar\n  calls and both hexagon scalar-call bounds are admitted before coefficient generation.\n- Sparse traversal preserves lexicographic first-defect labels and agrees with the\n  independently specified nontrivial Z2 defect.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_fusion_categories\n  module: fusion_category\n  symbols:\n  - FSymbols\n  - FusionCategory\n  - DEFAULT_CATEGORY_LIMITS\n  required_tests:\n  - generic_category_admission_bounds_storage_and_law_work_before_coefficients\n  - pointed_rank32_replays_every_pentagon_without_dense_label_products\n  - the_pentagon_defect_reports_the_first_tuple_and_both_sides\nnegative_tests:\n- Tight storage or law-work admission refuses before invoking a coefficient callback.\n- Unbounded ring rank is not substituted for an operation budget.\ndoctrine:\n  summary: Every pentagon matrix element on admissible four-fold fusion paths is checked\n    exactly; all other label tuples have both sides zero.; Full label traversal, F/inverse\n    storage, possible defect records, pentagon scalar calls and both hexagon scalar-call\n    bounds are admitted before coefficient generation.; Sparse traversal preserves\n    lexicographic first-defect labels and agrees with the independently specified\n    nontrivial Z2 defect..\n  non_role:\n  - No PROVED, GlobalGreen, customer claim, or operational authority.\n  - Resource refusal does not assert failure of a mathematical law or infiniteness\n    of a closure.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:checked_fusion_coherence:v0.1.0\",\n  \"title\": \"Bounded Exact Fusion Coherence\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"checked_fusion_coherence\",\n    \"symbol\": \"checked_fusion_coherence\",\n    \"ascii_symbol\": \"checked_fusion_coherence\",\n    \"notation\": \"Bounded Exact Fusion Coherence\",\n    \"domain\": [\n      \"A checked multiplicity-free fusion ring and exact associator coefficients, within explicit aggregate storage and replay limits.\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_fusion_categories::fusion_category; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Every pentagon matrix element on admissible four-fold fusion paths is checked exactly; all other label tuples have both sides zero.\",\n    \"Full label traversal, F/inverse storage, possible defect records, pentagon scalar calls and both hexagon scalar-call bounds are admitted before coefficient generation.\",\n    \"Sparse traversal preserves lexicographic first-defect labels and agrees with the independently specified nontrivial Z2 defect.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_fusion_categories\",\n    \"module\": \"fusion_category\",\n    \"symbols\": [\n      \"FSymbols\",\n      \"FusionCategory\",\n      \"DEFAULT_CATEGORY_LIMITS\"\n    ],\n    \"required_tests\": [\n      \"generic_category_admission_bounds_storage_and_law_work_before_coefficients\",\n      \"pointed_rank32_replays_every_pentagon_without_dense_label_products\",\n      \"the_pentagon_defect_reports_the_first_tuple_and_both_sides\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Tight storage or law-work admission refuses before invoking a coefficient callback.\",\n    \"Unbounded ring rank is not substituted for an operation budget.\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Every pentagon matrix element on admissible four-fold fusion paths is checked exactly; all other label tuples have both sides zero.; Full label traversal, F/inverse storage, possible defect records, pentagon scalar calls and both hexagon scalar-call bounds are admitted before coefficient generation.; Sparse traversal preserves lexicographic first-defect labels and agrees with the independently specified nontrivial Z2 defect..\",\n    \"non_role\": [\n      \"No PROVED, GlobalGreen, customer claim, or operational authority.\",\n      \"Resource refusal does not assert failure of a mathematical law or infiniteness of a closure.\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_checked_fusion_coherence_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "1985cad29014e9e801d0fc888151bb5fd43915dc8de3d6dbe9570b4dd987c03f",
+      "bytes": 2245,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_checked_fusion_coherence_v0_1_0_contract.py",
+          "sha256": "b76d92c1802bbd39ca3dffe7c53fbcb92521378323f5b7d74b1a18fdb254dbc8"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-checked-fusion-coherence-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_checked_fusion_coherence_v0_1_0_contract.py\",\n    \"sha256\": \"b76d92c1802bbd39ca3dffe7c53fbcb92521378323f5b7d74b1a18fdb254dbc8\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-checked-fusion-coherence-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_checked_fusion_coherence_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_checked_fusion_coherence_v0_1_0.contract.yaml": "31035d73bffcbfd96c7cf936b3c3fe7caca376f6359a4645fcb190a3b46fdb25"
   },

@@ -3,86 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.contract.v2",
-    "contract_id": "urn:omega:packet:symbol_game:coda_evaluate_request_v1:v1.0.0",
-    "title": "CODA Evaluate Request v1",
-    "kind": "packet_contract",
-    "layer": "40_packets",
-    "role": "PacketSpecification",
-    "status": "active",
-    "council_owner": "L3_logos_techne",
-    "descriptor": {
-      "authority_effect": "None",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": true,
-      "clean_architecture_layer": "domain",
-      "refusals": {
-        "may_emit": [
-          "FW-UNKNOWN-FIELD",
-          "FW-DUPLICATE-KEY"
-        ]
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0_contract.py",
+      "sha256": "eec70f98d1f7ead83aed36c433cb871539a866d2ede85f742f983f8a5ab34f7c"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:40_packets:packet-symbol-game-coda-evaluate-request-v1-v1-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:packet:symbol_game:coda_evaluate_request_v1:v1.0.0 Schema Version: omega.contract.v2",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    },
-    "doctrine": {
-      "summary": "CodaEvaluateRequestV1, the request payload for the coda_evaluate runtime action.",
-      "invariants": [
-        "The shape declared here is the shape in coda.rs, enforced at compile time by an exhaustive destructure.",
-        "Denies unknown fields and rejects floats at the wire."
-      ],
-      "non_roles": [
-        "authority_source"
-      ],
-      "required_negative_capabilities": [
-        "no_self_certification"
-      ]
-    },
-    "structure": {
-      "rust_crate": "omega_symbol_game",
-      "rust_module": "coda",
-      "rust_type": "CodaEvaluateRequestV1",
-      "form": "struct",
-      "serde": {
-        "deny_unknown_fields": true
-      },
-      "fields": [
-        {
-          "name": "input_id"
-        },
-        {
-          "name": "sieve_non_empty"
-        },
-        {
-          "name": "refinement_consistent"
-        },
-        {
-          "name": "gluing_succeeded"
-        },
-        {
-          "name": "phi1_distance"
-        },
-        {
-          "name": "gamma2_distance"
-        },
-        {
-          "name": "license_granted"
-        },
-        {
-          "name": "budget"
-        }
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "75a550c60c9c96af3a1bfb7124ebfce26b4359bdb75718ddbb6ecd67f2af6ab0",
-  "current_scoring": null,
+  "current_contract": "942e5de0f544a540d19c497abeb4421b66fd2168589f5217d5f9dd3721f8cb0d",
+  "current_scoring": "cf18fc23c2bba88e9c54db66767801ff6a45206f973dbc687538532f33169cbd",
   "contract_history": [
     {
-      "sha256": "75a550c60c9c96af3a1bfb7124ebfce26b4359bdb75718ddbb6ecd67f2af6ab0",
-      "bytes": 1271,
+      "sha256": "4fa53f45036eb972069685bca0055bd49b13fa3ba3ffd2470bdf342c34e05bab",
+      "bytes": 1761,
       "record": {
         "schema_version": "omega.contract.v2",
         "contract_id": "urn:omega:packet:symbol_game:coda_evaluate_request_v1:v1.0.0",
@@ -158,13 +110,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:coda_evaluate_request_v1:v1.0.0\ntitle: CODA Evaluate Request v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: CodaEvaluateRequestV1, the request payload for the coda_evaluate runtime\n    action.\n  invariants:\n  - The shape declared here is the shape in coda.rs, enforced at compile time by an\n    exhaustive destructure.\n  - Denies unknown fields and rejects floats at the wire.\n  non_roles:\n  - authority_source\n  required_negative_capabilities:\n  - no_self_certification\nstructure:\n  rust_crate: omega_symbol_game\n  rust_module: coda\n  rust_type: CodaEvaluateRequestV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: input_id\n  - name: sieve_non_empty\n  - name: refinement_consistent\n  - name: gluing_succeeded\n  - name: phi1_distance\n  - name: gamma2_distance\n  - name: license_granted\n  - name: budget\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v2\",\n  \"contract_id\": \"urn:omega:packet:symbol_game:coda_evaluate_request_v1:v1.0.0\",\n  \"title\": \"CODA Evaluate Request v1\",\n  \"kind\": \"packet_contract\",\n  \"layer\": \"40_packets\",\n  \"role\": \"PacketSpecification\",\n  \"status\": \"active\",\n  \"council_owner\": \"L3_logos_techne\",\n  \"descriptor\": {\n    \"authority_effect\": \"None\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": true,\n    \"clean_architecture_layer\": \"domain\",\n    \"refusals\": {\n      \"may_emit\": [\n        \"FW-UNKNOWN-FIELD\",\n        \"FW-DUPLICATE-KEY\"\n      ]\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"CodaEvaluateRequestV1, the request payload for the coda_evaluate runtime action.\",\n    \"invariants\": [\n      \"The shape declared here is the shape in coda.rs, enforced at compile time by an exhaustive destructure.\",\n      \"Denies unknown fields and rejects floats at the wire.\"\n    ],\n    \"non_roles\": [\n      \"authority_source\"\n    ],\n    \"required_negative_capabilities\": [\n      \"no_self_certification\"\n    ]\n  },\n  \"structure\": {\n    \"rust_crate\": \"omega_symbol_game\",\n    \"rust_module\": \"coda\",\n    \"rust_type\": \"CodaEvaluateRequestV1\",\n    \"form\": \"struct\",\n    \"serde\": {\n      \"deny_unknown_fields\": true\n    },\n    \"fields\": [\n      {\n        \"name\": \"input_id\"\n      },\n      {\n        \"name\": \"sieve_non_empty\"\n      },\n      {\n        \"name\": \"refinement_consistent\"\n      },\n      {\n        \"name\": \"gluing_succeeded\"\n      },\n      {\n        \"name\": \"phi1_distance\"\n      },\n      {\n        \"name\": \"gamma2_distance\"\n      },\n      {\n        \"name\": \"license_granted\"\n      },\n      {\n        \"name\": \"budget\"\n      }\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "942e5de0f544a540d19c497abeb4421b66fd2168589f5217d5f9dd3721f8cb0d",
+      "bytes": 1894,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0_contract.py",
+          "sha256": "eec70f98d1f7ead83aed36c433cb871539a866d2ede85f742f983f8a5ab34f7c"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:40_packets:packet-symbol-game-coda-evaluate-request-v1-v1-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:packet:symbol_game:coda_evaluate_request_v1:v1.0.0 Schema Version: omega.contract.v2",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0_contract.py\",\n    \"sha256\": \"eec70f98d1f7ead83aed36c433cb871539a866d2ede85f742f983f8a5ab34f7c\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:40_packets:packet-symbol-game-coda-evaluate-request-v1-v1-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:packet:symbol_game:coda_evaluate_request_v1:v1.0.0 Schema Version: omega.contract.v2\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "cf18fc23c2bba88e9c54db66767801ff6a45206f973dbc687538532f33169cbd",
+      "bytes": 2271,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0_contract.py",
+          "sha256": "eec70f98d1f7ead83aed36c433cb871539a866d2ede85f742f983f8a5ab34f7c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:40_packets:packet-symbol-game-coda-evaluate-request-v1-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0_contract.py\",\n    \"sha256\": \"eec70f98d1f7ead83aed36c433cb871539a866d2ede85f742f983f8a5ab34f7c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:packet-symbol-game-coda-evaluate-request-v1-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_request_v1_v1_0_0.contract.yaml": "75a550c60c9c96af3a1bfb7124ebfce26b4359bdb75718ddbb6ecd67f2af6ab0"
   },

@@ -1,0 +1,102 @@
+schema_version: 1
+problem_id: UQM-15
+title: Three Stern-Gerlach filters
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  direct: P(-z|+z)=0
+  three_filters: P(+x then -z | +z)=1/4; P(-z | +x passed)=1/2; P(+x | +z)=1/2
+derivation:
+- step: 1
+  explanation: The initial vector is (1,0). The -z projector is diag(0,1), so applying it directly produces
+    the zero vector. Orthogonal outcomes cannot pass successively without an intervening state change.
+- step: 2
+  explanation: The +x projector is one half times [[1,1],[1,1]]. Applied to |+z> it gives (1/2,1/2), whose
+    squared norm is 1/2. This vector is deliberately left unnormalized to retain the probability of the
+    first success.
+- step: 3
+  explanation: Now apply the -z projector to obtain (0,1/2). Its squared norm is 1/4, the joint success
+    probability for the two selected outcomes relative to the original beam.
+- step: 4
+  explanation: Conditioning on passage through +x divides by its probability 1/2. The normalized intermediate
+    state is |+x>, and its -z outcome probability is (1/4)/(1/2)=1/2.
+- step: 5
+  explanation: Inserting a measurement changes the state. This is not evidence that a classical blocked
+    path was secretly open; it follows from the different product of noncommuting projectors. For an initially
+    unpolarized beam an additional initial +z selection would halve the overall input-beam fraction.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    - path: code/python/src/linear_algebra/matrix.py
+      symbols:
+      - ExactMatrix
+    walkthrough:
+    - Multiply the existing exact projectors into the state in physical order.
+    - Compute norms before normalization.
+    - Divide joint by pass_x only at the conditional-probability step.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      from src.linear_algebra.matrix import ExactMatrix
+      def solve():
+          px=ExactMatrix.from_rows([[q(1,2),q(1,2)],[q(1,2),q(1,2)]])
+          pzminus=ExactMatrix.from_rows([[0,0],[0,1]])
+          state=[q(1),q(0)]; mid=px.mul_vec(state); final=pzminus.mul_vec(mid)
+          passed=sum(x*x for x in mid); joint=sum(x*x for x in final)
+          return {"direct":str(sum(x*x for x in pzminus.mul_vec(state))),"pass_x":str(passed),
+                  "joint":str(joint),"conditional_minus_z":str(joint/passed)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Expand each projector action in two exact scalar components.
+    - Retain the unnormalized intermediate vector.
+    - Compute branch weight and conditional fraction from the same vector.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let input=[q(1),q(0)]; let mid=[(&input[0]+&input[1])/q(2),(&input[0]+&input[1])/q(2)];
+          let passed=&mid[0]*&mid[0]+&mid[1]*&mid[1]; let joint=&mid[1]*&mid[1];
+          json!({"direct":(&input[1]*&input[1]).to_string(),"pass_x":passed.to_string(),
+              "joint":joint.to_string(),"conditional_minus_z":(&joint/&passed).to_string()})
+      }
+verification:
+  expected_outputs:
+    direct: '0'
+    pass_x: 1/2
+    joint: 1/4
+    conditional_minus_z: 1/2
+  computational_scope: Actual sequential projector action and conditioning for this prepared spin state.
+  not_established:
+  - Real apparatus efficiency and imperfect spin filtering are outside the ideal model.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: existing_theorem_referenced
+  references:
+  - path: lean4/FiniteQM.lean
+    symbol: stern_gerlach_three_filter_regeneration_and_rabi_cayley_step
+    scope: The fixed zero direct probability and the product (1/2)(1/2)=1/4; the general measurement postulate
+      is not derived there.
+  boundary: The cited statement supports only the scope written above. The verification report records
+    compilation separately from the analytic solution.
+common_pitfalls:
+- Renormalizing after the first filter without retaining its success probability loses the joint fraction.
+- The initial beam is already +z polarized.
+improvement_target:
+  gap: A general measurement-chain API should retain both state and branch weight.
+  acceptance_criterion: Verify joint and conditional outputs separately, including zero-probability branches.

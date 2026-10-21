@@ -247,6 +247,28 @@ fn square_bool(certificate: &Value) -> Result<bool> {
         .as_bool()
         .ok_or_else(|| "IS_SQUARE_BOOLEAN_REQUIRED".into())
 }
+fn classify_quartic_cyclic(square: bool, cyclic: Option<(bool, bool)>) -> Result<(&'static str, u64)> {
+    if square {
+        return Err("RESOLVENT_DISCRIMINANT_CONTRADICTION".into());
+    }
+    let (first, second) = cyclic.ok_or("CYCLIC_TESTS_REQUIRED")?;
+    Ok(if first && second { ("C4", 4) } else { ("D4", 8) })
+}
+
+fn classify_quartic(
+    square: bool,
+    pattern: &[u64],
+    cyclic: Option<(bool, bool)>,
+) -> Result<(&'static str, u64)> {
+    match pattern {
+        [3] => Ok(if square { ("A4", 12) } else { ("S4", 24) }),
+        [1, 1, 1] if square => Ok(("V4", 4)),
+        [1, 2] => classify_quartic_cyclic(square, cyclic),
+        [1, 1, 1] => Err("RESOLVENT_DISCRIMINANT_CONTRADICTION".into()),
+        _ => Err("RESOLVENT_FACTOR_PATTERN_INVALID".into()),
+    }
+}
+
 fn classify(
     degree: usize,
     square: bool,
@@ -256,20 +278,40 @@ fn classify(
     if degree == 3 {
         return Ok(if square { ("C3", 3) } else { ("S3", 6) });
     }
-    match pattern {
-        [3] => Ok(if square { ("A4", 12) } else { ("S4", 24) }),
-        [1, 1, 1] if square => Ok(("V4", 4)),
-        [1, 2] if !square => {
-            let (first, second) = cyclic.ok_or("CYCLIC_TESTS_REQUIRED")?;
-            Ok(if first && second {
-                ("C4", 4)
-            } else {
-                ("D4", 8)
-            })
-        }
-        [1, 1, 1] | [1, 2] => Err("RESOLVENT_DISCRIMINANT_CONTRADICTION".into()),
-        _ => Err("RESOLVENT_FACTOR_PATTERN_INVALID".into()),
+    classify_quartic(square, pattern, cyclic)
+}
+
+fn compute_quartic_resolution(
+    n: u64,
+    p: &[E],
+    d: u64,
+    delta: &E,
+) -> Result<(Value, Vec<u64>, Option<(bool, bool)>)> {
+    let r = resolvent(p, d);
+    let r_factors = factor(n, &r)?;
+    let (degrees, root) = pattern(&r_factors, d)?;
+    let mut tests = Value::Null;
+    let mut cyclic = None;
+    if let Some(root) = &root {
+        let (u, v) = cyclic_values(p, delta, root, d);
+        let first = squares::square_certificate(n, &u.wire())?;
+        let second = squares::square_certificate(n, &v.wire())?;
+        cyclic = Some((square_bool(&first)?, square_bool(&second)?));
+        tests = json!({
+            "first_value": u.wire(),
+            "first_square": first,
+            "second_value": v.wire(),
+            "second_square": second,
+        });
     }
+    let resolution = json!({
+        "coefficients": wire(&r),
+        "factorization": r_factors,
+        "factor_degrees": degrees,
+        "root": root.as_ref().map(E::wire),
+        "cyclic_tests": tests,
+    });
+    Ok((resolution, degrees, cyclic))
 }
 
 pub fn irreducible_splitting_degree(n: u64, coefficients: &Value) -> Result<Value> {
@@ -283,35 +325,30 @@ pub fn irreducible_splitting_degree(n: u64, coefficients: &Value) -> Result<Valu
         return Err("ZERO_DISCRIMINANT".into());
     }
     let disc_square = squares::square_certificate(n, &delta.wire())?;
-    let mut resolution = Value::Null;
-    let mut degrees = Vec::new();
-    let mut cyclic = None;
-    if p.len() == 5 {
-        let r = resolvent(p, d);
-        let r_factors = factor(n, &r)?;
-        let (pattern, root) = pattern(&r_factors, d)?;
-        degrees = pattern;
-        let mut tests = Value::Null;
-        if let Some(root) = &root {
-            let (u, v) = cyclic_values(p, &delta, root, d);
-            let first = squares::square_certificate(n, &u.wire())?;
-            let second = squares::square_certificate(n, &v.wire())?;
-            cyclic = Some((square_bool(&first)?, square_bool(&second)?));
-            tests = json!({"first_value":u.wire(),"first_square":first,"second_value":v.wire(),"second_square":second});
-        }
-        resolution = json!({"coefficients":wire(&r),"factorization":r_factors,"factor_degrees":degrees,
-            "root":root.as_ref().map(E::wire),"cyclic_tests":tests});
-    }
+    let (resolution, degrees, cyclic) = if p.len() == 5 {
+        compute_quartic_resolution(n, p, d, &delta)?
+    } else {
+        (Value::Null, Vec::new(), None)
+    };
     let (group, degree) = classify(p.len() - 1, square_bool(&disc_square)?, &degrees, cyclic)?;
-    Ok(
-        json!({"schema":"real_field_splitting_degree_v1","authority_effect":"None",
-        "algorithm":"EXACT_CUBIC_QUARTIC_RESOLVENT_CLASSIFICATION","conductor":n,
-        "real_generator_radicand":d,"coefficient_field":input.name,
-        "degree_over_real_field":degree,"galois_group":group,"coefficients":wire(&input.original),
-        "monic_polynomial":wire(p),"factorization":factorization,"discriminant":delta.wire(),
-        "discriminant_square":disc_square,"resolvent":resolution}),
-    )
+    Ok(json!({
+        "schema": "real_field_splitting_degree_v1",
+        "authority_effect": "None",
+        "algorithm": "EXACT_CUBIC_QUARTIC_RESOLVENT_CLASSIFICATION",
+        "conductor": n,
+        "real_generator_radicand": d,
+        "coefficient_field": input.name,
+        "degree_over_real_field": degree,
+        "galois_group": group,
+        "coefficients": wire(&input.original),
+        "monic_polynomial": wire(p),
+        "factorization": factorization,
+        "discriminant": delta.wire(),
+        "discriminant_square": disc_square,
+        "resolvent": resolution,
+    }))
 }
+
 fn exact_fields(value: &Value, keys: &[&str]) -> Result<()> {
     let map = value.as_object().ok_or("OBJECT_REQUIRED")?;
     if map.len() != keys.len() || keys.iter().any(|key| !map.contains_key(*key)) {
@@ -319,6 +356,7 @@ fn exact_fields(value: &Value, keys: &[&str]) -> Result<()> {
     }
     Ok(())
 }
+
 pub fn evaluate_request(request: &Value) -> Result<Value> {
     exact_fields(request, &["operation", "conductor", "coefficients"])?;
     if request["operation"] != "irreducible_splitting_degree" {
@@ -329,10 +367,24 @@ pub fn evaluate_request(request: &Value) -> Result<Value> {
         .ok_or("INTEGER_CONDUCTOR_REQUIRED")?;
     irreducible_splitting_degree(n, &request["coefficients"])
 }
-pub fn validate_splitting_degree(n: u64, coefficients: &Value, result: &Value) -> Result<()> {
-    let input = input(n, coefficients)?;
-    let p = &input.monic;
-    let d = input.d;
+
+fn check_splitting_header(n: u64, input: &Input, result: &Value) -> Result<()> {
+    if result["schema"] != "real_field_splitting_degree_v1"
+        || result["authority_effect"] != "None"
+        || result["algorithm"] != "EXACT_CUBIC_QUARTIC_RESOLVENT_CLASSIFICATION"
+    {
+        return Err("SPLITTING_METADATA_MISMATCH".into());
+    }
+    if result["conductor"].as_u64() != Some(n)
+        || result["real_generator_radicand"].as_u64() != Some(input.d)
+        || result["coefficient_field"] != input.name
+    {
+        return Err("SPLITTING_METADATA_MISMATCH".into());
+    }
+    Ok(())
+}
+
+fn validate_splitting_metadata(n: u64, input: &Input, result: &Value) -> Result<()> {
     exact_fields(
         result,
         &[
@@ -352,111 +404,174 @@ pub fn validate_splitting_degree(n: u64, coefficients: &Value, result: &Value) -
             "resolvent",
         ],
     )?;
-    if result["schema"] != "real_field_splitting_degree_v1"
-        || result["authority_effect"] != "None"
-        || result["algorithm"] != "EXACT_CUBIC_QUARTIC_RESOLVENT_CLASSIFICATION"
-        || result["conductor"].as_u64() != Some(n)
-        || result["real_generator_radicand"].as_u64() != Some(d)
-        || result["coefficient_field"] != input.name
-    {
-        return Err("SPLITTING_METADATA_MISMATCH".into());
-    }
-    if polynomial(&result["coefficients"], d)? != input.original {
+    check_splitting_header(n, input, result)?;
+    if polynomial(&result["coefficients"], input.d)? != input.original {
         return Err("SPLITTING_INPUT_BINDING_MISMATCH".into());
     }
-    if polynomial(&result["monic_polynomial"], d)? != *p {
+    if polynomial(&result["monic_polynomial"], input.d)? != input.monic {
         return Err("MONIC_POLYNOMIAL_MISMATCH".into());
     }
+    Ok(())
+}
+
+fn validate_polynomial_invariants(n: u64, input: &Input, result: &Value) -> Result<E> {
     factors::validate_factorization(n, &wire(&input.original), &result["factorization"])?;
-    irreducible(&result["factorization"], p, d)?;
-    let delta = discriminant(p, d);
+    irreducible(&result["factorization"], &input.monic, input.d)?;
+    let delta = discriminant(&input.monic, input.d);
     if delta.is_zero() {
         return Err("ZERO_DISCRIMINANT".into());
     }
-    if element(&result["discriminant"], d)? != delta {
+    if element(&result["discriminant"], input.d)? != delta {
         return Err("DISCRIMINANT_MISMATCH".into());
     }
     squares::verify_square_certificate(n, &delta.wire(), &result["discriminant_square"])?;
-    let mut degrees = Vec::new();
-    let mut cyclic = None;
+    Ok(delta)
+}
+
+fn verify_cyclic_tests(
+    n: u64,
+    p: &[E],
+    d: u64,
+    delta: &E,
+    root: &E,
+    supplied: &Value,
+) -> Result<Option<(bool, bool)>> {
+    let tests = &supplied["cyclic_tests"];
+    exact_fields(
+        tests,
+        &[
+            "first_value",
+            "first_square",
+            "second_value",
+            "second_square",
+        ],
+    )?;
+    let (u, v) = cyclic_values(p, delta, root, d);
+    if element(&tests["first_value"], d)? != u {
+        return Err("CYCLIC_FIRST_VALUE_MISMATCH".into());
+    }
+    if element(&tests["second_value"], d)? != v {
+        return Err("CYCLIC_SECOND_VALUE_MISMATCH".into());
+    }
+    squares::verify_square_certificate(n, &u.wire(), &tests["first_square"])?;
+    squares::verify_square_certificate(n, &v.wire(), &tests["second_square"])?;
+    Ok(Some((
+        square_bool(&tests["first_square"])?,
+        square_bool(&tests["second_square"])?,
+    )))
+}
+
+fn validate_resolvent_degrees(supplied: &Value, degrees: &[u64]) -> Result<()> {
+    let claimed = supplied["factor_degrees"]
+        .as_array()
+        .ok_or("RESOLVENT_FACTOR_DEGREES_REQUIRED")?;
+    if claimed.len() != degrees.len()
+        || claimed
+            .iter()
+            .zip(degrees)
+            .any(|(a, b)| a.as_u64() != Some(*b))
+    {
+        return Err("RESOLVENT_FACTOR_DEGREES_MISMATCH".into());
+    }
+    Ok(())
+}
+
+fn validate_resolvent_root_and_cyclic(
+    n: u64,
+    p: &[E],
+    d: u64,
+    delta: &E,
+    root: Option<E>,
+    supplied: &Value,
+) -> Result<Option<(bool, bool)>> {
+    if let Some(root) = root {
+        if element(&supplied["root"], d)? != root {
+            return Err("RESOLVENT_ROOT_MISMATCH".into());
+        }
+        verify_cyclic_tests(n, p, d, delta, &root, supplied)
+    } else {
+        if !supplied["root"].is_null() || !supplied["cyclic_tests"].is_null() {
+            return Err("UNUSED_RESOLVENT_WITNESSES_MUST_BE_NULL".into());
+        }
+        Ok(None)
+    }
+}
+
+fn validate_quartic_resolvent(
+    n: u64,
+    p: &[E],
+    d: u64,
+    delta: &E,
+    result: &Value,
+) -> Result<(Vec<u64>, Option<(bool, bool)>)> {
     if p.len() == 4 {
         if !result["resolvent"].is_null() {
             return Err("CUBIC_RESOLVENT_MUST_BE_NULL".into());
         }
-    } else {
-        let supplied = &result["resolvent"];
-        exact_fields(
-            supplied,
-            &[
-                "coefficients",
-                "factorization",
-                "factor_degrees",
-                "root",
-                "cyclic_tests",
-            ],
-        )?;
-        let r = resolvent(p, d);
-        if polynomial(&supplied["coefficients"], d)? != r {
-            return Err("RESOLVENT_POLYNOMIAL_MISMATCH".into());
-        }
-        factors::validate_factorization(n, &wire(&r), &supplied["factorization"])?;
-        let (pattern, root) = pattern(&supplied["factorization"], d)?;
-        degrees = pattern;
-        let claimed = supplied["factor_degrees"]
-            .as_array()
-            .ok_or("RESOLVENT_FACTOR_DEGREES_REQUIRED")?;
-        if claimed.len() != degrees.len()
-            || claimed
-                .iter()
-                .zip(&degrees)
-                .any(|(a, b)| a.as_u64() != Some(*b))
-        {
-            return Err("RESOLVENT_FACTOR_DEGREES_MISMATCH".into());
-        }
-        if let Some(root) = root {
-            if element(&supplied["root"], d)? != root {
-                return Err("RESOLVENT_ROOT_MISMATCH".into());
-            }
-            let tests = &supplied["cyclic_tests"];
-            exact_fields(
-                tests,
-                &[
-                    "first_value",
-                    "first_square",
-                    "second_value",
-                    "second_square",
-                ],
-            )?;
-            let (u, v) = cyclic_values(p, &delta, &root, d);
-            if element(&tests["first_value"], d)? != u {
-                return Err("CYCLIC_FIRST_VALUE_MISMATCH".into());
-            }
-            if element(&tests["second_value"], d)? != v {
-                return Err("CYCLIC_SECOND_VALUE_MISMATCH".into());
-            }
-            squares::verify_square_certificate(n, &u.wire(), &tests["first_square"])?;
-            squares::verify_square_certificate(n, &v.wire(), &tests["second_square"])?;
-            cyclic = Some((
-                square_bool(&tests["first_square"])?,
-                square_bool(&tests["second_square"])?,
-            ));
-        } else if !supplied["root"].is_null() || !supplied["cyclic_tests"].is_null() {
-            return Err("UNUSED_RESOLVENT_WITNESSES_MUST_BE_NULL".into());
-        }
+        return Ok((Vec::new(), None));
     }
-    let (group, degree) = classify(
-        p.len() - 1,
+    let supplied = &result["resolvent"];
+    exact_fields(
+        supplied,
+        &[
+            "coefficients",
+            "factorization",
+            "factor_degrees",
+            "root",
+            "cyclic_tests",
+        ],
+    )?;
+    let r = resolvent(p, d);
+    if polynomial(&supplied["coefficients"], d)? != r {
+        return Err("RESOLVENT_POLYNOMIAL_MISMATCH".into());
+    }
+    factors::validate_factorization(n, &wire(&r), &supplied["factorization"])?;
+    let (degrees, root) = pattern(&supplied["factorization"], d)?;
+    validate_resolvent_degrees(supplied, &degrees)?;
+    let cyclic = validate_resolvent_root_and_cyclic(n, p, d, delta, root, supplied)?;
+    Ok((degrees, cyclic))
+}
+
+fn validate_galois_output(
+    degree: usize,
+    result: &Value,
+    degrees: &[u64],
+    cyclic: Option<(bool, bool)>,
+) -> Result<()> {
+    let (group, deg) = classify(
+        degree,
         square_bool(&result["discriminant_square"])?,
-        &degrees,
+        degrees,
         cyclic,
     )?;
     if result["galois_group"] != group {
         return Err("GALOIS_GROUP_MISMATCH".into());
     }
-    if result["degree_over_real_field"].as_u64() != Some(degree) {
+    if result["degree_over_real_field"].as_u64() != Some(deg) {
         return Err("REAL_SPLITTING_DEGREE_MISMATCH".into());
     }
     Ok(())
+}
+
+pub fn validate_splitting_degree(n: u64, coefficients: &Value, result: &Value) -> Result<()> {
+    let input = input(n, coefficients)?;
+    validate_splitting_metadata(n, &input, result)?;
+    let delta = validate_polynomial_invariants(n, &input, result)?;
+    let (degrees, cyclic) = validate_quartic_resolvent(n, &input.monic, input.d, &delta, result)?;
+    validate_galois_output(input.monic.len() - 1, result, &degrees, cyclic)
+}
+
+#[cfg(test)]
+fn pairwise_self_join(qs: &[Q]) -> BigInt {
+    let mut value = BigInt::zero();
+    for (i, a) in qs.iter().enumerate() {
+        for (j, b) in qs.iter().enumerate() {
+            if i != j {
+                value += a.numer() * b.denom();
+            }
+        }
+    }
+    value
 }
 
 #[cfg(test)]
@@ -468,14 +583,7 @@ pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
         .map(rational)
         .collect::<Result<Vec<_>>>()?;
     if self_join {
-        let mut value = BigInt::zero();
-        for (i, a) in qs.iter().enumerate() {
-            for (j, b) in qs.iter().enumerate() {
-                if i != j {
-                    value += a.numer() * b.denom();
-                }
-            }
-        }
+        let value = pairwise_self_join(&qs);
         return Ok(json!(qwire(&Q::from_integer(value))));
     }
     let terms = qs
@@ -483,6 +591,16 @@ pub fn fold_control(terms: &Value, self_join: bool) -> Result<Value> {
         .map(|a| E { a, b: Q::zero() })
         .collect::<Vec<_>>();
     Ok(json!(qwire(&sum(&terms).a)))
+}
+
+fn scan_number(bytes: &[u8], mut i: usize) -> Result<usize> {
+    while i < bytes.len() && matches!(bytes[i], b'0'..=b'9' | b'+' | b'-' | b'.' | b'e' | b'E') {
+        if matches!(bytes[i], b'.' | b'e' | b'E') {
+            return Err("RAW_INEXACT_JSON_NUMBER".into());
+        }
+        i += 1;
+    }
+    Ok(i)
 }
 
 fn raw_number_admission(input: &str) -> Result<()> {
@@ -505,15 +623,7 @@ fn raw_number_admission(input: &str) -> Result<()> {
             quoted = true;
             i += 1;
         } else if matches!(byte, b'-' | b'0'..=b'9') {
-            i += 1;
-            while i < bytes.len()
-                && matches!(bytes[i], b'0'..=b'9' | b'+' | b'-' | b'.' | b'e' | b'E')
-            {
-                if matches!(bytes[i], b'.' | b'e' | b'E') {
-                    return Err("RAW_INEXACT_JSON_NUMBER".into());
-                }
-                i += 1;
-            }
+            i = scan_number(bytes, i + 1)?;
         } else {
             i += 1;
         }

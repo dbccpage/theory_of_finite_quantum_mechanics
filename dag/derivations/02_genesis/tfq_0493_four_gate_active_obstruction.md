@@ -1,0 +1,57 @@
+# [TFQ-0493] four-gate-active-obstruction
+
+> **Stage**: `GENESIS` | **Status**: `DEFINITION`  
+> **UUID**: `4d46dc1e-1af7-5eb6-8ecc-df675e9be6c0`  
+> **Parent Derivation**: [TFQ-0492](tfq_0492_candidate_extension_generator.md)
+
+---
+
+## 1. Abstract & Formal Statement
+
+Declared here as the test a residual must pass before it counts as an active obstruction: obstP = retainedP ∧ protectedP ∧ declaredP ∧ zeroDeclP, that is, the pair is retained in the witness store, carries a protected demand, an observation is declared, and the declared observation does not separate the pair. In the sealed passage system this is an identity of Bool-valued functions at every state and pair (PrimitivePassage.obstP_factors), with sufficiency obst_of_gates and necessity gates_of_obst; the source calls the factorization near-definitional, gives the four-way reading content through the four gate_*_independent theorems, and refutes joint freedom of the gates (obs_gates_not_both_false). zeroDeclP answers true before any observation by a declared convention that never makes anything obstructed (obst_requires_observation). The education module MssnObstructionDetector restates the factorization over supplied observation columns.
+
+### Governing Obligation
+Report a residual as an active obstruction only when all four gates hold at the stated state and pair, and keep a collapsed pair that fails a gate as an observation, not a demand.
+
+---
+
+## 2. Derivation Context & Mathematical Grounding
+
+In accordance with strict constructive principles:
+- **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
+- **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
+
+### Epistemic Bottlenecks & Falsification Fences
+> [!WARNING]
+> Necessity is relative to this predicate, not to any notion of obstruction, and the decomposition is not claimed unique; the education archive's label apnf does not match the current nf.derivation.apnf.yaml, which is the apartness normal form.
+
+---
+
+## 3. Multi-Tier Code & Proof Witnesses
+
+### Lean 4 Theorems
+- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::gates_of_obst`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean)
+- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::obstP_factors`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean)
+- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::obst_of_gates`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean)
+- [`omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::obstP_factors`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean)
+
+### Sovereign Rust Certifiers (Exact Rational Arithmetic)
+- `missing obligation: no Rust port of the passage-system obstP; obstruction.rs::obstructed is the kernel's exhausted-menu notion, a different predicate`
+
+### Python Oracles & Numerical Evaluators
+- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/primitive_passage.py::obst_p`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/primitive_passage.py)
+
+---
+
+## 4. Downstream Derivations (Outgoing DAG Links)
+
+- [TFQ-0494](tfq_0494_stage_change_contract_proposal_record.md)
+
+---
+
+## 5. Audit Trail & Primary Source Lineage
+
+- **Cited Source Lines**:
+  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean:207-217`
+  - `omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean:54-57`
+  - `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md:1105-1107`

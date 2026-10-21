@@ -1,0 +1,1457 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/finite_probability/simplex.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/finite_probability/simplex.py",
+      "sha256": "b496f4b6c9e8d2eb1ecf27c4920ac321f0178adbb2a77c1adf6952aa21472ff6"
+    },
+    "claim": "urn:omega:fqm:simplex:fractional-half:v1",
+    "profile": "Exact",
+    "scope": "Bounded finite Python probability API. No Born-rule uniqueness, Lean theorem extraction, cross-language equivalence, or OS-wide resource guarantee.",
+    "requirements": [
+      {
+        "id": "admission",
+        "symbols": [
+          "ProbabilitySimplex.__init__",
+          "StochasticMap.__init__",
+          "_require_fraction",
+          "_pair_fraction",
+          "_require_sequence"
+        ],
+        "relation": "Built-in Fraction/int/ratio-pair entries and built-in list/tuple containers only. Refuse float, bool, overriding subclasses, negative masses, zero denominators, empty or non-unit distributions, and malformed row shapes before exposing a value object."
+      },
+      {
+        "id": "lifecycle",
+        "symbols": [
+          "ProbabilitySimplex",
+          "StochasticMap"
+        ],
+        "relation": "Freeze constructed state in tuples and frozen slots; detach caller containers; probs returns a copy. Refuse ordinary assignment, subclassing and repeated initialization. Python reflection, monkeypatching and mutation of standard-library private internals are outside this API contract."
+      },
+      {
+        "id": "constructors",
+        "symbols": [
+          "ProbabilitySimplex.uniform",
+          "ProbabilitySimplex.dirac"
+        ],
+        "relation": "Positive bounded built-in integer n; uniform gives n equal 1/n weights; dirac requires 0<=index<n and gives one unit mass. Label is a built-in bounded string."
+      },
+      {
+        "id": "inspection",
+        "symbols": [
+          "ProbabilitySimplex.dim",
+          "ProbabilitySimplex.probs",
+          "ProbabilitySimplex.__iter__",
+          "ProbabilitySimplex.__getitem__",
+          "ProbabilitySimplex.__eq__",
+          "StochasticMap.rows",
+          "StochasticMap.cols"
+        ],
+        "relation": "Expose exact entries and shape without mutable container aliases. Integer indexing admits -n<=index<n; slices, bool and out-of-range positions raise SimplexError. Equality compares only weights and returns False for other types; labels are metadata."
+      },
+      {
+        "id": "variation",
+        "symbols": [
+          "ProbabilitySimplex.total_variation_distance",
+          "_variation"
+        ],
+        "relation": "Equal-dimensional admitted distributions p,q -> (1/2)*sum_i abs(p_i-q_i), exactly; otherwise typed refusal."
+      },
+      {
+        "id": "mixture",
+        "symbols": [
+          "ProbabilitySimplex.mixture",
+          "_mix"
+        ],
+        "relation": "Equal dimensions and admitted w in [0,1] -> w*p+(1-w)*q, revalidated before publication. Generated label and output entries must also fit the declared budgets; refusal never rounds the result."
+      },
+      {
+        "id": "expectation",
+        "symbols": [
+          "ProbabilitySimplex.expectation",
+          "_expectation"
+        ],
+        "relation": "One admitted scalar per mass -> sum_i p_i*x_i, exactly, or explicit work-budget refusal."
+      },
+      {
+        "id": "channel",
+        "symbols": [
+          "StochasticMap.apply",
+          "_push"
+        ],
+        "relation": "Input dimension equals matrix row count; output_j=sum_i p_i*M_ij, revalidated as an exact distribution; output too large for admission is refused, never approximated."
+      },
+      {
+        "id": "half-witness",
+        "symbols": [
+          "half_simplex_mass",
+          "main"
+        ],
+        "relation": "The two weights of uniform(2) are 1/2; their exact sum is 1. main prints 1 and returns 0. This calculation does not prove or extract the cited Lean theorem."
+      }
+    ],
+    "resource_policy": {
+      "status": "Declared engineering limits, not measured mathematical constants",
+      "max_dimension": 4096,
+      "max_matrix_entries": 65536,
+      "max_input_integer_bits": 1024,
+      "max_work_fraction_component_bits": 8192,
+      "max_label_characters": 256,
+      "semantics": "Reject before oversized container copying/allocation or scalar admission. Check accumulating sum component bits after each exact step. A transient rational addition may exceed the work bound before being refused. Fractions in a returned distribution must fit the input bound. This is an operation envelope, not a wall-clock timeout or OS memory reservation."
+    },
+    "cost_model": {
+      "scalar_model": "Arbitrary precision rational arithmetic; integer operation cost depends on coefficient bit length.",
+      "loops": "Construction, TV, mixture and expectation take O(n) rational operations; matrix admission and pushforward take O(rows*cols). Copy/storage is O(n) or O(rows*cols). All are capped by declared dimensions and coefficient budgets.",
+      "caveat": "No benchmark, hard real-time guarantee, formal allocation bound or zero-allocation claim."
+    },
+    "failure_boundary": {
+      "SimplexError": "Malformed scalar/container, invalid dimension/index/shape/label/normalization, incompatible operations, repeated initialization, or budget overflow. Carries invariant and parameter mapping.",
+      "FrozenInstanceError_or_TypeError": "Dataclass frozen-slot assignment refusal; exact exception for non-field attributes follows the pinned CPython dataclass implementation.",
+      "TypeError": "Subclass declaration refused.",
+      "outside_envelope": "Host allocation exhaustion, process termination, concurrent mutation of caller containers during a call, deliberate reflection/private-internal mutation and monkeypatching are not handled by this in-process mathematical API."
+    },
+    "dependencies": [
+      "Pinned CPython standard-library fractions.Fraction, dataclasses, tuple/list/int/str behavior"
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/expanded_scope/20261020T212330Z-simplex-challenge/receipt.json",
+        "sha256": "86e1712bc0403cdac8bee6114a895c9f8709ee838088c4b0d32d51f3b3d3a073"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/20261020T212358Z-simplex-metrics/receipt.json",
+        "sha256": "3ba5655bef90001436f71b95a81817421dcff1db014c01ef84dc2667f5456544"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch2-baseline.log",
+        "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
+      }
+    ]
+  },
+  "current_contract": "710eebe06f19492e21bb83aada42c2123b0e2a425db15256648b76953dc69061",
+  "current_scoring": "1ff373521f0160209a0d2f33da9c15cb84f56220762adce306218f692a8a1db0",
+  "contract_history": [
+    {
+      "sha256": "80d6e8bc229f98210951b442cbaaaefef0153384073f4ab1b37f10c2fc7057fa",
+      "bytes": 4987,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "8e8f00a0c5025f5a1b38b511e84a671f83bdb9829521b953b7b1698fe22d525c"
+        },
+        "status": "partial_source_review",
+        "profile": "Exact",
+        "purpose": "Exact finite rational distributions, convex mixtures, expectations, total variation and row-stochastic pushforwards.",
+        "operations": {
+          "ProbabilitySimplex": "Require a nonempty list/tuple of nonnegative admitted rationals summing exactly to one; label must be str.",
+          "ProbabilitySimplex.uniform": "Positive integer n; return n equal masses 1/n.",
+          "ProbabilitySimplex.dirac": "Positive integer n and 0 <= index < n; return the corresponding unit vector.",
+          "ProbabilitySimplex.total_variation_distance": "Equal dimensions; return one half of sum of coordinate absolute differences.",
+          "ProbabilitySimplex.mixture": "Equal dimensions and rational weight in [0,1]; form weight*self + (1-weight)*other and re-admit the result.",
+          "ProbabilitySimplex.expectation": "One admitted rational value per coordinate; return the exact dot product.",
+          "StochasticMap": "Nonempty rectangular matrix whose rows are admitted probability vectors.",
+          "StochasticMap.apply": "Distribution width equals row count; push forward by exact row-weighted sums and re-admit the output.",
+          "half_simplex_mass": "Check the two weights of uniform(2) are 1/2 and sum to one. This is a finite witness, not a Lean theorem extraction."
+        },
+        "failure_boundary": "SimplexError carries invariant and parameter data for ordinary scalar/shape/mass failures. Index protocol and object-state mutation require separate failure review.",
+        "open_limits": [
+          "No process-memory, coefficient bit-length or operation budget",
+          "Private probability storage and public stochastic dimensions are mutable",
+          "Python indexing/slicing and subclassed containers have not received a complete G3 review",
+          "No Rust-to-Python or Lean extraction equivalence claimed"
+        ],
+        "declaration_index": [
+          {
+            "name": "SimplexError",
+            "line": 22,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_fail",
+            "line": 33,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_refuse_non_exact",
+            "line": 37,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_int",
+            "line": 44,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_positive_int",
+            "line": 51,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_pair_fraction",
+            "line": 58,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_fraction",
+            "line": 68,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_sequence",
+            "line": 79,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_nonempty",
+            "line": 85,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_sum",
+            "line": 90,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_nonnegative",
+            "line": 97,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_unit_total",
+            "line": 102,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_distribution",
+            "line": 107,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_label",
+            "line": 119,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_half",
+            "line": 125,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "ProbabilitySimplex",
+            "line": 135,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_require_simplex",
+            "line": 199,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_variation",
+            "line": 205,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_mix",
+            "line": 212,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_expectation",
+            "line": 220,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_row_width",
+            "line": 227,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_row",
+            "line": 233,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_matrix",
+            "line": 246,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "StochasticMap",
+            "line": 253,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_push",
+            "line": 271,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "half_simplex_mass",
+            "line": 282,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "main",
+            "line": 292,
+            "kind": "FunctionDef"
+          }
+        ],
+        "declaration_index_scope": "Top-level AST index only; not semantic coverage.",
+        "scalar_policy": "Exact arithmetic must not return an unadmitted float. The repaired admission checks accept built-in Fraction, not overriding subclasses, at the three witnessed boundaries.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020-exact-subclass-before-sealed/receipt.json",
+            "sha256": "09a6fe9dbe5b26107a757c826a68576051572ff093888d8814fef6d6d7ba9e8e"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"8e8f00a0c5025f5a1b38b511e84a671f83bdb9829521b953b7b1698fe22d525c\"\n  },\n  \"status\": \"partial_source_review\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact finite rational distributions, convex mixtures, expectations, total variation and row-stochastic pushforwards.\",\n  \"operations\": {\n    \"ProbabilitySimplex\": \"Require a nonempty list/tuple of nonnegative admitted rationals summing exactly to one; label must be str.\",\n    \"ProbabilitySimplex.uniform\": \"Positive integer n; return n equal masses 1/n.\",\n    \"ProbabilitySimplex.dirac\": \"Positive integer n and 0 <= index < n; return the corresponding unit vector.\",\n    \"ProbabilitySimplex.total_variation_distance\": \"Equal dimensions; return one half of sum of coordinate absolute differences.\",\n    \"ProbabilitySimplex.mixture\": \"Equal dimensions and rational weight in [0,1]; form weight*self + (1-weight)*other and re-admit the result.\",\n    \"ProbabilitySimplex.expectation\": \"One admitted rational value per coordinate; return the exact dot product.\",\n    \"StochasticMap\": \"Nonempty rectangular matrix whose rows are admitted probability vectors.\",\n    \"StochasticMap.apply\": \"Distribution width equals row count; push forward by exact row-weighted sums and re-admit the output.\",\n    \"half_simplex_mass\": \"Check the two weights of uniform(2) are 1/2 and sum to one. This is a finite witness, not a Lean theorem extraction.\"\n  },\n  \"failure_boundary\": \"SimplexError carries invariant and parameter data for ordinary scalar/shape/mass failures. Index protocol and object-state mutation require separate failure review.\",\n  \"open_limits\": [\n    \"No process-memory, coefficient bit-length or operation budget\",\n    \"Private probability storage and public stochastic dimensions are mutable\",\n    \"Python indexing/slicing and subclassed containers have not received a complete G3 review\",\n    \"No Rust-to-Python or Lean extraction equivalence claimed\"\n  ],\n  \"declaration_index\": [\n    {\n      \"name\": \"SimplexError\",\n      \"line\": 22,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_fail\",\n      \"line\": 33,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_refuse_non_exact\",\n      \"line\": 37,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_int\",\n      \"line\": 44,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_positive_int\",\n      \"line\": 51,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_pair_fraction\",\n      \"line\": 58,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_fraction\",\n      \"line\": 68,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_sequence\",\n      \"line\": 79,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_nonempty\",\n      \"line\": 85,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_sum\",\n      \"line\": 90,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_nonnegative\",\n      \"line\": 97,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_unit_total\",\n      \"line\": 102,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_distribution\",\n      \"line\": 107,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_label\",\n      \"line\": 119,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_half\",\n      \"line\": 125,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"ProbabilitySimplex\",\n      \"line\": 135,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_require_simplex\",\n      \"line\": 199,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_variation\",\n      \"line\": 205,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_mix\",\n      \"line\": 212,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_expectation\",\n      \"line\": 220,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_row_width\",\n      \"line\": 227,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_row\",\n      \"line\": 233,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_matrix\",\n      \"line\": 246,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"StochasticMap\",\n      \"line\": 253,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_push\",\n      \"line\": 271,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"half_simplex_mass\",\n      \"line\": 282,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"main\",\n      \"line\": 292,\n      \"kind\": \"FunctionDef\"\n    }\n  ],\n  \"declaration_index_scope\": \"Top-level AST index only; not semantic coverage.\",\n  \"scalar_policy\": \"Exact arithmetic must not return an unadmitted float. The repaired admission checks accept built-in Fraction, not overriding subclasses, at the three witnessed boundaries.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020-exact-subclass-before-sealed/receipt.json\",\n      \"sha256\": \"09a6fe9dbe5b26107a757c826a68576051572ff093888d8814fef6d6d7ba9e8e\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#counterexample-before-repair/contract"
+      ]
+    },
+    {
+      "sha256": "baed16c9dbb983de6b24c88e143c53fc84c794c7491a94fa28f5fbaa45e0f272",
+      "bytes": 5314,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "0f1bde7305ab13b526d4857b91af6955d941de873d50387b9e516eedcdc957a0"
+        },
+        "status": "partial_source_review",
+        "profile": "Exact",
+        "purpose": "Exact finite rational distributions, convex mixtures, expectations, total variation and row-stochastic pushforwards.",
+        "operations": {
+          "ProbabilitySimplex": "Require a nonempty list/tuple of nonnegative admitted rationals summing exactly to one; label must be str.",
+          "ProbabilitySimplex.uniform": "Positive integer n; return n equal masses 1/n.",
+          "ProbabilitySimplex.dirac": "Positive integer n and 0 <= index < n; return the corresponding unit vector.",
+          "ProbabilitySimplex.total_variation_distance": "Equal dimensions; return one half of sum of coordinate absolute differences.",
+          "ProbabilitySimplex.mixture": "Equal dimensions and rational weight in [0,1]; form weight*self + (1-weight)*other and re-admit the result.",
+          "ProbabilitySimplex.expectation": "One admitted rational value per coordinate; return the exact dot product.",
+          "StochasticMap": "Nonempty rectangular matrix whose rows are admitted probability vectors.",
+          "StochasticMap.apply": "Distribution width equals row count; push forward by exact row-weighted sums and re-admit the output.",
+          "half_simplex_mass": "Check the two weights of uniform(2) are 1/2 and sum to one. This is a finite witness, not a Lean theorem extraction."
+        },
+        "failure_boundary": "SimplexError carries invariant and parameter data for ordinary scalar/shape/mass failures. Index protocol and object-state mutation require separate failure review.",
+        "open_limits": [
+          "No process-memory, coefficient bit-length or operation budget",
+          "Private probability storage and public stochastic dimensions are mutable",
+          "Python indexing/slicing and subclassed containers have not received a complete G3 review",
+          "No Rust-to-Python or Lean extraction equivalence claimed"
+        ],
+        "declaration_index": [
+          {
+            "name": "SimplexError",
+            "line": 22,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_fail",
+            "line": 33,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_refuse_non_exact",
+            "line": 37,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_int",
+            "line": 44,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_positive_int",
+            "line": 51,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_pair_fraction",
+            "line": 58,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_fraction",
+            "line": 68,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_sequence",
+            "line": 79,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_nonempty",
+            "line": 85,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_sum",
+            "line": 90,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_nonnegative",
+            "line": 97,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_unit_total",
+            "line": 102,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_distribution",
+            "line": 107,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_label",
+            "line": 119,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_half",
+            "line": 125,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "ProbabilitySimplex",
+            "line": 135,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_require_simplex",
+            "line": 199,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_variation",
+            "line": 205,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_mix",
+            "line": 212,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_expectation",
+            "line": 220,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_row_width",
+            "line": 227,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_row",
+            "line": 233,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_matrix",
+            "line": 246,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "StochasticMap",
+            "line": 253,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_push",
+            "line": 271,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "half_simplex_mass",
+            "line": 282,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "main",
+            "line": 292,
+            "kind": "FunctionDef"
+          }
+        ],
+        "declaration_index_scope": "Top-level AST index only; not semantic coverage.",
+        "scalar_policy": "Exact arithmetic must not return an unadmitted float. The repaired admission checks accept built-in Fraction, not overriding subclasses, at the three witnessed boundaries.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020-exact-subclass-after/receipt.json",
+            "sha256": "ba301a5dac487d62922d8d9b667b2656e557d046eb143134f0cd27e05a5d4ac5"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/python-baseline-after.log",
+            "sha256": "58ae125ed843a4019e1dd92cc2ed1077bb8e2fe8447803ee2f8d71531d08a4a2"
+          },
+          {
+            "path": "code/python/tests/test_expanded_exact_admission.py",
+            "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"0f1bde7305ab13b526d4857b91af6955d941de873d50387b9e516eedcdc957a0\"\n  },\n  \"status\": \"partial_source_review\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact finite rational distributions, convex mixtures, expectations, total variation and row-stochastic pushforwards.\",\n  \"operations\": {\n    \"ProbabilitySimplex\": \"Require a nonempty list/tuple of nonnegative admitted rationals summing exactly to one; label must be str.\",\n    \"ProbabilitySimplex.uniform\": \"Positive integer n; return n equal masses 1/n.\",\n    \"ProbabilitySimplex.dirac\": \"Positive integer n and 0 <= index < n; return the corresponding unit vector.\",\n    \"ProbabilitySimplex.total_variation_distance\": \"Equal dimensions; return one half of sum of coordinate absolute differences.\",\n    \"ProbabilitySimplex.mixture\": \"Equal dimensions and rational weight in [0,1]; form weight*self + (1-weight)*other and re-admit the result.\",\n    \"ProbabilitySimplex.expectation\": \"One admitted rational value per coordinate; return the exact dot product.\",\n    \"StochasticMap\": \"Nonempty rectangular matrix whose rows are admitted probability vectors.\",\n    \"StochasticMap.apply\": \"Distribution width equals row count; push forward by exact row-weighted sums and re-admit the output.\",\n    \"half_simplex_mass\": \"Check the two weights of uniform(2) are 1/2 and sum to one. This is a finite witness, not a Lean theorem extraction.\"\n  },\n  \"failure_boundary\": \"SimplexError carries invariant and parameter data for ordinary scalar/shape/mass failures. Index protocol and object-state mutation require separate failure review.\",\n  \"open_limits\": [\n    \"No process-memory, coefficient bit-length or operation budget\",\n    \"Private probability storage and public stochastic dimensions are mutable\",\n    \"Python indexing/slicing and subclassed containers have not received a complete G3 review\",\n    \"No Rust-to-Python or Lean extraction equivalence claimed\"\n  ],\n  \"declaration_index\": [\n    {\n      \"name\": \"SimplexError\",\n      \"line\": 22,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_fail\",\n      \"line\": 33,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_refuse_non_exact\",\n      \"line\": 37,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_int\",\n      \"line\": 44,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_positive_int\",\n      \"line\": 51,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_pair_fraction\",\n      \"line\": 58,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_fraction\",\n      \"line\": 68,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_sequence\",\n      \"line\": 79,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_nonempty\",\n      \"line\": 85,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_sum\",\n      \"line\": 90,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_nonnegative\",\n      \"line\": 97,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_unit_total\",\n      \"line\": 102,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_distribution\",\n      \"line\": 107,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_label\",\n      \"line\": 119,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_half\",\n      \"line\": 125,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"ProbabilitySimplex\",\n      \"line\": 135,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_require_simplex\",\n      \"line\": 199,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_variation\",\n      \"line\": 205,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_mix\",\n      \"line\": 212,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_expectation\",\n      \"line\": 220,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_row_width\",\n      \"line\": 227,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_row\",\n      \"line\": 233,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_matrix\",\n      \"line\": 246,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"StochasticMap\",\n      \"line\": 253,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_push\",\n      \"line\": 271,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"half_simplex_mass\",\n      \"line\": 282,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"main\",\n      \"line\": 292,\n      \"kind\": \"FunctionDef\"\n    }\n  ],\n  \"declaration_index_scope\": \"Top-level AST index only; not semantic coverage.\",\n  \"scalar_policy\": \"Exact arithmetic must not return an unadmitted float. The repaired admission checks accept built-in Fraction, not overriding subclasses, at the three witnessed boundaries.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020-exact-subclass-after/receipt.json\",\n      \"sha256\": \"ba301a5dac487d62922d8d9b667b2656e557d046eb143134f0cd27e05a5d4ac5\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-baseline-after.log\",\n      \"sha256\": \"58ae125ed843a4019e1dd92cc2ed1077bb8e2fe8447803ee2f8d71531d08a4a2\"\n    },\n    {\n      \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n      \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#partial-review-after-admission-repair/contract"
+      ]
+    },
+    {
+      "sha256": "34e13a2ed8998f23057d4930f8e235267ba73a303211fe29f9a04bd8849817af",
+      "bytes": 4987,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "8e8f00a0c5025f5a1b38b511e84a671f83bdb9829521b953b7b1698fe22d525c"
+        },
+        "status": "partial_source_review",
+        "profile": "Exact",
+        "purpose": "Exact finite rational distributions, convex mixtures, expectations, total variation and row-stochastic pushforwards.",
+        "operations": {
+          "ProbabilitySimplex": "Require a nonempty list/tuple of nonnegative admitted rationals summing exactly to one; label must be str.",
+          "ProbabilitySimplex.uniform": "Positive integer n; return n equal masses 1/n.",
+          "ProbabilitySimplex.dirac": "Positive integer n and 0 <= index < n; return the corresponding unit vector.",
+          "ProbabilitySimplex.total_variation_distance": "Equal dimensions; return one half of sum of coordinate absolute differences.",
+          "ProbabilitySimplex.mixture": "Equal dimensions and rational weight in [0,1]; form weight*self + (1-weight)*other and re-admit the result.",
+          "ProbabilitySimplex.expectation": "One admitted rational value per coordinate; return the exact dot product.",
+          "StochasticMap": "Nonempty rectangular matrix whose rows are admitted probability vectors.",
+          "StochasticMap.apply": "Distribution width equals row count; push forward by exact row-weighted sums and re-admit the output.",
+          "half_simplex_mass": "Check the two weights of uniform(2) are 1/2 and sum to one. This is a finite witness, not a Lean theorem extraction."
+        },
+        "failure_boundary": "SimplexError carries invariant and parameter data for ordinary scalar/shape/mass failures. Index protocol and object-state mutation require separate failure review.",
+        "open_limits": [
+          "No process-memory, coefficient bit-length or operation budget",
+          "Private probability storage and public stochastic dimensions are mutable",
+          "Python indexing/slicing and subclassed containers have not received a complete G3 review",
+          "No Rust-to-Python or Lean extraction equivalence claimed"
+        ],
+        "declaration_index": [
+          {
+            "name": "SimplexError",
+            "line": 22,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_fail",
+            "line": 33,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_refuse_non_exact",
+            "line": 37,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_int",
+            "line": 44,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_positive_int",
+            "line": 51,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_pair_fraction",
+            "line": 58,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_fraction",
+            "line": 68,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_sequence",
+            "line": 79,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_nonempty",
+            "line": 85,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_sum",
+            "line": 90,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_nonnegative",
+            "line": 97,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_unit_total",
+            "line": 102,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_distribution",
+            "line": 107,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_label",
+            "line": 119,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_half",
+            "line": 125,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "ProbabilitySimplex",
+            "line": 135,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_require_simplex",
+            "line": 199,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_variation",
+            "line": 205,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_mix",
+            "line": 212,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_expectation",
+            "line": 220,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_row_width",
+            "line": 227,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_row",
+            "line": 233,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_matrix",
+            "line": 246,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "StochasticMap",
+            "line": 253,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_push",
+            "line": 271,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "half_simplex_mass",
+            "line": 282,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "main",
+            "line": 292,
+            "kind": "FunctionDef"
+          }
+        ],
+        "declaration_index_scope": "Top-level AST index only; not semantic coverage.",
+        "scalar_policy": "Exact arithmetic requires exact return values; the captured source accepted an overriding Fraction subclass and returned float. Closed-type admission was not yet enforced.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020-exact-subclass-before-sealed/receipt.json",
+            "sha256": "09a6fe9dbe5b26107a757c826a68576051572ff093888d8814fef6d6d7ba9e8e"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"8e8f00a0c5025f5a1b38b511e84a671f83bdb9829521b953b7b1698fe22d525c\"\n  },\n  \"status\": \"partial_source_review\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact finite rational distributions, convex mixtures, expectations, total variation and row-stochastic pushforwards.\",\n  \"operations\": {\n    \"ProbabilitySimplex\": \"Require a nonempty list/tuple of nonnegative admitted rationals summing exactly to one; label must be str.\",\n    \"ProbabilitySimplex.uniform\": \"Positive integer n; return n equal masses 1/n.\",\n    \"ProbabilitySimplex.dirac\": \"Positive integer n and 0 <= index < n; return the corresponding unit vector.\",\n    \"ProbabilitySimplex.total_variation_distance\": \"Equal dimensions; return one half of sum of coordinate absolute differences.\",\n    \"ProbabilitySimplex.mixture\": \"Equal dimensions and rational weight in [0,1]; form weight*self + (1-weight)*other and re-admit the result.\",\n    \"ProbabilitySimplex.expectation\": \"One admitted rational value per coordinate; return the exact dot product.\",\n    \"StochasticMap\": \"Nonempty rectangular matrix whose rows are admitted probability vectors.\",\n    \"StochasticMap.apply\": \"Distribution width equals row count; push forward by exact row-weighted sums and re-admit the output.\",\n    \"half_simplex_mass\": \"Check the two weights of uniform(2) are 1/2 and sum to one. This is a finite witness, not a Lean theorem extraction.\"\n  },\n  \"failure_boundary\": \"SimplexError carries invariant and parameter data for ordinary scalar/shape/mass failures. Index protocol and object-state mutation require separate failure review.\",\n  \"open_limits\": [\n    \"No process-memory, coefficient bit-length or operation budget\",\n    \"Private probability storage and public stochastic dimensions are mutable\",\n    \"Python indexing/slicing and subclassed containers have not received a complete G3 review\",\n    \"No Rust-to-Python or Lean extraction equivalence claimed\"\n  ],\n  \"declaration_index\": [\n    {\n      \"name\": \"SimplexError\",\n      \"line\": 22,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_fail\",\n      \"line\": 33,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_refuse_non_exact\",\n      \"line\": 37,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_int\",\n      \"line\": 44,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_positive_int\",\n      \"line\": 51,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_pair_fraction\",\n      \"line\": 58,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_fraction\",\n      \"line\": 68,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_sequence\",\n      \"line\": 79,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_nonempty\",\n      \"line\": 85,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_sum\",\n      \"line\": 90,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_nonnegative\",\n      \"line\": 97,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_unit_total\",\n      \"line\": 102,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_distribution\",\n      \"line\": 107,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_label\",\n      \"line\": 119,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_half\",\n      \"line\": 125,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"ProbabilitySimplex\",\n      \"line\": 135,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_require_simplex\",\n      \"line\": 199,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_variation\",\n      \"line\": 205,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_mix\",\n      \"line\": 212,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_expectation\",\n      \"line\": 220,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_row_width\",\n      \"line\": 227,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_row\",\n      \"line\": 233,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_matrix\",\n      \"line\": 246,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"StochasticMap\",\n      \"line\": 253,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_push\",\n      \"line\": 271,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"half_simplex_mass\",\n      \"line\": 282,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"main\",\n      \"line\": 292,\n      \"kind\": \"FunctionDef\"\n    }\n  ],\n  \"declaration_index_scope\": \"Top-level AST index only; not semantic coverage.\",\n  \"scalar_policy\": \"Exact arithmetic requires exact return values; the captured source accepted an overriding Fraction subclass and returned float. Closed-type admission was not yet enforced.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020-exact-subclass-before-sealed/receipt.json\",\n      \"sha256\": \"09a6fe9dbe5b26107a757c826a68576051572ff093888d8814fef6d6d7ba9e8e\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#counterexample-before-repair/contract"
+      ]
+    },
+    {
+      "sha256": "e714a824bf7a024ed2e68e70645af29c9cc792c2ee4ff1e2b2dcf1446b298fb2",
+      "bytes": 5318,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "0f1bde7305ab13b526d4857b91af6955d941de873d50387b9e516eedcdc957a0"
+        },
+        "status": "partial_source_review",
+        "profile": "Exact",
+        "purpose": "Exact finite rational distributions, convex mixtures, expectations, total variation and row-stochastic pushforwards.",
+        "operations": {
+          "ProbabilitySimplex": "Require a nonempty list/tuple of nonnegative admitted rationals summing exactly to one; label must be str.",
+          "ProbabilitySimplex.uniform": "Positive integer n; return n equal masses 1/n.",
+          "ProbabilitySimplex.dirac": "Positive integer n and 0 <= index < n; return the corresponding unit vector.",
+          "ProbabilitySimplex.total_variation_distance": "Equal dimensions; return one half of sum of coordinate absolute differences.",
+          "ProbabilitySimplex.mixture": "Equal dimensions and rational weight in [0,1]; form weight*self + (1-weight)*other and re-admit the result.",
+          "ProbabilitySimplex.expectation": "One admitted rational value per coordinate; return the exact dot product.",
+          "StochasticMap": "Nonempty rectangular matrix whose rows are admitted probability vectors.",
+          "StochasticMap.apply": "Distribution width equals row count; push forward by exact row-weighted sums and re-admit the output.",
+          "half_simplex_mass": "Check the two weights of uniform(2) are 1/2 and sum to one. This is a finite witness, not a Lean theorem extraction."
+        },
+        "failure_boundary": "SimplexError carries invariant and parameter data for ordinary scalar/shape/mass failures. Index protocol and object-state mutation require separate failure review.",
+        "open_limits": [
+          "No process-memory, coefficient bit-length or operation budget",
+          "Private probability storage and public stochastic dimensions are mutable",
+          "Python indexing/slicing and subclassed containers have not received a complete G3 review",
+          "No Rust-to-Python or Lean extraction equivalence claimed"
+        ],
+        "declaration_index": [
+          {
+            "name": "SimplexError",
+            "line": 22,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_fail",
+            "line": 33,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_refuse_non_exact",
+            "line": 37,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_int",
+            "line": 44,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_positive_int",
+            "line": 51,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_pair_fraction",
+            "line": 58,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_fraction",
+            "line": 68,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_sequence",
+            "line": 79,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_nonempty",
+            "line": 85,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_sum",
+            "line": 90,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_nonnegative",
+            "line": 97,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_unit_total",
+            "line": 102,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_distribution",
+            "line": 107,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_label",
+            "line": 119,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_require_half",
+            "line": 125,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "ProbabilitySimplex",
+            "line": 135,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_require_simplex",
+            "line": 199,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_variation",
+            "line": 205,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_mix",
+            "line": 212,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_expectation",
+            "line": 220,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_row_width",
+            "line": 227,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_row",
+            "line": 233,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "_parse_matrix",
+            "line": 246,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "StochasticMap",
+            "line": 253,
+            "kind": "ClassDef"
+          },
+          {
+            "name": "_push",
+            "line": 271,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "half_simplex_mass",
+            "line": 282,
+            "kind": "FunctionDef"
+          },
+          {
+            "name": "main",
+            "line": 292,
+            "kind": "FunctionDef"
+          }
+        ],
+        "declaration_index_scope": "Top-level AST index only; not semantic coverage.",
+        "scalar_policy": "This repaired boundary accepts built-in Fraction/int coefficients (and validated integer ratio pairs in simplex); overriding Fraction subclasses are refused before arithmetic.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020-exact-subclass-after/receipt.json",
+            "sha256": "ba301a5dac487d62922d8d9b667b2656e557d046eb143134f0cd27e05a5d4ac5"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/python-baseline-after.log",
+            "sha256": "58ae125ed843a4019e1dd92cc2ed1077bb8e2fe8447803ee2f8d71531d08a4a2"
+          },
+          {
+            "path": "code/python/tests/test_expanded_exact_admission.py",
+            "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"0f1bde7305ab13b526d4857b91af6955d941de873d50387b9e516eedcdc957a0\"\n  },\n  \"status\": \"partial_source_review\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact finite rational distributions, convex mixtures, expectations, total variation and row-stochastic pushforwards.\",\n  \"operations\": {\n    \"ProbabilitySimplex\": \"Require a nonempty list/tuple of nonnegative admitted rationals summing exactly to one; label must be str.\",\n    \"ProbabilitySimplex.uniform\": \"Positive integer n; return n equal masses 1/n.\",\n    \"ProbabilitySimplex.dirac\": \"Positive integer n and 0 <= index < n; return the corresponding unit vector.\",\n    \"ProbabilitySimplex.total_variation_distance\": \"Equal dimensions; return one half of sum of coordinate absolute differences.\",\n    \"ProbabilitySimplex.mixture\": \"Equal dimensions and rational weight in [0,1]; form weight*self + (1-weight)*other and re-admit the result.\",\n    \"ProbabilitySimplex.expectation\": \"One admitted rational value per coordinate; return the exact dot product.\",\n    \"StochasticMap\": \"Nonempty rectangular matrix whose rows are admitted probability vectors.\",\n    \"StochasticMap.apply\": \"Distribution width equals row count; push forward by exact row-weighted sums and re-admit the output.\",\n    \"half_simplex_mass\": \"Check the two weights of uniform(2) are 1/2 and sum to one. This is a finite witness, not a Lean theorem extraction.\"\n  },\n  \"failure_boundary\": \"SimplexError carries invariant and parameter data for ordinary scalar/shape/mass failures. Index protocol and object-state mutation require separate failure review.\",\n  \"open_limits\": [\n    \"No process-memory, coefficient bit-length or operation budget\",\n    \"Private probability storage and public stochastic dimensions are mutable\",\n    \"Python indexing/slicing and subclassed containers have not received a complete G3 review\",\n    \"No Rust-to-Python or Lean extraction equivalence claimed\"\n  ],\n  \"declaration_index\": [\n    {\n      \"name\": \"SimplexError\",\n      \"line\": 22,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_fail\",\n      \"line\": 33,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_refuse_non_exact\",\n      \"line\": 37,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_int\",\n      \"line\": 44,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_positive_int\",\n      \"line\": 51,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_pair_fraction\",\n      \"line\": 58,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_fraction\",\n      \"line\": 68,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_sequence\",\n      \"line\": 79,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_nonempty\",\n      \"line\": 85,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_sum\",\n      \"line\": 90,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_nonnegative\",\n      \"line\": 97,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_unit_total\",\n      \"line\": 102,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_distribution\",\n      \"line\": 107,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_label\",\n      \"line\": 119,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_require_half\",\n      \"line\": 125,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"ProbabilitySimplex\",\n      \"line\": 135,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_require_simplex\",\n      \"line\": 199,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_variation\",\n      \"line\": 205,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_mix\",\n      \"line\": 212,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_expectation\",\n      \"line\": 220,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_row_width\",\n      \"line\": 227,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_row\",\n      \"line\": 233,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"_parse_matrix\",\n      \"line\": 246,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"StochasticMap\",\n      \"line\": 253,\n      \"kind\": \"ClassDef\"\n    },\n    {\n      \"name\": \"_push\",\n      \"line\": 271,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"half_simplex_mass\",\n      \"line\": 282,\n      \"kind\": \"FunctionDef\"\n    },\n    {\n      \"name\": \"main\",\n      \"line\": 292,\n      \"kind\": \"FunctionDef\"\n    }\n  ],\n  \"declaration_index_scope\": \"Top-level AST index only; not semantic coverage.\",\n  \"scalar_policy\": \"This repaired boundary accepts built-in Fraction/int coefficients (and validated integer ratio pairs in simplex); overriding Fraction subclasses are refused before arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020-exact-subclass-after/receipt.json\",\n      \"sha256\": \"ba301a5dac487d62922d8d9b667b2656e557d046eb143134f0cd27e05a5d4ac5\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-baseline-after.log\",\n      \"sha256\": \"58ae125ed843a4019e1dd92cc2ed1077bb8e2fe8447803ee2f8d71531d08a4a2\"\n    },\n    {\n      \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n      \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#partial-review-after-admission-repair/contract"
+      ]
+    },
+    {
+      "sha256": "1fa6fea49212e5b5ae1dc927c95a331a1a7cb99e58b398ba30e286da9ee69607",
+      "bytes": 6290,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "e70d336fe5fa01fa848b486a86e78ecc08f8eacf3477bbf904695ae4391c1fef"
+        },
+        "claim": "urn:omega:fqm:simplex:fractional-half:v1",
+        "profile": "Exact",
+        "scope": "Bounded finite Python probability API. No Born-rule uniqueness, Lean theorem extraction, cross-language equivalence, or OS-wide resource guarantee.",
+        "requirements": [
+          {
+            "id": "admission",
+            "symbols": [
+              "ProbabilitySimplex.__init__",
+              "StochasticMap.__init__",
+              "_require_fraction",
+              "_pair_fraction",
+              "_require_sequence"
+            ],
+            "relation": "Built-in Fraction/int/ratio-pair entries and built-in list/tuple containers only. Refuse float, bool, overriding subclasses, negative masses, zero denominators, empty or non-unit distributions, and malformed row shapes before exposing a value object."
+          },
+          {
+            "id": "lifecycle",
+            "symbols": [
+              "ProbabilitySimplex",
+              "StochasticMap"
+            ],
+            "relation": "Freeze constructed state in tuples and frozen slots; detach caller containers; probs returns a copy. Refuse ordinary assignment, subclassing and repeated initialization. Python reflection, monkeypatching and mutation of standard-library private internals are outside this API contract."
+          },
+          {
+            "id": "constructors",
+            "symbols": [
+              "ProbabilitySimplex.uniform",
+              "ProbabilitySimplex.dirac"
+            ],
+            "relation": "Positive bounded built-in integer n; uniform gives n equal 1/n weights; dirac requires 0<=index<n and gives one unit mass. Label is a built-in bounded string."
+          },
+          {
+            "id": "inspection",
+            "symbols": [
+              "ProbabilitySimplex.dim",
+              "ProbabilitySimplex.probs",
+              "ProbabilitySimplex.__iter__",
+              "ProbabilitySimplex.__getitem__",
+              "ProbabilitySimplex.__eq__",
+              "StochasticMap.rows",
+              "StochasticMap.cols"
+            ],
+            "relation": "Expose exact entries and shape without mutable container aliases. Integer indexing admits -n<=index<n; slices, bool and out-of-range positions raise SimplexError. Equality compares only weights and returns False for other types; labels are metadata."
+          },
+          {
+            "id": "variation",
+            "symbols": [
+              "ProbabilitySimplex.total_variation_distance",
+              "_variation"
+            ],
+            "relation": "Equal-dimensional admitted distributions p,q -> (1/2)*sum_i abs(p_i-q_i), exactly; otherwise typed refusal."
+          },
+          {
+            "id": "mixture",
+            "symbols": [
+              "ProbabilitySimplex.mixture",
+              "_mix"
+            ],
+            "relation": "Equal dimensions and admitted w in [0,1] -> w*p+(1-w)*q, revalidated before publication. Generated label and output entries must also fit the declared budgets; refusal never rounds the result."
+          },
+          {
+            "id": "expectation",
+            "symbols": [
+              "ProbabilitySimplex.expectation",
+              "_expectation"
+            ],
+            "relation": "One admitted scalar per mass -> sum_i p_i*x_i, exactly, or explicit work-budget refusal."
+          },
+          {
+            "id": "channel",
+            "symbols": [
+              "StochasticMap.apply",
+              "_push"
+            ],
+            "relation": "Input dimension equals matrix row count; output_j=sum_i p_i*M_ij, revalidated as an exact distribution; output too large for admission is refused, never approximated."
+          },
+          {
+            "id": "half-witness",
+            "symbols": [
+              "half_simplex_mass",
+              "main"
+            ],
+            "relation": "The two weights of uniform(2) are 1/2; their exact sum is 1. main prints 1 and returns 0. This calculation does not prove or extract the cited Lean theorem."
+          }
+        ],
+        "resource_policy": {
+          "status": "Declared engineering limits, not measured mathematical constants",
+          "max_dimension": 4096,
+          "max_matrix_entries": 65536,
+          "max_input_integer_bits": 1024,
+          "max_work_fraction_component_bits": 8192,
+          "max_label_characters": 256,
+          "semantics": "Reject before oversized container copying/allocation or scalar admission. Check accumulating sum component bits after each exact step. A transient rational addition may exceed the work bound before being refused. Fractions in a returned distribution must fit the input bound. This is an operation envelope, not a wall-clock timeout or OS memory reservation."
+        },
+        "cost_model": {
+          "scalar_model": "Arbitrary precision rational arithmetic; integer operation cost depends on coefficient bit length.",
+          "loops": "Construction, TV, mixture and expectation take O(n) rational operations; matrix admission and pushforward take O(rows*cols). Copy/storage is O(n) or O(rows*cols). All are capped by declared dimensions and coefficient budgets.",
+          "caveat": "No benchmark, hard real-time guarantee, formal allocation bound or zero-allocation claim."
+        },
+        "failure_boundary": {
+          "SimplexError": "Malformed scalar/container, invalid dimension/index/shape/label/normalization, incompatible operations, repeated initialization, or budget overflow. Carries invariant and parameter mapping.",
+          "FrozenInstanceError_or_TypeError": "Dataclass frozen-slot assignment refusal; exact exception for non-field attributes follows the pinned CPython dataclass implementation.",
+          "TypeError": "Subclass declaration refused.",
+          "outside_envelope": "Host allocation exhaustion, process termination, concurrent mutation of caller containers during a call, deliberate reflection/private-internal mutation and monkeypatching are not handled by this in-process mathematical API."
+        },
+        "dependencies": [
+          "Pinned CPython standard-library fractions.Fraction, dataclasses, tuple/list/int/str behavior"
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json",
+            "sha256": "15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T205157Z-simplex-metrics/receipt.json",
+            "sha256": "254a9f2c0332736a572dccd52a56f61b108f34bb8faff94845feb11db09ee39c"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/python-production-check.log",
+            "sha256": "2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"e70d336fe5fa01fa848b486a86e78ecc08f8eacf3477bbf904695ae4391c1fef\"\n  },\n  \"claim\": \"urn:omega:fqm:simplex:fractional-half:v1\",\n  \"profile\": \"Exact\",\n  \"scope\": \"Bounded finite Python probability API. No Born-rule uniqueness, Lean theorem extraction, cross-language equivalence, or OS-wide resource guarantee.\",\n  \"requirements\": [\n    {\n      \"id\": \"admission\",\n      \"symbols\": [\n        \"ProbabilitySimplex.__init__\",\n        \"StochasticMap.__init__\",\n        \"_require_fraction\",\n        \"_pair_fraction\",\n        \"_require_sequence\"\n      ],\n      \"relation\": \"Built-in Fraction/int/ratio-pair entries and built-in list/tuple containers only. Refuse float, bool, overriding subclasses, negative masses, zero denominators, empty or non-unit distributions, and malformed row shapes before exposing a value object.\"\n    },\n    {\n      \"id\": \"lifecycle\",\n      \"symbols\": [\n        \"ProbabilitySimplex\",\n        \"StochasticMap\"\n      ],\n      \"relation\": \"Freeze constructed state in tuples and frozen slots; detach caller containers; probs returns a copy. Refuse ordinary assignment, subclassing and repeated initialization. Python reflection, monkeypatching and mutation of standard-library private internals are outside this API contract.\"\n    },\n    {\n      \"id\": \"constructors\",\n      \"symbols\": [\n        \"ProbabilitySimplex.uniform\",\n        \"ProbabilitySimplex.dirac\"\n      ],\n      \"relation\": \"Positive bounded built-in integer n; uniform gives n equal 1/n weights; dirac requires 0<=index<n and gives one unit mass. Label is a built-in bounded string.\"\n    },\n    {\n      \"id\": \"inspection\",\n      \"symbols\": [\n        \"ProbabilitySimplex.dim\",\n        \"ProbabilitySimplex.probs\",\n        \"ProbabilitySimplex.__iter__\",\n        \"ProbabilitySimplex.__getitem__\",\n        \"ProbabilitySimplex.__eq__\",\n        \"StochasticMap.rows\",\n        \"StochasticMap.cols\"\n      ],\n      \"relation\": \"Expose exact entries and shape without mutable container aliases. Integer indexing admits -n<=index<n; slices, bool and out-of-range positions raise SimplexError. Equality compares only weights and returns False for other types; labels are metadata.\"\n    },\n    {\n      \"id\": \"variation\",\n      \"symbols\": [\n        \"ProbabilitySimplex.total_variation_distance\",\n        \"_variation\"\n      ],\n      \"relation\": \"Equal-dimensional admitted distributions p,q -> (1/2)*sum_i abs(p_i-q_i), exactly; otherwise typed refusal.\"\n    },\n    {\n      \"id\": \"mixture\",\n      \"symbols\": [\n        \"ProbabilitySimplex.mixture\",\n        \"_mix\"\n      ],\n      \"relation\": \"Equal dimensions and admitted w in [0,1] -> w*p+(1-w)*q, revalidated before publication. Generated label and output entries must also fit the declared budgets; refusal never rounds the result.\"\n    },\n    {\n      \"id\": \"expectation\",\n      \"symbols\": [\n        \"ProbabilitySimplex.expectation\",\n        \"_expectation\"\n      ],\n      \"relation\": \"One admitted scalar per mass -> sum_i p_i*x_i, exactly, or explicit work-budget refusal.\"\n    },\n    {\n      \"id\": \"channel\",\n      \"symbols\": [\n        \"StochasticMap.apply\",\n        \"_push\"\n      ],\n      \"relation\": \"Input dimension equals matrix row count; output_j=sum_i p_i*M_ij, revalidated as an exact distribution; output too large for admission is refused, never approximated.\"\n    },\n    {\n      \"id\": \"half-witness\",\n      \"symbols\": [\n        \"half_simplex_mass\",\n        \"main\"\n      ],\n      \"relation\": \"The two weights of uniform(2) are 1/2; their exact sum is 1. main prints 1 and returns 0. This calculation does not prove or extract the cited Lean theorem.\"\n    }\n  ],\n  \"resource_policy\": {\n    \"status\": \"Declared engineering limits, not measured mathematical constants\",\n    \"max_dimension\": 4096,\n    \"max_matrix_entries\": 65536,\n    \"max_input_integer_bits\": 1024,\n    \"max_work_fraction_component_bits\": 8192,\n    \"max_label_characters\": 256,\n    \"semantics\": \"Reject before oversized container copying/allocation or scalar admission. Check accumulating sum component bits after each exact step. A transient rational addition may exceed the work bound before being refused. Fractions in a returned distribution must fit the input bound. This is an operation envelope, not a wall-clock timeout or OS memory reservation.\"\n  },\n  \"cost_model\": {\n    \"scalar_model\": \"Arbitrary precision rational arithmetic; integer operation cost depends on coefficient bit length.\",\n    \"loops\": \"Construction, TV, mixture and expectation take O(n) rational operations; matrix admission and pushforward take O(rows*cols). Copy/storage is O(n) or O(rows*cols). All are capped by declared dimensions and coefficient budgets.\",\n    \"caveat\": \"No benchmark, hard real-time guarantee, formal allocation bound or zero-allocation claim.\"\n  },\n  \"failure_boundary\": {\n    \"SimplexError\": \"Malformed scalar/container, invalid dimension/index/shape/label/normalization, incompatible operations, repeated initialization, or budget overflow. Carries invariant and parameter mapping.\",\n    \"FrozenInstanceError_or_TypeError\": \"Dataclass frozen-slot assignment refusal; exact exception for non-field attributes follows the pinned CPython dataclass implementation.\",\n    \"TypeError\": \"Subclass declaration refused.\",\n    \"outside_envelope\": \"Host allocation exhaustion, process termination, concurrent mutation of caller containers during a call, deliberate reflection/private-internal mutation and monkeypatching are not handled by this in-process mathematical API.\"\n  },\n  \"dependencies\": [\n    \"Pinned CPython standard-library fractions.Fraction, dataclasses, tuple/list/int/str behavior\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json\",\n      \"sha256\": \"15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T205157Z-simplex-metrics/receipt.json\",\n      \"sha256\": \"254a9f2c0332736a572dccd52a56f61b108f34bb8faff94845feb11db09ee39c\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-production-check.log\",\n      \"sha256\": \"2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#bounded-production-lifecycle-review/contract"
+      ]
+    },
+    {
+      "sha256": "710eebe06f19492e21bb83aada42c2123b0e2a425db15256648b76953dc69061",
+      "bytes": 6282,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "b496f4b6c9e8d2eb1ecf27c4920ac321f0178adbb2a77c1adf6952aa21472ff6"
+        },
+        "claim": "urn:omega:fqm:simplex:fractional-half:v1",
+        "profile": "Exact",
+        "scope": "Bounded finite Python probability API. No Born-rule uniqueness, Lean theorem extraction, cross-language equivalence, or OS-wide resource guarantee.",
+        "requirements": [
+          {
+            "id": "admission",
+            "symbols": [
+              "ProbabilitySimplex.__init__",
+              "StochasticMap.__init__",
+              "_require_fraction",
+              "_pair_fraction",
+              "_require_sequence"
+            ],
+            "relation": "Built-in Fraction/int/ratio-pair entries and built-in list/tuple containers only. Refuse float, bool, overriding subclasses, negative masses, zero denominators, empty or non-unit distributions, and malformed row shapes before exposing a value object."
+          },
+          {
+            "id": "lifecycle",
+            "symbols": [
+              "ProbabilitySimplex",
+              "StochasticMap"
+            ],
+            "relation": "Freeze constructed state in tuples and frozen slots; detach caller containers; probs returns a copy. Refuse ordinary assignment, subclassing and repeated initialization. Python reflection, monkeypatching and mutation of standard-library private internals are outside this API contract."
+          },
+          {
+            "id": "constructors",
+            "symbols": [
+              "ProbabilitySimplex.uniform",
+              "ProbabilitySimplex.dirac"
+            ],
+            "relation": "Positive bounded built-in integer n; uniform gives n equal 1/n weights; dirac requires 0<=index<n and gives one unit mass. Label is a built-in bounded string."
+          },
+          {
+            "id": "inspection",
+            "symbols": [
+              "ProbabilitySimplex.dim",
+              "ProbabilitySimplex.probs",
+              "ProbabilitySimplex.__iter__",
+              "ProbabilitySimplex.__getitem__",
+              "ProbabilitySimplex.__eq__",
+              "StochasticMap.rows",
+              "StochasticMap.cols"
+            ],
+            "relation": "Expose exact entries and shape without mutable container aliases. Integer indexing admits -n<=index<n; slices, bool and out-of-range positions raise SimplexError. Equality compares only weights and returns False for other types; labels are metadata."
+          },
+          {
+            "id": "variation",
+            "symbols": [
+              "ProbabilitySimplex.total_variation_distance",
+              "_variation"
+            ],
+            "relation": "Equal-dimensional admitted distributions p,q -> (1/2)*sum_i abs(p_i-q_i), exactly; otherwise typed refusal."
+          },
+          {
+            "id": "mixture",
+            "symbols": [
+              "ProbabilitySimplex.mixture",
+              "_mix"
+            ],
+            "relation": "Equal dimensions and admitted w in [0,1] -> w*p+(1-w)*q, revalidated before publication. Generated label and output entries must also fit the declared budgets; refusal never rounds the result."
+          },
+          {
+            "id": "expectation",
+            "symbols": [
+              "ProbabilitySimplex.expectation",
+              "_expectation"
+            ],
+            "relation": "One admitted scalar per mass -> sum_i p_i*x_i, exactly, or explicit work-budget refusal."
+          },
+          {
+            "id": "channel",
+            "symbols": [
+              "StochasticMap.apply",
+              "_push"
+            ],
+            "relation": "Input dimension equals matrix row count; output_j=sum_i p_i*M_ij, revalidated as an exact distribution; output too large for admission is refused, never approximated."
+          },
+          {
+            "id": "half-witness",
+            "symbols": [
+              "half_simplex_mass",
+              "main"
+            ],
+            "relation": "The two weights of uniform(2) are 1/2; their exact sum is 1. main prints 1 and returns 0. This calculation does not prove or extract the cited Lean theorem."
+          }
+        ],
+        "resource_policy": {
+          "status": "Declared engineering limits, not measured mathematical constants",
+          "max_dimension": 4096,
+          "max_matrix_entries": 65536,
+          "max_input_integer_bits": 1024,
+          "max_work_fraction_component_bits": 8192,
+          "max_label_characters": 256,
+          "semantics": "Reject before oversized container copying/allocation or scalar admission. Check accumulating sum component bits after each exact step. A transient rational addition may exceed the work bound before being refused. Fractions in a returned distribution must fit the input bound. This is an operation envelope, not a wall-clock timeout or OS memory reservation."
+        },
+        "cost_model": {
+          "scalar_model": "Arbitrary precision rational arithmetic; integer operation cost depends on coefficient bit length.",
+          "loops": "Construction, TV, mixture and expectation take O(n) rational operations; matrix admission and pushforward take O(rows*cols). Copy/storage is O(n) or O(rows*cols). All are capped by declared dimensions and coefficient budgets.",
+          "caveat": "No benchmark, hard real-time guarantee, formal allocation bound or zero-allocation claim."
+        },
+        "failure_boundary": {
+          "SimplexError": "Malformed scalar/container, invalid dimension/index/shape/label/normalization, incompatible operations, repeated initialization, or budget overflow. Carries invariant and parameter mapping.",
+          "FrozenInstanceError_or_TypeError": "Dataclass frozen-slot assignment refusal; exact exception for non-field attributes follows the pinned CPython dataclass implementation.",
+          "TypeError": "Subclass declaration refused.",
+          "outside_envelope": "Host allocation exhaustion, process termination, concurrent mutation of caller containers during a call, deliberate reflection/private-internal mutation and monkeypatching are not handled by this in-process mathematical API."
+        },
+        "dependencies": [
+          "Pinned CPython standard-library fractions.Fraction, dataclasses, tuple/list/int/str behavior"
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212330Z-simplex-challenge/receipt.json",
+            "sha256": "86e1712bc0403cdac8bee6114a895c9f8709ee838088c4b0d32d51f3b3d3a073"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212358Z-simplex-metrics/receipt.json",
+            "sha256": "3ba5655bef90001436f71b95a81817421dcff1db014c01ef84dc2667f5456544"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch2-baseline.log",
+            "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"b496f4b6c9e8d2eb1ecf27c4920ac321f0178adbb2a77c1adf6952aa21472ff6\"\n  },\n  \"claim\": \"urn:omega:fqm:simplex:fractional-half:v1\",\n  \"profile\": \"Exact\",\n  \"scope\": \"Bounded finite Python probability API. No Born-rule uniqueness, Lean theorem extraction, cross-language equivalence, or OS-wide resource guarantee.\",\n  \"requirements\": [\n    {\n      \"id\": \"admission\",\n      \"symbols\": [\n        \"ProbabilitySimplex.__init__\",\n        \"StochasticMap.__init__\",\n        \"_require_fraction\",\n        \"_pair_fraction\",\n        \"_require_sequence\"\n      ],\n      \"relation\": \"Built-in Fraction/int/ratio-pair entries and built-in list/tuple containers only. Refuse float, bool, overriding subclasses, negative masses, zero denominators, empty or non-unit distributions, and malformed row shapes before exposing a value object.\"\n    },\n    {\n      \"id\": \"lifecycle\",\n      \"symbols\": [\n        \"ProbabilitySimplex\",\n        \"StochasticMap\"\n      ],\n      \"relation\": \"Freeze constructed state in tuples and frozen slots; detach caller containers; probs returns a copy. Refuse ordinary assignment, subclassing and repeated initialization. Python reflection, monkeypatching and mutation of standard-library private internals are outside this API contract.\"\n    },\n    {\n      \"id\": \"constructors\",\n      \"symbols\": [\n        \"ProbabilitySimplex.uniform\",\n        \"ProbabilitySimplex.dirac\"\n      ],\n      \"relation\": \"Positive bounded built-in integer n; uniform gives n equal 1/n weights; dirac requires 0<=index<n and gives one unit mass. Label is a built-in bounded string.\"\n    },\n    {\n      \"id\": \"inspection\",\n      \"symbols\": [\n        \"ProbabilitySimplex.dim\",\n        \"ProbabilitySimplex.probs\",\n        \"ProbabilitySimplex.__iter__\",\n        \"ProbabilitySimplex.__getitem__\",\n        \"ProbabilitySimplex.__eq__\",\n        \"StochasticMap.rows\",\n        \"StochasticMap.cols\"\n      ],\n      \"relation\": \"Expose exact entries and shape without mutable container aliases. Integer indexing admits -n<=index<n; slices, bool and out-of-range positions raise SimplexError. Equality compares only weights and returns False for other types; labels are metadata.\"\n    },\n    {\n      \"id\": \"variation\",\n      \"symbols\": [\n        \"ProbabilitySimplex.total_variation_distance\",\n        \"_variation\"\n      ],\n      \"relation\": \"Equal-dimensional admitted distributions p,q -> (1/2)*sum_i abs(p_i-q_i), exactly; otherwise typed refusal.\"\n    },\n    {\n      \"id\": \"mixture\",\n      \"symbols\": [\n        \"ProbabilitySimplex.mixture\",\n        \"_mix\"\n      ],\n      \"relation\": \"Equal dimensions and admitted w in [0,1] -> w*p+(1-w)*q, revalidated before publication. Generated label and output entries must also fit the declared budgets; refusal never rounds the result.\"\n    },\n    {\n      \"id\": \"expectation\",\n      \"symbols\": [\n        \"ProbabilitySimplex.expectation\",\n        \"_expectation\"\n      ],\n      \"relation\": \"One admitted scalar per mass -> sum_i p_i*x_i, exactly, or explicit work-budget refusal.\"\n    },\n    {\n      \"id\": \"channel\",\n      \"symbols\": [\n        \"StochasticMap.apply\",\n        \"_push\"\n      ],\n      \"relation\": \"Input dimension equals matrix row count; output_j=sum_i p_i*M_ij, revalidated as an exact distribution; output too large for admission is refused, never approximated.\"\n    },\n    {\n      \"id\": \"half-witness\",\n      \"symbols\": [\n        \"half_simplex_mass\",\n        \"main\"\n      ],\n      \"relation\": \"The two weights of uniform(2) are 1/2; their exact sum is 1. main prints 1 and returns 0. This calculation does not prove or extract the cited Lean theorem.\"\n    }\n  ],\n  \"resource_policy\": {\n    \"status\": \"Declared engineering limits, not measured mathematical constants\",\n    \"max_dimension\": 4096,\n    \"max_matrix_entries\": 65536,\n    \"max_input_integer_bits\": 1024,\n    \"max_work_fraction_component_bits\": 8192,\n    \"max_label_characters\": 256,\n    \"semantics\": \"Reject before oversized container copying/allocation or scalar admission. Check accumulating sum component bits after each exact step. A transient rational addition may exceed the work bound before being refused. Fractions in a returned distribution must fit the input bound. This is an operation envelope, not a wall-clock timeout or OS memory reservation.\"\n  },\n  \"cost_model\": {\n    \"scalar_model\": \"Arbitrary precision rational arithmetic; integer operation cost depends on coefficient bit length.\",\n    \"loops\": \"Construction, TV, mixture and expectation take O(n) rational operations; matrix admission and pushforward take O(rows*cols). Copy/storage is O(n) or O(rows*cols). All are capped by declared dimensions and coefficient budgets.\",\n    \"caveat\": \"No benchmark, hard real-time guarantee, formal allocation bound or zero-allocation claim.\"\n  },\n  \"failure_boundary\": {\n    \"SimplexError\": \"Malformed scalar/container, invalid dimension/index/shape/label/normalization, incompatible operations, repeated initialization, or budget overflow. Carries invariant and parameter mapping.\",\n    \"FrozenInstanceError_or_TypeError\": \"Dataclass frozen-slot assignment refusal; exact exception for non-field attributes follows the pinned CPython dataclass implementation.\",\n    \"TypeError\": \"Subclass declaration refused.\",\n    \"outside_envelope\": \"Host allocation exhaustion, process termination, concurrent mutation of caller containers during a call, deliberate reflection/private-internal mutation and monkeypatching are not handled by this in-process mathematical API.\"\n  },\n  \"dependencies\": [\n    \"Pinned CPython standard-library fractions.Fraction, dataclasses, tuple/list/int/str behavior\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212330Z-simplex-challenge/receipt.json\",\n      \"sha256\": \"86e1712bc0403cdac8bee6114a895c9f8709ee838088c4b0d32d51f3b3d3a073\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212358Z-simplex-metrics/receipt.json\",\n      \"sha256\": \"3ba5655bef90001436f71b95a81817421dcff1db014c01ef84dc2667f5456544\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#bounded-production-lifecycle-review/contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "e545c8cf484f05c4ba63dfd581dcf8df828336ec3ee5f254871d2a9587471be6",
+      "bytes": 1632,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "8e8f00a0c5025f5a1b38b511e84a671f83bdb9829521b953b7b1698fe22d525c"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "counterexample-before-repair",
+        "requested_target": "L4E",
+        "target_achieved": false,
+        "level": "L3",
+        "level_basis": "Bounded-domain exact distribution and stochastic-map algorithms; no production resource budget or immutable state envelope has been established.",
+        "profile": "Exact",
+        "gates": {
+          "G1": null,
+          "G2": "E",
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "is_complete": false,
+        "composite_grade": null,
+        "score_token": null,
+        "grade_ceiling": "E",
+        "G2_basis": "Public-input subclass counterexample returns float 0.5 instead of rational 1.",
+        "assessment_status": "partial_not_L4_certification",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020-exact-subclass-before-sealed/receipt.json",
+            "sha256": "09a6fe9dbe5b26107a757c826a68576051572ff093888d8814fef6d6d7ba9e8e"
+          }
+        ],
+        "open_findings": [
+          "No process-memory, coefficient bit-length or operation budget",
+          "Private probability storage and public stochastic dimensions are mutable",
+          "Python indexing/slicing and subclassed containers have not received a complete G3 review",
+          "No Rust-to-Python or Lean extraction equivalence claimed",
+          "Complete independent G1/G3/G4/G5 reviews and establish actual L4 architecture before claiming the target."
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"8e8f00a0c5025f5a1b38b511e84a671f83bdb9829521b953b7b1698fe22d525c\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"counterexample-before-repair\",\n  \"requested_target\": \"L4E\",\n  \"target_achieved\": false,\n  \"level\": \"L3\",\n  \"level_basis\": \"Bounded-domain exact distribution and stochastic-map algorithms; no production resource budget or immutable state envelope has been established.\",\n  \"profile\": \"Exact\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": \"E\",\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"grade_ceiling\": \"E\",\n  \"G2_basis\": \"Public-input subclass counterexample returns float 0.5 instead of rational 1.\",\n  \"assessment_status\": \"partial_not_L4_certification\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020-exact-subclass-before-sealed/receipt.json\",\n      \"sha256\": \"09a6fe9dbe5b26107a757c826a68576051572ff093888d8814fef6d6d7ba9e8e\"\n    }\n  ],\n  \"open_findings\": [\n    \"No process-memory, coefficient bit-length or operation budget\",\n    \"Private probability storage and public stochastic dimensions are mutable\",\n    \"Python indexing/slicing and subclassed containers have not received a complete G3 review\",\n    \"No Rust-to-Python or Lean extraction equivalence claimed\",\n    \"Complete independent G1/G3/G4/G5 reviews and establish actual L4 architecture before claiming the target.\"\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#counterexample-before-repair/scoring"
+      ]
+    },
+    {
+      "sha256": "61e5d3d7219ba16d4e535a1a6443c253a787a94bd2d6ffcea9b3ed899351d4d4",
+      "bytes": 1996,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "0f1bde7305ab13b526d4857b91af6955d941de873d50387b9e516eedcdc957a0"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "partial-review-after-admission-repair",
+        "requested_target": "L4E",
+        "target_achieved": false,
+        "level": "L3",
+        "level_basis": "Bounded-domain exact distribution and stochastic-map algorithms; no production resource budget or immutable state envelope has been established.",
+        "profile": "Exact",
+        "gates": {
+          "G1": null,
+          "G2": "C",
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "is_complete": false,
+        "composite_grade": null,
+        "score_token": null,
+        "grade_ceiling": "C",
+        "G2_basis": "Closed scalar admission plus bounded negative and arithmetic controls; broader verification remains open.",
+        "assessment_status": "partial_not_L4_certification",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020-exact-subclass-after/receipt.json",
+            "sha256": "ba301a5dac487d62922d8d9b667b2656e557d046eb143134f0cd27e05a5d4ac5"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/python-baseline-after.log",
+            "sha256": "58ae125ed843a4019e1dd92cc2ed1077bb8e2fe8447803ee2f8d71531d08a4a2"
+          },
+          {
+            "path": "code/python/tests/test_expanded_exact_admission.py",
+            "sha256": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250"
+          }
+        ],
+        "open_findings": [
+          "No process-memory, coefficient bit-length or operation budget",
+          "Private probability storage and public stochastic dimensions are mutable",
+          "Python indexing/slicing and subclassed containers have not received a complete G3 review",
+          "No Rust-to-Python or Lean extraction equivalence claimed",
+          "Complete independent G1/G3/G4/G5 reviews and establish actual L4 architecture before claiming the target."
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"0f1bde7305ab13b526d4857b91af6955d941de873d50387b9e516eedcdc957a0\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"partial-review-after-admission-repair\",\n  \"requested_target\": \"L4E\",\n  \"target_achieved\": false,\n  \"level\": \"L3\",\n  \"level_basis\": \"Bounded-domain exact distribution and stochastic-map algorithms; no production resource budget or immutable state envelope has been established.\",\n  \"profile\": \"Exact\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": \"C\",\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"grade_ceiling\": \"C\",\n  \"G2_basis\": \"Closed scalar admission plus bounded negative and arithmetic controls; broader verification remains open.\",\n  \"assessment_status\": \"partial_not_L4_certification\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020-exact-subclass-after/receipt.json\",\n      \"sha256\": \"ba301a5dac487d62922d8d9b667b2656e557d046eb143134f0cd27e05a5d4ac5\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-baseline-after.log\",\n      \"sha256\": \"58ae125ed843a4019e1dd92cc2ed1077bb8e2fe8447803ee2f8d71531d08a4a2\"\n    },\n    {\n      \"path\": \"code/python/tests/test_expanded_exact_admission.py\",\n      \"sha256\": \"582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250\"\n    }\n  ],\n  \"open_findings\": [\n    \"No process-memory, coefficient bit-length or operation budget\",\n    \"Private probability storage and public stochastic dimensions are mutable\",\n    \"Python indexing/slicing and subclassed containers have not received a complete G3 review\",\n    \"No Rust-to-Python or Lean extraction equivalence claimed\",\n    \"Complete independent G1/G3/G4/G5 reviews and establish actual L4 architecture before claiming the target.\"\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#partial-review-after-admission-repair/scoring"
+      ]
+    },
+    {
+      "sha256": "8c4f2df9761204c8619c50df6731524fd9e6bd1c1d08d1d39c41f2e0218cb951",
+      "bytes": 2979,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "e70d336fe5fa01fa848b486a86e78ecc08f8eacf3477bbf904695ae4391c1fef"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "bounded-production-lifecycle-review",
+        "profile": "Exact",
+        "level": "L4",
+        "level_basis": "Intentional bounded value-object API with immutable lifecycle, closed scalar/container admission, typed refusals, coefficient/dimension work budgets, public operation contracts and independently challenged composition. No L5 certificate-carrying architecture is claimed.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Source SHA, unique claim, explicit authority ceiling and public operation/requirement mapping; no full downstream bidirectional provenance audit.",
+          "G2": "Closed exact admission and explicit range policy; independent integer-based controls across all 284 two-state pairs at scales 1..8, plus exact arithmetic, subclass and resource rejection probes. B/A-level completeness is not claimed from finite testing.",
+          "G3": "Typed expected refusals and frozen lifecycle, detached input containers, reinitialization and hostile-container rejection checks. No proof of crash-freedom outside the declared in-process trust envelope.",
+          "G4": "Systematic API/negative/generated finite controls and 14/14 designated valid semantic mutants killed by pytest assertions. Earlier 12/14 campaign retained. No independent alternate runner, complete error-path proof or A-level verification claim.",
+          "G5": "Radon and Lizard source CCN max 5; calibrated conservative weighted-control upper bound 4 and nesting max 2. Bounded loops/copies with explicit rational bit-cost caveat; no allocation benchmark or zero-allocation certification."
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only, not all 24 directories.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json",
+            "sha256": "15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T205157Z-simplex-metrics/receipt.json",
+            "sha256": "254a9f2c0332736a572dccd52a56f61b108f34bb8faff94845feb11db09ee39c"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/python-production-check.log",
+            "sha256": "2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d"
+          }
+        ],
+        "open_higher_grade_findings": [
+          "Full downstream consumer provenance audit",
+          "Exhaustive or formal failure/path assurance",
+          "Independent alternate harness",
+          "Measured peak allocation and performance evidence"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"e70d336fe5fa01fa848b486a86e78ecc08f8eacf3477bbf904695ae4391c1fef\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"bounded-production-lifecycle-review\",\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Intentional bounded value-object API with immutable lifecycle, closed scalar/container admission, typed refusals, coefficient/dimension work budgets, public operation contracts and independently challenged composition. No L5 certificate-carrying architecture is claimed.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Source SHA, unique claim, explicit authority ceiling and public operation/requirement mapping; no full downstream bidirectional provenance audit.\",\n    \"G2\": \"Closed exact admission and explicit range policy; independent integer-based controls across all 284 two-state pairs at scales 1..8, plus exact arithmetic, subclass and resource rejection probes. B/A-level completeness is not claimed from finite testing.\",\n    \"G3\": \"Typed expected refusals and frozen lifecycle, detached input containers, reinitialization and hostile-container rejection checks. No proof of crash-freedom outside the declared in-process trust envelope.\",\n    \"G4\": \"Systematic API/negative/generated finite controls and 14/14 designated valid semantic mutants killed by pytest assertions. Earlier 12/14 campaign retained. No independent alternate runner, complete error-path proof or A-level verification claim.\",\n    \"G5\": \"Radon and Lizard source CCN max 5; calibrated conservative weighted-control upper bound 4 and nesting max 2. Bounded loops/copies with explicit rational bit-cost caveat; no allocation benchmark or zero-allocation certification.\"\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only, not all 24 directories.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T205008Z-simplex-challenge/receipt.json\",\n      \"sha256\": \"15962f21ac6b60d6e6730c313bad8ae7a7e74534ec61acc26e65b4245a7c351f\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T205157Z-simplex-metrics/receipt.json\",\n      \"sha256\": \"254a9f2c0332736a572dccd52a56f61b108f34bb8faff94845feb11db09ee39c\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/python-production-check.log\",\n      \"sha256\": \"2f9e112e90adba390cde2f87b880dd94c3f852c5b7e3493e972e414c9b808a4d\"\n    }\n  ],\n  \"open_higher_grade_findings\": [\n    \"Full downstream consumer provenance audit\",\n    \"Exhaustive or formal failure/path assurance\",\n    \"Independent alternate harness\",\n    \"Measured peak allocation and performance evidence\"\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#bounded-production-lifecycle-review/scoring"
+      ]
+    },
+    {
+      "sha256": "91395188ac96f236bc997919b871cb03ebecbfed2c76d6b27a081879be184b73",
+      "bytes": 2805,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "e70d336fe5fa01fa848b486a86e78ecc08f8eacf3477bbf904695ae4391c1fef"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "independent-class-callback-counterexample",
+        "profile": "Exact",
+        "level": "L4",
+        "level_basis": "Intentional bounded value-object API with immutable lifecycle, closed scalar/container admission, typed refusals, coefficient/dimension work budgets, public operation contracts and independently challenged composition. No L5 certificate-carrying architecture is claimed.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "E",
+          "G4": "E",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Source SHA, unique claim, explicit authority ceiling and public operation/requirement mapping; no full downstream bidirectional provenance audit.",
+          "G2": "Closed exact admission and explicit range policy; independent integer-based controls across all 284 two-state pairs at scales 1..8, plus exact arithmetic, subclass and resource rejection probes. B/A-level completeness is not claimed from finite testing.",
+          "G3": "Typed expected refusals and frozen lifecycle, detached input containers, reinitialization and hostile-container rejection checks. No proof of crash-freedom outside the declared in-process trust envelope.",
+          "G4": "Systematic API/negative/generated finite controls and 14/14 designated valid semantic mutants killed by pytest assertions. Earlier 12/14 campaign retained. No independent alternate runner, complete error-path proof or A-level verification claim.",
+          "G5": "Radon and Lizard source CCN max 5; calibrated conservative weighted-control upper bound 4 and nesting max 2. Bounded loops/copies with explicit rational bit-cost caveat; no allocation benchmark or zero-allocation certification."
+        },
+        "is_complete": true,
+        "composite_grade": "E",
+        "score_token": "L4E",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only, not all 24 directories.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/receipt.json",
+            "sha256": "b87ae92a69a66f980101045252cb1308c87372dfbaef488309e083fba64ad20a"
+          }
+        ],
+        "open_higher_grade_findings": [
+          "Full downstream consumer provenance audit",
+          "Exhaustive or formal failure/path assurance",
+          "Independent alternate harness",
+          "Measured peak allocation and performance evidence"
+        ],
+        "finding": "Independent probe shows user __class__ property executes in isinstance before typed refusal. The prior C assessment missed this case and is superseded, not erased."
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"e70d336fe5fa01fa848b486a86e78ecc08f8eacf3477bbf904695ae4391c1fef\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"independent-class-callback-counterexample\",\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Intentional bounded value-object API with immutable lifecycle, closed scalar/container admission, typed refusals, coefficient/dimension work budgets, public operation contracts and independently challenged composition. No L5 certificate-carrying architecture is claimed.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"E\",\n    \"G4\": \"E\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Source SHA, unique claim, explicit authority ceiling and public operation/requirement mapping; no full downstream bidirectional provenance audit.\",\n    \"G2\": \"Closed exact admission and explicit range policy; independent integer-based controls across all 284 two-state pairs at scales 1..8, plus exact arithmetic, subclass and resource rejection probes. B/A-level completeness is not claimed from finite testing.\",\n    \"G3\": \"Typed expected refusals and frozen lifecycle, detached input containers, reinitialization and hostile-container rejection checks. No proof of crash-freedom outside the declared in-process trust envelope.\",\n    \"G4\": \"Systematic API/negative/generated finite controls and 14/14 designated valid semantic mutants killed by pytest assertions. Earlier 12/14 campaign retained. No independent alternate runner, complete error-path proof or A-level verification claim.\",\n    \"G5\": \"Radon and Lizard source CCN max 5; calibrated conservative weighted-control upper bound 4 and nesting max 2. Bounded loops/copies with explicit rational bit-cost caveat; no allocation benchmark or zero-allocation certification.\"\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"E\",\n  \"score_token\": \"L4E\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only, not all 24 directories.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212208Z-class-callback-before/receipt.json\",\n      \"sha256\": \"b87ae92a69a66f980101045252cb1308c87372dfbaef488309e083fba64ad20a\"\n    }\n  ],\n  \"open_higher_grade_findings\": [\n    \"Full downstream consumer provenance audit\",\n    \"Exhaustive or formal failure/path assurance\",\n    \"Independent alternate harness\",\n    \"Measured peak allocation and performance evidence\"\n  ],\n  \"finding\": \"Independent probe shows user __class__ property executes in isinstance before typed refusal. The prior C assessment missed this case and is superseded, not erased.\"\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#class-callback-counterexample/scoring"
+      ]
+    },
+    {
+      "sha256": "1ff373521f0160209a0d2f33da9c15cb84f56220762adce306218f692a8a1db0",
+      "bytes": 3075,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/finite_probability/simplex.py",
+          "sha256": "b496f4b6c9e8d2eb1ecf27c4920ac321f0178adbb2a77c1adf6952aa21472ff6"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "bounded-production-lifecycle-review",
+        "profile": "Exact",
+        "level": "L4",
+        "level_basis": "Intentional bounded value-object API with immutable lifecycle, closed scalar/container admission, typed refusals, coefficient/dimension work budgets, public operation contracts and independently challenged composition. No L5 certificate-carrying architecture is claimed.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Source SHA, unique claim, explicit authority ceiling and public operation/requirement mapping; no full downstream bidirectional provenance audit.",
+          "G2": "Closed exact admission and explicit range policy; independent integer-based controls across all 284 two-state pairs at scales 1..8, plus exact arithmetic, subclass and resource rejection probes. B/A-level completeness is not claimed from finite testing.",
+          "G3": "Typed expected refusals and frozen lifecycle, detached input containers, reinitialization and hostile-container rejection checks. No proof of crash-freedom outside the declared in-process trust envelope.",
+          "G4": "Systematic API/negative/generated finite controls and 15/15 designated valid semantic mutants killed by pytest assertions, including a user __class__ callback regression. Earlier 12/14 and 14/14 campaigns and the later independent counterexample are retained. No independent alternate runner, complete error-path proof or A-level verification claim.",
+          "G5": "Radon and Lizard source CCN max 5; calibrated conservative weighted-control upper bound 4 and nesting max 2. Bounded loops/copies with explicit rational bit-cost caveat; no allocation benchmark or zero-allocation certification."
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only, not all 24 directories.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212330Z-simplex-challenge/receipt.json",
+            "sha256": "86e1712bc0403cdac8bee6114a895c9f8709ee838088c4b0d32d51f3b3d3a073"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212358Z-simplex-metrics/receipt.json",
+            "sha256": "3ba5655bef90001436f71b95a81817421dcff1db014c01ef84dc2667f5456544"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch2-baseline.log",
+            "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
+          }
+        ],
+        "open_higher_grade_findings": [
+          "Full downstream consumer provenance audit",
+          "Exhaustive or formal failure/path assurance",
+          "Independent alternate harness",
+          "Measured peak allocation and performance evidence"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/finite_probability/simplex.py\",\n    \"sha256\": \"b496f4b6c9e8d2eb1ecf27c4920ac321f0178adbb2a77c1adf6952aa21472ff6\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"bounded-production-lifecycle-review\",\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Intentional bounded value-object API with immutable lifecycle, closed scalar/container admission, typed refusals, coefficient/dimension work budgets, public operation contracts and independently challenged composition. No L5 certificate-carrying architecture is claimed.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Source SHA, unique claim, explicit authority ceiling and public operation/requirement mapping; no full downstream bidirectional provenance audit.\",\n    \"G2\": \"Closed exact admission and explicit range policy; independent integer-based controls across all 284 two-state pairs at scales 1..8, plus exact arithmetic, subclass and resource rejection probes. B/A-level completeness is not claimed from finite testing.\",\n    \"G3\": \"Typed expected refusals and frozen lifecycle, detached input containers, reinitialization and hostile-container rejection checks. No proof of crash-freedom outside the declared in-process trust envelope.\",\n    \"G4\": \"Systematic API/negative/generated finite controls and 15/15 designated valid semantic mutants killed by pytest assertions, including a user __class__ callback regression. Earlier 12/14 and 14/14 campaigns and the later independent counterexample are retained. No independent alternate runner, complete error-path proof or A-level verification claim.\",\n    \"G5\": \"Radon and Lizard source CCN max 5; calibrated conservative weighted-control upper bound 4 and nesting max 2. Bounded loops/copies with explicit rational bit-cost caveat; no allocation benchmark or zero-allocation certification.\"\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only, not all 24 directories.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212330Z-simplex-challenge/receipt.json\",\n      \"sha256\": \"86e1712bc0403cdac8bee6114a895c9f8709ee838088c4b0d32d51f3b3d3a073\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212358Z-simplex-metrics/receipt.json\",\n      \"sha256\": \"3ba5655bef90001436f71b95a81817421dcff1db014c01ef84dc2667f5456544\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    }\n  ],\n  \"open_higher_grade_findings\": [\n    \"Full downstream consumer provenance audit\",\n    \"Exhaustive or formal failure/path assurance\",\n    \"Independent alternate harness\",\n    \"Measured peak allocation and performance evidence\"\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/finite_probability/simplex.contract.score.yaml#bounded-production-lifecycle-review/scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/python/src/finite_probability/simplex.contract.score.yaml#counterexample-before-repair/contract": "34e13a2ed8998f23057d4930f8e235267ba73a303211fe29f9a04bd8849817af",
+    "code/python/src/finite_probability/simplex.contract.score.yaml#counterexample-before-repair/scoring": "e545c8cf484f05c4ba63dfd581dcf8df828336ec3ee5f254871d2a9587471be6",
+    "code/python/src/finite_probability/simplex.contract.score.yaml#partial-review-after-admission-repair/contract": "e714a824bf7a024ed2e68e70645af29c9cc792c2ee4ff1e2b2dcf1446b298fb2",
+    "code/python/src/finite_probability/simplex.contract.score.yaml#partial-review-after-admission-repair/scoring": "61e5d3d7219ba16d4e535a1a6443c253a787a94bd2d6ffcea9b3ed899351d4d4",
+    "code/python/src/finite_probability/simplex.contract.score.yaml#bounded-production-lifecycle-review/contract": "710eebe06f19492e21bb83aada42c2123b0e2a425db15256648b76953dc69061",
+    "code/python/src/finite_probability/simplex.contract.score.yaml#bounded-production-lifecycle-review/scoring": "1ff373521f0160209a0d2f33da9c15cb84f56220762adce306218f692a8a1db0",
+    "code/python/src/finite_probability/simplex.contract.score.yaml#class-callback-counterexample/scoring": "91395188ac96f236bc997919b871cb03ebecbfed2c76d6b27a081879be184b73"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Append-only historical failures, partial reviews and a source-bound bounded L4C assessment. Only current source-matching entries describe the current revision."
+}

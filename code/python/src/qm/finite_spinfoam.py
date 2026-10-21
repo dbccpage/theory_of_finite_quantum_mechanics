@@ -50,6 +50,8 @@ def _require_label(value: object, index: int) -> int:
     if type(value) is bool:
         raise _fail("boolean refused where an integer vertex was required", index=index)
     if type(value) is int:
+        if value.bit_length() > 1024:
+            raise _fail("integer exceeds 1024 bits", index=index)
         return value
     raise _fail(
         "tetrahedron vertex is not an exact integer",

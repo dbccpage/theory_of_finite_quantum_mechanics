@@ -1,0 +1,122 @@
+schema_version: 1
+problem_id: UQM-24
+title: Bell-state entanglement and a reduced density matrix
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  rho: rho=(1/2)[[1,0,0,1],[0,0,0,0],[0,0,0,0],[1,0,0,1]]
+  reduced: rho_A=rho_B=I/2; Tr(rho^2)=1; Tr(rho_A^2)=1/2; entropy(rho_A)=ln 2
+  correlations: <XX>=1; <YY>=-1; <ZZ>=1; all single-qubit Pauli means vanish
+derivation:
+- step: 1
+  explanation: The outer product of the Bell vector has four nonzero entries, all one half, at row/column
+    pairs 00 and 11. In particular the off-diagonal 00,11 entries carry coherence; deleting them would
+    create a different mixed joint state.
+- step: 2
+  explanation: The partial trace is (rho_A)_{a,a_prime}=sum_b rho_{ab,a_prime b}. The two diagonal entries
+    become one half. The Bell coherence connects different b values, so it does not survive this local
+    sum. The result is I/2.
+- step: 3
+  explanation: The full projector squares to itself and has trace one, giving global purity one. The reduced
+    matrix squares to I/4, whose trace is one half. This is entanglement-induced mixedness of a subsystem,
+    not classical ignorance about a mixed global preparation.
+- step: 4
+  explanation: XX swaps 00 and 11, leaving the Bell vector invariant. YY also swaps them but introduces
+    a minus sign because i squared=-1. ZZ gives plus one on both occupied basis states. The three correlations
+    are therefore 1,-1,1.
+- step: 5
+  explanation: Every local Pauli operator has zero expectation in I/2. The state nevertheless contains
+    joint correlations not recoverable from its marginals. The Schmidt coefficients are both 1/sqrt(2),
+    giving entropy -2*(1/2)ln(1/2)=ln 2.
+- step: 6
+  explanation: The executable checks construct the full rational density matrix and compute the partial
+    trace and correlations. The logarithmic entropy is given analytically; no rational log evaluation
+    or general entanglement theorem is claimed.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    - path: code/python/src/linear_algebra/matrix.py
+      symbols:
+      - ExactMatrix
+    walkthrough:
+    - Use ExactMatrix for the full projector and matrix products.
+    - Follow the displayed partial-trace index formula literally.
+    - Compute correlation traces from actual observable matrices, retaining the YY sign.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      from src.linear_algebra.matrix import ExactMatrix
+      def solve():
+          v=[q(1),q(0),q(0),q(1)]; norm=sum(x*x for x in v)
+          rho=ExactMatrix.from_rows([[a*b/norm for b in v] for a in v])
+          reduced=ExactMatrix.from_rows([[sum(rho.get(2*a+b,2*c+b) for b in range(2)) for c in range(2)] for a in range(2)])
+          xx=ExactMatrix.from_rows([[0,0,0,1],[0,0,1,0],[0,1,0,0],[1,0,0,0]])
+          yy=ExactMatrix.from_rows([[0,0,0,-1],[0,0,1,0],[0,1,0,0],[-1,0,0,0]])
+          zz=ExactMatrix.from_rows([[1,0,0,0],[0,-1,0,0],[0,0,-1,0],[0,0,0,1]])
+          full2=rho*rho; local2=reduced*reduced
+          return {"local_00":str(reduced.get(0,0)),"local_01":str(reduced.get(0,1)),
+                  "global_purity":str(sum(full2.get(i,i) for i in range(4))),"local_purity":str(sum(local2.get(i,i) for i in range(2))),
+                  "XX":str(sum((rho*xx).get(i,i) for i in range(4))),"YY":str(sum((rho*yy).get(i,i) for i in range(4))),"ZZ":str(sum((rho*zz).get(i,i) for i in range(4)))}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Construct the density entries with existing exact Q arithmetic.
+    - Sum the repeated subsystem index for each reduced entry.
+    - Expand the sparse Pauli-product trace formulas and compute purities from density entries.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let v=[q(1),q(0),q(0),q(1)]; let norm=v.iter().fold(q(0),|s,x|s+x*x);
+          let rho:Vec<Vec<_>>=v.iter().map(|a|v.iter().map(|b|a*b/&norm).collect()).collect();
+          let red:Vec<Vec<_>>=(0..2).map(|a|(0..2).map(|c|(0..2).fold(q(0),|s,b|s+&rho[2*a+b][2*c+b])).collect()).collect();
+          let mut global=q(0); let mut local=q(0);
+          for i in 0..4 {for j in 0..4 {global += &rho[i][j]*&rho[j][i];}}
+          for i in 0..2 {for j in 0..2 {local += &red[i][j]*&red[j][i];}}
+          let xx=&rho[0][3]+&rho[1][2]+&rho[2][1]+&rho[3][0];
+          let yy=-&rho[0][3]+&rho[1][2]+&rho[2][1]-&rho[3][0];
+          let zz=&rho[0][0]-&rho[1][1]-&rho[2][2]+&rho[3][3];
+          json!({"local_00":red[0][0].to_string(),"local_01":red[0][1].to_string(),"global_purity":global.to_string(),
+              "local_purity":local.to_string(),"XX":xx.to_string(),"YY":yy.to_string(),"ZZ":zz.to_string()})
+      }
+verification:
+  expected_outputs:
+    local_00: 1/2
+    local_01: '0'
+    global_purity: '1'
+    local_purity: 1/2
+    XX: '1'
+    YY: '-1'
+    ZZ: '1'
+  computational_scope: Exact density projector, partial trace, purities and three Pauli correlations for
+    the Bell state.
+  not_established:
+  - No logarithm is computed and no universal entanglement criterion is proved.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- Tracing out a subsystem is not selecting one outcome.
+- The YY sign differs from XX for this Bell state.
+improvement_target:
+  gap: The partial-trace indexing is explicit solution code rather than a generic tested public API.
+  acceptance_criterion: Promote it only with dimension-aware tests on product, entangled and mixed states
+    and explicit basis-order metadata.

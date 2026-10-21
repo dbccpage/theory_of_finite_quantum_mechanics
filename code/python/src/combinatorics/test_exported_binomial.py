@@ -26,6 +26,14 @@ _EXECUTOR = "code/python/src/combinatorics/test_exported_binomial.py"
 _LIBRARY = Path(__file__).resolve().parent / "__init__.py"
 _PACKAGE = "src.combinatorics"
 _Mutant = tuple[str, str, str]
+_ABSENT = object()
+
+
+def _restore_module(name: str, previous: object) -> None:
+    if previous is _ABSENT:
+        sys.modules.pop(name, None)
+    else:
+        sys.modules[name] = previous
 
 
 class ClaimCheckError(ValueError):
@@ -54,7 +62,7 @@ def _float_probe(text: str) -> object:
 
 def parse_exact_size(value: object) -> int:
     """Refuse float and bool before an exact size is accepted."""
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the public boundary", received="float")
     if type(value) is bool or type(value) is not int:
         raise _fail("size is not an exact integer", received=type(value).__name__)
@@ -138,17 +146,18 @@ def _load(source: str, name: str, file_path: str) -> dict[str, object]:
 def _safe_holds(namespace: dict[str, object]) -> bool:
     try:
         _holds(namespace)
-    except Exception:
+    except (ClaimCheckError, ValueError, ArithmeticError, AssertionError):
         return False
     return True
 
 
 def _require_baseline(source: str) -> None:
     name = "mutant_export_baseline"
+    previous = sys.modules.get(name, _ABSENT)
     try:
         _holds(_load(source, name, str(_LIBRARY)))
     finally:
-        sys.modules.pop(name, None)
+        _restore_module(name, previous)
 
 
 def _one_mutant(source: str, mutant: _Mutant, name: str) -> None:
@@ -157,14 +166,15 @@ def _one_mutant(source: str, mutant: _Mutant, name: str) -> None:
     if count != 1:
         raise _fail("mutant anchor is not unique", name=label, count=count)
     survived = True
+    previous = sys.modules.get(name, _ABSENT)
     try:
         survived = _safe_holds(_load(source.replace(old, new, 1), name, str(_LIBRARY)))
     except ClaimCheckError:
         raise
-    except Exception:
-        survived = False
+    except Exception as error:
+        raise _fail("mutant could not be assessed; not counted as a kill", name=label, error=type(error).__name__) from error
     finally:
-        sys.modules.pop(name, None)
+        _restore_module(name, previous)
     if survived:
         raise _fail("mutant survived the oracle", name=label)
 
@@ -220,7 +230,7 @@ def _self_holds(namespace: dict[str, object]) -> None:
 def _safe_self(namespace: dict[str, object]) -> bool:
     try:
         _self_holds(namespace)
-    except Exception:
+    except ClaimCheckError:
         return False
     return True
 
@@ -231,24 +241,26 @@ def _one_self(source: str, mutant: _Mutant, name: str) -> None:
     if count != 1:
         raise _fail("self mutant anchor is not unique", name=label, count=count)
     survived = True
+    previous = sys.modules.get(name, _ABSENT)
     try:
         survived = _safe_self(_load(source.replace(old, new, 1), name, str(Path(__file__).resolve())))
     except ClaimCheckError:
         raise
-    except Exception:
-        survived = False
+    except Exception as error:
+        raise _fail("self mutant could not be assessed; not counted as a kill", name=label, error=type(error).__name__) from error
     finally:
-        sys.modules.pop(name, None)
+        _restore_module(name, previous)
     if survived:
         raise _fail("self mutant survived the oracle", name=label)
 
 
 def _self_kill_count(source: str, mutants: tuple[_Mutant, ...]) -> int:
     name = "mutant_export_test_baseline"
+    previous = sys.modules.get(name, _ABSENT)
     try:
         _self_holds(_load(source, name, str(Path(__file__).resolve())))
     finally:
-        sys.modules.pop(name, None)
+        _restore_module(name, previous)
     index = 0
     for mutant in mutants:
         _one_self(source, mutant, f"self_export_{index}")
@@ -263,8 +275,8 @@ def _anchor(left: str, right: str) -> str:
 _LIBRARY_MUTANTS: tuple[_Mutant, ...] = (
     (
         "float admitted",
-        '    if isinstance(value, float):\n        raise _fail("float refused at the public boundary", role=role, received="float")\n',
-        "    if isinstance(value, float):\n        return int(value)\n",
+        '    if issubclass(type(value), float):\n        raise _fail("float refused at the public boundary", role=role, received="float")\n',
+        "    if issubclass(type(value), float):\n        return int(value)\n",
     ),
     (
         "boolean admitted",
