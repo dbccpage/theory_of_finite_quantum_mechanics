@@ -2,7 +2,7 @@
 
     python -X utf8 dag/pfp/batch_tools/pfp_batch.py <command> [options]
 
-Commands: init, prepare-p0, p0, p1, p2, p3, run, review, companions, integrate, finalize, verify,
+Commands: init, prepare-p0, preflight, p0, p1, p2, p3, run, review, companions, integrate, finalize, verify,
 publish, disk-check, toolchain. --root selects another tree (tests); default is this repository.
 Nothing here calls a provider; every command writes retained, hash-bound artifacts.
 """
@@ -18,6 +18,7 @@ import challenge  # noqa: E402
 import companions  # noqa: E402
 import finalize  # noqa: E402
 import integrate  # noqa: E402
+import preflight  # noqa: E402
 import publish  # noqa: E402
 import review  # noqa: E402
 import selection  # noqa: E402
@@ -63,6 +64,9 @@ def main(argv=None):
     p.add_argument('--allow-short', action='store_true')
     p = add('prepare-p0', node=True, help='P0 request and byte-custody source inventory')
     p.add_argument('--external', action='append', default=[], metavar='REPO=PATH', help='checkout of an external repository, e.g. the_symbol_game=...')
+    p = add('preflight', batch=False, node=True, help='run the checker, formatter and every P4 mutant of <spec-dir>/<NODE>.json before P0 (nothing is written)')
+    p.add_argument('--batch', help='batch folder whose specs/ holds the specs')
+    p.add_argument('--spec-dir', type=Path, help='explicit spec directory (a batch that does not exist yet)')
     add('p0', node=True, help='reviewed missions and host review from specs/<NODE>.json')
     p = add('p1', node=True, help='seal the candidate from specs/<NODE>.json (key candidate, or repairs.<attempt>)')
     p.add_argument('--attempt', default='p1')
@@ -113,6 +117,12 @@ def main(argv=None):
         report = {'free_gb': round(disk_precheck(ctx.root, args.need_gb, 'batch'), 2)}
         report['cargo'] = cargo_target_guard(args.cargo_target, min_free_gb=args.need_gb, clear=not args.no_clear)['report']
         emit(report)
+    elif args.command == 'preflight':
+        ctx = Ctx(args.root)
+        spec_dir = args.spec_dir or ctx.batch_dir(args.batch) / 'specs'
+        names = args.node or sorted(p.stem for p in Path(spec_dir).glob('*.json'))
+        for task in names:
+            emit(preflight.preflight(ctx, task, spec_dir))
     elif args.command == 'toolchain':
         emit({'lean_toolchain': lean_toolchain(Ctx(args.root))})
     else:

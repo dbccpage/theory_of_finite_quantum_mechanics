@@ -25,9 +25,11 @@ import finalize  # noqa: E402
 import generate_prompts as gen  # noqa: E402
 import integrate  # noqa: E402
 import pfp_batch  # noqa: E402
+import preflight  # noqa: E402
 import publish  # noqa: E402
 import review  # noqa: E402
 import selection  # noqa: E402
+import spec_builder  # noqa: E402
 import stages  # noqa: E402
 import verify_batch  # noqa: E402
 
@@ -394,6 +396,74 @@ class Guards(Dummy):
         self.assertEqual(outcome['accepted_attempt'], 'p3a')
         self.assertEqual(common.load_json(run / 'accepted.json')['failed_checkpoints'], ['p2'])
         self.assertTrue((run / 'p2/native/certificate_receipt.json').is_file())
+
+
+BOUND_CHECKER = """import sys
+from pathlib import Path
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / 'dag/pfp/prepare_stage.py').is_file())
+sys.path.insert(0, str(ROOT / 'dag/pfp'))
+import exact_json as E
+
+def check(request, candidate):
+    try:
+        _, cand, public = E.bound(request, candidate, 'DUMMY-ADD')
+        records = cand['data']['records']
+        if [r['input'] for r in records] != public['cases']:
+            raise ValueError('inputs differ')
+        for r in records:
+            a, b = r['input']
+            if r['output'] != [str(int(a) + int(b))]:
+                raise ValueError('wrong sum')
+        if set(cand['data']) != {'records'}:
+            raise ValueError('extra keys')
+        return {'ok': True}
+    except (KeyError, TypeError, IndexError, AttributeError) as error:
+        raise ValueError('malformed ' + repr(error))
+"""
+LAZY_CHECKER = "def check(request, candidate):\n    return {'ok': True}\n"
+
+
+class SpecBuilderAndPreflight(Dummy):
+    def spec_dir(self, name, checker):
+        folder = self.root / 'specs_pre' / name
+        write(folder / 'check_candidate.py', checker)
+        write(folder / 'format_certificate.py', FORMAT)
+        write(folder / 'semantic_mutants.py', SEMANTIC)
+        return folder
+
+    def test_build_spec_declares_the_four_standard_gates_and_validates(self):
+        boundary = {'supports': 's', 'does_not_support': 'general case of the thing',
+                    'narrowest_claim': 'n', 'next_test': 'Prove the unnormalized statement for three sectors with a unitary mix.'}
+        gen = {'id': 'op', 'ordered_inputs': ['A'], 'output': 'B', 'semantic_predicate': 'p', 'hypotheses': ['h']}
+        spec = spec_builder.build_spec(
+            node='X', short='x', lean='XMod', anchors=['XMod.t'], cases=[[1]], public_tsv='x\t1\n', data={'records': []}, scope_review='scope',
+            predicates=['q'], boundary=boundary, generators=[gen], relations=[{'id': 'r', 'equation_or_predicate': 'e'}],
+            compositions=[{'outer_operation': 'op', 'input_slot': 0, 'inner_operation': 'op'}], open_obligations=['o'], depends_on_result=True)
+        gates = {g['id']: g for g in spec['profile']['p2_gates']}
+        self.assertEqual(sorted(gates), ['lean', 'python', 'rust', 'rust_replay'])
+        self.assertEqual((gates['rust']['needs'], gates['lean']['needs'], gates['python']['needs']), ('cargo', 'lean', None))
+        self.assertEqual(gates['lean']['argv'][-1], 'XMod.lean')
+        self.assertTrue(spec['profile']['dag_status_depends_on_result'])
+        self.assertIn('lean4/XMod.lean', spec['profile']['production_sources'])
+        stages.validate_spec(spec['profile'], spec['operad_delta'])
+        self.assertEqual(spec['operad_delta']['add_or_refine_generators'][0]['arity'], 1)
+
+    def test_preflight_runs_every_mutant_and_catches_a_lazy_checker(self):
+        spec = spec_for('DUMMY-ADD')
+        folder = self.spec_dir('good', BOUND_CHECKER)
+        report = preflight.preflight(self.ctx, 'DUMMY-ADD', folder, spec=spec)
+        self.assertGreater(report['coordinate_mutants'], 5)
+        self.assertEqual((report['semantic_mutants'], report['semantic_controls']), (1, 1))
+        lazy = self.spec_dir('lazy', LAZY_CHECKER)
+        with self.assertRaisesRegex(ValueError, 'accepts coordinate mutants'):
+            preflight.preflight(self.ctx, 'DUMMY-ADD', lazy, spec=spec)
+
+    def test_preflight_rejects_wire_lines_with_empty_trailing_fields(self):
+        spec = spec_for('DUMMY-ADD')
+        folder = self.spec_dir('wire', BOUND_CHECKER)
+        write(folder / 'format_certificate.py', "def lines(data):\n    return ['add\\t1\\t']\n")
+        with self.assertRaisesRegex(ValueError, 'non-empty single lines'):
+            preflight.preflight(self.ctx, 'DUMMY-ADD', folder, spec=spec)
 
 
 class Units(unittest.TestCase):
