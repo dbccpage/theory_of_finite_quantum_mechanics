@@ -16,7 +16,7 @@ FSP switching normal form NF-002 on a fixed labelled finite graph with a supplie
 All NF-002 theorems T1-T5 and the duplicate-free 2^numChord normal-form enumeration are mechanized in core Lean 4 without Classical.choice.
 
 ### Source Status
-Local compatibility port replayed with Lean 4.33.1; enumeration length, uniqueness, membership and chord-count identity depend only on propext and Quot.sound.
+Local compatibility port replayed with Lean 4.33.1; enumeration length, uniqueness, membership and chord-count identity depend only on propext and Quot.sound; replayed with Lean 4.35.0 on 2026-10-21.
 
 ---
 

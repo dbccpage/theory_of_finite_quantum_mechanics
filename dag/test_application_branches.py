@@ -142,8 +142,8 @@ def test_tensor_lean_replay_matches_sources_and_admission_policy():
                'TensorSchmidt', 'TensorReachability', 'TensorOperationalCone', 'TensorComposition'}
     assert len(replay['results']) == len(modules)
     assert {r['module'] for r in replay['results']} == modules
-    assert '4.33.1' in replay['lean_version']
-    assert replay['mathlib_source_sha'] == '0df444a360eaa60ab8c11dca51a86af692955474'
+    assert '4.35.0' in replay['lean_version']
+    assert replay['mathlib_source_sha'] == '56a005855ea17e0b0958f73ec801ae140b0a1679'
     for result in replay['results']:
         raw = (ROOT / f"lean4/{result['module']}.lean").read_bytes()
         assert hashlib.sha256(raw).hexdigest() == result['sha256']

@@ -16,7 +16,7 @@ With the scalar field k in {R, C} and the l2 uniformity supplied as named hypoth
 Both hypotheses are supplied; their selection from finite-theory primitives is the content of FQ-GAP-CONTINUUM-HILBERT-LIFT. Dynamics and generators are not lifted (FQ-GAP-STONE-CONTINUOUS-TIME); the bound C on an exact operator is a hypothesis.
 
 ### Source Status
-Kernel-checked (Lean 4.33.1, pinned Mathlib cache) in dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion (four modules, 112 receipts) and dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps (three further modules; 168 receipts including the re-replayed dependencies); exact replays in code/python/src/qm/hilbert_lift_completion.py (20 tests, certificate row in test_isolated_certificates.py) and code/rust/src/qm/hilbert_lift_completion.rs (18 inline tests)
+Kernel-checked (Lean 4.33.1, pinned Mathlib cache) in dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion (four modules, 112 receipts) and dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps (three further modules; 168 receipts including the re-replayed dependencies); exact replays in code/python/src/qm/hilbert_lift_completion.py (20 tests, certificate row in test_isolated_certificates.py) and code/rust/src/qm/hilbert_lift_completion.rs (18 inline tests); replayed with Lean 4.35.0 on 2026-10-21.
 
 ---
 
