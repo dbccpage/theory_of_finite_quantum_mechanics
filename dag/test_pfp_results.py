@@ -52,7 +52,7 @@ def test_applying_the_decisions_twice_changes_nothing():
 def test_every_reviewed_node_has_a_pfp_review_and_only_those():
     nodes = nodes_by_id()
     reviewed = reviewed_folders()
-    assert len(reviewed) == 151
+    assert len(reviewed) >= 151  # 151 from the first nine batches, plus every later batch with a decision
     assert {i for i, n in nodes.items() if 'pfp_review' in n} == reviewed
     assert {e['node_id'] for e in pfp.load_decisions(ROOT)['decisions']} == reviewed
 

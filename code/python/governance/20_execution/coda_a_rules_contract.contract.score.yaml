@@ -1,76 +1,58 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/coda_a_rules_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/governance/20_execution/coda_a_rules_contract.py",
       "sha256": "d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:20_execution:coda-a-rules-contract:v1",
-    "role": "library",
-    "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.contract.v1",
-    "operations": {
-      "ContractModel": "Class ContractModel domain record and methods.",
-      "validate_contract": "Function validate_contract operation."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/governance/20_execution/coda_a_rules_contract.py",
+        "sha256": "d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806",
+    "subject": "code/python/governance/20_execution/coda_a_rules_contract.py"
   },
-  "current_contract": "732931ac3962616535024acaddaf1178596a13ab53ad9c205d0b70da023a30e6",
-  "current_scoring": "c2201c70338180a0c457fdada5311ab42e80041eec3e8d79e5d193ebc9f1e6f8",
   "contract_history": [
     {
-      "sha256": "8c5afbe5dfd57da246a2c97092a03ec9239623cc5bb6a08a2136fd2c0ab4b2c0",
       "bytes": 3739,
+      "original_paths": [
+        "code/python/governance/20_execution/coda_a_rules.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"paper_identity\": \"CODA-A\",\n  \"legacy_file_identity\": \"005_gtta.md\",\n  \"canonical_version\": \"v1.0\",\n  \"authority_effect\": \"None\",\n  \"layer\": \"Layer 6 (A — Anomalon Register)\",\n  \"primitives\": {\n    \"ambient_category\": \"Category C with finite limits and pushouts\",\n    \"closure_discipline\": \"Lambda = (Close_Lambda, c_Lambda, Cofib, tau_res, T_res)\",\n    \"closure_unit\": \"c_{Lambda, X} : X -> Close_Lambda(X)\",\n    \"residual_object\": \"R_Lambda(X) = Cofib(c_{Lambda, X}) ~= Close_Lambda(X) union_X *\",\n    \"anomalon_terminal\": \"Omega_{LambdaOmega}(X) = tau_res(R_Lambda(X))\",\n    \"canonical_residual\": \"A-frak(X) = cofib(epsilon_X) via shadow reflection U_3\"\n  },\n  \"equations\": {\n    \"residual_handoff_pipeline\": {\n      \"latex\": \"X \\\\xrightarrow{c_\\\\Lambda} \\\\operatorname{Close}_\\\\Lambda(X) \\\\xrightarrow{\\\\operatorname{cofib}} R_\\\\Lambda(X) \\\\xrightarrow{\\\\tau_{\\\\mathrm{res}}} \\\\Omega_{\\\\Lambda\\\\Omega}(X)\",\n      \"description\": \"Pipeline mapping failed closure attempt into typed residual cofiber terminal\"\n    },\n    \"homological_classification\": {\n      \"resolved_exact\": \"[r] = 0 \\\\implies \\\\mathsf{ResolvedExact}\",\n      \"closed_residual\": \"[r] \\\\neq 0 \\\\land \\\\bar{d}_1[r] = 0 \\\\implies \\\\mathsf{ClosedResidual} / \\\\mathsf{Anomalon}\",\n      \"open_residual\": \"\\\\bar{d}_1[r] \\\\neq 0 \\\\implies \\\\mathsf{OpenResidual}\"\n    },\n    \"first_unresolved_index\": {\n      \"latex\": \"n_0 := \\\\min \\\\{ n \\\\in \\\\mathbb{N} : R^{(n)}_\\\\Lambda \\\\not\\\\simeq 0 \\\\}\",\n      \"description\": \"First unresolved coherence level acting as dependency cut for higher-dimensional checks\"\n    },\n    \"lift_transition_ledger\": {\n      \"latex\": \"\\\\mathsf{Trans}_F(R) = \\\\mathsf{Split?} + \\\\bigoplus_i \\\\mathsf{AtomTrans}(R_i)\",\n      \"description\": \"Transition outcomes under lift F: Kill, Close, Raise, PersistOpen, Refused, Split\"\n    },\n    \"residual_non_creation_theorem\": {\n      \"latex\": \"\\\\operatorname{Nat}(\\\\Omega_{\\\\Lambda\\\\Omega}, \\\\mathsf{Auth}) = \\\\varnothing\",\n      \"description\": \"Theorem proving no natural transformation exists from residual terminal to authority\"\n    }\n  },\n  \"enforcement_rules\": [\n    {\n      \"id\": \"CODA-A-RULE-001\",\n      \"name\": \"Doctrine of Residual Honesty\",\n      \"statement\": \"Failed closure must be terminalized as typed residual (ClosureAbsorbed, ClosedResidual, OpenResidual, LiftRequired, RefusedClosure), never hidden or passed as authority.\"\n    },\n    {\n      \"id\": \"CODA-A-RULE-002\",\n      \"name\": \"Evidence Is Not Authority\",\n      \"statement\": \"CertifiedResidual(r) does not equal Auth(claim). Exposing residue organizes boundaries but mints no authority.\"\n    },\n    {\n      \"id\": \"CODA-A-RULE-003\",\n      \"name\": \"No Silent Mutation on Lift\",\n      \"statement\": \"If lift F mutates protected skeleton U F(q) != q, it must return a LossLedger. Silent mutation invalidates authority preservation.\"\n    },\n    {\n      \"id\": \"CODA-A-RULE-004\",\n      \"name\": \"n_0 Dependency Cut\",\n      \"statement\": \"Higher-dimensional coherence checks (n > n_0) are conditional until the first unresolved residual n_0 is resolved or terminalized.\"\n    }\n  ],\n  \"claim_discipline\": {\n    \"supports\": \"Supports homological typing of unabsorbed residuals, cofiber formation, and lift transition ledgers.\",\n    \"does_not_support\": \"Does not support treating residuals as authority, origin of difference claims, or uncertified closure pass.\",\n    \"narrowest_defensible_claim\": \"Classifies residual cofiber outcomes into exact, closed, open, lift-required, or refused terminals.\",\n    \"next_test_needed\": \"Mechanized verification of atomic lift transition outcomes (Kill/Close/Raise/Split) on synthetic cofiber complexes.\"\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "paper_identity": "CODA-A",
-        "legacy_file_identity": "005_gtta.md",
-        "canonical_version": "v1.0",
         "authority_effect": "None",
-        "layer": "Layer 6 (A — Anomalon Register)",
-        "primitives": {
-          "ambient_category": "Category C with finite limits and pushouts",
-          "closure_discipline": "Lambda = (Close_Lambda, c_Lambda, Cofib, tau_res, T_res)",
-          "closure_unit": "c_{Lambda, X} : X -> Close_Lambda(X)",
-          "residual_object": "R_Lambda(X) = Cofib(c_{Lambda, X}) ~= Close_Lambda(X) union_X *",
-          "anomalon_terminal": "Omega_{LambdaOmega}(X) = tau_res(R_Lambda(X))",
-          "canonical_residual": "A-frak(X) = cofib(epsilon_X) via shadow reflection U_3"
-        },
-        "equations": {
-          "residual_handoff_pipeline": {
-            "latex": "X \\xrightarrow{c_\\Lambda} \\operatorname{Close}_\\Lambda(X) \\xrightarrow{\\operatorname{cofib}} R_\\Lambda(X) \\xrightarrow{\\tau_{\\mathrm{res}}} \\Omega_{\\Lambda\\Omega}(X)",
-            "description": "Pipeline mapping failed closure attempt into typed residual cofiber terminal"
-          },
-          "homological_classification": {
-            "resolved_exact": "[r] = 0 \\implies \\mathsf{ResolvedExact}",
-            "closed_residual": "[r] \\neq 0 \\land \\bar{d}_1[r] = 0 \\implies \\mathsf{ClosedResidual} / \\mathsf{Anomalon}",
-            "open_residual": "\\bar{d}_1[r] \\neq 0 \\implies \\mathsf{OpenResidual}"
-          },
-          "first_unresolved_index": {
-            "latex": "n_0 := \\min \\{ n \\in \\mathbb{N} : R^{(n)}_\\Lambda \\not\\simeq 0 \\}",
-            "description": "First unresolved coherence level acting as dependency cut for higher-dimensional checks"
-          },
-          "lift_transition_ledger": {
-            "latex": "\\mathsf{Trans}_F(R) = \\mathsf{Split?} + \\bigoplus_i \\mathsf{AtomTrans}(R_i)",
-            "description": "Transition outcomes under lift F: Kill, Close, Raise, PersistOpen, Refused, Split"
-          },
-          "residual_non_creation_theorem": {
-            "latex": "\\operatorname{Nat}(\\Omega_{\\Lambda\\Omega}, \\mathsf{Auth}) = \\varnothing",
-            "description": "Theorem proving no natural transformation exists from residual terminal to authority"
-          }
+        "canonical_version": "v1.0",
+        "claim_discipline": {
+          "does_not_support": "Does not support treating residuals as authority, origin of difference claims, or uncertified closure pass.",
+          "narrowest_defensible_claim": "Classifies residual cofiber outcomes into exact, closed, open, lift-required, or refused terminals.",
+          "next_test_needed": "Mechanized verification of atomic lift transition outcomes (Kill/Close/Raise/Split) on synthetic cofiber complexes.",
+          "supports": "Supports homological typing of unabsorbed residuals, cofiber formation, and lift transition ledgers."
         },
         "enforcement_rules": [
           {
@@ -94,11 +76,39 @@
             "statement": "Higher-dimensional coherence checks (n > n_0) are conditional until the first unresolved residual n_0 is resolved or terminalized."
           }
         ],
-        "claim_discipline": {
-          "supports": "Supports homological typing of unabsorbed residuals, cofiber formation, and lift transition ledgers.",
-          "does_not_support": "Does not support treating residuals as authority, origin of difference claims, or uncertified closure pass.",
-          "narrowest_defensible_claim": "Classifies residual cofiber outcomes into exact, closed, open, lift-required, or refused terminals.",
-          "next_test_needed": "Mechanized verification of atomic lift transition outcomes (Kill/Close/Raise/Split) on synthetic cofiber complexes."
+        "equations": {
+          "first_unresolved_index": {
+            "description": "First unresolved coherence level acting as dependency cut for higher-dimensional checks",
+            "latex": "n_0 := \\min \\{ n \\in \\mathbb{N} : R^{(n)}_\\Lambda \\not\\simeq 0 \\}"
+          },
+          "homological_classification": {
+            "closed_residual": "[r] \\neq 0 \\land \\bar{d}_1[r] = 0 \\implies \\mathsf{ClosedResidual} / \\mathsf{Anomalon}",
+            "open_residual": "\\bar{d}_1[r] \\neq 0 \\implies \\mathsf{OpenResidual}",
+            "resolved_exact": "[r] = 0 \\implies \\mathsf{ResolvedExact}"
+          },
+          "lift_transition_ledger": {
+            "description": "Transition outcomes under lift F: Kill, Close, Raise, PersistOpen, Refused, Split",
+            "latex": "\\mathsf{Trans}_F(R) = \\mathsf{Split?} + \\bigoplus_i \\mathsf{AtomTrans}(R_i)"
+          },
+          "residual_handoff_pipeline": {
+            "description": "Pipeline mapping failed closure attempt into typed residual cofiber terminal",
+            "latex": "X \\xrightarrow{c_\\Lambda} \\operatorname{Close}_\\Lambda(X) \\xrightarrow{\\operatorname{cofib}} R_\\Lambda(X) \\xrightarrow{\\tau_{\\mathrm{res}}} \\Omega_{\\Lambda\\Omega}(X)"
+          },
+          "residual_non_creation_theorem": {
+            "description": "Theorem proving no natural transformation exists from residual terminal to authority",
+            "latex": "\\operatorname{Nat}(\\Omega_{\\Lambda\\Omega}, \\mathsf{Auth}) = \\varnothing"
+          }
+        },
+        "layer": "Layer 6 (A — Anomalon Register)",
+        "legacy_file_identity": "005_gtta.md",
+        "paper_identity": "CODA-A",
+        "primitives": {
+          "ambient_category": "Category C with finite limits and pushouts",
+          "anomalon_terminal": "Omega_{LambdaOmega}(X) = tau_res(R_Lambda(X))",
+          "canonical_residual": "A-frak(X) = cofib(epsilon_X) via shadow reflection U_3",
+          "closure_discipline": "Lambda = (Close_Lambda, c_Lambda, Cofib, tau_res, T_res)",
+          "closure_unit": "c_{Lambda, X} : X -> Close_Lambda(X)",
+          "residual_object": "R_Lambda(X) = Cofib(c_{Lambda, X}) ~= Close_Lambda(X) union_X *"
         },
         "relationships": {
           "extends": [
@@ -106,71 +116,107 @@
           ]
         }
       },
-      "raw_utf8": "{\n  \"paper_identity\": \"CODA-A\",\n  \"legacy_file_identity\": \"005_gtta.md\",\n  \"canonical_version\": \"v1.0\",\n  \"authority_effect\": \"None\",\n  \"layer\": \"Layer 6 (A — Anomalon Register)\",\n  \"primitives\": {\n    \"ambient_category\": \"Category C with finite limits and pushouts\",\n    \"closure_discipline\": \"Lambda = (Close_Lambda, c_Lambda, Cofib, tau_res, T_res)\",\n    \"closure_unit\": \"c_{Lambda, X} : X -> Close_Lambda(X)\",\n    \"residual_object\": \"R_Lambda(X) = Cofib(c_{Lambda, X}) ~= Close_Lambda(X) union_X *\",\n    \"anomalon_terminal\": \"Omega_{LambdaOmega}(X) = tau_res(R_Lambda(X))\",\n    \"canonical_residual\": \"A-frak(X) = cofib(epsilon_X) via shadow reflection U_3\"\n  },\n  \"equations\": {\n    \"residual_handoff_pipeline\": {\n      \"latex\": \"X \\\\xrightarrow{c_\\\\Lambda} \\\\operatorname{Close}_\\\\Lambda(X) \\\\xrightarrow{\\\\operatorname{cofib}} R_\\\\Lambda(X) \\\\xrightarrow{\\\\tau_{\\\\mathrm{res}}} \\\\Omega_{\\\\Lambda\\\\Omega}(X)\",\n      \"description\": \"Pipeline mapping failed closure attempt into typed residual cofiber terminal\"\n    },\n    \"homological_classification\": {\n      \"resolved_exact\": \"[r] = 0 \\\\implies \\\\mathsf{ResolvedExact}\",\n      \"closed_residual\": \"[r] \\\\neq 0 \\\\land \\\\bar{d}_1[r] = 0 \\\\implies \\\\mathsf{ClosedResidual} / \\\\mathsf{Anomalon}\",\n      \"open_residual\": \"\\\\bar{d}_1[r] \\\\neq 0 \\\\implies \\\\mathsf{OpenResidual}\"\n    },\n    \"first_unresolved_index\": {\n      \"latex\": \"n_0 := \\\\min \\\\{ n \\\\in \\\\mathbb{N} : R^{(n)}_\\\\Lambda \\\\not\\\\simeq 0 \\\\}\",\n      \"description\": \"First unresolved coherence level acting as dependency cut for higher-dimensional checks\"\n    },\n    \"lift_transition_ledger\": {\n      \"latex\": \"\\\\mathsf{Trans}_F(R) = \\\\mathsf{Split?} + \\\\bigoplus_i \\\\mathsf{AtomTrans}(R_i)\",\n      \"description\": \"Transition outcomes under lift F: Kill, Close, Raise, PersistOpen, Refused, Split\"\n    },\n    \"residual_non_creation_theorem\": {\n      \"latex\": \"\\\\operatorname{Nat}(\\\\Omega_{\\\\Lambda\\\\Omega}, \\\\mathsf{Auth}) = \\\\varnothing\",\n      \"description\": \"Theorem proving no natural transformation exists from residual terminal to authority\"\n    }\n  },\n  \"enforcement_rules\": [\n    {\n      \"id\": \"CODA-A-RULE-001\",\n      \"name\": \"Doctrine of Residual Honesty\",\n      \"statement\": \"Failed closure must be terminalized as typed residual (ClosureAbsorbed, ClosedResidual, OpenResidual, LiftRequired, RefusedClosure), never hidden or passed as authority.\"\n    },\n    {\n      \"id\": \"CODA-A-RULE-002\",\n      \"name\": \"Evidence Is Not Authority\",\n      \"statement\": \"CertifiedResidual(r) does not equal Auth(claim). Exposing residue organizes boundaries but mints no authority.\"\n    },\n    {\n      \"id\": \"CODA-A-RULE-003\",\n      \"name\": \"No Silent Mutation on Lift\",\n      \"statement\": \"If lift F mutates protected skeleton U F(q) != q, it must return a LossLedger. Silent mutation invalidates authority preservation.\"\n    },\n    {\n      \"id\": \"CODA-A-RULE-004\",\n      \"name\": \"n_0 Dependency Cut\",\n      \"statement\": \"Higher-dimensional coherence checks (n > n_0) are conditional until the first unresolved residual n_0 is resolved or terminalized.\"\n    }\n  ],\n  \"claim_discipline\": {\n    \"supports\": \"Supports homological typing of unabsorbed residuals, cofiber formation, and lift transition ledgers.\",\n    \"does_not_support\": \"Does not support treating residuals as authority, origin of difference claims, or uncertified closure pass.\",\n    \"narrowest_defensible_claim\": \"Classifies residual cofiber outcomes into exact, closed, open, lift-required, or refused terminals.\",\n    \"next_test_needed\": \"Mechanized verification of atomic lift transition outcomes (Kill/Close/Raise/Split) on synthetic cofiber complexes.\"\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/coda_a_rules.contract.yaml"
-      ]
+      "sha256": "8c5afbe5dfd57da246a2c97092a03ec9239623cc5bb6a08a2136fd2c0ab4b2c0"
     },
     {
-      "sha256": "732931ac3962616535024acaddaf1178596a13ab53ad9c205d0b70da023a30e6",
       "bytes": 1779,
+      "original_paths": [
+        "code/python/governance/20_execution/coda_a_rules_contract.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/coda_a_rules_contract.py\",\n    \"sha256\": \"d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:coda-a-rules-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/coda_a_rules_contract.py",
           "sha256": "d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:20_execution:coda-a-rules-contract:v1",
-        "role": "library",
-        "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.contract.v1",
-        "operations": {
-          "ContractModel": "Class ContractModel domain record and methods.",
-          "validate_contract": "Function validate_contract operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "profile": "Exact",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.contract.v1",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/coda_a_rules_contract.py\",\n    \"sha256\": \"d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:coda-a-rules-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: omega.contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "732931ac3962616535024acaddaf1178596a13ab53ad9c205d0b70da023a30e6"
+    },
+    {
+      "bytes": 1661,
       "original_paths": [
-        "code/python/governance/20_execution/coda_a_rules_contract.contract.score.yaml#contract"
-      ]
+        "code/python/governance/20_execution/coda_a_rules_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/coda_a_rules_contract.py\",\n    \"sha256\": \"d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/coda_a_rules_contract.py\",\n      \"sha256\": \"d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806\",\n  \"subject\": \"code/python/governance/20_execution/coda_a_rules_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/coda_a_rules_contract.py",
+          "sha256": "d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/20_execution/coda_a_rules_contract.py",
+            "sha256": "d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806",
+        "subject": "code/python/governance/20_execution/coda_a_rules_contract.py"
+      },
+      "sha256": "acc83fd4def02ab282bc08ffdcf149dfc32657093d5544ac6e5021104886062e"
     }
   ],
+  "current_contract": "acc83fd4def02ab282bc08ffdcf149dfc32657093d5544ac6e5021104886062e",
+  "current_scoring": "649b001690723459f2824691199735ccb0a08688bab243611817a47d7346bf50",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/20_execution/coda_a_rules.contract.yaml": "853a89d17f1ebbd29bcb1f460204b9ab91ecbf5339966e0f7f5f74efa8855c44"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "c2201c70338180a0c457fdada5311ab42e80041eec3e8d79e5d193ebc9f1e6f8",
       "bytes": 2199,
+      "original_paths": [
+        "code/python/governance/20_execution/coda_a_rules_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/coda_a_rules_contract.py\",\n    \"sha256\": \"d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:coda-a-rules-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/coda_a_rules_contract.py",
           "sha256": "d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:20_execution:coda-a-rules-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -179,40 +225,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "c2201c70338180a0c457fdada5311ab42e80041eec3e8d79e5d193ebc9f1e6f8"
+    },
+    {
+      "bytes": 1636,
+      "original_paths": [
+        "code/python/governance/20_execution/coda_a_rules_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/coda_a_rules_contract.py\",\n    \"sha256\": \"d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/coda_a_rules_contract.py\",\n      \"sha256\": \"d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/coda_a_rules_contract.py",
+          "sha256": "d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/20_execution/coda_a_rules_contract.py",
+            "sha256": "d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/coda_a_rules_contract.py\",\n    \"sha256\": \"d1a76749b44ccfbd123508895732519716c0511e401eab4b686998e9df914806\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:coda-a-rules-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/coda_a_rules_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "649b001690723459f2824691199735ccb0a08688bab243611817a47d7346bf50"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/20_execution/coda_a_rules.contract.yaml": "853a89d17f1ebbd29bcb1f460204b9ab91ecbf5339966e0f7f5f74efa8855c44"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

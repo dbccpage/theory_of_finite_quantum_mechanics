@@ -1,0 +1,86 @@
+{
+  "task_id": "TFQ-0007",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "74c27b96116c51bc0a06261ffd6e8aa0670db5cb0e061557b950eed1fabb73bd",
+  "candidate_sha256": "3fef0571c2aa16fcdf95199bf4d1e0cd89adb589ca9eb18180375488f18ad07e",
+  "status": "repairable_candidate_defect",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 1,
+    "failure_rate": 0.5,
+    "failures_by_class": {
+      "wrong_signature": 1
+    },
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T21:48:16Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "effect_characterisation",
+        "equation_or_predicate": "(E : Matrix (Fin n) (Fin n) ℚ) → (space n).Effect E ↔ PsdQ E ∧ PsdQ (1 - E)",
+        "typing_conditions": "",
+        "source_pins": [
+          {
+            "path": "lean4/BornMatrixCarrier.lean",
+            "declaration": "BornFable.MatrixCarrier.effect_iff",
+            "line": 128
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/BornMatrixCarrier.lean",
+          "decl": "BornFable.MatrixCarrier.effect_iff",
+          "kind": "theorem",
+          "line": 128,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-9A3116584C9A",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "carrier_def: () -> Carrier [BornFable.MatrixCarrier.space]",
+        "evidence": "lean def space has 1 explicit binders (1 with conclusion arrows); the claim says 0 (heuristic count)",
+        "decl_key": "BornFable.MatrixCarrier.space",
+        "confidence": "exact",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0007"
+      }
+    ],
+    "open_obligations": [
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

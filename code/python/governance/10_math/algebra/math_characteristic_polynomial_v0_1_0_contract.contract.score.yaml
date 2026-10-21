@@ -1,168 +1,126 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:characteristic_polynomial:v0.1.0",
-    "title": "Characteristic and Minimal Polynomial Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py",
+      "sha256": "58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f"
     },
-    "math": {
-      "object_kind": "matrix_invariant",
-      "symbol": "p_A(x) = det(x I − A) ∈ F[x] and the minimal polynomial m_A | p_A",
-      "ascii_symbol": "characteristic_polynomial",
-      "notation": "A ∈ M_n(F), F : Field + ExactRing",
-      "domain": [
-        "matrix: square BasicMatrix<F> of size n",
-        "polynomial: coefficients in ascending powers, entry i is the coefficient of xⁱ",
-        "budgets: OperationLimits { max_elements, max_scalar_ops }"
-      ],
-      "codomain": {
-        "description": "Monic polynomials as vectors of ascending coefficients: the characteristic polynomial (degree n, computed without any division by the Berkowitz algorithm and therefore valid in every characteristic) and the minimal polynomial (least degree d <= n with m_A(A) = 0, found by the first dependence among vec(I), vec(A), vec(A²), …). Also Horner evaluation of a polynomial at a matrix and the nilpotent, idempotent and involution tests.\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "The characteristic polynomial has exactly n + 1 entries and the last entry is 1",
-        "Only add, mul and neg of the scalar are used by the characteristic polynomial: no division, so characteristic 2 and 3 fields are valid",
-        "The Toeplitz column of each trailing block (a, R, C, M) is (1, −a, −R·C, −R·M·C, …, −R·M^(s−2)·C)",
-        "The minimal polynomial is monic of degree at most n; the zero matrix gives x, the scalar matrix c·I gives x − c, and the empty matrix gives the constant 1",
-        "is_nilpotent tests Aⁿ = 0; is_idempotent tests A² = A; is_involution tests A² = I (a matrix involution, not the field involution); all three refuse a non-square matrix",
-        "The worst-case cost charged by the budget is 2n⁴ + 4n³ scalar calls for the characteristic polynomial and n² elements; for the minimal polynomial 2n⁴ plus the reductions of the n²×(k+1) grids, k = 1..n, on at most n²·(n+1) elements"
-      ]
-    },
-    "laws": [
-      "Cayley–Hamilton: p_A(A) = 0",
-      "the coefficient of x^(n−1) is −tr A, and the constant term is (−1)ⁿ det A",
-      "p_(S A S⁻¹) = p_A and p_(Aᵀ) = p_A",
-      "p_(c A)(x) has coefficient c^(n−i) · (coefficient of xⁱ in p_A)",
-      "A is nilpotent iff p_A = xⁿ iff Aⁿ = 0",
-      "the companion matrix of a monic polynomial has that polynomial as characteristic and as minimal polynomial",
-      "m_A(A) = 0, m_A divides p_A, and deg m_A equals the rank of {vec(I), vec(A), …, vec(Aⁿ)}",
-      "the minimal polynomial of the multiplication matrix of a field element is the minimal polynomial of that element"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Cayley–Hamilton is replayed with evaluate_polynomial_at_matrix, which uses matrix products only",
-        "Berkowitz agrees with an independent Faddeev–LeVerrier implementation over BigRational (which divides by k and is valid only in characteristic 0)",
-        "Divisibility m_A | p_A is replayed by long division with zero remainder"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_linear_algebra",
-      "module": "exact_field::characteristic_polynomial",
-      "symbols": [
-        "characteristic_polynomial",
-        "minimal_polynomial",
-        "evaluate_polynomial_at_matrix",
-        "is_nilpotent",
-        "is_idempotent",
-        "is_involution"
-      ],
-      "required_tests": [
-        "predicates_and_polynomial_refuse_non_square_input",
-        "charpoly_budget_boundary_is_inclusive",
-        "minimal_polynomial_refuses_non_square_input_and_respects_its_budget"
-      ]
-    },
-    "negative_tests": [
-      "the characteristic polynomial, the minimal polynomial, the nilpotent, idempotent and involution tests, and polynomial evaluation at a matrix must refuse a non-square matrix",
-      "an operation whose documented worst-case bound exceeds the budget must be refused before any scalar work, and a bound equal to the limit must be accepted"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py",
+        "sha256": "58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "The characteristic polynomial of a square matrix over any exact field, by the division-free Berkowitz algorithm, and its minimal polynomial, with Horner evaluation at a matrix for the Cayley–Hamilton replay and the three exact tests A^n = 0, A² = A and A² = I. Because no division occurs in the characteristic polynomial, the result is valid over GF(2) and GF(3) at dimensions where the Faddeev–LeVerrier recurrence would divide by zero. The minimal polynomial of a multiplication matrix is the minimal polynomial of the field element it represents.",
-      "non_role": [
-        "Root finding, factorisation or isolation of the roots (polynomial arithmetic over F belongs to the number-theory crate)",
-        "Jordan or rational canonical forms",
-        "Eigenvectors and spectral decomposition",
-        "Numerical eigenvalue algorithms"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "No Lean statement of Cayley–Hamilton or the Berkowitz identity exists; the YAML to Lean to Rust chain for this contract is open",
-      "The polynomials are returned as raw coefficient vectors; a polynomial type with arithmetic belongs to omega_number_theory, which depends on this crate and therefore cannot be imported here",
-      "The minimal polynomial costs O(n⁵) scalar calls (n reductions of n²-row grids); a Krylov route on single vectors would be cheaper for multiplication matrices of field elements but needs polynomial gcd over F",
-      "The O(n⁴) characteristic polynomial is conservative for large n; a fraction-free Bareiss route would be cheaper over integer-like fields"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f",
+    "subject": "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py"
   },
-  "current_contract": "bb410dbfc9267c79b4cb5c26a636e1a9c34157cd4581be71881febbfe66f648c",
-  "current_scoring": "407707d617408835fa97e8e1699a6c5ffe977991595c9239f54031f27fb10a78",
   "contract_history": [
     {
-      "sha256": "bb410dbfc9267c79b4cb5c26a636e1a9c34157cd4581be71881febbfe66f648c",
       "bytes": 6386,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:characteristic_polynomial:v0.1.0\",\n  \"title\": \"Characteristic and Minimal Polynomial Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"matrix_invariant\",\n    \"symbol\": \"p_A(x) = det(x I − A) ∈ F[x] and the minimal polynomial m_A | p_A\",\n    \"ascii_symbol\": \"characteristic_polynomial\",\n    \"notation\": \"A ∈ M_n(F), F : Field + ExactRing\",\n    \"domain\": [\n      \"matrix: square BasicMatrix<F> of size n\",\n      \"polynomial: coefficients in ascending powers, entry i is the coefficient of xⁱ\",\n      \"budgets: OperationLimits { max_elements, max_scalar_ops }\"\n    ],\n    \"codomain\": {\n      \"description\": \"Monic polynomials as vectors of ascending coefficients: the characteristic polynomial (degree n, computed without any division by the Berkowitz algorithm and therefore valid in every characteristic) and the minimal polynomial (least degree d <= n with m_A(A) = 0, found by the first dependence among vec(I), vec(A), vec(A²), …). Also Horner evaluation of a polynomial at a matrix and the nilpotent, idempotent and involution tests.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The characteristic polynomial has exactly n + 1 entries and the last entry is 1\",\n      \"Only add, mul and neg of the scalar are used by the characteristic polynomial: no division, so characteristic 2 and 3 fields are valid\",\n      \"The Toeplitz column of each trailing block (a, R, C, M) is (1, −a, −R·C, −R·M·C, …, −R·M^(s−2)·C)\",\n      \"The minimal polynomial is monic of degree at most n; the zero matrix gives x, the scalar matrix c·I gives x − c, and the empty matrix gives the constant 1\",\n      \"is_nilpotent tests Aⁿ = 0; is_idempotent tests A² = A; is_involution tests A² = I (a matrix involution, not the field involution); all three refuse a non-square matrix\",\n      \"The worst-case cost charged by the budget is 2n⁴ + 4n³ scalar calls for the characteristic polynomial and n² elements; for the minimal polynomial 2n⁴ plus the reductions of the n²×(k+1) grids, k = 1..n, on at most n²·(n+1) elements\"\n    ]\n  },\n  \"laws\": [\n    \"Cayley–Hamilton: p_A(A) = 0\",\n    \"the coefficient of x^(n−1) is −tr A, and the constant term is (−1)ⁿ det A\",\n    \"p_(S A S⁻¹) = p_A and p_(Aᵀ) = p_A\",\n    \"p_(c A)(x) has coefficient c^(n−i) · (coefficient of xⁱ in p_A)\",\n    \"A is nilpotent iff p_A = xⁿ iff Aⁿ = 0\",\n    \"the companion matrix of a monic polynomial has that polynomial as characteristic and as minimal polynomial\",\n    \"m_A(A) = 0, m_A divides p_A, and deg m_A equals the rank of {vec(I), vec(A), …, vec(Aⁿ)}\",\n    \"the minimal polynomial of the multiplication matrix of a field element is the minimal polynomial of that element\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Cayley–Hamilton is replayed with evaluate_polynomial_at_matrix, which uses matrix products only\",\n      \"Berkowitz agrees with an independent Faddeev–LeVerrier implementation over BigRational (which divides by k and is valid only in characteristic 0)\",\n      \"Divisibility m_A | p_A is replayed by long division with zero remainder\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"exact_field::characteristic_polynomial\",\n    \"symbols\": [\n      \"characteristic_polynomial\",\n      \"minimal_polynomial\",\n      \"evaluate_polynomial_at_matrix\",\n      \"is_nilpotent\",\n      \"is_idempotent\",\n      \"is_involution\"\n    ],\n    \"required_tests\": [\n      \"predicates_and_polynomial_refuse_non_square_input\",\n      \"charpoly_budget_boundary_is_inclusive\",\n      \"minimal_polynomial_refuses_non_square_input_and_respects_its_budget\"\n    ]\n  },\n  \"negative_tests\": [\n    \"the characteristic polynomial, the minimal polynomial, the nilpotent, idempotent and involution tests, and polynomial evaluation at a matrix must refuse a non-square matrix\",\n    \"an operation whose documented worst-case bound exceeds the budget must be refused before any scalar work, and a bound equal to the limit must be accepted\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"The characteristic polynomial of a square matrix over any exact field, by the division-free Berkowitz algorithm, and its minimal polynomial, with Horner evaluation at a matrix for the Cayley–Hamilton replay and the three exact tests A^n = 0, A² = A and A² = I. Because no division occurs in the characteristic polynomial, the result is valid over GF(2) and GF(3) at dimensions where the Faddeev–LeVerrier recurrence would divide by zero. The minimal polynomial of a multiplication matrix is the minimal polynomial of the field element it represents.\",\n    \"non_role\": [\n      \"Root finding, factorisation or isolation of the roots (polynomial arithmetic over F belongs to the number-theory crate)\",\n      \"Jordan or rational canonical forms\",\n      \"Eigenvectors and spectral decomposition\",\n      \"Numerical eigenvalue algorithms\"\n    ]\n  },\n  \"wip\": [\n    \"No Lean statement of Cayley–Hamilton or the Berkowitz identity exists; the YAML to Lean to Rust chain for this contract is open\",\n    \"The polynomials are returned as raw coefficient vectors; a polynomial type with arithmetic belongs to omega_number_theory, which depends on this crate and therefore cannot be imported here\",\n    \"The minimal polynomial costs O(n⁵) scalar calls (n reductions of n²-row grids); a Krylov route on single vectors would be cheaper for multiplication matrices of field elements but needs polynomial gcd over F\",\n    \"The O(n⁴) characteristic polynomial is conservative for large n; a fraction-free Bareiss route would be cheaper over integer-like fields\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:characteristic_polynomial:v0.1.0",
-        "title": "Characteristic and Minimal Polynomial Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Root finding, factorisation or isolation of the roots (polynomial arithmetic over F belongs to the number-theory crate)",
+            "Jordan or rational canonical forms",
+            "Eigenvectors and spectral decomposition",
+            "Numerical eigenvalue algorithms"
+          ],
+          "summary": "The characteristic polynomial of a square matrix over any exact field, by the division-free Berkowitz algorithm, and its minimal polynomial, with Horner evaluation at a matrix for the Cayley–Hamilton replay and the three exact tests A^n = 0, A² = A and A² = I. Because no division occurs in the characteristic polynomial, the result is valid over GF(2) and GF(3) at dimensions where the Faddeev–LeVerrier recurrence would divide by zero. The minimal polynomial of a multiplication matrix is the minimal polynomial of the field element it represents."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "Cayley–Hamilton: p_A(A) = 0",
+          "the coefficient of x^(n−1) is −tr A, and the constant term is (−1)ⁿ det A",
+          "p_(S A S⁻¹) = p_A and p_(Aᵀ) = p_A",
+          "p_(c A)(x) has coefficient c^(n−i) · (coefficient of xⁱ in p_A)",
+          "A is nilpotent iff p_A = xⁿ iff Aⁿ = 0",
+          "the companion matrix of a monic polynomial has that polynomial as characteristic and as minimal polynomial",
+          "m_A(A) = 0, m_A divides p_A, and deg m_A equals the rank of {vec(I), vec(A), …, vec(Aⁿ)}",
+          "the minimal polynomial of the multiplication matrix of a field element is the minimal polynomial of that element"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "matrix_invariant",
-          "symbol": "p_A(x) = det(x I − A) ∈ F[x] and the minimal polynomial m_A | p_A",
           "ascii_symbol": "characteristic_polynomial",
-          "notation": "A ∈ M_n(F), F : Field + ExactRing",
+          "codomain": {
+            "description": "Monic polynomials as vectors of ascending coefficients: the characteristic polynomial (degree n, computed without any division by the Berkowitz algorithm and therefore valid in every characteristic) and the minimal polynomial (least degree d <= n with m_A(A) = 0, found by the first dependence among vec(I), vec(A), vec(A²), …). Also Horner evaluation of a polynomial at a matrix and the nilpotent, idempotent and involution tests.\n"
+          },
           "domain": [
             "matrix: square BasicMatrix<F> of size n",
             "polynomial: coefficients in ascending powers, entry i is the coefficient of xⁱ",
             "budgets: OperationLimits { max_elements, max_scalar_ops }"
           ],
-          "codomain": {
-            "description": "Monic polynomials as vectors of ascending coefficients: the characteristic polynomial (degree n, computed without any division by the Berkowitz algorithm and therefore valid in every characteristic) and the minimal polynomial (least degree d <= n with m_A(A) = 0, found by the first dependence among vec(I), vec(A), vec(A²), …). Also Horner evaluation of a polynomial at a matrix and the nilpotent, idempotent and involution tests.\n"
-          }
+          "notation": "A ∈ M_n(F), F : Field + ExactRing",
+          "object_kind": "matrix_invariant",
+          "symbol": "p_A(x) = det(x I − A) ∈ F[x] and the minimal polynomial m_A | p_A"
+        },
+        "negative_tests": [
+          "the characteristic polynomial, the minimal polynomial, the nilpotent, idempotent and involution tests, and polynomial evaluation at a matrix must refuse a non-square matrix",
+          "an operation whose documented worst-case bound exceeds the budget must be refused before any scalar work, and a bound equal to the limit must be accepted"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Cayley–Hamilton is replayed with evaluate_polynomial_at_matrix, which uses matrix products only",
+            "Berkowitz agrees with an independent Faddeev–LeVerrier implementation over BigRational (which divides by k and is valid only in characteristic 0)",
+            "Divisibility m_A | p_A is replayed by long division with zero remainder"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -174,34 +132,14 @@
             "The worst-case cost charged by the budget is 2n⁴ + 4n³ scalar calls for the characteristic polynomial and n² elements; for the minimal polynomial 2n⁴ plus the reductions of the n²×(k+1) grids, k = 1..n, on at most n²·(n+1) elements"
           ]
         },
-        "laws": [
-          "Cayley–Hamilton: p_A(A) = 0",
-          "the coefficient of x^(n−1) is −tr A, and the constant term is (−1)ⁿ det A",
-          "p_(S A S⁻¹) = p_A and p_(Aᵀ) = p_A",
-          "p_(c A)(x) has coefficient c^(n−i) · (coefficient of xⁱ in p_A)",
-          "A is nilpotent iff p_A = xⁿ iff Aⁿ = 0",
-          "the companion matrix of a monic polynomial has that polynomial as characteristic and as minimal polynomial",
-          "m_A(A) = 0, m_A divides p_A, and deg m_A equals the rank of {vec(I), vec(A), …, vec(Aⁿ)}",
-          "the minimal polynomial of the multiplication matrix of a field element is the minimal polynomial of that element"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "Cayley–Hamilton is replayed with evaluate_polynomial_at_matrix, which uses matrix products only",
-            "Berkowitz agrees with an independent Faddeev–LeVerrier implementation over BigRational (which divides by k and is valid only in characteristic 0)",
-            "Divisibility m_A | p_A is replayed by long division with zero remainder"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
         "rust_binding": {
           "crate": "omega_linear_algebra",
           "module": "exact_field::characteristic_polynomial",
+          "required_tests": [
+            "predicates_and_polynomial_refuse_non_square_input",
+            "charpoly_budget_boundary_is_inclusive",
+            "minimal_polynomial_refuses_non_square_input_and_respects_its_budget"
+          ],
           "symbols": [
             "characteristic_polynomial",
             "minimal_polynomial",
@@ -209,26 +147,11 @@
             "is_nilpotent",
             "is_idempotent",
             "is_involution"
-          ],
-          "required_tests": [
-            "predicates_and_polynomial_refuse_non_square_input",
-            "charpoly_budget_boundary_is_inclusive",
-            "minimal_polynomial_refuses_non_square_input_and_respects_its_budget"
           ]
         },
-        "negative_tests": [
-          "the characteristic polynomial, the minimal polynomial, the nilpotent, idempotent and involution tests, and polynomial evaluation at a matrix must refuse a non-square matrix",
-          "an operation whose documented worst-case bound exceeds the budget must be refused before any scalar work, and a bound equal to the limit must be accepted"
-        ],
-        "doctrine": {
-          "summary": "The characteristic polynomial of a square matrix over any exact field, by the division-free Berkowitz algorithm, and its minimal polynomial, with Horner evaluation at a matrix for the Cayley–Hamilton replay and the three exact tests A^n = 0, A² = A and A² = I. Because no division occurs in the characteristic polynomial, the result is valid over GF(2) and GF(3) at dimensions where the Faddeev–LeVerrier recurrence would divide by zero. The minimal polynomial of a multiplication matrix is the minimal polynomial of the field element it represents.",
-          "non_role": [
-            "Root finding, factorisation or isolation of the roots (polynomial arithmetic over F belongs to the number-theory crate)",
-            "Jordan or rational canonical forms",
-            "Eigenvectors and spectral decomposition",
-            "Numerical eigenvalue algorithms"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Characteristic and Minimal Polynomial Contract",
         "wip": [
           "No Lean statement of Cayley–Hamilton or the Berkowitz identity exists; the YAML to Lean to Rust chain for this contract is open",
           "The polynomials are returned as raw coefficient vectors; a polynomial type with arithmetic belongs to omega_number_theory, which depends on this crate and therefore cannot be imported here",
@@ -236,36 +159,72 @@
           "The O(n⁴) characteristic polynomial is conservative for large n; a fraction-free Bareiss route would be cheaper over integer-like fields"
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:characteristic_polynomial:v0.1.0\",\n  \"title\": \"Characteristic and Minimal Polynomial Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"matrix_invariant\",\n    \"symbol\": \"p_A(x) = det(x I − A) ∈ F[x] and the minimal polynomial m_A | p_A\",\n    \"ascii_symbol\": \"characteristic_polynomial\",\n    \"notation\": \"A ∈ M_n(F), F : Field + ExactRing\",\n    \"domain\": [\n      \"matrix: square BasicMatrix<F> of size n\",\n      \"polynomial: coefficients in ascending powers, entry i is the coefficient of xⁱ\",\n      \"budgets: OperationLimits { max_elements, max_scalar_ops }\"\n    ],\n    \"codomain\": {\n      \"description\": \"Monic polynomials as vectors of ascending coefficients: the characteristic polynomial (degree n, computed without any division by the Berkowitz algorithm and therefore valid in every characteristic) and the minimal polynomial (least degree d <= n with m_A(A) = 0, found by the first dependence among vec(I), vec(A), vec(A²), …). Also Horner evaluation of a polynomial at a matrix and the nilpotent, idempotent and involution tests.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The characteristic polynomial has exactly n + 1 entries and the last entry is 1\",\n      \"Only add, mul and neg of the scalar are used by the characteristic polynomial: no division, so characteristic 2 and 3 fields are valid\",\n      \"The Toeplitz column of each trailing block (a, R, C, M) is (1, −a, −R·C, −R·M·C, …, −R·M^(s−2)·C)\",\n      \"The minimal polynomial is monic of degree at most n; the zero matrix gives x, the scalar matrix c·I gives x − c, and the empty matrix gives the constant 1\",\n      \"is_nilpotent tests Aⁿ = 0; is_idempotent tests A² = A; is_involution tests A² = I (a matrix involution, not the field involution); all three refuse a non-square matrix\",\n      \"The worst-case cost charged by the budget is 2n⁴ + 4n³ scalar calls for the characteristic polynomial and n² elements; for the minimal polynomial 2n⁴ plus the reductions of the n²×(k+1) grids, k = 1..n, on at most n²·(n+1) elements\"\n    ]\n  },\n  \"laws\": [\n    \"Cayley–Hamilton: p_A(A) = 0\",\n    \"the coefficient of x^(n−1) is −tr A, and the constant term is (−1)ⁿ det A\",\n    \"p_(S A S⁻¹) = p_A and p_(Aᵀ) = p_A\",\n    \"p_(c A)(x) has coefficient c^(n−i) · (coefficient of xⁱ in p_A)\",\n    \"A is nilpotent iff p_A = xⁿ iff Aⁿ = 0\",\n    \"the companion matrix of a monic polynomial has that polynomial as characteristic and as minimal polynomial\",\n    \"m_A(A) = 0, m_A divides p_A, and deg m_A equals the rank of {vec(I), vec(A), …, vec(Aⁿ)}\",\n    \"the minimal polynomial of the multiplication matrix of a field element is the minimal polynomial of that element\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Cayley–Hamilton is replayed with evaluate_polynomial_at_matrix, which uses matrix products only\",\n      \"Berkowitz agrees with an independent Faddeev–LeVerrier implementation over BigRational (which divides by k and is valid only in characteristic 0)\",\n      \"Divisibility m_A | p_A is replayed by long division with zero remainder\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"exact_field::characteristic_polynomial\",\n    \"symbols\": [\n      \"characteristic_polynomial\",\n      \"minimal_polynomial\",\n      \"evaluate_polynomial_at_matrix\",\n      \"is_nilpotent\",\n      \"is_idempotent\",\n      \"is_involution\"\n    ],\n    \"required_tests\": [\n      \"predicates_and_polynomial_refuse_non_square_input\",\n      \"charpoly_budget_boundary_is_inclusive\",\n      \"minimal_polynomial_refuses_non_square_input_and_respects_its_budget\"\n    ]\n  },\n  \"negative_tests\": [\n    \"the characteristic polynomial, the minimal polynomial, the nilpotent, idempotent and involution tests, and polynomial evaluation at a matrix must refuse a non-square matrix\",\n    \"an operation whose documented worst-case bound exceeds the budget must be refused before any scalar work, and a bound equal to the limit must be accepted\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"The characteristic polynomial of a square matrix over any exact field, by the division-free Berkowitz algorithm, and its minimal polynomial, with Horner evaluation at a matrix for the Cayley–Hamilton replay and the three exact tests A^n = 0, A² = A and A² = I. Because no division occurs in the characteristic polynomial, the result is valid over GF(2) and GF(3) at dimensions where the Faddeev–LeVerrier recurrence would divide by zero. The minimal polynomial of a multiplication matrix is the minimal polynomial of the field element it represents.\",\n    \"non_role\": [\n      \"Root finding, factorisation or isolation of the roots (polynomial arithmetic over F belongs to the number-theory crate)\",\n      \"Jordan or rational canonical forms\",\n      \"Eigenvectors and spectral decomposition\",\n      \"Numerical eigenvalue algorithms\"\n    ]\n  },\n  \"wip\": [\n    \"No Lean statement of Cayley–Hamilton or the Berkowitz identity exists; the YAML to Lean to Rust chain for this contract is open\",\n    \"The polynomials are returned as raw coefficient vectors; a polynomial type with arithmetic belongs to omega_number_theory, which depends on this crate and therefore cannot be imported here\",\n    \"The minimal polynomial costs O(n⁵) scalar calls (n reductions of n²-row grids); a Krylov route on single vectors would be cheaper for multiplication matrices of field elements but needs polynomial gcd over F\",\n    \"The O(n⁴) characteristic polynomial is conservative for large n; a fraction-free Bareiss route would be cheaper over integer-like fields\"\n  ]\n}\n",
+      "sha256": "bb410dbfc9267c79b4cb5c26a636e1a9c34157cd4581be71881febbfe66f648c"
+    },
+    {
+      "bytes": 1745,
       "original_paths": [
-        "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py\",\n    \"sha256\": \"58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py\",\n      \"sha256\": \"58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f\",\n  \"subject\": \"code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py",
+          "sha256": "58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py",
+            "sha256": "58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f",
+        "subject": "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py"
+      },
+      "sha256": "389812f85d67eb0df1e6abad972851c5a5b077a7b7ebfc7a2f578c7185d9ff05"
     }
   ],
+  "current_contract": "389812f85d67eb0df1e6abad972851c5a5b077a7b7ebfc7a2f578c7185d9ff05",
+  "current_scoring": "635bd08ee9cef7061460cc835186afb58ea7c3a451cfb81de9d16918ca4e2b89",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0.contract.yaml": "032132662ce969a91fca95a1db17613afc7642a755a826f24696d1d7432899dc"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "407707d617408835fa97e8e1699a6c5ffe977991595c9239f54031f27fb10a78",
       "bytes": 2247,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py\",\n    \"sha256\": \"58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-characteristic-polynomial-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py",
           "sha256": "58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:algebra:math-characteristic-polynomial-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -274,40 +233,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "407707d617408835fa97e8e1699a6c5ffe977991595c9239f54031f27fb10a78"
+    },
+    {
+      "bytes": 1686,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py\",\n    \"sha256\": \"58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py\",\n      \"sha256\": \"58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py",
+          "sha256": "58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py",
+            "sha256": "58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Exact",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.py\",\n    \"sha256\": \"58035cf478a0452f64bee408e02291a929160f7386648b1d8c663d71ce1a6f3f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-characteristic-polynomial-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "635bd08ee9cef7061460cc835186afb58ea7c3a451cfb81de9d16918ca4e2b89"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/algebra/math_characteristic_polynomial_v0_1_0.contract.yaml": "032132662ce969a91fca95a1db17613afc7642a755a826f24696d1d7432899dc"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1,79 +1,74 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/operations/cicd/code_scoring_evaluator.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/operations/cicd/code_scoring_evaluator.py",
       "sha256": "079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:scoring:code_scoring_evaluator:v2",
-    "role": "library",
-    "purpose": "Code Scoring Evaluator & Gate (Version 2.0.0). Compatibility claim: urn:omega:scoring:grade-minimum-witness:v1",
-    "operations": {
-      "ScoringError": "One violated scoring invariant, with the measured parameters.",
-      "checked_int": "Return one integer after refusing float and bool.",
-      "grade_minimum_witness": "Return 0 when min(A+, A, B) is B and min(E, A+) is E.",
-      "min_grade": "Return the weakest known grade; an empty or incomplete assessment is null.",
-      "grade_ceiling": "Compute known grade ceiling from all evaluated non-null gates.",
-      "GateScore": "Evaluation result for an individual quality gate.",
-      "FileScoreRecord": "Typed evaluation record for a single source or formal artifact.",
-      "CodeScoringReceipt": "Typed machine receipt for CI/CD code scoring evaluation.",
-      "validate_record_against_schema": "Validate schema and grade consistency; unavailable validators fail closed.",
-      "detect_language": "Detect language from file suffix.",
-      "detect_profile": "Detect computational profile from explicit annotations or domain heuristics.",
-      "evaluate_gate1_provenance": "Source annotations alone do not establish provenance or claim mapping.",
-      "evaluate_gate2_semantic_and_numeric": "Record the selected profile without treating syntax as mathematical evidence.",
-      "evaluate_gate3_failure_safety": "Absence of abort keywords cannot establish complete failure behavior.",
-      "evaluate_gate4_tests": "No test, compiler, proof checker or mutation campaign is executed here.",
-      "evaluate_gate5_structure_and_complexity": "A partial source metric is an observation, not a complete G5 assessment.",
-      "assign_level": "Return a provisional lower bound; keyword presence cannot certify capability.",
-      "score_source_file": "Score a single source file across all five gates and return a typed record.",
-      "evaluate_scoring_rubric": "Run code scoring evaluator over the specified paths.",
-      "evaluate_main": "CLI entrypoint.",
-      "main": "Keep the no-argument grade-minimum witness API; arguments run static triage."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/operations/cicd/code_scoring_evaluator.py",
+        "sha256": "079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf",
+    "subject": "code/python/operations/cicd/code_scoring_evaluator.py"
   },
-  "current_contract": "ab6c5d829eb6deb061d12a76be8a6dd3ec2f20b9ec6e3490cde3d01438724cf9",
-  "current_scoring": "7fefd6c228dca01bb3dfcd92f572ba739f84198f58057d1437541488edd7d9ba",
   "contract_history": [
     {
-      "sha256": "ab6c5d829eb6deb061d12a76be8a6dd3ec2f20b9ec6e3490cde3d01438724cf9",
       "bytes": 3599,
+      "original_paths": [
+        "code/python/operations/cicd/code_scoring_evaluator.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/operations/cicd/code_scoring_evaluator.py\",\n    \"sha256\": \"079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:scoring:code_scoring_evaluator:v2\",\n  \"role\": \"library\",\n  \"purpose\": \"Code Scoring Evaluator & Gate (Version 2.0.0). Compatibility claim: urn:omega:scoring:grade-minimum-witness:v1\",\n  \"operations\": {\n    \"ScoringError\": \"One violated scoring invariant, with the measured parameters.\",\n    \"checked_int\": \"Return one integer after refusing float and bool.\",\n    \"grade_minimum_witness\": \"Return 0 when min(A+, A, B) is B and min(E, A+) is E.\",\n    \"min_grade\": \"Return the weakest known grade; an empty or incomplete assessment is null.\",\n    \"grade_ceiling\": \"Compute known grade ceiling from all evaluated non-null gates.\",\n    \"GateScore\": \"Evaluation result for an individual quality gate.\",\n    \"FileScoreRecord\": \"Typed evaluation record for a single source or formal artifact.\",\n    \"CodeScoringReceipt\": \"Typed machine receipt for CI/CD code scoring evaluation.\",\n    \"validate_record_against_schema\": \"Validate schema and grade consistency; unavailable validators fail closed.\",\n    \"detect_language\": \"Detect language from file suffix.\",\n    \"detect_profile\": \"Detect computational profile from explicit annotations or domain heuristics.\",\n    \"evaluate_gate1_provenance\": \"Source annotations alone do not establish provenance or claim mapping.\",\n    \"evaluate_gate2_semantic_and_numeric\": \"Record the selected profile without treating syntax as mathematical evidence.\",\n    \"evaluate_gate3_failure_safety\": \"Absence of abort keywords cannot establish complete failure behavior.\",\n    \"evaluate_gate4_tests\": \"No test, compiler, proof checker or mutation campaign is executed here.\",\n    \"evaluate_gate5_structure_and_complexity\": \"A partial source metric is an observation, not a complete G5 assessment.\",\n    \"assign_level\": \"Return a provisional lower bound; keyword presence cannot certify capability.\",\n    \"score_source_file\": \"Score a single source file across all five gates and return a typed record.\",\n    \"evaluate_scoring_rubric\": \"Run code scoring evaluator over the specified paths.\",\n    \"evaluate_main\": \"CLI entrypoint.\",\n    \"main\": \"Keep the no-argument grade-minimum witness API; arguments run static triage.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/operations/cicd/code_scoring_evaluator.py",
           "sha256": "079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf"
         },
-        "profile": "Exact",
         "claim": "urn:omega:scoring:code_scoring_evaluator:v2",
-        "role": "library",
-        "purpose": "Code Scoring Evaluator & Gate (Version 2.0.0). Compatibility claim: urn:omega:scoring:grade-minimum-witness:v1",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
         "operations": {
-          "ScoringError": "One violated scoring invariant, with the measured parameters.",
-          "checked_int": "Return one integer after refusing float and bool.",
-          "grade_minimum_witness": "Return 0 when min(A+, A, B) is B and min(E, A+) is E.",
-          "min_grade": "Return the weakest known grade; an empty or incomplete assessment is null.",
-          "grade_ceiling": "Compute known grade ceiling from all evaluated non-null gates.",
-          "GateScore": "Evaluation result for an individual quality gate.",
-          "FileScoreRecord": "Typed evaluation record for a single source or formal artifact.",
           "CodeScoringReceipt": "Typed machine receipt for CI/CD code scoring evaluation.",
-          "validate_record_against_schema": "Validate schema and grade consistency; unavailable validators fail closed.",
+          "FileScoreRecord": "Typed evaluation record for a single source or formal artifact.",
+          "GateScore": "Evaluation result for an individual quality gate.",
+          "ScoringError": "One violated scoring invariant, with the measured parameters.",
+          "assign_level": "Return a provisional lower bound; keyword presence cannot certify capability.",
+          "checked_int": "Return one integer after refusing float and bool.",
           "detect_language": "Detect language from file suffix.",
           "detect_profile": "Detect computational profile from explicit annotations or domain heuristics.",
           "evaluate_gate1_provenance": "Source annotations alone do not establish provenance or claim mapping.",
@@ -81,55 +76,85 @@
           "evaluate_gate3_failure_safety": "Absence of abort keywords cannot establish complete failure behavior.",
           "evaluate_gate4_tests": "No test, compiler, proof checker or mutation campaign is executed here.",
           "evaluate_gate5_structure_and_complexity": "A partial source metric is an observation, not a complete G5 assessment.",
-          "assign_level": "Return a provisional lower bound; keyword presence cannot certify capability.",
-          "score_source_file": "Score a single source file across all five gates and return a typed record.",
-          "evaluate_scoring_rubric": "Run code scoring evaluator over the specified paths.",
           "evaluate_main": "CLI entrypoint.",
-          "main": "Keep the no-argument grade-minimum witness API; arguments run static triage."
+          "evaluate_scoring_rubric": "Run code scoring evaluator over the specified paths.",
+          "grade_ceiling": "Compute known grade ceiling from all evaluated non-null gates.",
+          "grade_minimum_witness": "Return 0 when min(A+, A, B) is B and min(E, A+) is E.",
+          "main": "Keep the no-argument grade-minimum witness API; arguments run static triage.",
+          "min_grade": "Return the weakest known grade; an empty or incomplete assessment is null.",
+          "score_source_file": "Score a single source file across all five gates and return a typed record.",
+          "validate_record_against_schema": "Validate schema and grade consistency; unavailable validators fail closed."
         },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "profile": "Exact",
+        "purpose": "Code Scoring Evaluator & Gate (Version 2.0.0). Compatibility claim: urn:omega:scoring:grade-minimum-witness:v1",
+        "role": "library",
         "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
+      },
+      "sha256": "ab6c5d829eb6deb061d12a76be8a6dd3ec2f20b9ec6e3490cde3d01438724cf9"
+    },
+    {
+      "bytes": 1640,
+      "original_paths": [
+        "code/python/operations/cicd/code_scoring_evaluator.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/operations/cicd/code_scoring_evaluator.py\",\n    \"sha256\": \"079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/operations/cicd/code_scoring_evaluator.py\",\n      \"sha256\": \"079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf\",\n  \"subject\": \"code/python/operations/cicd/code_scoring_evaluator.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/operations/cicd/code_scoring_evaluator.py",
+          "sha256": "079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
         "evidence": [
           {
+            "path": "code/python/operations/cicd/code_scoring_evaluator.py",
+            "sha256": "079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf"
+          },
+          {
             "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
           }
-        ]
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf",
+        "subject": "code/python/operations/cicd/code_scoring_evaluator.py"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/operations/cicd/code_scoring_evaluator.py\",\n    \"sha256\": \"079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:scoring:code_scoring_evaluator:v2\",\n  \"role\": \"library\",\n  \"purpose\": \"Code Scoring Evaluator & Gate (Version 2.0.0). Compatibility claim: urn:omega:scoring:grade-minimum-witness:v1\",\n  \"operations\": {\n    \"ScoringError\": \"One violated scoring invariant, with the measured parameters.\",\n    \"checked_int\": \"Return one integer after refusing float and bool.\",\n    \"grade_minimum_witness\": \"Return 0 when min(A+, A, B) is B and min(E, A+) is E.\",\n    \"min_grade\": \"Return the weakest known grade; an empty or incomplete assessment is null.\",\n    \"grade_ceiling\": \"Compute known grade ceiling from all evaluated non-null gates.\",\n    \"GateScore\": \"Evaluation result for an individual quality gate.\",\n    \"FileScoreRecord\": \"Typed evaluation record for a single source or formal artifact.\",\n    \"CodeScoringReceipt\": \"Typed machine receipt for CI/CD code scoring evaluation.\",\n    \"validate_record_against_schema\": \"Validate schema and grade consistency; unavailable validators fail closed.\",\n    \"detect_language\": \"Detect language from file suffix.\",\n    \"detect_profile\": \"Detect computational profile from explicit annotations or domain heuristics.\",\n    \"evaluate_gate1_provenance\": \"Source annotations alone do not establish provenance or claim mapping.\",\n    \"evaluate_gate2_semantic_and_numeric\": \"Record the selected profile without treating syntax as mathematical evidence.\",\n    \"evaluate_gate3_failure_safety\": \"Absence of abort keywords cannot establish complete failure behavior.\",\n    \"evaluate_gate4_tests\": \"No test, compiler, proof checker or mutation campaign is executed here.\",\n    \"evaluate_gate5_structure_and_complexity\": \"A partial source metric is an observation, not a complete G5 assessment.\",\n    \"assign_level\": \"Return a provisional lower bound; keyword presence cannot certify capability.\",\n    \"score_source_file\": \"Score a single source file across all five gates and return a typed record.\",\n    \"evaluate_scoring_rubric\": \"Run code scoring evaluator over the specified paths.\",\n    \"evaluate_main\": \"CLI entrypoint.\",\n    \"main\": \"Keep the no-argument grade-minimum witness API; arguments run static triage.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/operations/cicd/code_scoring_evaluator.contract.score.yaml#contract"
-      ]
+      "sha256": "8d19a54bebf8fba4d5541641ef3e6decfc2f027bb0a744f0950ef27d285c07b7"
     }
   ],
+  "current_contract": "8d19a54bebf8fba4d5541641ef3e6decfc2f027bb0a744f0950ef27d285c07b7",
+  "current_scoring": "ad2c1cc07b129388adeef41e992787187f8a921acce2a14d9f64b0a39e445cf5",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "7fefd6c228dca01bb3dfcd92f572ba739f84198f58057d1437541488edd7d9ba",
       "bytes": 2188,
+      "original_paths": [
+        "code/python/operations/cicd/code_scoring_evaluator.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/operations/cicd/code_scoring_evaluator.py\",\n    \"sha256\": \"079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:scoring:code_scoring_evaluator:v2, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 39 <= 50 (D), nesting depth 5 <= 5 (C); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 39,\n    \"lizard_ccn\": 39,\n    \"weighted_control_upper_bound\": 57,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/operations/cicd/code_scoring_evaluator.py",
           "sha256": "079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "D"
         },
         "basis": {
           "G1": "Claim URN urn:omega:scoring:code_scoring_evaluator:v2, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -138,35 +163,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 39 <= 50 (D), nesting depth 5 <= 5 (C); Gate 5 ceiling D under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 39,
-          "lizard_ccn": 39,
-          "weighted_control_upper_bound": 57,
-          "control_nesting": 5
+        "composite_grade": "D",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "D"
         },
         "is_complete": true,
-        "composite_grade": "D",
-        "score_token": "L4D",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 5,
+          "lizard_ccn": 39,
+          "radon_ccn": 39,
+          "weighted_control_upper_bound": 57
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4D",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "7fefd6c228dca01bb3dfcd92f572ba739f84198f58057d1437541488edd7d9ba"
+    },
+    {
+      "bytes": 1620,
+      "original_paths": [
+        "code/python/operations/cicd/code_scoring_evaluator.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/operations/cicd/code_scoring_evaluator.py\",\n    \"sha256\": \"079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/operations/cicd/code_scoring_evaluator.py\",\n      \"sha256\": \"079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/operations/cicd/code_scoring_evaluator.py",
+          "sha256": "079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/operations/cicd/code_scoring_evaluator.py",
+            "sha256": "079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/operations/cicd/code_scoring_evaluator.py\",\n    \"sha256\": \"079221f1e46acd9d6e8bcb58ac07a7c36ebfd066352b32d1602430b9a072dbcf\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:scoring:code_scoring_evaluator:v2, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 39 <= 50 (D), nesting depth 5 <= 5 (C); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 39,\n    \"lizard_ccn\": 39,\n    \"weighted_control_upper_bound\": 57,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/operations/cicd/code_scoring_evaluator.contract.score.yaml#scoring"
-      ]
+      "sha256": "ad2c1cc07b129388adeef41e992787187f8a921acce2a14d9f64b0a39e445cf5"
     }
   ]
 }

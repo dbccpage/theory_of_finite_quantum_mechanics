@@ -60,10 +60,10 @@ def test_jsonl_layout_keeps_upstream_lines_and_orders_blocks():
     assert owned == list(range(owned[0], owned[0] + len(owned)))
     assert max(owned) < min(app)
     assert all(s not in (pgw.SLICE, 'application_branches') for s in slices[:owned[0]])
-    keys = set(json.loads(lines[0]))
+    keys = set(json.loads(lines[0])) - {'pfp_review_refs'}
     for i in owned:
         r = json.loads(lines[i])
-        assert set(r) == keys
+        assert set(r) - {'pfp_review_refs'} == keys  # pfp_review_refs is added only to rows that name a reviewed node
         assert lines[i] == json.dumps(r, ensure_ascii=False, sort_keys=True) + '\r\n'
 
 

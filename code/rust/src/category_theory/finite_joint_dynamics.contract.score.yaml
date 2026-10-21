@@ -1,169 +1,82 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/finite_joint_dynamics.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
-      "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01",
-      "language": "Rust"
+      "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact usize identifiers, checked integer accounting, and Option definedness.",
-      "domain": "Admitted nonempty component systems, nonempty unique in-range pairs, and valid local or supplied interaction operations, under the declared checked cost expression.",
-      "behavior": [
-        "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.",
-        "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.",
-        "Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.",
-        "Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.",
-        "Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.",
-        "Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.",
-        "Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.",
-        "Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.",
-        "Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.",
-        "Borrow the exact immutable admitted relation in its supplied row order.",
-        "Borrow the exact pair of component behavioral-class IDs for each row.",
-        "Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.",
-        "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.",
-        "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify."
-      ],
-      "capability": "L3 finite table construction and all-word collision analysis over declared premises."
-    },
-    "operations": {
-      "refinement_cost": {
-        "line": 46,
-        "signature": "fn refinement_cost(m: &PartialDynamics) -> Option<usize>",
-        "obligation": "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound."
-      },
-      "admit_work": {
-        "line": 52,
-        "signature": "fn admit_work(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: usize,\n    operations: usize,\n    max_cells: usize,\n) -> Result<usize, JointDynamicsError>",
-        "obligation": "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget."
-      },
-      "admit_relation": {
-        "line": 77,
-        "signature": "fn admit_relation(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n) -> Result<BTreeMap<(usize, usize), usize>, JointDynamicsError>",
-        "obligation": "Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations."
-      },
-      "valid_operation": {
-        "line": 99,
-        "signature": "fn valid_operation(\n    op: &JointOperation,\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    rows: usize,\n) -> bool",
-        "obligation": "Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability."
-      },
-      "cell": {
-        "line": 118,
-        "signature": "fn cell(\n        &self,\n        pair: (usize, usize),\n        op: &JointOperation,\n        row: usize,\n        operation: usize,\n    ) -> Result<Option<usize>, JointDynamicsError>",
-        "obligation": "Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability."
-      },
-      "joint_transitions": {
-        "line": 146,
-        "signature": "fn joint_transitions(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n    operations: &[JointOperation],\n    ids: &BTreeMap<(usize, usize), usize>,\n) -> Result<Vec<Vec<Option<usize>>>, JointDynamicsError>",
-        "obligation": "Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation."
-      },
-      "local_profiles": {
-        "line": 167,
-        "signature": "fn local_profiles(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n) -> Vec<(usize, usize)>",
-        "obligation": "Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values."
-      },
-      "profile_reports": {
-        "line": 177,
-        "signature": "fn profile_reports(local_reports: &[(usize, usize)]) -> Vec<usize>",
-        "obligation": "Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies."
-      },
-      "new": {
-        "line": 189,
-        "signature": "pub fn new(\n        left: &PartialDynamics,\n        right: &PartialDynamics,\n        pairs: Vec<(usize, usize)>,\n        operations: &[JointOperation],\n        max_cells: usize,\n    ) -> Result<Self, JointDynamicsError>",
-        "obligation": "Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises."
-      },
-      "pairs": {
-        "line": 216,
-        "signature": "pub fn pairs(&self) -> &[(usize, usize)]",
-        "obligation": "Borrow the exact immutable admitted relation in its supplied row order."
-      },
-      "local_reports": {
-        "line": 219,
-        "signature": "pub fn local_reports(&self) -> &[(usize, usize)]",
-        "obligation": "Borrow the exact pair of component behavioral-class IDs for each row."
-      },
-      "dynamics": {
-        "line": 222,
-        "signature": "pub fn dynamics(&self) -> &PartialDynamics",
-        "obligation": "Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order."
-      },
-      "analyze": {
-        "line": 226,
-        "signature": "pub fn analyze(&self) -> Result<JointDynamicsAnalysis, JointDynamicsError>",
-        "obligation": "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability."
-      },
-      "verify": {
-        "line": 250,
-        "signature": "pub fn verify(&self, c: &JointDynamicsAnalysis) -> Result<(), JointDynamicsError>",
-        "obligation": "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify."
-      }
-    },
-    "invariants": [
-      "Both PartialDynamics inputs are already admitted, nonempty, and checked for shape and range. Their first transition row exists even when there are zero inputs. Joint pairs must be nonempty, unique, and inside both real carriers; internal unavailable sinks are excluded. Work admission runs first, then relation admission, then validation of every operation, then joint closure in row-major order. A later invalid operation therefore takes priority over an earlier missing pair. The extracted phases preserve the original result and error order.",
-      "The declared accounting expression is B=(p+1)^2 and cost=B*(operation_count+1)+(left_states+1)^2*(left_inputs+1)+(right_states+1)^2*(right_inputs+1). Every addition and product is checked. Overflow or cost greater than max_cells returns WorkLimit before relation construction; equality succeeds. This is an admission accounting rule, rather than a bound on all heap bytes, runtime, or executed operations. Direct private-helper tests cover arithmetic overflow without allocating huge models.",
-      "The pair map assigns each unique admitted pair its supplied row index. Left and Right operations change exactly one coordinate. A local None remains genuinely unavailable. A defined target must occur in the relation; a missing target returns NotClosed with its original row, operation, and target pair. Interaction entries are supplied premises with exactly one valid Option index per row. Borrowed context and Result collection preserve the original row and operation order. On failure only temporary output is dropped. Lean proves the abstract lookup and closure distinction; Rust indexing and error fields remain separate source obligations.",
-      "Local profiles use the actual reviewed component behavioral quotients, including their distinct unavailable sinks. Pair coordinates select only real component states. A profile is the pair of component class IDs, rather than their raw report IDs. First-occurrence interning gives equal joint readouts exactly when profiles agree. Actual PartialDynamics admission checks the complete derived table. Interactions can introduce distinctions within a local profile fiber; they are supplied data, with no inferred independence or commutativity law.",
-      "The actual joint quotient refines the initial profile kernel and preserves every finite-word answer and availability distinction by the reviewed provider argument. Equal profiles with different final classes therefore identify exactly a lost joint-future distinction. Analysis scans right row r in increasing order and left row l<r in increasing order. The provider then returns the shortest lexicographic separating word and exact saved answers. The totalized joint system has p+1 states and at most (p+1)^2 ordered state pairs, so B admits the whole search frontier when allocation succeeds. No collision means joint-future observations factor through the realized profiles. The new Lean fiber lemmas and the existing provider proofs support different parts of this argument.",
-      "JointDynamics owns immutable admitted pairs, profiles, dynamics, and the checked pair budget, with borrowed getters and no Deserialize or Default bypass. Analysis is a raw mutable report. Verification recomputes the complete analysis and compares refinement and collision. It checks the result on self, without authenticating an external declaration or request hash. Distinct relations can have identical analyses: the native constant, zero-input example uses [(0,0)] and [(1,0)] and accepts cross-verification. The documentation now states this ceiling.",
-      "Private helper calls use already admitted ranges and concrete usize values. Budget, relation, operation, transition, and profile phases retain their original order. Output rows, profiles, dense readouts, and owned provider quotients are required results. One pair map and one profile interning map are built outside cell processing. Result collection may allocate output capacity differently from push loops; no allocation-count, heap-totality, or arbitrary-callback guarantee is made. The max_cells expression does not replace the providers own stated cost and trust boundaries."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "refinement_cost": "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.",
-      "admit_work": "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.",
-      "admit_relation": "Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.",
-      "valid_operation": "Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.",
-      "cell": "Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.",
-      "joint_transitions": "Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.",
-      "local_profiles": "Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.",
-      "profile_reports": "Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.",
-      "new": "Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.",
-      "pairs": "Borrow the exact immutable admitted relation in its supplied row order.",
-      "local_reports": "Borrow the exact pair of component behavioral-class IDs for each row.",
-      "dynamics": "Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.",
-      "analyze": "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.",
-      "verify": "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify."
-    },
-    "trust_boundary": "Rust, standard libraries, compiler, prepared Lean/Mathlib, and the reviewed continuation and Moore providers. Supplied relations and interactions are premises. Allocation availability, external identity, authority, MIR and Rust extraction remain outside the claim.",
-    "assurance_limits": [
-      "Contracts pending; AuthorityEffect: None.",
-      "Interaction tables are supplied premises, without inferred commutativity, physical licenses, or independence.",
-      "Verification compares analysis outputs on self; external declaration identity, hashes, and authenticity are outside its scope.",
-      "max_cells is checked admission accounting, not a complete heap, runtime, or executed-work limit.",
-      "The 17 new abstract declarations and 31 reviewed provider declarations do not extract Rust or establish MIR and allocator totality.",
-      "The finite corpus and 23 designated faults provide scoped evidence; no external omega or whole-workspace success is claimed."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/finite_joint_dynamics.score.yaml",
-        "sha256": "1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237"
+        "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
+        "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01",
+    "subject": "code/rust/src/category_theory/finite_joint_dynamics.rs"
   },
-  "current_contract": "6eac04809b6609ae07de294c113ca967402d9c7ccd31f2849e206b8e35fe3f60",
-  "current_scoring": "1e3c5dd4e1f00f3ebb697391874510a594757e8849acb2e77303b95d982a6613",
   "contract_history": [
     {
-      "sha256": "6eac04809b6609ae07de294c113ca967402d9c7ccd31f2849e206b8e35fe3f60",
       "bytes": 17788,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_joint_dynamics.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\",\n    \"sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact usize identifiers, checked integer accounting, and Option definedness.\",\n    \"domain\": \"Admitted nonempty component systems, nonempty unique in-range pairs, and valid local or supplied interaction operations, under the declared checked cost expression.\",\n    \"behavior\": [\n      \"Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.\",\n      \"Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.\",\n      \"Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.\",\n      \"Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.\",\n      \"Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.\",\n      \"Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.\",\n      \"Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.\",\n      \"Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.\",\n      \"Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.\",\n      \"Borrow the exact immutable admitted relation in its supplied row order.\",\n      \"Borrow the exact pair of component behavioral-class IDs for each row.\",\n      \"Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.\",\n      \"Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.\",\n      \"Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify.\"\n    ],\n    \"capability\": \"L3 finite table construction and all-word collision analysis over declared premises.\"\n  },\n  \"operations\": {\n    \"refinement_cost\": {\n      \"line\": 46,\n      \"signature\": \"fn refinement_cost(m: &PartialDynamics) -> Option<usize>\",\n      \"obligation\": \"Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.\"\n    },\n    \"admit_work\": {\n      \"line\": 52,\n      \"signature\": \"fn admit_work(\\n    left: &PartialDynamics,\\n    right: &PartialDynamics,\\n    pairs: usize,\\n    operations: usize,\\n    max_cells: usize,\\n) -> Result<usize, JointDynamicsError>\",\n      \"obligation\": \"Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.\"\n    },\n    \"admit_relation\": {\n      \"line\": 77,\n      \"signature\": \"fn admit_relation(\\n    left: &PartialDynamics,\\n    right: &PartialDynamics,\\n    pairs: &[(usize, usize)],\\n) -> Result<BTreeMap<(usize, usize), usize>, JointDynamicsError>\",\n      \"obligation\": \"Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.\"\n    },\n    \"valid_operation\": {\n      \"line\": 99,\n      \"signature\": \"fn valid_operation(\\n    op: &JointOperation,\\n    left: &PartialDynamics,\\n    right: &PartialDynamics,\\n    rows: usize,\\n) -> bool\",\n      \"obligation\": \"Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.\"\n    },\n    \"cell\": {\n      \"line\": 118,\n      \"signature\": \"fn cell(\\n        &self,\\n        pair: (usize, usize),\\n        op: &JointOperation,\\n        row: usize,\\n        operation: usize,\\n    ) -> Result<Option<usize>, JointDynamicsError>\",\n      \"obligation\": \"Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.\"\n    },\n    \"joint_transitions\": {\n      \"line\": 146,\n      \"signature\": \"fn joint_transitions(\\n    left: &PartialDynamics,\\n    right: &PartialDynamics,\\n    pairs: &[(usize, usize)],\\n    operations: &[JointOperation],\\n    ids: &BTreeMap<(usize, usize), usize>,\\n) -> Result<Vec<Vec<Option<usize>>>, JointDynamicsError>\",\n      \"obligation\": \"Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.\"\n    },\n    \"local_profiles\": {\n      \"line\": 167,\n      \"signature\": \"fn local_profiles(\\n    left: &PartialDynamics,\\n    right: &PartialDynamics,\\n    pairs: &[(usize, usize)],\\n) -> Vec<(usize, usize)>\",\n      \"obligation\": \"Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.\"\n    },\n    \"profile_reports\": {\n      \"line\": 177,\n      \"signature\": \"fn profile_reports(local_reports: &[(usize, usize)]) -> Vec<usize>\",\n      \"obligation\": \"Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.\"\n    },\n    \"new\": {\n      \"line\": 189,\n      \"signature\": \"pub fn new(\\n        left: &PartialDynamics,\\n        right: &PartialDynamics,\\n        pairs: Vec<(usize, usize)>,\\n        operations: &[JointOperation],\\n        max_cells: usize,\\n    ) -> Result<Self, JointDynamicsError>\",\n      \"obligation\": \"Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.\"\n    },\n    \"pairs\": {\n      \"line\": 216,\n      \"signature\": \"pub fn pairs(&self) -> &[(usize, usize)]\",\n      \"obligation\": \"Borrow the exact immutable admitted relation in its supplied row order.\"\n    },\n    \"local_reports\": {\n      \"line\": 219,\n      \"signature\": \"pub fn local_reports(&self) -> &[(usize, usize)]\",\n      \"obligation\": \"Borrow the exact pair of component behavioral-class IDs for each row.\"\n    },\n    \"dynamics\": {\n      \"line\": 222,\n      \"signature\": \"pub fn dynamics(&self) -> &PartialDynamics\",\n      \"obligation\": \"Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.\"\n    },\n    \"analyze\": {\n      \"line\": 226,\n      \"signature\": \"pub fn analyze(&self) -> Result<JointDynamicsAnalysis, JointDynamicsError>\",\n      \"obligation\": \"Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.\"\n    },\n    \"verify\": {\n      \"line\": 250,\n      \"signature\": \"pub fn verify(&self, c: &JointDynamicsAnalysis) -> Result<(), JointDynamicsError>\",\n      \"obligation\": \"Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify.\"\n    }\n  },\n  \"invariants\": [\n    \"Both PartialDynamics inputs are already admitted, nonempty, and checked for shape and range. Their first transition row exists even when there are zero inputs. Joint pairs must be nonempty, unique, and inside both real carriers; internal unavailable sinks are excluded. Work admission runs first, then relation admission, then validation of every operation, then joint closure in row-major order. A later invalid operation therefore takes priority over an earlier missing pair. The extracted phases preserve the original result and error order.\",\n    \"The declared accounting expression is B=(p+1)^2 and cost=B*(operation_count+1)+(left_states+1)^2*(left_inputs+1)+(right_states+1)^2*(right_inputs+1). Every addition and product is checked. Overflow or cost greater than max_cells returns WorkLimit before relation construction; equality succeeds. This is an admission accounting rule, rather than a bound on all heap bytes, runtime, or executed operations. Direct private-helper tests cover arithmetic overflow without allocating huge models.\",\n    \"The pair map assigns each unique admitted pair its supplied row index. Left and Right operations change exactly one coordinate. A local None remains genuinely unavailable. A defined target must occur in the relation; a missing target returns NotClosed with its original row, operation, and target pair. Interaction entries are supplied premises with exactly one valid Option index per row. Borrowed context and Result collection preserve the original row and operation order. On failure only temporary output is dropped. Lean proves the abstract lookup and closure distinction; Rust indexing and error fields remain separate source obligations.\",\n    \"Local profiles use the actual reviewed component behavioral quotients, including their distinct unavailable sinks. Pair coordinates select only real component states. A profile is the pair of component class IDs, rather than their raw report IDs. First-occurrence interning gives equal joint readouts exactly when profiles agree. Actual PartialDynamics admission checks the complete derived table. Interactions can introduce distinctions within a local profile fiber; they are supplied data, with no inferred independence or commutativity law.\",\n    \"The actual joint quotient refines the initial profile kernel and preserves every finite-word answer and availability distinction by the reviewed provider argument. Equal profiles with different final classes therefore identify exactly a lost joint-future distinction. Analysis scans right row r in increasing order and left row l<r in increasing order. The provider then returns the shortest lexicographic separating word and exact saved answers. The totalized joint system has p+1 states and at most (p+1)^2 ordered state pairs, so B admits the whole search frontier when allocation succeeds. No collision means joint-future observations factor through the realized profiles. The new Lean fiber lemmas and the existing provider proofs support different parts of this argument.\",\n    \"JointDynamics owns immutable admitted pairs, profiles, dynamics, and the checked pair budget, with borrowed getters and no Deserialize or Default bypass. Analysis is a raw mutable report. Verification recomputes the complete analysis and compares refinement and collision. It checks the result on self, without authenticating an external declaration or request hash. Distinct relations can have identical analyses: the native constant, zero-input example uses [(0,0)] and [(1,0)] and accepts cross-verification. The documentation now states this ceiling.\",\n    \"Private helper calls use already admitted ranges and concrete usize values. Budget, relation, operation, transition, and profile phases retain their original order. Output rows, profiles, dense readouts, and owned provider quotients are required results. One pair map and one profile interning map are built outside cell processing. Result collection may allocate output capacity differently from push loops; no allocation-count, heap-totality, or arbitrary-callback guarantee is made. The max_cells expression does not replace the providers own stated cost and trust boundaries.\"\n  ],\n  \"failure_paths\": {\n    \"refinement_cost\": \"Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.\",\n    \"admit_work\": \"Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.\",\n    \"admit_relation\": \"Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.\",\n    \"valid_operation\": \"Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.\",\n    \"cell\": \"Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.\",\n    \"joint_transitions\": \"Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.\",\n    \"local_profiles\": \"Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.\",\n    \"profile_reports\": \"Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.\",\n    \"new\": \"Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.\",\n    \"pairs\": \"Borrow the exact immutable admitted relation in its supplied row order.\",\n    \"local_reports\": \"Borrow the exact pair of component behavioral-class IDs for each row.\",\n    \"dynamics\": \"Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.\",\n    \"analyze\": \"Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.\",\n    \"verify\": \"Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify.\"\n  },\n  \"trust_boundary\": \"Rust, standard libraries, compiler, prepared Lean/Mathlib, and the reviewed continuation and Moore providers. Supplied relations and interactions are premises. Allocation availability, external identity, authority, MIR and Rust extraction remain outside the claim.\",\n  \"assurance_limits\": [\n    \"Contracts pending; AuthorityEffect: None.\",\n    \"Interaction tables are supplied premises, without inferred commutativity, physical licenses, or independence.\",\n    \"Verification compares analysis outputs on self; external declaration identity, hashes, and authenticity are outside its scope.\",\n    \"max_cells is checked admission accounting, not a complete heap, runtime, or executed-work limit.\",\n    \"The 17 new abstract declarations and 31 reviewed provider declarations do not extract Rust or establish MIR and allocator totality.\",\n    \"The finite corpus and 23 designated faults provide scoped evidence; no external omega or whole-workspace success is claimed.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.score.yaml\",\n      \"sha256\": \"1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
-          "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01",
-          "language": "Rust"
+          "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "Contracts pending; AuthorityEffect: None.",
+          "Interaction tables are supplied premises, without inferred commutativity, physical licenses, or independence.",
+          "Verification compares analysis outputs on self; external declaration identity, hashes, and authenticity are outside its scope.",
+          "max_cells is checked admission accounting, not a complete heap, runtime, or executed-work limit.",
+          "The 17 new abstract declarations and 31 reviewed provider declarations do not extract Rust or establish MIR and allocator totality.",
+          "The finite corpus and 23 designated faults provide scoped evidence; no external omega or whole-workspace success is claimed."
+        ],
+        "failure_paths": {
+          "admit_relation": "Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.",
+          "admit_work": "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.",
+          "analyze": "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.",
+          "cell": "Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.",
+          "dynamics": "Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.",
+          "joint_transitions": "Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.",
+          "local_profiles": "Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.",
+          "local_reports": "Borrow the exact pair of component behavioral-class IDs for each row.",
+          "new": "Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.",
+          "pairs": "Borrow the exact immutable admitted relation in its supplied row order.",
+          "profile_reports": "Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.",
+          "refinement_cost": "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.",
+          "valid_operation": "Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.",
+          "verify": "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify."
+        },
         "formal_specification": {
-          "profile": "Exact usize identifiers, checked integer accounting, and Option definedness.",
-          "domain": "Admitted nonempty component systems, nonempty unique in-range pairs, and valid local or supplied interaction operations, under the declared checked cost expression.",
           "behavior": [
             "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.",
             "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.",
@@ -180,79 +93,9 @@
             "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.",
             "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify."
           ],
-          "capability": "L3 finite table construction and all-word collision analysis over declared premises."
-        },
-        "operations": {
-          "refinement_cost": {
-            "line": 46,
-            "signature": "fn refinement_cost(m: &PartialDynamics) -> Option<usize>",
-            "obligation": "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound."
-          },
-          "admit_work": {
-            "line": 52,
-            "signature": "fn admit_work(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: usize,\n    operations: usize,\n    max_cells: usize,\n) -> Result<usize, JointDynamicsError>",
-            "obligation": "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget."
-          },
-          "admit_relation": {
-            "line": 77,
-            "signature": "fn admit_relation(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n) -> Result<BTreeMap<(usize, usize), usize>, JointDynamicsError>",
-            "obligation": "Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations."
-          },
-          "valid_operation": {
-            "line": 99,
-            "signature": "fn valid_operation(\n    op: &JointOperation,\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    rows: usize,\n) -> bool",
-            "obligation": "Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability."
-          },
-          "cell": {
-            "line": 118,
-            "signature": "fn cell(\n        &self,\n        pair: (usize, usize),\n        op: &JointOperation,\n        row: usize,\n        operation: usize,\n    ) -> Result<Option<usize>, JointDynamicsError>",
-            "obligation": "Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability."
-          },
-          "joint_transitions": {
-            "line": 146,
-            "signature": "fn joint_transitions(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n    operations: &[JointOperation],\n    ids: &BTreeMap<(usize, usize), usize>,\n) -> Result<Vec<Vec<Option<usize>>>, JointDynamicsError>",
-            "obligation": "Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation."
-          },
-          "local_profiles": {
-            "line": 167,
-            "signature": "fn local_profiles(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n) -> Vec<(usize, usize)>",
-            "obligation": "Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values."
-          },
-          "profile_reports": {
-            "line": 177,
-            "signature": "fn profile_reports(local_reports: &[(usize, usize)]) -> Vec<usize>",
-            "obligation": "Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies."
-          },
-          "new": {
-            "line": 189,
-            "signature": "pub fn new(\n        left: &PartialDynamics,\n        right: &PartialDynamics,\n        pairs: Vec<(usize, usize)>,\n        operations: &[JointOperation],\n        max_cells: usize,\n    ) -> Result<Self, JointDynamicsError>",
-            "obligation": "Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises."
-          },
-          "pairs": {
-            "line": 216,
-            "signature": "pub fn pairs(&self) -> &[(usize, usize)]",
-            "obligation": "Borrow the exact immutable admitted relation in its supplied row order."
-          },
-          "local_reports": {
-            "line": 219,
-            "signature": "pub fn local_reports(&self) -> &[(usize, usize)]",
-            "obligation": "Borrow the exact pair of component behavioral-class IDs for each row."
-          },
-          "dynamics": {
-            "line": 222,
-            "signature": "pub fn dynamics(&self) -> &PartialDynamics",
-            "obligation": "Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order."
-          },
-          "analyze": {
-            "line": 226,
-            "signature": "pub fn analyze(&self) -> Result<JointDynamicsAnalysis, JointDynamicsError>",
-            "obligation": "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability."
-          },
-          "verify": {
-            "line": 250,
-            "signature": "pub fn verify(&self, c: &JointDynamicsAnalysis) -> Result<(), JointDynamicsError>",
-            "obligation": "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify."
-          }
+          "capability": "L3 finite table construction and all-word collision analysis over declared premises.",
+          "domain": "Admitted nonempty component systems, nonempty unique in-range pairs, and valid local or supplied interaction operations, under the declared checked cost expression.",
+          "profile": "Exact usize identifiers, checked integer accounting, and Option definedness."
         },
         "invariants": [
           "Both PartialDynamics inputs are already admitted, nonempty, and checked for shape and range. Their first transition row exists even when there are zero inputs. Joint pairs must be nonempty, unique, and inside both real carriers; internal unavailable sinks are excluded. Work admission runs first, then relation admission, then validation of every operation, then joint closure in row-major order. A later invalid operation therefore takes priority over an earlier missing pair. The extracted phases preserve the original result and error order.",
@@ -263,23 +106,162 @@
           "JointDynamics owns immutable admitted pairs, profiles, dynamics, and the checked pair budget, with borrowed getters and no Deserialize or Default bypass. Analysis is a raw mutable report. Verification recomputes the complete analysis and compares refinement and collision. It checks the result on self, without authenticating an external declaration or request hash. Distinct relations can have identical analyses: the native constant, zero-input example uses [(0,0)] and [(1,0)] and accepts cross-verification. The documentation now states this ceiling.",
           "Private helper calls use already admitted ranges and concrete usize values. Budget, relation, operation, transition, and profile phases retain their original order. Output rows, profiles, dense readouts, and owned provider quotients are required results. One pair map and one profile interning map are built outside cell processing. Result collection may allocate output capacity differently from push loops; no allocation-count, heap-totality, or arbitrary-callback guarantee is made. The max_cells expression does not replace the providers own stated cost and trust boundaries."
         ],
-        "failure_paths": {
-          "refinement_cost": "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.",
-          "admit_work": "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.",
-          "admit_relation": "Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.",
-          "valid_operation": "Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.",
-          "cell": "Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.",
-          "joint_transitions": "Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.",
-          "local_profiles": "Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.",
-          "profile_reports": "Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.",
-          "new": "Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.",
-          "pairs": "Borrow the exact immutable admitted relation in its supplied row order.",
-          "local_reports": "Borrow the exact pair of component behavioral-class IDs for each row.",
-          "dynamics": "Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.",
-          "analyze": "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.",
-          "verify": "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify."
+        "open_obligations": [],
+        "operations": {
+          "admit_relation": {
+            "line": 77,
+            "obligation": "Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.",
+            "signature": "fn admit_relation(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n) -> Result<BTreeMap<(usize, usize), usize>, JointDynamicsError>"
+          },
+          "admit_work": {
+            "line": 52,
+            "obligation": "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.",
+            "signature": "fn admit_work(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: usize,\n    operations: usize,\n    max_cells: usize,\n) -> Result<usize, JointDynamicsError>"
+          },
+          "analyze": {
+            "line": 226,
+            "obligation": "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.",
+            "signature": "pub fn analyze(&self) -> Result<JointDynamicsAnalysis, JointDynamicsError>"
+          },
+          "cell": {
+            "line": 118,
+            "obligation": "Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.",
+            "signature": "fn cell(\n        &self,\n        pair: (usize, usize),\n        op: &JointOperation,\n        row: usize,\n        operation: usize,\n    ) -> Result<Option<usize>, JointDynamicsError>"
+          },
+          "dynamics": {
+            "line": 222,
+            "obligation": "Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.",
+            "signature": "pub fn dynamics(&self) -> &PartialDynamics"
+          },
+          "joint_transitions": {
+            "line": 146,
+            "obligation": "Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.",
+            "signature": "fn joint_transitions(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n    operations: &[JointOperation],\n    ids: &BTreeMap<(usize, usize), usize>,\n) -> Result<Vec<Vec<Option<usize>>>, JointDynamicsError>"
+          },
+          "local_profiles": {
+            "line": 167,
+            "obligation": "Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.",
+            "signature": "fn local_profiles(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n) -> Vec<(usize, usize)>"
+          },
+          "local_reports": {
+            "line": 219,
+            "obligation": "Borrow the exact pair of component behavioral-class IDs for each row.",
+            "signature": "pub fn local_reports(&self) -> &[(usize, usize)]"
+          },
+          "new": {
+            "line": 189,
+            "obligation": "Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.",
+            "signature": "pub fn new(\n        left: &PartialDynamics,\n        right: &PartialDynamics,\n        pairs: Vec<(usize, usize)>,\n        operations: &[JointOperation],\n        max_cells: usize,\n    ) -> Result<Self, JointDynamicsError>"
+          },
+          "pairs": {
+            "line": 216,
+            "obligation": "Borrow the exact immutable admitted relation in its supplied row order.",
+            "signature": "pub fn pairs(&self) -> &[(usize, usize)]"
+          },
+          "profile_reports": {
+            "line": 177,
+            "obligation": "Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.",
+            "signature": "fn profile_reports(local_reports: &[(usize, usize)]) -> Vec<usize>"
+          },
+          "refinement_cost": {
+            "line": 46,
+            "obligation": "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.",
+            "signature": "fn refinement_cost(m: &PartialDynamics) -> Option<usize>"
+          },
+          "valid_operation": {
+            "line": 99,
+            "obligation": "Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.",
+            "signature": "fn valid_operation(\n    op: &JointOperation,\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    rows: usize,\n) -> bool"
+          },
+          "verify": {
+            "line": 250,
+            "obligation": "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify.",
+            "signature": "pub fn verify(&self, c: &JointDynamicsAnalysis) -> Result<(), JointDynamicsError>"
+          }
         },
-        "trust_boundary": "Rust, standard libraries, compiler, prepared Lean/Mathlib, and the reviewed continuation and Moore providers. Supplied relations and interactions are premises. Allocation availability, external identity, authority, MIR and Rust extraction remain outside the claim.",
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_joint_dynamics.score.yaml",
+            "sha256": "1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237"
+          }
+        ],
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": "Rust, standard libraries, compiler, prepared Lean/Mathlib, and the reviewed continuation and Moore providers. Supplied relations and interactions are premises. Allocation availability, external identity, authority, MIR and Rust extraction remain outside the claim."
+      },
+      "sha256": "6eac04809b6609ae07de294c113ca967402d9c7ccd31f2849e206b8e35fe3f60"
+    },
+    {
+      "bytes": 1641,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_joint_dynamics.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\",\n    \"sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\",\n      \"sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\",\n  \"subject\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
+          "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
+            "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01",
+        "subject": "code/rust/src/category_theory/finite_joint_dynamics.rs"
+      },
+      "sha256": "02429f3b6cd4a6d2231fa4a284bd548c8b8d8f275ce040aab6d74806469db82b"
+    }
+  ],
+  "current_contract": "02429f3b6cd4a6d2231fa4a284bd548c8b8d8f275ce040aab6d74806469db82b",
+  "current_scoring": "a4af2559887aa32da56c5ab97ff935c1a0c23202c688ba9a47546ebdcd934d36",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/finite_joint_dynamics.rs.contract.yaml": "6eac04809b6609ae07de294c113ca967402d9c7ccd31f2849e206b8e35fe3f60",
+    "code/rust/src/category_theory/finite_joint_dynamics.rs.scoring.yaml": "241c2226b98436ad8020cf80cd0c6c54cc4a92c6d9888879044f3122cbce0135",
+    "code/rust/src/category_theory/finite_joint_dynamics.score.yaml": "1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237",
+    "evidence/quality/category_homology/resume-20261019/joint-dynamics-pre-prose/finite_joint_dynamics.score.yaml": "17c94b6600cc4c930808b5ed7d8c85c4aa67e685d89c25c63e5342dca0e8546f",
+    "evidence/quality/category_homology/resume-20261019/joint-dynamics-previous/finite_joint_dynamics.score.yaml": "7041714d58480f97b7b51f912e46b7258f4c8db7dfad55ef5dc6a85b25d9fdaf"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4783,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_joint_dynamics.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_joint_dynamics.rs\"\n  language: \"Rust\"\n  sha256: \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T22:59:52.273432+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_joint_dynamics\"\n  description: \"Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/baseline.json\", \"sha256\": \"34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/summary.json\", \"sha256\": \"dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/mutations.json\", \"sha256\": \"12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json\", \"sha256\": \"bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json\", \"sha256\": \"84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/finite_joint_dynamics.json\", \"sha256\": \"fcd5bec7d3e26cee07134f4a9cf3ffaf8fa01dcfe4c73541f165adf0f1c014d9\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 23\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 257\n  parsed_production_functions: 14\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending; AuthorityEffect: None.\"\n  - \"Interaction tables are supplied premises, without inferred commutativity, physical licenses, or independence.\"\n  - \"Verification compares analysis outputs on self; external declaration identity, hashes, and authenticity are outside its scope.\"\n  - \"max_cells is checked admission accounting, not a complete heap, runtime, or executed-work limit.\"\n  - \"The 17 new abstract declarations and 31 reviewed provider declarations do not extract Rust or establish MIR and allocator totality.\"\n  - \"The finite corpus and 23 designated faults provide scoped evidence; no external omega or whole-workspace success is claimed.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
+          "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
+        },
         "assurance_limits": [
           "Contracts pending; AuthorityEffect: None.",
           "Interaction tables are supplied premises, without inferred commutativity, physical licenses, or independence.",
@@ -288,36 +270,51 @@
           "The 17 new abstract declarations and 31 reviewed provider declarations do not extract Rust or establish MIR and allocator totality.",
           "The finite corpus and 23 designated faults provide scoped evidence; no external omega or whole-workspace success is claimed."
         ],
-        "review_evidence": [
+        "claim": {
+          "description": "Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_joint_dynamics"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T22:59:52.273432+00:00",
+        "evidence": [
           {
-            "path": "code/rust/src/category_theory/finite_joint_dynamics.score.yaml",
-            "sha256": "1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237"
+            "path": "evidence/quality/category_homology/20261019T225540Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T225540Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T225540Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/finite_joint_dynamics.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "fcd5bec7d3e26cee07134f4a9cf3ffaf8fa01dcfe4c73541f165adf0f1c014d9"
           }
         ],
-        "open_obligations": []
-      },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\",\n    \"sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact usize identifiers, checked integer accounting, and Option definedness.\",\n    \"domain\": \"Admitted nonempty component systems, nonempty unique in-range pairs, and valid local or supplied interaction operations, under the declared checked cost expression.\",\n    \"behavior\": [\n      \"Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.\",\n      \"Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.\",\n      \"Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.\",\n      \"Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.\",\n      \"Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.\",\n      \"Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.\",\n      \"Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.\",\n      \"Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.\",\n      \"Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.\",\n      \"Borrow the exact immutable admitted relation in its supplied row order.\",\n      \"Borrow the exact pair of component behavioral-class IDs for each row.\",\n      \"Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.\",\n      \"Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.\",\n      \"Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify.\"\n    ],\n    \"capability\": \"L3 finite table construction and all-word collision analysis over declared premises.\"\n  },\n  \"operations\": {\n    \"refinement_cost\": {\n      \"line\": 46,\n      \"signature\": \"fn refinement_cost(m: &PartialDynamics) -> Option<usize>\",\n      \"obligation\": \"Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.\"\n    },\n    \"admit_work\": {\n      \"line\": 52,\n      \"signature\": \"fn admit_work(\\n    left: &PartialDynamics,\\n    right: &PartialDynamics,\\n    pairs: usize,\\n    operations: usize,\\n    max_cells: usize,\\n) -> Result<usize, JointDynamicsError>\",\n      \"obligation\": \"Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.\"\n    },\n    \"admit_relation\": {\n      \"line\": 77,\n      \"signature\": \"fn admit_relation(\\n    left: &PartialDynamics,\\n    right: &PartialDynamics,\\n    pairs: &[(usize, usize)],\\n) -> Result<BTreeMap<(usize, usize), usize>, JointDynamicsError>\",\n      \"obligation\": \"Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.\"\n    },\n    \"valid_operation\": {\n      \"line\": 99,\n      \"signature\": \"fn valid_operation(\\n    op: &JointOperation,\\n    left: &PartialDynamics,\\n    right: &PartialDynamics,\\n    rows: usize,\\n) -> bool\",\n      \"obligation\": \"Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.\"\n    },\n    \"cell\": {\n      \"line\": 118,\n      \"signature\": \"fn cell(\\n        &self,\\n        pair: (usize, usize),\\n        op: &JointOperation,\\n        row: usize,\\n        operation: usize,\\n    ) -> Result<Option<usize>, JointDynamicsError>\",\n      \"obligation\": \"Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.\"\n    },\n    \"joint_transitions\": {\n      \"line\": 146,\n      \"signature\": \"fn joint_transitions(\\n    left: &PartialDynamics,\\n    right: &PartialDynamics,\\n    pairs: &[(usize, usize)],\\n    operations: &[JointOperation],\\n    ids: &BTreeMap<(usize, usize), usize>,\\n) -> Result<Vec<Vec<Option<usize>>>, JointDynamicsError>\",\n      \"obligation\": \"Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.\"\n    },\n    \"local_profiles\": {\n      \"line\": 167,\n      \"signature\": \"fn local_profiles(\\n    left: &PartialDynamics,\\n    right: &PartialDynamics,\\n    pairs: &[(usize, usize)],\\n) -> Vec<(usize, usize)>\",\n      \"obligation\": \"Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.\"\n    },\n    \"profile_reports\": {\n      \"line\": 177,\n      \"signature\": \"fn profile_reports(local_reports: &[(usize, usize)]) -> Vec<usize>\",\n      \"obligation\": \"Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.\"\n    },\n    \"new\": {\n      \"line\": 189,\n      \"signature\": \"pub fn new(\\n        left: &PartialDynamics,\\n        right: &PartialDynamics,\\n        pairs: Vec<(usize, usize)>,\\n        operations: &[JointOperation],\\n        max_cells: usize,\\n    ) -> Result<Self, JointDynamicsError>\",\n      \"obligation\": \"Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.\"\n    },\n    \"pairs\": {\n      \"line\": 216,\n      \"signature\": \"pub fn pairs(&self) -> &[(usize, usize)]\",\n      \"obligation\": \"Borrow the exact immutable admitted relation in its supplied row order.\"\n    },\n    \"local_reports\": {\n      \"line\": 219,\n      \"signature\": \"pub fn local_reports(&self) -> &[(usize, usize)]\",\n      \"obligation\": \"Borrow the exact pair of component behavioral-class IDs for each row.\"\n    },\n    \"dynamics\": {\n      \"line\": 222,\n      \"signature\": \"pub fn dynamics(&self) -> &PartialDynamics\",\n      \"obligation\": \"Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.\"\n    },\n    \"analyze\": {\n      \"line\": 226,\n      \"signature\": \"pub fn analyze(&self) -> Result<JointDynamicsAnalysis, JointDynamicsError>\",\n      \"obligation\": \"Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.\"\n    },\n    \"verify\": {\n      \"line\": 250,\n      \"signature\": \"pub fn verify(&self, c: &JointDynamicsAnalysis) -> Result<(), JointDynamicsError>\",\n      \"obligation\": \"Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify.\"\n    }\n  },\n  \"invariants\": [\n    \"Both PartialDynamics inputs are already admitted, nonempty, and checked for shape and range. Their first transition row exists even when there are zero inputs. Joint pairs must be nonempty, unique, and inside both real carriers; internal unavailable sinks are excluded. Work admission runs first, then relation admission, then validation of every operation, then joint closure in row-major order. A later invalid operation therefore takes priority over an earlier missing pair. The extracted phases preserve the original result and error order.\",\n    \"The declared accounting expression is B=(p+1)^2 and cost=B*(operation_count+1)+(left_states+1)^2*(left_inputs+1)+(right_states+1)^2*(right_inputs+1). Every addition and product is checked. Overflow or cost greater than max_cells returns WorkLimit before relation construction; equality succeeds. This is an admission accounting rule, rather than a bound on all heap bytes, runtime, or executed operations. Direct private-helper tests cover arithmetic overflow without allocating huge models.\",\n    \"The pair map assigns each unique admitted pair its supplied row index. Left and Right operations change exactly one coordinate. A local None remains genuinely unavailable. A defined target must occur in the relation; a missing target returns NotClosed with its original row, operation, and target pair. Interaction entries are supplied premises with exactly one valid Option index per row. Borrowed context and Result collection preserve the original row and operation order. On failure only temporary output is dropped. Lean proves the abstract lookup and closure distinction; Rust indexing and error fields remain separate source obligations.\",\n    \"Local profiles use the actual reviewed component behavioral quotients, including their distinct unavailable sinks. Pair coordinates select only real component states. A profile is the pair of component class IDs, rather than their raw report IDs. First-occurrence interning gives equal joint readouts exactly when profiles agree. Actual PartialDynamics admission checks the complete derived table. Interactions can introduce distinctions within a local profile fiber; they are supplied data, with no inferred independence or commutativity law.\",\n    \"The actual joint quotient refines the initial profile kernel and preserves every finite-word answer and availability distinction by the reviewed provider argument. Equal profiles with different final classes therefore identify exactly a lost joint-future distinction. Analysis scans right row r in increasing order and left row l<r in increasing order. The provider then returns the shortest lexicographic separating word and exact saved answers. The totalized joint system has p+1 states and at most (p+1)^2 ordered state pairs, so B admits the whole search frontier when allocation succeeds. No collision means joint-future observations factor through the realized profiles. The new Lean fiber lemmas and the existing provider proofs support different parts of this argument.\",\n    \"JointDynamics owns immutable admitted pairs, profiles, dynamics, and the checked pair budget, with borrowed getters and no Deserialize or Default bypass. Analysis is a raw mutable report. Verification recomputes the complete analysis and compares refinement and collision. It checks the result on self, without authenticating an external declaration or request hash. Distinct relations can have identical analyses: the native constant, zero-input example uses [(0,0)] and [(1,0)] and accepts cross-verification. The documentation now states this ceiling.\",\n    \"Private helper calls use already admitted ranges and concrete usize values. Budget, relation, operation, transition, and profile phases retain their original order. Output rows, profiles, dense readouts, and owned provider quotients are required results. One pair map and one profile interning map are built outside cell processing. Result collection may allocate output capacity differently from push loops; no allocation-count, heap-totality, or arbitrary-callback guarantee is made. The max_cells expression does not replace the providers own stated cost and trust boundaries.\"\n  ],\n  \"failure_paths\": {\n    \"refinement_cost\": \"Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.\",\n    \"admit_work\": \"Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.\",\n    \"admit_relation\": \"Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.\",\n    \"valid_operation\": \"Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.\",\n    \"cell\": \"Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.\",\n    \"joint_transitions\": \"Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.\",\n    \"local_profiles\": \"Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.\",\n    \"profile_reports\": \"Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.\",\n    \"new\": \"Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.\",\n    \"pairs\": \"Borrow the exact immutable admitted relation in its supplied row order.\",\n    \"local_reports\": \"Borrow the exact pair of component behavioral-class IDs for each row.\",\n    \"dynamics\": \"Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.\",\n    \"analyze\": \"Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.\",\n    \"verify\": \"Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify.\"\n  },\n  \"trust_boundary\": \"Rust, standard libraries, compiler, prepared Lean/Mathlib, and the reviewed continuation and Moore providers. Supplied relations and interactions are premises. Allocation availability, external identity, authority, MIR and Rust extraction remain outside the claim.\",\n  \"assurance_limits\": [\n    \"Contracts pending; AuthorityEffect: None.\",\n    \"Interaction tables are supplied premises, without inferred commutativity, physical licenses, or independence.\",\n    \"Verification compares analysis outputs on self; external declaration identity, hashes, and authenticity are outside its scope.\",\n    \"max_cells is checked admission accounting, not a complete heap, runtime, or executed-work limit.\",\n    \"The 17 new abstract declarations and 31 reviewed provider declarations do not extract Rust or establish MIR and allocator totality.\",\n    \"The finite corpus and 23 designated faults provide scoped evidence; no external omega or whole-workspace success is claimed.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.score.yaml\",\n      \"sha256\": \"1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_joint_dynamics.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237",
-      "bytes": 4783,
-      "record": {
-        "schema_version": "2.0.0",
-        "artifact": {
-          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
-          "language": "Rust",
-          "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
-        },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
-        "engineering_target": "A",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -325,58 +322,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T22:59:52.273432+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_joint_dynamics",
-          "description": "Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 23,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 7,
+          "control_nesting": 3,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 6,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 14,
+          "physical_lines": 257,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T225540Z/baseline.json",
-            "sha256": "34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T225540Z/summary.json",
-            "sha256": "dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T225540Z/mutations.json",
-            "sha256": "12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json",
-            "sha256": "bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json",
-            "sha256": "84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/finite_joint_dynamics.json",
-            "sha256": "fcd5bec7d3e26cee07134f4a9cf3ffaf8fa01dcfe4c73541f165adf0f1c014d9",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -402,63 +381,37 @@
             "RR-22-21",
             "RR-23-22"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 23,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 257,
-          "parsed_production_functions": 14,
-          "max_production_ccn": 6,
-          "cognitive_complexity_upper_bound": 7,
-          "control_nesting": 3,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Contracts pending; AuthorityEffect: None.",
-          "Interaction tables are supplied premises, without inferred commutativity, physical licenses, or independence.",
-          "Verification compares analysis outputs on self; external declaration identity, hashes, and authenticity are outside its scope.",
-          "max_cells is checked admission accounting, not a complete heap, runtime, or executed-work limit.",
-          "The 17 new abstract declarations and 31 reviewed provider declarations do not extract Rust or establish MIR and allocator totality.",
-          "The finite corpus and 23 designated faults provide scoped evidence; no external omega or whole-workspace success is claimed."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_joint_dynamics.rs\"\n  language: \"Rust\"\n  sha256: \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T22:59:52.273432+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_joint_dynamics\"\n  description: \"Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/baseline.json\", \"sha256\": \"34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/summary.json\", \"sha256\": \"dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/mutations.json\", \"sha256\": \"12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json\", \"sha256\": \"bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json\", \"sha256\": \"84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/finite_joint_dynamics.json\", \"sha256\": \"fcd5bec7d3e26cee07134f4a9cf3ffaf8fa01dcfe4c73541f165adf0f1c014d9\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 23\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 257\n  parsed_production_functions: 14\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending; AuthorityEffect: None.\"\n  - \"Interaction tables are supplied premises, without inferred commutativity, physical licenses, or independence.\"\n  - \"Verification compares analysis outputs on self; external declaration identity, hashes, and authenticity are outside its scope.\"\n  - \"max_cells is checked admission accounting, not a complete heap, runtime, or executed-work limit.\"\n  - \"The 17 new abstract declarations and 31 reviewed provider declarations do not extract Rust or establish MIR and allocator totality.\"\n  - \"The finite corpus and 23 designated faults provide scoped evidence; no external omega or whole-workspace success is claimed.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_joint_dynamics.score.yaml"
-      ]
+      "sha256": "1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237"
     },
     {
-      "sha256": "241c2226b98436ad8020cf80cd0c6c54cc4a92c6d9888879044f3122cbce0135",
       "bytes": 2344,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_joint_dynamics.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\",\n    \"sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.score.yaml\",\n    \"sha256\": \"1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs.contract.yaml\",\n    \"sha256\": \"6eac04809b6609ae07de294c113ca967402d9c7ccd31f2849e206b8e35fe3f60\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\",\n    \"function_count\": 14,\n    \"maxima\": {\n      \"ccn\": 6,\n      \"cognitive_upper_bound\": 7,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
-          "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
+          "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/finite_joint_dynamics.score.yaml",
+          "sha256": "1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs.contract.yaml",
+          "sha256": "6eac04809b6609ae07de294c113ca967402d9c7ccd31f2849e206b8e35fe3f60"
+        },
         "engineering_target": "A",
-        "level": "L3",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -466,30 +419,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/finite_joint_dynamics.score.yaml",
-          "sha256": "1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs.contract.yaml",
-          "sha256": "6eac04809b6609ae07de294c113ca967402d9c7ccd31f2849e206b8e35fe3f60"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L3",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
         "structural_measurement": {
-          "source_sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01",
-          "function_count": 14,
-          "maxima": {
-            "ccn": 6,
-            "cognitive_upper_bound": 7,
-            "control_nesting": 3
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -504,29 +443,87 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 14,
+          "maxima": {
+            "ccn": 6,
+            "cognitive_upper_bound": 7,
+            "control_nesting": 3
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\",\n    \"sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.score.yaml\",\n    \"sha256\": \"1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs.contract.yaml\",\n    \"sha256\": \"6eac04809b6609ae07de294c113ca967402d9c7ccd31f2849e206b8e35fe3f60\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\",\n    \"function_count\": 14,\n    \"maxima\": {\n      \"ccn\": 6,\n      \"cognitive_upper_bound\": 7,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_joint_dynamics.rs.scoring.yaml"
-      ]
+      "sha256": "241c2226b98436ad8020cf80cd0c6c54cc4a92c6d9888879044f3122cbce0135"
     },
     {
-      "sha256": "17c94b6600cc4c930808b5ed7d8c85c4aa67e685d89c25c63e5342dca0e8546f",
       "bytes": 4654,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/joint-dynamics-pre-prose/finite_joint_dynamics.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_joint_dynamics.rs\"\n  language: \"Rust\"\n  sha256: \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T22:58:07.103516+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_joint_dynamics\"\n  description: \"Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/baseline.json\", \"sha256\": \"34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/summary.json\", \"sha256\": \"dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/mutations.json\", \"sha256\": \"12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json\", \"sha256\": \"bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json\", \"sha256\": \"84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/finite_joint_dynamics.json\", \"sha256\": \"6fb31de89ad5b7699d611c493eadb56ce961860d716af026d8d9bdd3ddd4118f\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 23\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 257\n  parsed_production_functions: 14\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffectNone.\"\n  - \"Interactiontablesare suppliedpremises,not localtheorems/commutativity/physicaloperationlicenses.\"\n  - \"Verification compares analysisoutputs onself;noexternaldeclarationidentity/hash/authenticity.\"\n  - \"Declaredmax_cells is checkedadmission accounting,not totalheap/time/workcap.\"\n  - \"17abstractnewmodeldeclarations plusreviewed31providerdeclarations are not extractedRust/MIR orallocator-totalityproof.\"\n  - \"Scopedfinitecorpus/23designatedfaults;noexternalomega orwhole-workspacegreen.\"\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
           "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "assurance_limits": [
+          "Contracts pending;AuthorityEffectNone.",
+          "Interactiontablesare suppliedpremises,not localtheorems/commutativity/physicaloperationlicenses.",
+          "Verification compares analysisoutputs onself;noexternaldeclarationidentity/hash/authenticity.",
+          "Declaredmax_cells is checkedadmission accounting,not totalheap/time/workcap.",
+          "17abstractnewmodeldeclarations plusreviewed31providerdeclarations are not extractedRust/MIR orallocator-totalityproof.",
+          "Scopedfinitecorpus/23designatedfaults;noexternalomega orwhole-workspacegreen."
+        ],
+        "claim": {
+          "description": "Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_joint_dynamics"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T22:58:07.103516+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T225540Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T225540Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T225540Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/finite_joint_dynamics.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "6fb31de89ad5b7699d611c493eadb56ce961860d716af026d8d9bdd3ddd4118f"
+          }
+        ],
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -534,58 +531,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T22:58:07.103516+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_joint_dynamics",
-          "description": "Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 23,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 7,
+          "control_nesting": 3,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 6,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 14,
+          "physical_lines": 257,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T225540Z/baseline.json",
-            "sha256": "34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T225540Z/summary.json",
-            "sha256": "dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T225540Z/mutations.json",
-            "sha256": "12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json",
-            "sha256": "bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json",
-            "sha256": "84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/finite_joint_dynamics.json",
-            "sha256": "6fb31de89ad5b7699d611c493eadb56ce961860d716af026d8d9bdd3ddd4118f",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -611,60 +590,60 @@
             "RR-22-21",
             "RR-23-22"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 23,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 257,
-          "parsed_production_functions": 14,
-          "max_production_ccn": 6,
-          "cognitive_complexity_upper_bound": 7,
-          "control_nesting": 3,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Contracts pending;AuthorityEffectNone.",
-          "Interactiontablesare suppliedpremises,not localtheorems/commutativity/physicaloperationlicenses.",
-          "Verification compares analysisoutputs onself;noexternaldeclarationidentity/hash/authenticity.",
-          "Declaredmax_cells is checkedadmission accounting,not totalheap/time/workcap.",
-          "17abstractnewmodeldeclarations plusreviewed31providerdeclarations are not extractedRust/MIR orallocator-totalityproof.",
-          "Scopedfinitecorpus/23designatedfaults;noexternalomega orwhole-workspacegreen."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_joint_dynamics.rs\"\n  language: \"Rust\"\n  sha256: \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T22:58:07.103516+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_joint_dynamics\"\n  description: \"Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/baseline.json\", \"sha256\": \"34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/summary.json\", \"sha256\": \"dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/mutations.json\", \"sha256\": \"12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json\", \"sha256\": \"bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json\", \"sha256\": \"84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/finite_joint_dynamics.json\", \"sha256\": \"6fb31de89ad5b7699d611c493eadb56ce961860d716af026d8d9bdd3ddd4118f\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 23\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 257\n  parsed_production_functions: 14\n  max_production_ccn: 6\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffectNone.\"\n  - \"Interactiontablesare suppliedpremises,not localtheorems/commutativity/physicaloperationlicenses.\"\n  - \"Verification compares analysisoutputs onself;noexternaldeclarationidentity/hash/authenticity.\"\n  - \"Declaredmax_cells is checkedadmission accounting,not totalheap/time/workcap.\"\n  - \"17abstractnewmodeldeclarations plusreviewed31providerdeclarations are not extractedRust/MIR orallocator-totalityproof.\"\n  - \"Scopedfinitecorpus/23designatedfaults;noexternalomega orwhole-workspacegreen.\"\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/joint-dynamics-pre-prose/finite_joint_dynamics.score.yaml"
-      ]
+      "sha256": "17c94b6600cc4c930808b5ed7d8c85c4aa67e685d89c25c63e5342dca0e8546f"
     },
     {
-      "sha256": "7041714d58480f97b7b51f912e46b7258f4c8db7dfad55ef5dc6a85b25d9fdaf",
       "bytes": 3690,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/joint-dynamics-previous/finite_joint_dynamics.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_joint_dynamics.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"04b0e45528db27ea96cd92741fe0219840fe0bd7245eeb6c47b9ac294eb5f5d8\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"D\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_joint_dynamics\"\r\n  description: \"Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 189\r\n  parsed_production_functions: 7\r\n  max_production_ccn: 24\r\n  cognitive_complexity_upper_bound: 24\r\n  control_nesting: 4\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 24, \"cognitive_upper_bound\": 24, \"control_nesting\": 4, \"line\": 53, \"name\": \"new\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative D ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
           "sha256": "04b0e45528db27ea96cd92741fe0219840fe0bd7245eeb6c47b9ac294eb5f5d8"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_joint_dynamics"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -672,69 +651,32 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "D",
-        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_joint_dynamics",
-          "description": "Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
+          "unrun": 0
         },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative D ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 189,
-          "parsed_production_functions": 7,
-          "max_production_ccn": 24,
           "cognitive_complexity_upper_bound": 24,
           "control_nesting": 4,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [
             {
               "ccn": 24,
@@ -745,44 +687,35 @@
               "opaque_macros": []
             }
           ],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "max_production_ccn": 24,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 7,
+          "physical_lines": 189,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "open_findings": [
-          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
-          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
-          "External path dependency source contents have not received a separate origin/content attestation.",
-          "Declared source metrics impose a conservative D ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
-        ]
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_joint_dynamics.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"04b0e45528db27ea96cd92741fe0219840fe0bd7245eeb6c47b9ac294eb5f5d8\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"D\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_joint_dynamics\"\r\n  description: \"Joint operations on an explicit relation of component states. Local transitions must preserve the relation; missing pairs are NOT silently interpreted as unavailable operations. Interaction tables are supplied premises.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 189\r\n  parsed_production_functions: 7\r\n  max_production_ccn: 24\r\n  cognitive_complexity_upper_bound: 24\r\n  control_nesting: 4\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 24, \"cognitive_upper_bound\": 24, \"control_nesting\": 4, \"line\": 53, \"name\": \"new\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative D ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/joint-dynamics-previous/finite_joint_dynamics.score.yaml"
-      ]
+      "sha256": "7041714d58480f97b7b51f912e46b7258f4c8db7dfad55ef5dc6a85b25d9fdaf"
     },
     {
-      "sha256": "1e3c5dd4e1f00f3ebb697391874510a594757e8849acb2e77303b95d982a6613",
       "bytes": 5652,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_joint_dynamics.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\",\n    \"sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:finite-joint-dynamics:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T225540Z/baseline.json\",\n      \"sha256\": \"34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T225540Z/summary.json\",\n      \"sha256\": \"dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T225540Z/mutations.json\",\n      \"sha256\": \"12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json\",\n      \"sha256\": \"bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json\",\n      \"sha256\": \"84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/finite_joint_dynamics.json\",\n      \"sha256\": \"fcd5bec7d3e26cee07134f4a9cf3ffaf8fa01dcfe4c73541f165adf0f1c014d9\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 257,\n    \"parsed_production_functions\": 14,\n    \"max_production_ccn\": 6,\n    \"cognitive_complexity_upper_bound\": 7,\n    \"control_nesting\": 3,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
-          "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:finite-joint-dynamics:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -791,24 +724,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 6,
-          "lizard_ccn": 6,
-          "weighted_control_upper_bound": 7,
-          "control_nesting": 3
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -816,82 +732,155 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T225540Z/baseline.json",
-            "sha256": "34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882"
           },
           {
             "path": "evidence/quality/category_homology/20261019T225540Z/summary.json",
-            "sha256": "dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb"
           },
           {
             "path": "evidence/quality/category_homology/20261019T225540Z/mutations.json",
-            "sha256": "12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4"
           },
           {
             "path": "evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json",
-            "sha256": "bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74"
           },
           {
             "path": "evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json",
-            "sha256": "84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/finite_joint_dynamics.json",
-            "sha256": "fcd5bec7d3e26cee07134f4a9cf3ffaf8fa01dcfe4c73541f165adf0f1c014d9",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "fcd5bec7d3e26cee07134f4a9cf3ffaf8fa01dcfe4c73541f165adf0f1c014d9"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 6,
+          "radon_ccn": 6,
+          "weighted_control_upper_bound": 7
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 257,
-          "parsed_production_functions": 14,
-          "max_production_ccn": 6,
           "cognitive_complexity_upper_bound": 7,
           "control_nesting": 3,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 6,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 14,
+          "physical_lines": 257,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\",\n    \"sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:finite-joint-dynamics:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 6 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T225540Z/baseline.json\",\n      \"sha256\": \"34e1375bb8b6b918789f9d2c3b8f0e5106db3209ee79204e4e7cdadf8c88f882\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T225540Z/summary.json\",\n      \"sha256\": \"dc1253e5ed1c42063eaeb316ac3271aa9ba419a9c7b98e649b6e4c200c80d7fb\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T225540Z/mutations.json\",\n      \"sha256\": \"12cef04f568bf50d16873b15e899ba1e2d31999b50161b4c443ed87bb0a575b4\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json\",\n      \"sha256\": \"bff2af6b6d2714f8af2538c0bc547278f35a15f8354e19ff3703d25da89f2e74\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T225540Z/dependency_receipt.json\",\n      \"sha256\": \"84fcd243d0ccfe8bf675ea3a5a1b674da184701572ed99b3a10832de948e6147\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/finite_joint_dynamics.json\",\n      \"sha256\": \"fcd5bec7d3e26cee07134f4a9cf3ffaf8fa01dcfe4c73541f165adf0f1c014d9\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 257,\n    \"parsed_production_functions\": 14,\n    \"max_production_ccn\": 6,\n    \"cognitive_complexity_upper_bound\": 7,\n    \"control_nesting\": 3,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "1e3c5dd4e1f00f3ebb697391874510a594757e8849acb2e77303b95d982a6613"
+    },
+    {
+      "bytes": 1622,
       "original_paths": [
-        "code/rust/src/category_theory/finite_joint_dynamics.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/finite_joint_dynamics.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\",\n    \"sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_joint_dynamics.rs\",\n      \"sha256\": \"764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
+          "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
+            "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "a4af2559887aa32da56c5ab97ff935c1a0c23202c688ba9a47546ebdcd934d36"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/finite_joint_dynamics.rs.contract.yaml": "6eac04809b6609ae07de294c113ca967402d9c7ccd31f2849e206b8e35fe3f60",
-    "code/rust/src/category_theory/finite_joint_dynamics.score.yaml": "1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237",
-    "code/rust/src/category_theory/finite_joint_dynamics.rs.scoring.yaml": "241c2226b98436ad8020cf80cd0c6c54cc4a92c6d9888879044f3122cbce0135",
-    "evidence/quality/category_homology/resume-20261019/joint-dynamics-pre-prose/finite_joint_dynamics.score.yaml": "17c94b6600cc4c930808b5ed7d8c85c4aa67e685d89c25c63e5342dca0e8546f",
-    "evidence/quality/category_homology/resume-20261019/joint-dynamics-previous/finite_joint_dynamics.score.yaml": "7041714d58480f97b7b51f912e46b7258f4c8db7dfad55ef5dc6a85b25d9fdaf"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

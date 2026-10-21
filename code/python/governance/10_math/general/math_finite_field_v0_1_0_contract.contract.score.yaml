@@ -1,170 +1,111 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:finite_field:v0.1.0",
-    "title": "Finite Field GF(p^k) Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py",
+      "sha256": "c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275"
     },
-    "math": {
-      "object_kind": "finite_field",
-      "symbol": "GF(p^k) = F_p[x] / (f), f monic irreducible of degree k",
-      "ascii_symbol": "finite_field",
-      "notation": "GF(p^k) = F_p[x] / (f), f monic irreducible of degree k",
-      "domain": [
-        "prime p",
-        "degree k >= 1",
-        "monic modulus of degree k over F_p"
-      ],
-      "codomain": {
-        "description": "The field GF(p^k) with every element enumerated, addition, multiplication, powers and the absolute trace to F_p."
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "p must be prime; a degree of zero or an overflowing order p^k is refused",
-        "The absolute trace lands in F_p; a reducible modulus is detected by the trace leaving F_p",
-        "Irreducibility is decided by trial division by monic divisors up to half the degree"
-      ]
-    },
-    "laws": [
-      "a^(q-1) = 1 for every nonzero a in GF(q) (Fermat)",
-      "The trace has uniform fibres: every value of F_p is taken q/p times",
-      "Every nonzero element has a multiplicative inverse"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Exact arithmetic only; no floating point and no tolerance"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_number_theory",
-      "module": "finite_field",
-      "symbols": [
-        "FiniteField",
-        "FieldElement",
-        "find_irreducible_monic",
-        "is_irreducible_monic",
-        "is_prime",
-        "checked_pow"
-      ],
-      "required_tests": [
-        "the_trace_lands_in_f_p_with_uniform_fibres",
-        "the_field_axioms_hold_on_gf27",
-        "constructors_refuse_non_primes",
-        "irreducibility_helpers_refuse_invalid_or_reducible_inputs",
-        "a_reducible_modulus_is_not_a_field_and_fails_the_identities"
-      ]
-    },
-    "negative_tests": [
-      "A composite characteristic must be refused by the checked constructors",
-      "A reducible modulus must not be accepted as irreducible",
-      "A field whose order overflows usize must be refused"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py",
+        "sha256": "c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "Enumerated finite fields GF(p^k) as polynomials over F_p modulo a monic irreducible, with the absolute trace used to build additive characters.",
-      "non_role": [
-        "Large finite fields that cannot be enumerated",
-        "Elliptic curves over finite fields"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "FiniteField::new does not check irreducibility of a supplied modulus (use with_first_irreducible)",
-      "arithmetic uses usize coefficients and is not hardened against a mismatched element degree"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275",
+    "subject": "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py"
   },
-  "current_contract": "34c3cde0df27230529d26a7f7159fc5dab4fb33b60de725606316c444d80a1ad",
-  "current_scoring": "0c48835e9e15a140afc0ad015f76fb114aff4f70f7b2d70bb636e91e4b03d7c8",
   "contract_history": [
     {
-      "sha256": "34c3cde0df27230529d26a7f7159fc5dab4fb33b60de725606316c444d80a1ad",
       "bytes": 3316,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_finite_field_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:finite_field:v0.1.0\",\n  \"title\": \"Finite Field GF(p^k) Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_field\",\n    \"symbol\": \"GF(p^k) = F_p[x] / (f), f monic irreducible of degree k\",\n    \"ascii_symbol\": \"finite_field\",\n    \"notation\": \"GF(p^k) = F_p[x] / (f), f monic irreducible of degree k\",\n    \"domain\": [\n      \"prime p\",\n      \"degree k >= 1\",\n      \"monic modulus of degree k over F_p\"\n    ],\n    \"codomain\": {\n      \"description\": \"The field GF(p^k) with every element enumerated, addition, multiplication, powers and the absolute trace to F_p.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"p must be prime; a degree of zero or an overflowing order p^k is refused\",\n      \"The absolute trace lands in F_p; a reducible modulus is detected by the trace leaving F_p\",\n      \"Irreducibility is decided by trial division by monic divisors up to half the degree\"\n    ]\n  },\n  \"laws\": [\n    \"a^(q-1) = 1 for every nonzero a in GF(q) (Fermat)\",\n    \"The trace has uniform fibres: every value of F_p is taken q/p times\",\n    \"Every nonzero element has a multiplicative inverse\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Exact arithmetic only; no floating point and no tolerance\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_number_theory\",\n    \"module\": \"finite_field\",\n    \"symbols\": [\n      \"FiniteField\",\n      \"FieldElement\",\n      \"find_irreducible_monic\",\n      \"is_irreducible_monic\",\n      \"is_prime\",\n      \"checked_pow\"\n    ],\n    \"required_tests\": [\n      \"the_trace_lands_in_f_p_with_uniform_fibres\",\n      \"the_field_axioms_hold_on_gf27\",\n      \"constructors_refuse_non_primes\",\n      \"irreducibility_helpers_refuse_invalid_or_reducible_inputs\",\n      \"a_reducible_modulus_is_not_a_field_and_fails_the_identities\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A composite characteristic must be refused by the checked constructors\",\n    \"A reducible modulus must not be accepted as irreducible\",\n    \"A field whose order overflows usize must be refused\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Enumerated finite fields GF(p^k) as polynomials over F_p modulo a monic irreducible, with the absolute trace used to build additive characters.\",\n    \"non_role\": [\n      \"Large finite fields that cannot be enumerated\",\n      \"Elliptic curves over finite fields\"\n    ]\n  },\n  \"wip\": [\n    \"FiniteField::new does not check irreducibility of a supplied modulus (use with_first_irreducible)\",\n    \"arithmetic uses usize coefficients and is not hardened against a mismatched element degree\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:finite_field:v0.1.0",
-        "title": "Finite Field GF(p^k) Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
-        "math": {
-          "object_kind": "finite_field",
-          "symbol": "GF(p^k) = F_p[x] / (f), f monic irreducible of degree k",
-          "ascii_symbol": "finite_field",
-          "notation": "GF(p^k) = F_p[x] / (f), f monic irreducible of degree k",
-          "domain": [
-            "prime p",
-            "degree k >= 1",
-            "monic modulus of degree k over F_p"
+        "doctrine": {
+          "non_role": [
+            "Large finite fields that cannot be enumerated",
+            "Elliptic curves over finite fields"
           ],
-          "codomain": {
-            "description": "The field GF(p^k) with every element enumerated, addition, multiplication, powers and the absolute trace to F_p."
-          }
+          "summary": "Enumerated finite fields GF(p^k) as polynomials over F_p modulo a monic irreducible, with the absolute trace used to build additive characters."
         },
-        "requirements": {
-          "required_structures": [
-            "p must be prime; a degree of zero or an overflowing order p^k is refused",
-            "The absolute trace lands in F_p; a reducible modulus is detected by the trace leaving F_p",
-            "Irreducibility is decided by trial division by monic divisors up to half the degree"
-          ]
-        },
+        "kind": "math_contract",
         "laws": [
           "a^(q-1) = 1 for every nonzero a in GF(q) (Fermat)",
           "The trace has uniform fibres: every value of F_p is taken q/p times",
           "Every nonzero element has a multiplicative inverse"
         ],
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "finite_field",
+          "codomain": {
+            "description": "The field GF(p^k) with every element enumerated, addition, multiplication, powers and the absolute trace to F_p."
+          },
+          "domain": [
+            "prime p",
+            "degree k >= 1",
+            "monic modulus of degree k over F_p"
+          ],
+          "notation": "GF(p^k) = F_p[x] / (f), f monic irreducible of degree k",
+          "object_kind": "finite_field",
+          "symbol": "GF(p^k) = F_p[x] / (f), f monic irreducible of degree k"
+        },
+        "negative_tests": [
+          "A composite characteristic must be refused by the checked constructors",
+          "A reducible modulus must not be accepted as irreducible",
+          "A field whose order overflows usize must be refused"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
         "replay": {
           "requirements": [
             "No external state",
@@ -173,14 +114,23 @@
             "Exact arithmetic only; no floating point and no tolerance"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
+        "requirements": {
+          "required_structures": [
+            "p must be prime; a degree of zero or an overflowing order p^k is refused",
+            "The absolute trace lands in F_p; a reducible modulus is detected by the trace leaving F_p",
+            "Irreducibility is decided by trial division by monic divisors up to half the degree"
           ]
         },
         "rust_binding": {
           "crate": "omega_number_theory",
           "module": "finite_field",
+          "required_tests": [
+            "the_trace_lands_in_f_p_with_uniform_fibres",
+            "the_field_axioms_hold_on_gf27",
+            "constructors_refuse_non_primes",
+            "irreducibility_helpers_refuse_invalid_or_reducible_inputs",
+            "a_reducible_modulus_is_not_a_field_and_fails_the_identities"
+          ],
           "symbols": [
             "FiniteField",
             "FieldElement",
@@ -188,62 +138,82 @@
             "is_irreducible_monic",
             "is_prime",
             "checked_pow"
-          ],
-          "required_tests": [
-            "the_trace_lands_in_f_p_with_uniform_fibres",
-            "the_field_axioms_hold_on_gf27",
-            "constructors_refuse_non_primes",
-            "irreducibility_helpers_refuse_invalid_or_reducible_inputs",
-            "a_reducible_modulus_is_not_a_field_and_fails_the_identities"
           ]
         },
-        "negative_tests": [
-          "A composite characteristic must be refused by the checked constructors",
-          "A reducible modulus must not be accepted as irreducible",
-          "A field whose order overflows usize must be refused"
-        ],
-        "doctrine": {
-          "summary": "Enumerated finite fields GF(p^k) as polynomials over F_p modulo a monic irreducible, with the absolute trace used to build additive characters.",
-          "non_role": [
-            "Large finite fields that cannot be enumerated",
-            "Elliptic curves over finite fields"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Finite Field GF(p^k) Contract",
         "wip": [
           "FiniteField::new does not check irreducibility of a supplied modulus (use with_first_irreducible)",
           "arithmetic uses usize coefficients and is not hardened against a mismatched element degree"
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:finite_field:v0.1.0\",\n  \"title\": \"Finite Field GF(p^k) Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_field\",\n    \"symbol\": \"GF(p^k) = F_p[x] / (f), f monic irreducible of degree k\",\n    \"ascii_symbol\": \"finite_field\",\n    \"notation\": \"GF(p^k) = F_p[x] / (f), f monic irreducible of degree k\",\n    \"domain\": [\n      \"prime p\",\n      \"degree k >= 1\",\n      \"monic modulus of degree k over F_p\"\n    ],\n    \"codomain\": {\n      \"description\": \"The field GF(p^k) with every element enumerated, addition, multiplication, powers and the absolute trace to F_p.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"p must be prime; a degree of zero or an overflowing order p^k is refused\",\n      \"The absolute trace lands in F_p; a reducible modulus is detected by the trace leaving F_p\",\n      \"Irreducibility is decided by trial division by monic divisors up to half the degree\"\n    ]\n  },\n  \"laws\": [\n    \"a^(q-1) = 1 for every nonzero a in GF(q) (Fermat)\",\n    \"The trace has uniform fibres: every value of F_p is taken q/p times\",\n    \"Every nonzero element has a multiplicative inverse\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Exact arithmetic only; no floating point and no tolerance\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_number_theory\",\n    \"module\": \"finite_field\",\n    \"symbols\": [\n      \"FiniteField\",\n      \"FieldElement\",\n      \"find_irreducible_monic\",\n      \"is_irreducible_monic\",\n      \"is_prime\",\n      \"checked_pow\"\n    ],\n    \"required_tests\": [\n      \"the_trace_lands_in_f_p_with_uniform_fibres\",\n      \"the_field_axioms_hold_on_gf27\",\n      \"constructors_refuse_non_primes\",\n      \"irreducibility_helpers_refuse_invalid_or_reducible_inputs\",\n      \"a_reducible_modulus_is_not_a_field_and_fails_the_identities\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A composite characteristic must be refused by the checked constructors\",\n    \"A reducible modulus must not be accepted as irreducible\",\n    \"A field whose order overflows usize must be refused\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Enumerated finite fields GF(p^k) as polynomials over F_p modulo a monic irreducible, with the absolute trace used to build additive characters.\",\n    \"non_role\": [\n      \"Large finite fields that cannot be enumerated\",\n      \"Elliptic curves over finite fields\"\n    ]\n  },\n  \"wip\": [\n    \"FiniteField::new does not check irreducibility of a supplied modulus (use with_first_irreducible)\",\n    \"arithmetic uses usize coefficients and is not hardened against a mismatched element degree\"\n  ]\n}\n",
+      "sha256": "34c3cde0df27230529d26a7f7159fc5dab4fb33b60de725606316c444d80a1ad"
+    },
+    {
+      "bytes": 1706,
       "original_paths": [
-        "code/python/governance/10_math/general/math_finite_field_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py\",\n    \"sha256\": \"c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py\",\n      \"sha256\": \"c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275\",\n  \"subject\": \"code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py",
+          "sha256": "c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py",
+            "sha256": "c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275",
+        "subject": "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py"
+      },
+      "sha256": "f41288ff6dd4272d705100f28497cc188dc6011a03a53aeaaf92a9556c7c6690"
     }
   ],
+  "current_contract": "f41288ff6dd4272d705100f28497cc188dc6011a03a53aeaaf92a9556c7c6690",
+  "current_scoring": "0c7cf8ef0f994b3e2d09a2f679b06ee35c2f25cd108896157c1d982136a067c5",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_finite_field_v0_1_0.contract.yaml": "fac5fa17fa868552125749ae4da4e601c79539e06cb47fd964bfd68e7c067aa9"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "0c48835e9e15a140afc0ad015f76fb114aff4f70f7b2d70bb636e91e4b03d7c8",
       "bytes": 2221,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py\",\n    \"sha256\": \"c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-finite-field-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py",
           "sha256": "c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-finite-field-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -252,40 +222,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "0c48835e9e15a140afc0ad015f76fb114aff4f70f7b2d70bb636e91e4b03d7c8"
+    },
+    {
+      "bytes": 1664,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py\",\n    \"sha256\": \"c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py\",\n      \"sha256\": \"c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py",
+          "sha256": "c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py",
+            "sha256": "c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.py\",\n    \"sha256\": \"c12927522bd0e799c30ed23733b08ea53f367ac3a56a307501302129d6cb2275\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-finite-field-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_finite_field_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "0c7cf8ef0f994b3e2d09a2f679b06ee35c2f25cd108896157c1d982136a067c5"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_finite_field_v0_1_0.contract.yaml": "fac5fa17fa868552125749ae4da4e601c79539e06cb47fd964bfd68e7c067aa9"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

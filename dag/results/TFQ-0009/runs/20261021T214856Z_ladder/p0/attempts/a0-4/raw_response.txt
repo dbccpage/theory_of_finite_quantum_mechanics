@@ -1,0 +1,60 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen_connection",
+      "inputs": ["base_point", "direction"],
+      "output": "connection",
+      "arity": 2,
+      "carrier": "operation"
+    ,
+      "ref": {
+        "path": "lean4/NonAbelianGaugeSigns.lean",
+        "decl": "NonAbelianGaugeSigns.connection",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_holonomy_consistency",
+      "statement": "Holonomy around a loop is invariant under reparametrisation of the loop.",
+      "hypotheses": "connection, base_point",
+      "ref": {
+        "path": "lean4/NonAbelianGaugeSigns.lean",
+        "decl": "NonAbelianGaugeSigns.holonomy_consistency",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "gen_connection",
+      "slot": 0,
+      "inner": "gen_connection",
+      "licensing_relation": "rel_holonomy_consistency"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "lemma_hadron_curvature_zero_meson",
+      "statement": "The hadron cochain curvature for a meson is zero, consistent with flat connection.",
+      "relation_to_target": "restates",
+      "depends_on": ["meson_cochain_is_closed"],
+      "lean_skeleton": "exact sorry",
+      "claims_proved": false
+    ,
+      "ref": {
+        "path": "lean4/NonAbelianGaugeSigns.lean",
+        "decl": "NonAbelianGaugeSigns.meson_cochain_is_closed",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Prove lemma_hadron_curvature_zero_meson without sorry to set claims_proved true.",
+    "Define gen_holonomy generator and link to rel_holonomy_consistency to enable composition."
+  ]
+}

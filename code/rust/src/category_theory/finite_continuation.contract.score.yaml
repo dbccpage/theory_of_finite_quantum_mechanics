@@ -1,171 +1,82 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/finite_continuation.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/finite_continuation.rs",
-      "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3",
-      "language": "Rust"
+      "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact retained:literal usize labels and typed partial finite transitions;None not a report ID.",
-      "domain": "Admitted nonempty rectangular partial machines,arbitrary valid identifiers;public raw witness/quotient candidates replayed against this machine.",
-      "behavior": [
-        "Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.",
-        "Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.",
-        "Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.",
-        "Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.",
-        "Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.",
-        "Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.",
-        "Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.",
-        "Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass.",
-        "Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.",
-        "Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.",
-        "Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.",
-        "Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.",
-        "For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.",
-        "Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query."
-      ],
-      "capability": "L3 conservative bounded finite algorithm;no L5 generic semantic/physical authority certificate or extracted Rust proof."
-    },
-    "operations": {
-      "PairFrontier::new": {
-        "line": 44,
-        "signature": "fn new(root: StatePair) -> Self",
-        "obligation": "Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max."
-      },
-      "PairFrontier::discover": {
-        "line": 48,
-        "signature": "fn discover(&mut self, parent: StatePair, next: StatePair, input: usize, maximum: usize) -> Result<(), ContinuationError>",
-        "obligation": "Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only."
-      },
-      "PairFrontier::word": {
-        "line": 60,
-        "signature": "fn word(&self, mut pair: StatePair) -> Vec<usize>",
-        "obligation": "Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization."
-      },
-      "PartialDynamics::new": {
-        "line": 72,
-        "signature": "pub fn new(\n        reports: Vec<usize>,\n        transitions: Vec<Vec<Option<usize>>>,\n        inputs: usize,\n    ) -> Result<Self, ContinuationError>",
-        "obligation": "Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label."
-      },
-      "reports": {
-        "line": 120,
-        "signature": "pub fn reports(&self) -> &[usize]",
-        "obligation": "Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged."
-      },
-      "transitions": {
-        "line": 123,
-        "signature": "pub fn transitions(&self) -> &[Vec<Option<usize>>]",
-        "obligation": "Borrow exact original partial transition rows;immutable admitted shape/target bounds retained."
-      },
-      "quotient": {
-        "line": 126,
-        "signature": "pub fn quotient(&self) -> MooreQuotient",
-        "obligation": "Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score."
-      },
-      "verify_quotient": {
-        "line": 129,
-        "signature": "pub fn verify_quotient(&self, q: &MooreQuotient) -> bool",
-        "obligation": "Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass."
-      },
-      "run": {
-        "line": 134,
-        "signature": "pub fn run(&self, start: usize, word: &[usize]) -> Result<Option<usize>, ContinuationError>",
-        "obligation": "Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing."
-      },
-      "quotient_operations": {
-        "line": 150,
-        "signature": "pub fn quotient_operations(&self) -> Vec<Vec<Option<usize>>>",
-        "obligation": "Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing."
-      },
-      "distinguish": {
-        "line": 167,
-        "signature": "pub fn distinguish(\n        &self,\n        left: usize,\n        right: usize,\n        max_pairs: usize,\n    ) -> Result<Option<DistinguishingWord>, ContinuationError>",
-        "obligation": "Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine."
-      },
-      "distinction_at": {
-        "line": 189,
-        "signature": "fn distinction_at(&self, left: usize, right: usize, (l, r): StatePair, frontier: &PairFrontier) -> Option<DistinguishingWord>",
-        "obligation": "Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations."
-      },
-      "enqueue_successors": {
-        "line": 200,
-        "signature": "fn enqueue_successors(&self, parent: StatePair, maximum: usize, frontier: &mut PairFrontier) -> Result<(), ContinuationError>",
-        "obligation": "For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved."
-      },
-      "verify_distinction": {
-        "line": 210,
-        "signature": "pub fn verify_distinction(&self, c: &DistinguishingWord) -> Result<(), ContinuationError>",
-        "obligation": "Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query."
-      }
-    },
-    "invariants": [
-      "PartialDynamics owns admitted nonempty rectangular real transitions with all Some targets real. Every run upfront checks start then entire alphabet,so each Some index remains valid and no invalid later symbol disappears behind None. Original usize reports are interned as Some(value),sink None interned separately;Option preserves SomeMAX versus None without arithmetic on report labels. Total row/state counts derive from safely allocated nonzero-sized Vec/usize storage,so n+1 and label counters fit machine range under std ownership/allocation invariants.",
-      "Current actual FiniteMoore call review:nonempty reports/shape/targets admitted;normalize assigns first-appearance IDs in0..N. Refinement signature contains old block and all successor blocks,so never merges old blocks;each strict normalized change splits a block and increases block count<=N. Initial partition Vec makes last unwrap nonempty,finite strict chain terminates,each final block appears and has representative,thus count=maxID+1<=N and all representative/index operations valid. Stable relation is report-homogeneous and successor-closed,so closed-pair all-word theorem gives future equality. Conversely states with all-word equality share every refinement class by depth induction;fixed point is exactly all-word equality. Full verifier checks exact origin/every strict step/stability/map and reconstructed quotient,not merely stable arbitrary partition.",
-      "Unique None sink output prevents merger with every real state;first-state normalize sees all real states before sink indexn,so sink block is last. Stable quotient transitions are admitted and map sink to itself;real quotient_operations slice excludes exactly sink and maps dead targets toNone. This current provider behavior is independently checked by complete small product-graph distances,not self-replay alone.",
-      "Frontier invariant:root present with no parent;every queued pair is valid total state pair and known to parents. Every fresh pair stores one parent already discovered;existing keys never overwritten. Thus following parents strictly decreases finite discovery order,ends atroot,and reconstructed label chain replays root to that pair. word getter missing-key branch is unreachable at its sole private call;not a public partial certificate checker.",
-      "FIFO/shortest induction:queue contains nondecreasing first-discovery depths;successors inserted at tail with parent depth+1. A newly discovered pair has minimum possible word length;within each layer parent FIFO and ascending symbol order yield lexicographically first minimum word. Later/duplicate paths cannot improve stored predecessor. Popped first different-output pair therefore gives globally shortest input-order distinction. Parent reconstruction reverses saved edge labels once. Old queued words and new predecessor words correspond at every discovery step for every admitted finite machine,not only bounded tests.",
-      "Resource behavior preserved inductively:source real endpoint guard and zero-budget guard unchanged. Root counts1. Existing pair incurs no new charge;fresh pair first compares current parents.len with max,refuses before insert/enqueue if full. Same exact discovered pairs/input order/pop order as old algorithm means same earliest report mismatch or first resource refusal. No distinction built on an equivalent popped pair and no caller state changed on refusal. max_pairs bounds distinct pairs,not alphabet expansions,byte size,construction or quotient work.",
-      "Replay is deliberately weaker than producer minimality:it verifies the raw record own endpoints/word/saved answers and inequality,not a shortest-word theorem or external expected endpoints. Left-run error precedes right-run error;full alphabet validation applies to both. Public record tampering is refused when actual observations differ from either saved answer or are equal. A valid longer word can pass,as explicitly tested.",
-      "Lean15 clean declarations prove partial all-word run/append,observable absorbing unavailable state,future equivalence,closed-pair all-word completeness,replay distinction/saved-answer consistency,and bounded monotone charge. Rust constructor/interning,Moore loop refinement,FIFO shortest/lexicographic order and predecessor storage source inductions above remain separate refinement obligations;no extracted/MIR proof asserted.",
-      "Current Moore context refresh:own Rust source unchanged. Scratch-signature interning emits exactly old first-state normalized values for every length-valid partition by prefix induction;pair predicate/map guards are Boolean complements of old refusal predicates with same pure observation order. Therefore actual quotient chains/maps/factors/behavior sets and all unchanged caller observations preserved for admitted machines. New actual459category baseline,independent5832machine product fixed points/16384mapcases/4096crosspairs and16clean mathematical declarations support provider review. Original own mutation receipts remain historical old-provider snapshots,not fresh own-context executions."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "PairFrontier::new": "Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.",
-      "PairFrontier::discover": "Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.",
-      "PairFrontier::word": "Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.",
-      "PartialDynamics::new": "Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.",
-      "reports": "Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.",
-      "transitions": "Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.",
-      "quotient": "Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.",
-      "verify_quotient": "Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass.",
-      "run": "Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.",
-      "quotient_operations": "Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.",
-      "distinguish": "Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.",
-      "distinction_at": "Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.",
-      "enqueue_successors": "For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.",
-      "verify_distinction": "Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query."
-    },
-    "trust_boundary": "Rust compiler/std safe collection ownership,allocator,unchanged actual FiniteMoore called algorithms reviewed/pinned,Lean/Mathlib allowed foundation axioms. No invalid unsafe storage,MIR/extraction,physical alternative interpretation or total byte/time budget.",
-    "assurance_limits": [
-      "Contracts pending;AuthorityEffect None.",
-      "BFS max_pairs only limits discovered pairs;constructor/quotient/alphabet/bytes not covered.",
-      "Producer shortestness source induction/native independent evidence;replay accepts any valid self-described distinguishing word.",
-      "All-word model is formal;Rust storage/interning/FIFO/quotient refinement separate.",
-      "Bounded exhaustive machines and designated faults not all possible Rust faults;no whole-workspace green claim.",
-      "Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/finite_continuation.score.yaml",
-        "sha256": "f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820"
+        "path": "code/rust/src/category_theory/finite_continuation.rs",
+        "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3",
+    "subject": "code/rust/src/category_theory/finite_continuation.rs"
   },
-  "current_contract": "d539c64ebf379bc0d7796f7f87b136f99f7d3f69f5d5d2294dc4e1713d6dfa05",
-  "current_scoring": "82c154af0138ed63919e636b19ac1864c7efdb006492a9b74a8f7fec7342c8bd",
   "contract_history": [
     {
-      "sha256": "d539c64ebf379bc0d7796f7f87b136f99f7d3f69f5d5d2294dc4e1713d6dfa05",
       "bytes": 22809,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_continuation.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_continuation.rs\",\n    \"sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained:literal usize labels and typed partial finite transitions;None not a report ID.\",\n    \"domain\": \"Admitted nonempty rectangular partial machines,arbitrary valid identifiers;public raw witness/quotient candidates replayed against this machine.\",\n    \"behavior\": [\n      \"Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.\",\n      \"Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.\",\n      \"Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.\",\n      \"Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.\",\n      \"Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.\",\n      \"Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.\",\n      \"Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.\",\n      \"Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass.\",\n      \"Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.\",\n      \"Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.\",\n      \"Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.\",\n      \"Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.\",\n      \"For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.\",\n      \"Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query.\"\n    ],\n    \"capability\": \"L3 conservative bounded finite algorithm;no L5 generic semantic/physical authority certificate or extracted Rust proof.\"\n  },\n  \"operations\": {\n    \"PairFrontier::new\": {\n      \"line\": 44,\n      \"signature\": \"fn new(root: StatePair) -> Self\",\n      \"obligation\": \"Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.\"\n    },\n    \"PairFrontier::discover\": {\n      \"line\": 48,\n      \"signature\": \"fn discover(&mut self, parent: StatePair, next: StatePair, input: usize, maximum: usize) -> Result<(), ContinuationError>\",\n      \"obligation\": \"Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.\"\n    },\n    \"PairFrontier::word\": {\n      \"line\": 60,\n      \"signature\": \"fn word(&self, mut pair: StatePair) -> Vec<usize>\",\n      \"obligation\": \"Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.\"\n    },\n    \"PartialDynamics::new\": {\n      \"line\": 72,\n      \"signature\": \"pub fn new(\\n        reports: Vec<usize>,\\n        transitions: Vec<Vec<Option<usize>>>,\\n        inputs: usize,\\n    ) -> Result<Self, ContinuationError>\",\n      \"obligation\": \"Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.\"\n    },\n    \"reports\": {\n      \"line\": 120,\n      \"signature\": \"pub fn reports(&self) -> &[usize]\",\n      \"obligation\": \"Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.\"\n    },\n    \"transitions\": {\n      \"line\": 123,\n      \"signature\": \"pub fn transitions(&self) -> &[Vec<Option<usize>>]\",\n      \"obligation\": \"Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.\"\n    },\n    \"quotient\": {\n      \"line\": 126,\n      \"signature\": \"pub fn quotient(&self) -> MooreQuotient\",\n      \"obligation\": \"Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.\"\n    },\n    \"verify_quotient\": {\n      \"line\": 129,\n      \"signature\": \"pub fn verify_quotient(&self, q: &MooreQuotient) -> bool\",\n      \"obligation\": \"Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass.\"\n    },\n    \"run\": {\n      \"line\": 134,\n      \"signature\": \"pub fn run(&self, start: usize, word: &[usize]) -> Result<Option<usize>, ContinuationError>\",\n      \"obligation\": \"Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.\"\n    },\n    \"quotient_operations\": {\n      \"line\": 150,\n      \"signature\": \"pub fn quotient_operations(&self) -> Vec<Vec<Option<usize>>>\",\n      \"obligation\": \"Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.\"\n    },\n    \"distinguish\": {\n      \"line\": 167,\n      \"signature\": \"pub fn distinguish(\\n        &self,\\n        left: usize,\\n        right: usize,\\n        max_pairs: usize,\\n    ) -> Result<Option<DistinguishingWord>, ContinuationError>\",\n      \"obligation\": \"Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.\"\n    },\n    \"distinction_at\": {\n      \"line\": 189,\n      \"signature\": \"fn distinction_at(&self, left: usize, right: usize, (l, r): StatePair, frontier: &PairFrontier) -> Option<DistinguishingWord>\",\n      \"obligation\": \"Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.\"\n    },\n    \"enqueue_successors\": {\n      \"line\": 200,\n      \"signature\": \"fn enqueue_successors(&self, parent: StatePair, maximum: usize, frontier: &mut PairFrontier) -> Result<(), ContinuationError>\",\n      \"obligation\": \"For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.\"\n    },\n    \"verify_distinction\": {\n      \"line\": 210,\n      \"signature\": \"pub fn verify_distinction(&self, c: &DistinguishingWord) -> Result<(), ContinuationError>\",\n      \"obligation\": \"Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query.\"\n    }\n  },\n  \"invariants\": [\n    \"PartialDynamics owns admitted nonempty rectangular real transitions with all Some targets real. Every run upfront checks start then entire alphabet,so each Some index remains valid and no invalid later symbol disappears behind None. Original usize reports are interned as Some(value),sink None interned separately;Option preserves SomeMAX versus None without arithmetic on report labels. Total row/state counts derive from safely allocated nonzero-sized Vec/usize storage,so n+1 and label counters fit machine range under std ownership/allocation invariants.\",\n    \"Current actual FiniteMoore call review:nonempty reports/shape/targets admitted;normalize assigns first-appearance IDs in0..N. Refinement signature contains old block and all successor blocks,so never merges old blocks;each strict normalized change splits a block and increases block count<=N. Initial partition Vec makes last unwrap nonempty,finite strict chain terminates,each final block appears and has representative,thus count=maxID+1<=N and all representative/index operations valid. Stable relation is report-homogeneous and successor-closed,so closed-pair all-word theorem gives future equality. Conversely states with all-word equality share every refinement class by depth induction;fixed point is exactly all-word equality. Full verifier checks exact origin/every strict step/stability/map and reconstructed quotient,not merely stable arbitrary partition.\",\n    \"Unique None sink output prevents merger with every real state;first-state normalize sees all real states before sink indexn,so sink block is last. Stable quotient transitions are admitted and map sink to itself;real quotient_operations slice excludes exactly sink and maps dead targets toNone. This current provider behavior is independently checked by complete small product-graph distances,not self-replay alone.\",\n    \"Frontier invariant:root present with no parent;every queued pair is valid total state pair and known to parents. Every fresh pair stores one parent already discovered;existing keys never overwritten. Thus following parents strictly decreases finite discovery order,ends atroot,and reconstructed label chain replays root to that pair. word getter missing-key branch is unreachable at its sole private call;not a public partial certificate checker.\",\n    \"FIFO/shortest induction:queue contains nondecreasing first-discovery depths;successors inserted at tail with parent depth+1. A newly discovered pair has minimum possible word length;within each layer parent FIFO and ascending symbol order yield lexicographically first minimum word. Later/duplicate paths cannot improve stored predecessor. Popped first different-output pair therefore gives globally shortest input-order distinction. Parent reconstruction reverses saved edge labels once. Old queued words and new predecessor words correspond at every discovery step for every admitted finite machine,not only bounded tests.\",\n    \"Resource behavior preserved inductively:source real endpoint guard and zero-budget guard unchanged. Root counts1. Existing pair incurs no new charge;fresh pair first compares current parents.len with max,refuses before insert/enqueue if full. Same exact discovered pairs/input order/pop order as old algorithm means same earliest report mismatch or first resource refusal. No distinction built on an equivalent popped pair and no caller state changed on refusal. max_pairs bounds distinct pairs,not alphabet expansions,byte size,construction or quotient work.\",\n    \"Replay is deliberately weaker than producer minimality:it verifies the raw record own endpoints/word/saved answers and inequality,not a shortest-word theorem or external expected endpoints. Left-run error precedes right-run error;full alphabet validation applies to both. Public record tampering is refused when actual observations differ from either saved answer or are equal. A valid longer word can pass,as explicitly tested.\",\n    \"Lean15 clean declarations prove partial all-word run/append,observable absorbing unavailable state,future equivalence,closed-pair all-word completeness,replay distinction/saved-answer consistency,and bounded monotone charge. Rust constructor/interning,Moore loop refinement,FIFO shortest/lexicographic order and predecessor storage source inductions above remain separate refinement obligations;no extracted/MIR proof asserted.\",\n    \"Current Moore context refresh:own Rust source unchanged. Scratch-signature interning emits exactly old first-state normalized values for every length-valid partition by prefix induction;pair predicate/map guards are Boolean complements of old refusal predicates with same pure observation order. Therefore actual quotient chains/maps/factors/behavior sets and all unchanged caller observations preserved for admitted machines. New actual459category baseline,independent5832machine product fixed points/16384mapcases/4096crosspairs and16clean mathematical declarations support provider review. Original own mutation receipts remain historical old-provider snapshots,not fresh own-context executions.\"\n  ],\n  \"failure_paths\": {\n    \"PairFrontier::new\": \"Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.\",\n    \"PairFrontier::discover\": \"Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.\",\n    \"PairFrontier::word\": \"Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.\",\n    \"PartialDynamics::new\": \"Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.\",\n    \"reports\": \"Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.\",\n    \"transitions\": \"Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.\",\n    \"quotient\": \"Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.\",\n    \"verify_quotient\": \"Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass.\",\n    \"run\": \"Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.\",\n    \"quotient_operations\": \"Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.\",\n    \"distinguish\": \"Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.\",\n    \"distinction_at\": \"Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.\",\n    \"enqueue_successors\": \"For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.\",\n    \"verify_distinction\": \"Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query.\"\n  },\n  \"trust_boundary\": \"Rust compiler/std safe collection ownership,allocator,unchanged actual FiniteMoore called algorithms reviewed/pinned,Lean/Mathlib allowed foundation axioms. No invalid unsafe storage,MIR/extraction,physical alternative interpretation or total byte/time budget.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffect None.\",\n    \"BFS max_pairs only limits discovered pairs;constructor/quotient/alphabet/bytes not covered.\",\n    \"Producer shortestness source induction/native independent evidence;replay accepts any valid self-described distinguishing word.\",\n    \"All-word model is formal;Rust storage/interning/FIFO/quotient refinement separate.\",\n    \"Bounded exhaustive machines and designated faults not all possible Rust faults;no whole-workspace green claim.\",\n    \"Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_continuation.score.yaml\",\n      \"sha256\": \"f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/finite_continuation.rs",
-          "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3",
-          "language": "Rust"
+          "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "Contracts pending;AuthorityEffect None.",
+          "BFS max_pairs only limits discovered pairs;constructor/quotient/alphabet/bytes not covered.",
+          "Producer shortestness source induction/native independent evidence;replay accepts any valid self-described distinguishing word.",
+          "All-word model is formal;Rust storage/interning/FIFO/quotient refinement separate.",
+          "Bounded exhaustive machines and designated faults not all possible Rust faults;no whole-workspace green claim.",
+          "Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills."
+        ],
+        "failure_paths": {
+          "PairFrontier::discover": "Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.",
+          "PairFrontier::new": "Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.",
+          "PairFrontier::word": "Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.",
+          "PartialDynamics::new": "Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.",
+          "distinction_at": "Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.",
+          "distinguish": "Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.",
+          "enqueue_successors": "For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.",
+          "quotient": "Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.",
+          "quotient_operations": "Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.",
+          "reports": "Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.",
+          "run": "Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.",
+          "transitions": "Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.",
+          "verify_distinction": "Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query.",
+          "verify_quotient": "Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass."
+        },
         "formal_specification": {
-          "profile": "Exact retained:literal usize labels and typed partial finite transitions;None not a report ID.",
-          "domain": "Admitted nonempty rectangular partial machines,arbitrary valid identifiers;public raw witness/quotient candidates replayed against this machine.",
           "behavior": [
             "Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.",
             "Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.",
@@ -182,79 +93,9 @@
             "For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.",
             "Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query."
           ],
-          "capability": "L3 conservative bounded finite algorithm;no L5 generic semantic/physical authority certificate or extracted Rust proof."
-        },
-        "operations": {
-          "PairFrontier::new": {
-            "line": 44,
-            "signature": "fn new(root: StatePair) -> Self",
-            "obligation": "Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max."
-          },
-          "PairFrontier::discover": {
-            "line": 48,
-            "signature": "fn discover(&mut self, parent: StatePair, next: StatePair, input: usize, maximum: usize) -> Result<(), ContinuationError>",
-            "obligation": "Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only."
-          },
-          "PairFrontier::word": {
-            "line": 60,
-            "signature": "fn word(&self, mut pair: StatePair) -> Vec<usize>",
-            "obligation": "Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization."
-          },
-          "PartialDynamics::new": {
-            "line": 72,
-            "signature": "pub fn new(\n        reports: Vec<usize>,\n        transitions: Vec<Vec<Option<usize>>>,\n        inputs: usize,\n    ) -> Result<Self, ContinuationError>",
-            "obligation": "Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label."
-          },
-          "reports": {
-            "line": 120,
-            "signature": "pub fn reports(&self) -> &[usize]",
-            "obligation": "Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged."
-          },
-          "transitions": {
-            "line": 123,
-            "signature": "pub fn transitions(&self) -> &[Vec<Option<usize>>]",
-            "obligation": "Borrow exact original partial transition rows;immutable admitted shape/target bounds retained."
-          },
-          "quotient": {
-            "line": 126,
-            "signature": "pub fn quotient(&self) -> MooreQuotient",
-            "obligation": "Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score."
-          },
-          "verify_quotient": {
-            "line": 129,
-            "signature": "pub fn verify_quotient(&self, q: &MooreQuotient) -> bool",
-            "obligation": "Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass."
-          },
-          "run": {
-            "line": 134,
-            "signature": "pub fn run(&self, start: usize, word: &[usize]) -> Result<Option<usize>, ContinuationError>",
-            "obligation": "Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing."
-          },
-          "quotient_operations": {
-            "line": 150,
-            "signature": "pub fn quotient_operations(&self) -> Vec<Vec<Option<usize>>>",
-            "obligation": "Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing."
-          },
-          "distinguish": {
-            "line": 167,
-            "signature": "pub fn distinguish(\n        &self,\n        left: usize,\n        right: usize,\n        max_pairs: usize,\n    ) -> Result<Option<DistinguishingWord>, ContinuationError>",
-            "obligation": "Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine."
-          },
-          "distinction_at": {
-            "line": 189,
-            "signature": "fn distinction_at(&self, left: usize, right: usize, (l, r): StatePair, frontier: &PairFrontier) -> Option<DistinguishingWord>",
-            "obligation": "Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations."
-          },
-          "enqueue_successors": {
-            "line": 200,
-            "signature": "fn enqueue_successors(&self, parent: StatePair, maximum: usize, frontier: &mut PairFrontier) -> Result<(), ContinuationError>",
-            "obligation": "For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved."
-          },
-          "verify_distinction": {
-            "line": 210,
-            "signature": "pub fn verify_distinction(&self, c: &DistinguishingWord) -> Result<(), ContinuationError>",
-            "obligation": "Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query."
-          }
+          "capability": "L3 conservative bounded finite algorithm;no L5 generic semantic/physical authority certificate or extracted Rust proof.",
+          "domain": "Admitted nonempty rectangular partial machines,arbitrary valid identifiers;public raw witness/quotient candidates replayed against this machine.",
+          "profile": "Exact retained:literal usize labels and typed partial finite transitions;None not a report ID."
         },
         "invariants": [
           "PartialDynamics owns admitted nonempty rectangular real transitions with all Some targets real. Every run upfront checks start then entire alphabet,so each Some index remains valid and no invalid later symbol disappears behind None. Original usize reports are interned as Some(value),sink None interned separately;Option preserves SomeMAX versus None without arithmetic on report labels. Total row/state counts derive from safely allocated nonzero-sized Vec/usize storage,so n+1 and label counters fit machine range under std ownership/allocation invariants.",
@@ -267,23 +108,161 @@
           "Lean15 clean declarations prove partial all-word run/append,observable absorbing unavailable state,future equivalence,closed-pair all-word completeness,replay distinction/saved-answer consistency,and bounded monotone charge. Rust constructor/interning,Moore loop refinement,FIFO shortest/lexicographic order and predecessor storage source inductions above remain separate refinement obligations;no extracted/MIR proof asserted.",
           "Current Moore context refresh:own Rust source unchanged. Scratch-signature interning emits exactly old first-state normalized values for every length-valid partition by prefix induction;pair predicate/map guards are Boolean complements of old refusal predicates with same pure observation order. Therefore actual quotient chains/maps/factors/behavior sets and all unchanged caller observations preserved for admitted machines. New actual459category baseline,independent5832machine product fixed points/16384mapcases/4096crosspairs and16clean mathematical declarations support provider review. Original own mutation receipts remain historical old-provider snapshots,not fresh own-context executions."
         ],
-        "failure_paths": {
-          "PairFrontier::new": "Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.",
-          "PairFrontier::discover": "Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.",
-          "PairFrontier::word": "Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.",
-          "PartialDynamics::new": "Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.",
-          "reports": "Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.",
-          "transitions": "Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.",
-          "quotient": "Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.",
-          "verify_quotient": "Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass.",
-          "run": "Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.",
-          "quotient_operations": "Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.",
-          "distinguish": "Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.",
-          "distinction_at": "Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.",
-          "enqueue_successors": "For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.",
-          "verify_distinction": "Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query."
+        "open_obligations": [],
+        "operations": {
+          "PairFrontier::discover": {
+            "line": 48,
+            "obligation": "Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.",
+            "signature": "fn discover(&mut self, parent: StatePair, next: StatePair, input: usize, maximum: usize) -> Result<(), ContinuationError>"
+          },
+          "PairFrontier::new": {
+            "line": 44,
+            "obligation": "Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.",
+            "signature": "fn new(root: StatePair) -> Self"
+          },
+          "PairFrontier::word": {
+            "line": 60,
+            "obligation": "Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.",
+            "signature": "fn word(&self, mut pair: StatePair) -> Vec<usize>"
+          },
+          "PartialDynamics::new": {
+            "line": 72,
+            "obligation": "Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.",
+            "signature": "pub fn new(\n        reports: Vec<usize>,\n        transitions: Vec<Vec<Option<usize>>>,\n        inputs: usize,\n    ) -> Result<Self, ContinuationError>"
+          },
+          "distinction_at": {
+            "line": 189,
+            "obligation": "Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.",
+            "signature": "fn distinction_at(&self, left: usize, right: usize, (l, r): StatePair, frontier: &PairFrontier) -> Option<DistinguishingWord>"
+          },
+          "distinguish": {
+            "line": 167,
+            "obligation": "Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.",
+            "signature": "pub fn distinguish(\n        &self,\n        left: usize,\n        right: usize,\n        max_pairs: usize,\n    ) -> Result<Option<DistinguishingWord>, ContinuationError>"
+          },
+          "enqueue_successors": {
+            "line": 200,
+            "obligation": "For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.",
+            "signature": "fn enqueue_successors(&self, parent: StatePair, maximum: usize, frontier: &mut PairFrontier) -> Result<(), ContinuationError>"
+          },
+          "quotient": {
+            "line": 126,
+            "obligation": "Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.",
+            "signature": "pub fn quotient(&self) -> MooreQuotient"
+          },
+          "quotient_operations": {
+            "line": 150,
+            "obligation": "Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.",
+            "signature": "pub fn quotient_operations(&self) -> Vec<Vec<Option<usize>>>"
+          },
+          "reports": {
+            "line": 120,
+            "obligation": "Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.",
+            "signature": "pub fn reports(&self) -> &[usize]"
+          },
+          "run": {
+            "line": 134,
+            "obligation": "Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.",
+            "signature": "pub fn run(&self, start: usize, word: &[usize]) -> Result<Option<usize>, ContinuationError>"
+          },
+          "transitions": {
+            "line": 123,
+            "obligation": "Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.",
+            "signature": "pub fn transitions(&self) -> &[Vec<Option<usize>>]"
+          },
+          "verify_distinction": {
+            "line": 210,
+            "obligation": "Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query.",
+            "signature": "pub fn verify_distinction(&self, c: &DistinguishingWord) -> Result<(), ContinuationError>"
+          },
+          "verify_quotient": {
+            "line": 129,
+            "obligation": "Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass.",
+            "signature": "pub fn verify_quotient(&self, q: &MooreQuotient) -> bool"
+          }
         },
-        "trust_boundary": "Rust compiler/std safe collection ownership,allocator,unchanged actual FiniteMoore called algorithms reviewed/pinned,Lean/Mathlib allowed foundation axioms. No invalid unsafe storage,MIR/extraction,physical alternative interpretation or total byte/time budget.",
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_continuation.score.yaml",
+            "sha256": "f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820"
+          }
+        ],
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": "Rust compiler/std safe collection ownership,allocator,unchanged actual FiniteMoore called algorithms reviewed/pinned,Lean/Mathlib allowed foundation axioms. No invalid unsafe storage,MIR/extraction,physical alternative interpretation or total byte/time budget."
+      },
+      "sha256": "d539c64ebf379bc0d7796f7f87b136f99f7d3f69f5d5d2294dc4e1713d6dfa05"
+    },
+    {
+      "bytes": 1635,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_continuation.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/finite_continuation.rs\",\n    \"sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_continuation.rs\",\n      \"sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\",\n  \"subject\": \"code/rust/src/category_theory/finite_continuation.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_continuation.rs",
+          "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_continuation.rs",
+            "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3",
+        "subject": "code/rust/src/category_theory/finite_continuation.rs"
+      },
+      "sha256": "28246a1486c7355f3ddc4948c37d84eb6e0dabda4afa7ed52f86279b49ef9c7a"
+    }
+  ],
+  "current_contract": "28246a1486c7355f3ddc4948c37d84eb6e0dabda4afa7ed52f86279b49ef9c7a",
+  "current_scoring": "3cfee25f1fa62e7557d25147fdf2295e7075d5a1e3e9300a39f8ef5f6725acb7",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/finite_continuation.rs.contract.yaml": "d539c64ebf379bc0d7796f7f87b136f99f7d3f69f5d5d2294dc4e1713d6dfa05",
+    "code/rust/src/category_theory/finite_continuation.rs.scoring.yaml": "7bb6527249a5a370ce8fdbda803ccf5bf4870b4ce3c4ff37fc064f50d64a7000",
+    "code/rust/src/category_theory/finite_continuation.score.yaml": "f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820",
+    "evidence/quality/category_homology/resume-20261019/continuation-previous/finite_continuation.score.yaml": "f12844b050b6bff55a37aca2b48ef930a44fb56a8a144b17cd6f54535be63033"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 5046,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_continuation.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_continuation.rs\"\n  language: \"Rust\"\n  sha256: \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:34:55.478232+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_continuation\"\n  description: \"Partial finite dynamics and shortest distinguishing continuations.  One fresh, observably distinct absorbing state totalizes unavailability. Moore refinement therefore preserves BOTH answers and availability for every finite word. The added state is internal, never a physical alternative.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T211943Z/baseline.json\", \"sha256\": \"56156573fcb54e822bfa49a239e5bfad7130d8b5fe700092017e9796a03e84cc\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T211943Z/summary.json\", \"sha256\": \"6de180c097497fb4befbcd141a89aa7abc3edd18c54965c9800d3ff53d0650e5\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T211943Z/mutations.json\", \"sha256\": \"53933f4e36e8d59bcfcd0a1acaa4a240a6c355574550eef3d5d9c9213cbed4d2\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T211920Z-metrics/receipt.json\", \"sha256\": \"78fca51659b07cdf6a8f42035ee8b8cd653b2ebb71e4bf837ec118fb249f384b\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T211943Z/dependency_receipt.json\", \"sha256\": \"57e65cf888665973e84bcf09fc855b2f455c8cdfda7deb91e491790685ddb22b\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_continuation.json\", \"sha256\": \"f00ded3cc9d60975bf1dd863273c592eb581299fa33ed94b9bd848744ba984d4\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n    - \"RR-31-30\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 31\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 218\n  parsed_production_functions: 14\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 8\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffect None.\"\n  - \"BFS max_pairs only limits discovered pairs;constructor/quotient/alphabet/bytes not covered.\"\n  - \"Producer shortestness source induction/native independent evidence;replay accepts any valid self-described distinguishing word.\"\n  - \"All-word model is formal;Rust storage/interning/FIFO/quotient refinement separate.\"\n  - \"Bounded exhaustive machines and designated faults not all possible Rust faults;no whole-workspace green claim.\"\n  - \"Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_continuation.rs",
+          "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
+        },
         "assurance_limits": [
           "Contracts pending;AuthorityEffect None.",
           "BFS max_pairs only limits discovered pairs;constructor/quotient/alphabet/bytes not covered.",
@@ -292,36 +271,51 @@
           "Bounded exhaustive machines and designated faults not all possible Rust faults;no whole-workspace green claim.",
           "Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills."
         ],
-        "review_evidence": [
+        "claim": {
+          "description": "Partial finite dynamics and shortest distinguishing continuations.  One fresh, observably distinct absorbing state totalizes unavailability. Moore refinement therefore preserves BOTH answers and availability for every finite word. The added state is internal, never a physical alternative.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_continuation"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T21:34:55.478232+00:00",
+        "evidence": [
           {
-            "path": "code/rust/src/category_theory/finite_continuation.score.yaml",
-            "sha256": "f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820"
+            "path": "evidence/quality/category_homology/20261019T211943Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "56156573fcb54e822bfa49a239e5bfad7130d8b5fe700092017e9796a03e84cc"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T211943Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "6de180c097497fb4befbcd141a89aa7abc3edd18c54965c9800d3ff53d0650e5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T211943Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "53933f4e36e8d59bcfcd0a1acaa4a240a6c355574550eef3d5d9c9213cbed4d2"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T211920Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "78fca51659b07cdf6a8f42035ee8b8cd653b2ebb71e4bf837ec118fb249f384b"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T211943Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "57e65cf888665973e84bcf09fc855b2f455c8cdfda7deb91e491790685ddb22b"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_continuation.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "f00ded3cc9d60975bf1dd863273c592eb581299fa33ed94b9bd848744ba984d4"
           }
         ],
-        "open_obligations": []
-      },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_continuation.rs\",\n    \"sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained:literal usize labels and typed partial finite transitions;None not a report ID.\",\n    \"domain\": \"Admitted nonempty rectangular partial machines,arbitrary valid identifiers;public raw witness/quotient candidates replayed against this machine.\",\n    \"behavior\": [\n      \"Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.\",\n      \"Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.\",\n      \"Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.\",\n      \"Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.\",\n      \"Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.\",\n      \"Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.\",\n      \"Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.\",\n      \"Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass.\",\n      \"Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.\",\n      \"Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.\",\n      \"Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.\",\n      \"Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.\",\n      \"For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.\",\n      \"Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query.\"\n    ],\n    \"capability\": \"L3 conservative bounded finite algorithm;no L5 generic semantic/physical authority certificate or extracted Rust proof.\"\n  },\n  \"operations\": {\n    \"PairFrontier::new\": {\n      \"line\": 44,\n      \"signature\": \"fn new(root: StatePair) -> Self\",\n      \"obligation\": \"Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.\"\n    },\n    \"PairFrontier::discover\": {\n      \"line\": 48,\n      \"signature\": \"fn discover(&mut self, parent: StatePair, next: StatePair, input: usize, maximum: usize) -> Result<(), ContinuationError>\",\n      \"obligation\": \"Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.\"\n    },\n    \"PairFrontier::word\": {\n      \"line\": 60,\n      \"signature\": \"fn word(&self, mut pair: StatePair) -> Vec<usize>\",\n      \"obligation\": \"Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.\"\n    },\n    \"PartialDynamics::new\": {\n      \"line\": 72,\n      \"signature\": \"pub fn new(\\n        reports: Vec<usize>,\\n        transitions: Vec<Vec<Option<usize>>>,\\n        inputs: usize,\\n    ) -> Result<Self, ContinuationError>\",\n      \"obligation\": \"Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.\"\n    },\n    \"reports\": {\n      \"line\": 120,\n      \"signature\": \"pub fn reports(&self) -> &[usize]\",\n      \"obligation\": \"Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.\"\n    },\n    \"transitions\": {\n      \"line\": 123,\n      \"signature\": \"pub fn transitions(&self) -> &[Vec<Option<usize>>]\",\n      \"obligation\": \"Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.\"\n    },\n    \"quotient\": {\n      \"line\": 126,\n      \"signature\": \"pub fn quotient(&self) -> MooreQuotient\",\n      \"obligation\": \"Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.\"\n    },\n    \"verify_quotient\": {\n      \"line\": 129,\n      \"signature\": \"pub fn verify_quotient(&self, q: &MooreQuotient) -> bool\",\n      \"obligation\": \"Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass.\"\n    },\n    \"run\": {\n      \"line\": 134,\n      \"signature\": \"pub fn run(&self, start: usize, word: &[usize]) -> Result<Option<usize>, ContinuationError>\",\n      \"obligation\": \"Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.\"\n    },\n    \"quotient_operations\": {\n      \"line\": 150,\n      \"signature\": \"pub fn quotient_operations(&self) -> Vec<Vec<Option<usize>>>\",\n      \"obligation\": \"Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.\"\n    },\n    \"distinguish\": {\n      \"line\": 167,\n      \"signature\": \"pub fn distinguish(\\n        &self,\\n        left: usize,\\n        right: usize,\\n        max_pairs: usize,\\n    ) -> Result<Option<DistinguishingWord>, ContinuationError>\",\n      \"obligation\": \"Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.\"\n    },\n    \"distinction_at\": {\n      \"line\": 189,\n      \"signature\": \"fn distinction_at(&self, left: usize, right: usize, (l, r): StatePair, frontier: &PairFrontier) -> Option<DistinguishingWord>\",\n      \"obligation\": \"Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.\"\n    },\n    \"enqueue_successors\": {\n      \"line\": 200,\n      \"signature\": \"fn enqueue_successors(&self, parent: StatePair, maximum: usize, frontier: &mut PairFrontier) -> Result<(), ContinuationError>\",\n      \"obligation\": \"For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.\"\n    },\n    \"verify_distinction\": {\n      \"line\": 210,\n      \"signature\": \"pub fn verify_distinction(&self, c: &DistinguishingWord) -> Result<(), ContinuationError>\",\n      \"obligation\": \"Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query.\"\n    }\n  },\n  \"invariants\": [\n    \"PartialDynamics owns admitted nonempty rectangular real transitions with all Some targets real. Every run upfront checks start then entire alphabet,so each Some index remains valid and no invalid later symbol disappears behind None. Original usize reports are interned as Some(value),sink None interned separately;Option preserves SomeMAX versus None without arithmetic on report labels. Total row/state counts derive from safely allocated nonzero-sized Vec/usize storage,so n+1 and label counters fit machine range under std ownership/allocation invariants.\",\n    \"Current actual FiniteMoore call review:nonempty reports/shape/targets admitted;normalize assigns first-appearance IDs in0..N. Refinement signature contains old block and all successor blocks,so never merges old blocks;each strict normalized change splits a block and increases block count<=N. Initial partition Vec makes last unwrap nonempty,finite strict chain terminates,each final block appears and has representative,thus count=maxID+1<=N and all representative/index operations valid. Stable relation is report-homogeneous and successor-closed,so closed-pair all-word theorem gives future equality. Conversely states with all-word equality share every refinement class by depth induction;fixed point is exactly all-word equality. Full verifier checks exact origin/every strict step/stability/map and reconstructed quotient,not merely stable arbitrary partition.\",\n    \"Unique None sink output prevents merger with every real state;first-state normalize sees all real states before sink indexn,so sink block is last. Stable quotient transitions are admitted and map sink to itself;real quotient_operations slice excludes exactly sink and maps dead targets toNone. This current provider behavior is independently checked by complete small product-graph distances,not self-replay alone.\",\n    \"Frontier invariant:root present with no parent;every queued pair is valid total state pair and known to parents. Every fresh pair stores one parent already discovered;existing keys never overwritten. Thus following parents strictly decreases finite discovery order,ends atroot,and reconstructed label chain replays root to that pair. word getter missing-key branch is unreachable at its sole private call;not a public partial certificate checker.\",\n    \"FIFO/shortest induction:queue contains nondecreasing first-discovery depths;successors inserted at tail with parent depth+1. A newly discovered pair has minimum possible word length;within each layer parent FIFO and ascending symbol order yield lexicographically first minimum word. Later/duplicate paths cannot improve stored predecessor. Popped first different-output pair therefore gives globally shortest input-order distinction. Parent reconstruction reverses saved edge labels once. Old queued words and new predecessor words correspond at every discovery step for every admitted finite machine,not only bounded tests.\",\n    \"Resource behavior preserved inductively:source real endpoint guard and zero-budget guard unchanged. Root counts1. Existing pair incurs no new charge;fresh pair first compares current parents.len with max,refuses before insert/enqueue if full. Same exact discovered pairs/input order/pop order as old algorithm means same earliest report mismatch or first resource refusal. No distinction built on an equivalent popped pair and no caller state changed on refusal. max_pairs bounds distinct pairs,not alphabet expansions,byte size,construction or quotient work.\",\n    \"Replay is deliberately weaker than producer minimality:it verifies the raw record own endpoints/word/saved answers and inequality,not a shortest-word theorem or external expected endpoints. Left-run error precedes right-run error;full alphabet validation applies to both. Public record tampering is refused when actual observations differ from either saved answer or are equal. A valid longer word can pass,as explicitly tested.\",\n    \"Lean15 clean declarations prove partial all-word run/append,observable absorbing unavailable state,future equivalence,closed-pair all-word completeness,replay distinction/saved-answer consistency,and bounded monotone charge. Rust constructor/interning,Moore loop refinement,FIFO shortest/lexicographic order and predecessor storage source inductions above remain separate refinement obligations;no extracted/MIR proof asserted.\",\n    \"Current Moore context refresh:own Rust source unchanged. Scratch-signature interning emits exactly old first-state normalized values for every length-valid partition by prefix induction;pair predicate/map guards are Boolean complements of old refusal predicates with same pure observation order. Therefore actual quotient chains/maps/factors/behavior sets and all unchanged caller observations preserved for admitted machines. New actual459category baseline,independent5832machine product fixed points/16384mapcases/4096crosspairs and16clean mathematical declarations support provider review. Original own mutation receipts remain historical old-provider snapshots,not fresh own-context executions.\"\n  ],\n  \"failure_paths\": {\n    \"PairFrontier::new\": \"Private caller has max_pairs>0 and valid total-state root pair. Insert root->None exactly once and FIFO root queue;initial distinct-pair count1<=max.\",\n    \"PairFrontier::discover\": \"Caller parent already discovered and next is a total-state successor. Existing next returns Ok without charge/relabel/requeue. Otherwise check distinct-pair count>=maximum before insertion;refuse WorkLimit with frontier unchanged. Success stores exactly one earlier parent/input and queues fresh next at tail. No path Vec/String clone;constant-size tuple metadata only.\",\n    \"PairFrontier::word\": \"Private known pair and discovery-acyclic predecessor chain. Follow Some(parent,input) to root None,append labels in reverse traversal,reverse once and return exact root-to-pair word. Parents exist earlier and are never overwritten,so depth decreases strictly and private lookup cannot miss a predecessor. Called only on a found distinction;no per-node path materialization.\",\n    \"PartialDynamics::new\": \"Ordered typed admission:empty reports first,then row count/row length,then every Some target<real reports.len. Intern Option<usize> reports,including arbitrary usize::MAX,then unique None sink output;totalize unavailable entries to dead=n and add absorbing dead row. Actual FiniteMoore constructor admits total output/transition shape. Store original immutable reports/transitions plus totalized machine. No numeric report+1 or alias of None with real label.\",\n    \"reports\": \"Borrow exact original report slice;no mutable accessor. Values including usizeMAX unchanged.\",\n    \"transitions\": \"Borrow exact original partial transition rows;immutable admitted shape/target bounds retained.\",\n    \"quotient\": \"Delegate to actual owned totalized FiniteMoore behavioral quotient;includes one unique-output sink class. Current provider monotone canonical refinement/first-state IDs and representation invariants reviewed,not inferred from source comments or future provider score.\",\n    \"verify_quotient\": \"Delegate full submitted-chain replay to actual totalized machine:exact readout origin,strict exact refinement steps,stable final state_to_block and exact reconstructed quotient. Empty,stale or arbitrary overrefined chain does not pass.\",\n    \"run\": \"Refuse invalid start before any word-label check;validate entire word alphabet before execution even if an earlier step unavailable. For every symbol update Some valid real state by admitted transition row;None absorbs. Return actual final optional state,not report. Immutable private constructor bounds discharge indexing.\",\n    \"quotient_operations\": \"Compute full totalized quotient;dead block at source index n exists and is unique,last by first-state numbering. Copy quotient real-class rows[..dead],map transition to dead into None and other blocks into Some. No sink row output;no unavailability interpreted as identity. Admitted class IDs/row lengths/bounds justify slice/indexing.\",\n    \"distinguish\": \"Refuse either real endpoint out of carrier before zero-budget refusal. Positive max admits root. FIFO pop:compare totalized outputs before any expansion;first mismatch builds shortest lexicographic input-order certificate,then returns. Otherwise discover every input successor in ascending input order. New-pair charge before insertion exactly matches prior BFS;visited pair free. Empty completed queue returns equivalence only for this finite machine;WorkLimit never interpreted as None. No mutation of machine.\",\n    \"distinction_at\": \"Private popped pair is in total carrier. Equal encoded outputs return None without building word. Different outputs build one reconstructed predecessor word,retain original query left/right and saved optional ORIGINAL reports via get (sink answer None). Interned output inequality equals inequality of these optional original observations.\",\n    \"enqueue_successors\": \"For popped valid total pair,visit every input in ascending order;both next indices come from admitted machine rows and are valid. Call same frontier discovery with unchanged maximum,parent/input;propagate first typed WorkLimit. Root/parent queue and one-time discovery invariants preserved.\",\n    \"verify_distinction\": \"Replay left run first,then right run,propagating each typed domain error. Convert final real optional states to exact original reports via constructor invariant. Require unequal observations AND both saved answers equal actual. Accept any replay-valid distinguishing word,self-described endpoints;does not require shortestness or bind an external caller query.\"\n  },\n  \"trust_boundary\": \"Rust compiler/std safe collection ownership,allocator,unchanged actual FiniteMoore called algorithms reviewed/pinned,Lean/Mathlib allowed foundation axioms. No invalid unsafe storage,MIR/extraction,physical alternative interpretation or total byte/time budget.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffect None.\",\n    \"BFS max_pairs only limits discovered pairs;constructor/quotient/alphabet/bytes not covered.\",\n    \"Producer shortestness source induction/native independent evidence;replay accepts any valid self-described distinguishing word.\",\n    \"All-word model is formal;Rust storage/interning/FIFO/quotient refinement separate.\",\n    \"Bounded exhaustive machines and designated faults not all possible Rust faults;no whole-workspace green claim.\",\n    \"Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_continuation.score.yaml\",\n      \"sha256\": \"f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_continuation.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820",
-      "bytes": 5046,
-      "record": {
-        "schema_version": "2.0.0",
-        "artifact": {
-          "path": "code/rust/src/category_theory/finite_continuation.rs",
-          "language": "Rust",
-          "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
-        },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
-        "engineering_target": "A",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -329,58 +323,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T21:34:55.478232+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_continuation",
-          "description": "Partial finite dynamics and shortest distinguishing continuations.  One fresh, observably distinct absorbing state totalizes unavailability. Moore refinement therefore preserves BOTH answers and availability for every finite word. The added state is internal, never a physical alternative.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 31,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 8,
+          "control_nesting": 3,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 7,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 14,
+          "physical_lines": 218,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T211943Z/baseline.json",
-            "sha256": "56156573fcb54e822bfa49a239e5bfad7130d8b5fe700092017e9796a03e84cc",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T211943Z/summary.json",
-            "sha256": "6de180c097497fb4befbcd141a89aa7abc3edd18c54965c9800d3ff53d0650e5",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T211943Z/mutations.json",
-            "sha256": "53933f4e36e8d59bcfcd0a1acaa4a240a6c355574550eef3d5d9c9213cbed4d2",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T211920Z-metrics/receipt.json",
-            "sha256": "78fca51659b07cdf6a8f42035ee8b8cd653b2ebb71e4bf837ec118fb249f384b",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T211943Z/dependency_receipt.json",
-            "sha256": "57e65cf888665973e84bcf09fc855b2f455c8cdfda7deb91e491790685ddb22b",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_continuation.json",
-            "sha256": "f00ded3cc9d60975bf1dd863273c592eb581299fa33ed94b9bd848744ba984d4",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -414,63 +390,37 @@
             "RR-30-29",
             "RR-31-30"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 31,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 218,
-          "parsed_production_functions": 14,
-          "max_production_ccn": 7,
-          "cognitive_complexity_upper_bound": 8,
-          "control_nesting": 3,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Contracts pending;AuthorityEffect None.",
-          "BFS max_pairs only limits discovered pairs;constructor/quotient/alphabet/bytes not covered.",
-          "Producer shortestness source induction/native independent evidence;replay accepts any valid self-described distinguishing word.",
-          "All-word model is formal;Rust storage/interning/FIFO/quotient refinement separate.",
-          "Bounded exhaustive machines and designated faults not all possible Rust faults;no whole-workspace green claim.",
-          "Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_continuation.rs\"\n  language: \"Rust\"\n  sha256: \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:34:55.478232+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_continuation\"\n  description: \"Partial finite dynamics and shortest distinguishing continuations.  One fresh, observably distinct absorbing state totalizes unavailability. Moore refinement therefore preserves BOTH answers and availability for every finite word. The added state is internal, never a physical alternative.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T211943Z/baseline.json\", \"sha256\": \"56156573fcb54e822bfa49a239e5bfad7130d8b5fe700092017e9796a03e84cc\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T211943Z/summary.json\", \"sha256\": \"6de180c097497fb4befbcd141a89aa7abc3edd18c54965c9800d3ff53d0650e5\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T211943Z/mutations.json\", \"sha256\": \"53933f4e36e8d59bcfcd0a1acaa4a240a6c355574550eef3d5d9c9213cbed4d2\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T211920Z-metrics/receipt.json\", \"sha256\": \"78fca51659b07cdf6a8f42035ee8b8cd653b2ebb71e4bf837ec118fb249f384b\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T211943Z/dependency_receipt.json\", \"sha256\": \"57e65cf888665973e84bcf09fc855b2f455c8cdfda7deb91e491790685ddb22b\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_continuation.json\", \"sha256\": \"f00ded3cc9d60975bf1dd863273c592eb581299fa33ed94b9bd848744ba984d4\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n    - \"RR-31-30\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 31\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 218\n  parsed_production_functions: 14\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 8\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffect None.\"\n  - \"BFS max_pairs only limits discovered pairs;constructor/quotient/alphabet/bytes not covered.\"\n  - \"Producer shortestness source induction/native independent evidence;replay accepts any valid self-described distinguishing word.\"\n  - \"All-word model is formal;Rust storage/interning/FIFO/quotient refinement separate.\"\n  - \"Bounded exhaustive machines and designated faults not all possible Rust faults;no whole-workspace green claim.\"\n  - \"Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_continuation.score.yaml"
-      ]
+      "sha256": "f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820"
     },
     {
-      "sha256": "7bb6527249a5a370ce8fdbda803ccf5bf4870b4ce3c4ff37fc064f50d64a7000",
       "bytes": 2338,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_continuation.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_continuation.rs\",\n    \"sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_continuation.score.yaml\",\n    \"sha256\": \"f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_continuation.rs.contract.yaml\",\n    \"sha256\": \"d539c64ebf379bc0d7796f7f87b136f99f7d3f69f5d5d2294dc4e1713d6dfa05\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\",\n    \"function_count\": 14,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 8,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/finite_continuation.rs",
-          "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_continuation.rs",
+          "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/finite_continuation.score.yaml",
+          "sha256": "f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/finite_continuation.rs.contract.yaml",
+          "sha256": "d539c64ebf379bc0d7796f7f87b136f99f7d3f69f5d5d2294dc4e1713d6dfa05"
+        },
         "engineering_target": "A",
-        "level": "L3",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -478,30 +428,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/finite_continuation.score.yaml",
-          "sha256": "f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/finite_continuation.rs.contract.yaml",
-          "sha256": "d539c64ebf379bc0d7796f7f87b136f99f7d3f69f5d5d2294dc4e1713d6dfa05"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L3",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
         "structural_measurement": {
-          "source_sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3",
-          "function_count": 14,
-          "maxima": {
-            "ccn": 7,
-            "cognitive_upper_bound": 8,
-            "control_nesting": 3
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -516,29 +452,69 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 14,
+          "maxima": {
+            "ccn": 7,
+            "cognitive_upper_bound": 8,
+            "control_nesting": 3
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_continuation.rs\",\n    \"sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_continuation.score.yaml\",\n    \"sha256\": \"f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_continuation.rs.contract.yaml\",\n    \"sha256\": \"d539c64ebf379bc0d7796f7f87b136f99f7d3f69f5d5d2294dc4e1713d6dfa05\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\",\n    \"function_count\": 14,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 8,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_continuation.rs.scoring.yaml"
-      ]
+      "sha256": "7bb6527249a5a370ce8fdbda803ccf5bf4870b4ce3c4ff37fc064f50d64a7000"
     },
     {
-      "sha256": "f12844b050b6bff55a37aca2b48ef930a44fb56a8a144b17cd6f54535be63033",
       "bytes": 3763,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/continuation-previous/finite_continuation.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_continuation.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"fd0b113ce310215ba47b7cb05b3fab30f279fe762a6ab5dd3f1358ded5ce66fa\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"B\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_continuation\"\r\n  description: \"Partial finite dynamics and shortest distinguishing continuations.  One fresh, observably distinct absorbing state totalizes unavailability. Moore refinement therefore preserves BOTH answers and availability for every finite word. The added state is internal, never a physical alternative.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 183\r\n  parsed_production_functions: 9\r\n  max_production_ccn: 9\r\n  cognitive_complexity_upper_bound: 15\r\n  control_nesting: 4\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 9, \"cognitive_upper_bound\": 15, \"control_nesting\": 4, \"line\": 130, \"name\": \"distinguish\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative B ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/finite_continuation.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_continuation.rs",
           "sha256": "fd0b113ce310215ba47b7cb05b3fab30f279fe762a6ab5dd3f1358ded5ce66fa"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "Partial finite dynamics and shortest distinguishing continuations.  One fresh, observably distinct absorbing state totalizes unavailability. Moore refinement therefore preserves BOTH answers and availability for every finite word. The added state is internal, never a physical alternative.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_continuation"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -546,69 +522,32 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "B",
-        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_continuation",
-          "description": "Partial finite dynamics and shortest distinguishing continuations.  One fresh, observably distinct absorbing state totalizes unavailability. Moore refinement therefore preserves BOTH answers and availability for every finite word. The added state is internal, never a physical alternative.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
+          "unrun": 0
         },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative B ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 183,
-          "parsed_production_functions": 9,
-          "max_production_ccn": 9,
           "cognitive_complexity_upper_bound": 15,
           "control_nesting": 4,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [
             {
               "ccn": 9,
@@ -619,44 +558,35 @@
               "opaque_macros": []
             }
           ],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "max_production_ccn": 9,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 9,
+          "physical_lines": 183,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "open_findings": [
-          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
-          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
-          "External path dependency source contents have not received a separate origin/content attestation.",
-          "Declared source metrics impose a conservative B ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
-        ]
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_continuation.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"fd0b113ce310215ba47b7cb05b3fab30f279fe762a6ab5dd3f1358ded5ce66fa\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"B\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_continuation\"\r\n  description: \"Partial finite dynamics and shortest distinguishing continuations.  One fresh, observably distinct absorbing state totalizes unavailability. Moore refinement therefore preserves BOTH answers and availability for every finite word. The added state is internal, never a physical alternative.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 183\r\n  parsed_production_functions: 9\r\n  max_production_ccn: 9\r\n  cognitive_complexity_upper_bound: 15\r\n  control_nesting: 4\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 9, \"cognitive_upper_bound\": 15, \"control_nesting\": 4, \"line\": 130, \"name\": \"distinguish\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative B ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/continuation-previous/finite_continuation.score.yaml"
-      ]
+      "sha256": "f12844b050b6bff55a37aca2b48ef930a44fb56a8a144b17cd6f54535be63033"
     },
     {
-      "sha256": "82c154af0138ed63919e636b19ac1864c7efdb006492a9b74a8f7fec7342c8bd",
       "bytes": 5669,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_continuation.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_continuation.rs\",\n    \"sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:finite-continuation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T211943Z/baseline.json\",\n      \"sha256\": \"56156573fcb54e822bfa49a239e5bfad7130d8b5fe700092017e9796a03e84cc\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T211943Z/summary.json\",\n      \"sha256\": \"6de180c097497fb4befbcd141a89aa7abc3edd18c54965c9800d3ff53d0650e5\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T211943Z/mutations.json\",\n      \"sha256\": \"53933f4e36e8d59bcfcd0a1acaa4a240a6c355574550eef3d5d9c9213cbed4d2\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T211920Z-metrics/receipt.json\",\n      \"sha256\": \"78fca51659b07cdf6a8f42035ee8b8cd653b2ebb71e4bf837ec118fb249f384b\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T211943Z/dependency_receipt.json\",\n      \"sha256\": \"57e65cf888665973e84bcf09fc855b2f455c8cdfda7deb91e491790685ddb22b\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_continuation.json\",\n      \"sha256\": \"f00ded3cc9d60975bf1dd863273c592eb581299fa33ed94b9bd848744ba984d4\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 218,\n    \"parsed_production_functions\": 14,\n    \"max_production_ccn\": 7,\n    \"cognitive_complexity_upper_bound\": 8,\n    \"control_nesting\": 3,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/finite_continuation.rs",
-          "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:finite-continuation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -665,24 +595,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 7,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 8,
-          "control_nesting": 3
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -690,81 +603,155 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T211943Z/baseline.json",
-            "sha256": "56156573fcb54e822bfa49a239e5bfad7130d8b5fe700092017e9796a03e84cc",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "56156573fcb54e822bfa49a239e5bfad7130d8b5fe700092017e9796a03e84cc"
           },
           {
             "path": "evidence/quality/category_homology/20261019T211943Z/summary.json",
-            "sha256": "6de180c097497fb4befbcd141a89aa7abc3edd18c54965c9800d3ff53d0650e5",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "6de180c097497fb4befbcd141a89aa7abc3edd18c54965c9800d3ff53d0650e5"
           },
           {
             "path": "evidence/quality/category_homology/20261019T211943Z/mutations.json",
-            "sha256": "53933f4e36e8d59bcfcd0a1acaa4a240a6c355574550eef3d5d9c9213cbed4d2",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "53933f4e36e8d59bcfcd0a1acaa4a240a6c355574550eef3d5d9c9213cbed4d2"
           },
           {
             "path": "evidence/quality/category_homology/20261019T211920Z-metrics/receipt.json",
-            "sha256": "78fca51659b07cdf6a8f42035ee8b8cd653b2ebb71e4bf837ec118fb249f384b",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "78fca51659b07cdf6a8f42035ee8b8cd653b2ebb71e4bf837ec118fb249f384b"
           },
           {
             "path": "evidence/quality/category_homology/20261019T211943Z/dependency_receipt.json",
-            "sha256": "57e65cf888665973e84bcf09fc855b2f455c8cdfda7deb91e491790685ddb22b",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "57e65cf888665973e84bcf09fc855b2f455c8cdfda7deb91e491790685ddb22b"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_continuation.json",
-            "sha256": "f00ded3cc9d60975bf1dd863273c592eb581299fa33ed94b9bd848744ba984d4",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "f00ded3cc9d60975bf1dd863273c592eb581299fa33ed94b9bd848744ba984d4"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 7,
+          "radon_ccn": 7,
+          "weighted_control_upper_bound": 8
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 218,
-          "parsed_production_functions": 14,
-          "max_production_ccn": 7,
           "cognitive_complexity_upper_bound": 8,
           "control_nesting": 3,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 7,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 14,
+          "physical_lines": 218,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_continuation.rs\",\n    \"sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:finite-continuation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T211943Z/baseline.json\",\n      \"sha256\": \"56156573fcb54e822bfa49a239e5bfad7130d8b5fe700092017e9796a03e84cc\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T211943Z/summary.json\",\n      \"sha256\": \"6de180c097497fb4befbcd141a89aa7abc3edd18c54965c9800d3ff53d0650e5\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T211943Z/mutations.json\",\n      \"sha256\": \"53933f4e36e8d59bcfcd0a1acaa4a240a6c355574550eef3d5d9c9213cbed4d2\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T211920Z-metrics/receipt.json\",\n      \"sha256\": \"78fca51659b07cdf6a8f42035ee8b8cd653b2ebb71e4bf837ec118fb249f384b\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T211943Z/dependency_receipt.json\",\n      \"sha256\": \"57e65cf888665973e84bcf09fc855b2f455c8cdfda7deb91e491790685ddb22b\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_continuation.json\",\n      \"sha256\": \"f00ded3cc9d60975bf1dd863273c592eb581299fa33ed94b9bd848744ba984d4\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 218,\n    \"parsed_production_functions\": 14,\n    \"max_production_ccn\": 7,\n    \"cognitive_complexity_upper_bound\": 8,\n    \"control_nesting\": 3,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "82c154af0138ed63919e636b19ac1864c7efdb006492a9b74a8f7fec7342c8bd"
+    },
+    {
+      "bytes": 1618,
       "original_paths": [
-        "code/rust/src/category_theory/finite_continuation.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/finite_continuation.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/finite_continuation.rs\",\n    \"sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_continuation.rs\",\n      \"sha256\": \"36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_continuation.rs",
+          "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_continuation.rs",
+            "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "3cfee25f1fa62e7557d25147fdf2295e7075d5a1e3e9300a39f8ef5f6725acb7"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/finite_continuation.rs.contract.yaml": "d539c64ebf379bc0d7796f7f87b136f99f7d3f69f5d5d2294dc4e1713d6dfa05",
-    "code/rust/src/category_theory/finite_continuation.score.yaml": "f2f9ab7bf64764f3a55be06510484db99bc325c2f43f61a5620819e2fa7b3820",
-    "code/rust/src/category_theory/finite_continuation.rs.scoring.yaml": "7bb6527249a5a370ce8fdbda803ccf5bf4870b4ce3c4ff37fc064f50d64a7000",
-    "evidence/quality/category_homology/resume-20261019/continuation-previous/finite_continuation.score.yaml": "f12844b050b6bff55a37aca2b48ef930a44fb56a8a144b17cd6f54535be63033"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

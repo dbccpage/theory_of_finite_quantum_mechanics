@@ -4,6 +4,7 @@ No network, no Lean, no cargo, no Mathlib: the dummy node's gates are plain Pyth
 tree is built from the real stage helpers (prepare_stage.py, workflow, contracts, exact_json.py,
 scripts/contract_scores.py) and a three-node DAG whose prompts come from the real generator.
 """
+import hashlib
 import json
 import os
 import shutil
@@ -25,9 +26,11 @@ import finalize  # noqa: E402
 import generate_prompts as gen  # noqa: E402
 import integrate  # noqa: E402
 import pfp_batch  # noqa: E402
+import preflight  # noqa: E402
 import publish  # noqa: E402
 import review  # noqa: E402
 import selection  # noqa: E402
+import spec_builder  # noqa: E402
 import stages  # noqa: E402
 import verify_batch  # noqa: E402
 
@@ -114,6 +117,7 @@ def build_tree(root: Path):
     write(root / 'src/addition.py', ADDITION)
     write(root / 'tests/test_dummy.py', TEST)
     write(root / 'tests/replay.py', REPLAY)
+    write(root / 'dag/pfp/batch_tools/toolkit_marker.py', 'VERSION = 1\n')
     code = gen.run(root, False, True, list(STATEMENT), False, out=open(os.devnull, 'w'))
     assert code == 0
     git(root, 'init', '-q')
@@ -233,8 +237,19 @@ class EndToEnd(Dummy):
                                                                    'cwd': '.', 'needs': None, 'optimizable': True, 'count': stages.PYTHON_TESTS}]))
         integration = integrate.integrate(batch, modes=('normal', 'optimized'))
         self.assertEqual(integration['test_counts'], {'dummy_tests': 1, 'dummy_tests_optimized': 1})
+        # another run committed since selection extends an unselected operad collection: preserved as updated, not as a failure
+        other = next(r for r in ctx.index()['nodes'] if r['node_id'] == 'DUMMY-MUL')['operad_collection']
+        with open(self.root / other, 'ab') as handle:
+            handle.write(b'# extended by a later committed run\n')
+        git(self.root, 'add', other)
+        git(self.root, 'commit', '-q', '-m', 'later run')
+        # the toolkit may be fixed while a batch runs: that must not break the preservation proof
+        write(self.root / 'dag/pfp/batch_tools/toolkit_marker.py', 'VERSION = 2\n')
         sealed = finalize.finalize(batch, 'audit')
+        write(self.root / 'dag/pfp/batch_tools/toolkit_marker.py', 'VERSION = 1\n')
         self.assertEqual(sealed['counts']['semantic_mutants'], 1)
+        preserved = common.load_json(batch.dir / 'review/preservation.json')['files']
+        self.assertEqual([e['path'] for e in preserved if e.get('updated_since_base_by_committed_work')], [other])
         self.assertGreater(sealed['sealed_files'], 30)
         git_status = subprocess.run(['git', 'status', '--porcelain'], cwd=self.root, capture_output=True, text=True).stdout
         self.assertIn('dag/results/', git_status)
@@ -243,6 +258,13 @@ class EndToEnd(Dummy):
         self.assertEqual((report['runs'], report['verified_nodes'][0]['semantic_mutants']), (1, 1))
         self.assertGreater(report['companions_checked'], 3)
         self.assertGreater(report['preserved_files_checked'], 5)
+        # a later batch rewrites other rows of the shared index: the replay must still pass
+        index_copy = ctx.index_path.read_bytes()
+        shared = json.loads(index_copy)
+        shared['claim'] = 'later batches rewrite rows of this file'
+        ctx.index_path.write_bytes((json.dumps(shared, indent=2) + '\n').encode('utf-8'))
+        verify_batch.verify(batch)
+        ctx.index_path.write_bytes(index_copy)
         mutant = next((run / 'p4/mutants').glob('semantic_*.json'))
         original = mutant.read_bytes()
         mutant.write_bytes(original.replace(b'"-3"', b'"3"'))
@@ -396,7 +418,101 @@ class Guards(Dummy):
         self.assertTrue((run / 'p2/native/certificate_receipt.json').is_file())
 
 
+BOUND_CHECKER = """import sys
+from pathlib import Path
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / 'dag/pfp/prepare_stage.py').is_file())
+sys.path.insert(0, str(ROOT / 'dag/pfp'))
+import exact_json as E
+
+def check(request, candidate):
+    try:
+        _, cand, public = E.bound(request, candidate, 'DUMMY-ADD')
+        records = cand['data']['records']
+        if [r['input'] for r in records] != public['cases']:
+            raise ValueError('inputs differ')
+        for r in records:
+            a, b = r['input']
+            if r['output'] != [str(int(a) + int(b))]:
+                raise ValueError('wrong sum')
+        if set(cand['data']) != {'records'}:
+            raise ValueError('extra keys')
+        return {'ok': True}
+    except (KeyError, TypeError, IndexError, AttributeError) as error:
+        raise ValueError('malformed ' + repr(error))
+"""
+LAZY_CHECKER = "def check(request, candidate):\n    return {'ok': True}\n"
+
+
+class SpecBuilderAndPreflight(Dummy):
+    def spec_dir(self, name, checker):
+        folder = self.root / 'specs_pre' / name
+        write(folder / 'check_candidate.py', checker)
+        write(folder / 'format_certificate.py', FORMAT)
+        write(folder / 'semantic_mutants.py', SEMANTIC)
+        return folder
+
+    def test_build_spec_declares_the_four_standard_gates_and_validates(self):
+        boundary = {'supports': 's', 'does_not_support': 'general case of the thing',
+                    'narrowest_claim': 'n', 'next_test': 'Prove the unnormalized statement for three sectors with a unitary mix.'}
+        gen = {'id': 'op', 'ordered_inputs': ['A'], 'output': 'A', 'semantic_predicate': 'p', 'hypotheses': ['h']}
+        spec = spec_builder.build_spec(
+            node='X', short='x', lean='XMod', anchors=['XMod.t'], cases=[[1]], public_tsv='x\t1\n', data={'records': []}, scope_review='scope',
+            predicates=['q'], boundary=boundary, generators=[gen], relations=[{'id': 'r', 'equation_or_predicate': 'e'}],
+            compositions=[{'outer_operation': 'op', 'input_slot': 0, 'inner_operation': 'op'}], open_obligations=['o'], depends_on_result=True)
+        gates = {g['id']: g for g in spec['profile']['p2_gates']}
+        self.assertEqual(sorted(gates), ['lean', 'python', 'rust', 'rust_replay'])
+        self.assertEqual((gates['rust']['needs'], gates['lean']['needs'], gates['python']['needs']), ('cargo', 'lean', None))
+        self.assertEqual(gates['lean']['argv'][-1], 'XMod.lean')
+        self.assertTrue(spec['profile']['dag_status_depends_on_result'])
+        self.assertIn('lean4/XMod.lean', spec['profile']['production_sources'])
+        stages.validate_spec(spec['profile'], spec['operad_delta'])
+        self.assertEqual(spec['operad_delta']['add_or_refine_generators'][0]['arity'], 1)
+        mismatched = spec_builder.build_spec(
+            node='X', short='x', lean='XMod', anchors=['XMod.t'], cases=[[1]], public_tsv='x\t1\n', data={}, scope_review='scope', predicates=['q'], boundary=boundary,
+            generators=[dict(gen, output='B'), dict(gen, id='op2', ordered_inputs=['B'], output='C')], relations=[{'id': 'r', 'equation_or_predicate': 'e'}],
+            compositions=[{'outer_operation': 'op', 'input_slot': 0, 'inner_operation': 'op2'}], open_obligations=['o'])
+        self.assertEqual(len(mismatched['operad_delta']['failed_compositions']), 1)
+        self.assertIn('Colour mismatch', mismatched['operad_delta']['failed_compositions'][0]['reason'])
+        self.assertEqual([(c['outer_operation'], c['inner_operation']) for c in mismatched['operad_delta']['checked_compositions']], [('op2', 'op')])
+        bad = dict(spec['operad_delta'], add_or_refine_generators=[dict(gen, output='B', arity=1)])
+        with self.assertRaisesRegex(ValueError, 'Graft colour mismatch'):
+            stages.validate_spec(spec['profile'], bad)
+
+    def test_preflight_runs_every_mutant_and_catches_a_lazy_checker(self):
+        spec = spec_for('DUMMY-ADD')
+        folder = self.spec_dir('good', BOUND_CHECKER)
+        report = preflight.preflight(self.ctx, 'DUMMY-ADD', folder, spec=spec)
+        self.assertGreater(report['coordinate_mutants'], 5)
+        self.assertEqual((report['semantic_mutants'], report['semantic_controls']), (1, 1))
+        lazy = self.spec_dir('lazy', LAZY_CHECKER)
+        with self.assertRaisesRegex(ValueError, 'accepts coordinate mutants'):
+            preflight.preflight(self.ctx, 'DUMMY-ADD', lazy, spec=spec)
+
+    def test_preflight_rejects_wire_lines_with_empty_trailing_fields(self):
+        spec = spec_for('DUMMY-ADD')
+        folder = self.spec_dir('wire', BOUND_CHECKER)
+        write(folder / 'format_certificate.py', "def lines(data):\n    return ['add\\t1\\t']\n")
+        with self.assertRaisesRegex(ValueError, 'non-empty single lines'):
+            preflight.preflight(self.ctx, 'DUMMY-ADD', folder, spec=spec)
+
+
 class Units(unittest.TestCase):
+    def test_historical_version_accepts_only_committed_versions_of_a_build_manifest(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            git(root, 'init', '-q')
+            git(root, 'config', 'user.email', 't@example.invalid')
+            git(root, 'config', 'user.name', 'T')
+            write(root / 'Cargo.toml', 'a = 1\n')
+            git(root, 'add', '.')
+            git(root, 'commit', '-q', '-m', 'one')
+            write(root / 'Cargo.toml', 'a = 2\n')
+            git(root, 'commit', '-q', '-am', 'two')
+            digest = lambda text: hashlib.sha256(text.encode('utf-8')).hexdigest()
+            self.assertTrue(verify_batch.historical_version(root, 'Cargo.toml', digest('a = 1\n')))
+            self.assertTrue(verify_batch.historical_version(root, 'Cargo.toml', digest('a = 2\n')))
+            self.assertFalse(verify_batch.historical_version(root, 'Cargo.toml', digest('a = 3\n')))
+
     def test_coordinate_mutants_cover_leaves_tails_and_keys(self):
         names = [n for n, _ in challenge.coordinate_mutants(DATA)]
         self.assertIn('coordinate_records/0/input/0', names)

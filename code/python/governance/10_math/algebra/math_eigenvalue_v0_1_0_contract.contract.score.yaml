@@ -1,189 +1,133 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:eigenvalue:v0.1.0",
-    "title": "Eigenvalue and Eigenvector Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py",
+      "sha256": "7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a"
     },
-    "math": {
-      "object_kind": "eigenvalue_eigenvector_pair",
-      "symbol": "Av = λv, spectrum σ(A) = {λ₁, λ₂, ..., λₙ}",
-      "ascii_symbol": "eigenvalue",
-      "notation": "Av = λv, spectrum σ(A) = {λ₁, λ₂, ..., λₙ}",
-      "domain": [
-        "operator: linear_map A: V → V",
-        "eigenvalue: scalar λ ∈ K",
-        "eigenvector: non_zero_vector v ∈ V",
-        "multiplicity: algebraic and geometric multiplicity"
-      ],
-      "codomain": {
-        "description": "For a linear operator A: V → V, an eigenvalue λ ∈ K and eigenvector v ∈ V satisfy Av = λv with v ≠ 0. For symmetric real matrices, eigenvalues are real and form the spectrum σ(A).\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Matrix must have equal number of rows and columns",
-        "Matrix must satisfy A[i,j] = A[j,i] within tolerance",
-        "All matrix entries must be finite (no NaN, Inf)",
-        "All computed eigenvalues must be finite",
-        "abs_tol >= 0, rel_tol >= 0, both finite",
-        "Eigenvalues returned in ascending order",
-        "Results must not be used for candidate acceptance, ranking, rewards, or descent"
-      ]
-    },
-    "laws": [
-      "Av = λv for non-zero vector v",
-      "det(A - λI) = 0 determines eigenvalues",
-      "For symmetric real A, all eigenvalues λᵢ ∈ ℝ",
-      "Eigenvectors for distinct eigenvalues of symmetric A are orthogonal",
-      "tr(A) = Σλᵢ (sum of eigenvalues)",
-      "det(A) = Πλᵢ (product of eigenvalues)",
-      "A = QΛQ^T where Λ = diag(λ₁, ..., λₙ) and Q orthogonal"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness (nalgebra eigenvalue solver is deterministic)",
-        "No time-dependent data",
-        "Same input matrix and tolerances always produce same eigenvalues",
-        "Floating-point operations may vary across platforms (use tolerance)"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_linear_algebra",
-      "module": "linear_algebra::eigen",
-      "symbols": [
-        "SymmetricEigenvalueReport",
-        "SymmetricEigenError",
-        "compute_sorted_symmetric_eigenvalues"
-      ],
-      "required_tests": [
-        "test_non_square_matrix",
-        "test_nan_entry",
-        "test_infinite_entry",
-        "test_negative_tolerance",
-        "test_non_symmetric",
-        "test_near_symmetric_rejected"
-      ]
-    },
-    "negative_tests": [
-      "Matrix with unequal row lengths must be rejected",
-      "Matrix containing NaN must be rejected",
-      "Matrix containing Inf or -Inf must be rejected",
-      "Negative abs_tol or rel_tol must be rejected",
-      "Matrix with A[i,j] ≠ A[j,i] beyond tolerance must be rejected",
-      "Matrix with small asymmetry exceeding tolerance must be rejected",
-      "Attempt to use eigenvalues for candidate acceptance must be blocked"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py",
+        "sha256": "7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "Defines eigenvalues and eigenvectors for symmetric real matrices over finite dimensional vector spaces. An eigenvalue λ and corresponding eigenvector v satisfy the fundamental equation Av = λv where A is a linear operator. This contract provides spectral decomposition, characteristic polynomial computation, and determinant-trace relationships. This is a numerical diagnostic helper only and confers no authority for proofs, certificates, or ranking decisions.",
-      "non_role": [
-        "Authority for candidate acceptance, ranking, or rewards (forbidden)",
-        "Proof certificates or descent validation (requires symbolic verification)",
-        "Generalized eigenvalue problems Av = λBv (separate contract)",
-        "Complex eigenvalues or non-symmetric matrices (requires complex spectral theory)",
-        "Infinite-dimensional operators (requires functional analysis)",
-        "Eigenvector computation (currently eigenvalues only)",
-        "Certification of numerical accuracy (approximate only)"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "Should eigenvector computation be added to this contract or separate?",
-      "How to handle generalized eigenvalue problems Av = λBv?",
-      "How to extend to complex eigenvalues for non-symmetric matrices?",
-      "Should we provide symbolic eigenvalue computation for small matrices?",
-      "How to certify numerical accuracy bounds for eigenvalues?",
-      "Can eigenvalue results be promoted to authority-bearing contracts?",
-      "Currently restricted to symmetric real matrices only",
-      "Eigenvalues computed via nalgebra::SymmetricEigen (approximate)",
-      "No eigenvector computation (eigenvalues only)",
-      "Strictly diagnostic - no authority for proofs or decisions",
-      "Floating-point tolerance required for symmetry check",
-      "Sorted output guaranteed for deterministic replay",
-      "Empty matrix (dimension 0) handled as special case",
-      "Trace and determinant computed from eigenvalues (post-hoc)",
-      "No support for infinite-dimensional operators",
-      "No support for complex eigenvalues or non-Hermitian matrices"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a",
+    "subject": "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py"
   },
-  "current_contract": "dfb0a1939b9ef00b1c0b04995d391eb7d1ab75ed816fc36178f00bae3633feed",
-  "current_scoring": "815291037e2ee6ee205e88f7d1b242ae6e1f72179e604c04362347dcc96a38bc",
   "contract_history": [
     {
-      "sha256": "dfb0a1939b9ef00b1c0b04995d391eb7d1ab75ed816fc36178f00bae3633feed",
       "bytes": 5665,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:eigenvalue:v0.1.0\",\n  \"title\": \"Eigenvalue and Eigenvector Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"eigenvalue_eigenvector_pair\",\n    \"symbol\": \"Av = λv, spectrum σ(A) = {λ₁, λ₂, ..., λₙ}\",\n    \"ascii_symbol\": \"eigenvalue\",\n    \"notation\": \"Av = λv, spectrum σ(A) = {λ₁, λ₂, ..., λₙ}\",\n    \"domain\": [\n      \"operator: linear_map A: V → V\",\n      \"eigenvalue: scalar λ ∈ K\",\n      \"eigenvector: non_zero_vector v ∈ V\",\n      \"multiplicity: algebraic and geometric multiplicity\"\n    ],\n    \"codomain\": {\n      \"description\": \"For a linear operator A: V → V, an eigenvalue λ ∈ K and eigenvector v ∈ V satisfy Av = λv with v ≠ 0. For symmetric real matrices, eigenvalues are real and form the spectrum σ(A).\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Matrix must have equal number of rows and columns\",\n      \"Matrix must satisfy A[i,j] = A[j,i] within tolerance\",\n      \"All matrix entries must be finite (no NaN, Inf)\",\n      \"All computed eigenvalues must be finite\",\n      \"abs_tol >= 0, rel_tol >= 0, both finite\",\n      \"Eigenvalues returned in ascending order\",\n      \"Results must not be used for candidate acceptance, ranking, rewards, or descent\"\n    ]\n  },\n  \"laws\": [\n    \"Av = λv for non-zero vector v\",\n    \"det(A - λI) = 0 determines eigenvalues\",\n    \"For symmetric real A, all eigenvalues λᵢ ∈ ℝ\",\n    \"Eigenvectors for distinct eigenvalues of symmetric A are orthogonal\",\n    \"tr(A) = Σλᵢ (sum of eigenvalues)\",\n    \"det(A) = Πλᵢ (product of eigenvalues)\",\n    \"A = QΛQ^T where Λ = diag(λ₁, ..., λₙ) and Q orthogonal\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness (nalgebra eigenvalue solver is deterministic)\",\n      \"No time-dependent data\",\n      \"Same input matrix and tolerances always produce same eigenvalues\",\n      \"Floating-point operations may vary across platforms (use tolerance)\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"linear_algebra::eigen\",\n    \"symbols\": [\n      \"SymmetricEigenvalueReport\",\n      \"SymmetricEigenError\",\n      \"compute_sorted_symmetric_eigenvalues\"\n    ],\n    \"required_tests\": [\n      \"test_non_square_matrix\",\n      \"test_nan_entry\",\n      \"test_infinite_entry\",\n      \"test_negative_tolerance\",\n      \"test_non_symmetric\",\n      \"test_near_symmetric_rejected\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Matrix with unequal row lengths must be rejected\",\n    \"Matrix containing NaN must be rejected\",\n    \"Matrix containing Inf or -Inf must be rejected\",\n    \"Negative abs_tol or rel_tol must be rejected\",\n    \"Matrix with A[i,j] ≠ A[j,i] beyond tolerance must be rejected\",\n    \"Matrix with small asymmetry exceeding tolerance must be rejected\",\n    \"Attempt to use eigenvalues for candidate acceptance must be blocked\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Defines eigenvalues and eigenvectors for symmetric real matrices over finite dimensional vector spaces. An eigenvalue λ and corresponding eigenvector v satisfy the fundamental equation Av = λv where A is a linear operator. This contract provides spectral decomposition, characteristic polynomial computation, and determinant-trace relationships. This is a numerical diagnostic helper only and confers no authority for proofs, certificates, or ranking decisions.\",\n    \"non_role\": [\n      \"Authority for candidate acceptance, ranking, or rewards (forbidden)\",\n      \"Proof certificates or descent validation (requires symbolic verification)\",\n      \"Generalized eigenvalue problems Av = λBv (separate contract)\",\n      \"Complex eigenvalues or non-symmetric matrices (requires complex spectral theory)\",\n      \"Infinite-dimensional operators (requires functional analysis)\",\n      \"Eigenvector computation (currently eigenvalues only)\",\n      \"Certification of numerical accuracy (approximate only)\"\n    ]\n  },\n  \"wip\": [\n    \"Should eigenvector computation be added to this contract or separate?\",\n    \"How to handle generalized eigenvalue problems Av = λBv?\",\n    \"How to extend to complex eigenvalues for non-symmetric matrices?\",\n    \"Should we provide symbolic eigenvalue computation for small matrices?\",\n    \"How to certify numerical accuracy bounds for eigenvalues?\",\n    \"Can eigenvalue results be promoted to authority-bearing contracts?\",\n    \"Currently restricted to symmetric real matrices only\",\n    \"Eigenvalues computed via nalgebra::SymmetricEigen (approximate)\",\n    \"No eigenvector computation (eigenvalues only)\",\n    \"Strictly diagnostic - no authority for proofs or decisions\",\n    \"Floating-point tolerance required for symmetry check\",\n    \"Sorted output guaranteed for deterministic replay\",\n    \"Empty matrix (dimension 0) handled as special case\",\n    \"Trace and determinant computed from eigenvalues (post-hoc)\",\n    \"No support for infinite-dimensional operators\",\n    \"No support for complex eigenvalues or non-Hermitian matrices\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:eigenvalue:v0.1.0",
-        "title": "Eigenvalue and Eigenvector Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Authority for candidate acceptance, ranking, or rewards (forbidden)",
+            "Proof certificates or descent validation (requires symbolic verification)",
+            "Generalized eigenvalue problems Av = λBv (separate contract)",
+            "Complex eigenvalues or non-symmetric matrices (requires complex spectral theory)",
+            "Infinite-dimensional operators (requires functional analysis)",
+            "Eigenvector computation (currently eigenvalues only)",
+            "Certification of numerical accuracy (approximate only)"
+          ],
+          "summary": "Defines eigenvalues and eigenvectors for symmetric real matrices over finite dimensional vector spaces. An eigenvalue λ and corresponding eigenvector v satisfy the fundamental equation Av = λv where A is a linear operator. This contract provides spectral decomposition, characteristic polynomial computation, and determinant-trace relationships. This is a numerical diagnostic helper only and confers no authority for proofs, certificates, or ranking decisions."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "Av = λv for non-zero vector v",
+          "det(A - λI) = 0 determines eigenvalues",
+          "For symmetric real A, all eigenvalues λᵢ ∈ ℝ",
+          "Eigenvectors for distinct eigenvalues of symmetric A are orthogonal",
+          "tr(A) = Σλᵢ (sum of eigenvalues)",
+          "det(A) = Πλᵢ (product of eigenvalues)",
+          "A = QΛQ^T where Λ = diag(λ₁, ..., λₙ) and Q orthogonal"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "eigenvalue_eigenvector_pair",
-          "symbol": "Av = λv, spectrum σ(A) = {λ₁, λ₂, ..., λₙ}",
           "ascii_symbol": "eigenvalue",
-          "notation": "Av = λv, spectrum σ(A) = {λ₁, λ₂, ..., λₙ}",
+          "codomain": {
+            "description": "For a linear operator A: V → V, an eigenvalue λ ∈ K and eigenvector v ∈ V satisfy Av = λv with v ≠ 0. For symmetric real matrices, eigenvalues are real and form the spectrum σ(A).\n"
+          },
           "domain": [
             "operator: linear_map A: V → V",
             "eigenvalue: scalar λ ∈ K",
             "eigenvector: non_zero_vector v ∈ V",
             "multiplicity: algebraic and geometric multiplicity"
           ],
-          "codomain": {
-            "description": "For a linear operator A: V → V, an eigenvalue λ ∈ K and eigenvector v ∈ V satisfy Av = λv with v ≠ 0. For symmetric real matrices, eigenvalues are real and form the spectrum σ(A).\n"
-          }
+          "notation": "Av = λv, spectrum σ(A) = {λ₁, λ₂, ..., λₙ}",
+          "object_kind": "eigenvalue_eigenvector_pair",
+          "symbol": "Av = λv, spectrum σ(A) = {λ₁, λ₂, ..., λₙ}"
+        },
+        "negative_tests": [
+          "Matrix with unequal row lengths must be rejected",
+          "Matrix containing NaN must be rejected",
+          "Matrix containing Inf or -Inf must be rejected",
+          "Negative abs_tol or rel_tol must be rejected",
+          "Matrix with A[i,j] ≠ A[j,i] beyond tolerance must be rejected",
+          "Matrix with small asymmetry exceeding tolerance must be rejected",
+          "Attempt to use eigenvalues for candidate acceptance must be blocked"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness (nalgebra eigenvalue solver is deterministic)",
+            "No time-dependent data",
+            "Same input matrix and tolerances always produce same eigenvalues",
+            "Floating-point operations may vary across platforms (use tolerance)"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -196,37 +140,9 @@
             "Results must not be used for candidate acceptance, ranking, rewards, or descent"
           ]
         },
-        "laws": [
-          "Av = λv for non-zero vector v",
-          "det(A - λI) = 0 determines eigenvalues",
-          "For symmetric real A, all eigenvalues λᵢ ∈ ℝ",
-          "Eigenvectors for distinct eigenvalues of symmetric A are orthogonal",
-          "tr(A) = Σλᵢ (sum of eigenvalues)",
-          "det(A) = Πλᵢ (product of eigenvalues)",
-          "A = QΛQ^T where Λ = diag(λ₁, ..., λₙ) and Q orthogonal"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness (nalgebra eigenvalue solver is deterministic)",
-            "No time-dependent data",
-            "Same input matrix and tolerances always produce same eigenvalues",
-            "Floating-point operations may vary across platforms (use tolerance)"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
         "rust_binding": {
           "crate": "omega_linear_algebra",
           "module": "linear_algebra::eigen",
-          "symbols": [
-            "SymmetricEigenvalueReport",
-            "SymmetricEigenError",
-            "compute_sorted_symmetric_eigenvalues"
-          ],
           "required_tests": [
             "test_non_square_matrix",
             "test_nan_entry",
@@ -234,29 +150,16 @@
             "test_negative_tolerance",
             "test_non_symmetric",
             "test_near_symmetric_rejected"
+          ],
+          "symbols": [
+            "SymmetricEigenvalueReport",
+            "SymmetricEigenError",
+            "compute_sorted_symmetric_eigenvalues"
           ]
         },
-        "negative_tests": [
-          "Matrix with unequal row lengths must be rejected",
-          "Matrix containing NaN must be rejected",
-          "Matrix containing Inf or -Inf must be rejected",
-          "Negative abs_tol or rel_tol must be rejected",
-          "Matrix with A[i,j] ≠ A[j,i] beyond tolerance must be rejected",
-          "Matrix with small asymmetry exceeding tolerance must be rejected",
-          "Attempt to use eigenvalues for candidate acceptance must be blocked"
-        ],
-        "doctrine": {
-          "summary": "Defines eigenvalues and eigenvectors for symmetric real matrices over finite dimensional vector spaces. An eigenvalue λ and corresponding eigenvector v satisfy the fundamental equation Av = λv where A is a linear operator. This contract provides spectral decomposition, characteristic polynomial computation, and determinant-trace relationships. This is a numerical diagnostic helper only and confers no authority for proofs, certificates, or ranking decisions.",
-          "non_role": [
-            "Authority for candidate acceptance, ranking, or rewards (forbidden)",
-            "Proof certificates or descent validation (requires symbolic verification)",
-            "Generalized eigenvalue problems Av = λBv (separate contract)",
-            "Complex eigenvalues or non-symmetric matrices (requires complex spectral theory)",
-            "Infinite-dimensional operators (requires functional analysis)",
-            "Eigenvector computation (currently eigenvalues only)",
-            "Certification of numerical accuracy (approximate only)"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Eigenvalue and Eigenvector Contract",
         "wip": [
           "Should eigenvector computation be added to this contract or separate?",
           "How to handle generalized eigenvalue problems Av = λBv?",
@@ -276,36 +179,72 @@
           "No support for complex eigenvalues or non-Hermitian matrices"
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:eigenvalue:v0.1.0\",\n  \"title\": \"Eigenvalue and Eigenvector Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"eigenvalue_eigenvector_pair\",\n    \"symbol\": \"Av = λv, spectrum σ(A) = {λ₁, λ₂, ..., λₙ}\",\n    \"ascii_symbol\": \"eigenvalue\",\n    \"notation\": \"Av = λv, spectrum σ(A) = {λ₁, λ₂, ..., λₙ}\",\n    \"domain\": [\n      \"operator: linear_map A: V → V\",\n      \"eigenvalue: scalar λ ∈ K\",\n      \"eigenvector: non_zero_vector v ∈ V\",\n      \"multiplicity: algebraic and geometric multiplicity\"\n    ],\n    \"codomain\": {\n      \"description\": \"For a linear operator A: V → V, an eigenvalue λ ∈ K and eigenvector v ∈ V satisfy Av = λv with v ≠ 0. For symmetric real matrices, eigenvalues are real and form the spectrum σ(A).\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Matrix must have equal number of rows and columns\",\n      \"Matrix must satisfy A[i,j] = A[j,i] within tolerance\",\n      \"All matrix entries must be finite (no NaN, Inf)\",\n      \"All computed eigenvalues must be finite\",\n      \"abs_tol >= 0, rel_tol >= 0, both finite\",\n      \"Eigenvalues returned in ascending order\",\n      \"Results must not be used for candidate acceptance, ranking, rewards, or descent\"\n    ]\n  },\n  \"laws\": [\n    \"Av = λv for non-zero vector v\",\n    \"det(A - λI) = 0 determines eigenvalues\",\n    \"For symmetric real A, all eigenvalues λᵢ ∈ ℝ\",\n    \"Eigenvectors for distinct eigenvalues of symmetric A are orthogonal\",\n    \"tr(A) = Σλᵢ (sum of eigenvalues)\",\n    \"det(A) = Πλᵢ (product of eigenvalues)\",\n    \"A = QΛQ^T where Λ = diag(λ₁, ..., λₙ) and Q orthogonal\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness (nalgebra eigenvalue solver is deterministic)\",\n      \"No time-dependent data\",\n      \"Same input matrix and tolerances always produce same eigenvalues\",\n      \"Floating-point operations may vary across platforms (use tolerance)\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"linear_algebra::eigen\",\n    \"symbols\": [\n      \"SymmetricEigenvalueReport\",\n      \"SymmetricEigenError\",\n      \"compute_sorted_symmetric_eigenvalues\"\n    ],\n    \"required_tests\": [\n      \"test_non_square_matrix\",\n      \"test_nan_entry\",\n      \"test_infinite_entry\",\n      \"test_negative_tolerance\",\n      \"test_non_symmetric\",\n      \"test_near_symmetric_rejected\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Matrix with unequal row lengths must be rejected\",\n    \"Matrix containing NaN must be rejected\",\n    \"Matrix containing Inf or -Inf must be rejected\",\n    \"Negative abs_tol or rel_tol must be rejected\",\n    \"Matrix with A[i,j] ≠ A[j,i] beyond tolerance must be rejected\",\n    \"Matrix with small asymmetry exceeding tolerance must be rejected\",\n    \"Attempt to use eigenvalues for candidate acceptance must be blocked\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Defines eigenvalues and eigenvectors for symmetric real matrices over finite dimensional vector spaces. An eigenvalue λ and corresponding eigenvector v satisfy the fundamental equation Av = λv where A is a linear operator. This contract provides spectral decomposition, characteristic polynomial computation, and determinant-trace relationships. This is a numerical diagnostic helper only and confers no authority for proofs, certificates, or ranking decisions.\",\n    \"non_role\": [\n      \"Authority for candidate acceptance, ranking, or rewards (forbidden)\",\n      \"Proof certificates or descent validation (requires symbolic verification)\",\n      \"Generalized eigenvalue problems Av = λBv (separate contract)\",\n      \"Complex eigenvalues or non-symmetric matrices (requires complex spectral theory)\",\n      \"Infinite-dimensional operators (requires functional analysis)\",\n      \"Eigenvector computation (currently eigenvalues only)\",\n      \"Certification of numerical accuracy (approximate only)\"\n    ]\n  },\n  \"wip\": [\n    \"Should eigenvector computation be added to this contract or separate?\",\n    \"How to handle generalized eigenvalue problems Av = λBv?\",\n    \"How to extend to complex eigenvalues for non-symmetric matrices?\",\n    \"Should we provide symbolic eigenvalue computation for small matrices?\",\n    \"How to certify numerical accuracy bounds for eigenvalues?\",\n    \"Can eigenvalue results be promoted to authority-bearing contracts?\",\n    \"Currently restricted to symmetric real matrices only\",\n    \"Eigenvalues computed via nalgebra::SymmetricEigen (approximate)\",\n    \"No eigenvector computation (eigenvalues only)\",\n    \"Strictly diagnostic - no authority for proofs or decisions\",\n    \"Floating-point tolerance required for symmetry check\",\n    \"Sorted output guaranteed for deterministic replay\",\n    \"Empty matrix (dimension 0) handled as special case\",\n    \"Trace and determinant computed from eigenvalues (post-hoc)\",\n    \"No support for infinite-dimensional operators\",\n    \"No support for complex eigenvalues or non-Hermitian matrices\"\n  ]\n}\n",
+      "sha256": "dfb0a1939b9ef00b1c0b04995d391eb7d1ab75ed816fc36178f00bae3633feed"
+    },
+    {
+      "bytes": 1700,
       "original_paths": [
-        "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py\",\n    \"sha256\": \"7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py\",\n      \"sha256\": \"7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a\",\n  \"subject\": \"code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py",
+          "sha256": "7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py",
+            "sha256": "7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a",
+        "subject": "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py"
+      },
+      "sha256": "5a0d8b369c4abf8ffba13c0313800f13576fcb8e60d13bf251ce88de67d03aac"
     }
   ],
+  "current_contract": "5a0d8b369c4abf8ffba13c0313800f13576fcb8e60d13bf251ce88de67d03aac",
+  "current_scoring": "14a87674a001a2cdb099e5e452e7257bc74d3ce1fbc513ba54cd1db5d78a751c",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0.contract.yaml": "0947a255ff7143c1c8b4f1ae63cf36d6bb51409557f573e4e78404810e9d6854"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "815291037e2ee6ee205e88f7d1b242ae6e1f72179e604c04362347dcc96a38bc",
       "bytes": 2217,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py\",\n    \"sha256\": \"7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-eigenvalue-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py",
           "sha256": "7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:algebra:math-eigenvalue-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -314,40 +253,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "815291037e2ee6ee205e88f7d1b242ae6e1f72179e604c04362347dcc96a38bc"
+    },
+    {
+      "bytes": 1660,
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py\",\n    \"sha256\": \"7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py\",\n      \"sha256\": \"7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py",
+          "sha256": "7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py",
+            "sha256": "7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.py\",\n    \"sha256\": \"7d0899fb90cf6f2129cc486341f499b4e5ea290839537cc1d3756981ff36585a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-eigenvalue-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "14a87674a001a2cdb099e5e452e7257bc74d3ce1fbc513ba54cd1db5d78a751c"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/algebra/math_eigenvalue_v0_1_0.contract.yaml": "0947a255ff7143c1c8b4f1ae63cf36d6bb51409557f573e4e78404810e9d6854"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

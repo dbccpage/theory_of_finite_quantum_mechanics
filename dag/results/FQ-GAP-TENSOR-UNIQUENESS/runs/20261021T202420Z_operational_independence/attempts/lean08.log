@@ -1,0 +1,64 @@
+⚠ [1648/1650] Built OperationalSymmetry (37s)
+warning: OperationalSymmetry.lean: imports `Mathlib.Basic.Real.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.LinearAlgebra.Matrix.Kronecker` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.LinearAlgebra.Matrix.ToLin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.FinCases` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean:328:11: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: OperationalSymmetry.lean:328:11: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [1649/1650] Building OperationalCoherence (22s)
+trace: .> LEAN_PATH=C:\lq\l4\.lake\packages\Cli\.lake\build\lib\lean;C:\lq\l4\.lake\packages\batteries\.lake\build\lib\lean;C:\lq\l4\.lake\packages\Qq\.lake\build\lib\lean;C:\lq\l4\.lake\packages\aesop\.lake\build\lib\lean;C:\lq\l4\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\lq\l4\.lake\packages\importGraph\.lake\build\lib\lean;C:\lq\l4\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\lq\l4\.lake\packages\plausible\.lake\build\lib\lean;C:\lq\l4\.lake\packages\mathlib\.lake\build\lib\lean;C:\t\cfs\lean4\b\lib\lean c:\Users\a343o\source\repos\.elan\toolchains\leanprover--lean4---v4.35.0\bin\lean.exe C:\t\cfs\lean4\OperationalCoherence.lean -o C:\t\cfs\lean4\b\lib\lean\OperationalCoherence.olean -i C:\t\cfs\lean4\b\lib\lean\OperationalCoherence.ilean -c C:\t\cfs\lean4\b\ir\OperationalCoherence.c --setup C:\t\cfs\lean4\b\ir\OperationalCoherence.setup.json --json
+warning: OperationalCoherence.lean:99:18: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [identity, Subsingleton.elim PUnit.unit x.1]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: OperationalCoherence.lean:107:18: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [identity, Subsingleton.elim PUnit.unit x.2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: OperationalCoherence.lean:130:21: failed to synthesize instance of type class
+  Decidable (f i = j)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: OperationalCoherence.lean:130:60: Tactic `split_ifs` failed: no if-then-else conditions to split
+
+A B : System
+I : Type u_1
+J : Type u_2
+inst✝¹ : Fintype I
+inst✝ : Fintype J
+T : I → Process A B
+f : I → J
+j : J
+i : I
+⊢ 0 ≤ sorry
+warning: OperationalCoherence.lean:135:13: declaration uses `sorry`
+warning: OperationalCoherence.lean:132:8: declaration uses `sorry`
+warning: OperationalCoherence.lean:133:27: Variable name `hT` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hT
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: OperationalCoherence.lean:164:37: This simp argument is unused:
+  Invariant
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [correlation]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Some required targets logged failures:
+- OperationalCoherence
+error: build failed

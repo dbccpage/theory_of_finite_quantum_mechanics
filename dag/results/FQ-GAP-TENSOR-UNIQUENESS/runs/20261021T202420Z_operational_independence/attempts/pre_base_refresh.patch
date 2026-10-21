@@ -1,0 +1,25 @@
+diff --git a/code/rust/src/finite_probability/lib.rs b/code/rust/src/finite_probability/lib.rs
+index c7c50eaee..3b1667b2b 100644
+--- a/code/rust/src/finite_probability/lib.rs
++++ b/code/rust/src/finite_probability/lib.rs
+@@ -86,3 +86,6 @@ mod operational_tomography;
+ 
+ #[cfg(test)]
+ mod operational_filters;
++
++#[cfg(test)]
++mod operational_independence;
+diff --git a/lean4/lakefile.lean b/lean4/lakefile.lean
+index 57b2973e6..8030f6b91 100644
+--- a/lean4/lakefile.lean
++++ b/lean4/lakefile.lean
+@@ -21,6 +21,9 @@ lean_lib «FiniteQuantum» where
+     `OperationalTomography,
+     `OperationalFieldSelection,
+     `OperationalFilterFamily,
++    `OperationalSymmetry,
++    `OperationalCoherence,
++    `OperationalIndependence,
+     `TensorCoordinates,
+     `TensorSchmidt,
+     `TensorReachability,

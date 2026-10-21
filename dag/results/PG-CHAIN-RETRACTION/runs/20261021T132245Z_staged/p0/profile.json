@@ -1,0 +1,186 @@
+{
+  "source_review_status": "semantics_reviewed_for_selected_step",
+  "source_scope_review": "Read Paper.lean (sha b0f6365df8; fragments with explicit sub, chain_retraction_cannot_kill line 147), Homology.lean (sha 13d8de1400; hand-built image quotient over Lean-core Grind groups, induced_homology_injective line 210) and Paper001.lean (sha b90693440d; ChainRetraction 453, homology_kernel_trivial 460, homology_injective_of_chain_retraction 468, two_point_retraction_impossible 477, triangle_retraction_impossible 491). The general theorems are correct. The two named non-example theorems take the pointwise instances of the section law and chain condition as hypotheses and derive -1 = 0 or 1 = 0; they are correct but do not themselves derive those facts from a chain retraction. Mine: re-proved the injectivity for Mathlib modules over any ring (only r . i = id and bd-commutation used), modelled both named cases as concrete degree fragments with the killed class in Hom and derived non-existence of a linear chain retraction from the general theorem, and tabulated 13 complexes over Q. The converse is false over Z (multiplication by 2); over Q it holds on every listed case and on 2448 enumerated subcomplexes, recorded as an observation only.",
+  "independent_predicates": [
+    "rank H_k(i) recomputed as b_k(C) - [rank d_{k+1}^D - rank(E_k) - rank d_{k+1}^C] (cycles of C that bound in D) using only matrix ranks, against the producer nullspace route.",
+    "Retraction system rebuilt at the matrix level with linear forms, solved by forward elimination and back substitution; rank and augmented rank compared; the canonical solution (free unknowns 0) compared entry by entry and verified by matrix products r.i = id and d^C r = r d^D.",
+    "A retraction exists only if H(i) is injective in every degree (the Lean theorem); on this family the converse is enforced as an observation.",
+    "Closedness of the basis subset under the boundary decides subcomplex status; a non-closed set is refused.",
+    "Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports."
+  ],
+  "claim_boundary": {
+    "supports": "Kernel-checked over any ring and any modules, degree by degree (so for complexes of any size): if linear maps rU, rM, rL commute with the boundary and differential and rM . iM = id on the middle module, a class that is not a boundary in C stays a non-boundary in D (cannot_kill), and the induced map on homology (cycles modulo boundaries, a Mathlib quotient) is injective (Hmap_injective, kernel_trivial). The two named non-examples are built in Lean as concrete degree fragments over any ring (two isolated points in an edge, degree 0; a triangle boundary in the filled triangle, degree 1), the inclusion is proved to be a chain map, the killed class is exhibited as a nonzero element of Hom sent to zero by Hmap (nontrivial ring), and no linear rU, rM, rL satisfying the chain-map and section conditions exists (no_retraction_of_killed, TwoPoints.no_chain_retraction, Triangle.no_chain_retraction); other degrees of those complexes are not formalised in Lean and retractions are required to be linear there. The converse fails over the integers in the labelled one-term instance x -> 2x (TimesTwo.converse_fails_over_int, stated through Hmap; not a subcomplex inclusion). Native over Q: 13 finite free complexes (edges, triangles, tetrahedron skeleta) with exact Betti numbers, rank of the induced homology map, killed-class counts and the rank/augmented rank of the retraction system, with an explicit verified retraction wherever one exists; one refused non-subcomplex.",
+    "does_not_support": "The bridge from declared inclusions to WDP-CH04-N02 (growth of the Genesis/WDP complexes does not repair an obstruction) for any actual Genesis/WDP complex pair; coefficient rings other than the declared one in the native tables; infinite or non-free complexes in the native tables; non-linear retractions and the full-complex (all degrees at once) formalisation of the two named cases; an integral failure of the converse for a genuine subcomplex inclusion (the Z instance is a one-term map, not a subcomplex); the converse over Q as a Lean theorem (it is a standard fact over a field, only observed here on the listed complexes); any physical reading.",
+    "narrowest_claim": "For chain maps i: C -> D and r: D -> C over a ring with r . i = id on the middle module and r commuting with the boundary, the induced map on homology is injective, so an extension admitting such an r cannot kill an old class; the two-points and triangle-with-face extensions kill a class (kernel, in the modelled degree fragment, and native) and admit no linear chain retraction (kernel, same fragment).",
+    "next_test": "Take one actual Genesis/WDP growth inclusion named by WDP-CH04-N02, write it in the native complex encoding with its basis subset, and decide by the retraction system and the rank of H(i) whether the old obstruction class is killed or a chain retraction exists, so that the bridge from the general theorem to the WDP growth statement is tested on a real complex."
+  },
+  "carrier": "ChainMap, Complex, HomologyMap, LinearSystem, Module, Retraction",
+  "coefficient_ring": "Exact integers and rationals",
+  "production_sources": [
+    "lean4/ChainRetraction.lean",
+    "code/python/src/qm/pfp_chain_retraction.py",
+    "code/python/tests/test_pfp_chain_retraction.py",
+    "code/rust/src/finite_probability/pfp_chain_retraction.rs",
+    "code/rust/src/finite_probability/examples/pfp_chain_retraction_replay.rs"
+  ],
+  "build_sources": [
+    "code/rust/Cargo.toml",
+    "code/rust/src/finite_probability/Cargo.toml",
+    "code/rust/Cargo.lock",
+    "lean4/lake-manifest.json",
+    "lean4/lean-toolchain"
+  ],
+  "challenge_plan": "Coordinate mutants of every certificate leaf plus nine semantic near misses: isolated points retract, triangle class survives the face, hollow tetrahedron class survives, converse denied over Q, non-subcomplex given homology, non-section retraction, skeleton inclusion retracts, an identity-on-vertices retraction claimed for the edge, injectivity read off degree 0 only.",
+  "composition_tree": [
+    "homology_map(chain_map(inclusion))",
+    "retraction(chain_map(inclusion))"
+  ],
+  "anchors": [
+    "ChainRetraction.cannot_kill",
+    "ChainRetraction.Hmap_injective",
+    "ChainRetraction.kernel_trivial",
+    "ChainRetraction.no_retraction_of_killed",
+    "ChainRetraction.TwoPoints.cls_ne_zero",
+    "ChainRetraction.TwoPoints.cls_killed",
+    "ChainRetraction.TwoPoints.no_chain_retraction",
+    "ChainRetraction.Triangle.square_zero",
+    "ChainRetraction.Triangle.cls_ne_zero",
+    "ChainRetraction.Triangle.cls_killed",
+    "ChainRetraction.Triangle.no_chain_retraction",
+    "ChainRetraction.TimesTwo.converse_fails_over_int"
+  ],
+  "checker_id": "independent-chain-retraction-v1",
+  "result_or_obstruction": "For chain maps i: C -> D and r: D -> C over a ring with r . i = id on the middle module and r commuting with the boundary, the induced map on homology is injective, so an extension admitting such an r cannot kill an old class; the two-points and triangle-with-face extensions kill a class (kernel, in the modelled degree fragment, and native) and admit no linear chain retraction (kernel, same fragment).",
+  "next_mathematical_step": "Take one actual Genesis/WDP growth inclusion named by WDP-CH04-N02, write it in the native complex encoding with its basis subset, and decide by the retraction system and the rank of H(i) whether the old obstruction class is killed or a chain retraction exists, so that the bridge from the general theorem to the WDP growth statement is tested on a real complex.",
+  "report": "# PG-CHAIN-RETRACTION\n\nRead Paper.lean (sha b0f6365df8; fragments with explicit sub, chain_retraction_cannot_kill line 147), Homology.lean (sha 13d8de1400; hand-built image quotient over Lean-core Grind groups, induced_homology_injective line 210) and Paper001.lean (sha b90693440d; ChainRetraction 453, homology_kernel_trivial 460, homology_injective_of_chain_retraction 468, two_point_retraction_impossible 477, triangle_retraction_impossible 491). The general theorems are correct. The two named non-example theorems take the pointwise instances of the section law and chain condition as hypotheses and derive -1 = 0 or 1 = 0; they are correct but do not themselves derive those facts from a chain retraction. Mine: re-proved the injectivity for Mathlib modules over any ring (only r . i = id and bd-commutation used), modelled both named cases as concrete degree fragments with the killed class in Hom and derived non-existence of a linear chain retraction from the general theorem, and tabulated 13 complexes over Q. The converse is false over Z (multiplication by 2); over Q it holds on every listed case and on 2448 enumerated subcomplexes, recorded as an observation only.\n\nSupported: Kernel-checked over any ring and any modules, degree by degree (so for complexes of any size): if linear maps rU, rM, rL commute with the boundary and differential and rM . iM = id on the middle module, a class that is not a boundary in C stays a non-boundary in D (cannot_kill), and the induced map on homology (cycles modulo boundaries, a Mathlib quotient) is injective (Hmap_injective, kernel_trivial). The two named non-examples are built in Lean as concrete degree fragments over any ring (two isolated points in an edge, degree 0; a triangle boundary in the filled triangle, degree 1), the inclusion is proved to be a chain map, the killed class is exhibited as a nonzero element of Hom sent to zero by Hmap (nontrivial ring), and no linear rU, rM, rL satisfying the chain-map and section conditions exists (no_retraction_of_killed, TwoPoints.no_chain_retraction, Triangle.no_chain_retraction); other degrees of those complexes are not formalised in Lean and retractions are required to be linear there. The converse fails over the integers in the labelled one-term instance x -> 2x (TimesTwo.converse_fails_over_int, stated through Hmap; not a subcomplex inclusion). Native over Q: 13 finite free complexes (edges, triangles, tetrahedron skeleta) with exact Betti numbers, rank of the induced homology map, killed-class counts and the rank/augmented rank of the retraction system, with an explicit verified retraction wherever one exists; one refused non-subcomplex.\n\nRemaining: The bridge from declared inclusions to WDP-CH04-N02 (growth of the Genesis/WDP complexes does not repair an obstruction) for any actual Genesis/WDP complex pair; coefficient rings other than the declared one in the native tables; infinite or non-free complexes in the native tables; non-linear retractions and the full-complex (all degrees at once) formalisation of the two named cases; an integral failure of the converse for a genuine subcomplex inclusion (the Z instance is a one-term map, not a subcomplex); the converse over Q as a Lean theorem (it is a standard fact over a field, only observed here on the listed complexes); any physical reading.",
+  "construction": "Exact rational linear algebra on 13 finite free complexes; Lean proves injectivity over any ring and non-existence of a linear chain retraction for the two named inclusions in their modelled degree fragments.",
+  "colour_meanings": {
+    "Module": "R-module in one degree",
+    "Complex": "U --bd--> M --d--> L with d . bd = 0",
+    "ChainMap": "Linear maps in the three degrees commuting with bd and d",
+    "HomologyMap": "Induced map on cycles modulo boundaries",
+    "Retraction": "Chain map r with r . i = id",
+    "LinearSystem": "Equations on the unknown entries of r over Q"
+  },
+  "lean_anchors": [
+    "ChainRetraction.cannot_kill",
+    "ChainRetraction.Hmap_injective",
+    "ChainRetraction.kernel_trivial",
+    "ChainRetraction.no_retraction_of_killed",
+    "ChainRetraction.TwoPoints.cls_ne_zero",
+    "ChainRetraction.TwoPoints.cls_killed",
+    "ChainRetraction.TwoPoints.no_chain_retraction",
+    "ChainRetraction.Triangle.square_zero",
+    "ChainRetraction.Triangle.cls_ne_zero",
+    "ChainRetraction.Triangle.cls_killed",
+    "ChainRetraction.Triangle.no_chain_retraction",
+    "ChainRetraction.TimesTwo.converse_fails_over_int"
+  ],
+  "relation_evidence": {
+    "cannot_kill": "Kernel cannot_kill and Hmap_injective; native killed counts.",
+    "converse_over_Q_observation": "Native only; Lean shows it false over Z in a one-term instance."
+  },
+  "dag_status_depends_on_result": true,
+  "p2_gates": [
+    {
+      "id": "python",
+      "argv": [
+        "{python}",
+        "-X",
+        "utf8",
+        "code/python/tests/test_pfp_chain_retraction.py",
+        "-v"
+      ],
+      "needs": null,
+      "cwd": "."
+    },
+    {
+      "id": "rust",
+      "argv": [
+        "{cargo}",
+        "test",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--lib",
+        "pfp_chain_retraction",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": "."
+    },
+    {
+      "id": "rust_replay",
+      "argv": [
+        "{cargo}",
+        "run",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--example",
+        "pfp_chain_retraction_replay",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": ".",
+      "stdin_file": "public_input.tsv"
+    },
+    {
+      "id": "lean",
+      "argv": [
+        "{lean}",
+        "-j",
+        "1",
+        "-o",
+        ".lake/build/lib/lean/ChainRetraction.olean",
+        "ChainRetraction.lean"
+      ],
+      "needs": "lean",
+      "cwd": "lean4"
+    }
+  ],
+  "p2_checks": {
+    "lean": {
+      "gate": "lean",
+      "anchors": [
+        "ChainRetraction.cannot_kill",
+        "ChainRetraction.Hmap_injective",
+        "ChainRetraction.kernel_trivial",
+        "ChainRetraction.no_retraction_of_killed",
+        "ChainRetraction.TwoPoints.cls_ne_zero",
+        "ChainRetraction.TwoPoints.cls_killed",
+        "ChainRetraction.TwoPoints.no_chain_retraction",
+        "ChainRetraction.Triangle.square_zero",
+        "ChainRetraction.Triangle.cls_ne_zero",
+        "ChainRetraction.Triangle.cls_killed",
+        "ChainRetraction.Triangle.no_chain_retraction",
+        "ChainRetraction.TimesTwo.converse_fails_over_int"
+      ]
+    },
+    "wire": {
+      "gate": "rust_replay"
+    },
+    "tests": {
+      "python": {
+        "gate": "python",
+        "stream": "stderr"
+      },
+      "rust": {
+        "gate": "rust",
+        "stream": "stdout",
+        "pattern": "test result: ok\\. (\\d+) passed; 0 failed"
+      }
+    }
+  },
+  "challenge": {
+    "ignore_paths": [],
+    "max_coordinate_mutants": null
+  },
+  "review": {
+    "reviewed_target_qualification": "Injectivity of the induced homology map under a chain retraction is proved over any ring; the source instance theorems take the pointwise section and chain facts as hypotheses, and the versions here derive them from concrete degree-fragment chain complexes (linear retractions); the converse is not claimed (false over Z in a one-term instance, standard but unproved here over Q); the bridge to the WDP growth statement is open."
+  }
+}

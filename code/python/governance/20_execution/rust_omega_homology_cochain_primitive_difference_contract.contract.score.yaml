@@ -1,76 +1,55 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py",
       "sha256": "8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:20_execution:rust-omega-homology-cochain-primitive-difference-contract:v1",
-    "role": "library",
-    "purpose": "Pydantic v2 Twin Model for rust:omega_homology:cochain_primitive_difference Schema Version: 1.0.0",
-    "operations": {
-      "ContractModel": "Class ContractModel domain record and methods.",
-      "validate_contract": "Function validate_contract operation."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py",
+        "sha256": "8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee",
+    "subject": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py"
   },
-  "current_contract": "047dc5504c16613766d2831eb39b2a65fd51358c6ceb1cfbff0ca93ba15fdbc8",
-  "current_scoring": "4e2414d78b09139ae8ab1599f113571f6069763f985069d72c4519693f4beb59",
   "contract_history": [
     {
-      "sha256": "9d94b109f1aac02d4808b57e63ef79b3f0dad9f0643449964f327b627c2cafe4",
       "bytes": 5794,
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"contract_id\": \"rust:omega_homology:cochain_primitive_difference\",\n  \"kind\": \"rust_file_contract\",\n  \"name\": \"Cochain -> PrimitiveDifference Adapter\",\n  \"version\": \"1.0.0\",\n  \"crate\": \"omega_homology\",\n  \"file\": \"crates_rs/omega_homology/src/cochain_primitive_difference.rs\",\n  \"module_path\": \"omega_homology::cochain_primitive_difference\",\n  \"role\": \"cochain_primitive_difference_adapter\",\n  \"status\": \"active\",\n  \"authority_effect\": \"EvidenceOnly\",\n  \"transition_authority\": \"none\",\n  \"description\": \"Realizes a finite cochain complex as a PrimitiveDifference on its C^1 cochains, mirroring the Lean OmegaCore.cochainDifference: delta(x,y) = x - y and Zero(d) := d in im(d0) (d is a coboundary), membership decided exactly over Q by linear_algebra::linear_algebra::image_kernel::solve_in_image. It implements the HoTT primitive trait for cochain complexes; it computes no Phi1/Gamma2, runs no evaluator, mints no authority.\\n\",\n  \"exactness\": {\n    \"level\": \"bigrational_exact\",\n    \"f64_allowed\": false,\n    \"bigrational_followup\": \"EXACT-LA-001 completed by ADR-001 (BigRational canonical Q)\"\n  },\n  \"lean_anchor\": {\n    \"file\": \"lean4/original_lean_20260809/finite_cochain_complex.lean\",\n    \"repointed_from\": \"omega_engine/lean4/…/OmegaCosmology/Primitives/FiniteCochainComplex.lean (never present in this repository)\",\n    \"in_tree_build\": \"None. The file is not a root of any Lake package in this repository, and its imports primitive_difference, «lg006_pointed_obstruction_classifier» and «lg006_primitive_obstruction_pipeline» do not resolve here.\\n\",\n    \"replay\": \"2026-09-29 scratch replay, not committed: Lean 4.34.0 + Mathlib v4.34.0, the three imports rewritten to PrimitiveDifference / PointedObstructionClassifier / PrimitiveObstructionPipeline from omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean4/, body unchanged; exit 0. cochainDifference, gammaL1_congruent_of_cochain, cochainDifference_zero_iff_mem_range, d0LinearMap and range_d0_finiteDimensional elaborate; the theorems print axioms [propext, Classical.choice, Quot.sound].\\n\",\n    \"modeled_definitions\": [\n      \"cochainDifference\"\n    ],\n    \"related\": [\n      \"gammaL1 / gammaL1_congruent_of_cochain (Gamma2 magnitude descent)\"\n    ],\n    \"orientation\": \"delta(x,y) = x - y (matches Lean cochainDifference)\"\n  },\n  \"owns\": [\n    \"cochain_as_primitive_difference\",\n    \"coboundary_zero_predicate (Zero(d) := d in im(d0))\"\n  ],\n  \"does_not_own\": [\n    \"phi1\",\n    \"gamma2\",\n    \"trichotomy\",\n    \"cochain_complex (owned by cochain_complex.rs)\",\n    \"exact_image_membership (owned by omega_linear_algebra::image_kernel)\",\n    \"primitive_difference_trait (defined in omega_homotopy_type_theory)\",\n    \"authority_minting\",\n    \"evaluator_policy\",\n    \"lift_policy\",\n    \"operad_generation\"\n  ],\n  \"may_call\": [\n    \"std\",\n    \"omega_homotopy_type_theory::primitive_difference (the trait)\",\n    \"omega_homology::cochain_complex (the carrier)\",\n    \"linear_algebra::linear_algebra::image_kernel::solve_in_image (exact membership)\"\n  ],\n  \"must_not_call\": [\n    \"omega_functional\",\n    \"omega_certifiers\",\n    \"omega_id_run\",\n    \"omega_pipelines\",\n    \"omega_engines\"\n  ],\n  \"rules\": {\n    \"authority_minting\": \"forbidden\",\n    \"canonical_functional_computation\": \"forbidden\",\n    \"f64\": \"forbidden\",\n    \"delta_orientation\": \"x_minus_y_matches_lean\",\n    \"zero_predicate\": \"d_in_image_d0_exact\"\n  },\n  \"required_types\": [\n    \"CochainPrimitiveDifference\"\n  ],\n  \"required_tests\": [\n    \"cochain_zero_accepts_exact_boundary\",\n    \"cochain_zero_rejects_non_boundary\",\n    \"cochain_primitive_difference_matches_lean_orientation\",\n    \"cochain_zero_rel_equivalence_on_validated_domain\"\n  ],\n  \"lean_obligations\": [\n    {\n      \"id\": \"CPD-L0\",\n      \"theorem\": \"delta = x - y, Zero = is-coboundary realizes a PrimitiveDifference (zero laws hold).\",\n      \"lean_name\": \"OmegaCore.cochainDifference (zero_refl/zero_symm/zero_trans)\",\n      \"status\": \"proved_in_lean\"\n    },\n    {\n      \"id\": \"CPD-L1\",\n      \"theorem\": \"The cochain Zero predicate (Zero d := exists pot, d0 pot = d) is exactly membership in the Q-linear range of d0 (a genuine Mathlib LinearMap), and im(d0) is a finite-dimensional Q-subspace of C^1 -- the image-membership predicate solve_in_image decides. Soundness (Rust InImage => Lean Zero) is definitional: the replay-verified pot witness IS the existential.\",\n      \"lean_name\": \"OmegaCore.cochainDifference_zero_iff_mem_range (+ d0LinearMap / range_d0_finiteDimensional)\",\n      \"status\": \"proved_in_lean\",\n      \"axioms\": \"[propext, Classical.choice, Quot.sound]\",\n      \"scope\": \"bounded anchor: spec correspondence + finite-dimensionality. Completeness split out as CPD-L1b.\"\n    },\n    {\n      \"id\": \"CPD-L1b\",\n      \"theorem\": \"Completeness of the Rust rank decision: solve_in_image returns NotInImage (rank([d0|v]) > rank d0) only when v is genuinely NOT a coboundary (Rouche-Capelli over finite-dim Q).\",\n      \"lean_name\": \"rust_verified_not_yet_in_lean\",\n      \"status\": \"rust_verified\",\n      \"note\": \"Verified Rust-side by exact rank-augmentation + matvec replay; a false InImage witness is impossible. A full Lean derivation would require porting rank/RREF consistency (Rouche-Capelli) into Mathlib -- deferred.\"\n    }\n  ],\n  \"notes\": [\n    \"This adapter is BELOW the functional layer; it produces the residual quotient C^1/im(d0), not Phi1 or Gamma2.\",\n    \"ADR-001 widened Q to BigRational. Consumers recording evidence must retain the solve_in_image Result; PrimitiveDifference::zero maps solver errors to false.\",\n    \"Do not claim operads, physics, or global generativity from this -- it is the delta->cochain realization only.\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "1.0.0",
-        "contract_id": "rust:omega_homology:cochain_primitive_difference",
-        "kind": "rust_file_contract",
-        "name": "Cochain -> PrimitiveDifference Adapter",
-        "version": "1.0.0",
-        "crate": "omega_homology",
-        "file": "crates_rs/omega_homology/src/cochain_primitive_difference.rs",
-        "module_path": "omega_homology::cochain_primitive_difference",
-        "role": "cochain_primitive_difference_adapter",
-        "status": "active",
         "authority_effect": "EvidenceOnly",
-        "transition_authority": "none",
+        "contract_id": "rust:omega_homology:cochain_primitive_difference",
+        "crate": "omega_homology",
         "description": "Realizes a finite cochain complex as a PrimitiveDifference on its C^1 cochains, mirroring the Lean OmegaCore.cochainDifference: delta(x,y) = x - y and Zero(d) := d in im(d0) (d is a coboundary), membership decided exactly over Q by linear_algebra::linear_algebra::image_kernel::solve_in_image. It implements the HoTT primitive trait for cochain complexes; it computes no Phi1/Gamma2, runs no evaluator, mints no authority.\n",
-        "exactness": {
-          "level": "bigrational_exact",
-          "f64_allowed": false,
-          "bigrational_followup": "EXACT-LA-001 completed by ADR-001 (BigRational canonical Q)"
-        },
-        "lean_anchor": {
-          "file": "lean4/original_lean_20260809/finite_cochain_complex.lean",
-          "repointed_from": "omega_engine/lean4/…/OmegaCosmology/Primitives/FiniteCochainComplex.lean (never present in this repository)",
-          "in_tree_build": "None. The file is not a root of any Lake package in this repository, and its imports primitive_difference, «lg006_pointed_obstruction_classifier» and «lg006_primitive_obstruction_pipeline» do not resolve here.\n",
-          "replay": "2026-09-29 scratch replay, not committed: Lean 4.34.0 + Mathlib v4.34.0, the three imports rewritten to PrimitiveDifference / PointedObstructionClassifier / PrimitiveObstructionPipeline from omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean4/, body unchanged; exit 0. cochainDifference, gammaL1_congruent_of_cochain, cochainDifference_zero_iff_mem_range, d0LinearMap and range_d0_finiteDimensional elaborate; the theorems print axioms [propext, Classical.choice, Quot.sound].\n",
-          "modeled_definitions": [
-            "cochainDifference"
-          ],
-          "related": [
-            "gammaL1 / gammaL1_congruent_of_cochain (Gamma2 magnitude descent)"
-          ],
-          "orientation": "delta(x,y) = x - y (matches Lean cochainDifference)"
-        },
-        "owns": [
-          "cochain_as_primitive_difference",
-          "coboundary_zero_predicate (Zero(d) := d in im(d0))"
-        ],
         "does_not_own": [
           "phi1",
           "gamma2",
@@ -83,12 +62,56 @@
           "lift_policy",
           "operad_generation"
         ],
+        "exactness": {
+          "bigrational_followup": "EXACT-LA-001 completed by ADR-001 (BigRational canonical Q)",
+          "f64_allowed": false,
+          "level": "bigrational_exact"
+        },
+        "file": "crates_rs/omega_homology/src/cochain_primitive_difference.rs",
+        "kind": "rust_file_contract",
+        "lean_anchor": {
+          "file": "lean4/original_lean_20260809/finite_cochain_complex.lean",
+          "in_tree_build": "None. The file is not a root of any Lake package in this repository, and its imports primitive_difference, «lg006_pointed_obstruction_classifier» and «lg006_primitive_obstruction_pipeline» do not resolve here.\n",
+          "modeled_definitions": [
+            "cochainDifference"
+          ],
+          "orientation": "delta(x,y) = x - y (matches Lean cochainDifference)",
+          "related": [
+            "gammaL1 / gammaL1_congruent_of_cochain (Gamma2 magnitude descent)"
+          ],
+          "replay": "2026-09-29 scratch replay, not committed: Lean 4.34.0 + Mathlib v4.34.0, the three imports rewritten to PrimitiveDifference / PointedObstructionClassifier / PrimitiveObstructionPipeline from omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean4/, body unchanged; exit 0. cochainDifference, gammaL1_congruent_of_cochain, cochainDifference_zero_iff_mem_range, d0LinearMap and range_d0_finiteDimensional elaborate; the theorems print axioms [propext, Classical.choice, Quot.sound].\n",
+          "repointed_from": "omega_engine/lean4/…/OmegaCosmology/Primitives/FiniteCochainComplex.lean (never present in this repository)"
+        },
+        "lean_obligations": [
+          {
+            "id": "CPD-L0",
+            "lean_name": "OmegaCore.cochainDifference (zero_refl/zero_symm/zero_trans)",
+            "status": "proved_in_lean",
+            "theorem": "delta = x - y, Zero = is-coboundary realizes a PrimitiveDifference (zero laws hold)."
+          },
+          {
+            "axioms": "[propext, Classical.choice, Quot.sound]",
+            "id": "CPD-L1",
+            "lean_name": "OmegaCore.cochainDifference_zero_iff_mem_range (+ d0LinearMap / range_d0_finiteDimensional)",
+            "scope": "bounded anchor: spec correspondence + finite-dimensionality. Completeness split out as CPD-L1b.",
+            "status": "proved_in_lean",
+            "theorem": "The cochain Zero predicate (Zero d := exists pot, d0 pot = d) is exactly membership in the Q-linear range of d0 (a genuine Mathlib LinearMap), and im(d0) is a finite-dimensional Q-subspace of C^1 -- the image-membership predicate solve_in_image decides. Soundness (Rust InImage => Lean Zero) is definitional: the replay-verified pot witness IS the existential."
+          },
+          {
+            "id": "CPD-L1b",
+            "lean_name": "rust_verified_not_yet_in_lean",
+            "note": "Verified Rust-side by exact rank-augmentation + matvec replay; a false InImage witness is impossible. A full Lean derivation would require porting rank/RREF consistency (Rouche-Capelli) into Mathlib -- deferred.",
+            "status": "rust_verified",
+            "theorem": "Completeness of the Rust rank decision: solve_in_image returns NotInImage (rank([d0|v]) > rank d0) only when v is genuinely NOT a coboundary (Rouche-Capelli over finite-dim Q)."
+          }
+        ],
         "may_call": [
           "std",
           "omega_homotopy_type_theory::primitive_difference (the trait)",
           "omega_homology::cochain_complex (the carrier)",
           "linear_algebra::linear_algebra::image_kernel::solve_in_image (exact membership)"
         ],
+        "module_path": "omega_homology::cochain_primitive_difference",
         "must_not_call": [
           "omega_functional",
           "omega_certifiers",
@@ -96,121 +119,144 @@
           "omega_pipelines",
           "omega_engines"
         ],
-        "rules": {
-          "authority_minting": "forbidden",
-          "canonical_functional_computation": "forbidden",
-          "f64": "forbidden",
-          "delta_orientation": "x_minus_y_matches_lean",
-          "zero_predicate": "d_in_image_d0_exact"
-        },
-        "required_types": [
-          "CochainPrimitiveDifference"
+        "name": "Cochain -> PrimitiveDifference Adapter",
+        "notes": [
+          "This adapter is BELOW the functional layer; it produces the residual quotient C^1/im(d0), not Phi1 or Gamma2.",
+          "ADR-001 widened Q to BigRational. Consumers recording evidence must retain the solve_in_image Result; PrimitiveDifference::zero maps solver errors to false.",
+          "Do not claim operads, physics, or global generativity from this -- it is the delta->cochain realization only."
         ],
+        "owns": [
+          "cochain_as_primitive_difference",
+          "coboundary_zero_predicate (Zero(d) := d in im(d0))"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
         "required_tests": [
           "cochain_zero_accepts_exact_boundary",
           "cochain_zero_rejects_non_boundary",
           "cochain_primitive_difference_matches_lean_orientation",
           "cochain_zero_rel_equivalence_on_validated_domain"
         ],
-        "lean_obligations": [
-          {
-            "id": "CPD-L0",
-            "theorem": "delta = x - y, Zero = is-coboundary realizes a PrimitiveDifference (zero laws hold).",
-            "lean_name": "OmegaCore.cochainDifference (zero_refl/zero_symm/zero_trans)",
-            "status": "proved_in_lean"
-          },
-          {
-            "id": "CPD-L1",
-            "theorem": "The cochain Zero predicate (Zero d := exists pot, d0 pot = d) is exactly membership in the Q-linear range of d0 (a genuine Mathlib LinearMap), and im(d0) is a finite-dimensional Q-subspace of C^1 -- the image-membership predicate solve_in_image decides. Soundness (Rust InImage => Lean Zero) is definitional: the replay-verified pot witness IS the existential.",
-            "lean_name": "OmegaCore.cochainDifference_zero_iff_mem_range (+ d0LinearMap / range_d0_finiteDimensional)",
-            "status": "proved_in_lean",
-            "axioms": "[propext, Classical.choice, Quot.sound]",
-            "scope": "bounded anchor: spec correspondence + finite-dimensionality. Completeness split out as CPD-L1b."
-          },
-          {
-            "id": "CPD-L1b",
-            "theorem": "Completeness of the Rust rank decision: solve_in_image returns NotInImage (rank([d0|v]) > rank d0) only when v is genuinely NOT a coboundary (Rouche-Capelli over finite-dim Q).",
-            "lean_name": "rust_verified_not_yet_in_lean",
-            "status": "rust_verified",
-            "note": "Verified Rust-side by exact rank-augmentation + matvec replay; a false InImage witness is impossible. A full Lean derivation would require porting rank/RREF consistency (Rouche-Capelli) into Mathlib -- deferred."
-          }
+        "required_types": [
+          "CochainPrimitiveDifference"
         ],
-        "notes": [
-          "This adapter is BELOW the functional layer; it produces the residual quotient C^1/im(d0), not Phi1 or Gamma2.",
-          "ADR-001 widened Q to BigRational. Consumers recording evidence must retain the solve_in_image Result; PrimitiveDifference::zero maps solver errors to false.",
-          "Do not claim operads, physics, or global generativity from this -- it is the delta->cochain realization only."
-        ],
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        }
+        "role": "cochain_primitive_difference_adapter",
+        "rules": {
+          "authority_minting": "forbidden",
+          "canonical_functional_computation": "forbidden",
+          "delta_orientation": "x_minus_y_matches_lean",
+          "f64": "forbidden",
+          "zero_predicate": "d_in_image_d0_exact"
+        },
+        "schema_version": "1.0.0",
+        "status": "active",
+        "transition_authority": "none",
+        "version": "1.0.0"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"contract_id\": \"rust:omega_homology:cochain_primitive_difference\",\n  \"kind\": \"rust_file_contract\",\n  \"name\": \"Cochain -> PrimitiveDifference Adapter\",\n  \"version\": \"1.0.0\",\n  \"crate\": \"omega_homology\",\n  \"file\": \"crates_rs/omega_homology/src/cochain_primitive_difference.rs\",\n  \"module_path\": \"omega_homology::cochain_primitive_difference\",\n  \"role\": \"cochain_primitive_difference_adapter\",\n  \"status\": \"active\",\n  \"authority_effect\": \"EvidenceOnly\",\n  \"transition_authority\": \"none\",\n  \"description\": \"Realizes a finite cochain complex as a PrimitiveDifference on its C^1 cochains, mirroring the Lean OmegaCore.cochainDifference: delta(x,y) = x - y and Zero(d) := d in im(d0) (d is a coboundary), membership decided exactly over Q by linear_algebra::linear_algebra::image_kernel::solve_in_image. It implements the HoTT primitive trait for cochain complexes; it computes no Phi1/Gamma2, runs no evaluator, mints no authority.\\n\",\n  \"exactness\": {\n    \"level\": \"bigrational_exact\",\n    \"f64_allowed\": false,\n    \"bigrational_followup\": \"EXACT-LA-001 completed by ADR-001 (BigRational canonical Q)\"\n  },\n  \"lean_anchor\": {\n    \"file\": \"lean4/original_lean_20260809/finite_cochain_complex.lean\",\n    \"repointed_from\": \"omega_engine/lean4/…/OmegaCosmology/Primitives/FiniteCochainComplex.lean (never present in this repository)\",\n    \"in_tree_build\": \"None. The file is not a root of any Lake package in this repository, and its imports primitive_difference, «lg006_pointed_obstruction_classifier» and «lg006_primitive_obstruction_pipeline» do not resolve here.\\n\",\n    \"replay\": \"2026-09-29 scratch replay, not committed: Lean 4.34.0 + Mathlib v4.34.0, the three imports rewritten to PrimitiveDifference / PointedObstructionClassifier / PrimitiveObstructionPipeline from omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean4/, body unchanged; exit 0. cochainDifference, gammaL1_congruent_of_cochain, cochainDifference_zero_iff_mem_range, d0LinearMap and range_d0_finiteDimensional elaborate; the theorems print axioms [propext, Classical.choice, Quot.sound].\\n\",\n    \"modeled_definitions\": [\n      \"cochainDifference\"\n    ],\n    \"related\": [\n      \"gammaL1 / gammaL1_congruent_of_cochain (Gamma2 magnitude descent)\"\n    ],\n    \"orientation\": \"delta(x,y) = x - y (matches Lean cochainDifference)\"\n  },\n  \"owns\": [\n    \"cochain_as_primitive_difference\",\n    \"coboundary_zero_predicate (Zero(d) := d in im(d0))\"\n  ],\n  \"does_not_own\": [\n    \"phi1\",\n    \"gamma2\",\n    \"trichotomy\",\n    \"cochain_complex (owned by cochain_complex.rs)\",\n    \"exact_image_membership (owned by omega_linear_algebra::image_kernel)\",\n    \"primitive_difference_trait (defined in omega_homotopy_type_theory)\",\n    \"authority_minting\",\n    \"evaluator_policy\",\n    \"lift_policy\",\n    \"operad_generation\"\n  ],\n  \"may_call\": [\n    \"std\",\n    \"omega_homotopy_type_theory::primitive_difference (the trait)\",\n    \"omega_homology::cochain_complex (the carrier)\",\n    \"linear_algebra::linear_algebra::image_kernel::solve_in_image (exact membership)\"\n  ],\n  \"must_not_call\": [\n    \"omega_functional\",\n    \"omega_certifiers\",\n    \"omega_id_run\",\n    \"omega_pipelines\",\n    \"omega_engines\"\n  ],\n  \"rules\": {\n    \"authority_minting\": \"forbidden\",\n    \"canonical_functional_computation\": \"forbidden\",\n    \"f64\": \"forbidden\",\n    \"delta_orientation\": \"x_minus_y_matches_lean\",\n    \"zero_predicate\": \"d_in_image_d0_exact\"\n  },\n  \"required_types\": [\n    \"CochainPrimitiveDifference\"\n  ],\n  \"required_tests\": [\n    \"cochain_zero_accepts_exact_boundary\",\n    \"cochain_zero_rejects_non_boundary\",\n    \"cochain_primitive_difference_matches_lean_orientation\",\n    \"cochain_zero_rel_equivalence_on_validated_domain\"\n  ],\n  \"lean_obligations\": [\n    {\n      \"id\": \"CPD-L0\",\n      \"theorem\": \"delta = x - y, Zero = is-coboundary realizes a PrimitiveDifference (zero laws hold).\",\n      \"lean_name\": \"OmegaCore.cochainDifference (zero_refl/zero_symm/zero_trans)\",\n      \"status\": \"proved_in_lean\"\n    },\n    {\n      \"id\": \"CPD-L1\",\n      \"theorem\": \"The cochain Zero predicate (Zero d := exists pot, d0 pot = d) is exactly membership in the Q-linear range of d0 (a genuine Mathlib LinearMap), and im(d0) is a finite-dimensional Q-subspace of C^1 -- the image-membership predicate solve_in_image decides. Soundness (Rust InImage => Lean Zero) is definitional: the replay-verified pot witness IS the existential.\",\n      \"lean_name\": \"OmegaCore.cochainDifference_zero_iff_mem_range (+ d0LinearMap / range_d0_finiteDimensional)\",\n      \"status\": \"proved_in_lean\",\n      \"axioms\": \"[propext, Classical.choice, Quot.sound]\",\n      \"scope\": \"bounded anchor: spec correspondence + finite-dimensionality. Completeness split out as CPD-L1b.\"\n    },\n    {\n      \"id\": \"CPD-L1b\",\n      \"theorem\": \"Completeness of the Rust rank decision: solve_in_image returns NotInImage (rank([d0|v]) > rank d0) only when v is genuinely NOT a coboundary (Rouche-Capelli over finite-dim Q).\",\n      \"lean_name\": \"rust_verified_not_yet_in_lean\",\n      \"status\": \"rust_verified\",\n      \"note\": \"Verified Rust-side by exact rank-augmentation + matvec replay; a false InImage witness is impossible. A full Lean derivation would require porting rank/RREF consistency (Rouche-Capelli) into Mathlib -- deferred.\"\n    }\n  ],\n  \"notes\": [\n    \"This adapter is BELOW the functional layer; it produces the residual quotient C^1/im(d0), not Phi1 or Gamma2.\",\n    \"ADR-001 widened Q to BigRational. Consumers recording evidence must retain the solve_in_image Result; PrimitiveDifference::zero maps solver errors to false.\",\n    \"Do not claim operads, physics, or global generativity from this -- it is the delta->cochain realization only.\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference.contract.yaml"
-      ]
+      "sha256": "9d94b109f1aac02d4808b57e63ef79b3f0dad9f0643449964f327b627c2cafe4"
     },
     {
-      "sha256": "047dc5504c16613766d2831eb39b2a65fd51358c6ceb1cfbff0ca93ba15fdbc8",
       "bytes": 1870,
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py\",\n    \"sha256\": \"8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:rust-omega-homology-cochain-primitive-difference-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for rust:omega_homology:cochain_primitive_difference Schema Version: 1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py",
           "sha256": "8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:20_execution:rust-omega-homology-cochain-primitive-difference-contract:v1",
-        "role": "library",
-        "purpose": "Pydantic v2 Twin Model for rust:omega_homology:cochain_primitive_difference Schema Version: 1.0.0",
-        "operations": {
-          "ContractModel": "Class ContractModel domain record and methods.",
-          "validate_contract": "Function validate_contract operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "profile": "Exact",
+        "purpose": "Pydantic v2 Twin Model for rust:omega_homology:cochain_primitive_difference Schema Version: 1.0.0",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py\",\n    \"sha256\": \"8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:rust-omega-homology-cochain-primitive-difference-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for rust:omega_homology:cochain_primitive_difference Schema Version: 1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "047dc5504c16613766d2831eb39b2a65fd51358c6ceb1cfbff0ca93ba15fdbc8"
+    },
+    {
+      "bytes": 1769,
       "original_paths": [
-        "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.contract.score.yaml#contract"
-      ]
+        "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py\",\n    \"sha256\": \"8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py\",\n      \"sha256\": \"8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee\",\n  \"subject\": \"code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py",
+          "sha256": "8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py",
+            "sha256": "8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee",
+        "subject": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py"
+      },
+      "sha256": "34ba787fa6b8220e44debb4be895de297b813a17666fc11bde7f30380c1bbc1e"
     }
   ],
+  "current_contract": "34ba787fa6b8220e44debb4be895de297b813a17666fc11bde7f30380c1bbc1e",
+  "current_scoring": "68cedd8474c3bdce8d87058d3497231e3d8b4d5bd61d68d546549aa44604c904",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference.contract.yaml": "6a051c680c6aaf5879f9c82657381bde4014a22a66be5349fd8125810e4d68a2"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "4e2414d78b09139ae8ab1599f113571f6069763f985069d72c4519693f4beb59",
       "bytes": 2271,
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py\",\n    \"sha256\": \"8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:rust-omega-homology-cochain-primitive-difference-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py",
           "sha256": "8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:20_execution:rust-omega-homology-cochain-primitive-difference-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -219,40 +265,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "4e2414d78b09139ae8ab1599f113571f6069763f985069d72c4519693f4beb59"
+    },
+    {
+      "bytes": 1706,
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py\",\n    \"sha256\": \"8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py\",\n      \"sha256\": \"8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py",
+          "sha256": "8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py",
+            "sha256": "8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.py\",\n    \"sha256\": \"8e4588a2e986823c99f01c48920371e31cf37926f04301b22a378b2b11e05bee\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:rust-omega-homology-cochain-primitive-difference-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "68cedd8474c3bdce8d87058d3497231e3d8b4d5bd61d68d546549aa44604c904"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/20_execution/rust_omega_homology_cochain_primitive_difference.contract.yaml": "6a051c680c6aaf5879f9c82657381bde4014a22a66be5349fd8125810e4d68a2"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1,169 +1,84 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:k_invariant:v0.1.0",
-    "title": "KInvariant Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py",
+      "sha256": "8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a"
     },
-    "math": {
-      "object_kind": "cohomology_class",
-      "symbol": "k_n in H^{n+1}(X_n; pi_n(X))",
-      "ascii_symbol": "k_invariant",
-      "notation": "k_n in H^{n+1}(X_n; pi_n(X))",
-      "domain": [
-        "postnikov_section: The n-th Postnikov section X_n of X",
-        "fiber_group: The homotopy group pi_n(X) serving as coefficient group",
-        "cohomology_degree: Degree n+1 in H^{n+1}(X_n; pi_n(X))",
-        "classifying_class: The cohomology class k_n itself"
-      ],
-      "codomain": {
-        "description": "A cohomology class k_n in H^{n+1}(X_n; pi_n(X)) where X_n is the n-th Postnikov section of a space X. The class k_n classifies the fibration X_{n+1} -> X_n with fiber K(pi_{n+1}(X), n+1). The cohomology is taken with local coefficients in the homotopy group pi_n(X), which may carry a pi_1(X)-module structure.\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "k_n must be a valid cocycle representative in H^{n+1}(X_n; pi_n(X))",
-        "X_n must satisfy pi_i(X_n) = pi_i(X) for i <= n and pi_i(X_n) = 0 for i > n",
-        "The coefficient group pi_n(X) must be abelian (automatic for n >= 2)",
-        "Cohomology degree must equal n+1 where n is the Postnikov section level",
-        "Artifact hash is SHA-256 over all structure data"
-      ]
-    },
-    "laws": [
-      "k_n must be a well-defined element of H^{n+1}(X_n; pi_n(X))",
-      "X_n must have pi_i(X_n) = pi_i(X) for i <= n and pi_i(X_n) = 0 for i > n",
-      "k_n classifies the fibration K(pi_{n+1}(X), n+1) -> X_{n+1} -> X_n",
-      "k_n = 0 implies X_{n+1} = X_n x K(pi_{n+1}(X), n+1)",
-      "A map f: X -> Y induces f*(k_n^Y) compatible with k_n^X under the induced map on Postnikov sections"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Validators are content-addressed",
-        "Same input data produces identical artifact hash",
-        "Same cocycle representative and Postnikov section produce identical k-invariant hash"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "Cocycle representative with delta(cocycle) != 0 must be rejected",
-      "Postnikov section with incorrect homotopy groups must be rejected",
-      "Non-abelian coefficient group (n >= 2) must be rejected",
-      "Cohomology degree not equal to n+1 must be rejected",
-      "Artifact with inconsistent hash must be rejected",
-      "Artifact attempting to claim authority or admissibility must be rejected"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py",
+        "sha256": "8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "A k-invariant (Postnikov invariant) is a cohomology class k_n in H^{n+1}(X_n; pi_n(X)) that classifies the fibration X_{n+1} -> X_n in the Postnikov tower of a space X. Here X_n is the n-th Postnikov section obtained by killing all homotopy groups above dimension n. The k-invariant determines the twist in attaching the next Eilenberg-MacLane space K(pi_{n+1}(X), n+1) as a fiber. If k_n = 0 the fibration is trivial (a product). The sequence {k_n} together with {pi_n(X)} completely determines the homotopy type of X (for simply connected spaces, or more generally with the action of pi_1 on higher groups). k-invariants are fundamental in obstruction theory and Postnikov tower reconstruction.",
-      "non_role": [
-        "Does not compute full Postnikov tower (covered by PostnikovTower contract)",
-        "Does not implement spectral sequences (covered by separate contract)",
-        "Does not compute homotopy groups (assumes they are given)",
-        "Does not classify admissibility or emit policy decisions",
-        "Does not emit certificates or produce customer-facing claims"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "Local coefficient systems and pi_1-action on higher homotopy groups",
-      "Secondary k-invariants and higher-order obstruction data",
-      "Computational methods for k-invariants via spectral sequences",
-      "Relationship to Postnikov towers in model categories and infinity-categories",
-      "Initial implementation covers k-invariants for simply connected spaces",
-      "Local coefficient system support deferred to future version",
-      "PostnikovTower contract does not yet exist; dependency is forward-declared",
-      "Naturality under maps implemented via pullback operation",
-      "Validation infrastructure matches template requirements"
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a",
+    "subject": "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py"
   },
-  "current_contract": "3961d257af06ab2b46635f91abd7aeda3b7756f3a1180952dacdb390dd502e9f",
-  "current_scoring": "21763b717237ebbfb980a7e6ef833236919ef522284e00b81b0baabcfea03e9e",
   "contract_history": [
     {
-      "sha256": "3961d257af06ab2b46635f91abd7aeda3b7756f3a1180952dacdb390dd502e9f",
       "bytes": 4974,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_k_invariant_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:k_invariant:v0.1.0\",\n  \"title\": \"KInvariant Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"cohomology_class\",\n    \"symbol\": \"k_n in H^{n+1}(X_n; pi_n(X))\",\n    \"ascii_symbol\": \"k_invariant\",\n    \"notation\": \"k_n in H^{n+1}(X_n; pi_n(X))\",\n    \"domain\": [\n      \"postnikov_section: The n-th Postnikov section X_n of X\",\n      \"fiber_group: The homotopy group pi_n(X) serving as coefficient group\",\n      \"cohomology_degree: Degree n+1 in H^{n+1}(X_n; pi_n(X))\",\n      \"classifying_class: The cohomology class k_n itself\"\n    ],\n    \"codomain\": {\n      \"description\": \"A cohomology class k_n in H^{n+1}(X_n; pi_n(X)) where X_n is the n-th Postnikov section of a space X. The class k_n classifies the fibration X_{n+1} -> X_n with fiber K(pi_{n+1}(X), n+1). The cohomology is taken with local coefficients in the homotopy group pi_n(X), which may carry a pi_1(X)-module structure.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"k_n must be a valid cocycle representative in H^{n+1}(X_n; pi_n(X))\",\n      \"X_n must satisfy pi_i(X_n) = pi_i(X) for i <= n and pi_i(X_n) = 0 for i > n\",\n      \"The coefficient group pi_n(X) must be abelian (automatic for n >= 2)\",\n      \"Cohomology degree must equal n+1 where n is the Postnikov section level\",\n      \"Artifact hash is SHA-256 over all structure data\"\n    ]\n  },\n  \"laws\": [\n    \"k_n must be a well-defined element of H^{n+1}(X_n; pi_n(X))\",\n    \"X_n must have pi_i(X_n) = pi_i(X) for i <= n and pi_i(X_n) = 0 for i > n\",\n    \"k_n classifies the fibration K(pi_{n+1}(X), n+1) -> X_{n+1} -> X_n\",\n    \"k_n = 0 implies X_{n+1} = X_n x K(pi_{n+1}(X), n+1)\",\n    \"A map f: X -> Y induces f*(k_n^Y) compatible with k_n^X under the induced map on Postnikov sections\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators are content-addressed\",\n      \"Same input data produces identical artifact hash\",\n      \"Same cocycle representative and Postnikov section produce identical k-invariant hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Cocycle representative with delta(cocycle) != 0 must be rejected\",\n    \"Postnikov section with incorrect homotopy groups must be rejected\",\n    \"Non-abelian coefficient group (n >= 2) must be rejected\",\n    \"Cohomology degree not equal to n+1 must be rejected\",\n    \"Artifact with inconsistent hash must be rejected\",\n    \"Artifact attempting to claim authority or admissibility must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A k-invariant (Postnikov invariant) is a cohomology class k_n in H^{n+1}(X_n; pi_n(X)) that classifies the fibration X_{n+1} -> X_n in the Postnikov tower of a space X. Here X_n is the n-th Postnikov section obtained by killing all homotopy groups above dimension n. The k-invariant determines the twist in attaching the next Eilenberg-MacLane space K(pi_{n+1}(X), n+1) as a fiber. If k_n = 0 the fibration is trivial (a product). The sequence {k_n} together with {pi_n(X)} completely determines the homotopy type of X (for simply connected spaces, or more generally with the action of pi_1 on higher groups). k-invariants are fundamental in obstruction theory and Postnikov tower reconstruction.\",\n    \"non_role\": [\n      \"Does not compute full Postnikov tower (covered by PostnikovTower contract)\",\n      \"Does not implement spectral sequences (covered by separate contract)\",\n      \"Does not compute homotopy groups (assumes they are given)\",\n      \"Does not classify admissibility or emit policy decisions\",\n      \"Does not emit certificates or produce customer-facing claims\"\n    ]\n  },\n  \"wip\": [\n    \"Local coefficient systems and pi_1-action on higher homotopy groups\",\n    \"Secondary k-invariants and higher-order obstruction data\",\n    \"Computational methods for k-invariants via spectral sequences\",\n    \"Relationship to Postnikov towers in model categories and infinity-categories\",\n    \"Initial implementation covers k-invariants for simply connected spaces\",\n    \"Local coefficient system support deferred to future version\",\n    \"PostnikovTower contract does not yet exist; dependency is forward-declared\",\n    \"Naturality under maps implemented via pullback operation\",\n    \"Validation infrastructure matches template requirements\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:k_invariant:v0.1.0",
-        "title": "KInvariant Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
-        "math": {
-          "object_kind": "cohomology_class",
-          "symbol": "k_n in H^{n+1}(X_n; pi_n(X))",
-          "ascii_symbol": "k_invariant",
-          "notation": "k_n in H^{n+1}(X_n; pi_n(X))",
-          "domain": [
-            "postnikov_section: The n-th Postnikov section X_n of X",
-            "fiber_group: The homotopy group pi_n(X) serving as coefficient group",
-            "cohomology_degree: Degree n+1 in H^{n+1}(X_n; pi_n(X))",
-            "classifying_class: The cohomology class k_n itself"
+        "doctrine": {
+          "non_role": [
+            "Does not compute full Postnikov tower (covered by PostnikovTower contract)",
+            "Does not implement spectral sequences (covered by separate contract)",
+            "Does not compute homotopy groups (assumes they are given)",
+            "Does not classify admissibility or emit policy decisions",
+            "Does not emit certificates or produce customer-facing claims"
           ],
-          "codomain": {
-            "description": "A cohomology class k_n in H^{n+1}(X_n; pi_n(X)) where X_n is the n-th Postnikov section of a space X. The class k_n classifies the fibration X_{n+1} -> X_n with fiber K(pi_{n+1}(X), n+1). The cohomology is taken with local coefficients in the homotopy group pi_n(X), which may carry a pi_1(X)-module structure.\n"
-          }
+          "summary": "A k-invariant (Postnikov invariant) is a cohomology class k_n in H^{n+1}(X_n; pi_n(X)) that classifies the fibration X_{n+1} -> X_n in the Postnikov tower of a space X. Here X_n is the n-th Postnikov section obtained by killing all homotopy groups above dimension n. The k-invariant determines the twist in attaching the next Eilenberg-MacLane space K(pi_{n+1}(X), n+1) as a fiber. If k_n = 0 the fibration is trivial (a product). The sequence {k_n} together with {pi_n(X)} completely determines the homotopy type of X (for simply connected spaces, or more generally with the action of pi_1 on higher groups). k-invariants are fundamental in obstruction theory and Postnikov tower reconstruction."
         },
-        "requirements": {
-          "required_structures": [
-            "k_n must be a valid cocycle representative in H^{n+1}(X_n; pi_n(X))",
-            "X_n must satisfy pi_i(X_n) = pi_i(X) for i <= n and pi_i(X_n) = 0 for i > n",
-            "The coefficient group pi_n(X) must be abelian (automatic for n >= 2)",
-            "Cohomology degree must equal n+1 where n is the Postnikov section level",
-            "Artifact hash is SHA-256 over all structure data"
-          ]
-        },
+        "kind": "math_contract",
         "laws": [
           "k_n must be a well-defined element of H^{n+1}(X_n; pi_n(X))",
           "X_n must have pi_i(X_n) = pi_i(X) for i <= n and pi_i(X_n) = 0 for i > n",
@@ -171,6 +86,35 @@
           "k_n = 0 implies X_{n+1} = X_n x K(pi_{n+1}(X), n+1)",
           "A map f: X -> Y induces f*(k_n^Y) compatible with k_n^X under the induced map on Postnikov sections"
         ],
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "k_invariant",
+          "codomain": {
+            "description": "A cohomology class k_n in H^{n+1}(X_n; pi_n(X)) where X_n is the n-th Postnikov section of a space X. The class k_n classifies the fibration X_{n+1} -> X_n with fiber K(pi_{n+1}(X), n+1). The cohomology is taken with local coefficients in the homotopy group pi_n(X), which may carry a pi_1(X)-module structure.\n"
+          },
+          "domain": [
+            "postnikov_section: The n-th Postnikov section X_n of X",
+            "fiber_group: The homotopy group pi_n(X) serving as coefficient group",
+            "cohomology_degree: Degree n+1 in H^{n+1}(X_n; pi_n(X))",
+            "classifying_class: The cohomology class k_n itself"
+          ],
+          "notation": "k_n in H^{n+1}(X_n; pi_n(X))",
+          "object_kind": "cohomology_class",
+          "symbol": "k_n in H^{n+1}(X_n; pi_n(X))"
+        },
+        "negative_tests": [
+          "Cocycle representative with delta(cocycle) != 0 must be rejected",
+          "Postnikov section with incorrect homotopy groups must be rejected",
+          "Non-abelian coefficient group (n >= 2) must be rejected",
+          "Cohomology degree not equal to n+1 must be rejected",
+          "Artifact with inconsistent hash must be rejected",
+          "Artifact attempting to claim authority or admissibility must be rejected"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
         "replay": {
           "requirements": [
             "No external state",
@@ -181,29 +125,18 @@
             "Same cocycle representative and Postnikov section produce identical k-invariant hash"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
+        "requirements": {
+          "required_structures": [
+            "k_n must be a valid cocycle representative in H^{n+1}(X_n; pi_n(X))",
+            "X_n must satisfy pi_i(X_n) = pi_i(X) for i <= n and pi_i(X_n) = 0 for i > n",
+            "The coefficient group pi_n(X) must be abelian (automatic for n >= 2)",
+            "Cohomology degree must equal n+1 where n is the Postnikov section level",
+            "Artifact hash is SHA-256 over all structure data"
           ]
         },
-        "negative_tests": [
-          "Cocycle representative with delta(cocycle) != 0 must be rejected",
-          "Postnikov section with incorrect homotopy groups must be rejected",
-          "Non-abelian coefficient group (n >= 2) must be rejected",
-          "Cohomology degree not equal to n+1 must be rejected",
-          "Artifact with inconsistent hash must be rejected",
-          "Artifact attempting to claim authority or admissibility must be rejected"
-        ],
-        "doctrine": {
-          "summary": "A k-invariant (Postnikov invariant) is a cohomology class k_n in H^{n+1}(X_n; pi_n(X)) that classifies the fibration X_{n+1} -> X_n in the Postnikov tower of a space X. Here X_n is the n-th Postnikov section obtained by killing all homotopy groups above dimension n. The k-invariant determines the twist in attaching the next Eilenberg-MacLane space K(pi_{n+1}(X), n+1) as a fiber. If k_n = 0 the fibration is trivial (a product). The sequence {k_n} together with {pi_n(X)} completely determines the homotopy type of X (for simply connected spaces, or more generally with the action of pi_1 on higher groups). k-invariants are fundamental in obstruction theory and Postnikov tower reconstruction.",
-          "non_role": [
-            "Does not compute full Postnikov tower (covered by PostnikovTower contract)",
-            "Does not implement spectral sequences (covered by separate contract)",
-            "Does not compute homotopy groups (assumes they are given)",
-            "Does not classify admissibility or emit policy decisions",
-            "Does not emit certificates or produce customer-facing claims"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "KInvariant Contract",
         "wip": [
           "Local coefficient systems and pi_1-action on higher homotopy groups",
           "Secondary k-invariants and higher-order obstruction data",
@@ -216,36 +149,72 @@
           "Validation infrastructure matches template requirements"
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:k_invariant:v0.1.0\",\n  \"title\": \"KInvariant Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"cohomology_class\",\n    \"symbol\": \"k_n in H^{n+1}(X_n; pi_n(X))\",\n    \"ascii_symbol\": \"k_invariant\",\n    \"notation\": \"k_n in H^{n+1}(X_n; pi_n(X))\",\n    \"domain\": [\n      \"postnikov_section: The n-th Postnikov section X_n of X\",\n      \"fiber_group: The homotopy group pi_n(X) serving as coefficient group\",\n      \"cohomology_degree: Degree n+1 in H^{n+1}(X_n; pi_n(X))\",\n      \"classifying_class: The cohomology class k_n itself\"\n    ],\n    \"codomain\": {\n      \"description\": \"A cohomology class k_n in H^{n+1}(X_n; pi_n(X)) where X_n is the n-th Postnikov section of a space X. The class k_n classifies the fibration X_{n+1} -> X_n with fiber K(pi_{n+1}(X), n+1). The cohomology is taken with local coefficients in the homotopy group pi_n(X), which may carry a pi_1(X)-module structure.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"k_n must be a valid cocycle representative in H^{n+1}(X_n; pi_n(X))\",\n      \"X_n must satisfy pi_i(X_n) = pi_i(X) for i <= n and pi_i(X_n) = 0 for i > n\",\n      \"The coefficient group pi_n(X) must be abelian (automatic for n >= 2)\",\n      \"Cohomology degree must equal n+1 where n is the Postnikov section level\",\n      \"Artifact hash is SHA-256 over all structure data\"\n    ]\n  },\n  \"laws\": [\n    \"k_n must be a well-defined element of H^{n+1}(X_n; pi_n(X))\",\n    \"X_n must have pi_i(X_n) = pi_i(X) for i <= n and pi_i(X_n) = 0 for i > n\",\n    \"k_n classifies the fibration K(pi_{n+1}(X), n+1) -> X_{n+1} -> X_n\",\n    \"k_n = 0 implies X_{n+1} = X_n x K(pi_{n+1}(X), n+1)\",\n    \"A map f: X -> Y induces f*(k_n^Y) compatible with k_n^X under the induced map on Postnikov sections\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators are content-addressed\",\n      \"Same input data produces identical artifact hash\",\n      \"Same cocycle representative and Postnikov section produce identical k-invariant hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Cocycle representative with delta(cocycle) != 0 must be rejected\",\n    \"Postnikov section with incorrect homotopy groups must be rejected\",\n    \"Non-abelian coefficient group (n >= 2) must be rejected\",\n    \"Cohomology degree not equal to n+1 must be rejected\",\n    \"Artifact with inconsistent hash must be rejected\",\n    \"Artifact attempting to claim authority or admissibility must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A k-invariant (Postnikov invariant) is a cohomology class k_n in H^{n+1}(X_n; pi_n(X)) that classifies the fibration X_{n+1} -> X_n in the Postnikov tower of a space X. Here X_n is the n-th Postnikov section obtained by killing all homotopy groups above dimension n. The k-invariant determines the twist in attaching the next Eilenberg-MacLane space K(pi_{n+1}(X), n+1) as a fiber. If k_n = 0 the fibration is trivial (a product). The sequence {k_n} together with {pi_n(X)} completely determines the homotopy type of X (for simply connected spaces, or more generally with the action of pi_1 on higher groups). k-invariants are fundamental in obstruction theory and Postnikov tower reconstruction.\",\n    \"non_role\": [\n      \"Does not compute full Postnikov tower (covered by PostnikovTower contract)\",\n      \"Does not implement spectral sequences (covered by separate contract)\",\n      \"Does not compute homotopy groups (assumes they are given)\",\n      \"Does not classify admissibility or emit policy decisions\",\n      \"Does not emit certificates or produce customer-facing claims\"\n    ]\n  },\n  \"wip\": [\n    \"Local coefficient systems and pi_1-action on higher homotopy groups\",\n    \"Secondary k-invariants and higher-order obstruction data\",\n    \"Computational methods for k-invariants via spectral sequences\",\n    \"Relationship to Postnikov towers in model categories and infinity-categories\",\n    \"Initial implementation covers k-invariants for simply connected spaces\",\n    \"Local coefficient system support deferred to future version\",\n    \"PostnikovTower contract does not yet exist; dependency is forward-declared\",\n    \"Naturality under maps implemented via pullback operation\",\n    \"Validation infrastructure matches template requirements\"\n  ]\n}\n",
+      "sha256": "3961d257af06ab2b46635f91abd7aeda3b7756f3a1180952dacdb390dd502e9f"
+    },
+    {
+      "bytes": 1703,
       "original_paths": [
-        "code/python/governance/10_math/general/math_k_invariant_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py\",\n    \"sha256\": \"8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py\",\n      \"sha256\": \"8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a\",\n  \"subject\": \"code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py",
+          "sha256": "8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py",
+            "sha256": "8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a",
+        "subject": "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py"
+      },
+      "sha256": "8b1ae6806581823787af10e6549844c5739f633d06d20a915fec74e2c2fdbb2c"
     }
   ],
+  "current_contract": "8b1ae6806581823787af10e6549844c5739f633d06d20a915fec74e2c2fdbb2c",
+  "current_scoring": "fe8ed726fd82f798841bfab55280026199e0a619370a3654bc18f22befac8f5f",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_k_invariant_v0_1_0.contract.yaml": "2c5fc0b5177f85fd6cc1affa19b813e2e7be760fe1c63d79221d5fb1136b71cd"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "21763b717237ebbfb980a7e6ef833236919ef522284e00b81b0baabcfea03e9e",
       "bytes": 2219,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py\",\n    \"sha256\": \"8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-k-invariant-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py",
           "sha256": "8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-k-invariant-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -254,40 +223,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "21763b717237ebbfb980a7e6ef833236919ef522284e00b81b0baabcfea03e9e"
+    },
+    {
+      "bytes": 1664,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py\",\n    \"sha256\": \"8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py\",\n      \"sha256\": \"8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py",
+          "sha256": "8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py",
+            "sha256": "8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.py\",\n    \"sha256\": \"8426225e357255702b9e79e0d9ea0aa51c9b50b5e4ccf56a25382ef62d86a67a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-k-invariant-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_k_invariant_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "fe8ed726fd82f798841bfab55280026199e0a619370a3654bc18f22befac8f5f"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_k_invariant_v0_1_0.contract.yaml": "2c5fc0b5177f85fd6cc1affa19b813e2e7be760fe1c63d79221d5fb1136b71cd"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

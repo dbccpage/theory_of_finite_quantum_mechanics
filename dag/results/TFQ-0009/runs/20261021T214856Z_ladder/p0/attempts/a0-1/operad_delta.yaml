@@ -1,0 +1,39 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-C2B8FF394629
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: gen_curvature . slot 0 <- gen_connection via rel_curvature_def
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: openai/gpt-oss-120b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0009
+- id: NEG-23A1EB81B15F
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: gen_holonomy . slot 0 <- gen_connection via rel_holonomy_consistency
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: openai/gpt-oss-120b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0009
+counterexamples: []
+open_obligations:
+- Define the types FiniteComplex, CoefficientObject, Loop, Face, GroupElement and the functions boundary_of,
+  is_contractible, and the identity element 1.
+- 'generator gen_connection unverified: no existing declaration cited'
+- 'generator gen_holonomy unverified: no existing declaration cited'
+- 'generator gen_curvature unverified: no existing declaration cited'
+- 'relation rel_curvature_def unverified: no existing declaration cited'
+- 'relation rel_holonomy_consistency unverified: no existing declaration cited'
+- 'lemma lem_curvature_vanishes_on_flat unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

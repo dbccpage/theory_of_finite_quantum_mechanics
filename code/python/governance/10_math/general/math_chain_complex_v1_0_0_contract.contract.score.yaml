@@ -1,243 +1,85 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:chain_complex:v1.0.0",
-    "title": "Chain complex (finite graded)",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py",
+      "sha256": "cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py",
+        "sha256": "cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "chain_complex",
-      "symbol": "C_•",
-      "ascii_symbol": "ChainComplex",
-      "notation": "… → C_n --d_n→ C_{n-1} --d_{n-1}→ C_{n-2} → …",
-      "domain": [
-        "coefficient domain R (ring or field)",
-        "finite degree index set I ⊂ ℤ (or ℕ)",
-        "for each n ∈ I: finite R-module C_n with finite presentation/basis",
-        "for each adjacent pair: boundary map d_n : C_n → C_{n-1}"
-      ],
-      "codomain": {
-        "description": "A finite graded chain complex over R with degree-lowering boundaries satisfying d² = 0. Structural only; does not mint homology classes or FOC Φ/Γ."
-      },
-      "definition": {
-        "chain_complex": "Graded object C_• with maps d_n of degree −1 and d_{n−1} ∘ d_n = 0.",
-        "cycles": "Z_n = ker(d_n)",
-        "boundaries": "B_n = im(d_{n+1})",
-        "homology": "H_n = Z_n / B_n when B_n ⊆ Z_n (follows from d² = 0)",
-        "finite_scope": "This contract version covers finite declared degree sets only."
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Coefficient domain R declared and shared by all C_n",
-        "Finite degree index set I",
-        "Finite C_n for each n ∈ I (presentation or ordered basis)",
-        "Boundary map d_n for each adjacent degree pair present in I",
-        "Boundary law witness / check that d_{n−1} ∘ d_n = 0 on all adjacent pairs",
-        "Degree shift −1 (source degree n, target degree n−1)"
-      ]
-    },
-    "laws": [
-      "Boundary-squared law: d_{n−1} ∘ d_n = 0 for every adjacent declared pair.",
-      "Degree-shift law: each d_n lowers degree by exactly one.",
-      "Coefficient uniformity: every C_n is an R-module for the same declared R.",
-      "Presentation compatibility: each d_n has source/target matching declared C_n presentations.",
-      "Homology well-definedness: B_n ⊆ Z_n follows from the boundary-squared law.",
-      "Finite-scope law: only finitely many degrees and finite C_n ranks are in-scope for this version.",
-      "Authority law: no PROVED / GlobalGreen / HoTT discharge from this contract alone."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No wall-clock dependence",
-        "Boundary application and d∘d checks are deterministic",
-        "Basis/presentation serialization is canonical when hashed"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_homology",
-      "module": "chain_complex",
-      "symbols": [
-        "ChainComplex"
-      ],
-      "required_tests": [
-        "test_boundary_law_violation_rejected",
-        "test_dimension_mismatch_d1",
-        "dim_rejects_degree_outside_finite_support"
-      ]
-    },
-    "negative_tests": [
-      "Boundary map with wrong degree shift (not n → n−1) must be rejected",
-      "d_{n−1} ∘ d_n ≠ 0 must be rejected",
-      "Missing C_n for a declared boundary source or target must be rejected",
-      "Coefficient domain mismatch across degrees must be rejected",
-      "Infinite/unbounded degree family without explicit finite I must be rejected under this version",
-      "Confusing this object with Omega cochain layer (degree-raising) without dualization must be rejected",
-      "Claiming H_n without d² = 0 must be rejected",
-      "Claiming PROVED / GlobalGreen / HoTT / Φ₁/Γ₂ identity from this contract alone must be rejected"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "Finite graded chain complex C_• over R with d² = 0. Base structure for cycles, boundaries, and homology. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge; does not define FOC Φ₁/Γ₂ (cochain residual layer).",
-      "non_role": [
-        "Computing FOC Φ₁ / Γ₂ / Ξ functionals",
-        "Omega cochain layer specialization (degree-raising d₀,d₁)",
-        "Chain homotopy equivalence as a full object (separate contract)",
-        "Infinite-dimensional chain groups",
-        "Spectral sequences / double complexes",
-        "Authority minting, customer claims, PROVED/GlobalGreen/HoTT discharge"
-      ]
-    },
-    "wip": [
-      "Bounded/filtered/augmented specializations",
-      "Double complexes and spectral sequence interfaces",
-      "Chain homotopy equivalence contract"
-    ],
-    "nomos_debate_NOT_CANONICAL": {
-      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
-      "not_part_of_contract_law": true,
-      "authority_effect": "none",
-      "potential_defects": [
-        {
-          "reviewer": "panepistimion-math-prof",
-          "role": "MATH_CANONICAL_REVIEW",
-          "code": "METH_B2_HOMOLOGY",
-          "severity": "info",
-          "claim_class": "[STANDARD]",
-          "detail": "Meth B2 pass: lifted d²=0, degree shift, finite scope, and dual-fence into canonical laws/structures/negative_tests; removed theater shells. Not PROVED; human re-review welcome.",
-          "recommendation": "Stage-2 realization align under ADR-007a; LEAN4 only if paper demands.",
-          "pass": "meth_b2_homology"
-        },
-        {
-          "reviewer": "panepistimion-math-prof",
-          "role": "MATH_CANONICAL_REVIEW",
-          "code": "FINITE_ONLY_FENCE",
-          "severity": "low",
-          "claim_class": "[SCOPE FENCE]",
-          "detail": "Contract is finite-degree / finite-rank only; unbounded complexes remain residual.",
-          "recommendation": "Keep fence until a separate unbounded object is introduced."
-        }
-      ],
-      "realization_delta_vs_implemented_math_file": [
-        {
-          "reviewer": "panepistimion-cs-prof-ml-ai-info",
-          "role": "CS_IMPL_DELTA_REVIEW",
-          "code": "BOUNDED_THREE_TERM_ONLY",
-          "severity": "medium",
-          "claim_class": "[CODE_DEMO_RUST]",
-          "detail": "omega_homology::chain_complex is finite C2→C1→C0 with d1∘d2=0 checks (MATCH core law) but not a general graded family over arbitrary I. YAML finite-scope is honest; general multi-degree API is YAML_AHEAD_OF_CODE relative to full graded I.",
-          "file": "omega_engine/crates/omega_homology/src/chain_complex.rs",
-          "yaml_law": "Finite graded C_• with d²=0 on all adjacent pairs in I.",
-          "code_behavior": "Degree-bounded 0..2 chain complex with verified composition zero.",
-          "delta": "YAML_AHEAD_OF_CODE"
-        },
-        {
-          "reviewer": "techne-master-of-proofs-and-derivations",
-          "role": "PROOF_META_REVIEW",
-          "code": "PANEL_CONSISTENT",
-          "severity": "info",
-          "claim_class": "[SCOPE FENCE]",
-          "detail": "Stages 1–2 consistent: math laws real; realization is demo-bounded. Not PROVED; not GlobalGreen; LEAN4 not claimed."
-        }
-      ]
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d",
+    "subject": "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py"
   },
-  "current_contract": "cb4df4acfabe0ff6c056c92f69663d8e3ca6cb908cfb9779b9ea77b213839186",
-  "current_scoring": "31ec44c7e9a940676aab4de9b042a6021fc0b88b51d44269371fd5a426806fa4",
   "contract_history": [
     {
-      "sha256": "cb4df4acfabe0ff6c056c92f69663d8e3ca6cb908cfb9779b9ea77b213839186",
       "bytes": 7327,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_chain_complex_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:chain_complex:v1.0.0\",\n  \"title\": \"Chain complex (finite graded)\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"chain_complex\",\n    \"symbol\": \"C_•\",\n    \"ascii_symbol\": \"ChainComplex\",\n    \"notation\": \"… → C_n --d_n→ C_{n-1} --d_{n-1}→ C_{n-2} → …\",\n    \"domain\": [\n      \"coefficient domain R (ring or field)\",\n      \"finite degree index set I ⊂ ℤ (or ℕ)\",\n      \"for each n ∈ I: finite R-module C_n with finite presentation/basis\",\n      \"for each adjacent pair: boundary map d_n : C_n → C_{n-1}\"\n    ],\n    \"codomain\": {\n      \"description\": \"A finite graded chain complex over R with degree-lowering boundaries satisfying d² = 0. Structural only; does not mint homology classes or FOC Φ/Γ.\"\n    },\n    \"definition\": {\n      \"chain_complex\": \"Graded object C_• with maps d_n of degree −1 and d_{n−1} ∘ d_n = 0.\",\n      \"cycles\": \"Z_n = ker(d_n)\",\n      \"boundaries\": \"B_n = im(d_{n+1})\",\n      \"homology\": \"H_n = Z_n / B_n when B_n ⊆ Z_n (follows from d² = 0)\",\n      \"finite_scope\": \"This contract version covers finite declared degree sets only.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Coefficient domain R declared and shared by all C_n\",\n      \"Finite degree index set I\",\n      \"Finite C_n for each n ∈ I (presentation or ordered basis)\",\n      \"Boundary map d_n for each adjacent degree pair present in I\",\n      \"Boundary law witness / check that d_{n−1} ∘ d_n = 0 on all adjacent pairs\",\n      \"Degree shift −1 (source degree n, target degree n−1)\"\n    ]\n  },\n  \"laws\": [\n    \"Boundary-squared law: d_{n−1} ∘ d_n = 0 for every adjacent declared pair.\",\n    \"Degree-shift law: each d_n lowers degree by exactly one.\",\n    \"Coefficient uniformity: every C_n is an R-module for the same declared R.\",\n    \"Presentation compatibility: each d_n has source/target matching declared C_n presentations.\",\n    \"Homology well-definedness: B_n ⊆ Z_n follows from the boundary-squared law.\",\n    \"Finite-scope law: only finitely many degrees and finite C_n ranks are in-scope for this version.\",\n    \"Authority law: no PROVED / GlobalGreen / HoTT discharge from this contract alone.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No wall-clock dependence\",\n      \"Boundary application and d∘d checks are deterministic\",\n      \"Basis/presentation serialization is canonical when hashed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_homology\",\n    \"module\": \"chain_complex\",\n    \"symbols\": [\n      \"ChainComplex\"\n    ],\n    \"required_tests\": [\n      \"test_boundary_law_violation_rejected\",\n      \"test_dimension_mismatch_d1\",\n      \"dim_rejects_degree_outside_finite_support\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Boundary map with wrong degree shift (not n → n−1) must be rejected\",\n    \"d_{n−1} ∘ d_n ≠ 0 must be rejected\",\n    \"Missing C_n for a declared boundary source or target must be rejected\",\n    \"Coefficient domain mismatch across degrees must be rejected\",\n    \"Infinite/unbounded degree family without explicit finite I must be rejected under this version\",\n    \"Confusing this object with Omega cochain layer (degree-raising) without dualization must be rejected\",\n    \"Claiming H_n without d² = 0 must be rejected\",\n    \"Claiming PROVED / GlobalGreen / HoTT / Φ₁/Γ₂ identity from this contract alone must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Finite graded chain complex C_• over R with d² = 0. Base structure for cycles, boundaries, and homology. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge; does not define FOC Φ₁/Γ₂ (cochain residual layer).\",\n    \"non_role\": [\n      \"Computing FOC Φ₁ / Γ₂ / Ξ functionals\",\n      \"Omega cochain layer specialization (degree-raising d₀,d₁)\",\n      \"Chain homotopy equivalence as a full object (separate contract)\",\n      \"Infinite-dimensional chain groups\",\n      \"Spectral sequences / double complexes\",\n      \"Authority minting, customer claims, PROVED/GlobalGreen/HoTT discharge\"\n    ]\n  },\n  \"wip\": [\n    \"Bounded/filtered/augmented specializations\",\n    \"Double complexes and spectral sequence interfaces\",\n    \"Chain homotopy equivalence contract\"\n  ],\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"METH_B2_HOMOLOGY\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"Meth B2 pass: lifted d²=0, degree shift, finite scope, and dual-fence into canonical laws/structures/negative_tests; removed theater shells. Not PROVED; human re-review welcome.\",\n        \"recommendation\": \"Stage-2 realization align under ADR-007a; LEAN4 only if paper demands.\",\n        \"pass\": \"meth_b2_homology\"\n      },\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"FINITE_ONLY_FENCE\",\n        \"severity\": \"low\",\n        \"claim_class\": \"[SCOPE FENCE]\",\n        \"detail\": \"Contract is finite-degree / finite-rank only; unbounded complexes remain residual.\",\n        \"recommendation\": \"Keep fence until a separate unbounded object is introduced.\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"BOUNDED_THREE_TERM_ONLY\",\n        \"severity\": \"medium\",\n        \"claim_class\": \"[CODE_DEMO_RUST]\",\n        \"detail\": \"omega_homology::chain_complex is finite C2→C1→C0 with d1∘d2=0 checks (MATCH core law) but not a general graded family over arbitrary I. YAML finite-scope is honest; general multi-degree API is YAML_AHEAD_OF_CODE relative to full graded I.\",\n        \"file\": \"omega_engine/crates/omega_homology/src/chain_complex.rs\",\n        \"yaml_law\": \"Finite graded C_• with d²=0 on all adjacent pairs in I.\",\n        \"code_behavior\": \"Degree-bounded 0..2 chain complex with verified composition zero.\",\n        \"delta\": \"YAML_AHEAD_OF_CODE\"\n      },\n      {\n        \"reviewer\": \"techne-master-of-proofs-and-derivations\",\n        \"role\": \"PROOF_META_REVIEW\",\n        \"code\": \"PANEL_CONSISTENT\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[SCOPE FENCE]\",\n        \"detail\": \"Stages 1–2 consistent: math laws real; realization is demo-bounded. Not PROVED; not GlobalGreen; LEAN4 not claimed.\"\n      }\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:chain_complex:v1.0.0",
-        "title": "Chain complex (finite graded)",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
-        "math": {
-          "object_kind": "chain_complex",
-          "symbol": "C_•",
-          "ascii_symbol": "ChainComplex",
-          "notation": "… → C_n --d_n→ C_{n-1} --d_{n-1}→ C_{n-2} → …",
-          "domain": [
-            "coefficient domain R (ring or field)",
-            "finite degree index set I ⊂ ℤ (or ℕ)",
-            "for each n ∈ I: finite R-module C_n with finite presentation/basis",
-            "for each adjacent pair: boundary map d_n : C_n → C_{n-1}"
+        "doctrine": {
+          "non_role": [
+            "Computing FOC Φ₁ / Γ₂ / Ξ functionals",
+            "Omega cochain layer specialization (degree-raising d₀,d₁)",
+            "Chain homotopy equivalence as a full object (separate contract)",
+            "Infinite-dimensional chain groups",
+            "Spectral sequences / double complexes",
+            "Authority minting, customer claims, PROVED/GlobalGreen/HoTT discharge"
           ],
-          "codomain": {
-            "description": "A finite graded chain complex over R with degree-lowering boundaries satisfying d² = 0. Structural only; does not mint homology classes or FOC Φ/Γ."
-          },
-          "definition": {
-            "chain_complex": "Graded object C_• with maps d_n of degree −1 and d_{n−1} ∘ d_n = 0.",
-            "cycles": "Z_n = ker(d_n)",
-            "boundaries": "B_n = im(d_{n+1})",
-            "homology": "H_n = Z_n / B_n when B_n ⊆ Z_n (follows from d² = 0)",
-            "finite_scope": "This contract version covers finite declared degree sets only."
-          }
+          "summary": "Finite graded chain complex C_• over R with d² = 0. Base structure for cycles, boundaries, and homology. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge; does not define FOC Φ₁/Γ₂ (cochain residual layer)."
         },
-        "requirements": {
-          "required_structures": [
-            "Coefficient domain R declared and shared by all C_n",
-            "Finite degree index set I",
-            "Finite C_n for each n ∈ I (presentation or ordered basis)",
-            "Boundary map d_n for each adjacent degree pair present in I",
-            "Boundary law witness / check that d_{n−1} ∘ d_n = 0 on all adjacent pairs",
-            "Degree shift −1 (source degree n, target degree n−1)"
-          ]
-        },
+        "kind": "math_contract",
         "laws": [
           "Boundary-squared law: d_{n−1} ∘ d_n = 0 for every adjacent declared pair.",
           "Degree-shift law: each d_n lowers degree by exactly one.",
@@ -247,31 +89,28 @@
           "Finite-scope law: only finitely many degrees and finite C_n ranks are in-scope for this version.",
           "Authority law: no PROVED / GlobalGreen / HoTT discharge from this contract alone."
         ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No wall-clock dependence",
-            "Boundary application and d∘d checks are deterministic",
-            "Basis/presentation serialization is canonical when hashed"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
-        "rust_binding": {
-          "crate": "omega_homology",
-          "module": "chain_complex",
-          "symbols": [
-            "ChainComplex"
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "ChainComplex",
+          "codomain": {
+            "description": "A finite graded chain complex over R with degree-lowering boundaries satisfying d² = 0. Structural only; does not mint homology classes or FOC Φ/Γ."
+          },
+          "definition": {
+            "boundaries": "B_n = im(d_{n+1})",
+            "chain_complex": "Graded object C_• with maps d_n of degree −1 and d_{n−1} ∘ d_n = 0.",
+            "cycles": "Z_n = ker(d_n)",
+            "finite_scope": "This contract version covers finite declared degree sets only.",
+            "homology": "H_n = Z_n / B_n when B_n ⊆ Z_n (follows from d² = 0)"
+          },
+          "domain": [
+            "coefficient domain R (ring or field)",
+            "finite degree index set I ⊂ ℤ (or ℕ)",
+            "for each n ∈ I: finite R-module C_n with finite presentation/basis",
+            "for each adjacent pair: boundary map d_n : C_n → C_{n-1}"
           ],
-          "required_tests": [
-            "test_boundary_law_violation_rejected",
-            "test_dimension_mismatch_d1",
-            "dim_rejects_degree_outside_finite_support"
-          ]
+          "notation": "… → C_n --d_n→ C_{n-1} --d_{n-1}→ C_{n-2} → …",
+          "object_kind": "chain_complex",
+          "symbol": "C_•"
         },
         "negative_tests": [
           "Boundary map with wrong degree shift (not n → n−1) must be rejected",
@@ -283,101 +122,165 @@
           "Claiming H_n without d² = 0 must be rejected",
           "Claiming PROVED / GlobalGreen / HoTT / Φ₁/Γ₂ identity from this contract alone must be rejected"
         ],
-        "doctrine": {
-          "summary": "Finite graded chain complex C_• over R with d² = 0. Base structure for cycles, boundaries, and homology. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge; does not define FOC Φ₁/Γ₂ (cochain residual layer).",
-          "non_role": [
-            "Computing FOC Φ₁ / Γ₂ / Ξ functionals",
-            "Omega cochain layer specialization (degree-raising d₀,d₁)",
-            "Chain homotopy equivalence as a full object (separate contract)",
-            "Infinite-dimensional chain groups",
-            "Spectral sequences / double complexes",
-            "Authority minting, customer claims, PROVED/GlobalGreen/HoTT discharge"
-          ]
-        },
-        "wip": [
-          "Bounded/filtered/augmented specializations",
-          "Double complexes and spectral sequence interfaces",
-          "Chain homotopy equivalence contract"
-        ],
         "nomos_debate_NOT_CANONICAL": {
+          "authority_effect": "none",
           "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
           "not_part_of_contract_law": true,
-          "authority_effect": "none",
           "potential_defects": [
             {
+              "claim_class": "[STANDARD]",
+              "code": "METH_B2_HOMOLOGY",
+              "detail": "Meth B2 pass: lifted d²=0, degree shift, finite scope, and dual-fence into canonical laws/structures/negative_tests; removed theater shells. Not PROVED; human re-review welcome.",
+              "pass": "meth_b2_homology",
+              "recommendation": "Stage-2 realization align under ADR-007a; LEAN4 only if paper demands.",
               "reviewer": "panepistimion-math-prof",
               "role": "MATH_CANONICAL_REVIEW",
-              "code": "METH_B2_HOMOLOGY",
-              "severity": "info",
-              "claim_class": "[STANDARD]",
-              "detail": "Meth B2 pass: lifted d²=0, degree shift, finite scope, and dual-fence into canonical laws/structures/negative_tests; removed theater shells. Not PROVED; human re-review welcome.",
-              "recommendation": "Stage-2 realization align under ADR-007a; LEAN4 only if paper demands.",
-              "pass": "meth_b2_homology"
+              "severity": "info"
             },
             {
+              "claim_class": "[SCOPE FENCE]",
+              "code": "FINITE_ONLY_FENCE",
+              "detail": "Contract is finite-degree / finite-rank only; unbounded complexes remain residual.",
+              "recommendation": "Keep fence until a separate unbounded object is introduced.",
               "reviewer": "panepistimion-math-prof",
               "role": "MATH_CANONICAL_REVIEW",
-              "code": "FINITE_ONLY_FENCE",
-              "severity": "low",
-              "claim_class": "[SCOPE FENCE]",
-              "detail": "Contract is finite-degree / finite-rank only; unbounded complexes remain residual.",
-              "recommendation": "Keep fence until a separate unbounded object is introduced."
+              "severity": "low"
             }
           ],
           "realization_delta_vs_implemented_math_file": [
             {
-              "reviewer": "panepistimion-cs-prof-ml-ai-info",
-              "role": "CS_IMPL_DELTA_REVIEW",
-              "code": "BOUNDED_THREE_TERM_ONLY",
-              "severity": "medium",
               "claim_class": "[CODE_DEMO_RUST]",
+              "code": "BOUNDED_THREE_TERM_ONLY",
+              "code_behavior": "Degree-bounded 0..2 chain complex with verified composition zero.",
+              "delta": "YAML_AHEAD_OF_CODE",
               "detail": "omega_homology::chain_complex is finite C2→C1→C0 with d1∘d2=0 checks (MATCH core law) but not a general graded family over arbitrary I. YAML finite-scope is honest; general multi-degree API is YAML_AHEAD_OF_CODE relative to full graded I.",
               "file": "omega_engine/crates/omega_homology/src/chain_complex.rs",
-              "yaml_law": "Finite graded C_• with d²=0 on all adjacent pairs in I.",
-              "code_behavior": "Degree-bounded 0..2 chain complex with verified composition zero.",
-              "delta": "YAML_AHEAD_OF_CODE"
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "severity": "medium",
+              "yaml_law": "Finite graded C_• with d²=0 on all adjacent pairs in I."
             },
             {
+              "claim_class": "[SCOPE FENCE]",
+              "code": "PANEL_CONSISTENT",
+              "detail": "Stages 1–2 consistent: math laws real; realization is demo-bounded. Not PROVED; not GlobalGreen; LEAN4 not claimed.",
               "reviewer": "techne-master-of-proofs-and-derivations",
               "role": "PROOF_META_REVIEW",
-              "code": "PANEL_CONSISTENT",
-              "severity": "info",
-              "claim_class": "[SCOPE FENCE]",
-              "detail": "Stages 1–2 consistent: math laws real; realization is demo-bounded. Not PROVED; not GlobalGreen; LEAN4 not claimed."
+              "severity": "info"
             }
           ]
-        }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No wall-clock dependence",
+            "Boundary application and d∘d checks are deterministic",
+            "Basis/presentation serialization is canonical when hashed"
+          ]
+        },
+        "requirements": {
+          "required_structures": [
+            "Coefficient domain R declared and shared by all C_n",
+            "Finite degree index set I",
+            "Finite C_n for each n ∈ I (presentation or ordered basis)",
+            "Boundary map d_n for each adjacent degree pair present in I",
+            "Boundary law witness / check that d_{n−1} ∘ d_n = 0 on all adjacent pairs",
+            "Degree shift −1 (source degree n, target degree n−1)"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_homology",
+          "module": "chain_complex",
+          "required_tests": [
+            "test_boundary_law_violation_rejected",
+            "test_dimension_mismatch_d1",
+            "dim_rejects_degree_outside_finite_support"
+          ],
+          "symbols": [
+            "ChainComplex"
+          ]
+        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Chain complex (finite graded)",
+        "wip": [
+          "Bounded/filtered/augmented specializations",
+          "Double complexes and spectral sequence interfaces",
+          "Chain homotopy equivalence contract"
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:chain_complex:v1.0.0\",\n  \"title\": \"Chain complex (finite graded)\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"chain_complex\",\n    \"symbol\": \"C_•\",\n    \"ascii_symbol\": \"ChainComplex\",\n    \"notation\": \"… → C_n --d_n→ C_{n-1} --d_{n-1}→ C_{n-2} → …\",\n    \"domain\": [\n      \"coefficient domain R (ring or field)\",\n      \"finite degree index set I ⊂ ℤ (or ℕ)\",\n      \"for each n ∈ I: finite R-module C_n with finite presentation/basis\",\n      \"for each adjacent pair: boundary map d_n : C_n → C_{n-1}\"\n    ],\n    \"codomain\": {\n      \"description\": \"A finite graded chain complex over R with degree-lowering boundaries satisfying d² = 0. Structural only; does not mint homology classes or FOC Φ/Γ.\"\n    },\n    \"definition\": {\n      \"chain_complex\": \"Graded object C_• with maps d_n of degree −1 and d_{n−1} ∘ d_n = 0.\",\n      \"cycles\": \"Z_n = ker(d_n)\",\n      \"boundaries\": \"B_n = im(d_{n+1})\",\n      \"homology\": \"H_n = Z_n / B_n when B_n ⊆ Z_n (follows from d² = 0)\",\n      \"finite_scope\": \"This contract version covers finite declared degree sets only.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Coefficient domain R declared and shared by all C_n\",\n      \"Finite degree index set I\",\n      \"Finite C_n for each n ∈ I (presentation or ordered basis)\",\n      \"Boundary map d_n for each adjacent degree pair present in I\",\n      \"Boundary law witness / check that d_{n−1} ∘ d_n = 0 on all adjacent pairs\",\n      \"Degree shift −1 (source degree n, target degree n−1)\"\n    ]\n  },\n  \"laws\": [\n    \"Boundary-squared law: d_{n−1} ∘ d_n = 0 for every adjacent declared pair.\",\n    \"Degree-shift law: each d_n lowers degree by exactly one.\",\n    \"Coefficient uniformity: every C_n is an R-module for the same declared R.\",\n    \"Presentation compatibility: each d_n has source/target matching declared C_n presentations.\",\n    \"Homology well-definedness: B_n ⊆ Z_n follows from the boundary-squared law.\",\n    \"Finite-scope law: only finitely many degrees and finite C_n ranks are in-scope for this version.\",\n    \"Authority law: no PROVED / GlobalGreen / HoTT discharge from this contract alone.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No wall-clock dependence\",\n      \"Boundary application and d∘d checks are deterministic\",\n      \"Basis/presentation serialization is canonical when hashed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_homology\",\n    \"module\": \"chain_complex\",\n    \"symbols\": [\n      \"ChainComplex\"\n    ],\n    \"required_tests\": [\n      \"test_boundary_law_violation_rejected\",\n      \"test_dimension_mismatch_d1\",\n      \"dim_rejects_degree_outside_finite_support\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Boundary map with wrong degree shift (not n → n−1) must be rejected\",\n    \"d_{n−1} ∘ d_n ≠ 0 must be rejected\",\n    \"Missing C_n for a declared boundary source or target must be rejected\",\n    \"Coefficient domain mismatch across degrees must be rejected\",\n    \"Infinite/unbounded degree family without explicit finite I must be rejected under this version\",\n    \"Confusing this object with Omega cochain layer (degree-raising) without dualization must be rejected\",\n    \"Claiming H_n without d² = 0 must be rejected\",\n    \"Claiming PROVED / GlobalGreen / HoTT / Φ₁/Γ₂ identity from this contract alone must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Finite graded chain complex C_• over R with d² = 0. Base structure for cycles, boundaries, and homology. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge; does not define FOC Φ₁/Γ₂ (cochain residual layer).\",\n    \"non_role\": [\n      \"Computing FOC Φ₁ / Γ₂ / Ξ functionals\",\n      \"Omega cochain layer specialization (degree-raising d₀,d₁)\",\n      \"Chain homotopy equivalence as a full object (separate contract)\",\n      \"Infinite-dimensional chain groups\",\n      \"Spectral sequences / double complexes\",\n      \"Authority minting, customer claims, PROVED/GlobalGreen/HoTT discharge\"\n    ]\n  },\n  \"wip\": [\n    \"Bounded/filtered/augmented specializations\",\n    \"Double complexes and spectral sequence interfaces\",\n    \"Chain homotopy equivalence contract\"\n  ],\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"METH_B2_HOMOLOGY\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"Meth B2 pass: lifted d²=0, degree shift, finite scope, and dual-fence into canonical laws/structures/negative_tests; removed theater shells. Not PROVED; human re-review welcome.\",\n        \"recommendation\": \"Stage-2 realization align under ADR-007a; LEAN4 only if paper demands.\",\n        \"pass\": \"meth_b2_homology\"\n      },\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"FINITE_ONLY_FENCE\",\n        \"severity\": \"low\",\n        \"claim_class\": \"[SCOPE FENCE]\",\n        \"detail\": \"Contract is finite-degree / finite-rank only; unbounded complexes remain residual.\",\n        \"recommendation\": \"Keep fence until a separate unbounded object is introduced.\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"BOUNDED_THREE_TERM_ONLY\",\n        \"severity\": \"medium\",\n        \"claim_class\": \"[CODE_DEMO_RUST]\",\n        \"detail\": \"omega_homology::chain_complex is finite C2→C1→C0 with d1∘d2=0 checks (MATCH core law) but not a general graded family over arbitrary I. YAML finite-scope is honest; general multi-degree API is YAML_AHEAD_OF_CODE relative to full graded I.\",\n        \"file\": \"omega_engine/crates/omega_homology/src/chain_complex.rs\",\n        \"yaml_law\": \"Finite graded C_• with d²=0 on all adjacent pairs in I.\",\n        \"code_behavior\": \"Degree-bounded 0..2 chain complex with verified composition zero.\",\n        \"delta\": \"YAML_AHEAD_OF_CODE\"\n      },\n      {\n        \"reviewer\": \"techne-master-of-proofs-and-derivations\",\n        \"role\": \"PROOF_META_REVIEW\",\n        \"code\": \"PANEL_CONSISTENT\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[SCOPE FENCE]\",\n        \"detail\": \"Stages 1–2 consistent: math laws real; realization is demo-bounded. Not PROVED; not GlobalGreen; LEAN4 not claimed.\"\n      }\n    ]\n  }\n}\n",
+      "sha256": "cb4df4acfabe0ff6c056c92f69663d8e3ca6cb908cfb9779b9ea77b213839186"
+    },
+    {
+      "bytes": 1709,
       "original_paths": [
-        "code/python/governance/10_math/general/math_chain_complex_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py\",\n    \"sha256\": \"cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py\",\n      \"sha256\": \"cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d\",\n  \"subject\": \"code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py",
+          "sha256": "cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py",
+            "sha256": "cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d",
+        "subject": "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py"
+      },
+      "sha256": "30d0b7180f9c338de5c0cab1c0d58df0c37bd6587225948528651f7ff448baae"
     }
   ],
+  "current_contract": "30d0b7180f9c338de5c0cab1c0d58df0c37bd6587225948528651f7ff448baae",
+  "current_scoring": "f21f52967c8597ea2456467327ac67713cc232a184bcaf1f97fcf05715bca30d",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_chain_complex_v1_0_0.contract.yaml": "aaf06be98a6a3d9979602e368d508f6bda17dff23601e008a04e68e6ecc8ddf5"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "31ec44c7e9a940676aab4de9b042a6021fc0b88b51d44269371fd5a426806fa4",
       "bytes": 2223,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py\",\n    \"sha256\": \"cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-chain-complex-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py",
           "sha256": "cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-chain-complex-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -386,40 +289,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "31ec44c7e9a940676aab4de9b042a6021fc0b88b51d44269371fd5a426806fa4"
+    },
+    {
+      "bytes": 1668,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py\",\n    \"sha256\": \"cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py\",\n      \"sha256\": \"cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py",
+          "sha256": "cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py",
+            "sha256": "cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.py\",\n    \"sha256\": \"cf287c05e276810dee2716d675184ec6cadb6b2acc1addb73e45347d03c0724d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-chain-complex-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_chain_complex_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "f21f52967c8597ea2456467327ac67713cc232a184bcaf1f97fcf05715bca30d"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_chain_complex_v1_0_0.contract.yaml": "aaf06be98a6a3d9979602e368d508f6bda17dff23601e008a04e68e6ecc8ddf5"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

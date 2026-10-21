@@ -1,95 +1,67 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/qm/hilbert_lift_completion.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/qm/hilbert_lift_completion.py",
-      "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535",
-      "language": "Python"
+      "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:qm:hilbert-lift-completion:v1",
-    "role": "library",
-    "purpose": "Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.",
-    "operations": {
-      "fin_vector": "A vector of the finite carrier at report size len(xs).",
-      "fin_inner": "finInner: the exact rational inner product at a common report size.",
-      "pad": "pad: zero padding from report size len(x) to m >= len(x).",
-      "seq": "A finitely supported rational sequence as a dict index -> nonzero Fraction.",
-      "of_fin": "ofFin: the canonical injection of a finite stage.",
-      "trunc": "trunc: coordinates 0..n-1 of an exact sequence.",
-      "support_bound": "The least n with support f ⊆ range n.",
-      "exhaustion": "exhaustion: a report size n and a stage vector x with of_fin(x) == f.",
-      "add": "Function add operation.",
-      "sub": "Function sub operation.",
-      "smul": "Function smul operation.",
-      "qinner": "qinner: the exact inner product on the colimit carrier.",
-      "sqdist": "sqdist: squared ℓ² distance.",
-      "l1dist": "l1dist: ℓ¹ distance.",
-      "supdist": "Coordinatewise sup distance (0 on equal sequences).",
-      "restriction_identity": "qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.",
-      "padding_is_isometric": "finInner_pad and ofFin_pad.",
-      "cauchy_schwarz_holds": "qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.",
-      "doubling_triangle_holds": "sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).",
-      "l1_dominates_l2": "sqdist_le_l1dist_sq.",
-      "bessel_truncation_holds": "finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.",
-      "harmonic_term": "harmonicTerm i = 1/(i+1).",
-      "harmonic": "harmonic N = sum_{i<N} (1/(i+1)) e_i.",
-      "harmonic_modulus": "The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.",
-      "telescoping_bound_holds": "sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.",
-      "harmonic_sqdist_bound_holds": "sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.",
-      "harmonic_l1_lower_bound_holds": "sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.",
-      "harmonic_nonconvergence_bound_holds": "harmonic_not_tendsTo: with M the support bound of f and N > M,",
-      "modulus_holds": "HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,",
-      "l1_cauchy_fails": "A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with",
-      "CauchyCandidate": "A candidate representation of a point in the completion: an exact sequence with a supplied",
-      "inner_fluctuation_sq_bound": "Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2",
-      "inner_fluctuation_holds": "Function inner_fluctuation_holds operation.",
-      "grid_approximation": "The density step of denseRange_castSeq_real with exact data: for a finitely supported",
-      "unit_vector": "Function unit_vector operation.",
-      "unit_vectors_not_cauchy": "e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.",
-      "shifted_modulus_fails": "The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:",
-      "HilbertLiftError": "One violated exact-carrier invariant, with the measured parameters.",
-      "bounded_operator_holds": "BoundedExactOperator.norm_sq_le on supplied samples: qinner (A f) (A f) <= bound * qinner f f.",
-      "operator_lipschitz_holds": "sqdist_map_le: sqdist (A f) (A g) <= bound * sqdist f g (for an additive A).",
-      "transported_modulus": "isCauchyL2_map made explicit: if x has modulus mu then A x has modulus",
-      "shift": "shiftMap: e_i -> e_{i+1}.",
-      "shift_is_isometric": "qinner_shift: qinner (shift f) (shift g) = qinner f g.",
-      "proj": "projMap n: the stage projection ofFin (trunc n f); bound 1 by finInner_trunc_le.",
-      "coord_sum": "coordSum: the Q-linear coordinate-sum functional.",
-      "coord_sum_gap": "coordSum_harmonic_gap: coordSum (harmonic 2n) - coordSum (harmonic n), at least 1/2 for n >= 1.",
-      "harmonic_norm_sq_le_two_holds": "qinner_harmonic_le_two: qinner (harmonic N) (harmonic N) <= 2.",
-      "coord_sum_not_cauchy_refutations": "no_continuous_extension_coordSum, finite form: pairs (m, n) with",
-      "certify": "Refuse a non-rational probe, then return the locked harmonic gap coordSum (h_2) - coordSum (h_1) = 1/2.",
-      "main": "Function main operation."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/src/qm/hilbert_lift_completion.py",
+        "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535",
+    "subject": "code/python/src/qm/hilbert_lift_completion.py"
   },
-  "current_contract": "91a5fece29741dd797132e0448acefd8cff52bf0abe45526dbf01e1a550f2320",
-  "current_scoring": "211b5d75197362634bcb7c60d644bfa6bfaaaf7ab7ddfd5fe8fa3ea26aa1a228",
   "contract_history": [
     {
-      "sha256": "af7d02828fe367d9c3dc0982eb246a2f2c9281d99cef534abe620c7eb2a2b278",
       "bytes": 1777,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.py.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_id\": \"finite-qm.code-companion.v1\",\n  \"subject\": \"code/python/src/qm/hilbert_lift_completion.py\",\n  \"source_sha256\": \"65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\",\n  \"authority_effect\": \"None\",\n  \"contract_urn\": \"urn:finite-qm:pfp:continuum-hilbert-lift:65f200e5850a4008338c\",\n  \"symbols\": [\n    \"_q\",\n    \"add\",\n    \"bessel_truncation_holds\",\n    \"cauchy_schwarz_holds\",\n    \"doubling_triangle_holds\",\n    \"exhaustion\",\n    \"fin_inner\",\n    \"fin_vector\",\n    \"grid_approximation\",\n    \"harmonic\",\n    \"harmonic_l1_lower_bound_holds\",\n    \"harmonic_modulus\",\n    \"harmonic_nonconvergence_bound_holds\",\n    \"harmonic_sqdist_bound_holds\",\n    \"harmonic_term\",\n    \"inner_fluctuation_holds\",\n    \"inner_fluctuation_sq_bound\",\n    \"l1_cauchy_fails\",\n    \"l1_dominates_l2\",\n    \"l1dist\",\n    \"modulus_holds\",\n    \"of_fin\",\n    \"pad\",\n    \"padding_is_isometric\",\n    \"qinner\",\n    \"restriction_identity\",\n    \"seq\",\n    \"shifted_modulus_fails\",\n    \"smul\",\n    \"sqdist\",\n    \"sub\",\n    \"supdist\",\n    \"support_bound\",\n    \"telescoping_bound_holds\",\n    \"trunc\",\n    \"unit_vector\",\n    \"unit_vectors_not_cauchy\"\n  ],\n  \"owned_invariants\": [\n    \"Only the literal definitions and the declared exact replay contract of this source are claimed.\",\n    \"Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target.\"\n  ],\n  \"boundaries\": [\n    \"Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general proof.\",\n    \"The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean run.\"\n  ],\n  \"evidence\": [\n    \"dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md\"\n  ]\n}\n",
       "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/hilbert_lift_completion.py",
-        "source_sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95",
         "authority_effect": "None",
+        "boundaries": [
+          "Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general proof.",
+          "The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean run."
+        ],
         "contract_urn": "urn:finite-qm:pfp:continuum-hilbert-lift:65f200e5850a4008338c",
+        "evidence": [
+          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95",
+        "subject": "code/python/src/qm/hilbert_lift_completion.py",
         "symbols": [
           "_q",
           "add",
@@ -128,173 +100,173 @@
           "trunc",
           "unit_vector",
           "unit_vectors_not_cauchy"
-        ],
-        "owned_invariants": [
-          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
-          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
-        ],
-        "boundaries": [
-          "Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general proof.",
-          "The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean run."
-        ],
-        "evidence": [
-          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md"
         ]
       },
-      "raw_utf8": "{\n  \"schema_id\": \"finite-qm.code-companion.v1\",\n  \"subject\": \"code/python/src/qm/hilbert_lift_completion.py\",\n  \"source_sha256\": \"65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\",\n  \"authority_effect\": \"None\",\n  \"contract_urn\": \"urn:finite-qm:pfp:continuum-hilbert-lift:65f200e5850a4008338c\",\n  \"symbols\": [\n    \"_q\",\n    \"add\",\n    \"bessel_truncation_holds\",\n    \"cauchy_schwarz_holds\",\n    \"doubling_triangle_holds\",\n    \"exhaustion\",\n    \"fin_inner\",\n    \"fin_vector\",\n    \"grid_approximation\",\n    \"harmonic\",\n    \"harmonic_l1_lower_bound_holds\",\n    \"harmonic_modulus\",\n    \"harmonic_nonconvergence_bound_holds\",\n    \"harmonic_sqdist_bound_holds\",\n    \"harmonic_term\",\n    \"inner_fluctuation_holds\",\n    \"inner_fluctuation_sq_bound\",\n    \"l1_cauchy_fails\",\n    \"l1_dominates_l2\",\n    \"l1dist\",\n    \"modulus_holds\",\n    \"of_fin\",\n    \"pad\",\n    \"padding_is_isometric\",\n    \"qinner\",\n    \"restriction_identity\",\n    \"seq\",\n    \"shifted_modulus_fails\",\n    \"smul\",\n    \"sqdist\",\n    \"sub\",\n    \"supdist\",\n    \"support_bound\",\n    \"telescoping_bound_holds\",\n    \"trunc\",\n    \"unit_vector\",\n    \"unit_vectors_not_cauchy\"\n  ],\n  \"owned_invariants\": [\n    \"Only the literal definitions and the declared exact replay contract of this source are claimed.\",\n    \"Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target.\"\n  ],\n  \"boundaries\": [\n    \"Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general proof.\",\n    \"The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean run.\"\n  ],\n  \"evidence\": [\n    \"dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md\"\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.py.contract.yaml"
-      ]
+      "sha256": "af7d02828fe367d9c3dc0982eb246a2f2c9281d99cef534abe620c7eb2a2b278"
     },
     {
-      "sha256": "b4a9abbc5f3d092c010c78c454d71cf23edb2071981bb8d3224d9a279c3164f3",
       "bytes": 4703,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:hilbert-lift-completion:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.\",\n  \"operations\": {\n    \"fin_vector\": \"A vector of the finite carrier at report size len(xs).\",\n    \"fin_inner\": \"finInner: the exact rational inner product at a common report size.\",\n    \"pad\": \"pad: zero padding from report size len(x) to m >= len(x).\",\n    \"seq\": \"A finitely supported rational sequence as a dict index -> nonzero Fraction.\",\n    \"of_fin\": \"ofFin: the canonical injection of a finite stage.\",\n    \"trunc\": \"trunc: coordinates 0..n-1 of an exact sequence.\",\n    \"support_bound\": \"The least n with support f ⊆ range n.\",\n    \"exhaustion\": \"exhaustion: a report size n and a stage vector x with of_fin(x) == f.\",\n    \"add\": \"Function add operation.\",\n    \"sub\": \"Function sub operation.\",\n    \"smul\": \"Function smul operation.\",\n    \"qinner\": \"qinner: the exact inner product on the colimit carrier.\",\n    \"sqdist\": \"sqdist: squared ℓ² distance.\",\n    \"l1dist\": \"l1dist: ℓ¹ distance.\",\n    \"supdist\": \"Coordinatewise sup distance (0 on equal sequences).\",\n    \"restriction_identity\": \"qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.\",\n    \"padding_is_isometric\": \"finInner_pad and ofFin_pad.\",\n    \"cauchy_schwarz_holds\": \"qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.\",\n    \"doubling_triangle_holds\": \"sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).\",\n    \"l1_dominates_l2\": \"sqdist_le_l1dist_sq.\",\n    \"bessel_truncation_holds\": \"finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.\",\n    \"harmonic_term\": \"harmonicTerm i = 1/(i+1).\",\n    \"harmonic\": \"harmonic N = sum_{i<N} (1/(i+1)) e_i.\",\n    \"harmonic_modulus\": \"The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.\",\n    \"telescoping_bound_holds\": \"sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.\",\n    \"harmonic_sqdist_bound_holds\": \"sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.\",\n    \"harmonic_l1_lower_bound_holds\": \"sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.\",\n    \"harmonic_nonconvergence_bound_holds\": \"harmonic_not_tendsTo: with M the support bound of f and N > M,\",\n    \"modulus_holds\": \"HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,\",\n    \"l1_cauchy_fails\": \"A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with\",\n    \"CauchyPoint\": \"A point of the completion represented constructively: an exact sequence with an explicit\",\n    \"inner_fluctuation_sq_bound\": \"Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2\",\n    \"inner_fluctuation_holds\": \"Function inner_fluctuation_holds operation.\",\n    \"grid_approximation\": \"The density step of denseRange_castSeq_real with exact data: for a finitely supported\",\n    \"unit_vector\": \"Function unit_vector operation.\",\n    \"unit_vectors_not_cauchy\": \"e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.\",\n    \"shifted_modulus_fails\": \"The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/hilbert_lift_completion.py",
           "sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:qm:hilbert-lift-completion:v1",
-        "role": "library",
-        "purpose": "Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.",
-        "operations": {
-          "fin_vector": "A vector of the finite carrier at report size len(xs).",
-          "fin_inner": "finInner: the exact rational inner product at a common report size.",
-          "pad": "pad: zero padding from report size len(x) to m >= len(x).",
-          "seq": "A finitely supported rational sequence as a dict index -> nonzero Fraction.",
-          "of_fin": "ofFin: the canonical injection of a finite stage.",
-          "trunc": "trunc: coordinates 0..n-1 of an exact sequence.",
-          "support_bound": "The least n with support f ⊆ range n.",
-          "exhaustion": "exhaustion: a report size n and a stage vector x with of_fin(x) == f.",
-          "add": "Function add operation.",
-          "sub": "Function sub operation.",
-          "smul": "Function smul operation.",
-          "qinner": "qinner: the exact inner product on the colimit carrier.",
-          "sqdist": "sqdist: squared ℓ² distance.",
-          "l1dist": "l1dist: ℓ¹ distance.",
-          "supdist": "Coordinatewise sup distance (0 on equal sequences).",
-          "restriction_identity": "qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.",
-          "padding_is_isometric": "finInner_pad and ofFin_pad.",
-          "cauchy_schwarz_holds": "qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.",
-          "doubling_triangle_holds": "sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).",
-          "l1_dominates_l2": "sqdist_le_l1dist_sq.",
-          "bessel_truncation_holds": "finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.",
-          "harmonic_term": "harmonicTerm i = 1/(i+1).",
-          "harmonic": "harmonic N = sum_{i<N} (1/(i+1)) e_i.",
-          "harmonic_modulus": "The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.",
-          "telescoping_bound_holds": "sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.",
-          "harmonic_sqdist_bound_holds": "sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.",
-          "harmonic_l1_lower_bound_holds": "sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.",
-          "harmonic_nonconvergence_bound_holds": "harmonic_not_tendsTo: with M the support bound of f and N > M,",
-          "modulus_holds": "HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,",
-          "l1_cauchy_fails": "A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with",
-          "CauchyPoint": "A point of the completion represented constructively: an exact sequence with an explicit",
-          "inner_fluctuation_sq_bound": "Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2",
-          "inner_fluctuation_holds": "Function inner_fluctuation_holds operation.",
-          "grid_approximation": "The density step of denseRange_castSeq_real with exact data: for a finitely supported",
-          "unit_vector": "Function unit_vector operation.",
-          "unit_vectors_not_cauchy": "e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.",
-          "shifted_modulus_fails": "The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:"
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "CauchyPoint": "A point of the completion represented constructively: an exact sequence with an explicit",
+          "add": "Function add operation.",
+          "bessel_truncation_holds": "finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.",
+          "cauchy_schwarz_holds": "qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.",
+          "doubling_triangle_holds": "sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).",
+          "exhaustion": "exhaustion: a report size n and a stage vector x with of_fin(x) == f.",
+          "fin_inner": "finInner: the exact rational inner product at a common report size.",
+          "fin_vector": "A vector of the finite carrier at report size len(xs).",
+          "grid_approximation": "The density step of denseRange_castSeq_real with exact data: for a finitely supported",
+          "harmonic": "harmonic N = sum_{i<N} (1/(i+1)) e_i.",
+          "harmonic_l1_lower_bound_holds": "sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.",
+          "harmonic_modulus": "The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.",
+          "harmonic_nonconvergence_bound_holds": "harmonic_not_tendsTo: with M the support bound of f and N > M,",
+          "harmonic_sqdist_bound_holds": "sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.",
+          "harmonic_term": "harmonicTerm i = 1/(i+1).",
+          "inner_fluctuation_holds": "Function inner_fluctuation_holds operation.",
+          "inner_fluctuation_sq_bound": "Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2",
+          "l1_cauchy_fails": "A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with",
+          "l1_dominates_l2": "sqdist_le_l1dist_sq.",
+          "l1dist": "l1dist: ℓ¹ distance.",
+          "modulus_holds": "HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,",
+          "of_fin": "ofFin: the canonical injection of a finite stage.",
+          "pad": "pad: zero padding from report size len(x) to m >= len(x).",
+          "padding_is_isometric": "finInner_pad and ofFin_pad.",
+          "qinner": "qinner: the exact inner product on the colimit carrier.",
+          "restriction_identity": "qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.",
+          "seq": "A finitely supported rational sequence as a dict index -> nonzero Fraction.",
+          "shifted_modulus_fails": "The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:",
+          "smul": "Function smul operation.",
+          "sqdist": "sqdist: squared ℓ² distance.",
+          "sub": "Function sub operation.",
+          "supdist": "Coordinatewise sup distance (0 on equal sequences).",
+          "support_bound": "The least n with support f ⊆ range n.",
+          "telescoping_bound_holds": "sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.",
+          "trunc": "trunc: coordinates 0..n-1 of an exact sequence.",
+          "unit_vector": "Function unit_vector operation.",
+          "unit_vectors_not_cauchy": "e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy."
+        },
+        "profile": "Exact",
+        "purpose": "Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:hilbert-lift-completion:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.\",\n  \"operations\": {\n    \"fin_vector\": \"A vector of the finite carrier at report size len(xs).\",\n    \"fin_inner\": \"finInner: the exact rational inner product at a common report size.\",\n    \"pad\": \"pad: zero padding from report size len(x) to m >= len(x).\",\n    \"seq\": \"A finitely supported rational sequence as a dict index -> nonzero Fraction.\",\n    \"of_fin\": \"ofFin: the canonical injection of a finite stage.\",\n    \"trunc\": \"trunc: coordinates 0..n-1 of an exact sequence.\",\n    \"support_bound\": \"The least n with support f ⊆ range n.\",\n    \"exhaustion\": \"exhaustion: a report size n and a stage vector x with of_fin(x) == f.\",\n    \"add\": \"Function add operation.\",\n    \"sub\": \"Function sub operation.\",\n    \"smul\": \"Function smul operation.\",\n    \"qinner\": \"qinner: the exact inner product on the colimit carrier.\",\n    \"sqdist\": \"sqdist: squared ℓ² distance.\",\n    \"l1dist\": \"l1dist: ℓ¹ distance.\",\n    \"supdist\": \"Coordinatewise sup distance (0 on equal sequences).\",\n    \"restriction_identity\": \"qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.\",\n    \"padding_is_isometric\": \"finInner_pad and ofFin_pad.\",\n    \"cauchy_schwarz_holds\": \"qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.\",\n    \"doubling_triangle_holds\": \"sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).\",\n    \"l1_dominates_l2\": \"sqdist_le_l1dist_sq.\",\n    \"bessel_truncation_holds\": \"finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.\",\n    \"harmonic_term\": \"harmonicTerm i = 1/(i+1).\",\n    \"harmonic\": \"harmonic N = sum_{i<N} (1/(i+1)) e_i.\",\n    \"harmonic_modulus\": \"The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.\",\n    \"telescoping_bound_holds\": \"sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.\",\n    \"harmonic_sqdist_bound_holds\": \"sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.\",\n    \"harmonic_l1_lower_bound_holds\": \"sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.\",\n    \"harmonic_nonconvergence_bound_holds\": \"harmonic_not_tendsTo: with M the support bound of f and N > M,\",\n    \"modulus_holds\": \"HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,\",\n    \"l1_cauchy_fails\": \"A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with\",\n    \"CauchyPoint\": \"A point of the completion represented constructively: an exact sequence with an explicit\",\n    \"inner_fluctuation_sq_bound\": \"Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2\",\n    \"inner_fluctuation_holds\": \"Function inner_fluctuation_holds operation.\",\n    \"grid_approximation\": \"The density step of denseRange_castSeq_real with exact data: for a finitely supported\",\n    \"unit_vector\": \"Function unit_vector operation.\",\n    \"unit_vectors_not_cauchy\": \"e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.\",\n    \"shifted_modulus_fails\": \"The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#contract"
-      ]
+      "sha256": "b4a9abbc5f3d092c010c78c454d71cf23edb2071981bb8d3224d9a279c3164f3"
     },
     {
-      "sha256": "994d5c2c1525fbda65dca5a402b99ec00ae4dfae05adf089c8b6868ed101e228",
       "bytes": 4709,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"4b7075c4627be0b718a63fd319153dd06b0df880143b4fa173fef891afce05f3\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:hilbert-lift-completion:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.\",\n  \"operations\": {\n    \"fin_vector\": \"A vector of the finite carrier at report size len(xs).\",\n    \"fin_inner\": \"finInner: the exact rational inner product at a common report size.\",\n    \"pad\": \"pad: zero padding from report size len(x) to m >= len(x).\",\n    \"seq\": \"A finitely supported rational sequence as a dict index -> nonzero Fraction.\",\n    \"of_fin\": \"ofFin: the canonical injection of a finite stage.\",\n    \"trunc\": \"trunc: coordinates 0..n-1 of an exact sequence.\",\n    \"support_bound\": \"The least n with support f ⊆ range n.\",\n    \"exhaustion\": \"exhaustion: a report size n and a stage vector x with of_fin(x) == f.\",\n    \"add\": \"Function add operation.\",\n    \"sub\": \"Function sub operation.\",\n    \"smul\": \"Function smul operation.\",\n    \"qinner\": \"qinner: the exact inner product on the colimit carrier.\",\n    \"sqdist\": \"sqdist: squared ℓ² distance.\",\n    \"l1dist\": \"l1dist: ℓ¹ distance.\",\n    \"supdist\": \"Coordinatewise sup distance (0 on equal sequences).\",\n    \"restriction_identity\": \"qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.\",\n    \"padding_is_isometric\": \"finInner_pad and ofFin_pad.\",\n    \"cauchy_schwarz_holds\": \"qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.\",\n    \"doubling_triangle_holds\": \"sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).\",\n    \"l1_dominates_l2\": \"sqdist_le_l1dist_sq.\",\n    \"bessel_truncation_holds\": \"finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.\",\n    \"harmonic_term\": \"harmonicTerm i = 1/(i+1).\",\n    \"harmonic\": \"harmonic N = sum_{i<N} (1/(i+1)) e_i.\",\n    \"harmonic_modulus\": \"The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.\",\n    \"telescoping_bound_holds\": \"sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.\",\n    \"harmonic_sqdist_bound_holds\": \"sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.\",\n    \"harmonic_l1_lower_bound_holds\": \"sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.\",\n    \"harmonic_nonconvergence_bound_holds\": \"harmonic_not_tendsTo: with M the support bound of f and N > M,\",\n    \"modulus_holds\": \"HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,\",\n    \"l1_cauchy_fails\": \"A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with\",\n    \"CauchyCandidate\": \"A candidate representation of a point in the completion: an exact sequence with a supplied\",\n    \"inner_fluctuation_sq_bound\": \"Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2\",\n    \"inner_fluctuation_holds\": \"Function inner_fluctuation_holds operation.\",\n    \"grid_approximation\": \"The density step of denseRange_castSeq_real with exact data: for a finitely supported\",\n    \"unit_vector\": \"Function unit_vector operation.\",\n    \"unit_vectors_not_cauchy\": \"e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.\",\n    \"shifted_modulus_fails\": \"The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/hilbert_lift_completion.py",
           "sha256": "4b7075c4627be0b718a63fd319153dd06b0df880143b4fa173fef891afce05f3"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:qm:hilbert-lift-completion:v1",
-        "role": "library",
-        "purpose": "Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.",
-        "operations": {
-          "fin_vector": "A vector of the finite carrier at report size len(xs).",
-          "fin_inner": "finInner: the exact rational inner product at a common report size.",
-          "pad": "pad: zero padding from report size len(x) to m >= len(x).",
-          "seq": "A finitely supported rational sequence as a dict index -> nonzero Fraction.",
-          "of_fin": "ofFin: the canonical injection of a finite stage.",
-          "trunc": "trunc: coordinates 0..n-1 of an exact sequence.",
-          "support_bound": "The least n with support f ⊆ range n.",
-          "exhaustion": "exhaustion: a report size n and a stage vector x with of_fin(x) == f.",
-          "add": "Function add operation.",
-          "sub": "Function sub operation.",
-          "smul": "Function smul operation.",
-          "qinner": "qinner: the exact inner product on the colimit carrier.",
-          "sqdist": "sqdist: squared ℓ² distance.",
-          "l1dist": "l1dist: ℓ¹ distance.",
-          "supdist": "Coordinatewise sup distance (0 on equal sequences).",
-          "restriction_identity": "qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.",
-          "padding_is_isometric": "finInner_pad and ofFin_pad.",
-          "cauchy_schwarz_holds": "qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.",
-          "doubling_triangle_holds": "sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).",
-          "l1_dominates_l2": "sqdist_le_l1dist_sq.",
-          "bessel_truncation_holds": "finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.",
-          "harmonic_term": "harmonicTerm i = 1/(i+1).",
-          "harmonic": "harmonic N = sum_{i<N} (1/(i+1)) e_i.",
-          "harmonic_modulus": "The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.",
-          "telescoping_bound_holds": "sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.",
-          "harmonic_sqdist_bound_holds": "sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.",
-          "harmonic_l1_lower_bound_holds": "sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.",
-          "harmonic_nonconvergence_bound_holds": "harmonic_not_tendsTo: with M the support bound of f and N > M,",
-          "modulus_holds": "HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,",
-          "l1_cauchy_fails": "A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with",
-          "CauchyCandidate": "A candidate representation of a point in the completion: an exact sequence with a supplied",
-          "inner_fluctuation_sq_bound": "Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2",
-          "inner_fluctuation_holds": "Function inner_fluctuation_holds operation.",
-          "grid_approximation": "The density step of denseRange_castSeq_real with exact data: for a finitely supported",
-          "unit_vector": "Function unit_vector operation.",
-          "unit_vectors_not_cauchy": "e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.",
-          "shifted_modulus_fails": "The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:"
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "CauchyCandidate": "A candidate representation of a point in the completion: an exact sequence with a supplied",
+          "add": "Function add operation.",
+          "bessel_truncation_holds": "finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.",
+          "cauchy_schwarz_holds": "qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.",
+          "doubling_triangle_holds": "sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).",
+          "exhaustion": "exhaustion: a report size n and a stage vector x with of_fin(x) == f.",
+          "fin_inner": "finInner: the exact rational inner product at a common report size.",
+          "fin_vector": "A vector of the finite carrier at report size len(xs).",
+          "grid_approximation": "The density step of denseRange_castSeq_real with exact data: for a finitely supported",
+          "harmonic": "harmonic N = sum_{i<N} (1/(i+1)) e_i.",
+          "harmonic_l1_lower_bound_holds": "sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.",
+          "harmonic_modulus": "The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.",
+          "harmonic_nonconvergence_bound_holds": "harmonic_not_tendsTo: with M the support bound of f and N > M,",
+          "harmonic_sqdist_bound_holds": "sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.",
+          "harmonic_term": "harmonicTerm i = 1/(i+1).",
+          "inner_fluctuation_holds": "Function inner_fluctuation_holds operation.",
+          "inner_fluctuation_sq_bound": "Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2",
+          "l1_cauchy_fails": "A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with",
+          "l1_dominates_l2": "sqdist_le_l1dist_sq.",
+          "l1dist": "l1dist: ℓ¹ distance.",
+          "modulus_holds": "HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,",
+          "of_fin": "ofFin: the canonical injection of a finite stage.",
+          "pad": "pad: zero padding from report size len(x) to m >= len(x).",
+          "padding_is_isometric": "finInner_pad and ofFin_pad.",
+          "qinner": "qinner: the exact inner product on the colimit carrier.",
+          "restriction_identity": "qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.",
+          "seq": "A finitely supported rational sequence as a dict index -> nonzero Fraction.",
+          "shifted_modulus_fails": "The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:",
+          "smul": "Function smul operation.",
+          "sqdist": "sqdist: squared ℓ² distance.",
+          "sub": "Function sub operation.",
+          "supdist": "Coordinatewise sup distance (0 on equal sequences).",
+          "support_bound": "The least n with support f ⊆ range n.",
+          "telescoping_bound_holds": "sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.",
+          "trunc": "trunc: coordinates 0..n-1 of an exact sequence.",
+          "unit_vector": "Function unit_vector operation.",
+          "unit_vectors_not_cauchy": "e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy."
+        },
+        "profile": "Exact",
+        "purpose": "Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"4b7075c4627be0b718a63fd319153dd06b0df880143b4fa173fef891afce05f3\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:hilbert-lift-completion:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.\",\n  \"operations\": {\n    \"fin_vector\": \"A vector of the finite carrier at report size len(xs).\",\n    \"fin_inner\": \"finInner: the exact rational inner product at a common report size.\",\n    \"pad\": \"pad: zero padding from report size len(x) to m >= len(x).\",\n    \"seq\": \"A finitely supported rational sequence as a dict index -> nonzero Fraction.\",\n    \"of_fin\": \"ofFin: the canonical injection of a finite stage.\",\n    \"trunc\": \"trunc: coordinates 0..n-1 of an exact sequence.\",\n    \"support_bound\": \"The least n with support f ⊆ range n.\",\n    \"exhaustion\": \"exhaustion: a report size n and a stage vector x with of_fin(x) == f.\",\n    \"add\": \"Function add operation.\",\n    \"sub\": \"Function sub operation.\",\n    \"smul\": \"Function smul operation.\",\n    \"qinner\": \"qinner: the exact inner product on the colimit carrier.\",\n    \"sqdist\": \"sqdist: squared ℓ² distance.\",\n    \"l1dist\": \"l1dist: ℓ¹ distance.\",\n    \"supdist\": \"Coordinatewise sup distance (0 on equal sequences).\",\n    \"restriction_identity\": \"qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.\",\n    \"padding_is_isometric\": \"finInner_pad and ofFin_pad.\",\n    \"cauchy_schwarz_holds\": \"qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.\",\n    \"doubling_triangle_holds\": \"sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).\",\n    \"l1_dominates_l2\": \"sqdist_le_l1dist_sq.\",\n    \"bessel_truncation_holds\": \"finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.\",\n    \"harmonic_term\": \"harmonicTerm i = 1/(i+1).\",\n    \"harmonic\": \"harmonic N = sum_{i<N} (1/(i+1)) e_i.\",\n    \"harmonic_modulus\": \"The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.\",\n    \"telescoping_bound_holds\": \"sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.\",\n    \"harmonic_sqdist_bound_holds\": \"sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.\",\n    \"harmonic_l1_lower_bound_holds\": \"sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.\",\n    \"harmonic_nonconvergence_bound_holds\": \"harmonic_not_tendsTo: with M the support bound of f and N > M,\",\n    \"modulus_holds\": \"HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,\",\n    \"l1_cauchy_fails\": \"A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with\",\n    \"CauchyCandidate\": \"A candidate representation of a point in the completion: an exact sequence with a supplied\",\n    \"inner_fluctuation_sq_bound\": \"Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2\",\n    \"inner_fluctuation_holds\": \"Function inner_fluctuation_holds operation.\",\n    \"grid_approximation\": \"The density step of denseRange_castSeq_real with exact data: for a finitely supported\",\n    \"unit_vector\": \"Function unit_vector operation.\",\n    \"unit_vectors_not_cauchy\": \"e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.\",\n    \"shifted_modulus_fails\": \"The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#contract"
-      ]
+      "sha256": "994d5c2c1525fbda65dca5a402b99ec00ae4dfae05adf089c8b6868ed101e228"
     },
     {
-      "sha256": "46d3a1365e91d30c8ea2cd58c65f309bd2424d9296674d858beaa283a9766436",
       "bytes": 1495,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.py.contract.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/hilbert_lift_completion.py\nsource_sha256: 65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:continuum-hilbert-lift:65f200e5850a4008338c\nsymbols:\n- _q\n- add\n- bessel_truncation_holds\n- cauchy_schwarz_holds\n- doubling_triangle_holds\n- exhaustion\n- fin_inner\n- fin_vector\n- grid_approximation\n- harmonic\n- harmonic_l1_lower_bound_holds\n- harmonic_modulus\n- harmonic_nonconvergence_bound_holds\n- harmonic_sqdist_bound_holds\n- harmonic_term\n- inner_fluctuation_holds\n- inner_fluctuation_sq_bound\n- l1_cauchy_fails\n- l1_dominates_l2\n- l1dist\n- modulus_holds\n- of_fin\n- pad\n- padding_is_isometric\n- qinner\n- restriction_identity\n- seq\n- shifted_modulus_fails\n- smul\n- sqdist\n- sub\n- supdist\n- support_bound\n- telescoping_bound_holds\n- trunc\n- unit_vector\n- unit_vectors_not_cauchy\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general\n  proof.\n- The completion itself is not represented; the inner-product fluctuation bound is a native estimate not\n  stated in the Lean run.\nevidence:\n- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md\n",
       "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/hilbert_lift_completion.py",
-        "source_sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95",
         "authority_effect": "None",
+        "boundaries": [
+          "Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general proof.",
+          "The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean run."
+        ],
         "contract_urn": "urn:finite-qm:pfp:continuum-hilbert-lift:65f200e5850a4008338c",
+        "evidence": [
+          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95",
+        "subject": "code/python/src/qm/hilbert_lift_completion.py",
         "symbols": [
           "_q",
           "add",
@@ -333,33 +305,33 @@
           "trunc",
           "unit_vector",
           "unit_vectors_not_cauchy"
+        ]
+      },
+      "sha256": "46d3a1365e91d30c8ea2cd58c65f309bd2424d9296674d858beaa283a9766436"
+    },
+    {
+      "bytes": 1764,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.py.contract.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/hilbert_lift_completion.py\nsource_sha256: f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:continuum-hilbert-lift:f77719357c943a2986e4\nsymbols:\n- _fail\n- _locked\n- _mark\n- _q\n- _require_fraction\n- add\n- bessel_truncation_holds\n- bounded_operator_holds\n- cauchy_schwarz_holds\n- certify\n- coord_sum\n- coord_sum_gap\n- coord_sum_not_cauchy_refutations\n- doubling_triangle_holds\n- exhaustion\n- fin_inner\n- fin_vector\n- grid_approximation\n- harmonic\n- harmonic_l1_lower_bound_holds\n- harmonic_modulus\n- harmonic_nonconvergence_bound_holds\n- harmonic_norm_sq_le_two_holds\n- harmonic_sqdist_bound_holds\n- harmonic_term\n- inner_fluctuation_holds\n- inner_fluctuation_sq_bound\n- l1_cauchy_fails\n- l1_dominates_l2\n- l1dist\n- main\n- modulus_holds\n- of_fin\n- operator_lipschitz_holds\n- pad\n- padding_is_isometric\n- proj\n- qinner\n- restriction_identity\n- seq\n- shift\n- shift_is_isometric\n- shifted_modulus_fails\n- smul\n- sqdist\n- sub\n- supdist\n- support_bound\n- telescoping_bound_holds\n- transported_modulus\n- trunc\n- unit_vector\n- unit_vectors_not_cauchy\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general\n  proof.\n- The completion itself is not represented; the inner-product fluctuation bound is a native estimate not\n  stated in the Lean runs.\nevidence:\n- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md\n",
+      "record": {
+        "authority_effect": "None",
+        "boundaries": [
+          "Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general proof.",
+          "The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean runs."
+        ],
+        "contract_urn": "urn:finite-qm:pfp:continuum-hilbert-lift:f77719357c943a2986e4",
+        "evidence": [
+          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md"
         ],
         "owned_invariants": [
           "Only the literal definitions and the declared exact replay contract of this source are claimed.",
           "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
         ],
-        "boundaries": [
-          "Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general proof.",
-          "The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean run."
-        ],
-        "evidence": [
-          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md"
-        ]
-      },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/hilbert_lift_completion.py\nsource_sha256: 65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:continuum-hilbert-lift:65f200e5850a4008338c\nsymbols:\n- _q\n- add\n- bessel_truncation_holds\n- cauchy_schwarz_holds\n- doubling_triangle_holds\n- exhaustion\n- fin_inner\n- fin_vector\n- grid_approximation\n- harmonic\n- harmonic_l1_lower_bound_holds\n- harmonic_modulus\n- harmonic_nonconvergence_bound_holds\n- harmonic_sqdist_bound_holds\n- harmonic_term\n- inner_fluctuation_holds\n- inner_fluctuation_sq_bound\n- l1_cauchy_fails\n- l1_dominates_l2\n- l1dist\n- modulus_holds\n- of_fin\n- pad\n- padding_is_isometric\n- qinner\n- restriction_identity\n- seq\n- shifted_modulus_fails\n- smul\n- sqdist\n- sub\n- supdist\n- support_bound\n- telescoping_bound_holds\n- trunc\n- unit_vector\n- unit_vectors_not_cauchy\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general\n  proof.\n- The completion itself is not represented; the inner-product fluctuation bound is a native estimate not\n  stated in the Lean run.\nevidence:\n- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.py.contract.yaml"
-      ]
-    },
-    {
-      "sha256": "fef86f6fb28bbe789a6eaefeeb89f7f8b6bd3b655f1165ffb327dc5c9a649eab",
-      "bytes": 1764,
-      "record": {
         "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/hilbert_lift_completion.py",
         "source_sha256": "f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3",
-        "authority_effect": "None",
-        "contract_urn": "urn:finite-qm:pfp:continuum-hilbert-lift:f77719357c943a2986e4",
+        "subject": "code/python/src/qm/hilbert_lift_completion.py",
         "symbols": [
           "_fail",
           "_locked",
@@ -414,194 +386,234 @@
           "trunc",
           "unit_vector",
           "unit_vectors_not_cauchy"
-        ],
-        "owned_invariants": [
-          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
-          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
-        ],
-        "boundaries": [
-          "Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general proof.",
-          "The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean runs."
-        ],
-        "evidence": [
-          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md"
         ]
       },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/hilbert_lift_completion.py\nsource_sha256: f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:continuum-hilbert-lift:f77719357c943a2986e4\nsymbols:\n- _fail\n- _locked\n- _mark\n- _q\n- _require_fraction\n- add\n- bessel_truncation_holds\n- bounded_operator_holds\n- cauchy_schwarz_holds\n- certify\n- coord_sum\n- coord_sum_gap\n- coord_sum_not_cauchy_refutations\n- doubling_triangle_holds\n- exhaustion\n- fin_inner\n- fin_vector\n- grid_approximation\n- harmonic\n- harmonic_l1_lower_bound_holds\n- harmonic_modulus\n- harmonic_nonconvergence_bound_holds\n- harmonic_norm_sq_le_two_holds\n- harmonic_sqdist_bound_holds\n- harmonic_term\n- inner_fluctuation_holds\n- inner_fluctuation_sq_bound\n- l1_cauchy_fails\n- l1_dominates_l2\n- l1dist\n- main\n- modulus_holds\n- of_fin\n- operator_lipschitz_holds\n- pad\n- padding_is_isometric\n- proj\n- qinner\n- restriction_identity\n- seq\n- shift\n- shift_is_isometric\n- shifted_modulus_fails\n- smul\n- sqdist\n- sub\n- supdist\n- support_bound\n- telescoping_bound_holds\n- transported_modulus\n- trunc\n- unit_vector\n- unit_vectors_not_cauchy\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general\n  proof.\n- The completion itself is not represented; the inner-product fluctuation bound is a native estimate not\n  stated in the Lean runs.\nevidence:\n- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.py.contract.yaml"
-      ]
+      "sha256": "fef86f6fb28bbe789a6eaefeeb89f7f8b6bd3b655f1165ffb327dc5c9a649eab"
     },
     {
-      "sha256": "3c98e21a42455dd20f64bb2b7020251f4bb0f08b1e57112eb48cba2c06e9ee93",
       "bytes": 4735,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:hilbert-lift-completion:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.\",\n  \"operations\": {\n    \"fin_vector\": \"A vector of the finite carrier at report size len(xs).\",\n    \"fin_inner\": \"finInner: the exact rational inner product at a common report size.\",\n    \"pad\": \"pad: zero padding from report size len(x) to m >= len(x).\",\n    \"seq\": \"A finitely supported rational sequence as a dict index -> nonzero Fraction.\",\n    \"of_fin\": \"ofFin: the canonical injection of a finite stage.\",\n    \"trunc\": \"trunc: coordinates 0..n-1 of an exact sequence.\",\n    \"support_bound\": \"The least n with support f ⊆ range n.\",\n    \"exhaustion\": \"exhaustion: a report size n and a stage vector x with of_fin(x) == f.\",\n    \"add\": \"Function add operation.\",\n    \"sub\": \"Function sub operation.\",\n    \"smul\": \"Function smul operation.\",\n    \"qinner\": \"qinner: the exact inner product on the colimit carrier.\",\n    \"sqdist\": \"sqdist: squared ℓ² distance.\",\n    \"l1dist\": \"l1dist: ℓ¹ distance.\",\n    \"supdist\": \"Coordinatewise sup distance (0 on equal sequences).\",\n    \"restriction_identity\": \"qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.\",\n    \"padding_is_isometric\": \"finInner_pad and ofFin_pad.\",\n    \"cauchy_schwarz_holds\": \"qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.\",\n    \"doubling_triangle_holds\": \"sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).\",\n    \"l1_dominates_l2\": \"sqdist_le_l1dist_sq.\",\n    \"bessel_truncation_holds\": \"finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.\",\n    \"harmonic_term\": \"harmonicTerm i = 1/(i+1).\",\n    \"harmonic\": \"harmonic N = sum_{i<N} (1/(i+1)) e_i.\",\n    \"harmonic_modulus\": \"The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.\",\n    \"telescoping_bound_holds\": \"sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.\",\n    \"harmonic_sqdist_bound_holds\": \"sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.\",\n    \"harmonic_l1_lower_bound_holds\": \"sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.\",\n    \"harmonic_nonconvergence_bound_holds\": \"harmonic_not_tendsTo: with M the support bound of f and N > M,\",\n    \"modulus_holds\": \"HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,\",\n    \"l1_cauchy_fails\": \"A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with\",\n    \"CauchyCandidate\": \"A candidate representation of a point in the completion: an exact sequence with a supplied\",\n    \"inner_fluctuation_sq_bound\": \"Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2\",\n    \"inner_fluctuation_holds\": \"Function inner_fluctuation_holds operation.\",\n    \"grid_approximation\": \"The density step of denseRange_castSeq_real with exact data: for a finitely supported\",\n    \"unit_vector\": \"Function unit_vector operation.\",\n    \"unit_vectors_not_cauchy\": \"e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.\",\n    \"shifted_modulus_fails\": \"The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Python",
           "path": "code/python/src/qm/hilbert_lift_completion.py",
-          "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535",
-          "language": "Python"
+          "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:qm:hilbert-lift-completion:v1",
-        "role": "library",
-        "purpose": "Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.",
-        "operations": {
-          "fin_vector": "A vector of the finite carrier at report size len(xs).",
-          "fin_inner": "finInner: the exact rational inner product at a common report size.",
-          "pad": "pad: zero padding from report size len(x) to m >= len(x).",
-          "seq": "A finitely supported rational sequence as a dict index -> nonzero Fraction.",
-          "of_fin": "ofFin: the canonical injection of a finite stage.",
-          "trunc": "trunc: coordinates 0..n-1 of an exact sequence.",
-          "support_bound": "The least n with support f ⊆ range n.",
-          "exhaustion": "exhaustion: a report size n and a stage vector x with of_fin(x) == f.",
-          "add": "Function add operation.",
-          "sub": "Function sub operation.",
-          "smul": "Function smul operation.",
-          "qinner": "qinner: the exact inner product on the colimit carrier.",
-          "sqdist": "sqdist: squared ℓ² distance.",
-          "l1dist": "l1dist: ℓ¹ distance.",
-          "supdist": "Coordinatewise sup distance (0 on equal sequences).",
-          "restriction_identity": "qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.",
-          "padding_is_isometric": "finInner_pad and ofFin_pad.",
-          "cauchy_schwarz_holds": "qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.",
-          "doubling_triangle_holds": "sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).",
-          "l1_dominates_l2": "sqdist_le_l1dist_sq.",
-          "bessel_truncation_holds": "finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.",
-          "harmonic_term": "harmonicTerm i = 1/(i+1).",
-          "harmonic": "harmonic N = sum_{i<N} (1/(i+1)) e_i.",
-          "harmonic_modulus": "The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.",
-          "telescoping_bound_holds": "sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.",
-          "harmonic_sqdist_bound_holds": "sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.",
-          "harmonic_l1_lower_bound_holds": "sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.",
-          "harmonic_nonconvergence_bound_holds": "harmonic_not_tendsTo: with M the support bound of f and N > M,",
-          "modulus_holds": "HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,",
-          "l1_cauchy_fails": "A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with",
-          "CauchyCandidate": "A candidate representation of a point in the completion: an exact sequence with a supplied",
-          "inner_fluctuation_sq_bound": "Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2",
-          "inner_fluctuation_holds": "Function inner_fluctuation_holds operation.",
-          "grid_approximation": "The density step of denseRange_castSeq_real with exact data: for a finitely supported",
-          "unit_vector": "Function unit_vector operation.",
-          "unit_vectors_not_cauchy": "e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.",
-          "shifted_modulus_fails": "The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:"
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "CauchyCandidate": "A candidate representation of a point in the completion: an exact sequence with a supplied",
+          "add": "Function add operation.",
+          "bessel_truncation_holds": "finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.",
+          "cauchy_schwarz_holds": "qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.",
+          "doubling_triangle_holds": "sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).",
+          "exhaustion": "exhaustion: a report size n and a stage vector x with of_fin(x) == f.",
+          "fin_inner": "finInner: the exact rational inner product at a common report size.",
+          "fin_vector": "A vector of the finite carrier at report size len(xs).",
+          "grid_approximation": "The density step of denseRange_castSeq_real with exact data: for a finitely supported",
+          "harmonic": "harmonic N = sum_{i<N} (1/(i+1)) e_i.",
+          "harmonic_l1_lower_bound_holds": "sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.",
+          "harmonic_modulus": "The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.",
+          "harmonic_nonconvergence_bound_holds": "harmonic_not_tendsTo: with M the support bound of f and N > M,",
+          "harmonic_sqdist_bound_holds": "sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.",
+          "harmonic_term": "harmonicTerm i = 1/(i+1).",
+          "inner_fluctuation_holds": "Function inner_fluctuation_holds operation.",
+          "inner_fluctuation_sq_bound": "Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2",
+          "l1_cauchy_fails": "A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with",
+          "l1_dominates_l2": "sqdist_le_l1dist_sq.",
+          "l1dist": "l1dist: ℓ¹ distance.",
+          "modulus_holds": "HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,",
+          "of_fin": "ofFin: the canonical injection of a finite stage.",
+          "pad": "pad: zero padding from report size len(x) to m >= len(x).",
+          "padding_is_isometric": "finInner_pad and ofFin_pad.",
+          "qinner": "qinner: the exact inner product on the colimit carrier.",
+          "restriction_identity": "qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.",
+          "seq": "A finitely supported rational sequence as a dict index -> nonzero Fraction.",
+          "shifted_modulus_fails": "The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:",
+          "smul": "Function smul operation.",
+          "sqdist": "sqdist: squared ℓ² distance.",
+          "sub": "Function sub operation.",
+          "supdist": "Coordinatewise sup distance (0 on equal sequences).",
+          "support_bound": "The least n with support f ⊆ range n.",
+          "telescoping_bound_holds": "sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.",
+          "trunc": "trunc: coordinates 0..n-1 of an exact sequence.",
+          "unit_vector": "Function unit_vector operation.",
+          "unit_vectors_not_cauchy": "e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy."
+        },
+        "profile": "Exact",
+        "purpose": "Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:hilbert-lift-completion:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.\",\n  \"operations\": {\n    \"fin_vector\": \"A vector of the finite carrier at report size len(xs).\",\n    \"fin_inner\": \"finInner: the exact rational inner product at a common report size.\",\n    \"pad\": \"pad: zero padding from report size len(x) to m >= len(x).\",\n    \"seq\": \"A finitely supported rational sequence as a dict index -> nonzero Fraction.\",\n    \"of_fin\": \"ofFin: the canonical injection of a finite stage.\",\n    \"trunc\": \"trunc: coordinates 0..n-1 of an exact sequence.\",\n    \"support_bound\": \"The least n with support f ⊆ range n.\",\n    \"exhaustion\": \"exhaustion: a report size n and a stage vector x with of_fin(x) == f.\",\n    \"add\": \"Function add operation.\",\n    \"sub\": \"Function sub operation.\",\n    \"smul\": \"Function smul operation.\",\n    \"qinner\": \"qinner: the exact inner product on the colimit carrier.\",\n    \"sqdist\": \"sqdist: squared ℓ² distance.\",\n    \"l1dist\": \"l1dist: ℓ¹ distance.\",\n    \"supdist\": \"Coordinatewise sup distance (0 on equal sequences).\",\n    \"restriction_identity\": \"qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.\",\n    \"padding_is_isometric\": \"finInner_pad and ofFin_pad.\",\n    \"cauchy_schwarz_holds\": \"qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.\",\n    \"doubling_triangle_holds\": \"sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).\",\n    \"l1_dominates_l2\": \"sqdist_le_l1dist_sq.\",\n    \"bessel_truncation_holds\": \"finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.\",\n    \"harmonic_term\": \"harmonicTerm i = 1/(i+1).\",\n    \"harmonic\": \"harmonic N = sum_{i<N} (1/(i+1)) e_i.\",\n    \"harmonic_modulus\": \"The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.\",\n    \"telescoping_bound_holds\": \"sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.\",\n    \"harmonic_sqdist_bound_holds\": \"sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.\",\n    \"harmonic_l1_lower_bound_holds\": \"sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.\",\n    \"harmonic_nonconvergence_bound_holds\": \"harmonic_not_tendsTo: with M the support bound of f and N > M,\",\n    \"modulus_holds\": \"HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,\",\n    \"l1_cauchy_fails\": \"A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with\",\n    \"CauchyCandidate\": \"A candidate representation of a point in the completion: an exact sequence with a supplied\",\n    \"inner_fluctuation_sq_bound\": \"Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2\",\n    \"inner_fluctuation_holds\": \"Function inner_fluctuation_holds operation.\",\n    \"grid_approximation\": \"The density step of denseRange_castSeq_real with exact data: for a finitely supported\",\n    \"unit_vector\": \"Function unit_vector operation.\",\n    \"unit_vectors_not_cauchy\": \"e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.\",\n    \"shifted_modulus_fails\": \"The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#contract"
-      ]
+      "sha256": "3c98e21a42455dd20f64bb2b7020251f4bb0f08b1e57112eb48cba2c06e9ee93"
     },
     {
-      "sha256": "91a5fece29741dd797132e0448acefd8cff52bf0abe45526dbf01e1a550f2320",
       "bytes": 5956,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:hilbert-lift-completion:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.\",\n  \"operations\": {\n    \"fin_vector\": \"A vector of the finite carrier at report size len(xs).\",\n    \"fin_inner\": \"finInner: the exact rational inner product at a common report size.\",\n    \"pad\": \"pad: zero padding from report size len(x) to m >= len(x).\",\n    \"seq\": \"A finitely supported rational sequence as a dict index -> nonzero Fraction.\",\n    \"of_fin\": \"ofFin: the canonical injection of a finite stage.\",\n    \"trunc\": \"trunc: coordinates 0..n-1 of an exact sequence.\",\n    \"support_bound\": \"The least n with support f ⊆ range n.\",\n    \"exhaustion\": \"exhaustion: a report size n and a stage vector x with of_fin(x) == f.\",\n    \"add\": \"Function add operation.\",\n    \"sub\": \"Function sub operation.\",\n    \"smul\": \"Function smul operation.\",\n    \"qinner\": \"qinner: the exact inner product on the colimit carrier.\",\n    \"sqdist\": \"sqdist: squared ℓ² distance.\",\n    \"l1dist\": \"l1dist: ℓ¹ distance.\",\n    \"supdist\": \"Coordinatewise sup distance (0 on equal sequences).\",\n    \"restriction_identity\": \"qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.\",\n    \"padding_is_isometric\": \"finInner_pad and ofFin_pad.\",\n    \"cauchy_schwarz_holds\": \"qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.\",\n    \"doubling_triangle_holds\": \"sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).\",\n    \"l1_dominates_l2\": \"sqdist_le_l1dist_sq.\",\n    \"bessel_truncation_holds\": \"finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.\",\n    \"harmonic_term\": \"harmonicTerm i = 1/(i+1).\",\n    \"harmonic\": \"harmonic N = sum_{i<N} (1/(i+1)) e_i.\",\n    \"harmonic_modulus\": \"The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.\",\n    \"telescoping_bound_holds\": \"sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.\",\n    \"harmonic_sqdist_bound_holds\": \"sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.\",\n    \"harmonic_l1_lower_bound_holds\": \"sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.\",\n    \"harmonic_nonconvergence_bound_holds\": \"harmonic_not_tendsTo: with M the support bound of f and N > M,\",\n    \"modulus_holds\": \"HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,\",\n    \"l1_cauchy_fails\": \"A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with\",\n    \"CauchyCandidate\": \"A candidate representation of a point in the completion: an exact sequence with a supplied\",\n    \"inner_fluctuation_sq_bound\": \"Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2\",\n    \"inner_fluctuation_holds\": \"Function inner_fluctuation_holds operation.\",\n    \"grid_approximation\": \"The density step of denseRange_castSeq_real with exact data: for a finitely supported\",\n    \"unit_vector\": \"Function unit_vector operation.\",\n    \"unit_vectors_not_cauchy\": \"e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.\",\n    \"shifted_modulus_fails\": \"The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:\",\n    \"HilbertLiftError\": \"One violated exact-carrier invariant, with the measured parameters.\",\n    \"bounded_operator_holds\": \"BoundedExactOperator.norm_sq_le on supplied samples: qinner (A f) (A f) <= bound * qinner f f.\",\n    \"operator_lipschitz_holds\": \"sqdist_map_le: sqdist (A f) (A g) <= bound * sqdist f g (for an additive A).\",\n    \"transported_modulus\": \"isCauchyL2_map made explicit: if x has modulus mu then A x has modulus\",\n    \"shift\": \"shiftMap: e_i -> e_{i+1}.\",\n    \"shift_is_isometric\": \"qinner_shift: qinner (shift f) (shift g) = qinner f g.\",\n    \"proj\": \"projMap n: the stage projection ofFin (trunc n f); bound 1 by finInner_trunc_le.\",\n    \"coord_sum\": \"coordSum: the Q-linear coordinate-sum functional.\",\n    \"coord_sum_gap\": \"coordSum_harmonic_gap: coordSum (harmonic 2n) - coordSum (harmonic n), at least 1/2 for n >= 1.\",\n    \"harmonic_norm_sq_le_two_holds\": \"qinner_harmonic_le_two: qinner (harmonic N) (harmonic N) <= 2.\",\n    \"coord_sum_not_cauchy_refutations\": \"no_continuous_extension_coordSum, finite form: pairs (m, n) with\",\n    \"certify\": \"Refuse a non-rational probe, then return the locked harmonic gap coordSum (h_2) - coordSum (h_1) = 1/2.\",\n    \"main\": \"Function main operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Python",
           "path": "code/python/src/qm/hilbert_lift_completion.py",
-          "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535",
-          "language": "Python"
+          "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:qm:hilbert-lift-completion:v1",
-        "role": "library",
-        "purpose": "Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
         "operations": {
-          "fin_vector": "A vector of the finite carrier at report size len(xs).",
-          "fin_inner": "finInner: the exact rational inner product at a common report size.",
-          "pad": "pad: zero padding from report size len(x) to m >= len(x).",
-          "seq": "A finitely supported rational sequence as a dict index -> nonzero Fraction.",
-          "of_fin": "ofFin: the canonical injection of a finite stage.",
-          "trunc": "trunc: coordinates 0..n-1 of an exact sequence.",
-          "support_bound": "The least n with support f ⊆ range n.",
-          "exhaustion": "exhaustion: a report size n and a stage vector x with of_fin(x) == f.",
-          "add": "Function add operation.",
-          "sub": "Function sub operation.",
-          "smul": "Function smul operation.",
-          "qinner": "qinner: the exact inner product on the colimit carrier.",
-          "sqdist": "sqdist: squared ℓ² distance.",
-          "l1dist": "l1dist: ℓ¹ distance.",
-          "supdist": "Coordinatewise sup distance (0 on equal sequences).",
-          "restriction_identity": "qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.",
-          "padding_is_isometric": "finInner_pad and ofFin_pad.",
-          "cauchy_schwarz_holds": "qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.",
-          "doubling_triangle_holds": "sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).",
-          "l1_dominates_l2": "sqdist_le_l1dist_sq.",
-          "bessel_truncation_holds": "finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.",
-          "harmonic_term": "harmonicTerm i = 1/(i+1).",
-          "harmonic": "harmonic N = sum_{i<N} (1/(i+1)) e_i.",
-          "harmonic_modulus": "The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.",
-          "telescoping_bound_holds": "sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.",
-          "harmonic_sqdist_bound_holds": "sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.",
-          "harmonic_l1_lower_bound_holds": "sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.",
-          "harmonic_nonconvergence_bound_holds": "harmonic_not_tendsTo: with M the support bound of f and N > M,",
-          "modulus_holds": "HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,",
-          "l1_cauchy_fails": "A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with",
           "CauchyCandidate": "A candidate representation of a point in the completion: an exact sequence with a supplied",
-          "inner_fluctuation_sq_bound": "Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2",
-          "inner_fluctuation_holds": "Function inner_fluctuation_holds operation.",
-          "grid_approximation": "The density step of denseRange_castSeq_real with exact data: for a finitely supported",
-          "unit_vector": "Function unit_vector operation.",
-          "unit_vectors_not_cauchy": "e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.",
-          "shifted_modulus_fails": "The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:",
           "HilbertLiftError": "One violated exact-carrier invariant, with the measured parameters.",
+          "add": "Function add operation.",
+          "bessel_truncation_holds": "finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.",
           "bounded_operator_holds": "BoundedExactOperator.norm_sq_le on supplied samples: qinner (A f) (A f) <= bound * qinner f f.",
-          "operator_lipschitz_holds": "sqdist_map_le: sqdist (A f) (A g) <= bound * sqdist f g (for an additive A).",
-          "transported_modulus": "isCauchyL2_map made explicit: if x has modulus mu then A x has modulus",
-          "shift": "shiftMap: e_i -> e_{i+1}.",
-          "shift_is_isometric": "qinner_shift: qinner (shift f) (shift g) = qinner f g.",
-          "proj": "projMap n: the stage projection ofFin (trunc n f); bound 1 by finInner_trunc_le.",
+          "cauchy_schwarz_holds": "qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.",
+          "certify": "Refuse a non-rational probe, then return the locked harmonic gap coordSum (h_2) - coordSum (h_1) = 1/2.",
           "coord_sum": "coordSum: the Q-linear coordinate-sum functional.",
           "coord_sum_gap": "coordSum_harmonic_gap: coordSum (harmonic 2n) - coordSum (harmonic n), at least 1/2 for n >= 1.",
-          "harmonic_norm_sq_le_two_holds": "qinner_harmonic_le_two: qinner (harmonic N) (harmonic N) <= 2.",
           "coord_sum_not_cauchy_refutations": "no_continuous_extension_coordSum, finite form: pairs (m, n) with",
-          "certify": "Refuse a non-rational probe, then return the locked harmonic gap coordSum (h_2) - coordSum (h_1) = 1/2.",
-          "main": "Function main operation."
+          "doubling_triangle_holds": "sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).",
+          "exhaustion": "exhaustion: a report size n and a stage vector x with of_fin(x) == f.",
+          "fin_inner": "finInner: the exact rational inner product at a common report size.",
+          "fin_vector": "A vector of the finite carrier at report size len(xs).",
+          "grid_approximation": "The density step of denseRange_castSeq_real with exact data: for a finitely supported",
+          "harmonic": "harmonic N = sum_{i<N} (1/(i+1)) e_i.",
+          "harmonic_l1_lower_bound_holds": "sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.",
+          "harmonic_modulus": "The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.",
+          "harmonic_nonconvergence_bound_holds": "harmonic_not_tendsTo: with M the support bound of f and N > M,",
+          "harmonic_norm_sq_le_two_holds": "qinner_harmonic_le_two: qinner (harmonic N) (harmonic N) <= 2.",
+          "harmonic_sqdist_bound_holds": "sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.",
+          "harmonic_term": "harmonicTerm i = 1/(i+1).",
+          "inner_fluctuation_holds": "Function inner_fluctuation_holds operation.",
+          "inner_fluctuation_sq_bound": "Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2",
+          "l1_cauchy_fails": "A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with",
+          "l1_dominates_l2": "sqdist_le_l1dist_sq.",
+          "l1dist": "l1dist: ℓ¹ distance.",
+          "main": "Function main operation.",
+          "modulus_holds": "HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,",
+          "of_fin": "ofFin: the canonical injection of a finite stage.",
+          "operator_lipschitz_holds": "sqdist_map_le: sqdist (A f) (A g) <= bound * sqdist f g (for an additive A).",
+          "pad": "pad: zero padding from report size len(x) to m >= len(x).",
+          "padding_is_isometric": "finInner_pad and ofFin_pad.",
+          "proj": "projMap n: the stage projection ofFin (trunc n f); bound 1 by finInner_trunc_le.",
+          "qinner": "qinner: the exact inner product on the colimit carrier.",
+          "restriction_identity": "qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.",
+          "seq": "A finitely supported rational sequence as a dict index -> nonzero Fraction.",
+          "shift": "shiftMap: e_i -> e_{i+1}.",
+          "shift_is_isometric": "qinner_shift: qinner (shift f) (shift g) = qinner f g.",
+          "shifted_modulus_fails": "The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:",
+          "smul": "Function smul operation.",
+          "sqdist": "sqdist: squared ℓ² distance.",
+          "sub": "Function sub operation.",
+          "supdist": "Coordinatewise sup distance (0 on equal sequences).",
+          "support_bound": "The least n with support f ⊆ range n.",
+          "telescoping_bound_holds": "sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.",
+          "transported_modulus": "isCauchyL2_map made explicit: if x has modulus mu then A x has modulus",
+          "trunc": "trunc: coordinates 0..n-1 of an exact sequence.",
+          "unit_vector": "Function unit_vector operation.",
+          "unit_vectors_not_cauchy": "e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy."
         },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "profile": "Exact",
+        "purpose": "Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.",
+        "role": "library",
         "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
+      },
+      "sha256": "91a5fece29741dd797132e0448acefd8cff52bf0abe45526dbf01e1a550f2320"
+    },
+    {
+      "bytes": 1616,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n      \"sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\",\n  \"subject\": \"code/python/src/qm/hilbert_lift_completion.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/qm/hilbert_lift_completion.py",
+          "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
         "evidence": [
           {
+            "path": "code/python/src/qm/hilbert_lift_completion.py",
+            "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535"
+          },
+          {
             "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
           }
-        ]
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535",
+        "subject": "code/python/src/qm/hilbert_lift_completion.py"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:hilbert-lift-completion:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact finite carriers, their directed union, rational ℓ² uniformity and the harmonic witness; the exact-rational half of the controlled Hilbert completion.\",\n  \"operations\": {\n    \"fin_vector\": \"A vector of the finite carrier at report size len(xs).\",\n    \"fin_inner\": \"finInner: the exact rational inner product at a common report size.\",\n    \"pad\": \"pad: zero padding from report size len(x) to m >= len(x).\",\n    \"seq\": \"A finitely supported rational sequence as a dict index -> nonzero Fraction.\",\n    \"of_fin\": \"ofFin: the canonical injection of a finite stage.\",\n    \"trunc\": \"trunc: coordinates 0..n-1 of an exact sequence.\",\n    \"support_bound\": \"The least n with support f ⊆ range n.\",\n    \"exhaustion\": \"exhaustion: a report size n and a stage vector x with of_fin(x) == f.\",\n    \"add\": \"Function add operation.\",\n    \"sub\": \"Function sub operation.\",\n    \"smul\": \"Function smul operation.\",\n    \"qinner\": \"qinner: the exact inner product on the colimit carrier.\",\n    \"sqdist\": \"sqdist: squared ℓ² distance.\",\n    \"l1dist\": \"l1dist: ℓ¹ distance.\",\n    \"supdist\": \"Coordinatewise sup distance (0 on equal sequences).\",\n    \"restriction_identity\": \"qinner_ofFin: qinner (ofFin x) (ofFin y) = finInner x y.\",\n    \"padding_is_isometric\": \"finInner_pad and ofFin_pad.\",\n    \"cauchy_schwarz_holds\": \"qinner_sq_le: qinner f g ^ 2 <= qinner f f * qinner g g.\",\n    \"doubling_triangle_holds\": \"sqdist_le_two_mul: sqdist f h <= 2 * (sqdist f g + sqdist g h).\",\n    \"l1_dominates_l2\": \"sqdist_le_l1dist_sq.\",\n    \"bessel_truncation_holds\": \"finInner_trunc_le: finInner (trunc n f) (trunc n f) <= qinner f f.\",\n    \"harmonic_term\": \"harmonicTerm i = 1/(i+1).\",\n    \"harmonic\": \"harmonic N = sum_{i<N} (1/(i+1)) e_i.\",\n    \"harmonic_modulus\": \"The explicit ℓ² modulus of harmonic_hasModulus: mu k = k + 1.\",\n    \"telescoping_bound_holds\": \"sum_harmonicTerm_sq_le: for 1 <= n <= m, sum_{n<=i<m} 1/(i+1)^2 <= 1/n - 1/m.\",\n    \"harmonic_sqdist_bound_holds\": \"sqdist_harmonic_lt: for 1 <= n <= m, sqdist (harmonic m) (harmonic n) < 1/n.\",\n    \"harmonic_l1_lower_bound_holds\": \"sum_harmonicTerm_Ico_ge / l1dist_harmonic: for n >= 1, l1dist (harmonic 2n) (harmonic n) >= 1/2.\",\n    \"harmonic_nonconvergence_bound_holds\": \"harmonic_not_tendsTo: with M the support bound of f and N > M,\",\n    \"modulus_holds\": \"HasModulusL2 on a finite window: for all mu k <= m, n <= horizon,\",\n    \"l1_cauchy_fails\": \"A finite refutation of IsCauchyL1: a pair (m, n) beyond every candidate stage with\",\n    \"CauchyCandidate\": \"A candidate representation of a point in the completion: an exact sequence with a supplied\",\n    \"inner_fluctuation_sq_bound\": \"Exact square-root-free bound: (qinner xm ym - qinner xn yn)^2\",\n    \"inner_fluctuation_holds\": \"Function inner_fluctuation_holds operation.\",\n    \"grid_approximation\": \"The density step of denseRange_castSeq_real with exact data: for a finitely supported\",\n    \"unit_vector\": \"Function unit_vector operation.\",\n    \"unit_vectors_not_cauchy\": \"e_m, e_n with m != n have sqdist 2: the sequence of unit vectors is not ℓ²-Cauchy.\",\n    \"shifted_modulus_fails\": \"The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:\",\n    \"HilbertLiftError\": \"One violated exact-carrier invariant, with the measured parameters.\",\n    \"bounded_operator_holds\": \"BoundedExactOperator.norm_sq_le on supplied samples: qinner (A f) (A f) <= bound * qinner f f.\",\n    \"operator_lipschitz_holds\": \"sqdist_map_le: sqdist (A f) (A g) <= bound * sqdist f g (for an additive A).\",\n    \"transported_modulus\": \"isCauchyL2_map made explicit: if x has modulus mu then A x has modulus\",\n    \"shift\": \"shiftMap: e_i -> e_{i+1}.\",\n    \"shift_is_isometric\": \"qinner_shift: qinner (shift f) (shift g) = qinner f g.\",\n    \"proj\": \"projMap n: the stage projection ofFin (trunc n f); bound 1 by finInner_trunc_le.\",\n    \"coord_sum\": \"coordSum: the Q-linear coordinate-sum functional.\",\n    \"coord_sum_gap\": \"coordSum_harmonic_gap: coordSum (harmonic 2n) - coordSum (harmonic n), at least 1/2 for n >= 1.\",\n    \"harmonic_norm_sq_le_two_holds\": \"qinner_harmonic_le_two: qinner (harmonic N) (harmonic N) <= 2.\",\n    \"coord_sum_not_cauchy_refutations\": \"no_continuous_extension_coordSum, finite form: pairs (m, n) with\",\n    \"certify\": \"Refuse a non-rational probe, then return the locked harmonic gap coordSum (h_2) - coordSum (h_1) = 1/2.\",\n    \"main\": \"Function main operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#contract"
-      ]
+      "sha256": "2748d8b41bb2a54377c756897a9323b81da3209f529a7b2c3b56b5a18c9c2d26"
     }
   ],
+  "current_contract": "2748d8b41bb2a54377c756897a9323b81da3209f529a7b2c3b56b5a18c9c2d26",
+  "current_scoring": "98b92f9c122ac8a9d0e7e1ff4d14a9aab5796c4b1afc12be2f5dde806ed4c7e5",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/src/qm/hilbert_lift_completion.py.contract.yaml": "46d3a1365e91d30c8ea2cd58c65f309bd2424d9296674d858beaa283a9766436",
+    "code/python/src/qm/hilbert_lift_completion.py.score.yaml": "7d5fb8aa40b97229e2af0c4999a1eca98a6a49850b4e4a28a63c1238b3d33e23"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "ce6a0044472cc262328d8480264758f0a5e79c1b98d23721a49c50894c05e6eb",
       "bytes": 1136,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.py.score.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_id\": \"finite-qm.code-companion.v1\",\n  \"subject\": \"code/python/src/qm/hilbert_lift_completion.py\",\n  \"source_sha256\": \"65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\",\n  \"authority_effect\": \"None\",\n  \"rubric\": \"SCORING.md v2.0.0 section1.4\",\n  \"capability_level\": null,\n  \"engineering_grade\": null,\n  \"composite_score\": null,\n  \"assessment_status\": \"formal_scoring_not_performed\",\n  \"gates\": {\n    \"G1\": {\n      \"grade\": null,\n      \"status\": \"formal_scoring_not_performed\"\n    },\n    \"G2\": {\n      \"grade\": null,\n      \"status\": \"formal_scoring_not_performed\"\n    },\n    \"G3\": {\n      \"grade\": null,\n      \"status\": \"formal_scoring_not_performed\"\n    },\n    \"G4\": {\n      \"grade\": null,\n      \"status\": \"formal_scoring_not_performed\"\n    },\n    \"G5\": {\n      \"grade\": null,\n      \"status\": \"formal_scoring_not_performed\"\n    }\n  },\n  \"refusal_reason\": \"A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.\",\n  \"evidence\": [\n    \"dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md\"\n  ]\n}\n",
       "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/hilbert_lift_completion.py",
-        "source_sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95",
-        "authority_effect": "None",
-        "rubric": "SCORING.md v2.0.0 section1.4",
-        "capability_level": null,
-        "engineering_grade": null,
-        "composite_score": null,
         "assessment_status": "formal_scoring_not_performed",
+        "authority_effect": "None",
+        "capability_level": null,
+        "composite_score": null,
+        "engineering_grade": null,
+        "evidence": [
+          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md"
+        ],
         "gates": {
           "G1": {
             "grade": null,
@@ -625,38 +637,24 @@
           }
         },
         "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
-        "evidence": [
-          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md"
-        ]
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95",
+        "subject": "code/python/src/qm/hilbert_lift_completion.py"
       },
-      "raw_utf8": "{\n  \"schema_id\": \"finite-qm.code-companion.v1\",\n  \"subject\": \"code/python/src/qm/hilbert_lift_completion.py\",\n  \"source_sha256\": \"65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\",\n  \"authority_effect\": \"None\",\n  \"rubric\": \"SCORING.md v2.0.0 section1.4\",\n  \"capability_level\": null,\n  \"engineering_grade\": null,\n  \"composite_score\": null,\n  \"assessment_status\": \"formal_scoring_not_performed\",\n  \"gates\": {\n    \"G1\": {\n      \"grade\": null,\n      \"status\": \"formal_scoring_not_performed\"\n    },\n    \"G2\": {\n      \"grade\": null,\n      \"status\": \"formal_scoring_not_performed\"\n    },\n    \"G3\": {\n      \"grade\": null,\n      \"status\": \"formal_scoring_not_performed\"\n    },\n    \"G4\": {\n      \"grade\": null,\n      \"status\": \"formal_scoring_not_performed\"\n    },\n    \"G5\": {\n      \"grade\": null,\n      \"status\": \"formal_scoring_not_performed\"\n    }\n  },\n  \"refusal_reason\": \"A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.\",\n  \"evidence\": [\n    \"dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md\"\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.py.score.yaml"
-      ]
+      "sha256": "ce6a0044472cc262328d8480264758f0a5e79c1b98d23721a49c50894c05e6eb"
     },
     {
-      "sha256": "171fa463c5a611859c78c66db0b1f206e8429cd6b534cc885bc5afe772f190fb",
       "bytes": 2202,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:hilbert-lift-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 7), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/hilbert_lift_completion.py",
           "sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:qm:hilbert-lift-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -665,59 +663,59 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds, Radon CCN (max 7), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
         },
-        "metrics": {
-          "radon_ccn": 7,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 7,
-          "control_nesting": 2
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 7,
+          "radon_ccn": 7,
+          "weighted_control_upper_bound": 7
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
-        "evidence": [
-          {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-          }
-        ]
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:hilbert-lift-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 7), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#scoring"
-      ]
+      "sha256": "171fa463c5a611859c78c66db0b1f206e8429cd6b534cc885bc5afe772f190fb"
     },
     {
-      "sha256": "b3f264a8aedf45b47cbf2e11516a5cad36ae118722e66bd3c95734e151c84e54",
       "bytes": 2180,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"4b7075c4627be0b718a63fd319153dd06b0df880143b4fa173fef891afce05f3\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:hilbert-lift-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 10,\n    \"weighted_control_upper_bound\": 13,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/hilbert_lift_completion.py",
           "sha256": "4b7075c4627be0b718a63fd319153dd06b0df880143b4fa173fef891afce05f3"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:qm:hilbert-lift-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -726,150 +724,150 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 10,
-          "lizard_ccn": 10,
-          "weighted_control_upper_bound": 13,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline guarantees"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"4b7075c4627be0b718a63fd319153dd06b0df880143b4fa173fef891afce05f3\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:hilbert-lift-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 10 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 10,\n    \"weighted_control_upper_bound\": 13,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#scoring"
-      ]
-    },
-    {
-      "sha256": "7d5fb8aa40b97229e2af0c4999a1eca98a6a49850b4e4a28a63c1238b3d33e23",
-      "bytes": 926,
-      "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/hilbert_lift_completion.py",
-        "source_sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95",
-        "authority_effect": "None",
-        "rubric": "SCORING.md v2.0.0 section1.4",
-        "capability_level": null,
-        "engineering_grade": null,
-        "composite_score": null,
-        "assessment_status": "formal_scoring_not_performed",
-        "gates": {
-          "G1": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G2": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G3": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G4": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G5": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          }
-        },
-        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
-        "evidence": [
-          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md"
-        ]
-      },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/hilbert_lift_completion.py\nsource_sha256: 65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.py.score.yaml"
-      ]
-    },
-    {
-      "sha256": "0cbeba23e9b32c5c0c71754c50ddf00a210d4ec2bb36ebec906450bcd172c0a4",
-      "bytes": 926,
-      "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/hilbert_lift_completion.py",
-        "source_sha256": "f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3",
-        "authority_effect": "None",
-        "rubric": "SCORING.md v2.0.0 section1.4",
-        "capability_level": null,
-        "engineering_grade": null,
-        "composite_score": null,
-        "assessment_status": "formal_scoring_not_performed",
-        "gates": {
-          "G1": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G2": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G3": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G4": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G5": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          }
-        },
-        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
-        "evidence": [
-          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md"
-        ]
-      },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/hilbert_lift_completion.py\nsource_sha256: f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.py.score.yaml"
-      ]
-    },
-    {
-      "sha256": "211b5d75197362634bcb7c60d644bfa6bfaaaf7ab7ddfd5fe8fa3ea26aa1a228",
-      "bytes": 2214,
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/python/src/qm/hilbert_lift_completion.py",
-          "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535",
-          "language": "Python"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        ],
         "gates": {
           "G1": "C",
           "G2": "C",
           "G3": "C",
           "G4": "C",
           "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 10,
+          "radon_ccn": 10,
+          "weighted_control_upper_bound": 13
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "b3f264a8aedf45b47cbf2e11516a5cad36ae118722e66bd3c95734e151c84e54"
+    },
+    {
+      "bytes": 926,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.py.score.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/hilbert_lift_completion.py\nsource_sha256: 65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md\n",
+      "record": {
+        "assessment_status": "formal_scoring_not_performed",
+        "authority_effect": "None",
+        "capability_level": null,
+        "composite_score": null,
+        "engineering_grade": null,
+        "evidence": [
+          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md"
+        ],
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95",
+        "subject": "code/python/src/qm/hilbert_lift_completion.py"
+      },
+      "sha256": "7d5fb8aa40b97229e2af0c4999a1eca98a6a49850b4e4a28a63c1238b3d33e23"
+    },
+    {
+      "bytes": 926,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.py.score.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/hilbert_lift_completion.py\nsource_sha256: f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md\n",
+      "record": {
+        "assessment_status": "formal_scoring_not_performed",
+        "authority_effect": "None",
+        "capability_level": null,
+        "composite_score": null,
+        "engineering_grade": null,
+        "evidence": [
+          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md"
+        ],
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3",
+        "subject": "code/python/src/qm/hilbert_lift_completion.py"
+      },
+      "sha256": "0cbeba23e9b32c5c0c71754c50ddf00a210d4ec2bb36ebec906450bcd172c0a4"
+    },
+    {
+      "bytes": 2214,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:hilbert-lift-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Python semantics.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/qm/hilbert_lift_completion.py",
+          "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:qm:hilbert-lift-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -878,41 +876,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 7,
-          "lizard_ccn": 7,
-          "weighted_control_upper_bound": 7,
-          "control_nesting": 2
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 7,
+          "radon_ccn": 7,
+          "weighted_control_upper_bound": 7
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline bounds"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "211b5d75197362634bcb7c60d644bfa6bfaaaf7ab7ddfd5fe8fa3ea26aa1a228"
+    },
+    {
+      "bytes": 1604,
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n      \"sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/qm/hilbert_lift_completion.py",
+          "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/src/qm/hilbert_lift_completion.py",
+            "sha256": "388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/hilbert_lift_completion.py\",\n    \"sha256\": \"388075c9371870385839fe5099d03867ac8b54e842ab981349c516f8ef411535\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:hilbert-lift-completion:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Python semantics.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 7 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/hilbert_lift_completion.contract.score.yaml#scoring"
-      ]
+      "sha256": "98b92f9c122ac8a9d0e7e1ff4d14a9aab5796c4b1afc12be2f5dde806ed4c7e5"
     }
-  ],
-  "legacy_paths": {
-    "code/python/src/qm/hilbert_lift_completion.py.contract.yaml": "46d3a1365e91d30c8ea2cd58c65f309bd2424d9296674d858beaa283a9766436",
-    "code/python/src/qm/hilbert_lift_completion.py.score.yaml": "7d5fb8aa40b97229e2af0c4999a1eca98a6a49850b4e4a28a63c1238b3d33e23"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

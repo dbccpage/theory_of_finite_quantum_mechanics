@@ -1,114 +1,57 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/lib.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/lib.rs",
-      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776",
-      "language": "Rust"
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact retained:opaque caller Eq bool and postconversion String value;no numeric computation.",
-      "domain": "Arbitrary implementations satisfying static trait bounds and Into<String>;callback behavior remains external premise.",
-      "behavior": [
-        "Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms.",
-        "Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name."
-      ],
-      "capability": "L2 module catalog plus unchecked abstract traits and metadata defaults;no per-file mathematical law checker."
-    },
-    "operations": {
-      "core::MorphismEq::morphism_eq": {
-        "line": 33,
-        "signature": "fn morphism_eq<A, B>(left: &Self::Mor, right: &Self::Mor) -> bool",
-        "obligation": "Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms."
-      },
-      "witness::Witness::new": {
-        "line": 55,
-        "signature": "pub fn new(name: impl Into<String>) -> Self",
-        "obligation": "Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name."
-      }
-    },
-    "invariants": [
-      "Actual root lib.rs remains canonical Cargo library and compiles unadapted with all actual providers in baseline. mod.rs is an unused compatibility catalog byte-equal after removal of lib-only self alias. Copied namespaces rebind exactly72 semicolon child modules to actual crate paths,including private cfg(test) challenge module;all inline declarations/default bodies/compatibility aliases and cfg attributes preserved. Every control/fault before/after hash/prefix revalidated in this review. No separate nominal instantiation of all children or standalone mod.rs crate execution claimed.",
-      "MorphismEq forwards one opaque user Eq result;matching bool means this callback returned that bool,not a certified mathematical equality relation. No generic A/B runtime work. Witness new consumes exact converted String once;one callback can be stateful and is not assumed pure by Rust review. Lean uses pure value model only to state postconversion/forwarding;native counters and direct source inspection separately bind callback evaluation count.",
-      "core Category has two associated types and abstract identity/compose;MorphismEq has one default. Law has abstract Subject/check returning raw Result<Witness,ArithmosError>;no semantic law or authority certified. MonoidalCategory and BraidedMonoidalCategory are abstract signatures with no law admission. Concrete test Raw deliberately violates identity behavior while satisfying signatures,documenting this ceiling.",
-      "Inline ArithmosError has three distinct String-payload enum variants;Witness exposes raw mutable name with standard Clone/PartialEq/Eq/Debug. Both aliases point to legacy providers. Hierarchical/legacy module catalogs expose actual providers but do not inherit their capabilities as per-file algorithms. All provider mathematics remains separately scored,including incomplete records."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "morphism_eq": "No own refusal or panic;delegates exactly once to potentially arbitrary user Eq. No Eq axioms/category laws admitted.",
-      "Witness::new": "No label admission;conversion may panic/allocate as TCB;exact returned string stored includingempty. No extra callback or clone.",
-      "traits": "Abstract programmer implementations may return None/Err or violate mathematical laws;type checking does not certify semantic axioms.",
-      "catalog": "Canonicalrootcompilesunadapted;compatibilitydefaultbodiescompileonlywithexplicitprovideraliasadapter. No separate child nominal identity guarantee."
-    },
-    "trust_boundary": "Rust compiler/std,caller Eq and Into<String> behavior,standard derives,canonical child providers. Lean pure callback-value model,not arbitrary Rust callback purity/termination/allocator or full module graph semantics.",
-    "assurance_limits": [
-      "Contracts pending;AuthorityEffect None.",
-      "Category/monoidal/law abstract signatures do not check axioms;raw labels are not certificates.",
-      "Exported modules retain their own independent scores;whole-workspace/GlobalGreen not claimed.",
-      "Copied namespaces use explicit actual-provider aliases and do not test separate nominal child instantiation or standalone mod.rs root.",
-      "Callback failures/allocation/termination outside own two-body control;native finite callback probes not a universal guarantee."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/lib.score.yaml",
-        "sha256": "da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5"
+        "path": "code/rust/src/category_theory/lib.rs",
+        "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "package or module entrypoint",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776",
+    "subject": "code/rust/src/category_theory/lib.rs"
   },
-  "current_contract": "fdbd07ae211d2f5ee6b553f526804ab0c363a4ac408fe9656e8c556445b3cc0d",
-  "current_scoring": "b03df8cddf2c777092efedd36fd97d67612577a967a3e97ff49c96f5fb10771a",
   "contract_history": [
     {
-      "sha256": "fdbd07ae211d2f5ee6b553f526804ab0c363a4ac408fe9656e8c556445b3cc0d",
       "bytes": 5839,
+      "original_paths": [
+        "code/rust/src/category_theory/lib.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lib.rs\",\n    \"sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained:opaque caller Eq bool and postconversion String value;no numeric computation.\",\n    \"domain\": \"Arbitrary implementations satisfying static trait bounds and Into<String>;callback behavior remains external premise.\",\n    \"behavior\": [\n      \"Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms.\",\n      \"Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name.\"\n    ],\n    \"capability\": \"L2 module catalog plus unchecked abstract traits and metadata defaults;no per-file mathematical law checker.\"\n  },\n  \"operations\": {\n    \"core::MorphismEq::morphism_eq\": {\n      \"line\": 33,\n      \"signature\": \"fn morphism_eq<A, B>(left: &Self::Mor, right: &Self::Mor) -> bool\",\n      \"obligation\": \"Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms.\"\n    },\n    \"witness::Witness::new\": {\n      \"line\": 55,\n      \"signature\": \"pub fn new(name: impl Into<String>) -> Self\",\n      \"obligation\": \"Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name.\"\n    }\n  },\n  \"invariants\": [\n    \"Actual root lib.rs remains canonical Cargo library and compiles unadapted with all actual providers in baseline. mod.rs is an unused compatibility catalog byte-equal after removal of lib-only self alias. Copied namespaces rebind exactly72 semicolon child modules to actual crate paths,including private cfg(test) challenge module;all inline declarations/default bodies/compatibility aliases and cfg attributes preserved. Every control/fault before/after hash/prefix revalidated in this review. No separate nominal instantiation of all children or standalone mod.rs crate execution claimed.\",\n    \"MorphismEq forwards one opaque user Eq result;matching bool means this callback returned that bool,not a certified mathematical equality relation. No generic A/B runtime work. Witness new consumes exact converted String once;one callback can be stateful and is not assumed pure by Rust review. Lean uses pure value model only to state postconversion/forwarding;native counters and direct source inspection separately bind callback evaluation count.\",\n    \"core Category has two associated types and abstract identity/compose;MorphismEq has one default. Law has abstract Subject/check returning raw Result<Witness,ArithmosError>;no semantic law or authority certified. MonoidalCategory and BraidedMonoidalCategory are abstract signatures with no law admission. Concrete test Raw deliberately violates identity behavior while satisfying signatures,documenting this ceiling.\",\n    \"Inline ArithmosError has three distinct String-payload enum variants;Witness exposes raw mutable name with standard Clone/PartialEq/Eq/Debug. Both aliases point to legacy providers. Hierarchical/legacy module catalogs expose actual providers but do not inherit their capabilities as per-file algorithms. All provider mathematics remains separately scored,including incomplete records.\"\n  ],\n  \"failure_paths\": {\n    \"morphism_eq\": \"No own refusal or panic;delegates exactly once to potentially arbitrary user Eq. No Eq axioms/category laws admitted.\",\n    \"Witness::new\": \"No label admission;conversion may panic/allocate as TCB;exact returned string stored includingempty. No extra callback or clone.\",\n    \"traits\": \"Abstract programmer implementations may return None/Err or violate mathematical laws;type checking does not certify semantic axioms.\",\n    \"catalog\": \"Canonicalrootcompilesunadapted;compatibilitydefaultbodiescompileonlywithexplicitprovideraliasadapter. No separate child nominal identity guarantee.\"\n  },\n  \"trust_boundary\": \"Rust compiler/std,caller Eq and Into<String> behavior,standard derives,canonical child providers. Lean pure callback-value model,not arbitrary Rust callback purity/termination/allocator or full module graph semantics.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffect None.\",\n    \"Category/monoidal/law abstract signatures do not check axioms;raw labels are not certificates.\",\n    \"Exported modules retain their own independent scores;whole-workspace/GlobalGreen not claimed.\",\n    \"Copied namespaces use explicit actual-provider aliases and do not test separate nominal child instantiation or standalone mod.rs root.\",\n    \"Callback failures/allocation/termination outside own two-body control;native finite callback probes not a universal guarantee.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/lib.score.yaml\",\n      \"sha256\": \"da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/lib.rs",
-          "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776",
-          "language": "Rust"
+          "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
         },
-        "status": "source_reviewed",
-        "formal_specification": {
-          "profile": "Exact retained:opaque caller Eq bool and postconversion String value;no numeric computation.",
-          "domain": "Arbitrary implementations satisfying static trait bounds and Into<String>;callback behavior remains external premise.",
-          "behavior": [
-            "Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms.",
-            "Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name."
-          ],
-          "capability": "L2 module catalog plus unchecked abstract traits and metadata defaults;no per-file mathematical law checker."
-        },
-        "operations": {
-          "core::MorphismEq::morphism_eq": {
-            "line": 33,
-            "signature": "fn morphism_eq<A, B>(left: &Self::Mor, right: &Self::Mor) -> bool",
-            "obligation": "Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms."
-          },
-          "witness::Witness::new": {
-            "line": 55,
-            "signature": "pub fn new(name: impl Into<String>) -> Self",
-            "obligation": "Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name."
-          }
-        },
-        "invariants": [
-          "Actual root lib.rs remains canonical Cargo library and compiles unadapted with all actual providers in baseline. mod.rs is an unused compatibility catalog byte-equal after removal of lib-only self alias. Copied namespaces rebind exactly72 semicolon child modules to actual crate paths,including private cfg(test) challenge module;all inline declarations/default bodies/compatibility aliases and cfg attributes preserved. Every control/fault before/after hash/prefix revalidated in this review. No separate nominal instantiation of all children or standalone mod.rs crate execution claimed.",
-          "MorphismEq forwards one opaque user Eq result;matching bool means this callback returned that bool,not a certified mathematical equality relation. No generic A/B runtime work. Witness new consumes exact converted String once;one callback can be stateful and is not assumed pure by Rust review. Lean uses pure value model only to state postconversion/forwarding;native counters and direct source inspection separately bind callback evaluation count.",
-          "core Category has two associated types and abstract identity/compose;MorphismEq has one default. Law has abstract Subject/check returning raw Result<Witness,ArithmosError>;no semantic law or authority certified. MonoidalCategory and BraidedMonoidalCategory are abstract signatures with no law admission. Concrete test Raw deliberately violates identity behavior while satisfying signatures,documenting this ceiling.",
-          "Inline ArithmosError has three distinct String-payload enum variants;Witness exposes raw mutable name with standard Clone/PartialEq/Eq/Debug. Both aliases point to legacy providers. Hierarchical/legacy module catalogs expose actual providers but do not inherit their capabilities as per-file algorithms. All provider mathematics remains separately scored,including incomplete records."
-        ],
-        "failure_paths": {
-          "morphism_eq": "No own refusal or panic;delegates exactly once to potentially arbitrary user Eq. No Eq axioms/category laws admitted.",
-          "Witness::new": "No label admission;conversion may panic/allocate as TCB;exact returned string stored includingempty. No extra callback or clone.",
-          "traits": "Abstract programmer implementations may return None/Err or violate mathematical laws;type checking does not certify semantic axioms.",
-          "catalog": "Canonicalrootcompilesunadapted;compatibilitydefaultbodiescompileonlywithexplicitprovideraliasadapter. No separate child nominal identity guarantee."
-        },
-        "trust_boundary": "Rust compiler/std,caller Eq and Into<String> behavior,standard derives,canonical child providers. Lean pure callback-value model,not arbitrary Rust callback purity/termination/allocator or full module graph semantics.",
         "assurance_limits": [
           "Contracts pending;AuthorityEffect None.",
           "Category/monoidal/law abstract signatures do not check axioms;raw labels are not certificates.",
@@ -116,36 +59,173 @@
           "Copied namespaces use explicit actual-provider aliases and do not test separate nominal child instantiation or standalone mod.rs root.",
           "Callback failures/allocation/termination outside own two-body control;native finite callback probes not a universal guarantee."
         ],
+        "failure_paths": {
+          "Witness::new": "No label admission;conversion may panic/allocate as TCB;exact returned string stored includingempty. No extra callback or clone.",
+          "catalog": "Canonicalrootcompilesunadapted;compatibilitydefaultbodiescompileonlywithexplicitprovideraliasadapter. No separate child nominal identity guarantee.",
+          "morphism_eq": "No own refusal or panic;delegates exactly once to potentially arbitrary user Eq. No Eq axioms/category laws admitted.",
+          "traits": "Abstract programmer implementations may return None/Err or violate mathematical laws;type checking does not certify semantic axioms."
+        },
+        "formal_specification": {
+          "behavior": [
+            "Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms.",
+            "Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name."
+          ],
+          "capability": "L2 module catalog plus unchecked abstract traits and metadata defaults;no per-file mathematical law checker.",
+          "domain": "Arbitrary implementations satisfying static trait bounds and Into<String>;callback behavior remains external premise.",
+          "profile": "Exact retained:opaque caller Eq bool and postconversion String value;no numeric computation."
+        },
+        "invariants": [
+          "Actual root lib.rs remains canonical Cargo library and compiles unadapted with all actual providers in baseline. mod.rs is an unused compatibility catalog byte-equal after removal of lib-only self alias. Copied namespaces rebind exactly72 semicolon child modules to actual crate paths,including private cfg(test) challenge module;all inline declarations/default bodies/compatibility aliases and cfg attributes preserved. Every control/fault before/after hash/prefix revalidated in this review. No separate nominal instantiation of all children or standalone mod.rs crate execution claimed.",
+          "MorphismEq forwards one opaque user Eq result;matching bool means this callback returned that bool,not a certified mathematical equality relation. No generic A/B runtime work. Witness new consumes exact converted String once;one callback can be stateful and is not assumed pure by Rust review. Lean uses pure value model only to state postconversion/forwarding;native counters and direct source inspection separately bind callback evaluation count.",
+          "core Category has two associated types and abstract identity/compose;MorphismEq has one default. Law has abstract Subject/check returning raw Result<Witness,ArithmosError>;no semantic law or authority certified. MonoidalCategory and BraidedMonoidalCategory are abstract signatures with no law admission. Concrete test Raw deliberately violates identity behavior while satisfying signatures,documenting this ceiling.",
+          "Inline ArithmosError has three distinct String-payload enum variants;Witness exposes raw mutable name with standard Clone/PartialEq/Eq/Debug. Both aliases point to legacy providers. Hierarchical/legacy module catalogs expose actual providers but do not inherit their capabilities as per-file algorithms. All provider mathematics remains separately scored,including incomplete records."
+        ],
+        "open_obligations": [],
+        "operations": {
+          "core::MorphismEq::morphism_eq": {
+            "line": 33,
+            "obligation": "Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms.",
+            "signature": "fn morphism_eq<A, B>(left: &Self::Mor, right: &Self::Mor) -> bool"
+          },
+          "witness::Witness::new": {
+            "line": 55,
+            "obligation": "Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name.",
+            "signature": "pub fn new(name: impl Into<String>) -> Self"
+          }
+        },
         "review_evidence": [
           {
             "path": "code/rust/src/category_theory/lib.score.yaml",
             "sha256": "da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5"
           }
         ],
-        "open_obligations": []
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": "Rust compiler/std,caller Eq and Into<String> behavior,standard derives,canonical child providers. Lean pure callback-value model,not arbitrary Rust callback purity/termination/allocator or full module graph semantics."
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lib.rs\",\n    \"sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained:opaque caller Eq bool and postconversion String value;no numeric computation.\",\n    \"domain\": \"Arbitrary implementations satisfying static trait bounds and Into<String>;callback behavior remains external premise.\",\n    \"behavior\": [\n      \"Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms.\",\n      \"Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name.\"\n    ],\n    \"capability\": \"L2 module catalog plus unchecked abstract traits and metadata defaults;no per-file mathematical law checker.\"\n  },\n  \"operations\": {\n    \"core::MorphismEq::morphism_eq\": {\n      \"line\": 33,\n      \"signature\": \"fn morphism_eq<A, B>(left: &Self::Mor, right: &Self::Mor) -> bool\",\n      \"obligation\": \"Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms.\"\n    },\n    \"witness::Witness::new\": {\n      \"line\": 55,\n      \"signature\": \"pub fn new(name: impl Into<String>) -> Self\",\n      \"obligation\": \"Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name.\"\n    }\n  },\n  \"invariants\": [\n    \"Actual root lib.rs remains canonical Cargo library and compiles unadapted with all actual providers in baseline. mod.rs is an unused compatibility catalog byte-equal after removal of lib-only self alias. Copied namespaces rebind exactly72 semicolon child modules to actual crate paths,including private cfg(test) challenge module;all inline declarations/default bodies/compatibility aliases and cfg attributes preserved. Every control/fault before/after hash/prefix revalidated in this review. No separate nominal instantiation of all children or standalone mod.rs crate execution claimed.\",\n    \"MorphismEq forwards one opaque user Eq result;matching bool means this callback returned that bool,not a certified mathematical equality relation. No generic A/B runtime work. Witness new consumes exact converted String once;one callback can be stateful and is not assumed pure by Rust review. Lean uses pure value model only to state postconversion/forwarding;native counters and direct source inspection separately bind callback evaluation count.\",\n    \"core Category has two associated types and abstract identity/compose;MorphismEq has one default. Law has abstract Subject/check returning raw Result<Witness,ArithmosError>;no semantic law or authority certified. MonoidalCategory and BraidedMonoidalCategory are abstract signatures with no law admission. Concrete test Raw deliberately violates identity behavior while satisfying signatures,documenting this ceiling.\",\n    \"Inline ArithmosError has three distinct String-payload enum variants;Witness exposes raw mutable name with standard Clone/PartialEq/Eq/Debug. Both aliases point to legacy providers. Hierarchical/legacy module catalogs expose actual providers but do not inherit their capabilities as per-file algorithms. All provider mathematics remains separately scored,including incomplete records.\"\n  ],\n  \"failure_paths\": {\n    \"morphism_eq\": \"No own refusal or panic;delegates exactly once to potentially arbitrary user Eq. No Eq axioms/category laws admitted.\",\n    \"Witness::new\": \"No label admission;conversion may panic/allocate as TCB;exact returned string stored includingempty. No extra callback or clone.\",\n    \"traits\": \"Abstract programmer implementations may return None/Err or violate mathematical laws;type checking does not certify semantic axioms.\",\n    \"catalog\": \"Canonicalrootcompilesunadapted;compatibilitydefaultbodiescompileonlywithexplicitprovideraliasadapter. No separate child nominal identity guarantee.\"\n  },\n  \"trust_boundary\": \"Rust compiler/std,caller Eq and Into<String> behavior,standard derives,canonical child providers. Lean pure callback-value model,not arbitrary Rust callback purity/termination/allocator or full module graph semantics.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffect None.\",\n    \"Category/monoidal/law abstract signatures do not check axioms;raw labels are not certificates.\",\n    \"Exported modules retain their own independent scores;whole-workspace/GlobalGreen not claimed.\",\n    \"Copied namespaces use explicit actual-provider aliases and do not test separate nominal child instantiation or standalone mod.rs root.\",\n    \"Callback failures/allocation/termination outside own two-body control;native finite callback probes not a universal guarantee.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/lib.score.yaml\",\n      \"sha256\": \"da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/lib.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
+      "sha256": "fdbd07ae211d2f5ee6b553f526804ab0c363a4ac408fe9656e8c556445b3cc0d"
+    },
     {
-      "sha256": "da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5",
-      "bytes": 4275,
+      "bytes": 1602,
+      "original_paths": [
+        "code/rust/src/category_theory/lib.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/lib.rs\",\n    \"sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/lib.rs\",\n      \"sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"package or module entrypoint\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\",\n  \"subject\": \"code/rust/src/category_theory/lib.rs\"\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "artifact": {
-          "path": "code/rust/src/category_theory/lib.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/lib.rs",
           "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
         },
-        "profile": "Non-Numeric",
-        "level": "L2",
-        "level_basis": "Module catalog plus small trait and metadata declarations.",
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/lib.rs",
+            "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "package or module entrypoint",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776",
+        "subject": "code/rust/src/category_theory/lib.rs"
+      },
+      "sha256": "80da1843e9a14d478126e5ab1da97b1b9ab8f7dbd820179887c2766f9c692d05"
+    }
+  ],
+  "current_contract": "80da1843e9a14d478126e5ab1da97b1b9ab8f7dbd820179887c2766f9c692d05",
+  "current_scoring": "2ff696d8232b6ce2dc38c1d693dae65848e24943e1b8366fd6c4d718ee230d37",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/lib.rs.contract.yaml": "fdbd07ae211d2f5ee6b553f526804ab0c363a4ac408fe9656e8c556445b3cc0d",
+    "code/rust/src/category_theory/lib.rs.scoring.yaml": "037f826a69fa1242d156361b3ad4b1de59ba744dfa1ca6f0e0d90dfdec365812",
+    "code/rust/src/category_theory/lib.score.yaml": "da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4275,
+      "original_paths": [
+        "code/rust/src/category_theory/lib.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/lib.rs\"\n  language: \"Rust\"\n  sha256: \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\"\nprofile: \"Non-Numeric\"\nlevel: \"L2\"\nlevel_basis: \"Module catalog plus small trait and metadata declarations.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:02:53.783769+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:lib\"\n  description: \"Omega category theory crate.  Hierarchical shells under `foundations/`, `category/`, `functor/`, \\u2026 plus legacy finite-category records at crate root. AuthorityEffect: None. Not PROVED / GlobalGreen.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T210116Z/baseline.json\", \"sha256\": \"0c27a0c32207833c5a9242d2feb27b17d19cfc03c31f6b85302ff06d0815ad2e\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T210116Z/summary.json\", \"sha256\": \"3c3aa49dee893aa24c7ba40d4e89e78be9b5808176830108f93437b834ada2a4\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T210116Z/mutations.json\", \"sha256\": \"938f00ddd759c4cd76a0a04ef6b50caf7bd046c78de1a9fd6a8f6ff530c1523f\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T205447Z-metrics/receipt.json\", \"sha256\": \"2fb00587e1b58dcb522237aa222d77dd4c692e92696b10f3e8ff29d8d75ef2e9\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T210116Z/dependency_receipt.json\", \"sha256\": \"715f6f78dcf1b15a5808498079364677c18766adc1e07a73d2b9c051338aacde\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/root_catalog/lib.json\", \"sha256\": \"7dcd403dd2270fd219cba4c55331fc3de90547688aab47d05cd756c61b106f23\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 7\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 157\n  parsed_production_functions: 2\n  max_production_ccn: 1\n  cognitive_complexity_upper_bound: 0\n  control_nesting: 0\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffect None.\"\n  - \"Category/monoidal/law abstract signatures do not check axioms;raw labels are not certificates.\"\n  - \"Exported modules retain their own independent scores;whole-workspace/GlobalGreen not claimed.\"\n  - \"Copied namespaces use explicit actual-provider aliases and do not test separate nominal child instantiation or standalone mod.rs root.\"\n  - \"Callback failures/allocation/termination outside own two-body control;native finite callback probes not a universal guarantee.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
         "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/lib.rs",
+          "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+        },
+        "assurance_limits": [
+          "Contracts pending;AuthorityEffect None.",
+          "Category/monoidal/law abstract signatures do not check axioms;raw labels are not certificates.",
+          "Exported modules retain their own independent scores;whole-workspace/GlobalGreen not claimed.",
+          "Copied namespaces use explicit actual-provider aliases and do not test separate nominal child instantiation or standalone mod.rs root.",
+          "Callback failures/allocation/termination outside own two-body control;native finite callback probes not a universal guarantee."
+        ],
+        "claim": {
+          "description": "Omega category theory crate.  Hierarchical shells under `foundations/`, `category/`, `functor/`, … plus legacy finite-category records at crate root. AuthorityEffect: None. Not PROVED / GlobalGreen.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:lib"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T21:02:53.783769+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T210116Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "0c27a0c32207833c5a9242d2feb27b17d19cfc03c31f6b85302ff06d0815ad2e"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T210116Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "3c3aa49dee893aa24c7ba40d4e89e78be9b5808176830108f93437b834ada2a4"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T210116Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "938f00ddd759c4cd76a0a04ef6b50caf7bd046c78de1a9fd6a8f6ff530c1523f"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T205447Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "2fb00587e1b58dcb522237aa222d77dd4c692e92696b10f3e8ff29d8d75ef2e9"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T210116Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "715f6f78dcf1b15a5808498079364677c18766adc1e07a73d2b9c051338aacde"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/root_catalog/lib.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "7dcd403dd2270fd219cba4c55331fc3de90547688aab47d05cd756c61b106f23"
+          }
+        ],
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -153,58 +233,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T21:02:53.783769+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:lib",
-          "description": "Omega category theory crate.  Hierarchical shells under `foundations/`, `category/`, `functor/`, … plus legacy finite-category records at crate root. AuthorityEffect: None. Not PROVED / GlobalGreen.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Module catalog plus small trait and metadata declarations.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 7,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Non-Numeric",
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 0,
+          "control_nesting": 0,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 1,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 2,
+          "physical_lines": 157,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T210116Z/baseline.json",
-            "sha256": "0c27a0c32207833c5a9242d2feb27b17d19cfc03c31f6b85302ff06d0815ad2e",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T210116Z/summary.json",
-            "sha256": "3c3aa49dee893aa24c7ba40d4e89e78be9b5808176830108f93437b834ada2a4",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T210116Z/mutations.json",
-            "sha256": "938f00ddd759c4cd76a0a04ef6b50caf7bd046c78de1a9fd6a8f6ff530c1523f",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T205447Z-metrics/receipt.json",
-            "sha256": "2fb00587e1b58dcb522237aa222d77dd4c692e92696b10f3e8ff29d8d75ef2e9",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T210116Z/dependency_receipt.json",
-            "sha256": "715f6f78dcf1b15a5808498079364677c18766adc1e07a73d2b9c051338aacde",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/root_catalog/lib.json",
-            "sha256": "7dcd403dd2270fd219cba4c55331fc3de90547688aab47d05cd756c61b106f23",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -214,62 +276,37 @@
             "RR-6-5",
             "RR-7-6"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 7,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 157,
-          "parsed_production_functions": 2,
-          "max_production_ccn": 1,
-          "cognitive_complexity_upper_bound": 0,
-          "control_nesting": 0,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Contracts pending;AuthorityEffect None.",
-          "Category/monoidal/law abstract signatures do not check axioms;raw labels are not certificates.",
-          "Exported modules retain their own independent scores;whole-workspace/GlobalGreen not claimed.",
-          "Copied namespaces use explicit actual-provider aliases and do not test separate nominal child instantiation or standalone mod.rs root.",
-          "Callback failures/allocation/termination outside own two-body control;native finite callback probes not a universal guarantee."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/lib.rs\"\n  language: \"Rust\"\n  sha256: \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\"\nprofile: \"Non-Numeric\"\nlevel: \"L2\"\nlevel_basis: \"Module catalog plus small trait and metadata declarations.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:02:53.783769+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:lib\"\n  description: \"Omega category theory crate.  Hierarchical shells under `foundations/`, `category/`, `functor/`, \\u2026 plus legacy finite-category records at crate root. AuthorityEffect: None. Not PROVED / GlobalGreen.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T210116Z/baseline.json\", \"sha256\": \"0c27a0c32207833c5a9242d2feb27b17d19cfc03c31f6b85302ff06d0815ad2e\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T210116Z/summary.json\", \"sha256\": \"3c3aa49dee893aa24c7ba40d4e89e78be9b5808176830108f93437b834ada2a4\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T210116Z/mutations.json\", \"sha256\": \"938f00ddd759c4cd76a0a04ef6b50caf7bd046c78de1a9fd6a8f6ff530c1523f\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T205447Z-metrics/receipt.json\", \"sha256\": \"2fb00587e1b58dcb522237aa222d77dd4c692e92696b10f3e8ff29d8d75ef2e9\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T210116Z/dependency_receipt.json\", \"sha256\": \"715f6f78dcf1b15a5808498079364677c18766adc1e07a73d2b9c051338aacde\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/root_catalog/lib.json\", \"sha256\": \"7dcd403dd2270fd219cba4c55331fc3de90547688aab47d05cd756c61b106f23\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 7\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 157\n  parsed_production_functions: 2\n  max_production_ccn: 1\n  cognitive_complexity_upper_bound: 0\n  control_nesting: 0\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffect None.\"\n  - \"Category/monoidal/law abstract signatures do not check axioms;raw labels are not certificates.\"\n  - \"Exported modules retain their own independent scores;whole-workspace/GlobalGreen not claimed.\"\n  - \"Copied namespaces use explicit actual-provider aliases and do not test separate nominal child instantiation or standalone mod.rs root.\"\n  - \"Callback failures/allocation/termination outside own two-body control;native finite callback probes not a universal guarantee.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/lib.score.yaml"
-      ]
+      "sha256": "da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5"
     },
     {
-      "sha256": "037f826a69fa1242d156361b3ad4b1de59ba744dfa1ca6f0e0d90dfdec365812",
       "bytes": 2289,
+      "original_paths": [
+        "code/rust/src/category_theory/lib.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lib.rs\",\n    \"sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/lib.score.yaml\",\n    \"sha256\": \"da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/lib.rs.contract.yaml\",\n    \"sha256\": \"fdbd07ae211d2f5ee6b553f526804ab0c363a4ac408fe9656e8c556445b3cc0d\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\",\n    \"function_count\": 2,\n    \"maxima\": {\n      \"ccn\": 1,\n      \"cognitive_upper_bound\": 0,\n      \"control_nesting\": 0\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/lib.rs",
-          "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/lib.rs",
+          "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/lib.score.yaml",
+          "sha256": "da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/lib.rs.contract.yaml",
+          "sha256": "fdbd07ae211d2f5ee6b553f526804ab0c363a4ac408fe9656e8c556445b3cc0d"
+        },
         "engineering_target": "A",
-        "level": "L2",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -277,30 +314,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L2A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/lib.score.yaml",
-          "sha256": "da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/lib.rs.contract.yaml",
-          "sha256": "fdbd07ae211d2f5ee6b553f526804ab0c363a4ac408fe9656e8c556445b3cc0d"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L2",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2A",
         "structural_measurement": {
-          "source_sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776",
-          "function_count": 2,
-          "maxima": {
-            "ccn": 1,
-            "cognitive_upper_bound": 0,
-            "control_nesting": 0
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -315,38 +338,32 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 2,
+          "maxima": {
+            "ccn": 1,
+            "cognitive_upper_bound": 0,
+            "control_nesting": 0
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lib.rs\",\n    \"sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/lib.score.yaml\",\n    \"sha256\": \"da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/lib.rs.contract.yaml\",\n    \"sha256\": \"fdbd07ae211d2f5ee6b553f526804ab0c363a4ac408fe9656e8c556445b3cc0d\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\",\n    \"function_count\": 2,\n    \"maxima\": {\n      \"ccn\": 1,\n      \"cognitive_upper_bound\": 0,\n      \"control_nesting\": 0\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/lib.rs.scoring.yaml"
-      ]
+      "sha256": "037f826a69fa1242d156361b3ad4b1de59ba744dfa1ca6f0e0d90dfdec365812"
     },
     {
-      "sha256": "b03df8cddf2c777092efedd36fd97d67612577a967a3e97ff49c96f5fb10771a",
       "bytes": 4469,
+      "original_paths": [
+        "code/rust/src/category_theory/lib.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lib.rs\",\n    \"sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:lib:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 1 <= 10 (A), nesting depth 0 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 1,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 0,\n    \"control_nesting\": 0\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T210116Z/baseline.json\",\n      \"sha256\": \"0c27a0c32207833c5a9242d2feb27b17d19cfc03c31f6b85302ff06d0815ad2e\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T210116Z/summary.json\",\n      \"sha256\": \"3c3aa49dee893aa24c7ba40d4e89e78be9b5808176830108f93437b834ada2a4\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T210116Z/mutations.json\",\n      \"sha256\": \"938f00ddd759c4cd76a0a04ef6b50caf7bd046c78de1a9fd6a8f6ff530c1523f\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T205447Z-metrics/receipt.json\",\n      \"sha256\": \"2fb00587e1b58dcb522237aa222d77dd4c692e92696b10f3e8ff29d8d75ef2e9\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T210116Z/dependency_receipt.json\",\n      \"sha256\": \"715f6f78dcf1b15a5808498079364677c18766adc1e07a73d2b9c051338aacde\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/root_catalog/lib.json\",\n      \"sha256\": \"7dcd403dd2270fd219cba4c55331fc3de90547688aab47d05cd756c61b106f23\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 157,\n    \"parsed_production_functions\": 2,\n    \"max_production_ccn\": 1,\n    \"cognitive_complexity_upper_bound\": 0,\n    \"control_nesting\": 0,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/lib.rs",
-          "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:lib:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -355,24 +372,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 1 <= 10 (A), nesting depth 0 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 1,
-          "lizard_ccn": 1,
-          "weighted_control_upper_bound": 0,
-          "control_nesting": 0
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -380,60 +380,135 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T210116Z/baseline.json",
-            "sha256": "0c27a0c32207833c5a9242d2feb27b17d19cfc03c31f6b85302ff06d0815ad2e",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "0c27a0c32207833c5a9242d2feb27b17d19cfc03c31f6b85302ff06d0815ad2e"
           },
           {
             "path": "evidence/quality/category_homology/20261019T210116Z/summary.json",
-            "sha256": "3c3aa49dee893aa24c7ba40d4e89e78be9b5808176830108f93437b834ada2a4",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "3c3aa49dee893aa24c7ba40d4e89e78be9b5808176830108f93437b834ada2a4"
           },
           {
             "path": "evidence/quality/category_homology/20261019T210116Z/mutations.json",
-            "sha256": "938f00ddd759c4cd76a0a04ef6b50caf7bd046c78de1a9fd6a8f6ff530c1523f",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "938f00ddd759c4cd76a0a04ef6b50caf7bd046c78de1a9fd6a8f6ff530c1523f"
           },
           {
             "path": "evidence/quality/category_homology/20261019T205447Z-metrics/receipt.json",
-            "sha256": "2fb00587e1b58dcb522237aa222d77dd4c692e92696b10f3e8ff29d8d75ef2e9",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "2fb00587e1b58dcb522237aa222d77dd4c692e92696b10f3e8ff29d8d75ef2e9"
           },
           {
             "path": "evidence/quality/category_homology/20261019T210116Z/dependency_receipt.json",
-            "sha256": "715f6f78dcf1b15a5808498079364677c18766adc1e07a73d2b9c051338aacde",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "715f6f78dcf1b15a5808498079364677c18766adc1e07a73d2b9c051338aacde"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/root_catalog/lib.json",
-            "sha256": "7dcd403dd2270fd219cba4c55331fc3de90547688aab47d05cd756c61b106f23",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "7dcd403dd2270fd219cba4c55331fc3de90547688aab47d05cd756c61b106f23"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 0,
+          "lizard_ccn": 1,
+          "radon_ccn": 1,
+          "weighted_control_upper_bound": 0
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 157,
-          "parsed_production_functions": 2,
-          "max_production_ccn": 1,
           "cognitive_complexity_upper_bound": 0,
           "control_nesting": 0,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 1,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 2,
+          "physical_lines": 157,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/lib.rs\",\n    \"sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:lib:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 1 <= 10 (A), nesting depth 0 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 1,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 0,\n    \"control_nesting\": 0\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T210116Z/baseline.json\",\n      \"sha256\": \"0c27a0c32207833c5a9242d2feb27b17d19cfc03c31f6b85302ff06d0815ad2e\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T210116Z/summary.json\",\n      \"sha256\": \"3c3aa49dee893aa24c7ba40d4e89e78be9b5808176830108f93437b834ada2a4\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T210116Z/mutations.json\",\n      \"sha256\": \"938f00ddd759c4cd76a0a04ef6b50caf7bd046c78de1a9fd6a8f6ff530c1523f\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T205447Z-metrics/receipt.json\",\n      \"sha256\": \"2fb00587e1b58dcb522237aa222d77dd4c692e92696b10f3e8ff29d8d75ef2e9\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T210116Z/dependency_receipt.json\",\n      \"sha256\": \"715f6f78dcf1b15a5808498079364677c18766adc1e07a73d2b9c051338aacde\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/root_catalog/lib.json\",\n      \"sha256\": \"7dcd403dd2270fd219cba4c55331fc3de90547688aab47d05cd756c61b106f23\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 157,\n    \"parsed_production_functions\": 2,\n    \"max_production_ccn\": 1,\n    \"cognitive_complexity_upper_bound\": 0,\n    \"control_nesting\": 0,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "b03df8cddf2c777092efedd36fd97d67612577a967a3e97ff49c96f5fb10771a"
+    },
+    {
+      "bytes": 1586,
       "original_paths": [
-        "code/rust/src/category_theory/lib.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/lib.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/lib.rs\",\n    \"sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/lib.rs\",\n      \"sha256\": \"b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/lib.rs",
+          "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/lib.rs",
+            "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "2ff696d8232b6ce2dc38c1d693dae65848e24943e1b8366fd6c4d718ee230d37"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/lib.rs.contract.yaml": "fdbd07ae211d2f5ee6b553f526804ab0c363a4ac408fe9656e8c556445b3cc0d",
-    "code/rust/src/category_theory/lib.score.yaml": "da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5",
-    "code/rust/src/category_theory/lib.rs.scoring.yaml": "037f826a69fa1242d156361b3ad4b1de59ba744dfa1ca6f0e0d90dfdec365812"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

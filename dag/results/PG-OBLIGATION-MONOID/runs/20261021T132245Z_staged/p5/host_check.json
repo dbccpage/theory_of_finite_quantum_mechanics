@@ -1,0 +1,51 @@
+{
+  "task_id": "PG-OBLIGATION-MONOID",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "2d5956944d4eccbfa74cca19997e3875759ebe867460a2d713136dbda1265c5d",
+  "candidate_sha256": "bb47baf7a8d993c2e2af19795b8907b4e155390d042ec954a103db2dd9ef32ba",
+  "status": "scoped_result_or_obstruction_recorded_pending_batch_review",
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "rust_replay": 0,
+      "lean_version": 0,
+      "lean": 0
+    },
+    "required_named_Lean_reports": true,
+    "lean_version": {
+      "expected": "v4.35.0",
+      "reported": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "matches": true
+    },
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "test_counts": {
+      "python": 9,
+      "rust": 5
+    },
+    "cargo_guard": {
+      "target": "C:\\Users\\a343o\\.pfp-ct",
+      "size_gb_before": 2.128,
+      "cleared": false,
+      "free_gb_after": 21.925,
+      "min_free_gb": 20.0,
+      "max_target_gb": 6.0
+    },
+    "scope": {
+      "supports": "Kernel-checked: counter vectors Fin k -> Nat under pointwise sum form a commutative cancellative monoid that is not a group (every nonzero vector lacks an inverse) and is the free commutative monoid on k ids (universal property, existence and uniqueness); the bounded combine that refuses past a count bound is partially associative with equal definedness on both bracketings, and bounded generation returns none exactly when some coordinate would exceed the bound (genB_none_iff); the re-declared copy (Ev, evOb, trace) of the source three-counter trace is a monoid homomorphism from lists of the four declared events; coordinate 0 counts declareTerm, coordinate 1 counts assertDiff, coordinate 2 counts removeDiff plus identifyTerms together, and the total equals the list length; the copy is order-blind and its event table is not injective; one discharge step from a valid ledger yields a valid ledger and succeeds exactly when the request is at most the outstanding count, and, for the unbounded k-id model with generate and discharge operations, every successful run from the empty ledger ends valid (run_from_empty_valid). Native: exact tables for 34 cases (laws on boxes up to 3 ids x 4, bounded and saturating sums, 13 event words, 12 ledger traces over three ids with u64 bound covering every error kind and a generation landing exactly on 2^64-1); the native ledger is a model of the Rust rule, not the Rust crate.",
+      "does_not_support": "That Genesis events or S(n) maps are monoid morphisms into the obligation monoid (TFQ-0342, PG-GAP-EVENT-OBLIGATION): the event-to-vector table evOb is copied from the source, not derived, and only lists of the four declared events are covered; any theorem tying Ev/evOb/trace to PrimGenEvent/eventObligation/traceObligation of DerivationDagQMClosure.lean (they are a re-declaration); any theorem connecting the Lean abstract-k unbounded ledger to the three-id u64 Python/Rust ledger; the Rust crate itself (nothing in omega_kernel is executed); unbounded or string-keyed ids; any claim that the 3-counter vector equals the free monoid on the real obligation ids.",
+      "narrowest_claim": "Obligation counters under pointwise sum are the free commutative monoid on the ids (cancellative, not a group); the re-declared copy of the source four-event three-counter trace is a homomorphism from event lists with total cost equal to length; in the abstract unbounded k-id model every successful generate/discharge run from the empty ledger keeps discharged within generated and a discharge succeeds exactly when it fits the outstanding count; Genesis events and S(n) maps being morphisms remains unproved.",
+      "next_test": "Derive from the actual Genesis event and S(n)-map definitions (not the four-event table) that each step adds a fixed generated and discharged vector independent of context, i.e. that sequential composition maps to combine, or exhibit an event whose vector depends on the preceding trace."
+    }
+  },
+  "bounded_failure_codes": [],
+  "claim_boundary": {
+    "supports": "Kernel-checked: counter vectors Fin k -> Nat under pointwise sum form a commutative cancellative monoid that is not a group (every nonzero vector lacks an inverse) and is the free commutative monoid on k ids (universal property, existence and uniqueness); the bounded combine that refuses past a count bound is partially associative with equal definedness on both bracketings, and bounded generation returns none exactly when some coordinate would exceed the bound (genB_none_iff); the re-declared copy (Ev, evOb, trace) of the source three-counter trace is a monoid homomorphism from lists of the four declared events; coordinate 0 counts declareTerm, coordinate 1 counts assertDiff, coordinate 2 counts removeDiff plus identifyTerms together, and the total equals the list length; the copy is order-blind and its event table is not injective; one discharge step from a valid ledger yields a valid ledger and succeeds exactly when the request is at most the outstanding count, and, for the unbounded k-id model with generate and discharge operations, every successful run from the empty ledger ends valid (run_from_empty_valid). Native: exact tables for 34 cases (laws on boxes up to 3 ids x 4, bounded and saturating sums, 13 event words, 12 ledger traces over three ids with u64 bound covering every error kind and a generation landing exactly on 2^64-1); the native ledger is a model of the Rust rule, not the Rust crate.",
+    "does_not_support": "That Genesis events or S(n) maps are monoid morphisms into the obligation monoid (TFQ-0342, PG-GAP-EVENT-OBLIGATION): the event-to-vector table evOb is copied from the source, not derived, and only lists of the four declared events are covered; any theorem tying Ev/evOb/trace to PrimGenEvent/eventObligation/traceObligation of DerivationDagQMClosure.lean (they are a re-declaration); any theorem connecting the Lean abstract-k unbounded ledger to the three-id u64 Python/Rust ledger; the Rust crate itself (nothing in omega_kernel is executed); unbounded or string-keyed ids; any claim that the 3-counter vector equals the free monoid on the real obligation ids.",
+    "narrowest_claim": "Obligation counters under pointwise sum are the free commutative monoid on the ids (cancellative, not a group); the re-declared copy of the source four-event three-counter trace is a homomorphism from event lists with total cost equal to length; in the abstract unbounded k-id model every successful generate/discharge run from the empty ledger keeps discharged within generated and a discharge succeeds exactly when it fits the outstanding count; Genesis events and S(n) maps being morphisms remains unproved.",
+    "next_test": "Derive from the actual Genesis event and S(n)-map definitions (not the four-event table) that each step adds a fixed generated and discharged vector independent of context, i.e. that sequential composition maps to combine, or exhibit an event whose vector depends on the preceding trace."
+  }
+}
