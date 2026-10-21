@@ -1,0 +1,16 @@
+schema_id: finite-qm.code-companion.v1
+subject: code/python/src/qm/auth_incompleteness/replay_packet.py
+source_sha256: 3d2bb1abdeeff00a6c3c7c5deb7e26f4fcacf8a7594916273587c759fcbb3196
+authority_effect: None
+purpose: Python port of the SHA-256 replay packet evaluator and verifier for the four-configuration transition
+  table.
+design:
+  profile: Exact kernel-checked Lean or exact finite replay on the declared carrier; no floating point.
+  frozen_sources: papers/foundations/authorization_incompleteness/evidence/original holds the unported
+    bytes.
+boundaries:
+- Bounded finite replay under the recovered manifest's own trust root; not custody, collision resistance
+  or evaluator soundness.
+- Ported from PowerShell that was read, never executed; the PowerShell 7.6.3 runtime pin is not checked.
+evidence:
+- papers/foundations/authorization_incompleteness/evidence/README.md

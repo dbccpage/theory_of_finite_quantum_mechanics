@@ -1,0 +1,368 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTH-DTM1-TOKEN-CODE-ROUNDTRIP
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For every finite-rule machine, decoding the token list that encodes it (the halt-state
+    token followed by five-token frames of state, scanned tag, next state, written tag and move tag) returns
+    that machine, and the all-consuming decoder returns none on the empty list, a truncated frame, an
+    invalid symbol tag and an invalid move tag in the four named fixtures.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: No converse (encoding after decoding), no source-byte format, no configuration or
+    input encoding and no agreement between parsed code and execution is established; the token alphabet
+    is the natural numbers, so passing to the two-symbol tape alphabet needs a prefix-code argument, since
+    free monoids on alphabets of different sizes are not isomorphic.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1332_auth_dtm1_token_code_roundtrip.md
+  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md
+  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md
+  - papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md
+  - papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm1_token_code_update_packet.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1332_auth_dtm1_token_code_roundtrip.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1332_auth_dtm1_token_code_roundtrip.md
+    sha256: c0b28167100a86a1fa47ee00c013f386f68440970547bc04c9d524c55c737268
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_auth_dtm1_token_code_roundtrip_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: decodeMachine
+  line: 93
+  signature_excerpt: |-
+    def decodeMachine : List Nat -> Option Machine
+      | [] => none
+      | haltState :: ruleCode =>
+        match decodeRules ruleCode with
+        | none => none
+        | some rules => some { haltState
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeMachine
+  line: 89
+  signature_excerpt: 'def encodeMachine (machine : Machine) : List Nat'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: decodeRules
+  line: 69
+  signature_excerpt: |-
+    def decodeRules : List Nat -> Option (List Rule)
+      | [] => some []
+      | state :: scannedCode :: nextState :: writtenCode :: moveCode :: rest =>
+        match decodeTapeSymbol scannedCode with
+        | none => none
+        | some scanned =>
+          match decodeTapeSymbol writtenCode with
+          | none => none
+          | some written =>
+            match decodeMove moveCode with
+            | none => none
+            | some move =>
+              match decodeRules rest with
+              | none => none
+              | some rules =>
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeRules
+  line: 63
+  signature_excerpt: |-
+    def encodeRules : List Rule -> List Nat
+      | [] => []
+      | rule :: rules => encodeRule rule ++ encodeRules rules
+
+    /-- Parse complete rule frames only. Any incomplete suffix or invalid tag is
+        rejected rather than ignored. -/
+    def decodeRules : List Nat -> Option (List Rule)
+      | [] => some []
+      | state :: scannedCode :: nextState :: writtenCode :: moveCode :: rest =>
+        match decodeTapeSymbol scannedCode with
+        | none => none
+        | some scanned =>
+          match decodeTapeSymbol writtenCode with
+          | none => none
+          | some written =>
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: decodeTapeSymbol
+  line: 39
+  signature_excerpt: |-
+    def decodeTapeSymbol : Nat -> Option TapeSymbol
+      | 0 => some .blank
+      | 1 => some .marked
+      | _ => none
+
+    /-- Canonical finite tag for a declared head movement. -/
+    def encodeMove : Move -> Nat
+      | .left => 0
+      | .right => 1
+      | .stay => 2
+
+    /-- Partial decoder for the three declared movement tags. -/
+    def decodeMove : Nat -> Option Move
+      | 0 => some .left
+      | 1 => some .right
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: decodeMove
+  line: 51
+  signature_excerpt: |-
+    def decodeMove : Nat -> Option Move
+      | 0 => some .left
+      | 1 => some .right
+      | 2 => some .stay
+      | _ => none
+
+    /-- One rule is a complete five-token frame. -/
+    def encodeRule (rule : Rule) : List Nat
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeRule
+  line: 58
+  signature_excerpt: 'def encodeRule (rule : Rule) : List Nat'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeTapeSymbol
+  line: 34
+  signature_excerpt: |-
+    def encodeTapeSymbol : TapeSymbol -> Nat
+      | .blank => 0
+      | .marked => 1
+
+    /-- Partial decoder for the two declared tape-symbol tags. -/
+    def decodeTapeSymbol : Nat -> Option TapeSymbol
+      | 0 => some .blank
+      | 1 => some .marked
+      | _ => none
+
+    /-- Canonical finite tag for a declared head movement. -/
+    def encodeMove : Move -> Nat
+      | .left => 0
+      | .right => 1
+      | .stay => 2
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeMove
+  line: 45
+  signature_excerpt: |-
+    def encodeMove : Move -> Nat
+      | .left => 0
+      | .right => 1
+      | .stay => 2
+
+    /-- Partial decoder for the three declared movement tags. -/
+    def decodeMove : Nat -> Option Move
+      | 0 => some .left
+      | 1 => some .right
+      | 2 => some .stay
+      | _ => none
+
+    /-- One rule is a complete five-token frame. -/
+    def encodeRule (rule : Rule) : List Nat
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: decodeMachine_encodeMachine
+  line: 124
+  signature_excerpt: |-
+    theorem decodeMachine_encodeMachine (machine : Machine) :
+        decodeMachine (encodeMachine machine) = some machine
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: decodeRules_encodeRules
+  line: 111
+  signature_excerpt: |-
+    theorem decodeRules_encodeRules (rules : List Rule) :
+        decodeRules (encodeRules rules) = some rules
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: empty_machine_code_is_rejected
+  line: 131
+  signature_excerpt: |-
+    theorem empty_machine_code_is_rejected :
+        decodeMachine [] = none
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: truncated_rule_code_is_rejected
+  line: 136
+  signature_excerpt: |-
+    theorem truncated_rule_code_is_rejected :
+        decodeMachine [0, 0, 0, 1] = none
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: invalid_symbol_tag_is_rejected
+  line: 141
+  signature_excerpt: |-
+    theorem invalid_symbol_tag_is_rejected :
+        decodeMachine [0, 0, 2, 1, 0, 0] = none
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: invalid_move_tag_is_rejected
+  line: 146
+  signature_excerpt: |-
+    theorem invalid_move_tag_is_rejected :
+        decodeMachine [0, 0, 0, 1, 0, 3] = none
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  source_sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  declaration_status: declaration_found_not_proof_checked
+  line: 124
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  declaration_status: declaration_found_not_proof_checked
+  line: 111
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.empty_machine_code_is_rejected
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.empty_machine_code_is_rejected
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  declaration_status: declaration_found_not_proof_checked
+  line: 131
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.truncated_rule_code_is_rejected
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.truncated_rule_code_is_rejected
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  declaration_status: declaration_found_not_proof_checked
+  line: 136
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_symbol_tag_is_rejected
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_symbol_tag_is_rejected
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  declaration_status: declaration_found_not_proof_checked
+  line: 141
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_move_tag_is_rejected
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_move_tag_is_rejected
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean
+  repository: this_repository
+  sha256: 6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153
+  declaration_status: declaration_found_not_proof_checked
+  line: 146
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

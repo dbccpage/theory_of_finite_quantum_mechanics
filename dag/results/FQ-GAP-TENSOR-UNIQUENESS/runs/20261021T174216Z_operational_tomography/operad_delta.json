@@ -1,0 +1,204 @@
+{
+  "authority_effect": "None",
+  "presentation_scope": "typed linear-map fragment; not a completed symmetric operad presentation",
+  "add_or_refine_generators": [
+    {
+      "id": "observe",
+      "ordered_inputs": [
+        "V"
+      ],
+      "output": "C",
+      "arity": 1,
+      "carrier": "K-vector spaces",
+      "coefficient_ring": "arbitrary field K",
+      "hypotheses": [
+        "supplied field-linear state and test spaces"
+      ],
+      "source_pins": "p2/source_pins.json",
+      "semantic_predicate": "linear product-test evaluation",
+      "evidence_status": "Lean declarations; acceptance bound by final receipt"
+    },
+    {
+      "id": "prepare",
+      "ordered_inputs": [
+        "C"
+      ],
+      "output": "V",
+      "arity": 1,
+      "carrier": "K-vector spaces",
+      "coefficient_ring": "arbitrary field K",
+      "hypotheses": [
+        "linear extension of independent dual frame elements; duals may be signed"
+      ],
+      "source_pins": "p2/source_pins.json",
+      "semantic_predicate": "linear extension of independent frame preparations",
+      "evidence_status": "Lean declarations; acceptance bound by final receipt"
+    },
+    {
+      "id": "hidden",
+      "ordered_inputs": [
+        "V"
+      ],
+      "output": "V",
+      "arity": 1,
+      "carrier": "K-vector spaces",
+      "coefficient_ring": "arbitrary field K",
+      "hypotheses": [
+        "M R = id_C"
+      ],
+      "source_pins": "p2/source_pins.json",
+      "semantic_predicate": "identity - prepare composed with observe",
+      "evidence_status": "Lean declarations; acceptance bound by final receipt"
+    },
+    {
+      "id": "operation_pair",
+      "ordered_inputs": [
+        "V x C"
+      ],
+      "output": "V x C",
+      "arity": 1,
+      "carrier": "endomorphism pairs",
+      "coefficient_ring": "arbitrary field K",
+      "hypotheses": [
+        "M T = L M; action on V x C is (x,c) -> (Tx,Lc)"
+      ],
+      "source_pins": "p2/source_pins.json",
+      "semantic_predicate": "unary action of the pair (T,L) on V x C preserving the graph of M",
+      "evidence_status": "Lean declarations; acceptance bound by final receipt"
+    },
+    {
+      "id": "classical_filter",
+      "ordered_inputs": [
+        "I -> Q"
+      ],
+      "output": "I -> Q",
+      "arity": 1,
+      "carrier": "nonnegative rational coordinate cone",
+      "coefficient_ring": "Q",
+      "hypotheses": [
+        "coordinatewise nonnegative rational cone; finite index set for normalization"
+      ],
+      "source_pins": "p2/source_pins.json",
+      "semantic_predicate": "coordinate matrix unit; positive and subnormalized",
+      "evidence_status": "Lean declarations; acceptance bound by final receipt"
+    }
+  ],
+  "add_or_refine_relations": [
+    {
+      "id": "calibration",
+      "equation_or_predicate": "M R = id_C",
+      "typing_conditions": "as declared in OperationalTomography.lean",
+      "source_pins": "p2/source_pins.json",
+      "evidence_status": "kernel theorem, subject to final receipt",
+      "scope": "supplied dual-frame calibration gives left inverse"
+    },
+    {
+      "id": "hidden_projection",
+      "equation_or_predicate": "M H = 0; H R = 0; H H = H; x=R(Mx)+Hx",
+      "typing_conditions": "as declared in OperationalTomography.lean",
+      "source_pins": "p2/source_pins.json",
+      "evidence_status": "kernel theorem, subject to final receipt",
+      "scope": "calibrated linear carriers"
+    },
+    {
+      "id": "kernel_invariance",
+      "equation_or_predicate": "M T = L M implies T(ker M) subset ker M",
+      "typing_conditions": "as declared in OperationalTomography.lean",
+      "source_pins": "p2/source_pins.json",
+      "evidence_status": "kernel theorem, subject to final receipt",
+      "scope": "supplied operation family"
+    },
+    {
+      "id": "tomography",
+      "equation_or_predicate": "irreducible T, M nonzero, descent imply ker M = 0",
+      "typing_conditions": "as declared in OperationalTomography.lean",
+      "source_pins": "p2/source_pins.json",
+      "evidence_status": "kernel theorem, subject to final receipt",
+      "scope": "conditional theorem"
+    },
+    {
+      "id": "normalization_obstruction",
+      "equation_or_predicate": "nonzero proper ker u and u T = u imply not irreducible T",
+      "typing_conditions": "as declared in OperationalTomography.lean",
+      "source_pins": "p2/source_pins.json",
+      "evidence_status": "kernel theorem, subject to final receipt",
+      "scope": "normalization-preserving family"
+    },
+    {
+      "id": "quotient_boundary",
+      "equation_or_predicate": "first-block normalization does not factor through doubled observation",
+      "typing_conditions": "as declared in OperationalTomography.lean",
+      "source_pins": "p2/source_pins.json",
+      "evidence_status": "kernel theorem, subject to final receipt",
+      "scope": "explicit rational counterexample"
+    },
+    {
+      "id": "descent_composition",
+      "equation_or_predicate": "M T=L M and M S=N M imply M(TS)=(LN)M",
+      "typing_conditions": "T,S endomorphisms of V; L,N endomorphisms of C",
+      "source_pins": "p2/source_pins.json",
+      "evidence_status": "Lean descent_comp",
+      "scope": "sequential composition of descending operation pairs"
+    }
+  ],
+  "checked_compositions": [
+    {
+      "outer_operation": "observe",
+      "input_slot": 0,
+      "inner_operation": "prepare",
+      "colour_match": "V",
+      "hypothesis_match": "dual-frame delta pairing",
+      "licensing_relations": [
+        "calibration"
+      ],
+      "evidence_status": "Lean"
+    },
+    {
+      "outer_operation": "operation_pair",
+      "input_slot": 0,
+      "inner_operation": "operation_pair",
+      "colour_match": "V x C",
+      "hypothesis_match": "both pairs descend through the same M",
+      "licensing_relations": [
+        "descent_composition"
+      ],
+      "evidence_status": "Lean descent_comp",
+      "parameters": {
+        "outer": [
+          "T",
+          "L"
+        ],
+        "inner": [
+          "S",
+          "N"
+        ]
+      }
+    }
+  ],
+  "failed_compositions": [
+    "factorization -> separation without a kernel-elimination premise",
+    "arbitrary global filters -> product-coordinate descent",
+    "tomographic quotient -> preservation of first-block protected question",
+    "normalization-preserving operations -> irreducibility when normalization kernel is nontrivial"
+  ],
+  "counterexamples": [
+    "doubled_filters",
+    "tomographic_identity",
+    "irreducible_without_descent",
+    "zero observation with matrix-unit operations"
+  ],
+  "open_obligations": [
+    "derive field-linear state/effect spaces from primitive difference",
+    "justify independent dual product-frame calibration",
+    "derive product-test pullback closure for admitted operations",
+    "justify an irreducible outcome-filter family without assuming tomography",
+    "retain same-family dimension law and positive parameter for the selection bridge",
+    "general tensor-cone uniqueness and operational classification remain open"
+  ],
+  "presentation_obligations": {
+    "identity_and_unit_laws": "ordinary linear-map identities; not separately exported as an operad theorem",
+    "partial_composition_associativity": "ordinary endomorphism composition imported from Lean linear-map API",
+    "symmetric_action": "not claimed",
+    "relations_stable_under_grafting": "sequential descent composition proved; unrestricted multicategory grafting not claimed"
+  }
+}

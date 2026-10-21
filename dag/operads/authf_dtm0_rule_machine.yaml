@@ -1,0 +1,238 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-DTM0-RULE-MACHINE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: A DTM0 machine is a designated halt state with a finite, left-biased list of rows
+    (state, scanned symbol, next state, written symbol, move) over the two-symbol alphabet blank and marked;
+    a configuration is a state, an integer head and a total tape Int to symbol; execute runs at most the
+    stated fuel and returns halted, stuck or fuelExhausted.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - two-symbol alphabet fixed
+  - rule-list order as the operational semantics
+  - fuel as an externally supplied bound
+  source_bottleneck: The definition carries no input encoding, no unbounded-run semantics, no halting
+    predicate and no comparison with Mathlib Turing.TM0; fuel exhaustion is a bounded-evaluator result
+    and not non-halting.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1340_authf_dtm0_rule_machine.md
+  - lean4/AuthIncompleteness/DirectTM.lean
+  - papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1340_authf_dtm0_rule_machine.md
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1340_authf_dtm0_rule_machine.md
+    sha256: f5632fc9c0f7f77c8a95054b16c4ff6a23627efc4758122ae44e6c537934547c
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_dtm0_rule_machine_definition.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: Machine
+  line: 64
+  signature_excerpt: structure Machine
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Rule
+  line: 44
+  signature_excerpt: structure Rule
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Configuration
+  line: 57
+  signature_excerpt: structure Configuration
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: StepResult
+  line: 70
+  signature_excerpt: inductive StepResult
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: step
+  line: 120
+  signature_excerpt: 'def step (machine : Machine) (configuration : Configuration) : StepResult'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: execute
+  line: 130
+  signature_excerpt: |-
+    def execute (machine : Machine) : Nat -> Configuration -> StepResult
+      | 0, configuration =>
+        match isDeclaredHalt machine configuration with
+        | true => .halted
+        | false => .fuelExhausted configuration
+      | fuel + 1, configuration =>
+        match step machine configuration with
+        | .next nextConfiguration => execute machine fuel nextConfiguration
+        | .halted => .halted
+        | .stuck => .stuck
+        | .fuelExhausted boundedConfiguration => .fuelExhausted boundedConfiguration
+
+    /-- A terminal policy is extra supplied structure over an operational result. -/
+    structure TerminalPolicy
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: lookup
+  line: 91
+  signature_excerpt: 'def lookup (machine : Machine) (configuration : Configuration) : Option Rule'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isDeclaredHalt
+  line: 112
+  signature_excerpt: 'def isDeclaredHalt (machine : Machine) (configuration : Configuration) : Bool'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+relation_candidates: []
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.Machine
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.Machine
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.Rule
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.Rule
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 44
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.Configuration
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.Configuration
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 57
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.StepResult
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.StepResult
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 70
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.step
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.step
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 120
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.execute
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.execute
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 130
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.lookup
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.lookup
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 91
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.isDeclaredHalt
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.isDeclaredHalt
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 112
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - two-symbol alphabet fixed
+    - rule-list order as the operational semantics
+    - fuel as an externally supplied bound
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - two-symbol alphabet fixed
+    - rule-list order as the operational semantics
+    - fuel as an externally supplied bound
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

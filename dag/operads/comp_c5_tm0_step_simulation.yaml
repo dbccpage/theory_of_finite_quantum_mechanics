@@ -1,0 +1,310 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C5-TM0-STEP-SIMULATION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For a Mathlib TM0 machine encoded on configuration words lend, left cells, q, a, right
+    cells, rend, a machine step from a represented configuration is matched by a rewrite step to a word
+    representing the next configuration, and every rewrite step of a represented word is the machine step;
+    a word represents at most one configuration.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Mathlib Turing.TM0.Machine, step, Reaches, Tape, ListBlank
+  source_bottleneck: Machines in the TM0 form only (one write or one move per transition); representations
+    allow blank padding at the far ends; the end rules write a fresh blank, the only place where words
+    grow.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1299_comp_c5_tm0_step_simulation.md
+  - dag/research/genesis_to_universal_computation.md
+  - lean4/GenesisCompTM.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1299_comp_c5_tm0_step_simulation.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1299_comp_c5_tm0_step_simulation.md
+    sha256: a8331ef32a78a7908aaa95636c15ec9929265b852180118dfbba6b81ca990df2
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c5_tm0_step_simulation_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: inductive
+  name: Rules
+  line: 83
+  signature_excerpt: |-
+    inductive Rules (M : TM0.Machine Γ Λ) : List (Sym Γ Λ) → List (Sym Γ Λ) → Prop
+      | write {q a q' b} (h : M q a = some (q', TM0.Stmt.write b)) :
+          Rules M [.st q, .sym a] [.st q', .sym b]
+      | right {q a q' c} (h : M q a = some (q', TM0.Stmt.move Dir.right)) :
+          Rules M [.st q, .sym a, .sym c] [.sym a, .st q', .sym c]
+      | rightEnd {q a q'} (h : M q a = some (q', TM0.Stmt.move Dir.right)) :
+          Rules M [.st q, .sym a, .rend] [.sym a, .st q', .sym default, .rend]
+      | left {q a q' c} (h : M q a = some (q', TM0.Stmt.move Dir.left)) :
+          Rules M [.sym c, .st q, .sym a] [.st q', .sym c, .
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cfgWord
+  line: 73
+  signature_excerpt: 'def cfgWord (ul : List Γ) (q : Λ) (a : Γ) (ur : List Γ) : List (Sym Γ Λ)'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Sym
+  line: 36
+  signature_excerpt: |-
+    inductive Sym (Γ Λ : Type*)
+      | lend
+      | rend
+      | st (q : Λ)
+      | sym (a : Γ)
+      deriving DecidableEq
+
+    variable {Γ Λ : Type*}
+
+    /-- The mark type is a finite sum: `Sym Γ Λ ≃ (Unit ⊕ Unit) ⊕ (Λ ⊕ Γ)`. -/
+    def Sym.equivSum : Sym Γ Λ ≃ (Unit ⊕ Unit) ⊕ (Λ ⊕ Γ)
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Rep
+  line: 78
+  signature_excerpt: 'def Rep (c : TM0.Cfg Γ Λ) (w : List (Sym Γ Λ)) : Prop'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: NoSt
+  line: 96
+  signature_excerpt: 'def NoSt (l : List (Sym Γ Λ)) : Prop'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: step_fwd
+  line: 213
+  signature_excerpt: |-
+    theorem step_fwd {M : TM0.Machine Γ Λ} {c c' : TM0.Cfg Γ Λ} {w : List (Sym Γ Λ)}
+        (hs : TM0.step M c = some c') (hr : Rep c w) :
+        ∃ w', Rep c' w' ∧ Step (Rules M) w w'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: step_bwd
+  line: 271
+  signature_excerpt: |-
+    theorem step_bwd {M : TM0.Machine Γ Λ} {c : TM0.Cfg Γ Λ} {w w' : List (Sym Γ Λ)}
+        (hr : Rep c w) (hs : Step (Rules M) w w') :
+        ∃ c', TM0.step M c = some c' ∧ Rep c' w'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rep_exists
+  line: 159
+  signature_excerpt: 'theorem rep_exists (c : TM0.Cfg Γ Λ) : ∃ w, Rep c w'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rep_unique
+  line: 165
+  signature_excerpt: |-
+    theorem rep_unique {c c' : TM0.Cfg Γ Λ} {w : List (Sym Γ Λ)} (h : Rep c w) (h' : Rep c' w) :
+        c = c'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: split_st
+  line: 119
+  signature_excerpt: |-
+    theorem split_st {A B P S : List (Sym Γ Λ)} {q0 q : Λ} (hP : NoSt P) (hS : NoSt S)
+        (h : A ++ Sym.st q0 :: B = P ++ Sym.st q :: S) : A = P ∧ q0 = q ∧ B = S
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisCompTM.lean::step_fwd
+  availability: local
+  symbol: step_fwd
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 213
+  role: source_lead_only
+- original_ref: lean4/GenesisCompTM.lean::step_bwd
+  availability: local
+  symbol: step_bwd
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 271
+  role: source_lead_only
+- original_ref: lean4/GenesisCompTM.lean::rep_exists
+  availability: local
+  symbol: rep_exists
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 159
+  role: source_lead_only
+- original_ref: lean4/GenesisCompTM.lean::rep_unique
+  availability: local
+  symbol: rep_unique
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 165
+  role: source_lead_only
+- original_ref: lean4/GenesisCompTM.lean::Rules
+  availability: local
+  symbol: Rules
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 83
+  role: source_lead_only
+- original_ref: lean4/GenesisCompTM.lean::cfgWord
+  availability: local
+  symbol: cfgWord
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 73
+  role: source_lead_only
+- original_ref: lean4/GenesisCompTM.lean::split_st
+  availability: local
+  symbol: split_st
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 119
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::rules_of
+  availability: local
+  symbol: rules_of
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 322
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::encode
+  availability: local
+  symbol: encode
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 285
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::decode
+  availability: local
+  symbol: decode
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 298
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::check_step_simulation
+  availability: local
+  symbol: check_step_simulation
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 362
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::tm_step
+  availability: local
+  symbol: tm_step
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 238
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Mathlib Turing.TM0.Machine, step, Reaches, Tape, ListBlank
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Mathlib Turing.TM0.Machine, step, Reaches, Tape, ListBlank
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

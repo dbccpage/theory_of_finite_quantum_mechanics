@@ -1,0 +1,53 @@
+diff --git a/code/rust/src/finite_probability/operational_filters.rs b/code/rust/src/finite_probability/operational_filters.rs
+index d97c96b1a..0082372dc 100644
+--- a/code/rust/src/finite_probability/operational_filters.rs
++++ b/code/rust/src/finite_probability/operational_filters.rs
+@@ -51,7 +51,10 @@ fn eye(n: usize) -> Mat {
+ fn candidate() -> Value {
+     let path=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(
+       "../../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/candidate.json");
+-    serde_json::from_slice(&std::fs::read(path).unwrap()).unwrap()
++    decode(&std::fs::read(path).unwrap())
++}
++fn decode(raw: &[u8]) -> Value {
++    serde_json::from_slice(raw).unwrap()
+ }
+ fn orthogonal_nonzero(vectors: &[Vec<Q>]) {
+     assert!(!vectors.is_empty());
+@@ -198,3 +201,36 @@ fn visible_output_and_coarse_graining_bound_are_essential() {
+         .collect();
+     assert_eq!(twice.iter().map(|row| row[0].clone()).sum::<Q>(), q(2));
+ }
++
++#[test]
++fn scope_and_schema_mutations_are_rejected() {
++    let mut cases = Vec::new();
++    let mut c = candidate();
++    c["premises"] = serde_json::json!([]);
++    cases.push(("empty premises", c));
++    let mut c = candidate();
++    c.as_object_mut().unwrap().remove("premises");
++    cases.push(("missing premises", c));
++    let mut c = candidate();
++    c["claim"] = Value::String("unconditional tomography".into());
++    cases.push(("extra claim", c));
++    let mut c = candidate();
++    c["models"]["classical_product"]["claim"] = Value::Bool(true);
++    cases.push(("extra model field", c));
++    let accepted: Vec<_> = cases.iter()
++        .filter(|(_, c)| std::panic::catch_unwind(|| check(c)).is_ok())
++        .map(|(name, _)| *name).collect();
++    assert!(accepted.is_empty(), "accepted invalid envelopes: {accepted:?}");
++}
++
++#[test]
++fn duplicate_json_fields_are_rejected() {
++    let raw = serde_json::to_string(&candidate()).unwrap();
++    let variants = [
++        raw.replacen("\"schema\":", "\"schema\":\"wrong\",\"schema\":", 1),
++        raw.replacen("\"state_dimension\":", "\"state_dimension\":99,\"state_dimension\":", 1),
++    ];
++    let accepted = variants.iter().filter(|s|
++        std::panic::catch_unwind(|| check(&decode(s.as_bytes()))).is_ok()).count();
++    assert_eq!(accepted, 0, "duplicate JSON fields accepted");
++}

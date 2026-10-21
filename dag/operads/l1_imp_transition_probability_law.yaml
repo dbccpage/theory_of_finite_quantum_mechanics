@@ -1,0 +1,254 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: L1-IMP-TRANSITION-PROBABILITY-LAW
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Transition-probability preservation of the ray dynamics: the evolution of rays of
+    the lift preserves the Born probability of every rank-one effect in every state. Under this law the
+    dynamics is a linear or conjugate-linear similarity (L1-IMP-LINEAR-ISOMETRIC-DYNAMICS); without it,
+    any bijection of rays is admissible. Supplied, not derived from primitive difference.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - 'transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption'
+  source_bottleneck: No finite-theory primitive forces the ray dynamics to preserve the Born readout of
+    rank-one effects; deriving it (for instance from report relabelling invariance and the Born rule on
+    the lift) is item 1 of the run next steps.
+  source_refs:
+  - dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md
+  - dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md
+  - lean4/FiniteWignerTheorem.lean
+  paper_refs:
+  - dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md
+  source_claim_label: IMPORTED_ASSUMPTION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md
+    sha256: 9d8bf5432cf3807345efd0f3f8cf827cf8ecd08c9bf94e9d83432870fe14851b
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/l1_to_l2_l1_imp_transition_probability_law_imported_assumption.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: TpPreserving
+  line: 36
+  signature_excerpt: 'structure TpPreserving (T : (Fin n → GaussRat) → (Fin n → GaussRat)) : Prop'
+  source: lean4/FiniteWignerTheorem.lean
+  repository: this_repository
+  source_sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tp
+  line: 204
+  signature_excerpt: 'def tp (x y : Fin n → GaussRat) : ℚ'
+  source: lean4/FiniteWignerKernel.lean
+  repository: this_repository
+  source_sha256: 29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: F
+  line: 228
+  signature_excerpt: 'def F : Matrix (Fin n) (Fin n) GaussRat'
+  source: lean4/FiniteWignerTheorem.lean
+  repository: this_repository
+  source_sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d
+  line: 231
+  signature_excerpt: 'def d : ℚ'
+  source: lean4/FiniteWignerTheorem.lean
+  repository: this_repository
+  source_sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: f
+  line: 225
+  signature_excerpt: 'def f (k : Fin n) : Fin n → GaussRat'
+  source: lean4/FiniteWignerTheorem.lean
+  repository: this_repository
+  source_sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: g
+  line: 217
+  signature_excerpt: 'def g (i : Fin n) : Fin n → GaussRat'
+  source: lean4/FiniteWignerTheorem.lean
+  repository: this_repository
+  source_sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: align
+  line: 221
+  signature_excerpt: 'def align (k : Fin n) : GaussRat'
+  source: lean4/FiniteWignerTheorem.lean
+  repository: this_repository
+  source_sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: p
+  line: 43
+  signature_excerpt: 'def p (i₀ j : Fin n) : Fin n → GaussRat'
+  source: lean4/FiniteWignerTheorem.lean
+  repository: this_repository
+  source_sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: tp_eq_born
+  line: 318
+  signature_excerpt: 'theorem tp_eq_born (x y : Fin n → GaussRat) : tp x y = hf (P x) y / vnorm y'
+  source: lean4/FiniteWignerKernel.lean
+  repository: this_repository
+  source_sha256: 29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tpPreserving_iff_born
+  line: 414
+  signature_excerpt: |-
+    theorem tpPreserving_iff_born (T : (Fin n → GaussRat) → (Fin n → GaussRat)) :
+        TpPreserving T ↔ (∀ x, x ≠ 0 → T x ≠ 0) ∧
+          ∀ x y, x ≠ 0 → y ≠ 0 → hf (P (T x)) (T y) / vnorm (T y) = hf (P x) y / vnorm y
+  source: lean4/FiniteWignerSimilarity.lean
+  repository: this_repository
+  source_sha256: d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tpPreserving_of_similarity
+  line: 812
+  signature_excerpt: |-
+    theorem tpPreserving_of_similarity {F : Matrix (Fin n) (Fin n) GaussRat} {d : ℚ} (hF : Similarity F d)
+        (hd : d ≠ 0) {ε : ℚ} (hε : ε = 1 ∨ ε = -1) (c : (Fin n → GaussRat) → GaussRat)
+        (hc : ∀ x, c x ≠ 0) : TpPreserving (fun x => c x • (F *ᵥ twist ε x))
+  source: lean4/FiniteWignerTheorem.lean
+  repository: this_repository
+  source_sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.TpPreserving
+  availability: local
+  symbol: WignerFable.Theorem.TpPreserving
+  path: lean4/FiniteWignerTheorem.lean
+  repository: this_repository
+  sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  declaration_status: declaration_found_not_proof_checked
+  line: 36
+  role: source_lead_only
+- original_ref: lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp
+  availability: local
+  symbol: WignerFable.Kernel.tp
+  path: lean4/FiniteWignerKernel.lean
+  repository: this_repository
+  sha256: 29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab
+  declaration_status: declaration_found_not_proof_checked
+  line: 204
+  role: source_lead_only
+- original_ref: lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp_eq_born
+  availability: local
+  symbol: WignerFable.Kernel.tp_eq_born
+  path: lean4/FiniteWignerKernel.lean
+  repository: this_repository
+  sha256: 29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab
+  declaration_status: declaration_found_not_proof_checked
+  line: 318
+  role: source_lead_only
+- original_ref: lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.tpPreserving_iff_born
+  availability: local
+  symbol: WignerFable.Similarity.tpPreserving_iff_born
+  path: lean4/FiniteWignerSimilarity.lean
+  repository: this_repository
+  sha256: d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37
+  declaration_status: declaration_found_not_proof_checked
+  line: 414
+  role: source_lead_only
+- original_ref: lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity
+  availability: local
+  symbol: WignerFable.Theorem.tpPreserving_of_similarity
+  path: lean4/FiniteWignerTheorem.lean
+  repository: this_repository
+  sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  declaration_status: declaration_found_not_proof_checked
+  line: 812
+  role: source_lead_only
+- original_ref: code/rust/src/qm/finite_wigner.rs::transition_probability
+  availability: local
+  symbol: transition_probability
+  path: code/rust/src/qm/finite_wigner.rs
+  repository: this_repository
+  sha256: 4bb3ada0b37f7eb54f994c358eb477c1fd32b5cc57ce801de2f926bc4c33995f
+  declaration_status: declaration_found_not_executed
+  line: 557
+  role: source_lead_only
+- original_ref: code/rust/src/qm/finite_wigner.rs::born_transition
+  availability: local
+  symbol: born_transition
+  path: code/rust/src/qm/finite_wigner.rs
+  repository: this_repository
+  sha256: 4bb3ada0b37f7eb54f994c358eb477c1fd32b5cc57ce801de2f926bc4c33995f
+  declaration_status: declaration_found_not_executed
+  line: 586
+  role: source_lead_only
+- original_ref: code/rust/src/qm/finite_wigner.rs::verify_induced
+  availability: local
+  symbol: verify_induced
+  path: code/rust/src/qm/finite_wigner.rs
+  repository: this_repository
+  sha256: 4bb3ada0b37f7eb54f994c358eb477c1fd32b5cc57ce801de2f926bc4c33995f
+  declaration_status: declaration_found_not_executed
+  line: 1027
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - 'transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption'
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - 'transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption'
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

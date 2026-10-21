@@ -1,0 +1,347 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: QCV-CONCATENATION-THRESHOLD-DICHOTOMY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'For the recurrence p(k+1) = c*p(k)^2 over Q, c*p(k) = (c*p(0))^(2^k); for c > 0 and
+    p(0) >= 0: if c*p(0) < 1 then p(k) tends to zero with c*p(k) <= (c*p(0))^(k+1) and, for c*p(0) <=
+    1/2, p(k) <= (1/2)^(2^k)/c; if c*p(0) = 1 then p(k) = 1/c for all k; if c*p(0) > 1 then p(k) diverges;
+    so p(k) tends to zero iff p(0) < 1/c.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The recurrence is the hypothesis; no noise model is shown to obey it and no constant
+    c is computed for any code.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1319_qcv_concatenation_threshold_dichotomy.md
+  - dag/research/quantum_computation_self_obstruction.md
+  - dag/research/quantum_computation_self_obstruction_axioms.txt
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1319_qcv_concatenation_threshold_dichotomy.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1319_qcv_concatenation_threshold_dichotomy.md
+    sha256: 3d98a033f36992969e098f65f595cc567c98a64d3c9167fb8eb3fb2358c264df
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_qcv_concatenation_threshold_dichotomy_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: conc
+  line: 30
+  signature_excerpt: |-
+    def conc (c p : ℚ) : ℕ → ℚ
+      | 0 => p
+      | k + 1 => c * (conc c p k) ^ 2
+
+    @[simp] theorem conc_zero (c p : ℚ) : conc c p 0 = p
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: GoesToZero
+  line: 57
+  signature_excerpt: 'def GoesToZero (f : ℕ → ℚ) : Prop'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Diverges
+  line: 60
+  signature_excerpt: 'def Diverges (f : ℕ → ℚ) : Prop'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: conc_closed
+  line: 39
+  signature_excerpt: 'theorem conc_closed (c p : ℚ) (k : ℕ) : c * conc c p k = (c * p) ^ (2 ^ k)'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: conc_eq_div
+  line: 47
+  signature_excerpt: 'theorem conc_eq_div (c p : ℚ) (hc : c ≠ 0) (k : ℕ) : conc c p k = (c * p) ^ (2 ^
+    k) / c'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: threshold_trichotomy
+  line: 143
+  signature_excerpt: |-
+    theorem threshold_trichotomy {c p : ℚ} (hc : 0 < c) (hp : 0 ≤ p) :
+        (c * p < 1 ∧ GoesToZero (conc c p) ∧ ∀ k, c * conc c p k = (c * p) ^ (2 ^ k)) ∨
+        (c * p = 1 ∧ (∀ k, conc c p k = 1 / c) ∧ ¬ GoesToZero (conc c p)) ∨
+        (1 < c * p ∧ Diverges (conc c p))
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: goesToZero_iff_below_threshold
+  line: 163
+  signature_excerpt: |-
+    theorem goesToZero_iff_below_threshold {c p : ℚ} (hc : 0 < c) (hp : 0 ≤ p) :
+        GoesToZero (conc c p) ↔ c * p < 1
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sub_bound
+  line: 65
+  signature_excerpt: |-
+    theorem sub_bound {c p : ℚ} (hr0 : 0 ≤ c * p) (hr1 : c * p < 1) (k : ℕ) :
+        c * conc c p k ≤ (c * p) ^ (k + 1)
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sub_half_bound
+  line: 71
+  signature_excerpt: |-
+    theorem sub_half_bound {c p : ℚ} (hc : 0 < c) (hr0 : 0 ≤ c * p) (hr : c * p ≤ 1 / 2) (k : ℕ) :
+        conc c p k ≤ (1 / 2) ^ (2 ^ k) / c
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: super_bound
+  line: 119
+  signature_excerpt: |-
+    theorem super_bound {c p : ℚ} (hr : 1 < c * p) (k : ℕ) :
+        1 + (2 ^ k : ℕ) * (c * p - 1) ≤ c * conc c p k
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: super_diverges
+  line: 126
+  signature_excerpt: 'theorem super_diverges {c p : ℚ} (hc : 0 < c) (hr : 1 < c * p) : Diverges (conc
+    c p)'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fixed_point
+  line: 107
+  signature_excerpt: 'theorem fixed_point {c p : ℚ} (hc : 0 < c) (hr : c * p = 1) (k : ℕ) : conc c p k
+    = 1 / c'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/QcConcatenation.lean::conc_closed
+  availability: local
+  symbol: conc_closed
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::conc_eq_div
+  availability: local
+  symbol: conc_eq_div
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 47
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::threshold_trichotomy
+  availability: local
+  symbol: threshold_trichotomy
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 143
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::goesToZero_iff_below_threshold
+  availability: local
+  symbol: goesToZero_iff_below_threshold
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 163
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::sub_bound
+  availability: local
+  symbol: sub_bound
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 65
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::sub_half_bound
+  availability: local
+  symbol: sub_half_bound
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 71
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::super_bound
+  availability: local
+  symbol: super_bound
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 119
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::super_diverges
+  availability: local
+  symbol: super_diverges
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 126
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::fixed_point
+  availability: local
+  symbol: fixed_point
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 107
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::conc
+  availability: local
+  symbol: conc
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 95
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::conc_closed_holds
+  availability: local
+  symbol: conc_closed_holds
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 104
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::classify
+  availability: local
+  symbol: classify
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 116
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::first_level_below
+  availability: local
+  symbol: first_level_below
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 140
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::first_level_above
+  availability: local
+  symbol: first_level_above
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 155
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::half_bound_holds
+  availability: local
+  symbol: half_bound_holds
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 167
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

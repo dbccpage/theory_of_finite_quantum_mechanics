@@ -1,0 +1,14 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/GenesisCompUniv.lean
+source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+authority_effect: None
+purpose: 'Fixed composite TM0 machine from Mathlib that halts exactly when the code evaluator halts, finite mark set, and non-computability of normal-form reachability for the start-word family.'
+design:
+  profile: 'Kernel-checked Lean on the declared carrier; exact finite computation otherwise; no floating point.'
+boundaries:
+- 'The identity convention and the unbounded supply of fresh blank marks are declared inputs, not derived.'
+- 'Genesis Step3 is not shown to be a word rewriting step; Mathlib computability theory is imported, not re-derived.'
+- 'No physical Church-Turing claim and no claim of a smallest general-purpose machine.'
+- 'The reduction over encoded rewriting instances is conditional on the open lemma startWord_computable.'
+evidence:
+- dag/research/genesis_to_universal_computation.md

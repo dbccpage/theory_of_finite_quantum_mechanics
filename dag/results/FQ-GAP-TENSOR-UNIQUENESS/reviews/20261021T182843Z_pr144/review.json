@@ -1,0 +1,44 @@
+{
+  "authority_effect": "None",
+  "reviewed_head": "afd802ce5d82cb344d8a6453bb0026ee49e7b306",
+  "base_sha": "1ea6b5a0aa9eee53d43078d6015c1d2a00435d75",
+  "review_method": "Re-derived kernel argument and inspected Lean definitions; fresh elaboration, independently implemented determinant and orthogonal-Gram witnesses, and red-to-green implementation regressions. No separate reviewer identity is claimed.",
+  "findings": [
+    {
+      "id": "R1",
+      "priority": 2,
+      "subject": "Python exact arithmetic and direct matrix validation",
+      "defect": "Integer elimination uses true division and can lose rank: [[2^54,2^54+1],[2^54+1,2^54+2]] has determinant -1 but was assigned rank 1. Ragged matrix arithmetic silently truncates and bool/float inputs weaken exactness.",
+      "fix": "Normalize int/Fraction matrices to Fraction; reject unsupported scalars and empty/ragged matrices before algebra. Regression tests cover 54-bit and 100-digit near-singular integer matrices."
+    },
+    {
+      "id": "R2",
+      "priority": 2,
+      "subject": "Rust independent operation-family and shape coverage",
+      "defect": "zip/all accepts an empty coordinate-operation list for a positive descent fixture; malformed subtraction may silently truncate.",
+      "fix": "Check exact fixture operation counts and dimensions before descent, and validate nonempty rectangular matrices at arithmetic/parser boundaries. Mutants remove all or one coordinate operation, add an extra operation, and supply malformed shapes."
+    },
+    {
+      "id": "R3",
+      "priority": 2,
+      "subject": "Historical typed-fragment checker coverage",
+      "defect": "Empty fragments and duplicate generator/relation IDs can pass the historical syntax checker. Committed record itself has the expected unique entries.",
+      "fix": "The review replay supersedes the historical replay for current-source acceptance and enforces exact generator, relation, and composition coverage with uniqueness. Historical evidence remains immutable."
+    }
+  ],
+  "mathematical_assessment": {
+    "result": "No error found in the conditional Lean statements or the field-parameter bridge.",
+    "argument": "MR=id supplies a splitting. MT_g=L_gM makes ker(M) invariant. Irreducibility and M nonzero imply ker(M)=0. The product dual-frame calibration gives surjectivity; injectivity then supplies the product dimension.",
+    "normalization_boundary": "If u is nonzero with nonzero kernel, uT=u preserves a proper nonzero subspace and rules out the supplied irreducibility condition.",
+    "countermodels": "The doubled model has normalized positive states with identical product statistics and different first-block questions. Identity-only tomography disproves necessity of full operator span; full matrix units without descent and zero observation control other missing premises.",
+    "remaining_assumptions": [
+      "field-linear state and effect spaces",
+      "independent dual product-frame calibration (duals may be signed)",
+      "product-test pullback closure / observation descent for admitted operations",
+      "availability and irreducibility of an outcome-filter family",
+      "positive parameter and same-family composite dimension for the d=2 bridge"
+    ],
+    "claim_ceiling": "No unconditional derivation from primitive difference, tensor-cone uniqueness, or classification of the scalar field. d=2 is a dimension-family parameter."
+  },
+  "acceptance": "Accept only with verified/receipt.json all_passed and exact Git blob/source-pin audit; original run pins and candidate are unchanged."
+}

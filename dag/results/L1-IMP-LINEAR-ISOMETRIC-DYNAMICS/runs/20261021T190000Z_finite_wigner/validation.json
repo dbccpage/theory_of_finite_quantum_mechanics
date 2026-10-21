@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "lean": {"toolchain": "leanprover/lean4:v4.35.0", "mathlib": "56a005855ea17e0b0958f73ec801ae140b0a1679", "project": "lean-v4-35 worktree (lean4/.lake/packages cache, lean4/b/lib/lean own build) for k01, t01, s01; the sibling worktree C:/t/cfs/lean4 (same Mathlib commit, same toolchain) for a01, because the lean-v4-35 .lake cache was removed by another session between the a01 compile and its dependency scan, so a01 was replayed again there", "sources_line_endings": "LF (the first replay was taken on CRLF sources and discarded; the sealed snapshots, the lean4 copies and git's eol=lf normalisation now agree byte for byte)"},
+  "accepted_compilations": 4,
+  "printed_axiom_receipts": 233,
+  "axiom_profiles": {"[propext, Classical.choice, Quot.sound]": 218, "[propext, Quot.sound]": 13, "[Quot.sound]": 2},
+  "custom_axioms": 0,
+  "declaration_counts": {
+    "FiniteWignerKernel.lean": 110,
+    "FiniteWignerTheorem.lean": 79,
+    "FiniteWignerSimilarity.lean": 36,
+    "GaussRatAutomorphisms.lean": 8
+  },
+  "imported_unchanged": ["BornEffectValuation.lean, BornGaussRat.lean, BornHermitianCarrier.lean, BornHermitianPsdDecomposition.lean and SectorFormHermitian.lean: sources byte-identical to the lean-v4-35 build tree (digests in provenance.json); their v4.35.0 oleans were restored into build/ from that lake build because the sealed receipts of the earlier runs were compiled under v4.33.1 and cannot be loaded by v4.35.0"],
+  "operation_records": 15,
+  "retained_failed_attempts": [],
+  "python": {"module": "code/python/src/qm/finite_wigner.py", "tests": "code/python/tests/test_finite_wigner.py", "passed": 24, "command": "python -m pytest code/python/tests/test_finite_wigner.py -q", "note": "written by an opus subagent from the lead's twin_spec; the pre-existing tests/test_born_hermitian_valuation.py has 3 failures on the base branch (ExtensionTests, SKEW2 is_effect) unrelated to this run"},
+  "rust": {"module": "code/rust/src/qm/finite_wigner.rs", "tests": 29, "command": "cargo test --lib qm::finite_wigner (CARGO_TARGET_DIR in the job tmp, CARGO_PROFILE_DEV_DEBUG=0, CARGO_PROFILE_TEST_DEBUG=0, CARGO_INCREMENTAL=0; target cleaned afterwards)", "passed": 29, "build": "full crate build; no warnings in finite_wigner.rs (the crate's other warnings are in other files); registered in code/rust/src/qm/mod.rs"},
+  "dag": {"validator": "nodes=738 routes=735 failures=0", "syncs": "dag/sync_unified_dag.py, dag/sync_application_branches.py, dag/sync_pregenesis_to_wdp.py run; all three --check clean; sync_unified_dag.py --invariants failures=0", "tests": "dag/test_validate_derivation_dag.py, dag/test_application_branches.py, dag/test_unified_dag.py, dag/test_pregenesis_to_wdp.py, dag/test_tensor_measurement_receipt.py, dag/test_tensor_countermodel_receipt.py: 33 passed", "nodes": {"L1-IMP-LINEAR-ISOMETRIC-DYNAMICS": "IMPORTED_ASSUMPTION -> CONDITIONAL (statement rewritten: derived similarity dynamics vs imported transition-probability law; python key rejected by the validator and not used)", "L1-IMP-TRANSITION-PROBABILITY-LAW": "added, IMPORTED_ASSUMPTION, master record TFQ-1047 (parent TFQ-0303) via dag/fragments/unified_dag.json"}, "routes_added": ["L1-R-DYNAMICS-FINITE-WIGNER"], "routes_retained": ["L1-R-DYNAMICS-GAP"], "tensor_receipts": "counts re-pinned to 738/735/790 and the drifted current-file digests rebound by tools/rebind_receipts.py with the previous values kept under rebound"},
+  "gates": ["scripts/contract_scores.py check: all_passed true (combined_files 7067, errors 0) after tools/companions.py", "tools/seal.py receipts: 4 sources, 233 receipts, mixed-compiler check passed, no diagnostics, no proof holes", "tools/seal.py manifest and verify: see manifest.json"],
+  "not_run": ["lake build of the whole lean4 package (the four modules were compiled by the pinned lean.exe against the lean-v4-35 cache; the lakefile registration is syntactic)", "cargo test of the whole crate (only qm::finite_wigner, disk at ~5 GB free)"]
+}

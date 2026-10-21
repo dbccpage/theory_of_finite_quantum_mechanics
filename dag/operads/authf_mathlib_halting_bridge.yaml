@@ -1,0 +1,167 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-MATHLIB-HALTING-BRIDGE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: With Computable as the allowed class on both sides, a source predicate with no computable
+    total decider and a computable validity-preserving map give proposal validity with no computable total
+    decider; for the source predicate that program c halts on input n this is Mathlib's ComputablePred.halting_problem.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Halting is the only source predicate instantiated; no Rice instance, no extensional
+    property of encoded DTM0 programs and no computable reduction from DTM0 to Nat.Partrec.Code is given.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md
+  - lean4/AuthIncompleteness/MathlibBridge.lean
+  - papers/foundations/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md
+    sha256: 549bdc0d6ec87752a5b13aa20794ea150615fe960755de49e04e74d06b02e4eb
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_mathlib_halting_bridge_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: halting_has_no_computable_decider
+  line: 32
+  signature_excerpt: |-
+    theorem halting_has_no_computable_decider (n : Nat) :
+        NoTotalDecider (fun d : Code → Bool => Computable d) (fun c : Code => (Code.eval c n).Dom)
+  source: lean4/AuthIncompleteness/MathlibBridge.lean
+  repository: this_repository
+  source_sha256: ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: computable_closed_under_computable_reduction
+  line: 42
+  signature_excerpt: |-
+    theorem computable_closed_under_computable_reduction {H P : Type} [Primcodable H] [Primcodable P]
+        {hard : H → Prop} {valid : P → Prop} (reduction : ValidityReduction hard valid)
+        (hmap : Computable reduction.map) :
+        ClosedUnderReduction (fun d : H → Bool => Computable d) (fun a : P → Bool => Computable a)
+          reduction
+  source: lean4/AuthIncompleteness/MathlibBridge.lean
+  repository: this_repository
+  source_sha256: ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_computable_authorizer_of_computable_reduction
+  line: 51
+  signature_excerpt: |-
+    theorem no_computable_authorizer_of_computable_reduction {H P : Type} [Primcodable H]
+        [Primcodable P] {hard : H → Prop} {valid : P → Prop} (reduction : ValidityReduction hard valid)
+        (hmap : Computable reduction.map)
+        (noSourceDecider : NoTotalDecider (fun d : H → Bool => Computable d) hard) :
+        NoTotalDecider (fun a : P → Bool => Computable a) valid
+  source: lean4/AuthIncompleteness/MathlibBridge.lean
+  repository: this_repository
+  source_sha256: ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: halting_transport_instance
+  line: 66
+  signature_excerpt: |-
+    theorem halting_transport_instance (n : Nat) :
+        NoTotalDecider (fun d : Code → Bool => Computable d) (fun c : Code => (Code.eval c n).Dom)
+  source: lean4/AuthIncompleteness/MathlibBridge.lean
+  repository: this_repository
+  source_sha256: ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider
+  availability: local
+  symbol: AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider
+  path: lean4/AuthIncompleteness/MathlibBridge.lean
+  repository: this_repository
+  sha256: ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49
+  declaration_status: declaration_found_not_proof_checked
+  line: 32
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.computable_closed_under_computable_reduction
+  availability: local
+  symbol: AuthorizationIncompleteness.MathlibBridge.computable_closed_under_computable_reduction
+  path: lean4/AuthIncompleteness/MathlibBridge.lean
+  repository: this_repository
+  sha256: ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49
+  declaration_status: declaration_found_not_proof_checked
+  line: 42
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction
+  availability: local
+  symbol: AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction
+  path: lean4/AuthIncompleteness/MathlibBridge.lean
+  repository: this_repository
+  sha256: ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/MathlibBridge.lean::AuthorizationIncompleteness.MathlibBridge.halting_transport_instance
+  availability: local
+  symbol: AuthorizationIncompleteness.MathlibBridge.halting_transport_instance
+  path: lean4/AuthIncompleteness/MathlibBridge.lean
+  repository: this_repository
+  sha256: ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49
+  declaration_status: declaration_found_not_proof_checked
+  line: 66
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

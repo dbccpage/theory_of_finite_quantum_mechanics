@@ -1,9 +1,10 @@
 schema_id: finite-qm.code-companion.v1
 subject: dag/sync_pfp_results.py
-source_sha256: e361f8c7958c841f847f5a061e71a27535d086385f0f4b4591400aae002a2e85
+source_sha256: c44a7c9f6aaae363336b85006b567253dc6d61e7d8c84fc11445fc1d493a6a61
 authority_effect: None
 purpose: Write the pfp_review object and the curated review decisions onto the reviewed DAG nodes and
-  pfp_review_refs onto the base JSONL rows; --check and --report modes.
+  pfp_review_refs onto the base records of derivation_dag.json, then render the JSONL and Markdown views;
+  --check and --report modes.
 design:
   profile: Standard-library Python over JSON text; no floating point.
   frozen_sources: Review files, sealed runs and batch manifests are read and hashed, never written.

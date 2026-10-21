@@ -1,0 +1,170 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C2-CONTEXT-COUNTS-CHECKED
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For 2 data and arity 3 there are 19 = 3^3 - 2^3 contexts with a hole and 12 = 3*2^2
+    with exactly one hole (decide); Rust enumerates n from 0 to 4 and a from 1 to 5, Python n from 0 to
+    3 and a from 1 to 4, and both match (n+1)^a - n^a and a*n^(a-1).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Finite ranges only; the general formula is the trunk record TFQ-0436.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1289_comp_c2_context_counts_checked.md
+  - dag/research/genesis_to_universal_computation.md
+  - lean4/GenesisComputation.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1289_comp_c2_context_counts_checked.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1289_comp_c2_context_counts_checked.md
+    sha256: 9b5ae28944e647b2166847bdaf76d09aaaf75b503f76e248bc53ba594907a27c
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c2_context_counts_checked_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: allCtxs
+  line: 438
+  signature_excerpt: |-
+    def allCtxs (xs : List α) : ℕ → List (GCtx α)
+      | 0 => [[]]
+      | a + 1 => (none :: xs.map some).flatMap fun o => (allCtxs xs a).map (o :: ·)
+
+    end GenesisContexts
+
+    /-- Contexts of arity 3 over 2 data with at least one hole: `(2+1)^3 - 2^3 = 19`
+    (the TFQ-0436 count). -/
+    theorem genesis_context_count_n2_a3 :
+        ((allCtxs [0, 1] 3 : List (GCtx Nat)).filter (fun c => 0 < holes c)).length = 19
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: GCtx
+  line: 362
+  signature_excerpt: 'abbrev GCtx (α : Type*)'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: holes
+  line: 368
+  signature_excerpt: 'def holes (c : GCtx α) : ℕ'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: genesis_context_count_n2_a3
+  line: 446
+  signature_excerpt: |-
+    theorem genesis_context_count_n2_a3 :
+        ((allCtxs [0, 1] 3 : List (GCtx Nat)).filter (fun c => 0 < holes c)).length = 19
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: genesis_one_hole_count_n2_a3
+  line: 452
+  signature_excerpt: |-
+    theorem genesis_one_hole_count_n2_a3 :
+        ((allCtxs [0, 1] 3 : List (GCtx Nat)).filter (fun c => holes c == 1)).length = 12
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisComputation.lean::genesis_context_count_n2_a3
+  availability: local
+  symbol: genesis_context_count_n2_a3
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 446
+  role: source_lead_only
+- original_ref: lean4/GenesisComputation.lean::genesis_one_hole_count_n2_a3
+  availability: local
+  symbol: genesis_one_hole_count_n2_a3
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 452
+  role: source_lead_only
+- original_ref: lean4/GenesisComputation.lean::allCtxs
+  availability: local
+  symbol: allCtxs
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 438
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::context_count_formula_and_one_hole_splits
+  availability: local
+  symbol: context_count_formula_and_one_hole_splits
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 905
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

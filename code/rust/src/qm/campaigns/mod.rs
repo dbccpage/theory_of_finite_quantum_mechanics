@@ -66,6 +66,7 @@ pub mod operational_closure;
 pub mod page_wootters;
 pub mod pauli_spin_stat;
 pub mod phase_fiber;
+pub mod qc_self_obstruction;
 pub mod qcd_confinement;
 pub mod qed_hadronic;
 pub mod quadratic_readout;

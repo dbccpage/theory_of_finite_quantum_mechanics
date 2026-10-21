@@ -1,0 +1,124 @@
+{
+  "task_id": "TFQ-0031",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a4-1",
+  "input_sha256": "c9f7d435dc4401967bf163d8d55bc584a80818691ca83f7be90501e3709957e8",
+  "candidate_sha256": "9443eef0863aaf32a9f34ee5761367d77a6859a62905514dff8a3e4c15be89fc",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-opus-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 1,
+    "failure_rate": 0.2,
+    "failures_by_class": {
+      "composition_type_mismatch": 1
+    },
+    "unverifiable": 8,
+    "lean": {
+      "status": "skipped",
+      "reason": "installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T18:16:33Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R_part_c_check",
+        "equation_or_predicate": "The finite control test for part C checks the plaquette reduction and Wilson/Creutz confinement rows of the finite evaluator only; it supplies no continuum statement.",
+        "typing_conditions": "finite lattice, strong-coupling regime",
+        "source_pins": [
+          {
+            "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+            "declaration": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+            "line": 67
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+          "decl": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+          "kind": "def",
+          "line": 67,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-opus-5-5",
+          "provider": "anthropic",
+          "tier": 4
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-09161C263C0C",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "G_creutz . slot 0 <- G_wilson_loop via R_creutz_def",
+        "evidence": "the outer and inner generator is not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-opus-5-5",
+        "provider": "anthropic",
+        "tier": 4,
+        "node_id": "TFQ-0031"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Continuum mass-gap claim withheld: no bridge from finite Creutz rows to a -> 0 limit.",
+      "Non-perturbative behaviour at weak coupling as spacing goes to zero: unestablished.",
+      "F002.S001 shelf empty; GAP-F002-S001-001 open; citing it is an open bridge, not a derivation.",
+      "Confinement beyond strong-coupling formulae remains a gap.",
+      "Exact signatures/numerals of the part B/part C test functions not restated to avoid drift.",
+      "generator G_wilson_loop unverified: no existing declaration cited",
+      "generator G_creutz unverified: no existing declaration cited",
+      "generator G_beta0 unverified: no existing declaration cited",
+      "relation R_creutz_def unverified: no existing declaration cited",
+      "relation R_beta0_formula unverified: no existing declaration cited",
+      "lemma L_beta0_pos_su3 unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+      "near_miss NM_strong_to_continuum unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_shelf_as_derivation unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_b0_nf6",
+        "expr": "11/3*3 - 2/3*6",
+        "value": "7",
+        "host_evidence": {
+          "recomputed": "7"
+        }
+      },
+      {
+        "id": "N_b0_nf0",
+        "expr": "11/3*3 - 2/3*0",
+        "value": "11",
+        "host_evidence": {
+          "recomputed": "11"
+        }
+      },
+      {
+        "id": "N_af_bound",
+        "expr": "11*3/2",
+        "value": "33/2",
+        "host_evidence": {
+          "recomputed": "33/2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 3 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

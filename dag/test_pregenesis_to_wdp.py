@@ -32,12 +32,12 @@ def test_generated_files_match_disk_for_both_generators():
     for path, expected in pgw.generated_files(ROOT).items():
         assert path.read_bytes() == expected, path
     for path, expected in app_sync.generated_files(ROOT).items():
-        assert path.read_bytes().decode('utf-8') == expected, path
+        assert path.read_bytes() == expected, path
 
 
 def test_manifest_schema_and_uuid_namespace():
     m = manifest()
-    _, old = pgw.read_jsonl(ROOT)
+    old = pgw.read_records(ROOT)
     errs = pgw.validate_manifest(m, {r['id']: r for r in old}, pgw.pinned_papers(ROOT), pgw.paper_paths(ROOT))
     assert errs == []
     ns = uuid.uuid5(uuid.NAMESPACE_URL,

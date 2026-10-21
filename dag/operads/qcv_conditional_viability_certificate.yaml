@@ -1,0 +1,226 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: QCV-CONDITIONAL-VIABILITY-CERTIFICATE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: If g < 1, kappa > 0, r >= lam/((1-g)*kappa), c(k) <= C, max(C,1)*p(0) < 1 and the
+    level errors p(k) >= 0 obey p(k+1) <= c(k)*p(k)^2 whenever the backlog is bounded, then the backlog
+    is bounded and for every L >= 0 and epsilon > 0 some level k has L*p(k) <= epsilon; with max(C,1)*p(0)
+    <= 1/2 any k with L <= epsilon*max(C,1)*2^(2^k) works.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)
+  - fresh ancillas at rate r
+  - classical control and decoding fast enough for the syndrome
+  - level-bounded overhead c(k) <= C
+  source_bottleneck: 'The noise recurrence is a hypothesis: independence or locality of noise, fresh ancillas,
+    fast classical control and bounded overhead are not shown for any device; the hypotheses are only
+    shown jointly satisfiable on declared toy numbers.'
+  source_refs:
+  - dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md
+  - dag/research/quantum_computation_self_obstruction.md
+  - dag/research/quantum_computation_self_obstruction_axioms.txt
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md
+  source_claim_label: CONDITIONAL
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md
+    sha256: dd0903560bbc7d8c2ff26aebb5053d15e7d6e6f62f9d93e872a756356dbc4a23
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_qcv_conditional_viability_certificate_conditional.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: conditional_viability
+  line: 78
+  signature_excerpt: |-
+    theorem conditional_viability {lam g kappa r q0 : ℚ} {c : ℕ → ℚ} {C : ℚ}
+        (hq : 0 ≤ q0) (hg : g < 1) (hkap : 0 < kappa)
+        (hsupply : lam / ((1 - g) * kappa) ≤ r)
+        (hC : ∀ k, c k ≤ C)
+        (p : ℕ → ℚ) (hp : ∀ k, 0 ≤ p k)
+        (hrec : BacklogBounded lam g (kappa * r) q0 → ∀ k, p (k + 1) ≤ c k * p k ^ 2)
+        (hth : max C 1 * p 0 < 1) :
+        BacklogBounded lam g (kappa * r) q0 ∧
+          ∀ (L ε : ℚ), 0 ≤ L → 0 < ε → ∃ k : ℕ, L * p k ≤ ε
+  source: lean4/QcSelfObstruction.lean
+  repository: this_repository
+  source_sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: conditional_viability_explicit
+  line: 102
+  signature_excerpt: |-
+    theorem conditional_viability_explicit {c : ℕ → ℚ} {C : ℚ} (hC : ∀ k, c k ≤ C)
+        (p : ℕ → ℚ) (hp : ∀ k, 0 ≤ p k) (hrec : ∀ k, p (k + 1) ≤ c k * p k ^ 2)
+        (hth : max C 1 * p 0 ≤ 1 / 2) (L ε : ℚ) (hL : 0 ≤ L) (k : ℕ)
+        (hk : L ≤ ε * max C 1 * 2 ^ (2 ^ k)) : L * p k ≤ ε
+  source: lean4/QcSelfObstruction.lean
+  repository: this_repository
+  source_sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: conditional_viability_instance
+  line: 154
+  signature_excerpt: |-
+    theorem conditional_viability_instance :
+        BacklogBounded 1 (1 / 2) (1 * 2) 0 ∧
+          ∀ (L ε : ℚ), 0 ≤ L → 0 < ε → ∃ k : ℕ, L * conc 4 (1 / 10) k ≤ ε
+  source: lean4/QcSelfObstruction.lean
+  repository: this_repository
+  source_sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: level_error_le
+  line: 31
+  signature_excerpt: |-
+    theorem level_error_le {c : ℕ → ℚ} {C : ℚ} (hC : ∀ k, c k ≤ C)
+        (p : ℕ → ℚ) (hp : ∀ k, 0 ≤ p k) (hrec : ∀ k, p (k + 1) ≤ c k * p k ^ 2) (k : ℕ) :
+        p k ≤ conc (max C 1) (p 0) k
+  source: lean4/QcSelfObstruction.lean
+  repository: this_repository
+  source_sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: explicit_level
+  line: 60
+  signature_excerpt: |-
+    theorem explicit_level {D p0 : ℚ} (hD : 0 < D) (hp0 : 0 ≤ p0) (hr : D * p0 ≤ 1 / 2) (L ε : ℚ)
+        (hL : 0 ≤ L) (k : ℕ) (hk : L ≤ ε * D * 2 ^ (2 ^ k)) :
+        L * conc D p0 k ≤ ε
+  source: lean4/QcSelfObstruction.lean
+  repository: this_repository
+  source_sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/QcSelfObstruction.lean::conditional_viability
+  availability: local
+  symbol: conditional_viability
+  path: lean4/QcSelfObstruction.lean
+  repository: this_repository
+  sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
+  declaration_status: declaration_found_not_proof_checked
+  line: 78
+  role: source_lead_only
+- original_ref: lean4/QcSelfObstruction.lean::conditional_viability_explicit
+  availability: local
+  symbol: conditional_viability_explicit
+  path: lean4/QcSelfObstruction.lean
+  repository: this_repository
+  sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
+  declaration_status: declaration_found_not_proof_checked
+  line: 102
+  role: source_lead_only
+- original_ref: lean4/QcSelfObstruction.lean::conditional_viability_instance
+  availability: local
+  symbol: conditional_viability_instance
+  path: lean4/QcSelfObstruction.lean
+  repository: this_repository
+  sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
+  declaration_status: declaration_found_not_proof_checked
+  line: 154
+  role: source_lead_only
+- original_ref: lean4/QcSelfObstruction.lean::level_error_le
+  availability: local
+  symbol: level_error_le
+  path: lean4/QcSelfObstruction.lean
+  repository: this_repository
+  sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
+  declaration_status: declaration_found_not_proof_checked
+  line: 31
+  role: source_lead_only
+- original_ref: lean4/QcSelfObstruction.lean::explicit_level
+  availability: local
+  symbol: explicit_level
+  path: lean4/QcSelfObstruction.lean
+  repository: this_repository
+  sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
+  declaration_status: declaration_found_not_proof_checked
+  line: 60
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report
+  availability: local
+  symbol: viability_report
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 644
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::level_for_failure
+  availability: local
+  symbol: level_for_failure
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 620
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)
+    - fresh ancillas at rate r
+    - classical control and decoding fast enough for the syndrome
+    - level-bounded overhead c(k) <= C
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)
+    - fresh ancillas at rate r
+    - classical control and decoding fast enough for the syndrome
+    - level-bounded overhead c(k) <= C
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -1,0 +1,185 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "TFQ-0031",
+  "stage": "P0",
+  "run_id": "TFQ-0031/20261021T181606Z_ladder",
+  "finished_utc": "2026-10-21T18:16:11Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 1,
+  "free_calls": 0,
+  "paid_calls": 1,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 0,
+      "name": "free",
+      "attempts_before_escalation": 3,
+      "models": [
+        "openai/gpt-oss-120b",
+        "minimax/minimax-m3.1-flash:free",
+        "qwen/qwen3.8-27b",
+        "nvidia/nemotron-3.5-lightning:free",
+        "poolside/laguna-s-2.1:free",
+        "openai/gpt-oss-20b",
+        "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "gpt-oss-120b",
+        "nvidia/nemotron-3-super-120b-a12b"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "cheap",
+      "attempts_before_escalation": 2,
+      "models": [
+        "openai/gpt-4o-mini"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "haiku",
+      "attempts_before_escalation": 2,
+      "models": [
+        "claude-haiku-5-5"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "sonnet",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "opus",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-opus-5-5"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "fable",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-fable-5-1"
+      ]
+    }
+  ],
+  "run_cap_usd": 3.415336,
+  "summary": {
+    "node_id": "TFQ-0031",
+    "run_id": "TFQ-0031/20261021T181606Z_ladder",
+    "stage": "P0",
+    "status": "not_accepted",
+    "stop_reason": "fixed_attempts_completed",
+    "accepted_attempt": null,
+    "best_attempt": "a3-1",
+    "attempts": [
+      {
+        "attempt_id": "a3-1",
+        "tier": 3,
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "guided": true,
+        "known_neg_injected": 6,
+        "known_pos_injected": 0,
+        "input_sha256": "1fa42e444770bf72558d057234e97d7b5558b988feec82cc68d04fe60b8af8d4",
+        "injected_neg_ids": [
+          "NEG-0C43DA16A442",
+          "NEG-1E6745CFFC31",
+          "NEG-246DC5FBE1EB",
+          "NEG-27D4BAF8F111",
+          "NEG-58BD0CB3DD3F",
+          "NEG-98A8D15D74CA"
+        ],
+        "status": "rejected",
+        "verified_total": 0,
+        "failures_total": 0,
+        "failure_rate": 1.0,
+        "failures_by_class": {},
+        "unverifiable": 2,
+        "input_tokens": 3498,
+        "output_tokens": 537,
+        "cost_microusd": 12366,
+        "request_id": "req_011CgFqeQAnvHdQFY9F4BrxS",
+        "latency_s": 4.948,
+        "stop_reason": "end_turn",
+        "served_model": "claude-sonnet-5-5",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "negative_entries": []
+      }
+    ],
+    "totals_by_tier": {
+      "3": {
+        "calls": 1,
+        "sent": 1,
+        "input_tokens": 3498,
+        "output_tokens": 537,
+        "cost_microusd": 12366,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 12366,
+    "spend_usd": 0.012366,
+    "hallucinations_by_class": {},
+    "hallucinations_by_model": {},
+    "verified": {
+      "generators": 0,
+      "relations": 0,
+      "compositions": 0,
+      "lemmas": 0,
+      "numeric": 0
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a3-1:9ba7670c",
+      "run_id": "TFQ-0031/20261021T181606Z_ladder",
+      "attempt_id": "a3-1",
+      "tier": 3,
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "family": "anthropic",
+      "effort": "medium",
+      "max_tokens": 5000,
+      "started_utc": "2026-10-21T18:16:06Z",
+      "status": "ok",
+      "estimated_input_tokens": 2818,
+      "estimate_microusd": 55636,
+      "served_model": "claude-sonnet-5-5",
+      "input_tokens": 3498,
+      "output_tokens": 537,
+      "cost_microusd": 12366,
+      "cost_source": "price_table",
+      "request_id": "req_011CgFqeQAnvHdQFY9F4BrxS",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 4.948,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 0.096647,
+    "anthropic_cap_microusd": 150.0,
+    "paid_other_microusd": 0.000449,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}

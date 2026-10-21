@@ -106,3 +106,11 @@ pub mod pfp_wdp_bridge_obligations;
 pub mod pfp_wdp_growth_no_repair;
 pub mod pfp_wdp_protected_questions;
 pub mod pfp_wdp_quotient_sequence;
+
+pub mod complex_selection;
+
+#[cfg(test)]
+mod operational_tomography;
+
+#[cfg(test)]
+mod operational_filters;

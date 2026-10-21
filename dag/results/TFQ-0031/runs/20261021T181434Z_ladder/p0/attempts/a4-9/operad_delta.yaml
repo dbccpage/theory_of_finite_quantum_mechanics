@@ -1,0 +1,83 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-246DC5FBE1EB
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: G_creutz . slot 0 <- G_strong_area_law via R_area_law_creutz
+  evidence: the outer and inner generator is not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-opus-5-5
+  provider: anthropic
+  tier: 4
+  node_id: TFQ-0031
+counterexamples:
+- id: NEG-98A8D15D74CA
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'G_beta0: (Nc, nf) -> Beta0Coefficient [test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio]'
+  evidence: python def test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio takes 0 parameters;
+    the claim says 2
+  decl_key: test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio
+  confidence: exact
+  model: claude-opus-5-5
+  provider: anthropic
+  tier: 4
+  node_id: TFQ-0031
+- id: NEG-27D4BAF8F111
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'G_creutz: (WilsonLoopTable) -> CreutzRatio [test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement]'
+  evidence: python def test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement takes 0 parameters;
+    the claim says 1
+  decl_key: test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement
+  confidence: exact
+  model: claude-opus-5-5
+  provider: anthropic
+  tier: 4
+  node_id: TFQ-0031
+- id: NEG-58BD0CB3DD3F
+  class: statement_drift
+  claim_kind: relation
+  claim: 'R_beta0_sign: For Nc = 3, beta0 = 11 - 2/3*nf is positive iff nf < 33/2 [test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio]'
+  evidence: numerals 33 appear in the claim but in none of the checked sources (heuristic)
+  decl_key: test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio
+  confidence: heuristic
+  model: claude-opus-5-5
+  provider: anthropic
+  tier: 4
+  node_id: TFQ-0031
+open_obligations:
+- Confinement beyond the strong-coupling formulae (continuum mass gap, non-perturbative behavior at weak
+  coupling as spacing -> 0) remains an open gap; no derivation offered
+- 'F002.S001 is an open bridge: GAP-F002-S001-001 unresolved, no admitted book'
+- No grounded relation connects the beta0 table or Creutz rows to the continuum limit
+- G_strong_area_law and R_area_law_creutz are proposed_new; no existing declaration found for them
+- 'generator G_strong_area_law unverified: no existing declaration cited'
+- 'relation R_area_law_creutz unverified: no existing declaration cited'
+- 'lemma L_creutz_exponent unverified: Lean elaboration skipped: installed lean 4.35.0 does not match
+  lean4/lean-toolchain 4.33.1 (toolchain check)'
+- 'lemma L_beta0_nf6 unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain
+  4.33.1 (toolchain check)'
+- 'near_miss NM_continuum_gap unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_F002_bridge unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N_beta0_nf6
+  expr: 11 - 2/3*6
+  value: '7'
+  host_evidence:
+    recomputed: '7'
+- id: N_af_bound
+  expr: 11*3/2
+  value: 33/2
+  host_evidence:
+    recomputed: 33/2
+- id: N_creutz_exp
+  expr: 3*4 + 2*3 - 3*3 - 2*4
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+verified_lemma_statements: []

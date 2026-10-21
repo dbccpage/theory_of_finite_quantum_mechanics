@@ -1,0 +1,34 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-62F4013E50DF
+  class: nonexistent_declaration
+  claim_kind: relation
+  claim: 'fierz_2d_quadruple_check: For all indices i,j,k,l in {0,1,2}: (1/2)*delta[i][l]*delta[k][j]
+    - (1/6)*delta[i][j]*delta[k][l] = T[i][k][j][l] [fierz_2d_quadruple_check]'
+  evidence: no file RUST_PY_CONTROLS/e5f9f30f/fierz.py and no indexed declaration named fierz_2d_quadruple_check
+  decl_key: fierz_2d_quadruple_check
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0022
+- id: NEG-59C42522D4C0
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: su3_fierz_2d_matrix . slot 1 <- fierz_2d_quadruple_check via fierz_2d_quadruple_check
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0022
+counterexamples: []
+open_obligations:
+- Maintain exhaustive 81-entry Fierz replay in Rust and Python controls; do not conflate with Lean scalar
+  identity slice.
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

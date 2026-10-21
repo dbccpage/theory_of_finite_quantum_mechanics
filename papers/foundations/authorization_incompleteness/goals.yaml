@@ -1,0 +1,287 @@
+# Recovered file. Source: C:\.ana\coda_university\coda_research\authorization_an_incompleteness_theory\goals.yaml (external, read-only).
+# Recovery date: 2026-10-21. Recovered verbatim; statuses below are the source's, not audited.
+# Audit and comparison with this repository: RECOVERY_NOTES.md
+
+version: 1
+title: Authorization Incompleteness proof graph
+authority_effect: None
+goals:
+  - id: AIT-PD0
+    title: Primitive Difference to proposal-interface bridge
+    depends_on: []
+    status: finite_model_closed_full_interface_open
+    exit_evidence:
+      - formal/primitive_difference_authorization_models.lean
+      - primitive_interface_has_distinct_authorization_extensions
+    required_proofs:
+      - Primitive Difference does not select a validity predicate.
+      - Primitive Difference does not select a terminal policy.
+      - Two explicit extensions preserve the primitive interface and differ in validity or policy.
+  - id: AIT-G0
+    title: Freeze contract vocabulary
+    depends_on:
+      - AIT-P0
+    status: draft
+    exit_evidence:
+      - authorization_incompleteness_theory.md
+      - authorization_incompleteness_theory_claim_ledger.md
+  - id: AIT-PD1
+    title: J011 Primitive Difference quotient to P0 bridge
+    depends_on:
+      - AIT-PD0
+    status: closed_rooted_candidate
+    exit_evidence:
+      - formal/primitive_difference_p0_bridge.lean
+      - pd_quotient_split_blocks_report_only_authorization
+      - pd_quotient_decision_if_zeroRel_constant
+      - lake build AuthorizationIncompletenessTheory
+    required_proofs:
+      - J011 pdProj fibers are identified with ZeroRel P.
+      - A supplied validity predicate splitting a ZeroRel class blocks quotient-only total authorization.
+      - ZeroRel constancy is an explicit adequacy hypothesis for the positive quotient decision.
+  - id: AIT-P0
+    title: Projection Obstruction descent anchor
+    depends_on:
+      - AIT-PD1
+    status: established_in_po000
+    exit_evidence:
+      - ../002_projection_obstruction/000_projection_obstruction/lean4/po000_authorization_boundary.lean
+      - AuthorizationBoundary.no_report_decision
+    required_proofs:
+      - Every successor lift proves descent or records a split fiber and its needed added input.
+  - id: AIT-G1
+    title: Finite report-factorization theorem
+    depends_on:
+      - AIT-G0
+    status: closed_finite_seed
+    exit_evidence:
+      - formal/authorization_incompleteness_core.lean
+      - split_fiber_blocks_total_authorization
+  - id: AIT-G2
+    title: Self-attestation finite instance
+    depends_on:
+      - AIT-G1
+    status: closed_finite_seed
+    exit_evidence:
+      - self_receipt_blocks_authorization
+      - complete_receipt_decides_toy_contract
+  - id: AIT-E0
+    title: Logical versus physical externality finite model
+    depends_on:
+      - AIT-G1
+    status: closed_finite_model
+    exit_evidence:
+      - formal/logical_externality_models.lean
+      - physical_separation_neither_needed_nor_sufficient_for_toy_authorization
+      - lake build AuthorizationIncompletenessTheory
+    required_proofs:
+      - A same-site complete report admits a bounded total authorizer.
+      - A different-site collapsed report admits no total report-only authorizer.
+      - Site labels are not promoted to a custody or security theorem.
+  - id: AIT-TC0
+    title: Tape-control and terminal-policy separation
+    depends_on:
+      - AIT-PD0
+    status: closed_finite_model
+    exit_evidence:
+      - formal/tape_control_authorization_models.lean
+      - same_read_token_allows_distinct_semantic_adapters
+      - unread_report_blocks_content_decider
+      - same_halt_control_blocks_control_only_decider
+    required_proofs:
+      - A declared blank tape cell is not a semantic absence claim.
+      - An unread observation report is distinct from a declared alphabet member.
+      - A read token does not select a supplied semantic adapter.
+      - A declared halt control outcome does not select a terminal policy.
+      - A control-only report can split a declared content contract.
+  - id: AIT-TC1
+    title: Controlled Turing derivation protocol
+    depends_on:
+      - AIT-TC0
+      - AIT-G2
+    status: design
+    exit_evidence:
+      - controlled_turing_derivation_series.md
+    required_proofs:
+      - Frozen prompt and environment provenance for each blind run.
+      - Post-seal source classification and external literature comparison.
+      - Explicit distinction between syntactic terminality and authorization.
+      - Isolation is recorded as a provenance condition, not as a novelty or validity proof.
+  - id: AIT-TC2
+    title: Controlled transition invariant and countertrace
+    depends_on:
+      - AIT-TC0
+    status: closed_finite_model
+    exit_evidence:
+      - formal/tape_transition_invariant_models.lean
+      - transition_preserves_clean_terminal_contract
+      - marked_contract_countertrace
+      - transition_does_not_preserve_marked_cell_contract
+      - shared_stay_control_blocks_control_only_contract_decider
+      - lake build AuthorizationIncompletenessTheory
+    required_proofs:
+      - One declared finite transition table realizes advance, stay, and halt outcomes.
+      - A named clean-terminal contract is preserved by the table.
+      - A different named marked-cell contract has a concrete countertrace.
+      - A shared control report can still hide a contract-relevant configuration distinction.
+  - id: AIT-G3a
+    title: Finite replay-packet binding model
+    depends_on:
+      - AIT-G2
+      - AIT-E0
+    status: closed_finite_model
+    exit_evidence:
+      - formal/replay_packet_binding_models.lean
+      - checker_substitution_is_binding_rejected
+      - replayed_status_requires_bound_submission
+      - terminal_policy_is_not_selected_by_verification
+      - lake build AuthorizationIncompletenessTheory
+    required_proofs:
+      - A supplied trust root is structurally distinct from a source submission.
+      - Checker, schema, contract-version, and payload substitutions are refused by the finite replay model.
+      - A producer supplied pass field does not decide the checked contract.
+      - Verification does not select the terminal policy.
+  - id: AIT-G3
+    title: Bound replay packet and tamper tests
+    depends_on:
+      - AIT-G3a
+    status: closed_bounded_replay_packet
+    exit_evidence:
+      - code/replay_packet/packet_manifest.json
+      - code/replay_packet/verify_transition_packet.ps1
+      - code/tests/test_replay_packet.ps1
+      - code/integration_tests/test_transition_packet_integration.ps1
+    required_proofs:
+      - A real receipt binds artifact bytes, parser, checker, schema version, contract version, toolchain, and command.
+      - Cryptographic binding, verifier soundness, and custody assumptions are named and tested rather than modeled as structural equality.
+      - Producer supplied pass fields do not decide the checked contract.
+  - id: AIT-G4
+    title: Executable report-adequacy theorem
+    depends_on:
+      - AIT-G3
+    status: closed_finite_executable_adequacy
+    exit_evidence:
+      - formal/tape_transition_invariant_models.lean
+      - full_configuration_report_adequate_for_marked_cell_contract
+      - control_report_not_adequate_for_marked_cell_contract
+      - code/replay_packet/packet_manifest.json
+    required_proofs:
+      - Split report fiber blocks total authorization.
+      - Adequate report and trusted checker license a scoped local decision; terminal policy remains separate.
+  - id: AIT-G5a
+    title: Class-relative undecidability transport
+    depends_on: []
+    status: closed_abstract_transport
+    exit_evidence:
+      - formal/global_computability_lift_models.lean
+      - no_source_decider_blocks_total_authorizer
+      - lake build AuthorizationIncompletenessTheory
+    required_proofs:
+      - A source predicate and proposal-validity predicate are connected by an explicit reduction.
+      - The reduction preserves the predicate exactly.
+      - The declared proposal decision class is closed under reduction precomposition.
+      - Source undecidability remains an explicit input rather than a hidden axiom or a claim about all functions.
+  - id: AIT-G5c
+    title: Terminalization consequence of the class-relative no-decider boundary
+    depends_on:
+      - AIT-G5a
+    status: closed_abstract_terminalization_consequence
+    exit_evidence:
+      - formal/terminal_authorization_boundary_models.lean
+      - acceptance_bit_decides_of_sound_complete
+      - no_total_decider_blocks_closed_two_sided_terminalization
+      - finite_closed_terminalizer_remains_possible
+      - lake build AuthorizationIncompletenessTheory
+    required_proofs:
+      - An allowed authorized bit turns semantic acceptance soundness and completeness into a Boolean decider.
+      - Two-sided semantic soundness and no unresolved result imply acceptance completeness.
+      - A finite decidable fixture preserves closed local terminalization.
+      - No Rice, LLM, physical-externality, or custody conclusion is promoted.
+  - id: AIT-DTM0
+    title: Direct finite-rule operational seed
+    depends_on:
+      - AIT-TC2
+    status: closed_finite_rule_operational_seed
+    exit_evidence:
+      - formal/direct_turing_machine_models.lean
+      - computability_carrier_candidates.json
+      - code/tests/test_computability_carrier_candidates.ps1
+      - lake build AuthorizationIncompletenessTheory
+    required_proofs:
+      - Finite rule syntax, total mathematical tape, and fuel-bounded evaluator.
+      - Declared halt, stuck, and fuel-exhausted results remain distinct.
+      - A syntactic halt does not select a supplied terminal policy.
+      - No universality, parser, extensionality, or reduction claim is promoted.
+  - id: AIT-DTM1
+    title: Finite token-code grammar for the direct machine
+    depends_on:
+      - AIT-DTM0
+    status: closed_finite_token_code_syntax_lift
+    exit_evidence:
+      - formal/direct_turing_machine_token_code_models.lean
+      - lake build AuthorizationIncompletenessTheory
+    required_proofs:
+      - One halt-state token plus complete five-token rule frames define the finite grammar.
+      - The decoder rejects empty, truncated, invalid-symbol, and invalid-movement code rather than ignoring a suffix.
+      - Decoding encoded DTM0 machine code recovers the original finite rule-list machine.
+      - Token-code syntax is not promoted to source bytes, input encoding, trace agreement, universality, or reduction.
+  - id: AIT-G5b
+    title: Freeze computability-lift carrier
+    depends_on:
+      - AIT-G4
+      - AIT-TC1
+      - AIT-TC2
+      - AIT-DTM0
+      - AIT-DTM1
+    status: open_admission_gate
+    exit_evidence:
+      - computability_lift_admission.md
+      - computability_carrier_candidates.json
+      - code/tests/test_computability_carrier_candidates.ps1
+      - selected machine-readable carrier record
+      - explicit remaining-import statement
+    required_proofs:
+      - Named syntax, program/input encodings, and execution semantics.
+      - Universality and extensionality boundaries for the selected carrier.
+      - Positive and negative nontriviality witnesses and an effective reduction plan.
+      - Report adequacy, terminal policy, and replay closure remain distinct from the semantic predicate.
+  - id: AIT-G5
+    title: Global computability lift
+    depends_on:
+      - AIT-G5a
+      - AIT-G5b
+      - AIT-G4
+      - AIT-TC1
+      - AIT-TC2
+    status: open
+    required_proofs:
+      - Turing-complete proposal encoding.
+      - Nontrivial extensional semantic property.
+      - Rice theorem reduction for total sound and complete authorizers.
+  - id: AIT-G6
+    title: Self-soundness lift
+    depends_on:
+      - AIT-G5
+    status: open
+    required_proofs:
+      - Formal theory T and internal consistency sentence.
+      - Second-incompleteness theorem under named hypotheses.
+  - id: AIT-G7
+    title: LLM-only authorization corollary
+    depends_on:
+      - AIT-G3
+      - AIT-G5
+      - AIT-G5c
+    status: open
+    required_proofs:
+      - Computable LLM execution model.
+      - Separation of LLM-only and externally assisted routes.
+  - id: AIT-G8
+    title: Attacked authorization protocol
+    depends_on:
+      - AIT-G3
+      - AIT-G7
+    status: open
+    required_proofs:
+      - Replayable attack corpus.
+      - Scoped terminal decision protocol.

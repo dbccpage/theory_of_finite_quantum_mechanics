@@ -1,7 +1,15 @@
-"""Synchronize the application-branch fragment into the DAG and two master indices.
+"""Synchronize the application-branch fragment into derivation_dag.json and the derivation index.
 
-Only the fragment-owned suffix is generated; pre-existing derivation papers and
-records are preserved. --check detects stale generated data without writing.
+derivation_dag.json (schema derivation_dag.v2) is the single source of the derivation graph. Only
+the fragment-owned suffix is generated: the fragment's nodes and routes are appended to the DAG, its
+records (source_slice application_branches) replace the application block at the end of the records
+of derivation_dag.json, and index_document.application_stages lists the fragment stages, in order,
+for the application sections of the Markdown view. Pre-existing derivation papers and records are
+preserved. The read-only views theory_of_finite_qm.jsonl and theory_of_finite_qm.md are then rendered
+from derivation_dag.json by dag/render_dag_views.py.
+
+Run order: sync_pfp_results.py, sync_unified_dag.py, this script, sync_pregenesis_to_wdp.py.
+--check detects stale generated data without writing.
 AuthorityEffect: None. Synchronization does not establish a mathematical claim.
 """
 from __future__ import annotations
@@ -9,14 +17,16 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-MARKER = '<!-- application-branches: generated from fragments/application_branches.json -->'
+if str(HERE) not in sys.path:
+    sys.path.insert(0, str(HERE))
+import render_dag_views as views  # noqa: E402
 
-
-def json_text(value):
-    return json.dumps(value, ensure_ascii=False, indent=2) + '\n'
+MARKER = views.APP_MARKER
+json_text = views.json_text
 
 
 def strip_suffix(text):
@@ -31,7 +41,7 @@ def generated_files(root: Path):
     record_ids = {r['id'] for r in records}
     if len(ids) != len(nodes) or len(record_ids) != len(records):
         raise ValueError('duplicate fragment identifiers')
-    dag = json.loads((folder / 'derivation_dag.json').read_text(encoding='utf-8'))
+    dag = views.load_dag(root)
     # Reject accidental capture of a node not previously owned by this fragment.
     for n in dag['nodes']:
         if n['id'] in ids and 'application-branch' not in n['tags']:
@@ -63,11 +73,8 @@ def generated_files(root: Path):
             if reference not in tensor[field]:
                 tensor[field].append(reference)
 
-    # Preserve upstream records byte-for-byte, including their line endings.
-    old_lines = (folder / 'theory_of_finite_qm.jsonl').read_bytes().decode('utf-8').splitlines(keepends=True)
-    old_records = [json.loads(line) for line in old_lines]
-    retained_lines = [line for line, r in zip(old_lines, old_records) if r['id'] not in record_ids]
-    newline = '\r\n' if old_lines and old_lines[0].endswith('\r\n') else '\n'
+    # Records: upstream records are kept as they are; the fragment records form the final block.
+    old_records = dag['records']
     for r in old_records:
         if r['id'] in record_ids and r.get('source_slice') != 'application_branches':
             raise ValueError('application record collides with existing record: ' + r['id'])
@@ -84,6 +91,12 @@ def generated_files(root: Path):
             paper_paths[paper_id] = p.relative_to(root).as_posix()
     if any(r['id'] not in paper_paths or r['parent_id'] not in paper_paths for r in records):
         raise ValueError('application paper or parent is missing')
+    # The Markdown view links an application record's paper through its first f004 reference.
+    for r in records:
+        if r['f004_refs'][:1] != [paper_paths[r['id']]]:
+            raise ValueError(f'{r["id"]}: f004_refs must start with its paper {paper_paths[r["id"]]}')
+    dag['records'] = [views.canonical_record(r) for r in all_records]
+    dag['index_document']['application_stages'] = list(fragment['stages'])
 
     index = strip_suffix((folder / 'derivations/README.md').read_text(encoding='utf-8'))
     index += '\n' + MARKER + '\n\n## Application and composition derivation branches\n\n'
@@ -94,35 +107,18 @@ def generated_files(root: Path):
               'the [formalization receipt](../research/tensor_formalization_validation.json) records the verified tomography and Schmidt extension. '
               'The [measurement receipt](../research/tensor_measurement_validation.json) records the effect cone, binary interval and finite POVMs with explicit saturation premises. '
               'The [countermodel receipt](../research/tensor_countermodel_validation.json) verifies the TFQ-0413 hypothesis boundaries.\n')
-    master = strip_suffix((folder / 'theory_of_finite_qm.md').read_text(encoding='utf-8'))
-    master = re.sub(r'Nodes: \d+\.', f'Nodes: {len(all_records)}.', master, count=1)
-    for stage in fragment['stages']:
-        master = re.sub(r'^\| `' + stage + r'` \| \d+ \|\n', '', master, flags=re.M)
-    stage_rows = ''.join(f'| `{stage}` | {sum(r["stage"] == stage for r in records)} |\n' for stage in fragment['stages'])
-    heading = master.index('## Coda atlas packages')
-    master = master[:heading].rstrip() + '\n' + stage_rows + '\n' + master[heading:]
-    master += '\n' + MARKER + '\n'
     for stage in fragment['stages']:
         stage_records = [r for r in records if r['stage'] == stage]
         index += f'\n### {stage} ({len(stage_records)} derivations)\n\n'
         index += '| ID | Name | Status | Parent | DAG node |\n|---|---|---|---|---|\n'
-        master += f'\n## {stage}\n'
         for r in stage_records:
             paper = paper_paths[r['id']].removeprefix('dag/derivations/')
             parent = paper_paths[r['parent_id']].removeprefix('dag/derivations/')
             node_id = r['existing_derivation_dag_ids'][0]
             index += f'| [{r["id"]}](./{paper}) | {r["name"]} | `{r["record_status"]}` | [{r["parent_id"]}](./{parent}) | `{node_id}` |\n'
-            master += (f'\n### {r["id"]} {r["name"]}\n\n'
-                       f'- UUID: `{r["uuid"]}`\n- Parent: `{r["parent_id"]}`\n'
-                       f'- Status: `{r["record_status"]}`\n- DAG node: `{node_id}`\n'
-                       f'- Paper: [derivation](derivations/{paper})\n\n'
-                       f'{r["summary"]}\n\nObligation: {r["obligation"]}\n')
     return {
-        folder / 'derivation_dag.json': json_text(dag),
-        folder / 'theory_of_finite_qm.jsonl': ''.join(retained_lines) + ''.join(
-            json.dumps(r, ensure_ascii=False, sort_keys=True) + newline for r in records),
-        folder / 'theory_of_finite_qm.md': master,
-        folder / 'derivations/README.md': index,
+        **views.outputs(dag, root),  # derivation_dag.json and the two views rendered from it
+        folder / 'derivations/README.md': index.encode('utf-8'),
     }
 
 
@@ -132,10 +128,10 @@ def main():
     args = parser.parse_args()
     differences = []
     for path, expected in generated_files(HERE.parent).items():
-        if path.read_bytes() != expected.encode('utf-8'):
+        if path.read_bytes() != expected:
             differences.append(path.name)
             if not args.check:
-                path.write_bytes(expected.encode('utf-8'))
+                path.write_bytes(expected)
     print('stale=' + ','.join(differences) if differences else 'application branches synchronized')
     return int(bool(differences) and args.check)
 

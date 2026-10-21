@@ -1,0 +1,49 @@
+C:\Users\a343o\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\pytest_asyncio\plugin.py:247: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+FF                                                                       [100%]
+================================== FAILURES ===================================
+____________ test_candidate_cannot_mutate_verifier_premises[False] ____________
+
+warm_cache = False
+
+    @pytest.mark.parametrize("warm_cache", [False, True])
+    def test_candidate_cannot_mutate_verifier_premises(warm_cache):
+        original = tuple(cs.PREMISES)
+        cs._expected_json.cache_clear()
+        try:
+            if warm_cache:
+                cs.verify_candidate_bytes((RUN/'p1/candidate.json').read_bytes())
+            candidate = cs.make_candidate()
+            candidate['premises'].pop()
+>           with pytest.raises(ValueError, match='premises'):
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+code\python\tests\test_complex_selection.py:169: Failed
+____________ test_candidate_cannot_mutate_verifier_premises[True] _____________
+
+warm_cache = True
+
+    @pytest.mark.parametrize("warm_cache", [False, True])
+    def test_candidate_cannot_mutate_verifier_premises(warm_cache):
+        original = tuple(cs.PREMISES)
+        cs._expected_json.cache_clear()
+        try:
+            if warm_cache:
+                cs.verify_candidate_bytes((RUN/'p1/candidate.json').read_bytes())
+            candidate = cs.make_candidate()
+            candidate['premises'].pop()
+            with pytest.raises(ValueError, match='premises'):
+                cs.verify_candidate_bytes(json.dumps(candidate).encode())
+>           assert tuple(cs.PREMISES) == original
+E           AssertionError: assert ('matrix_carr...orized_tests') == ('matrix_carr...l_tomography')
+E             
+E             Right contains one more item: 'local_tomography'
+E             Use -v to get more diff
+
+code\python\tests\test_complex_selection.py:171: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_complex_selection.py::test_candidate_cannot_mutate_verifier_premises[False]
+FAILED code/python/tests/test_complex_selection.py::test_candidate_cannot_mutate_verifier_premises[True]
+2 failed, 15 deselected in 6.51s

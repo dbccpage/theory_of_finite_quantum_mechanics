@@ -1,0 +1,326 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-DTM0-FIXTURES
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: On the three named fixtures, writeAndHaltMachine writes a mark and reaches its halt
+    state in one transition, the empty-rule machine is stuck at its first step, and the one-row self-loop
+    machine returns fuelExhausted with the looped configuration after one unit of fuel.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The self-loop result is exhaustion of one unit of fuel; no theorem says the loop
+    never halts, and no fixture exceeds three rows.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1342_authf_dtm0_fixtures.md
+  - lean4/AuthIncompleteness/DirectTM.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1342_authf_dtm0_fixtures.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1342_authf_dtm0_fixtures.md
+    sha256: 7910849197fef2104083d598b9d2dc6f03d9b671f09ead32d21117908e659ddf
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_dtm0_fixtures_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: applyRule
+  line: 106
+  signature_excerpt: 'def applyRule (rule : Rule) (configuration : Configuration) : Configuration'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: writeAndHaltRule
+  line: 167
+  signature_excerpt: 'def writeAndHaltRule : Rule'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: initialConfiguration
+  line: 161
+  signature_excerpt: 'def initialConfiguration : Configuration'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Rule
+  line: 44
+  signature_excerpt: structure Rule
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Configuration
+  line: 57
+  signature_excerpt: structure Configuration
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: applyMove
+  line: 99
+  signature_excerpt: 'def applyMove (move : Move) (head : Int) : Int'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: writeAt
+  line: 95
+  signature_excerpt: 'def writeAt (tape : Tape) (position : Int) (symbol : TapeSymbol) : Tape'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: blankTape
+  line: 158
+  signature_excerpt: 'def blankTape : Tape'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: TapeSymbol
+  line: 31
+  signature_excerpt: inductive TapeSymbol
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Move
+  line: 37
+  signature_excerpt: inductive Move
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Tape
+  line: 54
+  signature_excerpt: abbrev Tape
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: DeclaredHalt
+  line: 116
+  signature_excerpt: 'def DeclaredHalt (machine : Machine) (configuration : Configuration) : Prop'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: writeAndHaltMachine
+  line: 175
+  signature_excerpt: 'def writeAndHaltMachine : Machine'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Machine
+  line: 64
+  signature_excerpt: structure Machine
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isDeclaredHalt
+  line: 112
+  signature_excerpt: 'def isDeclaredHalt (machine : Machine) (configuration : Configuration) : Bool'
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: execute
+  line: 130
+  signature_excerpt: |-
+    def execute (machine : Machine) : Nat -> Configuration -> StepResult
+      | 0, configuration =>
+        match isDeclaredHalt machine configuration with
+        | true => .halted
+        | false => .fuelExhausted configuration
+      | fuel + 1, configuration =>
+        match step machine configuration with
+        | .next nextConfiguration => execute machine fuel nextConfiguration
+        | .halted => .halted
+        | .stuck => .stuck
+        | .fuelExhausted boundedConfiguration => .fuelExhausted boundedConfiguration
+
+    /-- A terminal policy is extra supplied structure over an operational result. -/
+    structure TerminalPolicy
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: write_and_halt_transition_writes_mark
+  line: 230
+  signature_excerpt: |-
+    theorem write_and_halt_transition_writes_mark :
+        (applyRule writeAndHaltRule initialConfiguration).tape 0 =
+          TapeSymbol.marked
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: write_and_halt_transition_reaches_declared_halt
+  line: 236
+  signature_excerpt: |-
+    theorem write_and_halt_transition_reaches_declared_halt :
+        DeclaredHalt writeAndHaltMachine
+          (applyRule writeAndHaltRule initialConfiguration)
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: write_and_halt_executes_to_syntactic_halt
+  line: 256
+  signature_excerpt: |-
+    theorem write_and_halt_executes_to_syntactic_halt :
+        execute writeAndHaltMachine 1 initialConfiguration = .halted
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: empty_rule_fixture_is_stuck
+  line: 243
+  signature_excerpt: |-
+    theorem empty_rule_fixture_is_stuck :
+        step stuckMachine initialConfiguration = .stuck
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: looping_fixture_exhausts_bounded_fuel
+  line: 249
+  signature_excerpt: |-
+    theorem looping_fixture_exhausts_bounded_fuel :
+        execute loopingMachine 1 initialConfiguration =
+          .fuelExhausted (applyRule loopingRule initialConfiguration)
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_writes_mark
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_writes_mark
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 230
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_reaches_declared_halt
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_reaches_declared_halt
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 236
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_executes_to_syntactic_halt
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_executes_to_syntactic_halt
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 256
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 243
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 249
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

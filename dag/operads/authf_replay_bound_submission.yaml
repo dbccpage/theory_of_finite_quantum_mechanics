@@ -1,0 +1,198 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-REPLAY-BOUND-SUBMISSION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: In the finite structural replay model, if replay of a receipt on an observed submission
+    returns replayed with some outcome, then the observed submission equals the submission bound in the
+    receipt.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Equality is structural equality of a finite record, not a digest; verifier soundness
+    and custody are not modelled.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1356_authf_replay_bound_submission.md
+  - lean4/AuthIncompleteness/Replay.lean
+  - papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1356_authf_replay_bound_submission.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1356_authf_replay_bound_submission.md
+    sha256: 51aec62f42754c0b8e2dc916e0f8d4961fd6fc98d8a488532c76c4438bbf05fa
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_replay_bound_submission_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: replay
+  line: 162
+  signature_excerpt: 'def replay (receipt : ReplayReceipt) (observed : Submission) : ReplayStatus'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: issueReceipt
+  line: 148
+  signature_excerpt: 'def issueReceipt (root : TrustRoot) (submission : Submission) : ReplayReceipt'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: ReplayReceipt
+  line: 140
+  signature_excerpt: structure ReplayReceipt
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Submission
+  line: 66
+  signature_excerpt: structure Submission
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Verification
+  line: 77
+  signature_excerpt: inductive Verification
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: TrustRoot
+  line: 55
+  signature_excerpt: structure TrustRoot
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Version
+  line: 30
+  signature_excerpt: inductive Version
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: CheckerTag
+  line: 36
+  signature_excerpt: inductive CheckerTag
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ContractTag
+  line: 42
+  signature_excerpt: inductive ContractTag
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: TerminalPolicy
+  line: 48
+  signature_excerpt: inductive TerminalPolicy
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: replayed_status_requires_bound_submission
+  line: 270
+  signature_excerpt: |-
+    theorem replayed_status_requires_bound_submission
+        (receipt : ReplayReceipt) (observed : Submission) (outcome : Verification) :
+        replay receipt observed = .replayed outcome ->
+          observed = receipt.boundSubmission
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replayed_status_requires_bound_submission
+  availability: local
+  symbol: AuthorizationIncompleteness.ReplayPacketBindingModels.replayed_status_requires_bound_submission
+  path: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  declaration_status: declaration_found_not_proof_checked
+  line: 270
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replay
+  availability: local
+  symbol: AuthorizationIncompleteness.ReplayPacketBindingModels.replay
+  path: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  declaration_status: declaration_found_not_proof_checked
+  line: 162
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.issueReceipt
+  availability: local
+  symbol: AuthorizationIncompleteness.ReplayPacketBindingModels.issueReceipt
+  path: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  declaration_status: declaration_found_not_proof_checked
+  line: 148
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

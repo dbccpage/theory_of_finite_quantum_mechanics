@@ -4,6 +4,7 @@ No network, no Lean, no cargo, no Mathlib: the dummy node's gates are plain Pyth
 tree is built from the real stage helpers (prepare_stage.py, workflow, contracts, exact_json.py,
 scripts/contract_scores.py) and a three-node DAG whose prompts come from the real generator.
 """
+import hashlib
 import json
 import os
 import shutil
@@ -496,6 +497,22 @@ class SpecBuilderAndPreflight(Dummy):
 
 
 class Units(unittest.TestCase):
+    def test_historical_version_accepts_only_committed_versions_of_a_build_manifest(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            git(root, 'init', '-q')
+            git(root, 'config', 'user.email', 't@example.invalid')
+            git(root, 'config', 'user.name', 'T')
+            write(root / 'Cargo.toml', 'a = 1\n')
+            git(root, 'add', '.')
+            git(root, 'commit', '-q', '-m', 'one')
+            write(root / 'Cargo.toml', 'a = 2\n')
+            git(root, 'commit', '-q', '-am', 'two')
+            digest = lambda text: hashlib.sha256(text.encode('utf-8')).hexdigest()
+            self.assertTrue(verify_batch.historical_version(root, 'Cargo.toml', digest('a = 1\n')))
+            self.assertTrue(verify_batch.historical_version(root, 'Cargo.toml', digest('a = 2\n')))
+            self.assertFalse(verify_batch.historical_version(root, 'Cargo.toml', digest('a = 3\n')))
+
     def test_coordinate_mutants_cover_leaves_tails_and_keys(self):
         names = [n for n, _ in challenge.coordinate_mutants(DATA)]
         self.assertIn('coordinate_records/0/input/0', names)

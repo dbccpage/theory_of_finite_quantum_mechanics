@@ -1,0 +1,99 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "g:qcdBeta0",
+      "inputs": [
+        "nc",
+        "nf"
+      ],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "path": "code/python/src/qm/qcd_confinement.py::qcd_beta0",
+        "decl": "def qcd_beta0(n_c: int, n_f: int) -> Q: \"\"\"1-loop Gross-Wilczek-Politzer beta_0(N_c, n_f) = (11/3) N_c - (2/3) n_f.\"\"\"",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g:qcdBeta1",
+      "inputs": [
+        "nc",
+        "nf"
+      ],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "path": "lean4/FiniteQM.lean::FiniteQM.qcdBeta1",
+        "decl": "abbrev qcdBeta1 (nc nf : Rat) : Rat",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r:asymptotic_freedom_window",
+      "statement": "(4 : Rat) * suNCasimirAdjoint 3 + (-1 / 3 : Rat) * suNCasimirAdjoint 3 = 11",
+      "hypotheses": "n_f = 0",
+      "ref": {
+        "path": "lean4/FiniteQM.lean::FiniteQM.qcd_beta0_asymptotic_freedom_window",
+        "decl": "theorem qcd_beta0_asymptotic_freedom_window (nf : Rat) : (4 : Rat) * suNCasimirAdjoint 3 + (-1 / 3 : Rat) * suNCasimirAdjoint 3 = 11 ∧ qcdBeta0 3 0 = 11",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "qcdBeta0_3_0_implies_asymptotic_window",
+      "slot": 1,
+      "inner": "qcdBeta0_3_0",
+      "licensing_relation": "r:asymptotic_freedom_window"
+    }
+  ],
+  "lemmas": [],
+  "near_misses": [
+    {
+      "id": "mm:nc_qcd_beta0_3",
+      "claim": "nc_qcd_beta0_3: 11 - 2/3 * 3 = 3",
+      "rejecting_invariant": "recomputed value: 11 - 2/3 * 3 = 23/3, not 3"
+    },
+    {
+      "id": "mm:nc_qcd_beta0_16",
+      "claim": "nc_qcd_beta0_16: 11 - 2/3 * 16 = -1/3",
+      "rejecting_invariant": "recomputed value: 11 - 2/3 * 16 = -13/3, not -1/3"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "nc_qcd_beta0_0",
+      "expr": "11 - 2/3 * 0",
+      "value": "11"
+    },
+    {
+      "id": "nc_qcd_beta0_3",
+      "expr": "11 - 2/3 * 3",
+      "value": "23/3"
+    },
+    {
+      "id": "nc_qcd_beta0_5",
+      "expr": "11 - 2/3 * 5",
+      "value": "23/3"
+    },
+    {
+      "id": "nc_qcd_beta0_6",
+      "expr": "11 - 2/3 * 6",
+      "value": "7"
+    },
+    {
+      "id": "nc_qcd_beta0_16",
+      "expr": "11 - 2/3 * 16",
+      "value": "-13/3"
+    }
+  ],
+  "open_obligations": [
+    "Prove that qcdBeta1 3 0 = 102, qcdBeta1 3 5 = 116/3 from the given skeleton without using sorry.",
+    "Clarify the withheld claims: continuum mass-gap, weak-coupling limit, Monte Carlo spectroscopy, higher-loop MSbar matching."
+  ]
+}

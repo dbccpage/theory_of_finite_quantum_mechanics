@@ -101,6 +101,7 @@ pub mod entrypoints;
 pub mod evidence_routes;
 pub mod exact_token;
 pub mod finite_spinfoam;
+pub mod finite_wigner;
 pub mod finite_witness;
 pub mod group_param;
 pub mod hilbert_lift_completion;

@@ -1,0 +1,192 @@
+{
+  "task_id": "TFQ-0031",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a5-1",
+  "input_sha256": "a5c3af79a0175f128762e01b929e940422f1466cf34c00eae463ef70fca4bbb3",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"G_wilson_loop\",\"inputs\":[\"lattice_config\",\"rectangle\"],\"output\":\"wilson_loop\",\"arity\":2,\"carrier\":\"expectation value of the traced Wilson loop on an I x J rectangle of a finite lattice configuration\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"G_creutz_ratio\",\"inputs\":[\"wilson_loop\",\"wilson_loop\",\"wilson_loop\",\"wilson_loop\"],\"output\":\"string_tension_estimate\",\"arity\":4,\"carrier\":\"chi(I,J) = -log( W(I,J) W(I-1,J-1) / ( W(I,J-1) W(I-1,J) ) ) over positive reals\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"G_strong_coupling_area_law\",\"inputs\":[\"coupling_beta\"],\"output\":\"string_tension_estimate\",\"arity\":1,\"carrier\":\"leading strong-coupling (small beta) area-law string tension of the Wilson action; valid only inside the strong-coupling expansion\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"G_beta0\",\"inputs\":[\"n_colors\",\"n_flavors\"],\"output\":\"beta_coefficient\",\"arity\":2,\"carrier\":\"one-loop coefficient (11/3) N_c - (2/3) N_f as an exact rational\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"R_part_c_check\",\"statement\":\"The finite control test for part C checks the plaquette reduction and Wilson/Creutz confinement rows of the finite map.\",\"hypotheses\":\"finite lattice; strong-coupling rows only; no continuum claim\",\"ref\":{\"path\":\"code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py\",\"decl\":\"test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement\",\"status\":\"existing\"}},{\"id\":\"R_creutz_def\",\"statement\":\"The Creutz ratio is a function of four Wilson-loop expectation values, so each of its four input slots has colour wilson_loop and accepts the output of G_wilson_loop.\",\"hypotheses\":\"all four Wilson-loop expectation values are strictly positive\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R_strong_coupling_scope\",\"statement\":\"G_strong_coupling_area_law yields a string_tension_estimate only within the strong-coupling expansion at finite lattice spacing; it carries no statement about the a -> 0 limit or about weak coupling.\",\"hypotheses\":\"beta small enough that the strong-coupling series applies\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R_bridge_open\",\"statement\":\"F002.S001 admits no book and its Pontryagin inventory is not a bridge theorem; any step from finite strong-coupling rows to a continuum mass gap is an open bridge, not a derivation.\",\"hypotheses\":\"none; this is a scope restriction, not a theorem\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"none\"}}],\"compositions\":[{\"outer\":\"G_creutz_ratio\",\"slot\":0,\"inner\":\"G_wilson_loop\",\"licensing_relation\":\"R_creutz_def\"},{\"outer\":\"G_creutz_ratio\",\"slot\":1,\"inner\":\"G_wilson_loop\",\"licensing_relation\":\"R_creutz_def\"}],\"lemmas\":[{\"id\":\"L_creutz_log_split\",\"statement\":\"For strictly positive reals W1,W2,W3,W4, -log(W1*W2/(W3*W4)) = -(log W1 + log W2 - log W3 - log W4); this is the algebraic form of the Creutz ratio and makes no confinement claim.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R_creutz_def\"],\"lean_skeleton\":\"theorem creutz_log_split (W1 W2 W3 W4 : ℝ) (h1 : 0 < W1) (h2 : 0 < W2) (h3 : 0 < W3) (h4 : 0 < W4) : -Real.log (W1 * W2 / (W3 * W4)) = -(Real.log W1 + Real.log W2 - Real.log W3 - Real.log W4) := by\\n  rw [Real.log_div (mul_pos h1 h2).ne' (mul_pos h3 h4).ne', Real.log_mul h1.ne' h2.ne', Real.log_mul h3.ne' h4.ne']\\n  ring\",\"claims_proved\":true,\"ref\":{\"path\":\"\",\"decl\":\"creutz_log_split\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM_strong_to_continuum\",\"claim\":\"The strong-coupling area law of the Wilson action implies confinement (a mass gap) in the continuum limit a -> 0.\",\"rejecting_invariant\":\"R_strong_coupling_scope: the strong-coupling expansion holds only at small beta / finite spacing; the continuum limit is at weak coupling, outside its domain, and the target explicitly withholds the continuum claim.\"},{\"id\":\"NM_beta0_implies_confinement\",\"claim\":\"Positivity of beta0 (asymptotic freedom) implies confinement.\",\"rejecting_invariant\":\"beta0 is a one-loop ultraviolet perturbative coefficient; confinement is an infrared non-perturbative property, and no relation listed here connects the colours beta_coefficient and string_tension_estimate.\"},{\"id\":\"NM_shelf_as_bridge\",\"claim\":\"Citing F002.S001 (Pontryagin inventory) supplies the bridge from the finite certificate to the continuum mass gap.\",\"rejecting_invariant\":\"R_bridge_open: README.md admits no book, GAP-F002-S001-001 is open, and named_adjoining.yaml says the inventory is not a bridge theorem.\"},{\"id\":\"NM_test_as_proof\",\"claim\":\"The passing part C control test proves confinement beyond the strong-coupling formulae.\",\"rejecting_invariant\":\"R_part_c_check: the test only checks the finite plaquette-reduction and Wilson/Creutz rows; a finite check cannot certify a continuum or weak-coupling statement.\"}],\"numeric_claims\":[{\"id\":\"N_beta0_su3_nf6\",\"expr\":\"11 - 2/3*6\",\"value\":\"7\"},{\"id\":\"N_beta0_su3_nf3\",\"expr\":\"11 - 2/3*3\",\"value\":\"9\"},{\"id\":\"N_beta0_zero_nf\",\"expr\":\"11*3/2\",\"value\":\"33/2\"}],\"open_obligations\":[\"Continuum (a -> 0) mass-gap claim: no finite certificate or admitted source supplies it; remains open.\",\"Non-perturbative behaviour at weak coupling as the spacing goes to zero: not derivable from strong-coupling formulae; remains open.\",\"F002.S001 bridge theorem: shelf is empty (README.md admits no book, GAP-F002-S001-001 open); cited only as an open bridge.\",\"No existing declarations found for G_wilson_loop, G_creutz_ratio, G_strong_coupling_area_law, G_beta0; all are proposed_new.\",\"Signatures of the two @SRC test functions are not asserted here; they are cited only via the host-verified relation R_part_c_check.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "G_wilson_loop",
+        "inputs": [
+          "lattice_config",
+          "rectangle"
+        ],
+        "output": "wilson_loop",
+        "arity": 2,
+        "carrier": "expectation value of the traced Wilson loop on an I x J rectangle of a finite lattice configuration",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "G_creutz_ratio",
+        "inputs": [
+          "wilson_loop",
+          "wilson_loop",
+          "wilson_loop",
+          "wilson_loop"
+        ],
+        "output": "string_tension_estimate",
+        "arity": 4,
+        "carrier": "chi(I,J) = -log( W(I,J) W(I-1,J-1) / ( W(I,J-1) W(I-1,J) ) ) over positive reals",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "G_strong_coupling_area_law",
+        "inputs": [
+          "coupling_beta"
+        ],
+        "output": "string_tension_estimate",
+        "arity": 1,
+        "carrier": "leading strong-coupling (small beta) area-law string tension of the Wilson action; valid only inside the strong-coupling expansion",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "G_beta0",
+        "inputs": [
+          "n_colors",
+          "n_flavors"
+        ],
+        "output": "beta_coefficient",
+        "arity": 2,
+        "carrier": "one-loop coefficient (11/3) N_c - (2/3) N_f as an exact rational",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R_part_c_check",
+        "statement": "The finite control test for part C checks the plaquette reduction and Wilson/Creutz confinement rows of the finite map.",
+        "hypotheses": "finite lattice; strong-coupling rows only; no continuum claim",
+        "ref": {
+          "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+          "decl": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_creutz_def",
+        "statement": "The Creutz ratio is a function of four Wilson-loop expectation values, so each of its four input slots has colour wilson_loop and accepts the output of G_wilson_loop.",
+        "hypotheses": "all four Wilson-loop expectation values are strictly positive",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R_strong_coupling_scope",
+        "statement": "G_strong_coupling_area_law yields a string_tension_estimate only within the strong-coupling expansion at finite lattice spacing; it carries no statement about the a -> 0 limit or about weak coupling.",
+        "hypotheses": "beta small enough that the strong-coupling series applies",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R_bridge_open",
+        "statement": "F002.S001 admits no book and its Pontryagin inventory is not a bridge theorem; any step from finite strong-coupling rows to a continuum mass gap is an open bridge, not a derivation.",
+        "hypotheses": "none; this is a scope restriction, not a theorem",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "G_creutz_ratio",
+        "slot": 0,
+        "inner": "G_wilson_loop",
+        "licensing_relation": "R_creutz_def"
+      },
+      {
+        "outer": "G_creutz_ratio",
+        "slot": 1,
+        "inner": "G_wilson_loop",
+        "licensing_relation": "R_creutz_def"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "L_creutz_log_split",
+        "statement": "For strictly positive reals W1,W2,W3,W4, -log(W1*W2/(W3*W4)) = -(log W1 + log W2 - log W3 - log W4); this is the algebraic form of the Creutz ratio and makes no confinement claim.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R_creutz_def"
+        ],
+        "lean_skeleton": "theorem creutz_log_split (W1 W2 W3 W4 : ℝ) (h1 : 0 < W1) (h2 : 0 < W2) (h3 : 0 < W3) (h4 : 0 < W4) : -Real.log (W1 * W2 / (W3 * W4)) = -(Real.log W1 + Real.log W2 - Real.log W3 - Real.log W4) := by\n  rw [Real.log_div (mul_pos h1 h2).ne' (mul_pos h3 h4).ne', Real.log_mul h1.ne' h2.ne', Real.log_mul h3.ne' h4.ne']\n  ring",
+        "claims_proved": true,
+        "ref": {
+          "path": "",
+          "decl": "creutz_log_split",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_strong_to_continuum",
+        "claim": "The strong-coupling area law of the Wilson action implies confinement (a mass gap) in the continuum limit a -> 0.",
+        "rejecting_invariant": "R_strong_coupling_scope: the strong-coupling expansion holds only at small beta / finite spacing; the continuum limit is at weak coupling, outside its domain, and the target explicitly withholds the continuum claim."
+      },
+      {
+        "id": "NM_beta0_implies_confinement",
+        "claim": "Positivity of beta0 (asymptotic freedom) implies confinement.",
+        "rejecting_invariant": "beta0 is a one-loop ultraviolet perturbative coefficient; confinement is an infrared non-perturbative property, and no relation listed here connects the colours beta_coefficient and string_tension_estimate."
+      },
+      {
+        "id": "NM_shelf_as_bridge",
+        "claim": "Citing F002.S001 (Pontryagin inventory) supplies the bridge from the finite certificate to the continuum mass gap.",
+        "rejecting_invariant": "R_bridge_open: README.md admits no book, GAP-F002-S001-001 is open, and named_adjoining.yaml says the inventory is not a bridge theorem."
+      },
+      {
+        "id": "NM_test_as_proof",
+        "claim": "The passing part C control test proves confinement beyond the strong-coupling formulae.",
+        "rejecting_invariant": "R_part_c_check: the test only checks the finite plaquette-reduction and Wilson/Creutz rows; a finite check cannot certify a continuum or weak-coupling statement."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "N_beta0_su3_nf6",
+        "expr": "11 - 2/3*6",
+        "value": "7"
+      },
+      {
+        "id": "N_beta0_su3_nf3",
+        "expr": "11 - 2/3*3",
+        "value": "9"
+      },
+      {
+        "id": "N_beta0_zero_nf",
+        "expr": "11*3/2",
+        "value": "33/2"
+      }
+    ],
+    "open_obligations": [
+      "Continuum (a -> 0) mass-gap claim: no finite certificate or admitted source supplies it; remains open.",
+      "Non-perturbative behaviour at weak coupling as the spacing goes to zero: not derivable from strong-coupling formulae; remains open.",
+      "F002.S001 bridge theorem: shelf is empty (README.md admits no book, GAP-F002-S001-001 open); cited only as an open bridge.",
+      "No existing declarations found for G_wilson_loop, G_creutz_ratio, G_strong_coupling_area_law, G_beta0; all are proposed_new.",
+      "Signatures of the two @SRC test functions are not asserted here; they are cited only via the host-verified relation R_part_c_check."
+    ]
+  }
+}

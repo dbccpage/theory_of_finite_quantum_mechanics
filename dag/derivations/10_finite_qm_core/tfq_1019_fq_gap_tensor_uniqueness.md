@@ -39,6 +39,7 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 - `TENSOR-GENERATED-EFFECT-CONE`
 - `TENSOR-BINARY-EFFECT-INTERVAL`
 - `TENSOR-FINITE-POVM-AVAILABILITY`
+- `FQ-OPERATIONAL-LOCAL-TOMOGRAPHY`
 
 ---
 
@@ -60,7 +61,7 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
-*None (Leaf or Terminal derivation in current tree)*
+- `TFQ-1048`
 
 ---
 

@@ -1,0 +1,244 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C6-TM0-HALTING-EQUIVALENCE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For the fixed TM0 machine M0 = TM1to0.tr (TM2to1.tr PartrecToTM2.tr) and the explicit
+    initial configurations initCfg0, M0 halts from initCfg0 (pair (encode c) n) iff Code.eval c n is defined.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Mathlib TM2to1.tr_respects
+  - Mathlib TM1to0.tr_respects
+  - Mathlib StateTransition.tr_eval_dom
+  source_bottleneck: Halting form only; the TM0 output form is open (COMP-C6e).
+  source_refs:
+  - dag/derivations/29_computation/tfq_1305_comp_c6_tm0_halting_equivalence.md
+  - dag/research/genesis_to_universal_computation.md
+  - lean4/GenesisCompUniv.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1305_comp_c6_tm0_halting_equivalence.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1305_comp_c6_tm0_halting_equivalence.md
+    sha256: 2271540a21ffb0fdd0a858004353e5d7b092979dc5833a167ff54181705a0ed4
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c6_tm0_halting_equivalence_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: initCfg0
+  line: 140
+  signature_excerpt: 'noncomputable def initCfg0 (x : ℕ) : TM0.Cfg G1 (TM1to0.Λ'' M1)'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: M0
+  line: 104
+  signature_excerpt: 'abbrev M0 : TM0.Machine G1 (TM1to0.Λ'' M1)'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: univFun
+  line: 49
+  signature_excerpt: 'noncomputable def univFun : ℕ →. ℕ'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: G1
+  line: 92
+  signature_excerpt: 'abbrev G1 : Type'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: M1
+  line: 101
+  signature_excerpt: 'abbrev M1 : L1 → TM1.Stmt G1 L1 (Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: L1
+  line: 95
+  signature_excerpt: 'abbrev L1 : Type'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: M2
+  line: 98
+  signature_excerpt: 'abbrev M2 : Λ'' → TM2.Stmt (fun _ : K'' => Γ'') Λ'' (Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: initL
+  line: 107
+  signature_excerpt: 'def initL (l : List Γ'') : ListBlank (∀ _ : K'', Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: dom_chain
+  line: 157
+  signature_excerpt: |-
+    theorem dom_chain (x : ℕ) :
+        (StateTransition.eval (TM0.step M0) (initCfg0 x)).Dom ↔ (univFun x).Dom
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: halts_iff_dom
+  line: 169
+  signature_excerpt: |-
+    theorem halts_iff_dom {Γ Λ : Type*} [Inhabited Γ] [Inhabited Λ] (M : TM0.Machine Γ Λ)
+        (c : TM0.Cfg Γ Λ) :
+        TMEncoding.Halts M c ↔ (StateTransition.eval (TM0.step M) c).Dom
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: halts_iff_eval_dom
+  line: 182
+  signature_excerpt: |-
+    theorem halts_iff_eval_dom (c : Code) (n : ℕ) :
+        TMEncoding.Halts M0 (initCfg0 (Nat.pair (Encodable.encode c) n)) ↔
+          (Nat.Partrec.Code.eval c n).Dom
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: trCfg_init_gen
+  line: 110
+  signature_excerpt: |-
+    theorem trCfg_init_gen (q : Option Λ') (v : Option Γ') (l : List Γ') :
+        TM2to1.TrCfg (⟨q, v, K'.elim l [] [] []⟩ : TM2.Cfg (fun _ : K' => Γ') Λ' (Option Γ'))
+          (⟨q.map TM2to1.Λ'.normal, v, Tape.mk' ∅ (TM2to1.addBottom (initL l))⟩ : TM1.Cfg G1 L1 (Option Γ'))
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisCompUniv.lean::dom_chain
+  availability: local
+  symbol: dom_chain
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 157
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::halts_iff_dom
+  availability: local
+  symbol: halts_iff_dom
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 169
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::halts_iff_eval_dom
+  availability: local
+  symbol: halts_iff_eval_dom
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 182
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::trCfg_init_gen
+  availability: local
+  symbol: trCfg_init_gen
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 110
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::initCfg0
+  availability: local
+  symbol: initCfg0
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 140
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Mathlib TM2to1.tr_respects
+    - Mathlib TM1to0.tr_respects
+    - Mathlib StateTransition.tr_eval_dom
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Mathlib TM2to1.tr_respects
+    - Mathlib TM1to0.tr_respects
+    - Mathlib StateTransition.tr_eval_dom
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

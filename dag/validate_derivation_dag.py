@@ -1,9 +1,9 @@
 """Origin: dag/validate_derivation_dag.py
-Claim: derivation_dag.json is a finite acyclic record whose node and route fields match the declared vocabulary and whose cited paths resolve
+Claim: derivation_dag.json is a finite acyclic record whose node, route and TFQ record fields match the declared vocabulary, whose records and nodes name each other, whose cited paths resolve and whose JSONL and Markdown views match the renderer
 AuthorityEffect: None
 Scope Fence: this file does not claim that any recorded statement is true
 Level: L5
-MutationKillCount: 4
+MutationKillCount: 10
 
 Checks structure only: schema, reference resolution, acyclicity, vocabulary,
 that cited repository paths exist, and that cited Lean/Rust symbols occur in the
@@ -11,10 +11,20 @@ cited file. It does not check that any statement is true. A pfp_review object on
 node is checked for shape, for a status that is not above its prior_status, and (when
 files are checked) for an existing review file whose sha256 matches.
 
+derivation_dag.json (schema derivation_dag.v2) is the single source of the derivation
+graph. A document that declares a schema_version, or carries records, must be v2 and
+carry the top-level keys of DAG_REQUIRED_KEYS. Its TFQ records (top-level key records)
+are checked for their fields, unique ids, a parent_id that names another record (null
+only for a root) without a parent cycle, at least one existing_derivation_dag_ids entry
+that is a node, and every node being named by at least one record; when files are
+checked, every record must have a derivation paper dag/derivations/*/tfq_NNNN_*.md.
+The views theory_of_finite_qm.jsonl and theory_of_finite_qm.md next to the DAG file must
+be byte-identical to what dag/render_dag_views.py renders (skip with --no-views).
+
 References beginning with "pr:" or "external:" name pull requests or files outside
 this checkout and are not resolved.
 
-Usage: python validate_derivation_dag.py [--repo-root DIR] [--no-files]
+Usage: python validate_derivation_dag.py [--repo-root DIR] [--no-files] [--no-views]
 Exit status 0 when every check passes, 1 otherwise.
 """
 
@@ -34,6 +44,50 @@ BigRational = Fraction
 
 HERE = Path(__file__).resolve().parent
 DAG = HERE / "derivation_dag.json"
+if str(HERE) not in sys.path:
+    sys.path.insert(0, str(HERE))
+import render_dag_views  # noqa: E402
+
+SCHEMA_VERSION = "derivation_dag.v2"
+# Top-level keys of derivation_dag.json; a document declaring a schema_version must carry the required ones.
+DAG_REQUIRED_KEYS = ("schema_version", "stages", "nodes", "routes", "records", "index_document")
+DAG_KEYS = set(DAG_REQUIRED_KEYS) | {
+    "title",
+    "authority_effect",
+    "source_commit",
+    "model_dag",
+    "scope",
+    "status_legend",
+    "edge_semantics",
+    "non_discharge_notes",
+    "segment_notes",
+    "schema_notes",
+}
+INDEX_DOCUMENT_KEYS = (
+    "header_markdown",
+    "record_count_note",
+    "stage_index",
+    "application_stages",
+    "coda_atlas_packages",
+    "source_corpus_restatements",
+)
+CODA_PACKAGE_KEYS = ("floor", "shelf", "package", "path")
+RESTATEMENT_KEYS = ("source_id", "corpus", "alias_of")
+# A TFQ record, as one line of theory_of_finite_qm.jsonl renders it.
+RECORD_STRING_FIELDS = ("id", "local_id", "name", "obligation", "record_status", "source_slice", "stage", "summary", "uuid")
+RECORD_LIST_FIELDS = (
+    "coda_atlas_ids",
+    "coda_atlas_paths",
+    "existing_derivation_dag_ids",
+    "f004_refs",
+    "lean4",
+    "python",
+    "rust",
+)
+RECORD_KEYS = set(RECORD_STRING_FIELDS) | set(RECORD_LIST_FIELDS) | {"parent_id"}
+RECORD_OPTIONAL_KEYS = ("pfp_review_refs",)
+RECORD_ID = re.compile(r"TFQ-\d{4}")
+RECORD_STATUS = re.compile(r"[A-Z][A-Z0-9_]*")
 
 STAGES = (
     "PREGENESIS",
@@ -66,6 +120,7 @@ STAGES = (
     "IMPLEMENTATION_SIBLING",
     "ENGINE_CUSTODY",
     "MAJORANA",
+    "COMPUTATION",
 )
 STATUSES = (
     "ADMITTED_PRIMITIVE",
@@ -683,19 +738,180 @@ def _check_file_refs(
     return errs
 
 
-def check(dag: dict[str, object], root: Path | None) -> list[str]:
+# ---------------------------------------------------------------------------------------------
+# derivation_dag.v2: top-level keys, the index document, the TFQ records and the rendered views.
+
+
+def _string_rows_errors(where: str, value: object) -> list[str]:
+    rows = _string_list(value)
+    if rows is None:
+        return [f"{where} must be a list of strings"]
+    bad = [row for row in rows if row not in STAGES]
+    return [f"{where}: unknown stage {row}" for row in bad]
+
+
+def _index_document_errors(doc: object) -> list[str]:
+    mapped = _mapping(doc)
+    if mapped is None:
+        return ["index_document must be an object"]
+    errs: list[str] = []
+    if sorted(mapped) != sorted(INDEX_DOCUMENT_KEYS):
+        errs.append(f"index_document keys {sorted(mapped)} are not {sorted(INDEX_DOCUMENT_KEYS)}")
+    for key in ("header_markdown", "record_count_note"):
+        if not isinstance(mapped.get(key), str) or not mapped.get(key):
+            errs.append(f"index_document.{key} must be a non-empty string")
+    for key in ("stage_index", "application_stages"):
+        errs.extend(_string_rows_errors(f"index_document.{key}", mapped.get(key)))
+    coda = _mapping(mapped.get("coda_atlas_packages"))
+    if coda is None or not isinstance(coda.get("heading"), str) or not isinstance(coda.get("rows"), list):
+        errs.append("index_document.coda_atlas_packages must have a heading string and a rows list")
+    else:
+        for row in _maps(coda.get("rows")):
+            if sorted(row) != sorted(CODA_PACKAGE_KEYS) or not all(isinstance(row[k], str) for k in row):
+                errs.append(f"index_document.coda_atlas_packages row {row} must have string fields {CODA_PACKAGE_KEYS}")
+    for row in _maps(mapped.get("source_corpus_restatements")):
+        if not all(isinstance(row.get(k), str) and row.get(k) for k in RESTATEMENT_KEYS):
+            errs.append(f"index_document.source_corpus_restatements row {row} must have string fields {RESTATEMENT_KEYS}")
+    return errs
+
+
+def _check_top_level(dag: dict[str, object]) -> list[str]:
+    if "schema_version" not in dag and "records" not in dag:
+        return []  # a bare node/route graph (unit tests); the packaged file always declares its schema
+    errs: list[str] = []
+    if dag.get("schema_version") != SCHEMA_VERSION:
+        errs.append(f"schema_version {dag.get('schema_version')!r} is not {SCHEMA_VERSION}")
+    missing = [key for key in DAG_REQUIRED_KEYS if key not in dag]
+    if missing:
+        errs.append(f"derivation_dag.json is missing top-level keys {missing}")
+    extra = sorted(set(dag) - DAG_KEYS)
+    if extra:
+        errs.append(f"derivation_dag.json has unknown top-level keys {extra}")
+    if "index_document" in dag:
+        errs.extend(_index_document_errors(dag.get("index_document")))
+    if "records" in dag and not isinstance(dag.get("records"), list):
+        errs.append("records must be a list")
+    return errs
+
+
+def _record_schema_errors(record: dict[str, object]) -> list[str]:
+    rid = record.get("id")
+    errs: list[str] = []
+    missing = sorted(RECORD_KEYS - set(record))
+    extra = sorted(set(record) - RECORD_KEYS - set(RECORD_OPTIONAL_KEYS))
+    if missing:
+        errs.append(f"record {rid}: missing keys {missing}")
+    if extra:
+        errs.append(f"record {rid}: unknown keys {extra}")
+    for key in RECORD_STRING_FIELDS:
+        if key in record and (not isinstance(record[key], str) or not record[key]):
+            errs.append(f"record {rid}: field {key} must be a non-empty string")
+    for key in (*RECORD_LIST_FIELDS, *RECORD_OPTIONAL_KEYS):
+        if key in record and _string_list(record[key]) is None:
+            errs.append(f"record {rid}: field {key} must be a list of strings")
+    if "parent_id" in record and record["parent_id"] is not None and not isinstance(record["parent_id"], str):
+        errs.append(f"record {rid}: parent_id must be a record id or null")
+    if isinstance(rid, str) and RECORD_ID.fullmatch(rid) is None:
+        errs.append(f"record {rid}: id is not TFQ-NNNN")
+    if isinstance(record.get("stage"), str) and record["stage"] not in STAGES:
+        errs.append(f"record {rid}: bad stage {record['stage']}")
+    status = record.get("record_status")
+    if isinstance(status, str) and RECORD_STATUS.fullmatch(status) is None:
+        errs.append(f"record {rid}: record_status {status!r} is not an upper-case label")
+    return errs
+
+
+def _parent_cycle_errors(parent: dict[str, object]) -> list[str]:
+    errs: list[str] = []
+    done: set[str] = set()
+    for start in parent:
+        path: list[str] = []
+        cur: object = start
+        while isinstance(cur, str) and cur in parent and cur not in done:
+            if cur in path:
+                errs.append(f"record {cur}: parent_id chain is a cycle")
+                break
+            path.append(cur)
+            cur = parent[cur]
+        done.update(path)
+    return errs
+
+
+def _check_records(records: list[dict[str, object]], ids: dict[str, dict[str, object]]) -> list[str]:
+    errs: list[str] = []
+    seen_records: dict[str, dict[str, object]] = {}
+    for record in records:
+        errs.extend(_record_schema_errors(record))
+        rid = _text(record, "id")
+        if rid in seen_records:
+            errs.append(f"duplicate record id {rid}")
+        seen_records[rid] = record
+    parent: dict[str, object] = {}
+    named: set[str] = set()
+    for rid, record in seen_records.items():
+        pid = record.get("parent_id")
+        parent[rid] = pid
+        if pid is not None and (pid not in seen_records or pid == rid):
+            errs.append(f"record {rid}: parent_id {pid} is not another record")
+        dag_ids = _string_list(record.get("existing_derivation_dag_ids")) or []
+        named.update(dag_ids)
+        if not any(x in ids for x in dag_ids):
+            errs.append(f"record {rid}: names no DAG node in existing_derivation_dag_ids")
+    errs.extend(_parent_cycle_errors(parent))
+    for node_id in ids:
+        if node_id not in named:
+            errs.append(f"node {node_id}: named by no record")
+    return errs
+
+
+def _record_paper_errors(records: list[dict[str, object]], root: Path) -> list[str]:
+    papers: set[str] = set()
+    for path in (root / "dag" / "derivations").rglob("tfq_*.md"):
+        match = re.match(r"tfq_(\d{4})_", path.name)
+        if match:
+            papers.add("TFQ-" + match.group(1))
+    return [f"record {_text(r, 'id')}: no derivation paper dag/derivations/*/tfq_{_text(r, 'id')[4:]}_*.md"
+            for r in records if _text(r, "id") not in papers]
+
+
+def view_errors(dag: dict[str, object], views_dir: Path) -> list[str]:
+    """The JSONL and Markdown views next to the DAG file must be what the renderer makes of it."""
+    try:
+        rendered = {
+            "theory_of_finite_qm.jsonl": render_dag_views.render_jsonl(dag),
+            "theory_of_finite_qm.md": render_dag_views.render_md(dag),
+        }
+    except (KeyError, TypeError, ValueError, AttributeError) as error:
+        return [f"views cannot be rendered from derivation_dag.json: {error!r}"]
+    errs: list[str] = []
+    for name, text in rendered.items():
+        path = views_dir / name
+        if not path.is_file() or path.read_bytes() != text.encode("utf-8"):
+            errs.append(f"view {name} differs from derivation_dag.json; run dag/render_dag_views.py --write")
+    return errs
+
+
+def check(dag: dict[str, object], root: Path | None, views_dir: Path | None = None) -> list[str]:
     conflicts = proved_lean_record_conflicts(dag)
     nodes = _maps(dag.get("nodes"))
     routes = _maps(dag.get("routes"))
+    top_errs = _check_top_level(dag)
     node_errs, ids = _check_nodes(nodes, conflicts)
     route_errs, incoming = _check_routes(routes, ids)
     cyc_errs = _check_acyclicity(routes, ids)
     inc_errs = _check_incoming_routes(ids, incoming)
+    records = _maps(dag.get("records"))
+    record_errs = _check_records(records, ids) if "records" in dag else []
     forbid_errs = _check_forbidden_words(dag)
     file_errs: list[str] = []
     if root is not None:
         file_errs = _check_file_refs(nodes, routes, root)
-    return node_errs + route_errs + cyc_errs + inc_errs + forbid_errs + file_errs
+        if "records" in dag:
+            file_errs += _record_paper_errors(records, root)
+    view_errs: list[str] = []
+    if views_dir is not None and not top_errs:
+        view_errs = view_errors(dag, views_dir)
+    return top_errs + node_errs + route_errs + cyc_errs + inc_errs + record_errs + forbid_errs + file_errs + view_errs
 
 
 def _load_dag(path: Path) -> dict[str, object]:
@@ -722,7 +938,8 @@ def _print_report(dag: dict[str, object], errs: list[str]) -> None:
         print("FAIL", err)
     nodes = _maps(dag.get("nodes"))
     routes = _maps(dag.get("routes"))
-    print(f"nodes={len(nodes)} routes={len(routes)} failures={len(errs)}")
+    records = _maps(dag.get("records"))
+    print(f"nodes={len(nodes)} routes={len(routes)} records={len(records)} failures={len(errs)}")
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -730,6 +947,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--repo-root", type=Path)
     parser.add_argument("--no-files", action="store_true", help="skip path/symbol resolution")
     parser.add_argument("--dag", type=Path, default=DAG)
+    parser.add_argument("--no-views", action="store_true", help="skip the JSONL and Markdown view comparison")
     return parser
 
 
@@ -741,7 +959,8 @@ def main(argv: list[str] | None = None) -> int:
     except DagContractError as error:
         print("FAIL", error.detail)
         return 1
-    errs = check(dag, root)
+    views_dir = None if args.no_views else args.dag.resolve().parent
+    errs = check(dag, root, views_dir)
     _print_report(dag, errs)
     if errs:
         return exact_int(1)
