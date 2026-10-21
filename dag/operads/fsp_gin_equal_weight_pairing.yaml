@@ -1,0 +1,102 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FSP-GIN-EQUAL-WEIGHT-PAIRING
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For the four-site periodic ring, U = 0, two spin-up fermions, beta = 3/2 and four
+    Euler slices, all 32 negative Euler-transfer paths are matched to disjoint positive paths of exactly
+    equal rational weight within one weight fiber, and a posting-list query over k modes uses k posting-list
+    operations.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Pairing is on exact weight fibers of enumerated paths, not a spectator-preserving
+    symmetry (INV-GIN-PARITY); it does not preserve general observables, and path enumeration grows exponentially.
+    CT-AUX update stability for multi-orbital models has no evidence here.
+  source_refs:
+  - dag/derivations/26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md
+  - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md
+  - papers/core/fsp/theory_of_finite_fsp.md
+  paper_refs:
+  - dag/derivations/26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md
+    sha256: f82b7690b3cc753c61f7f618bfbe7bf68a74ad350122e2a0db90ad411fb10e79
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/fermion_sign_fsp_gin_equal_weight_pairing_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: involution_pair_cancels_sign
+  line: 28
+  signature_excerpt: |-
+    theorem involution_pair_cancels_sign (w : Nat) (s1 s2 : Int)
+        (h_sign : s1 + s2 = 0) :
+        (w : Int) * s1 + (w : Int) * s2 = 0
+  source: papers/core/fsp/lean4/FermionGinCore.lean
+  repository: this_repository
+  source_sha256: 256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/fsp/lean4/FermionGinCore.lean::involution_pair_cancels_sign
+  availability: local
+  symbol: involution_pair_cancels_sign
+  path: papers/core/fsp/lean4/FermionGinCore.lean
+  repository: this_repository
+  sha256: 256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8
+  declaration_status: declaration_found_not_proof_checked
+  line: 28
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

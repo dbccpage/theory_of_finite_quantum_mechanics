@@ -186,7 +186,7 @@ theorem qinner_shift (f g : Carrier) : qinner (shiftMap f) (shiftMap g) = qinner
   rw [shiftMap_apply, shiftMap_apply]
   unfold qinner
   rw [Finsupp.sum_mapDomain_index_inj Nat.succ_injective]
-  exact Finsupp.sum_congr fun i _ => by rw [Finsupp.mapDomain_apply Nat.succ_injective]
+  exact Finsupp.sum_congr fun i _ => by rw [Finsupp.mapDomain_apply_of_injective Nat.succ_injective]
 
 /-- The shift is a bounded exact operator with bound `1`. -/
 noncomputable def shift : BoundedExactOperator where

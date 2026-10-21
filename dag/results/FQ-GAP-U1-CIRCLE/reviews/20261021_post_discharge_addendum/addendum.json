@@ -1,0 +1,33 @@
+{
+  "schema_id": "finite-qm.pfp.post-discharge-addendum.v1",
+  "authority_effect": "None",
+  "task_id": "FQ-GAP-U1-CIRCLE",
+  "added": "2026-10-21",
+  "rule": "Sealed run, review and operad files are not edited. This addendum points from the sealed record to the later artifact that changes how it is read.",
+  "items": [
+    {
+      "kind": "later_run_supersedes_operad_record",
+      "operad": "dag/operads/fq_gap_u1_circle.yaml",
+      "operad_merged_in_this_change": true,
+      "operad_sealed_by_batch_manifest": [],
+      "index_latest_run_before": "dag/results/FQ-GAP-U1-CIRCLE/runs/20261019T145000Z_staged",
+      "index_json_sealed_by_batch_manifest": [
+        "dag/results/batches/20261020T000351Z_prompts_132_151/manifest.json"
+      ],
+      "newer_runs": [
+        {
+          "run": "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean",
+          "operad_delta": "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/operad_delta.json",
+          "operad_delta_sha256": "3717bcf8dc6ca1b05234ff36834d12c09145bb6cc14499ffbcc714f143f0ee1d",
+          "operad_namespace": "U1-PHASE-COMPLETION",
+          "operad_records": 16,
+          "claim_status": "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/claim_status.json",
+          "claim_status_sha256": "915c11f2af7397f3539a919054f2b23163dc03de1b4b473143afc3e467917086",
+          "next_steps": "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/next_steps.md",
+          "readme": "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        }
+      ],
+      "note": "The later Lean run(s) were never merged into the operad collection. The collection now lists them as POST_REVIEW_LEAN_RUN entries of stage_history and its latest_run names the newest. dag/operads/index.json is sealed by the manifest of batch 20261020T000351Z_prompts_132_151 and is not edited, so its latest_run field still names the run before the newer one."
+    }
+  ]
+}

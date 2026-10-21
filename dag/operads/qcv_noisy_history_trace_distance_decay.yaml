@@ -1,0 +1,376 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For complex matrices of any size d and the variational trace norm tn(X) = sup over
+    unitaries U of |tr(UX)|, the global depolarizing channel satisfies tn(Delta_p(rho) - Delta_p(sigma))
+    = (1-p)*tn(rho - sigma) for equal-trace rho, sigma and p <= 1; along any history of unitaries V(i)
+    with depolarizing rates p(i) in [0,1], tn(run rho - run sigma) = (product of (1-p(i)))*tn(rho - sigma),
+    which is at most (1-p)^t*tn(rho - sigma) when every p(i) >= p, and (1-p)^t <= 1/(1+p*t).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - variational trace norm equals the Schatten-1 norm (Ky Fan, cited)
+  - global depolarizing noise at a declared rate after every step
+  source_bottleneck: The trace norm is the variational form, whose equality with the sum of singular values
+    is cited; the noise is global depolarizing with a declared rate per step, not independent per-qubit
+    noise, and the statement is about histories without fresh resets.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1322_qcv_noisy_history_trace_distance_decay.md
+  - dag/research/quantum_computation_self_obstruction.md
+  - dag/research/quantum_computation_self_obstruction_axioms.txt
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1322_qcv_noisy_history_trace_distance_decay.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1322_qcv_noisy_history_trace_distance_decay.md
+    sha256: e806ef87fd15d67692848a5c0a0036f8986114d8f07cc69b8d4d0acd65723b23
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_qcv_noisy_history_trace_distance_decay_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: tn
+  line: 44
+  signature_excerpt: 'noncomputable def tn (X : Matrix n n ℂ) : ℝ'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pairingSet
+  line: 40
+  signature_excerpt: 'def pairingSet (X : Matrix n n ℂ) : Set ℝ'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: depol
+  line: 121
+  signature_excerpt: 'noncomputable def depol (p : ℝ) (ρ : Matrix n n ℂ) : Matrix n n ℂ'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: noisyStep
+  line: 125
+  signature_excerpt: 'noncomputable def noisyStep (p : ℝ) (V : Matrix n n ℂ) (ρ : Matrix n n ℂ) : Matrix
+    n n ℂ'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Admissible
+  line: 176
+  signature_excerpt: 'def Admissible (L : List (ℝ × Matrix n n ℂ)) : Prop'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: run
+  line: 171
+  signature_excerpt: |-
+    noncomputable def run : List (ℝ × Matrix n n ℂ) → Matrix n n ℂ → Matrix n n ℂ
+      | [], ρ => ρ
+      | (p, V) :: L, ρ => run L (noisyStep p V ρ)
+
+    /-- Every step is a unitary with a rate in `[0, 1]`. -/
+    def Admissible (L : List (ℝ × Matrix n n ℂ)) : Prop
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: tn_smul
+  line: 77
+  signature_excerpt: 'theorem tn_smul {a : ℝ} (ha : 0 ≤ a) (X : Matrix n n ℂ) : tn ((a : ℂ) • X) = a *
+    tn X'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tn_conj
+  line: 93
+  signature_excerpt: |-
+    theorem tn_conj {V : Matrix n n ℂ} (hV : V ∈ Matrix.unitaryGroup n ℂ) (X : Matrix n n ℂ) :
+        tn (V * X * star V) = tn X
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pairingSet_bddAbove
+  line: 46
+  signature_excerpt: 'theorem pairingSet_bddAbove (X : Matrix n n ℂ) : BddAbove (pairingSet X)'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: depol_dist
+  line: 150
+  signature_excerpt: |-
+    theorem depol_dist [Nonempty n] {p : ℝ} (hp : p ≤ 1) {ρ σ : Matrix n n ℂ}
+        (htr : ρ.trace = σ.trace) : tn (depol p ρ - depol p σ) = (1 - p) * tn (ρ - σ)
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: noisyStep_dist
+  line: 160
+  signature_excerpt: |-
+    theorem noisyStep_dist [Nonempty n] {p : ℝ} (hp : p ≤ 1) {V : Matrix n n ℂ}
+        (hV : V ∈ Matrix.unitaryGroup n ℂ) {ρ σ : Matrix n n ℂ} (htr : ρ.trace = σ.trace) :
+        tn (noisyStep p V ρ - noisyStep p V σ) = (1 - p) * tn (ρ - σ)
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: run_dist
+  line: 192
+  signature_excerpt: |-
+    theorem run_dist [Nonempty n] (L : List (ℝ × Matrix n n ℂ)) (hL : Admissible L)
+        {ρ σ : Matrix n n ℂ} (htr : ρ.trace = σ.trace) :
+        tn (run L ρ - run L σ) = (L.map (fun s => 1 - s.1)).prod * tn (ρ - σ)
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: run_dist_le
+  line: 208
+  signature_excerpt: |-
+    theorem run_dist_le [Nonempty n] {p : ℝ} (hp1 : p ≤ 1)
+        (L : List (ℝ × Matrix n n ℂ)) (hL : Admissible L) (hrate : ∀ s ∈ L, p ≤ s.1)
+        {ρ σ : Matrix n n ℂ} (htr : ρ.trace = σ.trace) :
+        tn (run L ρ - run L σ) ≤ (1 - p) ^ L.length * tn (ρ - σ)
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: decay_le_inv
+  line: 237
+  signature_excerpt: |-
+    theorem decay_le_inv (p : ℚ) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (t : ℕ) :
+        (1 - p) ^ t ≤ 1 / (1 + p * t)
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: decay_below
+  line: 252
+  signature_excerpt: |-
+    theorem decay_below {p δ : ℚ} (hp0 : 0 < p) (hp1 : p ≤ 1) (hδ : 0 < δ) {t : ℕ}
+        (ht : (1 / δ - 1) / p ≤ t) : (1 - p) ^ t ≤ δ
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/QcEntropySink.lean::tn
+  availability: local
+  symbol: tn
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 44
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::tn_smul
+  availability: local
+  symbol: tn_smul
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 77
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::tn_conj
+  availability: local
+  symbol: tn_conj
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::pairingSet_bddAbove
+  availability: local
+  symbol: pairingSet_bddAbove
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 46
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::depol_dist
+  availability: local
+  symbol: depol_dist
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 150
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::noisyStep_dist
+  availability: local
+  symbol: noisyStep_dist
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 160
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::run_dist
+  availability: local
+  symbol: run_dist
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 192
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::run_dist_le
+  availability: local
+  symbol: run_dist_le
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 208
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::decay_le_inv
+  availability: local
+  symbol: decay_le_inv
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 237
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::decay_below
+  availability: local
+  symbol: decay_below
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 252
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::decay_le_inv_holds
+  availability: local
+  symbol: decay_le_inv_holds
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 474
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::depth_until_below
+  availability: local
+  symbol: depth_until_below
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 482
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::matrix_step
+  availability: local
+  symbol: matrix_step
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 604
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::depolarize_matrix
+  availability: local
+  symbol: depolarize_matrix
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 588
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - variational trace norm equals the Schatten-1 norm (Ky Fan, cited)
+    - global depolarizing noise at a declared rate after every step
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - variational trace norm equals the Schatten-1 norm (Ky Fan, cited)
+    - global depolarizing noise at a declared rate after every step
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

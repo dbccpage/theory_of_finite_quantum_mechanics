@@ -1,0 +1,253 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "TFQ-0022",
+  "stage": "P0",
+  "run_id": "TFQ-0022/20261021T181949Z_ladder",
+  "finished_utc": "2026-10-21T18:19:59Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 2,
+  "free_calls": 2,
+  "paid_calls": 0,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 0,
+      "name": "free",
+      "attempts_before_escalation": 3,
+      "models": [
+        "openai/gpt-oss-120b",
+        "qwen/qwen3.8-27b",
+        "openai/gpt-oss-20b",
+        "nvidia/nemotron-3.5-lightning:free",
+        "minimax/minimax-m3.1-flash:free",
+        "poolside/laguna-s-2.1:free",
+        "gpt-oss-120b",
+        "nvidia/nemotron-3-super-120b-a12b"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "cheap",
+      "attempts_before_escalation": 2,
+      "models": [
+        "openai/gpt-4o-mini"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "haiku",
+      "attempts_before_escalation": 2,
+      "models": [
+        "claude-haiku-5-5"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "sonnet",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "opus",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-opus-5-5"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "fable",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-fable-5-1"
+      ]
+    }
+  ],
+  "run_cap_usd": 1.0,
+  "summary": {
+    "node_id": "TFQ-0022",
+    "run_id": "TFQ-0022/20261021T181949Z_ladder",
+    "stage": "P0",
+    "status": "blocked_abstained",
+    "stop_reason": "blocked_abstained:2_models_found_nothing_to_ground",
+    "accepted_attempt": null,
+    "best_attempt": "a0-1",
+    "attempts": [
+      {
+        "attempt_id": "a0-1",
+        "tier": 0,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "effort": null,
+        "guided": true,
+        "known_neg_injected": 5,
+        "known_pos_injected": 0,
+        "input_sha256": "55553ae585688ffc19543d3543e8fde1aaeb35663089d32037fdba7d610948a0",
+        "injected_neg_ids": [
+          "NEG-0C43DA16A442",
+          "NEG-9E2063D1A4C9",
+          "NEG-86D334235D12",
+          "NEG-59C42522D4C0",
+          "NEG-62F4013E50DF"
+        ],
+        "status": "rejected",
+        "verified_total": 0,
+        "failures_total": 0,
+        "failure_rate": 1.0,
+        "failures_by_class": {},
+        "unverifiable": 0,
+        "input_tokens": 2148,
+        "output_tokens": 179,
+        "cost_microusd": 0,
+        "request_id": "chatcmpl-219ffc94-98bc-44f7-a2fb-b835a5ed8958",
+        "latency_s": 0.695,
+        "stop_reason": "stop",
+        "served_model": "openai/gpt-oss-120b",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "abstained": true,
+        "negative_entries": []
+      },
+      {
+        "attempt_id": "a0-2",
+        "tier": 0,
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "effort": null,
+        "guided": true,
+        "known_neg_injected": 5,
+        "known_pos_injected": 0,
+        "input_sha256": "31cb493d533f0fa8892445a87a59819c474d21c6cd010c939295852fbe6b1a19",
+        "injected_neg_ids": [
+          "NEG-0C43DA16A442",
+          "NEG-9E2063D1A4C9",
+          "NEG-86D334235D12",
+          "NEG-59C42522D4C0",
+          "NEG-62F4013E50DF"
+        ],
+        "status": "rejected",
+        "verified_total": 0,
+        "failures_total": 0,
+        "failure_rate": 1.0,
+        "failures_by_class": {},
+        "unverifiable": 1,
+        "input_tokens": 1429,
+        "output_tokens": 188,
+        "cost_microusd": 0,
+        "request_id": "chatcmpl-a935773d-041a-46d9-aa24-37b7261bed65",
+        "latency_s": 8.424,
+        "stop_reason": "stop",
+        "served_model": "qwen/qwen3.8-27b",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "abstained": true,
+        "negative_entries": []
+      }
+    ],
+    "totals_by_tier": {
+      "0": {
+        "calls": 2,
+        "sent": 2,
+        "input_tokens": 3577,
+        "output_tokens": 367,
+        "cost_microusd": 0,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 0,
+    "spend_usd": 0.0,
+    "hallucinations_by_class": {},
+    "hallucinations_by_model": {},
+    "verified": {
+      "generators": 0,
+      "relations": 0,
+      "compositions": 0,
+      "lemmas": 0,
+      "numeric": 0
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a0-1:daf4fdf5",
+      "run_id": "TFQ-0022/20261021T181949Z_ladder",
+      "attempt_id": "a0-1",
+      "tier": 0,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "family": "free",
+      "effort": null,
+      "max_tokens": 3500,
+      "started_utc": "2026-10-21T18:19:50Z",
+      "status": "ok",
+      "estimated_input_tokens": 2765,
+      "estimate_microusd": 0,
+      "served_model": "openai/gpt-oss-120b",
+      "input_tokens": 2148,
+      "output_tokens": 179,
+      "cost_microusd": 0,
+      "cost_source": "free_tier",
+      "request_id": "chatcmpl-219ffc94-98bc-44f7-a2fb-b835a5ed8958",
+      "stop_reason": "stop",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 0.695,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": 200,
+      "backoff_events": []
+    },
+    {
+      "call_id": "a0-2:a3fe8a4b",
+      "run_id": "TFQ-0022/20261021T181949Z_ladder",
+      "attempt_id": "a0-2",
+      "tier": 0,
+      "provider": "groq",
+      "model": "qwen/qwen3.8-27b",
+      "family": "free",
+      "effort": null,
+      "max_tokens": 3500,
+      "started_utc": "2026-10-21T18:19:51Z",
+      "status": "ok",
+      "estimated_input_tokens": 2765,
+      "estimate_microusd": 0,
+      "served_model": "qwen/qwen3.8-27b",
+      "input_tokens": 1429,
+      "output_tokens": 188,
+      "cost_microusd": 0,
+      "cost_source": "free_tier",
+      "request_id": "chatcmpl-a935773d-041a-46d9-aa24-37b7261bed65",
+      "stop_reason": "stop",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 8.424,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": 200,
+      "backoff_events": [
+        {
+          "status": 429,
+          "wait_s": 5.0
+        }
+      ]
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 0.429779,
+    "anthropic_cap_microusd": 150.0,
+    "paid_other_microusd": 0.000449,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}

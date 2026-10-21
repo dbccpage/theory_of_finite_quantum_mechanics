@@ -1,0 +1,285 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-TAO-LAURENT-NORM-NINE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For the Tao matrix S6 and each of the 20 balanced sign vectors g (three +1, three
+    -1), |sum_j prod_r S_rj^{g_r}|^2 = 9, computed over the integer Eisenstein table and over C with w
+    = -1/2 + i sqrt 3/2.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU
+    triples it gives no nonextension statement, and the source wording as an l1 operator norm does not
+    match the computed quantity.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md
+  - papers/core/mub6/theory_of_finite_mub6.jsonl
+  - papers/core/mub6/theory_of_finite_mub6.md
+  - papers/core/mub6/mub6.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md
+    sha256: 74d97e1a76bc4ffc067881e83910e0bddeb0e4328061d42c7b65ce2378a0f6bd
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_tao_laurent_norm_nine_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: maskPositiveCount
+  line: 87
+  signature_excerpt: 'def maskPositiveCount (mask : Fin 64) : Nat'
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: maskTaoNormSq
+  line: 101
+  signature_excerpt: 'def maskTaoNormSq (mask : Fin 64) : Int'
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: maskSign
+  line: 84
+  signature_excerpt: 'def maskSign (mask : Fin 64) (r : Fin 6) : Int'
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: signedTaoNormSq
+  line: 96
+  signature_excerpt: 'def signedTaoNormSq (sign : Fin 6 → Int) : Int'
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: eisensteinNormSq
+  line: 59
+  signature_excerpt: 'def eisensteinNormSq (x y : Int) : Int'
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: signedExponentCount
+  line: 93
+  signature_excerpt: 'def signedExponentCount (sign : Fin 6 → Int) (target : Int) : Nat'
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: columnExponent
+  line: 45
+  signature_excerpt: 'def columnExponent (c : Fin 6) : Int'
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: signedColumnExponent
+  line: 90
+  signature_excerpt: 'def signedColumnExponent (sign : Fin 6 → Int) (c : Fin 6) : Int'
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gamma1
+  line: 25
+  signature_excerpt: |-
+    def gamma1 : Fin 6 → Int
+      | 0 => 1
+      | 1 => 1
+      | 2 => 1
+      | 3 => -1
+      | 4 => -1
+      | 5 => -1
+
+    /-- Recorded integer phase exponents for Tao matrix S₆. -/
+    def phaseTable (r c : Nat) : Int
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: phaseTable
+  line: 34
+  signature_excerpt: 'def phaseTable (r c : Nat) : Int'
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: laurentExpression
+  line: 57
+  signature_excerpt: 'def laurentExpression (mask : Fin 64) : ℂ'
+  source: lean4/MubTaoLaurent.lean
+  repository: this_repository
+  source_sha256: 52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: taoMatrix
+  line: 51
+  signature_excerpt: 'def taoMatrix (r c : Fin 6) : ℂ'
+  source: lean4/MubTaoLaurent.lean
+  repository: this_repository
+  source_sha256: 52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: toComplex
+  line: 50
+  signature_excerpt: 'def toComplex (p : Pair) : ℂ'
+  source: lean4/MubTaoLaurent.lean
+  repository: this_repository
+  source_sha256: 52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: entryPair
+  line: 30
+  signature_excerpt: 'def entryPair (r c : Fin 6) : Pair'
+  source: lean4/MubTaoLaurent.lean
+  repository: this_repository
+  source_sha256: 52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Pair
+  line: 22
+  signature_excerpt: abbrev Pair
+  source: lean4/MubTaoLaurent.lean
+  repository: this_repository
+  source_sha256: 52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: omega
+  line: 49
+  signature_excerpt: 'def omega : ℂ'
+  source: lean4/MubTaoLaurent.lean
+  repository: this_repository
+  source_sha256: 52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: tao_all_balanced_masks
+  line: 109
+  signature_excerpt: |-
+    theorem tao_all_balanced_masks :
+        ∀ mask : Fin 64, maskPositiveCount mask = 3 → maskTaoNormSq mask = 9
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: balanced_mask_count
+  line: 103
+  signature_excerpt: |-
+    theorem balanced_mask_count :
+        ((List.finRange 64).filter fun mask => maskPositiveCount mask == 3).length = 20
+  source: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  source_sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tao_all_balanced_laurent
+  line: 150
+  signature_excerpt: |-
+    theorem tao_all_balanced_laurent (mask : Fin 64) (h : maskPositiveCount mask = 3) :
+        Complex.normSq (laurentExpression mask) = 9
+  source: lean4/MubTaoLaurent.lean
+  repository: this_repository
+  source_sha256: 52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/Conjecture2GeneralMechanization.lean::tao_all_balanced_masks
+  availability: local
+  symbol: tao_all_balanced_masks
+  path: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  declaration_status: declaration_found_not_proof_checked
+  line: 109
+  role: source_lead_only
+- original_ref: lean4/Conjecture2GeneralMechanization.lean::balanced_mask_count
+  availability: local
+  symbol: balanced_mask_count
+  path: lean4/Conjecture2GeneralMechanization.lean
+  repository: this_repository
+  sha256: 6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101
+  declaration_status: declaration_found_not_proof_checked
+  line: 103
+  role: source_lead_only
+- original_ref: lean4/MubTaoLaurent.lean::tao_all_balanced_laurent
+  availability: local
+  symbol: tao_all_balanced_laurent
+  path: lean4/MubTaoLaurent.lean
+  repository: this_repository
+  sha256: 52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 150
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

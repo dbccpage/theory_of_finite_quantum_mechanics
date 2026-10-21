@@ -1,0 +1,29 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-86D334235D12
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'tfq0022_exhaustive_matches_scalar: The weighted Fierz identity (1/2) delta_il delta_kj - (1/6)
+    delta_ij delta_kl holds for all relevant indices in both the exhaustive replay and the Lean scalar
+    slice'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: qwen/qwen3.8-27b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0022
+counterexamples: []
+open_obligations:
+- Link Rust 81-entry replay to Lean scalar identities without equating the scopes
+- Confirm that the Lean theorem's diagonal and off-diagonal pair coverage is a subset of the 81 quadruples
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- expr: 3*(1/2)-(1/6)
+  id: nc_tfq0022_target
+  value: 4/3
+  host_evidence:
+    recomputed: 4/3
+verified_lemma_statements: []

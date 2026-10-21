@@ -1,0 +1,222 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-FOURIER-DITA-FAMILY-CHM
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For unit phases a, b, c the explicit matrix fourierDitaMatrix(a,b,c), built from w
+    = exp(2 pi i/3) blocks with rows signed by a, b, c, has unit-modulus entries and H H* = 6I.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The defect value 4 of F_6, the equivalence F_6 ~ F_2 tensor F_3, the Jaming et al.
+    nonextension theorem for this family, and exhaustion of the Fourier orbit by the displayed matrices
+    are cited or open, not formalized here.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1226_mub6_fourier_dita_family_chm.md
+  - papers/core/mub6/theory_of_finite_mub6.jsonl
+  - papers/core/mub6/theory_of_finite_mub6.md
+  - papers/core/mub6/mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1226_mub6_fourier_dita_family_chm.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1226_mub6_fourier_dita_family_chm.md
+    sha256: d671d6177b7a8a5fd3b4ebd9c998c019e8d31ca0032d27f11834782058fee47c
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_fourier_dita_family_chm_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: FourierDitaParam
+  line: 73
+  signature_excerpt: structure FourierDitaParam
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: FourierDitaDomain
+  line: 79
+  signature_excerpt: 'def FourierDitaDomain (p : FourierDitaParam) : Prop'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: fourierDitaMatrix
+  line: 166
+  signature_excerpt: 'noncomputable def fourierDitaMatrix (p : FourierDitaParam) : Matrix (Fin 6) (Fin
+    6) ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Domain
+  line: 113
+  signature_excerpt: |-
+    def Domain : (c : ModuliComponent) → Param c → Prop
+      | .fourierDita, p => FourierDitaDomain p
+      | .szollosiDeltoid, p => SzollosiDomain p
+      | .karlssonVolume, p => KarlssonDomain p
+      | .taoConfluence, _ => True
+      | .haagerupIsolated, _ => True
+
+    /-- Explicit two-circulant matrix; named-family identification is a separate obligation. -/
+    def szollosiMatrix (p : SzollosiParam) : Matrix (Fin 6) (Fin 6) ℂ
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tao_omega
+  line: 130
+  signature_excerpt: 'noncomputable def tao_omega : ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ModuliComponent
+  line: 46
+  signature_excerpt: inductive ModuliComponent
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Param
+  line: 86
+  signature_excerpt: |-
+    def Param : ModuliComponent → Type
+      | .fourierDita => FourierDitaParam
+      | .szollosiDeltoid => SzollosiParam
+      | .karlssonVolume => KarlssonParam
+      | .taoConfluence => PUnit
+      | .haagerupIsolated => PUnit
+
+    /-- Invariant bilinear sum z_1 for the Szöllősi family. -/
+    def szollosi_z1 (a b c : ℂ) : ℂ
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: SzollosiDomain
+  line: 103
+  signature_excerpt: 'def SzollosiDomain (p : SzollosiParam) : Prop'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: KarlssonDomain
+  line: 69
+  signature_excerpt: 'def KarlssonDomain (p : KarlssonParam) : Prop'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: SzollosiParam
+  line: 55
+  signature_excerpt: structure SzollosiParam
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: KarlssonParam
+  line: 64
+  signature_excerpt: structure KarlssonParam
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: szollosi_z1
+  line: 94
+  signature_excerpt: 'def szollosi_z1 (a b c : ℂ) : ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: szollosi_z2
+  line: 98
+  signature_excerpt: 'def szollosi_z2 (d e f : ℂ) : ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: fourierDitaMatrix_isCH6
+  line: 705
+  signature_excerpt: |-
+    theorem fourierDitaMatrix_isCH6 (p : FourierDitaParam) (hp : FourierDitaDomain p) :
+        IsCH6 (fourierDitaMatrix p)
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/MasterClassification.lean::fourierDitaMatrix_isCH6
+  availability: local
+  symbol: fourierDitaMatrix_isCH6
+  path: lean4/MasterClassification.lean
+  repository: this_repository
+  sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  declaration_status: declaration_found_not_proof_checked
+  line: 705
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

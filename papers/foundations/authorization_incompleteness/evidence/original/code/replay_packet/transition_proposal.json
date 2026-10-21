@@ -1,0 +1,28 @@
+{
+  "schema_version": "coda.authorization_incompleteness.transition-proposal.v1",
+  "proposal_id": "finite-transition-table-v1",
+  "authority_effect": "None",
+  "source_claimed_pass": true,
+  "transitions": [
+    {
+      "from": "runningBlank",
+      "outcome": "halt",
+      "to": "haltedBlank"
+    },
+    {
+      "from": "runningMarked",
+      "outcome": "advance",
+      "to": "runningBlank"
+    },
+    {
+      "from": "haltedBlank",
+      "outcome": "stay",
+      "to": "haltedBlank"
+    },
+    {
+      "from": "haltedMarked",
+      "outcome": "stay",
+      "to": "haltedBlank"
+    }
+  ]
+}

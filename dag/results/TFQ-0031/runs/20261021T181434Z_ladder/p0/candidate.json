@@ -1,0 +1,139 @@
+{
+  "task_id": "TFQ-0031",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "b35da3593e03839eae72eb9378ad96ab9cfdd8d256486fe21caf15c2efc02e57",
+  "status": "incomplete",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Confinement beyond the strong‑coupling formulae remains an open bridge (F002.S001)",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-0C43DA16A442",
+        "class": "unparseable_reply",
+        "claim_kind": "reply",
+        "claim": "",
+        "evidence": "empty_reply (truncated at max_tokens)",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "minimax/minimax-m3.1-flash:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0031"
+      },
+      {
+        "id": "NEG-1E6745CFFC31",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_gap_bridge: Confinement beyond the strong-coupling formulae (continuum mass gap, weak-coupling non-perturbative behavior as spacing goes to zero) is not derived by the finite certificate; F002.S001 is an open bridge.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0031"
+      },
+      {
+        "id": "NEG-246DC5FBE1EB",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "G_creutz . slot 0 <- G_strong_area_law via R_area_law_creutz",
+        "evidence": "the outer and inner generator is not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-opus-5-5",
+        "provider": "anthropic",
+        "tier": 4,
+        "node_id": "TFQ-0031"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-98A8D15D74CA",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "G_beta0: (Nc, nf) -> Beta0Coefficient [test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio]",
+        "evidence": "python def test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio takes 0 parameters; the claim says 2",
+        "decl_key": "test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio",
+        "confidence": "exact",
+        "model": "claude-opus-5-5",
+        "provider": "anthropic",
+        "tier": 4,
+        "node_id": "TFQ-0031"
+      },
+      {
+        "id": "NEG-27D4BAF8F111",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "G_creutz: (WilsonLoopTable) -> CreutzRatio [test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement]",
+        "evidence": "python def test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement takes 0 parameters; the claim says 1",
+        "decl_key": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+        "confidence": "exact",
+        "model": "claude-opus-5-5",
+        "provider": "anthropic",
+        "tier": 4,
+        "node_id": "TFQ-0031"
+      },
+      {
+        "id": "NEG-58BD0CB3DD3F",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "R_beta0_sign: For Nc = 3, beta0 = 11 - 2/3*nf is positive iff nf < 33/2 [test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio]",
+        "evidence": "numerals 33 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": "test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio",
+        "confidence": "heuristic",
+        "model": "claude-opus-5-5",
+        "provider": "anthropic",
+        "tier": 4,
+        "node_id": "TFQ-0031"
+      }
+    ],
+    "open_obligations": [
+      "Confinement beyond the strong‑coupling formulae remains an open bridge (F002.S001)",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

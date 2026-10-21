@@ -1,0 +1,15 @@
+schema_id: finite-qm.code-companion.v1
+subject: dag/pfp/llm_ladder/gateway.py
+source_sha256: 14369d5379f3118d7443d82cfb85fb0422845ad4fb91428177eb41e2101ffca3
+authority_effect: None
+purpose: 'Part of the PFP LLM ladder: tiered, budget-guarded provider calls with host verification of
+  every claim; not a proof authority.'
+design:
+  profile: Standard library plus the anthropic SDK; exact integer micro-USD accounting; see DESIGN.md.
+boundaries:
+- Provider calls are untrusted proposals; only host-verified entries are recorded as operad entries and
+  no theorem is accepted.
+- Verification checks declaration existence, readable arity, source-consistent numerals and exact arithmetic;
+  it does not review semantics.
+evidence:
+- dag/pfp/llm_ladder/DESIGN.md

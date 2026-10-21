@@ -1,0 +1,191 @@
+C:\Users\a343o\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\pytest_asyncio\plugin.py:247: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+.FFFFFFFFFF                                                              [100%]
+================================== FAILURES ===================================
+___________________ test_direct_integer_inputs_remain_exact ___________________
+
+    def test_direct_integer_inputs_remain_exact():
+        for n in (2**54, 10**100):
+            a = [[n, n+1], [n+1, n+2]]
+            assert a[0][0]*a[1][1] - a[0][1]*a[1][0] == -1
+>           assert ot.rank(a) == 2
+E           assert 1 == 2
+E            +  where 1 = <function rank at 0x000002160631A520>([[18014398509481984, 18014398509481985], [18014398509481985, 18014398509481986]])
+E            +    where <function rank at 0x000002160631A520> = ot.rank
+
+code\python\tests\test_operational_tomography.py:160: AssertionError
+___________________ test_direct_matrix_shape_rejected[bad0] ___________________
+
+bad = []
+
+    @pytest.mark.parametrize('bad', [[], [[]], [[1,2],[3]], [[1],[2,3]]])
+    def test_direct_matrix_shape_rejected(bad):
+        for op in (ot.rank, lambda a: ot.multiply(a, [[1],[1]]),
+                   lambda a: ot.subtract(a, a),
+                   lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+            with pytest.raises(ValueError, match='MATRIX_SHAPE'):
+>               op(bad)
+
+code\python\tests\test_operational_tomography.py:171: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+a = []
+
+    def rank(a):
+        a = [row[:] for row in a]
+        r = 0
+>       for j in range(len(a[0])):
+E       IndexError: list index out of range
+
+code\python\src\qm\operational_tomography.py:49: IndexError
+___________________ test_direct_matrix_shape_rejected[bad1] ___________________
+
+bad = [[]]
+
+    @pytest.mark.parametrize('bad', [[], [[]], [[1,2],[3]], [[1],[2,3]]])
+    def test_direct_matrix_shape_rejected(bad):
+        for op in (ot.rank, lambda a: ot.multiply(a, [[1],[1]]),
+                   lambda a: ot.subtract(a, a),
+                   lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+>           with pytest.raises(ValueError, match='MATRIX_SHAPE'):
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+code\python\tests\test_operational_tomography.py:170: Failed
+___________________ test_direct_matrix_shape_rejected[bad2] ___________________
+
+bad = [[1, 2], [3]]
+
+    @pytest.mark.parametrize('bad', [[], [[]], [[1,2],[3]], [[1],[2,3]]])
+    def test_direct_matrix_shape_rejected(bad):
+        for op in (ot.rank, lambda a: ot.multiply(a, [[1],[1]]),
+                   lambda a: ot.subtract(a, a),
+                   lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+            with pytest.raises(ValueError, match='MATRIX_SHAPE'):
+>               op(bad)
+
+code\python\tests\test_operational_tomography.py:171: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\qm\operational_tomography.py:50: in rank
+    k = next((i for i in range(r,len(a)) if a[i][j]), None)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+.0 = <range_iterator object at 0x000002160639DB50>
+
+>   k = next((i for i in range(r,len(a)) if a[i][j]), None)
+E   IndexError: list index out of range
+
+code\python\src\qm\operational_tomography.py:50: IndexError
+___________________ test_direct_matrix_shape_rejected[bad3] ___________________
+
+bad = [[1], [2, 3]]
+
+    @pytest.mark.parametrize('bad', [[], [[]], [[1,2],[3]], [[1],[2,3]]])
+    def test_direct_matrix_shape_rejected(bad):
+        for op in (ot.rank, lambda a: ot.multiply(a, [[1],[1]]),
+                   lambda a: ot.subtract(a, a),
+                   lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+>           with pytest.raises(ValueError, match='MATRIX_SHAPE'):
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+code\python\tests\test_operational_tomography.py:170: Failed
+___________ test_direct_inexact_or_ambiguous_scalars_rejected[True] ___________
+
+scalar = True
+
+    @pytest.mark.parametrize('scalar', [True, False, 0.5, 1.0, '1'])
+    def test_direct_inexact_or_ambiguous_scalars_rejected(scalar):
+        a = [[scalar]]
+        for op in (ot.rank, lambda a: ot.multiply(a, [[1]]),
+                   lambda a: ot.subtract(a, a),
+                   lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+>           with pytest.raises(ValueError, match='SCALAR_TYPE'):
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+code\python\tests\test_operational_tomography.py:180: Failed
+__________ test_direct_inexact_or_ambiguous_scalars_rejected[False] ___________
+
+scalar = False
+
+    @pytest.mark.parametrize('scalar', [True, False, 0.5, 1.0, '1'])
+    def test_direct_inexact_or_ambiguous_scalars_rejected(scalar):
+        a = [[scalar]]
+        for op in (ot.rank, lambda a: ot.multiply(a, [[1]]),
+                   lambda a: ot.subtract(a, a),
+                   lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+>           with pytest.raises(ValueError, match='SCALAR_TYPE'):
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+code\python\tests\test_operational_tomography.py:180: Failed
+___________ test_direct_inexact_or_ambiguous_scalars_rejected[0.5] ____________
+
+scalar = 0.5
+
+    @pytest.mark.parametrize('scalar', [True, False, 0.5, 1.0, '1'])
+    def test_direct_inexact_or_ambiguous_scalars_rejected(scalar):
+        a = [[scalar]]
+        for op in (ot.rank, lambda a: ot.multiply(a, [[1]]),
+                   lambda a: ot.subtract(a, a),
+                   lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+>           with pytest.raises(ValueError, match='SCALAR_TYPE'):
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+code\python\tests\test_operational_tomography.py:180: Failed
+___________ test_direct_inexact_or_ambiguous_scalars_rejected[1.0] ____________
+
+scalar = 1.0
+
+    @pytest.mark.parametrize('scalar', [True, False, 0.5, 1.0, '1'])
+    def test_direct_inexact_or_ambiguous_scalars_rejected(scalar):
+        a = [[scalar]]
+        for op in (ot.rank, lambda a: ot.multiply(a, [[1]]),
+                   lambda a: ot.subtract(a, a),
+                   lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+>           with pytest.raises(ValueError, match='SCALAR_TYPE'):
+E           Failed: DID NOT RAISE <class 'ValueError'>
+
+code\python\tests\test_operational_tomography.py:180: Failed
+____________ test_direct_inexact_or_ambiguous_scalars_rejected[1] _____________
+
+scalar = '1'
+
+    @pytest.mark.parametrize('scalar', [True, False, 0.5, 1.0, '1'])
+    def test_direct_inexact_or_ambiguous_scalars_rejected(scalar):
+        a = [[scalar]]
+        for op in (ot.rank, lambda a: ot.multiply(a, [[1]]),
+                   lambda a: ot.subtract(a, a),
+                   lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+            with pytest.raises(ValueError, match='SCALAR_TYPE'):
+>               op(a)
+
+code\python\tests\test_operational_tomography.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+a = [['1']]
+
+    def rank(a):
+        a = [row[:] for row in a]
+        r = 0
+        for j in range(len(a[0])):
+            k = next((i for i in range(r,len(a)) if a[i][j]), None)
+            if k is None:
+                continue
+            a[r], a[k] = a[k], a[r]
+            divisor = a[r][j]
+>           a[r] = [x/divisor for x in a[r]]
+E           TypeError: unsupported operand type(s) for /: 'str' and 'str'
+
+code\python\src\qm\operational_tomography.py:55: TypeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_operational_tomography.py::test_direct_integer_inputs_remain_exact
+FAILED code/python/tests/test_operational_tomography.py::test_direct_matrix_shape_rejected[bad0]
+FAILED code/python/tests/test_operational_tomography.py::test_direct_matrix_shape_rejected[bad1]
+FAILED code/python/tests/test_operational_tomography.py::test_direct_matrix_shape_rejected[bad2]
+FAILED code/python/tests/test_operational_tomography.py::test_direct_matrix_shape_rejected[bad3]
+FAILED code/python/tests/test_operational_tomography.py::test_direct_inexact_or_ambiguous_scalars_rejected[True]
+FAILED code/python/tests/test_operational_tomography.py::test_direct_inexact_or_ambiguous_scalars_rejected[False]
+FAILED code/python/tests/test_operational_tomography.py::test_direct_inexact_or_ambiguous_scalars_rejected[0.5]
+FAILED code/python/tests/test_operational_tomography.py::test_direct_inexact_or_ambiguous_scalars_rejected[1.0]
+FAILED code/python/tests/test_operational_tomography.py::test_direct_inexact_or_ambiguous_scalars_rejected[1]
+10 failed, 1 passed, 6 deselected in 5.47s

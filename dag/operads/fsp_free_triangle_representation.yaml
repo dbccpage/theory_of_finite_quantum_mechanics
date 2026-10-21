@@ -1,0 +1,180 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FSP-FREE-TRIANGLE-REPRESENTATION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For the 3-site spinless triangle, t = 1, U = 0, two fermions, beta = 2 and three Euler
+    slices, the occupation-basis expansion has 27 paths, 6 negative of weight 8/27 and positive weights
+    in {4/9, 1}, so no equal-weight pairing exists there; in the one-body eigenbasis H is diagonal with
+    E in {-1, -1, 2} and Z = 2e^2 + e^-4.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Frustration alone does not imply disjoint weight spectra or hardness (ledger GIN-C4,
+    INV-DISJOINT-SPEC); the general Lean lemma covers only the step from disjoint spectra to no weight-preserving
+    sign-reversing involution.
+  source_refs:
+  - dag/derivations/26_fsp/tfq_1191_fsp_free_triangle_representation.md
+  - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - papers/core/fsp/theory_of_finite_fsp.md
+  paper_refs:
+  - dag/derivations/26_fsp/tfq_1191_fsp_free_triangle_representation.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/26_fsp/tfq_1191_fsp_free_triangle_representation.md
+    sha256: d72e3cb7374dc789922651a3abd290ff03744ca4ba3aa671db2789141bae7aa1
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/fermion_sign_fsp_free_triangle_representation_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: TrotterPath
+  line: 34
+  signature_excerpt: 'structure TrotterPath (P : Type u)'
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: DisjointWeightSpectra
+  line: 71
+  signature_excerpt: 'def DisjointWeightSpectra {P : Type u} (T : TrotterPath P) : Prop'
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: BipartiteInvolution
+  line: 42
+  signature_excerpt: 'structure BipartiteInvolution {P : Type u} (T : TrotterPath P)'
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: JwSign
+  line: 24
+  signature_excerpt: |-
+    inductive JwSign : Type
+      | Plus  : JwSign
+      | Minus : JwSign
+    deriving DecidableEq, Repr
+
+    def toInt : JwSign → Int
+      | JwSign.Plus  => 1
+      | JwSign.Minus => -1
+
+    /-- A fermionic Trotter path with declared Boltzmann weight and Jordan-Wigner sign. -/
+    structure TrotterPath (P : Type u)
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: toInt
+  line: 29
+  signature_excerpt: |-
+    def toInt : JwSign → Int
+      | JwSign.Plus  => 1
+      | JwSign.Minus => -1
+
+    /-- A fermionic Trotter path with declared Boltzmann weight and Jordan-Wigner sign. -/
+    structure TrotterPath (P : Type u)
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: disjoint_spectra_obstructs_involution
+  line: 83
+  signature_excerpt: |-
+    theorem disjoint_spectra_obstructs_involution {P : Type u} (T : TrotterPath P)
+        (h_disj : DisjointWeightSpectra T)
+        (p_minus : P) (h_minus : T.sign p_minus = JwSign.Minus) :
+        ¬ (∃ (_inv : BipartiteInvolution T), True)
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: disjoint_pair_residual_nonzero
+  line: 100
+  signature_excerpt: |-
+    theorem disjoint_pair_residual_nonzero (w_pos w_neg : Nat) (h_ne : w_pos ≠ w_neg) :
+        (w_pos : Int) * toInt JwSign.Plus + (w_neg : Int) * toInt JwSign.Minus ≠ 0
+  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean::disjoint_spectra_obstructs_involution
+  availability: local
+  symbol: disjoint_spectra_obstructs_involution
+  path: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  declaration_status: declaration_found_not_proof_checked
+  line: 83
+  role: source_lead_only
+- original_ref: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean::disjoint_pair_residual_nonzero
+  availability: local
+  symbol: disjoint_pair_residual_nonzero
+  path: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  repository: this_repository
+  sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
+  declaration_status: declaration_found_not_proof_checked
+  line: 100
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

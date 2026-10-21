@@ -1,0 +1,71 @@
+{
+  "schema_version": "coda.authorization_incompleteness.packet-manifest.v1",
+  "packet_id": "AIT-G3-FINITE-TRANSITION-REPLAY-V4",
+  "authority_effect": "None",
+  "manifest_trust_boundary": "fixed_outside_proposal_bytes",
+  "terminal_policy": "open_after_verified",
+  "evidence_ceiling": "A bounded finite replay with a target-local two-source Lean closure under a fixed manifest; no custody, collision-resistance, evaluator-soundness, semantic-correspondence, or authority theorem is discharged.",
+  "tcb": {
+    "hash_algorithm": "SHA-256",
+    "collision_resistance_assumption": "SHA-256 collision resistance for the named artifact bindings is assumed, not proved here.",
+    "evaluator_soundness_assumption": "The PowerShell evaluator's correspondence to the target-local Lean finite source closure is an explicit open correspondence obligation; successful hash checks and Lean elaboration do not prove it.",
+    "custody_assumption": "The manifest is fixed outside proposal-controlled bytes; repository co-location alone does not establish independent custody."
+  },
+  "execution_profile": {
+    "runtime": "PowerShell 7.6.3; Lean 4.32.2",
+    "json_parser": "PowerShell ConvertFrom-Json 7.6.3",
+    "lean_toolchain": "leanprover/lean4:v4.32.2",
+    "formal_replay_command": "elan run leanprover/lean4:v4.32.2 lean",
+    "formal_replay_workdir": "coda_university/coda_research/authorization_an_incompleteness_theory/formal"
+  },
+  "artifacts": [
+    {
+      "role": "proposal",
+      "path": "coda_university/coda_research/authorization_an_incompleteness_theory/code/replay_packet/transition_proposal.json",
+      "kind": "proposal",
+      "sha256": "84811c74c47c94141ad11f5114d45e9e1e9504fe46314f53649d0d375df777d9"
+    },
+    {
+      "role": "contract",
+      "path": "coda_university/coda_research/authorization_an_incompleteness_theory/code/replay_packet/transition_contract.json",
+      "kind": "contract",
+      "sha256": "697d2c9ef63397954d202ded4288213da1c758aa0bd4bc10049263e141698dc5"
+    },
+    {
+      "role": "terminal_policy",
+      "path": "coda_university/coda_research/authorization_an_incompleteness_theory/code/replay_packet/terminal_policy.json",
+      "kind": "terminal_policy",
+      "sha256": "7850093f96b6a451b73c67391398805c027a41cf2a810fc010f0a8779ab01da4"
+    },
+    {
+      "role": "evaluator",
+      "path": "coda_university/coda_research/authorization_an_incompleteness_theory/code/replay_packet/replay_packet.psm1",
+      "kind": "evaluator",
+      "sha256": "7b55c23f76d76da4b43b3a20618f5d927becbe8057ac78f557eaef3845076edc"
+    },
+    {
+      "role": "verifier",
+      "path": "coda_university/coda_research/authorization_an_incompleteness_theory/code/replay_packet/verify_transition_packet.ps1",
+      "kind": "verifier",
+      "sha256": "8281bb577bba3947a0577860e7592bb966133f64953c7839c23001c81ad654fd"
+    },
+    {
+      "role": "formal_model",
+      "path": "coda_university/coda_research/authorization_an_incompleteness_theory/formal/tape_transition_invariant_models.lean",
+      "kind": "formal_model",
+      "sha256": "5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0"
+    },
+    {
+      "role": "formal_dependency",
+      "path": "coda_university/coda_research/authorization_an_incompleteness_theory/formal/tape_control_authorization_models.lean",
+      "kind": "formal_dependency",
+      "sha256": "c6d4e136cd5e0c8f696383518cee4657bd58e3354b07960f5525216b28af87df"
+    },
+    {
+      "role": "lean_toolchain",
+      "path": "lean4/genx/lean-toolchain",
+      "kind": "lean_toolchain",
+      "sha256": "2bdc48adfa58d0017e538a0ad117c5d73d35deec879978f909406a80c8037273"
+    }
+  ]
+}

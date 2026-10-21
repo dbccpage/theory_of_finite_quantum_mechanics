@@ -1,0 +1,250 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: TENSOR-GENERATED-EFFECT-CONE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: The conic hull of represented available effects equals PSD for arbitrary finite n<=m
+    with m nonzero, using the verified state cone, sound effects, all local binary product tests and calibrated
+    local-unitary and controlled-shift pullbacks. Neither effect saturation nor finite-test saturation
+    is required.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - state-cone conclusion of quantum_state_cone
+  - sound operational effects
+  - all products of local binary effects
+  - calibrated reversible effect pullbacks
+  source_bottleneck: Operational soundness, local binary product availability and reversible effect pullback
+    closure remain explicit premises. The generated cone does not identify the available binary interval
+    or available finite tests.
+  source_refs:
+  - dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md
+  - dag/research/tensor_measurement_validation.json
+  paper_refs:
+  - dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md
+    sha256: 126de574698271544d28d12fda6f87f088637b5f3b4cf0ddd0aa6a974362cc02
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/tensor_composition_tensor_generated_effect_cone_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Positive
+  line: 15
+  signature_excerpt: 'def Positive (E : Herm d) : Prop'
+  source: lean4/TensorEffectOrder.lean
+  repository: this_repository
+  source_sha256: 7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Binary
+  line: 16
+  signature_excerpt: 'def Binary (E : Herm d) : Prop'
+  source: lean4/TensorEffectOrder.lean
+  repository: this_repository
+  source_sha256: 7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: PullbackClosed
+  line: 17
+  signature_excerpt: 'def PullbackClosed (available : Set (Herm d)) (U : Matrix d d ℂ) : Prop'
+  source: lean4/TensorEffectCone.lean
+  repository: this_repository
+  source_sha256: e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: effectCone
+  line: 14
+  signature_excerpt: 'def effectCone (available : Set (Herm d)) : PointedCone ℝ (Matrix d d ℂ)'
+  source: lean4/TensorEffectCone.lean
+  repository: this_repository
+  source_sha256: e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ValidEffect
+  line: 48
+  signature_excerpt: |-
+    def ValidEffect (D : TomographicData (Fin n) (Fin m) V) (K : Set V)
+        (f : Module.Dual ℝ V) : Prop
+  source: lean4/TensorMeasurements.lean
+  repository: this_repository
+  source_sha256: 41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: effectRepresentation
+  line: 13
+  signature_excerpt: |-
+    def effectRepresentation (D : TomographicData (Fin n) (Fin m) V) :
+        Module.Dual ℝ V ≃ₗ[ℝ] Herm (Fin n × Fin m)
+  source: lean4/TensorMeasurements.lean
+  repository: this_repository
+  source_sha256: 41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: unitEffect
+  line: 26
+  signature_excerpt: 'def unitEffect (D : TomographicData (Fin n) (Fin m) V) : Module.Dual ℝ V'
+  source: lean4/TensorMeasurements.lean
+  repository: this_repository
+  source_sha256: 41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: positive_iff_pairing
+  line: 33
+  signature_excerpt: |-
+    theorem positive_iff_pairing (E : Herm d) :
+        Positive E ↔ ∀ A : Herm d, Positive A → 0 ≤ pairing E A
+  source: lean4/TensorEffectOrder.lean
+  repository: this_repository
+  source_sha256: 7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: positive_ray_binary
+  line: 105
+  signature_excerpt: |-
+    theorem positive_ray_binary (A : Herm d) (hA : Positive A) :
+        ∃ (r : ℝ) (E : Herm d), 0 ≤ r ∧ Binary E ∧ A = r • E
+  source: lean4/TensorEffectOrder.lean
+  repository: this_repository
+  source_sha256: 7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: effect_cone_eq_positive
+  line: 48
+  signature_excerpt: |-
+    theorem effect_cone_eq_positive {n m : ℕ} [NeZero m] (hnm : n ≤ m)
+        (available : Set (Herm (Fin n × Fin m)))
+        (hvalid : ∀ E ∈ available, Positive E)
+        (hproduct : ∀ (E : Herm (Fin n)) (F : Herm (Fin m)),
+          Binary E → Binary F → product E F ∈ available)
+        (hlocal : ∀ (U : Matrix.unitaryGroup (Fin n) ℂ) (W : Matrix.unitaryGroup (Fin m) ℂ),
+          PullbackClosed available (U.val ⊗ₖ W.val))
+        (hshift : PullbackClosed available (controlledShift hnm).val) :
+        (effectCone available : Set (Matrix (Fin n × Fin m) (Fin n × Fin m) ℂ)) =
+          {A | A.PosSemidef}
+  source: lean4/TensorEffectCone.lean
+  repository: this_repository
+  source_sha256: e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: operational_effect_cone
+  line: 155
+  signature_excerpt: |-
+    theorem operational_effect_cone [NeZero m] (hnm : n ≤ m)
+        (D : TomographicData (Fin n) (Fin m) V) (K : Set V)
+        (hcone : (fun x => (representation D x).val) '' K = {A | A.PosSemidef})
+        (available : Set (Module.Dual ℝ V))
+        (hsound : ∀ f ∈ available, ValidEffect D K f)
+        (hproduct : ∀ E F, Binary E → Binary F → D.test E F ∈ available)
+        (hlocal : ∀ (U : Matrix.unitaryGroup (Fin n) ℂ) (W : Matrix.unitaryGroup (Fin m) ℂ),
+          PullbackClosed (effectRepresentation D '' available) (U.val ⊗ₖ W.val))
+        (hshift : PullbackClosed (effectRepresentation D '' available)
+          (TensorReacha
+  source: lean4/TensorMeasurements.lean
+  repository: this_repository
+  source_sha256: 41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/TensorEffectOrder.lean::positive_iff_pairing
+  availability: local
+  symbol: positive_iff_pairing
+  path: lean4/TensorEffectOrder.lean
+  repository: this_repository
+  sha256: 7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52
+  declaration_status: declaration_found_not_proof_checked
+  line: 33
+  role: source_lead_only
+- original_ref: lean4/TensorEffectOrder.lean::positive_ray_binary
+  availability: local
+  symbol: positive_ray_binary
+  path: lean4/TensorEffectOrder.lean
+  repository: this_repository
+  sha256: 7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52
+  declaration_status: declaration_found_not_proof_checked
+  line: 105
+  role: source_lead_only
+- original_ref: lean4/TensorEffectCone.lean::effect_cone_eq_positive
+  availability: local
+  symbol: effect_cone_eq_positive
+  path: lean4/TensorEffectCone.lean
+  repository: this_repository
+  sha256: e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70
+  declaration_status: declaration_found_not_proof_checked
+  line: 48
+  role: source_lead_only
+- original_ref: lean4/TensorMeasurements.lean::operational_effect_cone
+  availability: local
+  symbol: operational_effect_cone
+  path: lean4/TensorMeasurements.lean
+  repository: this_repository
+  sha256: 41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9
+  declaration_status: declaration_found_not_proof_checked
+  line: 155
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - state-cone conclusion of quantum_state_cone
+    - sound operational effects
+    - all products of local binary effects
+    - calibrated reversible effect pullbacks
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - state-cone conclusion of quantum_state_cone
+    - sound operational effects
+    - all products of local binary effects
+    - calibrated reversible effect pullbacks
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

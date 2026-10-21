@@ -1,0 +1,295 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: QCV-QUBIT-BLOCH-DECAY-EXACT
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For rational Bloch vectors, noisy steps r -> (1-p)*R*r with rational rotations R (R^T
+    R = 1) give sqDist(run r, run s) = (product of (1-p(i))^2)*sqDist(r, s), at most ((1-p)^2)^t*sqDist(r,
+    s) when every p(i) in [p,1]; and (v.sigma)^2 = (v.v)*1 over the complex numbers, so the difference
+    of two qubit states has both singular values |r-s|/2.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - trace norm of a Hermitian matrix is the sum of absolute eigenvalues (cited)
+  source_bottleneck: The identification of the qubit trace norm with the Bloch distance uses the cited
+    eigenvalue fact; Python and Rust replays are exact on declared instances only.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1323_qcv_qubit_bloch_decay_exact.md
+  - dag/research/quantum_computation_self_obstruction.md
+  - dag/research/quantum_computation_self_obstruction_axioms.txt
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1323_qcv_qubit_bloch_decay_exact.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1323_qcv_qubit_bloch_decay_exact.md
+    sha256: 55d721d603760a0527de5e219b11eef271096e6b13bd7bee08ad4e0009f24ff6
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_qcv_qubit_bloch_decay_exact_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: RatRot
+  line: 272
+  signature_excerpt: structure RatRot
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Bloch
+  line: 266
+  signature_excerpt: abbrev Bloch
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sqDist
+  line: 277
+  signature_excerpt: 'def sqDist (r s : Bloch) : ℚ'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: runB
+  line: 303
+  signature_excerpt: |-
+    def runB : List (ℚ × RatRot) → Bloch → Bloch
+      | [], r => r
+      | (p, Q) :: L, r => runB L (stepB p Q r)
+
+    /-- Q4 (exact, qubit, rational): the squared Bloch distance of two histories is multiplied by
+    `∏ (1 - p_i)^2`. -/
+    theorem sqDist_runB (L : List (ℚ × RatRot)) (r s : Bloch) :
+        sqDist (runB L r) (runB L s) = (L.map (fun x => (1 - x.1) ^ 2)).prod * sqDist r s
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: stepB
+  line: 291
+  signature_excerpt: 'def stepB (p : ℚ) (Q : RatRot) (r : Bloch) : Bloch'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: depolB
+  line: 269
+  signature_excerpt: 'def depolB (p : ℚ) (r : Bloch) : Bloch'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: blochMat
+  line: 344
+  signature_excerpt: 'noncomputable def blochMat (v : Bloch) : Matrix (Fin 2) (Fin 2) ℂ'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: sqDist_runB
+  line: 309
+  signature_excerpt: |-
+    theorem sqDist_runB (L : List (ℚ × RatRot)) (r s : Bloch) :
+        sqDist (runB L r) (runB L s) = (L.map (fun x => (1 - x.1) ^ 2)).prod * sqDist r s
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sqDist_runB_le
+  line: 321
+  signature_excerpt: |-
+    theorem sqDist_runB_le {p : ℚ} (L : List (ℚ × RatRot))
+        (hrate : ∀ x ∈ L, p ≤ x.1 ∧ x.1 ≤ 1) (r s : Bloch) :
+        sqDist (runB L r) (runB L s) ≤ ((1 - p) ^ 2) ^ L.length * sqDist r s
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sqDist_stepB
+  line: 293
+  signature_excerpt: |-
+    theorem sqDist_stepB (p : ℚ) (Q : RatRot) (r s : Bloch) :
+        sqDist (stepB p Q r) (stepB p Q s) = (1 - p) ^ 2 * sqDist r s
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rot_dot
+  line: 284
+  signature_excerpt: 'theorem rot_dot (Q : RatRot) (v : Bloch) : (Q.R *ᵥ v) ⬝ᵥ (Q.R *ᵥ v) = v ⬝ᵥ v'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: blochMat_sq
+  line: 350
+  signature_excerpt: 'theorem blochMat_sq (v : Bloch) : blochMat v * blochMat v = ((v ⬝ᵥ v : ℚ) : ℂ) •
+    (1 : Matrix (Fin 2) (Fin 2) ℂ)'
+  source: lean4/QcEntropySink.lean
+  repository: this_repository
+  source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/QcEntropySink.lean::sqDist_runB
+  availability: local
+  symbol: sqDist_runB
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 309
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::sqDist_runB_le
+  availability: local
+  symbol: sqDist_runB_le
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 321
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::sqDist_stepB
+  availability: local
+  symbol: sqDist_stepB
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 293
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::rot_dot
+  availability: local
+  symbol: rot_dot
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 284
+  role: source_lead_only
+- original_ref: lean4/QcEntropySink.lean::blochMat_sq
+  availability: local
+  symbol: blochMat_sq
+  path: lean4/QcEntropySink.lean
+  repository: this_repository
+  sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+  declaration_status: declaration_found_not_proof_checked
+  line: 350
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::bloch_step
+  availability: local
+  symbol: bloch_step
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 443
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::bloch_run
+  availability: local
+  symbol: bloch_run
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 452
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::decay_identity_holds
+  availability: local
+  symbol: decay_identity_holds
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 468
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::pauli_part_squares_to_norm
+  availability: local
+  symbol: pauli_part_squares_to_norm
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 563
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::bloch_of_matrix
+  availability: local
+  symbol: bloch_of_matrix
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 609
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - trace norm of a Hermitian matrix is the sum of absolute eigenvalues (cited)
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - trace norm of a Hermitian matrix is the sum of absolute eigenvalues (cited)
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -1,0 +1,307 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTH-TC2-FINITE-TRANSITION-CONTRACT
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: In a table over the four configurations running-blank, running-marked, halted-blank
+    and halted-marked that exposes advance, stay and halt, the supplied clean-terminal contract is preserved,
+    the supplied marked-cell contract fails from running-marked, the identity report is adequate for the
+    marked-cell contract, and the control-only report is not.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - supplied clean-terminal contract
+  - supplied marked-cell contract
+  source_bottleneck: Replace the enumerated carrier by an actual tape and head, and replace the contracts,
+    which were written to produce the countertrace, by contracts stated independently of the table.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1329_auth_tc2_finite_transition_contract.md
+  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md
+  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md
+  - papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md
+  - papers/foundations/authorization_incompleteness/proof_program.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1329_auth_tc2_finite_transition_contract.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1329_auth_tc2_finite_transition_contract.md
+    sha256: aca32faadec07fc27757648df8b973cd01313df3892d342b4855ab9ba7ffd0d8
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_auth_tc2_finite_transition_contract_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Preserves
+  line: 76
+  signature_excerpt: 'def Preserves (contract : ConfigurationContract) : Prop'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cleanTerminalContract
+  line: 81
+  signature_excerpt: 'def cleanTerminalContract : ConfigurationContract'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: ConfigurationContract
+  line: 63
+  signature_excerpt: structure ConfigurationContract
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nextConfiguration
+  line: 55
+  signature_excerpt: 'def nextConfiguration (configuration : Configuration) : Configuration'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Configuration
+  line: 27
+  signature_excerpt: inductive Configuration
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: transition
+  line: 43
+  signature_excerpt: 'def transition (configuration : Configuration) : TransitionResult'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: TransitionResult
+  line: 36
+  signature_excerpt: structure TransitionResult
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: markedCellContract
+  line: 90
+  signature_excerpt: 'def markedCellContract : ConfigurationContract'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: transitionControl
+  line: 59
+  signature_excerpt: 'def transitionControl (configuration : Configuration) : ControlOutcome'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: AdequateFor
+  line: 69
+  signature_excerpt: |-
+    def AdequateFor {Report : Type} (report : Configuration -> Report)
+        (contract : ConfigurationContract) : Prop
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: fullConfigurationReport
+  line: 101
+  signature_excerpt: 'def fullConfigurationReport : Configuration -> Configuration'
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: transition_preserves_clean_terminal_contract
+  line: 122
+  signature_excerpt: |-
+    theorem transition_preserves_clean_terminal_contract :
+        Preserves cleanTerminalContract
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: marked_contract_countertrace
+  line: 129
+  signature_excerpt: |-
+    theorem marked_contract_countertrace :
+        markedCellContract.accepts .runningMarked = true ∧
+          markedCellContract.accepts (nextConfiguration .runningMarked) = false
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: transition_does_not_preserve_marked_cell_contract
+  line: 135
+  signature_excerpt: |-
+    theorem transition_does_not_preserve_marked_cell_contract :
+        ¬ Preserves markedCellContract
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: shared_stay_control_blocks_control_only_contract_decider
+  line: 152
+  signature_excerpt: |-
+    theorem shared_stay_control_blocks_control_only_contract_decider :
+        ¬ (∃ decide : ControlOutcome -> Bool,
+          ∀ configuration, decide (transitionControl configuration) =
+            markedCellContract.accepts configuration)
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: full_configuration_report_adequate_for_marked_cell_contract
+  line: 168
+  signature_excerpt: |-
+    theorem full_configuration_report_adequate_for_marked_cell_contract :
+        AdequateFor fullConfigurationReport markedCellContract
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: control_report_not_adequate_for_marked_cell_contract
+  line: 187
+  signature_excerpt: |-
+    theorem control_report_not_adequate_for_marked_cell_contract :
+        ¬ AdequateFor transitionControl markedCellContract
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  source_sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  declaration_status: declaration_found_not_proof_checked
+  line: 122
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  declaration_status: declaration_found_not_proof_checked
+  line: 129
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  declaration_status: declaration_found_not_proof_checked
+  line: 135
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  declaration_status: declaration_found_not_proof_checked
+  line: 152
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  declaration_status: declaration_found_not_proof_checked
+  line: 168
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean
+  repository: this_repository
+  sha256: 5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0
+  declaration_status: declaration_found_not_proof_checked
+  line: 187
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - supplied clean-terminal contract
+    - supplied marked-cell contract
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - supplied clean-terminal contract
+    - supplied marked-cell contract
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

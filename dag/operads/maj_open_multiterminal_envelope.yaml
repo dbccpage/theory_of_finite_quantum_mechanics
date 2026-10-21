@@ -1,0 +1,185 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MAJ-OPEN-MULTITERMINAL-ENVELOPE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For an M-terminal junction (M >= 4) with Delta_eff = Delta_0 (1 - sigma_V/sigma_crit),
+    the transfer envelope adds C(M,2) >= 6 pairwise splitting channels, its minimum rises with sigma_V
+    on (0, sigma_crit), and the gap closes for sigma_V >= sigma_crit.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - linear gap-degradation model Delta_eff(sigma_V)
+  - exponential overlap splitting delta E_ij
+  source_bottleneck: Derive the envelope and the monotonicity in sigma_V; the gap-degradation law is posited.
+  source_refs:
+  - dag/derivations/28_majorana/tfq_1179_maj_open_multiterminal_envelope.md
+  - papers/core/majorana/the_majorana_problem.md
+  - papers/core/majorana/the_majorana_problem_claim_ledger.md
+  paper_refs:
+  - dag/derivations/28_majorana/tfq_1179_maj_open_multiterminal_envelope.md
+  source_claim_label: OPEN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/28_majorana/tfq_1179_maj_open_multiterminal_envelope.md
+    sha256: 1d43d6711088707a8de19a810832dae1bd912b202eac30f2f9e0f4c319aac6d2
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/majorana_maj_open_multiterminal_envelope_open.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: MultiTerminalTransferBound
+  line: 358
+  signature_excerpt: structure MultiTerminalTransferBound
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: multiterminal_transfer_defect_pos
+  line: 370
+  signature_excerpt: |-
+    theorem multiterminal_transfer_defect_pos (B : MultiTerminalTransferBound) :
+        B.crosstalk_rate * B.braid_time > 0
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: multiterminal_crosstalk_channels_pos
+  line: 374
+  signature_excerpt: |-
+    theorem multiterminal_crosstalk_channels_pos (M : Nat) (h_M : M ≥ 4) :
+        M * (M - 1) / 2 > 0
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: multiterminal_pareto_defect_pos
+  line: 382
+  signature_excerpt: |-
+    theorem multiterminal_pareto_defect_pos (c_lz crosstalk delta_eff : Nat)
+        (h_lz : c_lz > 0) (h_cross : crosstalk > 0) (h_delta : delta_eff > 0) :
+        c_lz + crosstalk + delta_eff > 0
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: disorder_gap_degradation_lower_bound
+  line: 387
+  signature_excerpt: |-
+    theorem disorder_gap_degradation_lower_bound (delta_0 sigma_v : Nat)
+        (h_sub : delta_0 > sigma_v) :
+        delta_0 - sigma_v > 0
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::MultiTerminalTransferBound
+  availability: local
+  symbol: MultiTerminalTransferBound
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 358
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::multiterminal_transfer_defect_pos
+  availability: local
+  symbol: multiterminal_transfer_defect_pos
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 370
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::multiterminal_crosstalk_channels_pos
+  availability: local
+  symbol: multiterminal_crosstalk_channels_pos
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 374
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::multiterminal_pareto_defect_pos
+  availability: local
+  symbol: multiterminal_pareto_defect_pos
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 382
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::disorder_gap_degradation_lower_bound
+  availability: local
+  symbol: disorder_gap_degradation_lower_bound
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 387
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - linear gap-degradation model Delta_eff(sigma_V)
+    - exponential overlap splitting delta E_ij
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - linear gap-degradation model Delta_eff(sigma_V)
+    - exponential overlap splitting delta E_ij
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

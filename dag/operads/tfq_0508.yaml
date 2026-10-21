@@ -1,0 +1,86 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: TFQ-0508
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'When a packet family declares a cochain representation C⁰ → C¹ → C² with maps d₀
+    and d₁, the discrepancy of a candidate 1-cochain c is measured by the boundary defect Φ₁ = ‖[c]‖ in
+    C¹/im d₀ (the quotient infimum of ‖c − d₀a‖ over 0-cochains a), the cycle defect Γ₂ = ‖d₁c‖ in C²,
+    and the total residual Ξ = Φ₁ + Γ₂; a candidate is accepted exactly when Ξ = 0 over the declared observer.
+    Because d₁d₀ = 0, Φ₁ = 0 forces Γ₂ = 0, so Ξ = 0 exactly when Φ₁ = 0. Worked example: on the oriented
+    triangle 0 → 1 → 2 → 0 with one declared face, c = (1, 1, 1) gives Φ₁ = 3 and Γ₂ = 3, so Ξ = 6, while
+    c = (1, 1, −2) = d₀(0, 1, 2) gives Φ₁ = Γ₂ = Ξ = 0.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Compute Φ₁ as the exact quotient infimum and Γ₂ under the declared face map with
+    exact rationals, report both, and accept only at Ξ = 0.
+  source_refs:
+  - dag/derivations/04_authorization/tfq_0508_pfp_stealth_cochain_phi1_gamma2.md
+  paper_refs: []
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins: []
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/authorization_tfq_0508_definition.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings:
+- original_ref: external:the_symbol_game/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator
+  availability: external
+  symbol: PromptCochainEvaluator
+  path: external:the_symbol_game/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -1,0 +1,16 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/QcEntropySink.lean
+source_sha256: 361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2
+authority_effect: None
+purpose: 'Noisy unitary histories without fresh resources: exact contraction of the variational trace
+  norm under global depolarizing noise for any dimension, and the exact rational qubit form on Bloch vectors.'
+design:
+  profile: Exact rational arithmetic or kernel-checked Lean on the declared carrier; no floating point.
+  frozen_sources: Run snapshots under verification/ are immutable custody assets.
+boundaries:
+- The trace norm is the variational form; its equality with the Schatten-1 norm is cited.
+- The noise is global depolarizing at a declared rate per step; it is not a model of independent per-qubit
+  noise or of any device.
+- The Aharonov-Ben-Or-Impagliazzo-Nisan 1996 theorem is cited as context only.
+evidence:
+- dag/research/quantum_computation_self_obstruction.md
