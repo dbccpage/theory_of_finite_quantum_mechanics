@@ -1,7 +1,7 @@
 # Lean 4 Formalization: The Majorana Problem (PO-026)
 
 **Package:** `po026`  
-**Toolchain:** `leanprover/lean4:v4.34.0`  
+**Toolchain:** `leanprover/lean4:v4.35.0`  
 **Authority:** `AuthorityEffect: None`  
 
 ## Module Structure
@@ -15,4 +15,4 @@
 lake build
 ```
 
-Requires Lean 4.34.0. Builds in under 2 seconds with zero external network dependencies, zero unproved `sorry` placeholders, and zero synthetic axioms.
+Requires Lean 4.35.0. Builds in under 2 seconds with zero external network dependencies, zero unproved `sorry` placeholders, and zero synthetic axioms.

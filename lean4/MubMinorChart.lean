@@ -42,7 +42,6 @@ theorem cauchy_binet_3_6 (A : Matrix (Fin 3) (Fin 6) ℂ) :
   norm_num [minor, columns, Matrix.det_fin_three, Matrix.submatrix_apply,
     Matrix.mul_apply, Matrix.conjTranspose_apply, Fin.sum_univ_succ,
     Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
-  dsimp [Fin.succ, Matrix.vecCons, Fin.cons, Fin.cases, Fin.induction]
   ring
 
 theorem minor_norm_sum (A : Matrix (Fin 3) (Fin 6) ℂ)

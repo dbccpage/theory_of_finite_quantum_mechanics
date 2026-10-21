@@ -1,7 +1,7 @@
 # GR-002 Lean package
 
 The root `GR002.lean` imports every module below, so `lake build` elaborates
-the complete package. Mathlib is pinned to `v4.34.0-rc1`, matching
+the complete package. Mathlib is pinned to `v4.35.0`, matching
 `lean-toolchain`.
 
 | Module | What Lean proves | Explicit boundary |
