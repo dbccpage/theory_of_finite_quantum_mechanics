@@ -31,9 +31,348 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/finite_qg_tfq_0084_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: fn
+  name: cayley_menger
+  line: 25
+  signature_excerpt: 'pub fn cayley_menger(dimension: u8, squared_lengths: &[[BigRational; 5]; 5]) ->
+    Result<CayleyMengerResult, ExactError>'
+  source: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+  repository: the_symbol_game
+  source_sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
+  status: source_candidate_requires_semantic_review
+  scope_note: Exact BigRational CM determinant and volume^2, d in 1..=4; no f64.
+- kind: struct
+  name: CayleyMengerResult
+  line: 19
+  signature_excerpt: 'pub struct CayleyMengerResult { pub dimension: u8, pub determinant: BigRational,
+    pub volume_squared: BigRational }'
+  source: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+  repository: the_symbol_game
+  source_sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
+  status: source_candidate_requires_semantic_review
+  scope_note: Carrier of the exact CM output.
+- kind: fn
+  name: signed_volume_4
+  line: 64
+  signature_excerpt: 'pub fn signed_volume_4(verts: &[[BigRational; 4]; 5]) -> Result<BigRational, ExactError>'
+  source: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+  repository: the_symbol_game
+  source_sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
+  status: source_candidate_requires_semantic_review
+  scope_note: Orientation sign of a pentatope chart.
+- kind: fn
+  name: determinant
+  line: 15
+  signature_excerpt: 'pub fn determinant<const N: usize>(matrix: &[[BigRational; N]; N], ...)'
+  source: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/gaussian.rs
+  repository: the_symbol_game
+  source_sha256: 9df6048a82771c2d0794dd0a00e514f310fd82c31bae4ae19be3031b23ac97f6
+  status: source_candidate_requires_semantic_review
+  scope_note: Division-based exact determinant (fine at rational points).
+- kind: fn
+  name: dihedral_enclosure
+  line: 92
+  signature_excerpt: 'pub fn dihedral_enclosure(squared: &[[Q; 5]; 5], eps: &Q) -> Result<DihedralEnclosure,
+    GeometryError>'
+  source: code/rust/src/general_relativity/certified_dihedral.rs
+  repository: this_repository
+  source_sha256: b0090566107f2fdbffc1a2480573e3f8b9c7f98d54bf98ac5a4c2a4bce2710c7
+  status: source_candidate_requires_semantic_review
+  scope_note: n = 4 only; exact normal-Gram triple [aa, bb, ab] (cos^2 = ab^2/(aa bb)); angle only as
+    a rational interval; no tests or callers.
+- kind: struct
+  name: DihedralEnclosure
+  line: 26
+  signature_excerpt: pub struct DihedralEnclosure {
+  source: code/rust/src/general_relativity/certified_dihedral.rs
+  repository: this_repository
+  source_sha256: b0090566107f2fdbffc1a2480573e3f8b9c7f98d54bf98ac5a4c2a4bce2710c7
+  status: source_candidate_requires_semantic_review
+  scope_note: 'normal_gram: [Q; 3], bounds: RationalInterval.'
+- kind: fn
+  name: deficit_enclosure
+  line: 252
+  signature_excerpt: 'pub fn deficit_enclosure(star: &MetricHingeStar, eps: &Q) -> Result<DeficitEnclosure,
+    GeometryError>'
+  source: code/rust/src/general_relativity/certified_dihedral.rs
+  repository: this_repository
+  source_sha256: b0090566107f2fdbffc1a2480573e3f8b9c7f98d54bf98ac5a4c2a4bce2710c7
+  status: source_candidate_requires_semantic_review
+  scope_note: Rational-interval deficit; not exact; no tests.
+- kind: fn
+  name: rational_regge_proxy
+  line: 47
+  signature_excerpt: 'pub fn rational_regge_proxy(manifold: &SimplicialManifold4D, defects: &[([u32; 3],
+    BigRational)]) -> Result<RationalReggeProxy, ManifoldError>'
+  source: code/rust/src/general_relativity/exact_regge/action.rs
+  repository: this_repository
+  source_sha256: 537b7dcccd4a1df16f33e5ff24346923ca7878cbede906b4e21afd587811afd2
+  status: source_candidate_requires_semantic_review
+  scope_note: 'sum_h A_h^2 kappa_h with caller-supplied kappa: the T4 near-miss weighting (paste name
+    exact_ge_proxy does not exist).'
+- kind: fn
+  name: area_squared_in_pentatope
+  line: 18
+  signature_excerpt: 'pub fn area_squared_in_pentatope(manifold: &SimplicialManifold4D, pentatope_index:
+    usize, triangle: [u32; 3]) -> Result<BigRational, ManifoldError>'
+  source: code/rust/src/general_relativity/exact_regge/action.rs
+  repository: this_repository
+  source_sha256: 537b7dcccd4a1df16f33e5ff24346923ca7878cbede906b4e21afd587811afd2
+  status: source_candidate_requires_semantic_review
+  scope_note: Exact hinge area^2 (CM d = 2).
+- kind: fn
+  name: defect_bound_holds
+  line: 105
+  signature_excerpt: 'pub fn defect_bound_holds(s_regge: &BigRational, s_eh: &BigRational, c: &BigRational,
+    a_squared: &BigRational) -> bool'
+  source: code/rust/src/general_relativity/exact_regge/action.rs
+  repository: this_repository
+  source_sha256: 537b7dcccd4a1df16f33e5ff24346923ca7878cbede906b4e21afd587811afd2
+  status: source_candidate_requires_semantic_review
+  scope_note: Squared-difference bound on supplied scalars; not a derivation.
+- kind: fn
+  name: nondegeneracy
+  line: 141
+  signature_excerpt: pub fn nondegeneracy(&self) -> Result<(), ManifoldError> {
+  source: code/rust/src/general_relativity/exact_regge/manifold.rs
+  repository: this_repository
+  source_sha256: 2f8b0a1d7d42f6a7673fee870da0388ba966ba9a230d1ae671a6f1e0449aa8a2
+  status: source_candidate_requires_semantic_review
+  scope_note: Tests CM volume^2 != 0 per face (not > 0); strict positivity must be added for T1.
+- kind: fn
+  name: freudenthal_refine_16
+  line: 10
+  signature_excerpt: 'pub fn freudenthal_refine_16(parent: &[[BigRational; 4]; 5]) -> Result<Vec<[[BigRational;
+    4]; 5]>, ManifoldError>'
+  source: code/rust/src/general_relativity/exact_regge/refinement.rs
+  repository: this_repository
+  source_sha256: aa382834bd66fb4478df6358f95cfb011e80c93d49ce71f0e4f1f77f22b72d6d
+  status: source_candidate_requires_semantic_review
+  scope_note: Exact Kuhn/Freudenthal 16-child subdivision; T2/T3 carrier.
+- kind: fn
+  name: closed_s4_cube_boundary
+  line: 20
+  signature_excerpt: pub fn closed_s4_cube_boundary() -> Result<SimplicialManifold4D, ManifoldError> {
+  source: code/rust/src/general_relativity/exact_regge/sphere.rs
+  repository: this_repository
+  source_sha256: 74448de4f2227d857ad7cb816a559008c2140f82c393b6010039254de336db60
+  status: source_candidate_requires_semantic_review
+  scope_note: Kuhn triangulation of the boundary of [0,1]^5; no interior-grid generator exists.
+- kind: fn
+  name: simplex_volume_derivative_wrt_squared_edge
+  line: 225
+  signature_excerpt: 'pub fn simplex_volume_derivative_wrt_squared_edge(vertices: &[usize], u: usize,
+    v: usize, get_length: impl Fn(usize, usize) -> Option<f64>) -> Result<f64, String>'
+  source: code/rust/src/general_relativity/cayley_menger.rs
+  repository: this_repository
+  source_sha256: 0fc9ce5a8d5e466c765edbf4d41e99d29152f55a6b5d59125723b4f37234655b
+  status: source_candidate_requires_semantic_review
+  scope_note: 'f64 (fenced): analytic dV/dx_e via a CM cofactor; lead for the exact derivative only.'
+- kind: fn
+  name: tetrahedron_dihedral_angle_at_edge
+  line: 34
+  signature_excerpt: 'pub fn tetrahedron_dihedral_angle_at_edge(tetrahedron: &[usize; 4], edge: (usize,
+    usize), get_length: impl Fn(usize, usize) -> Option<f64>) -> Result<f64, String>'
+  source: code/rust/src/general_relativity/dihedral_angles.rs
+  repository: this_repository
+  source_sha256: 22edee995996d1b495f215038c284d54d1c91685fb7c50d0a3638945d83525ae
+  status: source_candidate_requires_semantic_review
+  scope_note: 'f64 acos (fenced): its numerator is the n = 3 cofactor form of R_COS.'
+- kind: fn
+  name: schlafli_differential_4d
+  line: 408
+  signature_excerpt: 'pub fn schlafli_differential_4d(pentachoron: &[usize; 5], edge: (usize, usize),
+    get_length: impl Fn(usize, usize) -> Option<f64>, delta: f64) -> Result<f64, String>'
+  source: code/rust/src/general_relativity/regge_4d.rs
+  repository: this_repository
+  source_sha256: cb5e82fd84435cbd489df61a6da0821e21b1c3fe173400f886115795a64f2c13
+  status: source_candidate_requires_semantic_review
+  scope_note: f64 central difference of sum_t A_t theta_t; never asserted zero; no caller or test; excluded
+    as a checker.
+- kind: fn
+  name: compute_regge_field_equations_4d
+  line: 21
+  signature_excerpt: 'pub fn compute_regge_field_equations_4d(triangulation: &ReggeTriangulation4D, lambda:
+    f64, bulk_only: bool) -> Result<ReggeFieldEquationResult, ReggeError>'
+  source: code/rust/src/general_relativity/field_equation.rs
+  repository: this_repository
+  source_sha256: 38f1bac71ede46df568aa8653f55f4a1ab52869b019dbe21c4c4396c07b4cb6f
+  status: source_candidate_requires_semantic_review
+  scope_note: 'f64 formula stub (TFQ-0107): assumes the T2 cancellation; not a derivation.'
+relation_candidates:
+- kind: theorem
+  name: schlafli_zero_variation
+  line: 29
+  signature_excerpt: 'theorem schlafli_zero_variation (edges : List (Nat × Int)) (h : ∀ p ∈ edges, p.2
+    = 0) : SchlafliVanishing edges'
+  source: lean4/regge_wdw_core.lean
+  repository: this_repository
+  source_sha256: 82a1becb70e42d9f24eb8fc68b7b402d537c02bdd0731b905d56acf615e8e7dc
+  status: source_candidate_requires_semantic_review
+  scope_note: 'Vacuous: assumes every d eps = 0; Nat/Int labels; no geometry. Excluded as a Schlafli source.'
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: total_deficit_formula
+  line: 36
+  signature_excerpt: 'theorem total_deficit_formula (R : ℕ) (hR : R ≥ 1) : total_deficit R = 2 * Real.pi
+    + 6 * Real.pi * (R : ℝ)'
+  source: papers/core/constraint_closure/lean4/GR002/ReggeDeficit.lean
+  repository: this_repository
+  source_sha256: 85899e113f363f6e6a3aa1f6e4a3de871f02f7af8d2ed0f6a267157b3922e73f
+  status: source_candidate_requires_semantic_review
+  scope_note: Hexagonal-disk unit count times pi/3 (TFQ-0102); no dihedral angle is computed.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: fn
+  name: defect_bound_holds
+  line: 105
+  signature_excerpt: 'pub fn defect_bound_holds(s_regge: &BigRational, s_eh: &BigRational, c: &BigRational,
+    a_squared: &BigRational) -> bool'
+  source: code/rust/src/general_relativity/exact_regge/action.rs
+  repository: this_repository
+  source_sha256: 537b7dcccd4a1df16f33e5ff24346923ca7878cbede906b4e21afd587811afd2
+  status: source_candidate_requires_semantic_review
+  scope_note: (S_regge - S_EH)^2 <= (c A^2)^2 on supplied scalars; fence, not a relation of the T1 operad.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs::cayley_menger
+  availability: external
+  symbol: cayley_menger
+  path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+  repository: the_symbol_game
+  sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
+  declaration_status: declaration_found_not_executed_in_this_run
+  line: 25
+  role: exact_kernel_candidate_for_P1_checkers
+- original_ref: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/gaussian.rs::determinant
+  availability: external
+  symbol: determinant
+  path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/gaussian.rs
+  repository: the_symbol_game
+  sha256: 9df6048a82771c2d0794dd0a00e514f310fd82c31bae4ae19be3031b23ac97f6
+  declaration_status: declaration_found_not_executed_in_this_run
+  line: 15
+  role: exact_kernel_candidate_for_P1_checkers
+- original_ref: code/rust/src/general_relativity/certified_dihedral.rs::dihedral_enclosure
+  availability: local
+  symbol: dihedral_enclosure
+  path: code/rust/src/general_relativity/certified_dihedral.rs
+  repository: this_repository
+  sha256: b0090566107f2fdbffc1a2480573e3f8b9c7f98d54bf98ac5a4c2a4bce2710c7
+  declaration_status: declaration_found_not_executed_no_tests_exist
+  line: 92
+  role: exact_normal_gram_lead_n4_bridge_obligation_O4
+- original_ref: code/rust/src/general_relativity/exact_regge/action.rs::rational_regge_proxy
+  availability: local
+  symbol: rational_regge_proxy
+  path: code/rust/src/general_relativity/exact_regge/action.rs
+  repository: this_repository
+  sha256: 537b7dcccd4a1df16f33e5ff24346923ca7878cbede906b4e21afd587811afd2
+  declaration_status: declaration_found_not_executed_in_this_run
+  line: 47
+  role: T4_near_miss_weighting
+- original_ref: code/rust/src/general_relativity/exact_regge/refinement.rs::freudenthal_refine_16
+  availability: local
+  symbol: freudenthal_refine_16
+  path: code/rust/src/general_relativity/exact_regge/refinement.rs
+  repository: this_repository
+  sha256: aa382834bd66fb4478df6358f95cfb011e80c93d49ce71f0e4f1f77f22b72d6d
+  declaration_status: declaration_found_not_executed_in_this_run
+  line: 10
+  role: T2_T3_exact_chart_generator
+- original_ref: code/rust/src/general_relativity/exact_regge/sphere.rs::closed_s4_cube_boundary
+  availability: local
+  symbol: closed_s4_cube_boundary
+  path: code/rust/src/general_relativity/exact_regge/sphere.rs
+  repository: this_repository
+  sha256: 74448de4f2227d857ad7cb816a559008c2140f82c393b6010039254de336db60
+  declaration_status: declaration_found_not_executed_in_this_run
+  line: 20
+  role: T2_T3_exact_chart_generator_boundary_only
+- original_ref: code/rust/src/general_relativity/exact_regge/manifold.rs::nondegeneracy
+  availability: local
+  symbol: nondegeneracy
+  path: code/rust/src/general_relativity/exact_regge/manifold.rs
+  repository: this_repository
+  sha256: 2f8b0a1d7d42f6a7673fee870da0388ba966ba9a230d1ae671a6f1e0449aa8a2
+  declaration_status: declaration_found_not_executed_in_this_run
+  line: 141
+  role: nondegeneracy_predicate_too_weak_for_T1_(!=0_not_>0)
+- original_ref: code/rust/src/general_relativity/regge_4d.rs::schlafli_differential_4d
+  availability: local
+  symbol: schlafli_differential_4d
+  path: code/rust/src/general_relativity/regge_4d.rs
+  repository: this_repository
+  sha256: cb5e82fd84435cbd489df61a6da0821e21b1c3fe173400f886115795a64f2c13
+  declaration_status: declaration_found_f64_no_caller_no_test
+  line: 408
+  role: fenced_float_lead_excluded_as_checker
+- original_ref: code/rust/src/general_relativity/schlafli.rs::verify_schlafli_identity_2d
+  availability: local
+  symbol: verify_schlafli_identity_2d
+  path: code/rust/src/general_relativity/schlafli.rs
+  repository: this_repository
+  sha256: 89f984e576351bbc6129667c7a1078e7e0ef390143c7177f637124de16b5f272
+  declaration_status: declaration_found_f64
+  line: 12
+  role: fenced_float_angle_sum_not_the_differential_identity
+- original_ref: code/rust/src/general_relativity/field_equation.rs::compute_regge_field_equations_4d
+  availability: local
+  symbol: compute_regge_field_equations_4d
+  path: code/rust/src/general_relativity/field_equation.rs
+  repository: this_repository
+  sha256: 38f1bac71ede46df568aa8653f55f4a1ab52869b019dbe21c4c4396c07b4cb6f
+  declaration_status: declaration_found_f64
+  line: 21
+  role: fenced_formula_stub_TFQ-0107
+- original_ref: code/rust/src/general_relativity/hamiltonian_constraint.rs::evaluate_hamiltonian_constraints
+  availability: local
+  symbol: evaluate_hamiltonian_constraints
+  path: code/rust/src/general_relativity/hamiltonian_constraint.rs
+  repository: this_repository
+  sha256: eb4e4c8160120a8d461959660ce358d293499ad83b117179783c08ecdccacee5
+  declaration_status: declaration_found_f64
+  line: 151
+  role: fenced_formula_stub_TFQ-0107_out_of_scope
+- original_ref: lean4/regge_wdw_core.lean::schlafli_zero_variation
+  availability: local
+  symbol: schlafli_zero_variation
+  path: lean4/regge_wdw_core.lean
+  repository: this_repository
+  sha256: 82a1becb70e42d9f24eb8fc68b7b402d537c02bdd0731b905d56acf615e8e7dc
+  declaration_status: declaration_found_not_proof_checked_in_this_run
+  line: 29
+  role: excluded_vacuous_lead
+- original_ref: papers/core/constraint_closure/lean4/GR002/ReggeDeficit.lean::total_deficit_formula
+  availability: local
+  symbol: total_deficit_formula
+  path: papers/core/constraint_closure/lean4/GR002/ReggeDeficit.lean
+  repository: this_repository
+  sha256: 85899e113f363f6e6a3aa1f6e4a3de871f02f7af8d2ed0f6a267157b3922e73f
+  declaration_status: declaration_found_not_proof_checked_in_this_run
+  line: 36
+  role: finite_count_only_TFQ-0102
+- original_ref: papers/core/constraint_closure/code/l1_regge.py::compute_3d_regge_action_minimization
+  availability: local
+  symbol: compute_3d_regge_action_minimization
+  path: papers/core/constraint_closure/code/l1_regge.py
+  repository: this_repository
+  sha256: 341c416f3f5b5dec85b6b59633566354cc590d5b93ceac5a28a11c3068911bb9
+  declaration_status: declaration_found_float
+  line: 35
+  role: fenced_float_script_TFQ-0099
+- original_ref: papers/core/constraint_closure/code/simplex.py::cayley_menger_volume_sq
+  availability: local
+  symbol: cayley_menger_volume_sq
+  path: papers/core/constraint_closure/code/simplex.py
+  repository: this_repository
+  sha256: 79dd210a78a74f4b47ced6d0d1eba2d916a7014e9d70d231cde3df6820c89153
+  declaration_status: declaration_found_float
+  line: 41
+  role: fenced_numpy_float_only_python_CM
 presentation:
   colours: []
   generators: []
@@ -49,32 +388,293 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: MINED_PENDING_HOST_REVIEW
+    carrier: 'An abstract n-simplex sigma (n in {3, 4}) or a finite Euclidean simplicial complex, with
+      squared edge lengths x = (x_e) as the only data: rational points x in Q^E for checks, indeterminates
+      of Z[x_e] for the identity. Colours: SqLenVec_n, CMMatrix_n, CMMinor, SqVolume_k, Hinge (a,b), DihedralCosNum,
+      DihedralSinSq, Deficit (RationalPiDeficit on Kuhn charts), Action, Edge.'
+    coefficient_ring: Q at numeric points; Z[x_e] / Q(x_e) symbolically (x_e = squared edge lengths);
+      Q(sqrt2, sqrt3) only for T3 at Kuhn flat configurations
+    assumptions:
+    - Euclidean signature; strict Cayley-Menger positivity / Gram positive-definiteness on every simplex
+      (declared, not detected).
+    - Lambda is a declared rational parameter (TFQ-0106/0108 fence).
+    - Cheeger-Mueller-Schrader convergence is IMPORTED by citation only; the continuum Einstein equation
+      is not a target.
+    - Boundary hinges (deficit measured against pi) are declared, never classified numerically.
+    source_pins:
+    - path: dag/prompts/finite_qg_tfq_0084_open.yaml
+      sha256: 8936b301cc551d6a6521dfda1276dff9419c360b8c35377624ded44815164f2c
+    - path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/collection_before_mining.yaml
+      sha256: 89da2f21390784f6d5559683d20c3f346a1c1fe2e8d072fb99125f43359a6f61
+    - path: dag/derivations/19_finite_qg/tfq_0084_finite_quantum_gravity_shadow.md
+      sha256: 897cef0b74256e9d1c8a12e3439b13d160e04af2a9f34b70a5205fdd5673b3f1
+    - path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/research_target_sharpened.md
+      sha256: cc266230e7f6a671d241e5c7817b779ed4bfb39aa1d38f44c2b77d3f9e1ca015
+    - &id001
+      path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+      repository: the_symbol_game
+      sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
+    - path: code/rust/src/general_relativity/certified_dihedral.rs
+      sha256: b0090566107f2fdbffc1a2480573e3f8b9c7f98d54bf98ac5a4c2a4bce2710c7
+    - path: code/rust/src/general_relativity/exact_regge/action.rs
+      sha256: 537b7dcccd4a1df16f33e5ff24346923ca7878cbede906b4e21afd587811afd2
+    - path: code/rust/src/general_relativity/exact_regge/refinement.rs
+      sha256: aa382834bd66fb4478df6358f95cfb011e80c93d49ce71f0e4f1f77f22b72d6d
+    - path: code/rust/src/general_relativity/exact_regge/sphere.rs
+      sha256: 74448de4f2227d857ad7cb816a559008c2140f82c393b6010039254de336db60
+    - path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.py
+      sha256: af02cf6be5f68cc1626a66517bd6d4f74860a6fd43bbd86bc2816e16b33be535
+    - path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/schlafli_rational_form_check.py
+      sha256: fe6c4bc05886a52d0f77e1b07c50a28c75b260fbeef3cd2c0e18ca61ed56ca8f
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: MINED_PENDING_HOST_REVIEW
+    operations:
+    - id: squared_length_vector
+      inputs:
+      - AbstractSimplex_n
+      output: SqLenVec_n
+      arity: 1
+      semantic_predicate: Assign each unordered vertex pair its squared Euclidean edge length; no angle,
+        no square root.
+      evidence_status: Source-confirmed exact carrier (external BigRational kernel; manifold.rs edge_length_squared
+        :127). Symbolic (indeterminate) form has no source generator; it is the P1 Lean/Python carrier.
+    - id: cm_bordered_matrix
+      inputs:
+      - SqLenVec_n
+      output: CMMatrix_n
+      arity: 1
+      semantic_predicate: Bordered Cayley-Menger matrix B_sigma of the simplex.
+      evidence_status: Numeric exact routine source-confirmed (external cayley_menger.rs:25, BigRational).
+        GR cayley_menger.rs:76 is the f64 twin (fenced). Symbolic version prototyped only in this run
+        (relation_sign_check.py cm_matrix).
+    - id: cm_determinant_and_vertex_cofactors
+      inputs:
+      - CMMatrix_n
+      - VertexPair(a,b) or none
+      output: CMMinor
+      arity: 2
+      semantic_predicate: Exact determinant / cofactor of the bordered CM matrix.
+      evidence_status: Exact numeric determinant source-confirmed (external). GR cayley_menger.rs:49 matrix_cofactor
+        is f64 (fenced). Division-free dual-number cofactors prototyped only in this run (schlafli_rational_form_check.py
+        cofactors_dual).
+    - id: squared_volume_from_cm
+      inputs:
+      - CMMinor(det B_tau)
+      output: SqVolume_k
+      arity: 1
+      semantic_predicate: Squared k-volume of a face from its CM determinant (relation R_CM).
+      evidence_status: Source-confirmed exact (external tests cayley_menger.rs:130-182; exact_regge/action.rs:18
+        uses it for d=2 areas). Re-tested exactly in this run on 8 integer simplices (R_CM). GR cayley_menger.rs:121
+        takes an f64 sqrt and is excluded.
+    - id: facet_sqvolume_from_diagonal_cofactor
+      inputs:
+      - CMMinor(C_aa)
+      output: SqVolume_(n-1)
+      arity: 1
+      semantic_predicate: The diagonal vertex cofactor of B_sigma is the CM determinant of the facet opposite
+        a (relation R_COF).
+      evidence_status: 'ABSENT in all sources. Tested exactly on 6 integer simplices in this run (R_COF).
+        Proof obligation: minor-of-bordered-matrix identity (or import).'
+    - id: dihedral_cos_numerator
+      inputs:
+      - CMMinor(C_ab)
+      - SqVolume_a
+      - SqVolume_b
+      output: DihedralCosNum
+      arity: 3
+      semantic_predicate: cos^2(theta_ab) = C_ab^2 / (C_aa C_bb) and sign(cos theta_ab) = -sign(C_ab)
+        * sign(c_n) (relation R_COS).
+      evidence_status: Cofactor form tested exactly on 6 integer simplices (n=3,4) in this run; the naive
+        sign convention -C_ab/sqrt(C_aa C_bb) FAILED for n=3 and was corrected. certified_dihedral.rs:92
+        gives the equivalent exact normal-Gram triple [aa,bb,ab] for n=4 only (cos^2 = ab^2/(aa bb), sign
+        = sign(ab)); the bridge between the Schur-complement form and the cofactor form is an obligation.
+        dihedral_angles.rs:34/:84 are f64 twins (fenced).
+    - id: dihedral_sin_squared_product
+      inputs:
+      - SqVolume_sigma
+      - SqVolume_h
+      - SqVolume_a
+      - SqVolume_b
+      output: DihedralSinSq
+      arity: 4
+      semantic_predicate: Dihedral-sine product formula (relation R_SIN); checked as sin^2 + cos^2 = 1.
+      evidence_status: 'ABSENT in every source (Rust, Lean, Python); the only sine in the GR crate is
+        metric_hinge_transport.rs:67 sqrt_exact(1 - cos^2), which refuses non-square radicands. Tested
+        exactly on 6 integer simplices in this run. Proof obligation (classical: n V_sigma = V_a * height_a
+        and height_a = ((n-1) V_b / A_h) sin theta_h, or import).'
+    - id: formal_partial_derivative
+      inputs:
+      - Q(x_e) element
+      - Edge e
+      output: Q(x_e) element
+      arity: 2
+      semantic_predicate: Exact partial derivative with respect to one squared edge length.
+      evidence_status: No exact source generator. GR cayley_menger.rs:225 has the analytic f64 formula
+        dV/dx_e = (-1)^(n+1) cof/(2^n (n!)^2 V) (fenced); schlafli.rs:30 and regge_4d.rs:408 are f64 central
+        finite differences (excluded as checkers). Dual-number derivative prototyped only in this run.
+    - id: kuhn_freudenthal_charts
+      inputs:
+      - parent pentatope chart or none
+      output: List of pentatope charts (BigRational coordinates)
+      arity: 1
+      semantic_predicate: Exact Kuhn/Freudenthal simplicial charts; needed as the rational-angle carrier
+        for T2 and the flat background for T3.
+      evidence_status: 'Source-confirmed exact (exercised by bin/regge_4d.rs:147-162). GAP for T3: no
+        generator for the Kuhn triangulation of a hypercube GRID with an interior vertex ([0,2]^4 or [0,2]^3);
+        only a single-pentatope refinement and the boundary of [0,1]^5 exist.'
+    - id: rational_regge_proxy_T4_object
+      inputs:
+      - SimplicialManifold4D
+      - 'defects: list of (triangle, kappa in Q)'
+      output: RationalReggeProxy {action = sum_h A_h^2 kappa_h, holonomy_defect = sum kappa_h, hinge_count}
+      arity: 2
+      semantic_predicate: The squared-area-weighted proxy named in the target (paste name exact_ge_proxy
+        does not exist; actual declaration rational_regge_proxy). It is the T4 near-miss weighting, not
+        a generator of the T1 operad.
+      evidence_status: Source-confirmed exact. TFQ-0100 already records that this proxy is not the Einstein-Hilbert
+        action and that deficit angles are not computed because they are not rational.
+    - id: deficit_angle_colour_only
+      inputs:
+      - Hinge h
+      - dihedral angles theta_(h,sigma) for sigma containing h
+      output: 'Deficit eps_h = 2 pi - sum_sigma theta_(h,sigma) (interior) '
+      arity: 2
+      semantic_predicate: Deficit angle; only its derivative structure enters T2, where it cancels by
+        T1.
+      evidence_status: 'No exact generator: certified_dihedral.rs:252 gives a rational-interval enclosure
+        (n=4, untested, no caller); regge_calculus.rs:287 / regge_4d.rs:120 are f64 acos; regge_deficit_holonomy.rs:165
+        takes declared turns. Kuhn angle set tested in this run through cos^2 in {0, 1/4, 1/2} on one
+        n=3 and one n=4 Kuhn chart.'
+    composition_plan:
+    - 'c01: for each hinge h = (a,b) of sigma: A_h d_e theta_h  -R_DTHETA->  -A_h d_e(cos theta_h)/sin
+      theta_h  -R_SIN->  -((n-1)/n)(V_a V_b / V_sigma) d_e(cos theta_h)  -R_COS,R_COF->  (n/((n-1) V_sigma
+      c_n)) [ d_e C_ab - (C_ab/2)(d_e C_aa/C_aa + d_e C_bb/C_bb) ]; sum over h gives R_T1_RATIONAL; clear
+      prod_c C_cc to get R_T1_POLY.'
+    - 'c02 (T2, unchecked): sum_h A_h d_e eps_h = -sum_sigma sum_{h in sigma} A_h d_e theta_(h,sigma)
+      = 0 by c01 in each sigma, giving R_T2_CANCEL.'
+    gaps:
+    - 'T3: no exact Hessian generator; no Kuhn grid-with-interior-vertex generator (O6).'
+    - 'T4: witness simplex not yet selected (O7).'
+    - certified_dihedral normal-Gram <-> cofactor bridge (O4).
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: MINED_PENDING_HOST_REVIEW
+    algebraic_relations:
+    - R_CM
+    - R_COF
+    - R_COS
+    - R_SIN
+    - R_DTHETA
+    - R_T1_RATIONAL
+    - R_T1_POLY
+    - R_T2_CANCEL
+    - R_KUHN_ANGLES
+    - R_A2_NEARMISS
+    rejection_predicates:
+    - 'Degenerate input: det(B_sigma) = 0 or some C_aa = 0 -> the checker must refuse (no division, no
+      identity claimed).'
+    - 'A_h^2 weighting (T4): the x_h-weighted companion sum is nonzero on a non-equilateral rational-edge
+      tetrahedron while R_e = 0 on the same simplex.'
+    - 'Dropped hinge: R_e minus one summand is generically nonzero (UNTESTED; to be checked in P4 with
+      the same checker).'
+    - 'Perturbed flat configuration claimed flat (T3): detected by the exact Hessian kernel dimension,
+      not by T1.'
+    - 'Missing n/(n-1) in sin theta: NOT detectable by T1 (global constant); detectable by sin^2 + cos^2
+      = 1 (R_SIN) or by T3 values (f04).'
+    negative_control_plan:
+    - Near miss = A_h^2 weighting on a non-equilateral tetrahedron with all six edge lengths rational
+      and strict CM positivity (regular tetrahedron excluded, f05); valid control = R_e = 0 on the same
+      simplex with the same exact checker; both evaluated without square roots.
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: []
-stage_history: []
+    mining_status: MINED_PENDING_HOST_REVIEW
+    certificate_predicates:
+    - 'Lean: for n = 3 and each edge e, P_e(x) == 0 in Z[x_1..x_6] (R_T1_POLY); #print axioms limited
+      to propext, Classical.choice, Quot.sound; no sorry; toolchain bound by the host (O8).'
+    - 'Rust: exact checker over BigRational reusing regge_exact::cayley_menger / gaussian::determinant:
+      R_e(x) = 0 for every edge on declared rational simplices (n = 3, 4); A_h^2 near miss nonzero on
+      the declared witness; refusal on CM = 0; (T3 later) Hessian rank / kernel by exact elimination over
+      Q(sqrt2, sqrt3).'
+    - 'Python: an independent exact re-derivation (fractions + explicit quadratic-field class, or SymPy
+      exact) of R_e, of the near miss, and of the T3 kernel on the same inputs; cross-language equality
+      of every output.'
+    anchors:
+    - PLANNED lean4/ReggeSchlafli.lean (absent on this branch)
+    - *id001
+    - path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/gaussian.rs
+      repository: the_symbol_game
+      sha256: 9df6048a82771c2d0794dd0a00e514f310fd82c31bae4ae19be3031b23ac97f6
+    - path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.py
+      sha256: af02cf6be5f68cc1626a66517bd6d4f74860a6fd43bbd86bc2816e16b33be535
+      role: mining evidence, same author as this delta, not the independent checker
+    - path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/schlafli_rational_form_check.py
+      sha256: fe6c4bc05886a52d0f77e1b07c50a28c75b260fbeef3cd2c0e18ca61ed56ca8f
+      role: mining evidence, same author as this delta, not the independent checker
+    - toolchain_on_this_branch: lean4 leanprover/lean4:v4.33.1 / Mathlib 0df444a360eaa60ab8c11dca51a86af692955474
+      toolchain_in_supplied_contract: 'leanprover/lean4:v4.35.0 / Mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679
+        (PR #137 line)'
+    unpaid_imports:
+    - Cheeger-Mueller-Schrader convergence (cite only; never derived)
+    - 'Classical Schlafli identity (NOT imported: it is the target)'
+    - Euclidean realisability criterion (Gram positive-definite) if used as a hypothesis rather than proved
+    - R_COF and R_SIN until proved (O2)
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/TFQ-0084/runs/20261021T161243Z_staged
+  request: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/request.json
+  raw_response: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/raw_response.json
+  operad_delta: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/operad_delta.yaml
+  host_check: null
+  status: ready_for_host_review (T1 n=3 scope); T2-T4 remain at P0
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
-excluded_relation_leads: []
+- 'O1 (P1 target): prove R_T1_POLY for n = 3 as a polynomial identity in Z[x_1..x_6] (6 edges), then n
+  = 4; choose the Lean strategy (explicit normalisation of a degree <= 14 polynomial vs. a structural
+  proof via facet-normal closure) at host review.'
+- 'O2: prove or import R_COF (diagonal cofactor = facet CM determinant) and R_SIN (dihedral-sine product
+  formula); both are only finite-carrier tested here.'
+- 'O3: pin the exact nondegeneracy hypothesis for T1 as used (prod_c C_cc != 0 and V_sigma != 0 for the
+  algebra; Gram positive-definiteness for the geometric reading) and make the Rust/Python checkers refuse
+  CM = 0 inputs.'
+- 'O4: bridge certified_dihedral.rs:92 normal-Gram triple [aa, bb, ab] (Schur complement, n = 4) to the
+  cofactor form of R_COS, or record that the P1 checkers do not reuse it.'
+- 'O5 (T2): state the hinge/boundary declaration (interior 2 pi vs boundary pi) explicitly and prove R_T2_CANCEL
+  from per-simplex T1 with shared A_h; Lambda stays a declared rational.'
+- 'O6 (T3): no generator exists for the Kuhn triangulation of [0,2]^4 (or [0,2]^3) with an interior vertex,
+  and no exact Hessian generator exists anywhere (quantum_regge.rs takes caller-supplied Hessian data).
+  Both must be written; the carrier is Q(sqrt2, sqrt3).'
+- 'O7 (T4): select a non-equilateral tetrahedron with all six edge lengths rational and strict CM positivity,
+  evaluate sum_h A_h^2 d_e theta_h exactly (nonzero) and R_e (zero) on it.'
+- 'O8 (M4): the supplied checker contract names leanprover/lean4:v4.35.0; this branch (pfp-prompts) pins
+  lean4 at v4.33.1 / Mathlib 0df444a3 and constraint_closure at v4.34.0-rc1; the v4.35.0 / Mathlib 56a00585
+  line lives on PR #137 (pfp-batch-01). The host must bind one toolchain before P1; lean4/ReggeSchlafli.lean
+  does not exist yet.'
+- 'O9 (M4): the two exact scripts in this run were written by the same author as this delta; they are
+  mining evidence, not the independent Python checker the contract requires.'
+- 'O10: the committed prompt dag/prompts/finite_qg_tfq_0084_open.yaml carries only the generic source
+  statement; the sharpened T1-T4 target is recorded in p0/research_target_sharpened.md with clipped fragments
+  marked. Re-issuing the prompt file requires re-hashing its prompt_audit_extension row.'
+- 'O11 (presentation): identity operations, unit laws, partial-composition associativity, symmetric action
+  (S_(n+1) relabelling of vertices acts on x and permutes cofactors) and stability of R_* under grafting
+  are untouched obligations.'
+- 'O12: dag node TFQ-0102 lists GR002.lean / GR002/ReggeDeficit.lean as absent, but both exist locally
+  (papers/core/constraint_closure/lean4/); the annotation is stale (no mathematical effect on this target).'
+excluded_relation_leads:
+- ref: lean4/regge_wdw_core.lean::schlafli_zero_variation
+  reason: vacuous hypothesis (every d eps = 0)
+- ref: code/rust/src/general_relativity/schlafli.rs::verify_schlafli_identity_2d
+  reason: f64 triangle angle sum, not the differential identity
+- ref: code/rust/src/general_relativity/regge_4d.rs::schlafli_differential_4d
+  reason: f64 central difference, no caller, never asserted zero
+scope_notes:
+  sharpened_target: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/research_target_sharpened.md
+  sharpened_target_sha256: cc266230e7f6a671d241e5c7817b779ed4bfb39aa1d38f44c2b77d3f9e1ca015
+  collection_before_mining_sha256: 89da2f21390784f6d5559683d20c3f346a1c1fe2e8d072fb99125f43359a6f61
+  note: Candidates and slots were mined against the sharpened T1-T4 target recorded in the run; the prompt
+    file still carries the generic source statement (O10). Presentation is left for the host review to
+    merge from the run delta.
+latest_run:
+  path: dag/results/TFQ-0084/runs/20261021T161243Z_staged
+  stage: P0_MINE_OPERAD
+  status: p0_mined_ready_for_host_review_T1_n3
+  host_check: pending
