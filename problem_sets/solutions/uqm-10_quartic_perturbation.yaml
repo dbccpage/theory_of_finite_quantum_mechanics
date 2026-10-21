@@ -1,0 +1,100 @@
+schema_version: 1
+problem_id: UQM-10
+title: First-order quartic oscillator shift
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  shift: Delta E_n^(1)=3 lambda (hbar/(2m omega))^2 (2n^2+2n+1)
+  fixture: Delta E0=3/40; Delta E1=3/8; E0 approximately 23/40; E1 approximately 15/8
+derivation:
+- step: 1
+  explanation: Write x=ell(a+a dagger), ell=sqrt(hbar/(2m omega)). First-order nondegenerate perturbation
+    theory gives Delta E_n=lambda <n|x^4|n>. It requires an isolated unperturbed level and a small dimensionless
+    coupling lambda ell^4/(hbar omega).
+- step: 2
+  explanation: 'Apply X=a+a dagger twice: X^2|n>=sqrt(n(n-1))|n-2>+(2n+1)|n>+sqrt((n+1)(n+2))|n+2>. At
+    n=0 or 1 the negative-level term vanishes.'
+- step: 3
+  explanation: Since X is Hermitian, <n|X^4|n> is the squared norm of X^2|n>. Orthogonality therefore
+    gives n(n-1)+(2n+1)^2+(n+1)(n+2)=6n^2+6n+3.
+- step: 4
+  explanation: Multiply by lambda ell^4 to obtain the stated formula. This avoids incorrectly treating
+    a and a dagger as commuting binomial variables.
+- step: 5
+  explanation: In the given units ell^4=1/4. The polynomial values are 3 at n=0 and 15 at n=1. Multiplication
+    by lambda/4 gives 3/40 and 3/8; adding the unperturbed 1/2 and 3/2 gives 23/40 and 15/8.
+- step: 6
+  explanation: These exact rational numbers are exact evaluations of a first-order approximation. Terms
+    of order lambda squared and beyond are omitted. No rigorous remainder bound is inferred from rational
+    arithmetic.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Evaluate the three squared coefficients of X^2|n> and sum them.
+    - Multiply by lambda ell^4 using q.
+    - Name the energy outputs first_order so their interpretation survives serialization.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          lam=q(1,10); shifts=[]
+          for n in (0,1):
+              moment=q(n*(n-1)+(2*n+1)**2+(n+1)*(n+2))
+              shifts.append(lam*q(1,4)*moment)
+          return {"shift_0":str(shifts[0]),"shift_1":str(shifts[1]),
+                  "energy_0_first_order":str(q(1,2)+shifts[0]),"energy_1_first_order":str(q(3,2)+shifts[1])}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Use a signed integer n for n-1 at the ground state.
+    - Convert the polynomial to Q before multiplying by the rational coupling.
+    - Retain the distinction between shifts and total approximate energies.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let lam=qr(1,10).unwrap(); let shifts:Vec<_>=(0_i64..2).map(|n| {
+              let moment=q(n*(n-1)+(2*n+1)*(2*n+1)+(n+1)*(n+2));
+              &lam*qr(1,4).unwrap()*moment }).collect();
+          json!({"shift_0":shifts[0].to_string(),"shift_1":shifts[1].to_string(),
+              "energy_0_first_order":(qr(1,2).unwrap()+&shifts[0]).to_string(),
+              "energy_1_first_order":(qr(3,2).unwrap()+&shifts[1]).to_string()})
+      }
+verification:
+  expected_outputs:
+    shift_0: 3/40
+    shift_1: 3/8
+    energy_0_first_order: 23/40
+    energy_1_first_order: 15/8
+  computational_scope: Exact ladder-moment polynomial and first-order energy estimates for n=0,1.
+  not_established:
+  - No perturbation remainder bound or exact anharmonic spectrum is computed.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- Do not use an ordinary commuting binomial expansion for ladder operators.
+- Exact arithmetic does not turn a perturbative truncation into an exact physical energy.
+improvement_target:
+  gap: A controlled remainder estimate is missing.
+  acceptance_criterion: Compare against certified finite-basis eigenvalue bounds and track basis truncation
+    separately from perturbation order.

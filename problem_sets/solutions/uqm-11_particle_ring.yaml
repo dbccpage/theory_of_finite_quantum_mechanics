@@ -1,0 +1,97 @@
+schema_version: 1
+problem_id: UQM-11
+title: Particle on a ring and angular-momentum degeneracy
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  basis: u_l=exp(i l phi)/sqrt(2pi), l integer; E_l=hbar^2 l^2/(2mR^2)
+  state: psi=cos(2phi)/sqrt(pi)
+  observables: P(Lz=+2hbar)=P(Lz=-2hbar)=1/2; <Lz>=0; Var(Lz)=4hbar^2; E=4E_unit, E_unit=hbar^2/(2mR^2)
+derivation:
+- step: 1
+  explanation: Solving Lz u=lambda u gives an exponential exp(i l phi). Single-valuedness under phi to
+    phi+2pi requires exp(2pi i l)=1 and therefore integer l. Normalize its constant density over a full
+    circle.
+- step: 2
+  explanation: The Hamiltonian squares Lz, so l and -l have identical energy. For l nonzero these are
+    orthogonal states; l=0 is nondegenerate. This degeneracy is a consequence of the specified flux-free
+    model.
+- step: 3
+  explanation: The two selected basis coefficients have equal magnitude. Orthogonality gives their normalized
+    state (u_2+u_-2)/sqrt(2)=cos(2phi)/sqrt(pi). Its density is not uniform even though its energy is
+    sharp.
+- step: 4
+  explanation: A measurement of Lz has outcomes plus or minus 2hbar with equal probabilities. The mean
+    cancels, but the second moment is 4hbar^2, so the variance is nonzero.
+- step: 5
+  explanation: Both components have the same energy 4E_unit, hence evolution produces only a global phase.
+    The standing density and zero mean current are stationary. Zero mean angular momentum does not mean
+    zero kinetic energy.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Build the equal weights as exact rationals.
+    - Compute first and second moments separately.
+    - Use the second moment directly for the kinetic energy in E_unit.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          p=q(1,2); l1,l2=q(2),q(-2)
+          mean=p*l1+p*l2; second=p*l1*l1+p*l2*l2
+          return {"p_plus":str(p),"p_minus":str(p),"mean_L_over_hbar":str(mean),
+                  "variance_L_over_hbar2":str(second-mean*mean),"energy_over_unit":str(second)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Represent signed l values explicitly.
+    - Reuse the second moment in both variance and energy.
+    - Only dimensionless coefficients are serialized; restore units from the answer.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let p=qr(1,2).unwrap(); let l1=q(2); let l2=q(-2);
+          let mean=&p*&l1+&p*&l2; let second=&p*&l1*&l1+&p*&l2*&l2;
+          json!({"p_plus":p.to_string(),"p_minus":p.to_string(),"mean_L_over_hbar":mean.to_string(),
+              "variance_L_over_hbar2":(&second-&mean*&mean).to_string(),"energy_over_unit":second.to_string()})
+      }
+verification:
+  expected_outputs:
+    p_plus: 1/2
+    p_minus: 1/2
+    mean_L_over_hbar: '0'
+    variance_L_over_hbar2: '4'
+    energy_over_unit: '4'
+  computational_scope: Exact moments and energy for two admitted angular-momentum eigenvalues.
+  not_established:
+  - Periodicity quantization and completeness of Fourier modes are analytic inputs.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- The zero mean of Lz does not imply a zero variance.
+- Do not count the l=0 state twice when discussing degeneracy.
+improvement_target:
+  gap: A finite Fourier truncation does not itself establish the continuum ring domain.
+  acceptance_criterion: Document boundary conditions and track mode-cutoff error when adding nonconstant
+    ring potentials.

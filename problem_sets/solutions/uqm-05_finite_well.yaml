@@ -1,0 +1,95 @@
+schema_version: 1
+problem_id: UQM-05
+title: Bound state in a finite square well
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  matching: z tan z=y (even); -z cot z=y (odd); z^2+y^2=p^2, p=a sqrt(2mV0)/hbar
+  root: p=pi/(2sqrt(2)); z=y=pi/4; E=pi^2 hbar^2/(32ma^2)=V0/2
+  wavefunction: psi=C cos(kx) inside; C cos(ka) exp[-kappa(|x|-a)] outside; C^2=1/[a(1+4/pi)]
+derivation:
+- step: 1
+  explanation: For 0<E<V0 define k=sqrt(2mE)/hbar and kappa=sqrt(2m(V0-E))/hbar. Reflection symmetry permits
+    even cos(kx) or odd sin(kx) interior states; square-integrability chooses decaying exponentials outside.
+- step: 2
+  explanation: At x=a the even values match C cos(ka)=B. The derivatives give -C k sin(ka)=-kappa B, hence
+    k tan(ka)=kappa. For the odd state the analogous division gives -k cot(ka)=kappa.
+- step: 3
+  explanation: With z=ka, y=kappa a, both conditions lie on z^2+y^2=p^2. Here p^2=pi^2/8. Taking z=y=pi/4
+    satisfies the circle and tan(pi/4)=1, so E/V0=z^2/p^2=1/2.
+- step: 4
+  explanation: 'Because p<pi/2, there is no odd root: cot z is positive throughout 0<z<p while y is positive,
+    giving opposite signs in -z cot z=y. On this interval z tan z increases from zero and sqrt(p^2-z^2)
+    decreases to zero, so there is exactly one even intersection.'
+- step: 5
+  explanation: The interior norm integral is C^2[a+sin(2ka)/(2k)]. The two exterior tails contribute C^2
+    cos^2(ka)/kappa. At k=kappa=pi/(4a), these terms are C^2 a(1+2/pi) and C^2 a(2/pi), respectively.
+- step: 6
+  explanation: Set their sum to one to obtain C^2=1/[a(1+4/pi)]. The code checks squared dimensionless
+    root coefficients and the energy fraction. The tangent identity, monotonicity and normalization integrals
+    remain explicit analytic reasoning.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Scale z and y by pi to keep the algebra rational.
+    - Recover E/V0 from z squared divided by p squared.
+    - Treat the zero residual as conditional on the displayed trigonometric identity.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          z_over_pi=y_over_pi=q(1,4)
+          p2_over_pi2=z_over_pi*z_over_pi+y_over_pi*y_over_pi
+          return {"p2_over_pi2":str(p2_over_pi2),"energy_fraction":str(z_over_pi*z_over_pi/p2_over_pi2),
+                  "matching_coefficient_residual":str(z_over_pi-y_over_pi)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - qr constructs the dimensionless quarter coefficients.
+    - Compute the circle constraint and fraction without approximating pi.
+    - No decimal root is substituted for an exact matching theorem.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let z=qr(1,4).unwrap(); let y=qr(1,4).unwrap(); let p2=&z*&z+&y*&y;
+          json!({"p2_over_pi2":p2.to_string(),"energy_fraction":(&z*&z/&p2).to_string(),
+              "matching_coefficient_residual":(&z-&y).to_string()})
+      }
+verification:
+  expected_outputs:
+    p2_over_pi2: 1/8
+    energy_fraction: 1/2
+    matching_coefficient_residual: '0'
+  computational_scope: Exact squared root coefficients and energy fraction, conditional on tan(pi/4)=1.
+  not_established:
+  - No general transcendental root finder, root-count proof or normalization integral is run.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- A finite wall permits exterior tails; imposing psi(a)=0 changes the problem.
+- A positive energy here is bound because the exterior threshold is V0.
+improvement_target:
+  gap: Finite-well transcendental root isolation is absent from this calculation.
+  acceptance_criterion: Add certified intervals and parity-separated root counts before claiming a solver
+    for arbitrary well depths.

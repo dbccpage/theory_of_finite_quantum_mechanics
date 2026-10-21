@@ -1,0 +1,109 @@
+schema_version: 1
+problem_id: UQM-13
+title: Angular-momentum measurements in an l=1 state
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  Lz: P(+hbar)=P(-hbar)=1/2; <Lz>=0; Var(Lz)=hbar^2
+  L2: L^2=2hbar^2 with certainty
+  Lx_Ly: P(Lx=+hbar)=P(Lx=-hbar)=1/2; P(Lx=0)=0; Ly psi=0; Var(Lx)=hbar^2; Var(Ly)=0
+derivation:
+- step: 1
+  explanation: Lz is diagonal in the given basis. The two occupied m values have equal weight, so its
+    first moment is zero and its second moment is hbar^2. Every vector in this l=1 subspace is an L^2
+    eigenvector with eigenvalue 2hbar^2.
+- step: 2
+  explanation: Lx=(L_plus+L_minus)/2. The two occupied components each reach |m=0> with the same sign.
+    Their factors sqrt(2) and the normalization combine to give Lx|psi>=hbar|0>. Thus <Lx>=0 and <Lx^2>=hbar^2.
+- step: 3
+  explanation: Ly=(L_plus-L_minus)/(2i). The contributions from m=1 and m=-1 have opposite signs and cancel,
+    so Ly|psi>=0. This is an eigenstate of Ly with eigenvalue zero, even though Lz is uncertain.
+- step: 4
+  explanation: The Lx eigenvectors for eigenvalues plus and minus hbar have components (1,plus or minus
+    sqrt(2),1)/2. Each overlaps psi by 1/sqrt(2). The zero eigenvector (1,0,-1)/sqrt(2) is orthogonal
+    to psi.
+- step: 5
+  explanation: In units of hbar^2 the three second moments sum to 1+0+1=2, matching L^2. The Robertson
+    lower bound Delta Lx Delta Lz >= hbar |<Ly>|/2 is zero, so a zero Ly variance is consistent with the uncertainty relations.
+- step: 6
+  explanation: For exact rational computation the code uses dimensionless Lx^2 and Ly^2 matrices; their
+    sqrt(2) entries have canceled in the products. It checks their action on the unnormalized vector (1,0,1)
+    and divides by its norm squared.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    - path: code/python/src/linear_algebra/matrix.py
+      symbols:
+      - ExactMatrix
+    walkthrough:
+    - Use ExactMatrix for the rational squared operators.
+    - Normalize quadratic forms by the actual squared norm of (1,0,1).
+    - Compare the sum of second moments with l(l+1).
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      from src.linear_algebra.matrix import ExactMatrix
+      def solve():
+          x2=ExactMatrix.from_rows([[q(1,2),0,q(1,2)],[0,1,0],[q(1,2),0,q(1,2)]])
+          y2=ExactMatrix.from_rows([[q(1,2),0,q(-1,2)],[0,1,0],[q(-1,2),0,q(1,2)]])
+          v=[q(1),q(0),q(1)]; norm=sum(t*t for t in v)
+          vx=sum(a*b for a,b in zip(v,x2.mul_vec(v)))/norm
+          vy=sum(a*b for a,b in zip(v,y2.mul_vec(v)))/norm
+          vz=(v[0]*v[0]+v[2]*v[2])/norm
+          return {"var_x_over_hbar2":str(vx),"var_y_over_hbar2":str(vy),"var_z_over_hbar2":str(vz),
+                  "casimir_over_hbar2":str(vx+vy+vz),"p_x_zero":str((v[0]-v[2])**2/(2*norm))}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Expand the quadratic forms into symmetric and antisymmetric combinations.
+    - The plus and minus squared combinations are exact Q computations.
+    - The zero-eigenvalue Lx overlap shares the antisymmetric combination.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let v0=q(1); let v2=q(1); let norm=&v0*&v0+&v2*&v2;
+          let vx=(&v0+&v2)*(&v0+&v2)/(q(2)*&norm);
+          let vy=(&v0-&v2)*(&v0-&v2)/(q(2)*&norm); let vz=(&v0*&v0+&v2*&v2)/&norm;
+          json!({"var_x_over_hbar2":vx.to_string(),"var_y_over_hbar2":vy.to_string(),"var_z_over_hbar2":vz.to_string(),
+              "casimir_over_hbar2":(&vx+&vy+&vz).to_string(),"p_x_zero":vy.to_string()})
+      }
+verification:
+  expected_outputs:
+    var_x_over_hbar2: '1'
+    var_y_over_hbar2: '0'
+    var_z_over_hbar2: '1'
+    casimir_over_hbar2: '2'
+    p_x_zero: '0'
+  computational_scope: Exact squared-operator expectations in the specified state; the angular-momentum
+    representation is supplied analytically.
+  not_established:
+  - The square-root ladder representation and general rotation theory are not formalized here.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- An l=1 state is not a spin-1/2 qubit.
+- The expectation of the commutator can vanish even for noncommuting operators.
+improvement_target:
+  gap: General angular-momentum matrices need an algebraic scalar extension for square roots.
+  acceptance_criterion: Reuse an existing exact extension field and verify ladder identities before broadening
+    beyond this squared-matrix fixture.

@@ -1,0 +1,112 @@
+schema_version: 1
+problem_id: UQM-09
+title: Harmonic oscillator spectrum and the cutoff boundary
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  spectrum: E_n=(n+1/2)hbar omega, n>=0
+  cutoff: diag(a dagger a)=(0,1,2,3); diag(a a dagger)=(1,2,3,0); commutator=(1,1,1,-3)
+  top: Projected H has top energy 7/2; (a a dagger+a dagger a)/2 has top entry 3/2.
+derivation:
+- step: 1
+  explanation: Define a=sqrt(m omega/(2hbar))x+i p/sqrt(2m hbar omega). With the continuum canonical commutator
+    this gives [a,a dagger]=1 and H=hbar omega(a dagger a+1/2). Positivity of a dagger a bounds the spectrum
+    below.
+- step: 2
+  explanation: The normalized ground state obeys a|0>=0. Repeated raising gives a|n>=sqrt(n)|n-1> and
+    a dagger|n>=sqrt(n+1)|n+1>, so N=a dagger a has eigenvalue n and H has the displayed spectrum.
+- step: 3
+  explanation: Project onto four levels. Lowering still gives squared coefficient n. Raising gives n+1
+    for n<3, but on the top state the target lies outside the subspace and is set to zero. Hence the two
+    diagonal products differ at the boundary.
+- step: 4
+  explanation: 'Subtract their diagonals: (1,1,1,-3). Its trace is zero, as required for every finite-matrix
+    commutator. A finite system cannot satisfy [a,a dagger]=I on all four states, since the right side
+    has trace four.'
+- step: 5
+  explanation: The projection of the true H is N+I/2, with top entry 7/2. Reconstructing H instead from
+    the finite products (a a dagger+a dagger a)/2 gives 3/2 at the top. Truncation and use of the infinite
+    commutation identity do not commute.
+- step: 6
+  explanation: The runtime uses squared ladder coefficients, avoiding irrational sqrt(2) and sqrt(3).
+    This suffices for these diagonal products, but it is not an explicit construction of every ladder
+    matrix element over Q.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    - path: code/python/src/qm/textbook_problems.py
+      symbols:
+      - solve_q59_harmonic_oscillator_fock
+    walkthrough:
+    - Compute each commutator entry from the two product diagonals.
+    - Compare with the existing Q59 receipt.
+    - Calculate the two different top energies explicitly.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      from src.qm.textbook_problems import solve_q59_harmonic_oscillator_fock
+      def solve():
+          n=[q(i) for i in range(4)]; aa=[q(1),q(2),q(3),q(0)]
+          comm=[aa[i]-n[i] for i in range(4)]
+          assert solve_q59_harmonic_oscillator_fock()["commutator_diagonal"] == list(map(str,comm))
+          return {"interior_commutator":str(comm[0]),"top_commutator":str(comm[3]),"commutator_trace":str(sum(comm)),
+                  "projected_top_energy":str(n[3]+q(1,2)),"symmetrized_top_energy":str((aa[3]+n[3])/2)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Use Q-valued arrays of squared ladder coefficients.
+    - Fold the commutator trace exactly, exposing the boundary cancellation.
+    - Keep projected and symmetrized Hamiltonian outputs separate.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let n=[q(0),q(1),q(2),q(3)]; let aa=[q(1),q(2),q(3),q(0)];
+          let comm:Vec<_>=(0..4).map(|i|&aa[i]-&n[i]).collect();
+          let trace=comm.iter().fold(q(0),|s,x|s+x);
+          json!({"interior_commutator":comm[0].to_string(),"top_commutator":comm[3].to_string(),
+              "commutator_trace":trace.to_string(),"projected_top_energy":(&n[3]+qr(1,2).unwrap()).to_string(),
+              "symmetrized_top_energy":((&aa[3]+&n[3])/q(2)).to_string()})
+      }
+verification:
+  expected_outputs:
+    interior_commutator: '1'
+    top_commutator: '-3'
+    commutator_trace: '0'
+    projected_top_energy: 7/2
+    symmetrized_top_energy: 3/2
+  computational_scope: Exact four-level diagonal ladder products and the top-level Hamiltonian discrepancy.
+  not_established:
+  - The infinite oscillator representation and completeness of its eigenstates are analytic inputs.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: existing_theorem_referenced
+  references:
+  - path: lean4/FiniteQM.lean
+    symbol: harmonic_oscillator_truncated_fock_ladder_and_boundary_defect
+    scope: Four fixed diagonal commutator entries, trace zero and interior energy spacing. The two top
+      Hamiltonian constructions are explained and calculated separately.
+  boundary: The cited statement supports only the scope written above. The verification report records
+    compilation separately from the analytic solution.
+common_pitfalls:
+- Do not assert an exact canonical commutator on a finite carrier.
+- The top-level defect is required by trace conservation, not a rounding error.
+improvement_target:
+  gap: A cutoff policy must distinguish projected observables from products of projected factors.
+  acceptance_criterion: Add explicit cutoff metadata and tests of both Hamiltonian constructions before
+    using a finite oscillator in dynamics.
