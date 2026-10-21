@@ -1,0 +1,110 @@
+schema_version: 1
+problem_id: UQM-23
+title: Sudden expansion of an infinite square well
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  amplitudes: c_n=4sqrt(2) sin(npi/2)/[pi(4-n^2)] for n != 2; c_2=1/sqrt(2)
+  probabilities: p1=32/(9pi^2); p2=1/2; p3=32/(25pi^2); p4=0
+  energy: <H_new>=E_old_ground; E_new_ground=E_old_ground/4
+derivation:
+- step: 1
+  explanation: The initial normalized wavefunction is sqrt(2/a) sin(pi x/a) on the old interval. The new
+    eigenfunctions are sin(n pi x/(2a))/sqrt(a). Their overlap is c_n=(sqrt(2)/a) integral_0^a sin(pi
+    x/a) sin(n pi x/(2a)) dx.
+- step: 2
+  explanation: Use the product-to-sum identity and integrate the cosines. For n not equal to two, the
+    endpoint sines simplify to give c_n=4sqrt(2) sin(npi/2)/[pi(4-n^2)]. This expression contains the
+    sign information of the amplitude, not just its probability.
+- step: 3
+  explanation: 'At n=2 the formula has a removable zero-over-zero form. Compute the original integral
+    instead: the two sine functions coincide and integral sin^2(pi x/a)dx=a/2, giving c2=1/sqrt(2).'
+- step: 4
+  explanation: Squaring gives p1=32/(9pi^2), p2=1/2, p3=32/(25pi^2) and p4=0. Every other even n also
+    has zero overlap. The full infinite expansion is normalized by completeness, but a list of its first
+    four probabilities sums to less than one.
+- step: 5
+  explanation: The extended wavefunction is continuous and has a square-integrable weak derivative. Its
+    derivative has the old value on (0,a) and vanishes on (a,2a). Therefore the new kinetic quadratic-form
+    expectation equals the old kinetic energy E_old_ground.
+- step: 6
+  explanation: The new ground energy is a quarter of the old one because the well length doubled. Hence
+    the expansion has average n^2 equal to four in the new basis. The kink at a means the extended state
+    need not lie in the new Hamiltonian operator domain; the finite mean energy is correctly understood
+    through its quadratic form.
+- step: 7
+  explanation: The exact code stores pi-dependent probabilities as rational coefficients multiplying 1/pi^2.
+    It neither asserts that a finite partial sum is one nor numerically verifies the infinite Parseval
+    or energy sums.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Compute the n-dependent rational coefficient for odd modes.
+    - Encode n=2 from its separate integral and n=4 from parity.
+    - Keep symbolic pi scaling explicit in each output key.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          coefficients={}
+          for n in (1,3):
+              coefficients[n]=q(32,(4-n*n)**2)
+          return {"p1_times_pi2":str(coefficients[1]),"p2":str(q(1,2)),"p3_times_pi2":str(coefficients[3]),
+                  "p4":str(q(0)),"new_ground_over_old_ground":str(q(1,4)),"mean_energy_over_old_ground":str(q(1))}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Use signed integer mode expressions before constructing exact fractions.
+    - Do not substitute n=2 into the singular expression.
+    - The mean-energy output records the analytic conclusion and is labeled accordingly in scope.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let n1=1_i64; let n3=3_i64;
+          let p1=qr(32,(4-n1*n1)*(4-n1*n1)).unwrap(); let p3=qr(32,(4-n3*n3)*(4-n3*n3)).unwrap();
+          json!({"p1_times_pi2":p1.to_string(),"p2":qr(1,2).unwrap().to_string(),"p3_times_pi2":p3.to_string(),
+              "p4":q(0).to_string(),"new_ground_over_old_ground":qr(1,4).unwrap().to_string(),"mean_energy_over_old_ground":q(1).to_string()})
+      }
+verification:
+  expected_outputs:
+    p1_times_pi2: 32/9
+    p2: 1/2
+    p3_times_pi2: 32/25
+    p4: '0'
+    new_ground_over_old_ground: 1/4
+    mean_energy_over_old_ground: '1'
+  computational_scope: Exact coefficients of the first overlap probabilities. The energy ratio is a recorded
+    analytic consequence, not an independently computed infinite sum.
+  not_established:
+  - The overlap integrals, completeness, sudden approximation and energy-form argument are not machine-verified.
+  - No claim that the displayed finite probabilities sum to one is made.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- Handle n=2 separately instead of dividing by zero.
+- A new ground-state energy does not mean the particle instantly occupies the new ground state.
+improvement_target:
+  gap: There is no certified tail bound for the infinite mode expansion in this example.
+  acceptance_criterion: Bound omitted probability and energy tails separately before reporting truncated
+    sums as approximations with controlled error.

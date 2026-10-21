@@ -1,0 +1,103 @@
+schema_version: 1
+problem_id: UQM-14
+title: Spin-1/2 measurements and uncertainty
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  bloch: (<sigma_x>,<sigma_y>,<sigma_z>)=(0,24/25,-7/25)
+  probabilities: P(+x)=1/2; P(+y)=49/50; P(+z)=9/25
+  variances: Var(Sx)/hbar^2=1/4; Var(Sy)/hbar^2=49/2500; Var(Sz)/hbar^2=144/625; Var(Sx)Var(Sy)=hbar^2
+    <Sz>^2/4
+derivation:
+- step: 1
+  explanation: The squared moduli are 9/25 and 16/25, so the state is normalized. For amplitudes a,b the
+    Pauli means are x=2 Re(a* b), y=2 Im(a* b), z=|a|^2-|b|^2.
+- step: 2
+  explanation: Here a* b=12i/25. Therefore x=0, y=24/25 and z=-7/25. The identity x^2+y^2+z^2=1 checks
+    that the state lies on the pure-state Bloch sphere.
+- step: 3
+  explanation: The positive projector is (I+sigma_j)/2, giving P(+j)=(1+<sigma_j>)/2. In particular the
+    large positive y probability comes from the relative imaginary phase, which a computation using only
+    Sz weights would lose.
+- step: 4
+  explanation: The spin means are hbar/2 times the Bloch components. Since sigma_j squared equals I, Var(S_j)/hbar^2=(1-<sigma_j>^2)/4.
+    This yields the three displayed rational variances.
+- step: 5
+  explanation: 'The commutator [Sx,Sy]=i hbar Sz gives Var(Sx)Var(Sy)>=hbar^2 <Sz>^2/4. Divide by hbar^4:
+    the left side is 49/10000 and the right side z^2/16 is the same. The chosen state saturates this particular
+    bound.'
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Use GaussianRational.conjugate and multiplication for the phase-sensitive cross term.
+    - Derive all component variances from the Pauli-square identity.
+    - Return the difference of both Robertson sides so equality is checked exactly.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          a,b=G(q(3,5)),G(0,q(4,5)); cross=a.conjugate()*b
+          x=2*cross.real; y=2*cross.imag; z=a.norm_sq()-b.norm_sq()
+          vx=(1-x*x)/4; vy=(1-y*y)/4; vz=(1-z*z)/4
+          return {"bloch_x":str(x),"bloch_y":str(y),"bloch_z":str(z),"p_plus_y":str((1+y)/2),
+                  "var_x":str(vx),"var_y":str(vy),"var_z":str(vz),"robertson_residual":str(vx*vy-z*z/16)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Use the existing Involution and Semiring traits, not ad hoc complex multiplication.
+    - Read exact real and imaginary components of the product.
+    - Keep all uncertainty quantities dimensionless until interpreting them with hbar.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let a=G::new(qr(3,5).unwrap(),q(0)).unwrap(); let b=G::new(q(0),qr(4,5).unwrap()).unwrap();
+          let cross=a.try_conj().unwrap().try_mul(&b).unwrap();
+          let x=q(2)*cross.real(); let y=q(2)*cross.imag(); let z=a.norm_sq()-b.norm_sq();
+          let vx=(q(1)-&x*&x)/q(4); let vy=(q(1)-&y*&y)/q(4); let vz=(q(1)-&z*&z)/q(4);
+          json!({"bloch_x":x.to_string(),"bloch_y":y.to_string(),"bloch_z":z.to_string(),"p_plus_y":((q(1)+&y)/q(2)).to_string(),
+              "var_x":vx.to_string(),"var_y":vy.to_string(),"var_z":vz.to_string(),"robertson_residual":(&vx*&vy-&z*&z/q(16)).to_string()})
+      }
+verification:
+  expected_outputs:
+    bloch_x: '0'
+    bloch_y: 24/25
+    bloch_z: -7/25
+    p_plus_y: 49/50
+    var_x: 1/4
+    var_y: 49/2500
+    var_z: 144/625
+    robertson_residual: '0'
+  computational_scope: Exact complex coherence, Pauli expectation values and a saturated variance-product
+    inequality.
+  not_established:
+  - The general Robertson inequality is assumed; this is a check of one state.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- Conjugate the first amplitude in a* b.
+- Pauli means are twice the spin means in hbar units.
+improvement_target:
+  gap: A reusable observable-moment API could remove repeated scalar expansions.
+  acceptance_criterion: Test it against arbitrary Hermitian matrices, complex states and normalization
+    failures.

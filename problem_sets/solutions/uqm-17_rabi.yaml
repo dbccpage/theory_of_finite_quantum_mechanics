@@ -1,0 +1,104 @@
+schema_version: 1
+problem_id: UQM-17
+title: Resonant Rabi oscillations and a rational Cayley point
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  evolution: U=cos(Omega t/2)I-i sin(Omega t/2)sigma_x
+  probability: P_flip=sin^2(Omega t/2)=4tau^2/(1+tau^2)^2
+  fixture: cos(Omega t/2)=7/25; sin(Omega t/2)=24/25; P_flip=576/625; P_survive=49/625
+derivation:
+- step: 1
+  explanation: 'Because sigma_x squared is I, the exponential power series separates into even and odd
+    powers: U=cos(theta)I-i sin(theta)sigma_x with theta=Omega t/2. Applying it to (1,0) gives (cos(theta),-i
+    sin(theta)).'
+- step: 2
+  explanation: The two squared moduli are cos^2(theta) and sin^2(theta). They sum to one; the second is
+    the transition probability and reaches one at a pi pulse Omega t=pi.
+- step: 3
+  explanation: Set tau=tan(theta/2)=tan(Omega t/4). The half-angle formulas give c=(1-tau^2)/(1+tau^2)
+    and s=2tau/(1+tau^2). At tau=3/4 they give 7/25 and 24/25.
+- step: 4
+  explanation: Equivalently U=(I-i tau sigma_x)(I+i tau sigma_x)^-1. This is the exact propagator when
+    tau is related to time by the tangent formula. If tau is instead set to Omega Delta t/4, it is a Cayley
+    numerical approximation to a time step.
+- step: 5
+  explanation: Square c and s to obtain the rational probabilities. The code and existing Q61 theorem
+    check this specific parameter. They do not justify the rotating-wave approximation or assert that
+    tau=3/4 means a particular rational number of seconds.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    - path: code/python/src/qm/textbook_problems.py
+      symbols:
+      - solve_q61_stern_gerlach_and_rabi
+    walkthrough:
+    - Evaluate both half-angle functions from the same tau.
+    - Use the actual imaginary flip amplitude.
+    - Cross-check the probability against the existing Q61 receipt.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      from src.qm.textbook_problems import solve_q61_stern_gerlach_and_rabi
+      def solve():
+          tau=q(3,4); c=(1-tau*tau)/(1+tau*tau); s=2*tau/(1+tau*tau)
+          flip=G(0,-s).norm_sq(); survive=G(c).norm_sq()
+          assert solve_q61_stern_gerlach_and_rabi()["rabi_flip_prob"] == str(flip)
+          return {"c":str(c),"s":str(s),"flip":str(flip),"survive":str(survive),"total":str(flip+survive)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Construct tau with qr and share the positive denominator.
+    - Use GaussianRational::norm_sq for both output amplitudes.
+    - The output total checks unitarity on this initial state.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let tau=qr(3,4).unwrap(); let den=q(1)+&tau*&tau;
+          let c=(q(1)-&tau*&tau)/&den; let s=q(2)*&tau/&den;
+          let flip=G::new(q(0),-&s).unwrap().norm_sq(); let survive=G::new(c.clone(),q(0)).unwrap().norm_sq();
+          json!({"c":c.to_string(),"s":s.to_string(),"flip":flip.to_string(),"survive":survive.to_string(),"total":(&flip+&survive).to_string()})
+      }
+verification:
+  expected_outputs:
+    c: 7/25
+    s: 24/25
+    flip: 576/625
+    survive: 49/625
+    total: '1'
+  computational_scope: Exact Cayley-point amplitudes and Rabi probabilities for the supplied effective
+    Hamiltonian.
+  not_established:
+  - No laboratory drive model, rotating-wave error estimate or general time integration is verified.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: existing_theorem_referenced
+  references:
+  - path: lean4/FiniteQM.lean
+    symbol: stern_gerlach_three_filter_regeneration_and_rabi_cayley_step
+    scope: The fixed tau=3/4 values c=7/25, s=24/25 and their squared-probability sum.
+  boundary: The cited statement supports only the scope written above. The verification report records
+    compilation separately from the analytic solution.
+common_pitfalls:
+- Do not substitute tau for Omega t/2.
+- The imaginary off-diagonal amplitude is relevant even when only its modulus is measured.
+improvement_target:
+  gap: The link between a drive model and the effective Hamiltonian needs an error budget.
+  acceptance_criterion: Separate resonance detuning, rotating-wave error and time-step error in future
+    dynamics checks.

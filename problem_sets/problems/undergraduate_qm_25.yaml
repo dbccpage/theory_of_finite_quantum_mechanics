@@ -1,0 +1,425 @@
+schema_version: 1
+title: Twenty-five standard undergraduate quantum mechanics problems
+collection_id: undergraduate_qm_25
+purpose: Learn standard QM through detailed analytic derivations and paired executable Rust/Python calculations
+  that reuse the existing exact math sources.
+reading_guide:
+- Read the problem statement and assumptions before opening its solution.
+- Each solution contains an analytic answer, numbered derivation, two language walkthroughs and executable
+  code blocks.
+- The expected outputs are handwritten exact targets. The verifier runs both languages and compares every
+  named value.
+- Computational scope and not_established fields distinguish complete finite calculations, formula evaluations,
+  recorded symbolic coefficients and continuum assumptions.
+- Lean references are existing scoped statements. Compilation status lives in the verification report;
+  none is presented as a proof of all 25 continuum derivations.
+- Each improvement_target describes a concrete extension and an acceptance criterion. These are proposed
+  follow-up work, not implemented features.
+layout:
+  problems: This single YAML contains all 25 problem definitions.
+  solutions: One YAML per problem, each containing both Rust and Python solutions.
+  results: All runner code, generated source, logs, outputs and verification receipts are under problem_sets/results/undergraduate_qm_25.
+reproduction:
+  command: python -B problem_sets/results/undergraduate_qm_25/verify.py
+  requirements:
+  - Python >=3.10 with PyYAML; run against the checked-out repository sources.
+  - Rust cargo and cached num-bigint, num-rational, num-traits, num-integer, serde, serde_json, thiserror
+    and blake3 crates.
+  - The Rust runner directly includes code/rust/src/linear_algebra/scalars.rs by path; it does not copy
+    or replace that math source.
+  - Lean 4.33.1 is needed only for the optional --lean check of the existing referenced source modules.
+  lean_command: python -B problem_sets/results/undergraduate_qm_25/verify.py --lean
+  result: problem_sets/results/undergraduate_qm_25/verification.json
+evidence_policy: Exact arithmetic means exact evaluation under the specified model. It does not remove
+  physical approximations, establish continuum limits, or upgrade a fixed witness to a general theorem.
+problems:
+- id: UQM-01
+  title: Normalize a state and predict an energy measurement
+  area: States and measurement
+  level: Undergraduate quantum mechanics
+  statement: An orthonormal energy basis has H|0> = 0 and H|1> = 3 epsilon |1>, with epsilon > 0. The
+    unnormalized state is |chi> = (1+i)|0> + 2|1>. Find its normalized ray, the energy distribution, mean
+    and variance, and the probability of recovering the initial state after a relative phase pi.
+  assumptions:
+  - The basis is orthonormal and the state is pure.
+  - Measurements are ideal projective measurements.
+  - The relative phase is 3 epsilon t/hbar.
+  tasks:
+  - Normalize and compute Born probabilities.
+  - Compute the first two energy moments.
+  - Derive the survival probability as a function of time and evaluate phase pi.
+  solution: problem_sets/solutions/uqm-01_born_energy.yaml
+- id: UQM-02
+  title: Free Gaussian wave packet and uncertainty
+  area: Wave mechanics
+  level: Undergraduate quantum mechanics
+  statement: At t=0 a free particle has psi(x)=(2 pi sigma^2)^(-1/4) exp[-x^2/(4 sigma^2)+i k0 x]. Derive
+    its position and momentum variances and its spreading law. Evaluate with hbar=m=sigma=1, k0=3/2 and
+    t=2.
+  assumptions:
+  - The particle moves on the entire real line; m,sigma,hbar are positive.
+  - The Hamiltonian is p^2/(2m), with p=-i hbar d/dx.
+  - The Gaussian has no initial quadratic phase (zero symmetrized position-momentum covariance).
+  tasks:
+  - Verify normalization and initial uncertainty.
+  - Propagate the first two moments.
+  - Explain why uncertainty grows even though momentum variance is constant.
+  solution: problem_sets/solutions/uqm-02_gaussian_packet.yaml
+- id: UQM-03
+  title: Infinite square well and a finite Dirichlet model
+  area: Bound states
+  level: Undergraduate quantum mechanics
+  statement: A particle is confined to 0<x<L by infinite walls. Find the normalized stationary states
+    and energies, the ground-state probability in the middle half of the well, and the eigenvalues of
+    the three-interior-site Dirichlet matrix D=[[2,-1,0],[-1,2,-1],[0,-1,2]]. Explain how this matrix
+    relates to the continuum problem.
+  assumptions:
+  - m,L,hbar>0 and Dirichlet boundary values vanish.
+  - For three interior sites the spacing is h=L/4.
+  - The finite Hamiltonian is hbar^2 D/(2m h^2).
+  tasks:
+  - Solve the boundary-value problem.
+  - Integrate the ground-state density between L/4 and 3L/4.
+  - Check D on its middle mode and distinguish discrete from continuum energies.
+  solution: problem_sets/solutions/uqm-03_infinite_well.yaml
+- id: UQM-04
+  title: Position beating in a two-level square-well superposition
+  area: Time evolution
+  level: Undergraduate quantum mechanics
+  statement: In the infinite well 0<x<L prepare psi(x,0)=[phi_1(x)+phi_2(x)]/sqrt(2), with real normalized
+    sine eigenfunctions. Derive the density and <x>(t); find the energy probabilities and beating frequency.
+  assumptions:
+  - Use the infinite-well eigenfunctions from UQM-03.
+  - The state evolves under the static well Hamiltonian without measurement.
+  tasks:
+  - Retain the interference term in the density.
+  - Evaluate the off-diagonal position matrix element.
+  - Compare stationary energy probabilities with oscillating position.
+  solution: problem_sets/solutions/uqm-04_well_beating.yaml
+- id: UQM-05
+  title: Bound state in a finite square well
+  area: Bound states
+  level: Undergraduate quantum mechanics
+  statement: Let V(x)=0 for |x|<a and V(x)=V0 outside, with V0=pi^2 hbar^2/(16ma^2). Find the bound-state
+    matching equations and show that the unique bound state has E=V0/2. Normalize its even wavefunction.
+  assumptions:
+  - a,m,hbar>0; the exterior wavefunction must decay.
+  - Potential and mass are piecewise constant with no delta terms.
+  - The continuum Schrödinger equation and continuity of psi and psi prime are assumed.
+  tasks:
+  - Derive even and odd matching conditions.
+  - Locate and count the roots for this depth.
+  - Normalize the interior and both exterior tails.
+  solution: problem_sets/solutions/uqm-05_finite_well.yaml
+- id: UQM-06
+  title: Reflection and transmission at a potential step
+  area: Scattering
+  level: Undergraduate quantum mechanics
+  statement: A wave of unit incident amplitude meets a step from V=0 to V=V0 at x=0, with E>V0 and wave
+    numbers kL=2 k_star, kR=k_star. Derive r,t and the reflected and transmitted current fractions.
+  assumptions:
+  - Equal positive mass on both sides and k_star>0.
+  - Only a right-moving transmitted wave exists on the right.
+  - Probability current is j=(hbar/m) Im(psi* psi prime).
+  tasks:
+  - Match the wavefunction and derivative.
+  - Distinguish transmission amplitude from transmission probability.
+  - Check conservation of current.
+  solution: problem_sets/solutions/uqm-06_potential_step.yaml
+- id: UQM-07
+  title: Tunneling through a rectangular barrier
+  area: Scattering
+  level: Undergraduate quantum mechanics
+  statement: A barrier V0 on 0<x<a has free space on both sides. Take E=V0/2, so the exterior k equals
+    the interior decay constant kappa, and choose kappa a=ln(2). Derive transmission and reflection and
+    verify the flux metric of a transfer matrix.
+  assumptions:
+  - 0<E<V0 and equal masses in all regions.
+  - Incoming and outgoing amplitudes are referred to the two boundary faces.
+  - A channel phase convention may change transfer-matrix phases without changing R or T.
+  tasks:
+  - Use boundary matching to obtain the sub-barrier transmission formula.
+  - Evaluate the matched case exactly.
+  - 'Check more than determinant one: verify M dagger J M=J.'
+  solution: problem_sets/solutions/uqm-07_barrier_tunneling.yaml
+- id: UQM-08
+  title: The attractive delta-function bound state
+  area: Bound states
+  level: Undergraduate quantum mechanics
+  statement: For H=-(hbar^2/2m)d^2/dx^2-g delta(x), with g>0, derive the normalized bound state and energy.
+    Check the derivative jump with hbar=m=1 and g=2.
+  assumptions:
+  - The wavefunction is continuous at zero.
+  - The delta interaction is defined by its derivative-jump boundary condition.
+  - m,hbar>0 and the state is square-integrable.
+  tasks:
+  - Derive the jump condition by integrating the equation.
+  - Determine the decay constant and energy.
+  - Normalize both tails and explain uniqueness.
+  solution: problem_sets/solutions/uqm-08_delta_bound_state.yaml
+- id: UQM-09
+  title: Harmonic oscillator spectrum and the cutoff boundary
+  area: Harmonic oscillator
+  level: Undergraduate quantum mechanics
+  statement: Derive the harmonic-oscillator spectrum from ladder operators. Then truncate to |0>,...,|3>,
+    set the raising operator to zero on |3>, and compute the diagonal of [a,a dagger]. Explain what happens
+    to the symmetrized Hamiltonian at the top level.
+  assumptions:
+  - The continuum oscillator has m,omega,hbar>0 and its usual square-integrable domain.
+  - The finite raising/lowering matrices are projections of the ladder action.
+  - Energies in the fixture are divided by hbar omega.
+  tasks:
+  - Obtain E_n=(n+1/2)hbar omega.
+  - Compute the cutoff commutator.
+  - Distinguish projected H from a finite symmetrized ladder Hamiltonian.
+  solution: problem_sets/solutions/uqm-09_oscillator_ladder.yaml
+- id: UQM-10
+  title: First-order quartic oscillator shift
+  area: Approximation methods
+  level: Undergraduate quantum mechanics
+  statement: Add a weak perturbation lambda x^4 to the harmonic oscillator. Derive the first-order energy
+    shift for level n and evaluate the ground and first excited shifts for hbar=m=omega=1 and lambda=1/10.
+  assumptions:
+  - lambda>0 is small compared with the oscillator energy and length scales.
+  - Use unperturbed normalized oscillator eigenstates.
+  - The stated energies are first-order approximations, not exact eigenvalues.
+  tasks:
+  - Evaluate <n|x^4|n> with ladder operators.
+  - Obtain the n-dependent shift.
+  - Compute two explicit approximate energies.
+  solution: problem_sets/solutions/uqm-10_quartic_perturbation.yaml
+- id: UQM-11
+  title: Particle on a ring and angular-momentum degeneracy
+  area: Angular momentum
+  level: Undergraduate quantum mechanics
+  statement: A spinless particle of mass m moves on a ring of radius R with no magnetic flux. Find its
+    stationary states and energies. For psi(phi) proportional to exp(2i phi)+exp(-2i phi), find the angular-momentum
+    distribution, mean, variance and energy.
+  assumptions:
+  - phi is periodic with period 2pi; normalize with measure dphi.
+  - H=Lz^2/(2mR^2), Lz=-i hbar d/dphi.
+  - m,R,hbar>0 and there is no flux-induced boundary twist.
+  tasks:
+  - Impose periodicity.
+  - Explain the plus/minus angular-momentum degeneracy.
+  - Analyze the standing-wave superposition.
+  solution: problem_sets/solutions/uqm-11_particle_ring.yaml
+- id: UQM-12
+  title: Hydrogen levels, quantum numbers and Lyman alpha
+  area: Atomic physics
+  level: Undergraduate quantum mechanics
+  statement: For nonrelativistic hydrogen with reduced mass mu and Coulomb potential -e^2/(4pi epsilon0
+    r), derive the bound-state energy formula, list the spatial degeneracy at n=3, and compute the n=2
+    to n=1 photon energy in Hartree units.
+  assumptions:
+  - Ignore spin, fine structure, Lamb shift and external fields.
+  - Use a0=4pi epsilon0 hbar^2/(mu e^2) and E_H=hbar^2/(mu a0^2).
+  - The radial wavefunction is regular at the origin and square-integrable at infinity.
+  tasks:
+  - Explain how the radial quantization condition arises.
+  - Count allowed l,m values.
+  - Compute the emitted photon energy and relate it to frequency.
+  solution: problem_sets/solutions/uqm-12_hydrogen_levels.yaml
+- id: UQM-13
+  title: Angular-momentum measurements in an l=1 state
+  area: Angular momentum
+  level: Undergraduate quantum mechanics
+  statement: In the l=1 subspace prepare |psi>=(|m=1>+|m=-1>)/sqrt(2). Find the Lz and L^2 outcomes, the
+    Lx distribution, and the variances of all three components.
+  assumptions:
+  - Use the conventional phases L_plus|l,m>=hbar sqrt(l(l+1)-m(m+1))|l,m+1>.
+  - The basis order is (m=1,0,-1).
+  - No spin degree of freedom is present.
+  tasks:
+  - Compute diagonal measurements.
+  - Apply Lx and Ly to the state.
+  - Resolve the Lx probabilities and check the angular-momentum sum rule.
+  solution: problem_sets/solutions/uqm-13_orbital_measurement.yaml
+- id: UQM-14
+  title: Spin-1/2 measurements and uncertainty
+  area: Spin
+  level: Undergraduate quantum mechanics
+  statement: A normalized spinor in the Sz basis is |psi>=(3/5)|+z>+(4i/5)|-z>. Find the probabilities
+    of the positive outcomes of Sx,Sy,Sz, the three means and variances, and test the Sx,Sy Robertson
+    bound.
+  assumptions:
+  - S_j=(hbar/2)sigma_j with the conventional Pauli matrices.
+  - sigma_y=[[0,-i],[i,0]].
+  tasks:
+  - Compute the Bloch vector.
+  - Convert it into probabilities and spin moments.
+  - Check the variance-product inequality.
+  solution: problem_sets/solutions/uqm-14_spin_measurement.yaml
+- id: UQM-15
+  title: Three Stern-Gerlach filters
+  area: Spin and measurement
+  level: Undergraduate quantum mechanics
+  statement: Start with a normalized |+z> beam. Compare the transmitted fraction through a final -z filter
+    with the fraction when a +x filter is inserted before it. Give both the joint fraction relative to
+    the prepared beam and the conditional fraction after +x succeeds.
+  assumptions:
+  - Each filter selects one ideal projective outcome and discards the other.
+  - All fractions are relative to the prepared +z beam unless stated otherwise.
+  tasks:
+  - Write the projectors in the z basis.
+  - Compute the unnormalized transmitted vectors.
+  - Distinguish joint from conditional probabilities.
+  solution: problem_sets/solutions/uqm-15_stern_gerlach.yaml
+- id: UQM-16
+  title: Larmor precession in a static field
+  area: Spin dynamics
+  level: Undergraduate quantum mechanics
+  statement: Let H=(hbar omega/2)sigma_z and prepare |+x>. Derive the spin expectation values in time.
+    Evaluate the probabilities and Bloch vector when cos(omega t)=3/5 and sin(omega t)=4/5.
+  assumptions:
+  - The Hamiltonian sign is explicitly positive as written.
+  - Evolution is unitary with no relaxation.
+  - The specified sine is positive, fixing the phase quadrant.
+  tasks:
+  - Evolve the two energy amplitudes.
+  - Compute the rotating Bloch vector.
+  - Check norm and the probability of recovering +x.
+  solution: problem_sets/solutions/uqm-16_larmor.yaml
+- id: UQM-17
+  title: Resonant Rabi oscillations and a rational Cayley point
+  area: Driven two-level systems
+  level: Undergraduate quantum mechanics
+  statement: In a resonant rotating frame take H_eff=(hbar Omega/2)sigma_x and initial |+z>. Derive the
+    flip probability. Evaluate it at tau=tan(Omega t/4)=3/4 using the Cayley parametrization.
+  assumptions:
+  - The effective Hamiltonian is constant.
+  - For a physical driven atom, resonance and the rotating-wave approximation are assumptions.
+  - tau is an exact half-angle parameter; it is not equal to physical time.
+  tasks:
+  - Exponentiate the Pauli Hamiltonian.
+  - Convert to rational half-angle functions.
+  - Explain the difference between exact parametrization and a numerical Cayley time step.
+  solution: problem_sets/solutions/uqm-17_rabi.yaml
+- id: UQM-18
+  title: Addition of two spin-1/2 particles and exchange
+  area: Composite systems
+  level: Undergraduate quantum mechanics
+  statement: For two distinguishable spin-1/2 particles derive the singlet and triplet states. With H=J
+    S1 dot S2/hbar^2, find their energies and the exchange eigenvalues. Check the singlet projector.
+  assumptions:
+  - J is a real energy parameter.
+  - The product basis is (up up, up down, down up, down down).
+  - No identical-particle spatial symmetry is imposed in this problem.
+  tasks:
+  - Construct total-spin eigenstates.
+  - Use the total Casimir to derive exchange energies.
+  - Verify projector idempotence and its rank through the trace.
+  solution: problem_sets/solutions/uqm-18_two_spins.yaml
+- id: UQM-19
+  title: Two identical particles in a box
+  area: Identical particles
+  level: Undergraduate quantum mechanics
+  statement: Place two noninteracting identical particles in the same one-dimensional infinite well. Compare
+    the ground spatial wavefunctions and energies for spinless bosons and for spin-polarized fermions.
+    Express energies in units E1=pi^2 hbar^2/(2mL^2).
+  assumptions:
+  - Both particles have the same mass and occupy the same well.
+  - The interaction is zero, so H=H1+H2.
+  - The fermion spin factor is symmetric because both spins are polarized identically.
+  tasks:
+  - Apply exchange symmetry to orbital occupations.
+  - Normalize the fermion Slater determinant.
+  - Compare energy and coincidence probability.
+  solution: problem_sets/solutions/uqm-19_identical_particles.yaml
+- id: UQM-20
+  title: Nondegenerate perturbation theory in two levels
+  area: Approximation methods
+  level: Undergraduate quantum mechanics
+  statement: For H(lambda)=[[1,lambda],[lambda,3]] in energy units epsilon=1, derive the second-order
+    energies and first-order ground-state correction. Compare with the exact spectrum and evaluate at
+    lambda=1/2.
+  assumptions:
+  - lambda is real; the perturbation expansion is about lambda=0.
+  - The unperturbed gap is 2.
+  - The chosen lambda is a finite comparison fixture, not an asymptotic error bound.
+  tasks:
+  - Use perturbation formulas with the correct denominator sign.
+  - Diagonalize the matrix analytically.
+  - Measure the residual of the approximate energy in the exact characteristic polynomial.
+  solution: problem_sets/solutions/uqm-20_nondegenerate_perturbation.yaml
+- id: UQM-21
+  title: Degenerate perturbation theory and the Stark doublet
+  area: Approximation methods
+  level: Undergraduate quantum mechanics
+  statement: An exactly degenerate pair |a>,|b> has energy E0. The perturbation restricted to this subspace
+    is [[0,-w],[-w,0]]. Find the correct zeroth-order combinations and first-order split energies. Evaluate
+    the block at E0=-1/8 and w=3/10 in atomic energy units, and explain its relation to the hydrogen n=2
+    Stark effect.
+  assumptions:
+  - The displayed 2 by 2 block is the mathematical model being diagonalized.
+  - For hydrogen, omitted states and higher-order field corrections are neglected.
+  - The fixture w=3/10 is an algebraic example and is not claimed to be a weak-field hydrogen regime.
+  tasks:
+  - Explain why nondegenerate denominators fail.
+  - Diagonalize the perturbation within the degenerate space.
+  - Separate exact block diagonalization from a physical first-order approximation.
+  solution: problem_sets/solutions/uqm-21_degenerate_stark.yaml
+- id: UQM-22
+  title: Variational estimate for the hydrogen ground state
+  area: Approximation methods
+  level: Undergraduate quantum mechanics
+  statement: In atomic units H=-one_half times the Laplacian -1/r. Use the normalized spherical trial
+    family psi_alpha(r)=sqrt(alpha^3/pi) exp(-alpha r), alpha>0. Derive the energy functional, minimize
+    it, and evaluate the trial energy at alpha=3/4.
+  assumptions:
+  - Atomic units use hbar=mu=e^2/(4pi epsilon0)=1.
+  - The trial functions belong to the quadratic-form domain and are normalized.
+  - The Rayleigh-Ritz variational principle is assumed.
+  tasks:
+  - Verify normalization and kinetic/potential terms.
+  - Minimize without numerical optimization.
+  - Interpret the upper bound and its equality case.
+  solution: problem_sets/solutions/uqm-22_variational_hydrogen.yaml
+- id: UQM-23
+  title: Sudden expansion of an infinite square well
+  area: Sudden approximation
+  level: Undergraduate quantum mechanics
+  statement: A particle starts in the ground state of 0<x<a. The right wall suddenly moves to 2a. Find
+    the amplitudes in the new well basis, the first few probabilities, and the new mean energy relative
+    to the old ground energy.
+  assumptions:
+  - The wall moves on a timescale much shorter than the initial dynamical timescale.
+  - Immediately after the quench the wavefunction is unchanged on 0<x<a and zero on a<x<2a.
+  - The new Hamiltonian is the Dirichlet kinetic operator on 0<x<2a.
+  tasks:
+  - Compute overlap integrals and the removable special case n=2.
+  - List n=1,2,3,4 probabilities.
+  - Use the energy quadratic form and distinguish partial probability sums from normalization.
+  solution: problem_sets/solutions/uqm-23_sudden_expansion.yaml
+- id: UQM-24
+  title: Bell-state entanglement and a reduced density matrix
+  area: Composite systems
+  level: Undergraduate quantum mechanics
+  statement: For |Phi+>=(|00>+|11>)/sqrt(2), compute the full density matrix, the reduced state of either
+    qubit, their purities, and the XX,YY,ZZ correlations. Explain why a mixed subsystem does not imply
+    a mixed joint state.
+  assumptions:
+  - The product basis order is (00,01,10,11).
+  - Use the ordinary tensor-product composition rule and the partial trace.
+  - Pauli Y=[[0,-i],[i,0]].
+  tasks:
+  - Construct the pure-state projector.
+  - Trace out the second subsystem.
+  - Compute correlations and compare local and joint information.
+  solution: problem_sets/solutions/uqm-24_bell_reduction.yaml
+- id: UQM-25
+  title: Mach-Zehnder interference and loss of coherence
+  area: Interference
+  level: Undergraduate quantum mechanics
+  statement: An ideal two-path interferometer applies B, then a phase diag(1,exp(i phi)), then B, with
+    B=(1/sqrt(2))[[1,1],[1,-1]]. The input is path |0>. Find the output probabilities. Evaluate exp(i
+    phi)=3/5+4i/5, then compare complete dephasing between the beam splitters.
+  assumptions:
+  - B is a stated beam-splitter phase convention.
+  - The phase element is lossless.
+  - Complete dephasing removes the off-diagonal path coherence while preserving both path populations.
+  tasks:
+  - Propagate amplitudes through both beam splitters.
+  - Derive the interference probabilities.
+  - Compute the completely dephased outputs and explain the difference.
+  solution: problem_sets/solutions/uqm-25_mach_zehnder.yaml

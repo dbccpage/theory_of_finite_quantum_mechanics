@@ -1,0 +1,114 @@
+schema_version: 1
+problem_id: UQM-21
+title: Degenerate perturbation theory and the Stark doublet
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  states: (|a>+|b>)/sqrt(2) has energy E0-w; (|a>-|b>)/sqrt(2) has energy E0+w
+  fixture: E_lower=-17/40; E_upper=7/40; splitting=3/5
+  hydrogen: For the 2s,2p_z block, a phase convention gives |w|=3 e a0 |electric_field|. The m=plus/minus
+    1 states have zero first-order shift in this model.
+derivation:
+- step: 1
+  explanation: Nondegenerate perturbation theory tries to divide by E_a-E_b=0. This signals the need to
+    choose a new basis inside the degenerate eigenspace before applying higher-order formulas.
+- step: 2
+  explanation: Write a candidate vector c_a|a>+c_b|b>. The secular equations -w c_b=delta E c_a and -w
+    c_a=delta E c_b imply delta E squared=w squared. For positive w the symmetric combination has shift
+    -w and the antisymmetric one +w.
+- step: 3
+  explanation: Their coefficient vectors (1,1) and (1,-1) are orthogonal and have squared norm two. Adding
+    E0 I changes the eigenvalues without changing the eigenvectors. The splitting is 2w for the stated
+    positive fixture.
+- step: 4
+  explanation: In hydrogen the electric dipole operator connects 2s and 2p_z while parity makes the diagonal
+    matrix elements vanish. The magnitude 3 e a0 times the field comes from a separate radial-angular
+    integral; this exercise takes that matrix element as supplied, rather than claiming to compute it.
+- step: 5
+  explanation: At E0=-1/8 and w=3/10, exact block arithmetic gives -17/40 and 7/40. The positive upper
+    value is a warning against interpreting this large fixture as a controlled bound-state hydrogen prediction.
+- step: 6
+  explanation: The two eigenvalues are exact for the displayed finite matrix. Their role as first-order
+    shifts of a larger atom relies on weak field, the neglected couplings, and the validity of the supplied
+    matrix element. The code checks eigenvector residuals within the block only.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    - path: code/python/src/linear_algebra/matrix.py
+      symbols:
+      - ExactMatrix
+    walkthrough:
+    - Construct the supplied block with ExactMatrix.
+    - Check both symmetric and antisymmetric eigenvectors.
+    - Sum squared residuals over every component and both eigenvectors.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      from src.linear_algebra.matrix import ExactMatrix
+      def solve():
+          e0,w=q(-1,8),q(3,10); low=e0-w; high=e0+w
+          h=ExactMatrix.from_rows([[e0,-w],[-w,e0]])
+          residual=q(0)
+          for vec,e in [([q(1),q(1)],low),([q(1),q(-1)],high)]:
+              residual += sum((a-e*b)**2 for a,b in zip(h.mul_vec(vec),vec))
+          return {"lower":str(low),"upper":str(high),"splitting":str(high-low),"eigenvector_residual":str(residual)}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Evaluate both rows of the block on each unnormalized eigenvector.
+    - Keep the symmetric state attached to E0-w for the chosen negative off-diagonal sign.
+    - Use exact fractions for the displayed splitting.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let e0=qr(-1,8).unwrap(); let w=qr(3,10).unwrap(); let low=&e0-&w; let high=&e0+&w;
+          let mut residual=q(0);
+          for (v,e) in [([q(1),q(1)],low.clone()),([q(1),q(-1)],high.clone())] {
+              let d0=&e0*&v[0]-&w*&v[1]-&e*&v[0]; let d1=-&w*&v[0]+&e0*&v[1]-&e*&v[1];
+              residual += &d0*&d0+&d1*&d1;
+          }
+          json!({"lower":low.to_string(),"upper":high.to_string(),"splitting":(&high-&low).to_string(),"eigenvector_residual":residual.to_string()})
+      }
+verification:
+  expected_outputs:
+    lower: -17/40
+    upper: 7/40
+    splitting: 3/5
+    eigenvector_residual: '0'
+  computational_scope: Exact diagonalization of the displayed degenerate two-state block.
+  not_established:
+  - The hydrogen dipole integral, weak-field error and full n=2 manifold are not computed.
+  - The large fixture is not a prediction of a stable hydrogen bound state.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: existing_theorem_referenced
+  references:
+  - path: lean4/FiniteQM.lean
+    symbol: rayleigh_schrodinger_perturbation_and_degenerate_stark_splitting
+    scope: Fixed E0,w and splitting arithmetic in a supplied block; it does not prove the hydrogen dipole
+      integral or a physical error bound.
+  boundary: The cited statement supports only the scope written above. The verification report records
+    compilation separately from the analytic solution.
+common_pitfalls:
+- Never use the zero unperturbed gap as a denominator.
+- Exact finite-block arithmetic does not control omitted atomic states.
+improvement_target:
+  gap: The dipole matrix element and truncation error are external inputs.
+  acceptance_criterion: Require a radial-angular integral certificate and a field-size validity criterion
+    before treating this as a full Stark solver.

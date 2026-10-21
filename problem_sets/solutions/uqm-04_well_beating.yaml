@@ -1,0 +1,96 @@
+schema_version: 1
+problem_id: UQM-04
+title: Position beating in a two-level square-well superposition
+problem_file: problem_sets/problems/undergraduate_qm_25.yaml
+conventions:
+  arithmetic: q/qr construct exact rational numbers; G is the existing Gaussian-rational scalar.
+  outputs: All executable output values are exact rational strings. Symbolic pi, roots, exponentials and
+    integrals are explained in the derivation; they are not rationalized.
+  runtime: Run the collection verifier from the repository root; it executes these exact YAML code blocks.
+    Rust blocks are modules in the generated runner, with crate::scalars linked to the existing source
+    file.
+analytic_answer:
+  density: '|psi|^2=(phi_1^2+phi_2^2)/2+phi_1 phi_2 cos(omega t)'
+  position: <x>(t)=L/2-16L/(9 pi^2) cos(omega t)
+  frequency: omega=(E2-E1)/hbar=3 pi^2 hbar/(2mL^2); P(E1)=P(E2)=1/2
+derivation:
+- step: 1
+  explanation: Each eigenstate acquires exp(-i E_n t/hbar). Expanding the squared modulus produces the
+    two diagonal terms and a real cross term proportional to cos[(E2-E1)t/hbar]. The global phase exp(-i
+    E1 t/hbar) has no effect.
+- step: 2
+  explanation: The diagonal position expectation is L/2 for each sine mode, by reflection symmetry about
+    the center. The off-diagonal integral is x12=(2/L) integral_0^L x sin(pi x/L) sin(2 pi x/L) dx.
+- step: 3
+  explanation: Apply 2 sin A sin B=cos(A-B)-cos(A+B). Then x12=(1/L) integral x[cos(pi x/L)-cos(3 pi x/L)]
+    dx. The endpoint integral for odd k is -2L^2/(k^2 pi^2).
+- step: 4
+  explanation: Consequently x12/L=-2/pi^2+2/(9pi^2)=-16/(9pi^2). The two equal superposition coefficients
+    give cross contribution x12 cos(omega t), leading to the stated <x>.
+- step: 5
+  explanation: The energy probabilities depend only on the fixed coefficient moduli and stay one half
+    each. Position has off-diagonal matrix elements and therefore oscillates; this distinguishes a coherent
+    superposition from an incoherent equal mixture.
+- step: 6
+  explanation: The code checks the exact coefficient -2(1-1/9) and the energy-gap ratio 4-1=3. It does
+    not numerically integrate the sine functions; those integrals are the explicit analytic bridge.
+solutions:
+  python:
+    existing_sources:
+    - path: code/python/src/linear_algebra/scalars.py
+      symbols:
+      - q
+      - GaussianRational
+    walkthrough:
+    - Translate the two endpoint integrals into exact rational coefficients.
+    - Compute the energy gap in units of E1 using n^2.
+    - Read the coefficient as multiplying L/pi^2, not as a length by itself.
+    code: |
+      from src.linear_algebra.scalars import q, GaussianRational as G
+      def solve():
+          x12_coefficient=-2*(q(1)-q(1,9))
+          return {"x12_pi2_over_L":str(x12_coefficient),"gap_over_E1":str(q(4)-q(1)),
+                  "p_E1":str(q(1,2)),"p_E2":str(q(1,2))}
+  rust:
+    existing_sources:
+    - path: code/rust/src/linear_algebra/scalars.rs
+      symbols:
+      - q
+      - qr
+      - GaussianRational
+    walkthrough:
+    - Use qr for 1/9 so no integer division can erase the second term.
+    - Evaluate the same endpoint subtraction with exact Q arithmetic.
+    - The output leaves the physical frequency scale to the analytic formula.
+    code: |
+      use crate::scalars::{q, qr, GaussianRational as G, Semiring, Ring, Field, Involution};
+      use serde_json::{json, Value};
+      pub fn solve() -> Value {
+          let cross=q(-2)*(q(1)-qr(1,9).unwrap());
+          json!({"x12_pi2_over_L":cross.to_string(),"gap_over_E1":(q(4)-q(1)).to_string(),
+              "p_E1":qr(1,2).unwrap().to_string(),"p_E2":qr(1,2).unwrap().to_string()})
+      }
+verification:
+  expected_outputs:
+    x12_pi2_over_L: -16/9
+    gap_over_E1: '3'
+    p_E1: 1/2
+    p_E2: 1/2
+  computational_scope: Exact simplification of the analytically integrated position coefficient and energy
+    ratio.
+  not_established:
+  - The differential evolution and position integral are not automatically proved by these scalar evaluations.
+  procedure: Both solve functions are executed independently and compared with the handwritten expected
+    outputs and with each other. See results/undergraduate_qm_25/verification.json for the actual run.
+lean4:
+  status: not_formalized_for_this_problem
+  references: []
+  boundary: No existing Lean theorem is claimed to prove this complete derivation. Exact execution is
+    a calculation, not a proof of the continuum assumptions.
+common_pitfalls:
+- Omitting the cross term replaces a pure state by a mixture.
+- The beat frequency is an energy difference divided by hbar, not their sum.
+improvement_target:
+  gap: No symbolic trigonometric integration API is used.
+  acceptance_criterion: A future integration certificate should reproduce x12 and verify Hermitian symmetry
+    x21=x12.
