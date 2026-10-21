@@ -1,0 +1,41 @@
+.....................F.......                                            [100%]
+================================== FAILURES ===================================
+_______ test_generated_small_rational_domains_against_integer_formulas ________
+
+    def test_generated_small_rational_domains_against_integer_formulas():
+        # Independent integer numerators provide exact expected values; no source
+        # helper computes the oracle. All two-state distributions at scale 1..8.
+        for scale in range(1, 9):
+            for left, right in product(range(scale + 1), repeat=2):
+                p = api.ProbabilitySimplex([(left, scale), (scale - left, scale)])
+                q = api.ProbabilitySimplex([(right, scale), (scale - right, scale)])
+                assert p.total_variation_distance(q) == Fraction(abs(left - right), scale)
+                assert p.expectation([2, -1]) == Fraction(3 * left - scale, scale)
+                for m in range(4):
+>                   mix = p.mixture(q, Fraction(m, 3))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_simplex_lifecycle.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-08.py:242: in mixture
+    return ProbabilitySimplex(mixed, f"mix({self.label},{target.label})")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-08.py:181: in __init__
+    parsed = tuple(_parse_distribution(probs))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-08.py:143: in _parse_distribution
+    _require_unit_total(_sum(parsed), "distribution")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(0, 1), role = 'distribution'
+
+    def _require_unit_total(total: Fraction, role: str) -> None:
+        if total != Fraction(1):
+>           raise _fail("mass is not one", role=role, total=str(total))
+E           src.finite_probability.simplex.SimplexError: mass is not one (role=distribution, total=0)
+
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-08.py:132: SimplexError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_simplex_lifecycle.py::test_generated_small_rational_domains_against_integer_formulas
+1 failed, 28 passed in 2.66s
+{"phase": "pytest", "exit_code": 1}

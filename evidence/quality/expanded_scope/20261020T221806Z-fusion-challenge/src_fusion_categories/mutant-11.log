@@ -1,0 +1,35 @@
+{"phase": "candidate_bindings", "checked_symbols": ["main", "package_seal"]}
+.........F........                                                       [100%]
+================================== FAILURES ===================================
+____________________ test_stdout_failures_have_status_two _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000201D42C2EA0>
+
+    def test_stdout_failures_have_status_two(monkeypatch):
+        class Broken:
+            def write(self, text):
+                raise BrokenPipeError("unavailable")
+            def flush(self):
+                pass
+        monkeypatch.setattr(sys, "stdout", Broken())
+>       assert api.main() == facade.main() == 2
+                             ^^^^^^^^^^^^^
+
+code\python\tests\test_fusion_integrity.py:236: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories\mutant-11.py:79: in main
+    print(package_seal())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tests.test_fusion_integrity.test_stdout_failures_have_status_two.<locals>.Broken object at 0x00000201D42C67B0>
+text = '4'
+
+    def write(self, text):
+>       raise BrokenPipeError("unavailable")
+E       BrokenPipeError: unavailable
+
+code\python\tests\test_fusion_integrity.py:232: BrokenPipeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_stdout_failures_have_status_two
+1 failed, 17 passed, 3 deselected in 4.01s
+{"phase": "pytest", "exit_code": 1}

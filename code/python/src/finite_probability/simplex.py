@@ -6,7 +6,8 @@ numerator is nonnegative) and theorem half_add_half (half + half = 1).
 Claim: urn:omega:fqm:simplex:fractional-half:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/tests/test_half_simplex.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 4; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 5.
+Gate 5: measurements bind the source snapshot in the companion history;
+measurements from older revisions do not certify this revision.
 Scope Fence: half_simplex_mass checks those conjuncts on uniform(2) and
 returns 1. ProbabilitySimplex, total variation, mixture, expectation, and
 StochasticMap are exact rational operations and are not ScaledProb and not
@@ -15,8 +16,16 @@ the cited half theorem. This file does not prove H001Rats.lean.
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from fractions import Fraction
-from typing import Mapping
+from typing import Iterator, Mapping
+
+# Declared engineering budgets, not mathematical constants or theorem bounds.
+MAX_DIMENSION = 4096
+MAX_MATRIX_ENTRIES = 65536
+MAX_INPUT_BITS = 1024
+MAX_WORK_BITS = 8192
+MAX_LABEL_LENGTH = 256
 
 
 class SimplexError(ValueError):
@@ -35,7 +44,7 @@ def _fail(invariant: str, **parameters: object) -> SimplexError:
 
 
 def _refuse_non_exact(value: object, role: str) -> None:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the simplex boundary", role=role, received="float")
     if type(value) is bool:
         raise _fail("boolean refused where an exact rational was required", role=role)
@@ -44,6 +53,7 @@ def _refuse_non_exact(value: object, role: str) -> None:
 def _require_int(value: object, role: str) -> int:
     _refuse_non_exact(value, role)
     if type(value) is int:
+        _bound_bits(value, MAX_INPUT_BITS, role)
         return value
     raise _fail("count is not an integer", role=role, received=type(value).__name__)
 
@@ -52,7 +62,20 @@ def _require_positive_int(value: object, role: str) -> int:
     number = _require_int(value, role)
     if number <= 0:
         raise _fail("count is not positive", role=role, value=number)
+    if number > MAX_DIMENSION:
+        raise _fail("dimension budget exceeded", role=role, limit=MAX_DIMENSION)
     return number
+
+
+def _bound_bits(value: int, limit: int, role: str) -> None:
+    if value.bit_length() > limit:
+        raise _fail("integer bit budget exceeded", role=role, bits=value.bit_length(), limit=limit)
+
+
+def _bound_fraction(value: Fraction, limit: int, role: str) -> Fraction:
+    _bound_bits(value.numerator, limit, role)
+    _bound_bits(value.denominator, limit, role)
+    return value
 
 
 def _pair_fraction(value: tuple[object, ...], role: str) -> Fraction:
@@ -67,18 +90,22 @@ def _pair_fraction(value: tuple[object, ...], role: str) -> Fraction:
 
 def _require_fraction(value: object, role: str) -> Fraction:
     _refuse_non_exact(value, role)
-    if isinstance(value, Fraction):
-        return value
+    if type(value) is Fraction:
+        return _bound_fraction(value, MAX_INPUT_BITS, role)
     if type(value) is int:
-        return Fraction(value)
-    if isinstance(value, tuple):
+        return Fraction(_require_int(value, role))
+    if type(value) is tuple:
         return _pair_fraction(value, role)
     raise _fail("mass is not an exact rational", role=role, received=type(value).__name__)
 
 
 def _require_sequence(values: object, role: str) -> tuple[object, ...]:
-    if isinstance(values, (str, bytes)) or not isinstance(values, (list, tuple)):
+    if issubclass(type(values), (str, bytes)) or not issubclass(type(values), (list, tuple)):
         raise _fail("masses are not a sequence", role=role, received=type(values).__name__)
+    if type(values) not in (list, tuple):
+        raise _fail("container subclass refused", role=role, received=type(values).__name__)
+    if len(values) > MAX_DIMENSION:
+        raise _fail("sequence budget exceeded", role=role, limit=MAX_DIMENSION)
     return tuple(values)
 
 
@@ -91,6 +118,7 @@ def _sum(masses: list[Fraction]) -> Fraction:
     total = Fraction(0)
     for mass in masses:
         total += mass
+        _bound_fraction(total, MAX_WORK_BITS, "mass sum")
     return total
 
 
@@ -118,6 +146,8 @@ def _parse_distribution(probs: object) -> list[Fraction]:
 
 def _require_label(label: object) -> str:
     if type(label) is str:
+        if len(label) > MAX_LABEL_LENGTH:
+            raise _fail("label budget exceeded", limit=MAX_LABEL_LENGTH)
         return label
     raise _fail("label is not a string", received=type(label).__name__)
 
@@ -132,12 +162,28 @@ def _require_half(mass: Fraction) -> Fraction:
     return mass
 
 
+@dataclass(frozen=True, slots=True, init=False, eq=False)
 class ProbabilitySimplex:
-    """Exact rational distribution on a finite set. The masses sum to 1."""
+    """Immutable bounded rational distribution. Ordinary mutation is refused.
+
+    Built-in lists/tuples and Fraction/int/ratio-pair entries are admitted.
+    Resource overflow raises SimplexError; exact values are never rounded.
+    Deliberate reflection (object.__setattr__) is outside this API boundary.
+    """
+
+    _probs: tuple[Fraction, ...]
+    label: str
 
     def __init__(self, probs: object, label: str = "") -> None:
-        self._probs = _parse_distribution(probs)
-        self.label = _require_label(label)
+        if hasattr(self, "_probs"):
+            raise _fail("distribution already initialized")
+        parsed_label = _require_label(label)
+        parsed = tuple(_parse_distribution(probs))
+        object.__setattr__(self, "_probs", parsed)
+        object.__setattr__(self, "label", parsed_label)
+
+    def __init_subclass__(cls, **kwargs: object) -> None:
+        raise TypeError("ProbabilitySimplex does not admit subclasses")
 
     @classmethod
     def uniform(cls, n: object, label: str = "uniform") -> ProbabilitySimplex:
@@ -164,10 +210,16 @@ class ProbabilitySimplex:
         return list(self._probs)
 
     def __getitem__(self, index: int) -> Fraction:
-        return self._probs[index]
+        slot = _require_int(index, "index")
+        if slot < -self.dim or slot >= self.dim:
+            raise _fail("index is outside the set", index=slot, dimension=self.dim)
+        return self._probs[slot]
+
+    def __iter__(self) -> Iterator[Fraction]:
+        return iter(self._probs)
 
     def __eq__(self, other: object) -> bool:
-        if not isinstance(other, ProbabilitySimplex):
+        if type(other) is not ProbabilitySimplex:
             return False
         return self._probs == other._probs
 
@@ -197,19 +249,20 @@ class ProbabilitySimplex:
 
 
 def _require_simplex(value: object) -> ProbabilitySimplex:
-    if not isinstance(value, ProbabilitySimplex):
+    if type(value) is not ProbabilitySimplex:
         raise _fail("value is not a probability simplex", received=type(value).__name__)
     return value
 
 
-def _variation(left: list[Fraction], right: list[Fraction]) -> Fraction:
+def _variation(left: tuple[Fraction, ...], right: tuple[Fraction, ...]) -> Fraction:
     total = Fraction(0)
     for mass, other in zip(left, right, strict=True):
         total += abs(mass - other)
+        _bound_fraction(total, MAX_WORK_BITS, "variation")
     return total / 2
 
 
-def _mix(left: list[Fraction], right: list[Fraction], share: Fraction) -> list[Fraction]:
+def _mix(left: tuple[Fraction, ...], right: tuple[Fraction, ...], share: Fraction) -> list[Fraction]:
     mixed: list[Fraction] = []
     gap = Fraction(1) - share
     for mass, other in zip(left, right, strict=True):
@@ -217,10 +270,11 @@ def _mix(left: list[Fraction], right: list[Fraction], share: Fraction) -> list[F
     return mixed
 
 
-def _expectation(masses: list[Fraction], values: tuple[object, ...]) -> Fraction:
+def _expectation(masses: tuple[Fraction, ...], values: tuple[object, ...]) -> Fraction:
     total = Fraction(0)
     for index, mass in enumerate(masses):
         total += mass * _require_fraction(values[index], f"values[{index}]")
+        _bound_fraction(total, MAX_WORK_BITS, "expectation")
     return total
 
 
@@ -247,17 +301,33 @@ def _parse_matrix(matrix: object) -> list[list[Fraction]]:
     rows = _require_sequence(matrix, "matrix")
     _require_nonempty(rows, "matrix")
     width = _row_width(rows[0])
+    if len(rows) * width > MAX_MATRIX_ENTRIES:
+        raise _fail("matrix entry budget exceeded", limit=MAX_MATRIX_ENTRIES)
     return [_parse_row(row, width, index) for index, row in enumerate(rows)]
 
 
+@dataclass(frozen=True, slots=True, init=False)
 class StochasticMap:
-    """Row-stochastic matrix with exact rational entries."""
+    """Immutable row-stochastic matrix with bounded exact rational entries."""
+
+    _data: tuple[tuple[Fraction, ...], ...]
+
+    def __init_subclass__(cls, **kwargs: object) -> None:
+        raise TypeError("StochasticMap does not admit subclasses")
 
     def __init__(self, matrix: object) -> None:
+        if hasattr(self, "_data"):
+            raise _fail("stochastic map already initialized")
         parsed = _parse_matrix(matrix)
-        self.rows = len(parsed)
-        self.cols = len(parsed[0])
-        self._data = parsed
+        object.__setattr__(self, "_data", tuple(tuple(row) for row in parsed))
+
+    @property
+    def rows(self) -> int:
+        return len(self._data)
+
+    @property
+    def cols(self) -> int:
+        return len(self._data[0])
 
     def apply(self, dist: object) -> ProbabilitySimplex:
         """Push a distribution forward along the rows."""
@@ -268,13 +338,14 @@ class StochasticMap:
         return ProbabilitySimplex(pushed)
 
 
-def _push(data: list[list[Fraction]], source: ProbabilitySimplex) -> list[Fraction]:
+def _push(data: tuple[tuple[Fraction, ...], ...], source: ProbabilitySimplex) -> list[Fraction]:
     width = len(data[0])
     out: list[Fraction] = []
     for column in range(width):
         total = Fraction(0)
         for row in range(len(data)):
             total += source[row] * data[row][column]
+            _bound_fraction(total, MAX_WORK_BITS, "pushforward")
         out.append(total)
     return out
 

@@ -1,0 +1,161 @@
+{"phase": "candidate_bindings", "checked_symbols": ["exported_zero_phi1"]}
+.........FFFF.                                                           [100%]
+================================== FAILURES ===================================
+__________________________________ test_unit __________________________________
+
+    def test_unit() -> None:
+        """The independent certificate and the export are both zero."""
+>       if exported_zero_phi1() != certified_zero():
+           ^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\functional\test_exported_zero_phi1.py:295: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-05.py:93: in exported_zero_phi1
+    return evaluate_weighted_l1_quotient(
+code\python\src\functional\l1_seminorm.py:452: in evaluate_weighted_l1_quotient
+    return presentation.verify_certificate(certificate).value
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:428: in _verified_parts
+    _require_optimality(primal, paired, reported)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+primal = Fraction(0, 1), dual = Fraction(0, 1), reported = Fraction(1, 1)
+
+    def _require_optimality(primal: Fraction, dual: Fraction, reported: Fraction) -> None:
+        if primal != dual or reported != primal:
+>           raise _refuse(
+                "Duality gap not closed",
+                primal=str(primal),
+                dual=str(dual),
+                reported=str(reported),
+            )
+E           src.functional.l1_seminorm.L1SeminormError: Duality gap not closed (primal=0, dual=0, reported=1)
+
+code\python\src\functional\l1_seminorm.py:312: L1SeminormError
+______________________________ test_integration _______________________________
+
+    def test_integration() -> None:
+        """The export agrees with the neighbor's weighted quotient on the same witness."""
+        neighbor = evaluate_weighted_l1_quotient([[1], [-1]], [1, 1], [0, 0], [0], [0, 0], [0, 0], 0)
+>       if neighbor != exported_zero_phi1():
+                       ^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\functional\test_exported_zero_phi1.py:302: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-05.py:93: in exported_zero_phi1
+    return evaluate_weighted_l1_quotient(
+code\python\src\functional\l1_seminorm.py:452: in evaluate_weighted_l1_quotient
+    return presentation.verify_certificate(certificate).value
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:428: in _verified_parts
+    _require_optimality(primal, paired, reported)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+primal = Fraction(0, 1), dual = Fraction(0, 1), reported = Fraction(1, 1)
+
+    def _require_optimality(primal: Fraction, dual: Fraction, reported: Fraction) -> None:
+        if primal != dual or reported != primal:
+>           raise _refuse(
+                "Duality gap not closed",
+                primal=str(primal),
+                dual=str(dual),
+                reported=str(reported),
+            )
+E           src.functional.l1_seminorm.L1SeminormError: Duality gap not closed (primal=0, dual=0, reported=1)
+
+code\python\src\functional\l1_seminorm.py:312: L1SeminormError
+_______________________________ test_end_to_end _______________________________
+
+    def test_end_to_end() -> None:
+        """The default public call returns the zero rational."""
+>       if exported_zero_phi1() != Fraction(0):
+           ^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\functional\test_exported_zero_phi1.py:308: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-05.py:93: in exported_zero_phi1
+    return evaluate_weighted_l1_quotient(
+code\python\src\functional\l1_seminorm.py:452: in evaluate_weighted_l1_quotient
+    return presentation.verify_certificate(certificate).value
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:428: in _verified_parts
+    _require_optimality(primal, paired, reported)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+primal = Fraction(0, 1), dual = Fraction(0, 1), reported = Fraction(1, 1)
+
+    def _require_optimality(primal: Fraction, dual: Fraction, reported: Fraction) -> None:
+        if primal != dual or reported != primal:
+>           raise _refuse(
+                "Duality gap not closed",
+                primal=str(primal),
+                dual=str(dual),
+                reported=str(reported),
+            )
+E           src.functional.l1_seminorm.L1SeminormError: Duality gap not closed (primal=0, dual=0, reported=1)
+
+code\python\src\functional\l1_seminorm.py:312: L1SeminormError
+________________________________ test_negative ________________________________
+
+    def test_negative() -> None:
+        """Float, bool, a wide row, and an unrepeated weight are refused."""
+>       _check_export(exported_zero_phi1, L1SeminormError)
+
+code\python\src\functional\test_exported_zero_phi1.py:314: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\functional\test_exported_zero_phi1.py:120: in _check_export
+    if export() != expected:
+       ^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-05.py:93: in exported_zero_phi1
+    return evaluate_weighted_l1_quotient(
+code\python\src\functional\l1_seminorm.py:452: in evaluate_weighted_l1_quotient
+    return presentation.verify_certificate(certificate).value
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:403: in verify_certificate
+    return VerifiedExactPhi1(cert, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:346: in __init__
+    parts = _verified_parts(certificate, presentation)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+code\python\src\functional\l1_seminorm.py:428: in _verified_parts
+    _require_optimality(primal, paired, reported)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+primal = Fraction(0, 1), dual = Fraction(0, 1), reported = Fraction(1, 1)
+
+    def _require_optimality(primal: Fraction, dual: Fraction, reported: Fraction) -> None:
+        if primal != dual or reported != primal:
+>           raise _refuse(
+                "Duality gap not closed",
+                primal=str(primal),
+                dual=str(dual),
+                reported=str(reported),
+            )
+E           src.functional.l1_seminorm.L1SeminormError: Duality gap not closed (primal=0, dual=0, reported=1)
+
+code\python\src\functional\l1_seminorm.py:312: L1SeminormError
+=========================== short test summary info ===========================
+FAILED code/python/src/functional/test_exported_zero_phi1.py::test_unit - src...
+FAILED code/python/src/functional/test_exported_zero_phi1.py::test_integration
+FAILED code/python/src/functional/test_exported_zero_phi1.py::test_end_to_end
+FAILED code/python/src/functional/test_exported_zero_phi1.py::test_negative
+4 failed, 10 passed, 2 deselected in 1.09s
+{"phase": "pytest", "exit_code": 1}

@@ -121,8 +121,8 @@ def test_origin_resolves_in_repo() -> None:
 _MUTANTS: tuple[tuple[str, str, str], ...] = (
     (
         "float mass admitted",
-        "if isinstance(value, float):",
-        "if False and isinstance(value, float):",
+        "if issubclass(type(value), float):",
+        "if False and issubclass(type(value), float):",
     ),
     (
         "boolean mass admitted",
@@ -148,8 +148,8 @@ _MUTANTS: tuple[tuple[str, str, str], ...] = (
     ),
     (
         "sequence check inverted",
-        "not isinstance(values, (list, tuple))",
-        "isinstance(values, (list, tuple))",
+        "not issubclass(type(values), (list, tuple))",
+        "issubclass(type(values), (list, tuple))",
     ),
 )
 

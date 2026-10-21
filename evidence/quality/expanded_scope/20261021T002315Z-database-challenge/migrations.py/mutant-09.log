@@ -1,0 +1,52 @@
+{"phase": "candidate_bindings", "checked_symbols": ["MigrationError", "MigrationObservation", "apply_migration"]}
+..FF........................                                             [100%]
+================================== FAILURES ===================================
+_____ test_failed_install_is_atomic_and_caller_work_survives[True-ledger] _____
+
+name = 'ledger', autocommit = True
+
+    @pytest.mark.parametrize('name', ['ledger', 'signed_ensemble'])
+    @pytest.mark.parametrize('autocommit', [True, sqlite3.LEGACY_TRANSACTION_CONTROL])
+    def test_failed_install_is_atomic_and_caller_work_survives(name, autocommit):
+        with closing(sqlite3.connect(':memory:', autocommit=autocommit)) as c:
+            conflict = 'genesis_stages' if name == 'ledger' else 'signed_ensembles'
+            c.execute(f'CREATE TABLE {conflict}(old TEXT)')
+            c.execute(f'INSERT INTO {conflict} VALUES (?)', ('untouched',))
+            c.commit()
+            before = objects(c)
+            with pytest.raises(MigrationError, match='SQLite migration refused'):
+                apply_migration(c, name)
+>           assert objects(c) == before and not c.in_transaction
+E           assert ((('genesis_st...THOUT ROWID')) == (('genesis_st...(old TEXT)'),)
+E             
+E             Left contains one more item: ('ledger_schema_version', 'table', "CREATE TABLE ledger_schema_version (\n    schema_key TEXT PRIMARY KEY CHECK (schema_key = 'finite_qm_ledger'),\n    version INTEGER NOT NULL CHECK (version = 1)\n) STRICT, WITHOUT ROWID")
+E             Use -v to get more diff)
+
+code\python\tests\test_database_integrity.py:86: AssertionError
+_ test_failed_install_is_atomic_and_caller_work_survives[True-signed_ensemble] _
+
+name = 'signed_ensemble', autocommit = True
+
+    @pytest.mark.parametrize('name', ['ledger', 'signed_ensemble'])
+    @pytest.mark.parametrize('autocommit', [True, sqlite3.LEGACY_TRANSACTION_CONTROL])
+    def test_failed_install_is_atomic_and_caller_work_survives(name, autocommit):
+        with closing(sqlite3.connect(':memory:', autocommit=autocommit)) as c:
+            conflict = 'genesis_stages' if name == 'ledger' else 'signed_ensembles'
+            c.execute(f'CREATE TABLE {conflict}(old TEXT)')
+            c.execute(f'INSERT INTO {conflict} VALUES (?)', ('untouched',))
+            c.commit()
+            before = objects(c)
+            with pytest.raises(MigrationError, match='SQLite migration refused'):
+                apply_migration(c, name)
+>           assert objects(c) == before and not c.in_transaction
+E           assert ((('signed_ens...THOUT ROWID')) == (('signed_ens...(old TEXT)'),)
+E             
+E             Left contains one more item: ('signed_schema_version', 'table', "CREATE TABLE signed_schema_version (\n    schema_key TEXT PRIMARY KEY CHECK (schema_key = 'finite_qm_signed_ensemble'),\n    version INTEGER NOT NULL CHECK (version = 1)\n) STRICT, WITHOUT ROWID")
+E             Use -v to get more diff)
+
+code\python\tests\test_database_integrity.py:86: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_database_integrity.py::test_failed_install_is_atomic_and_caller_work_survives[True-ledger]
+FAILED code/python/tests/test_database_integrity.py::test_failed_install_is_atomic_and_caller_work_survives[True-signed_ensemble]
+2 failed, 26 passed in 2.43s
+{"phase": "pytest", "exit_code": 1}

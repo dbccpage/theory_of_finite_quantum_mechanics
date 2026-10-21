@@ -1,0 +1,38 @@
+{"phase": "candidate_bindings", "checked_symbols": ["MajoranaError", "MajoranaMonomial", "MajoranaOperator", "_add_coeff", "_multiply_modes", "anticommutator", "commutator", "kitaev_chain_parity", "main"]}
+.F............                                                           [100%]
+================================== FAILURES ===================================
+_________________ test_no_class_callback_at_integer_admission _________________
+
+    def test_no_class_callback_at_integer_admission():
+        class HostileClass:
+            @property
+            def __class__(self):
+                raise AssertionError('class callback escaped')
+        with pytest.raises(MajoranaError):
+>           MajoranaMonomial.single(HostileClass())
+
+code\python\tests\test_majorana_boundaries_followup.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T234424Z-majorana-followup-challenge\src_majorana_majorana_modes\mutant-04.py:107: in single
+    mode = _require_mode(index)
+           ^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T234424Z-majorana-followup-challenge\src_majorana_majorana_modes\mutant-04.py:117: in _require_mode
+    mode = _require_int(value, "mode")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T234424Z-majorana-followup-challenge\src_majorana_majorana_modes\mutant-04.py:50: in _require_int
+    if isinstance(value, float):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tests.test_majorana_boundaries_followup.test_no_class_callback_at_integer_admission.<locals>.HostileClass object at 0x000002595D7E3620>
+
+    @property
+    def __class__(self):
+>       raise AssertionError('class callback escaped')
+E       AssertionError: class callback escaped
+
+code\python\tests\test_majorana_boundaries_followup.py:38: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_boundaries_followup.py::test_no_class_callback_at_integer_admission
+1 failed, 13 passed, 1 deselected in 2.79s
+{"phase": "pytest", "exit_code": 1}

@@ -1,0 +1,96 @@
+{"phase": "candidate_bindings", "checked_symbols": ["AbelianGroup", "FusionRing", "FusionTable", "RingDefectType", "ising_global_dimension_rational"]}
+...F..F....F..F...                                                       [100%]
+================================== FAILURES ===================================
+________________ test_group_mixed_radix_against_tuple_addition ________________
+
+    def test_group_mixed_radix_against_tuple_addition():
+        for moduli in [(2,), (3, 2), (2, 2, 2), (2, 2, 2, 2, 2)]:
+            group = api.AbelianGroup(moduli)
+            for a, b in product(range(group.order), repeat=2):
+                digits = [(x + y) % m for x, y, m in zip(group.digits(a), group.digits(b), moduli)]
+                assert group.digits(group.add(a, b)) == digits
+>               assert group.label(group.digits(a)) == a
+E               assert 4 == 1
+E                +  where 4 = label([1, 1])
+E                +    where label = AbelianGroup(_moduli=(3, 2), _order=6).label
+E                +    and   [1, 1] = digits(1)
+E                +      where digits = AbelianGroup(_moduli=(3, 2), _order=6).digits
+
+code\python\tests\test_fusion_integrity.py:106: AssertionError
+______ test_dimensions_and_paths_against_independent_integer_enumeration ______
+
+    def test_dimensions_and_paths_against_independent_integer_enumeration():
+        expected = [api.QuadraticRational(4, 0, 1), api.QuadraticRational(Q(5, 2), Q(1, 2), 5), api.QuadraticRational(4, 0, 1), api.QuadraticRational(6, 0, 1)]
+>       for ring, global_dimension in zip([api.FusionRing.ising(), api.FusionRing.fibonacci(), api.FusionRing.toric_code(), api.FusionRing.rep_s3()], expected):
+                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_fusion_integrity.py:161: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-07.py:687: in toric_code
+    return cls(FusionTable.from_3d(_group_tensor(group), ("1", "e", "m", "epsilon")))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'src.fusion_categories.fusion_ring.FusionRing' object has no attribute '_table'") raised in repr()] FusionRing object at 0x134ac591480>
+table = FusionTable(_rank=4, _n=(1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, ...0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0), _names=('1', 'e', 'm', 'epsilon'))
+
+    def __init__(self, table: FusionTable) -> None:
+        if hasattr(self, "_table"):
+            raise _fail("fusion ring already initialized")
+        if type(table) is not FusionTable:
+            raise _fail("fusion ring requires an admitted table")
+        defect = table.first_defect()
+        if defect is not None:
+>           raise _fail("fusion table failed a ring law", defect=defect.defect_type, detail=defect.message)
+E           src.fusion_categories.fusion_ring.FusionError: fusion table failed a ring law (defect=unit, detail=Unit law fails on label 1)
+
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-07.py:609: FusionError
+___________________ test_negative_abelian_group_properties ____________________
+
+    def test_negative_abelian_group_properties():
+        grp = AbelianGroup([2, 3])
+        assert grp.order == 6
+        assert grp.moduli == [2, 3]
+    
+        for lbl in range(6):
+            digits = grp.digits(lbl)
+>           assert grp.label(digits) == lbl
+E           assert 3 == 1
+E            +  where 3 = label([1, 1])
+E            +    where label = AbelianGroup(_moduli=(2, 3), _order=6).label
+
+code\python\tests\test_fusion_ring.py:27: AssertionError
+____________________________ test_toric_code_ring _____________________________
+
+    def test_toric_code_ring():
+>       toric = FusionRing.toric_code()
+                ^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_fusion_ring.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-07.py:687: in toric_code
+    return cls(FusionTable.from_3d(_group_tensor(group), ("1", "e", "m", "epsilon")))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'src.fusion_categories.fusion_ring.FusionRing' object has no attribute '_table'") raised in repr()] FusionRing object at 0x134ac454d40>
+table = FusionTable(_rank=4, _n=(1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, ...0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0), _names=('1', 'e', 'm', 'epsilon'))
+
+    def __init__(self, table: FusionTable) -> None:
+        if hasattr(self, "_table"):
+            raise _fail("fusion ring already initialized")
+        if type(table) is not FusionTable:
+            raise _fail("fusion ring requires an admitted table")
+        defect = table.first_defect()
+        if defect is not None:
+>           raise _fail("fusion table failed a ring law", defect=defect.defect_type, detail=defect.message)
+E           src.fusion_categories.fusion_ring.FusionError: fusion table failed a ring law (defect=unit, detail=Unit law fails on label 1)
+
+evidence\quality\expanded_scope\20261020T221806Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-07.py:609: FusionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_group_mixed_radix_against_tuple_addition
+FAILED code/python/tests/test_fusion_integrity.py::test_dimensions_and_paths_against_independent_integer_enumeration
+FAILED code/python/tests/test_fusion_ring.py::test_negative_abelian_group_properties
+FAILED code/python/tests/test_fusion_ring.py::test_toric_code_ring - src.fusi...
+4 failed, 14 passed, 1 deselected in 2.01s
+{"phase": "pytest", "exit_code": 1}

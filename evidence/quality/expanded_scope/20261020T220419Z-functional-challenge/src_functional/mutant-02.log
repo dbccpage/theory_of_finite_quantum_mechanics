@@ -1,0 +1,35 @@
+{"phase": "candidate_bindings", "checked_symbols": ["exported_zero_phi1"]}
+............F.                                                           [100%]
+================================== FAILURES ===================================
+________________________________ test_negative ________________________________
+
+    def test_negative() -> None:
+        """Float, bool, a wide row, and an unrepeated weight are refused."""
+>       _check_export(exported_zero_phi1, L1SeminormError)
+
+code\python\src\functional\test_exported_zero_phi1.py:314: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\functional\test_exported_zero_phi1.py:127: in _check_export
+    _require_refusal(lambda: export(((True, 0), (-1, 0))), error, "boolean refused where an integer witness entry was required")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+probe = <function _check_export.<locals>.<lambda> at 0x0000029BCB7F62A0>
+error = <class 'src.functional.l1_seminorm.L1SeminormError'>
+invariant = 'boolean refused where an integer witness entry was required'
+
+    def _require_refusal(probe: Callable[[], object], error: object, invariant: str) -> None:
+        caught = _as_error(error)
+        try:
+            probe()
+        except caught as exc:
+            if getattr(exc, "invariant", None) != invariant:
+                raise _fail("refusal named the wrong invariant", expected=invariant, got=getattr(exc, "invariant", None))
+            return
+>       raise _fail("invalid input was accepted", expected=invariant)
+E       src.functional.test_exported_zero_phi1.ClaimCheckError: invalid input was accepted (expected=boolean refused where an integer witness entry was required)
+
+code\python\src\functional\test_exported_zero_phi1.py:115: ClaimCheckError
+=========================== short test summary info ===========================
+FAILED code/python/src/functional/test_exported_zero_phi1.py::test_negative
+1 failed, 13 passed, 2 deselected in 0.93s
+{"phase": "pytest", "exit_code": 1}

@@ -4,7 +4,7 @@ Origin: code/rust/src/combinatorics/enumeration.rs function binomial.
 Claim: urn:omega:fqm:combinatorics:exported-binomial-six-three:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/combinatorics/test_exported_binomial.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 5; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 6.
+Gate 5: use source-bound measurements in the companion history.
 Scope Fence: exported_binomial returns 20 only for the frozen pair (6, 3)
 or an explicit equal call. It does not claim a projective plane exists and
 does not prove the Weyl trace obstruction.
@@ -18,6 +18,7 @@ from .finite_combinatorics import (
     CombinatoricsBudgetError,
     CombinatoricsError,
     FiniteProjectivePlaneParams,
+    MAX_INPUT_BITS,
     binomial_exact,
     enumerate_cartesian_words,
     finite_plane_parameters,
@@ -43,12 +44,14 @@ def _fail(invariant: str, **parameters: object) -> CombinatoricsError:
 
 
 def _exact_int(value: object, role: str) -> int:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the public boundary", role=role, received="float")
     if type(value) is bool:
         raise _fail("boolean refused where an integer was required", role=role)
     if type(value) is not int:
         raise _fail("binomial argument is not an exact integer", role=role, received=type(value).__name__)
+    if value.bit_length() > MAX_INPUT_BITS:
+        raise CombinatoricsBudgetError("input integer bit budget exceeded", {"role": role, "bits": value.bit_length(), "limit": MAX_INPUT_BITS})
     return value
 
 

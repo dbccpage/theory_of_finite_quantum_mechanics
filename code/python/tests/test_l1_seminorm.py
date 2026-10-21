@@ -308,13 +308,13 @@ _MUTANTS: tuple[tuple[str, str, str], ...] = (
     ("reported value unchecked", "if primal != dual or reported != primal:", "if primal != dual and reported == primal:"),
     (
         "float admitted as a binary fraction",
-        "if isinstance(value, float):",
-        "if isinstance(value, float):\n        return Fraction(value)\n    if False:",
+        "if issubclass(type(value), float):",
+        "if issubclass(type(value), float):\n        return Fraction(value)\n    if False:",
     ),
     (
         "boolean admitted as an integer",
-        "if isinstance(value, bool):",
-        "if isinstance(value, bool):\n        return Fraction(int(value))\n    if False:",
+        "if type(value) is bool:",
+        "if type(value) is bool:\n        return Fraction(int(value))\n    if False:",
     ),
 )
 

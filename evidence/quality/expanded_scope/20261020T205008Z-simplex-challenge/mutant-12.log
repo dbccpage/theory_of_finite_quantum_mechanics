@@ -1,0 +1,45 @@
+.................FF.........                                             [100%]
+================================== FAILURES ===================================
+__________ test_resource_policy_edges_and_refusal_before_allocation ___________
+
+    def test_resource_policy_edges_and_refusal_before_allocation():
+        maximum = api.ProbabilitySimplex.uniform(api.MAX_DIMENSION)
+        assert maximum.dim == api.MAX_DIMENSION
+        assert maximum[0] == Fraction(1, api.MAX_DIMENSION)
+        with pytest.raises(api.SimplexError, match="dimension budget exceeded"):
+            api.ProbabilitySimplex.uniform(api.MAX_DIMENSION + 1)
+        with pytest.raises(api.SimplexError, match="sequence budget exceeded"):
+            api.ProbabilitySimplex([0] * (api.MAX_DIMENSION + 1))
+        row = [1] + [0] * (api.MAX_DIMENSION - 1)
+        with pytest.raises(api.SimplexError, match="matrix entry budget exceeded"):
+            api.StochasticMap([row] * (api.MAX_MATRIX_ENTRIES // len(row) + 1))
+        # Large integer fixtures are already allocated by the caller. No huge string
+        # rendering or Fraction normalization is needed to refuse their bit length.
+        huge = 1 << api.MAX_INPUT_BITS
+        for value in [huge, Fraction(1, huge), Fraction(huge + 1, 2), (1, huge)]:
+>           with pytest.raises(api.SimplexError, match="bit budget exceeded"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AssertionError: Regex pattern did not match.
+E             Expected regex: 'bit budget exceeded'
+E             Actual message: 'mass is not one (role=distribution, total=179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768814416622492847430639474124377767893424865485276302219601246094119453082952085005768838150682342462881473913110540827237163350510684586298239947245938479716304835356329624224137216)'
+
+code\python\tests\test_simplex_lifecycle.py:102: AssertionError
+___________ test_accumulator_budget_preserves_exactness_or_refuses ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002001390A9E0>
+
+    def test_accumulator_budget_preserves_exactness_or_refuses(monkeypatch):
+        # Lowering the policy exercises accumulation refusal without a costly input.
+        # 1/2 and 1/3 fit 2 bits; their sum 5/6 requires 3 bits.
+        state = api.ProbabilitySimplex([Fraction(1, 2), Fraction(1, 2)])
+        monkeypatch.setattr(api, "MAX_WORK_BITS", 2)
+>       with pytest.raises(api.SimplexError, match="bit budget exceeded"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SimplexError
+
+code\python\tests\test_simplex_lifecycle.py:114: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_simplex_lifecycle.py::test_resource_policy_edges_and_refusal_before_allocation
+FAILED code/python/tests/test_simplex_lifecycle.py::test_accumulator_budget_preserves_exactness_or_refuses
+2 failed, 26 passed in 1.28s
+{"phase": "pytest", "exit_code": 1}

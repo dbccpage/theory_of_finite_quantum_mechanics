@@ -1,0 +1,278 @@
+{
+  "AuthorityEffect": "None",
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "inputs": {
+    "SCORING.md": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de",
+    "code/python/src/combinatorics/__init__.py": "71c538a61876448d95a8586b6d9707fdd8e8bdb3cc3ff546bc59dcb73388e906",
+    "code/python/src/combinatorics/finite_combinatorics.py": "7d416d6492b79160287a68c003ef5e47c47ee7ef5e07363e9a138b3fbe60944e",
+    "code/python/src/combinatorics/test_exported_binomial.py": "eb5122d822e49af837bbbbca1033aec70020322ffea3b9a46bf11f209bc7c335",
+    "code/python/src/combinatorics/test_finite_combinatorics.py": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6",
+    "code/python/src/linear_algebra/matrix.py": "7e4a5fb5a27171bc16a579d26374899a5a1a72f926bc05410d163c43e55b0398",
+    "code/python/src/linear_algebra/scalars.py": "f039e7a7acb0bbda9487eea547a38c790f1aee56de7a1d10b3b54da826149873",
+    "code/python/src/qm/api.py": "1f0f933227292077205d28ef672494e1b78d7f1ef4ce74f9924cb45729e1d143",
+    "code/python/src/qm/cli.py": "e0407130c73c982ce6daecf96d9f95ed624771c21b8760f6ebb767915c585182",
+    "code/python/tests/conftest.py": "704a5ca2986e215f6a7094128d9a7dcdefd1d64c7b106aba76087d6f58e0cc7b",
+    "code/python/tests/test_combinatorics_resources.py": "ac1b467d0d9803dd979d3df193d1a13f26c6a47de8ceae5e39119a1e43c131cb"
+  },
+  "runner_sha256": "40561fa2d7fb2e3638d084e56a9325c60bd6473c6004d20f48ef77c5ae329ffd",
+  "capture_sha256": "8d2eefed4ab335334811e9762ef251419fd6078329c9b9c6e4dd77cb79e04ec4",
+  "configuration_sha256": "29b00a855c09b9733506c85aada31f54615141f64f94d002b0a926d13e403681",
+  "scope": "combinatorics: explicitly named modules and finite API/checker behavior only; no delegated suite certification, Lean proof, numerical benchmark or OS sandbox guarantee.",
+  "unbound_inputs": "Other conftest imports, default suite/claim data, native extension availability, transitive pytest/stdlib sources and OS remain trusted host inputs.",
+  "files": {
+    "src.combinatorics.test_finite_combinatorics": {
+      "source": "code/python/src/combinatorics/test_finite_combinatorics.py",
+      "source_sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6",
+      "baseline": {
+        "status": "SURVIVED",
+        "exit_code": 0,
+        "last_status": {
+          "phase": "pytest",
+          "exit_code": 0
+        },
+        "source_sha256": "c98380351e6398c6961fe6ef147394a28d235d2dee8b293d030c3520b026f2b6",
+        "log_sha256": "34e6810b0492f35d7e3b975cce8206f67b93d4708522391328caefe9086bfbbc"
+      },
+      "baseline_module_exit": null,
+      "baseline_passed": true,
+      "mutants": [
+        {
+          "name": "user class callback introduced",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "82095d13109442730a1e562a0d6dcd21ee61a1a3d55f3e882c79ec842ded606d",
+          "log_sha256": "54016e605fef6adc4f071c317bf32f20655fdecb8914e61b7d077a682414522f"
+        },
+        {
+          "name": "primary witness shifted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "0c54a4af7acd81074012c2a8431901d66ab08232c423774b8261ff89ddd2328e",
+          "log_sha256": "13d0bc10ddfd1577a66050057aff6103259498656e8fd4b294b94780426dd3b6"
+        },
+        {
+          "name": "outside witness shifted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "ddbc3fc6b3d0936b00ecc04c8bc75dbf64757e524f396e98cc2f830db33bc413",
+          "log_sha256": "96059932319983e4413ea7f3960668384a2d259038811d67f0abe1ba973926ce"
+        },
+        {
+          "name": "plane witness shifted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "b962ab277488f7d683b48c33f2a61d82e8d6a55a1fd2a5e5f29fb8294b3142dd",
+          "log_sha256": "c2da5925b0ddca7fe956d4d2791679eb5978ba9d7026b01ce1cda512cabd9bf9"
+        },
+        {
+          "name": "guard witness silenced",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "67718c339aafa8ece80e6646c9668b78a246b0014634bea81a2421982920cc5c",
+          "log_sha256": "8193d2e06325f3504368439001bc43f5b6126faedbf7ab3785a51c2e0bc13795"
+        },
+        {
+          "name": "invalid library mutant falsely counted as kill",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "1411ab29ed91f7f919bced9333c709f95bf1f80fe6966e1cfa8fad99ff19c776",
+          "log_sha256": "cd67f4b5d7e81f034d160dba6be89cac31a477b777bf38741c77e8d6f2031f0f"
+        },
+        {
+          "name": "invalid self mutant falsely counted as kill",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "c4addce4f7d9e87c7c37ca7e3c2f014243597cc7de63f56d4df2c2d2f6a1c0aa",
+          "log_sha256": "49e505d0440943437f03ec665085170fc98f2a97ec19391b94afe86664be18f4"
+        },
+        {
+          "name": "oracle infrastructure failure silently counted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "6f7eb09d6073bc13c2582d29d84cb37d5f1ba9e14f02f003c6f604d51ac45b75",
+          "log_sha256": "c08e4204b0bbc187c6e992b1a1a350b9dadf0f0b2310b41793edc2df416e3c07"
+        },
+        {
+          "name": "previous module binding lost",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "19b482b757ff4e087f33fe3dd121a290a250599cee6a5089aaa3ec03b2ecfbbd",
+          "log_sha256": "7fbdc21a9d1a2df82b01bbedc910495fa22b0dc9a48effb5f114ffb6b2fd9a95"
+        }
+      ],
+      "outcomes": {
+        "KILLED": 9
+      },
+      "eligible": 9,
+      "detection_fraction": {
+        "numerator": 9,
+        "denominator": 9
+      },
+      "status": "PASS"
+    },
+    "src.combinatorics.test_exported_binomial": {
+      "source": "code/python/src/combinatorics/test_exported_binomial.py",
+      "source_sha256": "eb5122d822e49af837bbbbca1033aec70020322ffea3b9a46bf11f209bc7c335",
+      "baseline": {
+        "status": "SURVIVED",
+        "exit_code": 0,
+        "last_status": {
+          "phase": "pytest",
+          "exit_code": 0
+        },
+        "source_sha256": "eb5122d822e49af837bbbbca1033aec70020322ffea3b9a46bf11f209bc7c335",
+        "log_sha256": "835f1847f58517741093743cc9d6df78eb5fb832ad03235a5f5ade7c91211396"
+      },
+      "baseline_module_exit": null,
+      "baseline_passed": true,
+      "mutants": [
+        {
+          "name": "user class callback introduced",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "233211fd959ebb0c93050e849422370c59e80d363f12f0a09ba2093ac5fd0eef",
+          "log_sha256": "7ad4ac30079de5b05db6504dcb482ecb657de87f9ad22b6111ac369fba3ce693"
+        },
+        {
+          "name": "primary witness shifted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "81a4255dd318a6ef4e7e26e6898b12b5a9c4c0118b192cb571eb73cf47f9bfad",
+          "log_sha256": "876f2bba005079ad3ae51f3e9dde3ab2a221e6e1b286b92a425680176fc823a5"
+        },
+        {
+          "name": "outside witness shifted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "32a620f50ab521c7bf248974959602143041875fbdb6e7e37ccac0640e3580c5",
+          "log_sha256": "8858f58f5bb97f3f8a16d59eb2330dc39384d2242aabee847274482926daaed4"
+        },
+        {
+          "name": "library witness shifted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "a6df41598dfc61d58335996412854de602d6b04b4e0bbb316bff8f54ddbec0b1",
+          "log_sha256": "5f4aa1964086942d70650a9241c5deaec96ed5b1d235e043707a32696ec38ff9"
+        },
+        {
+          "name": "guard witness silenced",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "281b3073c546bd73021651ee0519faa8eff33ea1a57a9bef61c0c2c4080db428",
+          "log_sha256": "28dd98eee2d0d7b632316abbdf5113fd8a3e11314cae347bc7befa3013d9f67c"
+        },
+        {
+          "name": "invalid library mutant falsely counted as kill",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "98557073b4ce2fe517b7ecda9c6978d3056486758d655fa608a9fd5509cfe8d1",
+          "log_sha256": "a62c9db983d13be9bc3ccf271ff403b3bcce2435080c7ee868db9f003d95a7e6"
+        },
+        {
+          "name": "invalid self mutant falsely counted as kill",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "d4729a8e0a93f7af25ae8238d3e3057f4296476c464e1c23ee43e565d3d72bb9",
+          "log_sha256": "82597c9f183d343672dc48100b166a18975d6c83dcadf2584915523099290ecc"
+        },
+        {
+          "name": "oracle infrastructure failure silently counted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "e551b3960c39dcc87ae3aa97aa52c45ba2b39151e5572e857eb414d1febcafd2",
+          "log_sha256": "90a6a6e67b7f5d1292033d28b53b5ee21e926d35a889dba73dc0e59b1c234267"
+        },
+        {
+          "name": "previous module binding lost",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "4b6d7f01cc30242bae17cae72313562624442872713cb7f41aecc52935cce4a7",
+          "log_sha256": "1a18901fac06ed0bcd307662538cc35c8ca094f8347d9be1fa081663b386fe59"
+        }
+      ],
+      "outcomes": {
+        "KILLED": 9
+      },
+      "eligible": 9,
+      "detection_fraction": {
+        "numerator": 9,
+        "denominator": 9
+      },
+      "status": "PASS"
+    }
+  },
+  "inputs_unchanged": true,
+  "status": "PASS"
+}

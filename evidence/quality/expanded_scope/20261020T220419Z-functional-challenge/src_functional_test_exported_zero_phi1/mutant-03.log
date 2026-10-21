@@ -1,0 +1,22 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ClaimCheckError", "_anchor", "_as_error", "_callable", "_check_export", "_exec_module", "_fail", "_float_probe", "_holds", "_kill_count", "_load", "_main", "_one_mutant", "_require_receipt", "_require_refusal", "_restore_module", "_safe_holds", "_safe_self", "_self_holds", "certified_zero", "parse_exact_entry", "test_end_to_end", "test_integration", "test_library_mutation", "test_negative", "test_origin", "test_self_mutation", "test_unit", "witness_guard", "witness_pair", "witness_weight", "witness_zero"]}
+........F.....                                                           [100%]
+================================== FAILURES ===================================
+_____________ test_checker_witness_and_invalid_candidate_controls _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000023FF9AA39B0>
+
+    def test_checker_witness_and_invalid_candidate_controls(monkeypatch):
+        from src.functional import test_exported_zero_phi1 as checks
+        assert checks.witness_zero() == Fraction(0)
+>       assert checks.witness_pair() == 2 and checks.witness_weight() == 1
+E       AssertionError: assert (2 == 2 and Fraction(2, 1) == 1)
+E        +  where 2 = <function witness_pair at 0x0000023FF8C7B7F0>()
+E        +    where <function witness_pair at 0x0000023FF8C7B7F0> = <module 'src.functional.test_exported_zero_phi1' from 'C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\python\\src\\functional\\test_exported_zero_phi1.py'>.witness_pair
+E        +  and   Fraction(2, 1) = <function witness_weight at 0x0000023FF8C7BAB0>()
+E        +    where <function witness_weight at 0x0000023FF8C7BAB0> = <module 'src.functional.test_exported_zero_phi1' from 'C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\python\\src\\functional\\test_exported_zero_phi1.py'>.witness_weight
+
+code\python\tests\test_functional_integrity.py:183: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_functional_integrity.py::test_checker_witness_and_invalid_candidate_controls
+1 failed, 13 passed, 2 deselected in 0.97s
+{"phase": "pytest", "exit_code": 1}

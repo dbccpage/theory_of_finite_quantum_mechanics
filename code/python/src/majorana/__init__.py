@@ -4,7 +4,7 @@ Origin: lean4/FiniteQM.lean theorem car_clifford_nilpotency_and_occupation_proje
 Claim: urn:omega:fqm:majorana:package-car-seal:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/majorana/test_majorana_control.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 4; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 5.
+Gate 5: use source-bound observations; reexports remain under separate provider review.
 Scope Fence: package_seal checks the 2x2 CAR matrices. It does not claim a continuum Majorana field.
 """
 
@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from typing import Mapping
 
-from .majorana_modes import MajoranaError, car_nilpotency_witness
+from .majorana_modes import MajoranaError, MAX_INTEGER_BITS, car_nilpotency_witness
 
 
 class PackageError(ValueError):
@@ -31,11 +31,13 @@ def _fail(invariant: str, **parameters: object) -> PackageError:
 
 
 def _require_int(value: object, role: str) -> int:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the package boundary", role=role, received="float")
-    if isinstance(value, bool):
+    if type(value) is bool:
         raise _fail("boolean refused where an integer was required", role=role)
-    if isinstance(value, int):
+    if type(value) is int:
+        if value.bit_length() > MAX_INTEGER_BITS:
+            raise _fail("integer bit budget exceeded", role=role, limit=MAX_INTEGER_BITS)
         return value
     raise _fail("value is not an integer", role=role, received=type(value).__name__)
 
@@ -76,8 +78,13 @@ def main() -> int:
     try:
         print(package_seal())
     except (PackageError, MajoranaError) as error:
-        print(error.invariant)
+        try:
+            print(error.invariant)
+        except (OSError, ValueError):
+            return 2
         return 1
+    except (OSError, ValueError):
+        return 2
     return 0
 
 

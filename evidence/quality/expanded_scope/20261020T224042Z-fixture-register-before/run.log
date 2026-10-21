@@ -1,0 +1,58 @@
+     Locking 21 packages to highest compatible versions
+   Compiling version_check v0.9.5
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling typenum v1.20.1
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling zmij v1.0.23
+   Compiling serde_json v1.0.154
+   Compiling serde v1.0.229
+   Compiling itoa v1.0.18
+   Compiling cpufeatures v0.2.17
+   Compiling cfg-if v1.0.5
+   Compiling memchr v2.8.3
+   Compiling generic-array v0.14.7
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling syn v3.0.9
+   Compiling digest v0.10.7
+   Compiling sha2 v0.10.9
+   Compiling serde_derive v1.0.229
+   Compiling tfqm_fixture_register_review v0.1.0 (C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.pytest_cache\fixture-before-20261020T224042Z)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 12.22s
+     Running unittests src\lib.rs (code\rust\target\expanded-fixture-register\debug\deps\tfqm_fixture_register_review-c536ae0dc11ef00b.exe)
+
+running 5 tests
+test receipts::digest_check_rejects_a_changed_or_missing_file ... ok
+test receipts::every_registered_fixture_matches_its_committed_bytes ... 
+thread 'receipts::every_registered_fixture_matches_its_committed_bytes' (22380) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\evidence\quality\expanded_scope\20261020T224042Z-fixture-register-before\probe.rs:20:44:
+fixture register is present: Os { code: 3, kind: NotFound, message: "The system cannot find the path specified." }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test receipts::expanded_missing_path_is_a_defect ... 
+thread 'receipts::expanded_missing_path_is_a_defect' (36576) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\evidence\quality\expanded_scope\20261020T224042Z-fixture-register-before\probe.rs:116:5:
+missing path was treated as a successful digest check
+FAILED
+test receipts::expanded_root_is_current_repository ... 
+thread 'receipts::expanded_root_is_current_repository' (45024) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\evidence\quality\expanded_scope\20261020T224042Z-fixture-register-before\probe.rs:121:5:
+assertion `left == right` failed
+  left: "\\\\?\\C:\\Users\\a343o\\source\\repos"
+ right: "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics"
+FAILED
+test receipts::register_declares_fixtures_without_authority ... 
+thread 'receipts::register_declares_fixtures_without_authority' (45532) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\evidence\quality\expanded_scope\20261020T224042Z-fixture-register-before\probe.rs:20:44:
+fixture register is present: Os { code: 3, kind: NotFound, message: "The system cannot find the path specified." }
+FAILED
+
+failures:
+
+failures:
+    receipts::every_registered_fixture_matches_its_committed_bytes
+    receipts::expanded_missing_path_is_a_defect
+    receipts::expanded_root_is_current_repository
+    receipts::register_declares_fixtures_without_authority
+
+test result: FAILED. 1 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+error: test failed, to rerun pass `--lib`

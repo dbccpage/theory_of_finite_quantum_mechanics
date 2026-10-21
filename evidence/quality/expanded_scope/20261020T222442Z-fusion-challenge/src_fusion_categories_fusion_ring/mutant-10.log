@@ -1,0 +1,23 @@
+{"phase": "candidate_bindings", "checked_symbols": ["AbelianGroup", "FusionRing", "FusionTable", "RingDefectType", "ising_global_dimension_rational"]}
+..........F.........                                                     [100%]
+================================== FAILURES ===================================
+__________________ test_declared_budget_edges_and_preflight ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000023273D62B10>
+
+    def test_declared_budget_edges_and_preflight(monkeypatch):
+        assert (api.MAX_INPUT_BITS, api.MAX_WORK_BITS, api.MAX_RANK, api.MAX_DISCRIMINANT, api.MAX_GROUP_FACTORS, api.MAX_LAW_PRODUCTS) == (1024, 8192, 32, 1_000_000, 5, 2_000_000)
+        edge = (1 << 1024) - 1
+        assert api.QuadraticRational(edge, 0, 1).a == edge
+        assert facade.checked_int(edge) == checker.checked_int(edge) == edge
+        for value in [1 << 1024, -(1 << 1024)]:
+            for fn in [facade.checked_int, checker.checked_int, lambda x: api.QuadraticRational(x, 0, 1), lambda x: api.FusionTable(1, [x])]:
+>               with pytest.raises((api.FusionError, facade.PackageError, checker.CheckError), match="bit budget"):
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               Failed: DID NOT RAISE any of (FusionError, PackageError, CheckError)
+
+code\python\tests\test_fusion_integrity.py:222: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_declared_budget_edges_and_preflight
+1 failed, 19 passed, 1 deselected in 3.05s
+{"phase": "pytest", "exit_code": 1}

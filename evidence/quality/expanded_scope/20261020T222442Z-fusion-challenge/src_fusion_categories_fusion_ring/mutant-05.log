@@ -1,0 +1,42 @@
+{"phase": "candidate_bindings", "checked_symbols": ["AbelianGroup", "FusionRing", "FusionTable", "RingDefectType", "ising_global_dimension_rational"]}
+......F......F......                                                     [100%]
+================================== FAILURES ===================================
+___________________ test_shape_and_representation_refusals ____________________
+
+    def test_shape_and_representation_refusals():
+        for bad in [HostileTuple([2]), "2", {2}, ClassCallback()]:
+            with pytest.raises(api.FusionError):
+                api.AbelianGroup(bad)
+        for bad in [[], [1], [33], [2] * 6]:
+>           with pytest.raises(api.FusionError):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE FusionError
+
+code\python\tests\test_fusion_integrity.py:144: Failed
+___________________ test_negative_abelian_group_properties ____________________
+
+    def test_negative_abelian_group_properties():
+        grp = AbelianGroup([2, 3])
+        assert grp.order == 6
+        assert grp.moduli == [2, 3]
+    
+        for lbl in range(6):
+            digits = grp.digits(lbl)
+            assert grp.label(digits) == lbl
+    
+        assert grp.add(0, 5) == 5
+        assert grp.add(1, 1) == grp.label([0, 0])
+        for a in range(6):
+            neg = grp.negate(a)
+            assert grp.add(a, neg) == 0
+    
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+code\python\tests\test_fusion_ring.py:35: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_shape_and_representation_refusals
+FAILED code/python/tests/test_fusion_ring.py::test_negative_abelian_group_properties
+2 failed, 18 passed, 1 deselected in 1.81s
+{"phase": "pytest", "exit_code": 1}

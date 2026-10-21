@@ -1,0 +1,21 @@
+{"phase": "candidate_bindings", "checked_symbols": ["MajoranaError", "MajoranaMonomial", "MajoranaOperator", "_add_coeff", "_multiply_modes", "anticommutator", "commutator", "kitaev_chain_parity", "main"]}
+...F..........                                                           [100%]
+================================== FAILURES ===================================
+_______________ test_output_term_refusal_precedes_buffer_change _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B8AE91D810>
+
+    def test_output_term_refusal_precedes_buffer_change(monkeypatch):
+        import src.majorana.majorana_modes as module
+        existing, added = MajoranaMonomial((0,)), MajoranaMonomial((1,))
+        table = {existing: Fraction(1)}
+        monkeypatch.setattr(module, 'MAX_OPERATOR_TERMS', 1)
+>       with pytest.raises(MajoranaError, match='term budget'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE MajoranaError
+
+code\python\tests\test_majorana_boundaries_followup.py:57: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_boundaries_followup.py::test_output_term_refusal_precedes_buffer_change
+1 failed, 13 passed, 1 deselected in 4.51s
+{"phase": "pytest", "exit_code": 1}

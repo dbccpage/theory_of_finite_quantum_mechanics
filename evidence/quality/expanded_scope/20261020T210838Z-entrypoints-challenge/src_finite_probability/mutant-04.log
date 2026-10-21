@@ -1,0 +1,192 @@
+...FF.F.....F................FFFF..                                      [100%]
+================================== FAILURES ===================================
+_______________________ test_closed_scalar_admission[1] _______________________
+
+scalar = 1
+
+    @pytest.mark.parametrize("scalar", [OverridingInt(1), OverridingFraction(1)])
+    def test_closed_scalar_admission(scalar):
+        with pytest.raises(ray.BinWitnessError, match="not an exact rational"):
+            ray.ray_power_two((scalar, 0, 0))
+        with pytest.raises(collision.ParityError, match="not an exact rational"):
+            collision.collision_probability((scalar,))
+>       with pytest.raises(mass.ScaledSimplexError, match="not an integer"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'not an integer'
+E         Actual message: 'weights are not a Bool pair (length=2)'
+
+code\python\tests\test_bounded_entrypoints.py:63: AssertionError
+____________________ test_closed_scalar_admission[scalar1] ____________________
+
+scalar = OverridingFraction(1, 1)
+
+    @pytest.mark.parametrize("scalar", [OverridingInt(1), OverridingFraction(1)])
+    def test_closed_scalar_admission(scalar):
+        with pytest.raises(ray.BinWitnessError, match="not an exact rational"):
+            ray.ray_power_two((scalar, 0, 0))
+        with pytest.raises(collision.ParityError, match="not an exact rational"):
+            collision.collision_probability((scalar,))
+>       with pytest.raises(mass.ScaledSimplexError, match="not an integer"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'not an integer'
+E         Actual message: 'weights are not a Bool pair (length=2)'
+
+code\python\tests\test_bounded_entrypoints.py:63: AssertionError
+___ test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering ____
+
+    def test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering():
+        edge = (1 << 1024) - 1
+        assert ray.ray_power_two((edge, 0, 0)) == Fraction(edge * edge)
+>       assert mass.integer_mass((edge, edge)) == 2 * edge
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_finite_probability\mutant-04.py:74: in integer_mass
+    return _mass(_require_pair(weights))
+                 ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+weights = (179769313486231590...5356329624224137215, 179769313486231590...5356329624224137215)
+
+    def _require_pair(weights: object) -> tuple[int, int]:
+        if isinstance(weights, (str, bytes)) or not isinstance(weights, tuple):
+            raise _fail("weights are not a tuple", received=type(weights).__name__)
+        if type(weights) is not tuple:
+            raise _fail("weight container subclass refused", received=type(weights).__name__)
+        entries = tuple(weights)
+        if len(entries) != 3:
+>           raise _fail("weights are not a Bool pair", length=len(entries))
+E           src.finite_probability.ScaledSimplexError: weights are not a Bool pair (length=2)
+
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_finite_probability\mutant-04.py:64: ScaledSimplexError
+________________________ test_generated_exact_controls ________________________
+
+    def test_generated_exact_controls():
+        for scale in range(1, 8):
+            for a, b, c in product(range(-2, 3), repeat=3):
+                result = ray.ray_power_two((Fraction(a, scale), Fraction(b, scale), Fraction(c, scale)))
+                assert type(result) is Fraction
+                assert result == Fraction(a * a + b * b + c * c, scale * scale)
+            for a in range(scale + 1):
+                result = collision.collision_probability((Fraction(a, scale), Fraction(scale - a, scale)))
+                assert type(result) is Fraction
+                assert result == Fraction(a * a + (scale - a) * (scale - a), scale * scale)
+        for a, b in product(range(-16, 17), repeat=2):
+>           assert mass.integer_mass((a, b)) == a + b
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_finite_probability\mutant-04.py:74: in integer_mass
+    return _mass(_require_pair(weights))
+                 ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+weights = (-16, -16)
+
+    def _require_pair(weights: object) -> tuple[int, int]:
+        if isinstance(weights, (str, bytes)) or not isinstance(weights, tuple):
+            raise _fail("weights are not a tuple", received=type(weights).__name__)
+        if type(weights) is not tuple:
+            raise _fail("weight container subclass refused", received=type(weights).__name__)
+        entries = tuple(weights)
+        if len(entries) != 3:
+>           raise _fail("weights are not a Bool pair", length=len(entries))
+E           src.finite_probability.ScaledSimplexError: weights are not a Bool pair (length=2)
+
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_finite_probability\mutant-04.py:64: ScaledSimplexError
+___________________ test_named_separators_match_the_theorem ___________________
+
+    def test_named_separators_match_the_theorem() -> None:
+        assert scaled_simplex_witness() == 1
+>       assert integer_mass((1, 0)) == 1
+               ^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_scaled_simplex.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_finite_probability\mutant-04.py:74: in integer_mass
+    return _mass(_require_pair(weights))
+                 ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+weights = (1, 0)
+
+    def _require_pair(weights: object) -> tuple[int, int]:
+        if isinstance(weights, (str, bytes)) or not isinstance(weights, tuple):
+            raise _fail("weights are not a tuple", received=type(weights).__name__)
+        if type(weights) is not tuple:
+            raise _fail("weight container subclass refused", received=type(weights).__name__)
+        entries = tuple(weights)
+        if len(entries) != 3:
+>           raise _fail("weights are not a Bool pair", length=len(entries))
+E           src.finite_probability.ScaledSimplexError: weights are not a Bool pair (length=2)
+
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_finite_probability\mutant-04.py:64: ScaledSimplexError
+_________________________ test_negative_type_failures _________________________
+
+    def test_negative_type_failures() -> None:
+>       with pytest.raises(ScaledSimplexError, match="float refused") as floated:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'float refused'
+E         Actual message: 'weights are not a Bool pair (length=2)'
+
+code\python\tests\test_scaled_simplex.py:59: AssertionError
+________________________ test_negative_shape_failures _________________________
+
+    def test_negative_shape_failures() -> None:
+        with pytest.raises(ScaledSimplexError, match="not a Bool pair") as short:
+            integer_mass((1,))
+        assert short.value.parameters["length"] == 1
+    
+>       with pytest.raises(ScaledSimplexError, match="not a Bool pair") as long:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ScaledSimplexError
+
+code\python\tests\test_scaled_simplex.py:79: Failed
+__________________ test_integration_matches_ordered_compare ___________________
+
+    def test_integration_matches_ordered_compare() -> None:
+        root = Path(__file__).resolve().parents[3]
+        source = (root / "lean4" / "H001ProbabilitySimplex.lean").read_text(encoding="utf-8")
+        assert "theorem probability_simplex" in source
+        assert "theorem signed_mass_one" in source
+        assert "theorem double_mass_two" in source
+        assert "theorem l1dist_self" in source
+>       assert compare(integer_mass((1, 0)), 1) == 0
+                       ^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_scaled_simplex.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_finite_probability\mutant-04.py:74: in integer_mass
+    return _mass(_require_pair(weights))
+                 ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+weights = (1, 0)
+
+    def _require_pair(weights: object) -> tuple[int, int]:
+        if isinstance(weights, (str, bytes)) or not isinstance(weights, tuple):
+            raise _fail("weights are not a tuple", received=type(weights).__name__)
+        if type(weights) is not tuple:
+            raise _fail("weight container subclass refused", received=type(weights).__name__)
+        entries = tuple(weights)
+        if len(entries) != 3:
+>           raise _fail("weights are not a Bool pair", length=len(entries))
+E           src.finite_probability.ScaledSimplexError: weights are not a Bool pair (length=2)
+
+evidence\quality\expanded_scope\20261020T210838Z-entrypoints-challenge\src_finite_probability\mutant-04.py:64: ScaledSimplexError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_scalar_admission[1]
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_scalar_admission[scalar1]
+FAILED code/python/tests/test_bounded_entrypoints.py::test_admitted_upper_bit_edge_and_refusal_without_big_integer_rendering
+FAILED code/python/tests/test_bounded_entrypoints.py::test_generated_exact_controls
+FAILED code/python/tests/test_scaled_simplex.py::test_named_separators_match_the_theorem
+FAILED code/python/tests/test_scaled_simplex.py::test_negative_type_failures
+FAILED code/python/tests/test_scaled_simplex.py::test_negative_shape_failures
+FAILED code/python/tests/test_scaled_simplex.py::test_integration_matches_ordered_compare
+8 failed, 27 passed, 1 deselected in 5.60s
+{"phase": "pytest", "exit_code": 1}

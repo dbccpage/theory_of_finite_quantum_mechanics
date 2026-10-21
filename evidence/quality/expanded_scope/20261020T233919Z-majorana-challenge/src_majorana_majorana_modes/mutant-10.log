@@ -1,0 +1,21 @@
+{"phase": "candidate_bindings", "checked_symbols": ["MajoranaError", "MajoranaMonomial", "MajoranaOperator", "anticommutator", "car_nilpotency_witness", "commutator", "kitaev_chain_parity", "main"]}
+.........F........                                                       [100%]
+================================== FAILURES ===================================
+_____________ test_closed_values_owned_terms_and_reinitialization _____________
+
+    def test_closed_values_owned_terms_and_reinitialization():
+        mon = MajoranaMonomial((2, 0))
+        assert mon.modes == (0, 2)
+        data = {mon: F(1, 3)}
+        op = MajoranaOperator(data)
+        data.clear()
+        export = op.terms
+>       export[mon] = 0.5  # deliberately unadmitted value in detached export
+        ^^^^^^^^^^^
+E       TypeError: 'mappingproxy' object does not support item assignment
+
+code\python\tests\test_majorana_integrity.py:211: TypeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_integrity.py::test_closed_values_owned_terms_and_reinitialization
+1 failed, 17 passed, 1 deselected in 3.45s
+{"phase": "pytest", "exit_code": 1}

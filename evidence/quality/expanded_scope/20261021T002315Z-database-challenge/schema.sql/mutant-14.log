@@ -1,0 +1,40 @@
+{"phase": "sql_candidate_binding", "source_sha256": "eedb16fc0bff33e2dee7a775f52feafe38e90e4f02ee2b4d0697b7d58bb2654f", "schema": "ledger", "direction": "up"}
+................F                                                        [100%]
+================================== FAILURES ===================================
+_________________ test_ledger_row_budgets[simplicial_chains] __________________
+
+db = <sqlite3.Connection object at 0x000002D8BE9EE200>
+table = 'simplicial_chains'
+
+    @pytest.mark.parametrize('table', ['genesis_stages','ledger_receipts','survivor_witnesses','simplicial_chains'])
+    def test_ledger_row_budgets(db, table):
+        apply_migration(db, 'ledger')
+        if table != 'genesis_stages':
+            stage(db)
+        if table == 'genesis_stages':
+            query = 'INSERT INTO genesis_stages VALUES(?,?,?,?,?,?)'
+            rows = [(j,'c','v',None,0,'observed') for j in range(4096)]
+            extra = (4096,'c','v',None,0,'observed')
+        elif table == 'ledger_receipts':
+            query = 'INSERT INTO ledger_receipts VALUES(?,?,?)'
+            rows = [(format(j,'064x'),'ref','assertion') for j in range(4096)]
+            extra = (format(4096,'064x'),'ref','assertion')
+        elif table == 'survivor_witnesses':
+            query = 'INSERT INTO survivor_witnesses(witness_id,stage_id,x_locus,y_locus,demand_type,qx_observation,qy_observation,reason) VALUES(?,?,?,?,?,?,?,?)'
+            rows = [(str(j),0,'x','y','d','','','r') for j in range(4096)]
+            extra = ('4096',0,'x','y','d','','','r')
+        else:
+            query = 'INSERT INTO simplicial_chains(chain_id,stage_id,dimension,simplex_label,boundary_representation) VALUES(?,?,?,?,?)'
+            rows = [(str(j),0,0,'s','') for j in range(4096)]
+            extra = ('4096',0,0,'s','')
+        db.executemany(query,rows)
+        assert db.execute(f'SELECT COUNT(*) FROM {table}').fetchone()[0] == 4096
+>       with pytest.raises(sqlite3.IntegrityError, match='row budget'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE IntegrityError
+
+code\python\tests\test_database_integrity.py:186: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_database_integrity.py::test_ledger_row_budgets[simplicial_chains]
+1 failed, 16 passed, 11 deselected in 4.28s
+{"phase": "pytest", "exit_code": 1}

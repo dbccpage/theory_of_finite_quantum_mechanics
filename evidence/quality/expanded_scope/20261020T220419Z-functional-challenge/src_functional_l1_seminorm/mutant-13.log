@@ -1,0 +1,100 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ExactPhi1Certificate", "L1Seminorm", "L1SeminormError", "evaluate_weighted_l1_quotient"]}
+.F.........F..F...                                                       [100%]
+================================== FAILURES ===================================
+____________ test_all_public_verified_construction_checks_the_math ____________
+
+    def test_all_public_verified_construction_checks_the_math():
+        with pytest.raises(api.L1SeminormError, match="Primal residual mismatch"):
+            api.VerifiedExactPhi1(submitted(omega=100))
+        with pytest.raises(api.L1SeminormError, match="Duality gap not closed"):
+            api.VerifiedExactPhi1(submitted(reported=99))
+        assert api.VerifiedExactPhi1(submitted()).value == Fraction(2)
+>       with pytest.raises(api.L1SeminormError, match="Weight binding mismatch"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE L1SeminormError
+
+code\python\tests\test_functional_integrity.py:67: Failed
+_______________________ test_boundary_binding_mismatch ________________________
+
+    def test_boundary_binding_mismatch() -> None:
+        boundary = [[Fraction(1)], [Fraction(1)]]
+        weights = [Fraction(1), Fraction(1)]
+        semi = L1Seminorm(boundary, weights)
+        other_boundary = [[Fraction(1)], [Fraction(-1)]]
+        cert = ExactPhi1Certificate(
+            omega=[Fraction(0), Fraction(0)],
+            d0=other_boundary,
+            weights=weights,
+            alpha=[Fraction(0)],
+            primal_residual=[Fraction(0), Fraction(0)],
+            dual_witness=[Fraction(0), Fraction(0)],
+            reported_value=Fraction(0),
+        )
+>       with pytest.raises(L1SeminormError, match="Boundary binding mismatch") as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE L1SeminormError
+
+code\python\tests\test_l1_seminorm.py:98: Failed
+_____________________ test_negative_certificate_refusals ______________________
+
+    def test_negative_certificate_refusals() -> None:
+        boundary = [[Fraction(1)], [Fraction(0)]]
+        weights = [Fraction(2), Fraction(3)]
+        semi = L1Seminorm(boundary, weights)
+        good = ExactPhi1Certificate(
+            omega=[Fraction(1), Fraction(2)],
+            d0=[[Fraction(1)], [Fraction(0)]],
+            weights=[Fraction(2), Fraction(3)],
+            alpha=[Fraction(1)],
+            primal_residual=[Fraction(0), Fraction(2)],
+            dual_witness=[Fraction(0), Fraction(3)],
+            reported_value=Fraction(6),
+        )
+        assert semi.verify_certificate(good).value == Fraction(6)
+    
+        short = ExactPhi1Certificate(
+            omega=[Fraction(1)],
+            d0=good.d0,
+            weights=good.weights,
+            alpha=good.alpha,
+            primal_residual=good.primal_residual,
+            dual_witness=good.dual_witness,
+            reported_value=good.reported_value,
+        )
+        with pytest.raises(L1SeminormError, match="vector length") as caught:
+            semi.verify_certificate(short)
+        assert caught.value.parameters["role"] == "omega"
+    
+        bad_alpha = ExactPhi1Certificate(
+            omega=good.omega,
+            d0=good.d0,
+            weights=good.weights,
+            alpha=[],
+            primal_residual=good.primal_residual,
+            dual_witness=good.dual_witness,
+            reported_value=good.reported_value,
+        )
+        with pytest.raises(L1SeminormError, match="Alpha length") as caught:
+            semi.verify_certificate(bad_alpha)
+        assert caught.value.parameters["expected"] == 1
+    
+        bad_weight = ExactPhi1Certificate(
+            omega=good.omega,
+            d0=good.d0,
+            weights=[Fraction(1), Fraction(1)],
+            alpha=good.alpha,
+            primal_residual=good.primal_residual,
+            dual_witness=[Fraction(0), Fraction(1)],
+            reported_value=Fraction(2),
+        )
+>       with pytest.raises(L1SeminormError, match="Weight binding mismatch"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE L1SeminormError
+
+code\python\tests\test_l1_seminorm.py:192: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_functional_integrity.py::test_all_public_verified_construction_checks_the_math
+FAILED code/python/tests/test_l1_seminorm.py::test_boundary_binding_mismatch
+FAILED code/python/tests/test_l1_seminorm.py::test_negative_certificate_refusals
+3 failed, 15 passed, 1 deselected in 0.91s
+{"phase": "pytest", "exit_code": 1}

@@ -1,0 +1,46 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ParityError", "collision_probability", "main", "parity_gap"]}
+F..................................                                      [100%]
+================================== FAILURES ===================================
+_________ test_scalar_and_container_checks_do_not_consult_user_class __________
+
+    def test_scalar_and_container_checks_do_not_consult_user_class():
+        for operation, error in [
+            (lambda: ray.ray_power_two((ClassCallback(), 0, 0)), ray.BinWitnessError),
+            (lambda: ray.ray_power_two(ClassCallback()), ray.BinWitnessError),
+            (lambda: collision.collision_probability((ClassCallback(),)), collision.ParityError),
+            (lambda: collision.collision_probability(ClassCallback()), collision.ParityError),
+            (lambda: mass.integer_mass((ClassCallback(), 0)), mass.ScaledSimplexError),
+            (lambda: mass.integer_mass(ClassCallback()), mass.ScaledSimplexError),
+            (lambda: trace.cli_identity_trace(ClassCallback()), trace.CliTraceError),
+        ]:
+            with pytest.raises(error):
+>               operation()
+
+code\python\tests\test_bounded_entrypoints.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\tests\test_bounded_entrypoints.py:57: in <lambda>
+    (lambda: collision.collision_probability((ClassCallback(),)), collision.ParityError),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin_entropy_cli\mutant-00.py:124: in collision_probability
+    checked = _collect_weights(_require_nonempty(_require_tuple(weights)))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin_entropy_cli\mutant-00.py:97: in _collect_weights
+    collected.append(_require_weight(value, index))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin_entropy_cli\mutant-00.py:67: in _require_weight
+    if isinstance(value, float):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tests.test_bounded_entrypoints.ClassCallback object at 0x000002076CD4D590>
+
+    @property
+    def __class__(self):
+>       raise RuntimeError("must refuse without consulting user __class__")
+E       RuntimeError: must refuse without consulting user __class__
+
+code\python\tests\test_bounded_entrypoints.py:50: RuntimeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_scalar_and_container_checks_do_not_consult_user_class
+1 failed, 34 passed, 1 deselected in 3.10s
+{"phase": "pytest", "exit_code": 1}

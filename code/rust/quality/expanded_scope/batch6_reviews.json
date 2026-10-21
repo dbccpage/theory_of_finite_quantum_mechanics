@@ -1,0 +1,112 @@
+{
+  "code/python/src/majorana/majorana_modes.py": {
+    "module": "src.majorana.majorana_modes",
+    "claim": "urn:omega:fqm:majorana:car-nilpotency-witness:v1",
+    "level": "L4",
+    "level_basis": "An owned immutable sparse exact-Clifford API with closed scalar/blade admission, constructor and reinitialization custody, bounded multiplication work and storage, detached exports, typed refusals and a fallible status-bearing seal. The level follows these implemented boundaries, not the Majorana topic or the 2x2 theorem title.",
+    "role": "production finite Clifford provider and local CAR seal",
+    "operations": {
+      "MajoranaMonomial": "A sorted distinct basis set of nonnegative mode labels; constructor ordering is not ordered-word multiplication. multiply computes inversion parity and symmetric difference, returning an exact sign and a bounded new blade.",
+      "MajoranaOperator": "Own a cleaned private read-only rational term table; terms returns a detached editable dictionary. Addition and multiplication return new admitted values, never modify the inputs. Missing/default terms creates zero; explicit None refuses.",
+      "relations": "commutator=AB-BA, anticommutator=AB+BA. scalar_value returns the identity coefficient and does not assert scalarity. kitaev_chain_parity is the raw ordered gamma word, not Hermitian physical parity without the (-i)^N factor.",
+      "seal": "car_nilpotency_witness checks the stated one-fermion-mode 2x2 nilpotency/occupation relations. main returns 0 for the printed witness, 1 for a typed domain refusal and 2 for a failed normal or diagnostic write."
+    },
+    "policy": "1024-bit input labels and stored rational components, blade degree<=256, terms<=4096, pairs<=65536, sum-of-pair-degrees<=1000000, accumulation components<=8192 bits. Raw parity sites<=128, checked before allocation. Limits are engineering declarations, not physical constants.",
+    "cost": "For blade degrees d,e, bisect crossings O(e log d), set/sort O((d+e) log(d+e)); operator products visit admitted term pairs under the pair/degree-work envelope. Arithmetic work and stored coefficients have separate bit guards; output term checks precede accumulation-buffer insertion. No peak-heap or wall-clock measurement.",
+    "failure": "MajoranaError on admitted domain/type/resource refusals, before committing constructors and without modifying operands. Built-in tuple/dict and int/Fraction boundaries avoid value __class__, iterator and arithmetic overrides. Deliberate object.__setattr__, hostile metaclass/interpreter state and externally constructed diagnostic mappings are outside the boundary.",
+    "ceiling": "Finite rational Clifford computations and a tiny CAR witness; no braid-image theorem, device, topological index, native equivalence, real completion or exhaustive algebra proof.",
+    "gates": {"G1":"C", "G2":"C", "G3":"C", "G4":"C", "G5":"B"},
+    "g5_basis": "Observed CCN 7/7, conservative weighted-control upper bound 12 and nesting 4. Nesting caps G5 at B. The observer is calibrated, not a claim of Sonar conformance.",
+    "historical_level": "L3",
+    "historical_gates": {"G2":"E", "G3":"E"},
+    "historical_finding": "Sealed-source replay permits a public term export to inject float and permits monomial reinitialization to change its hash. These are actual recorded custody/exactness failures, not inferred from missing tests."
+  },
+  "code/python/src/majorana/majorana_fock_algebra.py": {
+    "module": "src.majorana.majorana_fock_algebra",
+    "claim": "urn:omega:fqm:majorana:finite-fock-occupation:v1",
+    "level": "L4",
+    "level_basis": "A bounded finite matrix API with explicit occupation/Jordan-Wigner conventions, closed Gaussian component admission, immutable carrier/scalar construction, index and shape preflight, a separately bounded relation checker and parity-preserving sector restriction. Its finite ownership and refusal design delivers the capability; the Hilbert/Fock terminology alone does not.",
+    "role": "exact bounded occupation-matrix provider",
+    "operations": {
+      "GaussianRat": "Owned exact Fraction pair; addition/subtraction/product and zero test use exact Gaussian rational arithmetic. Reinitialization, subclasses, float/bool and overriding numeric values refuse.",
+      "FockCarrier": "1..5 modes, first mode most significant bit, odd gamma=Z...ZX and even gamma=Z...ZY with Y|0>=i|1>. c=(odd+i even)/2 lowers occupation; number is the occupied-bit projector; parity is (-1)^popcount.",
+      "braid_unitary": "For adjacent gamma indices, (1+i)/2 times (I+gamma_(a+1) gamma_a); finite unitarity/braid/remote commutation checks cover modes 1..3. No complete representation theorem inferred.",
+      "first_anticommutation_failure": "Fully admit a built-in family of equal-sized square Gaussian matrices, then return the first one-based failed pair or None. Empty families and 0x0 matrices satisfy equations vacuously; None does not certify a nonzero or faithful representation.",
+      "restrict_to_sector": "Require the carrier dimension, a built-in boolean selector and zero cross-parity blocks before returning a detached sector matrix. Refuse sector-mixing operators."
+    },
+    "policy": "Carrier modes<=5, matrix dimension<=32, family length<=32 and CAR product bound family*(family+1)*dimension^3<=4000000. Gaussian components use the shared 1024-bit stored rational policy. Declared limits are not empirical physics values.",
+    "cost": "Matrices use O(4^m) entries with m<=5; sparse gamma generation still returns dense matrices. CAR and braid products have finite cubic dimension cost; CAR explicitly preflights relation products. Fraction operations remain exact and refuse component growth beyond the stored bound.",
+    "failure": "MajoranaError for invalid scalar/container/shape/index/sector/resource values. Immutable exact scalars and carrier, detached returned matrices, no external handles or writes. A resource refusal may occur during exact arithmetic before a result is returned; inputs remain unchanged.",
+    "ceiling": "Python finite exact local model with a named Rust owner as origin, not a compiled cross-language equivalence receipt. No native host execution, arbitrary mode counts, continuum field, faithful-representation proof or device certification.",
+    "gates": {"G1":"C", "G2":"C", "G3":"C", "G4":"C", "G5":"B"},
+    "g5_basis": "Observed CCN 9/9, conservative control upper bound 12 and nesting 4; B ceiling from nesting. Bounded polynomial matrix work; no runtime or heap benchmark claim.",
+    "historical_level": "L3",
+    "historical_gates": {"G2":"E", "G3":"E"},
+    "historical_finding": "The original lowering matrix raises vacuum and independent c-dagger-c disagrees with the declared occupied number projector. Original number_operator accepts bool and negative labels or leaks raw shift errors. Exact before-repair matrices and outcomes are retained."
+  },
+  "code/python/src/majorana/scalar.py": {
+    "module": "src.majorana.scalar",
+    "claim": "urn:omega:fqm:ms-majorana:scalar:exact-rational:v1",
+    "level": "L4",
+    "level_basis": "A deliberately narrow admitted-scalar/canonical-certificate boundary: closed exact types, quotient/vector/text/bit policies, canonical public construction, immutable owned certificate fields and reinitialization custody. This is production API grain around a small representation, not an architectural promotion for Fraction itself.",
+    "role": "bounded rational admission and canonical-value certificate provider",
+    "operations": {
+      "q": "Admit only built-in int, exact Fraction and built-in Fraction-grammar text excluding empty/decimal/exponent strings; return a bounded exact Fraction. Q is the raw Fraction representation alias and is not an admission API.",
+      "hash_rational": "Admit numerator/denominator, refuse zero divisor and oversized reduced quotient, return canonical signed numerator/positive denominator text.",
+      "hash_rational_vec": "Admit a bounded built-in list/tuple and join canonical scalar encodings; empty gives empty text.",
+      "ScalarCertificate": "Every public constructor checks exact value and canonical text agreement before committing fields. certify_scalar independently reparses the encoding. Certificate equality/hash use exact fields; reinitialization and subclasses refuse."
+    },
+    "policy": "Rational numerator/denominator<=1024 bits, scalar text<=1024 characters, vector length<=4096. Limits are declared local engineering policies. Direct raw Q/Fraction construction is outside this bounded API.",
+    "cost": "Linear sequence traversal under a fixed vector cap, text parse under the text cap and bounded integer/Fraction normalization. Quotient intermediates at most twice the input component envelope before reduced-result admission. No real-time or peak-memory benchmark claim.",
+    "failure": "ScalarError for expected invalid types, zero denominator, malformed text, mismatched witness or resource refusal. Closed scalar/container types avoid user arithmetic/iteration and __class__ callbacks. Certificate construction is atomic and read-only under ordinary Python use; reflection/interpreter corruption is not defended.",
+    "ceiling": "Exact rational encoding/custody only; not Q(i), real completion, abstract field implementation, Lean proof or certification of raw Q callers.",
+    "gates": {"G1":"C", "G2":"C", "G3":"C", "G4":"C", "G5":"B"},
+    "g5_basis": "Observed CCN 7/7, conservative control upper bound 7 and nesting 2 fit the A metric band. G5 conservatively B because normalization/provider allocation and tight whole-runtime cost have not been separately benchmarked.",
+    "historical_level": "L2",
+    "historical_gates": {"G2":"E", "G3":"E"},
+    "historical_finding": "Original q retains a Fraction subclass whose arithmetic returns float; direct ScalarCertificate accepts inconsistent value/text. Exact witnesses are in the before-repair receipt."
+  },
+  "code/python/src/majorana/native_exact_input.py": {
+    "module": "src.majorana.native_exact_input",
+    "claim": "urn:omega:fqm:majorana:bounded-native-exact-codec:v1",
+    "level": "L4",
+    "level_basis": "A shaped native-wire admission boundary with closed scalar/matrix classes, preserved exact decimal/rational grammar, separate pre-normalization and final limits, coherent zero shapes, defensive ownership and typed codec refusals. This level covers the codec implementation, never the unavailable native owner.",
+    "role": "bounded exact native-wire codec, no native invocation",
+    "operations": {
+      "as_rational": "Accept built-in int/str/Fraction and six canonical SymPy rational classes. Finite decimal/exponent atoms and at most one rational slash are normalized with Fraction, preserving the observed original Rational text grammar; no general symbolic evaluator/sympify hook is invoked on arbitrary input.",
+      "exact_vector": "Admit a built-in list/tuple/range or one of four canonical SymPy dense/sparse matrix classes. Require a column except the explicitly normalized empty 0x0/0x1/1x0 shapes. Return a new mutable canonical SymPy column.",
+      "matrix_wire": "Preflight canonical matrix dimensions and each exact scalar, then return a detached {rows,cols,data} dictionary with rational strings. Preserve 0xn and nx0 shape instead of guessing from entry lists."
+    },
+    "policy": "Scalar components<=1024 bits, text<=1024 chars, decimal exponent magnitude<=1024, decimal atom work<=8192 bits; label<=256 chars, dimensions<=1024 and entries<=65536. Input SymPy component bits are inspected before Fraction normalization. Limits are declared policies, not provider maximums or physics constants.",
+    "cost": "Bounded text parse/decimal powers; at most two atom normalizations and a quotient before reduced output admission. Matrix traversal O(rows*cols) and vector traversal O(length) after shape/length preflight. Output allocation is detached; canonical SymPy internals remain trusted.",
+    "failure": "TypeError for disallowed closed types/symbolic/approximate entries, ValueError for malformed grammar, zero divisor, shape and resource bounds. User-defined scalar/container/matrix subclass callbacks are not admitted. No process or native request occurs here.",
+    "ceiling": "Python exact normalization and codec behavior only. The bounded diagnostic Majorana collection stops on five missing-native-package imports; these are not passed integrations or demonstrated mathematical failures. No Python fallback is introduced for delegated native algorithms.",
+    "gates": {"G1":"C", "G2":"C", "G3":"C", "G4":"C", "G5":"C"},
+    "g5_basis": "Observed CCN 9/9, conservative weighted-control upper bound 23 and nesting 5. These supply a C ceiling; the conservative observer is explicitly not Sonar cognitive-complexity conformance.",
+    "historical_level": "L2",
+    "historical_gates": {"G1":"D", "G3":"D", "G5":"D"},
+    "historical_finding": "Inspection finds no local bit/text/exponent/vector/matrix bounds and admits arbitrary MatrixBase/Sequence overrides through provider coercion. The old claim that mathematical operations run in Rust omits Python rational normalization. These are inspected audit/mechanism gaps; no unobserved E counterexample is invented."
+  },
+  "code/python/src/majorana/test_majorana_control.py": {
+    "module": "src.majorana.test_majorana_control",
+    "claim": "urn:omega:fqm:majorana:car-nilpotency-witness:v1",
+    "level": "L4",
+    "level_basis": "A finite claim-specific test protocol with independent exact CAR/occupation assertions, negative scalar diagnostics, source-origin/CLI checks, positive mutation baselines, candidate-site admission, explicit invalid-source refusal and restored module custody. This is a scoped controlled-fixture checker, not a sandbox for arbitrary submitted code.",
+    "role": "CAR provider/package and self-checking regression harness",
+    "operations": {
+      "checked_int/harness_seal": "Refuse float, bool, non-built-in/overriding and oversized integers, then check the finite integer seal.",
+      "baseline": "Load the owned finite configured source fixture, demand exactly True from the oracle and restore the previous sys.modules binding on all exits.",
+      "_killed_one": "Require a unique candidate site and callable oracle; a syntax/import/load exception is a CheckError explicitly not counted as a kill. Return a kill only for an oracle result exactly False; unexpected oracle failures propagate. Restore prior/absent module state even on failures.",
+      "suites": "Eight declared finite faults each for local library, package seal and harness. Full focused regression executes these legacy suites; external source-bound challenge adds invalid-candidate/module-custody/bit-budget failures."
+    },
+    "policy": "Scalar bit cap 1024 inherited from the reviewed provider. In-process legacy execution is limited by its owned fixed source fixtures/configured eight faults, not a service accepting arbitrary external programs. The external evidence runner supervises each candidate with a 60-second process timeout and six explicit outcomes.",
+    "cost": "Finite configured source compilation and predicate checks; no global bounded-runtime theorem. In-process exec is not OS isolation and is not safe for arbitrary untrusted or nonterminating source. The 60-second external supervisor bounds receipt generation, not the functions' arbitrary-input runtime.",
+    "failure": "CheckError for protocol/admission/baseline failures. Invalid load is never promoted to successful detection; arbitrary oracle infrastructure errors escape and invalidate assessment. Existing module bindings restored in finally; no host processes/remote services invoked by the in-process protocol.",
+    "ceiling": "Finite CAR/package-seal/self-oracle adequacy only. No full Majorana package, native deployment, complete Lean theorem build, all-module regression or arbitrary-code sandbox certification.",
+    "gates": {"G1":"C", "G2":"C", "G3":"C", "G4":"C", "G5":"B"},
+    "g5_basis": "Observed CCN 6/6, conservative control upper bound 8 and nesting 3 fit the A metric band. Conservative B reflects finite exec/compiler/provider cost assumptions and no separately checked whole-harness time/heap claim.",
+    "historical_level": "L3",
+    "historical_gates": {"G3":"E", "G4":"E"},
+    "historical_finding": "The captured old helper returns killed=True for a syntax-invalid candidate. Invalid execution was incorrectly promoted to test detection; this exact observed result is retained separately from current valid fault runs."
+  }
+}

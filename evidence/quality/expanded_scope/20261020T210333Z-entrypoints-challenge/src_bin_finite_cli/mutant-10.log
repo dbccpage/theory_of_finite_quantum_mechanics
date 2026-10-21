@@ -1,0 +1,26 @@
+..........................F.......                                       [100%]
+================================== FAILURES ===================================
+______________ test_adapter_detaches_arguments_and_checks_status ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022379301550>
+
+    def test_adapter_detaches_arguments_and_checks_status(monkeypatch):
+        arguments = ["list", "--json"]
+        def mutating_dispatch(values):
+            values.clear()
+            return 0
+        monkeypatch.setattr(trace, "_dispatch", mutating_dispatch)
+        assert trace.main(arguments) == 0
+        assert arguments == ["list", "--json"]
+        for status in [None, True, "0", -1, 3]:
+            monkeypatch.setattr(trace, "_dispatch", lambda args, status=status: status)
+>           assert trace.main(["list"]) == 2
+E           AssertionError: assert None == 2
+E            +  where None = <function main at 0x00000223782B6AE0>(['list'])
+E            +    where <function main at 0x00000223782B6AE0> = trace.main
+
+code\python\tests\test_bounded_entrypoints.py:198: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_adapter_detaches_arguments_and_checks_status
+1 failed, 33 passed, 1 deselected in 2.91s
+{"phase": "pytest", "exit_code": 1}

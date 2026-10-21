@@ -1,0 +1,27 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ScalarCertificate", "ScalarError", "certify_scalar", "hash_rational", "hash_rational_vec", "q"]}
+...........F..                                                           [100%]
+================================== FAILURES ===================================
+______________________ test_shape_and_resource_refusals _______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B929B0D5B0>
+
+    def test_shape_and_resource_refusals(monkeypatch):
+        import src.majorana.majorana_modes as modes
+        import src.majorana.majorana_fock_algebra as fock
+        import src.majorana.native_exact_input as native
+        big = 1 << 1024
+        for fn in (q, checked_int, MajoranaMonomial.single, lambda x: GaussianRat(x, 0), as_rational):
+            with pytest.raises(ValueError if fn is not checked_int else CheckError):
+                fn(big)
+        assert q((1 << 1023)-1) == (1 << 1023)-1
+        with pytest.raises(ValueError):
+            as_rational(Rational(big, 3))
+>       with pytest.raises(ScalarError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ScalarError
+
+code\python\tests\test_majorana_integrity.py:300: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_integrity.py::test_shape_and_resource_refusals
+1 failed, 13 passed in 3.69s
+{"phase": "pytest", "exit_code": 1}

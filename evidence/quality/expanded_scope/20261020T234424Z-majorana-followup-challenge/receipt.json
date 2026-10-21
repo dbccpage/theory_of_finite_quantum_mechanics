@@ -1,0 +1,199 @@
+{
+  "AuthorityEffect": "None",
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "inputs": {
+    "SCORING.md": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de",
+    "code/python/src/linear_algebra/matrix.py": "7e4a5fb5a27171bc16a579d26374899a5a1a72f926bc05410d163c43e55b0398",
+    "code/python/src/linear_algebra/scalars.py": "f039e7a7acb0bbda9487eea547a38c790f1aee56de7a1d10b3b54da826149873",
+    "code/python/src/majorana/__init__.py": "9f949f04a6d8dfb08d1ffb514aad0b2823ce5729df4309b33c6bd3a190238072",
+    "code/python/src/majorana/majorana_fock_algebra.py": "762b2601988a361b69ff1fcd117a0f6c90318fe65f5f8081785c6d41fb8c62a2",
+    "code/python/src/majorana/majorana_modes.py": "5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c",
+    "code/python/src/majorana/native_exact_input.py": "e7bc2fcf062e33e856abbdbfb4d0a52ad3229f4bf99b5aec6a1072ee7ff21ca3",
+    "code/python/src/majorana/scalar.py": "71bd208677aa0b8db58c861fe2bbaf59e8b6f5c5ac011508c2a3527cea2eae6d",
+    "code/python/src/majorana/test_majorana_control.py": "c926c77f36fcf1ef4b6fa7c5b92dd7339c909e0c373afd9ef56f2b69357e35f1",
+    "code/python/src/qm/api.py": "1f0f933227292077205d28ef672494e1b78d7f1ef4ce74f9924cb45729e1d143",
+    "code/python/src/qm/cli.py": "e0407130c73c982ce6daecf96d9f95ed624771c21b8760f6ebb767915c585182",
+    "code/python/tests/conftest.py": "704a5ca2986e215f6a7094128d9a7dcdefd1d64c7b106aba76087d6f58e0cc7b",
+    "code/python/tests/test_majorana_boundaries_followup.py": "53bffd6c2e85b4d9421ea3940b67561f851b9bd84744a2229f1c7946419218cc",
+    "code/python/tests/test_majorana_integrity.py": "355d8ff0ee02d81077db8ba585de2011bf3e0916d1f621051b4c17b5a9227562",
+    "code/python/tests/test_majorana_modes.py": "aee76dd024530ebf32dbbe1956f4823f4e85e50f1cc8a9dfe58f8ccdf803f533"
+  },
+  "runner_sha256": "40561fa2d7fb2e3638d084e56a9325c60bd6473c6004d20f48ef77c5ae329ffd",
+  "capture_sha256": "37d4ff67a06128bb12b9ff7f72cc17e0a98ee7de8aa7249e2da9a8e5d54d3f33",
+  "configuration_sha256": "7ab4239efc57d5208bddf4da78c438e618937f9ca800c21419d9c0cf7557bf51",
+  "scope": "majorana-followup: explicitly named modules and finite API/checker behavior only; no delegated suite certification, Lean proof, numerical benchmark or OS sandbox guarantee.",
+  "unbound_inputs": "Other conftest imports, default suite/claim data, native extension availability, transitive pytest/stdlib sources and OS remain trusted host inputs.",
+  "files": {
+    "src.majorana.majorana_modes": {
+      "source": "code/python/src/majorana/majorana_modes.py",
+      "source_sha256": "5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c",
+      "baseline": {
+        "status": "SURVIVED",
+        "exit_code": 0,
+        "last_status": {
+          "phase": "pytest",
+          "exit_code": 0
+        },
+        "source_sha256": "5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c",
+        "log_sha256": "b74a2cf321f2dbfbcacb57984e94be64dc182e04b6d52e908a1d982a8d34ec4d"
+      },
+      "baseline_module_exit": null,
+      "baseline_passed": true,
+      "mutants": [
+        {
+          "name": "float",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "da2a4f2a8d505da1c343faf0e1ee3685d3184f054f66bc62f78668c5710be124",
+          "log_sha256": "83be624eebfa5678b3b1c9dd77d0ce6871cab64c08a735acd2d64532abda8a6a"
+        },
+        {
+          "name": "product degree cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "a3b1794916936327aeec36e41037819faac36f8d168bd48c4c0e376c6715dcd6",
+          "log_sha256": "25281a8b912b325c76aea5c1369151d32938b1f5c169bd3d3c68a658d44da1dc"
+        },
+        {
+          "name": "output term cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "87a5b9c7b42682bf5dabaa672eeae50e45304fd3308f9c0e8e55681ee8dde782",
+          "log_sha256": "2a987f6dfff23350a8768d3ddb6be9f5f5a2f69721831efcede7142d637138f6"
+        },
+        {
+          "name": "parity degree preflight omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "b89c27a8c305a9cc72a4d63170246458c9ce80e1279848c95b9c816c044d7135",
+          "log_sha256": "c7d802745ecbc94166d68df7363118bce298fd273f647a9f3b97a501000f976a"
+        },
+        {
+          "name": "integer class callback introduced (unique function site)",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "f5127f2f7d2a460fdd9271d08b0af80b338ab3659c205bae9ce487f0bbc8a069",
+          "log_sha256": "380ac05748c97ab3d70332a9dfef38cb20345f5719666a5c442d6611f3c9c20b"
+        }
+      ],
+      "outcomes": {
+        "KILLED": 5
+      },
+      "eligible": 5,
+      "detection_fraction": {
+        "numerator": 5,
+        "denominator": 5
+      },
+      "status": "PASS"
+    },
+    "src.majorana.native_exact_input": {
+      "source": "code/python/src/majorana/native_exact_input.py",
+      "source_sha256": "e7bc2fcf062e33e856abbdbfb4d0a52ad3229f4bf99b5aec6a1072ee7ff21ca3",
+      "baseline": {
+        "status": "SURVIVED",
+        "exit_code": 0,
+        "last_status": {
+          "phase": "pytest",
+          "exit_code": 0
+        },
+        "source_sha256": "e7bc2fcf062e33e856abbdbfb4d0a52ad3229f4bf99b5aec6a1072ee7ff21ca3",
+        "log_sha256": "1b7b9fafd7a5b99a2498cb8ab59fd83ba3c12243d42fd87c050ba7c2933dcb09"
+      },
+      "baseline_module_exit": null,
+      "baseline_passed": true,
+      "mutants": [
+        {
+          "name": "exponent work cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "2d057ba9af9589d4208a1bbd0ad7df8627eebfb025f6e1c56986f7a43d25ff88",
+          "log_sha256": "979c09a451110fc21d159db1203501a0a242c832199a5c6bbec5ae43291c7ea9"
+        },
+        {
+          "name": "scalar text cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "66e2907fc2bc597b18b9377f0d931f156b29216fc14acefec2c2e8fed1959f32",
+          "log_sha256": "a03a6419abf6cda6b5f3a3729de553944f75bbfde98090f2e943618a39a07a0f"
+        }
+      ],
+      "outcomes": {
+        "KILLED": 2
+      },
+      "eligible": 2,
+      "detection_fraction": {
+        "numerator": 2,
+        "denominator": 2
+      },
+      "status": "PASS"
+    },
+    "src.majorana.scalar": {
+      "source": "code/python/src/majorana/scalar.py",
+      "source_sha256": "71bd208677aa0b8db58c861fe2bbaf59e8b6f5c5ac011508c2a3527cea2eae6d",
+      "baseline": {
+        "status": "SURVIVED",
+        "exit_code": 0,
+        "last_status": {
+          "phase": "pytest",
+          "exit_code": 0
+        },
+        "source_sha256": "71bd208677aa0b8db58c861fe2bbaf59e8b6f5c5ac011508c2a3527cea2eae6d",
+        "log_sha256": "32459d00be93b1c190de0b462f912b81d316662a916e6c659ec476101eb0d16c"
+      },
+      "baseline_module_exit": null,
+      "baseline_passed": true,
+      "mutants": [
+        {
+          "name": "scalar text cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "8ba3a2f1c0f912394ac6ab1369b453807bc4a8554580dc4ffb1f529f056f263c",
+          "log_sha256": "b5a8faa36def878511027f5bba41ebfa19929e10f6375f0d6f07c1545a717f12"
+        }
+      ],
+      "outcomes": {
+        "KILLED": 1
+      },
+      "eligible": 1,
+      "detection_fraction": {
+        "numerator": 1,
+        "denominator": 1
+      },
+      "status": "PASS"
+    }
+  },
+  "inputs_unchanged": true,
+  "status": "PASS"
+}

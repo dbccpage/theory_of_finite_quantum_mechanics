@@ -1,0 +1,113 @@
+{"phase": "candidate_bindings", "checked_symbols": ["exported_zero_phi1"]}
+.........FFFF.                                                           [100%]
+================================== FAILURES ===================================
+__________________________________ test_unit __________________________________
+
+    def test_unit() -> None:
+        """The independent certificate and the export are both zero."""
+>       if exported_zero_phi1() != certified_zero():
+           ^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\functional\test_exported_zero_phi1.py:295: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:91: in exported_zero_phi1
+    parsed_column = _rows(column, "boundary")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:72: in _rows
+    return (_pair(value[0], role + "_0"), _pair(value[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+row = (1, 0), role = 'boundary_0'
+
+    def _pair(row: object, role: str) -> tuple[int, int]:
+        if type(row) is not tuple or len(row) == 2:
+>           raise _fail("witness row must contain two entries", role=role, received=type(row).__name__)
+E           src.functional.l1_seminorm.L1SeminormError: witness row must contain two entries (role=boundary_0, received=tuple)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:65: L1SeminormError
+______________________________ test_integration _______________________________
+
+    def test_integration() -> None:
+        """The export agrees with the neighbor's weighted quotient on the same witness."""
+        neighbor = evaluate_weighted_l1_quotient([[1], [-1]], [1, 1], [0, 0], [0], [0, 0], [0, 0], 0)
+>       if neighbor != exported_zero_phi1():
+                       ^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\functional\test_exported_zero_phi1.py:302: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:91: in exported_zero_phi1
+    parsed_column = _rows(column, "boundary")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:72: in _rows
+    return (_pair(value[0], role + "_0"), _pair(value[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+row = (1, 0), role = 'boundary_0'
+
+    def _pair(row: object, role: str) -> tuple[int, int]:
+        if type(row) is not tuple or len(row) == 2:
+>           raise _fail("witness row must contain two entries", role=role, received=type(row).__name__)
+E           src.functional.l1_seminorm.L1SeminormError: witness row must contain two entries (role=boundary_0, received=tuple)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:65: L1SeminormError
+_______________________________ test_end_to_end _______________________________
+
+    def test_end_to_end() -> None:
+        """The default public call returns the zero rational."""
+>       if exported_zero_phi1() != Fraction(0):
+           ^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\functional\test_exported_zero_phi1.py:308: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:91: in exported_zero_phi1
+    parsed_column = _rows(column, "boundary")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:72: in _rows
+    return (_pair(value[0], role + "_0"), _pair(value[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+row = (1, 0), role = 'boundary_0'
+
+    def _pair(row: object, role: str) -> tuple[int, int]:
+        if type(row) is not tuple or len(row) == 2:
+>           raise _fail("witness row must contain two entries", role=role, received=type(row).__name__)
+E           src.functional.l1_seminorm.L1SeminormError: witness row must contain two entries (role=boundary_0, received=tuple)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:65: L1SeminormError
+________________________________ test_negative ________________________________
+
+    def test_negative() -> None:
+        """Float, bool, a wide row, and an unrepeated weight are refused."""
+>       _check_export(exported_zero_phi1, L1SeminormError)
+
+code\python\src\functional\test_exported_zero_phi1.py:314: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\functional\test_exported_zero_phi1.py:120: in _check_export
+    if export() != expected:
+       ^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:91: in exported_zero_phi1
+    parsed_column = _rows(column, "boundary")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:72: in _rows
+    return (_pair(value[0], role + "_0"), _pair(value[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+row = (1, 0), role = 'boundary_0'
+
+    def _pair(row: object, role: str) -> tuple[int, int]:
+        if type(row) is not tuple or len(row) == 2:
+>           raise _fail("witness row must contain two entries", role=role, received=type(row).__name__)
+E           src.functional.l1_seminorm.L1SeminormError: witness row must contain two entries (role=boundary_0, received=tuple)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-07.py:65: L1SeminormError
+=========================== short test summary info ===========================
+FAILED code/python/src/functional/test_exported_zero_phi1.py::test_unit - src...
+FAILED code/python/src/functional/test_exported_zero_phi1.py::test_integration
+FAILED code/python/src/functional/test_exported_zero_phi1.py::test_end_to_end
+FAILED code/python/src/functional/test_exported_zero_phi1.py::test_negative
+4 failed, 10 passed, 2 deselected in 1.27s
+{"phase": "pytest", "exit_code": 1}

@@ -1,0 +1,25 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ScalarCertificate", "ScalarError", "certify_scalar", "hash_rational", "hash_rational_vec", "q"]}
+..........F...                                                           [100%]
+================================== FAILURES ===================================
+_________________ test_scalar_certificates_and_wire_grammars __________________
+
+    def test_scalar_certificates_and_wire_grammars():
+        assert q(' -6/8 ') == F(-3, 4)
+        assert hash_rational(2, -4) == '-1/2'
+        assert hash_rational_vec([1, F(-1, 2)]) == '1/1,-1/2'
+        assert hash_rational_vec(()) == ''
+        assert certify_scalar('2/4') == ScalarCertificate(F(1, 2), '1/2')
+        assert hash(certify_scalar(1)) == hash(ScalarCertificate(1, '1/1'))
+        for text in ('0.5', '1e3', '', '1/0', 'no'):
+            with pytest.raises(ScalarError):
+                q(text)
+        for value, text in [(1, '2/1'), (1, '2/2'), (1, 1), (1, '1'*1025)]:
+>           with pytest.raises(ScalarError):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ScalarError
+
+code\python\tests\test_majorana_integrity.py:257: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_integrity.py::test_scalar_certificates_and_wire_grammars
+1 failed, 13 passed in 4.84s
+{"phase": "pytest", "exit_code": 1}

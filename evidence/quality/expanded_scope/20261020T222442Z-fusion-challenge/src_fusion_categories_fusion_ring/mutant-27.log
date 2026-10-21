@@ -1,0 +1,23 @@
+{"phase": "candidate_bindings", "checked_symbols": ["AbelianGroup", "FusionRing", "FusionTable", "RingDefectType", "ising_global_dimension_rational"]}
+.........F..........                                                     [100%]
+================================== FAILURES ===================================
+_______________________ test_distinct_ring_law_refusals _______________________
+
+    def test_distinct_ring_law_refusals():
+        # This commutative unital table has orthonormal unit channels but fails
+        # (x*x)*y = x*(x*y): left is y, right is zero.
+        nonassoc = (((1, 0, 0), (0, 1, 0), (0, 0, 1)),
+                    ((0, 1, 0), (1, 0, 0), (0, 0, 0)),
+                    ((0, 0, 1), (0, 0, 0), (1, 0, 0)))
+        table = api.FusionTable.from_3d(nonassoc)
+        assert table.n(1, 1, 0) * table.n(0, 2, 2) == 1
+        assert sum(table.n(1, 2, x) * table.n(1, x, 2) for x in range(3)) == 0
+>       assert table.first_defect().defect_type == api.RingDefectType.ASSOCIATIVITY
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'NoneType' object has no attribute 'defect_type'
+
+code\python\tests\test_fusion_integrity.py:207: AttributeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_distinct_ring_law_refusals
+1 failed, 19 passed, 1 deselected in 4.67s
+{"phase": "pytest", "exit_code": 1}

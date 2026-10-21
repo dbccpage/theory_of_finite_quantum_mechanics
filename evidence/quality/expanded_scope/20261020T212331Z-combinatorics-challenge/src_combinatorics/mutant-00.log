@@ -1,0 +1,45 @@
+{"phase": "candidate_bindings", "checked_symbols": ["exported_binomial"]}
+F....................                                                    [100%]
+================================== FAILURES ===================================
+_________________ test_admission_does_not_consult_user_class __________________
+
+    def test_admission_does_not_consult_user_class():
+        from src.combinatorics import test_finite_combinatorics as counting
+        from src.combinatorics import test_exported_binomial as facade
+        for operation, error in [
+            (lambda: api.binomial_exact(ClassCallback(), 0), api.CombinatoricsError),
+            (lambda: exported.exported_binomial(ClassCallback(), 3), api.CombinatoricsError),
+            (lambda: counting.parse_exact_size(ClassCallback()), counting.ClaimCheckError),
+            (lambda: facade.parse_exact_size(ClassCallback()), facade.ClaimCheckError),
+        ]:
+            with pytest.raises(error):
+>               operation()
+
+code\python\tests\test_combinatorics_resources.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\tests\test_combinatorics_resources.py:26: in <lambda>
+    (lambda: exported.exported_binomial(ClassCallback(), 3), api.CombinatoricsError),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-00.py:80: in exported_binomial
+    left, right = _require_pair(n, k)
+                  ^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-00.py:59: in _require_pair
+    left = _exact_int(n, "n")
+           ^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics\mutant-00.py:47: in _exact_int
+    if isinstance(value, float):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tests.test_combinatorics_resources.ClassCallback object at 0x00000169B16E96D0>
+
+    @property
+    def __class__(self):
+>       raise RuntimeError("must refuse without consulting user __class__")
+E       RuntimeError: must refuse without consulting user __class__
+
+code\python\tests\test_combinatorics_resources.py:18: RuntimeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_combinatorics_resources.py::test_admission_does_not_consult_user_class
+1 failed, 20 passed, 2 deselected in 2.19s
+{"phase": "pytest", "exit_code": 1}

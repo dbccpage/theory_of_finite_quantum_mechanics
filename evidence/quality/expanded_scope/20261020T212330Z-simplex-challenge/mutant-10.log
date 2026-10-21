@@ -1,0 +1,127 @@
+..F..................F......F                                            [100%]
+================================== FAILURES ===================================
+_____________________ test_freeze_and_snapshot_lifecycle ______________________
+
+    def test_freeze_and_snapshot_lifecycle():
+        raw = [Fraction(1, 3), Fraction(2, 3)]
+        state = api.ProbabilitySimplex(raw)
+        raw[0] = 0
+        copy = state.probs
+        copy[0] = 0
+        assert tuple(state) == (Fraction(1, 3), Fraction(2, 3))
+        assert state[-1] == Fraction(2, 3)
+        assert state != object()
+        assert state == api.ProbabilitySimplex([(1, 3), (2, 3)])
+        assert state != api.ProbabilitySimplex([1, 0])
+        for attribute, replacement in [("_probs", (0,)), ("label", "corrupt")]:
+            with pytest.raises(FrozenInstanceError):
+                setattr(state, attribute, replacement)
+        with pytest.raises(TypeError, match="does not admit subclasses"):
+            type("UnsafeState", (api.ProbabilitySimplex,), {})
+        with pytest.raises(TypeError, match="does not admit subclasses"):
+            type("UnsafeMap", (api.StochasticMap,), {})
+        matrix = [[0, 1], [1, 0]]
+        channel = api.StochasticMap(matrix)
+        matrix[0][0] = 1
+        assert channel.rows == channel.cols == 2
+>       assert channel.apply(state).probs == [Fraction(2, 3), Fraction(1, 3)]
+               ^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_simplex_lifecycle.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:338: in apply
+    return ProbabilitySimplex(pushed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:181: in __init__
+    parsed = tuple(_parse_distribution(probs))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:143: in _parse_distribution
+    _require_unit_total(_sum(parsed), "distribution")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(2, 3), role = 'distribution'
+
+    def _require_unit_total(total: Fraction, role: str) -> None:
+        if total != Fraction(1):
+>           raise _fail("mass is not one", role=role, total=str(total))
+E           src.finite_probability.simplex.SimplexError: mass is not one (role=distribution, total=2/3)
+
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:132: SimplexError
+_______ test_generated_small_rational_domains_against_integer_formulas ________
+
+    def test_generated_small_rational_domains_against_integer_formulas():
+        # Independent integer numerators provide exact expected values; no source
+        # helper computes the oracle. All two-state distributions at scale 1..8.
+        for scale in range(1, 9):
+            for left, right in product(range(scale + 1), repeat=2):
+                p = api.ProbabilitySimplex([(left, scale), (scale - left, scale)])
+                q = api.ProbabilitySimplex([(right, scale), (scale - right, scale)])
+                assert p.total_variation_distance(q) == Fraction(abs(left - right), scale)
+                assert p.expectation([2, -1]) == Fraction(3 * left - scale, scale)
+                for m in range(4):
+                    mix = p.mixture(q, Fraction(m, 3))
+                    first = Fraction(m * left + (3 - m) * right, 3 * scale)
+                    assert mix.probs == [first, 1 - first]
+                    assert all(type(value) is Fraction for value in mix.probs)
+                # Row map (1/3,2/3), (1,0) gives (1 - 2p/3, 2p/3).
+>               output = api.StochasticMap([[(1, 3), (2, 3)], [1, 0]]).apply(p)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_simplex_lifecycle.py:165: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:338: in apply
+    return ProbabilitySimplex(pushed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:181: in __init__
+    parsed = tuple(_parse_distribution(probs))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:143: in _parse_distribution
+    _require_unit_total(_sum(parsed), "distribution")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(0, 1), role = 'distribution'
+
+    def _require_unit_total(total: Fraction, role: str) -> None:
+        if total != Fraction(1):
+>           raise _fail("mass is not one", role=role, total=str(total))
+E           src.finite_probability.simplex.SimplexError: mass is not one (role=distribution, total=0)
+
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:132: SimplexError
+__________ test_exact_controls_have_an_independent_arithmetic_basis ___________
+
+    def test_exact_controls_have_an_independent_arithmetic_basis():
+        # E[X] = 1/3 * 2 + 2/3 * (-1) = 0; purity = 1/9 + 4/9.
+        state = ProbabilitySimplex([Fraction(1, 3), Fraction(2, 3)])
+        assert state.expectation([2, -1]) == Fraction(0)
+        assert type(state.expectation([2, -1])) is Fraction
+        assert collision_probability((Fraction(1, 3), Fraction(2, 3))) == Fraction(5, 9)
+        assert ray_power_two((Fraction(3, 5), Fraction(4, 5), 0)) == Fraction(1)
+>       assert StochasticMap([[0, 1], [1, 0]]).apply(state).probs == [Fraction(2, 3), Fraction(1, 3)]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_expanded_exact_admission.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:338: in apply
+    return ProbabilitySimplex(pushed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:181: in __init__
+    parsed = tuple(_parse_distribution(probs))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:143: in _parse_distribution
+    _require_unit_total(_sum(parsed), "distribution")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(2, 3), role = 'distribution'
+
+    def _require_unit_total(total: Fraction, role: str) -> None:
+        if total != Fraction(1):
+>           raise _fail("mass is not one", role=role, total=str(total))
+E           src.finite_probability.simplex.SimplexError: mass is not one (role=distribution, total=2/3)
+
+evidence\quality\expanded_scope\20261020T212330Z-simplex-challenge\mutant-10.py:132: SimplexError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_simplex_lifecycle.py::test_freeze_and_snapshot_lifecycle
+FAILED code/python/tests/test_simplex_lifecycle.py::test_generated_small_rational_domains_against_integer_formulas
+FAILED code/python/tests/test_expanded_exact_admission.py::test_exact_controls_have_an_independent_arithmetic_basis
+3 failed, 26 passed in 3.02s
+{"phase": "pytest", "exit_code": 1}

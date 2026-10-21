@@ -1,0 +1,230 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CategoryLawError", "FiniteCategory", "factor_report_query", "verify_report_query_factorization"]}
+.........FFF..F..FFF.                                                    [100%]
+================================== FAILURES ===================================
+_________________ test_exhaustive_three_source_factorizations _________________
+
+    def test_exhaustive_three_source_factorizations():
+        # A decoder exists exactly when each report fibre has one query value.
+        # This oracle uses fibre sets, independently of the implementation's
+        # incremental decoder assignment and conflict branch.
+        accepted = rejected = 0
+        for report_values, query_values in product(product(range(2), repeat=3), repeat=2):
+            report = dict(enumerate(report_values)); query = dict(enumerate(query_values))
+            fibres = [{query[i] for i in range(3) if report[i] == value} for value in set(report_values)]
+            compatible = all(len(fibre) == 1 for fibre in fibres)
+            observed, decoder = api.verify_report_query_factorization(report, query)
+>           assert observed is compatible
+E           assert False is True
+
+code\python\tests\test_category_integrity.py:172: AssertionError
+____________ test_factorization_resource_and_ownership_boundaries _____________
+
+    def test_factorization_resource_and_ownership_boundaries():
+        report = {i: 10 for i in range(4096)}; query = {i: 1 for i in range(4096)}
+>       decoder = api.factor_report_query(report, query)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_category_integrity.py:185: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:256: in factor_report_query
+    _assign(decoder, source, image, query)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+decoder = {10: 1}, source = 1, report = 10
+query_map = {0: 1, 1: 1, 2: 1, 3: 1, ...}
+
+    def _assign(decoder: Dict[int, int], source: object, report: object, query_map: Mapping[object, object]) -> None:
+        key = _exact_int(source, "source")
+        image = _exact_int(report, "report")
+        if key not in query_map:
+            raise _fail("query misses a report source", source=key)
+        query = _exact_int(query_map[key], "query")
+        if image in decoder and decoder[image] == query:
+>           raise _fail(
+                "query does not factor through the report",
+                report=image,
+                left=decoder[image],
+                right=query,
+            )
+E           src.category_theory.finite_category.CategoryLawError: query does not factor through the report (report=10, left=1, right=1)
+
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:239: CategoryLawError
+________________ test_witness_tables_never_drop_duplicate_keys ________________
+
+    def test_witness_tables_never_drop_duplicate_keys():
+        for rows in [((0, 999), (0, 10), (1, 10), (2, 20)), ((0, 10), (0, 10), (1, 10), (2, 20))]:
+            with pytest.raises(api.CategoryLawError, match="duplicate witness source"):
+                facade.arrow_decoder_size(report=rows)
+        with pytest.raises(api.CategoryLawError, match="duplicate witness source"):
+            facade.arrow_decoder_size(query=((0, 99), (0, 1), (1, 1), (2, 0)))
+>       assert facade.arrow_decoder_size() == 2
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_category_integrity.py:206: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\category_theory\__init__.py:111: in arrow_decoder_size
+    return _require_decoder(factor_report_query(_table(report_rows, "report"), _table(query_rows, "query")))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:256: in factor_report_query
+    _assign(decoder, source, image, query)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+decoder = {10: 1}, source = 1, report = 10, query_map = {0: 1, 1: 1, 2: 0}
+
+    def _assign(decoder: Dict[int, int], source: object, report: object, query_map: Mapping[object, object]) -> None:
+        key = _exact_int(source, "source")
+        image = _exact_int(report, "report")
+        if key not in query_map:
+            raise _fail("query misses a report source", source=key)
+        query = _exact_int(query_map[key], "query")
+        if image in decoder and decoder[image] == query:
+>           raise _fail(
+                "query does not factor through the report",
+                report=image,
+                left=decoder[image],
+                right=query,
+            )
+E           src.category_theory.finite_category.CategoryLawError: query does not factor through the report (report=10, left=1, right=1)
+
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:239: CategoryLawError
+________ test_checker_witnesses_are_computed_and_class_guards_are_safe ________
+
+    def test_checker_witnesses_are_computed_and_class_guards_are_safe():
+        from src.category_theory import test_finite_category as category_checks
+        from src.category_theory import test_arrow_decoder as decoder_checks
+        assert (category_checks.witness_decoder(), category_checks.witness_sources(), category_checks.witness_axiom()) == (2, 3, 1)
+>       assert (decoder_checks.witness_width(), decoder_checks.witness_sources(), decoder_checks.witness_points()) == (2, 3, 2)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_category_integrity.py:233: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\category_theory\test_arrow_decoder.py:187: in witness_width
+    return len(factor_report_query(_REPORT, _QUERY))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:256: in factor_report_query
+    _assign(decoder, source, image, query)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+decoder = {10: 1}, source = 1, report = 10, query_map = {0: 1, 1: 1, 2: 0}
+
+    def _assign(decoder: Dict[int, int], source: object, report: object, query_map: Mapping[object, object]) -> None:
+        key = _exact_int(source, "source")
+        image = _exact_int(report, "report")
+        if key not in query_map:
+            raise _fail("query misses a report source", source=key)
+        query = _exact_int(query_map[key], "query")
+        if image in decoder and decoder[image] == query:
+>           raise _fail(
+                "query does not factor through the report",
+                report=image,
+                left=decoder[image],
+                right=query,
+            )
+E           src.category_theory.finite_category.CategoryLawError: query does not factor through the report (report=10, left=1, right=1)
+
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:239: CategoryLawError
+______________________________ test_integration _______________________________
+
+    def test_integration() -> None:
+        """Every report source satisfies query(source) = decoder(report(source))."""
+>       decoded = factor_report_query(_REPORT, _QUERY)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\category_theory\test_finite_category.py:349: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:256: in factor_report_query
+    _assign(decoder, source, image, query)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+decoder = {10: 1}, source = 1, report = 10, query_map = {0: 1, 1: 1, 2: 0}
+
+    def _assign(decoder: Dict[int, int], source: object, report: object, query_map: Mapping[object, object]) -> None:
+        key = _exact_int(source, "source")
+        image = _exact_int(report, "report")
+        if key not in query_map:
+            raise _fail("query misses a report source", source=key)
+        query = _exact_int(query_map[key], "query")
+        if image in decoder and decoder[image] == query:
+>           raise _fail(
+                "query does not factor through the report",
+                report=image,
+                left=decoder[image],
+                right=query,
+            )
+E           src.category_theory.finite_category.CategoryLawError: query does not factor through the report (report=10, left=1, right=1)
+
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:239: CategoryLawError
+_______________________________ test_end_to_end _______________________________
+
+    def test_end_to_end() -> None:
+        """The public factor and boolean contracts return the frozen decoder."""
+>       if factor_report_query(_REPORT, _QUERY) != _DECODER:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\src\category_theory\test_finite_category.py:356: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:256: in factor_report_query
+    _assign(decoder, source, image, query)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+decoder = {10: 1}, source = 1, report = 10, query_map = {0: 1, 1: 1, 2: 0}
+
+    def _assign(decoder: Dict[int, int], source: object, report: object, query_map: Mapping[object, object]) -> None:
+        key = _exact_int(source, "source")
+        image = _exact_int(report, "report")
+        if key not in query_map:
+            raise _fail("query misses a report source", source=key)
+        query = _exact_int(query_map[key], "query")
+        if image in decoder and decoder[image] == query:
+>           raise _fail(
+                "query does not factor through the report",
+                report=image,
+                left=decoder[image],
+                right=query,
+            )
+E           src.category_theory.finite_category.CategoryLawError: query does not factor through the report (report=10, left=1, right=1)
+
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:239: CategoryLawError
+________________________________ test_negative ________________________________
+
+    def test_negative() -> None:
+        """Empty tables, floats, bools, and colliding queries are refused."""
+>       _check_factor(factor_report_query, verify_report_query_factorization, CategoryLawError)
+
+code\python\src\category_theory\test_finite_category.py:364: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\category_theory\test_finite_category.py:145: in _check_factor
+    decoded = factor(_REPORT, _QUERY)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:256: in factor_report_query
+    _assign(decoder, source, image, query)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+decoder = {10: 1}, source = 1, report = 10, query_map = {0: 1, 1: 1, 2: 0}
+
+    def _assign(decoder: Dict[int, int], source: object, report: object, query_map: Mapping[object, object]) -> None:
+        key = _exact_int(source, "source")
+        image = _exact_int(report, "report")
+        if key not in query_map:
+            raise _fail("query misses a report source", source=key)
+        query = _exact_int(query_map[key], "query")
+        if image in decoder and decoder[image] == query:
+>           raise _fail(
+                "query does not factor through the report",
+                report=image,
+                left=decoder[image],
+                right=query,
+            )
+E           src.category_theory.finite_category.CategoryLawError: query does not factor through the report (report=10, left=1, right=1)
+
+evidence\quality\expanded_scope\20261020T221038Z-category-challenge\src_category_theory_finite_category\mutant-04.py:239: CategoryLawError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_exhaustive_three_source_factorizations
+FAILED code/python/tests/test_category_integrity.py::test_factorization_resource_and_ownership_boundaries
+FAILED code/python/tests/test_category_integrity.py::test_witness_tables_never_drop_duplicate_keys
+FAILED code/python/tests/test_category_integrity.py::test_checker_witnesses_are_computed_and_class_guards_are_safe
+FAILED code/python/src/category_theory/test_finite_category.py::test_integration
+FAILED code/python/src/category_theory/test_finite_category.py::test_end_to_end
+FAILED code/python/src/category_theory/test_finite_category.py::test_negative
+7 failed, 14 passed, 2 deselected in 2.29s
+{"phase": "pytest", "exit_code": 1}

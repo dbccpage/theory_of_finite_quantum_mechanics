@@ -1,0 +1,899 @@
+{
+  "AuthorityEffect": "None",
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "inputs": {
+    "SCORING.md": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de",
+    "code/python/src/linear_algebra/matrix.py": "7e4a5fb5a27171bc16a579d26374899a5a1a72f926bc05410d163c43e55b0398",
+    "code/python/src/linear_algebra/scalars.py": "f039e7a7acb0bbda9487eea547a38c790f1aee56de7a1d10b3b54da826149873",
+    "code/python/src/majorana/__init__.py": "9f949f04a6d8dfb08d1ffb514aad0b2823ce5729df4309b33c6bd3a190238072",
+    "code/python/src/majorana/majorana_fock_algebra.py": "762b2601988a361b69ff1fcd117a0f6c90318fe65f5f8081785c6d41fb8c62a2",
+    "code/python/src/majorana/majorana_modes.py": "5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c",
+    "code/python/src/majorana/native_exact_input.py": "e7bc2fcf062e33e856abbdbfb4d0a52ad3229f4bf99b5aec6a1072ee7ff21ca3",
+    "code/python/src/majorana/scalar.py": "71bd208677aa0b8db58c861fe2bbaf59e8b6f5c5ac011508c2a3527cea2eae6d",
+    "code/python/src/majorana/test_majorana_control.py": "c926c77f36fcf1ef4b6fa7c5b92dd7339c909e0c373afd9ef56f2b69357e35f1",
+    "code/python/src/qm/api.py": "1f0f933227292077205d28ef672494e1b78d7f1ef4ce74f9924cb45729e1d143",
+    "code/python/src/qm/cli.py": "e0407130c73c982ce6daecf96d9f95ed624771c21b8760f6ebb767915c585182",
+    "code/python/tests/conftest.py": "704a5ca2986e215f6a7094128d9a7dcdefd1d64c7b106aba76087d6f58e0cc7b",
+    "code/python/tests/test_majorana_integrity.py": "355d8ff0ee02d81077db8ba585de2011bf3e0916d1f621051b4c17b5a9227562",
+    "code/python/tests/test_majorana_modes.py": "aee76dd024530ebf32dbbe1956f4823f4e85e50f1cc8a9dfe58f8ccdf803f533"
+  },
+  "runner_sha256": "40561fa2d7fb2e3638d084e56a9325c60bd6473c6004d20f48ef77c5ae329ffd",
+  "capture_sha256": "37d4ff67a06128bb12b9ff7f72cc17e0a98ee7de8aa7249e2da9a8e5d54d3f33",
+  "configuration_sha256": "1baba63e22442e01bd75e99db68981ba71ec35f11bfd999a1d42787c222eb47e",
+  "scope": "majorana: explicitly named modules and finite API/checker behavior only; no delegated suite certification, Lean proof, numerical benchmark or OS sandbox guarantee.",
+  "unbound_inputs": "Other conftest imports, default suite/claim data, native extension availability, transitive pytest/stdlib sources and OS remain trusted host inputs.",
+  "files": {
+    "src.majorana.majorana_modes": {
+      "source": "code/python/src/majorana/majorana_modes.py",
+      "source_sha256": "5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c",
+      "baseline": {
+        "status": "SURVIVED",
+        "exit_code": 0,
+        "last_status": {
+          "phase": "pytest",
+          "exit_code": 0
+        },
+        "source_sha256": "5317465bb6b53dee4dd0ddcb8006d2beecceddb6db42a8691cbeb21ed726f70c",
+        "log_sha256": "81349e74470b334a182d84834c8ce309aea528092aa9798bcb25f8432f4e3b54"
+      },
+      "baseline_module_exit": null,
+      "baseline_passed": true,
+      "mutants": [
+        {
+          "name": "float",
+          "status": "SURVIVED",
+          "exit_code": 0,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 0
+          },
+          "source_sha256": "da2a4f2a8d505da1c343faf0e1ee3685d3184f054f66bc62f78668c5710be124",
+          "log_sha256": "75c521b5af88cc3f28616b5179c88ce80f59e04a7098542f7595a4e3b9ef6e7d"
+        },
+        {
+          "name": "bool",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "fadc34bea26ae42356dc90a32af1b3b06624b950495b0d639ba5475beb82146b",
+          "log_sha256": "bd0f4342584aa555f43194c057bde683cdbcc58df7e56682348449f9e95de7db"
+        },
+        {
+          "name": "annihilate",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "b2ae0201c85115c5da69a56bba56b92e9eee0a456dd7550df565eeca7411960f",
+          "log_sha256": "64c6bec09f330234f0313fe5f49aabd4402525582ca79fb06184169b67948f43"
+        },
+        {
+          "name": "create",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "3a54f575d038ae0bda5174459878d94b07110c54cf2863db04011b14ecdbd4c2",
+          "log_sha256": "5554d52bef24e5140b08a8768da78131dea0a1786560c13ebd8813bd8733ba90"
+        },
+        {
+          "name": "car",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "1ca57d582b362ae8f2c8fbb9f4af0f20cd41d2f87a6585eff518f951805cb3ba",
+          "log_sha256": "71c89d51716ea63051a1671f917e50710550787cdcd23ad8de75292dff5ed623"
+        },
+        {
+          "name": "projector",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "c146587229f8a1f4c377817bc561ea16f75a8045c3872dcdf045f54e34164652",
+          "log_sha256": "b85fec724293a36b0c9b93591c6147e8d582a64bdaf2ca9d26897f8f89576397"
+        },
+        {
+          "name": "trace",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "350138920cad765907c82a12efd77c6bbd1dd9908ca420a94b1346ddbc86b3a5",
+          "log_sha256": "8e47355f4adb8033354294016b67b01592b81b68a728ec86e307ac765a0580db"
+        },
+        {
+          "name": "det",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "bb407cc7a75d0b1dededf92332ee81a8fee569b07cefd654462ed5c9107eb403",
+          "log_sha256": "da6e0c095fd884541c2283613a092a52fb03610300baf4b63c77c82d8eb4933a"
+        },
+        {
+          "name": "class callback introduced",
+          "status": "INVALID",
+          "reason": "mutation site not unique",
+          "matches": 2
+        },
+        {
+          "name": "overriding coefficient admitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "3daa680fc084b5925f4f8b70bd29d9c79617482c5c74f299e67b63285d37b2f2",
+          "log_sha256": "4480be2455bf17b1a6b86217651e3ce616f3fc1e7d6a719f133e6f2720e7ce2f"
+        },
+        {
+          "name": "mutable owned terms leaked",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "6970480d73250984d88e18556e78a727d9a17d02b1c2b01afac1172228c7a32e",
+          "log_sha256": "9136f3cdad5f07a086defb4e83c6c4176c3bfaa6911ba58e8b2a67f710a0fa6f"
+        },
+        {
+          "name": "reinitialization of monomial admitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "144b92b5f8b0f4ad315491b78705e26aa9f87940e79f506d0c3c797763c13ea9",
+          "log_sha256": "376f95807c2fa2cda178fbe7a7a59e0421838f4e17ebc810762c3ff2e4b9255f"
+        },
+        {
+          "name": "word crossing parity inverted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "41b088bf70852ded89722ade1863afc1e75c27d898726dcf873d3ce51ae4a4dd",
+          "log_sha256": "ea9cd0a6388c35accecd78da85a73c75bb7f5332ffae5f9017112db9411746c4"
+        },
+        {
+          "name": "blade cancellation replaced by union",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "2c6b90745e12b586f7149516ac6a5ada5062ed612b6805d2cabd772a88d84a72",
+          "log_sha256": "2a4d04931b4ae46e1e2fff5afbd6f4a89e6e8533fbb12508789469711822b9a3"
+        },
+        {
+          "name": "monomial degree cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "9a0ba377258f0455e74110131c7461c8c410462fda130f4af8834b280bc858d6",
+          "log_sha256": "5a927e4266b06e218912959db217ba9fca3cb9d123d0ce5342d0f2214f20876c"
+        },
+        {
+          "name": "product degree cap omitted",
+          "status": "SURVIVED",
+          "exit_code": 0,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 0
+          },
+          "source_sha256": "a3b1794916936327aeec36e41037819faac36f8d168bd48c4c0e376c6715dcd6",
+          "log_sha256": "b6f4a9962d9bd72c55af7d2f8cb841f543ec23069d9a45c30865d146faee0974"
+        },
+        {
+          "name": "input term cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "945c6233e2b781f23dd54bd2224b04f53f98fcb4ccc60118b3a4826502ebd3c6",
+          "log_sha256": "dc2a987a32c11a7c43a4e529dd4afd1f5bb8748f95bdd3155511d32b56d9f882"
+        },
+        {
+          "name": "output term cap omitted",
+          "status": "SURVIVED",
+          "exit_code": 0,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 0
+          },
+          "source_sha256": "87a5b9c7b42682bf5dabaa672eeae50e45304fd3308f9c0e8e55681ee8dde782",
+          "log_sha256": "5b385f093a79d3b966d833ce7da2d8e2cef205e13ada03e9d88221bdeb49d69e"
+        },
+        {
+          "name": "pair work cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "3b5270c359608a778330c5d4615499113de26dce4b184d8975b3421cba7d4627",
+          "log_sha256": "eb36968ec2b81c5a7105673a626aa5bed85c1ad928e97f947dc517a78bcec1a6"
+        },
+        {
+          "name": "degree work cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "05693f3aeebf5376cb2bfa73285d37131a81f3a79ccd2496018e6ad59f291526",
+          "log_sha256": "71f94b0a5c105aefe9caf66b01778a3378de0cd9242ffb41624dd0613c8e1f6b"
+        },
+        {
+          "name": "fraction bits cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "02be58c24a15b6d5feff1d7d2f0ca1b931655dd5d529c08bc986d067d0fba5b2",
+          "log_sha256": "26755261515263347123b6f07909f4f475599d99668d6dbc8730a8f2b44dab03"
+        },
+        {
+          "name": "parity degree preflight omitted",
+          "status": "SURVIVED",
+          "exit_code": 0,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 0
+          },
+          "source_sha256": "b89c27a8c305a9cc72a4d63170246458c9ce80e1279848c95b9c816c044d7135",
+          "log_sha256": "b6f4a9962d9bd72c55af7d2f8cb841f543ec23069d9a45c30865d146faee0974"
+        }
+      ],
+      "outcomes": {
+        "SURVIVED": 4,
+        "KILLED": 17,
+        "INVALID": 1
+      },
+      "eligible": 21,
+      "detection_fraction": {
+        "numerator": 17,
+        "denominator": 21
+      },
+      "status": "REVIEW_OUTCOMES"
+    },
+    "src.majorana.majorana_fock_algebra": {
+      "source": "code/python/src/majorana/majorana_fock_algebra.py",
+      "source_sha256": "762b2601988a361b69ff1fcd117a0f6c90318fe65f5f8081785c6d41fb8c62a2",
+      "baseline": {
+        "status": "SURVIVED",
+        "exit_code": 0,
+        "last_status": {
+          "phase": "pytest",
+          "exit_code": 0
+        },
+        "source_sha256": "762b2601988a361b69ff1fcd117a0f6c90318fe65f5f8081785c6d41fb8c62a2",
+        "log_sha256": "18324af1f6432c99e8652cd5e7f71a345b63a34d73854114abe6d860b5dc27ae"
+      },
+      "baseline_module_exit": null,
+      "baseline_passed": true,
+      "mutants": [
+        {
+          "name": "Gaussian product imaginary sign",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "8ef9d6ed013c1e8a8dc643134f065620091ae23941bbb7699823ae1b2e8e43cb",
+          "log_sha256": "e4c63c47c39e66ce18b034a3f097ad9565aef9db5a5fef9632d4e63b0f59e7a1"
+        },
+        {
+          "name": "Gaussian reinitialization admitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "51055229c132e41bf225cb1bcf1515974ad44a974b9396fb3c5610ded1a1b53d",
+          "log_sha256": "0c4154c146dc4e3d86a43c963b7ad9f5e94df431fa89ae15f81c20bad7a3b635"
+        },
+        {
+          "name": "Fock carrier reinitialization admitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "e941ae921f45eed52daafc2b2309807f66ca83dcd83fed7f6b75868ea808ce83",
+          "log_sha256": "d0db5a274738f7a83ef687c6f71413ce2d340f8a7a5b78da3afe4b5039cc4893"
+        },
+        {
+          "name": "occupation sign inverted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "e116294779777d6424e8fb640dd0c40b17af9f574b290fa8dc7f04ed638c8593",
+          "log_sha256": "27530276bb90166894d7d628d536e47e8517883e1b51b82ee934d37c9527e7fc"
+        },
+        {
+          "name": "Jordan-Wigner prefix omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "236c2060908f9a92b0077e303d8d2feac3a3daf9cf0d4ae99ebe6b524c5f3d41",
+          "log_sha256": "1fb64b683a389604778efb4375ec27413bccdc5ce65bc03a9ca1ba197ad32875"
+        },
+        {
+          "name": "lowering addition changed",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "a6f4adf2780b4cb377d4032d8f9c83e859b0c1d9fe90161b9f87036975719ed9",
+          "log_sha256": "590756c572e59335918b256c158d7d966bb01864c8d380fa77e995f6a1025263"
+        },
+        {
+          "name": "number uses empty bit",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "d117f8d4417f13f65769d9bee061b87a779f2119b969435f4cda9a94b1f9ae7a",
+          "log_sha256": "acfa3b0ec3d42b61a1c34b2a5d5b0043c1cc18a8dfd674ecd1d50bdd3be63463"
+        },
+        {
+          "name": "braid phase sign changed",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "0e3886032236bad56ffb5857919601dcfb72c250e69025ef0326a341719e5f47",
+          "log_sha256": "824eb474c322af97723112c1bcdd2675bbd9becbfc439394e0488a8513f3eed6"
+        },
+        {
+          "name": "parity mixing allowed",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "e31f217dd3c1b9dae8fc83a6ffccbdc1b802cf8955ad73b56c5927e2ec96457a",
+          "log_sha256": "e4230e6d6744252a7b120f613ae7634de5e5b7f4f3e474e959548f53d15bd1ba"
+        },
+        {
+          "name": "nonsquare matrix admitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "8ec37b50bbb5eef5b2acb2ebb87ed23bc35045326987bde8e5943f9ba2ee542d",
+          "log_sha256": "f5c66d7aa31e855133051e174a7d5a5adcfda6949490e93c2133fc6a5b30c13e"
+        },
+        {
+          "name": "family different dimension admitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "ca76ac35cbf7251a7317198f39abd2b9f41f6ad3978dfcaae57a9ee5b42259dd",
+          "log_sha256": "f6079f3d1884f438b43f6cabd0c2cf8652d353e21b01bf8f8ea2daae1cec48ae"
+        },
+        {
+          "name": "relation work cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "a4b8c83bdce2df6555ff98e38ae06701215db6bf04aea95c36abe6990ce1ff2e",
+          "log_sha256": "d9184ab87d9020d87d438005766f39b42d5c608ccfc7a73214181b9c427b9b79"
+        },
+        {
+          "name": "family cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "ee5f0e9c69e74df116e055acdc93f2c11d21f1a08f03294bd858e47c20ba9a1c",
+          "log_sha256": "60990c7d365bb4c486bd88002e014c5d26db6303ea31df335cb834af97f8e73b"
+        },
+        {
+          "name": "index upper end admitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "f2f4cac62763f96d1371a95e9acd01076a2bdb34eb9b652100bee1532ae661cf",
+          "log_sha256": "d015258927d893777000981007f175e7178eef3e8180b237da884748d0c1a14c"
+        },
+        {
+          "name": "sector selector aliases admitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "e668553ced8a5a991bcd055b1429d756a521297deaa623e74a48010125ece225",
+          "log_sha256": "39091a6f69415effcb54edede88ddd19270ab1d8345d5375b603a03a3757f92e"
+        }
+      ],
+      "outcomes": {
+        "KILLED": 15
+      },
+      "eligible": 15,
+      "detection_fraction": {
+        "numerator": 15,
+        "denominator": 15
+      },
+      "status": "PASS"
+    },
+    "src.majorana.scalar": {
+      "source": "code/python/src/majorana/scalar.py",
+      "source_sha256": "71bd208677aa0b8db58c861fe2bbaf59e8b6f5c5ac011508c2a3527cea2eae6d",
+      "baseline": {
+        "status": "SURVIVED",
+        "exit_code": 0,
+        "last_status": {
+          "phase": "pytest",
+          "exit_code": 0
+        },
+        "source_sha256": "71bd208677aa0b8db58c861fe2bbaf59e8b6f5c5ac011508c2a3527cea2eae6d",
+        "log_sha256": "084f7937f6a9db35785057a893a426f283c956a88213ee67402e0781bdcfef20"
+      },
+      "baseline_module_exit": null,
+      "baseline_passed": true,
+      "mutants": [
+        {
+          "name": "class callback introduced",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "1d8f5cb6fac996f472b67c454f562f04538ae2e0b857d0f869d9d3688bdc0784",
+          "log_sha256": "1e6a5b3775f20f9c25a287782f7dd2275d8f4766a01d1448cad25a6332aa4731"
+        },
+        {
+          "name": "Fraction subclass admitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "a7b8b9610ae8fb1a9cdab28d3f24c24af642d835f4c279af53b807c39fa402ea",
+          "log_sha256": "7946426161b1b4afacf77de3fa6c07a0ab387860c9ee11bef7dcf563b7ae7215"
+        },
+        {
+          "name": "scalar integer cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "ebcc75db2a202ff13fe6b6b26db8e0cc5ffbc6f86b696b4ce5093699b834cce4",
+          "log_sha256": "a0c03ed6f7b29f955d276432d2770e13c5b372be8e3703c698b18d1fa2c7b1b2"
+        },
+        {
+          "name": "quotient bit cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "545eb11908299b3b32cf9d0804e2d70fafc06c1083ed7a95237fa83e971b80fc",
+          "log_sha256": "61431d49131d407496e1f880a41ebcb2ae5b32cccbece19cb4e519eef2909eaa"
+        },
+        {
+          "name": "vector cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "4216f4f6ae32d2cef7149adb32a032a87393e1d6eba59f00877d9e17fae1e737",
+          "log_sha256": "244bd803ea2d8c4bc3ddb182b5b6fef5dceb31bf1ac1ca87f77153051a0ad12c"
+        },
+        {
+          "name": "canonical certificate bypassed",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "0b3f10fd1ec90dc994d2270c2ab396f85364bb6a9ccf131300f8392819fdda87",
+          "log_sha256": "063d7df9bc1c8d43bcd34e65e25eccab765b8be2af7f1b8b955f05e7ce38e06e"
+        },
+        {
+          "name": "certificate reinitialized",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "49f5562db3d83b918e4c7d285eca9285aabdf6ffd43ac81e092422f72ba5a5e2",
+          "log_sha256": "43946a5812cb49ce34039a7c79c20f8c50e988a01d19932f85c565822b74a420"
+        },
+        {
+          "name": "denominator sign erased",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "97f968ceb3b5910b06d6b688d20a9dd0b6efdc878c5de2ef7f3250fe65816b39",
+          "log_sha256": "912e9f18cf84500d804a9cc950533fb55bc52d20ad50931b2eee21ca0d76ee1f"
+        },
+        {
+          "name": "decimal text accepted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "d058940139380ad0d6c9e8cbf069b0a2d0181d8fd99b62418a4d8799fb53d8f1",
+          "log_sha256": "40f7ebe6620058e8fc2129cfb9baa58cca2cc148b898e5228200fbc0f22e737a"
+        }
+      ],
+      "outcomes": {
+        "KILLED": 9
+      },
+      "eligible": 9,
+      "detection_fraction": {
+        "numerator": 9,
+        "denominator": 9
+      },
+      "status": "PASS"
+    },
+    "src.majorana.native_exact_input": {
+      "source": "code/python/src/majorana/native_exact_input.py",
+      "source_sha256": "e7bc2fcf062e33e856abbdbfb4d0a52ad3229f4bf99b5aec6a1072ee7ff21ca3",
+      "baseline": {
+        "status": "SURVIVED",
+        "exit_code": 0,
+        "last_status": {
+          "phase": "pytest",
+          "exit_code": 0
+        },
+        "source_sha256": "e7bc2fcf062e33e856abbdbfb4d0a52ad3229f4bf99b5aec6a1072ee7ff21ca3",
+        "log_sha256": "6fab0ad8299057c6373ddfba7bdcd1b1e5e1aa84e731907f9dfc2649668b88c0"
+      },
+      "baseline_module_exit": null,
+      "baseline_passed": true,
+      "mutants": [
+        {
+          "name": "native scalar aliases admitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "c8cafdea6482264c23087709b69db2921e916dd63d25381a706afe1836dccf92",
+          "log_sha256": "5addee33178c3331a9ebf4d2ac9249cd431280f79cc5184bea1f1b4bbf25945f"
+        },
+        {
+          "name": "integer bit cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "56dc4e2f6df41a3cd469d0e14c8e32d77d92648f0136344ba9c65bea8a7f74e8",
+          "log_sha256": "55360869097e9a54315d3412d74e3d5b8d4323b11e25de9a68c1a5d04740b1b5"
+        },
+        {
+          "name": "SymPy bits cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "6610c9dd919d178870766acdb60947df7d19257fd63bb5ca1354579f5b6f4b2f",
+          "log_sha256": "7c0a86e32f41ef78842c0fb5e3806c75523344ca9352b8c1428d1a5e5613d5fe"
+        },
+        {
+          "name": "exponent work cap omitted",
+          "status": "SURVIVED",
+          "exit_code": 0,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 0
+          },
+          "source_sha256": "2d057ba9af9589d4208a1bbd0ad7df8627eebfb025f6e1c56986f7a43d25ff88",
+          "log_sha256": "e57afe3c966b009671c1a444630798f1bb8f7821eceede60c5ab63299615769d"
+        },
+        {
+          "name": "decimal quotient inverted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "bdb7db6b7897fae678c175c3188acb8a02e4750628d480e2d151923c6ad54506",
+          "log_sha256": "4f3ba7b32f812dd4042525645305ff6a35fec814405ded44f844d39c8ff1177c"
+        },
+        {
+          "name": "vector cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "eefe615a7517587bfbba80315ae60e72bbdfa6d8f1a13ef237492264cd7da397",
+          "log_sha256": "4f3214e47bd443b1c27ea27d98ef2ef36bf7a049072d96d18f9c3b756706ae0b"
+        },
+        {
+          "name": "wire shape cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "20bad1a679ed94ca3ee8e87c9b4abc64ccc795ec05f80271be847cce5e5fffa7",
+          "log_sha256": "3c0ebbfe0c2e475ae7b8b35d14cee26e674f8de381334adc400fc3f45eb482c7"
+        },
+        {
+          "name": "label cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "89787d4a1ac40042af2b604873c65e87ab527fc18e1cc35430ad89e8c3a02644",
+          "log_sha256": "5370570fd3657f2f4ccbc1d145e79296b0feb317f81ad5591cfbdfb315ca3adb"
+        },
+        {
+          "name": "column restriction omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "a56b44d1d03560931287363f4c7b70ce9e0e27e60a804c3b1c0e85382bbd1a48",
+          "log_sha256": "19249a1e9be87f73e6e38b955ce7c4051221bf6b00548f0e4ac1016c8bec1e36"
+        },
+        {
+          "name": "zero row shape lost",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "c31f75486fb62500656251530bfd0d5155dd0282f2ad1dd09ef943132c0dbd5f",
+          "log_sha256": "6c7d97f88c3991ea57fdd8e7afb6ab02940a173bd54d005cb5effee803f5b04f"
+        }
+      ],
+      "outcomes": {
+        "KILLED": 9,
+        "SURVIVED": 1
+      },
+      "eligible": 10,
+      "detection_fraction": {
+        "numerator": 9,
+        "denominator": 10
+      },
+      "status": "REVIEW_OUTCOMES"
+    },
+    "src.majorana.test_majorana_control": {
+      "source": "code/python/src/majorana/test_majorana_control.py",
+      "source_sha256": "c926c77f36fcf1ef4b6fa7c5b92dd7339c909e0c373afd9ef56f2b69357e35f1",
+      "baseline": {
+        "status": "SURVIVED",
+        "exit_code": 0,
+        "last_status": {
+          "phase": "pytest",
+          "exit_code": 0
+        },
+        "source_sha256": "c926c77f36fcf1ef4b6fa7c5b92dd7339c909e0c373afd9ef56f2b69357e35f1",
+        "log_sha256": "41333a42e243761a96bf50a40f3900b00694e7cef6050a6d5bab8604df6b5b21"
+      },
+      "baseline_module_exit": null,
+      "baseline_passed": true,
+      "mutants": [
+        {
+          "name": "float",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "ec0837a91fde9ed8741d618bc671e3f4490907084ef22eb932871ea56c6f0b96",
+          "log_sha256": "611be895f5abf88f060fb198ea5c998b2983a1c57029f98c4e2e9aa1d3c560a5"
+        },
+        {
+          "name": "bool",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "8a7ba8787c91b873ef0e9315e0ee12317fafa1a4df1ac86ecfec1eda22677762",
+          "log_sha256": "26b8afadfbeafaeed45a6ec8327c994f72ac85beabb746b185b7a816987969e6"
+        },
+        {
+          "name": "sum",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "852966d8aacb000334663733abf1842b5979d2f910d44408dbde7418767d483f",
+          "log_sha256": "d86e20db45dabe08847e5caf6cdd2047c36578b502d1d22f1f7c533200fdfa85"
+        },
+        {
+          "name": "gap",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "d0f93a5c4c92ee604e8af2cc6813d3150f4e1ee896dced8ba1f640c995ca145d",
+          "log_sha256": "97ec4a158b8e39692732752bfab71e53d4212ffc99895dcf6dfdbd9e01d33813"
+        },
+        {
+          "name": "product",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "f2592e21ffe04c4392d6cd73eb8f69fe1e03269b5e18d9acbc1f11b92046e46e",
+          "log_sha256": "f7ae4450fa890f7eee59ef34200bb678fa2ba24f94017c8308296c0da81c0f80"
+        },
+        {
+          "name": "sum compare",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "4b23704ea5fa8ffbcf12f1cf55a981be1107bf4a92a5fdf23a4dd5783d5fb396",
+          "log_sha256": "4f88bf88af7bc0f2681a916a5878a83332f2a69e718f373d3073baf9450eda60"
+        },
+        {
+          "name": "gap compare",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "1bf67d3ab442f585cb712015df536a5e250680ef685b944df75f316b4c1ebfc8",
+          "log_sha256": "3371835ee790070d4521cd04ab3bd354d47586e43830626b6cb5633eca6d60a8"
+        },
+        {
+          "name": "product compare",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "3c67eede78b9e13b92c990845937dd1225e5e561ebedb09b79a5d85fc7b24bbe",
+          "log_sha256": "2fe333934e34d68aa9475cea3796a386f6a4c7cf39a5967fb31571e9fbaa7412"
+        },
+        {
+          "name": "invalid source counted as killed",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "299d89c4ec0a1f76473e8f727a96df87ee583fc74c4a88740c465bfe584cd9d4",
+          "log_sha256": "6890e369783b468b5c15ea9246758f27be385e7d9c03e3700e5ef3d8d1dc2508"
+        },
+        {
+          "name": "prior module binding lost",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "a13ccc277e808b8c30d17ae126f9733726d6372f3b36dec50f851906e9df4127",
+          "log_sha256": "abd3953bfb7f5b80b31e9620b92796819b76b510ee0f046c649460fb946cda48"
+        },
+        {
+          "name": "integer bit cap omitted",
+          "status": "KILLED",
+          "exit_code": 1,
+          "last_status": {
+            "phase": "pytest",
+            "exit_code": 1
+          },
+          "source_sha256": "ce4b4a2b38dfc097c85dbf9e45e7573c559398b2fbe2f53754ed941cc4b62bf1",
+          "log_sha256": "fffac6766464b803a7755ca580342cdac211fd1cc9638ab8044857b736295f2e"
+        }
+      ],
+      "outcomes": {
+        "KILLED": 11
+      },
+      "eligible": 11,
+      "detection_fraction": {
+        "numerator": 11,
+        "denominator": 11
+      },
+      "status": "PASS"
+    }
+  },
+  "inputs_unchanged": true,
+  "status": "REVIEW_OUTCOMES"
+}

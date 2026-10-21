@@ -1,0 +1,22 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CheckError", "_all_hold", "_captured", "_demand", "_exec", "_fail", "_float_probe", "_fusion_refusals", "_fusion_values", "_gap", "_harness_oracle", "_invariant", "_joined", "_kill_all", "_killed_one", "_library_oracle", "_load", "_package_oracle", "_product", "_record", "_repo_root", "_require_baseline", "_require_int", "_restore_module", "_sum", "checked_int", "harness_seal", "test_end_to_end_cli", "test_harness_refuses_non_integers", "test_harness_seal", "test_integration_reads_origin", "test_mutation_harness", "test_mutation_library", "test_mutation_package", "test_negative_boundary", "test_origin_headers", "test_unit_certificate"]}
+F.................                                                       [100%]
+================================== FAILURES ===================================
+_______________ test_exact_scalar_admission_precedes_overrides ________________
+
+    def test_exact_scalar_admission_precedes_overrides():
+        for invalid in [True, 0.5, LeakingInt(2), LeakingFraction(1), ClassCallback()]:
+            with pytest.raises(api.FusionError):
+                api.AbelianGroup([invalid])
+            with pytest.raises(api.FusionError):
+                api.QuadraticRational(invalid, 0, 2)
+            with pytest.raises(facade.PackageError):
+                facade.checked_int(invalid)
+>           with pytest.raises(checker.CheckError):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE CheckError
+
+code\python\tests\test_fusion_integrity.py:45: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_exact_scalar_admission_precedes_overrides
+1 failed, 17 passed, 3 deselected in 3.90s
+{"phase": "pytest", "exit_code": 1}

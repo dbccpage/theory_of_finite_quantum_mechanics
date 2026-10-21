@@ -1,0 +1,17 @@
+....F..............................                                      [100%]
+================================== FAILURES ===================================
+____________________ test_closed_scalar_admission[scalar1] ____________________
+
+scalar = OverridingFraction(1, 1)
+
+    @pytest.mark.parametrize("scalar", [OverridingInt(1), OverridingFraction(1)])
+    def test_closed_scalar_admission(scalar):
+>       with pytest.raises(ray.BinWitnessError, match="not an exact rational"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BinWitnessError
+
+code\python\tests\test_bounded_entrypoints.py:59: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_scalar_admission[scalar1]
+1 failed, 34 passed, 1 deselected in 2.85s
+{"phase": "pytest", "exit_code": 1}

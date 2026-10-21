@@ -1,0 +1,41 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CombinatoricsBudgetError", "CombinatoricsError", "binomial_exact", "enumerate_cartesian_words", "finite_plane_parameters", "integer_partitions", "weyl_heisenberg_displacement_count"]}
+....F...........F....                                                    [100%]
+================================== FAILURES ===================================
+_______________ test_partitions_against_independent_cut_oracle ________________
+
+    def test_partitions_against_independent_cut_oracle():
+        for size in range(10):
+            actual = api.integer_partitions(size)
+>           assert set(actual) == _cut_partitions(size)
+E           assert {(0,)} == {(1,)}
+E             
+E             Extra items in the left set:
+E             (0,)
+E             Extra items in the right set:
+E             (1,)
+E             Use -v to get more diff
+
+code\python\tests\test_combinatorics_resources.py:79: AssertionError
+__________________________________ test_unit __________________________________
+
+    def test_unit() -> None:
+        """Factorial binomial and ascending partitions agree with the library."""
+        _check_binomial(binomial_exact)
+>       _check_partitions(integer_partitions)
+
+code\python\src\combinatorics\test_finite_combinatorics.py:447: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+parts = <function integer_partitions at 0x000001AFA3042980>
+
+    def _check_partitions(parts: Callable[..., object]) -> None:
+        if not _same_parts(parts(4), _ascending_partitions(4)):
+>           raise _fail("partitions of 4 drifted from the ascending walk")
+E           src.combinatorics.test_finite_combinatorics.ClaimCheckError: partitions of 4 drifted from the ascending walk
+
+code\python\src\combinatorics\test_finite_combinatorics.py:186: ClaimCheckError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_combinatorics_resources.py::test_partitions_against_independent_cut_oracle
+FAILED code/python/src/combinatorics/test_finite_combinatorics.py::test_unit
+2 failed, 19 passed, 2 deselected in 2.15s
+{"phase": "pytest", "exit_code": 1}

@@ -1,0 +1,36 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CliTraceError", "_require_diagonal", "_sum_diagonal", "cli_identity_trace", "main"]}
+...........F.......................                                      [100%]
+================================== FAILURES ===================================
+___________________ test_provider_failure_has_typed_context ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026A15C3A690>
+
+    def test_provider_failure_has_typed_context(monkeypatch):
+        from src.linear_algebra.matrix import MatrixFailure
+        class RefusingProvider:
+            @staticmethod
+            def identity(size):
+                raise MatrixFailure("provider fixture refusal")
+        monkeypatch.setattr(trace, "ExactMatrix", RefusingProvider)
+        with pytest.raises(trace.CliTraceError, match="identity matrix provider failed") as caught:
+>           trace.cli_identity_trace(1)
+
+code\python\tests\test_bounded_entrypoints.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin_finite_cli\mutant-05.py:104: in cli_identity_trace
+    eye = ExactMatrix.identity(width)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+size = 1
+
+    @staticmethod
+    def identity(size):
+>       raise MatrixFailure("provider fixture refusal")
+E       src.linear_algebra.matrix.MatrixFailure: provider fixture refusal
+
+code\python\tests\test_bounded_entrypoints.py:149: MatrixFailure
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_provider_failure_has_typed_context
+1 failed, 34 passed, 1 deselected in 4.64s
+{"phase": "pytest", "exit_code": 1}

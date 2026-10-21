@@ -1,0 +1,301 @@
+{
+  "code/python/src/databases/schema.sql": {
+    "kind": "sql",
+    "schema": "ledger",
+    "direction": "up",
+    "selector": "ledger or down_refuses or install",
+    "mutants": [
+      [
+        "stage integer coercion admitted",
+        "stage_num ANY PRIMARY KEY",
+        "stage_num INTEGER PRIMARY KEY"
+      ],
+      [
+        "stage range omitted",
+        "typeof(stage_num) = 'integer' AND stage_num BETWEEN 0 AND 1000000",
+        "typeof(stage_num) = 'integer'"
+      ],
+      [
+        "receipt NUL admitted",
+        "AND instr(sha256, char(0)) = 0",
+        ""
+      ],
+      [
+        "witness NUL admitted",
+        "AND instr(witness_id, char(0)) = 0",
+        ""
+      ],
+      [
+        "witness storage changed to rowid",
+        ") STRICT, WITHOUT ROWID;\nCREATE INDEX idx_survivor_stage",
+        ") STRICT;\nCREATE INDEX idx_survivor_stage"
+      ],
+      [
+        "missing witness parent admitted",
+        "stage_id ANY NOT NULL CHECK (typeof(stage_id) = 'integer') REFERENCES genesis_stages(stage_num) ON DELETE RESTRICT ON UPDATE RESTRICT,\n    x_locus",
+        "stage_id ANY NOT NULL CHECK (typeof(stage_id) = 'integer'),\n    x_locus"
+      ],
+      [
+        "retained bit domain widened",
+        "is_retained IN (0, 1)",
+        "is_retained BETWEEN -1 AND 7"
+      ],
+      [
+        "Stokes claim default promoted",
+        "stokes_verified ANY NOT NULL DEFAULT 0",
+        "stokes_verified ANY NOT NULL DEFAULT 1"
+      ],
+      [
+        "unreferenced Stokes claim admitted",
+        "CHECK (stokes_verified = 0 OR (stokes_verified = 1 AND evidence_sha256 IS NOT NULL))",
+        "CHECK (stokes_verified IN (0, 1))"
+      ],
+      [
+        "oversized locus admitted",
+        "length(trim(x_locus)) BETWEEN 1 AND 4096",
+        "length(trim(x_locus)) BETWEEN 1 AND 8192"
+      ],
+      [
+        "chain dimension domain widened",
+        "dimension BETWEEN 0 AND 64",
+        "dimension BETWEEN 0 AND 65"
+      ],
+      [
+        "genesis_stages row cap omitted",
+        "(SELECT COUNT(*) FROM genesis_stages) >= 4096",
+        "(SELECT COUNT(*) FROM genesis_stages) > 4096"
+      ],
+      [
+        "ledger_receipts row cap omitted",
+        "(SELECT COUNT(*) FROM ledger_receipts) >= 4096",
+        "(SELECT COUNT(*) FROM ledger_receipts) > 4096"
+      ],
+      [
+        "survivor_witnesses row cap omitted",
+        "(SELECT COUNT(*) FROM survivor_witnesses) >= 4096",
+        "(SELECT COUNT(*) FROM survivor_witnesses) > 4096"
+      ],
+      [
+        "simplicial_chains row cap omitted",
+        "(SELECT COUNT(*) FROM simplicial_chains) >= 4096",
+        "(SELECT COUNT(*) FROM simplicial_chains) > 4096"
+      ],
+      [
+        "atomic install BEGIN omitted",
+        "BEGIN IMMEDIATE;",
+        "-- omitted BEGIN"
+      ]
+    ]
+  },
+  "code/python/src/databases/schema.down.sql": {
+    "kind": "sql",
+    "schema": "ledger",
+    "direction": "down",
+    "selector": "down_refuses or install_empty",
+    "mutants": [
+      [
+        "nonempty stages dropped",
+        "AND NOT EXISTS (SELECT 1 FROM genesis_stages)",
+        ""
+      ],
+      [
+        "nonempty receipts dropped",
+        "AND NOT EXISTS (SELECT 1 FROM ledger_receipts)",
+        ""
+      ],
+      [
+        "empty rollback guard inverted",
+        "THEN 1 ELSE 0 END;",
+        "THEN 0 ELSE 1 END;"
+      ],
+      [
+        "stage object left behind",
+        "DROP TABLE genesis_stages;",
+        "-- omitted stage drop"
+      ],
+      [
+        "temporary guard left behind",
+        "DROP TABLE _finite_qm_ledger_down_guard;",
+        "-- omitted guard drop"
+      ]
+    ]
+  },
+  "code/python/src/databases/fermion_sign_problem.sql": {
+    "kind": "sql",
+    "schema": "signed_ensemble",
+    "direction": "up",
+    "selector": "signed or empty_zero or down_refuses or install",
+    "mutants": [
+      [
+        "REAL magnitude coercion admitted",
+        "magnitude ANY NOT NULL",
+        "magnitude INTEGER NOT NULL"
+      ],
+      [
+        "REAL denominator coercion admitted",
+        "common_denominator ANY NOT NULL",
+        "common_denominator INTEGER NOT NULL"
+      ],
+      [
+        "magnitude envelope widened",
+        "magnitude BETWEEN 0 AND 1000000",
+        "magnitude BETWEEN 0 AND 1000001"
+      ],
+      [
+        "zero sign admitted",
+        "sign IN (-1, 1)",
+        "sign IN (-1, 0, 1)"
+      ],
+      [
+        "parent row cap omitted",
+        "(SELECT COUNT(*) FROM signed_ensembles) >= 128",
+        "(SELECT COUNT(*) FROM signed_ensembles) > 128"
+      ],
+      [
+        "path row cap omitted",
+        "(SELECT COUNT(*) FROM signed_configurations) >= 4096",
+        "(SELECT COUNT(*) FROM signed_configurations) > 4096"
+      ],
+      [
+        "denominator reinterpretation admitted",
+        "WHEN NEW.common_denominator != OLD.common_denominator",
+        "WHEN 0 AND NEW.common_denominator != OLD.common_denominator"
+      ],
+      [
+        "sign omitted from ensemble sum",
+        "COALESCE(SUM(c.magnitude * c.sign), 0) AS signed_numerator",
+        "COALESCE(SUM(c.magnitude), 0) AS signed_numerator"
+      ],
+      [
+        "integer division smuggled into ratio",
+        "THEN signed_numerator ELSE NULL END AS average_sign_num",
+        "THEN signed_numerator / unsigned_numerator ELSE NULL END AS average_sign_num"
+      ],
+      [
+        "undefined ratio assigned a denominator",
+        "THEN unsigned_numerator ELSE NULL END AS average_sign_den",
+        "THEN unsigned_numerator ELSE 1 END AS average_sign_den"
+      ],
+      [
+        "ensemble identity omitted from count partition",
+        "COUNT(*) OVER (PARTITION BY c.ensemble_id, c.orbit_id)",
+        "COUNT(*) OVER (PARTITION BY c.orbit_id)"
+      ],
+      [
+        "whole orbit replaced by running frame",
+        "SUM(c.magnitude) OVER (PARTITION BY c.ensemble_id, c.orbit_id)",
+        "SUM(c.magnitude) OVER (PARTITION BY c.ensemble_id, c.orbit_id ORDER BY c.path_id)"
+      ],
+      [
+        "negative or zero orbits omitted",
+        "FROM SignedPathWindowAudit;",
+        "FROM SignedPathWindowAudit WHERE orbit_signed_numerator > 0;"
+      ],
+      [
+        "signed orbit identifier NUL admitted",
+        "AND instr(orbit_id, char(0)) = 0",
+        ""
+      ]
+    ]
+  },
+  "code/python/src/databases/fermion_sign_problem.down.sql": {
+    "kind": "sql",
+    "schema": "signed_ensemble",
+    "direction": "down",
+    "selector": "down_refuses or install_empty",
+    "mutants": [
+      [
+        "named ensemble discarded",
+        "AND NOT EXISTS (SELECT 1 FROM signed_ensembles)",
+        ""
+      ],
+      [
+        "orbit view left behind",
+        "DROP VIEW SignedOrbitAudit;",
+        "-- omitted orbit view drop"
+      ],
+      [
+        "temporary signed guard left behind",
+        "DROP TABLE _finite_qm_signed_down_guard;",
+        "-- omitted guard drop"
+      ]
+    ]
+  },
+  "code/python/src/databases/migrations.py": {
+    "kind": "python",
+    "module": "src.databases.migrations",
+    "selector": "",
+    "mutants": [
+      [
+        "string subclasses admitted",
+        "if type(schema) is not str or type(direction) is not str:",
+        "if not isinstance(schema, str) or not isinstance(direction, str):"
+      ],
+      [
+        "connection subclasses admitted",
+        "if type(connection) is not sqlite3.Connection:",
+        "if not isinstance(connection, sqlite3.Connection):"
+      ],
+      [
+        "caller transaction ownership ignored",
+        "raise MigrationError('migration requires an idle exclusively owned connection')",
+        "pass  # caller transaction admitted"
+      ],
+      [
+        "empty source accepted",
+        "if not raw:",
+        "if False and not raw:"
+      ],
+      [
+        "source byte cap omitted",
+        "if len(raw) > MAX_SCRIPT_BYTES:",
+        "if False and len(raw) > MAX_SCRIPT_BYTES:"
+      ],
+      [
+        "FK activation omitted",
+        "cursor.execute('PRAGMA foreign_keys=ON')",
+        "pass  # missing FK activation"
+      ],
+      [
+        "FK activation verification omitted",
+        "if cursor.execute('PRAGMA foreign_keys').fetchone()[0] != 1:",
+        "if False and cursor.execute('PRAGMA foreign_keys').fetchone()[0] != 1:"
+      ],
+      [
+        "busy timeout dropped to zero",
+        "BUSY_TIMEOUT_MS = 1000",
+        "BUSY_TIMEOUT_MS = 0"
+      ],
+      [
+        "owned rollback omitted",
+        "if admitted is not None:",
+        "if False and admitted is not None:"
+      ],
+      [
+        "autocommit rollback becomes a no-op",
+        "cursor.execute('ROLLBACK')",
+        "connection.rollback()"
+      ],
+      [
+        "interrupt cleanup omitted",
+        "except BaseException as error:",
+        "except Exception as error:"
+      ],
+      [
+        "partial transaction reported successful",
+        "if admitted.in_transaction:",
+        "if False and admitted.in_transaction:"
+      ],
+      [
+        "source digest invented",
+        "hashlib.sha256(raw).hexdigest()",
+        "'0'*64"
+      ],
+      [
+        "rollback failure concealed",
+        "raise MigrationError('rollback failed; connection state is unverified', getattr(error, 'sqlite_errorname', None)) from error",
+        "return"
+      ]
+    ]
+  }
+}

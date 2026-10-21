@@ -1,0 +1,35 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CombinatoricsBudgetError", "CombinatoricsError", "binomial_exact", "enumerate_cartesian_words", "finite_plane_parameters", "integer_partitions", "weyl_heisenberg_displacement_count"]}
+.....F...............                                                    [100%]
+================================== FAILURES ===================================
+_____________ test_partition_refusal_precedes_result_enumeration ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002940CAFCC30>
+
+    def test_partition_refusal_precedes_result_enumeration(monkeypatch):
+        # Classical values p(28)=3718 and p(29)=4565 also follow from the
+        # independent generating-function coefficient computation below.
+        assert len(api.integer_partitions(28)) == 3718
+        def should_not_enumerate(size):
+            raise AssertionError("oversized partition request reached enumeration")
+        monkeypatch.setattr(api, "_partition_rows", should_not_enumerate)
+        with pytest.raises(api.CombinatoricsBudgetError, match="count exceeds policy") as caught:
+>           api.integer_partitions(29)
+
+code\python\tests\test_combinatorics_resources.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212331Z-combinatorics-challenge\src_combinatorics_finite_combinatorics\mutant-07.py:191: in integer_partitions
+    return _partition_rows(size)
+           ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+size = 29
+
+    def should_not_enumerate(size):
+>       raise AssertionError("oversized partition request reached enumeration")
+E       AssertionError: oversized partition request reached enumeration
+
+code\python\tests\test_combinatorics_resources.py:90: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_combinatorics_resources.py::test_partition_refusal_precedes_result_enumeration
+1 failed, 20 passed, 2 deselected in 2.98s
+{"phase": "pytest", "exit_code": 1}

@@ -1,0 +1,49 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CheckError", "_all_hold", "_captured", "_demand", "_exec", "_fail", "_float_probe", "_fusion_refusals", "_fusion_values", "_gap", "_harness_oracle", "_invariant", "_joined", "_kill_all", "_killed_one", "_library_oracle", "_load", "_package_oracle", "_product", "_record", "_repo_root", "_require_baseline", "_require_int", "_restore_module", "_sum", "checked_int", "harness_seal", "test_end_to_end_cli", "test_harness_refuses_non_integers", "test_harness_seal", "test_integration_reads_origin", "test_mutation_harness", "test_mutation_library", "test_mutation_package", "test_negative_boundary", "test_origin_headers", "test_unit_certificate"]}
+.F............F.....                                                     [100%]
+================================== FAILURES ===================================
+___________ test_specific_scalar_refusals_before_downstream_parsing ___________
+
+    def test_specific_scalar_refusals_before_downstream_parsing():
+        for invalid, kind in [(0.5, "float"), (True, "boolean")]:
+            for function, error, boundary in [
+                (lambda x: api.AbelianGroup([x]), api.FusionError, "fusion"),
+                (facade.checked_int, facade.PackageError, "package"),
+                (checker.checked_int, checker.CheckError, "harness"),
+            ]:
+                with pytest.raises(error) as caught:
+                    function(invalid)
+                expected = f"float refused at the {boundary} boundary" if kind == "float" else "boolean refused where an integer was required"
+>               assert caught.value.invariant == expected
+E               AssertionError: assert 'value is not an integer' == 'boolean refu... was required'
+E                 
+E                 - boolean refused where an integer was required
+E                 + value is not an integer
+
+code\python\tests\test_fusion_integrity.py:59: AssertionError
+______________________ test_harness_refuses_non_integers ______________________
+
+    def test_harness_refuses_non_integers() -> None:
+        with pytest.raises(CheckError) as floated:
+            checked_int(_float_probe())
+        _demand(floated.value.invariant == "float refused at the harness boundary", "float invariant drifted")
+        with pytest.raises(CheckError) as boolean:
+            checked_int(True)
+>       _demand(boolean.value.invariant == "boolean refused where an integer was required", "bool invariant drifted")
+
+evidence\quality\expanded_scope\20261020T222442Z-fusion-challenge\src_fusion_categories_test_fusion_control\mutant-01.py:270: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+flag = False, invariant = 'bool invariant drifted', parameters = {}
+
+    def _demand(flag: bool, invariant: str, **parameters: object) -> None:
+        if flag:
+            return
+>       raise _fail(invariant, **parameters)
+E       src.fusion_categories.test_fusion_control.CheckError: bool invariant drifted
+
+evidence\quality\expanded_scope\20261020T222442Z-fusion-challenge\src_fusion_categories_test_fusion_control\mutant-01.py:54: CheckError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_specific_scalar_refusals_before_downstream_parsing
+FAILED code/python/src/fusion_categories/test_fusion_control.py::test_harness_refuses_non_integers
+2 failed, 18 passed, 3 deselected in 3.63s
+{"phase": "pytest", "exit_code": 1}

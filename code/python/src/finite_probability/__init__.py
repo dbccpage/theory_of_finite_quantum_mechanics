@@ -8,7 +8,7 @@ at both points. l1dist of a weight vector with itself is 0.
 Claim: urn:omega:fqm:simplex:scaled-integer-separator:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/tests/test_scaled_simplex.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 4; AST Sonar cognitive complexity max 3; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 4.
+Gate 5: use the source-bound measurements in the companion history.
 Scope Fence: integer_mass sums one integer pair. scaled_simplex_witness
 checks the named point, signed, and double pairs and the zero self-gap,
 then returns the point mass 1. This file does not build a rational
@@ -18,6 +18,9 @@ probability simplex and does not claim that L1 distance is canonical.
 from __future__ import annotations
 
 from typing import Mapping
+
+# Declared input budget; the signed sum may need one additional result bit.
+MAX_WEIGHT_BITS = 1024
 
 _POINT: tuple[int, int] = (1, 0)
 _SIGNED: tuple[int, int] = (-1, 2)
@@ -40,18 +43,22 @@ def _fail(invariant: str, **parameters: object) -> ScaledSimplexError:
 
 
 def _require_int(value: object, role: str) -> int:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the weight boundary", role=role, received="float")
     if type(value) is bool:
         raise _fail("boolean refused where an integer weight was required", role=role)
     if type(value) is int:
+        if value.bit_length() > MAX_WEIGHT_BITS:
+            raise _fail("integer weight bit budget exceeded", role=role, bits=value.bit_length(), limit=MAX_WEIGHT_BITS)
         return value
     raise _fail("weight is not an integer", role=role, received=type(value).__name__)
 
 
 def _require_pair(weights: object) -> tuple[int, int]:
-    if isinstance(weights, (str, bytes)) or not isinstance(weights, tuple):
+    if issubclass(type(weights), (str, bytes)) or not issubclass(type(weights), tuple):
         raise _fail("weights are not a tuple", received=type(weights).__name__)
+    if type(weights) is not tuple:
+        raise _fail("weight container subclass refused", received=type(weights).__name__)
     entries = tuple(weights)
     if len(entries) != 2:
         raise _fail("weights are not a Bool pair", length=len(entries))
@@ -111,7 +118,10 @@ def scaled_simplex_witness() -> int:
 
 def main() -> int:
     value = scaled_simplex_witness()
-    print(value)
+    try:
+        print(value)
+    except (OSError, ValueError):
+        return 2
     if value == 1:
         return 0
     return 1

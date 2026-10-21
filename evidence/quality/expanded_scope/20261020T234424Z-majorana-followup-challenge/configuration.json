@@ -1,0 +1,88 @@
+{
+  "suite": "majorana-followup",
+  "test_file": "code/python/tests/test_majorana_boundaries_followup.py",
+  "definitions": {
+    "src.majorana.majorana_modes": {
+      "source": "code/python/src/majorana/majorana_modes.py",
+      "old_tests": "code/python/tests/test_majorana_modes.py",
+      "mutants": [
+        [
+          "float",
+          "    if issubclass(type(value), float):\n        raise _fail(\"float refused at the Majorana boundary\", role=role, received=\"float\")\n    if type(value) is bool:\n        raise _fail(\"boolean refused where an integer was required\", role=role)",
+          "    if False and issubclass(type(value), float):\n        raise _fail(\"float refused at the Majorana boundary\", role=role, received=\"float\")\n    if type(value) is bool:\n        raise _fail(\"boolean refused where an integer was required\", role=role)"
+        ],
+        [
+          "product degree cap omitted",
+          "if len(merged) > MAX_MONOMIAL_MODES:",
+          "if False and len(merged) > MAX_MONOMIAL_MODES:"
+        ],
+        [
+          "output term cap omitted",
+          "if monomial not in terms and len(terms) >= MAX_OPERATOR_TERMS:",
+          "if False and monomial not in terms and len(terms) >= MAX_OPERATOR_TERMS:"
+        ],
+        [
+          "parity degree preflight omitted",
+          "if sites > MAX_MONOMIAL_MODES // 2:",
+          "if False and sites > MAX_MONOMIAL_MODES // 2:"
+        ],
+        [
+          "integer class callback introduced (unique function site)",
+          "def _require_int(value: object, role: str) -> int:\n    if issubclass(type(value), float):",
+          "def _require_int(value: object, role: str) -> int:\n    if isinstance(value, float):"
+        ]
+      ],
+      "dependencies": [
+        "code/python/src/majorana/majorana_modes.py",
+        "code/python/src/majorana/majorana_fock_algebra.py",
+        "code/python/src/majorana/scalar.py",
+        "code/python/src/majorana/native_exact_input.py",
+        "code/python/src/majorana/test_majorana_control.py",
+        "code/python/src/majorana/__init__.py"
+      ]
+    },
+    "src.majorana.native_exact_input": {
+      "source": "code/python/src/majorana/native_exact_input.py",
+      "old_tests": "code/python/tests/test_majorana_integrity.py",
+      "mutants": [
+        [
+          "exponent work cap omitted",
+          "if abs(exponent) > MAX_DECIMAL_EXPONENT:",
+          "if False and abs(exponent) > MAX_DECIMAL_EXPONENT:"
+        ],
+        [
+          "scalar text cap omitted",
+          "if len(value) > MAX_TEXT_CHARACTERS:",
+          "if False and len(value) > MAX_TEXT_CHARACTERS:"
+        ]
+      ],
+      "dependencies": [
+        "code/python/src/majorana/majorana_modes.py",
+        "code/python/src/majorana/majorana_fock_algebra.py",
+        "code/python/src/majorana/scalar.py",
+        "code/python/src/majorana/native_exact_input.py",
+        "code/python/src/majorana/test_majorana_control.py",
+        "code/python/src/majorana/__init__.py"
+      ]
+    },
+    "src.majorana.scalar": {
+      "source": "code/python/src/majorana/scalar.py",
+      "old_tests": "code/python/tests/test_majorana_integrity.py",
+      "mutants": [
+        [
+          "scalar text cap omitted",
+          "if len(value) > MAX_TEXT_CHARACTERS:",
+          "if False and len(value) > MAX_TEXT_CHARACTERS:"
+        ]
+      ],
+      "dependencies": [
+        "code/python/src/majorana/majorana_modes.py",
+        "code/python/src/majorana/majorana_fock_algebra.py",
+        "code/python/src/majorana/scalar.py",
+        "code/python/src/majorana/native_exact_input.py",
+        "code/python/src/majorana/test_majorana_control.py",
+        "code/python/src/majorana/__init__.py"
+      ]
+    }
+  }
+}

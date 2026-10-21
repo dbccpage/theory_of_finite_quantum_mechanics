@@ -1,0 +1,194 @@
+{
+  "AuthorityEffect": "None",
+  "inputs": {
+    "code/python/src/finite_probability/simplex.py": "e70d336fe5fa01fa848b486a86e78ecc08f8eacf3477bbf904695ae4391c1fef",
+    "code/python/tests/test_simplex_lifecycle.py": "8e0e4a00392d739f5b533851bb5acf5416fafaa97a490686397dc9999fcea6cc",
+    "code/python/tests/test_expanded_exact_admission.py": "582f53886872ddf3bc43602dd0092f7e7263073b97da5cb6f33b5bf92235c250",
+    "SCORING.md": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de",
+    "code/python/tests/conftest.py": "704a5ca2986e215f6a7094128d9a7dcdefd1d64c7b106aba76087d6f58e0cc7b",
+    "code/python/src/bin/__init__.py": "8884b13fdd3a7cb61162885110541ee532de936253e62061f9951e1f5c4c2b50",
+    "code/python/src/bin/entropy_cli.py": "e7dde2532a319938765264768698255cb42e8aff22077c79213501fe51beba38",
+    "code/python/src/finite_probability/__init__.py": "a01620b939bff0ce2cbd3b312be4a73ad2ccd81a92fbcab5aaf869fecf9b4d28"
+  },
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "pytest_version": "9.1.1",
+  "runner_sha256": "ff548a46e814bf41421b81f74bc8abe1c5ab5d81a0227973382aab06438495ba",
+  "scope": "Finite simplex API, scalar rejection, immutable lifecycle and engineering resource policies. No Lean proof or whole-program certification.",
+  "unbound_inputs": "Other modules imported by test conftest, pytest transitive code and host OS are trusted, not fully snapshotted.",
+  "mutants": [
+    {
+      "name": "overriding fraction admitted",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "6d01ca2025c45dde845a9b5cdab8dd88e47641e88183ba8fbab969caf2427ccc",
+      "log_sha256": "5e95b9cd689ecbe5319459ac7cc0e184d76337ea3d4c114a5ef6622724bfb2c9"
+    },
+    {
+      "name": "hostile sequence admitted",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "81f19e9e5b4fdb0156e0b4ab479bef6b57fc1f50408f6ec8449b1e3c95278825",
+      "log_sha256": "73e8f7f2fcd4b792ceef4a19c2a43e94ea64285a4bc46961de3d888d557a9779"
+    },
+    {
+      "name": "input bit refusal disabled",
+      "status": "SURVIVED",
+      "exit_code": 0,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 0
+      },
+      "source_sha256": "9a1701fc0f11e49c1cf3b24ae83d0158bedbea98a6fe5c95fd99727854b9ac05",
+      "log_sha256": "f0b5708916cde3f14bbe38f647a1f388a6bcd7efe7fa5d1c6d5859c20e13b3f0"
+    },
+    {
+      "name": "dimension refusal disabled",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "5223b44217829b555905b7e18440386593970a961061b89833f84697eeba9c5c",
+      "log_sha256": "87396102d856e1668d442c375f76e9b394a605bbd01abec65778fe94ce2c7657"
+    },
+    {
+      "name": "matrix entry refusal disabled",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "60f7bfe48578ec73e9bae8ad88f9c2446298923a4928b63fbf357cd451f172a8",
+      "log_sha256": "a52cd2ed68fd3f8373d0d252cf02936028bea90f94378463b63e2598e3faf4bc"
+    },
+    {
+      "name": "negative indexing misrouted",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "026f17a44cf7029b8ce98f4ec69f307431dd10e5277a3fc96cf1e720edcf7dce",
+      "log_sha256": "8455a1b39720a29a2a33d78ffcf97aadac1fc298af7d89eca44e7e2373e3a701"
+    },
+    {
+      "name": "variation scaled incorrectly",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "486478a20d7275c5ad6c6a1444cd65dbb03775c900ac25f871781fb2a8bdbff1",
+      "log_sha256": "7d256e0023bc62f6e0d32c21d8f2db16bea30f146f8b0efd3261c751fb28746d"
+    },
+    {
+      "name": "mixture coefficients swapped",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "a90bd140a95904009cccbf6a29dff1e3edfc0ff4d55e6c90786986095a4fd4c4",
+      "log_sha256": "3246802da58a63552656491ef14700f42a1177c6b94bbaca0ef4ccb62831eb6f"
+    },
+    {
+      "name": "expectation signs flipped",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "cf33002630d172ad31e76618a58792eb0b6a2d6f3785ef2876ae9a2ab53291fd",
+      "log_sha256": "361a8ae78593dc5d131feae9e15b1192a7d8088a5963bd86daf06df3eaa44551"
+    },
+    {
+      "name": "pushforward term dropped",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "573e19fbb7698de281a1215375505c63ecfeda3108d342f82fba387a29a7b8fb",
+      "log_sha256": "c9410a79f3883e8eaa1271924c4322e20c0bc964556829659e8aa8f40b8dfd5b"
+    },
+    {
+      "name": "reinitialization admitted",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "5b2914a6732f51e7fd3f962a62dffe3bd8415ff7a98a0f5ab8b3df5d4d39e1e2",
+      "log_sha256": "5d4fe7ea37c7f8e399304e69a323ed8d9739d2c768556405a47070ff02183134"
+    },
+    {
+      "name": "label refusal disabled",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "e46480eb9456ee54ca158e44fc3e803433eac1689108770e4a54084dd528b560",
+      "log_sha256": "7a7ea44086c278c903707995c23af553c646ac13ba2a5fa46009f9e88350bf84"
+    },
+    {
+      "name": "work bit check disabled",
+      "status": "KILLED",
+      "exit_code": 1,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 1
+      },
+      "source_sha256": "ca1b375db14f5c8e2339fff52e4126a2d8a89fd9ceeaba806f5678b562b06a5f",
+      "log_sha256": "e97d11a36ca464aea7f70d2b22016ddb2cc9f67fe826ef13db2c12c1d03de14b"
+    },
+    {
+      "name": "public equality inverted",
+      "status": "SURVIVED",
+      "exit_code": 0,
+      "last_status": {
+        "phase": "pytest",
+        "exit_code": 0
+      },
+      "source_sha256": "67d9567d4ccbd9b98e782fdedf8012313f085c780e5a53690968305c362e7ea7",
+      "log_sha256": "971e3b5f3e4ac624131c0c8241d7e89b368dadf81f871d974c9b1d140c1032f6"
+    }
+  ],
+  "baseline": {
+    "status": "PASS",
+    "exit_code": 0,
+    "last_status": {
+      "phase": "pytest",
+      "exit_code": 0
+    },
+    "source_sha256": "e70d336fe5fa01fa848b486a86e78ecc08f8eacf3477bbf904695ae4391c1fef",
+    "log_sha256": "580c95618354b53066334fd818c01c0c56fce6dc8fd9dc30608f81eba4555694"
+  },
+  "outcomes": {
+    "KILLED": 12,
+    "SURVIVED": 2
+  },
+  "detection_fraction": {
+    "numerator": 12,
+    "denominator": 14
+  },
+  "inputs_unchanged": true,
+  "status": "PASS"
+}

@@ -122,8 +122,8 @@ def test_origin_resolves_in_repo() -> None:
 _MUTANTS: tuple[tuple[str, str, str], ...] = (
     (
         "float weight admitted",
-        "if isinstance(value, float):",
-        "if isinstance(value, float):\n        return Fraction(0)\n    if False:",
+        "if issubclass(type(value), float):",
+        "if issubclass(type(value), float):\n        return Fraction(0)\n    if False:",
     ),
     (
         "boolean weight admitted",
@@ -133,7 +133,7 @@ _MUTANTS: tuple[tuple[str, str, str], ...] = (
     ("negative weight admitted", "if weight < 0:", "if weight < -1:"),
     ("mass check inverted", "if total != 1:", "if total == 1:"),
     ("empty vector admitted", "len(weights) == 0", "len(weights) == -1"),
-    ("tuple check inverted", "not isinstance(weights, tuple)", "isinstance(weights, tuple)"),
+    ("tuple check inverted", "not issubclass(type(weights), tuple)", "issubclass(type(weights), tuple)"),
     ("square replaced by the weight", "total += weight * weight", "total += weight"),
     ("gap constant shifted", "_GAP = Fraction(1, 2)", "_GAP = Fraction(1, 3)"),
 )

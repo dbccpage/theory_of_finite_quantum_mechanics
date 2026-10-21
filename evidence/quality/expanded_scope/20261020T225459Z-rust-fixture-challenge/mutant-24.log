@@ -1,0 +1,41 @@
+   Compiling tfqm_fixture_register_review v0.1.0 (C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.pytest_cache\fixture-candidates-20261020T225459Z\code\rust\quality\fixture_register)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.32s
+     Running unittests src\lib.rs (code\rust\target\expanded-fixture-register\debug\deps\tfqm_fixture_register_review-bc39ff83830be894.exe)
+
+running 14 tests
+test fixture_receipts::tests::actual_register_custody_does_not_promote_fixtures ... 
+thread 'fixture_receipts::tests::actual_register_custody_does_not_promote_fixtures' (11084) panicked at src\..\..\..\src\tests\omega_mub\..\..\..\quality\fixture_register\src\validator_tests.rs:393:57:
+called `Result::unwrap()` on an `Err` value: RegistryFailure { entry: Some(0), cause: DigestMismatch { expected: "2036c2662ca47f821c5b241bf006fe1c1813f91a27eefc42f8e16194cf3d13b5", actual: "0e7d1e0a1c80fa4505698b3df5a0ae547b82bc3600bd962c0b3d0a188403aae4" } }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test fixture_receipts::tests::canonical_link_escape_refuses ... ok
+test fixture_receipts::tests::compiled_candidate_binding ... COMPILED_SOURCE \\?\C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.pytest_cache\fixture-candidates-20261020T225459Z\code\rust\src\tests\omega_mub\fixture_receipts.rs
+ok
+test fixture_receipts::tests::declared_size_and_stream_limits ... ok
+test fixture_receipts::tests::digest_change_missing_empty_and_owned_result ... 
+thread 'fixture_receipts::tests::digest_change_missing_empty_and_owned_result' (33764) panicked at src\..\..\..\src\tests\omega_mub\..\..\..\quality\fixture_register\src\validator_tests.rs:79:61:
+called `Result::unwrap()` on an `Err` value: DigestMismatch { expected: "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad", actual: "fb8e20fc2e4c3f248c60c39bd652f3c1347298bb977b8b4d5903b85055620603" }
+FAILED
+test fixture_receipts::tests::duplicate_keys_unknown_fields_and_authority_refuse ... ok
+test fixture_receipts::tests::entry_count_limit_has_an_admitted_byte_envelope ... ok
+test fixture_receipts::tests::historical_paths_are_explicit_and_not_guessed ... ok
+test fixture_receipts::tests::indexed_failure_and_value_file_check ... 
+thread 'fixture_receipts::tests::indexed_failure_and_value_file_check' (19596) panicked at src\..\..\..\src\tests\omega_mub\..\..\..\quality\fixture_register\src\validator_tests.rs:329:56:
+called `Result::unwrap()` on an `Err` value: RegistryFailure { entry: Some(0), cause: DigestMismatch { expected: "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad", actual: "fb8e20fc2e4c3f248c60c39bd652f3c1347298bb977b8b4d5903b85055620603" } }
+FAILED
+test fixture_receipts::tests::malformed_entry_cannot_be_success ... ok
+test fixture_receipts::tests::metadata_lists_digest_and_no_producer ... ok
+test fixture_receipts::tests::path_device_and_shape_refusals ... ok
+test fixture_receipts::tests::per_file_and_total_byte_caps_are_distinct ... ok
+test fixture_receipts::tests::projected_path_duplicates_refuse ... ok
+
+failures:
+
+failures:
+    fixture_receipts::tests::actual_register_custody_does_not_promote_fixtures
+    fixture_receipts::tests::digest_change_missing_empty_and_owned_result
+    fixture_receipts::tests::indexed_failure_and_value_file_check
+
+test result: FAILED. 11 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.47s
+
+error: test failed, to rerun pass `--lib`

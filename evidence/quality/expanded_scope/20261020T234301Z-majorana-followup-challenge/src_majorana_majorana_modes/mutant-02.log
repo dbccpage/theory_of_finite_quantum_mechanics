@@ -1,0 +1,31 @@
+{"phase": "candidate_bindings", "checked_symbols": ["MajoranaError", "MajoranaMonomial", "MajoranaOperator", "_add_coeff", "anticommutator", "commutator", "kitaev_chain_parity", "main"]}
+..F.........                                                             [100%]
+================================== FAILURES ===================================
+_______________ test_parity_refuses_before_any_blade_allocation _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000204E6FCDA70>
+
+    def test_parity_refuses_before_any_blade_allocation(monkeypatch):
+        import src.majorana.majorana_modes as module
+        def forbidden():
+            raise AssertionError('allocation happened before site preflight')
+        monkeypatch.setattr(module.MajoranaOperator, 'identity', forbidden)
+        with pytest.raises(MajoranaError, match='parity degree budget'):
+>           kitaev_chain_parity(129)
+
+code\python\tests\test_majorana_boundaries_followup.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T234301Z-majorana-followup-challenge\src_majorana_majorana_modes\mutant-02.py:288: in kitaev_chain_parity
+    parity = MajoranaOperator.identity()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def forbidden():
+>       raise AssertionError('allocation happened before site preflight')
+E       AssertionError: allocation happened before site preflight
+
+code\python\tests\test_majorana_boundaries_followup.py:46: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_boundaries_followup.py::test_parity_refuses_before_any_blade_allocation
+1 failed, 11 passed, 2 deselected in 1.67s
+{"phase": "pytest", "exit_code": 1}

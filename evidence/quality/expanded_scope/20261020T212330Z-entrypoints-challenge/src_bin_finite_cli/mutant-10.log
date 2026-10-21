@@ -1,0 +1,25 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CliTraceError", "_require_diagonal", "_sum_diagonal", "cli_identity_trace", "main"]}
+...........................F.......                                      [100%]
+================================== FAILURES ===================================
+______________ test_adapter_detaches_arguments_and_checks_status ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001A2603A0C90>
+
+    def test_adapter_detaches_arguments_and_checks_status(monkeypatch):
+        arguments = ["list", "--json"]
+        def mutating_dispatch(values):
+            values.clear()
+            return 0
+        monkeypatch.setattr(trace, "_dispatch", mutating_dispatch)
+        assert trace.main(arguments) == 0
+>       assert arguments == ["list", "--json"]
+E       AssertionError: assert [] == ['list', '--json']
+E         
+E         Right contains 2 more items, first extra item: 'list'
+E         Use -v to get more diff
+
+code\python\tests\test_bounded_entrypoints.py:217: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_adapter_detaches_arguments_and_checks_status
+1 failed, 34 passed, 1 deselected in 19.09s
+{"phase": "pytest", "exit_code": 1}

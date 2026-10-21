@@ -1,0 +1,73 @@
+.....................FFFF...                                             [100%]
+================================== FAILURES ===================================
+_ test_distribution_admission_refuses_overridden_fraction_arithmetic[scalar0] _
+
+scalar = LeakingFraction(1, 1)
+
+    @pytest.mark.parametrize("scalar", [LeakingFraction(1), AdditionLeak(1)])
+    def test_distribution_admission_refuses_overridden_fraction_arithmetic(scalar):
+>       with pytest.raises(SimplexError, match="not an exact rational"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SimplexError
+
+code\python\tests\test_expanded_exact_admission.py:23: Failed
+_ test_distribution_admission_refuses_overridden_fraction_arithmetic[scalar1] _
+
+scalar = AdditionLeak(1, 1)
+
+    @pytest.mark.parametrize("scalar", [LeakingFraction(1), AdditionLeak(1)])
+    def test_distribution_admission_refuses_overridden_fraction_arithmetic(scalar):
+        with pytest.raises(SimplexError, match="not an exact rational"):
+>           ProbabilitySimplex([scalar])
+
+code\python\tests\test_expanded_exact_admission.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T204802Z-simplex-challenge\mutant-00.py:181: in __init__
+    parsed = tuple(_parse_distribution(probs))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T204802Z-simplex-challenge\mutant-00.py:143: in _parse_distribution
+    _require_unit_total(_sum(parsed), "distribution")
+                        ^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T204802Z-simplex-challenge\mutant-00.py:121: in _sum
+    _bound_fraction(total, MAX_WORK_BITS, "mass sum")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 1.0, limit = 8192, role = 'mass sum'
+
+    def _bound_fraction(value: Fraction, limit: int, role: str) -> Fraction:
+>       _bound_bits(value.numerator, limit, role)
+                    ^^^^^^^^^^^^^^^
+E       AttributeError: 'float' object has no attribute 'numerator'
+
+evidence\quality\expanded_scope\20261020T204802Z-simplex-challenge\mutant-00.py:76: AttributeError
+________ test_simplex_operations_refuse_subclass_coefficients[scalar0] ________
+
+scalar = LeakingFraction(1, 1)
+
+    @pytest.mark.parametrize("scalar", [LeakingFraction(1), AdditionLeak(1)])
+    def test_simplex_operations_refuse_subclass_coefficients(scalar):
+        state = ProbabilitySimplex([1])
+>       with pytest.raises(SimplexError, match="not an exact rational"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SimplexError
+
+code\python\tests\test_expanded_exact_admission.py:32: Failed
+________ test_simplex_operations_refuse_subclass_coefficients[scalar1] ________
+
+scalar = AdditionLeak(1, 1)
+
+    @pytest.mark.parametrize("scalar", [LeakingFraction(1), AdditionLeak(1)])
+    def test_simplex_operations_refuse_subclass_coefficients(scalar):
+        state = ProbabilitySimplex([1])
+>       with pytest.raises(SimplexError, match="not an exact rational"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SimplexError
+
+code\python\tests\test_expanded_exact_admission.py:32: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_expanded_exact_admission.py::test_distribution_admission_refuses_overridden_fraction_arithmetic[scalar0]
+FAILED code/python/tests/test_expanded_exact_admission.py::test_distribution_admission_refuses_overridden_fraction_arithmetic[scalar1]
+FAILED code/python/tests/test_expanded_exact_admission.py::test_simplex_operations_refuse_subclass_coefficients[scalar0]
+FAILED code/python/tests/test_expanded_exact_admission.py::test_simplex_operations_refuse_subclass_coefficients[scalar1]
+4 failed, 24 passed in 1.80s
+{"phase": "pytest", "exit_code": 1}

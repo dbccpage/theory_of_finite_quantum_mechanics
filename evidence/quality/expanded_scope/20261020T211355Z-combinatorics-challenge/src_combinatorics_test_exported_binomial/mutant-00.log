@@ -1,0 +1,19 @@
+.............F......                                                     [100%]
+================================== FAILURES ===================================
+___________ test_checker_witnesses_have_independent_expected_values ___________
+
+    def test_checker_witnesses_have_independent_expected_values():
+        from src.combinatorics import test_finite_combinatorics as counting
+        from src.combinatorics import test_exported_binomial as facade
+        assert (counting.witness_primary(), counting.witness_outside(), counting.witness_plane()) == (comb(6, 3), 0, 13)
+>       assert (facade.witness_primary(), facade.witness_outside(), facade.witness_library()) == (comb(6, 3), comb(5, 2), comb(6, 3))
+E       assert (15, 10, 20) == (20, 10, 20)
+E         
+E         At index 0 diff: 15 != 20
+E         Use -v to get more diff
+
+code\python\tests\test_combinatorics_resources.py:186: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_combinatorics_resources.py::test_checker_witnesses_have_independent_expected_values
+1 failed, 19 passed, 2 deselected in 3.55s
+{"phase": "pytest", "exit_code": 1}

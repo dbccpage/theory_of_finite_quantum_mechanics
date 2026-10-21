@@ -1,0 +1,34 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ClaimCheckError", "_anchor", "_as_error", "_callable", "_check_export", "_exec_module", "_fail", "_float_probe", "_holds", "_kill_count", "_load", "_main", "_one_mutant", "_require_receipt", "_require_refusal", "_restore_module", "_safe_holds", "_safe_self", "_self_holds", "certified_zero", "parse_exact_entry", "test_end_to_end", "test_integration", "test_library_mutation", "test_negative", "test_origin", "test_self_mutation", "test_unit", "witness_guard", "witness_pair", "witness_weight", "witness_zero"]}
+........F.....                                                           [100%]
+================================== FAILURES ===================================
+_____________ test_checker_witness_and_invalid_candidate_controls _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EBD9BA39B0>
+
+    def test_checker_witness_and_invalid_candidate_controls(monkeypatch):
+        from src.functional import test_exported_zero_phi1 as checks
+        assert checks.witness_zero() == Fraction(0)
+        assert checks.witness_pair() == 2 and checks.witness_weight() == 1
+        assert checks.witness_guard() == "float refused at the public boundary"
+        with pytest.raises(checks.ClaimCheckError):
+>           checks.parse_exact_entry(ClassCallback())
+
+code\python\tests\test_functional_integrity.py:186: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional_test_exported_zero_phi1\mutant-00.py:69: in parse_exact_entry
+    if isinstance(value, float):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tests.test_functional_integrity.ClassCallback object at 0x000001EBD9BA2C30>
+
+    @property
+    def __class__(self):
+>       raise RuntimeError("must not invoke user class metadata")
+E       RuntimeError: must not invoke user class metadata
+
+code\python\tests\test_functional_integrity.py:18: RuntimeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_functional_integrity.py::test_checker_witness_and_invalid_candidate_controls
+1 failed, 13 passed, 2 deselected in 1.04s
+{"phase": "pytest", "exit_code": 1}

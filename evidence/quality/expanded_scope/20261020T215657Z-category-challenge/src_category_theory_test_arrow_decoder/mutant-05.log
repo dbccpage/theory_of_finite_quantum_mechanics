@@ -1,0 +1,26 @@
+{"phase": "candidate_bindings", "checked_symbols": ["ClaimCheckError", "_anchor", "_as_error", "_bool_report", "_callable", "_check_decoder", "_exec_module", "_fail", "_float_probe", "_floated_report", "_holds", "_kill_count", "_load", "_main", "_one_mutant", "_require_receipt", "_require_refusal", "_restore_module", "_safe_holds", "_safe_self", "_self_holds", "parse_exact_label", "test_end_to_end", "test_integration", "test_library_mutation", "test_negative", "test_origin", "test_self_mutation", "test_unit", "witness_guard", "witness_points", "witness_sources", "witness_width"]}
+...............F.....                                                    [100%]
+================================== FAILURES ===================================
+_________ test_invalid_checker_candidates_refuse_and_restore_modules __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000236EE706060>
+
+    def test_invalid_checker_candidates_refuse_and_restore_modules(monkeypatch):
+        from src.category_theory import test_finite_category as category_checks
+        from src.category_theory import test_arrow_decoder as decoder_checks
+        name = "category_invalid_lifecycle_guard"
+        marker = types.ModuleType(name)
+        monkeypatch.setitem(sys.modules, name, marker)
+        for checks, anchor in [(category_checks, "return decoder"), (decoder_checks, "return len(decoder)")]:
+            source = Path(checks._LIBRARY).read_text()
+            for old, new in [(anchor, "return ("), ("from typing import", "from __category_missing_dependency__ import")]:
+                assert source.count(old) == 1
+>               with pytest.raises(checks.ClaimCheckError, match="not counted as a kill"):
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               Failed: DID NOT RAISE ClaimCheckError
+
+code\python\tests\test_category_integrity.py:254: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_invalid_checker_candidates_refuse_and_restore_modules
+1 failed, 20 passed, 2 deselected in 2.74s
+{"phase": "pytest", "exit_code": 1}

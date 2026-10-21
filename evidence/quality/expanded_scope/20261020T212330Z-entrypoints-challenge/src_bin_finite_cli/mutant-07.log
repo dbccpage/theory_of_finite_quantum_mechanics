@@ -1,0 +1,35 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CliTraceError", "_require_diagonal", "_sum_diagonal", "cli_identity_trace", "main"]}
+.........................F.........                                      [100%]
+================================== FAILURES ===================================
+________ test_bad_command_arguments_do_not_reach_dispatch[arguments4] _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000192864636B0>
+arguments = ['list', 'list', 'list', 'list', 'list', 'list', ...]
+
+    @pytest.mark.parametrize("arguments", [HostileTuple(("list",)), "list", [True],
+                                          [HostileString("list")], ["list"] * 65, ["x" * 4097]])
+    def test_bad_command_arguments_do_not_reach_dispatch(monkeypatch, arguments):
+        def should_not_run(args):
+            raise AssertionError("invalid argument reached dispatch")
+        monkeypatch.setattr(trace, "_dispatch", should_not_run)
+>       assert trace.main(arguments) == 2
+               ^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:207: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T212330Z-entrypoints-challenge\src_bin_finite_cli\mutant-07.py:133: in main
+    result = _dispatch(arguments)
+             ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = ['list', 'list', 'list', 'list', 'list', 'list', ...]
+
+    def should_not_run(args):
+>       raise AssertionError("invalid argument reached dispatch")
+E       AssertionError: invalid argument reached dispatch
+
+code\python\tests\test_bounded_entrypoints.py:205: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_bad_command_arguments_do_not_reach_dispatch[arguments4]
+1 failed, 34 passed, 1 deselected in 6.45s
+{"phase": "pytest", "exit_code": 1}

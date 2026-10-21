@@ -1,0 +1,339 @@
+{
+  "suite": "fusion",
+  "test_file": "code/python/tests/test_fusion_integrity.py",
+  "definitions": {
+    "src.fusion_categories.fusion_ring": {
+      "source": "code/python/src/fusion_categories/fusion_ring.py",
+      "old_tests": "code/python/tests/test_fusion_ring.py",
+      "mutants": [
+        [
+          "float",
+          "if issubclass(type(value), float):\n        raise _fail(\"float refused at the fusion boundary\", role=role, received=\"float\")\n    if type(value) is bool:\n        raise _fail(\"boolean refused where an integer was required\", role=role)",
+          "if False and issubclass(type(value), float):\n        raise _fail(\"float refused at the fusion boundary\", role=role, received=\"float\")\n    if type(value) is bool:\n        raise _fail(\"boolean refused where an integer was required\", role=role)"
+        ],
+        [
+          "bool",
+          "raise _fail(\"boolean refused where an integer was required\", role=role)",
+          "return value"
+        ],
+        [
+          "order",
+          "order *= modulus",
+          "order = modulus"
+        ],
+        [
+          "dimension",
+          "if value.b != 0 or value.a != Fraction(4):",
+          "if value.b == 0 and value.a == Fraction(4):"
+        ],
+        [
+          "return",
+          "    return 4\n\n\ndef main() -> int:",
+          "    return 5\n\n\ndef main() -> int:"
+        ],
+        [
+          "modulus",
+          "if modulus < 2:",
+          "if modulus < 1:"
+        ],
+        [
+          "label",
+          "if index < 0 or index >= self._order:",
+          "if index < 0 or index > self._order:"
+        ],
+        [
+          "digits",
+          "rest //= modulus",
+          "rest %= modulus"
+        ],
+        [
+          "integer subclass admitted",
+          "if type(value) is int:\n        _require_bits(value, role)\n        return value",
+          "if isinstance(value, int):\n        _require_bits(value, role)\n        return value"
+        ],
+        [
+          "rational subclass admitted",
+          "if type(value) is Fraction:",
+          "if isinstance(value, Fraction):"
+        ],
+        [
+          "scalar bit budget omitted",
+          "if value.bit_length() > limit:",
+          "if False and value.bit_length() > limit:"
+        ],
+        [
+          "ordinary value class callback introduced",
+          "if issubclass(type(value), float):\n        raise _fail(\"float refused at the fusion boundary\", role=role, received=\"float\")\n    if type(value) is bool:\n        raise _fail(\"boolean refused where an integer was required\", role=role)",
+          "if isinstance(value, float):\n        raise _fail(\"float refused at the fusion boundary\", role=role, received=\"float\")\n    if type(value) is bool:\n        raise _fail(\"boolean refused where an integer was required\", role=role)"
+        ],
+        [
+          "canonical rational field lost",
+          "if radical == 0:\n        return real, Fraction(0), 1",
+          "if radical == 0:\n        return real, Fraction(0), disc"
+        ],
+        [
+          "quadratic operand callback introduced",
+          "if type(other) is not QuadraticRational:",
+          "if not isinstance(other, QuadraticRational):"
+        ],
+        [
+          "quadratic operand admission omitted",
+          "if type(left) is not QuadraticRational or type(right) is not QuadraticRational:",
+          "if False:"
+        ],
+        [
+          "quadratic discriminant budget omitted",
+          "if disc > MAX_DISCRIMINANT:",
+          "if False and disc > MAX_DISCRIMINANT:"
+        ],
+        [
+          "quadratic reinitialization admitted",
+          "if hasattr(self, \"a\"):",
+          "if False:"
+        ],
+        [
+          "group reinitialization admitted",
+          "if hasattr(self, \"_moduli\"):",
+          "if False:"
+        ],
+        [
+          "table reinitialization admitted",
+          "if hasattr(self, \"_rank\"):",
+          "if False:"
+        ],
+        [
+          "ring reinitialization admitted",
+          "if hasattr(self, \"_table\"):",
+          "if False:"
+        ],
+        [
+          "non-table trusted",
+          "if type(table) is not FusionTable:",
+          "if False:"
+        ],
+        [
+          "sequence callbacks admitted",
+          "if type(value) not in (list, tuple):",
+          "if not isinstance(value, (list, tuple)):"
+        ],
+        [
+          "sequence quota omitted",
+          "if len(value) > limit:",
+          "if False and len(value) > limit:"
+        ],
+        [
+          "name quota omitted",
+          "if len(item) > MAX_LABEL_CHARACTERS:",
+          "if False and len(item) > MAX_LABEL_CHARACTERS:"
+        ],
+        [
+          "law product preflight omitted",
+          "_operation_budget(2 * self.rank ** 5, \"fusion laws\")",
+          "pass  # law product budget omitted"
+        ],
+        [
+          "path product preflight omitted",
+          "_operation_budget(len(factors) * self.rank ** 2, \"fusion paths\")",
+          "pass  # path product budget omitted"
+        ],
+        [
+          "path work-bit quota omitted",
+          "_require_bits(nxt[target], \"fusion path count\", MAX_WORK_BITS)",
+          "pass  # path arithmetic budget omitted"
+        ],
+        [
+          "associativity check omitted",
+          "defect = _associativity_defect(self)",
+          "defect = None"
+        ],
+        [
+          "commutativity check omitted",
+          "defect = _commutativity_defect(self)",
+          "defect = None"
+        ],
+        [
+          "quadratic mixed-field addition corrupted",
+          "return QuadraticRational(left.a + right.a, left.b + right.b, disc)",
+          "return QuadraticRational(left.a + right.a, left.b + right.b, left.disc)"
+        ],
+        [
+          "quadratic mixed-field multiplication corrupted",
+          "return QuadraticRational(real, radical, disc)",
+          "return QuadraticRational(real, radical, left.disc)"
+        ],
+        [
+          "closed output stream escapes",
+          "except (OSError, ValueError):\n        return 2",
+          "except ArithmeticError:\n        return 2"
+        ],
+        [
+          "diagnostic output stream escapes",
+          "except (OSError, ValueError):\n            return 2",
+          "except ArithmeticError:\n            return 2"
+        ]
+      ],
+      "dependencies": [
+        "code/python/src/fusion_categories/fusion_ring.py",
+        "code/python/src/fusion_categories/__init__.py",
+        "code/python/src/fusion_categories/test_fusion_control.py"
+      ]
+    },
+    "src.fusion_categories": {
+      "source": "code/python/src/fusion_categories/__init__.py",
+      "old_tests": "code/python/src/fusion_categories/test_fusion_control.py",
+      "mutants": [
+        [
+          "float guard",
+          "if issubclass(type(value), float):",
+          "if False and issubclass(type(value), float):"
+        ],
+        [
+          "bool guard",
+          "if type(value) is bool:",
+          "if False and type(value) is bool:"
+        ],
+        [
+          "seal compare",
+          "if value != 4:",
+          "if value == 4:"
+        ],
+        [
+          "sum",
+          "return left + right",
+          "return left - right"
+        ],
+        [
+          "gap",
+          "return left - right",
+          "return left + right"
+        ],
+        [
+          "product",
+          "return left * right",
+          "return left + right"
+        ],
+        [
+          "product compare",
+          "if _product(2, 3) != 6:",
+          "if _product(2, 3) == 6:"
+        ],
+        [
+          "return seal",
+          "    return value\n\n\ndef main() -> int:",
+          "    return value + 1\n\n\ndef main() -> int:"
+        ],
+        [
+          "integer subclass admitted",
+          "if type(value) is int:",
+          "if isinstance(value, int):"
+        ],
+        [
+          "scalar bit budget omitted",
+          "if value.bit_length() > MAX_INPUT_BITS:",
+          "if False and value.bit_length() > MAX_INPUT_BITS:"
+        ],
+        [
+          "ordinary value callback introduced",
+          "if issubclass(type(value), float):",
+          "if isinstance(value, float):"
+        ],
+        [
+          "closed output stream escapes",
+          "except (OSError, ValueError):\n        return 2",
+          "except ArithmeticError:\n        return 2"
+        ],
+        [
+          "diagnostic output stream escapes",
+          "except (OSError, ValueError):\n            return 2",
+          "except ArithmeticError:\n            return 2"
+        ]
+      ],
+      "dependencies": [
+        "code/python/src/fusion_categories/fusion_ring.py",
+        "code/python/src/fusion_categories/__init__.py",
+        "code/python/src/fusion_categories/test_fusion_control.py"
+      ]
+    },
+    "src.fusion_categories.test_fusion_control": {
+      "source": "code/python/src/fusion_categories/test_fusion_control.py",
+      "old_tests": "code/python/src/fusion_categories/test_fusion_control.py",
+      "mutants": [
+        [
+          "float",
+          "if issubclass(type(value), float):\n",
+          "if False and issubclass(type(value), float):\n"
+        ],
+        [
+          "bool",
+          "if type(value) is bool:\n",
+          "if False and type(value) is bool:\n"
+        ],
+        [
+          "sum",
+          "return left + right\n",
+          "return left - right\n"
+        ],
+        [
+          "gap",
+          "return left - right\n",
+          "return left + right\n"
+        ],
+        [
+          "product",
+          "return left * right\n",
+          "return left + right\n"
+        ],
+        [
+          "sum compare",
+          "if total != 4:\n",
+          "if total == 4:\n"
+        ],
+        [
+          "gap compare",
+          "if gap != 4:\n",
+          "if gap == 4:\n"
+        ],
+        [
+          "product compare",
+          "if product != 6:\n",
+          "if product == 6:\n"
+        ],
+        [
+          "integer subclass admitted",
+          "if type(value) is int:",
+          "if isinstance(value, int):"
+        ],
+        [
+          "scalar quota omitted",
+          "if value.bit_length() > MAX_INPUT_BITS:",
+          "if False and value.bit_length() > MAX_INPUT_BITS:"
+        ],
+        [
+          "ordinary class callback introduced",
+          "def _require_int(value: object, role: str) -> int:\n    if issubclass(type(value), float):",
+          "def _require_int(value: object, role: str) -> int:\n    if isinstance(value, float):"
+        ],
+        [
+          "invalid candidate falsely counted as killed",
+          "raise _fail(\"candidate could not be assessed; not counted as a kill\", error=type(error).__name__) from error",
+          "return True"
+        ],
+        [
+          "oracle infrastructure error silenced",
+          "return oracle(namespace) is False",
+          "try:\n            return oracle(namespace) is False\n        except Exception:\n            return True"
+        ],
+        [
+          "previous module binding lost",
+          "sys.modules[name] = previous",
+          "sys.modules.pop(name, None)"
+        ]
+      ],
+      "dependencies": [
+        "code/python/src/fusion_categories/fusion_ring.py",
+        "code/python/src/fusion_categories/__init__.py",
+        "code/python/src/fusion_categories/test_fusion_control.py"
+      ]
+    }
+  }
+}

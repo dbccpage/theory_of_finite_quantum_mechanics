@@ -1,0 +1,271 @@
+.......F....F.F..F.F.........FFFF.                                       [100%]
+================================== FAILURES ===================================
+________________________ test_vector_and_work_budgets _________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001FA342F6520>
+
+    def test_vector_and_work_budgets(monkeypatch):
+>       assert collision.collision_probability((1,) + (0,) * 4095) == Fraction(1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:125: in collision_probability
+    _require_mass(_sum_mass(checked))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(1, 1)
+
+    def _require_mass(total: Fraction) -> None:
+        if total == 1:
+>           raise _fail("parity weights do not sum to one", total=str(total))
+E           src.bin.entropy_cli.ParityError: parity weights do not sum to one (total=1)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:111: ParityError
+________________________ test_generated_exact_controls ________________________
+
+    def test_generated_exact_controls():
+        for scale in range(1, 8):
+            for a, b, c in product(range(-2, 3), repeat=3):
+                result = ray.ray_power_two((Fraction(a, scale), Fraction(b, scale), Fraction(c, scale)))
+                assert type(result) is Fraction
+                assert result == Fraction(a * a + b * b + c * c, scale * scale)
+            for a in range(scale + 1):
+>               result = collision.collision_probability((Fraction(a, scale), Fraction(scale - a, scale)))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:154: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:125: in collision_probability
+    _require_mass(_sum_mass(checked))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(1, 1)
+
+    def _require_mass(total: Fraction) -> None:
+        if total == 1:
+>           raise _fail("parity weights do not sum to one", total=str(total))
+E           src.bin.entropy_cli.ParityError: parity weights do not sum to one (total=1)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:111: ParityError
+_ test_closed_or_broken_stdout_is_graceful[BrokenPipeError-src.bin.entropy_cli] _
+
+provider = <module 'src.bin.entropy_cli' from 'C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\evidence\\quality\\expanded_scope\\20261020T210333Z-entrypoints-challenge\\src_bin_entropy_cli\\mutant-07.py'>
+error = <class 'BrokenPipeError'>
+
+    @pytest.mark.parametrize("provider", [ray, collision, mass])
+    @pytest.mark.parametrize("error", [BrokenPipeError, ValueError])
+    def test_closed_or_broken_stdout_is_graceful(provider, error):
+        class BrokenStream(io.StringIO):
+            def write(self, text):
+                raise error("output unavailable")
+        with redirect_stdout(BrokenStream()):
+>           assert provider.main() == 2
+                   ^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:168: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:138: in main
+    gap = parity_gap()
+          ^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:131: in parity_gap
+    gap = collision_probability(_PURE) - collision_probability(_FAIR)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:125: in collision_probability
+    _require_mass(_sum_mass(checked))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(1, 1)
+
+    def _require_mass(total: Fraction) -> None:
+        if total == 1:
+>           raise _fail("parity weights do not sum to one", total=str(total))
+E           src.bin.entropy_cli.ParityError: parity weights do not sum to one (total=1)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:111: ParityError
+__ test_closed_or_broken_stdout_is_graceful[ValueError-src.bin.entropy_cli] ___
+
+provider = <module 'src.bin.entropy_cli' from 'C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\evidence\\quality\\expanded_scope\\20261020T210333Z-entrypoints-challenge\\src_bin_entropy_cli\\mutant-07.py'>
+error = <class 'ValueError'>
+
+    @pytest.mark.parametrize("provider", [ray, collision, mass])
+    @pytest.mark.parametrize("error", [BrokenPipeError, ValueError])
+    def test_closed_or_broken_stdout_is_graceful(provider, error):
+        class BrokenStream(io.StringIO):
+            def write(self, text):
+                raise error("output unavailable")
+        with redirect_stdout(BrokenStream()):
+>           assert provider.main() == 2
+                   ^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:168: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:138: in main
+    gap = parity_gap()
+          ^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:131: in parity_gap
+    gap = collision_probability(_PURE) - collision_probability(_FAIR)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:125: in collision_probability
+    _require_mass(_sum_mass(checked))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(1, 1)
+
+    def _require_mass(total: Fraction) -> None:
+        if total == 1:
+>           raise _fail("parity weights do not sum to one", total=str(total))
+E           src.bin.entropy_cli.ParityError: parity weights do not sum to one (total=1)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:111: ParityError
+______________________ test_witness_output_remains_exact ______________________
+
+    def test_witness_output_remains_exact():
+        for provider, expected in [(ray, "1\n"), (collision, "1/2\n"), (mass, "1\n")]:
+            output = io.StringIO()
+            with redirect_stdout(output):
+>               assert provider.main() == 0
+                       ^^^^^^^^^^^^^^^
+
+code\python\tests\test_bounded_entrypoints.py:175: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:138: in main
+    gap = parity_gap()
+          ^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:131: in parity_gap
+    gap = collision_probability(_PURE) - collision_probability(_FAIR)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:125: in collision_probability
+    _require_mass(_sum_mass(checked))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(1, 1)
+
+    def _require_mass(total: Fraction) -> None:
+        if total == 1:
+>           raise _fail("parity weights do not sum to one", total=str(total))
+E           src.bin.entropy_cli.ParityError: parity weights do not sum to one (total=1)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:111: ParityError
+________________________ test_pure_and_fair_collisions ________________________
+
+    def test_pure_and_fair_collisions() -> None:
+>       assert collision_probability((1, 0)) == Fraction(1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_entropy_cli.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:125: in collision_probability
+    _require_mass(_sum_mass(checked))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(1, 1)
+
+    def _require_mass(total: Fraction) -> None:
+        if total == 1:
+>           raise _fail("parity weights do not sum to one", total=str(total))
+E           src.bin.entropy_cli.ParityError: parity weights do not sum to one (total=1)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:111: ParityError
+_______________________ test_negative_boundary_failures _______________________
+
+    def test_negative_boundary_failures() -> None:
+        with pytest.raises(ParityError, match="float refused") as floated:
+            collision_probability((_probe("1.0"), 0))
+        assert floated.value.invariant == "float refused at the parity boundary"
+        assert floated.value.parameters["index"] == 0
+        assert type(floated.value) is ParityError
+    
+        with pytest.raises(ParityError, match="boolean refused") as boolean:
+            collision_probability((True, 0))
+        assert boolean.value.invariant == "boolean refused where a rational weight was required"
+    
+        with pytest.raises(ParityError, match="negative") as negative:
+            collision_probability((-1, 2))
+        assert negative.value.parameters["received"] == "-1"
+    
+        with pytest.raises(ParityError, match="not an exact rational") as text:
+            collision_probability(("1",))
+        assert text.value.parameters["received"] == "str"
+    
+        with pytest.raises(ParityError, match="not a tuple") as listed:
+            collision_probability([1, 0])
+        assert listed.value.parameters["received"] == "list"
+    
+        with pytest.raises(ParityError, match="empty"):
+            collision_probability(())
+    
+>       with pytest.raises(ParityError, match="do not sum to one") as mass:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ParityError
+
+code\python\tests\test_entropy_cli.py:78: Failed
+_______________ test_integration_matches_scaled_purity_deficit ________________
+
+    def test_integration_matches_scaled_purity_deficit() -> None:
+        root = Path(__file__).resolve().parents[3]
+        source = (root / "lean4" / "DerivationDagQMClosure.lean").read_text(encoding="utf-8")
+        assert "theorem fq_entropy_renyi_purity_dichotomy_and_qm122_six_import_drop_one_census" in source
+        assert "theorem fq_embedding_relativity_and_entropy_baker_dichotomy_closure" in source
+        dimension = 2
+        numerator = 1
+        deficit = dimension * dimension - (numerator * numerator + (dimension - numerator) * (dimension - numerator))
+        assert deficit == 2 * (dimension * numerator - numerator * numerator)
+        fair = (Fraction(numerator, dimension), Fraction(dimension - numerator, dimension))
+>       assert collision_probability(fair) == Fraction(1, 2)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_entropy_cli.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:125: in collision_probability
+    _require_mass(_sum_mass(checked))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(1, 1)
+
+    def _require_mass(total: Fraction) -> None:
+        if total == 1:
+>           raise _fail("parity weights do not sum to one", total=str(total))
+E           src.bin.entropy_cli.ParityError: parity weights do not sum to one (total=1)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:111: ParityError
+_______________________ test_end_to_end_cli_prints_half _______________________
+
+    def test_end_to_end_cli_prints_half() -> None:
+        buffer = io.StringIO()
+        with redirect_stdout(buffer):
+>           code = main()
+                   ^^^^^^
+
+code\python\tests\test_entropy_cli.py:104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:138: in main
+    gap = parity_gap()
+          ^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:131: in parity_gap
+    gap = collision_probability(_PURE) - collision_probability(_FAIR)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:125: in collision_probability
+    _require_mass(_sum_mass(checked))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = Fraction(1, 1)
+
+    def _require_mass(total: Fraction) -> None:
+        if total == 1:
+>           raise _fail("parity weights do not sum to one", total=str(total))
+E           src.bin.entropy_cli.ParityError: parity weights do not sum to one (total=1)
+
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-07.py:111: ParityError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_vector_and_work_budgets
+FAILED code/python/tests/test_bounded_entrypoints.py::test_generated_exact_controls
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_or_broken_stdout_is_graceful[BrokenPipeError-src.bin.entropy_cli]
+FAILED code/python/tests/test_bounded_entrypoints.py::test_closed_or_broken_stdout_is_graceful[ValueError-src.bin.entropy_cli]
+FAILED code/python/tests/test_bounded_entrypoints.py::test_witness_output_remains_exact
+FAILED code/python/tests/test_entropy_cli.py::test_pure_and_fair_collisions
+FAILED code/python/tests/test_entropy_cli.py::test_negative_boundary_failures
+FAILED code/python/tests/test_entropy_cli.py::test_integration_matches_scaled_purity_deficit
+FAILED code/python/tests/test_entropy_cli.py::test_end_to_end_cli_prints_half
+9 failed, 25 passed, 1 deselected in 2.56s
+{"phase": "pytest", "exit_code": 1}

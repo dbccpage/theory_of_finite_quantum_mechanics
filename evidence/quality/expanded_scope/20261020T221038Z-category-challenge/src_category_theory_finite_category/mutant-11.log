@@ -1,0 +1,28 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CategoryLawError", "FiniteCategory", "factor_report_query", "verify_report_query_factorization"]}
+.......F.............                                                    [100%]
+================================== FAILURES ===================================
+_______________ test_all_three_element_unital_operation_tables ________________
+
+    def test_all_three_element_unital_operation_tables():
+        # Identity 0 fixes five of nine entries. Enumerate the other 3^4=81
+        # tables; compare the typed string presentation with independent integer
+        # left-translation composition, including non-associative operations.
+        labels = ["e", "a", "b"]
+        arrows = {label: ("X", "X") for label in labels}
+        successes = failures = 0
+        for choices in product(range(3), repeat=4):
+            operation = {(0, x): x for x in range(3)} | {(x, 0): x for x in range(3)}
+            operation.update(dict(zip([(1, 1), (1, 2), (2, 1), (2, 2)], choices, strict=True)))
+            translations = {a: [operation[a, x] for x in range(3)] for a in range(3)}
+            expected = all([translations[c][translations[b][x]] for x in range(3)] == translations[operation[c, b]]
+                           for b, c in product(range(3), repeat=2))
+            table = {(labels[a], labels[b]): labels[value] for (a, b), value in operation.items()}
+            observed = api.FiniteCategory(frozenset({"X"}), arrows, {"X": "e"}, table).verify_axioms()
+>           assert observed is expected
+E           assert True is False
+
+code\python\tests\test_category_integrity.py:147: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_category_integrity.py::test_all_three_element_unital_operation_tables
+1 failed, 20 passed, 2 deselected in 2.49s
+{"phase": "pytest", "exit_code": 1}

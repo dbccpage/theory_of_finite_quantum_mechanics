@@ -1,0 +1,35 @@
+{"phase": "candidate_bindings", "checked_symbols": ["AbelianGroup", "FusionRing", "FusionTable", "RingDefectType", "ising_global_dimension_rational"]}
+..F.................                                                     [100%]
+================================== FAILURES ===================================
+_____________ test_oversized_group_refuses_before_scalar_provider _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000022D193028B0>
+
+    def test_oversized_group_refuses_before_scalar_provider(monkeypatch):
+        def unreachable(*args):
+            raise AssertionError("oversized sequence reached scalar parsing")
+        monkeypatch.setattr(api, "_modulus_at", unreachable)
+        with pytest.raises(api.FusionError, match="sequence entry budget") as caught:
+>           api.AbelianGroup([2] * 6)
+
+code\python\tests\test_fusion_integrity.py:67: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T222442Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-22.py:211: in __init__
+    parsed = _parse_moduli(moduli)
+             ^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T222442Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-22.py:251: in _parse_moduli
+    parsed.append(_modulus_at(item, index))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (2, 0)
+
+    def unreachable(*args):
+>       raise AssertionError("oversized sequence reached scalar parsing")
+E       AssertionError: oversized sequence reached scalar parsing
+
+code\python\tests\test_fusion_integrity.py:64: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_oversized_group_refuses_before_scalar_provider
+1 failed, 19 passed, 1 deselected in 3.17s
+{"phase": "pytest", "exit_code": 1}

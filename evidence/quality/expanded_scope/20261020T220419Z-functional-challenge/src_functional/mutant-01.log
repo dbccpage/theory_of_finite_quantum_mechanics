@@ -1,0 +1,72 @@
+{"phase": "candidate_bindings", "checked_symbols": ["exported_zero_phi1"]}
+............F.                                                           [100%]
+================================== FAILURES ===================================
+________________________________ test_negative ________________________________
+
+probe = <function _check_export.<locals>.<lambda> at 0x000002405C2362A0>
+error = <class 'src.functional.l1_seminorm.L1SeminormError'>
+invariant = 'float refused at the public boundary'
+
+    def _require_refusal(probe: Callable[[], object], error: object, invariant: str) -> None:
+        caught = _as_error(error)
+        try:
+>           probe()
+
+code\python\src\functional\test_exported_zero_phi1.py:110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\functional\test_exported_zero_phi1.py:123: in <lambda>
+    lambda: export(((_float_probe("1.5"), 0), (-1, 0))),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-01.py:91: in exported_zero_phi1
+    parsed_column = _rows(column, "boundary")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-01.py:72: in _rows
+    return (_pair(value[0], role + "_0"), _pair(value[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-01.py:66: in _pair
+    return (_exact_int(row[0], role + "_0"), _exact_int(row[1], role + "_1"))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 1.5, role = 'boundary_0_0'
+
+    def _exact_int(value: object, role: str) -> int:
+        _refuse_float(value, role)
+        if type(value) is bool:
+            raise _fail("boolean refused where an integer witness entry was required", role=role)
+        if type(value) is not int:
+>           raise _fail("witness entry is not an exact integer", role=role, received=type(value).__name__)
+E           src.functional.l1_seminorm.L1SeminormError: witness entry is not an exact integer (role=boundary_0_0, received=float)
+
+evidence\quality\expanded_scope\20261020T220419Z-functional-challenge\src_functional\mutant-01.py:57: L1SeminormError
+
+During handling of the above exception, another exception occurred:
+
+    def test_negative() -> None:
+        """Float, bool, a wide row, and an unrepeated weight are refused."""
+>       _check_export(exported_zero_phi1, L1SeminormError)
+
+code\python\src\functional\test_exported_zero_phi1.py:314: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+code\python\src\functional\test_exported_zero_phi1.py:122: in _check_export
+    _require_refusal(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+probe = <function _check_export.<locals>.<lambda> at 0x000002405C2362A0>
+error = <class 'src.functional.l1_seminorm.L1SeminormError'>
+invariant = 'float refused at the public boundary'
+
+    def _require_refusal(probe: Callable[[], object], error: object, invariant: str) -> None:
+        caught = _as_error(error)
+        try:
+            probe()
+        except caught as exc:
+            if getattr(exc, "invariant", None) != invariant:
+>               raise _fail("refusal named the wrong invariant", expected=invariant, got=getattr(exc, "invariant", None))
+E               src.functional.test_exported_zero_phi1.ClaimCheckError: refusal named the wrong invariant (expected=float refused at the public boundary, got=witness entry is not an exact integer)
+
+code\python\src\functional\test_exported_zero_phi1.py:113: ClaimCheckError
+=========================== short test summary info ===========================
+FAILED code/python/src/functional/test_exported_zero_phi1.py::test_negative
+1 failed, 13 passed, 2 deselected in 0.94s
+{"phase": "pytest", "exit_code": 1}

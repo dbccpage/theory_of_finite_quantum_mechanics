@@ -1,0 +1,20 @@
+{"phase": "candidate_bindings", "checked_symbols": ["CombinatoricsBudgetError", "CombinatoricsError", "binomial_exact", "enumerate_cartesian_words", "finite_plane_parameters", "integer_partitions", "weyl_heisenberg_displacement_count"]}
+..F..................                                                    [100%]
+================================== FAILURES ===================================
+_________ test_huge_input_has_typed_refusal_without_decimal_rendering _________
+
+    def test_huge_input_has_typed_refusal_without_decimal_rendering():
+        huge = -(1 << 20000)
+        for operation in [lambda: exported.exported_binomial(huge, 3), lambda: api.binomial_exact(huge, 0),
+                          lambda: api.integer_partitions(huge), lambda: api.finite_plane_parameters(huge),
+                          lambda: api.weyl_heisenberg_displacement_count(huge),
+                          lambda: api.enumerate_cartesian_words(2, huge, 0)]:
+>           with pytest.raises(api.CombinatoricsBudgetError, match="integer bit budget exceeded"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE CombinatoricsBudgetError
+
+code\python\tests\test_combinatorics_resources.py:46: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_combinatorics_resources.py::test_huge_input_has_typed_refusal_without_decimal_rendering
+1 failed, 20 passed, 2 deselected in 1.22s
+{"phase": "pytest", "exit_code": 1}

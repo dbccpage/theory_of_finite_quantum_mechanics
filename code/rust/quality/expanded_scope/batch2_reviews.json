@@ -1,0 +1,137 @@
+{
+  "code/python/src/bin/__init__.py": {
+    "module": "src.bin",
+    "claim": "urn:omega:fqm:bin:pythagorean-ray:v1",
+    "role": "library and entrypoint",
+    "purpose": "Bounded exact rational quadratic ray evaluator and named degree-four consistency witness.",
+    "operations": {
+      "ray_power_two": "None selects the named (3/5,4/5,0) ray. Otherwise require exactly three built-in Fraction/int values in a built-in tuple; return sum of squares exactly, including zero and signed amplitudes.",
+      "bin_two_square": "On the declared ray check P2=1, P4=337/625, P22=144/625 and P4=1-2*P22; return P2.",
+      "main": "Print the fixed witness; return 0 for the expected value, 1 for a mismatch, and 2 for unavailable output. No stream is owned or closed by this function."
+    },
+    "policy": "Input numerator/denominator or integer components at most 1024 bits. Three inputs bound the number of rational operations; there is no vector allocation or input-controlled iteration.",
+    "failure": "BinWitnessError with invariant and scalar index for invalid arity/container/scalar or coefficient budget. Broken/closed stdout returns 2.",
+    "level_basis": "Production boundary craft for a fixed-grain exact evaluator: closed admission, coefficient envelope, typed failures, explicit output lifecycle and independent generated arithmetic challenges. Mathematical sophistication alone does not supply this level.",
+    "cost": "A fixed number of rational operations; bit cost depends on the admitted 1024-bit components. Named fourth-degree work uses the fixed small fixture only.",
+    "ceiling": "No all-ray Born theorem, Lean extraction, floating approximation or hostile-code sandbox guarantee."
+  },
+  "code/python/src/bin/entropy_cli.py": {
+    "module": "src.bin.entropy_cli",
+    "claim": "urn:omega:fqm:entropy:cli-collision-gap:v1",
+    "role": "library and entrypoint",
+    "purpose": "Bounded exact collision probability and pure/fair separator.",
+    "operations": {
+      "collision_probability": "Require a nonempty built-in tuple of built-in Fraction/int, nonnegative weights summing exactly to one; return sum of squares, or an explicit work-budget refusal.",
+      "parity_gap": "Collision(1,0)-collision(1/2,1/2)=1/2; refuse witness drift.",
+      "main": "Print 1/2 and return 0 for the fixed witness; output unavailable returns 2."
+    },
+    "policy": "At most 4096 outcomes, input rational components at most 1024 bits, accumulating exact sum components at most 8192 bits after each step. Temporary exact additions can exceed the work cap before refusal; there is no rounding.",
+    "failure": "ParityError for malformed, empty, signed, non-normalized or oversized data; explicit role distinguishes mass-sum and collision-sum refusal. Broken/closed stdout returns 2.",
+    "level_basis": "A bounded exact vector API with closed scalar/container admission, distinct admission/work envelopes, typed failure contexts and independently challenged public and stdout boundaries.",
+    "cost": "O(n) bounded rational operations and O(n) copied entries; rational bit cost remains explicit. No OS peak-memory or real-time guarantee.",
+    "ceiling": "Collision probability only; no logarithmic entropy, Baker/Galois theorem, six-import census or Born uniqueness."
+  },
+  "code/python/src/finite_probability/__init__.py": {
+    "module": "src.finite_probability",
+    "claim": "urn:omega:fqm:simplex:scaled-integer-separator:v1",
+    "role": "library and entrypoint",
+    "purpose": "Bounded signed integer-pair mass and named normalization/nonnegativity separators.",
+    "operations": {
+      "integer_mass": "Require a built-in tuple of two built-in integers of at most 1024 bits; signed weights are admitted. Return their exact sum, which may require one extra bit.",
+      "scaled_simplex_witness": "Check point (1,0), signed (-1,2), double (1,1) and the zero self-gap; return the point mass 1.",
+      "main": "Print 1 and return 0 for the fixed witness; output unavailable returns 2."
+    },
+    "policy": "Two scalar inputs with a 1024-bit engineering envelope; no caller-controlled loop or allocation. Boolean and scalar/container subclasses are refused.",
+    "failure": "ScaledSimplexError carries invariant and role for admission, arity, bit budget and witness failures. Output IO refusal returns 2.",
+    "level_basis": "A deliberately small production boundary with exact closed integer inputs, bounded error rendering/work, typed refusals, independent signed controls and graceful stdout handling.",
+    "cost": "One bounded arbitrary-precision integer addition for the public mass operation; fixed additional witness checks.",
+    "ceiling": "Not a rational probability-simplex constructor, canonical metric selection or Lean proof."
+  },
+  "code/python/src/bin/finite_cli.py": {
+    "module": "src.bin.finite_cli",
+    "claim": "urn:omega:fqm:linear-algebra:cli-identity-trace:v1",
+    "role": "provider adapter and entrypoint",
+    "purpose": "Bounded identity-trace composition and command argument/status adapter.",
+    "operations": {
+      "cli_identity_trace": "Require a built-in integer dimension in [0,256], request the real ExactMatrix identity, admit only built-in rational/int diagonal entries, sum and check trace equals dimension.",
+      "main": "Detach at most 64 built-in string arguments, each at most 4096 characters; delegate to qm.cli and admit only built-in integer statuses 0,1,2. Parser exits, local admission failures and IO failures become status 2 (help status 0 is preserved). Module execution exits with main's result.",
+      "ExactMatrix": "Compatibility-visible imported provider. Its full arithmetic API is a separate source assessment, not certified by this adapter.",
+      "_require_diagonal/_sum_diagonal": "Internal provider-output trust boundary retained for compatibility tests; reject non-rational and overriding scalar values before trace arithmetic."
+    },
+    "policy": "Identity at most 256x256 cells; command vector 64x4096 characters. Scientific suite computations, evidence checks and filesystem reads remain delegated; this file imposes no aggregate provider deadline or file-size ceiling.",
+    "failure": "CliTraceError for local admission/trace and translated MatrixError provider failures, preserving the original cause. main returns 2 for admitted failure classes and rejects malformed dispatcher statuses.",
+    "level_basis": "Intentional adapter grain, detached argument ownership, bounded local allocation, typed provider-error translation, validated statuses and actual module-exit composition checks. Delegated provider obligations remain visible at grade D.",
+    "cost": "Local argument work O(count*length), trace provider construction O(d^2) storage plus O(d) diagonal reads; all local dimensions bounded. Delegated suite cost is not bounded here.",
+    "g3": "D",
+    "g3_basis": "Inspection establishes no aggregate deadline/cancellation or input-file size policy in this adapter. The baseline covers adapter routing/status and real identity composition, not scientific-provider internals.",
+    "ceiling": "No arbitrary-matrix theorem, continuum obstruction, full qm.cli suite certification or production deadline guarantee."
+  },
+  "code/python/src/combinatorics/finite_combinatorics.py": {
+    "module": "src.combinatorics.finite_combinatorics",
+    "claim": "urn:omega:fqm:combinatorics:exact-binomial-and-counts:v1",
+    "role": "library",
+    "purpose": "Bounded exact binomial/counting operations and preflighted finite enumerators.",
+    "operations": {
+      "binomial_exact": "Admit built-in integer inputs under the bit policy; negative or k>n gives 0, otherwise use symmetric multiplicative exact division. Refuse more than 4096 effective steps or a result component exceeding 8192 bits.",
+      "enumerate_cartesian_words": "Nonnegative built-in alphabet size, length and budget. Effective result limit is min(caller budget,4096); length <=256 and total stored coordinates <=65536. Empty words and empty alphabets are handled before constructing a range pool. Refuse before enumeration.",
+      "integer_partitions": "Nonnegative built-in n<=256; preflight a capped partition-count DP before allocating results. At most 4096 partitions, generated by an explicit stack in descending lexicographic order, including [()] at zero.",
+      "FiniteProjectivePlaneParams": "Frozen validated integer counting record. Check the q>=2 counting polynomials before committing fields; refuse repeated initialization and subclasses.",
+      "finite_plane_parameters": "Evaluate q^2+q+1, q+1, q^2 and q(q+1) at admitted integer q>=2; return the validated record.",
+      "weyl_heisenberg_displacement_count": "For admitted integer d>=2 return (d^2,d^2-1)."
+    },
+    "policy": "All input integers <=1024 bits. Binomial steps/result, word length/count/cells and partition input/count have explicit separate envelopes. Capped counts beyond their envelope are lower-bound sentinels, never claimed exact counts.",
+    "failure": "CombinatoricsError for invalid types/domains/record relations; CombinatoricsBudgetError for engineering envelope refusal. Records commit only after validation and remain detached immutable integers.",
+    "level_basis": "Production domain API with explicit admission and operation-specific resource policies, bounded preflight before result allocation, recursion-free partition work, exact counting semantics and validated immutable records.",
+    "cost": "Binomial O(min(k,n-k)) rational/integer steps under caps; word comparison <=256 steps and output bounded by cell policy; partition preflight O(n^2) capped small-integer work and explicit bounded-result DFS. No peak-allocation benchmark or formal complexity proof.",
+    "ceiling": "Counting polynomials do not establish projective-plane existence; displacement counts do not prove Weyl commutation. No arbitrary-size enumeration or infinity claim."
+  },
+  "code/python/src/combinatorics/__init__.py": {
+    "module": "src.combinatorics",
+    "claim": "urn:omega:fqm:combinatorics:exported-binomial-six-three:v1",
+    "role": "checked facade",
+    "purpose": "Checked export boundary for the fixed binomial witness and bounded counting API.",
+    "operations": {
+      "exported_binomial": "Admit only built-in integers <=1024 bits and the fixed pair (6,3). Verify C(6,3)=20 and the neighboring partition/plane/displacement counts before returning 20.",
+      "reexports": "Expose the finite_combinatorics bounded API, budget errors and validated record. Its mathematical implementation has its own source-matching assessment."
+    },
+    "policy": "Input bit checks precede witness error rendering, including very large negative values; neighboring computations use fixed small fixtures and the bounded provider.",
+    "failure": "CombinatoricsError for unsupported pair/type/witness drift; CombinatoricsBudgetError for input bits, without converting huge values to decimal text.",
+    "level_basis": "An intentional checked facade with early typed admission, bounded failure rendering and independently verified composition with a production provider, rather than a naked re-export or grade inferred from the topic.",
+    "cost": "Fixed small provider calls and constant-size comparisons after bounded integer admission.",
+    "ceiling": "A checked fixed witness only, not a general binomial proof, plane existence theorem or Weyl trace obstruction."
+  },
+  "code/python/src/combinatorics/test_finite_combinatorics.py": {
+    "module": "src.combinatorics.test_finite_combinatorics",
+    "claim": "urn:omega:fqm:combinatorics:exact-binomial-test-certificate:v1",
+    "role": "test and bounded checker",
+    "purpose": "Independent factorial, ascending-partition and polynomial checks with guarded source/self mutation accounting.",
+    "operations": {
+      "test_unit/test_integration/test_end_to_end/test_negative/test_origin": "Exercise fixed finite arithmetic, composition, invalid-domain and claim-origin cases with independent factorial and ascending-partition oracles.",
+      "test_library_mutation/test_self_mutation": "Run the declared eight finite library faults and four checker faults against a passing baseline. Reject invalid loading or unclassified infrastructure exceptions instead of counting them as kills.",
+      "witness helpers": "Expose fixed small independent values for external checker challenges; parse_exact_size refuses float/bool/non-integer inputs.",
+      "temporary modules": "Restore preexisting module bindings in finally paths, including failed candidate loads. Execution is single-threaded over the fixed declared recipes."
+    },
+    "policy": "Only the fixed small test/oracle inputs and declared finite mutation recipes are assessed. Arbitrary untrusted source execution and generic adversarial-program timeouts are outside this in-process checker.",
+    "failure": "ClaimCheckError for violated checks or unassessable candidate; unexpected oracle infrastructure errors propagate, so they cannot silently increment killed counts.",
+    "level_basis": "A production test/checker boundary with independent arithmetic basis, explicit invalid/inconclusive refusal, positive baseline control, scoped source/self challenge and deterministic temporary-module restoration.",
+    "cost": "Fixed small factorial/partition inputs and a fixed finite recipe set; import state is restored. No arbitrary-program execution guarantee.",
+    "ceiling": "Finite checker evidence, not a Lean theorem, projective-plane existence, complete mutation-space proof or process sandbox."
+  },
+  "code/python/src/combinatorics/test_exported_binomial.py": {
+    "module": "src.combinatorics.test_exported_binomial",
+    "claim": "urn:omega:fqm:combinatorics:exported-binomial-test-certificate:v1",
+    "role": "test and bounded checker",
+    "purpose": "Independent fixed-pair factorial contract checks and honest source/self mutation handling for the counting facade.",
+    "operations": {
+      "test functions": "Check exported (6,3) against an independent factorial quotient, forbidden pair/type cases, provider composition and source origins.",
+      "test_library_mutation/test_self_mutation": "Require a passing baseline and evaluate the declared eight facade faults and four checker faults. Invalid loading or unclassified infrastructure errors are refusals, not killed mutants.",
+      "witness helpers": "Expose fixed C(6,3), C(5,2), provider and float-refusal witnesses for external independent challenge.",
+      "temporary modules": "Restore any earlier module binding even when loading or evaluating a candidate fails."
+    },
+    "policy": "Fixed finite oracle inputs and declared mutation recipes only; single-threaded import-state manipulation. No arbitrary untrusted-source execution service.",
+    "failure": "ClaimCheckError for failed checks or unassessable candidates; unexpected oracle infrastructure errors propagate rather than becoming fake kills.",
+    "level_basis": "A bounded checker with independent arithmetic controls, typed refusal of invalid/inconclusive candidates, positive baseline and source/self sensitivity, and preserved module lifecycle.",
+    "cost": "Fixed small factorial inputs and declared finite recipe set, with restored temporary import state.",
+    "ceiling": "Finite facade-test evidence; no general binomial theorem, plane existence proof, complete mutation space or sandbox guarantee."
+  }
+}

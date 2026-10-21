@@ -1,0 +1,37 @@
+.F................................                                       [100%]
+================================== FAILURES ===================================
+_ test_hostile_container_callbacks_are_not_run[collision_probability-ParityError-argument1] _
+
+operation = <function collision_probability at 0x000002659730ACF0>
+error = <class 'src.bin.entropy_cli.ParityError'>, argument = (1,)
+
+    @pytest.mark.parametrize("operation, error, argument", [
+        (ray.ray_power_two, ray.BinWitnessError, HostileTuple((1, 0, 0))),
+        (collision.collision_probability, collision.ParityError, HostileTuple((1,))),
+        (mass.integer_mass, mass.ScaledSimplexError, HostileTuple((1, 0))),
+    ])
+    def test_hostile_container_callbacks_are_not_run(operation, error, argument):
+        with pytest.raises(error, match="container subclass refused"):
+>           operation(argument)
+
+code\python\tests\test_bounded_entrypoints.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-01.py:124: in collision_probability
+    checked = _collect_weights(_require_nonempty(_require_tuple(weights)))
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T210333Z-entrypoints-challenge\src_bin_entropy_cli\mutant-01.py:55: in _require_tuple
+    if len(weights) > MAX_OUTCOMES:
+       ^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = (1,)
+
+    def __len__(self):
+>       raise RuntimeError("must refuse before user length")
+E       RuntimeError: must refuse before user length
+
+code\python\tests\test_bounded_entrypoints.py:29: RuntimeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_bounded_entrypoints.py::test_hostile_container_callbacks_are_not_run[collision_probability-ParityError-argument1]
+1 failed, 33 passed, 1 deselected in 2.70s
+{"phase": "pytest", "exit_code": 1}

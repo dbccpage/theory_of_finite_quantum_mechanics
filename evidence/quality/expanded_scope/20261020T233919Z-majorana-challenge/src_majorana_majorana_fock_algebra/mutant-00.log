@@ -1,0 +1,70 @@
+{"phase": "candidate_bindings", "checked_symbols": ["FockCarrier", "GaussianRat", "first_anticommutation_failure", "gi"]}
+F....FFF......                                                           [100%]
+================================== FAILURES ===================================
+______________ test_one_mode_occupation_and_gaussian_arithmetic _______________
+
+    def test_one_mode_occupation_and_gaussian_arithmetic():
+        c = FockCarrier(1)
+        assert pairs(c.majorana_generator(1)) == ((ZERO, ONE), (ONE, ZERO))
+        assert pairs(c.majorana_generator(2)) == ((ZERO, (F(0), F(-1))), (I, ZERO))
+        assert pairs(c.lowering_operator(1)) == ((ZERO, ONE), (ZERO, ZERO))
+        assert pairs(c.number_operator(1)) == ((ZERO, ZERO), (ZERO, ONE))
+        for a, b in product([GaussianRat(F(1, 3), F(-2, 5)), gi(0), gi(-1, 1)], repeat=2):
+            assert (a+b).re == plus((a.re, a.im), (b.re, b.im))[0]
+            assert ((a+b).re, (a+b).im) == plus((a.re, a.im), (b.re, b.im))
+>           assert ((a*b).re, (a*b).im) == times((a.re, a.im), (b.re, b.im))
+E           assert (Fraction(-11...raction(0, 1)) == (Fraction(-11...ction(-4, 15))
+E             
+E             At index 1 diff: Fraction(0, 1) != Fraction(-4, 15)
+E             Use -v to get more diff
+
+code\python\tests\test_majorana_integrity.py:102: AssertionError
+________________________ test_car_parity_and_braids[1] ________________________
+
+modes = 1
+
+    @pytest.mark.parametrize('modes', [1, 2, 3])
+    def test_car_parity_and_braids(modes):
+        c = FockCarrier(modes)
+        n = c.dimension()
+        gs = [c.majorana_generator(a) for a in range(1, 2*modes+1)]
+>       assert first_anticommutation_failure(gs) is None
+E       assert (1, 2) is None
+E        +  where (1, 2) = first_anticommutation_failure([[[GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), GaussianRat(re=Fraction(1, 1), im=Fraction(0, 1))], [GaussianRat...tion(-1, 1))], [GaussianRat(re=Fraction(0, 1), im=Fraction(1, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1))]]])
+
+code\python\tests\test_majorana_integrity.py:132: AssertionError
+________________________ test_car_parity_and_braids[2] ________________________
+
+modes = 2
+
+    @pytest.mark.parametrize('modes', [1, 2, 3])
+    def test_car_parity_and_braids(modes):
+        c = FockCarrier(modes)
+        n = c.dimension()
+        gs = [c.majorana_generator(a) for a in range(1, 2*modes+1)]
+>       assert first_anticommutation_failure(gs) is None
+E       assert (1, 2) is None
+E        +  where (1, 2) = first_anticommutation_failure([[[GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), GaussianRat(r...action(0, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(-1, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1))]]])
+
+code\python\tests\test_majorana_integrity.py:132: AssertionError
+________________________ test_car_parity_and_braids[3] ________________________
+
+modes = 3
+
+    @pytest.mark.parametrize('modes', [1, 2, 3])
+    def test_car_parity_and_braids(modes):
+        c = FockCarrier(modes)
+        n = c.dimension()
+        gs = [c.majorana_generator(a) for a in range(1, 2*modes+1)]
+>       assert first_anticommutation_failure(gs) is None
+E       assert (1, 2) is None
+E        +  where (1, 2) = first_anticommutation_failure([[[GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), GaussianRat(r...1)), GaussianRat(re=Fraction(0, 1), im=Fraction(-1, 1)), GaussianRat(re=Fraction(0, 1), im=Fraction(0, 1)), ...], ...]])
+
+code\python\tests\test_majorana_integrity.py:132: AssertionError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_integrity.py::test_one_mode_occupation_and_gaussian_arithmetic
+FAILED code/python/tests/test_majorana_integrity.py::test_car_parity_and_braids[1]
+FAILED code/python/tests/test_majorana_integrity.py::test_car_parity_and_braids[2]
+FAILED code/python/tests/test_majorana_integrity.py::test_car_parity_and_braids[3]
+4 failed, 10 passed in 1.46s
+{"phase": "pytest", "exit_code": 1}

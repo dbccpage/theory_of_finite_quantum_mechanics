@@ -1,0 +1,22 @@
+.................F..........                                             [100%]
+================================== FAILURES ===================================
+__________ test_resource_policy_edges_and_refusal_before_allocation ___________
+
+    def test_resource_policy_edges_and_refusal_before_allocation():
+        maximum = api.ProbabilitySimplex.uniform(api.MAX_DIMENSION)
+        assert maximum.dim == api.MAX_DIMENSION
+        assert maximum[0] == Fraction(1, api.MAX_DIMENSION)
+        with pytest.raises(api.SimplexError, match="dimension budget exceeded"):
+            api.ProbabilitySimplex.uniform(api.MAX_DIMENSION + 1)
+        with pytest.raises(api.SimplexError, match="sequence budget exceeded"):
+            api.ProbabilitySimplex([0] * (api.MAX_DIMENSION + 1))
+        row = [1] + [0] * (api.MAX_DIMENSION - 1)
+>       with pytest.raises(api.SimplexError, match="matrix entry budget exceeded"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SimplexError
+
+code\python\tests\test_simplex_lifecycle.py:94: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_simplex_lifecycle.py::test_resource_policy_edges_and_refusal_before_allocation
+1 failed, 27 passed in 1.31s
+{"phase": "pytest", "exit_code": 1}

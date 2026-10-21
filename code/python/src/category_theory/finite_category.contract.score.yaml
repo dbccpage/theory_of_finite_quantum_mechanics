@@ -1,0 +1,273 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/category_theory/finite_category.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/category_theory/finite_category.py",
+      "sha256": "9a0d6b42dba38c6e291cbc85bee2928df7d7ce528f034d8c5b660796202ded8b"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:category:finite-arrow-factorization:v1",
+    "role": "library",
+    "purpose": "Bounded immutable presentation and exact finite-category law checker, with total report-query factorization on a common source carrier.",
+    "operations": {
+      "FiniteCategory": "Admit a built-in frozenset and built-in dict tables with bounded built-in string labels and tuple endpoints; detach all state. A structurally admitted presentation can be law-invalid. Reinitialization and subclassing are refused; the object is unhashable.",
+      "verify_axioms": "Check endpoints, exact domain and codomain typing of composition, identities, both units and associativity. Return False for law-invalid presentations, including undeclared composites. The empty category is admitted.",
+      "factor_report_query": "Require nonempty built-in dicts with the same source set, exact bounded integer keys and values; return a detached decoder iff the query is constant on each report fibre.",
+      "verify_report_query_factorization": "Only CategoryLawError becomes (False, {}); unexpected infrastructure errors propagate."
+    },
+    "engineering_policy": "64 objects, 64 morphisms, 4096 composition entries, labels at most 256 characters. Factor maps at most 4096 sources and integer labels at most 1024 bits. These are declared admission policies, not mathematical cardinality results.",
+    "failure_boundary": "CategoryLawError for malformed containers, labels, endpoints representations, quotas, different carriers or conflicting fibres. Law-invalid but structurally admitted presentations return False. No caller dictionary alias remains in a committed category.",
+    "cost_model": "For m arrows, at most O(m^3) associativity lookups and O(m^2) typing work, with m<=64. Factorization uses O(n) bounded exact entries/storage. Labels and integers have explicit size envelopes; no measured real-time guarantee.",
+    "scope_ceiling": "No classification of categories, free-category construction, general theorem prover or assertion that every query factors.",
+    "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "evidence/quality/expanded_scope/20261020T221038Z-category-challenge/receipt.json",
+        "sha256": "cb8a2dec3b6bab12424d0fbed21ab4ed78e43c74288ecd53d8ae6dcf172c55c7"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json",
+        "sha256": "f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch3-baseline.log",
+        "sha256": "200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984"
+      },
+      {
+        "path": "evidence/quality/expanded_scope/batch3-atlas.log",
+        "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+      },
+      {
+        "path": "code/rust/quality/expanded_scope/batch3_reviews.json",
+        "sha256": "d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd"
+      }
+    ]
+  },
+  "current_contract": "993878def9c02f0e19debf4972e84f165cc269fe130770a8e22d122997ea54db",
+  "current_scoring": "28b8a8edda4a4f8a9943def7e0fe302ee06aba0c919ffadb6ed753a8a12510cb",
+  "contract_history": [
+    {
+      "sha256": "5d5759fcc256ebc6b410aad3af148a598dd6118bc78425b57e3116f704aa6035",
+      "bytes": 1824,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/category_theory/finite_category.py",
+          "sha256": "435df85a408bbab39236415a82157dbf523c7ba919c8ca35576a72ada510ab5f"
+        },
+        "profile": "Exact",
+        "status": "historical_defect_review",
+        "purpose": "Earlier captured implementation only; later contracts and budgets are not retroactive.",
+        "source_claims_verbatim": "Finite categories and report-query factorization over an explicit table.\n\nOrigin: code/rust/src/category_theory/category/category.rs struct FiniteCategoryShell\nand code/rust/src/category_theory/finite_report_query.rs struct FactorizationCertificate.\nClaim: urn:omega:fqm:category:finite-arrow-factorization:v1\nAuthorityEffect: None\nMutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/category_theory/test_finite_category.py.\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 5; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 4.\nScope Fence: Identity, unit, and associativity are checked on the morphisms\nthat were supplied. Factorization is the set-theoretic decoder of one total\ntable. This file does not claim a free category, a topos, or that every\nquery factors.",
+        "source_claims_status": "Captured claims only, not endorsed measurements, verification or capability grades.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T214009Z-category-before/receipt.json",
+            "sha256": "ed10fab5bb39fb84d387867be120fe3a765b1aac4380fb443b232f5704fa0c36"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T214009Z-category-before/sources/code/python/src/category_theory/finite_category.py",
+            "sha256": "435df85a408bbab39236415a82157dbf523c7ba919c8ca35576a72ada510ab5f"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/category_theory/finite_category.py\",\n    \"sha256\": \"435df85a408bbab39236415a82157dbf523c7ba919c8ca35576a72ada510ab5f\"\n  },\n  \"profile\": \"Exact\",\n  \"status\": \"historical_defect_review\",\n  \"purpose\": \"Earlier captured implementation only; later contracts and budgets are not retroactive.\",\n  \"source_claims_verbatim\": \"Finite categories and report-query factorization over an explicit table.\\n\\nOrigin: code/rust/src/category_theory/category/category.rs struct FiniteCategoryShell\\nand code/rust/src/category_theory/finite_report_query.rs struct FactorizationCertificate.\\nClaim: urn:omega:fqm:category:finite-arrow-factorization:v1\\nAuthorityEffect: None\\nMutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/category_theory/test_finite_category.py.\\nGate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 5; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 4.\\nScope Fence: Identity, unit, and associativity are checked on the morphisms\\nthat were supplied. Factorization is the set-theoretic decoder of one total\\ntable. This file does not claim a free category, a topos, or that every\\nquery factors.\",\n  \"source_claims_status\": \"Captured claims only, not endorsed measurements, verification or capability grades.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T214009Z-category-before/receipt.json\",\n      \"sha256\": \"ed10fab5bb39fb84d387867be120fe3a765b1aac4380fb443b232f5704fa0c36\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T214009Z-category-before/sources/code/python/src/category_theory/finite_category.py\",\n      \"sha256\": \"435df85a408bbab39236415a82157dbf523c7ba919c8ca35576a72ada510ab5f\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/category_theory/finite_category.contract.score.yaml#historical-defect-review/contract"
+      ]
+    },
+    {
+      "sha256": "993878def9c02f0e19debf4972e84f165cc269fe130770a8e22d122997ea54db",
+      "bytes": 3559,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/category_theory/finite_category.py",
+          "sha256": "9a0d6b42dba38c6e291cbc85bee2928df7d7ce528f034d8c5b660796202ded8b"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:category:finite-arrow-factorization:v1",
+        "role": "library",
+        "purpose": "Bounded immutable presentation and exact finite-category law checker, with total report-query factorization on a common source carrier.",
+        "operations": {
+          "FiniteCategory": "Admit a built-in frozenset and built-in dict tables with bounded built-in string labels and tuple endpoints; detach all state. A structurally admitted presentation can be law-invalid. Reinitialization and subclassing are refused; the object is unhashable.",
+          "verify_axioms": "Check endpoints, exact domain and codomain typing of composition, identities, both units and associativity. Return False for law-invalid presentations, including undeclared composites. The empty category is admitted.",
+          "factor_report_query": "Require nonempty built-in dicts with the same source set, exact bounded integer keys and values; return a detached decoder iff the query is constant on each report fibre.",
+          "verify_report_query_factorization": "Only CategoryLawError becomes (False, {}); unexpected infrastructure errors propagate."
+        },
+        "engineering_policy": "64 objects, 64 morphisms, 4096 composition entries, labels at most 256 characters. Factor maps at most 4096 sources and integer labels at most 1024 bits. These are declared admission policies, not mathematical cardinality results.",
+        "failure_boundary": "CategoryLawError for malformed containers, labels, endpoints representations, quotas, different carriers or conflicting fibres. Law-invalid but structurally admitted presentations return False. No caller dictionary alias remains in a committed category.",
+        "cost_model": "For m arrows, at most O(m^3) associativity lookups and O(m^2) typing work, with m<=64. Factorization uses O(n) bounded exact entries/storage. Labels and integers have explicit size envelopes; no measured real-time guarantee.",
+        "scope_ceiling": "No classification of categories, free-category construction, general theorem prover or assertion that every query factors.",
+        "trust": "Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T221038Z-category-challenge/receipt.json",
+            "sha256": "cb8a2dec3b6bab12424d0fbed21ab4ed78e43c74288ecd53d8ae6dcf172c55c7"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json",
+            "sha256": "f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch3-baseline.log",
+            "sha256": "200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch3-atlas.log",
+            "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+          },
+          {
+            "path": "code/rust/quality/expanded_scope/batch3_reviews.json",
+            "sha256": "d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/category_theory/finite_category.py\",\n    \"sha256\": \"9a0d6b42dba38c6e291cbc85bee2928df7d7ce528f034d8c5b660796202ded8b\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:category:finite-arrow-factorization:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Bounded immutable presentation and exact finite-category law checker, with total report-query factorization on a common source carrier.\",\n  \"operations\": {\n    \"FiniteCategory\": \"Admit a built-in frozenset and built-in dict tables with bounded built-in string labels and tuple endpoints; detach all state. A structurally admitted presentation can be law-invalid. Reinitialization and subclassing are refused; the object is unhashable.\",\n    \"verify_axioms\": \"Check endpoints, exact domain and codomain typing of composition, identities, both units and associativity. Return False for law-invalid presentations, including undeclared composites. The empty category is admitted.\",\n    \"factor_report_query\": \"Require nonempty built-in dicts with the same source set, exact bounded integer keys and values; return a detached decoder iff the query is constant on each report fibre.\",\n    \"verify_report_query_factorization\": \"Only CategoryLawError becomes (False, {}); unexpected infrastructure errors propagate.\"\n  },\n  \"engineering_policy\": \"64 objects, 64 morphisms, 4096 composition entries, labels at most 256 characters. Factor maps at most 4096 sources and integer labels at most 1024 bits. These are declared admission policies, not mathematical cardinality results.\",\n  \"failure_boundary\": \"CategoryLawError for malformed containers, labels, endpoints representations, quotas, different carriers or conflicting fibres. Law-invalid but structurally admitted presentations return False. No caller dictionary alias remains in a committed category.\",\n  \"cost_model\": \"For m arrows, at most O(m^3) associativity lookups and O(m^2) typing work, with m<=64. Factorization uses O(n) bounded exact entries/storage. Labels and integers have explicit size envelopes; no measured real-time guarantee.\",\n  \"scope_ceiling\": \"No classification of categories, free-category construction, general theorem prover or assertion that every query factors.\",\n  \"trust\": \"Pinned CPython and provider/test bytes in the challenge inputs. Ordinary scalar/container override and __class__ callbacks are refused. No security sandbox for malicious metaclasses, reflection, monkeypatching, concurrent mutation or host exhaustion.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T221038Z-category-challenge/receipt.json\",\n      \"sha256\": \"cb8a2dec3b6bab12424d0fbed21ab4ed78e43c74288ecd53d8ae6dcf172c55c7\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json\",\n      \"sha256\": \"f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-baseline.log\",\n      \"sha256\": \"200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch3_reviews.json\",\n      \"sha256\": \"d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/category_theory/finite_category.contract.score.yaml#bounded-production-and-checker-review/contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "7250b21e0c3cbf6d8c3388a476a3234c902e83467db8032c4c773274b36b8e62",
+      "bytes": 1341,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/category_theory/finite_category.py",
+          "sha256": "435df85a408bbab39236415a82157dbf523c7ba919c8ca35576a72ada510ab5f"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "historical-defect-review",
+        "profile": "Exact",
+        "level": null,
+        "level_basis": "No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.",
+        "gates": {
+          "G1": null,
+          "G2": "E",
+          "G3": "E",
+          "G4": null,
+          "G5": null
+        },
+        "is_complete": false,
+        "score_token": null,
+        "composite_grade": null,
+        "grade_ceiling": "E",
+        "finding": "Captured witness accepts an undeclared ghost composite, ignores an extra query value and retains caller dictionary aliases.",
+        "target_achieved": false,
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T214009Z-category-before/receipt.json",
+            "sha256": "ed10fab5bb39fb84d387867be120fe3a765b1aac4380fb443b232f5704fa0c36"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T214009Z-category-before/sources/code/python/src/category_theory/finite_category.py",
+            "sha256": "435df85a408bbab39236415a82157dbf523c7ba919c8ca35576a72ada510ab5f"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/category_theory/finite_category.py\",\n    \"sha256\": \"435df85a408bbab39236415a82157dbf523c7ba919c8ca35576a72ada510ab5f\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"historical-defect-review\",\n  \"profile\": \"Exact\",\n  \"level\": null,\n  \"level_basis\": \"No complete historical capability assessment; counterexamples must remain visible despite unassessed gates.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": \"E\",\n    \"G3\": \"E\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"score_token\": null,\n  \"composite_grade\": null,\n  \"grade_ceiling\": \"E\",\n  \"finding\": \"Captured witness accepts an undeclared ghost composite, ignores an extra query value and retains caller dictionary aliases.\",\n  \"target_achieved\": false,\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T214009Z-category-before/receipt.json\",\n      \"sha256\": \"ed10fab5bb39fb84d387867be120fe3a765b1aac4380fb443b232f5704fa0c36\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T214009Z-category-before/sources/code/python/src/category_theory/finite_category.py\",\n      \"sha256\": \"435df85a408bbab39236415a82157dbf523c7ba919c8ca35576a72ada510ab5f\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/category_theory/finite_category.contract.score.yaml#historical-defect-review/scoring"
+      ]
+    },
+    {
+      "sha256": "28b8a8edda4a4f8a9943def7e0fe302ee06aba0c919ffadb6ed753a8a12510cb",
+      "bytes": 3634,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/category_theory/finite_category.py",
+          "sha256": "9a0d6b42dba38c6e291cbc85bee2928df7d7ce528f034d8c5b660796202ded8b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "bounded-production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: admission is separate from law truth, owned immutable state commits after validation, exact composition typing and domain closure are checked, factor carriers are total and bounded, and typed refusals cover lifecycle and hostile ordinary value callbacks.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.",
+          "G2": "Exact profile fixed before challenge; independent finite laws/arithmetic, valid and forged inputs, shape and scalar refusals tested. No mathematical completeness claim follows from finite testing.",
+          "G3": "CategoryLawError for malformed containers, labels, endpoints representations, quotas, different carriers or conflicting fibres. Law-invalid but structurally admitted presentations return False. No caller dictionary alias remains in a committed category. No crash-freedom or arbitrary hostile-code isolation claim.",
+          "G4": "21 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.",
+          "G5": "Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Backend category nesting 4 explicitly caps eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance."
+        },
+        "metrics": {
+          "radon_ccn": 6,
+          "lizard_ccn": 6,
+          "weighted_control_upper_bound": 14,
+          "control_nesting": 4
+        },
+        "mutation_outcomes": {
+          "KILLED": 21
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only. The full 24-directory objective remains open.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T221038Z-category-challenge/receipt.json",
+            "sha256": "cb8a2dec3b6bab12424d0fbed21ab4ed78e43c74288ecd53d8ae6dcf172c55c7"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json",
+            "sha256": "f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch3-baseline.log",
+            "sha256": "200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch3-atlas.log",
+            "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+          },
+          {
+            "path": "code/rust/quality/expanded_scope/batch3_reviews.json",
+            "sha256": "d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/category_theory/finite_category.py\",\n    \"sha256\": \"9a0d6b42dba38c6e291cbc85bee2928df7d7ce528f034d8c5b660796202ded8b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"bounded-production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: admission is separate from law truth, owned immutable state commits after validation, exact composition typing and domain closure are checked, factor carriers are total and bounded, and typed refusals cover lifecycle and hostile ordinary value callbacks.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN, exact source digest, reviewed operations, dependencies and explicit authority ceiling; no formal AST equivalence or full downstream audit.\",\n    \"G2\": \"Exact profile fixed before challenge; independent finite laws/arithmetic, valid and forged inputs, shape and scalar refusals tested. No mathematical completeness claim follows from finite testing.\",\n    \"G3\": \"CategoryLawError for malformed containers, labels, endpoints representations, quotas, different carriers or conflicting fibres. Law-invalid but structurally admitted presentations return False. No caller dictionary alias remains in a committed category. No crash-freedom or arbitrary hostile-code isolation claim.\",\n    \"G4\": \"21 valid designated faults killed against a passing source-bound baseline. Candidate import bindings checked. Invalid/inconclusive candidates do not become kills; prior survivors remain in separate immutable receipts. No alternate-checker or full mutation-space claim.\",\n    \"G5\": \"Independent Radon/Lizard observations plus conservative calibrated AST control bounds and reviewed bounded cost model. Backend category nesting 4 explicitly caps eligibility at B; other files retain conservative B for unmeasured allocation/runtime assurance.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 14,\n    \"control_nesting\": 4\n  },\n  \"mutation_outcomes\": {\n    \"KILLED\": 21\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only. The full 24-directory objective remains open.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T221038Z-category-challenge/receipt.json\",\n      \"sha256\": \"cb8a2dec3b6bab12424d0fbed21ab4ed78e43c74288ecd53d8ae6dcf172c55c7\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T220628Z-source-metrics/receipt.json\",\n      \"sha256\": \"f34e67ed55564d869eaa265f9d0fe95ae1befb32571970512cd9919d9d537513\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-baseline.log\",\n      \"sha256\": \"200e1a9c21589275b437ecef1398cb2f2866b44364a9536908c4fa85ed3aa984\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch3-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    },\n    {\n      \"path\": \"code/rust/quality/expanded_scope/batch3_reviews.json\",\n      \"sha256\": \"d6f250373c550e41fb36d58bc06ffe3a584a41e662c546176c0a33e6ac4e98bd\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/category_theory/finite_category.contract.score.yaml#bounded-production-and-checker-review/scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/python/src/category_theory/finite_category.contract.score.yaml#historical-defect-review/contract": "5d5759fcc256ebc6b410aad3af148a598dd6118bc78425b57e3116f704aa6035",
+    "code/python/src/category_theory/finite_category.contract.score.yaml#historical-defect-review/scoring": "7250b21e0c3cbf6d8c3388a476a3234c902e83467db8032c4c773274b36b8e62",
+    "code/python/src/category_theory/finite_category.contract.score.yaml#bounded-production-and-checker-review/contract": "993878def9c02f0e19debf4972e84f165cc269fe130770a8e22d122997ea54db",
+    "code/python/src/category_theory/finite_category.contract.score.yaml#bounded-production-and-checker-review/scoring": "28b8a8edda4a4f8a9943def7e0fe302ee06aba0c919ffadb6ed753a8a12510cb"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Append-only historical findings and individually authored source-bound reviews. No whole-scope certification follows."
+}

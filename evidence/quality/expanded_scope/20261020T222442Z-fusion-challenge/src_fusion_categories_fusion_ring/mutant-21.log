@@ -1,0 +1,34 @@
+{"phase": "candidate_bindings", "checked_symbols": ["AbelianGroup", "FusionRing", "FusionTable", "RingDefectType", "ising_global_dimension_rational"]}
+......F.............                                                     [100%]
+================================== FAILURES ===================================
+___________________ test_shape_and_representation_refusals ____________________
+
+    def test_shape_and_representation_refusals():
+        for bad in [HostileTuple([2]), "2", {2}, ClassCallback()]:
+            with pytest.raises(api.FusionError):
+>               api.AbelianGroup(bad)
+
+code\python\tests\test_fusion_integrity.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+evidence\quality\expanded_scope\20261020T222442Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-21.py:211: in __init__
+    parsed = _parse_moduli(moduli)
+             ^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T222442Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-21.py:246: in _parse_moduli
+    moduli = _require_sequence(moduli, "moduli", MAX_GROUP_FACTORS)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+evidence\quality\expanded_scope\20261020T222442Z-fusion-challenge\src_fusion_categories_fusion_ring\mutant-21.py:83: in _require_sequence
+    if len(value) > limit:
+       ^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = (2,)
+
+    def __len__(self):
+>       raise RuntimeError("caller sequence callback executed")
+E       RuntimeError: caller sequence callback executed
+
+code\python\tests\test_fusion_integrity.py:24: RuntimeError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_fusion_integrity.py::test_shape_and_representation_refusals
+1 failed, 19 passed, 1 deselected in 3.30s
+{"phase": "pytest", "exit_code": 1}

@@ -1,0 +1,24 @@
+{"phase": "candidate_bindings", "checked_symbols": ["FockCarrier", "GaussianRat", "first_anticommutation_failure", "gi"]}
+.........F....                                                           [100%]
+================================== FAILURES ===================================
+_____________ test_closed_values_owned_terms_and_reinitialization _____________
+
+    def test_closed_values_owned_terms_and_reinitialization():
+        mon = MajoranaMonomial((2, 0))
+        assert mon.modes == (0, 2)
+        data = {mon: F(1, 3)}
+        op = MajoranaOperator(data)
+        data.clear()
+        export = op.terms
+        export[mon] = 0.5  # deliberately unadmitted value in detached export
+        assert op.terms == {mon: F(1, 3)}
+        for obj, args in [(mon, ((3,),)), (op, ({},)), (GaussianRat(F(1), F(0)), (0, 0)), (FockCarrier(1), (2,)), (certify_scalar(1), (2, '2/1'))]:
+>           with pytest.raises((MajoranaError, ScalarError), match='already initialized'):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE any of (MajoranaError, ScalarError)
+
+code\python\tests\test_majorana_integrity.py:214: Failed
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_majorana_integrity.py::test_closed_values_owned_terms_and_reinitialization
+1 failed, 13 passed in 1.77s
+{"phase": "pytest", "exit_code": 1}

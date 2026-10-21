@@ -1,109 +1,83 @@
--- ============================================================================
--- THE FERMION SIGN PROBLEM AS SQL
--- Common Table Expressions, Window Functions, and Declarative Sharding
--- Origin: omega_engine_atlas/coda_atlas/F004_papers/008_fsp
--- Claim: urn:omega:sql:fermion_sign_problem:v1
--- AuthorityEffect: None
--- Scope Fence: What this file does not claim: Declarative CTE and window function reference queries for sign problem audits; does not execute continuous quantum path simulation directly.
--- ============================================================================
+-- Exact finite signed-ensemble relational audit. SQLite 3.50.4 tested, STRICT.
+-- Origin: sealed prior fermion_sign_problem.sql CTE/window examples.
+-- Claim: urn:omega:fqm:sql:bounded-exact-signed-ensembles:v2
+-- AuthorityEffect: None. Profile: Exact.
+-- Apply through migrations.apply_migration with verified foreign keys enabled.
+-- Each ensemble declares a common positive denominator. A row's amplitude is
+-- sign*magnitude/common_denominator; input magnitudes are nonnegative integers.
+-- Ratios are returned as numerator/denominator pairs, NEVER SQLite division.
+-- STRICT ANY + typeof guards refuse REAL/TEXT coercion at integer cells.
+-- SQLite sees SQL values, not the original Python adapter object's provenance.
+-- 4096 rows * magnitude<=1000000 bounds every sum by 4096000000 (<2^63).
+-- Complete zero mass has no normalized sign: NULL ratio and explicit status.
+-- No orbit involution, observable preservation, sign repair, polynomial model
+-- solution or physical ensemble completeness is inferred from these sums.
+BEGIN IMMEDIATE;
+CREATE TABLE signed_schema_version (
+    schema_key TEXT PRIMARY KEY CHECK (schema_key = 'finite_qm_signed_ensemble'),
+    version INTEGER NOT NULL CHECK (version = 1)
+) STRICT, WITHOUT ROWID;
+INSERT INTO signed_schema_version VALUES ('finite_qm_signed_ensemble', 1);
 
--- ----------------------------------------------------------------------------
--- 1. Logical CTE: Path Integral over Configuration Space
--- ----------------------------------------------------------------------------
--- Evaluates average sign <Sign> = Z_fermion / Z_boson
-WITH QuantumPaths AS (
-    SELECT
-        natural_key_state,
-        ABS(transition_amplitude) AS base_weight,
-        SIGN(transition_amplitude) AS mirror_parity -- +1 (even permutation) or -1 (odd permutation)
-    FROM
-        UniversalConfigurationSpace
-    WHERE
-        particle_count = 4
-        AND inverse_temperature = 1.0
-),
-PartitionAggregates AS (
-    SELECT
-        -- Z_bosonic: Denominator (Absolute sum, positive monotonic growth)
-        SUM(base_weight) AS Z_bosonic,
+CREATE TABLE signed_ensembles (
+    ensemble_id TEXT PRIMARY KEY CHECK (length(ensemble_id) BETWEEN 1 AND 128 AND ensemble_id NOT GLOB '*[^A-Za-z0-9_.:-]*' AND instr(ensemble_id, char(0)) = 0),
+    common_denominator ANY NOT NULL CHECK (typeof(common_denominator) = 'integer' AND common_denominator BETWEEN 1 AND 1000000000)
+) STRICT, WITHOUT ROWID;
 
-        -- Z_fermionic: Numerator (Signed sum, exponential cancellation)
-        SUM(base_weight * mirror_parity) AS Z_fermionic
-    FROM
-        QuantumPaths
+CREATE TABLE signed_configurations (
+    ensemble_id TEXT NOT NULL REFERENCES signed_ensembles(ensemble_id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    path_id ANY NOT NULL CHECK (typeof(path_id) = 'integer' AND path_id BETWEEN 0 AND 1000000000),
+    orbit_id TEXT NOT NULL CHECK (length(orbit_id) BETWEEN 1 AND 128 AND orbit_id NOT GLOB '*[^A-Za-z0-9_.:-]*' AND instr(orbit_id, char(0)) = 0),
+    magnitude ANY NOT NULL CHECK (typeof(magnitude) = 'integer' AND magnitude BETWEEN 0 AND 1000000),
+    sign ANY NOT NULL CHECK (typeof(sign) = 'integer' AND sign IN (-1, 1)),
+    PRIMARY KEY (ensemble_id, path_id)
+) STRICT, WITHOUT ROWID;
+CREATE INDEX idx_signed_orbit ON signed_configurations(ensemble_id, orbit_id);
+
+CREATE TRIGGER signed_ensemble_row_budget BEFORE INSERT ON signed_ensembles
+WHEN (SELECT COUNT(*) FROM signed_ensembles) >= 128
+BEGIN SELECT RAISE(ABORT, 'ensemble row budget exceeded'); END;
+CREATE TRIGGER signed_configuration_row_budget BEFORE INSERT ON signed_configurations
+WHEN (SELECT COUNT(*) FROM signed_configurations) >= 4096
+BEGIN SELECT RAISE(ABORT, 'configuration row budget exceeded'); END;
+CREATE TRIGGER signed_denominator_frozen BEFORE UPDATE OF common_denominator ON signed_ensembles
+WHEN NEW.common_denominator != OLD.common_denominator
+ AND EXISTS (SELECT 1 FROM signed_configurations WHERE ensemble_id = OLD.ensemble_id)
+BEGIN SELECT RAISE(ABORT, 'populated ensemble denominator is frozen'); END;
+
+CREATE VIEW SignedEnsembleAudit AS
+WITH totals AS (
+    SELECT e.ensemble_id, e.common_denominator,
+           COUNT(c.path_id) AS path_count,
+           COALESCE(SUM(c.magnitude * c.sign), 0) AS signed_numerator,
+           COALESCE(SUM(c.magnitude), 0) AS unsigned_numerator
+    FROM signed_ensembles e
+    LEFT JOIN signed_configurations c ON c.ensemble_id = e.ensemble_id
+    GROUP BY e.ensemble_id, e.common_denominator
 )
-SELECT
-    Z_fermionic / Z_bosonic AS average_sign
-FROM
-    PartitionAggregates;
+SELECT *,
+       CASE WHEN unsigned_numerator > 0 THEN signed_numerator ELSE NULL END AS average_sign_num,
+       CASE WHEN unsigned_numerator > 0 THEN unsigned_numerator ELSE NULL END AS average_sign_den,
+       CASE WHEN path_count = 0 THEN 'EMPTY_ENSEMBLE'
+            WHEN unsigned_numerator = 0 THEN 'ZERO_UNSIGNED_MASS'
+            ELSE 'FINITE_SUM' END AS audit_status
+FROM totals;
 
+-- No ORDER BY: these are whole partitions, not order-dependent running sums.
+CREATE VIEW SignedPathWindowAudit AS
+SELECT c.ensemble_id, e.common_denominator, c.path_id, c.orbit_id,
+       c.magnitude, c.sign,
+       COUNT(*) OVER (PARTITION BY c.ensemble_id, c.orbit_id) AS orbit_path_count,
+       SUM(c.magnitude) OVER (PARTITION BY c.ensemble_id, c.orbit_id) AS orbit_unsigned_numerator,
+       SUM(c.magnitude * c.sign) OVER (PARTITION BY c.ensemble_id, c.orbit_id) AS orbit_signed_numerator
+FROM signed_configurations c JOIN signed_ensembles e ON e.ensemble_id = c.ensemble_id;
 
--- ----------------------------------------------------------------------------
--- 2. Window Functions: Algebraic Permutation Group Quotienting
--- ----------------------------------------------------------------------------
--- Evaluates local orbit quotients inside OVER (PARTITION BY state_orbit_hash)
-WITH LocalOrbits AS (
-    SELECT
-        path_id,
-        state_orbit_hash, -- Grouped natural keys (orbit equivalence class)
-        amplitude,
-        permutation_parity, -- Phase (+1 or -1)
-
-        -- Bosonic Window: Absolute sum inside the orbit partition
-        SUM(amplitude) OVER (
-            PARTITION BY state_orbit_hash
-        ) AS local_bosonic_sum,
-
-        -- Fermionic Window: Signed sum inside the orbit partition
-        SUM(amplitude * permutation_parity) OVER (
-            PARTITION BY state_orbit_hash
-        ) AS local_fermionic_sum
-
-    FROM UniversalConfigurationSpace
-)
-SELECT DISTINCT
-    state_orbit_hash,
-    local_bosonic_sum,
-    local_fermionic_sum,
-    (local_fermionic_sum / local_bosonic_sum) AS orbit_decay_ratio
-FROM LocalOrbits;
-
-
--- ----------------------------------------------------------------------------
--- 3. PostgreSQL Declarative Sharding (Hash Partitioning on Topological Sectors)
--- ----------------------------------------------------------------------------
--- Parent Table partitioned by HASH (state_orbit_hash)
-CREATE TABLE IF NOT EXISTS quantum_state_space (
-    path_id UUID,
-    state_orbit_hash UUID NOT NULL,
-    amplitude NUMERIC NOT NULL,
-    permutation_parity INT NOT NULL,
-    PRIMARY KEY (path_id, state_orbit_hash)
-) PARTITION BY HASH (state_orbit_hash);
-
--- Declarative Physical Shards
-CREATE TABLE IF NOT EXISTS qss_sector_00 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 0);
-CREATE TABLE IF NOT EXISTS qss_sector_01 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 1);
-CREATE TABLE IF NOT EXISTS qss_sector_02 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 2);
-CREATE TABLE IF NOT EXISTS qss_sector_03 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 3);
-CREATE TABLE IF NOT EXISTS qss_sector_04 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 4);
-CREATE TABLE IF NOT EXISTS qss_sector_05 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 5);
-CREATE TABLE IF NOT EXISTS qss_sector_06 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 6);
-CREATE TABLE IF NOT EXISTS qss_sector_07 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 7);
-CREATE TABLE IF NOT EXISTS qss_sector_08 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 8);
-CREATE TABLE IF NOT EXISTS qss_sector_09 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 9);
-CREATE TABLE IF NOT EXISTS qss_sector_10 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 10);
-CREATE TABLE IF NOT EXISTS qss_sector_11 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 11);
-CREATE TABLE IF NOT EXISTS qss_sector_12 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 12);
-CREATE TABLE IF NOT EXISTS qss_sector_13 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 13);
-CREATE TABLE IF NOT EXISTS qss_sector_14 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 14);
-CREATE TABLE IF NOT EXISTS qss_sector_15 PARTITION OF quantum_state_space FOR VALUES WITH (MODULUS 16, REMAINDER 15);
-
--- Filtered Sharded Aggregation Query
-SELECT
-    state_orbit_hash,
-    SUM(amplitude) AS z_bosonic,
-    SUM(amplitude) FILTER (WHERE permutation_parity = 1) -
-    SUM(amplitude) FILTER (WHERE permutation_parity = -1) AS z_fermionic
-FROM quantum_state_space
-GROUP BY state_orbit_hash;
+CREATE VIEW SignedOrbitAudit AS
+SELECT DISTINCT ensemble_id, orbit_id, common_denominator, orbit_path_count,
+       orbit_unsigned_numerator, orbit_signed_numerator,
+       CASE WHEN orbit_unsigned_numerator > 0 THEN orbit_signed_numerator ELSE NULL END AS average_sign_num,
+       CASE WHEN orbit_unsigned_numerator > 0 THEN orbit_unsigned_numerator ELSE NULL END AS average_sign_den,
+       CASE WHEN orbit_unsigned_numerator = 0 THEN 'ZERO_UNSIGNED_MASS'
+            ELSE 'FINITE_ORBIT_SUM' END AS audit_status
+FROM SignedPathWindowAudit;
+COMMIT;

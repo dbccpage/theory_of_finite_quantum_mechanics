@@ -6,7 +6,7 @@ code/python/src/functional/__init__.py.
 Claim: urn:omega:fqm:phi1:exported-zero-test-certificate:v1
 AuthorityEffect: None
 Mutation-Kills: 4 non-equivalent source mutants, executed by code/python/src/functional/test_exported_zero_phi1.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 7; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 6.
+Gate 5: use source-bound measurements in the companion history.
 Scope Fence: The checker certifies one zero residual on the boundary column
 (1, -1) with weights (1, 1). It does not select L1 over a rival seminorm.
 """
@@ -27,9 +27,17 @@ _EXECUTOR = "code/python/src/functional/test_exported_zero_phi1.py"
 _LIBRARY = Path(__file__).resolve().parent / "__init__.py"
 _PACKAGE = "src.functional"
 _Mutant = tuple[str, str, str]
+_ABSENT = object()
 _BOUNDARY = (Fraction(1), Fraction(-1))
 _WEIGHTS = (Fraction(1), Fraction(1))
 _ZERO = Fraction(0)
+
+
+def _restore_module(name: str, previous: object) -> None:
+    if previous is _ABSENT:
+        sys.modules.pop(name, None)
+    else:
+        sys.modules[name] = previous
 
 
 class ClaimCheckError(ValueError):
@@ -58,7 +66,7 @@ def _float_probe(text: str) -> object:
 
 def parse_exact_entry(value: object) -> int:
     """Refuse float and bool before an exact witness entry is accepted."""
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the public boundary", received="float")
     if type(value) is bool or type(value) is not int:
         raise _fail("witness entry is not an exact integer", received=type(value).__name__)
@@ -158,7 +166,7 @@ def _load(source: str, name: str, file_path: str) -> dict[str, object]:
 def _safe_holds(namespace: dict[str, object]) -> bool:
     try:
         _holds(namespace)
-    except Exception:
+    except (ClaimCheckError, ValueError, ArithmeticError, AssertionError):
         return False
     return True
 
@@ -169,24 +177,26 @@ def _one_mutant(source: str, mutant: _Mutant, name: str, file_path: str, safe: C
     if count != 1:
         raise _fail("mutant anchor is not unique", name=label, count=count)
     survived = True
+    previous = sys.modules.get(name, _ABSENT)
     try:
         survived = safe(_load(source.replace(old, new, 1), name, file_path))
     except ClaimCheckError:
         raise
-    except Exception:
-        survived = False
+    except Exception as error:
+        raise _fail("candidate could not be assessed; not counted as a kill", name=label, error=type(error).__name__) from error
     finally:
-        sys.modules.pop(name, None)
+        _restore_module(name, previous)
     if survived:
         raise _fail("mutant survived the oracle", name=label)
 
 
 def _kill_count(source: str, mutants: tuple[_Mutant, ...], file_path: str, stem: str, holds: Callable[[dict[str, object]], None], safe: Callable[[dict[str, object]], bool]) -> int:
     name = stem + "_baseline"
+    previous = sys.modules.get(name, _ABSENT)
     try:
         holds(_load(source, name, file_path))
     finally:
-        sys.modules.pop(name, None)
+        _restore_module(name, previous)
     index = 0
     for mutant in mutants:
         _one_mutant(source, mutant, f"{stem}_{index}", file_path, safe)
@@ -205,7 +215,7 @@ def witness_zero() -> Fraction:
 
 
 def witness_pair() -> int:
-    return parse_exact_entry(2)
+    return len(_BOUNDARY)
 
 
 def witness_guard() -> str:
@@ -216,8 +226,8 @@ def witness_guard() -> str:
     return "admitted"
 
 
-def witness_weight() -> int:
-    return parse_exact_entry(1)
+def witness_weight() -> Fraction:
+    return _WEIGHTS[0]
 
 
 def _self_holds(namespace: dict[str, object]) -> None:
@@ -236,7 +246,7 @@ def _self_holds(namespace: dict[str, object]) -> None:
 def _safe_self(namespace: dict[str, object]) -> bool:
     try:
         _self_holds(namespace)
-    except Exception:
+    except ClaimCheckError:
         return False
     return True
 
@@ -248,8 +258,8 @@ def _anchor(left: str, right: str) -> str:
 _LIBRARY_MUTANTS: tuple[_Mutant, ...] = (
     (
         "float admitted",
-        '    if isinstance(value, float):\n        raise _fail("float refused at the public boundary", role=role, received="float")\n',
-        "    if isinstance(value, float):\n        return int(value)\n",
+        '    if issubclass(type(value), float):\n        raise _fail("float refused at the public boundary", role=role, received="float")\n',
+        "    if issubclass(type(value), float):\n        return int(value)\n",
     ),
     (
         "boolean admitted",
@@ -274,8 +284,8 @@ _LIBRARY_MUTANTS: tuple[_Mutant, ...] = (
 
 _SELF_MUTANTS: tuple[_Mutant, ...] = (
     ("zero witness shifted", _anchor("return certified_", "zero()"), _anchor("return Fraction(", "1)")),
-    ("pair witness shifted", _anchor("return parse_exact_entry(", "2)"), _anchor("return parse_exact_entry(", "3)")),
-    ("weight witness shifted", _anchor("return parse_exact_entry(", "1)"), _anchor("return parse_exact_entry(", "4)")),
+    ("pair witness shifted", _anchor("return len(_BOUN", "DARY)"), _anchor("return len(_BOUN", "DARY) + 1")),
+    ("weight witness shifted", _anchor("return _WEI", "GHTS[0]"), _anchor("return _WEI", "GHTS[0] + 1")),
     ("guard witness silenced", _anchor("return exc.", "invariant"), _anchor('return "', "admitted" + '"')),
 )
 
