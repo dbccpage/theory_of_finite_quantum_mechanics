@@ -14,7 +14,7 @@
 For the Tao matrix S6 and each of the 20 balanced sign vectors g (three +1, three -1), |sum_j prod_r S_rj^{g_r}|^2 = 9, computed over the integer Eisenstein table and over C with w = -1/2 + i sqrt 3/2.
 
 ### Governing Obligation
-This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU triples it gives no nonextension statement, and the source wording as an l1 operator norm does not match the computed quantity. Relation to OpenAI: its Fourier-vanishing theorem exempts exactly the Tao class, and the repository phase table equals OpenAI taoExponent after the index involution (3 5) (exhaustive search; lean4/MubOpenAIBridge.lean tao_phase_bridge, build pending), so this evaluation concerns the exceptional matrix. It is not an obstruction to extension.
+This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU triples it gives no nonextension statement, and the source wording as an l1 operator norm does not match the computed quantity. Relation to OpenAI: its Fourier-vanishing theorem exempts exactly the Tao class, and the repository phase table equals OpenAI taoExponent after the index involution (3 5) (exhaustive search; lean4/MubOpenAIBridge.lean tao_phase_bridge, compiled 2026-10-21 under Lean 4.35.0 with standard axioms only), so this evaluation concerns the exceptional matrix. It is not an obstruction to extension.
 
 ### Witness Audit
 tao_all_balanced_masks: for every mask in Fin 64 with three positives, maskTaoNormSq mask = 9; tao_all_balanced_laurent gives Complex.normSq (laurentExpression mask) = 9. Covers ledger claim MUB6-C07.

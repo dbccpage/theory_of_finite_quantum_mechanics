@@ -58,7 +58,7 @@ messages, exit code 0): upstream `Model.lean` (356 s, includes the cold `import 
 
 ## 3. What this repository does with it
 
-`lean4/MubOpenAIBridge.lean` (build **pending**; not a lake root) states the imported bound as the Prop
+`lean4/MubOpenAIBridge.lean` (compiled 2026-10-21 under Lean 4.35.0 / Mathlib v4.35.0, exit code 0, axioms propext, Classical.choice, Quot.sound only; receipt in `mub_openai_bridge_compile_receipt.md`; not a lake root) states the imported bound as the Prop
 `OpenAIFamilyBound := ∀ n, OAI.MUB6.Attainable n → n ≤ 5`, proves that `OAI.MUB6.Attainable n` is the
 existence of an `n`-member pairwise-MU family of unitary `6 x 6` matrices
 (`ConcreteMubPolynomialSystem.Candidate`, `SzollosiQuartetSystem.Quartet` form), proves
@@ -66,10 +66,10 @@ existence of an `n`-member pairwise-MU family of unitary `6 x 6` matrices
 `mub6_family_le_five (h : OpenAIFamilyBound) : MatrixMUBFamily B -> n <= 5`. The conclusion is therefore
 **conditional on the imported theorem**. It is not "PROVED_LEAN" in this repository.
 
-It also states `tao_phase_bridge`: `Conjecture2GeneralMechanization.phaseTable (p i) (p j) = taoExponent i j`
+It also proves `tao_phase_bridge`: `Conjecture2GeneralMechanization.phaseTable (p i) (p j) = taoExponent i j`
 for the involution `p = (3 5)`. This was verified by exhaustive search in Python
 (`phaseTable r c = taoExponent` after reindexing; 20 (permutation, sign) solutions exist, `p = [0,1,2,5,4,3]`
-with sign +1 is one). The Lean statement has not been compiled. It lets `MUB6-DERIV-076` cite OpenAI's
+with sign +1 is one). The bridge restates the few upstream model definitions locally (`MUB.OpenAIBridge.OAIModel`) and does not import OpenAI's repository. It lets `MUB6-DERIV-076` cite OpenAI's
 Fourier-vanishing theorem as stated for `tao`: the repository's `taoNormSq = 9` evaluation (all 20 balanced
 masks) concerns the exceptional class of that theorem.
 

@@ -1,4 +1,4 @@
-import OAI.Analysis.MutuallyUnbiased.Model
+import Mathlib
 import Conjecture2GeneralMechanization
 import MubMonomialTransport
 
@@ -7,19 +7,15 @@ import MubMonomialTransport
 
 AuthorityEffect: None.
 
-BUILD STATUS (2026-10-21): PENDING. This file was written and partly type-checked against Lean 4.35.0 and
-Mathlib v4.35.0 (the first run reported two parse errors (misplaced parentheses) and the errors that followed from them;
-the parentheses are fixed here but the file has not been re-run). The machine ran out of disk, so no complete build and no `#print axioms` output exists. The file is
-deliberately not a lake root and is not part of the default target.
+The upstream model (OpenAI, Apache-2.0, https://github.com/openai/math, commit
+1581d4cbdd69a0faf34b2089614fe2a814316a6a, `lean/OAI/Analysis/MutuallyUnbiased/Model.lean`, Lean 4.34.1) is NOT
+vendored. The few definitions the bridge needs (`Coord`, `Space`, `Basis`, `IsMUBFamily`, `Attainable`,
+`taoExponent`) are restated below in `MUB.OpenAIBridge.OAIModel`, character for character as upstream states
+them (upstream namespace `OAI.MUB6`). The upstream bound itself is an external theorem and enters only as the
+hypothesis `OpenAIFamilyBound`. See `papers/core/mub6/documentation/openai_mub6_le5_external_import.md`
+and the compile receipt next to it. The file is deliberately not a lake root and not in the default target.
 
-It imports `OAI.Analysis.MutuallyUnbiased.Model` from OpenAI's repository, which is NOT vendored here:
-https://github.com/openai/math, commit 1581d4cbdd69a0faf34b2089614fe2a814316a6a (Apache-2.0), path
-`lean/OAI/Analysis/MutuallyUnbiased/Model.lean` (`lean-toolchain` v4.34.1, Mathlib pinned at
-d13f23b723b8a846827a245b89c10fc7d3f11612). `Model.lean` alone (1.7 kB) compiled without messages under this
-repository's Lean 4.35.0 / Mathlib v4.35.0, so the model layer has no toolchain mismatch. See
-`papers/core/mub6/documentation/openai_mub6_le5_external_import.md`.
-
-`OAI.MUB6.Attainable n` says that there are `n` orthonormal bases `OrthonormalBasis (Fin 6) ℂ
+`OAIModel.Attainable n` says that there are `n` orthonormal bases `OrthonormalBasis (Fin 6) ℂ
 (EuclideanSpace ℂ (Fin 6))` that are pairwise mutually unbiased. This repository states MU families as
 unitary `6 × 6` complex matrices (`ConcreteMubPolynomialSystem.Candidate`, `SzollosiQuartetSystem.Quartet`,
 `MonomialTransport.RawMU`). This file contains
@@ -40,6 +36,36 @@ namespace MUB.OpenAIBridge
 
 open scoped BigOperators ComplexConjugate
 
+noncomputable section
+
+/-! ## Upstream model, restated verbatim (upstream namespace `OAI.MUB6`) -/
+
+namespace OAIModel
+
+abbrev Coord := Fin 6
+
+abbrev Space := EuclideanSpace ℂ Coord
+abbrev Basis := OrthonormalBasis Coord ℂ Space
+
+def IsMUBFamily {n : ℕ} (B : Fin n → Basis) : Prop :=
+  ∀ r s, r ≠ s → ∀ i j,
+    Complex.normSq (inner ℂ (B r i) (B s j)) = (1 : ℝ) / 6
+
+def Attainable (n : ℕ) : Prop := ∃ B : Fin n → Basis, IsMUBFamily B
+
+/-- The five-cycle exponent matrix in equation (cubic-matrix).
+The entries 2 represent the exponents -1 modulo three. -/
+def taoExponent : Matrix Coord Coord ℕ :=
+  !![0, 0, 0, 0, 0, 0;
+     0, 0, 1, 2, 2, 1;
+     0, 1, 0, 1, 2, 2;
+     0, 2, 1, 0, 1, 2;
+     0, 2, 2, 1, 0, 1;
+     0, 1, 2, 2, 1, 0]
+
+end OAIModel
+
+
 /-- A candidate basis: a complex `6 × 6` matrix (the repository's `Candidate`). -/
 abbrev Cand := Matrix (Fin 6) (Fin 6) ℂ
 
@@ -52,26 +78,26 @@ def MatrixMUBFamily {n : ℕ} (B : Fin n → Cand) : Prop :=
 /-! ## Matrices versus orthonormal bases -/
 
 /-- Column `j` of a matrix as a vector of `EuclideanSpace ℂ (Fin 6)`. -/
-def colVec (M : Cand) (j : Fin 6) : OAI.MUB6.Space :=
+def colVec (M : Cand) (j : Fin 6) : OAIModel.Space :=
   WithLp.toLp 2 (fun k => M k j)
 
 /-- The matrix whose column `j` is the vector `b j`. -/
-def mat (b : Fin 6 → OAI.MUB6.Space) : Cand := fun k j => b j k
+def mat (b : Fin 6 → OAIModel.Space) : Cand := fun k j => b j k
 
 theorem inner_colVec (M N : Cand) (i j : Fin 6) :
     inner ℂ (colVec M i) (colVec N j) = (M.conjTranspose * N) i j := by
   simp [colVec, PiLp.inner_apply, Matrix.mul_apply, Matrix.conjTranspose_apply, mul_comm]
 
-theorem colVec_mat (b : Fin 6 → OAI.MUB6.Space) (j : Fin 6) : colVec (mat b) j = b j := by
+theorem colVec_mat (b : Fin 6 → OAIModel.Space) (j : Fin 6) : colVec (mat b) j = b j := by
   ext k
   simp [colVec, mat]
 
-theorem inner_eq_mat (b b' : Fin 6 → OAI.MUB6.Space) (i j : Fin 6) :
+theorem inner_eq_mat (b b' : Fin 6 → OAIModel.Space) (i j : Fin 6) :
     inner ℂ (b i) (b' j) = ((mat b).conjTranspose * mat b') i j := by
   rw [← inner_colVec, colVec_mat, colVec_mat]
 
 /-- A unitary matrix gives an orthonormal basis (its columns). -/
-noncomputable def basisOfUnitary (M : Cand) (h : M.conjTranspose * M = 1) : OAI.MUB6.Basis :=
+noncomputable def basisOfUnitary (M : Cand) (h : M.conjTranspose * M = 1) : OAIModel.Basis :=
   have hon : Orthonormal ℂ (colVec M) := by
     rw [orthonormal_iff_ite]
     intro i j
@@ -84,7 +110,7 @@ theorem basisOfUnitary_apply (M : Cand) (h : M.conjTranspose * M = 1) (j : Fin 6
   simp [basisOfUnitary]
 
 /-- The matrix of an orthonormal basis is unitary. -/
-theorem mat_unitary (b : OAI.MUB6.Basis) :
+theorem mat_unitary (b : OAIModel.Basis) :
     (mat (fun j => b j)).conjTranspose * mat (fun j => b j) = 1 := by
   ext i j
   rw [← inner_eq_mat, b.inner_eq_ite]
@@ -93,7 +119,7 @@ theorem mat_unitary (b : OAI.MUB6.Basis) :
 /-- **Model equivalence.** OpenAI's `Attainable n` is exactly the existence of an `n`-member pairwise MU
 family of unitary `6 × 6` matrices. -/
 theorem attainable_iff (n : ℕ) :
-    OAI.MUB6.Attainable n ↔ ∃ B : Fin n → Cand, MatrixMUBFamily B := by
+    OAIModel.Attainable n ↔ ∃ B : Fin n → Cand, MatrixMUBFamily B := by
   constructor
   · rintro ⟨B, hB⟩
     refine ⟨fun a => mat (fun j => B a j), fun a => mat_unitary (B a), ?_⟩
@@ -186,7 +212,7 @@ theorem scale_one_overlap {H : Cand} (hH : MonomialTransport.RawHadamard H) (i j
 `1581d4cbdd69a0faf34b2089614fe2a814316a6a`): every family of pairwise mutually unbiased orthonormal bases of
 `ℂ⁶` has at most five members. It is an external, imported theorem here, not a hypothesis proved in this
 repository. -/
-def OpenAIFamilyBound : Prop := ∀ n : ℕ, OAI.MUB6.Attainable n → n ≤ 5
+def OpenAIFamilyBound : Prop := ∀ n : ℕ, OAIModel.Attainable n → n ≤ 5
 
 /-- `N(6) ≤ 5` for the repository's matrix types, given the imported bound. -/
 theorem mub6_family_le_five (h : OpenAIFamilyBound) {n : ℕ} (B : Fin n → Cand)
@@ -215,10 +241,15 @@ def taoPerm : Fin 6 → Fin 6 := ![0, 1, 2, 5, 4, 3]
 `taoExponent` after reindexing rows and columns by `taoPerm`. -/
 theorem tao_phase_bridge (i j : Fin 6) :
     Conjecture2GeneralMechanization.phaseTable (taoPerm i).val (taoPerm j).val =
-      (OAI.MUB6.taoExponent i j : ℤ) := by
-  fin_cases i <;> fin_cases j <;>
-    first
-    | rfl
-    | simp [taoPerm, OAI.MUB6.taoExponent, Conjecture2GeneralMechanization.phaseTable]
+      (OAIModel.taoExponent i j : ℤ) := by
+  fin_cases i <;> fin_cases j <;> rfl
+
+end
 
 end MUB.OpenAIBridge
+
+#print axioms MUB.OpenAIBridge.mub6_family_le_five
+#print axioms MUB.OpenAIBridge.mub6_card_le_five
+#print axioms MUB.OpenAIBridge.attainable_iff
+#print axioms MUB.OpenAIBridge.rawMU_iff_pairMU
+#print axioms MUB.OpenAIBridge.tao_phase_bridge

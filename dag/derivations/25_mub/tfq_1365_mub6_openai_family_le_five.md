@@ -14,7 +14,7 @@
 Every family of pairwise mutually unbiased orthonormal bases of C^6 has at most five members (N(6) <= 5): OpenAI's Lean theorem OAI.MUB6.family_size_le_five (github.com/openai/math, commit 1581d4cbdd69a0faf34b2089614fe2a814316a6a, Apache-2.0), via the exact mixed-moment Gram certificate no_seven_mutually_unbiased_bases and Weiner's completion six_extend_to_seven.
 
 ### Governing Obligation
-External and not built here: the upstream proof (3381 Lean files, about 205 MB, Lean 4.34.1 and its own Mathlib commit) is neither vendored nor replayed. lean4/MubOpenAIBridge.lean states the repository-type consequence conditionally on OpenAIFamilyBound and its build is pending. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported. MUB6-NO-QUARTET-D6 and MUB6-MAX-MUB-SIX-EQUALS-THREE stay OPEN.
+External and not built here: the upstream proof (3381 Lean files, about 205 MB, Lean 4.34.1 and its own Mathlib commit) is neither vendored nor replayed. lean4/MubOpenAIBridge.lean states the repository-type consequence conditionally on OpenAIFamilyBound; it compiled on 2026-10-21 under Lean 4.35.0 and Mathlib v4.35.0 with exit code 0 and only propext, Classical.choice and Quot.sound (mub_openai_bridge_compile_receipt.md). The bound itself is not proved here. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported. MUB6-NO-QUARTET-D6 and MUB6-MAX-MUB-SIX-EQUALS-THREE stay OPEN.
 
 ### Witness Audit
 Statement and pin copied from the upstream files on 2026-10-21; the upstream Model.lean and Tao/Tao.lean compiled under Lean 4.35.0 and Mathlib v4.35.0 with no messages, the heavy certificate layer was not attempted. Independent reports (JJardine919 audit; DeepMind formal-conjectures issue 6918) re-implemented the exact certificate.
@@ -41,7 +41,7 @@ Statement and pin copied from the upstream files on 2026-10-21; the upstream Mod
 
 ### Cited by the source, not in this checkout
 - `external:lean4 OAI.MUB6.family_size_le_five (github.com/openai/math, commit 1581d4cbdd69a0faf34b2089614fe2a814316a6a; not vendored, not built here)`
-- `external:lean4/MubOpenAIBridge.lean (repository-type bridge, build pending; not a lake root)`
+- `external:lean4/MubOpenAIBridge.lean (repository-type bridge, compiled 2026-10-21 under Lean 4.35.0, standard axioms only, conditional on the imported bound; not a lake root)`
 
 ---
 

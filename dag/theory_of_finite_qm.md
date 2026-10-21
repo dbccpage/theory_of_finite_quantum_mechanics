@@ -9387,7 +9387,7 @@ Obligation: Locally only the count of 20 balanced sign masks among 64 and a decl
 
 For the Tao matrix S6 and each of the 20 balanced sign vectors g (three +1, three -1), |sum_j prod_r S_rj^{g_r}|^2 = 9, computed over the integer Eisenstein table and over C with w = -1/2 + i sqrt 3/2.
 
-Obligation: This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU triples it gives no nonextension statement, and the source wording as an l1 operator norm does not match the computed quantity. Relation to OpenAI: its Fourier-vanishing theorem exempts exactly the Tao class, and the repository phase table equals OpenAI taoExponent after the index involution (3 5) (exhaustive search; lean4/MubOpenAIBridge.lean tao_phase_bridge, build pending), so this evaluation concerns the exceptional matrix. It is not an obstruction to extension.
+Obligation: This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU triples it gives no nonextension statement, and the source wording as an l1 operator norm does not match the computed quantity. Relation to OpenAI: its Fourier-vanishing theorem exempts exactly the Tao class, and the repository phase table equals OpenAI taoExponent after the index involution (3 5) (exhaustive search; lean4/MubOpenAIBridge.lean tao_phase_bridge, compiled 2026-10-21 under Lean 4.35.0 with standard axioms only), so this evaluation concerns the exceptional matrix. It is not an obstruction to extension.
 
 ### TFQ-1254 Non-existence of four MUBs in dimension six (open)
 
@@ -9423,7 +9423,7 @@ Obligation: The lower bound three is checked (MUB6-DERIV-063); the upper bound i
 
 Every family of pairwise mutually unbiased orthonormal bases of C^6 has at most five members (N(6) <= 5): OpenAI's Lean theorem OAI.MUB6.family_size_le_five (github.com/openai/math, commit 1581d4cbdd69a0faf34b2089614fe2a814316a6a, Apache-2.0), via the exact mixed-moment Gram certificate no_seven_mutually_unbiased_bases and Weiner's completion six_extend_to_seven.
 
-Obligation: External and not built here: the upstream proof (3381 Lean files, about 205 MB, Lean 4.34.1 and its own Mathlib commit) is neither vendored nor replayed. lean4/MubOpenAIBridge.lean states the repository-type consequence conditionally on OpenAIFamilyBound and its build is pending. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported. MUB6-NO-QUARTET-D6 and MUB6-MAX-MUB-SIX-EQUALS-THREE stay OPEN.
+Obligation: External and not built here: the upstream proof (3381 Lean files, about 205 MB, Lean 4.34.1 and its own Mathlib commit) is neither vendored nor replayed. lean4/MubOpenAIBridge.lean states the repository-type consequence conditionally on OpenAIFamilyBound; it compiled on 2026-10-21 under Lean 4.35.0 and Mathlib v4.35.0 with exit code 0 and only propext, Classical.choice and Quot.sound (mub_openai_bridge_compile_receipt.md). The bound itself is not proved here. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported. MUB6-NO-QUARTET-D6 and MUB6-MAX-MUB-SIX-EQUALS-THREE stay OPEN.
 
 ### TFQ-1256 Route C label-count arithmetic
 

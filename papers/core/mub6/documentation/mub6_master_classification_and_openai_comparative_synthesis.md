@@ -146,7 +146,7 @@ lemma" in a "single monolithic module". That is incorrect.
 - Consequently the statement "N(6) <= 5 is kernel-checked" is true of OpenAI's Lean tree, not of anything
   built in this repository. The bound is recorded here as an external, imported theorem (exact statement,
   source URL, commit and license in `openai_mub6_le5_external_import.md`); `lean4/MubOpenAIBridge.lean`
-  (build pending) states the repository-type consequence conditionally on it. The statement "N(6) = 3" is
+  (compiled 2026-10-21, standard axioms only; see `mub_openai_bridge_compile_receipt.md`) states the repository-type consequence conditionally on it. The statement "N(6) = 3" is
   not established by any kernel-checked artefact and remains an external claim.
 
 ### 3.2 Omega Engine's Hermetic Mechanization
