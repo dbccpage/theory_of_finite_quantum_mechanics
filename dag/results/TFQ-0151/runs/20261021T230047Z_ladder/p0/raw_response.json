@@ -1,0 +1,98 @@
+{
+  "task_id": "TFQ-0151",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-3",
+  "input_sha256": "74de30aecaed7e4243279fdbc6129fe473ea63a69526008ab1636b3ea3ad6d37",
+  "raw_text": "{\n  \"status\": \"ready_for_host_review\",\n  \"generators\": [\n    {\n      \"id\": \"grover_step_gen\",\n      \"inputs\": [\"v\"],\n      \"output\": \"v\",\n      \"arity\": 1,\n      \"carrier\": \"from H045DiscreteGroverSearch\",\n      \"ref\": {\n        \"path\": \"lean4/H045DiscreteGroverSearch.lean\",\n        \"decl\": \"FableHilbertWalk20260819.H045.grover_step\"\n      ,\n      \"status\": \"existing\"\n    }\n  },\n  {\n    \"id\": \"S_rec_step0_gen\",\n      \"inputs\": [],\n      \"output\": \"S_rec 0\",\n      \"arity\": 0,\n      \"carrier\": \"constant generator\",\n      \"ref\": {\n        \"path\": \"lean4/H045DiscreteGroverSearch.lean\",\n        \"decl\": \"FableHilbertWalk20260819.H045.S_rec_step0\"\n      ,\n      \"status\": \"existing\"\n    }\n  }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"S_rec_recurrence\",\n      \"statement\": \"S_rec (n+2) = S_rec n - S_rec (n+1) for n >= 0\",\n      \"hypotheses\": \"S_rec 0 = 1, S_rec 1 = 2\",\n      \"ref\": {\n        \"path\": \"lean4/H045DiscreteGroverSearch.lean\",\n        \"decl\": \"FableHilbertWalk20260819.H045.S_rec_step3\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"compositions\": [\n    {\n      \"outer\": \"grover_step_gen\",\n      \"slot\": 0,\n      \"inner\": \"v_uniform\",\n      \"licensing_relation\": \"grover_one_step_exact\"\n    }\n  ],\n  \"lemmas\": [\n    {\n      \"id\": \"periodicity_six_lemma\",\n      \"statement\": \"S_rec 6 = 1 and S_rec 7 = 2 restates the period-6 Chebyshev recurrence\",\n      \"relation_to_target\": \"restates\",\n      \"depends_on\": [\"S_rec_step0\", \"S_rec_step1\", \"S_rec_step2\", \"S_rec_step3\", \"S_rec_step4\", \"S_rec_step5\", \"S_rec_step6\"]\n    , \"lean_skeleton\": \"have h : S_rec 6 = 1 := S_rec_step6\"\n    , \"claims_proved\": false\n    , \"ref\": {\n      \"path\": \"lean4/H045DiscreteGroverSearch.lean\",\n      \"decl\": \"FableHilbertWalk20260819.H045.grover_periodicity_six\"\n    , \"status\": \"existing\"\n    }\n    }\n  ]\n  ,\n  \"near_misses\": [\n    {\n      \"id\": \"walk_step_s3_gen\",\n      \"claim\": \"walk_step_s3 generates the Cayley-graph walk step for s=3\",\n      \"rejecting_invariant\": \"The file H049QuantumWalkSymmetricCayley.lean defines walk_step_s3 but does not explicitly connect it to the N=4 Householder reflection or the period-6 recurrence. Without a linking theorem or relation in the source, this composition is unjustified.\"\n    }\n  ]\n  ,\n  \"numeric_claims\": [\n    {\n      \"id\": \"grover_one_step_numeric\",\n      \"expr\": \"11 - 2/3*5\",\n      \"value\": \"23/3\"\n    }\n  ],\n  \"open_obligations\": [\n    \"Justify composition walk_step_s3_gen by providing a relation in H049QuantumWalkSymmetricCayley.lean that connects the Cayley-graph walk to the N=4 reflection identity or period-6 recurrence.\"\n  ]\n  }",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [
+      {
+        "id": "grover_step_gen",
+        "inputs": [
+          "v"
+        ],
+        "output": "v",
+        "arity": 1,
+        "carrier": "from H045DiscreteGroverSearch",
+        "ref": {
+          "path": "lean4/H045DiscreteGroverSearch.lean",
+          "decl": "FableHilbertWalk20260819.H045.grover_step",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "S_rec_step0_gen",
+        "inputs": [],
+        "output": "S_rec 0",
+        "arity": 0,
+        "carrier": "constant generator",
+        "ref": {
+          "path": "lean4/H045DiscreteGroverSearch.lean",
+          "decl": "FableHilbertWalk20260819.H045.S_rec_step0",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "S_rec_recurrence",
+        "statement": "S_rec (n+2) = S_rec n - S_rec (n+1) for n >= 0",
+        "hypotheses": "S_rec 0 = 1, S_rec 1 = 2",
+        "ref": {
+          "path": "lean4/H045DiscreteGroverSearch.lean",
+          "decl": "FableHilbertWalk20260819.H045.S_rec_step3",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "grover_step_gen",
+        "slot": 0,
+        "inner": "v_uniform",
+        "licensing_relation": "grover_one_step_exact"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "periodicity_six_lemma",
+        "statement": "S_rec 6 = 1 and S_rec 7 = 2 restates the period-6 Chebyshev recurrence",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "S_rec_step0",
+          "S_rec_step1",
+          "S_rec_step2",
+          "S_rec_step3",
+          "S_rec_step4",
+          "S_rec_step5",
+          "S_rec_step6"
+        ],
+        "lean_skeleton": "have h : S_rec 6 = 1 := S_rec_step6",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/H045DiscreteGroverSearch.lean",
+          "decl": "FableHilbertWalk20260819.H045.grover_periodicity_six",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "walk_step_s3_gen",
+        "claim": "walk_step_s3 generates the Cayley-graph walk step for s=3",
+        "rejecting_invariant": "The file H049QuantumWalkSymmetricCayley.lean defines walk_step_s3 but does not explicitly connect it to the N=4 Householder reflection or the period-6 recurrence. Without a linking theorem or relation in the source, this composition is unjustified."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "grover_one_step_numeric",
+        "expr": "11 - 2/3*5",
+        "value": "23/3"
+      }
+    ],
+    "open_obligations": [
+      "Justify composition walk_step_s3_gen by providing a relation in H049QuantumWalkSymmetricCayley.lean that connects the Cayley-graph walk to the N=4 reflection identity or period-6 recurrence."
+    ]
+  }
+}

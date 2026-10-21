@@ -1,0 +1,83 @@
+add_or_refine_generators:
+- id: gen_correlationChsh
+  ordered_inputs:
+  - law
+  output: Int
+  arity: 1
+  carrier: Int
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/BellClassicalJointExtension.lean
+    declaration: QuantumMechanics.BellClassicalJointExtension.correlationChsh
+    line: 39
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/BellClassicalJointExtension.lean
+    decl: QuantumMechanics.BellClassicalJointExtension.correlationChsh
+    kind: def
+    line: 39
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+- id: gen_score
+  ordered_inputs:
+  - a
+  output: Int
+  arity: 1
+  carrier: Int
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/BellClassicalJointExtension.lean
+    declaration: QuantumMechanics.BellClassicalJointExtension.score
+    line: 16
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/BellClassicalJointExtension.lean
+    decl: QuantumMechanics.BellClassicalJointExtension.score
+    kind: def
+    line: 16
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+add_or_refine_relations:
+- id: rel_score_bound
+  equation_or_predicate: -2 ≤ QuantumMechanics.BellClassicalJointExtension.score a ∧ QuantumMechanics.BellClassicalJointExtension.score
+    a ≤ 2
+  typing_conditions: 'a : QuantumMechanics.BellClassicalJointExtension.Assignment'
+  source_pins:
+  - path: lean4/BellClassicalJointExtension.lean
+    declaration: QuantumMechanics.BellClassicalJointExtension.score_bound
+    line: 22
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/BellClassicalJointExtension.lean
+    decl: QuantumMechanics.BellClassicalJointExtension.score_bound
+    kind: theorem
+    line: 22
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- 'lemma lem_chsh_value_matches_table unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: num_chsh_max
+  expr: '2'
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+verified_lemma_statements: []

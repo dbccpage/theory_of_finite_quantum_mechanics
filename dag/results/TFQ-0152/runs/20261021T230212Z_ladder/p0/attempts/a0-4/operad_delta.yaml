@@ -1,0 +1,39 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-5F952DCF9409
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''toric_code'', ''path'': ''code/rust/src/fusion_categories/fusion_ring.rs'', ''decl'':
+    ''toric_code'', ''inputs'': [''FusionRing_in''], ''output'': ''FusionRing_out'', '
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0152
+- id: NEG-513C59B46FCA
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''repair_capacity'', ''path'': ''code/rust/src/majorana/repair_capacity.rs'', ''decl'':
+    ''repair_capacity'', ''inputs'': [''distance_in'', ''cycles_in''], ''output'': ''r'
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0152
+counterexamples: []
+open_obligations:
+- description: 'Lean skeleton for Syndrome8 structure citation mismatch: cannot cite FableHilbertWalk20260819.H042.Syndrome8
+    directly without matching the source path.'
+  required_by: TFQ-0152
+- description: Lean skeleton for decodeSyndrome theorem restated incorrectly per statement_drift note;
+    path must align with source evidence.
+  required_by: TFQ-0152
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,62 @@
+{
+  "task_id": "TFQ-0133",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "04ea650fe874120da4d8fa92487473ca7f3c40dcbb38ba81cd834134ae67af20",
+  "raw_text": "{\n  \"status\": \"incomplete\",\n  \"generators\": [\n    {\n      \"id\": \"HermitianObservable_Qi\",\n      \"inputs\": [\"GaussRatMatrix\"],\n      \"output\": \"GaussRatHermitian\",\n      \"arity\": 1,\n      \"carrier\": \"FiniteDimHilbert\",\n      \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"offdiag_im_sub_im\",\n      \"statement\": \"For any matrix H : Matrix (Fin n) (Fin n) GaussRat, if H is SectorAdditive then for distinct i j we have (H j i).im - (H i j).im = 0.\",\n      \"hypotheses\": \"H : Matrix (Fin n) (Fin n) GaussRat, hA : SectorAdditive H, i j : Fin n, hneq : i ≠ j\",\n      \"ref\": {\n        \"path\": \"lean4/SectorFormHermitian.lean\",\n        \"decl\": \"InnerProductFable.HermitianSectorForm.offdiag_im_sub_im\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"compositions\": [],\n  \"lemmas\": [\n    {\n      \"id\": \"finite_nets_no_haag_duality\",\n      \"statement\": \"Finite local nets of bounded‑dimension Hermitian observables over Q(i) do not establish continuum Haag duality.\",\n      \"relation_to_target\": \"implies\",\n      \"depends_on\": [\"offdiag_im_sub_im\"],\n      \"lean_skeleton\": \"theorem finite_nets_no_haag_duality : ¬(ContinuumHaagDuality (LocalNet (GaussRatHermitian))) :=\\n  by\\n    -- proof sketch: use the off‑diagonal imaginary cancellation property to show that the net cannot separate all commutants in the continuum limit.\\n    sorry\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    }\n  ],\n  \"near_misses\": [],\n  \"numeric_claims\": [],\n  \"open_obligations\": [\n    \"Provide a precise definition of GaussRatHermitian and prove that its expectation values are rational.\",\n    \"Formalise ContinuumHaagDuality for local nets in Lean and connect it to the finite‑dimensional setting.\"\n  ]\n}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "HermitianObservable_Qi",
+        "inputs": [
+          "GaussRatMatrix"
+        ],
+        "output": "GaussRatHermitian",
+        "arity": 1,
+        "carrier": "FiniteDimHilbert",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "offdiag_im_sub_im",
+        "statement": "For any matrix H : Matrix (Fin n) (Fin n) GaussRat, if H is SectorAdditive then for distinct i j we have (H j i).im - (H i j).im = 0.",
+        "hypotheses": "H : Matrix (Fin n) (Fin n) GaussRat, hA : SectorAdditive H, i j : Fin n, hneq : i ≠ j",
+        "ref": {
+          "path": "lean4/SectorFormHermitian.lean",
+          "decl": "InnerProductFable.HermitianSectorForm.offdiag_im_sub_im",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "finite_nets_no_haag_duality",
+        "statement": "Finite local nets of bounded‑dimension Hermitian observables over Q(i) do not establish continuum Haag duality.",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "offdiag_im_sub_im"
+        ],
+        "lean_skeleton": "theorem finite_nets_no_haag_duality : ¬(ContinuumHaagDuality (LocalNet (GaussRatHermitian))) :=\n  by\n    -- proof sketch: use the off‑diagonal imaginary cancellation property to show that the net cannot separate all commutants in the continuum limit.\n    sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Provide a precise definition of GaussRatHermitian and prove that its expectation values are rational.",
+      "Formalise ContinuumHaagDuality for local nets in Lean and connect it to the finite‑dimensional setting."
+    ]
+  }
+}

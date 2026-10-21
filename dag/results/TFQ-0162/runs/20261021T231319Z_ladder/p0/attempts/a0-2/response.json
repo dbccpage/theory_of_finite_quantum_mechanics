@@ -1,0 +1,105 @@
+{
+  "generators": [
+    {
+      "name": "decoherence_functional",
+      "path": "code/python/src/majorana/finite_transport.py",
+      "decl": "def decoherence_functional( histories: Sequence[Sequence[int]], m: np.ndarray, rho0: np.ndarray ) -> Dict[str, Any]: r\"\"\"A finite Gell-Mann--Hartle st",
+      "status": "existing",
+      "input_colours": [
+        "histories",
+        "m",
+        "rho0"
+      ],
+      "output_colour": "Dict[str, Any]",
+      "arity": 3
+    },
+    {
+      "name": "branch_finegraining",
+      "path": "code/rust/src/qm/campaigns/mod.rs",
+      "decl": "pub mod branch_finegraining;",
+      "status": "existing",
+      "input_colours": [],
+      "output_colour": "mod",
+      "arity": 0
+    },
+    {
+      "name": "test_everett_branch_non_signaling",
+      "path": "code/rust/src/qm/campaigns/everett.rs",
+      "decl": "fn test_everett_branch_non_signaling()",
+      "status": "existing",
+      "input_colours": [],
+      "output_colour": "fn [test]",
+      "arity": 0
+    }
+  ],
+  "relations": [
+    {
+      "name": "rel_count_born_separation",
+      "path": "lean4/BornRationalSphereObstruction.lean",
+      "decl": "BornFable.RationalSphere.parity_two_valued",
+      "status": "existing",
+      "input_colours": [
+        "count_weight",
+        "born_weight"
+      ],
+      "output_colour": "separation",
+      "arity": 2
+    },
+    {
+      "name": "rel_class_operator_history",
+      "path": "lean4/H054GleasonCyclotomicObstruction.lean",
+      "decl": "FableHilbertWalk20260819.H054.cabello_18_count",
+      "status": "existing",
+      "input_colours": [
+        "projective_history",
+        "class_operator"
+      ],
+      "output_colour": "operator_relation",
+      "arity": 2
+    }
+  ],
+  "compositions": [
+    {
+      "inner": "decoherence_functional",
+      "outer": "branch_finegraining",
+      "slot": 0,
+      "relation": "rel_class_operator_history"
+    }
+  ],
+  "lemmas": [
+    {
+      "name": "lemma_count_born_split_consistency",
+      "path": "lean4/BornRationalSphereObstruction.lean",
+      "decl": "BornFable.RationalSphere.ray_exactly_one_odd",
+      "status": "existing",
+      "relation_to_target": "implies",
+      "claims_proved": true,
+      "lean_skeleton": "theorem count_born_split {h : Histories} : count_weight h ≠ born_weight h :"
+    },
+    {
+      "name": "lemma_cycle_obstruction_inconsistency",
+      "path": "lean4/H054GleasonCyclotomicObstruction.lean",
+      "decl": "FableHilbertWalk20260819.H054.cabello_9_tetrad_count",
+      "status": "existing",
+      "relation_to_target": "auxiliary",
+      "claims_proved": false,
+      "lean_skeleton": "theorem cyclotomic_obstruction {n : ℕ} : ¬ ∃ w : ℝ, w ^ n = 1:"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "expr": "18 - 9",
+      "value": "9"
+    }
+  ],
+  "open_obligations": [
+    {
+      "description": "Verify exact reconciliation of count weight versus Born weight in everett.rs against decoherence_functional output",
+      "status": "proposed_new"
+    },
+    {
+      "description": "Prove that class operator of a declared projective history matches decoherence functional structure",
+      "status": "proposed_new"
+    }
+  ]
+}

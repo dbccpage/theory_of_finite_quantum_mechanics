@@ -1,0 +1,43 @@
+add_or_refine_generators:
+- id: gen_CochainComplex
+  ordered_inputs: []
+  output: CochainComplex
+  arity: 0
+  carrier: Rust
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/homology/cochain_complex.rs
+    declaration: CochainComplex
+    line: 66
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/homology/cochain_complex.rs
+    decl: CochainComplex
+    kind: struct
+    line: 66
+    lang: rust
+  proposed_by:
+    model: openai/gpt-oss-20b
+    provider: groq
+    tier: 0
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-682AB7138EEB
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'op_odm_observer_admission: (observer_candidate, promote_flag) -> admission_result [evaluate_plan_odm_observer_open]'
+  evidence: rust fn evaluate_plan_odm_observer_open takes 3 parameters; the claim says 2
+  decl_key: evaluate_plan_odm_observer_open
+  confidence: exact
+  model: qwen/qwen3.8-27b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0112
+open_obligations:
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

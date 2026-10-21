@@ -1,0 +1,189 @@
+{
+  "task_id": "TFQ-0150",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-5",
+  "input_sha256": "8b314f6e054bdc5ead4790e37381c0e8e43cd99c94065ab6a954c47ef697d2c0",
+  "candidate_sha256": "a884a407372afa89f53c5cdd04e03cc190efacd8ae8fd31d4e3d49ea9dbe99a4",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-haiku-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 5,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 1,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:00:44Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "registerState",
+        "ordered_inputs": [
+          "Nat"
+        ],
+        "output": "Vec4G",
+        "arity": 1,
+        "carrier": "Vec4G",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/H043DiscretePhaseEstimation.lean",
+            "declaration": "FableHilbertWalk20260819.H043.registerState",
+            "line": 72
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/H043DiscretePhaseEstimation.lean",
+          "decl": "FableHilbertWalk20260819.H043.registerState",
+          "kind": "def",
+          "line": 72,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "geomSum4",
+        "ordered_inputs": [
+          "Nat"
+        ],
+        "output": "GaussInt",
+        "arity": 1,
+        "carrier": "GaussInt",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/H043DiscretePhaseEstimation.lean",
+            "declaration": "FableHilbertWalk20260819.H043.geomSum4",
+            "line": 122
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/H043DiscretePhaseEstimation.lean",
+          "decl": "FableHilbertWalk20260819.H043.geomSum4",
+          "kind": "def",
+          "line": 122,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "geom_cancel_m1_m3",
+        "equation_or_predicate": "geomSum4 1 = 0 and geomSum4 2 = 0 and geomSum4 3 = 0",
+        "typing_conditions": "register lengths m in {1,2,3} with dyadic phase k/2^m",
+        "source_pins": [
+          {
+            "path": "lean4/H043DiscretePhaseEstimation.lean",
+            "declaration": "FableHilbertWalk20260819.H043.geom_sum_4_cancellation",
+            "line": 125
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H043DiscretePhaseEstimation.lean",
+          "decl": "FableHilbertWalk20260819.H043.geom_sum_4_cancellation",
+          "kind": "theorem",
+          "line": 125,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "phase_est_matching_outcome_k0_k3",
+        "equation_or_predicate": "applyIFT (registerState k) = smulG 4 e_k for k in {0,1,2,3}",
+        "typing_conditions": "fixed 4-dimensional register with k in 0..3",
+        "source_pins": [
+          {
+            "path": "lean4/H043DiscretePhaseEstimation.lean",
+            "declaration": "FableHilbertWalk20260819.H043.phase_est_k0",
+            "line": 84
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H043DiscretePhaseEstimation.lean",
+          "decl": "FableHilbertWalk20260819.H043.phase_est_k0",
+          "kind": "theorem",
+          "line": 84,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-0C43DA16A442",
+        "class": "unparseable_reply",
+        "claim_kind": "reply",
+        "claim": "",
+        "evidence": "empty_reply (truncated at max_tokens)",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0150"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No cited declaration establishes the full measurement weight as a general identity for all dyadic phases; only the four phase_est_k theorems at length 2 are grounded.",
+      "No Python replay is available in the source list; the replay cross-check is unverified.",
+      "The geomSum4 cancellation is stated for delta values 1,2,3 but the link from geomSum4 to the measurement weight formula is not cited as a single declaration.",
+      "dyadic_qft_orthonormality_all_16_pairs and binProjectionSum were listed without a verified statement; not cited.",
+      "Claimed restriction to m in {1,2,3} is not proven to be exhaustive; no lemma written.",
+      "AuthorityEffect: None.",
+      "near_miss nm_all_m unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "nc_weight",
+        "expr": "4/4",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

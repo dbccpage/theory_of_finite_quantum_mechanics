@@ -1,0 +1,79 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "registerState",
+      "inputs": [
+        "Nat"
+      ],
+      "output": "Vec4G",
+      "arity": 1,
+      "carrier": "Vec4G",
+      "ref": {
+        "path": "lean4/H043DiscretePhaseEstimation.lean",
+        "decl": "FableHilbertWalk20260819.H043.registerState",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "geomSum4",
+      "inputs": [
+        "Nat"
+      ],
+      "output": "GaussInt",
+      "arity": 1,
+      "carrier": "GaussInt",
+      "ref": {
+        "path": "lean4/H043DiscretePhaseEstimation.lean",
+        "decl": "FableHilbertWalk20260819.H043.geomSum4",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "geom_cancel_m1_m3",
+      "statement": "geomSum4 1 = 0 and geomSum4 2 = 0 and geomSum4 3 = 0",
+      "hypotheses": "register lengths m in {1,2,3} with dyadic phase k/2^m",
+      "ref": {
+        "path": "lean4/H043DiscretePhaseEstimation.lean",
+        "decl": "FableHilbertWalk20260819.H043.geom_sum_4_cancellation",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "phase_est_matching_outcome_k0_k3",
+      "statement": "applyIFT (registerState k) = smulG 4 e_k for k in {0,1,2,3}",
+      "hypotheses": "fixed 4-dimensional register with k in 0..3",
+      "ref": {
+        "path": "lean4/H043DiscretePhaseEstimation.lean",
+        "decl": "FableHilbertWalk20260819.H043.phase_est_k0",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [
+    {
+      "id": "nm_all_m",
+      "claim": "Cancellation holds for every register length m without restriction",
+      "rejecting_invariant": "Only m in {1,2,3} is grounded by geom_sum_4_cancellation; no cited declaration covers other lengths."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "nc_weight",
+      "expr": "4/4",
+      "value": "1"
+    }
+  ],
+  "open_obligations": [
+    "No cited declaration establishes the full measurement weight as a general identity for all dyadic phases; only the four phase_est_k theorems at length 2 are grounded.",
+    "No Python replay is available in the source list; the replay cross-check is unverified.",
+    "The geomSum4 cancellation is stated for delta values 1,2,3 but the link from geomSum4 to the measurement weight formula is not cited as a single declaration.",
+    "dyadic_qft_orthonormality_all_16_pairs and binProjectionSum were listed without a verified statement; not cited.",
+    "Claimed restriction to m in {1,2,3} is not proven to be exhaustive; no lemma written.",
+    "AuthorityEffect: None."
+  ]
+}

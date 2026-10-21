@@ -1,0 +1,133 @@
+{
+  "task_id": "TFQ-0109",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "8fe717b989d6daac92c5081469e309e35c459472506b7ef97ea0403cfbed1dde",
+  "raw_text": "{\n  \"status\": \"ready_for_host_review\",\n  \"generators\": [\n    {\n      \"id\": \"deflectionFactor\",\n      \"inputs\": [\"gamma\"],\n      \"output\": \"Rat\",\n      \"arity\": 1,\n      \"carrier\": \"Rat\",\n      \"ref\": {\n        \"path\": \"lean4/FiniteQFTAndGravity.lean\",\n        \"decl\": \"FiniteQFTAndGravity.deflectionFactor\",\n        \"status\": \"existing\"\n      }\n    },\n    {\n      \"id\": \"newtonDeflection\",\n      \"inputs\": [\"gm\", \"c\", \"b\"],\n      \"output\": \"Rat\",\n      \"arity\": 3,\n      \"carrier\": \"Rat\",\n      \"ref\": {\n        \"path\": \"lean4/FiniteQFTAndGravity.lean\",\n        \"decl\": \"FiniteQFTAndGravity.newtonDeflection\",\n        \"status\": \"existing\"\n      }\n    },\n    {\n      \"id\": \"grDeflection\",\n      \"inputs\": [\"gm\", \"c\", \"b\"],\n      \"output\": \"Rat\",\n      \"arity\": 3,\n      \"carrier\": \"Rat\",\n      \"ref\": {\n        \"path\": \"lean4/FiniteQFTAndGravity.lean\",\n        \"decl\": \"FiniteQFTAndGravity.grDeflection\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"gr_deflection_twice_newton\",\n      \"statement\": \"grDeflection gm c b = 2 * newtonDeflection gm c b\",\n      \"hypotheses\": \"c ≠ 0 ∧ b ≠ 0\",\n      \"ref\": {\n        \"path\": \"lean4/FiniteQFTAndGravity.lean\",\n        \"decl\": \"FiniteQFTAndGravity.gr_deflection_twice_newton\",\n        \"status\": \"existing\"\n      }\n    },\n    {\n      \"id\": \"deflection_factor_values\",\n      \"statement\": \"deflectionFactor 1 = 1 ∧ deflectionFactor 0 = 1/2 ∧ deflectionFactor 1 = 2 * deflectionFactor 0\",\n      \"hypotheses\": \"true\",\n      \"ref\": {\n        \"path\": \"lean4/FiniteQFTAndGravity.lean\",\n        \"decl\": \"FiniteQFTAndGravity.deflection_factor_values\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"compositions\": [\n    {\n      \"outer\": \"grDeflection\",\n      \"slot\": 0,\n      \"inner\": \"newtonDeflection\",\n      \"licensing_relation\": \"gr_deflection_twice_newton\"\n    }\n  ],\n  \"lemmas\": [\n    {\n      \"id\": \"lemma_deflection_factor_consistency\",\n      \"statement\": \"deflectionFactor 1 = 2 * deflectionFactor 0\",\n      \"relation_to_target\": \"restates\",\n      \"depends_on\": [\"deflection_factor_values\"],\n      \"lean_skeleton\": \"by\\n  obtain ⟨h1, h0, hrel⟩ := FiniteQFTAndGravity.deflection_factor_values\\n  exact hrel\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    },\n    {\n      \"id\": \"lemma_gr_is_twice_newton\",\n      \"statement\": \"grDeflection gm c b = 2 * newtonDeflection gm c b\",\n      \"relation_to_target\": \"restates\",\n      \"depends_on\": [\"gr_deflection_twice_newton\"],\n      \"lean_skeleton\": \"exact FiniteQFTAndGravity.gr_deflection_twice_newton gm c b _ _\",\n      \"claims_proved\": true,\n      \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    }\n  ],\n  \"near_misses\": [],\n  \"numeric_claims\": [\n    {\n      \"id\": \"def_factor_numeric_check\",\n      \"expr\": \"2 * (1/2)\",\n      \"value\": \"1\"\n    }\n  ],\n  \"open_obligations\": [\n    \"Regge calculus implementation missing\",\n    \"Einstein equation not derived\",\n    \"Continuum limit not established\"\n  ]\n}",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [
+      {
+        "id": "deflectionFactor",
+        "inputs": [
+          "gamma"
+        ],
+        "output": "Rat",
+        "arity": 1,
+        "carrier": "Rat",
+        "ref": {
+          "path": "lean4/FiniteQFTAndGravity.lean",
+          "decl": "FiniteQFTAndGravity.deflectionFactor",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "newtonDeflection",
+        "inputs": [
+          "gm",
+          "c",
+          "b"
+        ],
+        "output": "Rat",
+        "arity": 3,
+        "carrier": "Rat",
+        "ref": {
+          "path": "lean4/FiniteQFTAndGravity.lean",
+          "decl": "FiniteQFTAndGravity.newtonDeflection",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "grDeflection",
+        "inputs": [
+          "gm",
+          "c",
+          "b"
+        ],
+        "output": "Rat",
+        "arity": 3,
+        "carrier": "Rat",
+        "ref": {
+          "path": "lean4/FiniteQFTAndGravity.lean",
+          "decl": "FiniteQFTAndGravity.grDeflection",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "gr_deflection_twice_newton",
+        "statement": "grDeflection gm c b = 2 * newtonDeflection gm c b",
+        "hypotheses": "c ≠ 0 ∧ b ≠ 0",
+        "ref": {
+          "path": "lean4/FiniteQFTAndGravity.lean",
+          "decl": "FiniteQFTAndGravity.gr_deflection_twice_newton",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "deflection_factor_values",
+        "statement": "deflectionFactor 1 = 1 ∧ deflectionFactor 0 = 1/2 ∧ deflectionFactor 1 = 2 * deflectionFactor 0",
+        "hypotheses": "true",
+        "ref": {
+          "path": "lean4/FiniteQFTAndGravity.lean",
+          "decl": "FiniteQFTAndGravity.deflection_factor_values",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "grDeflection",
+        "slot": 0,
+        "inner": "newtonDeflection",
+        "licensing_relation": "gr_deflection_twice_newton"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "lemma_deflection_factor_consistency",
+        "statement": "deflectionFactor 1 = 2 * deflectionFactor 0",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "deflection_factor_values"
+        ],
+        "lean_skeleton": "by\n  obtain ⟨h1, h0, hrel⟩ := FiniteQFTAndGravity.deflection_factor_values\n  exact hrel",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "lemma_gr_is_twice_newton",
+        "statement": "grDeflection gm c b = 2 * newtonDeflection gm c b",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "gr_deflection_twice_newton"
+        ],
+        "lean_skeleton": "exact FiniteQFTAndGravity.gr_deflection_twice_newton gm c b _ _",
+        "claims_proved": true,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [],
+    "numeric_claims": [
+      {
+        "id": "def_factor_numeric_check",
+        "expr": "2 * (1/2)",
+        "value": "1"
+      }
+    ],
+    "open_obligations": [
+      "Regge calculus implementation missing",
+      "Einstein equation not derived",
+      "Continuum limit not established"
+    ]
+  }
+}

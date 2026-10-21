@@ -1,0 +1,72 @@
+{
+  "task_id": "TFQ-0141",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "98cb8a0b1cdd5e2b7f0a2d792d7a7d1ceba627f5ddf78034f062e9b67b9ea964",
+  "candidate_sha256": "8d4b6fac1b75e65aee1b48a7acab246a1364f73a4189efbf6c58b8a9f031e95c",
+  "status": "incomplete",
+  "model": "qwen/qwen3.8-27b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 1,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T22:48:05Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_meron_cancellation",
+        "equation_or_predicate": "Perfect cancellation of meron pairs with opposite signs",
+        "typing_conditions": "config with opposite signs at a site",
+        "source_pins": [
+          {
+            "path": "lean4/MeronClusterInvolution.lean",
+            "declaration": "MeronClusterInvolution.meron_pair_exact_cancellation",
+            "line": 37
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MeronClusterInvolution.lean",
+          "decl": "MeronClusterInvolution.meron_pair_exact_cancellation",
+          "kind": "theorem",
+          "line": 37,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Match exact rational source majorant in meron_source_field.rs",
+      "Formal proof of refusal to infer infinite-volume limit",
+      "Link adaptive_integrator.rs cluster update order to cluster involution",
+      "lemma lem_meron_source_cancellation unverified: Lean elaboration disabled",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen_pauli_mul",
+      "inputs": ["Pauli", "Pauli"],
+      "output": "Pauli",
+      "arity": 2,
+      "carrier": "Matrix (Fin 2) (Fin 2) ℂ",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_symplectic_commutation",
+      "statement": "For Pauli operators P₁, P₂, the symplectic form ω(P₁,P₂) = 0 iff P₁ and P₂ commute, and ω(P₁,P₂) = 1 iff they anticommute.",
+      "hypotheses": "P₁, P₂ : Pauli",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "gen_pauli_mul",
+      "slot": 0,
+      "inner": "gen_pauli_mul",
+      "licensing_relation": "rel_symplectic_commutation"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "lem_pauli_mul_respects_symplectic",
+      "statement": "The generator gen_pauli_mul produces an output Pauli operator whose symplectic commutation with any third Pauli operator equals the sum (mod 2) of the commutations of the inputs.",
+      "relation_to_target": "implies",
+      "depends_on": ["rel_symplectic_commutation"],
+      "lean_skeleton": "lemma gen_pauli_mul_respects_symplectic (P₁ P₂ P₃ : Pauli) :\n  ω (gen_pauli_mul P₁ P₂) P₃ = (ω P₁ P₃ + ω P₂ P₃) % 2 :=\nby sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Provide exact matrix definitions for Pauli letters and verify Q(i) matrices.",
+    "Implement Lean definitions matching the Python test certificate."
+  ]
+}

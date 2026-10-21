@@ -1,0 +1,72 @@
+{
+  "generators": [
+    {
+      "path": "lean4/H022SimplicialAreaLawPageCurve.lean",
+      "decl": "FableHilbertWalk20260819.H022.SimplicialAreaLaw.boundary_area",
+      "kind": "def",
+      "inputs": ["N", "M_int"],
+      "output": "Int",
+      "arity": 2
+    },
+    {
+      "path": "lean4/H022SimplicialAreaLawPageCurve.lean",
+      "decl": "FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_entropy_4x",
+      "kind": "def",
+      "inputs": ["A_B", "A_R"],
+      "output": "Nat",
+      "arity": 2
+    }
+  ],
+  "relations": [
+    {
+      "path": "lean4/H022SimplicialAreaLawPageCurve.lean",
+      "decl": "FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_entropy_le_half_total",
+      "kind": "theorem",
+      "status": "existing"
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_entropy_4x",
+      "slot": 0,
+      "inner": "FableHilbertWalk20260819.H022.SimplicialAreaLaw.boundary_area",
+      "licenses": [
+        "FableHilbertWalk20260819.H022.SimplicialAreaLaw.gluing_reduces_boundary"
+      ]
+    }
+  ],
+  "lemmas": [
+    {
+      "path": "lean4/H022SimplicialAreaLawPageCurve.lean",
+      "decl": "FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_curve_subsystem_symmetry",
+      "relation_to_target": "restates",
+      "claims_proved": true
+    },
+    {
+      "path": "lean4/H022SimplicialAreaLawPageCurve.lean",
+      "decl": "FableHilbertWalk20260819.H022.SimplicialAreaLaw.boundary_area_even",
+      "relation_to_target": "auxiliary",
+      "claims_proved": true
+    }
+  ],
+  "near_misses": [
+    {
+      "reason": "simplicial_entropy_schedule.rs::area_count_and_page_schedule_match_the_declared_arithmetic lacks direct mutual information generator mapping"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "expr": "2 * (page_entropy_4x A_B A_R) ≤ A_0",
+      "value": "(2 * N) / A_0 ≤ 1/2"
+    }
+  ],
+  "open_obligations": [
+    {
+      "reason": "quantum_mutual_information.rs mutual information from entropy face has no @SRC citation"
+    },
+    {
+      "reason": "quantum_entropy_cone.rs monogamy optional constraint lacks explicit Lean lemma"
+    }
+  ],
+  "status": "proposed_new"
+}

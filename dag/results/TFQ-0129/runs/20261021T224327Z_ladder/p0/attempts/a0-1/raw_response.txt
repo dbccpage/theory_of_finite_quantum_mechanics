@@ -1,0 +1,61 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen_bell_state_py",
+      "inputs": [],
+      "output": "Q(i) ray",
+      "arity": 0,
+      "carrier": "QuantumState",
+      "ref": {
+        "path": "code/python/src/qm/primitives.py",
+        "decl": "bell_state",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_equal_born_weights",
+      "statement": "weightsOfRealPair 1 1 = weightsOfRealPair 1 (-1) ∧ ¬ ∃ c : Rat, c * 1 = 1 ∧ c * 1 = -1",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/PromptBornRay.lean",
+        "decl": "QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "rel_normalization_idempotent",
+      "statement": "normalize (normalize w) = normalize w",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/PromptBornRay.lean",
+        "decl": "QuantumMechanics.PromptBornRay.normalization_idempotent",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "lem_born_rule_consistency",
+      "statement": "The squared-modulus Born rule applied to the Q(i) ray produced by `bell_state` yields weights that satisfy `rel_equal_born_weights` and are invariant under scalar multiplication.",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "rel_equal_born_weights",
+        "rel_normalization_idempotent"
+      ],
+      "lean_skeleton": "theorem lem_born_rule_consistency :\n  let ψ := bell_state ()\n  have h1 : weightsOfRealPair (realPart ψ) (imagPart ψ) = _ := by\n    -- proof uses equal_born_weights theorem\n    sorry\n  have h2 : normalize (weightsOfRealPair (realPart ψ) (imagPart ψ)) = _ := by\n    simpa using QuantumMechanics.PromptBornRay.normalization_idempotent _\n  exact And.intro h1 h2",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": []
+}

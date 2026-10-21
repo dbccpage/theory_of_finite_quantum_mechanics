@@ -1,0 +1,74 @@
+{
+  "generators": [
+    {
+      "name": "char_two_mub_generator",
+      "input_colours": ["binary_vector_space"],
+      "output_colour": "pauli_operator_basis"
+    },
+    {
+      "name": "projector_lift_generator",
+      "input_colours": ["pauli_operator_basis", "incidence_data"],
+      "output_colour": "projector_matrix"
+    },
+    {
+      "name": "hilbert_transport_generator",
+      "input_colours": ["projector_matrix"],
+      "output_colour": "pauli_projector"
+    }
+  ],
+  "relations": [
+    {
+      "relation": "generator_dim",
+      "inputs": ["number_of_generators", "hilbert_dimension"],
+      "output": "dimension_match"
+    },
+    {
+      "relation": "pauli_project",
+      "inputs": ["incidence_data", "projector_matrix"],
+      "output": "separation_axiom"
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "projector_lift_generator",
+      "inner": "char_two_mub_generator",
+      "slot": 0,
+      "relation": "generator_dim"
+    },
+    {
+      "outer": "hilbert_transport_generator",
+      "inner": "projector_lift_generator",
+      "slot": 1,
+      "relation": "pauli_project"
+    }
+  ],
+  "lemmas": [
+    {
+      "name": "generator_dimension_matches_hilbert_space",
+      "kind": "implies",
+      "claims_proved": false,
+      "lean_skeleton": "theorem {n m : Nat} (g : generator_dim n m) : hilbert_dimension = n := by sorry",
+      "relation_to_target": "generator_dim"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "expr": "2*4",
+      "description": "Number of independent binary generators matching Hilbert dimensi...",
+      "value": "8"
+    },
+    {
+      "expr": "2^4",
+      "description": "Dimension of Hilbert space for 4-qubit characteristic-two MUB...",
+      "value": "16"
+    }
+  ],
+  "open_obligations": [
+    "Ensure incidence separation from operator lift avoids division by two",
+    "Prove separation_axiom holds independently of char_two_mub_generator arity"
+  ],
+  "status": {
+    "proposed_new": ["char_two_mub_generator", "projector_lift_generator", "hilbert_transport_generator", "generator_dim", "pauli_project", "generator_dimension_matches_hilbert_space"],
+    "existing": []
+  }
+}

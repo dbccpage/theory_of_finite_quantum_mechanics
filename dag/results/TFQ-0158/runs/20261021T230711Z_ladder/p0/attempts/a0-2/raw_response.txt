@@ -1,0 +1,125 @@
+{
+  "generators": [
+    {
+      "name": "kronecker_projector_pairing",
+      "inputs": ["mub_basis_factor_2", "mub_basis_factor_3"],
+      "output": "composite_mub_basis_6",
+      "arity": 2,
+      "status": "proposed_new",
+      "path": ""
+    },
+    {
+      "name": "lower_control_kronecker_bound",
+      "inputs": ["mub_basis_factor_2", "mub_basis_factor_3"],
+      "output": "kronecker_lower_control_bound",
+      "arity": 2,
+      "status": "proposed_new",
+      "path": ""
+    },
+    {
+      "name": "d10_partial_boundary_marker",
+      "inputs": ["composite_mub_basis_6"],
+      "output": "d10_partial_boundary_flag",
+      "arity": 1,
+      "status": "proposed_new",
+      "path": ""
+    },
+    {
+      "name": "search_non_cyclic_mub6",
+      "inputs": ["composite_mub_basis_6"],
+      "output": "mub6_candidate_search_result",
+      "arity": 1,
+      "status": "proposed_new",
+      "path": ""
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "composite.rs",
+      "inner": "kronecker_projector_pairing",
+      "slot": 0,
+      "relation": "pairs_Kronecker_products_of_factor_MUB_projectors",
+      "status": "proposed_new"
+    },
+    {
+      "outer": "composite.rs",
+      "inner": "lower_control_kronecker_bound",
+      "slot": 1,
+      "relation": "records_three_bases_in_dimension_6",
+      "status": "proposed_new"
+    },
+    {
+      "outer": "composite_controls.rs",
+      "inner": "d10_partial_boundary_marker",
+      "slot": 0,
+      "relation": "marks_d10_boundary_as_partial",
+      "status": "proposed_new"
+    },
+    {
+      "outer": "non_cyclic_falser.rs",
+      "inner": "search_non_cyclic_mub6",
+      "slot": 0,
+      "relation": "searches_MUB6_candidates_outside_cyclic_Weyl_class",
+      "status": "proposed_new"
+    }
+  ],
+  "relations": [
+    {
+      "name": "pairs_Kronecker_products_of_factor_MUB_projectors",
+      "arity": 2,
+      "status": "proposed_new"
+    },
+    {
+      "name": "records_three_bases_in_dimension_6",
+      "arity": 2,
+      "status": "proposed_new"
+    },
+    {
+      "name": "marks_d10_boundary_as_partial",
+      "arity": 1,
+      "status": "proposed_new"
+    },
+    {
+      "name": "searches_MUB6_candidates_outside_cyclic_Weyl_class",
+      "arity": 1,
+      "status": "proposed_new"
+    }
+  ],
+  "lemmas": [
+    {
+      "name": "kronecker_lower_control_count_match",
+      "relation_to_target": "restates",
+      "target": "paired_product_count_for_lower_control",
+      "claims_proved": false,
+      "lean_skeleton": "theorem kronecker_lower_control_count_match :\n  ∀ (dim6_bases : ℕ), dim6_bases = 3 := sorry",
+      "status": "proposed_new"
+    },
+    {
+      "name": "d10_partial_boundary_count",
+      "relation_to_target": "restates",
+      "target": "partial_d10_boundary_marker_count",
+      "claims_proved": false,
+      "lean_skeleton": "theorem d10_partial_boundary_count :\n  ∃ (boundary_markers : ℕ), boundary_markers = 1 := sorry",
+      "status": "proposed_new"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "expr": "3",
+      "value": "3"
+    },
+    {
+      "expr": "1",
+      "value": "1"
+    }
+  ],
+  "near_misses": [],
+  "open_obligations": [
+    "No existing source files found by host; all declarations must be proposed_new.",
+    "Lean skeleton uses 'sorry' for unproven claims; full proof pending.",
+    "Python replay and Lean 4 verification not yet completed for paired-product count.",
+    "d=10 boundary partiality requires explicit numeric annotation.",
+    "Non-cyclic MUB6 candidate search lacks formal enumeration in current scope."
+  ],
+  "status": "proposed_new"
+}

@@ -1,0 +1,116 @@
+{
+  "generators": [
+    {
+      "inputs": [
+        "BornEffect"
+      ],
+      "output": "EffectCertificate",
+      "path": "code/rust/src/qm/born_effect_valuation.rs",
+      "decl": "effect_certificate",
+      "kind": "generator"
+    },
+    {
+      "inputs": [
+        "BornEffect",
+        "BornState"
+      ],
+      "output": "BornCertificate",
+      "path": "code/rust/src/qm/born_effect_valuation.rs",
+      "decl": "born_certificate",
+      "kind": "generator"
+    },
+    {
+      "inputs": [
+        "BornCertificate"
+      ],
+      "output": "BornProbabilities",
+      "path": "code/rust/src/functional/born_probabilities.rs",
+      "decl": "probabilities",
+      "kind": "generator"
+    },
+    {
+      "inputs": [
+        "V",
+        "a"
+      ],
+      "output": "Prop",
+      "path": "lean4/BornEffectValuation.lean",
+      "decl": "OrderedQUnit.Effect",
+      "kind": "generator"
+    }
+  ],
+  "relations": [
+    {
+      "path": "lean4/BornEffectValuation.lean",
+      "decl": "effect_zero",
+      "kind": "relation",
+      "inputs": [
+        "S"
+      ],
+      "output": "S.Effect(0)"
+    },
+    {
+      "path": "lean4/BornEffectValuation.lean",
+      "decl": "effect_u",
+      "kind": "relation",
+      "inputs": [
+        "S"
+      ],
+      "output": "S.Effect(S.u)"
+    },
+    {
+      "path": "code/rust/src/qm/born_effect_valuation.rs",
+      "decl": "is_effect",
+      "kind": "relation",
+      "inputs": [
+        "BornEffect"
+      ],
+      "output": "bool"
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "born_certificate",
+      "slot": 0,
+      "inner": "effect_certificate",
+      "relation": "is_effect"
+    },
+    {
+      "outer": "probabilities",
+      "slot": 0,
+      "inner": "born_certificate",
+      "relation": "BornCertificate"
+    }
+  ],
+  "lemmas": [
+    {
+      "path": "lean4/SectorFormHermitian.lean",
+      "decl": "offdiag_im_sub_im",
+      "kind": "relation_to_target",
+      "relation": "restates"
+    },
+    {
+      "path": "lean4/BornEffectValuation.lean",
+      "decl": "effect_sub",
+      "kind": "relation_to_target",
+      "relation": "implies"
+    },
+    {
+      "path": "code/rust/src/qm/born_effect_valuation.rs",
+      "decl": "ParityFrameCheck",
+      "kind": "relation_to_target",
+      "relation": "auxiliary"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "expr": "1 - 1/2*3/4",
+      "value": "5/8"
+    }
+  ],
+  "open_obligations": [
+    "Lüders update (measurement_update.rs) not yet mapped to Lean4 declaration",
+    "Sector conditioning (sector_conditioning.rs) lacks composition license",
+    "Busch hypothesis (busch_effects.rs) unverified numerically"
+  ]
+}

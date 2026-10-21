@@ -1,0 +1,84 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-A9D665217D3F
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''inputs'': [''charge_a'', ''charge_b''], ''output'': ''charge_c'', ''arity'': 2, ''name'':
+    ''Fusion'', ''decl'': ''Fusion'', ''path'': '''', ''status'': ''proposed_new''}'
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0164
+- id: NEG-AA4859179F9F
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''inputs'': [''charge_a'', ''charge_b''], ''output'': ''charge_b'', ''arity'': 2, ''name'':
+    ''Braiding'', ''decl'': ''Braiding'', ''path'': '''', ''status'': ''proposed_new''}'
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0164
+- id: NEG-E06BC4230BE2
+  class: schema_violation
+  claim_kind: compositions
+  claim: '{''outer'': ''Braiding'', ''slot'': 0, ''inner'': ''Fusion'', ''result_decl'': ''composite_fusion_braiding_0'',
+    ''relation'': ''Braiding'', ''decl'': ''composite_fusion_braiding_0'','
+  evidence: 'compositions[0]: missing licensing_relation; compositions[0]: unexpected result_decl; compositions[0]:
+    unexpected relation'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0164
+- id: NEG-FB1125D6B490
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''11 - 2/3*5'', ''value'': ''23/3'', ''decl'': ''actual_embeddings_and_all_three_defect_orientations_match_coefficient_sums'',
+    ''path'': ''code/rust/quality/six_mod'
+  evidence: 'numeric_claims[0]: missing id; numeric_claims[0]: unexpected decl; numeric_claims[0]: unexpected
+    path'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0164
+- id: NEG-EF4CD9D7B916
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''relation_to_target'': ''implies'', ''claims_proved'': False, ''name'': ''ResidualImpliesNoDensity'',
+    ''decl'': ''residual_implies_braid_image_not_dense'', ''path'': '''', ''sta'
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0164
+- id: NEG-9C00FCC2C3A6
+  class: schema_violation
+  claim_kind: near_misses
+  claim: near_misses is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0164
+counterexamples: []
+open_obligations:
+- Lean 4 proof of YangBaxterResidual relation requires sorry
+- Density of braid image not established by finite closure bound
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,105 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-66AB8E5D5BBC
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''id'': ''proposed_new'', ''statement'': ''MUB_qubit_inversion_gen: inputs [prob], output rho,
+    arity 1'', ''relation'': ''exact_inversion_b0_j0 implies rho = sum p_i Pi -'
+  evidence: 'generators[0]: missing inputs; generators[0]: missing output; generators[0]: missing arity'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-5F92FE514C66
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''id'': ''tomov-r1'', ''statement'': ''mub_orthonormal_diag licenses scaled_overlap b j b j
+    = 3'', ''relation'': ''existing'', ''source'': {''path'': ''lean4/H050MubTomographyI'
+  evidence: 'relations[0]: missing hypotheses; relations[0]: missing ref; relations[0]: unexpected relation'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-CD9E3064AB30
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''id'': ''tomov-r2'', ''statement'': ''mub_orthogonal_01 licenses scaled_overlap b 0 b 1 =
+    0'', ''relation'': ''existing'', ''source'': {''path'': ''lean4/H050MubTomographyInve'
+  evidence: 'relations[1]: missing hypotheses; relations[1]: missing ref; relations[1]: unexpected relation'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-C6BDB9C2523A
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''id'': ''tomov-r3'', ''statement'': ''tensor_axiom_count_is_four licenses TensorAxiom count
+    = 4'', ''relation'': ''existing'', ''source'': {''path'': ''lean4/H062CompositionTe'
+  evidence: 'relations[2]: missing hypotheses; relations[2]: missing ref; relations[2]: unexpected relation'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-24BEB336FEB1
+  class: schema_violation
+  claim_kind: compositions
+  claim: '{''id'': ''tomov-c1'', ''statement'': ''composition: plug MUB_qubit_inversion_gen into slot
+    0 of exact_inversion_b0_j1'', ''inner'': ''MUB_qubit_inversion_gen'', ''inner_slo'
+  evidence: 'compositions[0]: missing slot; compositions[0]: missing licensing_relation; compositions[0]:
+    unexpected id'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-1242748A8A13
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''id'': ''num-c4'', ''expr'': ''tensorAxiomList.length'', ''value'': ''4'', ''decl'': ''FableHilbertWalk20260819.H062.tensor_axiom_count_is_four''}'
+  evidence: 'numeric_claims[0]: unexpected decl'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-0CD25EE19C5F
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''id'': ''num-c3'', ''expr'': ''scaled_overlap b j b j'', ''value'': ''3'', ''decl'': ''FableHilbertWalk20260819.H050.mub_orthonormal_diag''}'
+  evidence: 'numeric_claims[1]: unexpected decl'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-EACEC02FD420
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''id'': ''tomov-l1'', ''statement'': ''exact_inversion_b0_j0 restates target rho = sum p_i
+    Pi - I/2'', ''relation_to_target'': ''restates'', ''status'': ''existing'', ''path'': '
+  evidence: 'lemmas[0]: missing depends_on; lemmas[0]: missing lean_skeleton; lemmas[0]: missing claims_proved'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+counterexamples: []
+open_obligations:
+- Real rebit countermodel rho_rebit = sum p_i * sigma_i - I/2 not licensed in source
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

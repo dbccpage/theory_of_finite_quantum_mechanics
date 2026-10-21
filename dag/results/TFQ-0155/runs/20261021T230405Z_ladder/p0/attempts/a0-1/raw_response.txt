@@ -1,0 +1,82 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen_comp_basis",
+      "inputs": ["p"],
+      "output": "basis",
+      "arity": 1,
+      "carrier": "Complex",
+      "ref": {
+        "decl": "computational_basis",
+        "path": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "gen_chirp_basis",
+      "inputs": ["p"],
+      "output": "chirp_basis_set",
+      "arity": 1,
+      "carrier": "Complex",
+      "ref": {
+        "decl": "quadratic_chirp_basis",
+        "path": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_chirp_def",
+      "statement": "For an odd prime p, the quadratic chirp basis is defined by the vectors \\(\\psi_k(j) = \\omega^{k j^2}\\) where \\(\\omega = e^{2\\pi i/p}\\) and k,j ∈ ℤ/pℤ.",
+      "hypotheses": "p is an odd prime",
+      "ref": {
+        "decl": "quadratic_chirp_basis_def",
+        "path": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "rel_wigner_val",
+      "statement": "The discrete Wigner function for odd prime dimension p is given by the formula \\(W_{a,b}(x) = \\frac{1}{p} \\sum_{k} \\omega^{k(x-a)} \\langle b|T_k|a\\rangle\\).",
+      "hypotheses": "p is an odd prime, T_k are Weyl operators",
+      "ref": {
+        "decl": "odd_prime_wigner_formula",
+        "path": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "gen_chirp_basis",
+      "slot": 0,
+      "inner": "gen_comp_basis",
+      "licensing_relation": "rel_chirp_def"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "lem_mub_odd_prime",
+      "statement": "For any odd prime p, the computational basis together with the p quadratic chirp bases form a set of p+1 mutually unbiased bases in dimension p, including the four bases in dimension 3.",
+      "relation_to_target": "implies",
+      "depends_on": ["rel_chirp_def", "rel_wigner_val"],
+      "lean_skeleton": "lemma mub_odd_prime (p : ℕ) [fact (Nat.Prime p)] [odd_prime p] :\n  is_mutually_unbiased (computational_basis p) (quadratic_chirp_basis_set p) :=\n  sorry",
+      "claims_proved": false,
+      "ref": {
+        "decl": "mub_odd_prime",
+        "path": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Provide explicit Lean definition of computational_basis for odd prime p.",
+    "Formalise the quadratic chirp basis vectors in Lean.",
+    "Verify the mutually unbiased property for dimension 3 (four bases).",
+    "Connect the Gauss gate construction with odd-prime controls."
+  ]
+}
