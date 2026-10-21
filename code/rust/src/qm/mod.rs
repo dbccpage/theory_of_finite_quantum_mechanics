@@ -114,6 +114,7 @@ pub mod simplicial_grav;
 pub mod suites;
 pub mod textbook_problems;
 pub mod tower_walk;
+pub mod u1_phase_completion;
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FiniteQmSuiteReport {

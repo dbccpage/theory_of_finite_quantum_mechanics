@@ -1,0 +1,5 @@
+# Next derivations after review (`FQ-GAP-U1-CIRCLE` & `FQ-GAP-STONE-CONTINUOUS-TIME`)
+
+1. **Trotter–Cayley product convergence over `RegPhaseSeq` (`FQ-GAP-STONE-CONTINUOUS-TIME`)**: Mechanize the $2^k$-subdivided Cayley product $U_H(t/2^k)^{2^k}$ on `TracelessHerm2Qi` over `RegPhaseSeq` and bound its Cauchy convergence rate toward the one-parameter unitary group $\exp(-2i t H)$.
+2. **Non-commuting multi-generator BCH / Suzuki–Trotter commutator defect**: Formalize the exact rational commutator defect $U_{H_1}(t)U_{H_2}(t) - U_{H_2}(t)U_{H_1}(t)$ for non-commuting Pauli generators in `Mat2Qi` and bound the second-order Strang splitting residual $U_{H_1}(t/2)U_{H_2}(t)U_{H_1}(t/2)$.
+3. **General $n\times n$ Gaussian-rational Hermitian Born carrier (`FQ-GAP-BORN-UNIQUENESS-GLEASON` & `FQ-GAP-CONTINUUM-HILBERT-LIFT`)**: Extend `HermitianMat2Qi` from $2\times 2$ (`d = 2`) to $3\times 3$ (`d = 3`, 9D Gell-Mann $\mathbb{Q}$-basis) and connect it with the Cabello/Peres frame-additivity constraints in `BornValuation.lean`.

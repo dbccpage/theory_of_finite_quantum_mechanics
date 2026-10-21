@@ -3307,6 +3307,19 @@ implementation of each concept:
   the correction radius is refused over a two-letter alphabet, where it was
   wrong: for the bit-flip code over `{X, Y}`, `XII` and `YII` share a syndrome
   and their product `ZII` is logical.
+- `u1_phase_completion` (`FQ-GAP-U1-CIRCLE`, `FQ-GAP-BORN-UNIQUENESS-GLEASON`):
+  `code/python/src/qm/u1_phase_completion.py` and `code/rust/src/qm/u1_phase_completion.rs`
+  replay in exact rational and quadratic $\mathbb{Q}(\sqrt{5})(i)$ / $\mathbb{Q}(i)$ arithmetic
+  the seven kernel-checked Lean 4 modules `lean4/U1PythagoreanObstruction.lean`,
+  `lean4/U1PowerMapInjectivity.lean`, `lean4/U1CayleyProjectiveCircle.lean`,
+  `lean4/U1CyclotomicTorsionTower.lean`, `lean4/U1CauchyCircleCompletion.lean`,
+  `lean4/U1ChebyshevCauchyBridge.lean`, and `lean4/U1PhaseSynthesis.lean`
+  (sealed in `dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean`),
+  covering projective $\mathbb{P}^1(\mathbb{Q})$ Cayley compactification, 5-adic
+  non-square half-angle obstruction, mod-5 Gaussian power injectivity,
+  cyclotomic $\mathbb{Q}/\mathbb{Z}$ torsion-tower divisibility and Haar
+  orthogonality, Chebyshev/Taylor Cauchy completion over `RegPhaseSeq`, and the
+  4D $\mathbb{Q}(i)$ Hermitian Frobenius-trace Born representation (`HermitianMat2Qi`).
 
 ## 6. Open implementation programme and supporting files
 

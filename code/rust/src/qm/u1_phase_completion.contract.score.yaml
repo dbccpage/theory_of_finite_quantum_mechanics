@@ -1,0 +1,596 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/qm/u1_phase_completion.rs",
+  "contract": {
+    "schema_id": "finite-qm.code-companion.v1",
+    "subject": "code/rust/src/qm/u1_phase_completion.rs",
+    "source_sha256": "06848b6093a97f9a8ca60b58c0e0929d5d908f329dd31b5e4fff2fef92b21224",
+    "authority_effect": "None",
+    "contract_urn": "urn:finite-qm:pfp:u1-phase-completion:06848b6093a97f9a8ca6",
+    "symbols": [
+      "AUTHORITY_FENCE",
+      "CayleyDyadicApproxReceipt",
+      "CayleyHermitianStoneReceipt",
+      "ChebyshevCircleReceipt",
+      "CircleQuadSqrt5",
+      "DyadicSqrt5StepReceipt",
+      "FourFifthsObstructionReceipt",
+      "HaarOrthogonalityReceipt",
+      "HermitianQiBornReceipt",
+      "NegativeControlsReceipt",
+      "PROVENANCE",
+      "PhaseDivisionReceipt",
+      "PowerInjectivityReceipt",
+      "QuadSqrt5",
+      "QuadSqrt5Certificate",
+      "TaylorTrigEnclosureReceipt",
+      "TorsionGridCoverReceipt",
+      "TorsionRefinementReceipt",
+      "U1PhaseError",
+      "U345QuadraticTowerReceipt",
+      "U345SqrtObstructionReceipt",
+      "affine_cayley",
+      "affine_cayley_mul_param",
+      "cayley_dyadic_approx_certificate",
+      "cayley_hermitian_stone_certificate",
+      "certify_four_fifths_not_square",
+      "certify_power_injectivity_window",
+      "certify_u345_no_rational_sqrt",
+      "chebyshev_circle_certificate",
+      "chebyshev_t",
+      "chebyshev_u",
+      "circle_mul",
+      "circle_quad_mul",
+      "circle_quad_norm_sq",
+      "divide_rat_phase_mod_one",
+      "dyadic_sqrt5_interval_step",
+      "five_adic_valuation",
+      "fourth_roots_haar_certificate",
+      "gauss_pow_34",
+      "hermitian_qi_born_certificate",
+      "inverse_cayley",
+      "inverse_projective_cayley",
+      "is_unit_circle",
+      "negative_controls_certificate",
+      "projective_cayley",
+      "projective_mul",
+      "quad_add",
+      "quad_conj",
+      "quad_inv",
+      "quad_mul",
+      "quad_norm",
+      "quad_sub",
+      "refine_torsion_phase",
+      "taylor_trig_enclosure_certificate",
+      "torsion_grid_cover_certificate",
+      "u345_power",
+      "u345_quad_sqrt_certificate",
+      "u345_quadratic_tower_certificate"
+    ],
+    "owned_invariants": [
+      "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+      "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+    ],
+    "boundaries": [
+      "Finite exact replay on supplied inputs; a passing test is not a general proof."
+    ],
+    "evidence": [
+      "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+    ]
+  },
+  "current_contract": "441deea15609dbe3722ac2ecc24fdaeebcd2fbe12e5977f1b0b5e53a4fa29135",
+  "current_scoring": "97f2d2ae274767ea4cfec8eedde82f3960bb25ff82821edf9997ed38ff09c938",
+  "contract_history": [
+    {
+      "sha256": "1b1c6b6227cf0f6adac3f8eb86831f949cccb971b9578630b767cebd6ad61c12",
+      "bytes": 1649,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/rust/src/qm/u1_phase_completion.rs",
+        "source_sha256": "7990dcd01d25753f350bbe337d4446376bebf7812fa96bf5b85f6284352dbc06",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:u1-phase-completion:7990dcd01d25753f350b",
+        "symbols": [
+          "AUTHORITY_FENCE",
+          "CircleQuadSqrt5",
+          "DyadicSqrt5StepReceipt",
+          "FourFifthsObstructionReceipt",
+          "HaarOrthogonalityReceipt",
+          "NegativeControlsReceipt",
+          "PROVENANCE",
+          "PhaseDivisionReceipt",
+          "PowerInjectivityReceipt",
+          "QuadSqrt5",
+          "QuadSqrt5Certificate",
+          "TorsionGridCoverReceipt",
+          "TorsionRefinementReceipt",
+          "U1PhaseError",
+          "U345SqrtObstructionReceipt",
+          "affine_cayley",
+          "affine_cayley_mul_param",
+          "certify_four_fifths_not_square",
+          "certify_power_injectivity_window",
+          "certify_u345_no_rational_sqrt",
+          "circle_mul",
+          "circle_quad_mul",
+          "circle_quad_norm_sq",
+          "divide_rat_phase_mod_one",
+          "dyadic_sqrt5_interval_step",
+          "five_adic_valuation",
+          "fourth_roots_haar_certificate",
+          "gauss_pow_34",
+          "inverse_cayley",
+          "inverse_projective_cayley",
+          "is_unit_circle",
+          "negative_controls_certificate",
+          "projective_cayley",
+          "projective_mul",
+          "quad_add",
+          "quad_conj",
+          "quad_inv",
+          "quad_mul",
+          "quad_norm",
+          "quad_sub",
+          "refine_torsion_phase",
+          "torsion_grid_cover_certificate",
+          "u345_power",
+          "u345_quad_sqrt_certificate"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "boundaries": [
+          "Finite exact replay on supplied inputs; a passing test is not a general proof."
+        ],
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/rust/src/qm/u1_phase_completion.rs\nsource_sha256: 7990dcd01d25753f350bbe337d4446376bebf7812fa96bf5b85f6284352dbc06\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:u1-phase-completion:7990dcd01d25753f350b\nsymbols:\n- AUTHORITY_FENCE\n- CircleQuadSqrt5\n- DyadicSqrt5StepReceipt\n- FourFifthsObstructionReceipt\n- HaarOrthogonalityReceipt\n- NegativeControlsReceipt\n- PROVENANCE\n- PhaseDivisionReceipt\n- PowerInjectivityReceipt\n- QuadSqrt5\n- QuadSqrt5Certificate\n- TorsionGridCoverReceipt\n- TorsionRefinementReceipt\n- U1PhaseError\n- U345SqrtObstructionReceipt\n- affine_cayley\n- affine_cayley_mul_param\n- certify_four_fifths_not_square\n- certify_power_injectivity_window\n- certify_u345_no_rational_sqrt\n- circle_mul\n- circle_quad_mul\n- circle_quad_norm_sq\n- divide_rat_phase_mod_one\n- dyadic_sqrt5_interval_step\n- five_adic_valuation\n- fourth_roots_haar_certificate\n- gauss_pow_34\n- inverse_cayley\n- inverse_projective_cayley\n- is_unit_circle\n- negative_controls_certificate\n- projective_cayley\n- projective_mul\n- quad_add\n- quad_conj\n- quad_inv\n- quad_mul\n- quad_norm\n- quad_sub\n- refine_torsion_phase\n- torsion_grid_cover_certificate\n- u345_power\n- u345_quad_sqrt_certificate\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay on supplied inputs; a passing test is not a general proof.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/rust/src/qm/u1_phase_completion.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "0db10bad8d963f00da75eb7b97d76109fe39c1ec436ed082777066acc272759f",
+      "bytes": 1918,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/rust/src/qm/u1_phase_completion.rs",
+        "source_sha256": "0ea7f1f6f3065d92ffa88b972573db908672bc9e7c58665f1b466d93a6654379",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:u1-phase-completion:0ea7f1f6f3065d92ffa8",
+        "symbols": [
+          "AUTHORITY_FENCE",
+          "CayleyDyadicApproxReceipt",
+          "ChebyshevCircleReceipt",
+          "CircleQuadSqrt5",
+          "DyadicSqrt5StepReceipt",
+          "FourFifthsObstructionReceipt",
+          "HaarOrthogonalityReceipt",
+          "HermitianQiBornReceipt",
+          "NegativeControlsReceipt",
+          "PROVENANCE",
+          "PhaseDivisionReceipt",
+          "PowerInjectivityReceipt",
+          "QuadSqrt5",
+          "QuadSqrt5Certificate",
+          "TaylorTrigEnclosureReceipt",
+          "TorsionGridCoverReceipt",
+          "TorsionRefinementReceipt",
+          "U1PhaseError",
+          "U345SqrtObstructionReceipt",
+          "affine_cayley",
+          "affine_cayley_mul_param",
+          "cayley_dyadic_approx_certificate",
+          "certify_four_fifths_not_square",
+          "certify_power_injectivity_window",
+          "certify_u345_no_rational_sqrt",
+          "chebyshev_circle_certificate",
+          "chebyshev_t",
+          "chebyshev_u",
+          "circle_mul",
+          "circle_quad_mul",
+          "circle_quad_norm_sq",
+          "divide_rat_phase_mod_one",
+          "dyadic_sqrt5_interval_step",
+          "five_adic_valuation",
+          "fourth_roots_haar_certificate",
+          "gauss_pow_34",
+          "hermitian_qi_born_certificate",
+          "inverse_cayley",
+          "inverse_projective_cayley",
+          "is_unit_circle",
+          "negative_controls_certificate",
+          "projective_cayley",
+          "projective_mul",
+          "quad_add",
+          "quad_conj",
+          "quad_inv",
+          "quad_mul",
+          "quad_norm",
+          "quad_sub",
+          "refine_torsion_phase",
+          "taylor_trig_enclosure_certificate",
+          "torsion_grid_cover_certificate",
+          "u345_power",
+          "u345_quad_sqrt_certificate"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "boundaries": [
+          "Finite exact replay on supplied inputs; a passing test is not a general proof."
+        ],
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/rust/src/qm/u1_phase_completion.rs\nsource_sha256: 0ea7f1f6f3065d92ffa88b972573db908672bc9e7c58665f1b466d93a6654379\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:u1-phase-completion:0ea7f1f6f3065d92ffa8\nsymbols:\n- AUTHORITY_FENCE\n- CayleyDyadicApproxReceipt\n- ChebyshevCircleReceipt\n- CircleQuadSqrt5\n- DyadicSqrt5StepReceipt\n- FourFifthsObstructionReceipt\n- HaarOrthogonalityReceipt\n- HermitianQiBornReceipt\n- NegativeControlsReceipt\n- PROVENANCE\n- PhaseDivisionReceipt\n- PowerInjectivityReceipt\n- QuadSqrt5\n- QuadSqrt5Certificate\n- TaylorTrigEnclosureReceipt\n- TorsionGridCoverReceipt\n- TorsionRefinementReceipt\n- U1PhaseError\n- U345SqrtObstructionReceipt\n- affine_cayley\n- affine_cayley_mul_param\n- cayley_dyadic_approx_certificate\n- certify_four_fifths_not_square\n- certify_power_injectivity_window\n- certify_u345_no_rational_sqrt\n- chebyshev_circle_certificate\n- chebyshev_t\n- chebyshev_u\n- circle_mul\n- circle_quad_mul\n- circle_quad_norm_sq\n- divide_rat_phase_mod_one\n- dyadic_sqrt5_interval_step\n- five_adic_valuation\n- fourth_roots_haar_certificate\n- gauss_pow_34\n- hermitian_qi_born_certificate\n- inverse_cayley\n- inverse_projective_cayley\n- is_unit_circle\n- negative_controls_certificate\n- projective_cayley\n- projective_mul\n- quad_add\n- quad_conj\n- quad_inv\n- quad_mul\n- quad_norm\n- quad_sub\n- refine_torsion_phase\n- taylor_trig_enclosure_certificate\n- torsion_grid_cover_certificate\n- u345_power\n- u345_quad_sqrt_certificate\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay on supplied inputs; a passing test is not a general proof.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/rust/src/qm/u1_phase_completion.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "bc4de4296385ff504da3637abc34f7ba23e04cfda5586e3f151d94f3b77e9b2a",
+      "bytes": 2048,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/rust/src/qm/u1_phase_completion.rs",
+        "source_sha256": "0031208e4618c0c61a223a78c3330d1fc0297997be21bccc347b8be847301bc9",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:u1-phase-completion:0031208e4618c0c61a22",
+        "symbols": [
+          "AUTHORITY_FENCE",
+          "CayleyDyadicApproxReceipt",
+          "CayleyHermitianStoneReceipt",
+          "ChebyshevCircleReceipt",
+          "CircleQuadSqrt5",
+          "DyadicSqrt5StepReceipt",
+          "FourFifthsObstructionReceipt",
+          "HaarOrthogonalityReceipt",
+          "HermitianQiBornReceipt",
+          "NegativeControlsReceipt",
+          "PROVENANCE",
+          "PhaseDivisionReceipt",
+          "PowerInjectivityReceipt",
+          "QuadSqrt5",
+          "QuadSqrt5Certificate",
+          "TaylorTrigEnclosureReceipt",
+          "TorsionGridCoverReceipt",
+          "TorsionRefinementReceipt",
+          "U1PhaseError",
+          "U345QuadraticTowerReceipt",
+          "U345SqrtObstructionReceipt",
+          "affine_cayley",
+          "affine_cayley_mul_param",
+          "cayley_dyadic_approx_certificate",
+          "cayley_hermitian_stone_certificate",
+          "certify_four_fifths_not_square",
+          "certify_power_injectivity_window",
+          "certify_u345_no_rational_sqrt",
+          "chebyshev_circle_certificate",
+          "chebyshev_t",
+          "chebyshev_u",
+          "circle_mul",
+          "circle_quad_mul",
+          "circle_quad_norm_sq",
+          "divide_rat_phase_mod_one",
+          "dyadic_sqrt5_interval_step",
+          "five_adic_valuation",
+          "fourth_roots_haar_certificate",
+          "gauss_pow_34",
+          "hermitian_qi_born_certificate",
+          "inverse_cayley",
+          "inverse_projective_cayley",
+          "is_unit_circle",
+          "negative_controls_certificate",
+          "projective_cayley",
+          "projective_mul",
+          "quad_add",
+          "quad_conj",
+          "quad_inv",
+          "quad_mul",
+          "quad_norm",
+          "quad_sub",
+          "refine_torsion_phase",
+          "taylor_trig_enclosure_certificate",
+          "torsion_grid_cover_certificate",
+          "u345_power",
+          "u345_quad_sqrt_certificate",
+          "u345_quadratic_tower_certificate"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "boundaries": [
+          "Finite exact replay on supplied inputs; a passing test is not a general proof."
+        ],
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/rust/src/qm/u1_phase_completion.rs\nsource_sha256: 0031208e4618c0c61a223a78c3330d1fc0297997be21bccc347b8be847301bc9\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:u1-phase-completion:0031208e4618c0c61a22\nsymbols:\n- AUTHORITY_FENCE\n- CayleyDyadicApproxReceipt\n- CayleyHermitianStoneReceipt\n- ChebyshevCircleReceipt\n- CircleQuadSqrt5\n- DyadicSqrt5StepReceipt\n- FourFifthsObstructionReceipt\n- HaarOrthogonalityReceipt\n- HermitianQiBornReceipt\n- NegativeControlsReceipt\n- PROVENANCE\n- PhaseDivisionReceipt\n- PowerInjectivityReceipt\n- QuadSqrt5\n- QuadSqrt5Certificate\n- TaylorTrigEnclosureReceipt\n- TorsionGridCoverReceipt\n- TorsionRefinementReceipt\n- U1PhaseError\n- U345QuadraticTowerReceipt\n- U345SqrtObstructionReceipt\n- affine_cayley\n- affine_cayley_mul_param\n- cayley_dyadic_approx_certificate\n- cayley_hermitian_stone_certificate\n- certify_four_fifths_not_square\n- certify_power_injectivity_window\n- certify_u345_no_rational_sqrt\n- chebyshev_circle_certificate\n- chebyshev_t\n- chebyshev_u\n- circle_mul\n- circle_quad_mul\n- circle_quad_norm_sq\n- divide_rat_phase_mod_one\n- dyadic_sqrt5_interval_step\n- five_adic_valuation\n- fourth_roots_haar_certificate\n- gauss_pow_34\n- hermitian_qi_born_certificate\n- inverse_cayley\n- inverse_projective_cayley\n- is_unit_circle\n- negative_controls_certificate\n- projective_cayley\n- projective_mul\n- quad_add\n- quad_conj\n- quad_inv\n- quad_mul\n- quad_norm\n- quad_sub\n- refine_torsion_phase\n- taylor_trig_enclosure_certificate\n- torsion_grid_cover_certificate\n- u345_power\n- u345_quad_sqrt_certificate\n- u345_quadratic_tower_certificate\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay on supplied inputs; a passing test is not a general proof.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/rust/src/qm/u1_phase_completion.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "441deea15609dbe3722ac2ecc24fdaeebcd2fbe12e5977f1b0b5e53a4fa29135",
+      "bytes": 2048,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/rust/src/qm/u1_phase_completion.rs",
+        "source_sha256": "06848b6093a97f9a8ca60b58c0e0929d5d908f329dd31b5e4fff2fef92b21224",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:u1-phase-completion:06848b6093a97f9a8ca6",
+        "symbols": [
+          "AUTHORITY_FENCE",
+          "CayleyDyadicApproxReceipt",
+          "CayleyHermitianStoneReceipt",
+          "ChebyshevCircleReceipt",
+          "CircleQuadSqrt5",
+          "DyadicSqrt5StepReceipt",
+          "FourFifthsObstructionReceipt",
+          "HaarOrthogonalityReceipt",
+          "HermitianQiBornReceipt",
+          "NegativeControlsReceipt",
+          "PROVENANCE",
+          "PhaseDivisionReceipt",
+          "PowerInjectivityReceipt",
+          "QuadSqrt5",
+          "QuadSqrt5Certificate",
+          "TaylorTrigEnclosureReceipt",
+          "TorsionGridCoverReceipt",
+          "TorsionRefinementReceipt",
+          "U1PhaseError",
+          "U345QuadraticTowerReceipt",
+          "U345SqrtObstructionReceipt",
+          "affine_cayley",
+          "affine_cayley_mul_param",
+          "cayley_dyadic_approx_certificate",
+          "cayley_hermitian_stone_certificate",
+          "certify_four_fifths_not_square",
+          "certify_power_injectivity_window",
+          "certify_u345_no_rational_sqrt",
+          "chebyshev_circle_certificate",
+          "chebyshev_t",
+          "chebyshev_u",
+          "circle_mul",
+          "circle_quad_mul",
+          "circle_quad_norm_sq",
+          "divide_rat_phase_mod_one",
+          "dyadic_sqrt5_interval_step",
+          "five_adic_valuation",
+          "fourth_roots_haar_certificate",
+          "gauss_pow_34",
+          "hermitian_qi_born_certificate",
+          "inverse_cayley",
+          "inverse_projective_cayley",
+          "is_unit_circle",
+          "negative_controls_certificate",
+          "projective_cayley",
+          "projective_mul",
+          "quad_add",
+          "quad_conj",
+          "quad_inv",
+          "quad_mul",
+          "quad_norm",
+          "quad_sub",
+          "refine_torsion_phase",
+          "taylor_trig_enclosure_certificate",
+          "torsion_grid_cover_certificate",
+          "u345_power",
+          "u345_quad_sqrt_certificate",
+          "u345_quadratic_tower_certificate"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "boundaries": [
+          "Finite exact replay on supplied inputs; a passing test is not a general proof."
+        ],
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/rust/src/qm/u1_phase_completion.rs\nsource_sha256: 06848b6093a97f9a8ca60b58c0e0929d5d908f329dd31b5e4fff2fef92b21224\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:u1-phase-completion:06848b6093a97f9a8ca6\nsymbols:\n- AUTHORITY_FENCE\n- CayleyDyadicApproxReceipt\n- CayleyHermitianStoneReceipt\n- ChebyshevCircleReceipt\n- CircleQuadSqrt5\n- DyadicSqrt5StepReceipt\n- FourFifthsObstructionReceipt\n- HaarOrthogonalityReceipt\n- HermitianQiBornReceipt\n- NegativeControlsReceipt\n- PROVENANCE\n- PhaseDivisionReceipt\n- PowerInjectivityReceipt\n- QuadSqrt5\n- QuadSqrt5Certificate\n- TaylorTrigEnclosureReceipt\n- TorsionGridCoverReceipt\n- TorsionRefinementReceipt\n- U1PhaseError\n- U345QuadraticTowerReceipt\n- U345SqrtObstructionReceipt\n- affine_cayley\n- affine_cayley_mul_param\n- cayley_dyadic_approx_certificate\n- cayley_hermitian_stone_certificate\n- certify_four_fifths_not_square\n- certify_power_injectivity_window\n- certify_u345_no_rational_sqrt\n- chebyshev_circle_certificate\n- chebyshev_t\n- chebyshev_u\n- circle_mul\n- circle_quad_mul\n- circle_quad_norm_sq\n- divide_rat_phase_mod_one\n- dyadic_sqrt5_interval_step\n- five_adic_valuation\n- fourth_roots_haar_certificate\n- gauss_pow_34\n- hermitian_qi_born_certificate\n- inverse_cayley\n- inverse_projective_cayley\n- is_unit_circle\n- negative_controls_certificate\n- projective_cayley\n- projective_mul\n- quad_add\n- quad_conj\n- quad_inv\n- quad_mul\n- quad_norm\n- quad_sub\n- refine_torsion_phase\n- taylor_trig_enclosure_certificate\n- torsion_grid_cover_certificate\n- u345_power\n- u345_quad_sqrt_certificate\n- u345_quadratic_tower_certificate\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay on supplied inputs; a passing test is not a general proof.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/rust/src/qm/u1_phase_completion.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "4217c77abb144782baffecbeca11c5d0aaed47bda5ac75d388c3bc339fd49bc6",
+      "bytes": 921,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/rust/src/qm/u1_phase_completion.rs",
+        "source_sha256": "7990dcd01d25753f350bbe337d4446376bebf7812fa96bf5b85f6284352dbc06",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": null,
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "formal_scoring_not_performed",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/rust/src/qm/u1_phase_completion.rs\nsource_sha256: 7990dcd01d25753f350bbe337d4446376bebf7812fa96bf5b85f6284352dbc06\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/rust/src/qm/u1_phase_completion.rs.score.yaml"
+      ]
+    },
+    {
+      "sha256": "8115d062d28aeb2afae553c2e68926df03d5b8659c135c8d2444aedd63f46122",
+      "bytes": 921,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/rust/src/qm/u1_phase_completion.rs",
+        "source_sha256": "0ea7f1f6f3065d92ffa88b972573db908672bc9e7c58665f1b466d93a6654379",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": null,
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "formal_scoring_not_performed",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/rust/src/qm/u1_phase_completion.rs\nsource_sha256: 0ea7f1f6f3065d92ffa88b972573db908672bc9e7c58665f1b466d93a6654379\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/rust/src/qm/u1_phase_completion.rs.score.yaml"
+      ]
+    },
+    {
+      "sha256": "7961cef6c20929e4987e6fbff7e045435865a7d3a5b9b4137302a863ff603584",
+      "bytes": 921,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/rust/src/qm/u1_phase_completion.rs",
+        "source_sha256": "0031208e4618c0c61a223a78c3330d1fc0297997be21bccc347b8be847301bc9",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": null,
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "formal_scoring_not_performed",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/rust/src/qm/u1_phase_completion.rs\nsource_sha256: 0031208e4618c0c61a223a78c3330d1fc0297997be21bccc347b8be847301bc9\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/rust/src/qm/u1_phase_completion.rs.score.yaml"
+      ]
+    },
+    {
+      "sha256": "97f2d2ae274767ea4cfec8eedde82f3960bb25ff82821edf9997ed38ff09c938",
+      "bytes": 921,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/rust/src/qm/u1_phase_completion.rs",
+        "source_sha256": "06848b6093a97f9a8ca60b58c0e0929d5d908f329dd31b5e4fff2fef92b21224",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": null,
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "formal_scoring_not_performed",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "evidence": [
+          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/rust/src/qm/u1_phase_completion.rs\nsource_sha256: 06848b6093a97f9a8ca60b58c0e0929d5d908f329dd31b5e4fff2fef92b21224\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean/README.md\n",
+      "original_paths": [
+        "code/rust/src/qm/u1_phase_completion.rs.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/qm/u1_phase_completion.rs.contract.yaml": "441deea15609dbe3722ac2ecc24fdaeebcd2fbe12e5977f1b0b5e53a4fa29135",
+    "code/rust/src/qm/u1_phase_completion.rs.score.yaml": "97f2d2ae274767ea4cfec8eedde82f3960bb25ff82821edf9997ed38ff09c938"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

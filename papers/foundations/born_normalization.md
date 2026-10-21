@@ -1527,3 +1527,9 @@ Claim-ID body index (packaging)
 | `GTOC-8` | sibling `qm_020_born_normalization_and_conditional_hilbert_lift_claim_ledger.md` |
 
 <!-- claim-id-body-index:end -->
+
+
+## 2026-10-20 Supplement — Effect-Additive Born Representation & 4D Hermitian $\mathbb{Q}(i)$ Carrier (`FQ-GAP-BORN-UNIQUENESS-GLEASON`, `U1ChebyshevCauchyBridge.lean`)
+
+1. **Effect-additive Born representation vs. bare ortho-frame non-uniqueness (`FQ-GAP-BORN-UNIQUENESS-GLEASON`):** Over $\mathbb{Q}^2$ and $\mathbb{Q}^3$, bare per-context frame additivity admits discontinuous $\{0,1\}$-valued countermodels (`lean4/GleasonRationalPlane.lean`, `no_quadratic_representation`) and non-quadratic degree-4 power laws (`lean4/H013QuarticRivalSeparation.lean`), whereas linearity across the operator effect cone uniquely forces the Frobenius trace form $f(E) = \operatorname{tr}(W E)$.
+2. **4D Hermitian $\mathbb{Q}(i)$ Born carrier (`lean4/U1ChebyshevCauchyBridge.lean`, `HermitianMat2Qi`):** Extending the 3D real-symmetric matrix carrier ($b_i = 0$) by the imaginary Pauli-$Y$ basis matrix $\sigma_y = \begin{psmallmatrix}0 & -i \\ i & 0\end{psmallmatrix}$ yields the 4D $\mathbb{Q}$-vector space `HermitianMat2Qi` of $2\times 2$ Hermitian matrices over $\mathbb{Q}(i)$. Every $\mathbb{Q}$-linear effect functional $f : \mathrm{Herm}_2(\mathbb{Q}(i)) \to \mathbb{Q}$ is uniquely represented as $f(H) = \operatorname{tr}(W_f H)$ (`linear_functional_is_frobeniusTrace`, `frobeniusTrace_weight_unique`), $\sigma_y$ is Frobenius-orthogonal to the 3D real-symmetric subspace (`sigmaY_orthogonal_to_realSym`), and rank-1 Gaussian-rational kets $\psi, \phi \in \mathbb{Q}(i)^2$ satisfy $\det(|\psi\rangle\langle\psi|) = 0$ and $\operatorname{tr}(|\psi\rangle\langle\psi|\,|\phi\rangle\langle\phi|) = |\langle\psi|\phi\rangle|^2$ (`frobeniusTrace_rankOneKet_eq_inner_mod_sq`). `AuthorityEffect: None`.
