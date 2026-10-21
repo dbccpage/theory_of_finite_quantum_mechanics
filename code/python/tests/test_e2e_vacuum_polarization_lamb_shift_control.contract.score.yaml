@@ -1,0 +1,146 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py",
+      "sha256": "a51d66be02f9b54507added450a13c971bce3176cf5c0730031ca4f31b0fadec"
+    },
+    "profile": "Exact",
+    "claim": "check_transverse_projector_identities certificate locked by exact checks in this file",
+    "role": "test checker",
+    "purpose": "End-to-end tests for QM-216 1-loop QED vacuum polarization, running alpha, and Lamb shift. Unit, integration, and negative tests.",
+    "operations": {
+      "test_negative_part_a_transverse_ward_projector_and_null_guard": "Verify q_mu P_T^{mu nu}(q) = 0, P_T^2 = P_T, tr(P_T) = 3, and null-momentum refusal.",
+      "test_unit_part_a_clifford_bubble_numerator_trace_matches_analytic": "Verify 4x4 Clifford trace tr[gamma^mu(k_slash+q_slash+m)gamma^nu(k_slash+m)] over Q(i).",
+      "test_part_a_symanzik_bubble_simplex_and_bphz_on_shell_subtraction": "Verify U_{G_bub}(x, 1-x) = 1, F_{G_bub} = m^2 - x(1-x)q^2, and BPHZ UV cutoff cancellation.",
+      "test_part_b_feynman_parameter_moments_and_uehling_series": "Verify exact polynomial integration matches Beta((n+1)!^2/(2n+3)!) and Uehling 1/15 slope.",
+      "test_part_b_spacelike_vacuum_polarization_and_running_alpha_enclosure": "Verify 12-decimal enclosure of Pi_R(-9m^2/4) and running alpha_eff^{-1}(-9m^2/4).",
+      "test_part_c_uehling_potential_and_hydrogen_lamb_shift_enclosure": "Verify 5/6 + 1/8 - 1/5 = 91/120 contact sum and 12-decimal -27.128756729153 MHz Uehling shift.",
+      "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+      "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "b20af8fc84868f05d525b26cba499654b216358972279247ed4ebc9f1cadd512",
+  "current_scoring": "99a80d1a9232a0ef319532490b5261186d096d3f4225728c427bf7a66395af55",
+  "contract_history": [
+    {
+      "sha256": "b20af8fc84868f05d525b26cba499654b216358972279247ed4ebc9f1cadd512",
+      "bytes": 2958,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py",
+          "sha256": "a51d66be02f9b54507added450a13c971bce3176cf5c0730031ca4f31b0fadec"
+        },
+        "profile": "Exact",
+        "claim": "check_transverse_projector_identities certificate locked by exact checks in this file",
+        "role": "test checker",
+        "purpose": "End-to-end tests for QM-216 1-loop QED vacuum polarization, running alpha, and Lamb shift. Unit, integration, and negative tests.",
+        "operations": {
+          "test_negative_part_a_transverse_ward_projector_and_null_guard": "Verify q_mu P_T^{mu nu}(q) = 0, P_T^2 = P_T, tr(P_T) = 3, and null-momentum refusal.",
+          "test_unit_part_a_clifford_bubble_numerator_trace_matches_analytic": "Verify 4x4 Clifford trace tr[gamma^mu(k_slash+q_slash+m)gamma^nu(k_slash+m)] over Q(i).",
+          "test_part_a_symanzik_bubble_simplex_and_bphz_on_shell_subtraction": "Verify U_{G_bub}(x, 1-x) = 1, F_{G_bub} = m^2 - x(1-x)q^2, and BPHZ UV cutoff cancellation.",
+          "test_part_b_feynman_parameter_moments_and_uehling_series": "Verify exact polynomial integration matches Beta((n+1)!^2/(2n+3)!) and Uehling 1/15 slope.",
+          "test_part_b_spacelike_vacuum_polarization_and_running_alpha_enclosure": "Verify 12-decimal enclosure of Pi_R(-9m^2/4) and running alpha_eff^{-1}(-9m^2/4).",
+          "test_part_c_uehling_potential_and_hydrogen_lamb_shift_enclosure": "Verify 5/6 + 1/8 - 1/5 = 91/120 contact sum and 12-decimal -27.128756729153 MHz Uehling shift.",
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py\",\n    \"sha256\": \"a51d66be02f9b54507added450a13c971bce3176cf5c0730031ca4f31b0fadec\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"check_transverse_projector_identities certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"End-to-end tests for QM-216 1-loop QED vacuum polarization, running alpha, and Lamb shift. Unit, integration, and negative tests.\",\n  \"operations\": {\n    \"test_negative_part_a_transverse_ward_projector_and_null_guard\": \"Verify q_mu P_T^{mu nu}(q) = 0, P_T^2 = P_T, tr(P_T) = 3, and null-momentum refusal.\",\n    \"test_unit_part_a_clifford_bubble_numerator_trace_matches_analytic\": \"Verify 4x4 Clifford trace tr[gamma^mu(k_slash+q_slash+m)gamma^nu(k_slash+m)] over Q(i).\",\n    \"test_part_a_symanzik_bubble_simplex_and_bphz_on_shell_subtraction\": \"Verify U_{G_bub}(x, 1-x) = 1, F_{G_bub} = m^2 - x(1-x)q^2, and BPHZ UV cutoff cancellation.\",\n    \"test_part_b_feynman_parameter_moments_and_uehling_series\": \"Verify exact polynomial integration matches Beta((n+1)!^2/(2n+3)!) and Uehling 1/15 slope.\",\n    \"test_part_b_spacelike_vacuum_polarization_and_running_alpha_enclosure\": \"Verify 12-decimal enclosure of Pi_R(-9m^2/4) and running alpha_eff^{-1}(-9m^2/4).\",\n    \"test_part_c_uehling_potential_and_hydrogen_lamb_shift_enclosure\": \"Verify 5/6 + 1/8 - 1/5 = 91/120 contact sum and 12-decimal -27.128756729153 MHz Uehling shift.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "99a80d1a9232a0ef319532490b5261186d096d3f4225728c427bf7a66395af55",
+      "bytes": 2255,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py",
+          "sha256": "a51d66be02f9b54507added450a13c971bce3176cf5c0730031ca4f31b0fadec"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN check_transverse_projector_identities certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 10), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 10,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py\",\n    \"sha256\": \"a51d66be02f9b54507added450a13c971bce3176cf5c0730031ca4f31b0fadec\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN check_transverse_projector_identities certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 10), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

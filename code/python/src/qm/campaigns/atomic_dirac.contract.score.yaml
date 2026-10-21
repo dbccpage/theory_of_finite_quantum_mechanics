@@ -1,0 +1,160 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/campaigns/atomic_dirac.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/campaigns/atomic_dirac.py",
+      "sha256": "d65fa43934c0edc8b3375d89fd4754ef1cbf5460b72078920844e693bc64df5f"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:campaigns:atomic-dirac:v1",
+    "role": "library",
+    "purpose": "QM-224 & QM-225: Relativistic Hydrogen Dirac-Coulomb Fine Structure, 1-Loop QED 2S_{1/2}-2P_{1/2} Lamb Shift, Multi-Electron Helium Variational & Hylleraas",
+    "operations": {
+      "dirac_coulomb_alpha4_coeff": "Return the exact rational coefficient c_{n,j}^{(4)} of -alpha^4 m_e c^2 in:",
+      "Qm224DiracLambCertificate": "Complete QM-224 verification certificate over Q.",
+      "build_qm224_dirac_lamb_certificate": "Build and verify the QM-224 Hydrogen Dirac-Coulomb fine structure and 2S-2P Lamb shift certificate.",
+      "HeliumVariationalEvaluation": "Helium (Z = 2) hydrogenic trial product energy evaluation at Z_eff over Q.",
+      "evaluate_helium_variational_polynomial": "Evaluate E(Z_eff) = Z_eff^2 - (27/8) Z_eff = (Z_eff - 27/16)^2 - 729/256 over Q.",
+      "BasisExponents": "Exponents (p_s, p_t, p_u) for a Hylleraas basis monomial s^{p_s} t^{p_t} u^{p_u}.",
+      "MonomialSTU": "Rational-weighted Hylleraas monomial coeff * s^{p_s} t^{p_t} u^{p_u}.",
+      "HylleraasSecularReport": "Correlated Hylleraas secular matrices and Rayleigh quotient enclosures over Q.",
+      "evaluate_helium_hylleraas_secular_over_q": "Build exact 4x4 Hylleraas secular matrices for (1, s, u, t^2) and certify Rayleigh bounds.",
+      "HeliumOrthoParaReport": "Excited Helium 1s2s singlet (parahelium) vs. triplet (orthohelium) exchange report.",
+      "evaluate_helium_1s2s_ortho_para_splitting": "Compute exact Slater direct J_{1s2s} = (17/81) Z and exchange K_{1s2s} = (16/729) Z integrals.",
+      "ClosedShellRhfAtomReport": "Closed-shell Roothaan-Hartree-Fock contractive SCF trajectory summary over Q.",
+      "run_closed_shell_rhf_scf": "Run contractive Roothaan-Hartree-Fock / Clementi-Slater screening SCF map over Q:",
+      "Qm225HeliumHartreeFockCertificate": "Complete QM-225 multi-electron Helium and closed-shell RHF certificate over Q.",
+      "build_qm225_helium_rhf_certificate": "Build and verify the complete QM-225 Helium and closed-shell RHF certificate over Q."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "d06ead52bb070d8e1ecf8408dccc1953877535f0eed2ee601259c9cbc0e2e82a",
+  "current_scoring": "da2d0d8747d951c3e8ebbf3061946f190fa7ee4ba97c333dce4fc736b98776d2",
+  "contract_history": [
+    {
+      "sha256": "d06ead52bb070d8e1ecf8408dccc1953877535f0eed2ee601259c9cbc0e2e82a",
+      "bytes": 3476,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/atomic_dirac.py",
+          "sha256": "d65fa43934c0edc8b3375d89fd4754ef1cbf5460b72078920844e693bc64df5f"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:atomic-dirac:v1",
+        "role": "library",
+        "purpose": "QM-224 & QM-225: Relativistic Hydrogen Dirac-Coulomb Fine Structure, 1-Loop QED 2S_{1/2}-2P_{1/2} Lamb Shift, Multi-Electron Helium Variational & Hylleraas",
+        "operations": {
+          "dirac_coulomb_alpha4_coeff": "Return the exact rational coefficient c_{n,j}^{(4)} of -alpha^4 m_e c^2 in:",
+          "Qm224DiracLambCertificate": "Complete QM-224 verification certificate over Q.",
+          "build_qm224_dirac_lamb_certificate": "Build and verify the QM-224 Hydrogen Dirac-Coulomb fine structure and 2S-2P Lamb shift certificate.",
+          "HeliumVariationalEvaluation": "Helium (Z = 2) hydrogenic trial product energy evaluation at Z_eff over Q.",
+          "evaluate_helium_variational_polynomial": "Evaluate E(Z_eff) = Z_eff^2 - (27/8) Z_eff = (Z_eff - 27/16)^2 - 729/256 over Q.",
+          "BasisExponents": "Exponents (p_s, p_t, p_u) for a Hylleraas basis monomial s^{p_s} t^{p_t} u^{p_u}.",
+          "MonomialSTU": "Rational-weighted Hylleraas monomial coeff * s^{p_s} t^{p_t} u^{p_u}.",
+          "HylleraasSecularReport": "Correlated Hylleraas secular matrices and Rayleigh quotient enclosures over Q.",
+          "evaluate_helium_hylleraas_secular_over_q": "Build exact 4x4 Hylleraas secular matrices for (1, s, u, t^2) and certify Rayleigh bounds.",
+          "HeliumOrthoParaReport": "Excited Helium 1s2s singlet (parahelium) vs. triplet (orthohelium) exchange report.",
+          "evaluate_helium_1s2s_ortho_para_splitting": "Compute exact Slater direct J_{1s2s} = (17/81) Z and exchange K_{1s2s} = (16/729) Z integrals.",
+          "ClosedShellRhfAtomReport": "Closed-shell Roothaan-Hartree-Fock contractive SCF trajectory summary over Q.",
+          "run_closed_shell_rhf_scf": "Run contractive Roothaan-Hartree-Fock / Clementi-Slater screening SCF map over Q:",
+          "Qm225HeliumHartreeFockCertificate": "Complete QM-225 multi-electron Helium and closed-shell RHF certificate over Q.",
+          "build_qm225_helium_rhf_certificate": "Build and verify the complete QM-225 Helium and closed-shell RHF certificate over Q."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/atomic_dirac.py\",\n    \"sha256\": \"d65fa43934c0edc8b3375d89fd4754ef1cbf5460b72078920844e693bc64df5f\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:atomic-dirac:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"QM-224 & QM-225: Relativistic Hydrogen Dirac-Coulomb Fine Structure, 1-Loop QED 2S_{1/2}-2P_{1/2} Lamb Shift, Multi-Electron Helium Variational & Hylleraas\",\n  \"operations\": {\n    \"dirac_coulomb_alpha4_coeff\": \"Return the exact rational coefficient c_{n,j}^{(4)} of -alpha^4 m_e c^2 in:\",\n    \"Qm224DiracLambCertificate\": \"Complete QM-224 verification certificate over Q.\",\n    \"build_qm224_dirac_lamb_certificate\": \"Build and verify the QM-224 Hydrogen Dirac-Coulomb fine structure and 2S-2P Lamb shift certificate.\",\n    \"HeliumVariationalEvaluation\": \"Helium (Z = 2) hydrogenic trial product energy evaluation at Z_eff over Q.\",\n    \"evaluate_helium_variational_polynomial\": \"Evaluate E(Z_eff) = Z_eff^2 - (27/8) Z_eff = (Z_eff - 27/16)^2 - 729/256 over Q.\",\n    \"BasisExponents\": \"Exponents (p_s, p_t, p_u) for a Hylleraas basis monomial s^{p_s} t^{p_t} u^{p_u}.\",\n    \"MonomialSTU\": \"Rational-weighted Hylleraas monomial coeff * s^{p_s} t^{p_t} u^{p_u}.\",\n    \"HylleraasSecularReport\": \"Correlated Hylleraas secular matrices and Rayleigh quotient enclosures over Q.\",\n    \"evaluate_helium_hylleraas_secular_over_q\": \"Build exact 4x4 Hylleraas secular matrices for (1, s, u, t^2) and certify Rayleigh bounds.\",\n    \"HeliumOrthoParaReport\": \"Excited Helium 1s2s singlet (parahelium) vs. triplet (orthohelium) exchange report.\",\n    \"evaluate_helium_1s2s_ortho_para_splitting\": \"Compute exact Slater direct J_{1s2s} = (17/81) Z and exchange K_{1s2s} = (16/729) Z integrals.\",\n    \"ClosedShellRhfAtomReport\": \"Closed-shell Roothaan-Hartree-Fock contractive SCF trajectory summary over Q.\",\n    \"run_closed_shell_rhf_scf\": \"Run contractive Roothaan-Hartree-Fock / Clementi-Slater screening SCF map over Q:\",\n    \"Qm225HeliumHartreeFockCertificate\": \"Complete QM-225 multi-electron Helium and closed-shell RHF certificate over Q.\",\n    \"build_qm225_helium_rhf_certificate\": \"Build and verify the complete QM-225 Helium and closed-shell RHF certificate over Q.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/atomic_dirac.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "da2d0d8747d951c3e8ebbf3061946f190fa7ee4ba97c333dce4fc736b98776d2",
+      "bytes": 2202,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/atomic_dirac.py",
+          "sha256": "d65fa43934c0edc8b3375d89fd4754ef1cbf5460b72078920844e693bc64df5f"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:atomic-dirac:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 21), Lizard CCN (max 21), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 21,
+          "lizard_ccn": 21,
+          "weighted_control_upper_bound": 19,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/atomic_dirac.py\",\n    \"sha256\": \"d65fa43934c0edc8b3375d89fd4754ef1cbf5460b72078920844e693bc64df5f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:atomic-dirac:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 21), Lizard CCN (max 21), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 21,\n    \"lizard_ccn\": 21,\n    \"weighted_control_upper_bound\": 19,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/atomic_dirac.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

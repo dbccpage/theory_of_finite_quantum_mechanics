@@ -574,9 +574,10 @@ class GovernedProposer:
         final_defect = self.governor.section_defect()
         final_phi1 = self.governor.primary_obstruction()
 
-        assert final_defect <= initial_defect or final_phi1 <= initial_phi1, (
-            "Fail-closed invariant violation: defect increased in repair loop"
-        )
+        if not (final_defect <= initial_defect or final_phi1 <= initial_phi1):
+            raise ValueError(
+                "Fail-closed invariant violation: defect increased in repair loop"
+            )
 
         return {
             "terminal": terminal,

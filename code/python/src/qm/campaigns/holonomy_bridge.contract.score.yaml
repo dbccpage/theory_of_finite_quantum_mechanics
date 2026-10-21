@@ -1,0 +1,202 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/campaigns/holonomy_bridge.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/campaigns/holonomy_bridge.py",
+      "sha256": "f910a80a350da11d4a70c9b21aedd2022923da8232539d0ed95d83b2ffa8ee0b"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:campaigns:holonomy-bridge:v1",
+    "role": "library",
+    "purpose": "Finite multi-report holonomy bridge control for QM-207 through QM-211. Every quantity here is computed exactly in a cyclotomic field Q(zeta_N) using",
+    "operations": {
+      "HolonomyControlRefusal": "Typed refusal: the supplied data is outside the declared finite model.",
+      "root_of_unity": "zeta_N^k as an exact element of Q(zeta_N).",
+      "is_root_of_unity": "x is a unit (x conj(x) = 1) of finite order dividing the conductor.",
+      "root_exponent": "The k with x = zeta_N^k. Refuses if x is not a root of unity of conductor N.",
+      "FiniteCarrierGraph": "Finite connected graph with a BFS spanning tree and fundamental cycles.",
+      "U1Cochain": "A U(1) 1-cochain with values in the roots of unity of conductor N.",
+      "holonomy_factorizes": "Hol(walk) == product over fundamental invariants^(winding coefficient). Exact.",
+      "gauge_orbit_census": "Enumerate every mu_N cochain, group by cycle invariants, check the orbit count.",
+      "gauge_equivalence_matches_invariants": "Both directions, by enumeration: same invariants <=> some gauge maps one to the other.",
+      "l1_weights": "Phase-blind diagonal weights w_i = c_i conj(c_i).",
+      "l1_phase_blind": "Weights are invariant under every locus gauge chi: the L1 shadow cannot see phase.",
+      "report_amplitudes": "Transport one source amplitude along each report (a path) to the common sink.",
+      "relative_report_phase": "Hol(p1 . p2^{-1}) = U(p1) conj(U(p2)); gauge invariant.",
+      "l1_readout": "Function l1_readout operation.",
+      "quadratic_readout": "Function quadratic_readout operation.",
+      "quartic_readout": "Negative control: a non-quadratic readout |sum c|^4.",
+      "second_order_interference": "I_2 = quadratic readout minus L1 readout = sum_{i<j} 2 Re(c_i conj c_j).",
+      "third_order_interference": "Sorkin I_3 for an arbitrary readout rule on three amplitudes.",
+      "identity": "Function identity operation.",
+      "matmul": "Function matmul operation.",
+      "dagger": "Function dagger operation.",
+      "mat_eq": "Function mat_eq operation.",
+      "is_unitary": "Function is_unitary operation.",
+      "scalar_multiple_of_identity": "Return c with a = c I, else refuse.",
+      "weyl_shift": "Function weyl_shift operation.",
+      "weyl_clock": "Function weyl_clock operation.",
+      "group_commutator": "a b a^dagger b^dagger: the holonomy around the 4-cycle of context transitions.",
+      "commutator_holonomy": "Central U(1) holonomy of the commutator cycle; refuses if it is not central.",
+      "fourier_matrix_d4": "The d=4 Fourier matrix (1/2) i^{jk}: exact since sqrt(4) = 2.",
+      "apply": "Function apply operation.",
+      "born_in_context": "Born weights read in the context reached by the transition: |U c|^2 componentwise.",
+      "pauli_2qubit": "Function pauli_2qubit operation.",
+      "peres_mermin_parity_holonomy": "Z/2 holonomy of the Peres-Mermin context cycle, computed exactly over Q(i).",
+      "clock_refinement_tower": "Finite clocks U_k = diag(zeta_{d 2^k}^j) with U_{k+1}^2 = U_k, all inside Q(zeta_N).",
+      "residual_import_ledger": "Per import: what is exactly computed, what completion carries it, what remains imported.",
+      "evaluate_holonomy_bridge_control": "Run the whole finite control exactly and return JSON-serializable results."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "9f9d9104bb9dbbb47c38258bb04ea02297d79b53680178bf15729d24832ae218",
+  "current_scoring": "89710ca3986b5075703b0440f59a59d36f8f5b2e6e8b99d4cd4956f1dab3f821",
+  "contract_history": [
+    {
+      "sha256": "9f9d9104bb9dbbb47c38258bb04ea02297d79b53680178bf15729d24832ae218",
+      "bytes": 4766,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/holonomy_bridge.py",
+          "sha256": "f910a80a350da11d4a70c9b21aedd2022923da8232539d0ed95d83b2ffa8ee0b"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:holonomy-bridge:v1",
+        "role": "library",
+        "purpose": "Finite multi-report holonomy bridge control for QM-207 through QM-211. Every quantity here is computed exactly in a cyclotomic field Q(zeta_N) using",
+        "operations": {
+          "HolonomyControlRefusal": "Typed refusal: the supplied data is outside the declared finite model.",
+          "root_of_unity": "zeta_N^k as an exact element of Q(zeta_N).",
+          "is_root_of_unity": "x is a unit (x conj(x) = 1) of finite order dividing the conductor.",
+          "root_exponent": "The k with x = zeta_N^k. Refuses if x is not a root of unity of conductor N.",
+          "FiniteCarrierGraph": "Finite connected graph with a BFS spanning tree and fundamental cycles.",
+          "U1Cochain": "A U(1) 1-cochain with values in the roots of unity of conductor N.",
+          "holonomy_factorizes": "Hol(walk) == product over fundamental invariants^(winding coefficient). Exact.",
+          "gauge_orbit_census": "Enumerate every mu_N cochain, group by cycle invariants, check the orbit count.",
+          "gauge_equivalence_matches_invariants": "Both directions, by enumeration: same invariants <=> some gauge maps one to the other.",
+          "l1_weights": "Phase-blind diagonal weights w_i = c_i conj(c_i).",
+          "l1_phase_blind": "Weights are invariant under every locus gauge chi: the L1 shadow cannot see phase.",
+          "report_amplitudes": "Transport one source amplitude along each report (a path) to the common sink.",
+          "relative_report_phase": "Hol(p1 . p2^{-1}) = U(p1) conj(U(p2)); gauge invariant.",
+          "l1_readout": "Function l1_readout operation.",
+          "quadratic_readout": "Function quadratic_readout operation.",
+          "quartic_readout": "Negative control: a non-quadratic readout |sum c|^4.",
+          "second_order_interference": "I_2 = quadratic readout minus L1 readout = sum_{i<j} 2 Re(c_i conj c_j).",
+          "third_order_interference": "Sorkin I_3 for an arbitrary readout rule on three amplitudes.",
+          "identity": "Function identity operation.",
+          "matmul": "Function matmul operation.",
+          "dagger": "Function dagger operation.",
+          "mat_eq": "Function mat_eq operation.",
+          "is_unitary": "Function is_unitary operation.",
+          "scalar_multiple_of_identity": "Return c with a = c I, else refuse.",
+          "weyl_shift": "Function weyl_shift operation.",
+          "weyl_clock": "Function weyl_clock operation.",
+          "group_commutator": "a b a^dagger b^dagger: the holonomy around the 4-cycle of context transitions.",
+          "commutator_holonomy": "Central U(1) holonomy of the commutator cycle; refuses if it is not central.",
+          "fourier_matrix_d4": "The d=4 Fourier matrix (1/2) i^{jk}: exact since sqrt(4) = 2.",
+          "apply": "Function apply operation.",
+          "born_in_context": "Born weights read in the context reached by the transition: |U c|^2 componentwise.",
+          "pauli_2qubit": "Function pauli_2qubit operation.",
+          "peres_mermin_parity_holonomy": "Z/2 holonomy of the Peres-Mermin context cycle, computed exactly over Q(i).",
+          "clock_refinement_tower": "Finite clocks U_k = diag(zeta_{d 2^k}^j) with U_{k+1}^2 = U_k, all inside Q(zeta_N).",
+          "residual_import_ledger": "Per import: what is exactly computed, what completion carries it, what remains imported.",
+          "evaluate_holonomy_bridge_control": "Run the whole finite control exactly and return JSON-serializable results."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/holonomy_bridge.py\",\n    \"sha256\": \"f910a80a350da11d4a70c9b21aedd2022923da8232539d0ed95d83b2ffa8ee0b\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:holonomy-bridge:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Finite multi-report holonomy bridge control for QM-207 through QM-211. Every quantity here is computed exactly in a cyclotomic field Q(zeta_N) using\",\n  \"operations\": {\n    \"HolonomyControlRefusal\": \"Typed refusal: the supplied data is outside the declared finite model.\",\n    \"root_of_unity\": \"zeta_N^k as an exact element of Q(zeta_N).\",\n    \"is_root_of_unity\": \"x is a unit (x conj(x) = 1) of finite order dividing the conductor.\",\n    \"root_exponent\": \"The k with x = zeta_N^k. Refuses if x is not a root of unity of conductor N.\",\n    \"FiniteCarrierGraph\": \"Finite connected graph with a BFS spanning tree and fundamental cycles.\",\n    \"U1Cochain\": \"A U(1) 1-cochain with values in the roots of unity of conductor N.\",\n    \"holonomy_factorizes\": \"Hol(walk) == product over fundamental invariants^(winding coefficient). Exact.\",\n    \"gauge_orbit_census\": \"Enumerate every mu_N cochain, group by cycle invariants, check the orbit count.\",\n    \"gauge_equivalence_matches_invariants\": \"Both directions, by enumeration: same invariants <=> some gauge maps one to the other.\",\n    \"l1_weights\": \"Phase-blind diagonal weights w_i = c_i conj(c_i).\",\n    \"l1_phase_blind\": \"Weights are invariant under every locus gauge chi: the L1 shadow cannot see phase.\",\n    \"report_amplitudes\": \"Transport one source amplitude along each report (a path) to the common sink.\",\n    \"relative_report_phase\": \"Hol(p1 . p2^{-1}) = U(p1) conj(U(p2)); gauge invariant.\",\n    \"l1_readout\": \"Function l1_readout operation.\",\n    \"quadratic_readout\": \"Function quadratic_readout operation.\",\n    \"quartic_readout\": \"Negative control: a non-quadratic readout |sum c|^4.\",\n    \"second_order_interference\": \"I_2 = quadratic readout minus L1 readout = sum_{i<j} 2 Re(c_i conj c_j).\",\n    \"third_order_interference\": \"Sorkin I_3 for an arbitrary readout rule on three amplitudes.\",\n    \"identity\": \"Function identity operation.\",\n    \"matmul\": \"Function matmul operation.\",\n    \"dagger\": \"Function dagger operation.\",\n    \"mat_eq\": \"Function mat_eq operation.\",\n    \"is_unitary\": \"Function is_unitary operation.\",\n    \"scalar_multiple_of_identity\": \"Return c with a = c I, else refuse.\",\n    \"weyl_shift\": \"Function weyl_shift operation.\",\n    \"weyl_clock\": \"Function weyl_clock operation.\",\n    \"group_commutator\": \"a b a^dagger b^dagger: the holonomy around the 4-cycle of context transitions.\",\n    \"commutator_holonomy\": \"Central U(1) holonomy of the commutator cycle; refuses if it is not central.\",\n    \"fourier_matrix_d4\": \"The d=4 Fourier matrix (1/2) i^{jk}: exact since sqrt(4) = 2.\",\n    \"apply\": \"Function apply operation.\",\n    \"born_in_context\": \"Born weights read in the context reached by the transition: |U c|^2 componentwise.\",\n    \"pauli_2qubit\": \"Function pauli_2qubit operation.\",\n    \"peres_mermin_parity_holonomy\": \"Z/2 holonomy of the Peres-Mermin context cycle, computed exactly over Q(i).\",\n    \"clock_refinement_tower\": \"Finite clocks U_k = diag(zeta_{d 2^k}^j) with U_{k+1}^2 = U_k, all inside Q(zeta_N).\",\n    \"residual_import_ledger\": \"Per import: what is exactly computed, what completion carries it, what remains imported.\",\n    \"evaluate_holonomy_bridge_control\": \"Run the whole finite control exactly and return JSON-serializable results.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/holonomy_bridge.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "89710ca3986b5075703b0440f59a59d36f8f5b2e6e8b99d4cd4956f1dab3f821",
+      "bytes": 2208,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/holonomy_bridge.py",
+          "sha256": "f910a80a350da11d4a70c9b21aedd2022923da8232539d0ed95d83b2ffa8ee0b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:holonomy-bridge:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 16), Lizard CCN (max 16), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 16,
+          "lizard_ccn": 16,
+          "weighted_control_upper_bound": 23,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/holonomy_bridge.py\",\n    \"sha256\": \"f910a80a350da11d4a70c9b21aedd2022923da8232539d0ed95d83b2ffa8ee0b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:holonomy-bridge:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 16), Lizard CCN (max 16), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 16,\n    \"lizard_ccn\": 16,\n    \"weighted_control_upper_bound\": 23,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/holonomy_bridge.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

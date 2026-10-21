@@ -4121,6 +4121,22 @@ consume the declared cochain packet directly, so an executable sequence exists.
 The derivation problem remains open because the packet, scalar field, readout,
 composition and physical interpretation still need justified bridges.
 
+## 12. Synthesized Foundational Monograph: papers/foundations/theory_of_finite_quantum_foundations.md
+
+The 43 individual discrete quantum foundation source packets (`QM_002` through `QM_212`), preserved historically in `sources/original_papers/`, have been systematically reviewed, audited, and synthesized into the dedicated monograph:
+[`papers/foundations/theory_of_finite_quantum_foundations.md`](../foundations/theory_of_finite_quantum_foundations.md).
+
+That document establishes the unified discrete obstruction calculus from primitive difference to quantum error correction:
+- **§1 (Pre-Genesis, Primitive Difference & Coboundary)**: Synthesizes `QM_002`, `QM_003`, `QM_004`, `QM_005`, `QM_006`, `QM_008`, `QM_010`, `QM_012`. Formalizes $d_0$, the $\ell^1$ repair functional $\Phi_1([x])$, bipartite zero duality gap, even-cycle non-uniqueness, the 8-rung assumption ladder, and the 5 single-system countermodels ($M_{207}\text{--}M_{211}$).
+- **§2 (Superposition, Sorkin $I_3 = 0$ & $U(1)$ Phase Selection)**: Synthesizes `QM_060`, `QM_061`, `QM_062`, `QM_063`. Formalizes quotient fibers, double-slit cross terms $2ab \ne 0$, Sorkin $I_3 = 0$ degree-4 selection, and the elliptic division involution $i^2 = -1$.
+- **§3 (Born Normalization, Hilbert Lifts & POVM Audits)**: Synthesizes `QM_011`, `QM_020`, `QM_021`. Establishes diagonal $\ell^1$ weight sufficiency, rank-1 Hilbert lift redundancy, rational Gleason elimination on $S^2(\mathbb{Q})$, Busch IC-POVM state reconstruction, and the polyhedral cone gap.
+- **§4 (Reversible Dynamics, Cayley Stepping & Feynman Path Sums)**: Synthesizes `QM_030`, `QM_031`, `QM_032`, `QM_033`, `QM_034`, `QM_035`, `QM_040`, `QM_041`, `QM_043`. Proves the finite Wintner-Wielandt trace obstruction $[X,P] \ne i\hbar I$, the Schwinger-Weyl clock-shift intertwiner, exact unitary Cayley stepping, and graded path sums.
+- **§5 (Non-Factorization, Entanglement & Contextuality)**: Synthesizes `QM_070`, `QM_071`, `QM_072`, `QM_073`, `QM_120`. Demonstrates bipartite correlation tensor separability failure, rational Bell violation ($S=14/5$), cyclotomic Tsirelson bound ($S=2\sqrt{2}$ in $\mathbb{Q}(\zeta_8)$), and Mermin-Peres $\mathbb{F}_2$ Čech contextuality.
+- **§6 (CPTP Channels, Trace Norm Geometry & Dual Witnesses)**: Synthesizes `QM_080`, `QM_081`, `QM_082`. Formulates CPTP channels as stochastic kernel lifts with trace-norm contractions and exact dual certificates.
+- **§7 (Interpretations as Authority Shadows & Modal Realism Refusal)**: Synthesizes `QM_090`, `QM_091`, `QM_093`, `QM_094`, `QM_095`. Refuses modal realism and establishes interpretation indistinguishability on finite packets.
+- **§8 (Asymptotics, Repair Capacity & Parity Schedules)**: Synthesizes `QM_101`, `QM_102`, `QM_103`, `QM_122`, `QM_212`. Formalizes quantum error-correcting code thresholds as cochain repair capacities and analyzes Majorana measurement-only parity schedules obeying non-Abelian Ising fusion.
+- **§9 (Foundational Claim Ledger & Verification Index)**: Indexes claims `002:C1` through `212:C1` with their exact Lean 4 theorems and verification tests.
+
 ## References
 
 Numbered references in square brackets match the bibliography of the master paper and `docs/references.md`; some entries are cited only in the main paper.

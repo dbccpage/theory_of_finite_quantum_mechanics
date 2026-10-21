@@ -1,0 +1,218 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/unit/test_conditional_uniqueness.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/unit/test_conditional_uniqueness.py",
+      "sha256": "9edc5f9baaa45ac224127a973736abb5c9dcb32770cce5e56f86ad83a69f5620"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:unit:test-conditional-uniqueness:v1",
+    "role": "test checker",
+    "purpose": "Bounded domain operations and invariant verification for test_conditional_uniqueness.",
+    "operations": {
+      "NamedLift": "Class NamedLift domain record and methods.",
+      "OutsideRegistry": "Class OutsideRegistry domain record and methods.",
+      "OptionalAxiomId": "Class OptionalAxiomId domain record and methods.",
+      "density_params": "Function density_params operation.",
+      "satisfies_finite": "Function satisfies_finite operation.",
+      "satisfies_l1_shadow": "Function satisfies_l1_shadow operation.",
+      "satisfies_local_tomography": "Function satisfies_local_tomography operation.",
+      "satisfies_ax_lift_v0": "Function satisfies_ax_lift_v0 operation.",
+      "satisfies_ax_lift_v0_minus_lt": "Function satisfies_ax_lift_v0_minus_lt operation.",
+      "conditional_uniqueness_registry": "Return complexHilbert if V0 holds; else None (fails uniqueness hypothesis).",
+      "test_axiom_set_id_binding": "Function test_axiom_set_id_binding operation.",
+      "test_only_complex_satisfies_v0": "Function test_only_complex_satisfies_v0 operation.",
+      "test_conditional_uniqueness_registry": "Function test_conditional_uniqueness_registry operation.",
+      "test_satisfies_v0_iff_complex": "Function test_satisfies_v0_iff_complex operation.",
+      "test_unique_v0_registry_slice": "Function test_unique_v0_registry_slice operation.",
+      "test_uniqueness_fails_without_lt": "Minimality: V0 minus LT admits distinct complex and rebit models.",
+      "test_uniqueness_requires_local_tomography_on_registry": "Function test_uniqueness_requires_local_tomography_on_registry operation.",
+      "test_absolute_uniqueness_refused_outside_registry": "Function test_absolute_uniqueness_refused_outside_registry operation.",
+      "test_v01_does_not_upgrade_absolute_uniqueness": "Function test_v01_does_not_upgrade_absolute_uniqueness operation.",
+      "satisfies_purification_capacity": "Align W5.6: ℂ/ℝ purify (Bell toy); quat unclaimed.",
+      "test_uniqueness_fails_with_purification_without_lt": "V0.1 purification activation does not restore uniqueness without LT.",
+      "test_v0_plus_purification_still_unique": "LT remains load-bearing: rebit purifies but fails V0.",
+      "test_v01_purification_does_not_upgrade_absolute": "Function test_v01_purification_does_not_upgrade_absolute operation.",
+      "test_v01_vs_uniqueness_package": "Function test_v01_vs_uniqueness_package operation.",
+      "local_prod": "Function local_prod operation.",
+      "composite_params": "Function composite_params operation.",
+      "local_prod3": "Function local_prod3 operation.",
+      "composite_params3": "Function composite_params3 operation.",
+      "satisfies_local_tomography3": "Function satisfies_local_tomography3 operation.",
+      "test_lt3_explicit_numbers": "Multipartite LT3 counts: complex 64=64, rebit 27≠36, quat 216≠120.",
+      "test_lt3_uniqueness_iff_complex": "Function test_lt3_uniqueness_iff_complex operation.",
+      "test_v0_and_lt3_uniqueness_coincide": "V0-unique and LT3-unique registry slices both equal {complex} only.",
+      "test_uniqueness_lt3_consistency_package": "Function test_uniqueness_lt3_consistency_package operation.",
+      "test_uniqueness_relative_to_named_set": "Function test_uniqueness_relative_to_named_set operation.",
+      "satisfies_local_tomography_d3": "Function satisfies_local_tomography_d3 operation.",
+      "test_lt_d3_explicit_numbers": "Bipartite d=3 counts: complex 81=81, rebit 36≠45, quat 225≠153.",
+      "test_complex_lt_identity_all_dims": "Complex LT identity is algebraic for all factor dims (TOY-MECH).",
+      "test_lt_d3_uniqueness_iff_complex": "Function test_lt_d3_uniqueness_iff_complex operation.",
+      "test_lt_d2_d3_uniqueness_coincide": "Function test_lt_d2_d3_uniqueness_coincide operation.",
+      "test_uniqueness_lt_d3_deepen_package": "Residual deepen: explicit d=3 + LT3 counts; absolute/continuum still OPEN.",
+      "LiftHost": "Class LiftHost domain record and methods.",
+      "r_lift_pathway_recovered": "Function r_lift_pathway_recovered operation.",
+      "test_r_lift_pathway_host_gated": "Function test_r_lift_pathway_host_gated operation.",
+      "test_r_lift_and_lt_d3_package": "Function test_r_lift_and_lt_d3_package operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "a8efaa14c4de29f1102e872530135dd3fdc13ae6f5a5eb7daa0bb6782321e4e9",
+  "current_scoring": "54612e3193421941d81dac21d4983edaa15d88b8c7c8389a664e4aca1a77e211",
+  "contract_history": [
+    {
+      "sha256": "a8efaa14c4de29f1102e872530135dd3fdc13ae6f5a5eb7daa0bb6782321e4e9",
+      "bytes": 5719,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_conditional_uniqueness.py",
+          "sha256": "9edc5f9baaa45ac224127a973736abb5c9dcb32770cce5e56f86ad83a69f5620"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:unit:test-conditional-uniqueness:v1",
+        "role": "test checker",
+        "purpose": "Bounded domain operations and invariant verification for test_conditional_uniqueness.",
+        "operations": {
+          "NamedLift": "Class NamedLift domain record and methods.",
+          "OutsideRegistry": "Class OutsideRegistry domain record and methods.",
+          "OptionalAxiomId": "Class OptionalAxiomId domain record and methods.",
+          "density_params": "Function density_params operation.",
+          "satisfies_finite": "Function satisfies_finite operation.",
+          "satisfies_l1_shadow": "Function satisfies_l1_shadow operation.",
+          "satisfies_local_tomography": "Function satisfies_local_tomography operation.",
+          "satisfies_ax_lift_v0": "Function satisfies_ax_lift_v0 operation.",
+          "satisfies_ax_lift_v0_minus_lt": "Function satisfies_ax_lift_v0_minus_lt operation.",
+          "conditional_uniqueness_registry": "Return complexHilbert if V0 holds; else None (fails uniqueness hypothesis).",
+          "test_axiom_set_id_binding": "Function test_axiom_set_id_binding operation.",
+          "test_only_complex_satisfies_v0": "Function test_only_complex_satisfies_v0 operation.",
+          "test_conditional_uniqueness_registry": "Function test_conditional_uniqueness_registry operation.",
+          "test_satisfies_v0_iff_complex": "Function test_satisfies_v0_iff_complex operation.",
+          "test_unique_v0_registry_slice": "Function test_unique_v0_registry_slice operation.",
+          "test_uniqueness_fails_without_lt": "Minimality: V0 minus LT admits distinct complex and rebit models.",
+          "test_uniqueness_requires_local_tomography_on_registry": "Function test_uniqueness_requires_local_tomography_on_registry operation.",
+          "test_absolute_uniqueness_refused_outside_registry": "Function test_absolute_uniqueness_refused_outside_registry operation.",
+          "test_v01_does_not_upgrade_absolute_uniqueness": "Function test_v01_does_not_upgrade_absolute_uniqueness operation.",
+          "satisfies_purification_capacity": "Align W5.6: ℂ/ℝ purify (Bell toy); quat unclaimed.",
+          "test_uniqueness_fails_with_purification_without_lt": "V0.1 purification activation does not restore uniqueness without LT.",
+          "test_v0_plus_purification_still_unique": "LT remains load-bearing: rebit purifies but fails V0.",
+          "test_v01_purification_does_not_upgrade_absolute": "Function test_v01_purification_does_not_upgrade_absolute operation.",
+          "test_v01_vs_uniqueness_package": "Function test_v01_vs_uniqueness_package operation.",
+          "local_prod": "Function local_prod operation.",
+          "composite_params": "Function composite_params operation.",
+          "local_prod3": "Function local_prod3 operation.",
+          "composite_params3": "Function composite_params3 operation.",
+          "satisfies_local_tomography3": "Function satisfies_local_tomography3 operation.",
+          "test_lt3_explicit_numbers": "Multipartite LT3 counts: complex 64=64, rebit 27≠36, quat 216≠120.",
+          "test_lt3_uniqueness_iff_complex": "Function test_lt3_uniqueness_iff_complex operation.",
+          "test_v0_and_lt3_uniqueness_coincide": "V0-unique and LT3-unique registry slices both equal {complex} only.",
+          "test_uniqueness_lt3_consistency_package": "Function test_uniqueness_lt3_consistency_package operation.",
+          "test_uniqueness_relative_to_named_set": "Function test_uniqueness_relative_to_named_set operation.",
+          "satisfies_local_tomography_d3": "Function satisfies_local_tomography_d3 operation.",
+          "test_lt_d3_explicit_numbers": "Bipartite d=3 counts: complex 81=81, rebit 36≠45, quat 225≠153.",
+          "test_complex_lt_identity_all_dims": "Complex LT identity is algebraic for all factor dims (TOY-MECH).",
+          "test_lt_d3_uniqueness_iff_complex": "Function test_lt_d3_uniqueness_iff_complex operation.",
+          "test_lt_d2_d3_uniqueness_coincide": "Function test_lt_d2_d3_uniqueness_coincide operation.",
+          "test_uniqueness_lt_d3_deepen_package": "Residual deepen: explicit d=3 + LT3 counts; absolute/continuum still OPEN.",
+          "LiftHost": "Class LiftHost domain record and methods.",
+          "r_lift_pathway_recovered": "Function r_lift_pathway_recovered operation.",
+          "test_r_lift_pathway_host_gated": "Function test_r_lift_pathway_host_gated operation.",
+          "test_r_lift_and_lt_d3_package": "Function test_r_lift_and_lt_d3_package operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_conditional_uniqueness.py\",\n    \"sha256\": \"9edc5f9baaa45ac224127a973736abb5c9dcb32770cce5e56f86ad83a69f5620\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:unit:test-conditional-uniqueness:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Bounded domain operations and invariant verification for test_conditional_uniqueness.\",\n  \"operations\": {\n    \"NamedLift\": \"Class NamedLift domain record and methods.\",\n    \"OutsideRegistry\": \"Class OutsideRegistry domain record and methods.\",\n    \"OptionalAxiomId\": \"Class OptionalAxiomId domain record and methods.\",\n    \"density_params\": \"Function density_params operation.\",\n    \"satisfies_finite\": \"Function satisfies_finite operation.\",\n    \"satisfies_l1_shadow\": \"Function satisfies_l1_shadow operation.\",\n    \"satisfies_local_tomography\": \"Function satisfies_local_tomography operation.\",\n    \"satisfies_ax_lift_v0\": \"Function satisfies_ax_lift_v0 operation.\",\n    \"satisfies_ax_lift_v0_minus_lt\": \"Function satisfies_ax_lift_v0_minus_lt operation.\",\n    \"conditional_uniqueness_registry\": \"Return complexHilbert if V0 holds; else None (fails uniqueness hypothesis).\",\n    \"test_axiom_set_id_binding\": \"Function test_axiom_set_id_binding operation.\",\n    \"test_only_complex_satisfies_v0\": \"Function test_only_complex_satisfies_v0 operation.\",\n    \"test_conditional_uniqueness_registry\": \"Function test_conditional_uniqueness_registry operation.\",\n    \"test_satisfies_v0_iff_complex\": \"Function test_satisfies_v0_iff_complex operation.\",\n    \"test_unique_v0_registry_slice\": \"Function test_unique_v0_registry_slice operation.\",\n    \"test_uniqueness_fails_without_lt\": \"Minimality: V0 minus LT admits distinct complex and rebit models.\",\n    \"test_uniqueness_requires_local_tomography_on_registry\": \"Function test_uniqueness_requires_local_tomography_on_registry operation.\",\n    \"test_absolute_uniqueness_refused_outside_registry\": \"Function test_absolute_uniqueness_refused_outside_registry operation.\",\n    \"test_v01_does_not_upgrade_absolute_uniqueness\": \"Function test_v01_does_not_upgrade_absolute_uniqueness operation.\",\n    \"satisfies_purification_capacity\": \"Align W5.6: ℂ/ℝ purify (Bell toy); quat unclaimed.\",\n    \"test_uniqueness_fails_with_purification_without_lt\": \"V0.1 purification activation does not restore uniqueness without LT.\",\n    \"test_v0_plus_purification_still_unique\": \"LT remains load-bearing: rebit purifies but fails V0.\",\n    \"test_v01_purification_does_not_upgrade_absolute\": \"Function test_v01_purification_does_not_upgrade_absolute operation.\",\n    \"test_v01_vs_uniqueness_package\": \"Function test_v01_vs_uniqueness_package operation.\",\n    \"local_prod\": \"Function local_prod operation.\",\n    \"composite_params\": \"Function composite_params operation.\",\n    \"local_prod3\": \"Function local_prod3 operation.\",\n    \"composite_params3\": \"Function composite_params3 operation.\",\n    \"satisfies_local_tomography3\": \"Function satisfies_local_tomography3 operation.\",\n    \"test_lt3_explicit_numbers\": \"Multipartite LT3 counts: complex 64=64, rebit 27≠36, quat 216≠120.\",\n    \"test_lt3_uniqueness_iff_complex\": \"Function test_lt3_uniqueness_iff_complex operation.\",\n    \"test_v0_and_lt3_uniqueness_coincide\": \"V0-unique and LT3-unique registry slices both equal {complex} only.\",\n    \"test_uniqueness_lt3_consistency_package\": \"Function test_uniqueness_lt3_consistency_package operation.\",\n    \"test_uniqueness_relative_to_named_set\": \"Function test_uniqueness_relative_to_named_set operation.\",\n    \"satisfies_local_tomography_d3\": \"Function satisfies_local_tomography_d3 operation.\",\n    \"test_lt_d3_explicit_numbers\": \"Bipartite d=3 counts: complex 81=81, rebit 36≠45, quat 225≠153.\",\n    \"test_complex_lt_identity_all_dims\": \"Complex LT identity is algebraic for all factor dims (TOY-MECH).\",\n    \"test_lt_d3_uniqueness_iff_complex\": \"Function test_lt_d3_uniqueness_iff_complex operation.\",\n    \"test_lt_d2_d3_uniqueness_coincide\": \"Function test_lt_d2_d3_uniqueness_coincide operation.\",\n    \"test_uniqueness_lt_d3_deepen_package\": \"Residual deepen: explicit d=3 + LT3 counts; absolute/continuum still OPEN.\",\n    \"LiftHost\": \"Class LiftHost domain record and methods.\",\n    \"r_lift_pathway_recovered\": \"Function r_lift_pathway_recovered operation.\",\n    \"test_r_lift_pathway_host_gated\": \"Function test_r_lift_pathway_host_gated operation.\",\n    \"test_r_lift_and_lt_d3_package\": \"Function test_r_lift_and_lt_d3_package operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_conditional_uniqueness.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "54612e3193421941d81dac21d4983edaa15d88b8c7c8389a664e4aca1a77e211",
+      "bytes": 2217,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_conditional_uniqueness.py",
+          "sha256": "9edc5f9baaa45ac224127a973736abb5c9dcb32770cce5e56f86ad83a69f5620"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:unit:test-conditional-uniqueness:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 20), Lizard CCN (max 6), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 20,
+          "lizard_ccn": 6,
+          "weighted_control_upper_bound": 5,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_conditional_uniqueness.py\",\n    \"sha256\": \"9edc5f9baaa45ac224127a973736abb5c9dcb32770cce5e56f86ad83a69f5620\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:unit:test-conditional-uniqueness:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 20), Lizard CCN (max 6), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 20,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 5,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_conditional_uniqueness.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

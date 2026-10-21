@@ -1,0 +1,146 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/mub/mub_verify/openrouter_proposer.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/mub/mub_verify/openrouter_proposer.py",
+      "sha256": "3ed4519a36b8dff4a7c24a4a2a6ef7e440787ab0a97c3aed88ae51c096f54d25"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:mub_verify:openrouter-proposer:v1",
+    "role": "library",
+    "purpose": "OpenRouter Proposer Adapter with Mechanism Steering and L1 Governor Closed-Loop. Features:",
+    "operations": {
+      "build_logit_bias": "Constructs a logit_bias dictionary mapping integer token IDs to bias values.",
+      "compute_logprob_confidence": "Computes a normalized confidence score in [0.0, 1.0] from a sequence of logprobs.",
+      "ProposalResponse": "Encapsulates candidate algebraic proposal outputs with optional logprob",
+      "OpenRouterProposer": "OpenRouter API adapter supporting:",
+      "scripted_fallback_proposer": "Returns a deterministic callable proposing each move in sequence.",
+      "scripted_logprob_proposer": "Returns a deterministic callable proposing structured ProposalResponse items.",
+      "parse_candidate_proposal": "Parses candidate mathematical proposal strings into Python dictionary or list structure.",
+      "GovernedProposer": "Closed-loop proposer governor that wires language model proposals directly"
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "8f7b3ebc0e936eac428628c97845ec7d7d2e257b48f1472d6fd7907bf0c774cf",
+  "current_scoring": "9fd444ba32276f27868e5c76df3562a3e6c053de3d68c167439d9f058783d943",
+  "contract_history": [
+    {
+      "sha256": "8f7b3ebc0e936eac428628c97845ec7d7d2e257b48f1472d6fd7907bf0c774cf",
+      "bytes": 2472,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/mub_verify/openrouter_proposer.py",
+          "sha256": "3ed4519a36b8dff4a7c24a4a2a6ef7e440787ab0a97c3aed88ae51c096f54d25"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:mub_verify:openrouter-proposer:v1",
+        "role": "library",
+        "purpose": "OpenRouter Proposer Adapter with Mechanism Steering and L1 Governor Closed-Loop. Features:",
+        "operations": {
+          "build_logit_bias": "Constructs a logit_bias dictionary mapping integer token IDs to bias values.",
+          "compute_logprob_confidence": "Computes a normalized confidence score in [0.0, 1.0] from a sequence of logprobs.",
+          "ProposalResponse": "Encapsulates candidate algebraic proposal outputs with optional logprob",
+          "OpenRouterProposer": "OpenRouter API adapter supporting:",
+          "scripted_fallback_proposer": "Returns a deterministic callable proposing each move in sequence.",
+          "scripted_logprob_proposer": "Returns a deterministic callable proposing structured ProposalResponse items.",
+          "parse_candidate_proposal": "Parses candidate mathematical proposal strings into Python dictionary or list structure.",
+          "GovernedProposer": "Closed-loop proposer governor that wires language model proposals directly"
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/mub_verify/openrouter_proposer.py\",\n    \"sha256\": \"3ed4519a36b8dff4a7c24a4a2a6ef7e440787ab0a97c3aed88ae51c096f54d25\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:mub_verify:openrouter-proposer:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"OpenRouter Proposer Adapter with Mechanism Steering and L1 Governor Closed-Loop. Features:\",\n  \"operations\": {\n    \"build_logit_bias\": \"Constructs a logit_bias dictionary mapping integer token IDs to bias values.\",\n    \"compute_logprob_confidence\": \"Computes a normalized confidence score in [0.0, 1.0] from a sequence of logprobs.\",\n    \"ProposalResponse\": \"Encapsulates candidate algebraic proposal outputs with optional logprob\",\n    \"OpenRouterProposer\": \"OpenRouter API adapter supporting:\",\n    \"scripted_fallback_proposer\": \"Returns a deterministic callable proposing each move in sequence.\",\n    \"scripted_logprob_proposer\": \"Returns a deterministic callable proposing structured ProposalResponse items.\",\n    \"parse_candidate_proposal\": \"Parses candidate mathematical proposal strings into Python dictionary or list structure.\",\n    \"GovernedProposer\": \"Closed-loop proposer governor that wires language model proposals directly\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/mub_verify/openrouter_proposer.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "9fd444ba32276f27868e5c76df3562a3e6c053de3d68c167439d9f058783d943",
+      "bytes": 2219,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/mub_verify/openrouter_proposer.py",
+          "sha256": "3ed4519a36b8dff4a7c24a4a2a6ef7e440787ab0a97c3aed88ae51c096f54d25"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:mub_verify:openrouter-proposer:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 27), Lizard CCN (max 27), and shallow nesting depth (max 6 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 27,
+          "lizard_ccn": 27,
+          "weighted_control_upper_bound": 52,
+          "control_nesting": 6
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/mub_verify/openrouter_proposer.py\",\n    \"sha256\": \"3ed4519a36b8dff4a7c24a4a2a6ef7e440787ab0a97c3aed88ae51c096f54d25\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:mub_verify:openrouter-proposer:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 27), Lizard CCN (max 27), and shallow nesting depth (max 6 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 27,\n    \"lizard_ccn\": 27,\n    \"weighted_control_upper_bound\": 52,\n    \"control_nesting\": 6\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/mub_verify/openrouter_proposer.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

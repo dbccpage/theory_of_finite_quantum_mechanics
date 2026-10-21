@@ -1,0 +1,164 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/e2e/test_tier2_boundary_corner_cases.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/e2e/test_tier2_boundary_corner_cases.py",
+      "sha256": "eb4b063083876eee22df11b30bfa1c264c4acc4a337be299be3a042d205a80f0"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:e2e:test-tier2-boundary-corner-cases:v1",
+    "role": "test checker",
+    "purpose": "Tier 2: Boundary Value Analysis & Corner Cases E2E Tests. Exercises boundary limits, zero/negative, empty inputs, extreme configurations,",
+    "operations": {
+      "test_tier2_mub6_degenerate_point_interval": "FEAT-MUB-B01: Verify degenerate point intervals [r, r] with zero width.",
+      "test_tier2_mub6_inverted_interval_bounds_rejection": "FEAT-MUB-B02: Verify rejection when lower bound exceeds upper bound.",
+      "test_tier2_mub6_sqrt_interval_lower_limit_and_negatives": "FEAT-MUB-B03: Verify sqrt_rational_interval at n=1 and rejection of non-positive n.",
+      "test_tier2_mub6_cyc24_zero_inversion_rejection": "FEAT-MUB-B04: Verify ZeroDivisionError when inverting zero in Q(zeta_24).",
+      "test_tier2_mub6_dita_seed_invalid_coordinates_rejection": "FEAT-MUB-B05: Verify rejection of uncertified non-seed coordinates for Dita triples.",
+      "test_tier2_mub6_gramian_dimension_mismatch_boundary": "FEAT-MUB-B06: Verify that Gramian verifier rejects non-24x24 matrices.",
+      "test_tier2_fsp_lattice_invalid_sites_and_edges": "FEAT-FSP-B01: Verify FermionicLattice rejection of non-positive sites and illegal edges.",
+      "test_tier2_fsp_fock_state_vacuum_and_negative_masks": "FEAT-FSP-B02: Verify FockState particle counting on vacuum and negative bitmask rejection.",
+      "test_tier2_fsp_hamiltonian_negative_particles_and_nonfinite_couplings": "FEAT-FSP-B03: Verify DiscreteFermionicHamiltonian parameter boundary validation.",
+      "test_tier2_fsp_refusal_gates_extreme_values": "FEAT-FSP-B04: Verify refusal gates on negative, extreme, and out-of-orbit values.",
+      "test_tier2_fsp_cochain_complex_negative_dimensions_rejection": "FEAT-FSP-B05: Verify CochainComplex dimension bounds and matrix size checks.",
+      "test_tier2_majorana_fock_carrier_mode_extremes": "FEAT-MAJ-B01: Verify FockCarrier mode limits and rejection outside [1, MAX_MODES].",
+      "test_tier2_majorana_fock_carrier_generator_index_out_of_bounds": "FEAT-MAJ-B02: Verify majorana_generator rejection of indices outside [1, 2*modes].",
+      "test_tier2_majorana_monomial_identity_and_involution": "FEAT-MAJ-B03: Verify identity monomial behavior and self-annihilation (gamma_i^2 = 1).",
+      "test_tier2_majorana_kitaev_wire_zero_hopping_trivial_phase": "FEAT-MAJ-B04: Verify SparseKitaevWire in trivial atomic phase (t=0, delta=0, mu=1).",
+      "test_tier2_majorana_braid_action_out_of_range_index": "FEAT-MAJ-B05: Verify MajoranaBraidAction rejection of out-of-bounds braid indices.",
+      "test_tier2_majorana_tetron_planar_vs_torus_topology": "FEAT-MAJ-B06: Verify topology boundaries: Disk (dim_h1=0), Cylinder (dim_h1=1), Torus (dim_h1=2)."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "9a8b58343b0f233cfecb0e4ca031d3e8fcf4d7586f00e25679be48152de91b65",
+  "current_scoring": "d3f9831d2c0a6e1a9fa12ea50d17ff9a49e7a94ed8ff7505f4e06f04f8c4a60e",
+  "contract_history": [
+    {
+      "sha256": "9a8b58343b0f233cfecb0e4ca031d3e8fcf4d7586f00e25679be48152de91b65",
+      "bytes": 4158,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/e2e/test_tier2_boundary_corner_cases.py",
+          "sha256": "eb4b063083876eee22df11b30bfa1c264c4acc4a337be299be3a042d205a80f0"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:e2e:test-tier2-boundary-corner-cases:v1",
+        "role": "test checker",
+        "purpose": "Tier 2: Boundary Value Analysis & Corner Cases E2E Tests. Exercises boundary limits, zero/negative, empty inputs, extreme configurations,",
+        "operations": {
+          "test_tier2_mub6_degenerate_point_interval": "FEAT-MUB-B01: Verify degenerate point intervals [r, r] with zero width.",
+          "test_tier2_mub6_inverted_interval_bounds_rejection": "FEAT-MUB-B02: Verify rejection when lower bound exceeds upper bound.",
+          "test_tier2_mub6_sqrt_interval_lower_limit_and_negatives": "FEAT-MUB-B03: Verify sqrt_rational_interval at n=1 and rejection of non-positive n.",
+          "test_tier2_mub6_cyc24_zero_inversion_rejection": "FEAT-MUB-B04: Verify ZeroDivisionError when inverting zero in Q(zeta_24).",
+          "test_tier2_mub6_dita_seed_invalid_coordinates_rejection": "FEAT-MUB-B05: Verify rejection of uncertified non-seed coordinates for Dita triples.",
+          "test_tier2_mub6_gramian_dimension_mismatch_boundary": "FEAT-MUB-B06: Verify that Gramian verifier rejects non-24x24 matrices.",
+          "test_tier2_fsp_lattice_invalid_sites_and_edges": "FEAT-FSP-B01: Verify FermionicLattice rejection of non-positive sites and illegal edges.",
+          "test_tier2_fsp_fock_state_vacuum_and_negative_masks": "FEAT-FSP-B02: Verify FockState particle counting on vacuum and negative bitmask rejection.",
+          "test_tier2_fsp_hamiltonian_negative_particles_and_nonfinite_couplings": "FEAT-FSP-B03: Verify DiscreteFermionicHamiltonian parameter boundary validation.",
+          "test_tier2_fsp_refusal_gates_extreme_values": "FEAT-FSP-B04: Verify refusal gates on negative, extreme, and out-of-orbit values.",
+          "test_tier2_fsp_cochain_complex_negative_dimensions_rejection": "FEAT-FSP-B05: Verify CochainComplex dimension bounds and matrix size checks.",
+          "test_tier2_majorana_fock_carrier_mode_extremes": "FEAT-MAJ-B01: Verify FockCarrier mode limits and rejection outside [1, MAX_MODES].",
+          "test_tier2_majorana_fock_carrier_generator_index_out_of_bounds": "FEAT-MAJ-B02: Verify majorana_generator rejection of indices outside [1, 2*modes].",
+          "test_tier2_majorana_monomial_identity_and_involution": "FEAT-MAJ-B03: Verify identity monomial behavior and self-annihilation (gamma_i^2 = 1).",
+          "test_tier2_majorana_kitaev_wire_zero_hopping_trivial_phase": "FEAT-MAJ-B04: Verify SparseKitaevWire in trivial atomic phase (t=0, delta=0, mu=1).",
+          "test_tier2_majorana_braid_action_out_of_range_index": "FEAT-MAJ-B05: Verify MajoranaBraidAction rejection of out-of-bounds braid indices.",
+          "test_tier2_majorana_tetron_planar_vs_torus_topology": "FEAT-MAJ-B06: Verify topology boundaries: Disk (dim_h1=0), Cylinder (dim_h1=1), Torus (dim_h1=2)."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/e2e/test_tier2_boundary_corner_cases.py\",\n    \"sha256\": \"eb4b063083876eee22df11b30bfa1c264c4acc4a337be299be3a042d205a80f0\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:e2e:test-tier2-boundary-corner-cases:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Tier 2: Boundary Value Analysis & Corner Cases E2E Tests. Exercises boundary limits, zero/negative, empty inputs, extreme configurations,\",\n  \"operations\": {\n    \"test_tier2_mub6_degenerate_point_interval\": \"FEAT-MUB-B01: Verify degenerate point intervals [r, r] with zero width.\",\n    \"test_tier2_mub6_inverted_interval_bounds_rejection\": \"FEAT-MUB-B02: Verify rejection when lower bound exceeds upper bound.\",\n    \"test_tier2_mub6_sqrt_interval_lower_limit_and_negatives\": \"FEAT-MUB-B03: Verify sqrt_rational_interval at n=1 and rejection of non-positive n.\",\n    \"test_tier2_mub6_cyc24_zero_inversion_rejection\": \"FEAT-MUB-B04: Verify ZeroDivisionError when inverting zero in Q(zeta_24).\",\n    \"test_tier2_mub6_dita_seed_invalid_coordinates_rejection\": \"FEAT-MUB-B05: Verify rejection of uncertified non-seed coordinates for Dita triples.\",\n    \"test_tier2_mub6_gramian_dimension_mismatch_boundary\": \"FEAT-MUB-B06: Verify that Gramian verifier rejects non-24x24 matrices.\",\n    \"test_tier2_fsp_lattice_invalid_sites_and_edges\": \"FEAT-FSP-B01: Verify FermionicLattice rejection of non-positive sites and illegal edges.\",\n    \"test_tier2_fsp_fock_state_vacuum_and_negative_masks\": \"FEAT-FSP-B02: Verify FockState particle counting on vacuum and negative bitmask rejection.\",\n    \"test_tier2_fsp_hamiltonian_negative_particles_and_nonfinite_couplings\": \"FEAT-FSP-B03: Verify DiscreteFermionicHamiltonian parameter boundary validation.\",\n    \"test_tier2_fsp_refusal_gates_extreme_values\": \"FEAT-FSP-B04: Verify refusal gates on negative, extreme, and out-of-orbit values.\",\n    \"test_tier2_fsp_cochain_complex_negative_dimensions_rejection\": \"FEAT-FSP-B05: Verify CochainComplex dimension bounds and matrix size checks.\",\n    \"test_tier2_majorana_fock_carrier_mode_extremes\": \"FEAT-MAJ-B01: Verify FockCarrier mode limits and rejection outside [1, MAX_MODES].\",\n    \"test_tier2_majorana_fock_carrier_generator_index_out_of_bounds\": \"FEAT-MAJ-B02: Verify majorana_generator rejection of indices outside [1, 2*modes].\",\n    \"test_tier2_majorana_monomial_identity_and_involution\": \"FEAT-MAJ-B03: Verify identity monomial behavior and self-annihilation (gamma_i^2 = 1).\",\n    \"test_tier2_majorana_kitaev_wire_zero_hopping_trivial_phase\": \"FEAT-MAJ-B04: Verify SparseKitaevWire in trivial atomic phase (t=0, delta=0, mu=1).\",\n    \"test_tier2_majorana_braid_action_out_of_range_index\": \"FEAT-MAJ-B05: Verify MajoranaBraidAction rejection of out-of-bounds braid indices.\",\n    \"test_tier2_majorana_tetron_planar_vs_torus_topology\": \"FEAT-MAJ-B06: Verify topology boundaries: Disk (dim_h1=0), Cylinder (dim_h1=1), Torus (dim_h1=2).\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/e2e/test_tier2_boundary_corner_cases.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "d3f9831d2c0a6e1a9fa12ea50d17ff9a49e7a94ed8ff7505f4e06f04f8c4a60e",
+      "bytes": 2210,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/e2e/test_tier2_boundary_corner_cases.py",
+          "sha256": "eb4b063083876eee22df11b30bfa1c264c4acc4a337be299be3a042d205a80f0"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:e2e:test-tier2-boundary-corner-cases:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 3), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 3,
+          "weighted_control_upper_bound": 4,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/e2e/test_tier2_boundary_corner_cases.py\",\n    \"sha256\": \"eb4b063083876eee22df11b30bfa1c264c4acc4a337be299be3a042d205a80f0\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:e2e:test-tier2-boundary-corner-cases:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 3), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 3,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/e2e/test_tier2_boundary_corner_cases.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

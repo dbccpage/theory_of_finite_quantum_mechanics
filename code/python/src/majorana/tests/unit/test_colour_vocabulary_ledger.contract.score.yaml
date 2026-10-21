@@ -1,0 +1,206 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/unit/test_colour_vocabulary_ledger.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/unit/test_colour_vocabulary_ledger.py",
+      "sha256": "a9529d5c4f2c40cb622692b52491b8f6d856e2c01e2df4011be8cbef5ead1563"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:unit:test-colour-vocabulary-ledger:v1",
+    "role": "test checker",
+    "purpose": "M0 owner ledger for the operad colour vocabulary. `EPIC-OE-OEWAS-RUST-001` stage M0 asks for duplicate models to be identified",
+    "operations": {
+      "ledger": "Function ledger operation.",
+      "site": "Function site operation.",
+      "test_the_vocabulary_is_declared_five_times": "Function test_the_vocabulary_is_declared_five_times operation.",
+      "test_the_source_comment_claims_four": "Function test_the_source_comment_claims_four operation.",
+      "test_the_comment_undercounts_the_sites_by_one": "The finding in one number.",
+      "test_the_site_the_comment_omits_is_the_operad_domain_module": "And it is the one whose name most claims to own the vocabulary.",
+      "test_all_declarations_currently_agree": "The obligation is met today, by hand. That is what makes it fragile.",
+      "test_every_declaration_carries_exactly_ten_colours": "Function test_every_declaration_carries_exactly_ten_colours operation.",
+      "test_the_rust_constant_is_the_canonical_order": "Order is only expressible on the Rust side; the Python sites are sets.",
+      "test_a_consumer_is_not_counted_as_a_declaration": "A site that uses the vocabulary holds no copy and cannot drift.",
+      "test_the_consumer_names_all_ten_without_declaring_them": "Function test_the_consumer_names_all_ten_without_declaring_them operation.",
+      "test_no_adr_selects_a_canonical_owner": "Epic section 4 requires one; section 9 lists it as an open obligation.",
+      "test_the_narrow_adr_query_would_find_a_real_decision": "The previous test asserts an absence, so its query must be shown to work.",
+      "test_the_report_states_that_no_owner_is_selected": "Function test_the_report_states_that_no_owner_is_selected operation.",
+      "test_the_memo_matches_its_declared_digest": "Function test_the_memo_matches_its_declared_digest operation.",
+      "test_the_memo_matches_its_declared_byte_count": "Function test_the_memo_matches_its_declared_byte_count operation.",
+      "test_the_memo_matches_its_declared_line_count_and_ending": "655 CRLF-terminated lines, and no bare LF hiding among them.",
+      "test_the_memo_is_utf8_without_bom_and_ends_with_a_newline": "Function test_the_memo_is_utf8_without_bom_and_ends_with_a_newline operation.",
+      "test_the_epic_states_every_number_this_file_checks": "The claims are pinned to the epic, not to a copy of them here.",
+      "test_the_five_named_rust_crates_all_exist": "Epic section 2 lists them as already present. They are.",
+      "test_a_dropped_colour_is_named": "The historical failure: `Contract` and `Diagram` went missing.",
+      "test_an_added_colour_is_named": "Function test_an_added_colour_is_named operation.",
+      "test_every_disagreeing_site_is_reported_not_just_the_first": "Function test_every_disagreeing_site_is_reported_not_just_the_first operation.",
+      "test_agreeing_sites_report_nothing": "Function test_agreeing_sites_report_nothing operation.",
+      "test_comparing_fewer_than_two_declarations_is_refused": "One site cannot disagree with anything; reporting `()` would read clean.",
+      "test_an_empty_declaration_is_refused": "An empty vocabulary is a subset of everything and would read as agreeing.",
+      "test_a_consumer_may_be_empty": "A consumer holds no copy, so an empty one is meaningful rather than broken.",
+      "test_an_annotated_assignment_is_found": "The bug that hid the fifth site.",
+      "test_a_plain_assignment_is_found": "Function test_a_plain_assignment_is_found operation.",
+      "test_an_absent_symbol_returns_none": "Function test_an_absent_symbol_returns_none operation.",
+      "test_a_rust_array_whose_declared_length_lies_is_refused": "`[&str; 10]` listing nine is a drift the compiler would catch, and a",
+      "test_a_rust_model_without_the_constant_is_refused": "Function test_a_rust_model_without_the_constant_is_refused operation.",
+      "test_the_claimed_count_is_read_from_the_comment": "Function test_the_claimed_count_is_read_from_the_comment operation.",
+      "test_a_missing_claim_is_refused": "Deleting the obligation must fail loudly, not silently pass.",
+      "test_an_unreadable_number_word_is_refused": "Function test_an_unreadable_number_word_is_refused operation.",
+      "test_a_vanished_declaration_site_is_refused": "A ledger that silently drops a site it cannot find reports false agreement.",
+      "test_the_consumer_becoming_a_declaration_is_refused": "Function test_the_consumer_becoming_a_declaration_is_refused operation.",
+      "test_the_live_sites_are_all_readable": "Every extractor reached its target; none silently returned nothing."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "d96037ed0d2aafab6166a922267bd5275ea72ca2a8df9532f774930a9ac3dcaf",
+  "current_scoring": "51a8e6472d571d38a390f8514f79a71fcaa271e615fb4b57ab8f6900825c3f9d",
+  "contract_history": [
+    {
+      "sha256": "d96037ed0d2aafab6166a922267bd5275ea72ca2a8df9532f774930a9ac3dcaf",
+      "bytes": 6051,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_colour_vocabulary_ledger.py",
+          "sha256": "a9529d5c4f2c40cb622692b52491b8f6d856e2c01e2df4011be8cbef5ead1563"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:unit:test-colour-vocabulary-ledger:v1",
+        "role": "test checker",
+        "purpose": "M0 owner ledger for the operad colour vocabulary. `EPIC-OE-OEWAS-RUST-001` stage M0 asks for duplicate models to be identified",
+        "operations": {
+          "ledger": "Function ledger operation.",
+          "site": "Function site operation.",
+          "test_the_vocabulary_is_declared_five_times": "Function test_the_vocabulary_is_declared_five_times operation.",
+          "test_the_source_comment_claims_four": "Function test_the_source_comment_claims_four operation.",
+          "test_the_comment_undercounts_the_sites_by_one": "The finding in one number.",
+          "test_the_site_the_comment_omits_is_the_operad_domain_module": "And it is the one whose name most claims to own the vocabulary.",
+          "test_all_declarations_currently_agree": "The obligation is met today, by hand. That is what makes it fragile.",
+          "test_every_declaration_carries_exactly_ten_colours": "Function test_every_declaration_carries_exactly_ten_colours operation.",
+          "test_the_rust_constant_is_the_canonical_order": "Order is only expressible on the Rust side; the Python sites are sets.",
+          "test_a_consumer_is_not_counted_as_a_declaration": "A site that uses the vocabulary holds no copy and cannot drift.",
+          "test_the_consumer_names_all_ten_without_declaring_them": "Function test_the_consumer_names_all_ten_without_declaring_them operation.",
+          "test_no_adr_selects_a_canonical_owner": "Epic section 4 requires one; section 9 lists it as an open obligation.",
+          "test_the_narrow_adr_query_would_find_a_real_decision": "The previous test asserts an absence, so its query must be shown to work.",
+          "test_the_report_states_that_no_owner_is_selected": "Function test_the_report_states_that_no_owner_is_selected operation.",
+          "test_the_memo_matches_its_declared_digest": "Function test_the_memo_matches_its_declared_digest operation.",
+          "test_the_memo_matches_its_declared_byte_count": "Function test_the_memo_matches_its_declared_byte_count operation.",
+          "test_the_memo_matches_its_declared_line_count_and_ending": "655 CRLF-terminated lines, and no bare LF hiding among them.",
+          "test_the_memo_is_utf8_without_bom_and_ends_with_a_newline": "Function test_the_memo_is_utf8_without_bom_and_ends_with_a_newline operation.",
+          "test_the_epic_states_every_number_this_file_checks": "The claims are pinned to the epic, not to a copy of them here.",
+          "test_the_five_named_rust_crates_all_exist": "Epic section 2 lists them as already present. They are.",
+          "test_a_dropped_colour_is_named": "The historical failure: `Contract` and `Diagram` went missing.",
+          "test_an_added_colour_is_named": "Function test_an_added_colour_is_named operation.",
+          "test_every_disagreeing_site_is_reported_not_just_the_first": "Function test_every_disagreeing_site_is_reported_not_just_the_first operation.",
+          "test_agreeing_sites_report_nothing": "Function test_agreeing_sites_report_nothing operation.",
+          "test_comparing_fewer_than_two_declarations_is_refused": "One site cannot disagree with anything; reporting `()` would read clean.",
+          "test_an_empty_declaration_is_refused": "An empty vocabulary is a subset of everything and would read as agreeing.",
+          "test_a_consumer_may_be_empty": "A consumer holds no copy, so an empty one is meaningful rather than broken.",
+          "test_an_annotated_assignment_is_found": "The bug that hid the fifth site.",
+          "test_a_plain_assignment_is_found": "Function test_a_plain_assignment_is_found operation.",
+          "test_an_absent_symbol_returns_none": "Function test_an_absent_symbol_returns_none operation.",
+          "test_a_rust_array_whose_declared_length_lies_is_refused": "`[&str; 10]` listing nine is a drift the compiler would catch, and a",
+          "test_a_rust_model_without_the_constant_is_refused": "Function test_a_rust_model_without_the_constant_is_refused operation.",
+          "test_the_claimed_count_is_read_from_the_comment": "Function test_the_claimed_count_is_read_from_the_comment operation.",
+          "test_a_missing_claim_is_refused": "Deleting the obligation must fail loudly, not silently pass.",
+          "test_an_unreadable_number_word_is_refused": "Function test_an_unreadable_number_word_is_refused operation.",
+          "test_a_vanished_declaration_site_is_refused": "A ledger that silently drops a site it cannot find reports false agreement.",
+          "test_the_consumer_becoming_a_declaration_is_refused": "Function test_the_consumer_becoming_a_declaration_is_refused operation.",
+          "test_the_live_sites_are_all_readable": "Every extractor reached its target; none silently returned nothing."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_colour_vocabulary_ledger.py\",\n    \"sha256\": \"a9529d5c4f2c40cb622692b52491b8f6d856e2c01e2df4011be8cbef5ead1563\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:unit:test-colour-vocabulary-ledger:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"M0 owner ledger for the operad colour vocabulary. `EPIC-OE-OEWAS-RUST-001` stage M0 asks for duplicate models to be identified\",\n  \"operations\": {\n    \"ledger\": \"Function ledger operation.\",\n    \"site\": \"Function site operation.\",\n    \"test_the_vocabulary_is_declared_five_times\": \"Function test_the_vocabulary_is_declared_five_times operation.\",\n    \"test_the_source_comment_claims_four\": \"Function test_the_source_comment_claims_four operation.\",\n    \"test_the_comment_undercounts_the_sites_by_one\": \"The finding in one number.\",\n    \"test_the_site_the_comment_omits_is_the_operad_domain_module\": \"And it is the one whose name most claims to own the vocabulary.\",\n    \"test_all_declarations_currently_agree\": \"The obligation is met today, by hand. That is what makes it fragile.\",\n    \"test_every_declaration_carries_exactly_ten_colours\": \"Function test_every_declaration_carries_exactly_ten_colours operation.\",\n    \"test_the_rust_constant_is_the_canonical_order\": \"Order is only expressible on the Rust side; the Python sites are sets.\",\n    \"test_a_consumer_is_not_counted_as_a_declaration\": \"A site that uses the vocabulary holds no copy and cannot drift.\",\n    \"test_the_consumer_names_all_ten_without_declaring_them\": \"Function test_the_consumer_names_all_ten_without_declaring_them operation.\",\n    \"test_no_adr_selects_a_canonical_owner\": \"Epic section 4 requires one; section 9 lists it as an open obligation.\",\n    \"test_the_narrow_adr_query_would_find_a_real_decision\": \"The previous test asserts an absence, so its query must be shown to work.\",\n    \"test_the_report_states_that_no_owner_is_selected\": \"Function test_the_report_states_that_no_owner_is_selected operation.\",\n    \"test_the_memo_matches_its_declared_digest\": \"Function test_the_memo_matches_its_declared_digest operation.\",\n    \"test_the_memo_matches_its_declared_byte_count\": \"Function test_the_memo_matches_its_declared_byte_count operation.\",\n    \"test_the_memo_matches_its_declared_line_count_and_ending\": \"655 CRLF-terminated lines, and no bare LF hiding among them.\",\n    \"test_the_memo_is_utf8_without_bom_and_ends_with_a_newline\": \"Function test_the_memo_is_utf8_without_bom_and_ends_with_a_newline operation.\",\n    \"test_the_epic_states_every_number_this_file_checks\": \"The claims are pinned to the epic, not to a copy of them here.\",\n    \"test_the_five_named_rust_crates_all_exist\": \"Epic section 2 lists them as already present. They are.\",\n    \"test_a_dropped_colour_is_named\": \"The historical failure: `Contract` and `Diagram` went missing.\",\n    \"test_an_added_colour_is_named\": \"Function test_an_added_colour_is_named operation.\",\n    \"test_every_disagreeing_site_is_reported_not_just_the_first\": \"Function test_every_disagreeing_site_is_reported_not_just_the_first operation.\",\n    \"test_agreeing_sites_report_nothing\": \"Function test_agreeing_sites_report_nothing operation.\",\n    \"test_comparing_fewer_than_two_declarations_is_refused\": \"One site cannot disagree with anything; reporting `()` would read clean.\",\n    \"test_an_empty_declaration_is_refused\": \"An empty vocabulary is a subset of everything and would read as agreeing.\",\n    \"test_a_consumer_may_be_empty\": \"A consumer holds no copy, so an empty one is meaningful rather than broken.\",\n    \"test_an_annotated_assignment_is_found\": \"The bug that hid the fifth site.\",\n    \"test_a_plain_assignment_is_found\": \"Function test_a_plain_assignment_is_found operation.\",\n    \"test_an_absent_symbol_returns_none\": \"Function test_an_absent_symbol_returns_none operation.\",\n    \"test_a_rust_array_whose_declared_length_lies_is_refused\": \"`[&str; 10]` listing nine is a drift the compiler would catch, and a\",\n    \"test_a_rust_model_without_the_constant_is_refused\": \"Function test_a_rust_model_without_the_constant_is_refused operation.\",\n    \"test_the_claimed_count_is_read_from_the_comment\": \"Function test_the_claimed_count_is_read_from_the_comment operation.\",\n    \"test_a_missing_claim_is_refused\": \"Deleting the obligation must fail loudly, not silently pass.\",\n    \"test_an_unreadable_number_word_is_refused\": \"Function test_an_unreadable_number_word_is_refused operation.\",\n    \"test_a_vanished_declaration_site_is_refused\": \"A ledger that silently drops a site it cannot find reports false agreement.\",\n    \"test_the_consumer_becoming_a_declaration_is_refused\": \"Function test_the_consumer_becoming_a_declaration_is_refused operation.\",\n    \"test_the_live_sites_are_all_readable\": \"Every extractor reached its target; none silently returned nothing.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_colour_vocabulary_ledger.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "51a8e6472d571d38a390f8514f79a71fcaa271e615fb4b57ab8f6900825c3f9d",
+      "bytes": 2219,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_colour_vocabulary_ledger.py",
+          "sha256": "a9529d5c4f2c40cb622692b52491b8f6d856e2c01e2df4011be8cbef5ead1563"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:unit:test-colour-vocabulary-ledger:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 5,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_colour_vocabulary_ledger.py\",\n    \"sha256\": \"a9529d5c4f2c40cb622692b52491b8f6d856e2c01e2df4011be8cbef5ead1563\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:unit:test-colour-vocabulary-ledger:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 5,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_colour_vocabulary_ledger.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/unit/test_solver_parity.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/unit/test_solver_parity.py",
+      "sha256": "5300a759b78d40244a503619dbb97889260f8f0b2146b3e92fec342e90a055af"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:unit:test-solver-parity:v1",
+    "role": "test checker",
+    "purpose": "Cross-language parity for the Phi-1 L1 boundary solver. Rust is the PROD face and generates the fixture; this file is the check that",
+    "operations": {
+      "test_the_fixture_is_the_expected_schema": "Function test_the_fixture_is_the_expected_schema operation.",
+      "test_python_matches_the_rust_solver": "Function test_python_matches_the_rust_solver operation.",
+      "test_the_fixture_still_covers_every_refusal_class_python_can_raise": "Guards against the fixture drifting into success-only coverage.",
+      "test_a_malformed_carrier_refuses_rather_than_raising_indexerror": "The specific defect, pinned on the Python side too."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "f6db89e8aeb0b06dd96a9ce8c498fd221fd52bdab5b85994a06b1b4e2362d8a1",
+  "current_scoring": "5bf1769356ddc3609469ccb179e0c9fe9b4f1f567daced48665c53b2deac18dc",
+  "contract_history": [
+    {
+      "sha256": "f6db89e8aeb0b06dd96a9ce8c498fd221fd52bdab5b85994a06b1b4e2362d8a1",
+      "bytes": 2152,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_solver_parity.py",
+          "sha256": "5300a759b78d40244a503619dbb97889260f8f0b2146b3e92fec342e90a055af"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:unit:test-solver-parity:v1",
+        "role": "test checker",
+        "purpose": "Cross-language parity for the Phi-1 L1 boundary solver. Rust is the PROD face and generates the fixture; this file is the check that",
+        "operations": {
+          "test_the_fixture_is_the_expected_schema": "Function test_the_fixture_is_the_expected_schema operation.",
+          "test_python_matches_the_rust_solver": "Function test_python_matches_the_rust_solver operation.",
+          "test_the_fixture_still_covers_every_refusal_class_python_can_raise": "Guards against the fixture drifting into success-only coverage.",
+          "test_a_malformed_carrier_refuses_rather_than_raising_indexerror": "The specific defect, pinned on the Python side too."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_solver_parity.py\",\n    \"sha256\": \"5300a759b78d40244a503619dbb97889260f8f0b2146b3e92fec342e90a055af\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:unit:test-solver-parity:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Cross-language parity for the Phi-1 L1 boundary solver. Rust is the PROD face and generates the fixture; this file is the check that\",\n  \"operations\": {\n    \"test_the_fixture_is_the_expected_schema\": \"Function test_the_fixture_is_the_expected_schema operation.\",\n    \"test_python_matches_the_rust_solver\": \"Function test_python_matches_the_rust_solver operation.\",\n    \"test_the_fixture_still_covers_every_refusal_class_python_can_raise\": \"Guards against the fixture drifting into success-only coverage.\",\n    \"test_a_malformed_carrier_refuses_rather_than_raising_indexerror\": \"The specific defect, pinned on the Python side too.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_solver_parity.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "5bf1769356ddc3609469ccb179e0c9fe9b4f1f567daced48665c53b2deac18dc",
+      "bytes": 2197,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_solver_parity.py",
+          "sha256": "5300a759b78d40244a503619dbb97889260f8f0b2146b3e92fec342e90a055af"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:unit:test-solver-parity:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 6), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 6,
+          "weighted_control_upper_bound": 7,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_solver_parity.py\",\n    \"sha256\": \"5300a759b78d40244a503619dbb97889260f8f0b2146b3e92fec342e90a055af\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:unit:test-solver-parity:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 6), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_solver_parity.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

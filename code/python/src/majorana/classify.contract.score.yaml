@@ -1,0 +1,150 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/classify.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/classify.py",
+      "sha256": "bfb1e510cd91dbe575011300db49b5782dfb1ed9b593f58a96b14951e983e3a4"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:classify:v1",
+    "role": "library",
+    "purpose": "End-to-end residual classifier: residual -> terminal + receipt.",
+    "operations": {
+      "Terminal": "Class Terminal domain record and methods.",
+      "ClassifiedReceipt": "Class ClassifiedReceipt domain record and methods.",
+      "classify": "Function classify operation.",
+      "classify_default": "Function classify_default operation.",
+      "classify_with_diagnostics": "Function classify_with_diagnostics operation.",
+      "ResidualPacketWallReceipt": "Class ResidualPacketWallReceipt domain record and methods.",
+      "classify_residual": "Function classify_residual operation.",
+      "benchmark_classify_residual": "Benchmark the Exact-vs-LGGR-vs-Open cochain packet wall classifier across 14 canonical",
+      "classify_residual_to_canonical_json": "Serialize ResidualPacketWallReceipt list to canonical 2-space pretty JSON with LF line endings.",
+      "classify_residual_from_canonical_json": "Deserialize ResidualPacketWallReceipt list from canonical JSON string."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "ce8136dba8f296e85c112665d6323811d31a731574b2d34712211e090681597d",
+  "current_scoring": "5bb9dffd9975088d5b5cfeee01dfb2f03c956a24b8978b3497c69b9adc066e45",
+  "contract_history": [
+    {
+      "sha256": "ce8136dba8f296e85c112665d6323811d31a731574b2d34712211e090681597d",
+      "bytes": 2467,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/classify.py",
+          "sha256": "bfb1e510cd91dbe575011300db49b5782dfb1ed9b593f58a96b14951e983e3a4"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:classify:v1",
+        "role": "library",
+        "purpose": "End-to-end residual classifier: residual -> terminal + receipt.",
+        "operations": {
+          "Terminal": "Class Terminal domain record and methods.",
+          "ClassifiedReceipt": "Class ClassifiedReceipt domain record and methods.",
+          "classify": "Function classify operation.",
+          "classify_default": "Function classify_default operation.",
+          "classify_with_diagnostics": "Function classify_with_diagnostics operation.",
+          "ResidualPacketWallReceipt": "Class ResidualPacketWallReceipt domain record and methods.",
+          "classify_residual": "Function classify_residual operation.",
+          "benchmark_classify_residual": "Benchmark the Exact-vs-LGGR-vs-Open cochain packet wall classifier across 14 canonical",
+          "classify_residual_to_canonical_json": "Serialize ResidualPacketWallReceipt list to canonical 2-space pretty JSON with LF line endings.",
+          "classify_residual_from_canonical_json": "Deserialize ResidualPacketWallReceipt list from canonical JSON string."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/classify.py\",\n    \"sha256\": \"bfb1e510cd91dbe575011300db49b5782dfb1ed9b593f58a96b14951e983e3a4\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:classify:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"End-to-end residual classifier: residual -> terminal + receipt.\",\n  \"operations\": {\n    \"Terminal\": \"Class Terminal domain record and methods.\",\n    \"ClassifiedReceipt\": \"Class ClassifiedReceipt domain record and methods.\",\n    \"classify\": \"Function classify operation.\",\n    \"classify_default\": \"Function classify_default operation.\",\n    \"classify_with_diagnostics\": \"Function classify_with_diagnostics operation.\",\n    \"ResidualPacketWallReceipt\": \"Class ResidualPacketWallReceipt domain record and methods.\",\n    \"classify_residual\": \"Function classify_residual operation.\",\n    \"benchmark_classify_residual\": \"Benchmark the Exact-vs-LGGR-vs-Open cochain packet wall classifier across 14 canonical\",\n    \"classify_residual_to_canonical_json\": \"Serialize ResidualPacketWallReceipt list to canonical 2-space pretty JSON with LF line endings.\",\n    \"classify_residual_from_canonical_json\": \"Deserialize ResidualPacketWallReceipt list from canonical JSON string.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/classify.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "5bb9dffd9975088d5b5cfeee01dfb2f03c956a24b8978b3497c69b9adc066e45",
+      "bytes": 2189,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/classify.py",
+          "sha256": "bfb1e510cd91dbe575011300db49b5782dfb1ed9b593f58a96b14951e983e3a4"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:classify:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 26), Lizard CCN (max 26), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 26,
+          "lizard_ccn": 26,
+          "weighted_control_upper_bound": 42,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/classify.py\",\n    \"sha256\": \"bfb1e510cd91dbe575011300db49b5782dfb1ed9b593f58a96b14951e983e3a4\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:classify:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 26), Lizard CCN (max 26), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 26,\n    \"lizard_ccn\": 26,\n    \"weighted_control_upper_bound\": 42,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/classify.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

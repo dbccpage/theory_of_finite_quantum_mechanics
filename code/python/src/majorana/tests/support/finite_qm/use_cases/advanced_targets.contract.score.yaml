@@ -1,0 +1,230 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/support/finite_qm/use_cases/advanced_targets.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/support/finite_qm/use_cases/advanced_targets.py",
+      "sha256": "03aca31fa66c39fa57750b748d991d8b47fdeefc0f7b30d911ae1a824ab9f83e"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:use_cases:advanced-targets:v1",
+    "role": "library",
+    "purpose": "Advanced Targets 13 through 22 for finite quantum mechanics. This module implements:",
+    "operations": {
+      "SymplecticGroupData": "Domain Value Object for binary symplectic group data.",
+      "BallisticWalkResult": "Domain Value Object for quantum walk wave-packet propagation.",
+      "MUBSystemData": "Domain Value Object for Mutually Unbiased Bases systems.",
+      "TomographyResult": "Domain Value Object for MUB state tomography inversion.",
+      "ExactRationalMatrix": "Exact 2D matrix over rational numbers (Fraction).",
+      "verify_target4_rational_cayley_so8": "Verifies rational Cayley transform flow over so(dim, Q) isometries across rational parameters.",
+      "verify_target5_pentagon_identity_q5": "Verifies the Biedenharn-Elliott pentagon associator identity in Q^5.",
+      "build_prime_p_phase_point_operators": "Constructs the p^2 discrete Gross phase-point operators on F_p x F_p for odd prime p.",
+      "evaluate_prime_p_discrete_wigner": "Evaluates the discrete Gross Wigner function for a given state in dimension p.",
+      "verify_gross_stabilizer_covariance": "Verifies Gross stabilizer covariance under Clifford generators (Fourier rotation and Phase shear).",
+      "build_shor_nine_qubit_code": "Constructs the Shor [[9, 1, 3]] quantum error-correcting code.",
+      "extract_shor_syndrome": "Computes the 8-bit syndrome (0 for commuting, 1 for anticommuting) for a Pauli string.",
+      "decode_and_recover_shor": "Decodes an 8-bit syndrome into the recovery Pauli operator on 9 qubits.",
+      "simulate_shor_error_recovery": "Simulates injection and syndrome recovery for a single-qubit Pauli error.",
+      "verify_all_single_qubit_errors_recovery": "Tests all 27 single-qubit Pauli errors (and identity) against Shor code recovery.",
+      "discrete_qft": "Constructs the discrete Quantum Fourier Transform unitary on m qubits (dimension 2^m).",
+      "discrete_phase_estimation": "Simulates discrete quantum phase estimation for an exact dyadic rational phase theta = k / 2^m.",
+      "verify_cyclotomic_dyadic_projection": "Verifies that all 2^m dyadic rational phases project deterministically with probability 1.0.",
+      "build_toric_code_2x2": "Constructs the Kitaev Toric Code on a 2x2 periodic square lattice.",
+      "verify_toric_homology_and_degeneracy": "Verifies H_1(T^2, Z_2) ~= Z_2 x Z_2 and 4-fold topological ground-state degeneracy.",
+      "evaluate_anyon_defect_algebra": "Evaluates the anyon defect sectors {1, e, m, epsilon} in Z_2 toric code.",
+      "simulate_anyon_braiding_phase": "Simulates the topological mutual braiding phase between electric charge (e) and magnetic vortex (m)",
+      "discrete_grover_step": "Simulates discrete Grover search via Householder reflections in Q(sqrt(N)).",
+      "grover_exact_trigonometric_orbit": "Computes exact algebraic Grover state amplitudes in Q(sqrt(N)):",
+      "verify_grover_n4_exact_one_step": "Verifies that for N=4, Grover search finds the target in exactly 1 step with probability 1.0.",
+      "compute_symplectic_group_order": "Computes the exact order of Sp(2n, F_2):",
+      "build_sp2_f2_generators_and_elements": "Generates the 6 elements of Sp(2, F_2) ~= S_3 via symplectic generators for H and S:",
+      "build_sp4_f2_generators_and_elements": "Generates Sp(4, F_2) ~= S_6 via symplectic transvections and 2-qubit Clifford operations.",
+      "verify_clifford_symplectic_isomorphism_n1": "Verifies that the Clifford quotients C_n / P_n have order matching Sp(2n, F_2) for n=1 and n=2.",
+      "evaluate_eastin_knill_obstruction": "Evaluates the Eastin-Knill transversal gate obstruction.",
+      "evaluate_finite_commutator_trace_obstruction": "Demonstrates the finite-dimensional commutator trace obstruction using exact integer arithmetic:",
+      "evaluate_discrete_weyl_commutation": "Evaluates the discrete Weyl commutation relation on Z/NZ:",
+      "stone_von_neumann_finite_cyclic_report": "Generates a structured report on the finite Stone-von Neumann obstruction and Weyl resolution in dimension N.",
+      "compute_richardson_weights": "Computes exact rational Richardson extrapolation weights for given discrete noise scales.",
+      "richardson_zero_noise_extrapolate": "Performs Richardson zero-noise extrapolation across measured expectation values.",
+      "simulate_mitigated_quantum_expectation": "Simulates polynomial noise amplification and Richardson zero-noise extrapolation.",
+      "build_cayley_graph_s3": "Constructs the Cayley graph Cay(S_3, S) with adjacent transpositions S = {(0, 1), (1, 2)}.",
+      "build_cayley_graph_s4": "Constructs the Cayley graph Cay(S_4, S) with Coxeter generators S = {(0, 1), (1, 2), (2, 3)}.",
+      "simulate_discrete_quantum_walk_cayley": "Simulates a discrete-time quantum walk on Cay(S_3) or Cay(S_4).",
+      "compute_cayley_distances_from_identity": "Computes shortest path graph distance from identity element (position 0) using BFS.",
+      "evaluate_ballistic_propagation": "Evaluates wavepacket spreading of the discrete quantum walk across time steps.",
+      "build_d3_mub_projectors": "Constructs the d+1 = 4 Mutually Unbiased Bases (MUBs) in dimension d=3.",
+      "reconstruct_state_from_mub_probabilities": "Reconstructs a d x d density matrix via exact linear inversion:",
+      "reconstruct_d3_state_from_mub_probabilities": "Reconstructs the 3x3 density matrix via the exact linear inversion formula:",
+      "simulate_mub_tomography": "Simulates discrete MUB state tomography with exact linear inversion on dimension d=3.",
+      "verify_mub_inversion_all_tested_states": "Verifies that MUB linear inversion holds with machine precision across all tested pure and mixed states.",
+      "build_d4_mub_projectors": "Constructs the maximal set of d + 1 = 5 MUBs in dimension d = 4 (2 qubits).",
+      "reconstruct_d4_state_from_mub_probabilities": "Reconstructs 4x4 density matrix rho via exact rational linear inversion from 5 MUBs in d=4.",
+      "simulate_d4_mub_tomography": "Simulates exact discrete state tomography on 2 qubits using 5 MUBs.",
+      "evaluate_d4_clifton_kent_deficit": "Evaluates the Clifton-Kent contextuality deficit across all 4^5 = 1,024 classical valuations on d=4 MUBs."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "ea99fa086247f6338d757087df017975e3b6c7ba9d4856784a5c72fbc0dbfb06",
+  "current_scoring": "e7fa53273a54e24044e965725cd6a028972d53533b58533c9ac0641f00167988",
+  "contract_history": [
+    {
+      "sha256": "ea99fa086247f6338d757087df017975e3b6c7ba9d4856784a5c72fbc0dbfb06",
+      "bytes": 7660,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/support/finite_qm/use_cases/advanced_targets.py",
+          "sha256": "03aca31fa66c39fa57750b748d991d8b47fdeefc0f7b30d911ae1a824ab9f83e"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:use_cases:advanced-targets:v1",
+        "role": "library",
+        "purpose": "Advanced Targets 13 through 22 for finite quantum mechanics. This module implements:",
+        "operations": {
+          "SymplecticGroupData": "Domain Value Object for binary symplectic group data.",
+          "BallisticWalkResult": "Domain Value Object for quantum walk wave-packet propagation.",
+          "MUBSystemData": "Domain Value Object for Mutually Unbiased Bases systems.",
+          "TomographyResult": "Domain Value Object for MUB state tomography inversion.",
+          "ExactRationalMatrix": "Exact 2D matrix over rational numbers (Fraction).",
+          "verify_target4_rational_cayley_so8": "Verifies rational Cayley transform flow over so(dim, Q) isometries across rational parameters.",
+          "verify_target5_pentagon_identity_q5": "Verifies the Biedenharn-Elliott pentagon associator identity in Q^5.",
+          "build_prime_p_phase_point_operators": "Constructs the p^2 discrete Gross phase-point operators on F_p x F_p for odd prime p.",
+          "evaluate_prime_p_discrete_wigner": "Evaluates the discrete Gross Wigner function for a given state in dimension p.",
+          "verify_gross_stabilizer_covariance": "Verifies Gross stabilizer covariance under Clifford generators (Fourier rotation and Phase shear).",
+          "build_shor_nine_qubit_code": "Constructs the Shor [[9, 1, 3]] quantum error-correcting code.",
+          "extract_shor_syndrome": "Computes the 8-bit syndrome (0 for commuting, 1 for anticommuting) for a Pauli string.",
+          "decode_and_recover_shor": "Decodes an 8-bit syndrome into the recovery Pauli operator on 9 qubits.",
+          "simulate_shor_error_recovery": "Simulates injection and syndrome recovery for a single-qubit Pauli error.",
+          "verify_all_single_qubit_errors_recovery": "Tests all 27 single-qubit Pauli errors (and identity) against Shor code recovery.",
+          "discrete_qft": "Constructs the discrete Quantum Fourier Transform unitary on m qubits (dimension 2^m).",
+          "discrete_phase_estimation": "Simulates discrete quantum phase estimation for an exact dyadic rational phase theta = k / 2^m.",
+          "verify_cyclotomic_dyadic_projection": "Verifies that all 2^m dyadic rational phases project deterministically with probability 1.0.",
+          "build_toric_code_2x2": "Constructs the Kitaev Toric Code on a 2x2 periodic square lattice.",
+          "verify_toric_homology_and_degeneracy": "Verifies H_1(T^2, Z_2) ~= Z_2 x Z_2 and 4-fold topological ground-state degeneracy.",
+          "evaluate_anyon_defect_algebra": "Evaluates the anyon defect sectors {1, e, m, epsilon} in Z_2 toric code.",
+          "simulate_anyon_braiding_phase": "Simulates the topological mutual braiding phase between electric charge (e) and magnetic vortex (m)",
+          "discrete_grover_step": "Simulates discrete Grover search via Householder reflections in Q(sqrt(N)).",
+          "grover_exact_trigonometric_orbit": "Computes exact algebraic Grover state amplitudes in Q(sqrt(N)):",
+          "verify_grover_n4_exact_one_step": "Verifies that for N=4, Grover search finds the target in exactly 1 step with probability 1.0.",
+          "compute_symplectic_group_order": "Computes the exact order of Sp(2n, F_2):",
+          "build_sp2_f2_generators_and_elements": "Generates the 6 elements of Sp(2, F_2) ~= S_3 via symplectic generators for H and S:",
+          "build_sp4_f2_generators_and_elements": "Generates Sp(4, F_2) ~= S_6 via symplectic transvections and 2-qubit Clifford operations.",
+          "verify_clifford_symplectic_isomorphism_n1": "Verifies that the Clifford quotients C_n / P_n have order matching Sp(2n, F_2) for n=1 and n=2.",
+          "evaluate_eastin_knill_obstruction": "Evaluates the Eastin-Knill transversal gate obstruction.",
+          "evaluate_finite_commutator_trace_obstruction": "Demonstrates the finite-dimensional commutator trace obstruction using exact integer arithmetic:",
+          "evaluate_discrete_weyl_commutation": "Evaluates the discrete Weyl commutation relation on Z/NZ:",
+          "stone_von_neumann_finite_cyclic_report": "Generates a structured report on the finite Stone-von Neumann obstruction and Weyl resolution in dimension N.",
+          "compute_richardson_weights": "Computes exact rational Richardson extrapolation weights for given discrete noise scales.",
+          "richardson_zero_noise_extrapolate": "Performs Richardson zero-noise extrapolation across measured expectation values.",
+          "simulate_mitigated_quantum_expectation": "Simulates polynomial noise amplification and Richardson zero-noise extrapolation.",
+          "build_cayley_graph_s3": "Constructs the Cayley graph Cay(S_3, S) with adjacent transpositions S = {(0, 1), (1, 2)}.",
+          "build_cayley_graph_s4": "Constructs the Cayley graph Cay(S_4, S) with Coxeter generators S = {(0, 1), (1, 2), (2, 3)}.",
+          "simulate_discrete_quantum_walk_cayley": "Simulates a discrete-time quantum walk on Cay(S_3) or Cay(S_4).",
+          "compute_cayley_distances_from_identity": "Computes shortest path graph distance from identity element (position 0) using BFS.",
+          "evaluate_ballistic_propagation": "Evaluates wavepacket spreading of the discrete quantum walk across time steps.",
+          "build_d3_mub_projectors": "Constructs the d+1 = 4 Mutually Unbiased Bases (MUBs) in dimension d=3.",
+          "reconstruct_state_from_mub_probabilities": "Reconstructs a d x d density matrix via exact linear inversion:",
+          "reconstruct_d3_state_from_mub_probabilities": "Reconstructs the 3x3 density matrix via the exact linear inversion formula:",
+          "simulate_mub_tomography": "Simulates discrete MUB state tomography with exact linear inversion on dimension d=3.",
+          "verify_mub_inversion_all_tested_states": "Verifies that MUB linear inversion holds with machine precision across all tested pure and mixed states.",
+          "build_d4_mub_projectors": "Constructs the maximal set of d + 1 = 5 MUBs in dimension d = 4 (2 qubits).",
+          "reconstruct_d4_state_from_mub_probabilities": "Reconstructs 4x4 density matrix rho via exact rational linear inversion from 5 MUBs in d=4.",
+          "simulate_d4_mub_tomography": "Simulates exact discrete state tomography on 2 qubits using 5 MUBs.",
+          "evaluate_d4_clifton_kent_deficit": "Evaluates the Clifton-Kent contextuality deficit across all 4^5 = 1,024 classical valuations on d=4 MUBs."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/support/finite_qm/use_cases/advanced_targets.py\",\n    \"sha256\": \"03aca31fa66c39fa57750b748d991d8b47fdeefc0f7b30d911ae1a824ab9f83e\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:use_cases:advanced-targets:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Advanced Targets 13 through 22 for finite quantum mechanics. This module implements:\",\n  \"operations\": {\n    \"SymplecticGroupData\": \"Domain Value Object for binary symplectic group data.\",\n    \"BallisticWalkResult\": \"Domain Value Object for quantum walk wave-packet propagation.\",\n    \"MUBSystemData\": \"Domain Value Object for Mutually Unbiased Bases systems.\",\n    \"TomographyResult\": \"Domain Value Object for MUB state tomography inversion.\",\n    \"ExactRationalMatrix\": \"Exact 2D matrix over rational numbers (Fraction).\",\n    \"verify_target4_rational_cayley_so8\": \"Verifies rational Cayley transform flow over so(dim, Q) isometries across rational parameters.\",\n    \"verify_target5_pentagon_identity_q5\": \"Verifies the Biedenharn-Elliott pentagon associator identity in Q^5.\",\n    \"build_prime_p_phase_point_operators\": \"Constructs the p^2 discrete Gross phase-point operators on F_p x F_p for odd prime p.\",\n    \"evaluate_prime_p_discrete_wigner\": \"Evaluates the discrete Gross Wigner function for a given state in dimension p.\",\n    \"verify_gross_stabilizer_covariance\": \"Verifies Gross stabilizer covariance under Clifford generators (Fourier rotation and Phase shear).\",\n    \"build_shor_nine_qubit_code\": \"Constructs the Shor [[9, 1, 3]] quantum error-correcting code.\",\n    \"extract_shor_syndrome\": \"Computes the 8-bit syndrome (0 for commuting, 1 for anticommuting) for a Pauli string.\",\n    \"decode_and_recover_shor\": \"Decodes an 8-bit syndrome into the recovery Pauli operator on 9 qubits.\",\n    \"simulate_shor_error_recovery\": \"Simulates injection and syndrome recovery for a single-qubit Pauli error.\",\n    \"verify_all_single_qubit_errors_recovery\": \"Tests all 27 single-qubit Pauli errors (and identity) against Shor code recovery.\",\n    \"discrete_qft\": \"Constructs the discrete Quantum Fourier Transform unitary on m qubits (dimension 2^m).\",\n    \"discrete_phase_estimation\": \"Simulates discrete quantum phase estimation for an exact dyadic rational phase theta = k / 2^m.\",\n    \"verify_cyclotomic_dyadic_projection\": \"Verifies that all 2^m dyadic rational phases project deterministically with probability 1.0.\",\n    \"build_toric_code_2x2\": \"Constructs the Kitaev Toric Code on a 2x2 periodic square lattice.\",\n    \"verify_toric_homology_and_degeneracy\": \"Verifies H_1(T^2, Z_2) ~= Z_2 x Z_2 and 4-fold topological ground-state degeneracy.\",\n    \"evaluate_anyon_defect_algebra\": \"Evaluates the anyon defect sectors {1, e, m, epsilon} in Z_2 toric code.\",\n    \"simulate_anyon_braiding_phase\": \"Simulates the topological mutual braiding phase between electric charge (e) and magnetic vortex (m)\",\n    \"discrete_grover_step\": \"Simulates discrete Grover search via Householder reflections in Q(sqrt(N)).\",\n    \"grover_exact_trigonometric_orbit\": \"Computes exact algebraic Grover state amplitudes in Q(sqrt(N)):\",\n    \"verify_grover_n4_exact_one_step\": \"Verifies that for N=4, Grover search finds the target in exactly 1 step with probability 1.0.\",\n    \"compute_symplectic_group_order\": \"Computes the exact order of Sp(2n, F_2):\",\n    \"build_sp2_f2_generators_and_elements\": \"Generates the 6 elements of Sp(2, F_2) ~= S_3 via symplectic generators for H and S:\",\n    \"build_sp4_f2_generators_and_elements\": \"Generates Sp(4, F_2) ~= S_6 via symplectic transvections and 2-qubit Clifford operations.\",\n    \"verify_clifford_symplectic_isomorphism_n1\": \"Verifies that the Clifford quotients C_n / P_n have order matching Sp(2n, F_2) for n=1 and n=2.\",\n    \"evaluate_eastin_knill_obstruction\": \"Evaluates the Eastin-Knill transversal gate obstruction.\",\n    \"evaluate_finite_commutator_trace_obstruction\": \"Demonstrates the finite-dimensional commutator trace obstruction using exact integer arithmetic:\",\n    \"evaluate_discrete_weyl_commutation\": \"Evaluates the discrete Weyl commutation relation on Z/NZ:\",\n    \"stone_von_neumann_finite_cyclic_report\": \"Generates a structured report on the finite Stone-von Neumann obstruction and Weyl resolution in dimension N.\",\n    \"compute_richardson_weights\": \"Computes exact rational Richardson extrapolation weights for given discrete noise scales.\",\n    \"richardson_zero_noise_extrapolate\": \"Performs Richardson zero-noise extrapolation across measured expectation values.\",\n    \"simulate_mitigated_quantum_expectation\": \"Simulates polynomial noise amplification and Richardson zero-noise extrapolation.\",\n    \"build_cayley_graph_s3\": \"Constructs the Cayley graph Cay(S_3, S) with adjacent transpositions S = {(0, 1), (1, 2)}.\",\n    \"build_cayley_graph_s4\": \"Constructs the Cayley graph Cay(S_4, S) with Coxeter generators S = {(0, 1), (1, 2), (2, 3)}.\",\n    \"simulate_discrete_quantum_walk_cayley\": \"Simulates a discrete-time quantum walk on Cay(S_3) or Cay(S_4).\",\n    \"compute_cayley_distances_from_identity\": \"Computes shortest path graph distance from identity element (position 0) using BFS.\",\n    \"evaluate_ballistic_propagation\": \"Evaluates wavepacket spreading of the discrete quantum walk across time steps.\",\n    \"build_d3_mub_projectors\": \"Constructs the d+1 = 4 Mutually Unbiased Bases (MUBs) in dimension d=3.\",\n    \"reconstruct_state_from_mub_probabilities\": \"Reconstructs a d x d density matrix via exact linear inversion:\",\n    \"reconstruct_d3_state_from_mub_probabilities\": \"Reconstructs the 3x3 density matrix via the exact linear inversion formula:\",\n    \"simulate_mub_tomography\": \"Simulates discrete MUB state tomography with exact linear inversion on dimension d=3.\",\n    \"verify_mub_inversion_all_tested_states\": \"Verifies that MUB linear inversion holds with machine precision across all tested pure and mixed states.\",\n    \"build_d4_mub_projectors\": \"Constructs the maximal set of d + 1 = 5 MUBs in dimension d = 4 (2 qubits).\",\n    \"reconstruct_d4_state_from_mub_probabilities\": \"Reconstructs 4x4 density matrix rho via exact rational linear inversion from 5 MUBs in d=4.\",\n    \"simulate_d4_mub_tomography\": \"Simulates exact discrete state tomography on 2 qubits using 5 MUBs.\",\n    \"evaluate_d4_clifton_kent_deficit\": \"Evaluates the Clifton-Kent contextuality deficit across all 4^5 = 1,024 classical valuations on d=4 MUBs.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/support/finite_qm/use_cases/advanced_targets.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "e7fa53273a54e24044e965725cd6a028972d53533b58533c9ac0641f00167988",
+      "bytes": 2240,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/support/finite_qm/use_cases/advanced_targets.py",
+          "sha256": "03aca31fa66c39fa57750b748d991d8b47fdeefc0f7b30d911ae1a824ab9f83e"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:use_cases:advanced-targets:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 24), Lizard CCN (max 24), and shallow nesting depth (max 7 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 24,
+          "lizard_ccn": 24,
+          "weighted_control_upper_bound": 53,
+          "control_nesting": 7
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/support/finite_qm/use_cases/advanced_targets.py\",\n    \"sha256\": \"03aca31fa66c39fa57750b748d991d8b47fdeefc0f7b30d911ae1a824ab9f83e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:use_cases:advanced-targets:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 24), Lizard CCN (max 24), and shallow nesting depth (max 7 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 24,\n    \"lizard_ccn\": 24,\n    \"weighted_control_upper_bound\": 53,\n    \"control_nesting\": 7\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/support/finite_qm/use_cases/advanced_targets.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

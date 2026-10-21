@@ -1,0 +1,146 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/fsp/unit/test_exact_thermal_oracle.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/fsp/unit/test_exact_thermal_oracle.py",
+      "sha256": "7b858fa6e4f771c60ea10600b4ca4ee69511d879eb4bcf4ac1cb4737f042186b"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:unit:test-exact-thermal-oracle:v1",
+    "role": "test checker",
+    "purpose": "Unit Tests: Exact Spectral Thermal Oracle, Trotter Discretization Bounds, and Free Triangle Benchmark. Tests:",
+    "operations": {
+      "test_exact_thermal_trace_positivity": "Validates that exact spectral trace Z_exact = Tr(e^(-beta * H)) is strictly positive.",
+      "test_euler_trotter_discretization_and_contraction_radius": "Validates that Euler transfer T = I - dtau * H has a finite contraction radius,",
+      "test_coarse_euler_negative_partition_counterexample": "Reproduces the adversarial counterexample: for H with positive eigenvalue lambda=2,",
+      "test_free_triangle_analytics_and_polynomial_solvability": "Validates that the 3-site spinless free fermion triangle (U=0, 2 spin-up fermions)",
+      "test_repeated_database_indexing_without_key_collision": "Validates that indexing multiple models on the same HamiltonianGinBridge instance",
+      "test_missing_model_refusal": "Validates that auditing a missing model yields EmptyEnsembleRefusal.",
+      "test_approximate_pair_defect_refusal": "Validates that an approximate pair with defect 5e-11 is NOT labeled as exact cancellation,",
+      "test_input_bounds_validation": "Validates that input validators reject invalid parameters."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "8a066724b678ce7b4857bdca7f730bcb628aa49608b7c365f170aefac51177e8",
+  "current_scoring": "8a68c030127b22348fa931b17cfb714ec386a6784e6e782d99029d4437256fd8",
+  "contract_history": [
+    {
+      "sha256": "8a066724b678ce7b4857bdca7f730bcb628aa49608b7c365f170aefac51177e8",
+      "bytes": 2717,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/unit/test_exact_thermal_oracle.py",
+          "sha256": "7b858fa6e4f771c60ea10600b4ca4ee69511d879eb4bcf4ac1cb4737f042186b"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:unit:test-exact-thermal-oracle:v1",
+        "role": "test checker",
+        "purpose": "Unit Tests: Exact Spectral Thermal Oracle, Trotter Discretization Bounds, and Free Triangle Benchmark. Tests:",
+        "operations": {
+          "test_exact_thermal_trace_positivity": "Validates that exact spectral trace Z_exact = Tr(e^(-beta * H)) is strictly positive.",
+          "test_euler_trotter_discretization_and_contraction_radius": "Validates that Euler transfer T = I - dtau * H has a finite contraction radius,",
+          "test_coarse_euler_negative_partition_counterexample": "Reproduces the adversarial counterexample: for H with positive eigenvalue lambda=2,",
+          "test_free_triangle_analytics_and_polynomial_solvability": "Validates that the 3-site spinless free fermion triangle (U=0, 2 spin-up fermions)",
+          "test_repeated_database_indexing_without_key_collision": "Validates that indexing multiple models on the same HamiltonianGinBridge instance",
+          "test_missing_model_refusal": "Validates that auditing a missing model yields EmptyEnsembleRefusal.",
+          "test_approximate_pair_defect_refusal": "Validates that an approximate pair with defect 5e-11 is NOT labeled as exact cancellation,",
+          "test_input_bounds_validation": "Validates that input validators reject invalid parameters."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/unit/test_exact_thermal_oracle.py\",\n    \"sha256\": \"7b858fa6e4f771c60ea10600b4ca4ee69511d879eb4bcf4ac1cb4737f042186b\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:unit:test-exact-thermal-oracle:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Unit Tests: Exact Spectral Thermal Oracle, Trotter Discretization Bounds, and Free Triangle Benchmark. Tests:\",\n  \"operations\": {\n    \"test_exact_thermal_trace_positivity\": \"Validates that exact spectral trace Z_exact = Tr(e^(-beta * H)) is strictly positive.\",\n    \"test_euler_trotter_discretization_and_contraction_radius\": \"Validates that Euler transfer T = I - dtau * H has a finite contraction radius,\",\n    \"test_coarse_euler_negative_partition_counterexample\": \"Reproduces the adversarial counterexample: for H with positive eigenvalue lambda=2,\",\n    \"test_free_triangle_analytics_and_polynomial_solvability\": \"Validates that the 3-site spinless free fermion triangle (U=0, 2 spin-up fermions)\",\n    \"test_repeated_database_indexing_without_key_collision\": \"Validates that indexing multiple models on the same HamiltonianGinBridge instance\",\n    \"test_missing_model_refusal\": \"Validates that auditing a missing model yields EmptyEnsembleRefusal.\",\n    \"test_approximate_pair_defect_refusal\": \"Validates that an approximate pair with defect 5e-11 is NOT labeled as exact cancellation,\",\n    \"test_input_bounds_validation\": \"Validates that input validators reject invalid parameters.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/unit/test_exact_thermal_oracle.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8a68c030127b22348fa931b17cfb714ec386a6784e6e782d99029d4437256fd8",
+      "bytes": 2203,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/unit/test_exact_thermal_oracle.py",
+          "sha256": "7b858fa6e4f771c60ea10600b4ca4ee69511d879eb4bcf4ac1cb4737f042186b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:unit:test-exact-thermal-oracle:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 3), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 3,
+          "weighted_control_upper_bound": 11,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/unit/test_exact_thermal_oracle.py\",\n    \"sha256\": \"7b858fa6e4f771c60ea10600b4ca4ee69511d879eb4bcf4ac1cb4737f042186b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:unit:test-exact-thermal-oracle:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 3), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 3,\n    \"weighted_control_upper_bound\": 11,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/unit/test_exact_thermal_oracle.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

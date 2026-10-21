@@ -1,0 +1,182 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/unit/test_functional_domain_worker_wave_b.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/unit/test_functional_domain_worker_wave_b.py",
+      "sha256": "abf6a41cf1c2d394aac12fc5bdc1dc38239cc624a5c91eb3d6b5001816f274b2"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:unit:test-functional-domain-worker-wave-b:v1",
+    "role": "test checker",
+    "purpose": "Wave B: FunctionalDomainWorker PROTO_LIVE demos (path-scoped).",
+    "operations": {
+      "test_functional_worker_contract": "Function test_functional_worker_contract operation.",
+      "test_residual_l1_task": "Function test_residual_l1_task operation.",
+      "test_residual_l1_zero_solved": "Function test_residual_l1_zero_solved operation.",
+      "test_residual_l1_refuses_nan": "Function test_residual_l1_refuses_nan operation.",
+      "test_residual_l1_refuses_inf_and_bad_tol": "Function test_residual_l1_refuses_inf_and_bad_tol operation.",
+      "test_gamma2_closed": "Function test_gamma2_closed operation.",
+      "test_gamma2_open": "Function test_gamma2_open operation.",
+      "test_gamma2_indeterminate_not_solved": "0 < Gamma2 <= tol must be INDETERMINATE, never SOLVED.",
+      "test_gamma2_negative_dims_refused": "rows*cols can match data length with negatives; must REFUSE before reshape.",
+      "test_gamma2_rows_inf_refused": "Function test_gamma2_rows_inf_refused operation.",
+      "test_gamma2_fractional_dims_refused": "Function test_gamma2_fractional_dims_refused operation.",
+      "test_incidence_residual_exact_repair": "omega1 - d0 alpha = 0 when omega1 is exact coboundary.",
+      "test_incidence_residual_obstructed": "Function test_incidence_residual_obstructed operation.",
+      "test_incidence_omega1_empty_refused": "Function test_incidence_omega1_empty_refused operation.",
+      "test_incidence_omega1_length_mismatch_refused": "Function test_incidence_omega1_length_mismatch_refused operation.",
+      "test_incidence_alpha_length_mismatch_refused": "Function test_incidence_alpha_length_mismatch_refused operation.",
+      "test_incidence_alpha_omega1_either_side_mismatch_refused": "Function test_incidence_alpha_omega1_either_side_mismatch_refused operation.",
+      "test_incidence_omega1_only_valid_computes": "Function test_incidence_omega1_only_valid_computes operation.",
+      "test_incidence_n_nodes_inf_refused": "Function test_incidence_n_nodes_inf_refused operation.",
+      "test_incidence_edge_endpoint_inf_refused": "Function test_incidence_edge_endpoint_inf_refused operation.",
+      "test_incidence_fractional_n_nodes_refused": "Must not truncate 3.9 -> 3 and invent a different carrier.",
+      "test_domain_worker_hash_rejects_nan": "Function test_domain_worker_hash_rejects_nan operation.",
+      "test_unsupported_task_refused": "Function test_unsupported_task_refused operation.",
+      "test_worker_source_forbids_stub_mirror_imports": "Function test_worker_source_forbids_stub_mirror_imports operation.",
+      "test_linear_algebra_worker_still_avoids_stub_gram_schmidt": "Function test_linear_algebra_worker_still_avoids_stub_gram_schmidt operation.",
+      "test_epic_002_tombstone_exists": "Function test_epic_002_tombstone_exists operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "5bff2f527665977b28962bccd0e451c0ef3d24af50a7679ada2c24930dcdad94",
+  "current_scoring": "696a9e723562f65c9213526577a44fb7f7f730ec470dee4200d1bb037bbda619",
+  "contract_history": [
+    {
+      "sha256": "5bff2f527665977b28962bccd0e451c0ef3d24af50a7679ada2c24930dcdad94",
+      "bytes": 4320,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_functional_domain_worker_wave_b.py",
+          "sha256": "abf6a41cf1c2d394aac12fc5bdc1dc38239cc624a5c91eb3d6b5001816f274b2"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:unit:test-functional-domain-worker-wave-b:v1",
+        "role": "test checker",
+        "purpose": "Wave B: FunctionalDomainWorker PROTO_LIVE demos (path-scoped).",
+        "operations": {
+          "test_functional_worker_contract": "Function test_functional_worker_contract operation.",
+          "test_residual_l1_task": "Function test_residual_l1_task operation.",
+          "test_residual_l1_zero_solved": "Function test_residual_l1_zero_solved operation.",
+          "test_residual_l1_refuses_nan": "Function test_residual_l1_refuses_nan operation.",
+          "test_residual_l1_refuses_inf_and_bad_tol": "Function test_residual_l1_refuses_inf_and_bad_tol operation.",
+          "test_gamma2_closed": "Function test_gamma2_closed operation.",
+          "test_gamma2_open": "Function test_gamma2_open operation.",
+          "test_gamma2_indeterminate_not_solved": "0 < Gamma2 <= tol must be INDETERMINATE, never SOLVED.",
+          "test_gamma2_negative_dims_refused": "rows*cols can match data length with negatives; must REFUSE before reshape.",
+          "test_gamma2_rows_inf_refused": "Function test_gamma2_rows_inf_refused operation.",
+          "test_gamma2_fractional_dims_refused": "Function test_gamma2_fractional_dims_refused operation.",
+          "test_incidence_residual_exact_repair": "omega1 - d0 alpha = 0 when omega1 is exact coboundary.",
+          "test_incidence_residual_obstructed": "Function test_incidence_residual_obstructed operation.",
+          "test_incidence_omega1_empty_refused": "Function test_incidence_omega1_empty_refused operation.",
+          "test_incidence_omega1_length_mismatch_refused": "Function test_incidence_omega1_length_mismatch_refused operation.",
+          "test_incidence_alpha_length_mismatch_refused": "Function test_incidence_alpha_length_mismatch_refused operation.",
+          "test_incidence_alpha_omega1_either_side_mismatch_refused": "Function test_incidence_alpha_omega1_either_side_mismatch_refused operation.",
+          "test_incidence_omega1_only_valid_computes": "Function test_incidence_omega1_only_valid_computes operation.",
+          "test_incidence_n_nodes_inf_refused": "Function test_incidence_n_nodes_inf_refused operation.",
+          "test_incidence_edge_endpoint_inf_refused": "Function test_incidence_edge_endpoint_inf_refused operation.",
+          "test_incidence_fractional_n_nodes_refused": "Must not truncate 3.9 -> 3 and invent a different carrier.",
+          "test_domain_worker_hash_rejects_nan": "Function test_domain_worker_hash_rejects_nan operation.",
+          "test_unsupported_task_refused": "Function test_unsupported_task_refused operation.",
+          "test_worker_source_forbids_stub_mirror_imports": "Function test_worker_source_forbids_stub_mirror_imports operation.",
+          "test_linear_algebra_worker_still_avoids_stub_gram_schmidt": "Function test_linear_algebra_worker_still_avoids_stub_gram_schmidt operation.",
+          "test_epic_002_tombstone_exists": "Function test_epic_002_tombstone_exists operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_functional_domain_worker_wave_b.py\",\n    \"sha256\": \"abf6a41cf1c2d394aac12fc5bdc1dc38239cc624a5c91eb3d6b5001816f274b2\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:unit:test-functional-domain-worker-wave-b:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Wave B: FunctionalDomainWorker PROTO_LIVE demos (path-scoped).\",\n  \"operations\": {\n    \"test_functional_worker_contract\": \"Function test_functional_worker_contract operation.\",\n    \"test_residual_l1_task\": \"Function test_residual_l1_task operation.\",\n    \"test_residual_l1_zero_solved\": \"Function test_residual_l1_zero_solved operation.\",\n    \"test_residual_l1_refuses_nan\": \"Function test_residual_l1_refuses_nan operation.\",\n    \"test_residual_l1_refuses_inf_and_bad_tol\": \"Function test_residual_l1_refuses_inf_and_bad_tol operation.\",\n    \"test_gamma2_closed\": \"Function test_gamma2_closed operation.\",\n    \"test_gamma2_open\": \"Function test_gamma2_open operation.\",\n    \"test_gamma2_indeterminate_not_solved\": \"0 < Gamma2 <= tol must be INDETERMINATE, never SOLVED.\",\n    \"test_gamma2_negative_dims_refused\": \"rows*cols can match data length with negatives; must REFUSE before reshape.\",\n    \"test_gamma2_rows_inf_refused\": \"Function test_gamma2_rows_inf_refused operation.\",\n    \"test_gamma2_fractional_dims_refused\": \"Function test_gamma2_fractional_dims_refused operation.\",\n    \"test_incidence_residual_exact_repair\": \"omega1 - d0 alpha = 0 when omega1 is exact coboundary.\",\n    \"test_incidence_residual_obstructed\": \"Function test_incidence_residual_obstructed operation.\",\n    \"test_incidence_omega1_empty_refused\": \"Function test_incidence_omega1_empty_refused operation.\",\n    \"test_incidence_omega1_length_mismatch_refused\": \"Function test_incidence_omega1_length_mismatch_refused operation.\",\n    \"test_incidence_alpha_length_mismatch_refused\": \"Function test_incidence_alpha_length_mismatch_refused operation.\",\n    \"test_incidence_alpha_omega1_either_side_mismatch_refused\": \"Function test_incidence_alpha_omega1_either_side_mismatch_refused operation.\",\n    \"test_incidence_omega1_only_valid_computes\": \"Function test_incidence_omega1_only_valid_computes operation.\",\n    \"test_incidence_n_nodes_inf_refused\": \"Function test_incidence_n_nodes_inf_refused operation.\",\n    \"test_incidence_edge_endpoint_inf_refused\": \"Function test_incidence_edge_endpoint_inf_refused operation.\",\n    \"test_incidence_fractional_n_nodes_refused\": \"Must not truncate 3.9 -> 3 and invent a different carrier.\",\n    \"test_domain_worker_hash_rejects_nan\": \"Function test_domain_worker_hash_rejects_nan operation.\",\n    \"test_unsupported_task_refused\": \"Function test_unsupported_task_refused operation.\",\n    \"test_worker_source_forbids_stub_mirror_imports\": \"Function test_worker_source_forbids_stub_mirror_imports operation.\",\n    \"test_linear_algebra_worker_still_avoids_stub_gram_schmidt\": \"Function test_linear_algebra_worker_still_avoids_stub_gram_schmidt operation.\",\n    \"test_epic_002_tombstone_exists\": \"Function test_epic_002_tombstone_exists operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_functional_domain_worker_wave_b.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "696a9e723562f65c9213526577a44fb7f7f730ec470dee4200d1bb037bbda619",
+      "bytes": 2238,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_functional_domain_worker_wave_b.py",
+          "sha256": "abf6a41cf1c2d394aac12fc5bdc1dc38239cc624a5c91eb3d6b5001816f274b2"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:unit:test-functional-domain-worker-wave-b:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 12), Lizard CCN (max 10), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 12,
+          "lizard_ccn": 10,
+          "weighted_control_upper_bound": 15,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_functional_domain_worker_wave_b.py\",\n    \"sha256\": \"abf6a41cf1c2d394aac12fc5bdc1dc38239cc624a5c91eb3d6b5001816f274b2\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:unit:test-functional-domain-worker-wave-b:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 12), Lizard CCN (max 10), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 12,\n    \"lizard_ccn\": 10,\n    \"weighted_control_upper_bound\": 15,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_functional_domain_worker_wave_b.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

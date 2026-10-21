@@ -219,7 +219,8 @@ class MockFermionGinIndex:
         c = self.conn.cursor()
         c.execute("SELECT * FROM ViewAverageSignRecoveryAudit WHERE model_name = ?;", (model_name,))
         row = c.fetchone()
-        assert row is not None, f"Model {model_name} not found"
+        if row is None:
+            raise ValueError(f"Model {model_name} not found")
 
         return InvolutionCancellationReceipt(
             model_name=row["model_name"],

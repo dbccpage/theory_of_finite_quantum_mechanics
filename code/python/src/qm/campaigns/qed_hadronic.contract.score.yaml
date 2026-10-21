@@ -1,0 +1,228 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/campaigns/qed_hadronic.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/campaigns/qed_hadronic.py",
+      "sha256": "2ee9f6ce0364d1e0744228f9ffa5251f85e8372dcfc2f9512195c008e1f2e11e"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:campaigns:qed-hadronic:v1",
+    "role": "library",
+    "purpose": "QM-226, QM-227, QM-228: tree-level QED scattering ratios over Q, weak charged currents with exact chiral projectors, the muon-decay Fermi constant as a rational",
+    "operations": {
+      "QedWeakHadronicRefusal": "Typed refusal for inputs outside the declared rational domain.",
+      "atanh_series_interval": "Enclose atanh(z) = sum_{k>=0} z^(2k+1) / (2k+1) for 0 <= z < 1 in Q.",
+      "ln_interval": "Enclose ln(r) for a positive rational r in Q.",
+      "sqrt_interval": "Enclose sqrt over a non-negative rational interval with exact endpoints.",
+      "qi_norm_sq": "|z|^2 = re^2 + im^2.",
+      "qi_inverse": "1 / z = conj(z) / |z|^2; refuses z = 0.",
+      "qi_times": "Entrywise c * a for a Gaussian-rational scalar c (the shared ``qi_scale`` takes a rational).",
+      "qi_vec_is_zero": "Function qi_vec_is_zero operation.",
+      "qi_diag": "Function qi_diag operation.",
+      "qi_mat3_inverse": "Exact inverse of a 3x3 matrix over Q(i) by the adjugate formula.",
+      "klein_nishina_frequency_ratio": "eta(x, u) = 1 / (1 + x (1 - u)): scattered-to-incident photon frequency ratio.",
+      "klein_nishina_ratio": "R_KN(x, u) = (1/2) eta^2 (eta + 1/eta - (1 - u^2)), the Klein-Nishina",
+      "thomson_limit_ratio": "R_KN(0, u) = (1 + u^2) / 2.",
+      "thomson_angular_integral": "Exact integral of (3/8)(1 + u^2) over u in [-1, 1] via the antiderivative",
+      "bhabha_reduced_amplitude": "Massless tree-level Bhabha e+ e- -> e+ e- reduced squared amplitude ratio.",
+      "moller_reduced_amplitude": "Massless tree-level Moller e- e- -> e- e- reduced squared amplitude ratio.",
+      "QedTreeLevelAudit": "QM-226 audit record: computed Compton, Thomson, Bhabha and Moller values over Q.",
+      "build_qed_tree_level_audit": "Function build_qed_tree_level_audit operation.",
+      "dirac_to_weyl_blocks": "V = [[I, -I], [I, I]] and V^T with V V^T = 2 I.  V / sqrt(2) is orthogonal; its two",
+      "dirac_gammas_weyl": "gamma_W = (1/2) V gamma_D V^T from the Dirac-basis ``dirac_gamma_matrices()``:",
+      "clifford_anticommutator": "gamma^mu gamma^nu + gamma^nu gamma^mu.",
+      "gamma5": "gamma_5 = i gamma^0 gamma^1 gamma^2 gamma^3.",
+      "chiral_projectors": "P_L = (I - gamma_5) / 2 and P_R = (I + gamma_5) / 2.",
+      "chiral_test_spinor": "The fixed spinor used for the V-A current check.",
+      "ChiralProjectorAudit": "QM-227 (a) audit record: the Weyl gammas, gamma_5 and the V-A projectors.",
+      "build_chiral_projector_audit": "Function build_chiral_projector_audit operation.",
+      "MuonDecayInputs": "Declared rational inputs (CODATA 2018 electron mass and constants, PDG muon mass and lifetime).",
+      "muon_recoil_polynomial": "f_0(x) = 1 - 8x + 8x^3 - x^4, the polynomial part of the muon phase-space factor.",
+      "MuonDecayFermiConstantAudit": "QM-227 (b) audit record: f(x) and G_F / (hbar c)^3 as rational enclosures.",
+      "build_muon_decay_audit": "Function build_muon_decay_audit operation.",
+      "ckm_skew_hermitian_generator": "Skew-Hermitian generator tuned so that V = (I - A)(I + A)^(-1) sits near the",
+      "cayley_transform": "V = (I - A)(I + A)^(-1) over Q(i); unitary whenever A is skew-Hermitian.",
+      "jarlskog_invariant": "J = Im(V_{a c} V_{b d} V_{a d}^* V_{b c}^*) for row pair (a, b) and column pair (c, d).",
+      "ckm_db_triangle": "Unitarity-triangle sides z_k = V_{k d} V_{k b}^* for k in {u, c, t}.",
+      "CkmUnitarityAudit": "QM-227 (c) audit record: the generator, the Cayley transform and its Jarlskog invariant.",
+      "build_ckm_unitarity_audit": "Function build_ckm_unitarity_audit operation.",
+      "PionDecayInputs": "Declared rational inputs: PDG pi^0 mass, f_pi(130) = 130.2 +- 0.8 MeV (so f_pi^2 = f(130)^2 / 2),",
+      "abj_colour_factor": "S_pi0(N_c) = N_c (Q_u^2 - Q_d^2) with Q_u = 2/3 and Q_d = -1/3.",
+      "pion_two_photon_rate_ev": "Gamma(pi^0 -> gamma gamma) in eV: alpha^2 m_pi^3 S^2 / (64 pi^3 f_pi^2), as an enclosure.",
+      "AbjAnomalyAudit": "QM-228 (a) audit record: triangle colour factors and the pi^0 rate enclosures.",
+      "build_abj_anomaly_audit": "Function build_abj_anomaly_audit operation.",
+      "su3_mass_coefficients": "M = M_0 + M_1 Y + M_2 (I (I + 1) - Y^2 / 4) is linear in (M_0, M_1, M_2); its",
+      "gmo_octet_relation_coefficients": "Coefficients of 2 (M_N + M_Xi) - (3 M_Lambda + M_Sigma) in (M_0, M_1, M_2).  All three",
+      "gmo_decuplet_second_differences": "Second differences of the decuplet coefficient vectors along Y = 1, 0, -1, -2 with",
+      "BaryonMassInputs": "PDG isospin-averaged octet and decuplet masses in MeV (exact integer-ratio rationals).",
+      "GellMannOkuboAudit": "QM-228 (b) audit record.  The identities are exact coefficient vectors; the PDG",
+      "build_gell_mann_okubo_audit": "Function build_gell_mann_okubo_audit operation.",
+      "QedWeakHadronicControlReport": "Combined QM-226 / QM-227 / QM-228 control report over Q and Q(i).",
+      "evaluate_qed_weak_hadronic_control": "Function evaluate_qed_weak_hadronic_control operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "18b1c603b274b610aa587df4f5fc2866dbdec402e7d7a2b2a225700b6c308c89",
+  "current_scoring": "eed6adeeab78207d98a226a5a6eaf9af30870667df7baa17fa8eca510b0e2882",
+  "contract_history": [
+    {
+      "sha256": "18b1c603b274b610aa587df4f5fc2866dbdec402e7d7a2b2a225700b6c308c89",
+      "bytes": 6432,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/qed_hadronic.py",
+          "sha256": "2ee9f6ce0364d1e0744228f9ffa5251f85e8372dcfc2f9512195c008e1f2e11e"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:qed-hadronic:v1",
+        "role": "library",
+        "purpose": "QM-226, QM-227, QM-228: tree-level QED scattering ratios over Q, weak charged currents with exact chiral projectors, the muon-decay Fermi constant as a rational",
+        "operations": {
+          "QedWeakHadronicRefusal": "Typed refusal for inputs outside the declared rational domain.",
+          "atanh_series_interval": "Enclose atanh(z) = sum_{k>=0} z^(2k+1) / (2k+1) for 0 <= z < 1 in Q.",
+          "ln_interval": "Enclose ln(r) for a positive rational r in Q.",
+          "sqrt_interval": "Enclose sqrt over a non-negative rational interval with exact endpoints.",
+          "qi_norm_sq": "|z|^2 = re^2 + im^2.",
+          "qi_inverse": "1 / z = conj(z) / |z|^2; refuses z = 0.",
+          "qi_times": "Entrywise c * a for a Gaussian-rational scalar c (the shared ``qi_scale`` takes a rational).",
+          "qi_vec_is_zero": "Function qi_vec_is_zero operation.",
+          "qi_diag": "Function qi_diag operation.",
+          "qi_mat3_inverse": "Exact inverse of a 3x3 matrix over Q(i) by the adjugate formula.",
+          "klein_nishina_frequency_ratio": "eta(x, u) = 1 / (1 + x (1 - u)): scattered-to-incident photon frequency ratio.",
+          "klein_nishina_ratio": "R_KN(x, u) = (1/2) eta^2 (eta + 1/eta - (1 - u^2)), the Klein-Nishina",
+          "thomson_limit_ratio": "R_KN(0, u) = (1 + u^2) / 2.",
+          "thomson_angular_integral": "Exact integral of (3/8)(1 + u^2) over u in [-1, 1] via the antiderivative",
+          "bhabha_reduced_amplitude": "Massless tree-level Bhabha e+ e- -> e+ e- reduced squared amplitude ratio.",
+          "moller_reduced_amplitude": "Massless tree-level Moller e- e- -> e- e- reduced squared amplitude ratio.",
+          "QedTreeLevelAudit": "QM-226 audit record: computed Compton, Thomson, Bhabha and Moller values over Q.",
+          "build_qed_tree_level_audit": "Function build_qed_tree_level_audit operation.",
+          "dirac_to_weyl_blocks": "V = [[I, -I], [I, I]] and V^T with V V^T = 2 I.  V / sqrt(2) is orthogonal; its two",
+          "dirac_gammas_weyl": "gamma_W = (1/2) V gamma_D V^T from the Dirac-basis ``dirac_gamma_matrices()``:",
+          "clifford_anticommutator": "gamma^mu gamma^nu + gamma^nu gamma^mu.",
+          "gamma5": "gamma_5 = i gamma^0 gamma^1 gamma^2 gamma^3.",
+          "chiral_projectors": "P_L = (I - gamma_5) / 2 and P_R = (I + gamma_5) / 2.",
+          "chiral_test_spinor": "The fixed spinor used for the V-A current check.",
+          "ChiralProjectorAudit": "QM-227 (a) audit record: the Weyl gammas, gamma_5 and the V-A projectors.",
+          "build_chiral_projector_audit": "Function build_chiral_projector_audit operation.",
+          "MuonDecayInputs": "Declared rational inputs (CODATA 2018 electron mass and constants, PDG muon mass and lifetime).",
+          "muon_recoil_polynomial": "f_0(x) = 1 - 8x + 8x^3 - x^4, the polynomial part of the muon phase-space factor.",
+          "MuonDecayFermiConstantAudit": "QM-227 (b) audit record: f(x) and G_F / (hbar c)^3 as rational enclosures.",
+          "build_muon_decay_audit": "Function build_muon_decay_audit operation.",
+          "ckm_skew_hermitian_generator": "Skew-Hermitian generator tuned so that V = (I - A)(I + A)^(-1) sits near the",
+          "cayley_transform": "V = (I - A)(I + A)^(-1) over Q(i); unitary whenever A is skew-Hermitian.",
+          "jarlskog_invariant": "J = Im(V_{a c} V_{b d} V_{a d}^* V_{b c}^*) for row pair (a, b) and column pair (c, d).",
+          "ckm_db_triangle": "Unitarity-triangle sides z_k = V_{k d} V_{k b}^* for k in {u, c, t}.",
+          "CkmUnitarityAudit": "QM-227 (c) audit record: the generator, the Cayley transform and its Jarlskog invariant.",
+          "build_ckm_unitarity_audit": "Function build_ckm_unitarity_audit operation.",
+          "PionDecayInputs": "Declared rational inputs: PDG pi^0 mass, f_pi(130) = 130.2 +- 0.8 MeV (so f_pi^2 = f(130)^2 / 2),",
+          "abj_colour_factor": "S_pi0(N_c) = N_c (Q_u^2 - Q_d^2) with Q_u = 2/3 and Q_d = -1/3.",
+          "pion_two_photon_rate_ev": "Gamma(pi^0 -> gamma gamma) in eV: alpha^2 m_pi^3 S^2 / (64 pi^3 f_pi^2), as an enclosure.",
+          "AbjAnomalyAudit": "QM-228 (a) audit record: triangle colour factors and the pi^0 rate enclosures.",
+          "build_abj_anomaly_audit": "Function build_abj_anomaly_audit operation.",
+          "su3_mass_coefficients": "M = M_0 + M_1 Y + M_2 (I (I + 1) - Y^2 / 4) is linear in (M_0, M_1, M_2); its",
+          "gmo_octet_relation_coefficients": "Coefficients of 2 (M_N + M_Xi) - (3 M_Lambda + M_Sigma) in (M_0, M_1, M_2).  All three",
+          "gmo_decuplet_second_differences": "Second differences of the decuplet coefficient vectors along Y = 1, 0, -1, -2 with",
+          "BaryonMassInputs": "PDG isospin-averaged octet and decuplet masses in MeV (exact integer-ratio rationals).",
+          "GellMannOkuboAudit": "QM-228 (b) audit record.  The identities are exact coefficient vectors; the PDG",
+          "build_gell_mann_okubo_audit": "Function build_gell_mann_okubo_audit operation.",
+          "QedWeakHadronicControlReport": "Combined QM-226 / QM-227 / QM-228 control report over Q and Q(i).",
+          "evaluate_qed_weak_hadronic_control": "Function evaluate_qed_weak_hadronic_control operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/qed_hadronic.py\",\n    \"sha256\": \"2ee9f6ce0364d1e0744228f9ffa5251f85e8372dcfc2f9512195c008e1f2e11e\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:qed-hadronic:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"QM-226, QM-227, QM-228: tree-level QED scattering ratios over Q, weak charged currents with exact chiral projectors, the muon-decay Fermi constant as a rational\",\n  \"operations\": {\n    \"QedWeakHadronicRefusal\": \"Typed refusal for inputs outside the declared rational domain.\",\n    \"atanh_series_interval\": \"Enclose atanh(z) = sum_{k>=0} z^(2k+1) / (2k+1) for 0 <= z < 1 in Q.\",\n    \"ln_interval\": \"Enclose ln(r) for a positive rational r in Q.\",\n    \"sqrt_interval\": \"Enclose sqrt over a non-negative rational interval with exact endpoints.\",\n    \"qi_norm_sq\": \"|z|^2 = re^2 + im^2.\",\n    \"qi_inverse\": \"1 / z = conj(z) / |z|^2; refuses z = 0.\",\n    \"qi_times\": \"Entrywise c * a for a Gaussian-rational scalar c (the shared ``qi_scale`` takes a rational).\",\n    \"qi_vec_is_zero\": \"Function qi_vec_is_zero operation.\",\n    \"qi_diag\": \"Function qi_diag operation.\",\n    \"qi_mat3_inverse\": \"Exact inverse of a 3x3 matrix over Q(i) by the adjugate formula.\",\n    \"klein_nishina_frequency_ratio\": \"eta(x, u) = 1 / (1 + x (1 - u)): scattered-to-incident photon frequency ratio.\",\n    \"klein_nishina_ratio\": \"R_KN(x, u) = (1/2) eta^2 (eta + 1/eta - (1 - u^2)), the Klein-Nishina\",\n    \"thomson_limit_ratio\": \"R_KN(0, u) = (1 + u^2) / 2.\",\n    \"thomson_angular_integral\": \"Exact integral of (3/8)(1 + u^2) over u in [-1, 1] via the antiderivative\",\n    \"bhabha_reduced_amplitude\": \"Massless tree-level Bhabha e+ e- -> e+ e- reduced squared amplitude ratio.\",\n    \"moller_reduced_amplitude\": \"Massless tree-level Moller e- e- -> e- e- reduced squared amplitude ratio.\",\n    \"QedTreeLevelAudit\": \"QM-226 audit record: computed Compton, Thomson, Bhabha and Moller values over Q.\",\n    \"build_qed_tree_level_audit\": \"Function build_qed_tree_level_audit operation.\",\n    \"dirac_to_weyl_blocks\": \"V = [[I, -I], [I, I]] and V^T with V V^T = 2 I.  V / sqrt(2) is orthogonal; its two\",\n    \"dirac_gammas_weyl\": \"gamma_W = (1/2) V gamma_D V^T from the Dirac-basis ``dirac_gamma_matrices()``:\",\n    \"clifford_anticommutator\": \"gamma^mu gamma^nu + gamma^nu gamma^mu.\",\n    \"gamma5\": \"gamma_5 = i gamma^0 gamma^1 gamma^2 gamma^3.\",\n    \"chiral_projectors\": \"P_L = (I - gamma_5) / 2 and P_R = (I + gamma_5) / 2.\",\n    \"chiral_test_spinor\": \"The fixed spinor used for the V-A current check.\",\n    \"ChiralProjectorAudit\": \"QM-227 (a) audit record: the Weyl gammas, gamma_5 and the V-A projectors.\",\n    \"build_chiral_projector_audit\": \"Function build_chiral_projector_audit operation.\",\n    \"MuonDecayInputs\": \"Declared rational inputs (CODATA 2018 electron mass and constants, PDG muon mass and lifetime).\",\n    \"muon_recoil_polynomial\": \"f_0(x) = 1 - 8x + 8x^3 - x^4, the polynomial part of the muon phase-space factor.\",\n    \"MuonDecayFermiConstantAudit\": \"QM-227 (b) audit record: f(x) and G_F / (hbar c)^3 as rational enclosures.\",\n    \"build_muon_decay_audit\": \"Function build_muon_decay_audit operation.\",\n    \"ckm_skew_hermitian_generator\": \"Skew-Hermitian generator tuned so that V = (I - A)(I + A)^(-1) sits near the\",\n    \"cayley_transform\": \"V = (I - A)(I + A)^(-1) over Q(i); unitary whenever A is skew-Hermitian.\",\n    \"jarlskog_invariant\": \"J = Im(V_{a c} V_{b d} V_{a d}^* V_{b c}^*) for row pair (a, b) and column pair (c, d).\",\n    \"ckm_db_triangle\": \"Unitarity-triangle sides z_k = V_{k d} V_{k b}^* for k in {u, c, t}.\",\n    \"CkmUnitarityAudit\": \"QM-227 (c) audit record: the generator, the Cayley transform and its Jarlskog invariant.\",\n    \"build_ckm_unitarity_audit\": \"Function build_ckm_unitarity_audit operation.\",\n    \"PionDecayInputs\": \"Declared rational inputs: PDG pi^0 mass, f_pi(130) = 130.2 +- 0.8 MeV (so f_pi^2 = f(130)^2 / 2),\",\n    \"abj_colour_factor\": \"S_pi0(N_c) = N_c (Q_u^2 - Q_d^2) with Q_u = 2/3 and Q_d = -1/3.\",\n    \"pion_two_photon_rate_ev\": \"Gamma(pi^0 -> gamma gamma) in eV: alpha^2 m_pi^3 S^2 / (64 pi^3 f_pi^2), as an enclosure.\",\n    \"AbjAnomalyAudit\": \"QM-228 (a) audit record: triangle colour factors and the pi^0 rate enclosures.\",\n    \"build_abj_anomaly_audit\": \"Function build_abj_anomaly_audit operation.\",\n    \"su3_mass_coefficients\": \"M = M_0 + M_1 Y + M_2 (I (I + 1) - Y^2 / 4) is linear in (M_0, M_1, M_2); its\",\n    \"gmo_octet_relation_coefficients\": \"Coefficients of 2 (M_N + M_Xi) - (3 M_Lambda + M_Sigma) in (M_0, M_1, M_2).  All three\",\n    \"gmo_decuplet_second_differences\": \"Second differences of the decuplet coefficient vectors along Y = 1, 0, -1, -2 with\",\n    \"BaryonMassInputs\": \"PDG isospin-averaged octet and decuplet masses in MeV (exact integer-ratio rationals).\",\n    \"GellMannOkuboAudit\": \"QM-228 (b) audit record.  The identities are exact coefficient vectors; the PDG\",\n    \"build_gell_mann_okubo_audit\": \"Function build_gell_mann_okubo_audit operation.\",\n    \"QedWeakHadronicControlReport\": \"Combined QM-226 / QM-227 / QM-228 control report over Q and Q(i).\",\n    \"evaluate_qed_weak_hadronic_control\": \"Function evaluate_qed_weak_hadronic_control operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/qed_hadronic.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "eed6adeeab78207d98a226a5a6eaf9af30870667df7baa17fa8eca510b0e2882",
+      "bytes": 2197,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/qed_hadronic.py",
+          "sha256": "2ee9f6ce0364d1e0744228f9ffa5251f85e8372dcfc2f9512195c008e1f2e11e"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:qed-hadronic:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 7), Lizard CCN (max 7), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 7,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/qed_hadronic.py\",\n    \"sha256\": \"2ee9f6ce0364d1e0744228f9ffa5251f85e8372dcfc2f9512195c008e1f2e11e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:qed-hadronic:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 7), Lizard CCN (max 7), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 7,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/qed_hadronic.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

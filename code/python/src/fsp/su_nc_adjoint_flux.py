@@ -112,7 +112,8 @@ class SUNCAdjointSimplicialComplex:
             d0=self.d0,
             d1=self.d1,
         )
-        assert self.complex.check_nilpotence(), "Nilpotence d1 . d0 == 0 failed on adjoint string complex."
+        if not self.complex.check_nilpotence():
+            raise ValueError("Nilpotence d1 . d0 == 0 failed on adjoint string complex.")
 
     def build_adjoint_broken_cochain(self) -> Tuple[List[float], List[int]]:
         """

@@ -1,0 +1,194 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/campaigns/no_signalling.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/campaigns/no_signalling.py",
+      "sha256": "5618b78a67af741ddb5078df38fdbca970b445f2c528161a3ce519153b1c8627"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:campaigns:no-signalling:v1",
+    "role": "library",
+    "purpose": "no_signalling.py Campaign C1000 Block 02 core implementation:",
+    "operations": {
+      "GaussianRational": "Exact element of Q(i): re + im * i with re, im in Q.",
+      "Matrix": "Exact matrix over Q(i).",
+      "pauli_i": "Function pauli_i operation.",
+      "pauli_x": "Function pauli_x operation.",
+      "pauli_y": "Function pauli_y operation.",
+      "pauli_z": "Function pauli_z operation.",
+      "hadamard_scaled": "Hadamard without sqrt(2): H0 = X + Z. Action on density matrix: H rho H^dagger = 1/2 H0 rho H0.",
+      "phase_s": "Phase gate S = diag(1, i).",
+      "proj_0": "Projector |0><0|.",
+      "proj_1": "Projector |1><1|.",
+      "bell_phi_plus": "|Phi+> = 1/sqrt(2)(|00> + |11>) -> rho = 1/2 [[1, 0, 0, 1], [0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 1]].",
+      "bell_phi_minus": "|Phi-> = 1/sqrt(2)(|00> - |11>) -> rho = 1/2 [[1, 0, 0, -1], [0, 0, 0, 0], [0, 0, 0, 0], [-1, 0, 0, 1]].",
+      "bell_psi_plus": "|Psi+> = 1/sqrt(2)(|01> + |10>) -> rho = 1/2 [[0, 0, 0, 0], [0, 1, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]].",
+      "bell_psi_minus": "|Psi-> = 1/sqrt(2)(|01> - |10>) -> rho = 1/2 [[0, 0, 0, 0], [0, 1, -1, 0], [0, -1, 1, 0], [0, 0, 0, 0]].",
+      "all_bell_states": "Function all_bell_states operation.",
+      "tensor_composition": "Admitted tensor composition rule (T827, T830).",
+      "partial_trace_b": "Partial trace over factor B: Tr_B(rho) in M_{d_a}(Q(i)).",
+      "partial_trace_a": "Partial trace over factor A: Tr_A(rho) in M_{d_b}(Q(i)).",
+      "verify_local_statistics_reproduction": "Check Tr[(A (x) I_B) rho] = Tr[A Tr_B(rho)] for all elementary matrices A in M_{d_a}.",
+      "prove_partial_trace_uniqueness": "Target C1000-T831: Prove that Tr_B is the UNIQUE linear map satisfying local statistics.",
+      "apply_alice_local_unitary": "Unitary operation on Alice: rho' = (U_A (x) I_B) rho (U_A^dagger (x) I_B).",
+      "apply_alice_hadamard": "Hadamard on Alice: H = 1/sqrt(2) H0, so rho' = 1/2 (H0 (x) I) rho (H0 (x) I).",
+      "apply_alice_unselective_measurement": "Unselective measurement on Alice in computational basis: rho' = P0 rho P0 + P1 rho P1.",
+      "check_no_signalling_on_bell_states": "Target C1000-T837: Verify no-signalling exactly on every Bell state under local operations on Alice.",
+      "cnot_matrix": "Function cnot_matrix operation.",
+      "cz_matrix": "Function cz_matrix operation.",
+      "swap_matrix": "Function swap_matrix operation.",
+      "RivalComposition": "Class RivalComposition domain record and methods.",
+      "declared_rival_compositions": "Target C1000-T829: Declared rival-composition search space containing >= 4 non-tensor bilinear maps.",
+      "verify_bilinearity": "Verify (A1 + A2) * B = A1 * B + A2 * B and A * (B1 + B2) = A * B1 + A * B2 and scalar scaling.",
+      "enumerate_rival_composition_search": "Target C1000-T834 & T838: Search declared rival-composition space for a signalling rival.",
+      "emit_no_signalling_receipt": "Target C1000-T847: Generate comprehensive canonical JSON evidence receipt."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "b81cd667e445cbb1487ddf0873825e0010ce51a656e3dd05efecb835a1d0c8de",
+  "current_scoring": "43744c3c56c3dc38ac0d64b29c9d9948a886e0f601db5f50c6d571a9f391f647",
+  "contract_history": [
+    {
+      "sha256": "b81cd667e445cbb1487ddf0873825e0010ce51a656e3dd05efecb835a1d0c8de",
+      "bytes": 4466,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/no_signalling.py",
+          "sha256": "5618b78a67af741ddb5078df38fdbca970b445f2c528161a3ce519153b1c8627"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:no-signalling:v1",
+        "role": "library",
+        "purpose": "no_signalling.py Campaign C1000 Block 02 core implementation:",
+        "operations": {
+          "GaussianRational": "Exact element of Q(i): re + im * i with re, im in Q.",
+          "Matrix": "Exact matrix over Q(i).",
+          "pauli_i": "Function pauli_i operation.",
+          "pauli_x": "Function pauli_x operation.",
+          "pauli_y": "Function pauli_y operation.",
+          "pauli_z": "Function pauli_z operation.",
+          "hadamard_scaled": "Hadamard without sqrt(2): H0 = X + Z. Action on density matrix: H rho H^dagger = 1/2 H0 rho H0.",
+          "phase_s": "Phase gate S = diag(1, i).",
+          "proj_0": "Projector |0><0|.",
+          "proj_1": "Projector |1><1|.",
+          "bell_phi_plus": "|Phi+> = 1/sqrt(2)(|00> + |11>) -> rho = 1/2 [[1, 0, 0, 1], [0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 1]].",
+          "bell_phi_minus": "|Phi-> = 1/sqrt(2)(|00> - |11>) -> rho = 1/2 [[1, 0, 0, -1], [0, 0, 0, 0], [0, 0, 0, 0], [-1, 0, 0, 1]].",
+          "bell_psi_plus": "|Psi+> = 1/sqrt(2)(|01> + |10>) -> rho = 1/2 [[0, 0, 0, 0], [0, 1, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]].",
+          "bell_psi_minus": "|Psi-> = 1/sqrt(2)(|01> - |10>) -> rho = 1/2 [[0, 0, 0, 0], [0, 1, -1, 0], [0, -1, 1, 0], [0, 0, 0, 0]].",
+          "all_bell_states": "Function all_bell_states operation.",
+          "tensor_composition": "Admitted tensor composition rule (T827, T830).",
+          "partial_trace_b": "Partial trace over factor B: Tr_B(rho) in M_{d_a}(Q(i)).",
+          "partial_trace_a": "Partial trace over factor A: Tr_A(rho) in M_{d_b}(Q(i)).",
+          "verify_local_statistics_reproduction": "Check Tr[(A (x) I_B) rho] = Tr[A Tr_B(rho)] for all elementary matrices A in M_{d_a}.",
+          "prove_partial_trace_uniqueness": "Target C1000-T831: Prove that Tr_B is the UNIQUE linear map satisfying local statistics.",
+          "apply_alice_local_unitary": "Unitary operation on Alice: rho' = (U_A (x) I_B) rho (U_A^dagger (x) I_B).",
+          "apply_alice_hadamard": "Hadamard on Alice: H = 1/sqrt(2) H0, so rho' = 1/2 (H0 (x) I) rho (H0 (x) I).",
+          "apply_alice_unselective_measurement": "Unselective measurement on Alice in computational basis: rho' = P0 rho P0 + P1 rho P1.",
+          "check_no_signalling_on_bell_states": "Target C1000-T837: Verify no-signalling exactly on every Bell state under local operations on Alice.",
+          "cnot_matrix": "Function cnot_matrix operation.",
+          "cz_matrix": "Function cz_matrix operation.",
+          "swap_matrix": "Function swap_matrix operation.",
+          "RivalComposition": "Class RivalComposition domain record and methods.",
+          "declared_rival_compositions": "Target C1000-T829: Declared rival-composition search space containing >= 4 non-tensor bilinear maps.",
+          "verify_bilinearity": "Verify (A1 + A2) * B = A1 * B + A2 * B and A * (B1 + B2) = A * B1 + A * B2 and scalar scaling.",
+          "enumerate_rival_composition_search": "Target C1000-T834 & T838: Search declared rival-composition space for a signalling rival.",
+          "emit_no_signalling_receipt": "Target C1000-T847: Generate comprehensive canonical JSON evidence receipt."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/no_signalling.py\",\n    \"sha256\": \"5618b78a67af741ddb5078df38fdbca970b445f2c528161a3ce519153b1c8627\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:no-signalling:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"no_signalling.py Campaign C1000 Block 02 core implementation:\",\n  \"operations\": {\n    \"GaussianRational\": \"Exact element of Q(i): re + im * i with re, im in Q.\",\n    \"Matrix\": \"Exact matrix over Q(i).\",\n    \"pauli_i\": \"Function pauli_i operation.\",\n    \"pauli_x\": \"Function pauli_x operation.\",\n    \"pauli_y\": \"Function pauli_y operation.\",\n    \"pauli_z\": \"Function pauli_z operation.\",\n    \"hadamard_scaled\": \"Hadamard without sqrt(2): H0 = X + Z. Action on density matrix: H rho H^dagger = 1/2 H0 rho H0.\",\n    \"phase_s\": \"Phase gate S = diag(1, i).\",\n    \"proj_0\": \"Projector |0><0|.\",\n    \"proj_1\": \"Projector |1><1|.\",\n    \"bell_phi_plus\": \"|Phi+> = 1/sqrt(2)(|00> + |11>) -> rho = 1/2 [[1, 0, 0, 1], [0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 1]].\",\n    \"bell_phi_minus\": \"|Phi-> = 1/sqrt(2)(|00> - |11>) -> rho = 1/2 [[1, 0, 0, -1], [0, 0, 0, 0], [0, 0, 0, 0], [-1, 0, 0, 1]].\",\n    \"bell_psi_plus\": \"|Psi+> = 1/sqrt(2)(|01> + |10>) -> rho = 1/2 [[0, 0, 0, 0], [0, 1, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]].\",\n    \"bell_psi_minus\": \"|Psi-> = 1/sqrt(2)(|01> - |10>) -> rho = 1/2 [[0, 0, 0, 0], [0, 1, -1, 0], [0, -1, 1, 0], [0, 0, 0, 0]].\",\n    \"all_bell_states\": \"Function all_bell_states operation.\",\n    \"tensor_composition\": \"Admitted tensor composition rule (T827, T830).\",\n    \"partial_trace_b\": \"Partial trace over factor B: Tr_B(rho) in M_{d_a}(Q(i)).\",\n    \"partial_trace_a\": \"Partial trace over factor A: Tr_A(rho) in M_{d_b}(Q(i)).\",\n    \"verify_local_statistics_reproduction\": \"Check Tr[(A (x) I_B) rho] = Tr[A Tr_B(rho)] for all elementary matrices A in M_{d_a}.\",\n    \"prove_partial_trace_uniqueness\": \"Target C1000-T831: Prove that Tr_B is the UNIQUE linear map satisfying local statistics.\",\n    \"apply_alice_local_unitary\": \"Unitary operation on Alice: rho' = (U_A (x) I_B) rho (U_A^dagger (x) I_B).\",\n    \"apply_alice_hadamard\": \"Hadamard on Alice: H = 1/sqrt(2) H0, so rho' = 1/2 (H0 (x) I) rho (H0 (x) I).\",\n    \"apply_alice_unselective_measurement\": \"Unselective measurement on Alice in computational basis: rho' = P0 rho P0 + P1 rho P1.\",\n    \"check_no_signalling_on_bell_states\": \"Target C1000-T837: Verify no-signalling exactly on every Bell state under local operations on Alice.\",\n    \"cnot_matrix\": \"Function cnot_matrix operation.\",\n    \"cz_matrix\": \"Function cz_matrix operation.\",\n    \"swap_matrix\": \"Function swap_matrix operation.\",\n    \"RivalComposition\": \"Class RivalComposition domain record and methods.\",\n    \"declared_rival_compositions\": \"Target C1000-T829: Declared rival-composition search space containing >= 4 non-tensor bilinear maps.\",\n    \"verify_bilinearity\": \"Verify (A1 + A2) * B = A1 * B + A2 * B and A * (B1 + B2) = A * B1 + A * B2 and scalar scaling.\",\n    \"enumerate_rival_composition_search\": \"Target C1000-T834 & T838: Search declared rival-composition space for a signalling rival.\",\n    \"emit_no_signalling_receipt\": \"Target C1000-T847: Generate comprehensive canonical JSON evidence receipt.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/no_signalling.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "43744c3c56c3dc38ac0d64b29c9d9948a886e0f601db5f50c6d571a9f391f647",
+      "bytes": 2200,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/no_signalling.py",
+          "sha256": "5618b78a67af741ddb5078df38fdbca970b445f2c528161a3ce519153b1c8627"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:no-signalling:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 9), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 9,
+          "weighted_control_upper_bound": 23,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/no_signalling.py\",\n    \"sha256\": \"5618b78a67af741ddb5078df38fdbca970b445f2c528161a3ce519153b1c8627\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:no-signalling:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 9), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 23,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/no_signalling.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

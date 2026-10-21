@@ -1,0 +1,156 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/fsp/databases/kitaev_honeycomb_schema.sql",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/fsp/databases/kitaev_honeycomb_schema.sql",
+      "sha256": "152dcc2de16d4bb030839594b41e3e06fe28a7f2bda4e2df3fa226806dd65db4"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:fsp:kitaev-honeycomb-schema:v1",
+    "role": "database schema",
+    "purpose": "Artifact kitaev_honeycomb_schema.sql",
+    "operations": {
+      "HoneycombLattice": "Relational table HoneycombLattice with STRICT column definitions and constraints.",
+      "HoneycombSites": "Relational table HoneycombSites with STRICT column definitions and constraints.",
+      "HoneycombLinks": "Relational table HoneycombLinks with STRICT column definitions and constraints.",
+      "HoneycombPlaquettes": "Relational table HoneycombPlaquettes with STRICT column definitions and constraints.",
+      "PlaquetteBoundaryLinks": "Relational table PlaquetteBoundaryLinks with STRICT column definitions and constraints.",
+      "MajoranaMatterStates": "Relational table MajoranaMatterStates with STRICT column definitions and constraints.",
+      "VortexBraidingTrajectories": "Relational table VortexBraidingTrajectories with STRICT column definitions and constraints.",
+      "HoneycombGinPostings": "Relational table HoneycombGinPostings with STRICT column definitions and constraints.",
+      "ViewPlaquetteVortexAudit": "Relational view ViewPlaquetteVortexAudit defining projection and join queries.",
+      "ViewTotalVortexFluxAudit": "Relational view ViewTotalVortexFluxAudit defining projection and join queries.",
+      "ViewMajoranaParityConservationAudit": "Relational view ViewMajoranaParityConservationAudit defining projection and join queries.",
+      "ViewVortexBraidingAudit": "Relational view ViewVortexBraidingAudit defining projection and join queries.",
+      "ViewHoneycombTerminalRoutingAudit": "Relational view ViewHoneycombTerminalRoutingAudit defining projection and join queries."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "SQLite STRICT mode and CHECK constraints refuse malformed rows, nullable keys, or invalid types.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "a2b0c01a91181cbbfccfd10c18677ac0f0f5900ee87e3d493cf52cce20b1f7cd",
+  "current_scoring": "34845c181da79aded642d87a5c2779a20d75e87d11b73a6ab44ad00e7129e1d7",
+  "contract_history": [
+    {
+      "sha256": "a2b0c01a91181cbbfccfd10c18677ac0f0f5900ee87e3d493cf52cce20b1f7cd",
+      "bytes": 3082,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/fsp/databases/kitaev_honeycomb_schema.sql",
+          "sha256": "152dcc2de16d4bb030839594b41e3e06fe28a7f2bda4e2df3fa226806dd65db4"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:fsp:kitaev-honeycomb-schema:v1",
+        "role": "database schema",
+        "purpose": "Artifact kitaev_honeycomb_schema.sql",
+        "operations": {
+          "HoneycombLattice": "Relational table HoneycombLattice with STRICT column definitions and constraints.",
+          "HoneycombSites": "Relational table HoneycombSites with STRICT column definitions and constraints.",
+          "HoneycombLinks": "Relational table HoneycombLinks with STRICT column definitions and constraints.",
+          "HoneycombPlaquettes": "Relational table HoneycombPlaquettes with STRICT column definitions and constraints.",
+          "PlaquetteBoundaryLinks": "Relational table PlaquetteBoundaryLinks with STRICT column definitions and constraints.",
+          "MajoranaMatterStates": "Relational table MajoranaMatterStates with STRICT column definitions and constraints.",
+          "VortexBraidingTrajectories": "Relational table VortexBraidingTrajectories with STRICT column definitions and constraints.",
+          "HoneycombGinPostings": "Relational table HoneycombGinPostings with STRICT column definitions and constraints.",
+          "ViewPlaquetteVortexAudit": "Relational view ViewPlaquetteVortexAudit defining projection and join queries.",
+          "ViewTotalVortexFluxAudit": "Relational view ViewTotalVortexFluxAudit defining projection and join queries.",
+          "ViewMajoranaParityConservationAudit": "Relational view ViewMajoranaParityConservationAudit defining projection and join queries.",
+          "ViewVortexBraidingAudit": "Relational view ViewVortexBraidingAudit defining projection and join queries.",
+          "ViewHoneycombTerminalRoutingAudit": "Relational view ViewHoneycombTerminalRoutingAudit defining projection and join queries."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "SQLite STRICT mode and CHECK constraints refuse malformed rows, nullable keys, or invalid types.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fsp/databases/kitaev_honeycomb_schema.sql\",\n    \"sha256\": \"152dcc2de16d4bb030839594b41e3e06fe28a7f2bda4e2df3fa226806dd65db4\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fsp:kitaev-honeycomb-schema:v1\",\n  \"role\": \"database schema\",\n  \"purpose\": \"Artifact kitaev_honeycomb_schema.sql\",\n  \"operations\": {\n    \"HoneycombLattice\": \"Relational table HoneycombLattice with STRICT column definitions and constraints.\",\n    \"HoneycombSites\": \"Relational table HoneycombSites with STRICT column definitions and constraints.\",\n    \"HoneycombLinks\": \"Relational table HoneycombLinks with STRICT column definitions and constraints.\",\n    \"HoneycombPlaquettes\": \"Relational table HoneycombPlaquettes with STRICT column definitions and constraints.\",\n    \"PlaquetteBoundaryLinks\": \"Relational table PlaquetteBoundaryLinks with STRICT column definitions and constraints.\",\n    \"MajoranaMatterStates\": \"Relational table MajoranaMatterStates with STRICT column definitions and constraints.\",\n    \"VortexBraidingTrajectories\": \"Relational table VortexBraidingTrajectories with STRICT column definitions and constraints.\",\n    \"HoneycombGinPostings\": \"Relational table HoneycombGinPostings with STRICT column definitions and constraints.\",\n    \"ViewPlaquetteVortexAudit\": \"Relational view ViewPlaquetteVortexAudit defining projection and join queries.\",\n    \"ViewTotalVortexFluxAudit\": \"Relational view ViewTotalVortexFluxAudit defining projection and join queries.\",\n    \"ViewMajoranaParityConservationAudit\": \"Relational view ViewMajoranaParityConservationAudit defining projection and join queries.\",\n    \"ViewVortexBraidingAudit\": \"Relational view ViewVortexBraidingAudit defining projection and join queries.\",\n    \"ViewHoneycombTerminalRoutingAudit\": \"Relational view ViewHoneycombTerminalRoutingAudit defining projection and join queries.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"SQLite STRICT mode and CHECK constraints refuse malformed rows, nullable keys, or invalid types.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/fsp/databases/kitaev_honeycomb_schema.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "34845c181da79aded642d87a5c2779a20d75e87d11b73a6ab44ad00e7129e1d7",
+      "bytes": 2173,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/fsp/databases/kitaev_honeycomb_schema.sql",
+          "sha256": "152dcc2de16d4bb030839594b41e3e06fe28a7f2bda4e2df3fa226806dd65db4"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:fsp:kitaev-honeycomb-schema:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "SQLite STRICT mode and CHECK constraints refuse malformed rows, nullable keys, or invalid types.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 1), Lizard CCN (max 1), and shallow nesting depth (max 0 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 1,
+          "lizard_ccn": 1,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 0
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/fsp/databases/kitaev_honeycomb_schema.sql\",\n    \"sha256\": \"152dcc2de16d4bb030839594b41e3e06fe28a7f2bda4e2df3fa226806dd65db4\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fsp:kitaev-honeycomb-schema:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"SQLite STRICT mode and CHECK constraints refuse malformed rows, nullable keys, or invalid types.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 1), Lizard CCN (max 1), and shallow nesting depth (max 0 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 1,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 0\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/fsp/databases/kitaev_honeycomb_schema.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

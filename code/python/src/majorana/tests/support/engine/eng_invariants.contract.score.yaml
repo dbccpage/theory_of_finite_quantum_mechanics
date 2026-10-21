@@ -1,0 +1,164 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/support/engine/eng_invariants.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/support/engine/eng_invariants.py",
+      "sha256": "54d8ef2b5e6732a95dffce6cfcca9ba8713c5d3691d506d7661e9913faa5ee03"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:engine:eng-invariants:v1",
+    "role": "library",
+    "purpose": "Bounded domain operations and invariant verification for eng_invariants.",
+    "operations": {
+      "EngineError": "Class EngineError domain record and methods.",
+      "TerminationViolation": "Class TerminationViolation domain record and methods.",
+      "RuntimeFailure": "Class RuntimeFailure domain record and methods.",
+      "Tolerances": "Class Tolerances domain record and methods.",
+      "EscalationRoute": "Class EscalationRoute domain record and methods.",
+      "EvaluationVerdict": "Class EvaluationVerdict domain record and methods.",
+      "TerminationCondition": "Class TerminationCondition domain record and methods.",
+      "EngineDecision": "Class EngineDecision domain record and methods.",
+      "EngineTraceStep": "Class EngineTraceStep domain record and methods.",
+      "EngineRuntimeState": "Class EngineRuntimeState domain record and methods.",
+      "assert_trace_integrity": "Function assert_trace_integrity operation.",
+      "assert_meta_escalation_resolution": "Function assert_meta_escalation_resolution operation.",
+      "assert_stagnation_resolves": "Function assert_stagnation_resolves operation.",
+      "EvaluationAudit": "Class EvaluationAudit domain record and methods.",
+      "assert_candidate_accounting": "Function assert_candidate_accounting operation.",
+      "RunSummary": "Class RunSummary domain record and methods.",
+      "assert_search_endpoint_invariance": "Function assert_search_endpoint_invariance operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "f2cf0ff082acc576b554f941d90b4665bd285a2770b4f06fd7cce4c009e1cc62",
+  "current_scoring": "4d354c191751e60a7051ab42a8185582777c21fc7b5fdff493f15c29160d6c03",
+  "contract_history": [
+    {
+      "sha256": "f2cf0ff082acc576b554f941d90b4665bd285a2770b4f06fd7cce4c009e1cc62",
+      "bytes": 2966,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/support/engine/eng_invariants.py",
+          "sha256": "54d8ef2b5e6732a95dffce6cfcca9ba8713c5d3691d506d7661e9913faa5ee03"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:engine:eng-invariants:v1",
+        "role": "library",
+        "purpose": "Bounded domain operations and invariant verification for eng_invariants.",
+        "operations": {
+          "EngineError": "Class EngineError domain record and methods.",
+          "TerminationViolation": "Class TerminationViolation domain record and methods.",
+          "RuntimeFailure": "Class RuntimeFailure domain record and methods.",
+          "Tolerances": "Class Tolerances domain record and methods.",
+          "EscalationRoute": "Class EscalationRoute domain record and methods.",
+          "EvaluationVerdict": "Class EvaluationVerdict domain record and methods.",
+          "TerminationCondition": "Class TerminationCondition domain record and methods.",
+          "EngineDecision": "Class EngineDecision domain record and methods.",
+          "EngineTraceStep": "Class EngineTraceStep domain record and methods.",
+          "EngineRuntimeState": "Class EngineRuntimeState domain record and methods.",
+          "assert_trace_integrity": "Function assert_trace_integrity operation.",
+          "assert_meta_escalation_resolution": "Function assert_meta_escalation_resolution operation.",
+          "assert_stagnation_resolves": "Function assert_stagnation_resolves operation.",
+          "EvaluationAudit": "Class EvaluationAudit domain record and methods.",
+          "assert_candidate_accounting": "Function assert_candidate_accounting operation.",
+          "RunSummary": "Class RunSummary domain record and methods.",
+          "assert_search_endpoint_invariance": "Function assert_search_endpoint_invariance operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/support/engine/eng_invariants.py\",\n    \"sha256\": \"54d8ef2b5e6732a95dffce6cfcca9ba8713c5d3691d506d7661e9913faa5ee03\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:engine:eng-invariants:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Bounded domain operations and invariant verification for eng_invariants.\",\n  \"operations\": {\n    \"EngineError\": \"Class EngineError domain record and methods.\",\n    \"TerminationViolation\": \"Class TerminationViolation domain record and methods.\",\n    \"RuntimeFailure\": \"Class RuntimeFailure domain record and methods.\",\n    \"Tolerances\": \"Class Tolerances domain record and methods.\",\n    \"EscalationRoute\": \"Class EscalationRoute domain record and methods.\",\n    \"EvaluationVerdict\": \"Class EvaluationVerdict domain record and methods.\",\n    \"TerminationCondition\": \"Class TerminationCondition domain record and methods.\",\n    \"EngineDecision\": \"Class EngineDecision domain record and methods.\",\n    \"EngineTraceStep\": \"Class EngineTraceStep domain record and methods.\",\n    \"EngineRuntimeState\": \"Class EngineRuntimeState domain record and methods.\",\n    \"assert_trace_integrity\": \"Function assert_trace_integrity operation.\",\n    \"assert_meta_escalation_resolution\": \"Function assert_meta_escalation_resolution operation.\",\n    \"assert_stagnation_resolves\": \"Function assert_stagnation_resolves operation.\",\n    \"EvaluationAudit\": \"Class EvaluationAudit domain record and methods.\",\n    \"assert_candidate_accounting\": \"Function assert_candidate_accounting operation.\",\n    \"RunSummary\": \"Class RunSummary domain record and methods.\",\n    \"assert_search_endpoint_invariance\": \"Function assert_search_endpoint_invariance operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/support/engine/eng_invariants.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "4d354c191751e60a7051ab42a8185582777c21fc7b5fdff493f15c29160d6c03",
+      "bytes": 2220,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/support/engine/eng_invariants.py",
+          "sha256": "54d8ef2b5e6732a95dffce6cfcca9ba8713c5d3691d506d7661e9913faa5ee03"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:engine:eng-invariants:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 14), Lizard CCN (max 14), and shallow nesting depth (max 5 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 14,
+          "lizard_ccn": 14,
+          "weighted_control_upper_bound": 27,
+          "control_nesting": 5
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/support/engine/eng_invariants.py\",\n    \"sha256\": \"54d8ef2b5e6732a95dffce6cfcca9ba8713c5d3691d506d7661e9913faa5ee03\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:engine:eng-invariants:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 14), Lizard CCN (max 14), and shallow nesting depth (max 5 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 14,\n    \"lizard_ccn\": 14,\n    \"weighted_control_upper_bound\": 27,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/support/engine/eng_invariants.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

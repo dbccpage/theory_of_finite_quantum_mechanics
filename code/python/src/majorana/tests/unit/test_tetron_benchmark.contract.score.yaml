@@ -1,0 +1,158 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/unit/test_tetron_benchmark.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/unit/test_tetron_benchmark.py",
+      "sha256": "54650d86c34b3245d8d95837ae405c731f18114f5e12348f35c271f112212cdb"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:unit:test-tetron-benchmark:v1",
+    "role": "test checker",
+    "purpose": "Bounded domain operations and invariant verification for test_tetron_benchmark.",
+    "operations": {
+      "test_analytic_census_matches_brute_force": "Function test_analytic_census_matches_brute_force operation.",
+      "test_census_class_count_is_two_to_the_betti_number": "Function test_census_class_count_is_two_to_the_betti_number operation.",
+      "test_only_the_zero_class_is_exact": "Function test_only_the_zero_class_is_exact operation.",
+      "test_iid_noise_is_dominated_by_open_obstructions": "Local island checks fire: that is what makes the code useful.",
+      "test_zero_noise_is_all_exact": "Function test_zero_noise_is_all_exact operation.",
+      "test_structure_row_reports_measured_homology": "Function test_structure_row_reports_measured_homology operation.",
+      "test_structure_reports_code_distance_only_when_one_exists": "Function test_structure_reports_code_distance_only_when_one_exists operation.",
+      "test_dense_baseline_refuses_infeasible_dimensions": "Function test_dense_baseline_refuses_infeasible_dimensions operation.",
+      "test_dense_baseline_runs_below_the_cap": "Function test_dense_baseline_runs_below_the_cap operation.",
+      "test_timing_row_separates_the_two_costs": "Function test_timing_row_separates_the_two_costs operation.",
+      "test_ledger_rows_cover_every_terminal_and_replay": "Function test_ledger_rows_cover_every_terminal_and_replay operation.",
+      "test_ledger_replay_detects_a_tampered_terminal": "A ledger that cannot fail is not a ledger.",
+      "test_ledger_replay_detects_a_tampered_phi1_weight": "Function test_ledger_replay_detects_a_tampered_phi1_weight operation.",
+      "test_budget_is_part_of_the_replayed_input": "The same carrier under a smaller budget is a different, valid row."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "382e9f8ca04d9830b02be3fc09cd6063a327cdbfa1db267d949433e846c02bdf",
+  "current_scoring": "4897060ab9e2460a1eb7cb8075ae65ba9f4eeee049a0748c81e1312f1c60a141",
+  "contract_history": [
+    {
+      "sha256": "382e9f8ca04d9830b02be3fc09cd6063a327cdbfa1db267d949433e846c02bdf",
+      "bytes": 3268,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_tetron_benchmark.py",
+          "sha256": "54650d86c34b3245d8d95837ae405c731f18114f5e12348f35c271f112212cdb"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:unit:test-tetron-benchmark:v1",
+        "role": "test checker",
+        "purpose": "Bounded domain operations and invariant verification for test_tetron_benchmark.",
+        "operations": {
+          "test_analytic_census_matches_brute_force": "Function test_analytic_census_matches_brute_force operation.",
+          "test_census_class_count_is_two_to_the_betti_number": "Function test_census_class_count_is_two_to_the_betti_number operation.",
+          "test_only_the_zero_class_is_exact": "Function test_only_the_zero_class_is_exact operation.",
+          "test_iid_noise_is_dominated_by_open_obstructions": "Local island checks fire: that is what makes the code useful.",
+          "test_zero_noise_is_all_exact": "Function test_zero_noise_is_all_exact operation.",
+          "test_structure_row_reports_measured_homology": "Function test_structure_row_reports_measured_homology operation.",
+          "test_structure_reports_code_distance_only_when_one_exists": "Function test_structure_reports_code_distance_only_when_one_exists operation.",
+          "test_dense_baseline_refuses_infeasible_dimensions": "Function test_dense_baseline_refuses_infeasible_dimensions operation.",
+          "test_dense_baseline_runs_below_the_cap": "Function test_dense_baseline_runs_below_the_cap operation.",
+          "test_timing_row_separates_the_two_costs": "Function test_timing_row_separates_the_two_costs operation.",
+          "test_ledger_rows_cover_every_terminal_and_replay": "Function test_ledger_rows_cover_every_terminal_and_replay operation.",
+          "test_ledger_replay_detects_a_tampered_terminal": "A ledger that cannot fail is not a ledger.",
+          "test_ledger_replay_detects_a_tampered_phi1_weight": "Function test_ledger_replay_detects_a_tampered_phi1_weight operation.",
+          "test_budget_is_part_of_the_replayed_input": "The same carrier under a smaller budget is a different, valid row."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_tetron_benchmark.py\",\n    \"sha256\": \"54650d86c34b3245d8d95837ae405c731f18114f5e12348f35c271f112212cdb\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:unit:test-tetron-benchmark:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Bounded domain operations and invariant verification for test_tetron_benchmark.\",\n  \"operations\": {\n    \"test_analytic_census_matches_brute_force\": \"Function test_analytic_census_matches_brute_force operation.\",\n    \"test_census_class_count_is_two_to_the_betti_number\": \"Function test_census_class_count_is_two_to_the_betti_number operation.\",\n    \"test_only_the_zero_class_is_exact\": \"Function test_only_the_zero_class_is_exact operation.\",\n    \"test_iid_noise_is_dominated_by_open_obstructions\": \"Local island checks fire: that is what makes the code useful.\",\n    \"test_zero_noise_is_all_exact\": \"Function test_zero_noise_is_all_exact operation.\",\n    \"test_structure_row_reports_measured_homology\": \"Function test_structure_row_reports_measured_homology operation.\",\n    \"test_structure_reports_code_distance_only_when_one_exists\": \"Function test_structure_reports_code_distance_only_when_one_exists operation.\",\n    \"test_dense_baseline_refuses_infeasible_dimensions\": \"Function test_dense_baseline_refuses_infeasible_dimensions operation.\",\n    \"test_dense_baseline_runs_below_the_cap\": \"Function test_dense_baseline_runs_below_the_cap operation.\",\n    \"test_timing_row_separates_the_two_costs\": \"Function test_timing_row_separates_the_two_costs operation.\",\n    \"test_ledger_rows_cover_every_terminal_and_replay\": \"Function test_ledger_rows_cover_every_terminal_and_replay operation.\",\n    \"test_ledger_replay_detects_a_tampered_terminal\": \"A ledger that cannot fail is not a ledger.\",\n    \"test_ledger_replay_detects_a_tampered_phi1_weight\": \"Function test_ledger_replay_detects_a_tampered_phi1_weight operation.\",\n    \"test_budget_is_part_of_the_replayed_input\": \"The same carrier under a smaller budget is a different, valid row.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_tetron_benchmark.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "4897060ab9e2460a1eb7cb8075ae65ba9f4eeee049a0748c81e1312f1c60a141",
+      "bytes": 2206,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_tetron_benchmark.py",
+          "sha256": "54650d86c34b3245d8d95837ae405c731f18114f5e12348f35c271f112212cdb"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:unit:test-tetron-benchmark:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 10), Lizard CCN (max 7), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 10,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 10,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_tetron_benchmark.py\",\n    \"sha256\": \"54650d86c34b3245d8d95837ae405c731f18114f5e12348f35c271f112212cdb\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:unit:test-tetron-benchmark:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 10), Lizard CCN (max 7), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 10,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_tetron_benchmark.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

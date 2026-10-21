@@ -1,0 +1,170 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/mub/mub_verify/target_q3_degree6_sdp.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/mub/mub_verify/target_q3_degree6_sdp.py",
+      "sha256": "0b99fcfd95315dbfb5f1fbb3611ad69811507669172f37c89a4b48aae82ed61e"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:mub_verify:target-q3-degree6-sdp:v1",
+    "role": "library",
+    "purpose": "Target Q3: experimental rational coefficient-matrix diagnostics. Firewall Line: stated region only; mints no authority.",
+    "operations": {
+      "assert_no_float": "Recursively verify that no float or complex types exist in any data structure.",
+      "ldlt_decomposition_rational": "Exact rational LDL^T decomposition of a real symmetric matrix over Fraction.",
+      "ldlt_pivots_strictly_positive": "Compute exact rational LDL^T pivots and verify that every pivot is strictly positive (> 0).",
+      "get_basis_pairs": "Return the 6 lexicographically ordered basis pairs (a, b) with 0 <= a < b < 4.",
+      "get_basis_triples": "Return the 4 lexicographically ordered basis triples (a, b, c) with 0 <= a < b < c < 4.",
+      "cyc_real_rational": "Return Re(z) only when it lies in Q; reject non-rational components.",
+      "cyc_real_constant_coefficient": "Project Re(z) to its constant coefficient; this discards other terms.",
+      "build_degree6_invariant_diagnostic_matrix": "Construct the experimental 21x21 rational coefficient matrix.",
+      "build_degree6_extended_diagnostic_matrix": "Construct the experimental 35x35 rational coefficient matrix.",
+      "DualWitnessRational": "Exact rational positive semidefinite dual certificate W = sum_i w_i z_i z_i^T.",
+      "build_invariant_dual_witness_x0": "Construct a PSD weight matrix for the experimental X=0 coefficient matrix.",
+      "build_extended_dual_witness_s6": "Construct a PSD weight matrix for the experimental S6 coefficient matrix.",
+      "DualWitnessReceipt": "Exact trace and positive-pivot diagnostics for a specified rational matrix.",
+      "Degree6MomentReport": "Report on the experimental coefficient matrices; no candidate refutations.",
+      "Degree6DiagnosticReport": "Diagnostic receipt; complete and moment_semantics_verified remain false.",
+      "build_block_diagonal_gramian": "Construct the block-diagonal Gramian G_diag = diag(G_triple, I_6) with X = 0.",
+      "evaluate_target_q3_diagnostics": "Evaluate two experimental coefficient matrices without candidate certification.",
+      "solve_target_q3_degree6_certificate": "Certification is unavailable; use evaluate_target_q3_diagnostics for exploration.",
+      "build_degree6_invariant_moment_matrix": "No sound projector-moment construction is supplied.",
+      "build_degree6_extended_moment_matrix": "No sound projector-moment construction is supplied."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "ac2a0ce34b7ffc5608a7bf405eedd14503dc1990a9d96955d6e25adf7572ab21",
+  "current_scoring": "8dd7662fc3ac75dc53341e2c644e5d9bf849e6ca210dc6c2ce0fdbf0a648a838",
+  "contract_history": [
+    {
+      "sha256": "ac2a0ce34b7ffc5608a7bf405eedd14503dc1990a9d96955d6e25adf7572ab21",
+      "bytes": 3906,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/mub_verify/target_q3_degree6_sdp.py",
+          "sha256": "0b99fcfd95315dbfb5f1fbb3611ad69811507669172f37c89a4b48aae82ed61e"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:mub_verify:target-q3-degree6-sdp:v1",
+        "role": "library",
+        "purpose": "Target Q3: experimental rational coefficient-matrix diagnostics. Firewall Line: stated region only; mints no authority.",
+        "operations": {
+          "assert_no_float": "Recursively verify that no float or complex types exist in any data structure.",
+          "ldlt_decomposition_rational": "Exact rational LDL^T decomposition of a real symmetric matrix over Fraction.",
+          "ldlt_pivots_strictly_positive": "Compute exact rational LDL^T pivots and verify that every pivot is strictly positive (> 0).",
+          "get_basis_pairs": "Return the 6 lexicographically ordered basis pairs (a, b) with 0 <= a < b < 4.",
+          "get_basis_triples": "Return the 4 lexicographically ordered basis triples (a, b, c) with 0 <= a < b < c < 4.",
+          "cyc_real_rational": "Return Re(z) only when it lies in Q; reject non-rational components.",
+          "cyc_real_constant_coefficient": "Project Re(z) to its constant coefficient; this discards other terms.",
+          "build_degree6_invariant_diagnostic_matrix": "Construct the experimental 21x21 rational coefficient matrix.",
+          "build_degree6_extended_diagnostic_matrix": "Construct the experimental 35x35 rational coefficient matrix.",
+          "DualWitnessRational": "Exact rational positive semidefinite dual certificate W = sum_i w_i z_i z_i^T.",
+          "build_invariant_dual_witness_x0": "Construct a PSD weight matrix for the experimental X=0 coefficient matrix.",
+          "build_extended_dual_witness_s6": "Construct a PSD weight matrix for the experimental S6 coefficient matrix.",
+          "DualWitnessReceipt": "Exact trace and positive-pivot diagnostics for a specified rational matrix.",
+          "Degree6MomentReport": "Report on the experimental coefficient matrices; no candidate refutations.",
+          "Degree6DiagnosticReport": "Diagnostic receipt; complete and moment_semantics_verified remain false.",
+          "build_block_diagonal_gramian": "Construct the block-diagonal Gramian G_diag = diag(G_triple, I_6) with X = 0.",
+          "evaluate_target_q3_diagnostics": "Evaluate two experimental coefficient matrices without candidate certification.",
+          "solve_target_q3_degree6_certificate": "Certification is unavailable; use evaluate_target_q3_diagnostics for exploration.",
+          "build_degree6_invariant_moment_matrix": "No sound projector-moment construction is supplied.",
+          "build_degree6_extended_moment_matrix": "No sound projector-moment construction is supplied."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/mub_verify/target_q3_degree6_sdp.py\",\n    \"sha256\": \"0b99fcfd95315dbfb5f1fbb3611ad69811507669172f37c89a4b48aae82ed61e\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:mub_verify:target-q3-degree6-sdp:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Target Q3: experimental rational coefficient-matrix diagnostics. Firewall Line: stated region only; mints no authority.\",\n  \"operations\": {\n    \"assert_no_float\": \"Recursively verify that no float or complex types exist in any data structure.\",\n    \"ldlt_decomposition_rational\": \"Exact rational LDL^T decomposition of a real symmetric matrix over Fraction.\",\n    \"ldlt_pivots_strictly_positive\": \"Compute exact rational LDL^T pivots and verify that every pivot is strictly positive (> 0).\",\n    \"get_basis_pairs\": \"Return the 6 lexicographically ordered basis pairs (a, b) with 0 <= a < b < 4.\",\n    \"get_basis_triples\": \"Return the 4 lexicographically ordered basis triples (a, b, c) with 0 <= a < b < c < 4.\",\n    \"cyc_real_rational\": \"Return Re(z) only when it lies in Q; reject non-rational components.\",\n    \"cyc_real_constant_coefficient\": \"Project Re(z) to its constant coefficient; this discards other terms.\",\n    \"build_degree6_invariant_diagnostic_matrix\": \"Construct the experimental 21x21 rational coefficient matrix.\",\n    \"build_degree6_extended_diagnostic_matrix\": \"Construct the experimental 35x35 rational coefficient matrix.\",\n    \"DualWitnessRational\": \"Exact rational positive semidefinite dual certificate W = sum_i w_i z_i z_i^T.\",\n    \"build_invariant_dual_witness_x0\": \"Construct a PSD weight matrix for the experimental X=0 coefficient matrix.\",\n    \"build_extended_dual_witness_s6\": \"Construct a PSD weight matrix for the experimental S6 coefficient matrix.\",\n    \"DualWitnessReceipt\": \"Exact trace and positive-pivot diagnostics for a specified rational matrix.\",\n    \"Degree6MomentReport\": \"Report on the experimental coefficient matrices; no candidate refutations.\",\n    \"Degree6DiagnosticReport\": \"Diagnostic receipt; complete and moment_semantics_verified remain false.\",\n    \"build_block_diagonal_gramian\": \"Construct the block-diagonal Gramian G_diag = diag(G_triple, I_6) with X = 0.\",\n    \"evaluate_target_q3_diagnostics\": \"Evaluate two experimental coefficient matrices without candidate certification.\",\n    \"solve_target_q3_degree6_certificate\": \"Certification is unavailable; use evaluate_target_q3_diagnostics for exploration.\",\n    \"build_degree6_invariant_moment_matrix\": \"No sound projector-moment construction is supplied.\",\n    \"build_degree6_extended_moment_matrix\": \"No sound projector-moment construction is supplied.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/mub_verify/target_q3_degree6_sdp.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8dd7662fc3ac75dc53341e2c644e5d9bf849e6ca210dc6c2ce0fdbf0a648a838",
+      "bytes": 2223,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/mub_verify/target_q3_degree6_sdp.py",
+          "sha256": "0b99fcfd95315dbfb5f1fbb3611ad69811507669172f37c89a4b48aae82ed61e"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:mub_verify:target-q3-degree6-sdp:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 38), Lizard CCN (max 38), and shallow nesting depth (max 6 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 38,
+          "lizard_ccn": 38,
+          "weighted_control_upper_bound": 74,
+          "control_nesting": 6
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/mub_verify/target_q3_degree6_sdp.py\",\n    \"sha256\": \"0b99fcfd95315dbfb5f1fbb3611ad69811507669172f37c89a4b48aae82ed61e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:mub_verify:target-q3-degree6-sdp:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 38), Lizard CCN (max 38), and shallow nesting depth (max 6 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 38,\n    \"lizard_ccn\": 38,\n    \"weighted_control_upper_bound\": 74,\n    \"control_nesting\": 6\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/mub_verify/target_q3_degree6_sdp.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}
