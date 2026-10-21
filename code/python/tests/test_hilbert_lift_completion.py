@@ -119,6 +119,8 @@ class DensityAndControlTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             m.fin_vector([0.5])
         with self.assertRaises(ValueError):
+            m.fin_vector([True])
+        with self.assertRaises(ValueError):
             m.fin_inner([1.0], [2.0])
         with self.assertRaises(ValueError):
             m.trunc(-1, F)
@@ -129,6 +131,51 @@ class DensityAndControlTests(unittest.TestCase):
         point = m.CauchyCandidate(m.harmonic, m.harmonic_modulus)
         with self.assertRaises(ValueError):
             point.approximant(-1)
+
+
+class OperatorTests(unittest.TestCase):
+    def test_shift_and_projection_are_bounded(self):
+        samples = [F, G, H, m.harmonic(7), m.seq({})]
+        self.assertTrue(m.bounded_operator_holds(m.shift, 1, samples))
+        self.assertTrue(m.bounded_operator_holds(lambda f: m.proj(3, f), 1, samples))
+        self.assertTrue(m.bounded_operator_holds(lambda f: m.smul(Q(-3, 2), f), Q(9, 4), samples))
+        for f, g in ((F, G), (G, H), (m.harmonic(4), m.harmonic(9))):
+            self.assertTrue(m.shift_is_isometric(f, g))
+            self.assertTrue(m.operator_lipschitz_holds(m.shift, 1, f, g))
+            self.assertTrue(m.operator_lipschitz_holds(lambda v: m.proj(3, v), 1, f, g))
+        self.assertFalse(m.bounded_operator_holds(lambda f: m.smul(2, f), 1, samples))
+        with self.assertRaises(ValueError):
+            m.bounded_operator_holds(m.shift, -1, samples)
+
+    def test_transported_modulus(self):
+        mu = m.transported_modulus(m.harmonic_modulus, 1)
+        for k in range(0, 4):
+            self.assertTrue(m.modulus_holds(lambda n: m.shift(m.harmonic(n)), mu, k, mu(k) + 10))
+        mu3 = m.transported_modulus(m.harmonic_modulus, Q(5, 2))
+        self.assertEqual(mu3(0), m.harmonic_modulus(3))
+        self.assertTrue(m.modulus_holds(lambda n: m.smul(Q(3, 2), m.harmonic(n)), mu3, 1, mu3(1) + 10))
+
+    def test_coord_sum_gap_and_bounded_norms(self):
+        self.assertEqual(m.coord_sum(F), Q(7, 2))
+        self.assertEqual(m.coord_sum(m.add(F, G)), m.coord_sum(F) + m.coord_sum(G))
+        for n in range(1, 12):
+            self.assertGreaterEqual(m.coord_sum_gap(n), Q(1, 2))
+        for N in range(0, 40):
+            self.assertTrue(m.harmonic_norm_sq_le_two_holds(N))
+        pairs = [(2 * n, n) for n in range(1, 8)]
+        self.assertEqual(m.coord_sum_not_cauchy_refutations(pairs), pairs)
+        with self.assertRaises(ValueError):
+            m.coord_sum_gap(0)
+
+    def test_certificate(self):
+        self.assertEqual(m.certify(), Q(1, 2))
+        self.assertEqual(m.certify(1), Q(1, 2))
+        self.assertEqual(m.certify(Q(1)), Q(1, 2))
+        for probe, invariant in ((1.0, 'float refused at the public boundary'), (True, 'boolean refused where a rational was required'), ('text', 'value is not an exact rational')):
+            with self.assertRaises(m.HilbertLiftError) as caught:
+                m.certify(probe)
+            self.assertEqual(caught.exception.invariant, invariant)
+        self.assertEqual(m.main(), 0)
 
 
 if __name__ == '__main__':

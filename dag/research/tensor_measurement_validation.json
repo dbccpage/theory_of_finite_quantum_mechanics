@@ -14,9 +14,9 @@
     "primitive_gap": "FQ-GAP-TENSOR-UNIQUENESS remains CONDITIONAL. No primitive derivation of local QM, tomography, calibration or either saturation assumption is asserted."
   },
   "counts": {
-    "dag_nodes": 197,
-    "dag_routes": 192,
-    "master_records": 417
+    "dag_nodes": 336,
+    "dag_routes": 333,
+    "master_records": 559
   },
   "preservation": {
     "upstream_master_records_unchanged_as_data": true,
@@ -249,5 +249,37 @@
     "lean4/TensorSchmidt.lean": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
     "lean4/TensorTomography.lean": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
     "lean4/lakefile.lean": "fbd6447d60965f6fb53f91dd4327024c57f7ab8ad91bff9fc6f5573b5ff86de6"
-  }
+  },
+  "rebound": [
+    {
+      "field": "counts",
+      "previous": {
+        "dag_nodes": 197,
+        "dag_routes": 192,
+        "master_records": 417
+      },
+      "current": {
+        "dag_nodes": 198,
+        "dag_routes": 194,
+        "master_records": 417
+      },
+      "reason": "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION and its two routes were added by dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/tools/dag_update.py; no tensor node, route or master record changed",
+      "run": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps"
+    },
+    {
+      "field": "counts",
+      "previous": {
+        "dag_nodes": 198,
+        "dag_routes": 194,
+        "master_records": 417
+      },
+      "current": {
+        "dag_nodes": 336,
+        "dag_routes": 333,
+        "master_records": 559
+      },
+      "reason": "rebound when main was merged into PR #122 (worktree-hilbert-lift-steps): main had added the pre-genesis to WDP records, papers, nodes and routes (#128) and the contract-score and fsp changes (#127, #129), and this branch adds FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION with two routes; the tensor nodes, routes and Lean replay sections of this receipt are not edited",
+      "run": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps"
+    }
+  ]
 }

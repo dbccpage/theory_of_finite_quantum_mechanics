@@ -1,0 +1,16 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/HilbertLiftOperators.lean
+source_sha256: 7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076
+authority_effect: None
+purpose: Bounded exact operators (Q-linear maps with a rational quadratic bound) lift uniquely to continuous
+  R-linear operators on the real lift with the same quadratic bound; stage projections and the unilateral
+  shift are examples (the shift lifts to an isometry); the Q-linear coordinate-sum functional admits no
+  continuous extension.
+design:
+  profile: Exact rational arithmetic or kernel-checked Lean on the declared carrier; no floating point.
+  frozen_sources: Run snapshots under verification/ are immutable custody assets.
+boundaries:
+- The bound C is a hypothesis on the exact operator; nothing selects which exact operators are physical.
+- No dynamics, generator, spectrum or Born pairing is constructed.
+evidence:
+- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md

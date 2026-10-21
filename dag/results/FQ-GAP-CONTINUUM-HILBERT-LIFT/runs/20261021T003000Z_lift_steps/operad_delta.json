@@ -1,0 +1,694 @@
+{
+  "schema_version": 2,
+  "namespace": "HL-HILBERT-LIFT",
+  "records": [
+    {
+      "id": "HL-17",
+      "name": "Intrinsic uniformity of the exact carrier",
+      "inputs": "The exact carrier ℕ →₀ ℚ with the pullback uniformity along castSeq ℝ",
+      "output_or_relation": "the uniformity has the rational squared-distance balls as a basis and equals their infimum of principal filters; CauchySeq ↔ IsCauchyL2; castSeq ℝ and lift ℝ are uniform inducing; every rational ℓ²-Cauchy sequence converges in Completion Carrier",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; the scalar field 𝕜, the ℓ² uniformity and the operator bound C are hypotheses, not consequences of the exact carrier.",
+      "proofs": [
+        {
+          "name": "HilbertLift.isUniformInducing_castSeq_real",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.dist_castSeq_sq",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.uniformity_hasBasis_sqdist",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.uniformity_eq_iInf_sqdist",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.cauchySeq_iff_isCauchyL2",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.uniformContinuous_lift_real",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.isUniformInducing_lift_real",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.exists_limit_in_completion",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "HL-18",
+      "name": "Completion of the exact carrier is the real Hilbert lift",
+      "inputs": "Completion Carrier (intrinsic uniformity) and HilbertLiftSpace ℝ",
+      "output_or_relation": "completionToLift is uniform inducing, injective and surjective, giving the uniform isomorphism completionEquivLift that restricts to lift ℝ on exact vectors",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; the scalar field 𝕜, the ℓ² uniformity and the operator bound C are hypotheses, not consequences of the exact carrier.",
+      "proofs": [
+        {
+          "name": "HilbertLift.completionToLift_coe",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.isUniformInducing_completionToLift",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.completionToLift_injective",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.range_completionToLift",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.completionToLift_surjective",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.completionEquivLift_coe",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.completionEquivLift_symm_lift",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.intrinsic_completion",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftIntrinsicUniformity.lean",
+          "source_sha256": "25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed",
+          "receipt": "verification/intrinsic_01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "HL-19",
+      "name": "Sequence model on the pre-Hilbert carrier",
+      "inputs": "Finitely supported 𝕜-sequences and lp (fun _ => 𝕜) 2",
+      "output_or_relation": "the coordinate map is a linear isometry preserving the inner product, with dense range in ℓ²",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; the scalar field 𝕜, the ℓ² uniformity and the operator bound C are hypotheses, not consequences of the exact carrier.",
+      "proofs": [
+        {
+          "name": "HilbertLift.memℓp_coe",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.toL2_add",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.toL2_smul",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.inner_toL2",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.norm_toL2",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.denseRange_toL2",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "HL-20",
+      "name": "The Hilbert lift is ℓ²(ℕ, 𝕜)",
+      "inputs": "HilbertLiftSpace 𝕜",
+      "output_or_relation": "the extension of the coordinate map is a linear isometric equivalence onto ℓ² under which lift 𝕜 f is its own coordinate sequence",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; the scalar field 𝕜, the ℓ² uniformity and the operator bound C are hypotheses, not consequences of the exact carrier.",
+      "proofs": [
+        {
+          "name": "HilbertLift.liftToL2_coe",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.liftToL2_lift_apply",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.norm_liftToL2",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.liftToL2_add",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.liftToL2_smul",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.range_liftToL2",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.liftToL2_surjective",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.liftEquivL2_lift_apply",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.l2_model_summary",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftL2Model.lean",
+          "source_sha256": "3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad",
+          "receipt": "verification/l2model_01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "HL-21",
+      "name": "Bounded exact operators lift to continuous linear operators",
+      "inputs": "A ℚ-linear map A of the exact carrier with qinner (A f) (A f) ≤ C qinner f f",
+      "output_or_relation": "A is uniformly continuous, preserves rational ℓ²-Cauchy sequences, and extends uniquely to a continuous ℝ-linear operator on the real lift with ‖T x‖² ≤ C ‖x‖² and ‖T‖ ≤ √C",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; the scalar field 𝕜, the ℓ² uniformity and the operator bound C are hypotheses, not consequences of the exact carrier.",
+      "proofs": [
+        {
+          "name": "HilbertLift.BoundedExactOperator.sqdist_map_le",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.isCauchyL2_map",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.uniformContinuous_A",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.liftOp_lift",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.continuous_liftOp",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.liftOp_unique",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.norm_liftOp_sq_le",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.liftOp_add",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.liftOp_qsmul",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.liftOp_smul",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.toCLM_lift",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.norm_toCLM_le",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.BoundedExactOperator.opNorm_toCLM_le",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "HL-22",
+      "name": "Stage projections and the unilateral shift",
+      "inputs": "The exact projection onto report size n and the shift e_i ↦ e_{i+1}",
+      "output_or_relation": "both are bounded exact operators with bound 1; the projection lifts to liftFin ∘ trunc; the shift preserves qinner and lifts to an isometry of the real lift",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; the scalar field 𝕜, the ℓ² uniformity and the operator bound C are hypotheses, not consequences of the exact carrier.",
+      "proofs": [
+        {
+          "name": "HilbertLift.trunc_add",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.trunc_smul",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.proj_lift",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.qinner_shift",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.norm_shift_liftOp",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "HL-23",
+      "name": "The coordinate-sum functional has no continuous extension",
+      "inputs": "The ℚ-linear functional Σ_i f i and the harmonic witness",
+      "output_or_relation": "coordSum (harmonic 2n) − coordSum (harmonic n) ≥ 1/2 while qinner (harmonic N) (harmonic N) ≤ 2; no continuous real functional on the lift restricts to coordSum",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; the scalar field 𝕜, the ℓ² uniformity and the operator bound C are hypotheses, not consequences of the exact carrier.",
+      "proofs": [
+        {
+          "name": "HilbertLift.coordSum_add",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.coordSum_smul",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.coordSum_harmonic",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.coordSum_harmonic_gap",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.qinner_harmonic_le_two",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.no_continuous_extension_coordSum",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        },
+        {
+          "name": "HilbertLift.operator_lift_summary",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "HilbertLiftOperators.lean",
+          "source_sha256": "7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076",
+          "receipt": "verification/operators_01/receipt.json"
+        }
+      ]
+    }
+  ],
+  "formal_operad_claim": "Scoped typed operations with kernel-checked relations and exact receipts; no complete higher-arity operad is claimed. Records HL-01 to HL-16 of runs/20261020T230000Z_completion are re-verified by the dependency receipts of this run but not re-listed.",
+  "authority_effect": "None"
+}

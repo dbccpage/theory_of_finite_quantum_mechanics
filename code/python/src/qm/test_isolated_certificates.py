@@ -99,6 +99,7 @@ _CASES: tuple[Certificate, ...] = (
     Certificate("src.qm.data", "data/__init__.py", Fraction(1, 2), "src.qm.data", "code/python/src/qm/data/__init__.py", "", "return left * left + right * right", "return left * left - right * right"),
     Certificate("src.qm.campaigns", "campaigns/__init__.py", Fraction(-1), "src.qm.campaigns", "lean4/CommutingObservables.lean", "def pauliX", "return Fraction(xz[0][1])", "return Fraction(xz[0][0])"),
     Certificate("src.qm.entrypoints", "entrypoints/__init__.py", Fraction(12), "src.qm.entrypoints", "code/python/src/qm/entrypoints/__init__.py", "", "if blocks * bets != 30:", "if blocks * bets == 30:"),
+    Certificate("src.qm.hilbert_lift_completion", "hilbert_lift_completion.py", Fraction(1, 2), "src.qm", "lean4/HilbertLiftOperators.lean", "theorem coordSum_harmonic_gap", "return coord_sum(harmonic(2 * n)) - coord_sum(harmonic(n))", "return coord_sum(harmonic(2 * n)) + coord_sum(harmonic(n))"),
 )
 _WITNESS_MUTANTS: tuple[tuple[tuple[str, str], tuple[str, str]], ...] = (
     (("left = 5 ", "* 5"), ("left = 5 ", "+ 5")),

@@ -1,0 +1,15 @@
+schema_id: finite-qm.code-companion.v1
+subject: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/tools/rebind_receipts.py
+source_sha256: dc1c6fde33038ec188f6b722a018c03b580891bf00624c85c63b7017db9b957d
+authority_effect: None
+purpose: Rebinds the count fields of dag/research/tensor_measurement_validation.json and tensor_countermodel_validation.json,
+  and the two drifted current-file digests of the latter, to the DAG after the split; previous values
+  are kept under 'rebound'.
+design:
+  profile: Exact rational arithmetic or kernel-checked Lean on the declared carrier; no floating point.
+  frozen_sources: Run snapshots under verification/ are immutable custody assets.
+boundaries:
+- The Lean replay sections of the receipts are untouched; no tensor claim is re-verified or changed.
+- The countermodel receipt's DAG digest was already stale on main before this run.
+evidence:
+- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md
